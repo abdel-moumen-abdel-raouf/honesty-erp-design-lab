@@ -265,3 +265,60 @@ Each typography role defines three standard CSS custom properties:
 - **No Letter Spacing:** Explicit tracking is deferred pending Arabic visual review.
 - **No Monospace Role:** No production monospace font has been approved; code roles are deferred.
 - **No Global Application:** Typography variables are not applied to `html`, `body`, or component selectors in this phase.
+
+---
+
+## 14. Spacing Technical Contract (Candidate V1)
+
+### A. 4px Base Grid Foundation
+- The Honesty ERP spacing system strictly adheres to a **4px base grid**.
+- All non-zero Reference spacing steps are exact multiples of 4px.
+- Arbitrary intermediate values (such as 6px, 10px, 14px, 18px, 22px, 28px, 36px) are strictly forbidden.
+
+### B. Reference Spacing Scale (Compile-Time Sass Primitives)
+- Reference spacing primitives are context-free Sass variables in `src/styles/foundation/reference/spacing/_scale.scss`.
+- All scale values are expressed in `rem` relative to a standard 16px root (`1rem = 16px`).
+- Reference token names correspond directly to their 16px-root pixel equivalent:
+  - `$honesty-ref-space-0`: `0`
+  - `$honesty-ref-space-4`: `0.25rem` (4px)
+  - `$honesty-ref-space-8`: `0.5rem` (8px)
+  - `$honesty-ref-space-12`: `0.75rem` (12px)
+  - `$honesty-ref-space-16`: `1rem` (16px)
+  - `$honesty-ref-space-20`: `1.25rem` (20px)
+  - `$honesty-ref-space-24`: `1.5rem` (24px)
+  - `$honesty-ref-space-32`: `2rem` (32px)
+  - `$honesty-ref-space-40`: `2.5rem` (40px)
+  - `$honesty-ref-space-48`: `3rem` (48px)
+  - `$honesty-ref-space-64`: `4rem` (64px)
+- **Reference Layer Ownership:** Context-free dimensional steps. Reference tokens describe mathematical position on the scale, not functional usage (never named `small`, `medium`, `large`, `card`, `button`, or `section`).
+- **Unused Reference Steps:** Reference steps `20`, `40`, and `64` are deliberately preserved in Candidate V1 as available mathematical primitives without current Semantic aliases. Reference tokens are context-free and must not be forced into invented semantic mappings.
+
+### C. Semantic Spacing Roles (Runtime CSS Custom Properties)
+- Semantic spacing tokens assign functional purpose to Reference steps.
+- Emitted in `:root` via `src/styles/foundation/semantic/spacing/_rhythm.scss`.
+- Spacing is currently not theme-sensitive and is not placed inside Light/Dark selectors.
+- Every Semantic value resolves strictly from a Reference Sass token via interpolation (`#{ref.$honesty-ref-space-*}`).
+
+### D. Naming Grammar
+- **Syntax:** `--honesty-space-<purpose>`
+
+### E. Semantic Spacing Categories & Candidate V1 Mapping
+| Category | Semantic Token | Reference Token | Computed Value | Purpose & Meaning |
+| :--- | :--- | :--- | :--- | :--- |
+| **Inline** | `--honesty-space-inline-tight` | `$honesty-ref-space-4` | `0.25rem` (4px) | Spacing between compact adjacent inline/sibling items (e.g., text/icon) |
+| **Inline** | `--honesty-space-inline-default` | `$honesty-ref-space-8` | `0.5rem` (8px) | Default spacing between adjacent inline/sibling elements |
+| **Inline** | `--honesty-space-inline-loose` | `$honesty-ref-space-12` | `0.75rem` (12px) | Relaxed spacing between adjacent inline/sibling elements |
+| **Stack** | `--honesty-space-stack-tight` | `$honesty-ref-space-8` | `0.5rem` (8px) | Tight vertical rhythm between closely related content items |
+| **Stack** | `--honesty-space-stack-default` | `$honesty-ref-space-16` | `1rem` (16px) | Standard vertical rhythm between distinct content blocks |
+| **Stack** | `--honesty-space-stack-loose` | `$honesty-ref-space-24` | `1.5rem` (24px) | Relaxed vertical rhythm between major structural blocks |
+| **Inset** | `--honesty-space-inset-tight` | `$honesty-ref-space-8` | `0.5rem` (8px) | Compact internal breathing space inside bounded regions |
+| **Inset** | `--honesty-space-inset-default` | `$honesty-ref-space-16` | `1rem` (16px) | Standard internal breathing space inside bounded regions |
+| **Inset** | `--honesty-space-inset-loose` | `$honesty-ref-space-24` | `1.5rem` (24px) | Generous internal breathing space inside bounded regions |
+| **Section** | `--honesty-space-section-gap` | `$honesty-ref-space-32` | `2rem` (32px) | Standard separation gap between major content sections |
+| **Section** | `--honesty-space-section-gap-large` | `$honesty-ref-space-48` | `3rem` (48px) | Prominent separation gap between major content sections |
+
+### F. Architectural Domain & Density Boundaries
+- **Layout Spacing Deferred:** Layout and grid spacing tokens (`--honesty-space-layout-*`) and the primitive layout contract (`XXS`, `XS`, `SM`, `MD`, `LG`, `XL`, `XXL`) belong to the separate Semantic Layout/Grid domain (`semantic/layout/`) and are deliberately deferred to prevent pre-empting layout decisions.
+- **Component Padding & Gaps Deferred:** Generic inset and stack tokens must not be treated as component-level padding or gaps (e.g., `card-padding`, `button-padding`, `modal-padding`). Component-specific contracts belong exclusively to future Component Tokens (Layer 3).
+- **Density Overrides Deferred:** Spacing variables are not placed under `[data-density]` in this candidate. Density modulation (compact, comfortable, spacious) will be implemented as targeted overrides in later density phases.
+- **No Visual Application:** Candidate V1 spacing tokens are not applied to global elements (`html`, `body`), existing review pages, specimens, or shell layouts in this phase.

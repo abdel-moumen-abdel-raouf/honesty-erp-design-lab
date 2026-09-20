@@ -1,7 +1,26 @@
 // =============================================================================
-// Semantic Tokens: Spacing
+// Semantic Tokens: Spacing (Candidate V1)
 // =============================================================================
 // Responsibility:
-// Contextual spacing semantics (inset, stack, inline, section gap).
+// Contextual spacing semantics (inline, stack, inset, section gap).
 // Depends on reference/spacing. Must not depend on component tokens.
+//
+// Candidate V1 Roles:
+// - Inline:
+//   --honesty-space-inline-tight:   4px  ($honesty-ref-space-4)
+//   --honesty-space-inline-default: 8px  ($honesty-ref-space-8)
+//   --honesty-space-inline-loose:   12px ($honesty-ref-space-12)
+// - Stack:
+//   --honesty-space-stack-tight:    8px  ($honesty-ref-space-8)
+//   --honesty-space-stack-default:  16px ($honesty-ref-space-16)
+//   --honesty-space-stack-loose:    24px ($honesty-ref-space-24)
+// - Inset:
+//   --honesty-space-inset-tight:    8px  ($honesty-ref-space-8)
+//   --honesty-space-inset-default:  16px ($honesty-ref-space-16)
+//   --honesty-space-inset-loose:    24px ($honesty-ref-space-24)
+// - Section:
+//   --honesty-space-section-gap:       32px ($honesty-ref-space-32)
+//   --honesty-space-section-gap-large: 48px ($honesty-ref-space-48)
 // =============================================================================
+
+@use 'rhythm';

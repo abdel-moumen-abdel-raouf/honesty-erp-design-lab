@@ -1,0 +1,21 @@
+// =============================================================================
+// Reference Tokens: Spacing Scale (Candidate V1)
+// =============================================================================
+// Responsibility:
+// Absolute context-free rem spacing scale primitives based on a strict 4px grid
+// with a 16px root.
+// Never depends on semantic, components, or themes.
+// =============================================================================
+
+$honesty-ref-space-0: 0;
+
+$honesty-ref-space-4: 0.25rem;
+$honesty-ref-space-8: 0.5rem;
+$honesty-ref-space-12: 0.75rem;
+$honesty-ref-space-16: 1rem;
+$honesty-ref-space-20: 1.25rem;
+$honesty-ref-space-24: 1.5rem;
+$honesty-ref-space-32: 2rem;
+$honesty-ref-space-40: 2.5rem;
+$honesty-ref-space-48: 3rem;
+$honesty-ref-space-64: 4rem;

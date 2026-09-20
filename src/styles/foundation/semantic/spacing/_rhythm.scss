@@ -1,0 +1,36 @@
+// =============================================================================
+// Semantic Tokens: Spacing Rhythm (Candidate V1)
+// =============================================================================
+// Responsibility:
+// Purpose-driven runtime CSS custom properties for spacing rhythm (inline, stack,
+// inset, and section gap).
+// Resolves strictly from compile-time Reference spacing Sass tokens.
+// Spacing is currently not theme-sensitive; emitted in :root.
+// =============================================================================
+
+@use '../../reference/spacing' as ref;
+
+:root {
+  // Semantic Inline Spacing
+  // Spacing between adjacent inline/sibling items (e.g., text/icon, peer elements)
+  --honesty-space-inline-tight: #{ref.$honesty-ref-space-4};
+  --honesty-space-inline-default: #{ref.$honesty-ref-space-8};
+  --honesty-space-inline-loose: #{ref.$honesty-ref-space-12};
+
+  // Semantic Stack Spacing
+  // Vertical rhythm between related content blocks
+  --honesty-space-stack-tight: #{ref.$honesty-ref-space-8};
+  --honesty-space-stack-default: #{ref.$honesty-ref-space-16};
+  --honesty-space-stack-loose: #{ref.$honesty-ref-space-24};
+
+  // Semantic Inset Spacing
+  // Generic internal breathing space inside a bounded region
+  --honesty-space-inset-tight: #{ref.$honesty-ref-space-8};
+  --honesty-space-inset-default: #{ref.$honesty-ref-space-16};
+  --honesty-space-inset-loose: #{ref.$honesty-ref-space-24};
+
+  // Semantic Section Spacing
+  // Separation between major content sections
+  --honesty-space-section-gap: #{ref.$honesty-ref-space-32};
+  --honesty-space-section-gap-large: #{ref.$honesty-ref-space-48};
+}
