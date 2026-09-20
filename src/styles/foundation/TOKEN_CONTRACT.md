@@ -31,10 +31,10 @@ The Honesty ERP Design System adopts an intentional **Hybrid Representation**:
 | Layer | Implementation Target | Emission Behavior | Primary Responsibility |
 | :--- | :--- | :--- | :--- |
 | **Reference Tokens** | Sass variables / maps (`$` prefix) | **Compile-Time Only** (Does NOT emit CSS custom properties by default) | Context-free design primitives, mathematical scales, base color palettes. Tree-shaken and compiled out of client runtime bundles unless consumed by a higher layer. |
-| **Semantic Tokens** | CSS Custom Properties (`--honesty-` prefix) | **Runtime Emission** via Theme definitions | Dynamic runtime theming (Light / Dark / High-Contrast modes), responsive adjustments, and global intent mapping. |
+| **Semantic Tokens** | CSS Custom Properties (`--honesty-` prefix) | **Runtime Emission** via Theme definitions | Dynamic runtime theming (light, dark, system modes), responsive adjustments, and global intent mapping. |
 | **Component Tokens** | CSS Custom Properties (`--honesty-<component>-` prefix) | **Runtime Emission** at component host or base scope | Explicit component styling contracts. Enables local variations and predictable component-level theming without leaking styles. |
-| **Themes** | CSS Selectors (e.g., `[data-theme="..."]`) | Dynamic runtime declaration blocks | Binds reference primitives to semantic CSS custom properties for runtime theme switching. Does not declare raw palette scales. |
-| **Density** | CSS Selectors (e.g., `[data-density="..."]`) | Dynamic runtime property overrides | Modulates density-sensitive sizing, spacing, and typography properties. Never redefines global raw reference scales. |
+| **Themes** | CSS Selectors (e.g., `[data-theme="..."]`) | Dynamic runtime declaration blocks | Resolves all theme-sensitive Semantic Tokens for runtime theme switching (light, dark, system). Does not declare raw palette scales or layout rules. |
+| **Density** | CSS Selectors (e.g., `[data-density="..."]`) | Dynamic runtime property overrides | Modulates density-sensitive Semantic/Component properties. Never redefines global raw reference scales. |
 
 ---
 
@@ -124,19 +124,45 @@ Feature Code    ──X──> Component Tokens (override bypass)
 
 ## 6. Theme Responsibility
 
-- Themes are strictly responsible for **runtime color and surface mode resolution**.
-- Themes map Reference color palettes to Semantic CSS custom properties based on active mode (e.g., `[data-theme="light"]`, `[data-theme="dark"]`, `[data-theme="contrast"]`).
-- Themes **must not** declare raw source palettes; raw palettes belong exclusively to `foundation/reference/colors/`.
-- Themes **must not** define component-specific layout rules, margins, or padding.
+- **Core Rule:** Themes resolve all theme-sensitive Semantic Tokens.
+- Approved theme modes are:
+  - `light`
+  - `dark`
+  - `system` (resolves active visual mode dynamically from the operating-system/browser color-scheme preference).
+- Themes map Reference tokens to Semantic CSS custom properties based on the active mode (e.g., `[data-theme="light"]`, `[data-theme="dark"]`).
+- When applicable, theme-sensitive resolution may include:
+  - surfaces
+  - content/text colors
+  - action colors
+  - feedback colors
+  - border colors
+  - elevation/shadow treatment
+  - chart theme colors
+- Themes must **NOT** own:
+  - layout structure
+  - component-specific layout rules
+  - margins or paddings unrelated to theme
+  - raw reference palettes (these belong exclusively to `foundation/reference/`)
+  - feature or page styling
 
 ---
 
 ## 7. Density Responsibility
 
-- Density is strictly responsible for **vertical cadence, compact data layouts, and control sizing**.
-- Density profiles (e.g., `[data-density="compact"]`, `[data-density="comfortable"]`, `[data-density="spacious"]`) adjust density-sensitive tokens (such as table row heights, form control heights, cell padding, and body font sizes).
-- Density **must not** redefine the global raw spacing scale.
-- Density adjustments must be harmonious across all components sharing the density context.
+- **Core Rule:** Density modulates density-sensitive Semantic or Component tokens; it is responsible for vertical cadence, compact data layouts, and control sizing across ERP interfaces.
+- Density profiles (e.g., `[data-density="compact"]`, `[data-density="comfortable"]`, `[data-density="spacious"]`) may modulate density-sensitive Semantic or Component tokens such as:
+  - control height
+  - row height
+  - cell padding
+  - field padding
+  - component gaps
+  - compact, comfortable, or spacious component sizing
+- Density must **NOT** redefine:
+  - raw Reference spacing scales
+  - raw Reference typography scales
+  - global body typography by default
+- If typography ever changes with density, it must be an explicitly designed density-sensitive Component/Semantic alias. Global body font-size scaling is not a density rule.
+- Density adjustments must remain harmonious across all components sharing the density context.
 
 ---
 
@@ -158,6 +184,7 @@ Feature Code    ──X──> Component Tokens (override bypass)
 
 ## 10. Angular UI Preferences Architectural Rule
 
-- In Angular application logic, user preferences (theme mode, density scale, directionality/RTL) **must only mutate application state, enum properties, or DOM root attributes** (e.g., `dir="rtl"`, `data-theme="dark"`, `data-density="compact"`).
+- In Angular application logic, user preferences (such as theme mode, density scale, sidebar tone, topbar tone, or formatting preferences) **must only mutate application state, enum properties, or DOM root attributes** (e.g., `data-theme="dark"`, `data-density="compact"`).
+- Directionality (`dir="rtl"`) is application/product-level configuration (Honesty ERP is Arabic-first and RTL-first) and is **not** currently a user-selectable UI preference.
 - Angular TypeScript services and components **must never inject or calculate arbitrary CSS values** (e.g., manipulating `element.style.setProperty('--honesty-button-bg', '#123456')`).
 - Styling reactions remain 100% declarative and CSS-driven, resolved entirely through the Foundation's CSS custom property contracts.

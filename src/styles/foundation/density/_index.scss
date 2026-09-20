@@ -2,9 +2,9 @@
 // Foundation Layer: Density Entry Point
 // =============================================================================
 // Responsibility:
-// Composes density-related semantic and component behaviors (compact, comfortable, spacious).
-// Must not redefine global raw spacing scales.
+// Modulates density-sensitive Semantic and Component tokens (control height, row height, padding, sizing).
+// Must not redefine raw Reference spacing scales, typography scales, or global body typography.
 //
 // Dependency Rule:
-// Modulates spacing, sizing, and typography across components.
+// Modulates density-sensitive tokens across components.
 // =============================================================================

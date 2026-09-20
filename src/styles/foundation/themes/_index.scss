@@ -2,8 +2,8 @@
 // Foundation Layer: Themes Entry Point
 // =============================================================================
 // Responsibility:
-// Composes/overrides semantic values for theme modes (e.g. light, dark).
-// Does not contain raw source palettes.
+// Resolves all theme-sensitive Semantic Tokens for runtime theme modes (light, dark, system).
+// Does not contain raw source palettes or layout rules.
 //
 // Dependency Rule:
 // Consumes semantic tokens and reference tokens.
