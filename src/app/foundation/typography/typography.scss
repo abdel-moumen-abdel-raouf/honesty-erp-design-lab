@@ -1,0 +1,411 @@
+// Docs-Only Visual Review Chrome: Typography Candidate V1 Specimen
+:host {
+  display: block;
+}
+
+.typography-specimen-root {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #11141a;
+  background-color: #fff;
+}
+
+.specimen-header {
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid #e1e4ea;
+  padding-bottom: 1.5rem;
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 0.4rem;
+  }
+
+  p {
+    font-size: 0.925rem;
+    line-height: 1.55;
+    margin: 0 0 1rem;
+    color: #585f6e;
+    max-width: 85ch;
+  }
+}
+
+.specimen-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  background-color: #eef1f6;
+  color: #444b58;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.font-loading-banner {
+  display: inline-flex;
+  padding: 0.4rem 0.75rem;
+  background-color: #f6f8fb;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  font-size: 0.825rem;
+  color: #333842;
+
+  &.is-success {
+    background-color: #f0fdf4;
+    border-color: #bbf7d0;
+    color: #166534;
+  }
+
+  &.is-error {
+    background-color: #fef2f2;
+    border-color: #fecaca;
+    color: #991b1b;
+  }
+}
+
+.specimen-section {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e8ecf2;
+
+  &:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+.section-header {
+  margin-bottom: 1.25rem;
+
+  .section-title-label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+  }
+
+  .section-desc {
+    font-size: 0.875rem;
+    color: #606877;
+    margin: 0;
+  }
+}
+
+// Font Families
+.font-family-arabic {
+  font-family: var(--honesty-type-family-arabic);
+}
+
+.font-family-latin {
+  font-family: var(--honesty-type-family-latin);
+}
+
+.font-family-ui {
+  font-family: var(--honesty-type-family-ui);
+}
+
+.family-groups-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.family-card {
+  border: 1px solid #e1e4ea;
+  border-radius: 6px;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.family-meta-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0.85rem;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e1e4ea;
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  .family-token-code {
+    font-family: monospace;
+    font-weight: 400;
+    color: #4b5563;
+    direction: ltr;
+  }
+}
+
+.family-sample-body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.6;
+
+  .sample-digits {
+    font-size: 1.15rem;
+  }
+
+  .sample-note {
+    font-size: 0.825rem;
+    color: #606877;
+  }
+
+  .sample-mixed-hero {
+    font-size: 1.15rem;
+    font-weight: 500;
+  }
+}
+
+// Weights Review
+.weight-samples-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.weight-card {
+  border: 1px solid #e1e4ea;
+  border-radius: 6px;
+  padding: 1rem;
+  background-color: #fff;
+
+  &.weight-regular { font-weight: 400; }
+  &.weight-medium { font-weight: 500; }
+  &.weight-bold { font-weight: 700; }
+}
+
+.weight-meta-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px dashed #e8ecf2;
+  font-size: 0.8rem;
+  font-weight: 600;
+
+  .weight-spec {
+    font-family: monospace;
+    font-weight: 400;
+    color: #6b7280;
+    direction: ltr;
+  }
+}
+
+.weight-line {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 0.35rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Semantic Roles Scale
+[class*='role-'] {
+  font-family: var(--honesty-type-family-ui);
+}
+
+$roles: (
+  display,
+  page-title,
+  section-title,
+  subsection-title,
+  body,
+  body-strong,
+  body-small,
+  label,
+  caption
+);
+
+@each $role in $roles {
+  .role-#{$role} {
+    font-size: var(--honesty-type-#{$role}-font-size);
+    font-weight: var(--honesty-type-#{$role}-font-weight);
+    line-height: var(--honesty-type-#{$role}-line-height);
+  }
+}
+
+.roles-specimen-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.role-row {
+  border: 1px solid #e1e4ea;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  background-color: #fff;
+}
+
+.role-meta-badge {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #f1f3f7;
+
+  .role-token-name {
+    font-family: monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    background-color: #f1f5f9;
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+  }
+
+  .role-token-values {
+    font-size: 0.75rem;
+    color: #64748b;
+  }
+}
+
+.role-rendered-block {
+  .role-line-arabic {
+    margin-bottom: 0.4rem;
+  }
+
+  .role-line-mixed {
+    color: #334155;
+  }
+}
+
+// Long Arabic Text Rhythm
+.rhythm-blocks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 1.25rem;
+}
+
+.rhythm-card {
+  border: 1px solid #e1e4ea;
+  border-radius: 6px;
+  padding: 1.25rem;
+  background-color: #fff;
+}
+
+.rhythm-meta-bar {
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dashed #e2e8f0;
+
+  .rhythm-role-title {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .rhythm-role-spec {
+    font-family: monospace;
+    font-size: 0.7rem;
+    color: #6b7280;
+    direction: ltr;
+    word-break: break-all;
+  }
+}
+
+.rhythm-paragraph {
+  max-width: 68ch;
+  margin: 0;
+}
+
+// Digit & Data Review
+.digit-data-container {
+  border: 1px solid #e1e4ea;
+  border-radius: 6px;
+  padding: 1.25rem;
+  background-color: #fff;
+  max-width: 600px;
+}
+
+.data-review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.data-item-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0.65rem;
+  background-color: #f8fafc;
+  border-radius: 4px;
+  font-size: 1rem;
+
+  .data-item-label {
+    font-weight: 500;
+    color: #475569;
+  }
+
+  .data-item-value {
+    font-weight: 600;
+    color: #0f172a;
+  }
+}
+
+// RTL / Bidi Review
+.bidi-sample-card {
+  border: 1px solid #e1e4ea;
+  border-radius: 6px;
+  padding: 1.25rem;
+  background-color: #fff;
+}
+
+.bidi-sample-content {
+  max-width: 75ch;
+  margin: 0;
+
+  .bidi-inline-token {
+    background-color: #f1f5f9;
+    padding: 0.1rem 0.35rem;
+    border-radius: 3px;
+    unicode-bidi: isolate;
+  }
+}
+
+// Dark-Theme Typography Check
+.dark-context-container {
+  background-color: var(--honesty-color-surface-canvas);
+  color: var(--honesty-color-text-primary);
+  border: 1px solid var(--honesty-color-border-default);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .dark-theme-badge {
+    align-self: flex-start;
+    font-family: monospace;
+    font-size: 0.725rem;
+    font-weight: 600;
+    padding: 0.15rem 0.4rem;
+    background-color: var(--honesty-color-surface-elevated);
+    color: var(--honesty-color-text-secondary);
+    border: 1px solid var(--honesty-color-border-subtle);
+    border-radius: 3px;
+  }
+
+  .dark-role-item {
+    color: var(--honesty-color-text-primary);
+
+    &.role-body-small,
+    &.role-label {
+      color: var(--honesty-color-text-secondary);
+    }
+
+    &.role-caption {
+      color: var(--honesty-color-text-muted);
+    }
+
+    &.dark-data-sample {
+      padding: 0.65rem 0.85rem;
+      background-color: var(--honesty-color-surface-default);
+      border: 1px solid var(--honesty-color-border-subtle);
+      border-radius: 4px;
+    }
+  }
+}

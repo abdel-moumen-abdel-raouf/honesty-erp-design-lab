@@ -26,6 +26,11 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'foundation/typography',
+    loadComponent: () =>
+      import('./foundation/typography/typography').then((m) => m.Typography),
+  },
+  {
     path: '',
     redirectTo: 'foundation/colors',
     pathMatch: 'full',

@@ -1,0 +1,431 @@
+<main id="typography-specimen-root" class="typography-specimen-root">
+  <!-- Header & Document Metadata -->
+  <header id="specimen-header" class="specimen-header">
+    <span id="specimen-badge" class="specimen-badge">مراجعة بصرية توثيقية — منظومة الطباعة الدلالية Candidate V1</span>
+    <h1 id="specimen-title">فحص وتقييم عينات الطباعة (Typography Candidate V1 Specimen)</h1>
+    <p id="specimen-subtitle">
+      معاينة تقييمية لعائلات الخطوط المعتمدة ذاتياً (Tajawal و Space Grotesk)، والأوزان المشتركة الثلاثة (400, 500, 700)، وسلم الأدوار الدلالية التسعة ونصوص الـ ERP الواقعية، مستندة حصرياً إلى متغيرات CSS الدلالية.
+    </p>
+
+    <!-- Font Loading Runtime Verification Banner -->
+    <div
+      id="font-loading-banner"
+      class="font-loading-banner"
+      [class.is-success]="!hasFontError() && (tajawalLoaded() && spaceGroteskLoaded())"
+      [class.is-error]="hasFontError()"
+    >
+      <span id="font-loading-status" class="font-loading-status">
+        {{ fontVerificationMessage() }}
+      </span>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- 1. FONT FAMILY VERIFICATION                                           -->
+  <!-- ===================================================================== -->
+  <section id="family-review-section" class="specimen-section">
+    <div id="family-review-header" class="section-header">
+      <h2 id="family-review-title" class="section-title-label">1. فحص عائلات الخطوط المعتمدة (Approved Font Families)</h2>
+      <p id="family-review-desc" class="section-desc">
+        التحقق من صحة رسم المحارف، ومحاذاة خط الأساس، وسلوك الاستدعاء التلقائي بين الخط العربي واللاتيني.
+      </p>
+    </div>
+
+    <div id="family-groups-grid" class="family-groups-grid">
+      <!-- A. Arabic Family (Tajawal) -->
+      <div id="family-arabic-group" class="family-card">
+        <div id="family-arabic-meta" class="family-meta-bar">
+          <span id="family-arabic-name" class="family-name">العائلة العربية: Tajawal</span>
+          <code id="family-arabic-token" class="family-token-code">var(--honesty-type-family-arabic)</code>
+        </div>
+        <div id="family-arabic-samples" class="family-sample-body font-family-arabic">
+          <div id="family-arabic-ui-text" class="sample-line sample-ui-actions">
+            حفظ التغييرات • إضافة بند • ترحيل القيد • بحث في الدليل المحاسبي • معاينة الفاتورة
+          </div>
+          <div id="family-arabic-sentence" class="sample-line sample-prose">
+            نظام Honesty ERP يوفر منصة متكاملة لإدارة العمليات المالية والتشغيلية وسلاسل الإمداد للشركات العربية بأعلى معايير الدقة والامتثال المحاسبي.
+          </div>
+          <div id="family-arabic-punct" class="sample-line sample-punct">
+            علامات الترقيم: «ملاحظة تدقيقية»: هل تم اعتماد القيد المحاسبي، وتدقيق الرصيد؟ نعم؛ تم ذلك بنجاح.
+          </div>
+          <div id="family-arabic-digits" class="sample-line sample-digits">
+            الأرقام المشرقية (العربية-الهندية): ٠١٢٣٤٥٦٧٨٩
+          </div>
+        </div>
+      </div>
+
+      <!-- B. Latin Family (Space Grotesk) -->
+      <div id="family-latin-group" class="family-card">
+        <div id="family-latin-meta" class="family-meta-bar">
+          <span id="family-latin-name" class="family-name">العائلة اللاتينية: Space Grotesk</span>
+          <code id="family-latin-token" class="family-token-code">var(--honesty-type-family-latin)</code>
+        </div>
+        <div id="family-latin-samples" class="family-sample-body font-family-latin" dir="ltr">
+          <div id="family-latin-alpha-upper" class="sample-line sample-alpha">
+            ABCDEFGHIJKLMNOPQRSTUVWXYZ
+          </div>
+          <div id="family-latin-alpha-lower" class="sample-line sample-alpha">
+            abcdefghijklmnopqrstuvwxyz
+          </div>
+          <div id="family-latin-digits" class="sample-line sample-digits">
+            0123456789
+          </div>
+          <div id="family-latin-erp-sample" class="sample-line sample-prose">
+            Invoice INV-2026-001 • Total 12,345.67 • Customer Account • Purchase Order PO-8842
+          </div>
+        </div>
+      </div>
+
+      <!-- C. Mixed UI Family (Space Grotesk + Tajawal Stack) -->
+      <div id="family-mixed-group" class="family-card">
+        <div id="family-mixed-meta" class="family-meta-bar">
+          <span id="family-mixed-name" class="family-name">عائلة الواجهة المختلطة: Mixed UI Stack</span>
+          <code id="family-mixed-token" class="family-token-code">var(--honesty-type-family-ui)</code>
+        </div>
+        <div id="family-mixed-samples" class="family-sample-body font-family-ui">
+          <div id="family-mixed-note" class="sample-note">
+            يتم تقديم Space Grotesk أولاً ليخدم المحارف والأرقام اللاتينية، بينما تتدفق المحارف العربية تلقائياً إلى Tajawal دون الحاجة إلى وسوم أو تجاوزات يدوية:
+          </div>
+          <div id="family-mixed-line-primary" class="sample-line sample-mixed-hero">
+            فاتورة Invoice INV-2026-001 — الإجمالي 12,345.67 — العميل ACME Corp
+          </div>
+          <div id="family-mixed-digits-indic" class="sample-line">
+            الأرقام العربية الهندية: ٠١٢٣٤٥٦٧٨٩
+          </div>
+          <div id="family-mixed-digits-latin" class="sample-line">
+            Latin digits: 0123456789
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 2. WEIGHT REVIEW SECTION                                              -->
+  <!-- ===================================================================== -->
+  <section id="weight-review-section" class="specimen-section">
+    <div id="weight-review-header" class="section-header">
+      <h2 id="weight-review-title" class="section-title-label">2. فحص الأوزان الأساسية المشتركة (Shared Core Weights)</h2>
+      <p id="weight-review-desc" class="section-desc">
+        تقتصر الأوزان المعتمدة على 400 (Regular)، 500 (Medium)، و 700 (Bold) لتحقيق توافق بصري نظيف ومتبادل بين العائلتين، وتجنب أي أوزان اصطناعية مشوهة.
+      </p>
+    </div>
+
+    <div id="weight-samples-stack" class="weight-samples-stack font-family-ui">
+      <!-- Regular 400 -->
+      <div id="weight-sample-400" class="weight-card weight-regular">
+        <div id="weight-meta-400" class="weight-meta-label">
+          <span class="weight-title">عادي (Regular 400)</span>
+          <code class="weight-spec">font-weight: 400</code>
+        </div>
+        <div id="weight-arabic-400" class="weight-line">
+          إدارة الحسابات العامة والقيود اليومية والتقارير المالية الختامية ومراجعة سندات الصرف والقبض.
+        </div>
+        <div id="weight-mixed-400" class="weight-line">
+          أمر شراء Purchase Order PO-8842 بمبلغ 45,900.00 EGP معتمد ومطابق للموازنة التقديرية.
+        </div>
+      </div>
+
+      <!-- Medium 500 -->
+      <div id="weight-sample-500" class="weight-card weight-medium">
+        <div id="weight-meta-500" class="weight-meta-label">
+          <span class="weight-title">متوسط (Medium 500)</span>
+          <code class="weight-spec">font-weight: 500</code>
+        </div>
+        <div id="weight-arabic-500" class="weight-line">
+          إدارة الحسابات العامة والقيود اليومية والتقارير المالية الختامية ومراجعة سندات الصرف والقبض.
+        </div>
+        <div id="weight-mixed-500" class="weight-line">
+          أمر شراء Purchase Order PO-8842 بمبلغ 45,900.00 EGP معتمد ومطابق للموازنة التقديرية.
+        </div>
+      </div>
+
+      <!-- Bold 700 -->
+      <div id="weight-sample-700" class="weight-card weight-bold">
+        <div id="weight-meta-700" class="weight-meta-label">
+          <span class="weight-title">عريض (Bold 700)</span>
+          <code class="weight-spec">font-weight: 700</code>
+        </div>
+        <div id="weight-arabic-700" class="weight-line">
+          إدارة الحسابات العامة والقيود اليومية والتقارير المالية الختامية ومراجعة سندات الصرف والقبض.
+        </div>
+        <div id="weight-mixed-700" class="weight-line">
+          أمر شراء Purchase Order PO-8842 بمبلغ 45,900.00 EGP معتمد ومطابق للموازنة التقديرية.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 3. SEMANTIC ROLES SCALE                                               -->
+  <!-- ===================================================================== -->
+  <section id="semantic-roles-section" class="specimen-section">
+    <div id="semantic-roles-header" class="section-header">
+      <h2 id="semantic-roles-title" class="section-title-label">3. سلم الأدوار الدلالية التسعة (Semantic Typography Roles Scale)</h2>
+      <p id="semantic-roles-desc" class="section-desc">
+        تطبيق مباشر للأدوار الدلالية عبر متغيرات الحجم، والوزن، وارتفاع السطر المشتقة من الطبقة المرجعية بدون أي قيم ثابتة مشفرة في التنسيقات.
+      </p>
+    </div>
+
+    <div id="roles-specimen-stack" class="roles-specimen-stack">
+      <!-- 1. Display -->
+      <div id="role-specimen-display" class="role-row">
+        <div id="role-meta-display" class="role-meta-badge">
+          <span class="role-token-name">display</span>
+          <span class="role-token-values">40px (2.5rem) • Bold 700 • LH 1.25</span>
+        </div>
+        <div id="role-content-display" class="role-rendered-block role-display">
+          <div id="role-display-arabic" class="role-line-arabic">منظومة إدارة الموارد المؤسسية الشاملة</div>
+          <div id="role-display-mixed" class="role-line-mixed">لوحة التحكم المركزية Honesty ERP Core Dashboard</div>
+        </div>
+      </div>
+
+      <!-- 2. Page Title -->
+      <div id="role-specimen-page-title" class="role-row">
+        <div id="role-meta-page-title" class="role-meta-badge">
+          <span class="role-token-name">page-title</span>
+          <span class="role-token-values">28px (1.75rem) • Bold 700 • LH 1.35</span>
+        </div>
+        <div id="role-content-page-title" class="role-rendered-block role-page-title">
+          <div id="role-page-title-arabic" class="role-line-arabic">دليل الحسابات وشجرة الأصول المالية المعتمدة</div>
+          <div id="role-page-title-mixed" class="role-line-mixed">تقرير ميزان المراجعة العام General Ledger Trial Balance</div>
+        </div>
+      </div>
+
+      <!-- 3. Section Title -->
+      <div id="role-specimen-section-title" class="role-row">
+        <div id="role-meta-section-title" class="role-meta-badge">
+          <span class="role-token-name">section-title</span>
+          <span class="role-token-values">20px (1.25rem) • Bold 700 • LH 1.40</span>
+        </div>
+        <div id="role-content-section-title" class="role-rendered-block role-section-title">
+          <div id="role-section-title-arabic" class="role-line-arabic">أرصدة العملاء والموردين وحركات التسوية المستحقة للفترة</div>
+          <div id="role-section-title-mixed" class="role-line-mixed">حركات المخزون والمستودعات المركزية Inventory Movements Q3</div>
+        </div>
+      </div>
+
+      <!-- 4. Subsection Title -->
+      <div id="role-specimen-subsection-title" class="role-row">
+        <div id="role-meta-subsection-title" class="role-meta-badge">
+          <span class="role-token-name">subsection-title</span>
+          <span class="role-token-values">18px (1.125rem) • Bold 700 • LH 1.45</span>
+        </div>
+        <div id="role-content-subsection-title" class="role-rendered-block role-subsection-title">
+          <div id="role-subsection-title-arabic" class="role-line-arabic">تفاصيل مركز التكلفة والفرع الرئيسي والإدارة المالية</div>
+          <div id="role-subsection-title-mixed" class="role-line-mixed">سند صرف واعتماد بنكي Payment Voucher #PV-1049</div>
+        </div>
+      </div>
+
+      <!-- 5. Body -->
+      <div id="role-specimen-body" class="role-row">
+        <div id="role-meta-body" class="role-meta-badge">
+          <span class="role-token-name">body</span>
+          <span class="role-token-values">16px (1rem) • Regular 400 • LH 1.60</span>
+        </div>
+        <div id="role-content-body" class="role-rendered-block role-body">
+          <div id="role-body-arabic" class="role-line-arabic">
+            تعتمد السجلات المحاسبية القيود المزدوجة لتوثيق جميع العمليات التشغيلية والمالية بدقة مع إمكانية المراجعة الآلية المستمرة والتكامل مع البنوك المعتمدة.
+          </div>
+          <div id="role-body-mixed" class="role-line-mixed">
+            تم استلام الشحنة PO-2026-990 في المستودع المركزي Warehouse A بنجاح وبقيمة إجمالية قدرها 34,250.00 EGP خاضعة لضريبة القيمة المضافة.
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Body Strong -->
+      <div id="role-specimen-body-strong" class="role-row">
+        <div id="role-meta-body-strong" class="role-meta-badge">
+          <span class="role-token-name">body-strong</span>
+          <span class="role-token-values">16px (1rem) • Medium 500 • LH 1.60</span>
+        </div>
+        <div id="role-content-body-strong" class="role-rendered-block role-body-strong">
+          <div id="role-body-strong-arabic" class="role-line-arabic">
+            تنبيه تدقيق: يتطلب ترحيل القيد موافقة المدير المالي ومطابقة رصيد الخزينة قبل إغلاق الفترة المحاسبية الحالية.
+          </div>
+          <div id="role-body-strong-mixed" class="role-line-mixed">
+            الحساب البنكي المعتمد GL Account #1101 نشط ومطابق لكشف الحساب الصادر من البنك المركزي برصيد 120,400.00 EGP.
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Body Small -->
+      <div id="role-specimen-body-small" class="role-row">
+        <div id="role-meta-body-small" class="role-meta-badge">
+          <span class="role-token-name">body-small</span>
+          <span class="role-token-values">14px (0.875rem) • Regular 400 • LH 1.55</span>
+        </div>
+        <div id="role-content-body-small" class="role-rendered-block role-body-small">
+          <div id="role-body-small-arabic" class="role-line-arabic">
+            البيانات المسجلة تمثل حركة العمليات اليومية ولا تعتبر ملزمة قانونياً إلا بعد الترحيل والاعتماد النهائي من قسم الحسابات العامة.
+          </div>
+          <div id="role-body-small-mixed" class="role-line-mixed">
+            مرجع التدقيق الآلي: Audit Ref #AUD-8834 تم إنشاؤه وتوقيعه رقمياً بواسطة خادم العمليات المركزية في 2026-09-20.
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Label -->
+      <div id="role-specimen-label" class="role-row">
+        <div id="role-meta-label" class="role-meta-badge">
+          <span class="role-token-name">label</span>
+          <span class="role-token-values">14px (0.875rem) • Medium 500 • LH 1.45</span>
+        </div>
+        <div id="role-content-label" class="role-rendered-block role-label">
+          <div id="role-label-arabic" class="role-line-arabic">
+            مركز التكلفة • رقم القيد المحاسبي • تاريخ الاستحقاق الفعلي • فرع القاهرة الرئيسي
+          </div>
+          <div id="role-label-mixed" class="role-line-mixed">
+            Fiscal Year 2026 • فرع القاهرة Cairo Branch • كود الفرع Code: EG-01 • الحالة: معتمد Active
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Caption -->
+      <div id="role-specimen-caption" class="role-row">
+        <div id="role-meta-caption" class="role-meta-badge">
+          <span class="role-token-name">caption</span>
+          <span class="role-token-values">12px (0.75rem) • Regular 400 • LH 1.50</span>
+        </div>
+        <div id="role-content-caption" class="role-rendered-block role-caption">
+          <div id="role-caption-arabic" class="role-line-arabic">
+            آخر مزامنة لقاعدة البيانات: منذ ٣ دقائق عبر الخادم الرئيسي • رقم السجل: #REC-48201
+          </div>
+          <div id="role-caption-mixed" class="role-line-mixed">
+            Commit Hash: 7f3a9e2 • Server Sync: 2026-09-20 14:27:00 UTC • Session ID: #98421
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 4. LONG ARABIC TEXT RHYTHM                                            -->
+  <!-- ===================================================================== -->
+  <section id="arabic-rhythm-section" class="specimen-section">
+    <div id="arabic-rhythm-header" class="section-header">
+      <h2 id="arabic-rhythm-title" class="section-title-label">4. إيقاع القراءة للنصوص العربية الممتدة (Long Arabic Text Rhythm)</h2>
+      <p id="arabic-rhythm-desc" class="section-desc">
+        تقييم أداء خط Tajawal في فقرات متعددة السطور؛ فحص تباعد الأسطر (1.6 و 1.55) ومدى ملاءمته للقراءة المؤسسية المستمرة دون تداخل الكشائد أو النقاط.
+      </p>
+    </div>
+
+    <div id="arabic-rhythm-blocks" class="rhythm-blocks-grid">
+      <!-- Body Specimen (16px / 1.6) -->
+      <div id="rhythm-body-card" class="rhythm-card">
+        <div id="rhythm-body-meta" class="rhythm-meta-bar">
+          <span class="rhythm-role-title">فقرة نص الأساس — Body (16px / 1.6)</span>
+          <code class="rhythm-role-spec">font-size: var(--honesty-type-body-font-size); line-height: var(--honesty-type-body-line-height)</code>
+        </div>
+        <p id="rhythm-body-sample" class="rhythm-paragraph role-body">
+          تتكامل وحدات نظام Honesty ERP لتوفر تدفقاً سلساً للمعلومات المحاسبية والإدارية عبر جميع الأقسام التشغيلية. تتيح شجرة الحسابات المرنة تصنيف الإيرادات والمصروفات وفق المعايير المالية المعتمدة، مع تتبع دقيق لمراكز التكلفة وحركات التدفق النقدي اليومية بما يضمن الشفافية والامتثال المحاسبي الكامل وتسهيل مهام المراجعة والتدقيق المالي الداخلي والخارجي.
+        </p>
+      </div>
+
+      <!-- Body Small Specimen (14px / 1.55) -->
+      <div id="rhythm-body-small-card" class="rhythm-card">
+        <div id="rhythm-body-small-meta" class="rhythm-meta-bar">
+          <span class="rhythm-role-title">فقرة النص المصغر — Body Small (14px / 1.55)</span>
+          <code class="rhythm-role-spec">font-size: var(--honesty-type-body-small-font-size); line-height: var(--honesty-type-body-small-line-height)</code>
+        </div>
+        <p id="rhythm-body-small-sample" class="rhythm-paragraph role-body-small">
+          تخضع كافة السجلات والقيود المسجلة في النظام لدورات تدقيق رقابية متعددة المستويات، حيث يتم توثيق أي تعديل أو إلغاء في سجل مراجعة غير قابل للتغيير (Immutable Audit Trail). يساعد هذا التوثيق الدقيق مراجعي الحسابات الداخليين والخارجيين على تتبع مسار العمليات وتقييم الأثر المالي بوضوح، مع دعم متطلبات الامتثال الضريبي والفواتير الإلكترونية المعتمدة رسمياً.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 5. DIGIT & DATA REVIEW                                                -->
+  <!-- ===================================================================== -->
+  <section id="digit-data-section" class="specimen-section">
+    <div id="digit-data-header" class="section-header">
+      <h2 id="digit-data-title" class="section-title-label">5. مراجعة الأرقام والبيانات التشغيلية (Digit & Data Review)</h2>
+      <p id="digit-data-desc" class="section-desc">
+        التحقق البصري من أرقام Space Grotesk اللاتينية، والأرقام المشرقية التابعة لـ Tajawal، وسلوك عرض البيانات المحاسبية في الواجهة المشتركة.
+      </p>
+    </div>
+
+    <div id="digit-data-container" class="digit-data-container font-family-ui">
+      <div id="data-review-list" class="data-review-list">
+        <div id="data-item-invoice" class="data-item-row">
+          <span class="data-item-label">Invoice:</span>
+          <span class="data-item-value">INV-2026-001</span>
+        </div>
+        <div id="data-item-account" class="data-item-row">
+          <span class="data-item-label">Account:</span>
+          <span class="data-item-value">1100-01-003</span>
+        </div>
+        <div id="data-item-date" class="data-item-row">
+          <span class="data-item-label">Date:</span>
+          <span class="data-item-value">21/09/2026</span>
+        </div>
+        <div id="data-item-amount-latin" class="data-item-row">
+          <span class="data-item-label">Amount:</span>
+          <span class="data-item-value">12,345.67 EGP</span>
+        </div>
+        <div id="data-item-amount-indic" class="data-item-row">
+          <span class="data-item-label">Arabic-Indic amount:</span>
+          <span class="data-item-value">١٢٬٣٤٥٫٦٧</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 6. RTL / BIDI REVIEW                                                  -->
+  <!-- ===================================================================== -->
+  <section id="bidi-review-section" class="specimen-section">
+    <div id="bidi-review-header" class="section-header">
+      <h2 id="bidi-review-title" class="section-title-label">6. مراجعة النصوص الثنائية والاتجاه (RTL / Bidi Review)</h2>
+      <p id="bidi-review-desc" class="section-desc">
+        عينة توثيقية تعتمد العزل الدلالي للاتجاه (LTR Isolation عبر عنصر &lt;bdi&gt;) للمعرفات، والبريد الإلكتروني، وأرقام الهواتف، والأكواد المصرفية وفقاً لسياسة RTL المعتمدة.
+      </p>
+    </div>
+
+    <div id="bidi-sample-card" class="bidi-sample-card font-family-ui">
+      <p id="bidi-sample-content" class="bidi-sample-content role-body">
+        تم إرسال إشعار الدفعة المحاسبية الخاصة بالمعاملة <bdi id="bidi-identifier" class="bidi-inline-token" dir="ltr">INV-2026-001</bdi> إلى البريد الإلكتروني <bdi id="bidi-email" class="bidi-inline-token" dir="ltr">finance.audit&#64;honesty-erp.example.com</bdi>، ولأي استفسار يرجى التواصل مع مسؤول التدقيق على الرقم <bdi id="bidi-phone" class="bidi-inline-token" dir="ltr">+20 100 234 5678</bdi> مع ذكر رمز الحساب البنكي <bdi id="bidi-iban" class="bidi-inline-token" dir="ltr">IBAN: EG450002000100000001234567890</bdi>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 7. DARK-THEME TYPOGRAPHY CHECK                                        -->
+  <!-- ===================================================================== -->
+  <section id="dark-typography-section" class="specimen-section">
+    <div id="dark-typography-header" class="section-header">
+      <h2 id="dark-typography-title" class="section-title-label">7. فحص الطباعة في السمة الداكنة (Dark-Theme Typography Check)</h2>
+      <p id="dark-typography-desc" class="section-desc">
+        سياق محدود ومطابق لـ data-theme="dark" للتحقق من وضوح الخطوط وسماكتها الظاهرة والتدرج الهرمي للنصوص على الأسطح الداكنة.
+      </p>
+    </div>
+
+    <div id="dark-context-container" class="dark-context-container" data-theme="dark">
+      <div id="dark-theme-badge" class="dark-theme-badge">data-theme="dark"</div>
+
+      <div id="dark-role-page-title" class="dark-role-item role-page-title">
+        دليل الحسابات وشجرة الأصول المالية (Chart of Accounts)
+      </div>
+
+      <div id="dark-role-body" class="dark-role-item role-body">
+        تعتمد السجلات المحاسبية القيود المزدوجة لتوثيق جميع العمليات التشغيلية والمالية بدقة مع إمكانية المراجعة الآلية المستمرة والتكامل مع البنوك.
+      </div>
+
+      <div id="dark-role-body-small" class="dark-role-item role-body-small">
+        البيانات المسجلة تمثل حركة العمليات اليومية ولا تعتبر ملزمة قانونياً إلا بعد الترحيل والاعتماد النهائي من إدارة التدقيق المالي.
+      </div>
+
+      <div id="dark-role-label" class="dark-role-item role-label">
+        مركز التكلفة • رقم القيد المحاسبي • تاريخ الاستحقاق الفعلي (Cost Center)
+      </div>
+
+      <div id="dark-role-caption" class="dark-role-item role-caption">
+        آخر مزامنة لقاعدة البيانات: 2026-09-20 14:27:00 UTC عبر الخادم الرئيسي • حالة الاتصال: مستقر Active
+      </div>
+
+      <div id="dark-mixed-data-line" class="dark-role-item dark-data-sample role-body">
+        فاتورة Invoice INV-2026-001 — الإجمالي 12,345.67 EGP — العميل ACME Corp
+      </div>
+    </div>
+  </section>
+</main>
