@@ -1,0 +1,300 @@
+<div id="feedback-colors-specimen-root" class="feedback-specimen-root">
+  <header id="feedback-specimen-header" class="specimen-header">
+    <span id="feedback-specimen-badge" class="specimen-badge">توثيق ومراجعة بصرية • Docs-Only</span>
+    <h1 id="feedback-specimen-title">ألوان الحالات الدلالية (Semantic Feedback Colors)</h1>
+    <p id="feedback-specimen-description">
+      مراجعة بصرية مقارنة لتعيينات ألوان الحالات الدلالية (Success, Warning, Danger, Info) في السمتين الفاتحة والداكنة.
+      تعتمد هذه المعاينة حصراً على المتغيرات الدلالية المعتمدة (CSS Custom Properties) لتقييم التباين والاتساق بين الأسطح والنصوص والحدود والأيقونات.
+    </p>
+  </header>
+
+  <div id="feedback-comparison-grid" class="feedback-comparison-grid">
+    <!-- =================================================================== -->
+    <!-- LIGHT THEME CONTEXT -->
+    <!-- =================================================================== -->
+    <section id="feedback-context-light" class="theme-context" data-theme="light">
+      <div class="theme-context-header">
+        <h2 id="title-context-light">السمة الفاتحة (Light Theme)</h2>
+        <span class="theme-tag">data-theme="light"</span>
+      </div>
+
+      <div class="theme-canvas">
+        <!-- SUCCESS INTENT -->
+        <div id="light-intent-success" class="intent-group">
+          <div class="intent-header">
+            <span class="intent-title">حالة النجاح (Success)</span>
+            <span class="intent-tokens-label">Green V1 Mapping</span>
+          </div>
+
+          <div class="samples-stack">
+            <!-- Subtle Sample -->
+            <div id="light-sample-success-subtle" class="sample-subtle sample-subtle-success">
+              <div class="sample-content">
+                <span class="sample-icon-marker marker-success" aria-hidden="true"></span>
+                <span class="sample-text">تم حفظ المستند بنجاح.</span>
+              </div>
+              <div class="sample-meta">
+                <span class="sample-role-pill">عينة خفيفة (Subtle)</span>
+                <span class="sample-tokens">surface • border • text • icon</span>
+              </div>
+            </div>
+
+            <!-- Strong Sample -->
+            <div id="light-sample-success-strong" class="sample-strong sample-strong-success">
+              <div class="sample-content">
+                <span class="sample-text">تم حفظ المستند بنجاح.</span>
+              </div>
+              <div class="sample-meta">
+                <span class="sample-role-pill">عينة بارزة (Strong)</span>
+                <span class="sample-tokens">surface-strong • on-strong</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WARNING INTENT -->
+        <div id="light-intent-warning" class="intent-group">
+          <div class="intent-header">
+            <span class="intent-title">حالة التحذير (Warning)</span>
+            <span class="intent-tokens-label">Amber V1 Mapping</span>
+          </div>
+
+          <div class="samples-stack">
+            <!-- Subtle Sample -->
+            <div id="light-sample-warning-subtle" class="sample-subtle sample-subtle-warning">
+              <div class="sample-content">
+                <span class="sample-icon-marker marker-warning" aria-hidden="true"></span>
+                <span class="sample-text">توجد بيانات تحتاج إلى مراجعة قبل المتابعة.</span>
+              </div>
+              <div class="sample-meta">
+                <span class="sample-role-pill">عينة خفيفة (Subtle)</span>
+                <span class="sample-tokens">surface • border • text • icon</span>
+              </div>
+            </div>
+
+            <!-- Strong Sample -->
+            <div id="light-sample-warning-strong" class="sample-strong sample-strong-warning">
+              <div class="sample-content">
+                <span class="sample-text">توجد بيانات تحتاج إلى مراجعة قبل المتابعة.</span>
+              </div>
+              <div class="sample-meta">
+                <span class="sample-role-pill">عينة بارزة (Strong)</span>
+                <span class="sample-tokens">surface-strong • on-strong (Neutral 950)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DANGER INTENT -->
+        <div id="light-intent-danger" class="intent-group">
+          <div class="intent-header">
+            <span class="intent-title">حالة الخطأ / الخطر (Danger)</span>
+            <span class="intent-tokens-label">Red V1 Mapping</span>
+          </div>
+
+          <div class="samples-stack">
+            <!-- Subtle Sample -->
+            <div id="light-sample-danger-subtle" class="sample-subtle sample-subtle-danger">
+              <div class="sample-content">
+                <span class="sample-icon-marker marker-danger" aria-hidden="true"></span>
+                <span class="sample-text">تعذر إتمام العملية بسبب خطأ في البيانات.</span>
+              </div>
+              <div class="sample-meta">
+                <span class="sample-role-pill">عينة خفيفة (Subtle)</span>
+                <span class="sample-tokens">surface • border • text • icon</span>
+              </div>
+            </div>
+
+            <!-- Strong Sample -->
+            <div id="light-sample-danger-strong" class="sample-strong sample-strong-danger">
+              <div class="sample-content">
+                <span class="sample-text">تعذر إتمام العملية بسبب خطأ في البيانات.</span>
+              </div>
+              <div class="sample-meta">
+                <span class="sample-role-pill">عينة بارزة (Strong)</span>
+                <span class="sample-tokens">surface-strong • on-strong</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INFO INTENT -->
+        <div id="light-intent-info" class="intent-group">
+          <div class="intent-header">
+            <span class="intent-title">حالة المعلومات (Info)</span>
+            <span class="intent-tokens-label">Cyan V1 Mapping</span>
+          </div>
+
+          <div class="samples-stack">
+            <!-- Subtle Sample -->
+            <div id="light-sample-info-subtle" class="sample-subtle sample-subtle-info">
+              <div class="sample-content">
+                <span class="sample-icon-marker marker-info" aria-hidden="true"></span>
+                <span class="sample-text">تم تحديث بيانات النظام ويمكنك المتابعة.</span>
+              </div>
+              <div class="sample-meta">
+                <span class="sample-role-pill">عينة خفيفة (Subtle)</span>
+                <span class="sample-tokens">surface • border • text • icon</span>
+              </div>
+            </div>
+
+            <!-- Strong Sample -->
+            <div id="light-sample-info-strong" class="sample-strong sample-strong-info">
+              <div class="sample-content">
+                <span class="sample-text">تم تحديث بيانات النظام ويمكنك المتابعة.</span>
+              </div>
+              <div class="sample-meta">
+                <span class="sample-role-pill">عينة بارزة (Strong)</span>
+                <span class="sample-tokens">surface-strong • on-strong</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- DARK THEME CONTEXT -->
+    <!-- =================================================================== -->
+    <section id="feedback-context-dark" class="theme-context" data-theme="dark">
+      <div class="theme-context-header">
+        <h2 id="title-context-dark">السمة الداكنة (Dark Theme)</h2>
+        <span class="theme-tag">data-theme="dark"</span>
+      </div>
+
+      <div class="theme-canvas">
+        <!-- SUCCESS INTENT -->
+        <div id="dark-intent-success" class="intent-group">
+          <div class="intent-header">
+            <span class="intent-title">حالة النجاح (Success)</span>
+            <span class="intent-tokens-label">Green V1 Mapping</span>
+          </div>
+
+          <div class="samples-stack">
+            <!-- Subtle Sample -->
+            <div id="dark-sample-success-subtle" class="sample-subtle sample-subtle-success">
+              <div class="sample-content">
+                <span class="sample-icon-marker marker-success" aria-hidden="true"></span>
+                <span class="sample-text">تم حفظ المستند بنجاح.</span>
+              </div>
+              <div class="sample-meta">
+                <span class="sample-role-pill">عينة خفيفة (Subtle)</span>
+                <span class="sample-tokens">surface • border • text • icon</span>
+              </div>
+            </div>
+
+            <!-- Strong Sample -->
+            <div id="dark-sample-success-strong" class="sample-strong sample-strong-success">
+              <div class="sample-content">
+                <span class="sample-text">تم حفظ المستند بنجاح.</span>
+              </div>
+              <div class="sample-meta">
+                <span class="sample-role-pill">عينة بارزة (Strong)</span>
+                <span class="sample-tokens">surface-strong • on-strong</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WARNING INTENT -->
+        <div id="dark-intent-warning" class="intent-group">
+          <div class="intent-header">
+            <span class="intent-title">حالة التحذير (Warning)</span>
+            <span class="intent-tokens-label">Amber V1 Mapping</span>
+          </div>
+
+          <div class="samples-stack">
+            <!-- Subtle Sample -->
+            <div id="dark-sample-warning-subtle" class="sample-subtle sample-subtle-warning">
+              <div class="sample-content">
+                <span class="sample-icon-marker marker-warning" aria-hidden="true"></span>
+                <span class="sample-text">توجد بيانات تحتاج إلى مراجعة قبل المتابعة.</span>
+              </div>
+              <div class="sample-meta">
+                <span class="sample-role-pill">عينة خفيفة (Subtle)</span>
+                <span class="sample-tokens">surface • border • text • icon</span>
+              </div>
+            </div>
+
+            <!-- Strong Sample -->
+            <div id="dark-sample-warning-strong" class="sample-strong sample-strong-warning">
+              <div class="sample-content">
+                <span class="sample-text">توجد بيانات تحتاج إلى مراجعة قبل المتابعة.</span>
+              </div>
+              <div class="sample-meta">
+                <span class="sample-role-pill">عينة بارزة (Strong)</span>
+                <span class="sample-tokens">surface-strong • on-strong (Neutral 950)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DANGER INTENT -->
+        <div id="dark-intent-danger" class="intent-group">
+          <div class="intent-header">
+            <span class="intent-title">حالة الخطأ / الخطر (Danger)</span>
+            <span class="intent-tokens-label">Red V1 Mapping</span>
+          </div>
+
+          <div class="samples-stack">
+            <!-- Subtle Sample -->
+            <div id="dark-sample-danger-subtle" class="sample-subtle sample-subtle-danger">
+              <div class="sample-content">
+                <span class="sample-icon-marker marker-danger" aria-hidden="true"></span>
+                <span class="sample-text">تعذر إتمام العملية بسبب خطأ في البيانات.</span>
+              </div>
+              <div class="sample-meta">
+                <span class="sample-role-pill">عينة خفيفة (Subtle)</span>
+                <span class="sample-tokens">surface • border • text • icon</span>
+              </div>
+            </div>
+
+            <!-- Strong Sample -->
+            <div id="dark-sample-danger-strong" class="sample-strong sample-strong-danger">
+              <div class="sample-content">
+                <span class="sample-text">تعذر إتمام العملية بسبب خطأ في البيانات.</span>
+              </div>
+              <div class="sample-meta">
+                <span class="sample-role-pill">عينة بارزة (Strong)</span>
+                <span class="sample-tokens">surface-strong • on-strong</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INFO INTENT -->
+        <div id="dark-intent-info" class="intent-group">
+          <div class="intent-header">
+            <span class="intent-title">حالة المعلومات (Info)</span>
+            <span class="intent-tokens-label">Cyan V1 Mapping</span>
+          </div>
+
+          <div class="samples-stack">
+            <!-- Subtle Sample -->
+            <div id="dark-sample-info-subtle" class="sample-subtle sample-subtle-info">
+              <div class="sample-content">
+                <span class="sample-icon-marker marker-info" aria-hidden="true"></span>
+                <span class="sample-text">تم تحديث بيانات النظام ويمكنك المتابعة.</span>
+              </div>
+              <div class="sample-meta">
+                <span class="sample-role-pill">عينة خفيفة (Subtle)</span>
+                <span class="sample-tokens">surface • border • text • icon</span>
+              </div>
+            </div>
+
+            <!-- Strong Sample -->
+            <div id="dark-sample-info-strong" class="sample-strong sample-strong-info">
+              <div class="sample-content">
+                <span class="sample-text">تم تحديث بيانات النظام ويمكنك المتابعة.</span>
+              </div>
+              <div class="sample-meta">
+                <span class="sample-role-pill">عينة بارزة (Strong)</span>
+                <span class="sample-tokens">surface-strong • on-strong</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

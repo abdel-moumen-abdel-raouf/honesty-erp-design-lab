@@ -19,6 +19,13 @@ export const routes: Routes = [
       import('./foundation/themes/themes').then((m) => m.Themes),
   },
   {
+    path: 'foundation/feedback-colors',
+    loadComponent: () =>
+      import('./foundation/feedback-colors/feedback-colors').then(
+        (m) => m.FeedbackColors
+      ),
+  },
+  {
     path: '',
     redirectTo: 'foundation/colors',
     pathMatch: 'full',
