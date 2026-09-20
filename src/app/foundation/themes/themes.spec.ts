@@ -53,4 +53,13 @@ describe('Themes Specimen', () => {
     expect(compiled.querySelector('#subtle-actions-group-dark')).toBeTruthy();
     expect(compiled.querySelector('#focus-ring-group-dark')).toBeTruthy();
   });
+
+  it('should render the corrected inverse sample container in both theme contexts', () => {
+    const fixture = TestBed.createComponent(Themes);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+
+    expect(compiled.querySelector('#inverse-sample-light')).toBeTruthy();
+    expect(compiled.querySelector('#inverse-sample-dark')).toBeTruthy();
+  });
 });
