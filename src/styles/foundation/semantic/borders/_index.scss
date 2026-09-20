@@ -1,7 +1,19 @@
 // =============================================================================
-// Semantic Layer: Borders
+// Semantic Layer: Borders (Candidate V1)
 // =============================================================================
 // Responsibility:
-// Future semantic border roles (subtle, default, strong, focus, divider).
-// Depends on reference/borders and semantic/colors. Must not depend on component tokens.
+// Semantic border geometry roles (width, style).
+// Depends on reference/borders. Must not depend on component tokens.
+//
+// Candidate V1 Roles:
+// - Widths:
+//   --honesty-border-width-default:  1px ($honesty-ref-border-width-1)
+//   --honesty-border-width-emphasis: 2px ($honesty-ref-border-width-2)
+// - Style:
+//   --honesty-border-style-default:  solid ($honesty-ref-border-style-solid)
+//
+// Reference-Only (Candidate V1):
+// - $honesty-ref-border-style-dashed has no semantic token alias in Candidate V1.
 // =============================================================================
+
+@use 'geometry';

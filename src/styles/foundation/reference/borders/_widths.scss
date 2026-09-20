@@ -1,9 +1,11 @@
 // =============================================================================
-// Reference Tokens: Radius
+// Reference Tokens: Border Widths (Candidate V1)
 // =============================================================================
 // Responsibility:
-// Raw corner radius scale steps. Context-free.
-// Never depends on semantic, components, or themes.
+// Physical stroke width primitives. Physical pixel values (never rem).
+// Context-free.
 // =============================================================================
 
-@forward 'scale';
+$honesty-ref-border-width-0: 0;
+$honesty-ref-border-width-1: 1px;
+$honesty-ref-border-width-2: 2px;

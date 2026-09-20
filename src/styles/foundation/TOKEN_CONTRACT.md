@@ -322,3 +322,102 @@ Each typography role defines three standard CSS custom properties:
 - **Component Padding & Gaps Deferred:** Generic inset and stack tokens must not be treated as component-level padding or gaps (e.g., `card-padding`, `button-padding`, `modal-padding`). Component-specific contracts belong exclusively to future Component Tokens (Layer 3).
 - **Density Overrides Deferred:** Spacing variables are not placed under `[data-density]` in this candidate. Density modulation (compact, comfortable, spacious) will be implemented as targeted overrides in later density phases.
 - **No Visual Application:** Candidate V1 spacing tokens are not applied to global elements (`html`, `body`), existing review pages, specimens, or shell layouts in this phase.
+
+---
+
+## 15. Borders Technical Contract (Candidate V1)
+
+### A. Border Color Contract vs. Border Geometry Contract
+- **Existing Border Color Contract:**
+  - The project already defines runtime Semantic border color tokens in theme definitions (`[data-theme="light"]`, `[data-theme="dark"]`):
+    - `--honesty-border-subtle`
+    - `--honesty-border-default`
+    - `--honesty-border-strong`
+  - These tokens represent **color values** exclusively. They must not be renamed, repurposed, relocated, or reinterpreted as width or geometry tokens.
+- **New Border Geometry Contract:**
+  - Border geometry tokens are explicitly named with functional qualifiers:
+    - `--honesty-border-width-*`
+    - `--honesty-border-style-*`
+  - This naming convention enforces a strict separation of concerns between border color and border physical geometry.
+
+### B. Subtle Border Direction & Color-Based Hierarchy
+- In Honesty ERP, normal visual hierarchy is established primarily through **border color strength** rather than stroke thickness:
+  - Subtle borders (`--honesty-border-subtle`): Low-contrast dividing lines, table rows, and secondary separators.
+  - Default borders (`--honesty-border-default`): Standard structural containment, card boundaries, and interactive control borders.
+  - Strong borders (`--honesty-border-strong`): Focused structural emphasis, high-contrast dividers, and deliberate region demarcations.
+- Ordinary borders must not become visually heavy. Increasing stroke width adds unnecessary visual weight and clutters enterprise data screens.
+
+### C. Reference Border Width Scale (Compile-Time Sass Primitives)
+- Defined in `src/styles/foundation/reference/borders/_widths.scss`:
+  - `$honesty-ref-border-width-0`: `0`
+  - `$honesty-ref-border-width-1`: `1px`
+  - `$honesty-ref-border-width-2`: `2px`
+- **Physical Pixel Rule:** Border widths are intentionally defined as physical pixels (`px`), never `rem`. Sub-pixel anti-aliasing or root-relative scaling on stroke widths leads to inconsistent rendering, blurry strokes, and border collapse anomalies on high-DPI displays.
+- Widths 3px, 4px, and fractional hairline widths are excluded from Candidate V1.
+
+### D. Reference Border Style Primitives
+- Defined in `src/styles/foundation/reference/borders/_styles.scss`:
+  - `$honesty-ref-border-style-solid`: `solid`
+  - `$honesty-ref-border-style-dashed`: `dashed`
+- Context-free primitives. Styles like `dotted`, `double`, `groove`, `inset`, and `outset` are strictly excluded.
+
+### E. Semantic Border Geometry (Runtime CSS Custom Properties)
+- Emitted in `:root` via `src/styles/foundation/semantic/borders/_geometry.scss`:
+  - `--honesty-border-width-default`: `#{ref.$honesty-ref-border-width-1}` (`1px`)
+  - `--honesty-border-width-emphasis`: `#{ref.$honesty-ref-border-width-2}` (`2px`)
+  - `--honesty-border-style-default`: `#{ref.$honesty-ref-border-style-solid}` (`solid`)
+- Border geometry is theme-independent.
+- Every semantic value resolves strictly from a Reference Sass token via interpolation.
+
+### F. Default vs. Emphasis Width Semantics
+- `--honesty-border-width-default` (1px): Standard stroke width for all regular containment boundaries, cards, controls, tables, and dividers.
+- `--honesty-border-width-emphasis` (2px): Geometric emphasis reserved exclusively for explicit state indicators or heavy boundary contracts when authorized by a component specification.
+- **Prohibition on Automatic "Strong" Mapping:** Ordinary "strong" visual boundaries must **not** automatically consume 2px width. Normal strong hierarchy should remain 1px paired with `--honesty-border-strong` color unless a component contract specifically dictates 2px thickness.
+
+### G. Dashed Style Scope (Reference-Only)
+- `$honesty-ref-border-style-dashed` is preserved as a Reference primitive only.
+- No Semantic dashed border token is created in Candidate V1 because no approved enterprise semantic role (e.g., drag-and-drop target, empty-state placeholder) has been formally approved.
+
+---
+
+## 16. Radius Technical Contract (Candidate V1)
+
+### A. Design Philosophy: Controlled Medium Radius
+- Honesty ERP avoids bubbly, toy-like, or excessively rounded interfaces.
+- Corner geometry follows a controlled medium scale designed for professional enterprise density and clean architectural alignment.
+
+### B. Reference Radius Scale (Compile-Time Sass Primitives)
+- Defined in `src/styles/foundation/reference/radius/_scale.scss`:
+  - `$honesty-ref-radius-0`: `0`
+  - `$honesty-ref-radius-2`: `0.125rem` (2px equivalent at 16px root)
+  - `$honesty-ref-radius-4`: `0.25rem` (4px equivalent at 16px root)
+  - `$honesty-ref-radius-6`: `0.375rem` (6px equivalent at 16px root)
+  - `$honesty-ref-radius-8`: `0.5rem` (8px equivalent at 16px root)
+  - `$honesty-ref-radius-12`: `0.75rem` (12px equivalent at 16px root)
+- Expressed in `rem` relative to the standard 16px root.
+- Values like 16px, 20px, 24px, 9999px, and 50% are strictly excluded in Candidate V1.
+
+### C. Semantic Radius Roles (Runtime CSS Custom Properties)
+- Emitted in `:root` via `src/styles/foundation/semantic/radius/_roles.scss`:
+  - `--honesty-radius-none`: `#{ref.$honesty-ref-radius-0}` (`0`)
+  - `--honesty-radius-control`: `#{ref.$honesty-ref-radius-4}` (`0.25rem` / 4px)
+  - `--honesty-radius-surface`: `#{ref.$honesty-ref-radius-6}` (`0.375rem` / 6px)
+  - `--honesty-radius-overlay`: `#{ref.$honesty-ref-radius-8}` (`0.5rem` / 8px)
+- Radius geometry is theme-independent.
+- Every semantic role resolves strictly from a Reference Sass token.
+
+### D. Semantic Role Definitions
+- **none (`0`):** Explicit square geometry for flush borders, docked panels, table cells, or segmented control interiors.
+- **control (`0.25rem` / 4px):** Generic interactive control corner geometry (buttons, inputs, select triggers, chips). This establishes geometric capability; it does not define component-scoped styling contracts.
+- **surface (`0.375rem` / 6px):** Generic bounded surface corner geometry for cards, panels, and distinct content sections. This does not mandate that every content group become a card.
+- **overlay (`0.5rem` / 8px):** Generic floating or elevated region geometry for dropdown menus, popovers, and modal dialogs.
+
+### E. Intentionally Unaliased Radius Primitives
+- `$honesty-ref-radius-2` (2px) and `$honesty-ref-radius-12` (12px) are available in the Reference layer but deliberately have **no Semantic alias** in Candidate V1.
+- Reference scales are context-free mathematical baselines; semantic aliases are only introduced when a concrete functional purpose is justified.
+
+### F. Excluded Radius & Geometry Scopes (Candidate V1)
+- **No Pill / Full Radius:** Tokens like `--honesty-radius-pill`, `--honesty-radius-full`, and `--honesty-radius-round` are forbidden in Candidate V1 to prevent unapproved rounded/bubbly aesthetics.
+- **No Component-Specific Tokens:** Component tokens such as `--honesty-button-radius`, `--honesty-input-radius`, `--honesty-card-radius`, `--honesty-modal-radius`, or `--honesty-badge-radius` are deferred to Layer 3 (Component Tokens).
+- **No Focus-Ring Geometry:** Focus-ring width, offset, and outline geometry are deferred pending focus behavior specification. The existing theme-sensitive focus ring color token (`--honesty-color-action-focus-ring`) remains untouched.
+- **No Global Application:** Borders and radius tokens are not applied to `html`, `body`, or existing UI views in this phase.

@@ -1,9 +1,9 @@
 // =============================================================================
-// Reference Tokens: Radius
+// Reference Tokens: Border Styles (Candidate V1)
 // =============================================================================
 // Responsibility:
-// Raw corner radius scale steps. Context-free.
-// Never depends on semantic, components, or themes.
+// Border stroke style primitives. Context-free.
 // =============================================================================
 
-@forward 'scale';
+$honesty-ref-border-style-solid: solid;
+$honesty-ref-border-style-dashed: dashed;

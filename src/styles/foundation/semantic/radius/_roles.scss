@@ -1,0 +1,27 @@
+// =============================================================================
+// Semantic Tokens: Radius Roles (Candidate V1)
+// =============================================================================
+// Responsibility:
+// Purpose-driven runtime CSS custom properties for corner radius geometry.
+// Resolves strictly from compile-time Reference radius Sass tokens.
+// Corner radius is currently theme-independent; emitted in :root.
+//
+// Candidate V1 Semantic Roles:
+// - --honesty-radius-none:    0 ($honesty-ref-radius-0)
+// - --honesty-radius-control: 0.25rem / 4px ($honesty-ref-radius-4)
+// - --honesty-radius-surface: 0.375rem / 6px ($honesty-ref-radius-6)
+// - --honesty-radius-overlay: 0.5rem / 8px ($honesty-ref-radius-8)
+//
+// Reference-Only (Intentionally Unaliased in Candidate V1):
+// - $honesty-ref-radius-2 (0.125rem / 2px)
+// - $honesty-ref-radius-12 (0.75rem / 12px)
+// =============================================================================
+
+@use '../../reference/radius' as ref;
+
+:root {
+  --honesty-radius-none: #{ref.$honesty-ref-radius-0};
+  --honesty-radius-control: #{ref.$honesty-ref-radius-4};
+  --honesty-radius-surface: #{ref.$honesty-ref-radius-6};
+  --honesty-radius-overlay: #{ref.$honesty-ref-radius-8};
+}

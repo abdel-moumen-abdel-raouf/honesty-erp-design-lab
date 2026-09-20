@@ -5,3 +5,6 @@
 // Raw border width scale and stroke style primitives. Context-free.
 // Never depends on semantic, components, or themes.
 // =============================================================================
+
+@forward 'widths';
+@forward 'styles';

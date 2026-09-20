@@ -1,0 +1,23 @@
+// =============================================================================
+// Semantic Tokens: Border Geometry (Candidate V1)
+// =============================================================================
+// Responsibility:
+// Purpose-driven runtime CSS custom properties for border stroke geometry
+// (widths and styles).
+// Resolves strictly from compile-time Reference border Sass tokens.
+// Border geometry is currently theme-independent; emitted in :root.
+//
+// NOTE - EXISTING BORDER COLOR CONTRACT:
+// --honesty-border-subtle, --honesty-border-default, --honesty-border-strong
+// represent runtime Semantic BORDER COLOR tokens defined in theme files.
+// New border geometry tokens are explicitly named --honesty-border-width-*
+// and --honesty-border-style-* to maintain a clear separation of concerns.
+// =============================================================================
+
+@use '../../reference/borders' as ref;
+
+:root {
+  --honesty-border-width-default: #{ref.$honesty-ref-border-width-1};
+  --honesty-border-width-emphasis: #{ref.$honesty-ref-border-width-2};
+  --honesty-border-style-default: #{ref.$honesty-ref-border-style-solid};
+}
