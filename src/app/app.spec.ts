@@ -1,7 +1,7 @@
 import {TestBed} from '@angular/core/testing';
 import {provideRouter, RouterLink} from '@angular/router';
 import {By} from '@angular/platform-browser';
-import {App} from './app';
+import {App, isFullyTransparent, resolveVisibleBackgroundColor} from './app';
 import {routes} from './app.routes';
 
 describe('App Root Shell & Design Lab Review Utilities', () => {
@@ -83,5 +83,101 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
 
     // Ensure the utility bar is NOT inside the capture wrapper
     expect(captureWrapper?.contains(utilityBar)).toBe(false);
+  });
+});
+
+describe('Screenshot Visible Background Color Resolution', () => {
+  describe('isFullyTransparent', () => {
+    it('should identify fully transparent strings correctly', () => {
+      expect(isFullyTransparent('transparent')).toBe(true);
+      expect(isFullyTransparent('TRANSPARENT')).toBe(true);
+      expect(isFullyTransparent('rgba(0, 0, 0, 0)')).toBe(true);
+      expect(isFullyTransparent('rgba(255, 255, 255, 0)')).toBe(true);
+      expect(isFullyTransparent('rgba(255, 255, 255, 0.0)')).toBe(true);
+      expect(isFullyTransparent('rgb(0 0 0 / 0)')).toBe(true);
+      expect(isFullyTransparent('')).toBe(true);
+      expect(isFullyTransparent(null)).toBe(true);
+      expect(isFullyTransparent(undefined)).toBe(true);
+    });
+
+    it('should NOT treat partially transparent or opaque colors as fully transparent', () => {
+      expect(isFullyTransparent('rgba(0, 0, 0, 0.5)')).toBe(false);
+      expect(isFullyTransparent('rgba(255, 255, 255, 0.01)')).toBe(false);
+      expect(isFullyTransparent('rgb(255, 255, 255)')).toBe(false);
+      expect(isFullyTransparent('#ffffff')).toBe(false);
+      expect(isFullyTransparent('#101115')).toBe(false);
+    });
+  });
+
+  describe('resolveVisibleBackgroundColor', () => {
+    let container: HTMLElement;
+    let parentEl: HTMLElement;
+    let targetEl: HTMLElement;
+
+    beforeEach(() => {
+      container = document.createElement('div');
+      parentEl = document.createElement('div');
+      targetEl = document.createElement('div');
+
+      parentEl.appendChild(targetEl);
+      container.appendChild(parentEl);
+      document.body.appendChild(container);
+    });
+
+    afterEach(() => {
+      if (container.parentElement) {
+        container.parentElement.removeChild(container);
+      }
+    });
+
+    it('should use an opaque target background directly', () => {
+      targetEl.style.backgroundColor = 'rgb(123, 45, 67)';
+      const resolved = resolveVisibleBackgroundColor(targetEl);
+      expect(resolved).toBe('rgb(123, 45, 67)');
+    });
+
+    it('should resolve an opaque ancestor background when target is transparent', () => {
+      targetEl.style.backgroundColor = 'transparent';
+      parentEl.style.backgroundColor = 'rgb(40, 50, 60)';
+      const resolved = resolveVisibleBackgroundColor(targetEl);
+      expect(resolved).toBe('rgb(40, 50, 60)');
+    });
+
+    it('should resolve body background when target and immediate ancestors are transparent', () => {
+      targetEl.style.backgroundColor = 'transparent';
+      parentEl.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+      container.style.backgroundColor = 'transparent';
+
+      const originalBodyBg = document.body.style.backgroundColor;
+      document.body.style.backgroundColor = 'rgb(250, 250, 250)';
+
+      try {
+        const resolved = resolveVisibleBackgroundColor(targetEl);
+        expect(resolved).toBe('rgb(250, 250, 250)');
+      } finally {
+        document.body.style.backgroundColor = originalBodyBg;
+      }
+    });
+
+    it('should not select fully transparent values and fall back to white if all elements are transparent', () => {
+      targetEl.style.backgroundColor = 'transparent';
+      parentEl.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+      container.style.backgroundColor = 'transparent';
+
+      const originalBodyBg = document.body.style.backgroundColor;
+      const originalDocBg = document.documentElement.style.backgroundColor;
+
+      document.body.style.backgroundColor = 'transparent';
+      document.documentElement.style.backgroundColor = 'transparent';
+
+      try {
+        const resolved = resolveVisibleBackgroundColor(targetEl);
+        expect(isFullyTransparent(resolved)).toBe(false);
+        expect(resolved).toBe('#ffffff');
+      } finally {
+        document.body.style.backgroundColor = originalBodyBg;
+        document.documentElement.style.backgroundColor = originalDocBg;
+      }
+    });
   });
 });
