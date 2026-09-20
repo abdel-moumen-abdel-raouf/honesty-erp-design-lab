@@ -122,7 +122,7 @@ Feature Code    ──X──> Component Tokens (override bypass)
 ```
 
 1. **No Upward Dependencies:** Lower layers must never import or reference higher layers. Reference layer must have 0 imports from Semantic or Component layers.
-2. **No Layer Skipping:** Component templates and stylesheets must not consume Reference tokens or hardcoded literals directly.
+2. **No Layer Skipping:** Component templates and stylesheets must not consume Reference tokens or hardcoded literals directly. Raw Reference Sass variables must not be imported through a public shortcut.
 3. **No Semantic Inversion:** Semantic tokens must not reference specific component tokens.
 4. **No Cross-Component Leakage:** A component (e.g., `Table`) must not consume or override the component tokens of an unrelated component (e.g., `Button`).
 
@@ -203,3 +203,12 @@ Feature Code    ──X──> Component Tokens (override bypass)
 - **Component Dependency Exception:** Component and layout SCSS implementations may consume the public Foundation Query API.
 - **Strict Prohibition on Raw Breakpoints:** Component and layout SCSS must **not** consume raw Reference breakpoint variables or hardcode numeric thresholds directly.
 - **Internal Resolution:** The Query API itself is permitted to consume Reference breakpoint data internally to resolve symbolic query keys.
+
+---
+
+## 12. Foundation Sass Module Boundaries & Public API Surface
+
+- **Internal Authoring Layers:** The Sass modules for Reference (`foundation/reference`), Semantic (`foundation/semantic`), Component (`foundation/components`), Theme (`foundation/themes`), and Density (`foundation/density`) are internal Foundation authoring and composition layers.
+- **No Public Sass Export of Internal Members:** The internal Sass members (variables, maps, and private helpers) of these architectural layers are not public component-consumption APIs and are loaded internally via `@use` at the Foundation root (`foundation/_index.scss`). Raw Reference Sass variables must not be imported through a public shortcut or re-exported globally.
+- **Runtime Styling Contracts:** Runtime Semantic and Component CSS custom properties (`--honesty-*`) remain the sole styling contracts consumed by component templates and stylesheets.
+- **Public Sass API Scope:** The intentional public compile-time Sass API exposed by the Foundation is the **Foundation Query API** (`foundation/queries`), which component and layout SCSS may consume for responsive viewport and container queries.

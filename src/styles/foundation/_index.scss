@@ -4,12 +4,16 @@
 // Architectural Hierarchy:
 // Reference Tokens -> Semantic Tokens -> Component Tokens -> Implementations
 //
-// Single public SCSS entry point forwarding architectural layers in order:
+// Single global Foundation composition entry point:
+// Internal architectural layers are loaded internally via @use and are not
+// exposed as public component-consumption Sass APIs.
+// The public compile-time Sass API exported for consumers is queries.
 // =============================================================================
 
-@forward 'reference';
-@forward 'semantic';
-@forward 'components';
-@forward 'themes';
-@forward 'density';
+@use 'reference';
+@use 'semantic';
+@use 'components';
+@use 'themes';
+@use 'density';
+
 @forward 'queries';
