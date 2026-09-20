@@ -1,0 +1,366 @@
+<main id="spacing-specimen-root" class="spacing-specimen-root">
+  <!-- Header & Document Metadata -->
+  <header id="specimen-header" class="specimen-header">
+    <span id="specimen-badge" class="specimen-badge">مراجعة بصرية توثيقية — منظومة المسافات Candidate V1</span>
+    <h1 id="specimen-title">فحص وتقييم عينات المسافات (Spacing Candidate V1 Specimen)</h1>
+    <p id="specimen-subtitle">
+      معاينة تقييمية للمسافات المرجعية (Reference Scale) المبنية على شبكة 4px الصارمة ومسافات الإيقاع الدلالية (Inline, Stack, Inset, Section Gap) المستندة حصرياً إلى متغيرات CSS الدلالية.
+    </p>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- 1. REFERENCE SPACING SCALE REVIEW                                     -->
+  <!-- ===================================================================== -->
+  <section id="reference-scale-section" class="specimen-section">
+    <div id="reference-scale-header" class="section-header">
+      <h2 id="reference-scale-title" class="section-title-label">السلم المرجعي للمسافات</h2>
+      <p id="reference-scale-desc" class="section-desc">
+        قيم أبعاد سياقية مجردة في طبقة الـ Reference مستندة إلى شبكة أساسية 4px ووحدة rem مرتبطة بجذر 16px. تُستدعى مباشرة عبر Sass في هذه الصفحة التوثيقية الداخلية فقط.
+      </p>
+    </div>
+
+    <!-- 4px Grid Explanation Note -->
+    <div id="grid-4px-explanation" class="grid-note-box">
+      <div id="grid-4px-badge" class="grid-note-badge">قواعد الشبكة الأساسية (4px Base Grid)</div>
+      <ul id="grid-4px-rules" class="grid-note-list">
+        <li id="grid-rule-1">منظومة Candidate V1 مبنية حصرياً على شبكة أساسية بمضاعفات 4px (Strict 4px Grid).</li>
+        <li id="grid-rule-2">كل خطوة مرجعية غير صفرية تمثل مضاعفاً صحيحاً للعدد 4px دون أي قيم وسيطة عشوائية.</li>
+        <li id="grid-rule-3">الخطوات المرجعية <strong>20</strong> (1.25rem)، و <strong>40</strong> (2.5rem)، و <strong>64</strong> (4rem) لا تمتلك حالياً أي أسماء دلالية (No Semantic Aliases) وهي محفوظة كقيم رياضية مرجعية فقط.</li>
+      </ul>
+    </div>
+
+    <!-- Reference Scale Steps List -->
+    <div id="reference-scale-list" class="ref-scale-table">
+      <div id="ref-scale-head" class="ref-scale-row ref-scale-header-row">
+        <span id="col-ref-token" class="ref-col ref-col-token">الرمز المرجعي (Sass Token)</span>
+        <span id="col-ref-rem" class="ref-col ref-col-rem">القيمة المحسوبة (rem)</span>
+        <span id="col-ref-px" class="ref-col ref-col-px">المكافئ (16px root)</span>
+        <span id="col-ref-alias" class="ref-col ref-col-alias">الحالة الدلالية (Semantic Alias)</span>
+        <span id="col-ref-visual" class="ref-col ref-col-visual">المعاينة البصرية الحقيقية [marker] &lt;gap&gt; [marker]</span>
+      </div>
+
+      @for (item of referenceSteps; track item.step) {
+        <div id="ref-step-row-{{ item.step }}" class="ref-scale-row">
+          <span id="ref-token-name-{{ item.step }}" class="ref-col ref-col-token">
+            <code class="token-code">{{ item.tokenName }}</code>
+          </span>
+          <span id="ref-rem-val-{{ item.step }}" class="ref-col ref-col-rem">
+            {{ item.remValue }}
+          </span>
+          <span id="ref-px-val-{{ item.step }}" class="ref-col ref-col-px">
+            {{ item.pixelValue }}
+          </span>
+          <span id="ref-alias-status-{{ item.step }}" class="ref-col ref-col-alias">
+            @if (item.hasSemanticAlias) {
+              <span id="alias-badge-active-{{ item.step }}" class="status-badge is-aliased">مربوط دلالياً</span>
+            } @else {
+              <span id="alias-badge-unaliased-{{ item.step }}" class="status-badge is-unaliased">مرجعي مجرد (بدون دلالة)</span>
+            }
+          </span>
+          <div id="ref-visual-container-{{ item.step }}" class="ref-col ref-col-visual">
+            <div
+              id="ref-specimen-gap-{{ item.step }}"
+              class="ref-gap-demo ref-gap-{{ item.step }}"
+              [title]="item.tokenName + ' = ' + item.remValue + ' (' + item.pixelValue + ')'"
+            >
+              <div id="ref-marker-start-{{ item.step }}" class="ref-marker" aria-hidden="true"></div>
+              <div id="ref-marker-end-{{ item.step }}" class="ref-marker" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 2. INLINE SEMANTIC SPACING REVIEW                                     -->
+  <!-- ===================================================================== -->
+  <section id="inline-spacing-section" class="specimen-section">
+    <div id="inline-spacing-header" class="section-header">
+      <h2 id="inline-spacing-title" class="section-title-label">المسافات الأفقية (Inline Spacing)</h2>
+      <p id="inline-spacing-desc" class="section-desc">
+        تُستخدم للمسافات بين العناصر المتجاورة على السطر نفسه (مثل الأيقونة والنص، أو العناصر الشقيقة المتتابعة). تُطبق حصرياً عبر متغيرات CSS الدلالية.
+      </p>
+    </div>
+
+    <div id="inline-specimens-grid" class="semantic-specimens-grid">
+      <!-- Tight (4px) -->
+      <div id="inline-card-tight" class="semantic-specimen-card">
+        <div id="inline-meta-tight" class="specimen-meta">
+          <span id="inline-role-tight" class="role-name">Tight (متقارب)</span>
+          <code id="inline-token-tight" class="token-code">--honesty-space-inline-tight</code>
+          <span id="inline-val-tight" class="token-value">0.25rem (4px)</span>
+        </div>
+        <div id="inline-specimen-tight" class="inline-demo-container inline-specimen-tight">
+          <div id="inline-item-tight-1" class="inline-neutral-item">عنصر 1</div>
+          <div id="inline-item-tight-2" class="inline-neutral-item">عنصر 2</div>
+          <div id="inline-item-tight-3" class="inline-neutral-item">عنصر 3</div>
+        </div>
+      </div>
+
+      <!-- Default (8px) -->
+      <div id="inline-card-default" class="semantic-specimen-card">
+        <div id="inline-meta-default" class="specimen-meta">
+          <span id="inline-role-default" class="role-name">Default (افتراضي)</span>
+          <code id="inline-token-default" class="token-code">--honesty-space-inline-default</code>
+          <span id="inline-val-default" class="token-value">0.5rem (8px)</span>
+        </div>
+        <div id="inline-specimen-default" class="inline-demo-container inline-specimen-default">
+          <div id="inline-item-default-1" class="inline-neutral-item">عنصر 1</div>
+          <div id="inline-item-default-2" class="inline-neutral-item">عنصر 2</div>
+          <div id="inline-item-default-3" class="inline-neutral-item">عنصر 3</div>
+        </div>
+      </div>
+
+      <!-- Loose (12px) -->
+      <div id="inline-card-loose" class="semantic-specimen-card">
+        <div id="inline-meta-loose" class="specimen-meta">
+          <span id="inline-role-loose" class="role-name">Loose (متباعد)</span>
+          <code id="inline-token-loose" class="token-code">--honesty-space-inline-loose</code>
+          <span id="inline-val-loose" class="token-value">0.75rem (12px)</span>
+        </div>
+        <div id="inline-specimen-loose" class="inline-demo-container inline-specimen-loose">
+          <div id="inline-item-loose-1" class="inline-neutral-item">عنصر 1</div>
+          <div id="inline-item-loose-2" class="inline-neutral-item">عنصر 2</div>
+          <div id="inline-item-loose-3" class="inline-neutral-item">عنصر 3</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 3. STACK SEMANTIC SPACING REVIEW                                      -->
+  <!-- ===================================================================== -->
+  <section id="stack-spacing-section" class="specimen-section">
+    <div id="stack-spacing-header" class="section-header">
+      <h2 id="stack-spacing-title" class="section-title-label">المسافات الرأسية التراكمية (Stack Spacing)</h2>
+      <p id="stack-spacing-desc" class="section-desc">
+        تُستخدم للإيقاع الرأسي بين أسطر أو فقرات المحتوى المرتبطة. تُطبق حصرياً عبر خاصية gap بدون استخدام هوامش margins لمحاكاة المسافات.
+      </p>
+    </div>
+
+    <div id="stack-specimens-grid" class="semantic-specimens-grid">
+      <!-- Tight (8px) -->
+      <div id="stack-card-tight" class="semantic-specimen-card">
+        <div id="stack-meta-tight" class="specimen-meta">
+          <span id="stack-role-tight" class="role-name">Tight (متقارب)</span>
+          <code id="stack-token-tight" class="token-code">--honesty-space-stack-tight</code>
+          <span id="stack-val-tight" class="token-value">0.5rem (8px)</span>
+        </div>
+        <div id="stack-specimen-tight" class="stack-demo-container stack-specimen-tight">
+          <div id="stack-item-tight-1" class="stack-neutral-row">بند المعاملة الأول — رقم المستند 1001</div>
+          <div id="stack-item-tight-2" class="stack-neutral-row">بند المعاملة الثاني — رقم المستند 1002</div>
+          <div id="stack-item-tight-3" class="stack-neutral-row">بند المعاملة الثالث — رقم المستند 1003</div>
+        </div>
+      </div>
+
+      <!-- Default (16px) -->
+      <div id="stack-card-default" class="semantic-specimen-card">
+        <div id="stack-meta-default" class="specimen-meta">
+          <span id="stack-role-default" class="role-name">Default (افتراضي)</span>
+          <code id="stack-token-default" class="token-code">--honesty-space-stack-default</code>
+          <span id="stack-val-default" class="token-value">1rem (16px)</span>
+        </div>
+        <div id="stack-specimen-default" class="stack-demo-container stack-specimen-default">
+          <div id="stack-item-default-1" class="stack-neutral-row">بند المعاملة الأول — رقم المستند 1001</div>
+          <div id="stack-item-default-2" class="stack-neutral-row">بند المعاملة الثاني — رقم المستند 1002</div>
+          <div id="stack-item-default-3" class="stack-neutral-row">بند المعاملة الثالث — رقم المستند 1003</div>
+        </div>
+      </div>
+
+      <!-- Loose (24px) -->
+      <div id="stack-card-loose" class="semantic-specimen-card">
+        <div id="stack-meta-loose" class="specimen-meta">
+          <span id="stack-role-loose" class="role-name">Loose (متباعد)</span>
+          <code id="stack-token-loose" class="token-code">--honesty-space-stack-loose</code>
+          <span id="stack-val-loose" class="token-value">1.5rem (24px)</span>
+        </div>
+        <div id="stack-specimen-loose" class="stack-demo-container stack-specimen-loose">
+          <div id="stack-item-loose-1" class="stack-neutral-row">بند المعاملة الأول — رقم المستند 1001</div>
+          <div id="stack-item-loose-2" class="stack-neutral-row">بند المعاملة الثاني — رقم المستند 1002</div>
+          <div id="stack-item-loose-3" class="stack-neutral-row">بند المعاملة الثالث — رقم المستند 1003</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 4. INSET SEMANTIC SPACING REVIEW                                      -->
+  <!-- ===================================================================== -->
+  <section id="inset-spacing-section" class="specimen-section">
+    <div id="inset-spacing-header" class="section-header">
+      <h2 id="inset-spacing-title" class="section-title-label">المسافات الداخلية (Inset Spacing)</h2>
+      <p id="inset-spacing-desc" class="section-desc">
+        تُستخدم كهوامش حشو داخلية (padding) داخل مناطق محددة لتوفير مساحة تنفس متوازنة. تنمو الأبعاد الخارجية للمنطقة تلقائياً من مقدار الحشو دون فرض ارتفاعات ثابتة.
+      </p>
+    </div>
+
+    <div id="inset-specimens-grid" class="semantic-specimens-grid">
+      <!-- Tight (8px) -->
+      <div id="inset-card-tight" class="semantic-specimen-card">
+        <div id="inset-meta-tight" class="specimen-meta">
+          <span id="inset-role-tight" class="role-name">Tight (متقارب)</span>
+          <code id="inset-token-tight" class="token-code">--honesty-space-inset-tight</code>
+          <span id="inset-val-tight" class="token-value">0.5rem (8px)</span>
+        </div>
+        <div id="inset-specimen-tight" class="inset-demo-container inset-specimen-tight">
+          <div id="inset-inner-tight" class="inset-inner-content">
+            <span id="inset-inner-title-tight" class="inset-inner-title">منطقة داخلية محددة</span>
+            <span id="inset-inner-desc-tight" class="inset-inner-desc">حشو متقارب بمقدار 8px من جميع الجهات.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Default (16px) -->
+      <div id="inset-card-default" class="semantic-specimen-card">
+        <div id="inset-meta-default" class="specimen-meta">
+          <span id="inset-role-default" class="role-name">Default (افتراضي)</span>
+          <code id="inset-token-default" class="token-code">--honesty-space-inset-default</code>
+          <span id="inset-val-default" class="token-value">1rem (16px)</span>
+        </div>
+        <div id="inset-specimen-default" class="inset-demo-container inset-specimen-default">
+          <div id="inset-inner-default" class="inset-inner-content">
+            <span id="inset-inner-title-default" class="inset-inner-title">منطقة داخلية محددة</span>
+            <span id="inset-inner-desc-default" class="inset-inner-desc">حشو افتراضي بمقدار 16px من جميع الجهات.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loose (24px) -->
+      <div id="inset-card-loose" class="semantic-specimen-card">
+        <div id="inset-meta-loose" class="specimen-meta">
+          <span id="inset-role-loose" class="role-name">Loose (متباعد)</span>
+          <code id="inset-token-loose" class="token-code">--honesty-space-inset-loose</code>
+          <span id="inset-val-loose" class="token-value">1.5rem (24px)</span>
+        </div>
+        <div id="inset-specimen-loose" class="inset-demo-container inset-specimen-loose">
+          <div id="inset-inner-loose" class="inset-inner-content">
+            <span id="inset-inner-title-loose" class="inset-inner-title">منطقة داخلية محددة</span>
+            <span id="inset-inner-desc-loose" class="inset-inner-desc">حشو متباعد بمقدار 24px من جميع الجهات.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 5. SECTION GAP REVIEW                                                 -->
+  <!-- ===================================================================== -->
+  <section id="section-spacing-section" class="specimen-section">
+    <div id="section-spacing-header" class="section-header">
+      <h2 id="section-spacing-title" class="section-title-label">مسافات الأقسام (Section Spacing)</h2>
+      <p id="section-spacing-desc" class="section-desc">
+        فواصل إيقاعية كبرى بين الكتل الهيكلية والأقسام الرئيسية في شاشات النظام.
+      </p>
+    </div>
+
+    <div id="section-specimens-grid" class="section-specimens-container">
+      <!-- Default Section Gap (32px) -->
+      <div id="section-card-default" class="semantic-specimen-card section-card">
+        <div id="section-meta-default" class="specimen-meta">
+          <span id="section-role-default" class="role-name">Default Section Gap (افتراضي)</span>
+          <code id="section-token-default" class="token-code">--honesty-space-section-gap</code>
+          <span id="section-val-default" class="token-value">2rem (32px)</span>
+        </div>
+        <div id="section-gap-default-specimen" class="section-demo-container section-specimen-default">
+          <div id="section-block-def-1" class="section-neutral-group">
+            <span id="section-group-label-def-1" class="section-group-label">الكتلة الهيكلية الأولى — بيانات الحسابات</span>
+            <p id="section-group-text-def-1" class="section-group-text">مجموعة فرعية أولى تمثل محتوى وظيفياً مستقلاً داخل شاشة الـ ERP.</p>
+          </div>
+          <div id="section-block-def-2" class="section-neutral-group">
+            <span id="section-group-label-def-2" class="section-group-label">الكتلة الهيكلية الثانية — القيود المحاسبية المرتبطة</span>
+            <p id="section-group-text-def-2" class="section-group-text">مجموعة فرعية ثانية تفصلها عن الأولى فجوة قسمية افتراضية بمقدار 32px.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Large Section Gap (48px) -->
+      <div id="section-card-large" class="semantic-specimen-card section-card">
+        <div id="section-meta-large" class="specimen-meta">
+          <span id="section-role-large" class="role-name">Large Section Gap (كبير)</span>
+          <code id="section-token-large" class="token-code">--honesty-space-section-gap-large</code>
+          <span id="section-val-large" class="token-value">3rem (48px)</span>
+        </div>
+        <div id="section-gap-large-specimen" class="section-demo-container section-specimen-large">
+          <div id="section-block-lg-1" class="section-neutral-group">
+            <span id="section-group-label-lg-1" class="section-group-label">الكتلة الهيكلية الأولى — تقرير التدقيق المالي</span>
+            <p id="section-group-text-lg-1" class="section-group-text">قسم رئيسي أول يضم ملخص المؤشرات المحاسبية وإجمالي الحركات.</p>
+          </div>
+          <div id="section-block-lg-2" class="section-neutral-group">
+            <span id="section-group-label-lg-2" class="section-group-label">الكتلة الهيكلية الثانية — سجل العمليات التفصيلية</span>
+            <p id="section-group-text-lg-2" class="section-group-text">قسم رئيسي ثانٍ تفصله عن الأول فجوة قسمية كبرى بمقدار 48px.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 6. REALISTIC RHYTHM COMPOSITION                                       -->
+  <!-- ===================================================================== -->
+  <section id="rhythm-composition-section" class="specimen-section">
+    <div id="rhythm-composition-header" class="section-header">
+      <h2 id="rhythm-composition-title" class="section-title-label">تركيب إيقاعي واقعي</h2>
+      <p id="rhythm-composition-desc" class="section-desc">
+        توضيح كيفية تفاعل الأدوار الدلالية للمسافات معاً في هيكل محتوى ERP واقعي ومتدرج، باستخدام أدوار الطباعة الدلالية Candidate V1. هذا نموذج ساكن لعلاقات المسافات وليس تصميماً لمكونات أو نماذج إدخال.
+      </p>
+    </div>
+
+    <!-- Bounded demo region using inset-default -->
+    <div id="rhythm-realistic-composition" class="rhythm-composition-card">
+      <div id="rhythm-stack-wrapper" class="rhythm-stack-wrapper">
+        <!-- Major Section 1 -->
+        <div id="rhythm-major-section-1" class="rhythm-section-block">
+          <!-- Section Heading -->
+          <h3 id="rhythm-heading-1" class="rhythm-heading">إدارة قيود اليومية العامة (Journal Entries Management)</h3>
+
+          <!-- Descriptive Body Text -->
+          <p id="rhythm-body-1" class="rhythm-body">
+            تمت مراجعة القيود المحاسبية للفترة المالية الحالية وتدقيق أرصدة الحسابات ومطابقتها مع ميزان المراجعة الداخلي قبل اعتماد الترحيل النهائي.
+          </p>
+
+          <!-- Close related metadata row: stack-tight -->
+          <div id="rhythm-metadata-row" class="rhythm-metadata-row">
+            <span id="rhythm-meta-item-label" class="rhythm-meta-label">حالة القيد:</span>
+            <!-- Inline metadata items: inline-default -->
+            <div id="rhythm-inline-tags" class="rhythm-inline-group">
+              <span id="rhythm-tag-1" class="rhythm-inline-chip">مسودة معتمدة</span>
+              <span id="rhythm-tag-sep-1" class="rhythm-meta-sep">•</span>
+              <span id="rhythm-tag-2" class="rhythm-inline-chip">مركز التكلفة: الإدارة المالية</span>
+              <span id="rhythm-tag-sep-2" class="rhythm-meta-sep">•</span>
+              <span id="rhythm-tag-3" class="rhythm-inline-chip">الرقم المرجعي: 2026-JE-0842</span>
+            </div>
+          </div>
+
+          <!-- Related block: stack-default -->
+          <div id="rhythm-related-block" class="rhythm-related-content">
+            <span id="rhythm-related-title" class="rhythm-related-title">ملاحظات التدقيق المحاسبي المرفقة:</span>
+            <p id="rhythm-related-body" class="rhythm-related-body">
+              يتضمن هذا القيد تسوية فوارق تقييم العملة الأجنبية لنهاية الربع الأول، مع توزيع الأثر المالي على حساب الأرباح والخسائر التشغيلية.
+            </p>
+          </div>
+        </div>
+
+        <!-- Major Section 2 (separated by section-gap from Section 1 via rhythm-stack-wrapper) -->
+        <div id="rhythm-major-section-2" class="rhythm-section-block">
+          <!-- Subsection Heading -->
+          <h4 id="rhythm-heading-2" class="rhythm-subheading">ملخص الاعتماد والصلاحيات (Approval Audit Trail)</h4>
+
+          <!-- Small metadata line -->
+          <span id="rhythm-audit-caption" class="rhythm-caption">
+            آخر تحديث تم في 20 سبتمبر 2026 الساعة 14:30 بواسطة مدقق الحسابات المعتمد.
+          </span>
+
+          <!-- Inline group: inline-default -->
+          <div id="rhythm-approvers-group" class="rhythm-inline-group">
+            <span id="rhythm-approver-1" class="rhythm-inline-chip">المعد: المحاسب الأول</span>
+            <span id="rhythm-approver-sep" class="rhythm-meta-sep">•</span>
+            <span id="rhythm-approver-2" class="rhythm-inline-chip">المراجع: مدير الحسابات العامة</span>
+            <span id="rhythm-approver-sep-2" class="rhythm-meta-sep">•</span>
+            <span id="rhythm-approver-3" class="rhythm-inline-chip">المعتمد: المدير المالي</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

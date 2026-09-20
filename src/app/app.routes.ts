@@ -31,6 +31,11 @@ export const routes: Routes = [
       import('./foundation/typography/typography').then((m) => m.Typography),
   },
   {
+    path: 'foundation/spacing',
+    loadComponent: () =>
+      import('./foundation/spacing/spacing').then((m) => m.Spacing),
+  },
+  {
     path: '',
     redirectTo: 'foundation/colors',
     pathMatch: 'full',

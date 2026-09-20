@@ -18,7 +18,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render the temporary Design Lab utility navigation with all 5 review links', () => {
+  it('should render the temporary Design Lab utility navigation with all 6 review links', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
@@ -31,18 +31,21 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     const statusHuesLink = compiled.querySelector('#nav-link-status-hues');
     const feedbackColorsLink = compiled.querySelector('#nav-link-feedback-colors');
     const typographyLink = compiled.querySelector('#nav-link-typography');
+    const spacingLink = compiled.querySelector('#nav-link-spacing');
 
     expect(colorsLink).toBeTruthy();
     expect(themesLink).toBeTruthy();
     expect(statusHuesLink).toBeTruthy();
     expect(feedbackColorsLink).toBeTruthy();
     expect(typographyLink).toBeTruthy();
+    expect(spacingLink).toBeTruthy();
 
     expect(colorsLink?.textContent?.trim()).toBe('الألوان المرجعية');
     expect(themesLink?.textContent?.trim()).toBe('السمات الفاتحة والداكنة');
     expect(statusHuesLink?.textContent?.trim()).toBe('صبغات الحالات');
     expect(feedbackColorsLink?.textContent?.trim()).toBe('ألوان الحالات الدلالية');
     expect(typographyLink?.textContent?.trim()).toBe('الطباعة');
+    expect(spacingLink?.textContent?.trim()).toBe('المسافات');
   });
 
   it('should bind the correct RouterLink routes to the navigation links', () => {
@@ -60,6 +63,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(linkPaths).toContain('/foundation/colors/status-hues');
     expect(linkPaths).toContain('/foundation/feedback-colors');
     expect(linkPaths).toContain('/foundation/typography');
+    expect(linkPaths).toContain('/foundation/spacing');
   });
 
   it('should render the full-page screenshot button', () => {

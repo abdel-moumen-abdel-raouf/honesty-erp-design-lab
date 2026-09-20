@@ -1,0 +1,526 @@
+// =============================================================================
+// Docs-Only Visual Review Specimen: Spacing Candidate V1
+// =============================================================================
+@use '../../../styles/foundation/reference/spacing' as ref;
+
+:host {
+  display: block;
+}
+
+.spacing-specimen-root {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #11141a;
+  background-color: #fff;
+}
+
+.specimen-header {
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid #e1e4ea;
+  padding-bottom: 1.5rem;
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 0.4rem;
+  }
+
+  p {
+    font-size: 0.925rem;
+    line-height: 1.55;
+    margin: 0;
+    color: #585f6e;
+    max-width: 85ch;
+  }
+}
+
+.specimen-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  background-color: #eef1f6;
+  color: #444b58;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.specimen-section {
+  margin-bottom: 3rem;
+}
+
+.section-header {
+  margin-bottom: 1.25rem;
+}
+
+.section-title-label {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+  color: #1a1f2c;
+}
+
+.section-desc {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #636b7b;
+  margin: 0;
+}
+
+.grid-note-box {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.grid-note-badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 0.5rem;
+}
+
+.grid-note-list {
+  margin: 0;
+  padding-inline-start: 1.25rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #475569;
+
+  li {
+    margin-bottom: 0.25rem;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// 1. Reference Spacing Scale Table & Visual Gaps
+$spacing-reference-specimen: (
+  0: ref.$honesty-ref-space-0,
+  4: ref.$honesty-ref-space-4,
+  8: ref.$honesty-ref-space-8,
+  12: ref.$honesty-ref-space-12,
+  16: ref.$honesty-ref-space-16,
+  20: ref.$honesty-ref-space-20,
+  24: ref.$honesty-ref-space-24,
+  32: ref.$honesty-ref-space-32,
+  40: ref.$honesty-ref-space-40,
+  48: ref.$honesty-ref-space-48,
+  64: ref.$honesty-ref-space-64,
+);
+
+@each $step, $val in $spacing-reference-specimen {
+  .ref-gap-#{$step} {
+    gap: $val;
+  }
+}
+
+.ref-scale-table {
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.ref-scale-row {
+  display: grid;
+  grid-template-columns: 200px 100px 100px 180px 1fr;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.ref-scale-header-row {
+  background-color: #f8fafc;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #475569;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.ref-col {
+  font-size: 0.85rem;
+}
+
+.ref-col-rem,
+.ref-col-px,
+.token-value,
+.token-code {
+  font-family: monospace;
+}
+
+.ref-col-rem,
+.ref-col-px {
+  color: #334155;
+}
+
+.token-code {
+  font-size: 0.8rem;
+  background-color: #f1f5f9;
+  padding: 0.15rem 0.35rem;
+  border-radius: 3px;
+  color: #1e293b;
+}
+
+.status-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+
+  &.is-aliased {
+    background-color: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+  }
+
+  &.is-unaliased {
+    background-color: #f1f5f9;
+    color: #64748b;
+    border: 1px solid #cbd5e1;
+  }
+}
+
+.ref-gap-demo {
+  display: flex;
+  align-items: center;
+  background-color: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 4px;
+  padding: 0.5rem;
+  width: fit-content;
+}
+
+.ref-marker {
+  width: 24px;
+  height: 24px;
+  background-color: #94a3b8;
+  border: 1px solid #64748b;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+// 2. Semantic Shared Cards & Grids
+.semantic-specimens-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.section-specimens-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.semantic-specimen-card,
+.section-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background-color: #fff;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.specimen-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.role-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.token-value {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+// Shared Demo Container Styles
+.inline-demo-container,
+.stack-demo-container,
+.inset-demo-container,
+.section-demo-container {
+  background-color: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 4px;
+  padding: 0.75rem;
+  box-sizing: border-box;
+}
+
+.inline-demo-container {
+  display: flex;
+  align-items: center;
+}
+
+.stack-demo-container,
+.section-demo-container {
+  display: flex;
+  flex-direction: column;
+}
+
+// 3. Inline Spacing Demo
+.inline-specimen-tight {
+  gap: var(--honesty-space-inline-tight);
+}
+
+.inline-specimen-default {
+  gap: var(--honesty-space-inline-default);
+}
+
+.inline-specimen-loose {
+  gap: var(--honesty-space-inline-loose);
+}
+
+.inline-neutral-item {
+  background-color: #e2e8f0;
+  border: 1px solid #cbd5e1;
+  border-radius: 3px;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.8rem;
+  color: #334155;
+  white-space: nowrap;
+}
+
+// 4. Stack Spacing Demo
+.stack-specimen-tight {
+  gap: var(--honesty-space-stack-tight);
+}
+
+.stack-specimen-default {
+  gap: var(--honesty-space-stack-default);
+}
+
+.stack-specimen-loose {
+  gap: var(--honesty-space-stack-loose);
+}
+
+.stack-neutral-row {
+  background-color: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 3px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.825rem;
+  color: #334155;
+}
+
+// 5. Inset Spacing Demo
+.inset-specimen-tight {
+  padding: var(--honesty-space-inset-tight);
+}
+
+.inset-specimen-default {
+  padding: var(--honesty-space-inset-default);
+}
+
+.inset-specimen-loose {
+  padding: var(--honesty-space-inset-loose);
+}
+
+.inset-inner-content {
+  background-color: #fff;
+  border: 1px solid #cbd5e1;
+  border-radius: 3px;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.inset-inner-title {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.inset-inner-desc {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+// 6. Section Spacing Demo
+.section-specimen-default {
+  gap: var(--honesty-space-section-gap);
+}
+
+.section-specimen-large {
+  gap: var(--honesty-space-section-gap-large);
+}
+
+.section-neutral-group {
+  background-color: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+}
+
+.section-group-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.section-group-text {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.45;
+}
+
+// 7. Realistic Rhythm Composition
+.rhythm-composition-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background-color: #fff;
+  padding: var(--honesty-space-inset-default);
+}
+
+.rhythm-stack-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--honesty-space-section-gap);
+}
+
+.rhythm-section-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--honesty-space-stack-default);
+}
+
+.rhythm-metadata-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--honesty-space-stack-tight);
+}
+
+.rhythm-inline-group {
+  display: flex;
+  align-items: center;
+  gap: var(--honesty-space-inline-default);
+  flex-wrap: wrap;
+}
+
+.rhythm-heading,
+.rhythm-subheading,
+.rhythm-body,
+.rhythm-meta-label,
+.rhythm-inline-chip,
+.rhythm-related-title,
+.rhythm-related-body,
+.rhythm-caption {
+  font-family: var(--honesty-type-family-ui);
+}
+
+.rhythm-heading,
+.rhythm-subheading,
+.rhythm-body,
+.rhythm-related-body {
+  margin: 0;
+}
+
+.rhythm-heading {
+  font-size: var(--honesty-type-section-title-font-size);
+  font-weight: var(--honesty-type-section-title-font-weight);
+  line-height: var(--honesty-type-section-title-line-height);
+  color: #181a20;
+}
+
+.rhythm-subheading {
+  font-size: var(--honesty-type-subsection-title-font-size);
+  font-weight: var(--honesty-type-subsection-title-font-weight);
+  line-height: var(--honesty-type-subsection-title-line-height);
+  color: #181a20;
+}
+
+.rhythm-body,
+.rhythm-related-body {
+  color: #545966;
+}
+
+.rhythm-body {
+  font-size: var(--honesty-type-body-font-size);
+  font-weight: var(--honesty-type-body-font-weight);
+  line-height: var(--honesty-type-body-line-height);
+}
+
+.rhythm-meta-label,
+.rhythm-caption {
+  color: #6f7584;
+}
+
+.rhythm-meta-label {
+  font-size: var(--honesty-type-label-font-size);
+  font-weight: var(--honesty-type-label-font-weight);
+  line-height: var(--honesty-type-label-line-height);
+}
+
+.rhythm-inline-chip {
+  font-size: var(--honesty-type-body-small-font-size);
+  font-weight: var(--honesty-type-body-small-font-weight);
+  line-height: var(--honesty-type-body-small-line-height);
+  color: #181a20;
+  background-color: #f1f5f9;
+  border-radius: 3px;
+  padding: 0.15rem 0.5rem;
+}
+
+.rhythm-meta-sep {
+  color: #989fae;
+  font-size: 0.75rem;
+}
+
+.rhythm-related-content {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: var(--honesty-space-inset-tight);
+  display: flex;
+  flex-direction: column;
+  gap: var(--honesty-space-stack-tight);
+}
+
+.rhythm-related-title {
+  font-size: var(--honesty-type-label-font-size);
+  font-weight: var(--honesty-type-label-font-weight);
+  line-height: var(--honesty-type-label-line-height);
+  color: #181a20;
+}
+
+.rhythm-related-body {
+  font-size: var(--honesty-type-body-small-font-size);
+  font-weight: var(--honesty-type-body-small-font-weight);
+  line-height: var(--honesty-type-body-small-line-height);
+}
+
+.rhythm-caption {
+  font-size: var(--honesty-type-caption-font-size);
+  font-weight: var(--honesty-type-caption-font-weight);
+  line-height: var(--honesty-type-caption-line-height);
+}
