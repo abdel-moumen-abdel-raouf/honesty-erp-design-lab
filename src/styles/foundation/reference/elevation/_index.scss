@@ -1,9 +1,7 @@
 // =============================================================================
-// Foundation Layer: Z-Index
+// Reference Tokens: Elevation
 // =============================================================================
 // Responsibility:
-// Predictable stacking context scale for overlays, dropdowns, sticky elements.
-//
-// Dependency Rule:
-// Defines layer order across the design system.
+// Raw physical box-shadow definitions and blur/spread scales. Context-free.
+// Never depends on semantic, components, or themes.
 // =============================================================================

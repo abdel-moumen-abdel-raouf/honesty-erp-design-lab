@@ -1,9 +1,7 @@
 // =============================================================================
-// Foundation Layer: Radius
+// Semantic Tokens: Spacing
 // =============================================================================
 // Responsibility:
-// Border-radius scale and curvature tokens for shapes and controls.
-//
-// Dependency Rule:
-// Provides radius token definitions; depends on reference scale.
+// Contextual spacing semantics (inset, stack, inline, section gap).
+// Depends on reference/spacing. Must not depend on component tokens.
 // =============================================================================

@@ -1,5 +1,5 @@
 // =============================================================================
-// Foundation Layer: Reference Tokens
+// Foundation Layer: Reference Tokens Entry Point
 // =============================================================================
 // Responsibility:
 // Raw, context-agnostic design values (palettes, absolute scales, primitive values).
@@ -11,3 +11,14 @@
 // Reference tokens are the root source of truth and must never depend on any
 // higher layer (semantic, component, theme, or implementation).
 // =============================================================================
+
+@forward 'colors';
+@forward 'typography';
+@forward 'spacing';
+@forward 'radius';
+@forward 'borders';
+@forward 'elevation';
+@forward 'motion';
+@forward 'z-index';
+@forward 'breakpoints';
+@forward 'charts';

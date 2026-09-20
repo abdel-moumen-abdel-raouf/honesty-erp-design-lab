@@ -4,22 +4,11 @@
 // Architectural Hierarchy:
 // Reference Tokens -> Semantic Tokens -> Component Tokens -> Implementations
 //
-// Forward modules in intentional foundational order:
-// Lower layers must never depend on higher layers.
+// Single public SCSS entry point forwarding architectural layers in order:
 // =============================================================================
 
 @forward 'reference';
 @forward 'semantic';
 @forward 'components';
 @forward 'themes';
-@forward 'typography';
-@forward 'spacing';
-@forward 'radius';
-@forward 'borders';
-@forward 'elevation';
-@forward 'motion';
-@forward 'z-index';
-@forward 'layout';
-@forward 'breakpoints';
 @forward 'density';
-@forward 'charts';

@@ -1,8 +1,9 @@
 // =============================================================================
-// Foundation Layer: Density
+// Foundation Layer: Density Entry Point
 // =============================================================================
 // Responsibility:
-// Data density scales (compact, comfortable, spacious) for ERP workflows.
+// Composes density-related semantic and component behaviors (compact, comfortable, spacious).
+// Must not redefine global raw spacing scales.
 //
 // Dependency Rule:
 // Modulates spacing, sizing, and typography across components.

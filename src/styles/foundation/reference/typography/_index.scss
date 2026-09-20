@@ -1,9 +1,7 @@
 // =============================================================================
-// Foundation Layer: Motion
+// Reference Tokens: Typography
 // =============================================================================
 // Responsibility:
-// Durations, easing curves, and transition tokens.
-//
-// Dependency Rule:
-// Abstract transition definitions independent of component styling.
+// Raw typography primitives: font families, absolute size scales, weights, line heights.
+// Never depends on semantic, components, or themes.
 // =============================================================================

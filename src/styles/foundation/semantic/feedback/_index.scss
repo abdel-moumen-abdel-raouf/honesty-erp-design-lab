@@ -1,9 +1,7 @@
 // =============================================================================
-// Foundation Layer: Spacing
+// Semantic Tokens: Feedback
 // =============================================================================
 // Responsibility:
-// Mathematical spacing scale and layout spacing tokens.
-//
-// Dependency Rule:
-// Consumes reference spacing tokens; provides semantic space tokens.
+// Status and intent tokens (success, warning, danger/error, info).
+// Depends on reference tokens. Must not depend on component tokens.
 // =============================================================================

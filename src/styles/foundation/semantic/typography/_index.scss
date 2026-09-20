@@ -1,9 +1,7 @@
 // =============================================================================
-// Foundation Layer: Breakpoints
+// Semantic Tokens: Typography
 // =============================================================================
 // Responsibility:
-// Viewport width thresholds and responsive query tokens.
-//
-// Dependency Rule:
-// Foundation definitions consumed by layout and responsive utilities.
+// Role-based typography semantics (heading display, title, body, caption, label, code).
+// Depends on reference/typography. Must not depend on component tokens.
 // =============================================================================

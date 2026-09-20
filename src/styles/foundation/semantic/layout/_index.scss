@@ -1,9 +1,7 @@
 // =============================================================================
-// Foundation Layer: Elevation
+// Semantic Tokens: Layout
 // =============================================================================
 // Responsibility:
-// Depth, shadows, and elevation levels for layered surfaces.
-//
-// Dependency Rule:
-// Maps semantic depth to physical shadow definitions.
+// Structural layout semantics (container max-widths, page margins, grid gutters).
+// Depends on reference tokens. Must not depend on component tokens.
 // =============================================================================

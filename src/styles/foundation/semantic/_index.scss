@@ -1,5 +1,5 @@
 // =============================================================================
-// Foundation Layer: Semantic Tokens
+// Foundation Layer: Semantic Tokens Entry Point
 // =============================================================================
 // Responsibility:
 // Purpose-driven, contextual tokens (intent, status, surface, content, interactive).
@@ -11,3 +11,13 @@
 // Depends strictly on Reference Tokens.
 // Must never depend on Component Tokens, component implementations, or UI views.
 // =============================================================================
+
+@forward 'colors';
+@forward 'surfaces';
+@forward 'content';
+@forward 'actions';
+@forward 'feedback';
+@forward 'layout';
+@forward 'typography';
+@forward 'spacing';
+@forward 'charts';

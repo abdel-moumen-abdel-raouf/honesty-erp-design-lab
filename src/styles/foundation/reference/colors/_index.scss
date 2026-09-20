@@ -1,9 +1,7 @@
 // =============================================================================
-// Foundation Layer: Borders
+// Reference Tokens: Colors
 // =============================================================================
 // Responsibility:
-// Border widths, border styles, and divider tokens.
-//
-// Dependency Rule:
-// Maps reference scales and semantic border colors.
+// Raw primitive color palettes (hue ramps, neutral scales). Context-free.
+// Never depends on semantic, components, or themes.
 // =============================================================================

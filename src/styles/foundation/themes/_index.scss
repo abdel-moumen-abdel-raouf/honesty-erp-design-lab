@@ -1,8 +1,9 @@
 // =============================================================================
-// Foundation Layer: Themes
+// Foundation Layer: Themes Entry Point
 // =============================================================================
 // Responsibility:
-// Theme definitions (e.g., light, dark, high contrast) mapping semantic tokens.
+// Composes/overrides semantic values for theme modes (e.g. light, dark).
+// Does not contain raw source palettes.
 //
 // Dependency Rule:
 // Consumes semantic tokens and reference tokens.

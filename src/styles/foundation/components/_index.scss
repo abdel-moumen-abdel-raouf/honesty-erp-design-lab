@@ -1,8 +1,9 @@
 // =============================================================================
-// Foundation Layer: Component Tokens
+// Foundation Layer: Component Tokens Entry Point
 // =============================================================================
 // Responsibility:
-// Component-scoped contract tokens mapped from semantic and reference tokens.
+// Component-scoped aliases and token contracts (e.g. Button, Input, Table tokens).
+// Currently an empty contract baseline to be populated in component phases.
 //
 // Token Architecture Hierarchy:
 // Reference Tokens (Layer 1) -> Semantic Tokens (Layer 2) -> Component Tokens (Layer 3)

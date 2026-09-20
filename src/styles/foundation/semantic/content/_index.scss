@@ -1,9 +1,7 @@
 // =============================================================================
-// Foundation Layer: Typography
+// Semantic Tokens: Content
 // =============================================================================
 // Responsibility:
-// Font families, scale, weights, line-heights, letter-spacing (Arabic & Latin).
-//
-// Dependency Rule:
-// Consumes reference typography tokens and exposes semantic type styles.
+// Foreground content colors (text primary, secondary, muted, inverse, icons).
+// Depends on reference tokens. Must not depend on component tokens.
 // =============================================================================
