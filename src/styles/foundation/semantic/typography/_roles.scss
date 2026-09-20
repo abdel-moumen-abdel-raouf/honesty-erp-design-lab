@@ -1,0 +1,63 @@
+// =============================================================================
+// Semantic Tokens: Typography Roles (Candidate V1)
+// =============================================================================
+// Responsibility:
+// Purpose-driven runtime CSS custom properties for font families and semantic
+// typography roles (Display, Page Title, Section Title, Subsection Title,
+// Body, Body Strong, Body Small, Label, Caption).
+// Resolves strictly from compile-time Reference typography Sass tokens.
+// =============================================================================
+
+@use '../../reference/typography' as ref;
+
+:root {
+  // Font Families
+  --honesty-type-family-ui: #{ref.$honesty-ref-font-family-ui};
+  --honesty-type-family-arabic: #{ref.$honesty-ref-font-family-arabic};
+  --honesty-type-family-latin: #{ref.$honesty-ref-font-family-latin};
+
+  // DISPLAY
+  --honesty-type-display-font-size: #{ref.$honesty-ref-font-size-40};
+  --honesty-type-display-font-weight: #{ref.$honesty-ref-font-weight-bold};
+  --honesty-type-display-line-height: #{ref.$honesty-ref-line-height-125};
+
+  // PAGE TITLE
+  --honesty-type-page-title-font-size: #{ref.$honesty-ref-font-size-28};
+  --honesty-type-page-title-font-weight: #{ref.$honesty-ref-font-weight-bold};
+  --honesty-type-page-title-line-height: #{ref.$honesty-ref-line-height-135};
+
+  // SECTION TITLE
+  --honesty-type-section-title-font-size: #{ref.$honesty-ref-font-size-20};
+  --honesty-type-section-title-font-weight: #{ref.$honesty-ref-font-weight-bold};
+  --honesty-type-section-title-line-height: #{ref.$honesty-ref-line-height-140};
+
+  // SUBSECTION TITLE
+  --honesty-type-subsection-title-font-size: #{ref.$honesty-ref-font-size-18};
+  --honesty-type-subsection-title-font-weight: #{ref.$honesty-ref-font-weight-bold};
+  --honesty-type-subsection-title-line-height: #{ref.$honesty-ref-line-height-145};
+
+  // BODY
+  --honesty-type-body-font-size: #{ref.$honesty-ref-font-size-16};
+  --honesty-type-body-font-weight: #{ref.$honesty-ref-font-weight-regular};
+  --honesty-type-body-line-height: #{ref.$honesty-ref-line-height-160};
+
+  // BODY STRONG
+  --honesty-type-body-strong-font-size: #{ref.$honesty-ref-font-size-16};
+  --honesty-type-body-strong-font-weight: #{ref.$honesty-ref-font-weight-medium};
+  --honesty-type-body-strong-line-height: #{ref.$honesty-ref-line-height-160};
+
+  // BODY SMALL
+  --honesty-type-body-small-font-size: #{ref.$honesty-ref-font-size-14};
+  --honesty-type-body-small-font-weight: #{ref.$honesty-ref-font-weight-regular};
+  --honesty-type-body-small-line-height: #{ref.$honesty-ref-line-height-155};
+
+  // LABEL
+  --honesty-type-label-font-size: #{ref.$honesty-ref-font-size-14};
+  --honesty-type-label-font-weight: #{ref.$honesty-ref-font-weight-medium};
+  --honesty-type-label-line-height: #{ref.$honesty-ref-line-height-145};
+
+  // CAPTION
+  --honesty-type-caption-font-size: #{ref.$honesty-ref-font-size-12};
+  --honesty-type-caption-font-weight: #{ref.$honesty-ref-font-weight-regular};
+  --honesty-type-caption-line-height: #{ref.$honesty-ref-line-height-150};
+}

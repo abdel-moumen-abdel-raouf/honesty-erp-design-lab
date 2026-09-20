@@ -1,0 +1,12 @@
+// =============================================================================
+// Reference Tokens: Font Families
+// =============================================================================
+// Responsibility:
+// Compile-time font family primitives for Arabic, Latin, and mixed UI contexts.
+// The mixed UI stack intentionally places Space Grotesk first so Latin glyphs
+// resolve to Space Grotesk while Arabic glyphs fall back naturally to Tajawal.
+// =============================================================================
+
+$honesty-ref-font-family-arabic: 'Tajawal', sans-serif;
+$honesty-ref-font-family-latin: 'Space Grotesk', sans-serif;
+$honesty-ref-font-family-ui: 'Space Grotesk', 'Tajawal', sans-serif;

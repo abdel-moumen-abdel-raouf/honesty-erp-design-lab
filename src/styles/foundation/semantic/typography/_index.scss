@@ -1,7 +1,35 @@
 // =============================================================================
-// Semantic Tokens: Typography
+// Semantic Tokens: Typography (Candidate V1)
 // =============================================================================
 // Responsibility:
-// Role-based typography semantics (heading display, title, body, caption, label, code).
-// Depends on reference/typography. Must not depend on component tokens.
+// Role-based runtime CSS custom properties for font families and semantic roles.
+// Depends strictly on reference/typography. Must not depend on component tokens.
+//
+// Approved Families:
+// - Arabic UI: 'Tajawal', sans-serif ($honesty-ref-font-family-arabic)
+// - Latin UI:  'Space Grotesk', sans-serif ($honesty-ref-font-family-latin)
+// - Mixed UI:  'Space Grotesk', 'Tajawal', sans-serif ($honesty-ref-font-family-ui)
+//              Mixed stack resolves Latin glyphs to Space Grotesk and Arabic glyphs
+//              to Tajawal naturally.
+//
+// Core Shared Weights:
+// - 400 (Regular), 500 (Medium), 700 (Bold)
+//
+// Role Naming Grammar:
+// - --honesty-type-<role>-font-size
+// - --honesty-type-<role>-font-weight
+// - --honesty-type-<role>-line-height
+//
+// Semantic Roles (Candidate V1):
+// - display:          40 (2.5rem)   / 700 (Bold)   / 1.25
+// - page-title:       28 (1.75rem)  / 700 (Bold)   / 1.35
+// - section-title:    20 (1.25rem)  / 700 (Bold)   / 1.40
+// - subsection-title: 18 (1.125rem) / 700 (Bold)   / 1.45
+// - body:             16 (1rem)     / 400 (Regular)/ 1.60
+// - body-strong:      16 (1rem)     / 500 (Medium) / 1.60
+// - body-small:       14 (0.875rem) / 400 (Regular)/ 1.55
+// - label:            14 (0.875rem) / 500 (Medium) / 1.45
+// - caption:          12 (0.75rem)  / 400 (Regular)/ 1.50
 // =============================================================================
+
+@use 'roles';

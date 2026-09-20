@@ -1,0 +1,11 @@
+// =============================================================================
+// Reference Tokens: Font Weights
+// =============================================================================
+// Responsibility:
+// Shared core weight primitives present cleanly across both approved families.
+// Prevents synthetic or inconsistent cross-family weight rendering.
+// =============================================================================
+
+$honesty-ref-font-weight-regular: 400;
+$honesty-ref-font-weight-medium: 500;
+$honesty-ref-font-weight-bold: 700;

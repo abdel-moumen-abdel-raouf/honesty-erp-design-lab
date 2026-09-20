@@ -212,3 +212,56 @@ Feature Code    ──X──> Component Tokens (override bypass)
 - **No Public Sass Export of Internal Members:** The internal Sass members (variables, maps, and private helpers) of these architectural layers are not public component-consumption APIs and are loaded internally via `@use` at the Foundation root (`foundation/_index.scss`). Raw Reference Sass variables must not be imported through a public shortcut or re-exported globally.
 - **Runtime Styling Contracts:** Runtime Semantic and Component CSS custom properties (`--honesty-*`) remain the sole styling contracts consumed by component templates and stylesheets.
 - **Public Sass API Scope:** The intentional public compile-time Sass API exposed by the Foundation is the **Foundation Query API** (`foundation/queries`), which component and layout SCSS may consume for responsive viewport and container queries.
+
+---
+
+## 13. Typography Technical Contract (Candidate V1)
+
+### A. Approved Font Families & Asset Baseline
+- **Arabic UI:** `'Tajawal'` (Boutros Fonts / OFL license, self-hosted locally in `public/fonts/tajawal/`).
+- **Latin UI:** `'Space Grotesk'` (Florian Karsten / OFL license, self-hosted locally in `public/fonts/space-grotesk/`).
+
+### B. Mixed UI Stack Behavior
+- **Mixed UI Stack:** `'Space Grotesk', 'Tajawal', sans-serif`
+- **Resolution Rationale:** Space Grotesk is declared first so that Latin/English alphanumeric glyphs resolve to Space Grotesk, while Arabic glyphs fall back cleanly to Tajawal. This enables natural mixed Arabic/English text in ERP interfaces without requiring wrapping every Latin string or number in a custom element or language tag.
+
+### C. Shared Core Weight Set
+- Core cross-family weights are strictly:
+  - Regular: `400` (`$honesty-ref-font-weight-regular`)
+  - Medium: `500` (`$honesty-ref-font-weight-medium`)
+  - Bold: `700` (`$honesty-ref-font-weight-bold`)
+- Weights 600, 800, and 900 are intentionally excluded from the core token set in Candidate V1 to prevent synthetic or inconsistent rendering between families.
+
+### D. Reference vs. Semantic Ownership
+- **Reference Typography (Compile-Time Sass Primitives):**
+  - Font families: `$honesty-ref-font-family-arabic`, `$honesty-ref-font-family-latin`, `$honesty-ref-font-family-ui`.
+  - Core weights: `$honesty-ref-font-weight-regular`, `$honesty-ref-font-weight-medium`, `$honesty-ref-font-weight-bold`.
+  - Absolute font size scale (rem): `$honesty-ref-font-size-12` (0.75rem) through `$honesty-ref-font-size-40` (2.5rem).
+  - Context-free unitless line heights: `$honesty-ref-line-height-125` (1.25) through `$honesty-ref-line-height-160` (1.6).
+- **Semantic Typography (Runtime CSS Custom Properties):**
+  - Font families: `--honesty-type-family-ui`, `--honesty-type-family-arabic`, `--honesty-type-family-latin`.
+  - Role tokens: Emitted in `:root` and resolved strictly from Reference tokens (never raw numbers).
+
+### E. Semantic Role Naming Grammar
+Each typography role defines three standard CSS custom properties:
+- `--honesty-type-<role>-font-size`
+- `--honesty-type-<role>-font-weight`
+- `--honesty-type-<role>-line-height`
+
+### F. Candidate V1 Semantic Roles Table
+| Role | Size Token | Weight Token | Line Height Token | Computed Values |
+| :--- | :--- | :--- | :--- | :--- |
+| **display** | `$honesty-ref-font-size-40` | `$honesty-ref-font-weight-bold` | `$honesty-ref-line-height-125` | 2.5rem (40px) / 700 / 1.25 |
+| **page-title** | `$honesty-ref-font-size-28` | `$honesty-ref-font-weight-bold` | `$honesty-ref-line-height-135` | 1.75rem (28px) / 700 / 1.35 |
+| **section-title** | `$honesty-ref-font-size-20` | `$honesty-ref-font-weight-bold` | `$honesty-ref-line-height-140` | 1.25rem (20px) / 700 / 1.4 |
+| **subsection-title** | `$honesty-ref-font-size-18` | `$honesty-ref-font-weight-bold` | `$honesty-ref-line-height-145` | 1.125rem (18px) / 700 / 1.45 |
+| **body** | `$honesty-ref-font-size-16` | `$honesty-ref-font-weight-regular` | `$honesty-ref-line-height-160` | 1rem (16px) / 400 / 1.6 |
+| **body-strong** | `$honesty-ref-font-size-16` | `$honesty-ref-font-weight-medium` | `$honesty-ref-line-height-160` | 1rem (16px) / 500 / 1.6 |
+| **body-small** | `$honesty-ref-font-size-14` | `$honesty-ref-font-weight-regular` | `$honesty-ref-line-height-155` | 0.875rem (14px) / 400 / 1.55 |
+| **label** | `$honesty-ref-font-size-14` | `$honesty-ref-font-weight-medium` | `$honesty-ref-line-height-145` | 0.875rem (14px) / 500 / 1.45 |
+| **caption** | `$honesty-ref-font-size-12` | `$honesty-ref-font-weight-regular` | `$honesty-ref-line-height-150` | 0.75rem (12px) / 400 / 1.5 |
+
+### G. Scope Boundaries (Candidate V1)
+- **No Letter Spacing:** Explicit tracking is deferred pending Arabic visual review.
+- **No Monospace Role:** No production monospace font has been approved; code roles are deferred.
+- **No Global Application:** Typography variables are not applied to `html`, `body`, or component selectors in this phase.

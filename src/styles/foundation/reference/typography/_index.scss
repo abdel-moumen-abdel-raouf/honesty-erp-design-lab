@@ -5,3 +5,8 @@
 // Raw typography primitives: font families, absolute size scales, weights, line heights.
 // Never depends on semantic, components, or themes.
 // =============================================================================
+
+@forward 'families';
+@forward 'weights';
+@forward 'sizes';
+@forward 'line-heights';
