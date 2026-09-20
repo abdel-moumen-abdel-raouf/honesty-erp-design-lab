@@ -1,3 +1,136 @@
+// =============================================================================
+// Docs-Only Temporary Design Lab Utility Chrome
+// =============================================================================
+// Note:
+// The utility bar and its elements are INTERNAL DESIGN-LAB REVIEW TOOLING ONLY.
+// They are NOT:
+// - the future ERP Topbar
+// - the future Sidebar
+// - a production navigation component
+// - a visual reference for Shell design
+// All layout/styling values in this file are temporary docs-only chrome and
+// do NOT represent Foundation tokens or production design decisions.
+// =============================================================================
+
 :host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.lab-utility-bar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.5rem 1.25rem;
+  background-color: #f7f8fa;
+  border-bottom: 1px solid #e2e5ec;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.875rem;
+}
+
+.lab-utility-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lab-utility-title {
+  font-weight: 600;
+  color: #1a1e27;
+  font-size: 0.875rem;
+}
+
+.lab-utility-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.15rem 0.45rem;
+  background-color: #e5e8ef;
+  color: #4b5262;
+  border-radius: 3px;
+  letter-spacing: 0.01em;
+}
+
+.lab-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.lab-nav-link {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  color: #4b5262;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: color 0.15s ease, background-color 0.15s ease;
+
+  &:hover {
+    color: #11141a;
+    background-color: #eaecef;
+  }
+
+  &.active {
+    color: #0f172a;
+    background-color: #e2e6ed;
+    font-weight: 600;
+  }
+}
+
+.lab-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.lab-screenshot-status {
+  font-size: 0.8rem;
+  color: #4b5262;
+
+  &.is-error {
+    color: #c93833;
+    font-weight: 500;
+  }
+}
+
+.btn-screenshot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #1a1e27;
+  background-color: #ffffff;
+  border: 1px solid #ccd2dc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+
+  &:hover:not(:disabled) {
+    background-color: #f0f2f5;
+    border-color: #b5bcc9;
+  }
+
+  &:active:not(:disabled) {
+    background-color: #e4e7eb;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.routed-content-wrapper {
+  flex: 1;
+  width: 100%;
   display: block;
 }

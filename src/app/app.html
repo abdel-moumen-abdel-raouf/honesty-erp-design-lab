@@ -1,2 +1,60 @@
-<router-outlet id="app-router-outlet"></router-outlet>
+<header id="lab-utility-bar" class="lab-utility-bar">
+  <div id="lab-utility-brand" class="lab-utility-brand">
+    <span id="lab-utility-title" class="lab-utility-title">مختبر تصميم Honesty ERP</span>
+    <span id="lab-utility-badge" class="lab-utility-badge">أداة مراجعة مؤقتة</span>
+  </div>
+
+  <nav id="lab-nav" class="lab-nav" aria-label="روابط المراجعة المؤقتة">
+    <a
+      id="nav-link-colors"
+      class="lab-nav-link"
+      routerLink="/foundation/colors"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{exact: true}"
+    >
+      الألوان المرجعية
+    </a>
+    <a
+      id="nav-link-themes"
+      class="lab-nav-link"
+      routerLink="/foundation/themes"
+      routerLinkActive="active"
+    >
+      السمات الفاتحة والداكنة
+    </a>
+    <a
+      id="nav-link-status-hues"
+      class="lab-nav-link"
+      routerLink="/foundation/colors/status-hues"
+      routerLinkActive="active"
+    >
+      صبغات الحالات
+    </a>
+  </nav>
+
+  <div id="lab-actions" class="lab-actions">
+    @if (statusMessage()) {
+      <span id="lab-screenshot-status" class="lab-screenshot-status" [class.is-error]="hasError()">
+        {{ statusMessage() }}
+      </span>
+    }
+    <button
+      id="btn-full-page-screenshot"
+      type="button"
+      class="btn-screenshot"
+      [disabled]="isCapturing()"
+      (click)="captureScreenshot()"
+    >
+      @if (isCapturing()) {
+        جاري الالتقاط...
+      } @else {
+        لقطة كاملة
+      }
+    </button>
+  </div>
+</header>
+
+<main id="routed-review-content" class="routed-content-wrapper">
+  <router-outlet id="app-router-outlet"></router-outlet>
+</main>
 
