@@ -12,6 +12,7 @@
 // Must never depend on Component Tokens, component implementations, or UI views.
 // =============================================================================
 
+@forward 'contract';
 @forward 'colors';
 @forward 'surfaces';
 @forward 'content';

@@ -1,0 +1,34 @@
+// =============================================================================
+// Reference Layer: Token Contract & Authoring Guidelines
+// =============================================================================
+// Representation:
+// Sass compile-time variables / maps ($ prefix). Does NOT emit CSS custom properties.
+//
+// Naming Syntax:
+// $honesty-ref-<category>-<name>
+//
+// Categories:
+// - color       : $honesty-ref-color-<palette>-<step>
+// - space       : $honesty-ref-space-<step>
+// - radius      : $honesty-ref-radius-<step>
+// - border      : $honesty-ref-border-<step>
+// - elevation   : $honesty-ref-elevation-<step>
+// - motion      : $honesty-ref-duration-<step>, $honesty-ref-easing-<step>
+// - z-index     : $honesty-ref-z-index-<step>
+// - breakpoint  : $honesty-ref-breakpoint-<step>
+// - chart       : $honesty-ref-chart-<series>-<step>
+// - typography  : $honesty-ref-font-size-<step>, $honesty-ref-line-height-<step>, etc.
+//
+// Shape Documentation:
+// Reference maps define raw scales without contextual semantics.
+// =============================================================================
+
+// Empty shape contract maps (populated during design token definition phases)
+$reference-colors-contract: () !default;
+$reference-spacing-contract: () !default;
+$reference-typography-contract: () !default;
+$reference-radius-contract: () !default;
+$reference-elevation-contract: () !default;
+$reference-motion-contract: () !default;
+$reference-z-index-contract: () !default;
+$reference-breakpoints-contract: () !default;

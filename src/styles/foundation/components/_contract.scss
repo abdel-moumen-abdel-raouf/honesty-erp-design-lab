@@ -1,0 +1,21 @@
+// =============================================================================
+// Component Layer: Token Contract & Authoring Guidelines
+// =============================================================================
+// Representation:
+// Runtime CSS Custom Properties (--honesty-<component>- prefix).
+//
+// Naming Syntax:
+// --honesty-<component>-<property-or-purpose>
+//
+// Examples of Scoped Contracts (Shape Only):
+// - Button   : --honesty-button-<variant>-<property>
+// - Input    : --honesty-input-<state>-<property>
+// - Table    : --honesty-table-<element>-<property>
+//
+// Shape Documentation:
+// Component tokens are mapped from Semantic tokens and consumed directly by
+// component stylesheet implementations.
+// =============================================================================
+
+// Empty shape contract map (populated when individual component tokens are defined)
+$component-contracts: () !default;

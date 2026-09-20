@@ -1,0 +1,34 @@
+// =============================================================================
+// Semantic Layer: Token Contract & Authoring Guidelines
+// =============================================================================
+// Representation:
+// Runtime CSS Custom Properties (--honesty- prefix).
+//
+// Naming Syntax:
+// --honesty-<semantic-category>-<purpose>
+//
+// Categories & Purposes:
+// - color-surface    : --honesty-color-surface-<role> (canvas, panel, card, overlay)
+// - color-text       : --honesty-color-text-<role> (primary, secondary, muted, inverse)
+// - color-action     : --honesty-color-action-<variant>-<state>
+// - color-feedback   : --honesty-color-feedback-<intent>-<element> (success, error, warning, info)
+// - space-layout     : --honesty-space-layout-<purpose>
+// - type             : --honesty-type-<role>-<attribute>
+// - border           : --honesty-border-<role>
+// - shadow           : --honesty-shadow-<level>
+// - chart            : --honesty-chart-<role>
+//
+// Shape Documentation:
+// Semantic tokens represent functional intent and are resolved via theme/density blocks.
+// =============================================================================
+
+// Empty shape contract maps (populated during design token definition phases)
+$semantic-colors-contract: () !default;
+$semantic-surfaces-contract: () !default;
+$semantic-content-contract: () !default;
+$semantic-actions-contract: () !default;
+$semantic-feedback-contract: () !default;
+$semantic-layout-contract: () !default;
+$semantic-typography-contract: () !default;
+$semantic-spacing-contract: () !default;
+$semantic-charts-contract: () !default;

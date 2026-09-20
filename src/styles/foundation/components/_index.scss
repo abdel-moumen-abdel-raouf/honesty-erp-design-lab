@@ -12,3 +12,5 @@
 // Depends on Semantic Tokens and/or Reference Tokens.
 // Must never depend on component implementation CSS/SCSS or application code.
 // =============================================================================
+
+@forward 'contract';
