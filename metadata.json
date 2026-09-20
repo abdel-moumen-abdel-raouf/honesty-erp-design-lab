@@ -1,0 +1,6 @@
+{
+  "name": "مختبر تصميم نظام Honesty ERP",
+  "description": "مختبر تصميم نظام Honesty ERP - بيئة تجريبية أولية لنظام التصميم",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
