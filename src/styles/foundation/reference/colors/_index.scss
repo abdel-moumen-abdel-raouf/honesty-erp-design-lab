@@ -1,7 +1,10 @@
 // =============================================================================
-// Reference Tokens: Colors
+// Reference Tokens: Colors Entry Point
 // =============================================================================
 // Responsibility:
 // Raw primitive color palettes (hue ramps, neutral scales). Context-free.
 // Never depends on semantic, components, or themes.
 // =============================================================================
+
+@forward 'neutral';
+@forward 'primary';
