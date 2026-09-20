@@ -1,0 +1,105 @@
+<main id="status-hues-specimen-root" class="specimen-container">
+  <header id="specimen-header" class="specimen-header">
+    <span id="specimen-badge" class="specimen-badge">مراجعة بصرية توثيقية داخلية — مسوّدة صبغات الحالات V1</span>
+    <h1 id="specimen-title">فحص التدرجات المرجعية لصبغات الحالات (Status Reference Hues)</h1>
+    <p id="specimen-subtitle">
+      معاينة تقييمية مباشرة للصبغات اللونية المرجعية الأربع (Green, Amber, Red, Cyan) كألوان خام سياقية متدرجة (11 خطوة: 50 → 950) للتحقق من سلامة التدرج الضوئي والتشبع اللوني قبل ربطها مستقبلاً بالأدوار الدلالية (Success, Warning, Danger, Info).
+    </p>
+  </header>
+
+  <!-- Green Ramp Section -->
+  <section id="green-ramp-section" class="ramp-section">
+    <div id="green-ramp-meta" class="ramp-meta">
+      <h2 id="green-ramp-title">تدرج الأخضر المرجعي (Green Reference Palette) — 11 خطوة (50 → 950)</h2>
+      <p id="green-ramp-desc">
+        أخضر مؤسسي هادئ ومتزن، غير نيون وغير نعناعي مفرط، مخصص للربط المستقبلي مع الدلالات الإيجابية والنجاح (Success).
+      </p>
+    </div>
+
+    <div id="green-ramp-scroll-wrapper" class="ramp-scroll-wrapper">
+      <div id="green-ramp-strip" class="ramp-strip" role="region" aria-label="تدرج الأخضر المرجعي">
+        @for (step of steps; track step) {
+          <div id="swatch-green-{{ step }}" class="swatch-card swatch-green-{{ step }}">
+            <div id="color-green-{{ step }}" class="swatch-color" aria-hidden="true"></div>
+            <div id="details-green-{{ step }}" class="swatch-details">
+              <span id="step-label-green-{{ step }}" class="swatch-step">{{ step }}</span>
+              <span id="hex-label-green-{{ step }}" class="swatch-hex"></span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Amber Ramp Section -->
+  <section id="amber-ramp-section" class="ramp-section">
+    <div id="amber-ramp-meta" class="ramp-meta">
+      <h2 id="amber-ramp-title">تدرج الكهرماني المرجعي (Amber Reference Palette) — 11 خطوة (50 → 950)</h2>
+      <p id="amber-ramp-desc">
+        كهرماني دافئ وواضح، غير فوسفوري وغير برتقالي مفرط، مخصص للربط المستقبلي مع دلالات التنبيه والتحذير (Warning).
+      </p>
+    </div>
+
+    <div id="amber-ramp-scroll-wrapper" class="ramp-scroll-wrapper">
+      <div id="amber-ramp-strip" class="ramp-strip" role="region" aria-label="تدرج الكهرماني المرجعي">
+        @for (step of steps; track step) {
+          <div id="swatch-amber-{{ step }}" class="swatch-card swatch-amber-{{ step }}">
+            <div id="color-amber-{{ step }}" class="swatch-color" aria-hidden="true"></div>
+            <div id="details-amber-{{ step }}" class="swatch-details">
+              <span id="step-label-amber-{{ step }}" class="swatch-step">{{ step }}</span>
+              <span id="hex-label-amber-{{ step }}" class="swatch-hex"></span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Red Ramp Section -->
+  <section id="red-ramp-section" class="ramp-section">
+    <div id="red-ramp-meta" class="ramp-meta">
+      <h2 id="red-ramp-title">تدرج الأحمر المرجعي (Red Reference Palette) — 11 خطوة (50 → 950)</h2>
+      <p id="red-ramp-desc">
+        أحمر احترافي رصين، غير وردي وغير مفرط التشبع، مخصص للربط المستقبلي مع دلالات الخطأ والخطر (Danger / Error).
+      </p>
+    </div>
+
+    <div id="red-ramp-scroll-wrapper" class="ramp-scroll-wrapper">
+      <div id="red-ramp-strip" class="ramp-strip" role="region" aria-label="تدرج الأحمر المرجعي">
+        @for (step of steps; track step) {
+          <div id="swatch-red-{{ step }}" class="swatch-card swatch-red-{{ step }}">
+            <div id="color-red-{{ step }}" class="swatch-color" aria-hidden="true"></div>
+            <div id="details-red-{{ step }}" class="swatch-details">
+              <span id="step-label-red-{{ step }}" class="swatch-step">{{ step }}</span>
+              <span id="hex-label-red-{{ step }}" class="swatch-hex"></span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Cyan Ramp Section -->
+  <section id="cyan-ramp-section" class="ramp-section">
+    <div id="cyan-ramp-meta" class="ramp-meta">
+      <h2 id="cyan-ramp-title">تدرج السماوي المرجعي (Cyan Reference Palette) — 11 خطوة (50 → 950)</h2>
+      <p id="cyan-ramp-desc">
+        سماوي/أزرق إعلامي متمايز بوضوح عن نيلي الهوية الأساسية، مخصص للربط المستقبلي مع الدلالات المعلوماتية (Info).
+      </p>
+    </div>
+
+    <div id="cyan-ramp-scroll-wrapper" class="ramp-scroll-wrapper">
+      <div id="cyan-ramp-strip" class="ramp-strip" role="region" aria-label="تدرج السماوي المرجعي">
+        @for (step of steps; track step) {
+          <div id="swatch-cyan-{{ step }}" class="swatch-card swatch-cyan-{{ step }}">
+            <div id="color-cyan-{{ step }}" class="swatch-color" aria-hidden="true"></div>
+            <div id="details-cyan-{{ step }}" class="swatch-details">
+              <span id="step-label-cyan-{{ step }}" class="swatch-step">{{ step }}</span>
+              <span id="hex-label-cyan-{{ step }}" class="swatch-hex"></span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+</main>
