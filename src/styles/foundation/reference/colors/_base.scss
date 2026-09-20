@@ -1,11 +1,8 @@
 // =============================================================================
-// Reference Tokens: Colors Entry Point
+// Reference Tokens: Base Color Primitives
 // =============================================================================
-// Responsibility:
-// Raw primitive color palettes (hue ramps, neutral scales). Context-free.
-// Never depends on semantic, components, or themes.
+// Primitive absolute base color. Context-free.
+// Does not emit CSS custom properties.
 // =============================================================================
 
-@forward 'base';
-@forward 'neutral';
-@forward 'primary';
+$honesty-ref-color-white: #ffffff;

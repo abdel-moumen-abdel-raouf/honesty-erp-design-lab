@@ -1,0 +1,41 @@
+// =============================================================================
+// Foundation Layer: Light Theme (Candidate V1)
+// =============================================================================
+// Responsibility:
+// Resolves theme-sensitive Semantic color tokens for the light theme mode.
+// Maps compile-time Reference tokens to runtime CSS custom properties.
+// Does NOT emit Reference CSS variables.
+// =============================================================================
+
+@use '../reference/colors' as ref;
+
+[data-theme='light'] {
+  // Surfaces
+  --honesty-color-surface-canvas: #{ref.$honesty-ref-color-neutral-50};
+  --honesty-color-surface-default: #{ref.$honesty-ref-color-white};
+  --honesty-color-surface-elevated: #{ref.$honesty-ref-color-white};
+
+  // Text / Content
+  --honesty-color-text-primary: #{ref.$honesty-ref-color-neutral-900};
+  --honesty-color-text-secondary: #{ref.$honesty-ref-color-neutral-600};
+  --honesty-color-text-muted: #{ref.$honesty-ref-color-neutral-500};
+  --honesty-color-text-disabled: #{ref.$honesty-ref-color-neutral-400};
+  --honesty-color-text-inverse: #{ref.$honesty-ref-color-white};
+
+  // Borders
+  --honesty-border-subtle: #{ref.$honesty-ref-color-neutral-200};
+  --honesty-border-default: #{ref.$honesty-ref-color-neutral-300};
+  --honesty-border-strong: #{ref.$honesty-ref-color-neutral-400};
+
+  // Primary Action
+  --honesty-color-action-primary-bg: #{ref.$honesty-ref-color-primary-600};
+  --honesty-color-action-primary-bg-hover: #{ref.$honesty-ref-color-primary-700};
+  --honesty-color-action-primary-bg-active: #{ref.$honesty-ref-color-primary-800};
+  --honesty-color-action-primary-fg: #{ref.$honesty-ref-color-white};
+
+  --honesty-color-action-primary-subtle-bg: #{ref.$honesty-ref-color-primary-50};
+  --honesty-color-action-primary-subtle-bg-hover: #{ref.$honesty-ref-color-primary-100};
+  --honesty-color-action-primary-subtle-fg: #{ref.$honesty-ref-color-primary-700};
+
+  --honesty-color-action-focus-ring: #{ref.$honesty-ref-color-primary-300};
+}

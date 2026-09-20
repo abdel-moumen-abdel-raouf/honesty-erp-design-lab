@@ -9,3 +9,6 @@
 // Consumes semantic tokens and reference tokens.
 // Must never depend on component implementations.
 // =============================================================================
+
+@forward 'light';
+@forward 'dark';
