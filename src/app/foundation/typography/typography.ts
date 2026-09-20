@@ -9,7 +9,6 @@ import {ChangeDetectionStrategy, Component, OnInit, signal} from '@angular/core'
 export class Typography implements OnInit {
   readonly tajawalLoaded = signal<boolean | null>(null);
   readonly spaceGroteskLoaded = signal<boolean | null>(null);
-  readonly fontVerificationMessage = signal<string>('جاري فحص تحميل الخطوط محلياً...');
   readonly hasFontError = signal<boolean>(false);
 
   ngOnInit(): void {
@@ -18,7 +17,7 @@ export class Typography implements OnInit {
 
   private async verifyFonts(): Promise<void> {
     if (typeof document === 'undefined' || !document.fonts) {
-      this.fontVerificationMessage.set('بيئة التشغيل لا تدعم Font Loading API (بيئة غير متصفحية)');
+      this.hasFontError.set(true);
       return;
     }
 
@@ -37,16 +36,11 @@ export class Typography implements OnInit {
 
       if (tajawalOk && spaceGroteskOk) {
         this.hasFontError.set(false);
-        this.fontVerificationMessage.set('تم التحقق بنجاح: الخطوط المعتمدة محملة محلياً ومفعلة (Tajawal + Space Grotesk)');
       } else {
         this.hasFontError.set(true);
-        const failed: string[] = [];
-        if (!tajawalOk) failed.push('Tajawal');
-        if (!spaceGroteskOk) failed.push('Space Grotesk');
-        this.fontVerificationMessage.set(`تنبيه: تعذر التحقق من تحميل الخطوط المحلية: ${failed.join(', ')}`);
       }
     } catch {
-      this.fontVerificationMessage.set('حدث خطأ أثناء فحص جاهزية الخطوط عبر Font Loading API');
+      this.hasFontError.set(true);
     }
   }
 }

@@ -1,8 +1,21 @@
-// Docs-Only Visual Review Chrome: Typography Candidate V1 Specimen
+// =============================================================================
+// Docs-Only Visual Review Chrome vs. Product Specimen Typography
+// =============================================================================
+// CONTRACT DISTINCTION:
+// 1. Docs Chrome (explanatory titles, badges, token labels, specimen borders/padding):
+//    Uses local temporary styling to frame and document the specimen.
+// 2. Product Specimen Content (evaluating font families, weights, semantic roles,
+//    reading rhythm, data/digits, bidi, and dark theme):
+//    MUST strictly resolve through existing Semantic Typography CSS custom properties.
+// =============================================================================
+
 :host {
   display: block;
 }
 
+// -----------------------------------------------------------------------------
+// Docs Chrome: Root Container & Header
+// -----------------------------------------------------------------------------
 .typography-specimen-root {
   max-width: 1440px;
   margin: 0 auto;
@@ -43,6 +56,9 @@
   margin-bottom: 0.5rem;
 }
 
+// -----------------------------------------------------------------------------
+// Docs Chrome: Font Loading Banner
+// -----------------------------------------------------------------------------
 .font-loading-banner {
   display: inline-flex;
   padding: 0.4rem 0.75rem;
@@ -65,6 +81,15 @@
   }
 }
 
+.font-loading-status {
+  display: inline-block;
+  color: inherit;
+  font-weight: 500;
+}
+
+// -----------------------------------------------------------------------------
+// Docs Chrome: Section Framing
+// -----------------------------------------------------------------------------
 .specimen-section {
   margin-bottom: 3rem;
   padding-bottom: 2rem;
@@ -79,21 +104,23 @@
 
 .section-header {
   margin-bottom: 1.25rem;
-
-  .section-title-label {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin: 0 0 0.25rem;
-  }
-
-  .section-desc {
-    font-size: 0.875rem;
-    color: #606877;
-    margin: 0;
-  }
 }
 
-// Font Families
+.section-title-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+}
+
+.section-desc {
+  font-size: 0.875rem;
+  color: #606877;
+  margin: 0;
+}
+
+// =============================================================================
+// Product Specimen: 1. Font Families
+// =============================================================================
 .font-family-arabic {
   font-family: var(--honesty-type-family-arabic);
 }
@@ -119,6 +146,7 @@
 }
 
 .family-meta-bar {
+  // Docs-only chrome meta bar
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 0.85rem;
@@ -126,13 +154,13 @@
   border-bottom: 1px solid #e1e4ea;
   font-size: 0.8rem;
   font-weight: 600;
+}
 
-  .family-token-code {
-    font-family: monospace;
-    font-weight: 400;
-    color: #4b5563;
-    direction: ltr;
-  }
+.family-token-code {
+  font-family: monospace;
+  font-weight: 400;
+  color: #4b5563;
+  direction: ltr;
 }
 
 .family-sample-body {
@@ -140,25 +168,28 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  font-size: 1rem;
-  line-height: 1.6;
-
-  .sample-digits {
-    font-size: 1.15rem;
-  }
-
-  .sample-note {
-    font-size: 0.825rem;
-    color: #606877;
-  }
-
-  .sample-mixed-hero {
-    font-size: 1.15rem;
-    font-weight: 500;
-  }
+  // Product-sample typography strictly resolves through Semantic Body variables
+  font-size: var(--honesty-type-body-font-size);
+  font-weight: var(--honesty-type-body-font-weight);
+  line-height: var(--honesty-type-body-line-height);
 }
 
-// Weights Review
+.sample-note {
+  // Docs-only explanatory note
+  font-size: 0.825rem;
+  color: #606877;
+}
+
+.sample-mixed-hero {
+  // Uses existing Body Strong semantic role instead of literals
+  font-size: var(--honesty-type-body-strong-font-size);
+  font-weight: var(--honesty-type-body-strong-font-weight);
+  line-height: var(--honesty-type-body-strong-line-height);
+}
+
+// =============================================================================
+// Product Specimen: 2. Core Weights Review
+// =============================================================================
 .weight-samples-stack {
   display: flex;
   flex-direction: column;
@@ -171,12 +202,20 @@
   padding: 1rem;
   background-color: #fff;
 
-  &.weight-regular { font-weight: 400; }
-  &.weight-medium { font-weight: 500; }
-  &.weight-bold { font-weight: 700; }
+  // Weight review resolves strictly through existing Semantic role variables
+  &.weight-regular {
+    font-weight: var(--honesty-type-body-font-weight);
+  }
+  &.weight-medium {
+    font-weight: var(--honesty-type-body-strong-font-weight);
+  }
+  &.weight-bold {
+    font-weight: var(--honesty-type-page-title-font-weight);
+  }
 }
 
 .weight-meta-label {
+  // Docs-only chrome meta label
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5rem;
@@ -184,18 +223,19 @@
   border-bottom: 1px dashed #e8ecf2;
   font-size: 0.8rem;
   font-weight: 600;
+}
 
-  .weight-spec {
-    font-family: monospace;
-    font-weight: 400;
-    color: #6b7280;
-    direction: ltr;
-  }
+.weight-spec {
+  font-family: monospace;
+  font-weight: 400;
+  color: #6b7280;
+  direction: ltr;
 }
 
 .weight-line {
-  font-size: 1rem;
-  line-height: 1.6;
+  // Uses Semantic Body size and line-height so only weight varies
+  font-size: var(--honesty-type-body-font-size);
+  line-height: var(--honesty-type-body-line-height);
   margin-bottom: 0.35rem;
 
   &:last-child {
@@ -203,8 +243,14 @@
   }
 }
 
-// Semantic Roles Scale
-[class*='role-'] {
+// =============================================================================
+// Product Specimen: 3. Semantic Roles Scale
+// =============================================================================
+// Dedicated specimen-content classes receive the UI font stack
+// Scoped to avoid leaking to docs chrome or metadata badges
+.role-rendered-block,
+.rhythm-paragraph,
+.dark-role-item {
   font-family: var(--honesty-type-family-ui);
 }
 
@@ -242,38 +288,39 @@ $roles: (
 }
 
 .role-meta-badge {
+  // Docs-only chrome badge
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.75rem;
   padding-bottom: 0.4rem;
   border-bottom: 1px solid #f1f3f7;
-
-  .role-token-name {
-    font-family: monospace;
-    font-size: 0.8rem;
-    font-weight: 700;
-    background-color: #f1f5f9;
-    padding: 0.1rem 0.4rem;
-    border-radius: 3px;
-  }
-
-  .role-token-values {
-    font-size: 0.75rem;
-    color: #64748b;
-  }
 }
 
-.role-rendered-block {
-  .role-line-arabic {
-    margin-bottom: 0.4rem;
-  }
-
-  .role-line-mixed {
-    color: #334155;
-  }
+.role-token-name {
+  font-family: monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background-color: #f1f5f9;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
 }
 
-// Long Arabic Text Rhythm
+.role-token-values {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.role-line-arabic {
+  margin-bottom: 0.4rem;
+}
+
+.role-line-mixed {
+  color: #334155;
+}
+
+// =============================================================================
+// Product Specimen: 4. Long Arabic Text Rhythm
+// =============================================================================
 .rhythm-blocks-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
@@ -288,23 +335,24 @@ $roles: (
 }
 
 .rhythm-meta-bar {
+  // Docs-only chrome meta bar
   margin-bottom: 0.75rem;
   padding-bottom: 0.4rem;
   border-bottom: 1px dashed #e2e8f0;
+}
 
-  .rhythm-role-title {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 600;
-  }
+.rhythm-role-title {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
 
-  .rhythm-role-spec {
-    font-family: monospace;
-    font-size: 0.7rem;
-    color: #6b7280;
-    direction: ltr;
-    word-break: break-all;
-  }
+.rhythm-role-spec {
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: #6b7280;
+  direction: ltr;
+  word-break: break-all;
 }
 
 .rhythm-paragraph {
@@ -312,7 +360,9 @@ $roles: (
   margin: 0;
 }
 
-// Digit & Data Review
+// =============================================================================
+// Product Specimen: 5. Digit & Data Review
+// =============================================================================
 .digit-data-container {
   border: 1px solid #e1e4ea;
   border-radius: 6px;
@@ -333,20 +383,28 @@ $roles: (
   padding: 0.4rem 0.65rem;
   background-color: #f8fafc;
   border-radius: 4px;
-  font-size: 1rem;
-
-  .data-item-label {
-    font-weight: 500;
-    color: #475569;
-  }
-
-  .data-item-value {
-    font-weight: 600;
-    color: #0f172a;
-  }
 }
 
-// RTL / Bidi Review
+// Labels strictly resolve through Semantic Label role
+.data-item-label {
+  font-size: var(--honesty-type-label-font-size);
+  font-weight: var(--honesty-type-label-font-weight);
+  line-height: var(--honesty-type-label-line-height);
+  color: #475569;
+}
+
+// Values strictly resolve through Semantic Body and Body Strong weight (500)
+// No unapproved 600 weight is permitted
+.data-item-value {
+  font-size: var(--honesty-type-body-font-size);
+  font-weight: var(--honesty-type-body-strong-font-weight);
+  line-height: var(--honesty-type-body-line-height);
+  color: #0f172a;
+}
+
+// =============================================================================
+// Product Specimen: 6. RTL / Bidi Review
+// =============================================================================
 .bidi-sample-card {
   border: 1px solid #e1e4ea;
   border-radius: 6px;
@@ -357,55 +415,60 @@ $roles: (
 .bidi-sample-content {
   max-width: 75ch;
   margin: 0;
-
-  .bidi-inline-token {
-    background-color: #f1f5f9;
-    padding: 0.1rem 0.35rem;
-    border-radius: 3px;
-    unicode-bidi: isolate;
-  }
 }
 
-// Dark-Theme Typography Check
+.bidi-inline-token {
+  background-color: #f1f5f9;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  unicode-bidi: isolate;
+}
+
+// =============================================================================
+// Product Specimen: 7. Dark-Theme Typography Check
+// =============================================================================
 .dark-context-container {
   background-color: var(--honesty-color-surface-canvas);
   color: var(--honesty-color-text-primary);
-  border: 1px solid var(--honesty-color-border-default);
+  border: 1px solid var(--honesty-border-default);
   border-radius: 8px;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
 
-  .dark-theme-badge {
-    align-self: flex-start;
-    font-family: monospace;
-    font-size: 0.725rem;
-    font-weight: 600;
-    padding: 0.15rem 0.4rem;
-    background-color: var(--honesty-color-surface-elevated);
+.dark-theme-badge {
+  // Docs-only metadata badge
+  align-self: flex-start;
+  font-family: monospace;
+  font-size: 0.725rem;
+  font-weight: 600;
+  padding: 0.15rem 0.4rem;
+  background-color: var(--honesty-color-surface-elevated);
+  color: var(--honesty-color-text-secondary);
+  border: 1px solid var(--honesty-border-subtle);
+  border-radius: 3px;
+}
+
+.dark-role-item {
+  color: var(--honesty-color-text-primary);
+
+  &.role-body-small,
+  &.role-label {
     color: var(--honesty-color-text-secondary);
-    border: 1px solid var(--honesty-color-border-subtle);
-    border-radius: 3px;
   }
 
-  .dark-role-item {
-    color: var(--honesty-color-text-primary);
-
-    &.role-body-small,
-    &.role-label {
-      color: var(--honesty-color-text-secondary);
-    }
-
-    &.role-caption {
-      color: var(--honesty-color-text-muted);
-    }
-
-    &.dark-data-sample {
-      padding: 0.65rem 0.85rem;
-      background-color: var(--honesty-color-surface-default);
-      border: 1px solid var(--honesty-color-border-subtle);
-      border-radius: 4px;
-    }
+  &.role-caption {
+    color: var(--honesty-color-text-muted);
   }
 }
+
+.dark-data-sample {
+  padding: 0.65rem 0.85rem;
+  background-color: var(--honesty-color-surface-default);
+  border: 1px solid var(--honesty-border-subtle);
+  border-radius: 4px;
+}
+
+

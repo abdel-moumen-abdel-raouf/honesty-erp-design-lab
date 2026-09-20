@@ -11,11 +11,17 @@
     <div
       id="font-loading-banner"
       class="font-loading-banner"
-      [class.is-success]="!hasFontError() && (tajawalLoaded() && spaceGroteskLoaded())"
+      [class.is-success]="!hasFontError() && (tajawalLoaded() === true && spaceGroteskLoaded() === true)"
       [class.is-error]="hasFontError()"
     >
       <span id="font-loading-status" class="font-loading-status">
-        {{ fontVerificationMessage() }}
+        @if (hasFontError()) {
+          تعذر التحقق من تحميل الخطوط المحلية
+        } @else if (tajawalLoaded() === true && spaceGroteskLoaded() === true) {
+          تم التحقق بنجاح: Tajawal و Space Grotesk محملان محلياً
+        } @else {
+          جاري التحقق من تحميل الخطوط المحلية...
+        }
       </span>
     </div>
   </header>
