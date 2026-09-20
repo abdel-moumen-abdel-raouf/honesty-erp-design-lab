@@ -1,0 +1,229 @@
+<main id="themes-specimen-root" class="themes-specimen-root">
+  <header id="specimen-header" class="specimen-header">
+    <span id="specimen-badge" class="specimen-badge">مراجعة بصرية توثيقية داخلية — مسوّدة السمات الدلالية V1</span>
+    <h1 id="specimen-title">فحص التعيينات الدلالية للسمتين الفاتحة والداكنة (Semantic Color Themes)</h1>
+    <p id="specimen-subtitle">
+      معاينة تقييمية مباشرة للعلاقات الدلالية بين الأسطح والنصوص والإطارات وحالات الأزرار في السمتين الفاتحة والداكنة، معتمدة بالكامل على متغيرات CSS الدلالية (CSS Custom Properties).
+    </p>
+  </header>
+
+  <div id="themes-comparison-grid" class="themes-comparison-grid">
+
+    <!-- =================================================================== -->
+    <!-- LIGHT THEME CONTEXT                                                 -->
+    <!-- =================================================================== -->
+    <section id="theme-context-light" class="theme-context" data-theme="light">
+      <div id="theme-header-light" class="theme-context-header">
+        <h2 id="theme-title-light">السمة الفاتحة (Light Theme Candidate V1)</h2>
+        <span id="theme-tag-light" class="theme-tag">data-theme="light"</span>
+      </div>
+
+      <div id="theme-canvas-light" class="theme-canvas">
+
+        <!-- Surface & Text Hierarchy -->
+        <div id="surface-hierarchy-light" class="surface-hierarchy-block">
+          <h3 id="surface-label-light" class="section-label">تدرج الأسطح والنصوص (Surfaces & Text)</h3>
+
+          <!-- Default Surface -->
+          <div id="surface-default-light" class="surface-card-default">
+            <h4 id="surface-default-title-light" class="section-label">السطح الافتراضي (Default Surface)</h4>
+            <div id="text-stack-light" class="text-specimen-stack">
+              <p id="text-primary-light" class="text-primary-sample">
+                <strong>نص أساسي (Primary):</strong> نظام Honesty ERP لإدارة الموارد المؤسسية وتخطيط العمليات المحاسبية والتشغيلية المتقدمة بدقة متناهية.
+              </p>
+              <p id="text-secondary-light" class="text-secondary-sample">
+                <strong>نص ثانوي (Secondary):</strong> تفاصيل وسياق إضافي يوضح حالة المستندات والفواتير وسجلات النشاط اليومية للحسابات ومراكز التكلفة.
+              </p>
+              <p id="text-muted-light" class="text-muted-sample">
+                <strong>نص خافت (Muted):</strong> معلومات وصفية مساعدة مثل تواريخ التعديل الأخيرة، أرقام المراجع، والملاحظات الإرشادية غير الحرجة.
+              </p>
+              <p id="text-disabled-light" class="text-disabled-sample">
+                <strong>نص معطل (Disabled):</strong> خيارات وإجراءات غير مفعلة حالياً نتيجة قيود الصلاحيات أو اكتمال مرحلة التدقيق المالي.
+              </p>
+            </div>
+
+            <!-- Inverse Text Sample -->
+            <div id="inverse-sample-light" class="inverse-text-container">
+              <span id="inverse-tag-light" class="inverse-badge-tag">عينة نص معكوس:</span>
+              <p id="text-inverse-light" class="text-inverse-sample">نص أبيض عالي التباين على خلفية داكنة/ملونة (Inverse Text)</p>
+            </div>
+          </div>
+
+          <!-- Elevated Surface -->
+          <div id="surface-elevated-light" class="surface-card-elevated">
+            <h4 id="surface-elevated-title-light" class="section-label">السطح المرتفع (Elevated Surface)</h4>
+            <p id="surface-elevated-note-light" class="text-secondary-sample">
+              في السمة الفاتحة، يشترك السطح الافتراضي والمرتفع في الأبيض الصريح، ويتم التمييز لاحقاً عبر الإطارات أو الظلال دون اختلاق تدرج سطحي صناعي.
+            </p>
+          </div>
+        </div>
+
+        <!-- Border Hierarchy -->
+        <div id="borders-group-light" class="surface-hierarchy-block">
+          <h3 id="borders-label-light" class="section-label">تدرج الإطارات (Border Hierarchy)</h3>
+          <div id="borders-grid-light" class="border-specimens-grid">
+            <div id="border-subtle-light" class="border-sample-card border-subtle">
+              <span id="border-subtle-text-light">إطار خفيف<br>Subtle (Neutral 200)</span>
+            </div>
+            <div id="border-default-light" class="border-sample-card border-default">
+              <span id="border-default-text-light">إطار افتراضي<br>Default (Neutral 300)</span>
+            </div>
+            <div id="border-strong-light" class="border-sample-card border-strong">
+              <span id="border-strong-text-light">إطار بارز<br>Strong (Neutral 400)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary Action States -->
+        <div id="actions-group-light" class="actions-specimens-group">
+          <h3 id="actions-label-light" class="section-label">حالات اللون الأساسي (Primary Action States)</h3>
+          <div id="actions-row-light" class="action-states-row">
+            <div id="action-primary-default-light" class="action-specimen-rect primary-default">
+              افتراضي (Default)
+            </div>
+            <div id="action-primary-hover-light" class="action-specimen-rect primary-hover">
+              تحويم (Hover)
+            </div>
+            <div id="action-primary-active-light" class="action-specimen-rect primary-active">
+              نشط (Active)
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary Subtle Action States -->
+        <div id="subtle-actions-group-light" class="actions-specimens-group">
+          <h3 id="subtle-actions-label-light" class="section-label">حالات الإجراء الخفيف (Primary Subtle States)</h3>
+          <div id="subtle-actions-row-light" class="action-states-row">
+            <div id="action-subtle-default-light" class="action-specimen-rect subtle-default">
+              خفيف افتراضي (Subtle Default)
+            </div>
+            <div id="action-subtle-hover-light" class="action-specimen-rect subtle-hover">
+              خفيف تحويم (Subtle Hover)
+            </div>
+          </div>
+        </div>
+
+        <!-- Focus Ring Color -->
+        <div id="focus-ring-group-light" class="surface-hierarchy-block">
+          <h3 id="focus-ring-label-light" class="section-label">لون حلقة التركيز (Focus Ring Color)</h3>
+          <div id="focus-ring-box-light" class="focus-ring-specimen-box">
+            <div id="focus-ring-swatch-light" class="focus-ring-swatch" aria-hidden="true"></div>
+            <div id="focus-ring-meta-light" class="focus-ring-meta">
+              <strong>حلقة التركيز الدلالية</strong> — <code>--honesty-color-action-focus-ring</code> (Primary 300)
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- DARK THEME CONTEXT                                                  -->
+    <!-- =================================================================== -->
+    <section id="theme-context-dark" class="theme-context" data-theme="dark">
+      <div id="theme-header-dark" class="theme-context-header">
+        <h2 id="theme-title-dark">السمة الداكنة (Dark Theme Candidate V1)</h2>
+        <span id="theme-tag-dark" class="theme-tag">data-theme="dark"</span>
+      </div>
+
+      <div id="theme-canvas-dark" class="theme-canvas">
+
+        <!-- Surface & Text Hierarchy -->
+        <div id="surface-hierarchy-dark" class="surface-hierarchy-block">
+          <h3 id="surface-label-dark" class="section-label">تدرج الأسطح والنصوص (Surfaces & Text)</h3>
+
+          <!-- Default Surface -->
+          <div id="surface-default-dark" class="surface-card-default">
+            <h4 id="surface-default-title-dark" class="section-label">السطح الافتراضي (Default Surface)</h4>
+            <div id="text-stack-dark" class="text-specimen-stack">
+              <p id="text-primary-dark" class="text-primary-sample">
+                <strong>نص أساسي (Primary):</strong> نظام Honesty ERP لإدارة الموارد المؤسسية وتخطيط العمليات المحاسبية والتشغيلية المتقدمة بدقة متناهية.
+              </p>
+              <p id="text-secondary-dark" class="text-secondary-sample">
+                <strong>نص ثانوي (Secondary):</strong> تفاصيل وسياق إضافي يوضح حالة المستندات والفواتير وسجلات النشاط اليومية للحسابات ومراكز التكلفة.
+              </p>
+              <p id="text-muted-dark" class="text-muted-sample">
+                <strong>نص خافت (Muted):</strong> معلومات وصفية مساعدة مثل تواريخ التعديل الأخيرة، أرقام المراجع، والملاحظات الإرشادية غير الحرجة.
+              </p>
+              <p id="text-disabled-dark" class="text-disabled-sample">
+                <strong>نص معطل (Disabled):</strong> خيارات وإجراءات غير مفعلة حالياً نتيجة قيود الصلاحيات أو اكتمال مرحلة التدقيق المالي.
+              </p>
+            </div>
+
+            <!-- Inverse Text Sample -->
+            <div id="inverse-sample-dark" class="inverse-text-container">
+              <span id="inverse-tag-dark" class="inverse-badge-tag">عينة نص معكوس:</span>
+              <p id="text-inverse-dark" class="text-inverse-sample">نص داكن عالي التباين على خلفية فاتحة/ملونة (Inverse Text)</p>
+            </div>
+          </div>
+
+          <!-- Elevated Surface -->
+          <div id="surface-elevated-dark" class="surface-card-elevated">
+            <h4 id="surface-elevated-title-dark" class="section-label">السطح المرتفع (Elevated Surface)</h4>
+            <p id="surface-elevated-note-dark" class="text-secondary-sample">
+              في السمة الداكنة، يتدرج السطح من كانفاس الجرافيت (Neutral 950) إلى الافتراضي (Neutral 900) ثم المرتفع (Neutral 800) لتوفير عمق بصري هادئ.
+            </p>
+          </div>
+        </div>
+
+        <!-- Border Hierarchy -->
+        <div id="borders-group-dark" class="surface-hierarchy-block">
+          <h3 id="borders-label-dark" class="section-label">تدرج الإطارات (Border Hierarchy)</h3>
+          <div id="borders-grid-dark" class="border-specimens-grid">
+            <div id="border-subtle-dark" class="border-sample-card border-subtle">
+              <span id="border-subtle-text-dark">إطار خفيف<br>Subtle (Neutral 800)</span>
+            </div>
+            <div id="border-default-dark" class="border-sample-card border-default">
+              <span id="border-default-text-dark">إطار افتراضي<br>Default (Neutral 700)</span>
+            </div>
+            <div id="border-strong-dark" class="border-sample-card border-strong">
+              <span id="border-strong-text-dark">إطار بارز<br>Strong (Neutral 600)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary Action States -->
+        <div id="actions-group-dark" class="actions-specimens-group">
+          <h3 id="actions-label-dark" class="section-label">حالات اللون الأساسي (Primary Action States)</h3>
+          <div id="actions-row-dark" class="action-states-row">
+            <div id="action-primary-default-dark" class="action-specimen-rect primary-default">
+              افتراضي (Default)
+            </div>
+            <div id="action-primary-hover-dark" class="action-specimen-rect primary-hover">
+              تحويم (Hover)
+            </div>
+            <div id="action-primary-active-dark" class="action-specimen-rect primary-active">
+              نشط (Active)
+            </div>
+          </div>
+        </div>
+
+        <!-- Primary Subtle Action States -->
+        <div id="subtle-actions-group-dark" class="actions-specimens-group">
+          <h3 id="subtle-actions-label-dark" class="section-label">حالات الإجراء الخفيف (Primary Subtle States)</h3>
+          <div id="subtle-actions-row-dark" class="action-states-row">
+            <div id="action-subtle-default-dark" class="action-specimen-rect subtle-default">
+              خفيف افتراضي (Subtle Default)
+            </div>
+            <div id="action-subtle-hover-dark" class="action-specimen-rect subtle-hover">
+              خفيف تحويم (Subtle Hover)
+            </div>
+          </div>
+        </div>
+
+        <!-- Focus Ring Color -->
+        <div id="focus-ring-group-dark" class="surface-hierarchy-block">
+          <h3 id="focus-ring-label-dark" class="section-label">لون حلقة التركيز (Focus Ring Color)</h3>
+          <div id="focus-ring-box-dark" class="focus-ring-specimen-box">
+            <div id="focus-ring-swatch-dark" class="focus-ring-swatch" aria-hidden="true"></div>
+            <div id="focus-ring-meta-dark" class="focus-ring-meta">
+              <strong>حلقة التركيز الدلالية</strong> — <code>--honesty-color-action-focus-ring</code> (Primary 300)
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+</main>
