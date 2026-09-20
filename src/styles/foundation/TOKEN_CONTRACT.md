@@ -104,6 +104,7 @@ Component  ────> Component SCSS Implementation
 3. Themes compose Reference tokens into Semantic CSS custom properties.
 4. Density presets modulate density-sensitive Semantic/Component CSS custom properties.
 5. Component stylesheet implementations consume only their designated Component tokens.
+6. Component and layout stylesheet implementations may consume the public Foundation Query API (which internally resolves Reference breakpoints).
 
 ---
 
@@ -193,3 +194,12 @@ Feature Code    ──X──> Component Tokens (override bypass)
 - Directionality (`dir="rtl"`) is application/product-level configuration (Honesty ERP is Arabic-first and RTL-first) and is **not** currently a user-selectable UI preference.
 - Angular TypeScript services and components **must never inject or calculate arbitrary CSS values** (e.g., manipulating `element.style.setProperty('--honesty-button-bg', '#123456')`).
 - Styling reactions remain 100% declarative and CSS-driven, resolved entirely through the Foundation's CSS custom property contracts.
+
+---
+
+## 11. Responsive Query API Architecture & Dependency Rule
+
+- **Compile-Time Sass Infrastructure:** The Foundation Query API (`foundation/queries`) provides the approved Sass mixins for responsive viewport (`viewport-up`, `viewport-down`, `viewport-between`) and container queries (`container-up`, `container-down`, `container-between`).
+- **Component Dependency Exception:** Component and layout SCSS implementations may consume the public Foundation Query API.
+- **Strict Prohibition on Raw Breakpoints:** Component and layout SCSS must **not** consume raw Reference breakpoint variables or hardcode numeric thresholds directly.
+- **Internal Resolution:** The Query API itself is permitted to consume Reference breakpoint data internally to resolve symbolic query keys.

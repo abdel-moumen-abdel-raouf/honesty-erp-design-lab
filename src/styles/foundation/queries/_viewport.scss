@@ -1,0 +1,24 @@
+// =============================================================================
+// Foundation Query API: Viewport Queries
+// =============================================================================
+// Public Mixin Signatures:
+// - viewport-up($key)
+// - viewport-down($key)
+// - viewport-between($min, $max)
+//
+// Behavior:
+// Safe stub implementations. Fails cleanly at Sass compile time if invoked
+// before Reference breakpoint values are configured in a future Foundation phase.
+// =============================================================================
+
+@mixin viewport-up($key) {
+  @error 'Honesty ERP Design Foundation Error: Viewport query thresholds are not defined yet. Breakpoints will be configured in the Reference Breakpoints phase. Cannot invoke `viewport-up(#{$key})` before configuration.';
+}
+
+@mixin viewport-down($key) {
+  @error 'Honesty ERP Design Foundation Error: Viewport query thresholds are not defined yet. Breakpoints will be configured in the Reference Breakpoints phase. Cannot invoke `viewport-down(#{$key})` before configuration.';
+}
+
+@mixin viewport-between($min, $max) {
+  @error 'Honesty ERP Design Foundation Error: Viewport query thresholds are not defined yet. Breakpoints will be configured in the Reference Breakpoints phase. Cannot invoke `viewport-between(#{$min}, #{$max})` before configuration.';
+}

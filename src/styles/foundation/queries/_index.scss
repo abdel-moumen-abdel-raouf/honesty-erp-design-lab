@@ -1,0 +1,20 @@
+// =============================================================================
+// Foundation Query API: Root Entry Point
+// =============================================================================
+// Public Sass Query API for responsive viewport and container queries.
+//
+// Intended Future Usage Shape:
+//   @use '.../foundation/queries' as query;
+//
+//   @include query.viewport-up($some-key) {
+//     // responsive styles
+//   }
+//
+//   @include query.container-up($some-key) {
+//     // component-size responsive styles
+//   }
+// =============================================================================
+
+@forward 'contract';
+@forward 'viewport';
+@forward 'container';

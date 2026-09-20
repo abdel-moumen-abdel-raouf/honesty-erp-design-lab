@@ -1,0 +1,42 @@
+// =============================================================================
+// Foundation Query API: Technical Contract & Governance
+// =============================================================================
+// 1. Consumption Rule:
+//    Component and layout SCSS implementations must consume the public Foundation
+//    Query API, never raw Reference breakpoint variables directly.
+//
+// 2. Representation:
+//    The Query API is compile-time Sass infrastructure (mixins/functions), not
+//    runtime CSS custom properties.
+//
+// 3. Viewport vs. Container Queries:
+//    Viewport queries and container queries are distinct concepts:
+//    - Viewport queries (viewport-up, viewport-down, viewport-between) listen
+//      to window/viewport boundaries.
+//    - Container queries (container-up, container-down, container-between) listen
+//      to parent/container context boundaries.
+//
+// 4. Symbolic Resolution:
+//    Query inputs are symbolic keys resolved internally by the Query API against
+//    Reference breakpoint and threshold tables.
+//
+// 5. Source of Truth:
+//    All physical threshold values remain strictly owned by the Foundation
+//    Reference layer (foundation/reference/breakpoints).
+//
+// 6. Hard-Coding Prohibition:
+//    Components and feature styles must never hard-code @media or @container
+//    pixel/rem threshold values or literal dimensions.
+//
+// 7. Container Query Preference:
+//    Container queries are preferred whenever visual layout or component density
+//    depends on the available width of the component or its parent container.
+//
+// 8. Viewport Query Scope:
+//    Viewport queries are strictly reserved for global application shell,
+//    navigation drawers, page-level scaffolding, and modal backdrop behaviors
+//    that genuinely depend on overall screen real estate.
+// =============================================================================
+
+// Contract indicator for configuration readiness
+$queries-configured: false !default;

@@ -1,0 +1,24 @@
+// =============================================================================
+// Foundation Query API: Container Queries
+// =============================================================================
+// Public Mixin Signatures:
+// - container-up($key, $name: null)
+// - container-down($key, $name: null)
+// - container-between($min, $max, $name: null)
+//
+// Behavior:
+// Safe stub implementations. Fails cleanly at Sass compile time if invoked
+// before Reference container threshold values are configured in a future Foundation phase.
+// =============================================================================
+
+@mixin container-up($key, $name: null) {
+  @error 'Honesty ERP Design Foundation Error: Container query thresholds are not defined yet. Container thresholds will be configured in the Reference Breakpoints phase. Cannot invoke `container-up(#{$key})` before configuration.';
+}
+
+@mixin container-down($key, $name: null) {
+  @error 'Honesty ERP Design Foundation Error: Container query thresholds are not defined yet. Container thresholds will be configured in the Reference Breakpoints phase. Cannot invoke `container-down(#{$key})` before configuration.';
+}
+
+@mixin container-between($min, $max, $name: null) {
+  @error 'Honesty ERP Design Foundation Error: Container query thresholds are not defined yet. Container thresholds will be configured in the Reference Breakpoints phase. Cannot invoke `container-between(#{$min}, #{$max})` before configuration.';
+}
