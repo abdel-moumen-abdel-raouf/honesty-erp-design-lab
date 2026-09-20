@@ -1,0 +1,13 @@
+// =============================================================================
+// Foundation Layer: Component Tokens
+// =============================================================================
+// Responsibility:
+// Component-scoped contract tokens mapped from semantic and reference tokens.
+//
+// Token Architecture Hierarchy:
+// Reference Tokens (Layer 1) -> Semantic Tokens (Layer 2) -> Component Tokens (Layer 3)
+//
+// Dependency Rule:
+// Depends on Semantic Tokens and/or Reference Tokens.
+// Must never depend on component implementation CSS/SCSS or application code.
+// =============================================================================

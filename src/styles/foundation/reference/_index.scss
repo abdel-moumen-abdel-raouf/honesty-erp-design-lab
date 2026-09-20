@@ -1,0 +1,13 @@
+// =============================================================================
+// Foundation Layer: Reference Tokens
+// =============================================================================
+// Responsibility:
+// Raw, context-agnostic design values (palettes, absolute scales, primitive values).
+//
+// Token Architecture Hierarchy:
+// Reference Tokens (Layer 1) -> Semantic Tokens (Layer 2) -> Component Tokens (Layer 3)
+//
+// Dependency Rule:
+// Reference tokens are the root source of truth and must never depend on any
+// higher layer (semantic, component, theme, or implementation).
+// =============================================================================
