@@ -1,7 +1,33 @@
 // =============================================================================
-// Semantic Layer: Color Feedback
+// Semantic Layer: Color Feedback Contract
 // =============================================================================
 // Responsibility:
-// Future ownership of semantic feedback colors (success, warning, danger/error, info).
-// Depends on reference color tokens. Must not depend on component tokens.
+// Defines the contract and naming grammar for semantic feedback colors.
+// Runtime values are emitted as CSS Custom Properties by the Theme layer
+// ([data-theme='light'] and [data-theme='dark']) resolving Reference tokens.
+//
+// Canonical Intents:
+// 1. success  → Positive outcomes, completed tasks, valid states (maps to Green)
+// 2. warning  → Cautions, non-blocking alerts, attention needed (maps to Amber)
+// 3. danger   → Critical errors, blocking failures, destructive actions (maps to Red)
+// 4. info     → Informational notices, guidance, non-critical updates (maps to Cyan)
+//
+// Approved Semantic Roles (per intent):
+// - surface        : Light tint surface / container background (e.g. alerts, banners)
+// - surface-strong : High-emphasis surface (e.g. solid badges, prominent indicators)
+// - text           : High-contrast legible text on default / canvas / surface-tint
+// - on-strong      : Foreground text/icons sitting on surface-strong
+// - border         : Subtle / tint-matching container boundaries
+// - icon           : Standalone or inline status iconography
+//
+// Naming Grammar:
+// --honesty-color-feedback-<intent>-<role>
+//
+// Example Tokens:
+// --honesty-color-feedback-success-surface
+// --honesty-color-feedback-success-surface-strong
+// --honesty-color-feedback-success-text
+// --honesty-color-feedback-success-on-strong
+// --honesty-color-feedback-success-border
+// --honesty-color-feedback-success-icon
 // =============================================================================

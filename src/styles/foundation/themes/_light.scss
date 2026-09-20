@@ -39,4 +39,36 @@
   --honesty-color-action-primary-subtle-fg: #{ref.$honesty-ref-color-primary-700};
 
   --honesty-color-action-focus-ring: #{ref.$honesty-ref-color-primary-300};
+
+  // Feedback: Success
+  --honesty-color-feedback-success-surface: #{ref.$honesty-ref-color-green-50};
+  --honesty-color-feedback-success-surface-strong: #{ref.$honesty-ref-color-green-600};
+  --honesty-color-feedback-success-text: #{ref.$honesty-ref-color-green-700};
+  --honesty-color-feedback-success-on-strong: #{ref.$honesty-ref-color-white};
+  --honesty-color-feedback-success-border: #{ref.$honesty-ref-color-green-200};
+  --honesty-color-feedback-success-icon: #{ref.$honesty-ref-color-green-600};
+
+  // Feedback: Warning
+  --honesty-color-feedback-warning-surface: #{ref.$honesty-ref-color-amber-50};
+  --honesty-color-feedback-warning-surface-strong: #{ref.$honesty-ref-color-amber-600};
+  --honesty-color-feedback-warning-text: #{ref.$honesty-ref-color-amber-700};
+  --honesty-color-feedback-warning-on-strong: #{ref.$honesty-ref-color-neutral-950};
+  --honesty-color-feedback-warning-border: #{ref.$honesty-ref-color-amber-200};
+  --honesty-color-feedback-warning-icon: #{ref.$honesty-ref-color-amber-600};
+
+  // Feedback: Danger
+  --honesty-color-feedback-danger-surface: #{ref.$honesty-ref-color-red-50};
+  --honesty-color-feedback-danger-surface-strong: #{ref.$honesty-ref-color-red-600};
+  --honesty-color-feedback-danger-text: #{ref.$honesty-ref-color-red-700};
+  --honesty-color-feedback-danger-on-strong: #{ref.$honesty-ref-color-white};
+  --honesty-color-feedback-danger-border: #{ref.$honesty-ref-color-red-200};
+  --honesty-color-feedback-danger-icon: #{ref.$honesty-ref-color-red-600};
+
+  // Feedback: Info
+  --honesty-color-feedback-info-surface: #{ref.$honesty-ref-color-cyan-50};
+  --honesty-color-feedback-info-surface-strong: #{ref.$honesty-ref-color-cyan-600};
+  --honesty-color-feedback-info-text: #{ref.$honesty-ref-color-cyan-700};
+  --honesty-color-feedback-info-on-strong: #{ref.$honesty-ref-color-white};
+  --honesty-color-feedback-info-border: #{ref.$honesty-ref-color-cyan-200};
+  --honesty-color-feedback-info-icon: #{ref.$honesty-ref-color-cyan-600};
 }

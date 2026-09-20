@@ -62,7 +62,7 @@ Names must describe **purpose and function**, never physical appearance or liter
   - `--honesty-color-surface-<role>`
   - `--honesty-color-text-<role>`
   - `--honesty-color-action-<variant>-<state>`
-  - `--honesty-color-feedback-<intent>-<element>`
+  - `--honesty-color-feedback-<intent>-<role>`
   - `--honesty-type-<role>-<attribute>`
   - `--honesty-space-<purpose>`
   - `--honesty-radius-<role>`
