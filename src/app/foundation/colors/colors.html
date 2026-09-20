@@ -1,0 +1,57 @@
+<main id="color-specimen-root" class="specimen-container">
+  <header id="specimen-header" class="specimen-header">
+    <span id="specimen-badge" class="specimen-badge">مراجعة بصرية توثيقية داخلية — مسوّدة مرجعية V1</span>
+    <h1 id="specimen-title">فحص التدرجات اللونية المرجعية (Reference Color Palettes)</h1>
+    <p id="specimen-subtitle">
+      معاينة تقييمية مباشرة للقيم اللونية المرجعية المقترحة لمجموعة الحياد (Neutral) والمجموعة الأساسية (Primary) للتأكد من انسيابية التدرج الضوئي واتساق الصبغة قبل أي اعتماد رسمي.
+    </p>
+  </header>
+
+  <!-- Neutral Ramp Section -->
+  <section id="neutral-ramp-section" class="ramp-section">
+    <div id="neutral-ramp-meta" class="ramp-meta">
+      <h2 id="neutral-ramp-title">مجموعة الحياد (Neutral Reference Palette) — 11 خطوة (50 → 950)</h2>
+      <p id="neutral-ramp-desc">
+        درجات حيادية باردة مائلة للجرافيت (Graphite Neutral) مخصصة للنظامين الفاتح والداكن، تتجنب الميل للأزرق الكحلي (Navy) وتستبعد الأسود الصريح (#000000).
+      </p>
+    </div>
+
+    <div id="neutral-ramp-scroll-wrapper" class="ramp-scroll-wrapper">
+      <div id="neutral-ramp-strip" class="ramp-strip" role="region" aria-label="تدرج ألوان الحياد المرجعية">
+        @for (step of steps; track step) {
+          <div id="swatch-neutral-{{ step }}" class="swatch-card swatch-neutral-{{ step }}">
+            <div id="color-neutral-{{ step }}" class="swatch-color" aria-hidden="true"></div>
+            <div id="details-neutral-{{ step }}" class="swatch-details">
+              <span id="step-label-neutral-{{ step }}" class="swatch-step">{{ step }}</span>
+              <span id="hex-label-neutral-{{ step }}" class="swatch-hex"></span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Primary Ramp Section -->
+  <section id="primary-ramp-section" class="ramp-section">
+    <div id="primary-ramp-meta" class="ramp-meta">
+      <h2 id="primary-ramp-title">المجموعة الأساسية (Primary Reference Palette) — 11 خطوة (50 → 950)</h2>
+      <p id="primary-ramp-desc">
+        تدرج نيلي/أزرق بنفسجي (Indigo / Blue-Violet) احترافي، يركز الهوية التفاعلية في نطاق (500–700) ويتجنب الوهج الفاقع أو المظهر الكئيب.
+      </p>
+    </div>
+
+    <div id="primary-ramp-scroll-wrapper" class="ramp-scroll-wrapper">
+      <div id="primary-ramp-strip" class="ramp-strip" role="region" aria-label="تدرج الألوان الأساسية المرجعية">
+        @for (step of steps; track step) {
+          <div id="swatch-primary-{{ step }}" class="swatch-card swatch-primary-{{ step }}">
+            <div id="color-primary-{{ step }}" class="swatch-color" aria-hidden="true"></div>
+            <div id="details-primary-{{ step }}" class="swatch-details">
+              <span id="step-label-primary-{{ step }}" class="swatch-step">{{ step }}</span>
+              <span id="hex-label-primary-{{ step }}" class="swatch-hex"></span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+</main>
