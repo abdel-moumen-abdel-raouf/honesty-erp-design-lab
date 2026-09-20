@@ -1,0 +1,11 @@
+// =============================================================================
+// Foundation Layer: Font Assets Infrastructure
+// =============================================================================
+// Responsibility:
+// Emits the required @font-face declarations for locally hosted product font assets.
+// This module is internal Foundation infrastructure, separate from:
+// Reference -> Semantic -> Component Tokens
+// =============================================================================
+
+@use 'font-tajawal';
+@use 'font-space-grotesk';

@@ -1,0 +1,15 @@
+// =============================================================================
+// Foundation Font Assets: Space Grotesk (Latin UI)
+// =============================================================================
+// Official source: Google Fonts (github.com/google/fonts/ofl/spacegrotesk)
+// Official variable font: SpaceGrotesk[wght].ttf (Weight range: 300 - 700)
+// Local asset location: public/fonts/space-grotesk/
+// =============================================================================
+
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/fonts/space-grotesk/SpaceGrotesk[wght].ttf') format('truetype');
+}

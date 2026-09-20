@@ -10,6 +10,7 @@
 // The public compile-time Sass API exported for consumers is queries.
 // =============================================================================
 
+@use 'font-assets';
 @use 'reference';
 @use 'semantic';
 @use 'components';

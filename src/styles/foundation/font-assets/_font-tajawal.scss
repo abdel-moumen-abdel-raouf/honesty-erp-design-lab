@@ -1,0 +1,64 @@
+// =============================================================================
+// Foundation Font Assets: Tajawal (Arabic UI)
+// =============================================================================
+// Official source: Google Fonts (github.com/google/fonts/ofl/tajawal)
+// Available static weights: 200 (ExtraLight), 300 (Light), 400 (Regular),
+// 500 (Medium), 700 (Bold), 800 (ExtraBold), 900 (Black)
+// Local asset location: public/fonts/tajawal/
+// =============================================================================
+
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('/fonts/tajawal/Tajawal-ExtraLight.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/tajawal/Tajawal-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/tajawal/Tajawal-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/tajawal/Tajawal-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/tajawal/Tajawal-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/fonts/tajawal/Tajawal-ExtraBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('/fonts/tajawal/Tajawal-Black.ttf') format('truetype');
+}
