@@ -1,7 +1,15 @@
 // =============================================================================
-// Semantic Tokens: Colors
+// Semantic Layer: Colors Entry Point
 // =============================================================================
 // Responsibility:
-// Purpose-driven color aliases (brand, accent, neutral, state).
-// Depends only on reference/colors. Must not depend on component tokens.
+// Owns theme-sensitive semantic color roles organized by functional domain:
+// surfaces, content, actions, and feedback.
+//
+// Dependency Rule:
+// Depends only on Reference color tokens. Must not depend on component tokens.
 // =============================================================================
+
+@forward 'surfaces';
+@forward 'content';
+@forward 'actions';
+@forward 'feedback';

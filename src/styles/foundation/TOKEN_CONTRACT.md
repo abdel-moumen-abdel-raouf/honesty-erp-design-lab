@@ -56,17 +56,22 @@ Names must describe **purpose and function**, never physical appearance or liter
 
 ### B. Semantic Tokens (Runtime CSS Custom Properties)
 - **Syntax:** `--honesty-<semantic-category>-<purpose>`
-- **Category:** `color-surface`, `color-text`, `color-action`, `color-feedback`, `space-layout`, `type`, `border`, `shadow`, `chart`.
+- **Category:** `color-surface`, `color-text`, `color-action`, `color-feedback`, `type`, `space`, `radius`, `border`, `shadow`, `motion`, `space-layout`, `layer`, `chart`.
 - **Purpose:** Functional intent and state (e.g., `canvas`, `panel`, `primary`, `muted`, `hover`, `success`, `error`).
 - **Grammar Examples (Shape Only):**
   - `--honesty-color-surface-<role>`
   - `--honesty-color-text-<role>`
   - `--honesty-color-action-<variant>-<state>`
   - `--honesty-color-feedback-<intent>-<element>`
-  - `--honesty-space-layout-<purpose>`
   - `--honesty-type-<role>-<attribute>`
+  - `--honesty-space-<purpose>`
+  - `--honesty-radius-<role>`
   - `--honesty-border-<role>`
   - `--honesty-shadow-<elevation-level>`
+  - `--honesty-motion-<role>`
+  - `--honesty-space-layout-<purpose>`
+  - `--honesty-layer-<role>`
+  - `--honesty-chart-<role>`
 - **Rule:** Absolute prohibition against raw literals or color names in semantic identifiers. Names like `--honesty-color-blue-500`, `--honesty-space-12px`, or `--honesty-dark-gray` are strictly forbidden.
 
 ### C. Component Tokens (Runtime CSS Custom Properties)
