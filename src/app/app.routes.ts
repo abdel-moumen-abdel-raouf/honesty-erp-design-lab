@@ -36,6 +36,13 @@ export const routes: Routes = [
       import('./foundation/spacing/spacing').then((m) => m.Spacing),
   },
   {
+    path: 'foundation/borders-radius',
+    loadComponent: () =>
+      import('./foundation/borders-radius/borders-radius').then(
+        (m) => m.BordersRadius
+      ),
+  },
+  {
     path: '',
     redirectTo: 'foundation/colors',
     pathMatch: 'full',

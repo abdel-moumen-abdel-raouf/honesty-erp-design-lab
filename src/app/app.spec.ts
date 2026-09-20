@@ -18,7 +18,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render the temporary Design Lab utility navigation with all 6 review links', () => {
+  it('should render the temporary Design Lab utility navigation with all 7 review links', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
@@ -32,6 +32,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     const feedbackColorsLink = compiled.querySelector('#nav-link-feedback-colors');
     const typographyLink = compiled.querySelector('#nav-link-typography');
     const spacingLink = compiled.querySelector('#nav-link-spacing');
+    const bordersRadiusLink = compiled.querySelector('#nav-link-borders-radius');
 
     expect(colorsLink).toBeTruthy();
     expect(themesLink).toBeTruthy();
@@ -39,6 +40,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(feedbackColorsLink).toBeTruthy();
     expect(typographyLink).toBeTruthy();
     expect(spacingLink).toBeTruthy();
+    expect(bordersRadiusLink).toBeTruthy();
 
     expect(colorsLink?.textContent?.trim()).toBe('الألوان المرجعية');
     expect(themesLink?.textContent?.trim()).toBe('السمات الفاتحة والداكنة');
@@ -46,6 +48,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(feedbackColorsLink?.textContent?.trim()).toBe('ألوان الحالات الدلالية');
     expect(typographyLink?.textContent?.trim()).toBe('الطباعة');
     expect(spacingLink?.textContent?.trim()).toBe('المسافات');
+    expect(bordersRadiusLink?.textContent?.trim()).toBe('الحدود والزوايا');
   });
 
   it('should bind the correct RouterLink routes to the navigation links', () => {
@@ -64,6 +67,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(linkPaths).toContain('/foundation/feedback-colors');
     expect(linkPaths).toContain('/foundation/typography');
     expect(linkPaths).toContain('/foundation/spacing');
+    expect(linkPaths).toContain('/foundation/borders-radius');
   });
 
   it('should render the full-page screenshot button', () => {
