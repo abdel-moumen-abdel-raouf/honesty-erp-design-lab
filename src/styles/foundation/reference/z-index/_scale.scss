@@ -1,9 +1,14 @@
 // =============================================================================
-// Reference Tokens: Z-Index (Candidate V1)
+// Reference Tokens: Z-Index Scale (Candidate V1)
 // =============================================================================
 // Responsibility:
-// Raw numerical stacking scale steps. Context-free.
+// Raw numerical stacking scale primitives. Context-free.
 // Never depends on semantic, components, or themes.
 // =============================================================================
 
-@forward 'scale';
+$honesty-ref-z-index-0: 0;
+$honesty-ref-z-index-10: 10;
+$honesty-ref-z-index-20: 20;
+$honesty-ref-z-index-30: 30;
+$honesty-ref-z-index-40: 40;
+$honesty-ref-z-index-50: 50;

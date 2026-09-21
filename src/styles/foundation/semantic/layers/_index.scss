@@ -1,8 +1,18 @@
 // =============================================================================
-// Semantic Layer: Layers
+// Semantic Layer: Layers (Candidate V1)
 // =============================================================================
 // Responsibility:
-// Future semantic stacking and layer roles (base, dropdown, sticky, overlay, modal, toast).
-// Where semantic z-index roles will eventually live. No numerical values defined yet.
-// Depends on reference/z-index tokens. Must not depend on component tokens.
+// Semantic stacking and layer roles (base, sticky, floating, overlay, blocking, notification).
+// Resolves strictly from reference/z-index tokens. Must not depend on component tokens.
+//
+// Candidate V1 Roles:
+// --honesty-layer-base:         0  ($honesty-ref-z-index-0)
+// --honesty-layer-sticky:       10 ($honesty-ref-z-index-10)
+// --honesty-layer-floating:     20 ($honesty-ref-z-index-20)
+// --honesty-layer-overlay:      30 ($honesty-ref-z-index-30)
+// --honesty-layer-blocking:     40 ($honesty-ref-z-index-40)
+// --honesty-layer-notification: 50 ($honesty-ref-z-index-50)
 // =============================================================================
+
+@use 'roles';
+

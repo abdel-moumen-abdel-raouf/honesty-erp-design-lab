@@ -695,6 +695,49 @@ Defines the default separation between columns/cells in data and dashboard grids
 - **`@include viewport-up(lg)` (>= 1024px):** `ref.$honesty-ref-space-24` (24px / 1.5rem)
 *(No further increase at `xl` or `xxl`; ERP data layouts avoid excessive whitespace separation on wide desktop monitors.)*
 
+---
+
+## 22. Reference Z-Index & Semantic Layer Technical Contract (Candidate V1)
+
+### A. Architectural Principles & Scope
+- **Stacking Order vs. Elevation Separation:** Stacking order (`z-index`) is an independent Foundation concern from elevation (`box-shadow`), visual emphasis, or component ownership. A stronger shadow does NOT imply a higher z-index, and an overlay shadow does not automatically imply an overlay z-index. Elevation and Layers remain strictly decoupled dimensions.
+- **Reference Tokens (Compile-Time Sass Primitives):** Context-free numerical primitives defined in `src/styles/foundation/reference/z-index/_scale.scss`.
+- **Semantic Tokens (Runtime CSS Custom Properties):** Purpose-driven roles emitted in `:root` via `src/styles/foundation/semantic/layers/_roles.scss` that resolve strictly from Reference z-index Sass tokens (`ref.$honesty-ref-z-index-*`).
+- **No Component-Specific Layer Tokens:** Tokens such as `--honesty-layer-dropdown`, `--honesty-layer-menu`, `--honesty-layer-popover`, `--honesty-layer-tooltip`, `--honesty-layer-modal`, `--honesty-layer-dialog`, or `--honesty-layer-toast` are prohibited in Candidate V1; component-specific mappings belong to future Component token contracts (Layer 3).
+- **No Global Stacking-Context Rules Yet:** No global or component CSS rules involving `position`, `isolation`, `transform`, `filter`, `opacity`, `contain`, or `will-change` are introduced for stacking context creation. Stacking-context ownership belongs to future components and layout primitives.
+- **No Global Application:** Layer custom properties are not applied to `html`, `body`, App shell, navigation, or existing specimen pages. Existing UI remains visually and structurally unchanged.
+- **No Theme or Density Coupling:** Layer tokens are emitted once in `:root`. They are strictly theme-independent (not declared under `[data-theme='light']` or `[data-theme='dark']`) and density-independent (unchanged across `compact`, `comfortable`, and `spacious` modes).
+
+### B. Reference Z-Index Scale (Compile-Time Sass Primitives)
+Defined in `src/styles/foundation/reference/z-index/_scale.scss`:
+- `$honesty-ref-z-index-0`: `0`
+- `$honesty-ref-z-index-10`: `10`
+- `$honesty-ref-z-index-20`: `20`
+- `$honesty-ref-z-index-30`: `30`
+- `$honesty-ref-z-index-40`: `40`
+- `$honesty-ref-z-index-50`: `50`
+
+*Prohibitions:* Negative numbers (`-1`), arbitrary intermediate integers (`1`, `5`), and out-of-scale values (`100`, `1000`, `999`, `9999`, `99999`) are strictly forbidden.
+
+### C. Semantic Layer Roles (Runtime CSS Custom Properties)
+Emitted in `:root` via `src/styles/foundation/semantic/layers/_roles.scss`:
+- `--honesty-layer-base`: `#{ref.$honesty-ref-z-index-0}` (`0`) — ordinary application and content stacking baseline.
+- `--honesty-layer-sticky`: `#{ref.$honesty-ref-z-index-10}` (`10`) — persistent in-flow regions that remain above ordinary scrolling content.
+- `--honesty-layer-floating`: `#{ref.$honesty-ref-z-index-20}` (`20`) — non-blocking transient floating surfaces above normal/sticky content.
+- `--honesty-layer-overlay`: `#{ref.$honesty-ref-z-index-30}` (`30`) — scrim/backdrop or general overlay plane above normal/floating application content.
+- `--honesty-layer-blocking`: `#{ref.$honesty-ref-z-index-40}` (`40`) — foreground blocking interaction layer above the overlay plane.
+- `--honesty-layer-notification`: `#{ref.$honesty-ref-z-index-50}` (`50`) — highest approved generic notification and urgent feedback surface.
+
+### D. Strict Ordering Contract
+Stacking order is strictly monotonic with no ties:
+```
+base (0) < sticky (10) < floating (20) < overlay (30) < blocking (40) < notification (50)
+```
+
+### E. No Negative Layer Rule
+No negative z-index tokens, underlay tokens, or background-minus-one tokens are permitted. Stacking contexts must not rely on negative indexes in Candidate V1.
+
+
 
 
 

@@ -1,0 +1,22 @@
+// =============================================================================
+// Semantic Tokens: Stacking Layers (Candidate V1)
+// =============================================================================
+// Responsibility:
+// Purpose-driven runtime CSS custom properties for stacking order (z-index).
+// Resolves strictly from compile-time Reference z-index Sass tokens.
+// Stacking order is theme-independent and density-independent; emitted in :root.
+//
+// Strict Ordering Contract:
+// base (0) < sticky (10) < floating (20) < overlay (30) < blocking (40) < notification (50)
+// =============================================================================
+
+@use '../../reference/z-index' as ref;
+
+:root {
+  --honesty-layer-base: #{ref.$honesty-ref-z-index-0};
+  --honesty-layer-sticky: #{ref.$honesty-ref-z-index-10};
+  --honesty-layer-floating: #{ref.$honesty-ref-z-index-20};
+  --honesty-layer-overlay: #{ref.$honesty-ref-z-index-30};
+  --honesty-layer-blocking: #{ref.$honesty-ref-z-index-40};
+  --honesty-layer-notification: #{ref.$honesty-ref-z-index-50};
+}
