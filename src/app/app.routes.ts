@@ -31,6 +31,11 @@ export const routes: Routes = [
       import('./foundation/typography/typography').then((m) => m.Typography),
   },
   {
+    path: 'foundation/charts',
+    loadComponent: () =>
+      import('./foundation/charts/charts').then((m) => m.Charts),
+  },
+  {
     path: 'foundation/spacing',
     loadComponent: () =>
       import('./foundation/spacing/spacing').then((m) => m.Spacing),

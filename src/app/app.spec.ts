@@ -18,7 +18,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render the temporary Design Lab utility navigation with all 7 review links', () => {
+  it('should render the temporary Design Lab utility navigation with all review links', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
@@ -31,6 +31,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     const statusHuesLink = compiled.querySelector('#nav-link-status-hues');
     const feedbackColorsLink = compiled.querySelector('#nav-link-feedback-colors');
     const typographyLink = compiled.querySelector('#nav-link-typography');
+    const chartsLink = compiled.querySelector('#nav-link-charts');
     const spacingLink = compiled.querySelector('#nav-link-spacing');
     const bordersRadiusLink = compiled.querySelector('#nav-link-borders-radius');
 
@@ -39,6 +40,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(statusHuesLink).toBeTruthy();
     expect(feedbackColorsLink).toBeTruthy();
     expect(typographyLink).toBeTruthy();
+    expect(chartsLink).toBeTruthy();
     expect(spacingLink).toBeTruthy();
     expect(bordersRadiusLink).toBeTruthy();
 
@@ -47,6 +49,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(statusHuesLink?.textContent?.trim()).toBe('صبغات الحالات');
     expect(feedbackColorsLink?.textContent?.trim()).toBe('ألوان الحالات الدلالية');
     expect(typographyLink?.textContent?.trim()).toBe('الطباعة');
+    expect(chartsLink?.textContent?.trim()).toBe('الرسوم البيانية');
     expect(spacingLink?.textContent?.trim()).toBe('المسافات');
     expect(bordersRadiusLink?.textContent?.trim()).toBe('الحدود والزوايا');
   });
@@ -66,6 +69,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(linkPaths).toContain('/foundation/colors/status-hues');
     expect(linkPaths).toContain('/foundation/feedback-colors');
     expect(linkPaths).toContain('/foundation/typography');
+    expect(linkPaths).toContain('/foundation/charts');
     expect(linkPaths).toContain('/foundation/spacing');
     expect(linkPaths).toContain('/foundation/borders-radius');
   });

@@ -1,0 +1,346 @@
+// =============================================================================
+// Docs-Only Visual Review: Semantic Chart Color Candidate V1
+// =============================================================================
+
+@use '../../../styles/foundation/queries' as query;
+
+.charts-specimen-root {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-block: var(--honesty-space-section-gap-large);
+  padding-inline: var(--honesty-space-layout-page-gutter-inline);
+  background: var(--honesty-color-surface-canvas);
+  color: var(--honesty-color-text-primary);
+  font-family: var(--honesty-type-family-ui);
+}
+
+.specimen-header {
+  display: grid;
+  gap: var(--honesty-space-stack-tight);
+  margin-block-end: var(--honesty-space-section-gap);
+  min-width: 0;
+  max-width: 100%;
+
+  h1,
+  p {
+    margin: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+    line-height: 1.35;
+  }
+
+  p {
+    max-width: 84ch;
+    color: var(--honesty-color-text-secondary);
+    line-height: 1.7;
+  }
+}
+
+.specimen-badge {
+  justify-self: start;
+  padding-block: 0.25rem;
+  padding-inline: 0.625rem;
+  border: 1px solid var(--honesty-border-default);
+  border-radius: 3px;
+  color: var(--honesty-color-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.theme-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--honesty-space-layout-gap-lg);
+  align-items: start;
+  min-width: 0;
+  max-width: 100%;
+
+  @include query.viewport-down(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.theme-context {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--honesty-border-default);
+  border-radius: 6px;
+  background: var(--honesty-color-surface-default);
+  color: var(--honesty-color-text-primary);
+}
+
+.theme-context-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--honesty-space-inline-loose);
+  padding: var(--honesty-space-inset-default);
+  border-block-end: 1px solid var(--honesty-border-subtle);
+
+  h2 {
+    min-width: 0;
+    max-width: 100%;
+    margin: 0;
+    font-size: 1.125rem;
+    overflow-wrap: anywhere;
+  }
+}
+
+.theme-tag {
+  min-width: 0;
+  max-width: 100%;
+  font-family: ui-monospace, monospace;
+  color: var(--honesty-color-text-muted);
+  font-size: 0.75rem;
+  overflow-wrap: anywhere;
+}
+
+.theme-content {
+  display: grid;
+  gap: var(--honesty-space-stack-loose);
+  min-width: 0;
+  max-width: 100%;
+  padding: var(--honesty-space-inset-loose);
+  background: var(--honesty-color-surface-canvas);
+}
+
+.review-section {
+  display: grid;
+  gap: var(--honesty-space-stack-default);
+  min-width: 0;
+  max-width: 100%;
+  padding: var(--honesty-space-inset-default);
+  border: 1px solid var(--honesty-border-subtle);
+  border-radius: 4px;
+  background: var(--honesty-color-surface-default);
+
+  h3,
+  p {
+    min-width: 0;
+    max-width: 100%;
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+}
+
+.categorical-note {
+  color: var(--honesty-color-text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+.categorical-swatches {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--honesty-space-layout-gap-xs);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.categorical-swatch {
+  display: grid;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--honesty-border-subtle);
+  border-radius: 3px;
+
+  span {
+    padding-block: 0.4rem;
+    padding-inline: 0.2rem;
+    color: var(--honesty-color-text-secondary);
+    font-size: 0.7rem;
+    text-align: center;
+    white-space: nowrap;
+  }
+}
+
+.categorical-swatch-color {
+  min-height: 3rem;
+}
+
+.swatch-series-1 {
+  background: var(--honesty-chart-series-1);
+}
+
+.swatch-series-2 {
+  background: var(--honesty-chart-series-2);
+}
+
+.swatch-series-3 {
+  background: var(--honesty-chart-series-3);
+}
+
+.swatch-series-4 {
+  background: var(--honesty-chart-series-4);
+}
+
+.swatch-series-5 {
+  background: var(--honesty-chart-series-5);
+}
+
+.chart-figure {
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+}
+
+.chart-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  direction: ltr;
+}
+
+.chart-gridline {
+  stroke: var(--honesty-chart-gridline);
+  stroke-width: 1;
+}
+
+.chart-axis {
+  stroke: var(--honesty-chart-axis);
+  stroke-width: 2;
+}
+
+.chart-label {
+  fill: var(--honesty-chart-label);
+  font-family: var(--honesty-type-family-latin);
+  font-size: 14px;
+  font-weight: 500;
+  text-anchor: middle;
+}
+
+.bar-series-1 {
+  fill: var(--honesty-chart-series-1);
+}
+
+.bar-series-2 {
+  fill: var(--honesty-chart-series-2);
+}
+
+.bar-series-3 {
+  fill: var(--honesty-chart-series-3);
+}
+
+.bar-series-4 {
+  fill: var(--honesty-chart-series-4);
+}
+
+.bar-series-5 {
+  fill: var(--honesty-chart-series-5);
+}
+
+.line-series {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 4;
+}
+
+.line-series-1 {
+  stroke: var(--honesty-chart-series-1);
+}
+
+.line-series-2 {
+  stroke: var(--honesty-chart-series-2);
+}
+
+.line-series-3 {
+  stroke: var(--honesty-chart-series-3);
+}
+
+.line-series-4 {
+  stroke: var(--honesty-chart-series-4);
+}
+
+.line-series-5 {
+  stroke: var(--honesty-chart-series-5);
+}
+
+.status-samples {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--honesty-space-layout-gap-sm);
+  min-width: 0;
+  max-width: 100%;
+
+  @include query.viewport-down(xs) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.status-sample {
+  display: grid;
+  gap: var(--honesty-space-stack-tight);
+  min-width: 0;
+  max-width: 100%;
+  padding: var(--honesty-space-inset-default);
+  border: 1px solid currentColor;
+  border-radius: 4px;
+
+  strong,
+  span {
+    overflow-wrap: anywhere;
+  }
+
+  strong {
+    font-family: var(--honesty-type-family-latin);
+    font-size: 1.25rem;
+  }
+
+  span {
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+}
+
+.status-positive {
+  color: var(--honesty-chart-positive);
+}
+
+.status-negative {
+  color: var(--honesty-chart-negative);
+}
+
+.status-warning {
+  color: var(--honesty-chart-warning);
+}
+
+.status-info {
+  color: var(--honesty-chart-info);
+}
+
+.structural-scaffold {
+  min-width: 0;
+  max-width: 100%;
+  padding: var(--honesty-space-inset-tight);
+  border: 1px solid var(--honesty-border-subtle);
+  border-radius: 4px;
+  background: var(--honesty-color-surface-default);
+}
+
+.structural-label {
+  fill: var(--honesty-chart-label);
+  font-family: var(--honesty-type-family-latin);
+  font-size: 13px;
+}
+
+@include query.viewport-down(xs) {
+  .theme-content {
+    padding: var(--honesty-space-inset-default);
+  }
+
+  .review-section {
+    padding: var(--honesty-space-inset-tight);
+  }
+}
