@@ -88,6 +88,21 @@ describe('Foundation Overview', () => {
     ]);
   });
 
+  it('uses LTR direction for the two English-only unordered lists', () => {
+    const fixture = TestBed.createComponent(Overview);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const deferredList = compiled.querySelector<HTMLUListElement>(
+      '#intentional-deferrals ul'
+    );
+    const closureList = compiled.querySelector<HTMLUListElement>(
+      '#closure-gate ul'
+    );
+
+    expect(deferredList?.getAttribute('dir')).toBe('ltr');
+    expect(closureList?.getAttribute('dir')).toBe('ltr');
+  });
+
   it('renders every specified domain reopen trigger', () => {
     const fixture = TestBed.createComponent(Overview);
     fixture.detectChanges();
