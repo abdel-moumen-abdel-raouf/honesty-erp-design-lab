@@ -1,10 +1,16 @@
 // =============================================================================
-// Foundation Layer: Density Entry Point
+// Foundation Layer: Density Entry Point (Candidate V1)
 // =============================================================================
 // Responsibility:
-// Modulates density-sensitive Semantic and Component tokens (control height, row height, padding, sizing).
-// Must not redefine raw Reference spacing scales, typography scales, or global body typography.
+// Modulates selected density-sensitive Semantic and future Component tokens
+// under scopeable [data-density] attributes: compact, comfortable, spacious.
 //
-// Dependency Rule:
-// Modulates density-sensitive tokens across components.
+// Governance & Constraints:
+// - Comfortable is the global default; no attribute = Comfortable.
+// - Modulates ONLY density-sensitive tokens (Candidate V1: Stack and Inset spacing).
+// - Does NOT alter raw Reference spacing scales or any Reference Sass token.
+// - Does NOT alter Inline spacing, Section spacing, or Typography tokens.
+// - Selectors are not bound to :root or html/body; any subtree can set density.
 // =============================================================================
+
+@use 'spacing';

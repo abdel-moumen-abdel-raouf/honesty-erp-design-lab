@@ -1,0 +1,63 @@
+// =============================================================================
+// Foundation Layer: Density Spacing (Candidate V1)
+// =============================================================================
+// Responsibility:
+// Modulates selected density-sensitive Semantic Spacing variables (Stack and Inset)
+// under scopeable [data-density] selectors.
+//
+// Architectural Rules:
+// 1. Density does NOT change raw Reference spacing scales.
+// 2. Reference scale remains the single compile-time source of truth.
+// 3. Comfortable is the baseline product default; :root values define Comfortable.
+// 4. [data-density='comfortable'] explicitly restates Comfortable values to support
+//    nested restoration within Compact or Spacious subtrees.
+// 5. Selectors are NOT scoped to html/body/:root so subtrees can override density.
+// 6. Inline spacing, Section spacing, and Typography remain unchanged across modes.
+// =============================================================================
+
+@use '../reference/spacing' as ref;
+
+// -----------------------------------------------------------------------------
+// Compact Mode: denser information density for high-data ERP views
+// -----------------------------------------------------------------------------
+[data-density='compact'] {
+  // Semantic Stack Spacing
+  --honesty-space-stack-tight: #{ref.$honesty-ref-space-4};
+  --honesty-space-stack-default: #{ref.$honesty-ref-space-12};
+  --honesty-space-stack-loose: #{ref.$honesty-ref-space-16};
+
+  // Semantic Inset Spacing
+  --honesty-space-inset-tight: #{ref.$honesty-ref-space-4};
+  --honesty-space-inset-default: #{ref.$honesty-ref-space-12};
+  --honesty-space-inset-loose: #{ref.$honesty-ref-space-16};
+}
+
+// -----------------------------------------------------------------------------
+// Comfortable Mode: standard baseline (explicit override for nested restoration)
+// -----------------------------------------------------------------------------
+[data-density='comfortable'] {
+  // Semantic Stack Spacing
+  --honesty-space-stack-tight: #{ref.$honesty-ref-space-8};
+  --honesty-space-stack-default: #{ref.$honesty-ref-space-16};
+  --honesty-space-stack-loose: #{ref.$honesty-ref-space-24};
+
+  // Semantic Inset Spacing
+  --honesty-space-inset-tight: #{ref.$honesty-ref-space-8};
+  --honesty-space-inset-default: #{ref.$honesty-ref-space-16};
+  --honesty-space-inset-loose: #{ref.$honesty-ref-space-24};
+}
+
+// -----------------------------------------------------------------------------
+// Spacious Mode: more generous breathing room for low-density or touch-friendly views
+// -----------------------------------------------------------------------------
+[data-density='spacious'] {
+  // Semantic Stack Spacing
+  --honesty-space-stack-tight: #{ref.$honesty-ref-space-12};
+  --honesty-space-stack-default: #{ref.$honesty-ref-space-24};
+  --honesty-space-stack-loose: #{ref.$honesty-ref-space-32};
+
+  // Semantic Inset Spacing
+  --honesty-space-inset-tight: #{ref.$honesty-ref-space-12};
+  --honesty-space-inset-default: #{ref.$honesty-ref-space-24};
+  --honesty-space-inset-loose: #{ref.$honesty-ref-space-32};
+}

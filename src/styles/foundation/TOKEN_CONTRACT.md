@@ -530,4 +530,49 @@ Each typography role defines three standard CSS custom properties:
 - **No Theme or Density Coupling:** Motion timing is theme-independent (not duplicated in `[data-theme='light']` or `[data-theme='dark']`) and density-independent (unchanged across Compact, Comfortable, and Spacious modes).
 - **Accessibility Scope:** No dedicated reduced-motion or screen-reader motion program in this phase; standard interaction correctness is preserved.
 
+---
+
+## 19. Density Technical Contract (Candidate V1)
+
+### A. Approved Density Modes
+The approved product density modes are strictly:
+- `compact`: denser information display for high-volume data and transactional ERP views.
+- `comfortable`: standard product baseline and global default.
+- `spacious`: generous breathing room for low-density or touch-friendly contexts.
+
+Modes such as `dense`, `cozy`, `normal`, `auto`, or `custom` are strictly prohibited.
+
+### B. Architectural Principles & Scope
+1. **Reference Scales Remain Unaltered:** Density does not redefine or change raw Reference spacing scales or any compile-time primitives. The Reference Spacing scale (`$honesty-ref-space-*`) remains the single immutable source of truth.
+2. **Subtree-Scoped Selector Contract:** Density is declared via attribute selectors:
+   - `[data-density='compact']`
+   - `[data-density='comfortable']`
+   - `[data-density='spacious']`
+   These selectors are intentionally **not** bound to `:root`, `html`, or `body`. Any DOM subtree (such as a future data grid or specialized container) can declare its own density scope without affecting the global application preference.
+3. **Comfortable is the Default Baseline:**
+   - Elements with no `data-density` attribute automatically inherit Comfortable values from the `:root` Semantic baseline.
+   - `[data-density='comfortable']` explicitly restates these values in CSS so that a Comfortable subtree nested within a Compact or Spacious container restores standard spacing via normal CSS inheritance without specificity hacks.
+4. **Candidate V1 Modulates Selected Semantic Tokens Only:** Candidate V1 modulates strictly 6 Semantic Spacing tokens (3 Stack and 3 Inset).
+
+### C. Density Token Resolution Mapping
+
+| Semantic Token | Compact (`[data-density='compact']`) | Comfortable (`[data-density='comfortable']` & `:root`) | Spacious (`[data-density='spacious']`) |
+| :--- | :--- | :--- | :--- |
+| `--honesty-space-stack-tight` | `$honesty-ref-space-4` (0.25rem / 4px) | `$honesty-ref-space-8` (0.5rem / 8px) | `$honesty-ref-space-12` (0.75rem / 12px) |
+| `--honesty-space-stack-default` | `$honesty-ref-space-12` (0.75rem / 12px) | `$honesty-ref-space-16` (1rem / 16px) | `$honesty-ref-space-24` (1.5rem / 24px) |
+| `--honesty-space-stack-loose` | `$honesty-ref-space-16` (1rem / 16px) | `$honesty-ref-space-24` (1.5rem / 24px) | `$honesty-ref-space-32` (2rem / 32px) |
+| `--honesty-space-inset-tight` | `$honesty-ref-space-4` (0.25rem / 4px) | `$honesty-ref-space-8` (0.5rem / 8px) | `$honesty-ref-space-12` (0.75rem / 12px) |
+| `--honesty-space-inset-default` | `$honesty-ref-space-12` (0.75rem / 12px) | `$honesty-ref-space-16` (1rem / 16px) | `$honesty-ref-space-24` (1.5rem / 24px) |
+| `--honesty-space-inset-loose` | `$honesty-ref-space-16` (1rem / 16px) | `$honesty-ref-space-24` (1.5rem / 24px) | `$honesty-ref-space-32` (2rem / 32px) |
+
+*All overrides interpolate Reference Spacing Sass tokens (`ref.$honesty-ref-space-*`); raw numeric rem values are never duplicated in the Density layer.*
+
+### D. Unchanged Tokens & Invariance Rules
+- **Inline Spacing Remains Stable:** `--honesty-space-inline-tight`, `--honesty-space-inline-default`, and `--honesty-space-inline-loose` are invariant across density modes to preserve micro-adjacency relationships (icon/text pairing, metadata proximity).
+- **Section Spacing Remains Stable:** `--honesty-space-section-gap` and `--honesty-space-section-gap-large` are invariant across density modes so that structural page separation does not collapse.
+- **Typography Remains Stable:** All `--honesty-type-*` tokens (font-size, line-height, font-weight, font-family) remain completely independent of density. Compact does not reduce typography size; Spacious does not increase typography size.
+- **No Control or Row Heights Yet:** Generic height tokens (such as `--honesty-density-control-height`, `--honesty-density-row-height`, etc.) are deferred to future Component Token contracts.
+- **No Component Tokens in Density:** No component-specific overrides (`--honesty-button-*`, `--honesty-table-*`, etc.) exist in the Foundation Density layer.
+- **No JavaScript/Preference Logic:** No Angular services, stores, or state logic are implemented in this phase.
+
 
