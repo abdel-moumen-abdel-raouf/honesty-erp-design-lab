@@ -1,0 +1,51 @@
+// =============================================================================
+// Semantic Tokens: Layout Spacing & Gutters (Candidate V1)
+// =============================================================================
+// Responsibility:
+// Purpose-driven runtime CSS custom properties for layout gaps, page inline gutters,
+// and grid gutters.
+// Resolves strictly from compile-time Reference Spacing Sass tokens and uses
+// the Foundation Query API for responsive viewport overrides.
+// Density-independent: does NOT depend on or modulate under [data-density].
+// =============================================================================
+
+@use '../../reference/spacing' as ref;
+@use '../../queries' as query;
+
+:root {
+  // Layout Gap Size Aliases (Vocabulary: xxs, xs, sm, md, lg, xl, xxl)
+  --honesty-space-layout-gap-xxs: #{ref.$honesty-ref-space-4};
+  --honesty-space-layout-gap-xs: #{ref.$honesty-ref-space-8};
+  --honesty-space-layout-gap-sm: #{ref.$honesty-ref-space-12};
+  --honesty-space-layout-gap-md: #{ref.$honesty-ref-space-16};
+  --honesty-space-layout-gap-lg: #{ref.$honesty-ref-space-24};
+  --honesty-space-layout-gap-xl: #{ref.$honesty-ref-space-32};
+  --honesty-space-layout-gap-xxl: #{ref.$honesty-ref-space-48};
+
+  // Page Inline Gutter (Base: < 768px -> 16px)
+  --honesty-space-layout-page-gutter-inline: #{ref.$honesty-ref-space-16};
+
+  // Grid Gutter (Base: < 768px -> 12px)
+  --honesty-space-layout-grid-gutter: #{ref.$honesty-ref-space-12};
+}
+
+// Responsive Viewport Overrides via Foundation Query API
+@include query.viewport-up(md) {
+  :root {
+    --honesty-space-layout-page-gutter-inline: #{ref.$honesty-ref-space-24};
+    --honesty-space-layout-grid-gutter: #{ref.$honesty-ref-space-16};
+  }
+}
+
+@include query.viewport-up(lg) {
+  :root {
+    --honesty-space-layout-page-gutter-inline: #{ref.$honesty-ref-space-32};
+    --honesty-space-layout-grid-gutter: #{ref.$honesty-ref-space-24};
+  }
+}
+
+@include query.viewport-up(xxl) {
+  :root {
+    --honesty-space-layout-page-gutter-inline: #{ref.$honesty-ref-space-48};
+  }
+}

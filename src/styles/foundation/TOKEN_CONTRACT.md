@@ -652,5 +652,49 @@ Both viewport and container queries implement an identical mathematical interval
 - **Named Queries:** When `$name` is provided, named container queries are emitted (e.g., `@container content (min-width: 768px)`).
 - **Context Ownership:** The Query API queries container context; defining `container-name` or `container-type` remains the responsibility of container layout definitions.
 
+---
+
+## 21. Semantic Layout Spacing & Gutter Technical Contract (Candidate V1)
+
+### A. Architectural Responsibility & Boundaries
+- **Consumes Reference Spacing Primitives:** Layout spacing tokens resolve strictly from the compile-time Reference Spacing scale (`ref.$honesty-ref-space-*`). No arbitrary pixel or rem literals are permitted.
+- **Consumes Foundation Query API for Responsive Overrides:** All responsive overrides for page gutters and grid gutters are authored strictly via the public Foundation Query API (`viewport-up`).
+- **Forbidden Raw Breakpoint Imports:** Semantic Layout modules must **not** import or consume raw Reference breakpoint maps directly (`$honesty-ref-breakpoints-*`).
+- **Density Independence:** Layout tokens (`--honesty-space-layout-*`) are completely density-independent in Candidate V1. They are defined in `:root` and do not modulate under `[data-density="compact"]`, `[data-density="comfortable"]`, or `[data-density="spacious"]`. Density modulates content stack and inset rhythm only.
+- **Component Primitives Deferred:** Layout spacing aliases establish the sizing vocabulary for future structural primitives (`ErpStack`, `ErpInline`, `ErpGrid`). No production components are created in this phase.
+- **Container Max-Width Deferred:** No global container max-width tokens (`--honesty-layout-container-max-width`, etc.) are established in Candidate V1. In a data-heavy, desktop-first ERP, max-width is deferred to future structural primitive review.
+- **Grid Column Count Deferred:** No production grid column tokens (`--honesty-grid-columns`, etc.) are defined in this phase. Grid column definitions belong to the future `ErpGrid` primitive.
+- **Container Queries Context:** Container Query API (`container-up`, etc.) is fully operational in the Foundation infrastructure and will be deliberately exercised in isolated docs-only contexts during the Layout visual specimen phase.
+
+### B. Approved Layout Size Vocabulary
+The approved sizing scale for Layout spacing primitives consists strictly of 7 symbolic keys:
+- `xxs`, `xs`, `sm`, `md`, `lg`, `xl`, `xxl`
+- Arbitrary aliases (`tiny`, `small`, `medium`, `large`, `huge`, `custom`, `auto`) are strictly prohibited.
+
+### C. Layout Gap Size Aliases (Emitted in `:root`)
+- `--honesty-space-layout-gap-xxs`: `ref.$honesty-ref-space-4` (4px / 0.25rem)
+- `--honesty-space-layout-gap-xs`: `ref.$honesty-ref-space-8` (8px / 0.5rem)
+- `--honesty-space-layout-gap-sm`: `ref.$honesty-ref-space-12` (12px / 0.75rem)
+- `--honesty-space-layout-gap-md`: `ref.$honesty-ref-space-16` (16px / 1rem)
+- `--honesty-space-layout-gap-lg`: `ref.$honesty-ref-space-24` (24px / 1.5rem)
+- `--honesty-space-layout-gap-xl`: `ref.$honesty-ref-space-32` (32px / 2rem)
+- `--honesty-space-layout-gap-xxl`: `ref.$honesty-ref-space-48` (48px / 3rem)
+
+### D. Page Inline Gutter (`--honesty-space-layout-page-gutter-inline`)
+Defines the horizontal breathing room between the outer viewport boundary and page content using logical inline geometry (direction-agnostic for RTL/LTR).
+- **Base (< 768px):** `ref.$honesty-ref-space-16` (16px / 1rem)
+- **`@include viewport-up(md)` (>= 768px):** `ref.$honesty-ref-space-24` (24px / 1.5rem)
+- **`@include viewport-up(lg)` (>= 1024px):** `ref.$honesty-ref-space-32` (32px / 2rem)
+- **`@include viewport-up(xxl)` (>= 1536px):** `ref.$honesty-ref-space-48` (48px / 3rem)
+*(At `xl`, the `lg` value of 32px remains active; no redundant override is emitted.)*
+
+### E. Grid Gutter (`--honesty-space-layout-grid-gutter`)
+Defines the default separation between columns/cells in data and dashboard grids.
+- **Base (< 768px):** `ref.$honesty-ref-space-12` (12px / 0.75rem)
+- **`@include viewport-up(md)` (>= 768px):** `ref.$honesty-ref-space-16` (16px / 1rem)
+- **`@include viewport-up(lg)` (>= 1024px):** `ref.$honesty-ref-space-24` (24px / 1.5rem)
+*(No further increase at `xl` or `xxl`; ERP data layouts avoid excessive whitespace separation on wide desktop monitors.)*
+
+
 
 
