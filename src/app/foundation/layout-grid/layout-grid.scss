@@ -12,7 +12,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--honesty-space-section-gap);
-  padding: var(--honesty-space-stack-loose);
+  padding-block: var(--honesty-space-stack-loose);
+  padding-inline: var(--honesty-space-layout-page-gutter-inline);
   max-width: 1200px;
   margin-inline: auto;
   color: var(--honesty-color-text-primary);
@@ -30,6 +31,7 @@
   font-weight: var(--honesty-type-page-title-font-weight);
   line-height: var(--honesty-type-page-title-line-height);
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .section-title,
@@ -38,6 +40,7 @@
   font-weight: var(--honesty-type-section-title-font-weight);
   line-height: var(--honesty-type-section-title-line-height);
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .specimen-lead,
@@ -48,6 +51,7 @@
   line-height: var(--honesty-type-body-line-height);
   color: var(--honesty-color-text-secondary);
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .inner-title,
@@ -57,12 +61,15 @@
   font-weight: var(--honesty-type-body-strong-font-weight);
   line-height: var(--honesty-type-body-strong-line-height);
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .specimen-section {
   display: flex;
   flex-direction: column;
   gap: var(--honesty-space-stack-default);
+  min-width: 0;
+  max-width: 100%;
 }
 
 // 1. Layout Gap Scale
@@ -80,6 +87,8 @@
   background-color: var(--honesty-color-surface-default);
   border: 1px solid var(--honesty-border-subtle);
   border-radius: var(--honesty-radius-surface);
+  min-width: 0;
+  max-width: 100%;
 }
 
 .gap-specimen-card {
@@ -92,13 +101,22 @@
 .gap-specimen-meta {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--honesty-space-inline-default);
   font-size: var(--honesty-type-caption-font-size);
   line-height: var(--honesty-type-caption-line-height);
+  min-width: 0;
+
+  @include query.viewport-down(xs) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--honesty-space-stack-tight);
+  }
 }
 
 .gap-code {
   font-weight: var(--honesty-type-body-strong-font-weight);
+  flex-shrink: 0;
 }
 
 .gap-var-name,
@@ -108,11 +126,17 @@
   line-height: var(--honesty-type-caption-line-height);
   color: var(--honesty-color-text-secondary);
   direction: ltr;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .gap-ref-desc {
   color: var(--honesty-color-text-muted);
   margin-inline-start: auto;
+
+  @include query.viewport-down(xs) {
+    margin-inline-start: 0;
+  }
 }
 
 .gap-demo-track {
@@ -122,6 +146,9 @@
   background-color: var(--honesty-color-surface-canvas);
   border: 1px solid var(--honesty-border-subtle);
   border-radius: var(--honesty-radius-control);
+  overflow-x: auto;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 .gap-xxs { gap: var(--honesty-space-layout-gap-xxs); }
@@ -143,6 +170,8 @@
   font-size: var(--honesty-type-caption-font-size);
   min-width: 72px;
   height: 32px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 // 2. Page Gutter
@@ -153,6 +182,7 @@
   border: 2px dashed var(--honesty-border-default);
   border-radius: var(--honesty-radius-surface);
   overflow: hidden;
+  max-width: 100%;
 }
 
 .frame-edge-indicator {
@@ -161,6 +191,7 @@
   font-size: var(--honesty-type-caption-font-size);
   color: var(--honesty-color-text-muted);
   border-bottom: 1px solid var(--honesty-border-subtle);
+  overflow-wrap: anywhere;
 
   &.end {
     border-bottom: none;
@@ -171,6 +202,8 @@
 .page-gutter-content-region {
   padding-inline: var(--honesty-space-layout-page-gutter-inline);
   padding-block: var(--honesty-space-inset-default);
+  min-width: 0;
+  max-width: 100%;
 }
 
 .gutter-inner-fill {
@@ -178,6 +211,7 @@
   border: 1px solid var(--honesty-border-default);
   border-radius: var(--honesty-radius-control);
   padding: var(--honesty-space-inset-default);
+  min-width: 0;
 }
 
 // 3. Grid Gutter
@@ -185,6 +219,11 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--honesty-space-layout-grid-gutter);
+  min-width: 0;
+
+  @include query.viewport-down(md) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .demo-col-card {
@@ -212,6 +251,7 @@
   border-radius: var(--honesty-radius-control);
   font-size: var(--honesty-type-caption-font-size);
   margin-bottom: var(--honesty-space-stack-tight);
+  white-space: nowrap;
 }
 
 .probe-label {
@@ -239,6 +279,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--honesty-space-stack-loose);
+  min-width: 0;
 }
 
 .container-test-fixture {
@@ -254,12 +295,14 @@
   gap: 2px;
   padding-bottom: var(--honesty-space-stack-tight);
   border-bottom: 1px solid var(--honesty-border-subtle);
+  min-width: 0;
 }
 
 .fixture-expected {
   font-size: var(--honesty-type-caption-font-size);
   line-height: var(--honesty-type-caption-line-height);
   color: var(--honesty-color-text-muted);
+  overflow-wrap: anywhere;
 }
 
 .named-container-target {
@@ -269,6 +312,7 @@
   flex-direction: column;
   gap: var(--honesty-space-stack-tight);
   max-width: 100%;
+  min-width: 0;
 
   &.query-fixture-300 { width: 300px; }
   &.query-fixture-600 { width: 600px; }
@@ -281,6 +325,7 @@
   border-radius: var(--honesty-radius-control);
   font-weight: var(--honesty-type-body-strong-font-weight);
   font-size: var(--honesty-type-caption-font-size);
+  overflow-wrap: anywhere;
 }
 
 .cprobe-down,
@@ -292,6 +337,7 @@
 .fixture-content-grid {
   display: grid;
   gap: var(--honesty-space-layout-grid-gutter);
+  min-width: 0;
 }
 
 .cgrid-item {
@@ -303,6 +349,7 @@
   border: 1px solid var(--honesty-border-default);
   border-radius: var(--honesty-radius-control);
   font-size: var(--honesty-type-caption-font-size);
+  min-width: 0;
 }
 
 @include query.container-down(xs, layout-review) {
