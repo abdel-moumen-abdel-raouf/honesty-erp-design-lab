@@ -19,6 +19,14 @@ describe('StructuralPrimitives showcase', () => {
     expect(TestBed.createComponent(StructuralPrimitives).componentInstance).toBeTruthy();
   });
 
+  it('applies the Light theme scope to the showcase root', () => {
+    const fixture = TestBed.createComponent(StructuralPrimitives);
+    fixture.detectChanges();
+    const root = fixture.nativeElement.querySelector('erp-container.showcase-root') as HTMLElement;
+
+    expect(root.getAttribute('data-theme')).toBe('light');
+  });
+
   it('renders exactly one specimen group for each structural primitive', () => {
     const fixture = TestBed.createComponent(StructuralPrimitives);
     fixture.detectChanges();
