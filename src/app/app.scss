@@ -12,6 +12,8 @@
 // do NOT represent Foundation tokens or production design decisions.
 // =============================================================================
 
+@use '../styles/foundation/queries' as query;
+
 :host {
   display: flex;
   flex-direction: column;
@@ -61,15 +63,20 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .lab-nav-link {
   display: inline-block;
+  flex: 0 0 auto;
   padding: 0.35rem 0.75rem;
   color: #4b5262;
   text-decoration: none;
   border-radius: 4px;
   font-weight: 500;
+  white-space: nowrap;
   transition: color 0.15s ease, background-color 0.15s ease;
 
   &:hover {
@@ -133,4 +140,17 @@
   flex: 1;
   width: 100%;
   display: block;
+}
+
+@include query.viewport-down(md) {
+  .lab-utility-brand,
+  .lab-actions {
+    min-width: 0;
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .lab-nav {
+    flex: 1 1 100%;
+  }
 }

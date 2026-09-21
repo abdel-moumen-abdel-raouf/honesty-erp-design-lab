@@ -10,10 +10,13 @@
 // Never imports Reference Sass colors or hardcodes color values.
 // =============================================================================
 
+@use '../../../styles/foundation/queries' as query;
+
 .feedback-specimen-root {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 2.5rem 1.5rem 4rem;
+  padding-block: var(--honesty-space-section-gap-large);
+  padding-inline: var(--honesty-space-layout-page-gutter-inline);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: #11141a;
 }
@@ -56,6 +59,11 @@
   grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
   gap: 2rem;
   align-items: start;
+  min-width: 0;
+
+  @include query.viewport-down(md) {
+    grid-template-columns: 1fr;
+  }
 }
 
 // Docs-only context container mapping the theme selector
@@ -63,6 +71,8 @@
   border: 1px solid #d8dce4;
   border-radius: 6px;
   overflow: hidden;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .theme-context-header {
@@ -72,12 +82,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  min-width: 0;
 
   h2 {
     font-size: 1.1rem;
     font-weight: 600;
     margin: 0;
     color: #1a1e27;
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
   }
 
   .theme-tag {
@@ -87,6 +103,9 @@
     background-color: #e8ecf2;
     color: #3b4252;
     border-radius: 3px;
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
   }
 }
 
@@ -98,6 +117,8 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 // Grouping for each status intent
@@ -105,25 +126,36 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .intent-header {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   border-bottom: 1px solid var(--honesty-border-subtle);
   padding-bottom: 0.4rem;
+  min-width: 0;
 
   .intent-title {
     font-size: 0.95rem;
     font-weight: 600;
     color: var(--honesty-color-text-primary);
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
   }
 
   .intent-tokens-label {
     font-size: 0.75rem;
     font-family: ui-monospace, monospace;
     color: var(--honesty-color-text-muted);
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
   }
 }
 
@@ -131,6 +163,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 // Generic sample structures
@@ -141,26 +175,37 @@
   gap: 0.6rem;
   padding: 0.9rem 1.1rem;
   border-radius: 4px;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .sample-content {
   display: flex;
   align-items: center;
   gap: 0.65rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .sample-text {
   font-size: 0.925rem;
   font-weight: 500;
   line-height: 1.5;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 .sample-meta {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   font-size: 0.725rem;
   opacity: 0.85;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .sample-role-pill {
@@ -171,6 +216,9 @@
   font-family: ui-monospace, monospace;
   font-size: 0.7rem;
   letter-spacing: 0.01em;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 // Color marker representing the icon color token
