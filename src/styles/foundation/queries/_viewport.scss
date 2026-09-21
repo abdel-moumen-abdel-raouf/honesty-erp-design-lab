@@ -1,24 +1,43 @@
 // =============================================================================
-// Foundation Query API: Viewport Queries
+// Foundation Query API: Viewport Queries (Candidate V1)
 // =============================================================================
 // Public Mixin Signatures:
 // - viewport-up($key)
 // - viewport-down($key)
 // - viewport-between($min, $max)
 //
-// Behavior:
-// Safe stub implementations. Fails cleanly at Sass compile time if invoked
-// before Reference breakpoint values are configured in a future Foundation phase.
+// Boundary Semantics:
+// - up($key): width >= threshold (inclusive lower bound)
+// - down($key): width < threshold (exclusive upper bound via epsilon 0.02px)
+// - between($min, $max): min <= width < max (inclusive min, exclusive max)
 // =============================================================================
 
+@use 'shared';
+
 @mixin viewport-up($key) {
-  @error 'Honesty ERP Design Foundation Error: Viewport query thresholds are not defined yet. Breakpoints will be configured in the Reference Breakpoints phase. Cannot invoke `viewport-up(#{$key})` before configuration.';
+  $min: shared.resolve-viewport-threshold($key);
+
+  @media (min-width: $min) {
+    @content;
+  }
 }
 
 @mixin viewport-down($key) {
-  @error 'Honesty ERP Design Foundation Error: Viewport query thresholds are not defined yet. Breakpoints will be configured in the Reference Breakpoints phase. Cannot invoke `viewport-down(#{$key})` before configuration.';
+  $threshold: shared.resolve-viewport-threshold($key);
+  $max: shared.resolve-exclusive-max($threshold);
+
+  @media (max-width: $max) {
+    @content;
+  }
 }
 
 @mixin viewport-between($min, $max) {
-  @error 'Honesty ERP Design Foundation Error: Viewport query thresholds are not defined yet. Breakpoints will be configured in the Reference Breakpoints phase. Cannot invoke `viewport-between(#{$min}, #{$max})` before configuration.';
+  $min-val: shared.resolve-viewport-threshold($min);
+  $max-val: shared.resolve-viewport-threshold($max);
+  $valid: shared.validate-range($min-val, $max-val, $min, $max, 'viewport');
+  $max-exclusive: shared.resolve-exclusive-max($max-val);
+
+  @media (min-width: $min-val) and (max-width: $max-exclusive) {
+    @content;
+  }
 }

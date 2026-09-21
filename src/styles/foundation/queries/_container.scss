@@ -1,24 +1,61 @@
 // =============================================================================
-// Foundation Query API: Container Queries
+// Foundation Query API: Container Queries (Candidate V1)
 // =============================================================================
 // Public Mixin Signatures:
 // - container-up($key, $name: null)
 // - container-down($key, $name: null)
 // - container-between($min, $max, $name: null)
 //
-// Behavior:
-// Safe stub implementations. Fails cleanly at Sass compile time if invoked
-// before Reference container threshold values are configured in a future Foundation phase.
+// Boundary Semantics:
+// - up($key, $name): width >= threshold (inclusive lower bound)
+// - down($key, $name): width < threshold (exclusive upper bound via epsilon 0.02px)
+// - between($min, $max, $name): min <= width < max (inclusive min, exclusive max)
 // =============================================================================
 
+@use 'shared';
+
 @mixin container-up($key, $name: null) {
-  @error 'Honesty ERP Design Foundation Error: Container query thresholds are not defined yet. Container thresholds will be configured in the Reference Breakpoints phase. Cannot invoke `container-up(#{$key})` before configuration.';
+  $min: shared.resolve-container-threshold($key);
+
+  @if $name {
+    @container #{$name} (min-width: #{$min}) {
+      @content;
+    }
+  } @else {
+    @container (min-width: #{$min}) {
+      @content;
+    }
+  }
 }
 
 @mixin container-down($key, $name: null) {
-  @error 'Honesty ERP Design Foundation Error: Container query thresholds are not defined yet. Container thresholds will be configured in the Reference Breakpoints phase. Cannot invoke `container-down(#{$key})` before configuration.';
+  $threshold: shared.resolve-container-threshold($key);
+  $max: shared.resolve-exclusive-max($threshold);
+
+  @if $name {
+    @container #{$name} (max-width: #{$max}) {
+      @content;
+    }
+  } @else {
+    @container (max-width: #{$max}) {
+      @content;
+    }
+  }
 }
 
 @mixin container-between($min, $max, $name: null) {
-  @error 'Honesty ERP Design Foundation Error: Container query thresholds are not defined yet. Container thresholds will be configured in the Reference Breakpoints phase. Cannot invoke `container-between(#{$min}, #{$max})` before configuration.';
+  $min-val: shared.resolve-container-threshold($min);
+  $max-val: shared.resolve-container-threshold($max);
+  $valid: shared.validate-range($min-val, $max-val, $min, $max, 'container');
+  $max-exclusive: shared.resolve-exclusive-max($max-val);
+
+  @if $name {
+    @container #{$name} (min-width: #{$min-val}) and (max-width: #{$max-exclusive}) {
+      @content;
+    }
+  } @else {
+    @container (min-width: #{$min-val}) and (max-width: #{$max-exclusive}) {
+      @content;
+    }
+  }
 }

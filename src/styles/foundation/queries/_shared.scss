@@ -1,0 +1,45 @@
+// =============================================================================
+// Foundation Query API: Private Infrastructure Helper
+// =============================================================================
+// Responsibility:
+// Internal threshold resolution, key validation, and epsilon math for Query API.
+// Private to queries infrastructure; not exposed or forwarded publicly.
+// =============================================================================
+
+@use 'sass:map';
+@use '../reference/breakpoints' as ref;
+
+// Private exclusive upper-bound epsilon (technical media query detail; not a design token)
+$epsilon: 0.02px;
+
+$allowed-keys-list: 'xxs, xs, sm, md, lg, xl, xxl';
+
+@function resolve-threshold($map, $key, $domain) {
+  $key-str: '#{$key}';
+
+  @if not map.has-key($map, $key-str) {
+    @error 'Honesty ERP Design Foundation Error: Invalid #{$domain} breakpoint key `#{$key}`. Allowed keys are: #{$allowed-keys-list}.';
+  }
+
+  @return map.get($map, $key-str);
+}
+
+@function resolve-viewport-threshold($key) {
+  @return resolve-threshold(ref.$honesty-ref-breakpoints-viewport, $key, 'viewport');
+}
+
+@function resolve-container-threshold($key) {
+  @return resolve-threshold(ref.$honesty-ref-breakpoints-container, $key, 'container');
+}
+
+@function resolve-exclusive-max($threshold) {
+  @return $threshold - $epsilon;
+}
+
+@function validate-range($min-val, $max-val, $min-key, $max-key, $domain) {
+  @if $min-val >= $max-val {
+    @error 'Honesty ERP Design Foundation Error: Invalid #{$domain} query range. Minimum key `#{$min-key}` (#{$min-val}) must be strictly less than maximum key `#{$max-key}` (#{$max-val}).';
+  }
+
+  @return true;
+}

@@ -1,10 +1,17 @@
 // =============================================================================
-// Reference Tokens: Breakpoints Entry Point
+// Reference Tokens: Viewport Breakpoints (Candidate V1)
 // =============================================================================
 // Responsibility:
-// Raw viewport and container threshold values (e.g. width steps). Context-free.
+// Raw physical viewport width threshold steps. Context-free compile-time primitives.
 // Never depends on semantic, components, or themes.
 // =============================================================================
 
-@forward 'viewport';
-@forward 'container';
+$honesty-ref-breakpoints-viewport: (
+  'xxs': 360px,
+  'xs': 480px,
+  'sm': 640px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1280px,
+  'xxl': 1536px,
+);

@@ -575,4 +575,82 @@ Modes such as `dense`, `cozy`, `normal`, `auto`, or `custom` are strictly prohib
 - **No Component Tokens in Density:** No component-specific overrides (`--honesty-button-*`, `--honesty-table-*`, etc.) exist in the Foundation Density layer.
 - **No JavaScript/Preference Logic:** No Angular services, stores, or state logic are implemented in this phase.
 
+---
+
+## 20. Responsive Breakpoints & Query API Technical Contract (Candidate V1)
+
+### A. Architectural Responsibility & Boundaries
+- **Compile-Time Sass Infrastructure Only:** Responsive breakpoints and container thresholds are authoring tools for compile-time Sass evaluation.
+- **No Runtime CSS Custom Properties:** No `--honesty-breakpoint-*`, `--honesty-viewport-*`, or `--honesty-container-breakpoint-*` tokens exist.
+- **Raw Reference Breakpoints Are Private:** The Reference maps (`$honesty-ref-breakpoints-viewport` and `$honesty-ref-breakpoints-container`) are internal Foundation primitives and are **not** exposed for direct consumption by components or layouts.
+- **Single Approved Consumption Path:** The only approved responsive Sass API for components, layouts, and page structures is the **Foundation Query API** (`foundation/queries`).
+- **Device-Agnostic Vocabulary:** Breakpoint thresholds are dimensional primitives representing available pixel widths. They are never named after devices (no `mobile`, `tablet`, `desktop`, `phone`, `wide`, `2xl`, or `3xl`).
+
+### B. Approved Symbolic Key Vocabulary
+All viewport and container queries use strictly this 7-step symbolic key scale:
+- `xxs`
+- `xs`
+- `sm`
+- `md`
+- `lg`
+- `xl`
+- `xxl`
+
+### C. Reference Threshold Maps (Compile-Time Sass Maps)
+Viewport and container thresholds are strictly separate Reference maps:
+
+1. **Viewport Breakpoints (`$honesty-ref-breakpoints-viewport` in `src/styles/foundation/reference/breakpoints/_viewport.scss`):**
+   - `xxs`: `360px`
+   - `xs`: `480px`
+   - `sm`: `640px`
+   - `md`: `768px`
+   - `lg`: `1024px`
+   - `xl`: `1280px`
+   - `xxl`: `1536px`
+
+2. **Container Breakpoints (`$honesty-ref-breakpoints-container` in `src/styles/foundation/reference/breakpoints/_container.scss`):**
+   - `xxs`: `240px`
+   - `xs`: `320px`
+   - `sm`: `480px`
+   - `md`: `640px`
+   - `lg`: `768px`
+   - `xl`: `960px`
+   - `xxl`: `1200px`
+
+*These generic thresholds define width breakpoints; they do not dictate sidebar, modal, card, or form widths.*
+
+### D. Foundation Query API Signatures
+Exported from `src/styles/foundation/queries/_index.scss` (forwarded publicly via `src/styles/foundation/_index.scss`):
+
+- **Viewport Mixins:**
+  - `viewport-up($key)`
+  - `viewport-down($key)`
+  - `viewport-between($min, $max)`
+- **Container Mixins:**
+  - `container-up($key, $name: null)`
+  - `container-down($key, $name: null)`
+  - `container-between($min, $max, $name: null)`
+
+*The API is strictly mixin-only. No query functions (such as `breakpoint()`, `viewport-value()`, `media()`, or `mq()`) are provided.*
+
+### E. Boundary Semantics & Interval Model
+Both viewport and container queries implement an identical mathematical interval model:
+- **UP (`up($key)`):** `width >= threshold` (inclusive lower bound). Emits `min-width: threshold`.
+- **DOWN (`down($key)`):** `width < threshold` (exclusive upper bound). Emits `max-width: threshold - 0.02px`.
+- **BETWEEN (`between($min, $max)`):** `min <= width < max` (half-open interval `[min, max)`). Emits `(min-width: min_threshold) and (max-width: max_threshold - 0.02px)`.
+
+### F. Private Exclusive Upper-Bound Epsilon
+- An internal epsilon of **`0.02px`** is subtracted from exclusive upper bounds (e.g., `viewport-down(lg)` emits `max-width: 1023.98px`).
+- This epsilon is an internal technical detail of media-query math to prevent overlap at fractional pixel thresholds; it is not a design token or spacing value.
+
+### G. Validation & Compile-Time Failure Behavior
+- **Unknown Key Validation:** Calling any Query API mixin with an unrecognized key raises an explicit Sass `@error` identifying the invalid key, the query domain (`viewport` or `container`), and the list of permitted keys (`xxs, xs, sm, md, lg, xl, xxl`).
+- **Range Ordering Validation:** Calling `viewport-between($min, $max)` or `container-between($min, $max)` where `min_threshold >= max_threshold` raises an explicit Sass `@error`. Reversed or zero-width ranges are never silently emitted.
+
+### H. Container Query Capabilities
+- **Unnamed Queries:** When `$name` is omitted or `null`, standard unnamed container queries are emitted (e.g., `@container (min-width: 768px)`).
+- **Named Queries:** When `$name` is provided, named container queries are emitted (e.g., `@container content (min-width: 768px)`).
+- **Context Ownership:** The Query API queries container context; defining `container-name` or `container-type` remains the responsibility of container layout definitions.
+
+
 
