@@ -105,6 +105,19 @@ describe('LayoutGrid Candidate V1 Visual Specimen', () => {
       expect(wide).toBeTruthy();
     });
 
+    it('should apply query-width fixture classes to the named container targets', () => {
+      const target300 = compiled.querySelector('#fixture-narrow .named-container-target');
+      const target600 = compiled.querySelector('#fixture-medium .named-container-target');
+      const target900 = compiled.querySelector('#fixture-wide .named-container-target');
+
+      expect(target300).toBeTruthy();
+      expect(target600).toBeTruthy();
+      expect(target900).toBeTruthy();
+      expect(target300?.classList.contains('query-fixture-300')).toBe(true);
+      expect(target600?.classList.contains('query-fixture-600')).toBe(true);
+      expect(target900?.classList.contains('query-fixture-900')).toBe(true);
+    });
+
     it('should contain identical generic content structure (3 items) inside every container fixture', () => {
       const fixtures = compiled.querySelectorAll('.container-test-fixture');
       expect(fixtures.length).toBe(3);
