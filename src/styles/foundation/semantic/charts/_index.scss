@@ -2,6 +2,35 @@
 // Semantic Tokens: Charts
 // =============================================================================
 // Responsibility:
-// Contextual chart semantics (series roles, positive/negative delta, thresholds).
-// Depends on reference/charts and reference/colors. Must not depend on component tokens.
+// Documents the theme-sensitive runtime Chart color contract.
+// Actual values are emitted only by the Light and Dark theme mappings, which
+// resolve directly from existing Reference Colors. This module intentionally
+// emits no universal :root values.
+//
+// Candidate V1 Runtime Roles:
+//
+// Categorical (ordinal positions, never status meanings):
+// - --honesty-chart-series-1
+// - --honesty-chart-series-2
+// - --honesty-chart-series-3
+// - --honesty-chart-series-4
+// - --honesty-chart-series-5
+//
+// Status / Delta (semantic meanings independent from categorical series):
+// - --honesty-chart-positive
+// - --honesty-chart-negative
+// - --honesty-chart-warning
+// - --honesty-chart-info
+//
+// Structural (Chart-context guides and text):
+// - --honesty-chart-gridline
+// - --honesty-chart-axis
+// - --honesty-chart-label
+//
+// Series roles describe ordinal categorical positions only. A series does not
+// acquire Primary, Info, Success, Warning, or Danger meaning because its current
+// mapping happens to resolve to the same Reference hue as a semantic status role.
+//
+// Reference Charts remains reserved and contributes no raw Candidate V1 values.
+// Candidate V1 introduces no Chart Component tokens.
 // =============================================================================

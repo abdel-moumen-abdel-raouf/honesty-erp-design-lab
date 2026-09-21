@@ -737,6 +737,66 @@ base (0) < sticky (10) < floating (20) < overlay (30) < blocking (40) < notifica
 ### E. No Negative Layer Rule
 No negative z-index tokens, underlay tokens, or background-minus-one tokens are permitted. Stacking contexts must not rely on negative indexes in Candidate V1.
 
+---
+
+## 23. Theme-Aware Semantic Chart Color Technical Contract (Candidate V1)
+
+### A. Architecture, Source, and Ownership
+- **Architecture:** Existing Reference Colors → Semantic Chart Contract → Light/Dark Theme Mapping → future Chart Components.
+- **Existing Reference Colors Are the Only Source:** Candidate V1 resolves directly from the approved Primary, Cyan, Green, Amber, Red, and Neutral Reference color Sass tokens.
+- **Reference Charts Adds No Raw Values:** src/styles/foundation/reference/charts/ remains reserved for future genuinely visualization-specific raw primitives. Candidate V1 does not duplicate existing colors or introduce a Chart-specific raw hue palette.
+- **Theme-Sensitive Ownership:** Actual runtime values are emitted only inside [data-theme='light'] and [data-theme='dark']. The Semantic Charts module documents the contract and emits no universal :root values.
+- **Independent Resolution:** Every Chart role resolves independently from Reference Colors. Status/Delta roles do not alias categorical CSS custom properties, Feedback runtime variables, or Action runtime variables.
+
+### B. Candidate V1 Runtime Roles
+Candidate V1 contains exactly 12 Semantic Chart runtime roles:
+
+**Categorical ordinal positions:**
+- --honesty-chart-series-1
+- --honesty-chart-series-2
+- --honesty-chart-series-3
+- --honesty-chart-series-4
+- --honesty-chart-series-5
+
+These five roles are ordinal categorical positions only. They do **not** mean Primary, Info, Success, Warning, or Danger, even when a current mapping resolves to the same underlying Reference hue. Additional roles such as series-6 and above require concrete future dashboard or chart requirements.
+
+**Status / Delta semantics:**
+- --honesty-chart-positive
+- --honesty-chart-negative
+- --honesty-chart-warning
+- --honesty-chart-info
+
+**Structural Chart-context semantics:**
+- --honesty-chart-gridline — subtle plotting and grid guide color.
+- --honesty-chart-axis — stronger structural axis and tick color.
+- --honesty-chart-label — textual label color inside Chart contexts.
+
+Structural Chart roles do not replace the general Text or Border Semantic contracts.
+
+### C. Exact Theme Mapping
+
+| Semantic Chart role | Light theme Reference source | Dark theme Reference source |
+|---|---|---|
+| --honesty-chart-series-1 | ref.$honesty-ref-color-primary-600 | ref.$honesty-ref-color-primary-400 |
+| --honesty-chart-series-2 | ref.$honesty-ref-color-cyan-600 | ref.$honesty-ref-color-cyan-400 |
+| --honesty-chart-series-3 | ref.$honesty-ref-color-green-600 | ref.$honesty-ref-color-green-400 |
+| --honesty-chart-series-4 | ref.$honesty-ref-color-amber-600 | ref.$honesty-ref-color-amber-400 |
+| --honesty-chart-series-5 | ref.$honesty-ref-color-red-600 | ref.$honesty-ref-color-red-400 |
+| --honesty-chart-positive | ref.$honesty-ref-color-green-600 | ref.$honesty-ref-color-green-400 |
+| --honesty-chart-negative | ref.$honesty-ref-color-red-600 | ref.$honesty-ref-color-red-400 |
+| --honesty-chart-warning | ref.$honesty-ref-color-amber-600 | ref.$honesty-ref-color-amber-400 |
+| --honesty-chart-info | ref.$honesty-ref-color-cyan-600 | ref.$honesty-ref-color-cyan-400 |
+| --honesty-chart-gridline | ref.$honesty-ref-color-neutral-200 | ref.$honesty-ref-color-neutral-800 |
+| --honesty-chart-axis | ref.$honesty-ref-color-neutral-400 | ref.$honesty-ref-color-neutral-600 |
+| --honesty-chart-label | ref.$honesty-ref-color-neutral-600 | ref.$honesty-ref-color-neutral-300 |
+
+### D. Candidate V1 Scope Boundaries
+- No Chart background, surface, plot-area, panel, legend, tooltip, crosshair, marker, fill, opacity, interaction-state, or motion token is introduced.
+- No rgba Chart token, opacity scale, gradient, hatching, pattern, texture, SVG pattern asset, or Chart-specific binary asset is introduced.
+- Future Chart containers initially consume normal Surface semantics unless concrete visual evidence establishes a dedicated Chart contract.
+- Legend, tooltip, crosshair, and marker styling belongs to future Chart Component token contracts.
+- No chart visual specimen, Chart library, or production Chart component is introduced in this phase.
+
 
 
 

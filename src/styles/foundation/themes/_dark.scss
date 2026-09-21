@@ -73,6 +73,24 @@
   --honesty-color-feedback-info-border: #{ref.$honesty-ref-color-cyan-800};
   --honesty-color-feedback-info-icon: #{ref.$honesty-ref-color-cyan-400};
 
+  // Charts: Categorical Series (ordinal positions; no status meaning)
+  --honesty-chart-series-1: #{ref.$honesty-ref-color-primary-400};
+  --honesty-chart-series-2: #{ref.$honesty-ref-color-cyan-400};
+  --honesty-chart-series-3: #{ref.$honesty-ref-color-green-400};
+  --honesty-chart-series-4: #{ref.$honesty-ref-color-amber-400};
+  --honesty-chart-series-5: #{ref.$honesty-ref-color-red-400};
+
+  // Charts: Status / Delta
+  --honesty-chart-positive: #{ref.$honesty-ref-color-green-400};
+  --honesty-chart-negative: #{ref.$honesty-ref-color-red-400};
+  --honesty-chart-warning: #{ref.$honesty-ref-color-amber-400};
+  --honesty-chart-info: #{ref.$honesty-ref-color-cyan-400};
+
+  // Charts: Structural
+  --honesty-chart-gridline: #{ref.$honesty-ref-color-neutral-800};
+  --honesty-chart-axis: #{ref.$honesty-ref-color-neutral-600};
+  --honesty-chart-label: #{ref.$honesty-ref-color-neutral-300};
+
   // Elevation
   --honesty-elevation-none: #{ref-elevation.$honesty-ref-elevation-shadow-none};
   --honesty-elevation-raised: #{ref-elevation.$honesty-ref-elevation-shadow-geometry-1} #{rgba(ref-elevation.$honesty-ref-elevation-shadow-color-black, ref-elevation.$honesty-ref-elevation-shadow-alpha-28)};
