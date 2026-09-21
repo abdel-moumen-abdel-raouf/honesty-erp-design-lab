@@ -1,0 +1,26 @@
+// =============================================================================
+// Semantic Tokens: Motion Timing (Candidate V1)
+// =============================================================================
+// Responsibility:
+// Purpose-driven runtime CSS custom properties for motion durations and easings.
+// Resolves strictly from compile-time Reference motion Sass tokens.
+// Motion is currently theme-independent; emitted in :root.
+// Does NOT create transition bundles, keyframes, or component-specific contracts.
+// =============================================================================
+
+@use '../../reference/motion' as ref;
+
+:root {
+  // Semantic Duration Roles
+  --honesty-motion-duration-instant: #{ref.$honesty-ref-motion-duration-0};
+  --honesty-motion-duration-fast: #{ref.$honesty-ref-motion-duration-100};
+  --honesty-motion-duration-default: #{ref.$honesty-ref-motion-duration-150};
+  --honesty-motion-duration-slow: #{ref.$honesty-ref-motion-duration-200};
+  --honesty-motion-duration-deliberate: #{ref.$honesty-ref-motion-duration-300};
+
+  // Semantic Easing Roles
+  --honesty-motion-easing-linear: #{ref.$honesty-ref-motion-easing-linear};
+  --honesty-motion-easing-standard: #{ref.$honesty-ref-motion-easing-standard};
+  --honesty-motion-easing-enter: #{ref.$honesty-ref-motion-easing-enter};
+  --honesty-motion-easing-exit: #{ref.$honesty-ref-motion-easing-exit};
+}

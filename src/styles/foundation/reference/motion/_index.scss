@@ -1,7 +1,10 @@
 // =============================================================================
-// Reference Tokens: Motion
+// Reference Tokens: Motion (Candidate V1)
 // =============================================================================
 // Responsibility:
 // Raw duration values and cubic-bezier easing curve primitives. Context-free.
 // Never depends on semantic, components, or themes.
 // =============================================================================
+
+@forward 'durations';
+@forward 'easings';

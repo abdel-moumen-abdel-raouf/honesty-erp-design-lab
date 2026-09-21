@@ -1,7 +1,22 @@
 // =============================================================================
-// Semantic Layer: Motion
+// Semantic Layer: Motion (Candidate V1)
 // =============================================================================
 // Responsibility:
-// Future semantic motion roles (transitions, micro-interactions, modal reveals).
+// Semantic motion roles (duration, easing).
 // Depends on reference/motion tokens. Must not depend on component tokens.
+//
+// Candidate V1 Roles:
+// - Durations:
+//   --honesty-motion-duration-instant:    0ms   ($honesty-ref-motion-duration-0)
+//   --honesty-motion-duration-fast:       100ms ($honesty-ref-motion-duration-100)
+//   --honesty-motion-duration-default:    150ms ($honesty-ref-motion-duration-150)
+//   --honesty-motion-duration-slow:       200ms ($honesty-ref-motion-duration-200)
+//   --honesty-motion-duration-deliberate: 300ms ($honesty-ref-motion-duration-300)
+// - Easings:
+//   --honesty-motion-easing-linear:   linear                      ($honesty-ref-motion-easing-linear)
+//   --honesty-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1)  ($honesty-ref-motion-easing-standard)
+//   --honesty-motion-easing-enter:    cubic-bezier(0, 0, 0, 1)    ($honesty-ref-motion-easing-enter)
+//   --honesty-motion-easing-exit:     cubic-bezier(0.3, 0, 1, 1)  ($honesty-ref-motion-easing-exit)
 // =============================================================================
+
+@use 'timing';

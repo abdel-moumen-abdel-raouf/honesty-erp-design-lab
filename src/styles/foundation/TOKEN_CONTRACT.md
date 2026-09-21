@@ -475,3 +475,59 @@ Each typography role defines three standard CSS custom properties:
 - **No Z-Index Coupling:** Visual elevation and stacking order (`z-index` / `layers`) are decoupled concerns and must not be conflated.
 - **No Visual Application:** Elevation tokens are not applied to existing pages, specimen chrome, or components in this phase.
 
+---
+
+## 18. Motion Technical Contract (Candidate V1)
+
+### A. Design Philosophy: Functional, Not Decorative
+- Honesty ERP motion is brief, controlled, meaningful, and functional rather than decorative.
+- Motion exists strictly to clarify:
+  - state change;
+  - spatial relationship;
+  - entry / exit;
+  - interaction feedback.
+- Playful, bouncy, or ornamental animations are strictly prohibited.
+
+### B. Reference Duration Scale (Compile-Time Sass Primitives)
+- Defined in `src/styles/foundation/reference/motion/_durations.scss`:
+  - `$honesty-ref-motion-duration-0`: `0ms`
+  - `$honesty-ref-motion-duration-100`: `100ms`
+  - `$honesty-ref-motion-duration-150`: `150ms`
+  - `$honesty-ref-motion-duration-200`: `200ms`
+  - `$honesty-ref-motion-duration-300`: `300ms`
+- Context-free numerical millisecond primitives. Values such as 50ms, 75ms, 125ms, 175ms, 250ms, 400ms, and 500ms are excluded in Candidate V1.
+
+### C. Reference Easing Scale (Compile-Time Sass Primitives)
+- Defined in `src/styles/foundation/reference/motion/_easings.scss`:
+  - `$honesty-ref-motion-easing-linear`: `linear`
+  - `$honesty-ref-motion-easing-standard`: `cubic-bezier(0.2, 0, 0, 1)`
+  - `$honesty-ref-motion-easing-enter`: `cubic-bezier(0, 0, 0, 1)`
+  - `$honesty-ref-motion-easing-exit`: `cubic-bezier(0.3, 0, 1, 1)`
+- Context-free acceleration curves. Spring physics, bounce, elastic, back, and overshoot curves are strictly excluded.
+
+### D. Semantic Duration Roles (Runtime CSS Custom Properties)
+- Emitted in `:root` via `src/styles/foundation/semantic/motion/_timing.scss`:
+  - `--honesty-motion-duration-instant`: `#{ref.$honesty-ref-motion-duration-0}` (`0ms`) — no perceptible transition.
+  - `--honesty-motion-duration-fast`: `#{ref.$honesty-ref-motion-duration-100}` (`100ms`) — very small UI state feedback.
+  - `--honesty-motion-duration-default`: `#{ref.$honesty-ref-motion-duration-150}` (`150ms`) — normal micro-interaction timing.
+  - `--honesty-motion-duration-slow`: `#{ref.$honesty-ref-motion-duration-200}` (`200ms`) — clearer structural state change.
+  - `--honesty-motion-duration-deliberate`: `#{ref.$honesty-ref-motion-duration-300}` (`300ms`) — limited use for larger spatial transitions where visual continuity is genuinely useful.
+
+### E. Semantic Easing Roles (Runtime CSS Custom Properties)
+- Emitted in `:root` via `src/styles/foundation/semantic/motion/_timing.scss`:
+  - `--honesty-motion-easing-linear`: `#{ref.$honesty-ref-motion-easing-linear}` (`linear`) — constant-rate motion where easing is inappropriate.
+  - `--honesty-motion-easing-standard`: `#{ref.$honesty-ref-motion-easing-standard}` (`cubic-bezier(0.2, 0, 0, 1)`) — default state and property transition.
+  - `--honesty-motion-easing-enter`: `#{ref.$honesty-ref-motion-easing-enter}` (`cubic-bezier(0, 0, 0, 1)`) — incoming and revealed visual movement.
+  - `--honesty-motion-easing-exit`: `#{ref.$honesty-ref-motion-easing-exit}` (`cubic-bezier(0.3, 0, 1, 1)`) — outgoing and dismissed visual movement.
+
+### F. Scope Boundaries & Prohibitions (Candidate V1)
+- **No Transition Bundles:** Tokens such as `--honesty-transition-default`, `--honesty-transition-button`, `--honesty-transition-color`, or `--honesty-transition-transform` are prohibited. Duration and easing remain strictly separated.
+- **No Keyframes:** `@keyframes` definitions (e.g., `fade-in`, `fade-out`, `slide`, `spin`, `pulse`) are prohibited in Foundation motion.
+- **No CSS Property Contracts:** Properties like `transition-property`, `animation-name`, `animation-fill-mode`, etc., are deferred to future Component contracts.
+- **No Component-Specific Motion:** Tokens such as `modal-enter`, `modal-exit`, `dropdown-open`, `toast-enter`, `sidebar-collapse`, `accordion-expand`, `tooltip-delay`, or `button-hover` belong to Layer 3 (Component Tokens) and require concrete reference components.
+- **No Global Transitions:** No transitions applied to `html`, `body`, `*`, links, buttons, theme selectors, or review pages.
+- **No `transition: all`:** Universal property transition shorthand is strictly prohibited.
+- **No Theme or Density Coupling:** Motion timing is theme-independent (not duplicated in `[data-theme='light']` or `[data-theme='dark']`) and density-independent (unchanged across Compact, Comfortable, and Spacious modes).
+- **Accessibility Scope:** No dedicated reduced-motion or screen-reader motion program in this phase; standard interaction correctness is preserved.
+
+

@@ -1,0 +1,12 @@
+// =============================================================================
+// Reference Tokens: Motion Easings (Candidate V1)
+// =============================================================================
+// Responsibility:
+// Raw, context-free cubic-bezier and linear easing curve primitives.
+// Does NOT emit runtime CSS custom properties.
+// =============================================================================
+
+$honesty-ref-motion-easing-linear: linear;
+$honesty-ref-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+$honesty-ref-motion-easing-enter: cubic-bezier(0, 0, 0, 1);
+$honesty-ref-motion-easing-exit: cubic-bezier(0.3, 0, 1, 1);
