@@ -17,8 +17,11 @@ describe('Borders & Radius Candidate V1 Visual Specimen', () => {
     compiled = fixture.nativeElement as HTMLElement;
   });
 
-  it('should create the borders-radius specimen component', () => {
+  it('should create the borders-radius specimen component and have data-theme="light" on root', () => {
     expect(component).toBeTruthy();
+    const root = compiled.querySelector('#borders-radius-specimen-root');
+    expect(root).toBeTruthy();
+    expect(root?.getAttribute('data-theme')).toBe('light');
   });
 
   describe('Section 1: Reference Border Widths', () => {
