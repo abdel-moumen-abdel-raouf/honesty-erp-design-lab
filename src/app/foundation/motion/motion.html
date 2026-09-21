@@ -1,0 +1,225 @@
+<div id="motion-specimen-root" class="motion-root" data-theme="light">
+  <!-- Specimen Header -->
+  <header id="motion-specimen-header" class="specimen-header">
+    <div class="header-badge-row">
+      <span id="specimen-badge" class="specimen-badge">توثيق ومراجعة بصرية • Docs-Only</span>
+      <span id="specimen-version-tag" class="specimen-tag">Candidate V1</span>
+    </div>
+    <h1 id="specimen-title" class="specimen-title">مراجعة الحركة والتوقيت (Motion & Timing)</h1>
+    <p id="specimen-description" class="specimen-description">
+      معاينة تفاعلية بصرية لمدد ومنحنيات الحركة المعتمدة في Honesty ERP. الحركة وظيفية وهادفة لتوضيح تغيرات الحالات والعلاقات المكانية دون أي مؤثرات زخرفية أو ارتدادات استعراضية.
+    </p>
+  </header>
+
+  <main id="motion-main" class="specimen-main">
+
+    <!-- ================================================================= -->
+    <!-- SECTION 1: DURATION COMPARISON                                    -->
+    <!-- ================================================================= -->
+    <section id="sec-duration-comparison" class="specimen-section">
+      <div class="section-heading">
+        <h2 id="title-duration-comparison" class="section-title">مقارنة مدد الحركة</h2>
+        <span class="section-subtitle">Duration Comparison Scale (Fixed Movement Distance, Standard Easing)</span>
+      </div>
+      <p class="section-lead">
+        تُعرض المسارات الخمسة بنفس المسافة الفيزيائية ونفس منحنى التسارع المعياري، بينما تختلف المدة الزمنية فقط لعزل أثر الزمن بدقة.
+      </p>
+      <div class="technical-notice">
+        <strong>ملاحظة فنية:</strong> مسار الحركة موجه باتجاه ثابت (من البداية إلى النهاية) لقياس ومقارنة الزمن المنقضي بصرياً، ولا يمثل قاعدة ملاحة أو حركة خاصة باتجاه RTL/LTR للمنتج.
+      </div>
+
+      <div class="section-controls-row">
+        <button
+          id="btn-play-durations"
+          type="button"
+          class="docs-btn"
+          (click)="playDurations()"
+        >
+          تشغيل المقارنة
+        </button>
+        <button
+          id="btn-reset-durations"
+          type="button"
+          class="docs-btn"
+          (click)="resetDurations()"
+        >
+          إعادة الضبط
+        </button>
+      </div>
+
+      <div id="duration-tracks-list" class="tracks-stack">
+        @for (track of durationTracks; track track.id) {
+          <div [id]="'duration-track-' + track.id" class="motion-track-card">
+            <div class="track-header-row">
+              <span class="track-label">{{ track.label }}</span>
+              <div class="track-meta">
+                <code class="token-name">{{ track.token }}</code>
+                <span class="token-val">{{ track.value }}</span>
+              </div>
+            </div>
+            <div class="motion-track-rail" dir="ltr">
+              <div
+                [id]="'duration-marker-' + track.id"
+                class="duration-marker"
+                [class]="'marker-' + track.id"
+                [class.is-moved]="durationActive()"
+                [class.no-transition]="durationInstantReset()"
+              ></div>
+            </div>
+            <p class="track-note">{{ track.note }}</p>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- SECTION 2: EASING COMPARISON                                      -->
+    <!-- ================================================================= -->
+    <section id="sec-easing-comparison" class="specimen-section">
+      <div class="section-heading">
+        <h2 id="title-easing-comparison" class="section-title">مقارنة منحنيات التسارع</h2>
+        <span class="section-subtitle">Easing Curves Scale (Fixed Distance & Deliberate Duration: 300ms)</span>
+      </div>
+      <p class="section-lead">
+        تتشارك المسارات الأربعة نفس المسافة ونفس المدة المتأنية (300ms) لإظهار الفروقات البصرية بوضوح في معدل التسارع والاستقرار.
+      </p>
+
+      <div class="section-controls-row">
+        <button
+          id="btn-play-easings"
+          type="button"
+          class="docs-btn"
+          (click)="playEasings()"
+        >
+          تشغيل المنحنيات
+        </button>
+        <button
+          id="btn-reset-easings"
+          type="button"
+          class="docs-btn"
+          (click)="resetEasings()"
+        >
+          إعادة الضبط
+        </button>
+      </div>
+
+      <div id="easing-tracks-list" class="tracks-stack">
+        @for (curve of easingTracks; track curve.id) {
+          <div [id]="'easing-track-' + curve.id" class="motion-track-card">
+            <div class="track-header-row">
+              <span class="track-label">{{ curve.label }}</span>
+              <div class="track-meta">
+                <code class="token-name">{{ curve.token }}</code>
+                <span class="token-val">{{ curve.curve }}</span>
+              </div>
+            </div>
+            <div class="motion-track-rail" dir="ltr">
+              <div
+                [id]="'easing-marker-' + curve.id"
+                class="easing-marker"
+                [class]="'marker-' + curve.id"
+                [class.is-moved]="easingActive()"
+                [class.no-transition]="easingInstantReset()"
+              ></div>
+            </div>
+            <p class="track-note">{{ curve.note }}</p>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- SECTION 3: FUNCTIONAL STATE CHANGE SAMPLE                         -->
+    <!-- ================================================================= -->
+    <section id="sec-functional-sample" class="specimen-section">
+      <div class="section-heading">
+        <h2 id="title-functional-sample" class="section-title">تغير حالة وظيفي</h2>
+        <span class="section-subtitle">Functional State Transition (Default Duration: 150ms, Standard Easing)</span>
+      </div>
+      <p class="section-lead">
+        محاكاة لتوقيت الانتقال الوظيفي المعتاد في تفاعلات ERP الدقيقة، تطبق تغيراً طفيفاً على الإزاحة والشفافية بدون بناء مكون نهائي.
+      </p>
+
+      <div class="sample-interactive-card">
+        <div class="sample-actions-row">
+          <button
+            id="btn-toggle-functional-state"
+            type="button"
+            class="docs-btn"
+            (click)="toggleFunctional()"
+          >
+            تبديل الحالة (Toggle State)
+          </button>
+          <span class="sample-state-text">
+            الحالة الحالية: {{ functionalToggled() ? 'مفعّلة (Toggled)' : 'افتراضية (Default)' }}
+          </span>
+        </div>
+
+        <div class="sample-stage">
+          <div
+            id="functional-state-indicator"
+            class="functional-indicator"
+            [class.is-toggled]="functionalToggled()"
+          >
+            <span class="indicator-inner-text">مؤشر وظيفي</span>
+          </div>
+        </div>
+
+        <div class="sample-meta-row">
+          <span class="meta-label">الخصائص المطبقة:</span>
+          <code>transition-property: transform, opacity;</code>
+          <code>duration: var(--honesty-motion-duration-default);</code>
+          <code>timing: var(--honesty-motion-easing-standard);</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- SECTION 4: ENTER / EXIT PAIR REVIEW                               -->
+    <!-- ================================================================= -->
+    <section id="sec-enter-exit" class="specimen-section">
+      <div class="section-heading">
+        <h2 id="title-enter-exit" class="section-title">الدخول والخروج</h2>
+        <span class="section-subtitle">Enter / Exit Motion Asymmetry (Slow Duration: 200ms)</span>
+      </div>
+      <p class="section-lead">
+        توضيح عدم التناظر الحركي بين الدخول (Enter) والخروج (Exit) باستخدام نفس المدة الهادئة (200ms) مع منحنيين مختلفين وظيفياً.
+      </p>
+
+      <div class="sample-interactive-card">
+        <div class="sample-actions-row">
+          <button
+            id="btn-toggle-enter-exit"
+            type="button"
+            class="docs-btn"
+            (click)="toggleEnterExit()"
+          >
+            إظهار / إخفاء (Enter / Exit)
+          </button>
+          <span class="sample-state-text">
+            الحالة: {{ enterExitVisible() ? 'ظاهر (Visible - Enter curve)' : 'مخفي (Hidden - Exit curve)' }}
+          </span>
+        </div>
+
+        <div class="sample-stage enter-exit-stage">
+          <div
+            id="enter-exit-box"
+            class="enter-exit-box"
+            [class.is-visible]="enterExitVisible()"
+            [class.is-hidden]="!enterExitVisible()"
+          >
+            <span class="enter-exit-label">عنصر معاينة الدخول والخروج</span>
+          </div>
+        </div>
+
+        <div class="sample-meta-row">
+          <span class="meta-label">الخصائص المطبقة:</span>
+          <code>duration: var(--honesty-motion-duration-slow);</code>
+          <code>enter: var(--honesty-motion-easing-enter);</code>
+          <code>exit: var(--honesty-motion-easing-exit);</code>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
