@@ -1,0 +1,33 @@
+@mixin base {
+  --honesty-divider-color: var(--honesty-border-subtle);
+  --honesty-divider-width: var(--honesty-border-width-default);
+  --honesty-divider-style: var(--honesty-border-style-default);
+}
+
+@mixin tone-subtle {
+  --honesty-divider-color: var(--honesty-border-subtle);
+}
+
+@mixin tone-default {
+  --honesty-divider-color: var(--honesty-border-default);
+}
+
+@mixin tone-strong {
+  --honesty-divider-color: var(--honesty-border-strong);
+}
+
+@mixin style-solid {
+  --honesty-divider-style: var(--honesty-border-style-default);
+}
+
+@mixin style-dashed {
+  --honesty-divider-style: var(--honesty-border-style-dashed);
+}
+
+@mixin weight-default {
+  --honesty-divider-width: var(--honesty-border-width-default);
+}
+
+@mixin weight-emphasis {
+  --honesty-divider-width: var(--honesty-border-width-emphasis);
+}

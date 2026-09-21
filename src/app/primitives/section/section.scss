@@ -1,0 +1,22 @@
+@use '../../../styles/foundation/components/section' as tokens;
+
+:host {
+  @include tokens.base;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--honesty-section-gap);
+  min-width: 0;
+}
+
+:host([data-gap='none']) {
+  @include tokens.gap-none;
+}
+
+:host([data-gap='default']) {
+  @include tokens.gap-default;
+}
+
+:host([data-gap='large']) {
+  @include tokens.gap-large;
+}

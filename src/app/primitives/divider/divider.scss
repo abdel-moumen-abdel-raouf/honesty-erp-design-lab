@@ -1,0 +1,50 @@
+@use '../../../styles/foundation/components/divider' as tokens;
+
+:host {
+  @include tokens.base;
+
+  display: block;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+:host([data-orientation='horizontal']) {
+  inline-size: 100%;
+  block-size: 0;
+  border-block-start: var(--honesty-divider-width) var(--honesty-divider-style) var(--honesty-divider-color);
+}
+
+:host([data-orientation='vertical']) {
+  inline-size: 0;
+  align-self: stretch;
+  border-inline-start: var(--honesty-divider-width) var(--honesty-divider-style) var(--honesty-divider-color);
+}
+
+:host([data-tone='subtle']) {
+  @include tokens.tone-subtle;
+}
+
+:host([data-tone='default']) {
+  @include tokens.tone-default;
+}
+
+:host([data-tone='strong']) {
+  @include tokens.tone-strong;
+}
+
+:host([data-stroke='solid']) {
+  @include tokens.style-solid;
+}
+
+:host([data-stroke='dashed']) {
+  @include tokens.style-dashed;
+}
+
+:host([data-weight='default']) {
+  @include tokens.weight-default;
+}
+
+:host([data-weight='emphasis']) {
+  @include tokens.weight-emphasis;
+}

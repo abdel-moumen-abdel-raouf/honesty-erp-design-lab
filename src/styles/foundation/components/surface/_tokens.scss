@@ -1,0 +1,97 @@
+@mixin base {
+  --honesty-surface-bg: var(--honesty-color-surface-default);
+  --honesty-surface-fg: var(--honesty-color-text-primary);
+  --honesty-surface-border-color: var(--honesty-border-subtle);
+  --honesty-surface-border-width: 0;
+  --honesty-surface-border-style: var(--honesty-border-style-default);
+  --honesty-surface-elevation: var(--honesty-elevation-none);
+  --honesty-surface-radius: var(--honesty-radius-surface);
+  --honesty-surface-padding: var(--honesty-space-inset-default);
+}
+
+@mixin tone-canvas {
+  --honesty-surface-bg: var(--honesty-color-surface-canvas);
+  --honesty-surface-fg: var(--honesty-color-text-primary);
+}
+
+@mixin tone-default {
+  --honesty-surface-bg: var(--honesty-color-surface-default);
+  --honesty-surface-fg: var(--honesty-color-text-primary);
+}
+
+@mixin tone-elevated {
+  --honesty-surface-bg: var(--honesty-color-surface-elevated);
+  --honesty-surface-fg: var(--honesty-color-text-primary);
+}
+
+@mixin tone-inverse {
+  --honesty-surface-bg: var(--honesty-color-surface-inverse);
+  --honesty-surface-fg: var(--honesty-color-text-inverse);
+}
+
+@mixin border-none {
+  --honesty-surface-border-width: 0;
+}
+
+@mixin border-subtle {
+  --honesty-surface-border-width: var(--honesty-border-width-default);
+  --honesty-surface-border-color: var(--honesty-border-subtle);
+}
+
+@mixin border-default {
+  --honesty-surface-border-width: var(--honesty-border-width-default);
+  --honesty-surface-border-color: var(--honesty-border-default);
+}
+
+@mixin border-strong {
+  --honesty-surface-border-width: var(--honesty-border-width-default);
+  --honesty-surface-border-color: var(--honesty-border-strong);
+}
+
+@mixin elevation-none {
+  --honesty-surface-elevation: var(--honesty-elevation-none);
+}
+
+@mixin elevation-raised {
+  --honesty-surface-elevation: var(--honesty-elevation-raised);
+}
+
+@mixin elevation-overlay {
+  --honesty-surface-elevation: var(--honesty-elevation-overlay);
+}
+
+@mixin radius-none {
+  --honesty-surface-radius: var(--honesty-radius-none);
+}
+
+@mixin radius-control {
+  --honesty-surface-radius: var(--honesty-radius-control);
+}
+
+@mixin radius-surface {
+  --honesty-surface-radius: var(--honesty-radius-surface);
+}
+
+@mixin radius-overlay {
+  --honesty-surface-radius: var(--honesty-radius-overlay);
+}
+
+@mixin radius-full {
+  --honesty-surface-radius: var(--honesty-radius-full);
+}
+
+@mixin padding-none {
+  --honesty-surface-padding: 0;
+}
+
+@mixin padding-tight {
+  --honesty-surface-padding: var(--honesty-space-inset-tight);
+}
+
+@mixin padding-default {
+  --honesty-surface-padding: var(--honesty-space-inset-default);
+}
+
+@mixin padding-loose {
+  --honesty-surface-padding: var(--honesty-space-inset-loose);
+}

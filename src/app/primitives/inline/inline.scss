@@ -1,0 +1,70 @@
+@use '../../../styles/foundation/components/inline' as tokens;
+
+:host {
+  @include tokens.base;
+
+  display: flex;
+  flex-direction: row;
+  gap: var(--honesty-inline-gap);
+  min-width: 0;
+}
+
+:host([data-gap='none']) {
+  @include tokens.gap-none;
+}
+
+:host([data-gap='tight']) {
+  @include tokens.gap-tight;
+}
+
+:host([data-gap='default']) {
+  @include tokens.gap-default;
+}
+
+:host([data-gap='loose']) {
+  @include tokens.gap-loose;
+}
+
+:host([data-align='stretch']) {
+  align-items: stretch;
+}
+
+:host([data-align='start']) {
+  align-items: flex-start;
+}
+
+:host([data-align='center']) {
+  align-items: center;
+}
+
+:host([data-align='end']) {
+  align-items: flex-end;
+}
+
+:host([data-align='baseline']) {
+  align-items: baseline;
+}
+
+:host([data-justify='start']) {
+  justify-content: flex-start;
+}
+
+:host([data-justify='center']) {
+  justify-content: center;
+}
+
+:host([data-justify='end']) {
+  justify-content: flex-end;
+}
+
+:host([data-justify='between']) {
+  justify-content: space-between;
+}
+
+:host([data-wrap='nowrap']) {
+  flex-wrap: nowrap;
+}
+
+:host([data-wrap='wrap']) {
+  flex-wrap: wrap;
+}

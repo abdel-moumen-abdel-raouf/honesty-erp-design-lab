@@ -1,0 +1,36 @@
+@use '../../../styles/foundation/components/container' as tokens;
+
+:host {
+  @include tokens.base;
+
+  display: block;
+  width: 100%;
+  max-width: var(--honesty-container-max-width);
+  margin-inline: auto;
+  padding-inline: var(--honesty-container-padding-inline);
+  min-width: 0;
+}
+
+:host([data-width='full']) {
+  @include tokens.width-full;
+}
+
+:host([data-width='narrow']) {
+  @include tokens.width-narrow;
+}
+
+:host([data-width='content']) {
+  @include tokens.width-content;
+}
+
+:host([data-width='wide']) {
+  @include tokens.width-wide;
+}
+
+:host([data-gutter='page']) {
+  @include tokens.gutter-page;
+}
+
+:host([data-gutter='none']) {
+  @include tokens.gutter-none;
+}

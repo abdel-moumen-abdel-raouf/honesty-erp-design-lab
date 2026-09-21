@@ -1,0 +1,15 @@
+@mixin base {
+  --honesty-section-gap: var(--honesty-space-section-gap);
+}
+
+@mixin gap-none {
+  --honesty-section-gap: 0;
+}
+
+@mixin gap-default {
+  --honesty-section-gap: var(--honesty-space-section-gap);
+}
+
+@mixin gap-large {
+  --honesty-section-gap: var(--honesty-space-section-gap-large);
+}

@@ -1,0 +1,96 @@
+@use '../../../styles/foundation/components/surface' as tokens;
+
+:host {
+  @include tokens.base;
+
+  display: block;
+  min-width: 0;
+  background: var(--honesty-surface-bg);
+  color: var(--honesty-surface-fg);
+  border-width: var(--honesty-surface-border-width);
+  border-style: var(--honesty-surface-border-style);
+  border-color: var(--honesty-surface-border-color);
+  border-radius: var(--honesty-surface-radius);
+  box-shadow: var(--honesty-surface-elevation);
+  padding: var(--honesty-surface-padding);
+}
+
+:host([data-tone='canvas']) {
+  @include tokens.tone-canvas;
+}
+
+:host([data-tone='default']) {
+  @include tokens.tone-default;
+}
+
+:host([data-tone='elevated']) {
+  @include tokens.tone-elevated;
+}
+
+:host([data-tone='inverse']) {
+  @include tokens.tone-inverse;
+}
+
+:host([data-border='none']) {
+  @include tokens.border-none;
+}
+
+:host([data-border='subtle']) {
+  @include tokens.border-subtle;
+}
+
+:host([data-border='default']) {
+  @include tokens.border-default;
+}
+
+:host([data-border='strong']) {
+  @include tokens.border-strong;
+}
+
+:host([data-elevation='none']) {
+  @include tokens.elevation-none;
+}
+
+:host([data-elevation='raised']) {
+  @include tokens.elevation-raised;
+}
+
+:host([data-elevation='overlay']) {
+  @include tokens.elevation-overlay;
+}
+
+:host([data-radius='none']) {
+  @include tokens.radius-none;
+}
+
+:host([data-radius='control']) {
+  @include tokens.radius-control;
+}
+
+:host([data-radius='surface']) {
+  @include tokens.radius-surface;
+}
+
+:host([data-radius='overlay']) {
+  @include tokens.radius-overlay;
+}
+
+:host([data-radius='full']) {
+  @include tokens.radius-full;
+}
+
+:host([data-padding='none']) {
+  @include tokens.padding-none;
+}
+
+:host([data-padding='tight']) {
+  @include tokens.padding-tight;
+}
+
+:host([data-padding='default']) {
+  @include tokens.padding-default;
+}
+
+:host([data-padding='loose']) {
+  @include tokens.padding-loose;
+}

@@ -1,0 +1,85 @@
+<erp-container class="showcase-root" width="wide">
+  <header class="showcase-header">
+    <p class="showcase-kicker" dir="ltr">Structural Primitives V1</p>
+    <h1>البدائيات الهيكلية</h1>
+    <p>عرض توثيقي موحّد لعقود التخطيط والسطوح والفواصل السبعة.</p>
+  </header>
+
+  <erp-section gap="large">
+    <section id="container-specimen" class="specimen-group" data-specimen-group="erp-container">
+      <h2 dir="ltr">ErpContainer</h2>
+      <erp-stack gap="default">
+        <erp-container class="container-boundary" width="full" gutter="page">full / page</erp-container>
+        <erp-container class="container-boundary" width="narrow" gutter="page">narrow / page</erp-container>
+        <erp-container class="container-boundary" width="content" gutter="page">content / page</erp-container>
+        <erp-container class="container-boundary" width="wide" gutter="page">wide / page</erp-container>
+        <erp-container class="container-boundary" width="full" gutter="none">full / none</erp-container>
+      </erp-stack>
+    </section>
+
+    <section id="stack-specimen" class="specimen-group" data-specimen-group="erp-stack">
+      <h2 dir="ltr">ErpStack</h2>
+      <erp-grid [columns]="3" gap="md">
+        <erp-stack class="layout-boundary" gap="tight">
+          <span class="neutral-block">tight 1</span><span class="neutral-block">tight 2</span><span class="neutral-block">tight 3</span>
+        </erp-stack>
+        <erp-stack class="layout-boundary" gap="default">
+          <span class="neutral-block">default 1</span><span class="neutral-block">default 2</span><span class="neutral-block">default 3</span>
+        </erp-stack>
+        <erp-stack class="layout-boundary" gap="loose">
+          <span class="neutral-block">loose 1</span><span class="neutral-block">loose 2</span><span class="neutral-block">loose 3</span>
+        </erp-stack>
+      </erp-grid>
+    </section>
+
+    <section id="inline-specimen" class="specimen-group" data-specimen-group="erp-inline">
+      <h2 dir="ltr">ErpInline</h2>
+      <erp-stack gap="default">
+        <erp-inline class="layout-boundary" wrap="nowrap"><span>نص عربي</span><span dir="ltr">Latin item</span><span>عنصر قصير</span></erp-inline>
+        <erp-inline class="layout-boundary" wrap="wrap"><span>محتوى عربي</span><span dir="ltr">Wrapped Latin content</span><span>عنصر إضافي</span></erp-inline>
+        <erp-inline class="layout-boundary" align="baseline" wrap="wrap"><strong>محاذاة</strong><span dir="ltr">Baseline</span><small>نص صغير</small></erp-inline>
+      </erp-stack>
+    </section>
+
+    <section id="grid-specimen" class="specimen-group" data-specimen-group="erp-grid">
+      <h2 dir="ltr">ErpGrid</h2>
+      <erp-stack gap="default">
+        <erp-grid [columns]="2" responsive="auto"><span class="neutral-block">2 / 1</span><span class="neutral-block">2 / 2</span></erp-grid>
+        <erp-grid [columns]="3" responsive="auto"><span class="neutral-block">3 / 1</span><span class="neutral-block">3 / 2</span><span class="neutral-block">3 / 3</span></erp-grid>
+        <erp-grid [columns]="4" responsive="auto"><span class="neutral-block">4 / 1</span><span class="neutral-block">4 / 2</span><span class="neutral-block">4 / 3</span><span class="neutral-block">4 / 4</span></erp-grid>
+        <erp-grid [columns]="6" responsive="auto"><span class="neutral-block">6 / 1</span><span class="neutral-block">6 / 2</span><span class="neutral-block">6 / 3</span><span class="neutral-block">6 / 4</span><span class="neutral-block">6 / 5</span><span class="neutral-block">6 / 6</span></erp-grid>
+        <erp-grid [columns]="4" responsive="fixed"><span class="neutral-block">fixed 1</span><span class="neutral-block">fixed 2</span><span class="neutral-block">fixed 3</span><span class="neutral-block">fixed 4</span></erp-grid>
+      </erp-stack>
+    </section>
+
+    <section id="surface-specimen" class="specimen-group" data-specimen-group="erp-surface">
+      <h2 dir="ltr">ErpSurface</h2>
+      <erp-grid [columns]="3" gap="lg">
+        <erp-surface>default / no border</erp-surface>
+        <erp-surface border="subtle">default / subtle border</erp-surface>
+        <erp-surface tone="elevated" elevation="raised">elevated / raised</erp-surface>
+        <erp-surface tone="inverse">inverse</erp-surface>
+        <erp-surface radius="overlay" border="default">overlay radius</erp-surface>
+        <erp-surface class="full-radius-proof" radius="full" border="strong" padding="tight">full radius capability</erp-surface>
+      </erp-grid>
+    </section>
+
+    <section id="section-specimen" class="specimen-group" data-specimen-group="erp-section">
+      <h2 dir="ltr">ErpSection</h2>
+      <erp-grid [columns]="2" gap="lg">
+        <erp-section class="layout-boundary" gap="default"><span class="neutral-block">default 1</span><span class="neutral-block">default 2</span></erp-section>
+        <erp-section class="layout-boundary" gap="large"><span class="neutral-block">large 1</span><span class="neutral-block">large 2</span></erp-section>
+      </erp-grid>
+    </section>
+
+    <section id="divider-specimen" class="specimen-group" data-specimen-group="erp-divider">
+      <h2 dir="ltr">ErpDivider</h2>
+      <erp-stack gap="loose">
+        <div class="divider-row"><span>subtle solid default</span><erp-divider></erp-divider></div>
+        <div class="divider-row"><span>strong solid emphasis</span><erp-divider tone="strong" weight="emphasis"></erp-divider></div>
+        <div class="divider-row"><span>default dashed</span><erp-divider tone="default" stroke="dashed"></erp-divider></div>
+        <erp-inline class="vertical-divider-row" gap="loose" align="stretch"><span>البداية</span><erp-divider orientation="vertical"></erp-divider><span>النهاية</span></erp-inline>
+      </erp-stack>
+    </section>
+  </erp-section>
+</erp-container>

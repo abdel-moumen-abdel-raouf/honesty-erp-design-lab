@@ -1,0 +1,28 @@
+@mixin base {
+  --honesty-container-max-width: none;
+  --honesty-container-padding-inline: var(--honesty-space-layout-page-gutter-inline);
+}
+
+@mixin width-full {
+  --honesty-container-max-width: none;
+}
+
+@mixin width-narrow {
+  --honesty-container-max-width: 48rem;
+}
+
+@mixin width-content {
+  --honesty-container-max-width: 75rem;
+}
+
+@mixin width-wide {
+  --honesty-container-max-width: 90rem;
+}
+
+@mixin gutter-page {
+  --honesty-container-padding-inline: var(--honesty-space-layout-page-gutter-inline);
+}
+
+@mixin gutter-none {
+  --honesty-container-padding-inline: 0;
+}

@@ -1,0 +1,64 @@
+@mixin base {
+  --honesty-grid-columns: 1;
+  --honesty-grid-gap: var(--honesty-space-layout-grid-gutter);
+}
+
+@mixin columns-1 {
+  --honesty-grid-columns: 1;
+}
+
+@mixin columns-2 {
+  --honesty-grid-columns: 2;
+}
+
+@mixin columns-3 {
+  --honesty-grid-columns: 3;
+}
+
+@mixin columns-4 {
+  --honesty-grid-columns: 4;
+}
+
+@mixin columns-5 {
+  --honesty-grid-columns: 5;
+}
+
+@mixin columns-6 {
+  --honesty-grid-columns: 6;
+}
+
+@mixin gap-grid {
+  --honesty-grid-gap: var(--honesty-space-layout-grid-gutter);
+}
+
+@mixin gap-none {
+  --honesty-grid-gap: 0;
+}
+
+@mixin gap-xxs {
+  --honesty-grid-gap: var(--honesty-space-layout-gap-xxs);
+}
+
+@mixin gap-xs {
+  --honesty-grid-gap: var(--honesty-space-layout-gap-xs);
+}
+
+@mixin gap-sm {
+  --honesty-grid-gap: var(--honesty-space-layout-gap-sm);
+}
+
+@mixin gap-md {
+  --honesty-grid-gap: var(--honesty-space-layout-gap-md);
+}
+
+@mixin gap-lg {
+  --honesty-grid-gap: var(--honesty-space-layout-gap-lg);
+}
+
+@mixin gap-xl {
+  --honesty-grid-gap: var(--honesty-space-layout-gap-xl);
+}
+
+@mixin gap-xxl {
+  --honesty-grid-gap: var(--honesty-space-layout-gap-xxl);
+}

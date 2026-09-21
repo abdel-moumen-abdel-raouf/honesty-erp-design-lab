@@ -1,0 +1,19 @@
+@mixin base {
+  --honesty-inline-gap: var(--honesty-space-inline-default);
+}
+
+@mixin gap-none {
+  --honesty-inline-gap: 0;
+}
+
+@mixin gap-tight {
+  --honesty-inline-gap: var(--honesty-space-inline-tight);
+}
+
+@mixin gap-default {
+  --honesty-inline-gap: var(--honesty-space-inline-default);
+}
+
+@mixin gap-loose {
+  --honesty-inline-gap: var(--honesty-space-inline-loose);
+}

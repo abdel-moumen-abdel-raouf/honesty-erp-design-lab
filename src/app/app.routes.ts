@@ -7,6 +7,13 @@ export const routes: Routes = [
       import('./foundation/overview/overview').then((m) => m.Overview),
   },
   {
+    path: 'primitives/structural',
+    loadComponent: () =>
+      import('./showcase/structural-primitives/structural-primitives').then(
+        (m) => m.StructuralPrimitives
+      ),
+  },
+  {
     path: 'foundation/colors',
     loadComponent: () =>
       import('./foundation/colors/colors').then((m) => m.Colors),
