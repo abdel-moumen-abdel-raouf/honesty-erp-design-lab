@@ -26,6 +26,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     const nav = compiled.querySelector('#lab-nav');
     expect(nav).toBeTruthy();
 
+    const overviewLink = compiled.querySelector('#nav-link-overview');
     const colorsLink = compiled.querySelector('#nav-link-colors');
     const themesLink = compiled.querySelector('#nav-link-themes');
     const statusHuesLink = compiled.querySelector('#nav-link-status-hues');
@@ -36,6 +37,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     const spacingLink = compiled.querySelector('#nav-link-spacing');
     const bordersRadiusLink = compiled.querySelector('#nav-link-borders-radius');
 
+    expect(overviewLink).toBeTruthy();
     expect(colorsLink).toBeTruthy();
     expect(themesLink).toBeTruthy();
     expect(statusHuesLink).toBeTruthy();
@@ -46,6 +48,8 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(spacingLink).toBeTruthy();
     expect(bordersRadiusLink).toBeTruthy();
 
+    expect(overviewLink?.textContent?.trim()).toBe('نظرة عامة');
+    expect(nav?.querySelector('a')).toBe(overviewLink);
     expect(colorsLink?.textContent?.trim()).toBe('الألوان المرجعية');
     expect(themesLink?.textContent?.trim()).toBe('السمات الفاتحة والداكنة');
     expect(statusHuesLink?.textContent?.trim()).toBe('صبغات الحالات');
@@ -67,6 +71,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
       return routerLink.href;
     });
 
+    expect(linkPaths).toContain('/foundation/overview');
     expect(linkPaths).toContain('/foundation/colors');
     expect(linkPaths).toContain('/foundation/themes');
     expect(linkPaths).toContain('/foundation/colors/status-hues');
@@ -76,6 +81,32 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(linkPaths).toContain('/foundation/preferences');
     expect(linkPaths).toContain('/foundation/spacing');
     expect(linkPaths).toContain('/foundation/borders-radius');
+  });
+
+  it('should define the Overview route, preserve existing routes, and redirect root to Overview', () => {
+    expect(routes.map((route) => route.path)).toEqual([
+      'foundation/overview',
+      'foundation/colors',
+      'foundation/colors/status-hues',
+      'foundation/themes',
+      'foundation/feedback-colors',
+      'foundation/typography',
+      'foundation/charts',
+      'foundation/preferences',
+      'foundation/spacing',
+      'foundation/borders-radius',
+      'foundation/elevation',
+      'foundation/motion',
+      'foundation/density',
+      'foundation/layout-grid',
+      'foundation/layers',
+      '',
+    ]);
+    expect(routes.find((route) => route.path === 'foundation/overview')).toBeDefined();
+    expect(routes.find((route) => route.path === '')).toMatchObject({
+      redirectTo: 'foundation/overview',
+      pathMatch: 'full',
+    });
   });
 
   it('should render the full-page screenshot button', () => {

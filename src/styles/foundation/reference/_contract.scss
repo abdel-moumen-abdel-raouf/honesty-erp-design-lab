@@ -7,28 +7,29 @@
 // Naming Syntax:
 // $honesty-ref-<category>-<name>
 //
-// Categories:
-// - color       : $honesty-ref-color-<palette>-<step>
-// - space       : $honesty-ref-space-<step>
-// - radius      : $honesty-ref-radius-<step>
-// - border      : $honesty-ref-border-<step>
-// - elevation   : $honesty-ref-elevation-<step>
-// - motion      : $honesty-ref-duration-<step>, $honesty-ref-easing-<step>
-// - z-index     : $honesty-ref-z-index-<step>
-// - breakpoint  : $honesty-ref-breakpoint-<step>
-// - chart       : $honesty-ref-chart-<series>-<step>
-// - typography  : $honesty-ref-font-size-<step>, $honesty-ref-line-height-<step>, etc.
+// Current Naming Shapes:
+// - Colors      : $honesty-ref-color-<palette>-<step>
+// - Typography  : $honesty-ref-font-family-*
+//                 $honesty-ref-font-size-*
+//                 $honesty-ref-font-weight-*
+//                 $honesty-ref-line-height-*
+// - Spacing     : $honesty-ref-space-*
+// - Radius      : $honesty-ref-radius-*
+// - Borders     : $honesty-ref-border-width-*
+//                 $honesty-ref-border-style-*
+// - Elevation   : $honesty-ref-elevation-shadow-*
+// - Motion      : $honesty-ref-motion-duration-*
+//                 $honesty-ref-motion-easing-*
+// - Z-index     : $honesty-ref-z-index-*
+// - Breakpoints : $honesty-ref-breakpoints-viewport
+//                 $honesty-ref-breakpoints-container
 //
 // Shape Documentation:
-// Reference maps define raw scales without contextual semantics.
+// Reference tokens define raw, context-free primitives without contextual
+// semantics.
+//
+// Reference Charts:
+// Candidate V1 introduces no raw Reference Chart values. The Reference Charts
+// domain remains reserved for genuinely visualization-specific primitives if
+// concrete requirements appear.
 // =============================================================================
-
-// Empty shape contract maps (populated during design token definition phases)
-$reference-colors-contract: () !default;
-$reference-spacing-contract: () !default;
-$reference-typography-contract: () !default;
-$reference-radius-contract: () !default;
-$reference-elevation-contract: () !default;
-$reference-motion-contract: () !default;
-$reference-z-index-contract: () !default;
-$reference-breakpoints-contract: () !default;

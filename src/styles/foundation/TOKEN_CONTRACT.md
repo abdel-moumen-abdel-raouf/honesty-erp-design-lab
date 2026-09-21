@@ -31,10 +31,16 @@ The Honesty ERP Design System adopts an intentional **Hybrid Representation**:
 | Layer | Implementation Target | Emission Behavior | Primary Responsibility |
 | :--- | :--- | :--- | :--- |
 | **Reference Tokens** | Sass variables / maps (`$` prefix) | **Compile-Time Only** (Does NOT emit CSS custom properties by default) | Context-free design primitives, mathematical scales, base color palettes. Tree-shaken and compiled out of client runtime bundles unless consumed by a higher layer. |
-| **Semantic Tokens** | CSS Custom Properties (`--honesty-` prefix) | **Runtime Emission** via Theme definitions | Dynamic runtime theming (light, dark, system modes), responsive adjustments, and global intent mapping. |
+| **Semantic Tokens** | CSS Custom Properties (`--honesty-` prefix) | **Runtime Emission** from Semantic modules or Light/Dark Theme definitions, according to ownership | Runtime functional intent, including theme-independent contracts and theme-sensitive mappings. |
 | **Component Tokens** | CSS Custom Properties (`--honesty-<component>-` prefix) | **Runtime Emission** at component host or base scope | Explicit component styling contracts. Enables local variations and predictable component-level theming without leaking styles. |
-| **Themes** | CSS Selectors (e.g., `[data-theme="..."]`) | Dynamic runtime declaration blocks | Resolves all theme-sensitive Semantic Tokens for runtime theme switching (light, dark, system). Does not declare raw palette scales or layout rules. |
+| **Themes** | CSS Selectors (`[data-theme='light']`, `[data-theme='dark']`) | Dynamic runtime declaration blocks | Resolves theme-sensitive Semantic Tokens after application preference resolution. Does not declare raw palette scales or layout rules. |
 | **Density** | CSS Selectors (e.g., `[data-density="..."]`) | Dynamic runtime property overrides | Modulates density-sensitive Semantic/Component properties. Never redefines global raw reference scales. |
+
+Theme-independent Semantic tokens may be emitted from Semantic modules in `:root`.
+Current examples are Typography, Spacing, Radius, Border geometry, Motion, Layout,
+and Layers. Theme-sensitive Semantic tokens are resolved inside the Light/Dark
+theme selectors. Current examples are Surface/Text/Action/Feedback colors,
+Border colors, Elevation, and Charts.
 
 ---
 
@@ -51,12 +57,15 @@ Names must describe **purpose and function**, never physical appearance or liter
   - `$honesty-ref-space-<step>`
   - `$honesty-ref-radius-<step>`
   - `$honesty-ref-font-size-<step>`
-  - `$honesty-ref-duration-<step>`
+  - `$honesty-ref-motion-duration-<step>`
+  - `$honesty-ref-motion-easing-<step>`
+  - `$honesty-ref-breakpoints-viewport`
+  - `$honesty-ref-breakpoints-container`
 - **Rule:** Reference names are context-free. They describe position on a scale, not where or why they are used.
 
 ### B. Semantic Tokens (Runtime CSS Custom Properties)
 - **Syntax:** `--honesty-<semantic-category>-<purpose>`
-- **Category:** `color-surface`, `color-text`, `color-action`, `color-feedback`, `type`, `space`, `radius`, `border`, `shadow`, `motion`, `space-layout`, `layer`, `chart`.
+- **Category:** `color-surface`, `color-text`, `color-action`, `color-feedback`, `type`, `space`, `radius`, `border`, `elevation`, `motion`, `space-layout`, `layer`, `chart`.
 - **Purpose:** Functional intent and state (e.g., `canvas`, `panel`, `primary`, `muted`, `hover`, `success`, `error`).
 - **Grammar Examples (Shape Only):**
   - `--honesty-color-surface-<role>`
@@ -67,7 +76,7 @@ Names must describe **purpose and function**, never physical appearance or liter
   - `--honesty-space-<purpose>`
   - `--honesty-radius-<role>`
   - `--honesty-border-<role>`
-  - `--honesty-shadow-<elevation-level>`
+  - `--honesty-elevation-<role>`
   - `--honesty-motion-<role>`
   - `--honesty-space-layout-<purpose>`
   - `--honesty-layer-<role>`
@@ -131,11 +140,19 @@ Feature Code    ──X──> Component Tokens (override bypass)
 ## 6. Theme Responsibility
 
 - **Core Rule:** Themes resolve all theme-sensitive Semantic Tokens.
-- Approved theme modes are:
+- Theme preference supports:
   - `light`
   - `dark`
-  - `system` (resolves active visual mode dynamically from the operating-system/browser color-scheme preference).
-- Themes map Reference tokens to Semantic CSS custom properties based on the active mode (e.g., `[data-theme="light"]`, `[data-theme="dark"]`).
+  - `system`
+- CSS visual theme selectors are only:
+  - `[data-theme='light']`
+  - `[data-theme='dark']`
+- `system` is a preference/application resolution mode, not a CSS theme selector.
+  It resolves the browser `prefers-color-scheme` result to either `light` or
+  `dark` before applying a visual theme context. The `system` preference has
+  no CSS theme selector.
+- Themes map Reference tokens to Semantic CSS custom properties based on the
+  resolved Light or Dark visual mode.
 - When applicable, theme-sensitive resolution may include:
   - surfaces
   - content/text colors
@@ -318,10 +335,15 @@ Each typography role defines three standard CSS custom properties:
 | **Section** | `--honesty-space-section-gap-large` | `$honesty-ref-space-48` | `3rem` (48px) | Prominent separation gap between major content sections |
 
 ### F. Architectural Domain & Density Boundaries
-- **Layout Spacing Deferred:** Layout and grid spacing tokens (`--honesty-space-layout-*`) and the primitive layout contract (`XXS`, `XS`, `SM`, `MD`, `LG`, `XL`, `XXL`) belong to the separate Semantic Layout/Grid domain (`semantic/layout/`) and are deliberately deferred to prevent pre-empting layout decisions.
+- **Semantic Layout Spacing Implemented:** Layout spacing and responsive gutters
+  are implemented in `semantic/layout/` using the `XXS`, `XS`, `SM`,
+  `MD`, `LG`, `XL`, and `XXL` vocabulary.
 - **Component Padding & Gaps Deferred:** Generic inset and stack tokens must not be treated as component-level padding or gaps (e.g., `card-padding`, `button-padding`, `modal-padding`). Component-specific contracts belong exclusively to future Component Tokens (Layer 3).
-- **Density Overrides Deferred:** Spacing variables are not placed under `[data-density]` in this candidate. Density modulation (compact, comfortable, spacious) will be implemented as targeted overrides in later density phases.
-- **No Visual Application:** Candidate V1 spacing tokens are not applied to global elements (`html`, `body`), existing review pages, specimens, or shell layouts in this phase.
+- **Density Overrides Implemented:** Candidate V1 Density overrides selected
+  Stack and Inset Semantic spacing tokens. Inline and Section spacing remain
+  density-invariant.
+- **Current Application Boundary:** Spacing is not globally applied to product UI
+  yet. Docs-only Foundation specimens consume it as review evidence.
 
 ---
 
@@ -473,7 +495,9 @@ Each typography role defines three standard CSS custom properties:
 - **No Multi-Shadow Stacks:** Comma-separated ambient + key shadow combinations are prohibited; exactly one controlled shadow per role is used.
 - **No Colored / Brand Shadows:** Shadows remain strictly neutral; no primary, indigo, cyan, or feedback colors.
 - **No Z-Index Coupling:** Visual elevation and stacking order (`z-index` / `layers`) are decoupled concerns and must not be conflated.
-- **No Visual Application:** Elevation tokens are not applied to existing pages, specimen chrome, or components in this phase.
+- **Current Application Boundary:** No production or global Elevation application
+  exists yet. A docs-only Foundation Elevation specimen exists. Production
+  component mapping remains deferred.
 
 ---
 
@@ -573,7 +597,10 @@ Modes such as `dense`, `cozy`, `normal`, `auto`, or `custom` are strictly prohib
 - **Typography Remains Stable:** All `--honesty-type-*` tokens (font-size, line-height, font-weight, font-family) remain completely independent of density. Compact does not reduce typography size; Spacious does not increase typography size.
 - **No Control or Row Heights Yet:** Generic height tokens (such as `--honesty-density-control-height`, `--honesty-density-row-height`, etc.) are deferred to future Component Token contracts.
 - **No Component Tokens in Density:** No component-specific overrides (`--honesty-button-*`, `--honesty-table-*`, etc.) exist in the Foundation Density layer.
-- **No JavaScript/Preference Logic:** No Angular services, stores, or state logic are implemented in this phase.
+- **Declarative Density CSS:** The CSS Density layer contains no JavaScript or
+  state logic. A separate isolated Preferences Foundation exists and may select
+  a `DensityMode` for local review. Density CSS tokens and selectors remain
+  declarative; Density does not own Preferences logic.
 
 ---
 
@@ -664,7 +691,10 @@ Both viewport and container queries implement an identical mathematical interval
 - **Component Primitives Deferred:** Layout spacing aliases establish the sizing vocabulary for future structural primitives (`ErpStack`, `ErpInline`, `ErpGrid`). No production components are created in this phase.
 - **Container Max-Width Deferred:** No global container max-width tokens (`--honesty-layout-container-max-width`, etc.) are established in Candidate V1. In a data-heavy, desktop-first ERP, max-width is deferred to future structural primitive review.
 - **Grid Column Count Deferred:** No production grid column tokens (`--honesty-grid-columns`, etc.) are defined in this phase. Grid column definitions belong to the future `ErpGrid` primitive.
-- **Container Queries Context:** Container Query API (`container-up`, etc.) is fully operational in the Foundation infrastructure and will be deliberately exercised in isolated docs-only contexts during the Layout visual specimen phase.
+- **Container Queries Context:** The Container Query API has been exercised in
+  the docs-only Layout/Grid specimen using `container-down`,
+  `container-between`, and `container-up`. Production container and grid
+  component contracts remain deferred.
 
 ### B. Approved Layout Size Vocabulary
 The approved sizing scale for Layout spacing primitives consists strictly of 7 symbolic keys:
@@ -795,7 +825,96 @@ Structural Chart roles do not replace the general Text or Border Semantic contra
 - No rgba Chart token, opacity scale, gradient, hatching, pattern, texture, SVG pattern asset, or Chart-specific binary asset is introduced.
 - Future Chart containers initially consume normal Surface semantics unless concrete visual evidence establishes a dedicated Chart contract.
 - Legend, tooltip, crosshair, and marker styling belongs to future Chart Component token contracts.
-- No chart visual specimen, Chart library, or production Chart component is introduced in this phase.
+- A docs-only Chart Color specimen exists.
+- No Chart library, production Chart component, or Chart Component Tokens exist.
+- No Chart background, tooltip, legend, opacity, pattern, or gradient contract
+  exists.
+
+---
+
+## 24. UI Preferences Technical Contract (Candidate V1)
+
+### A. StoreType and Persistence Eligibility
+
+The `StoreType` enum contains exactly:
+
+- `LOCAL`
+- `BACKEND`
+- `LOCAL_AND_BACKEND`
+- `NONE`
+
+`LOCAL` and `LOCAL_AND_BACKEND` are eligible for local persistence.
+`BACKEND` and `NONE` are not written locally. Candidate V1 has no backend
+persistence implementation.
+
+### B. Current Settings and Categories
+
+Candidate V1 contains exactly 11 settings, and all 11 currently use
+`StoreType.LOCAL`:
+
+- `theme`
+- `density`
+- `formLabelPlacement`
+- `formAppearance`
+- `digits`
+- `identifierDigits`
+- `numberSeparators`
+- `moneyDisplay`
+- `dateFormat`
+- `dateViewStyle`
+- `timeFormat`
+
+The current categories are:
+
+- `appearance`
+- `forms`
+- `numbers`
+- `money`
+- `dateTime`
+
+### C. Exact Candidate V1 Defaults
+
+- `theme = system`
+- `density = comfortable`
+- `formLabelPlacement = top`
+- `formAppearance = outlined`
+- `digits.base = latin`
+- `digits.overrides = {}`
+- `identifierDigits = latin`
+- `numberSeparators.base = comma-dot`
+- `numberSeparators.overrides = {}`
+- `moneyDisplay = code-after`
+- `dateFormat.base = DD/MM/YYYY`
+- `dateFormat.overrides.export = YYYY-MM-DD`
+- `dateViewStyle = numeric`
+- `timeFormat = 24h`
+
+### D. Typed Runtime Ownership
+
+- Setting key/value identity is enforced at compile time.
+- `UiSetting` owns cloned, recursively immutable object values.
+- A setting contains no persistence I/O.
+- A typed central store coordinates setting state.
+- Contextual settings use a `base` value plus `overrides`.
+- Identifier Digits is independent from contextual digit settings.
+
+### E. Local Persistence Contract
+
+- Local persistence uses
+  `honesty-erp:ui-settings:<tenantId>:<companyId>:<userId>`.
+- A malformed, unknown-key, missing-key, or invalid-value local document resets
+  the WHOLE locally persisted document to defaults.
+- Candidate V1 does not partially salvage a corrupt local document.
+- Candidate V1 has no version or migration envelope.
+
+### F. Application and Formatting Boundaries
+
+- Timezone is browser/system read-only and is not user selectable.
+- Date handling is Gregorian only.
+- The `system` theme preference resolves browser `prefers-color-scheme` to
+  an actual `light` or `dark` visual theme.
+- Candidate V1 Preferences review is isolated to the docs specimen.
+- No global App-shell application exists yet.
 
 
 

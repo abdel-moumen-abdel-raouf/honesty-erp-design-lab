@@ -7,46 +7,38 @@
 // Naming Syntax:
 // --honesty-<semantic-category>-<purpose>
 //
-// Categories & Purposes (Structured by Semantic Domain):
-// 1. Colors Domain (colors/):
-//    - surfaces/  : --honesty-color-surface-<role> (canvas, panel, card, overlay)
-//    - content/   : --honesty-color-text-<role> (primary, secondary, muted, inverse)
-//    - actions/   : --honesty-color-action-<variant>-<state>
-//    - feedback/  : --honesty-color-feedback-<intent>-<role> (success, warning, danger, info)
-// 2. Typography Domain (typography/):
-//    - type       : --honesty-type-<role>-<attribute>
-// 3. Spacing Domain (spacing/):
-//    - space      : --honesty-space-<purpose>
-// 4. Radius Domain (radius/):
-//    - radius     : --honesty-radius-<role>
-// 5. Borders Domain (borders/):
-//    - border     : --honesty-border-<role>
-// 6. Elevation Domain (elevation/):
-//    - shadow     : --honesty-shadow-<level>
-// 7. Motion Domain (motion/):
-//    - motion     : --honesty-motion-<role>
-// 8. Layout Domain (layout/):
-//    - layout     : --honesty-space-layout-<purpose>
-// 9. Layers Domain (layers/):
-//    - layer      : --honesty-layer-<role> (stacking context, z-index roles)
-// 10. Charts Domain (charts/):
-//    - chart      : --honesty-chart-<role>
+// Current Runtime Domains:
+// - Surfaces:
+//   --honesty-color-surface-canvas
+//   --honesty-color-surface-default
+//   --honesty-color-surface-elevated
+//   --honesty-color-surface-inverse
+// - Text:
+//   --honesty-color-text-primary
+//   --honesty-color-text-secondary
+//   --honesty-color-text-muted
+//   --honesty-color-text-disabled
+//   --honesty-color-text-inverse
+// - Actions: --honesty-color-action-*
+// - Feedback:
+//   --honesty-color-feedback-<intent>-surface
+//   --honesty-color-feedback-<intent>-surface-strong
+//   --honesty-color-feedback-<intent>-text
+//   --honesty-color-feedback-<intent>-on-strong
+//   --honesty-color-feedback-<intent>-border
+//   --honesty-color-feedback-<intent>-icon
+// - Typography: --honesty-type-*
+// - Spacing: --honesty-space-*
+// - Radius: --honesty-radius-*
+// - Borders: --honesty-border-*
+// - Elevation: --honesty-elevation-*
+// - Motion: --honesty-motion-*
+// - Layout: --honesty-space-layout-*
+// - Layers: --honesty-layer-*
+// - Charts: --honesty-chart-*
 //
 // Shape Documentation:
-// Semantic tokens represent functional intent and are resolved via theme/density blocks.
+// Semantic tokens represent functional intent. Theme-independent domains may be
+// emitted from Semantic modules in :root. Theme-sensitive domains are resolved
+// by the Light and Dark theme selectors.
 // =============================================================================
-
-// Empty shape contract maps (populated during design token definition phases)
-$semantic-colors-surfaces-contract: () !default;
-$semantic-colors-content-contract: () !default;
-$semantic-colors-actions-contract: () !default;
-$semantic-colors-feedback-contract: () !default;
-$semantic-typography-contract: () !default;
-$semantic-spacing-contract: () !default;
-$semantic-radius-contract: () !default;
-$semantic-borders-contract: () !default;
-$semantic-elevation-contract: () !default;
-$semantic-motion-contract: () !default;
-$semantic-layout-contract: () !default;
-$semantic-layers-contract: () !default;
-$semantic-charts-contract: () !default;

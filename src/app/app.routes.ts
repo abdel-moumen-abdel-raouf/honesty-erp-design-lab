@@ -2,6 +2,11 @@ import {Routes} from '@angular/router';
 
 export const routes: Routes = [
   {
+    path: 'foundation/overview',
+    loadComponent: () =>
+      import('./foundation/overview/overview').then((m) => m.Overview),
+  },
+  {
     path: 'foundation/colors',
     loadComponent: () =>
       import('./foundation/colors/colors').then((m) => m.Colors),
@@ -79,7 +84,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'foundation/colors',
+    redirectTo: 'foundation/overview',
     pathMatch: 'full',
   },
 ];

@@ -171,3 +171,53 @@ At the end report only:
 - final git status
 
 Then STOP.
+
+## Execution-Only Agent Mode
+
+The Product Owner and ChatGPT are the sole design, architecture, product, and
+visual-review authority for this repository.
+
+The implementation agent is an execution engine only.
+
+The agent must NOT:
+
+- make design decisions;
+- make architecture decisions;
+- perform subjective visual review;
+- choose between unspecified alternatives;
+- expand scope;
+- anticipate future phases;
+- perform "while here" cleanup;
+- invent missing values;
+- introduce adjacent improvements;
+- decide whether a visual candidate is approved;
+- suggest token changes unless explicitly requested.
+
+The task prompt is authoritative.
+
+If execution requires a decision that is not explicitly specified in the task:
+
+STOP and report the exact missing decision.
+
+Do not infer or choose a default.
+
+Every implementation task may include a:
+
+MANDATORY COMPLETENESS CHECKLIST
+
+The agent must mechanically verify every checklist item before committing.
+
+The checklist is NOT permission to discover or redesign adjacent scope.
+
+Final reports must contain deterministic implementation facts only.
+
+Do not report subjective statements such as:
+
+- looks good
+- visually balanced
+- appropriate
+- better
+- cleaner
+- recommended
+
+Visual review belongs exclusively to the Product Owner and ChatGPT.

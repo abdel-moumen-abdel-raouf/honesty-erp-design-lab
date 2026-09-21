@@ -7,15 +7,11 @@
 // Naming Syntax:
 // --honesty-<component>-<property-or-purpose>
 //
-// Examples of Scoped Contracts (Shape Only):
-// - Button   : --honesty-button-<variant>-<property>
-// - Input    : --honesty-input-<state>-<property>
-// - Table    : --honesty-table-<element>-<property>
-//
 // Shape Documentation:
-// Component tokens are mapped from Semantic tokens and consumed directly by
-// component stylesheet implementations.
+// Component Tokens begin only in production component phases.
+// No current Component Token contract is implemented yet.
+// Component naming remains:
+// --honesty-<component>-<property-or-purpose>
+//
+// A production Component implementation must consume its Component Tokens.
 // =============================================================================
-
-// Empty shape contract map (populated when individual component tokens are defined)
-$component-contracts: () !default;

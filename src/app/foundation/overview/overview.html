@@ -1,0 +1,103 @@
+<main id="foundation-overview-root" class="overview-root" data-theme="light">
+  <header class="overview-header">
+    <p class="overview-kicker">Design Foundation Closure Review</p>
+    <h1>مراجعة إغلاق أساس نظام التصميم</h1>
+    <p class="overview-scope-note">
+      This page is docs-only closure evidence. It does NOT represent production Shell design.
+    </p>
+  </header>
+
+  <section
+    id="foundation-status"
+    class="overview-section status-section"
+    data-overview-section
+  >
+    <h2>حالة الأساس</h2>
+    <p class="overall-status-en">{{ overallStatus.english }}</p>
+    <p class="overall-status-ar">{{ overallStatus.arabic }}</p>
+  </section>
+
+  <section
+    id="foundation-domains"
+    class="overview-section domains-section"
+    data-overview-section
+  >
+    <h2>مجالات الأساس</h2>
+    <div class="domain-grid">
+      @for (domain of domains; track domain.id) {
+        <article
+          class="domain-entry"
+          [attr.data-domain-entry]="domain.id"
+        >
+          <header class="domain-header">
+            <h3>{{ domain.arabicLabel }}</h3>
+            <span class="domain-status">{{ domain.status }}</span>
+          </header>
+          <p>{{ domain.summary }}</p>
+          <dl class="domain-details">
+            <div>
+              <dt>Reopen trigger</dt>
+              <dd>{{ domain.reopenTrigger }}</dd>
+            </div>
+          </dl>
+          @if (domain.note) {
+            <p class="domain-note" data-surfaces-consolidation>{{ domain.note }}</p>
+          }
+          <a
+            class="domain-link"
+            data-domain-link
+            [routerLink]="domain.reviewRoute"
+          >
+            فتح مسار المراجعة — {{ domain.reviewRoute }}
+          </a>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section
+    id="intentional-deferrals"
+    class="overview-section"
+    data-overview-section
+  >
+    <h2>القرارات المؤجلة المقصودة</h2>
+    <p>هذه البنود قرارات تأجيل مقصودة وليست عيوباً.</p>
+    <ul class="plain-list">
+      @for (decision of deferredDecisions; track decision) {
+        <li data-deferred-item>{{ decision }}</li>
+      }
+    </ul>
+  </section>
+
+  <section
+    id="reopen-triggers"
+    class="overview-section"
+    data-overview-section
+  >
+    <h2>محفزات إعادة الفتح</h2>
+    <dl class="trigger-list">
+      @for (domain of domains; track domain.id) {
+        <div data-reopen-trigger>
+          <dt>{{ domain.arabicLabel }}</dt>
+          <dd>{{ domain.reopenTrigger }}</dd>
+        </div>
+      }
+    </dl>
+  </section>
+
+  <section
+    id="closure-gate"
+    class="overview-section"
+    data-overview-section
+  >
+    <h2>بوابة الإغلاق</h2>
+    <ul class="plain-list closure-list">
+      <li>All current Foundation Candidate V1 domains have technical and human visual evidence.</li>
+      <li>Intentional deferrals are documented.</li>
+      <li>No production Component Token or production Component work has started.</li>
+      <li>Final freeze has NOT happened yet.</li>
+      <li>Product Owner explicit approval is required before entering production primitives/components.</li>
+    </ul>
+    <p class="read-only-note">Read-only closure evidence; no approval action is provided here.</p>
+  </section>
+</main>
