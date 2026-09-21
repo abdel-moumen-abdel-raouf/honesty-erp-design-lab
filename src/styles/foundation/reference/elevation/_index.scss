@@ -1,7 +1,10 @@
 // =============================================================================
-// Reference Tokens: Elevation
+// Reference Tokens: Elevation (Candidate V1)
 // =============================================================================
 // Responsibility:
-// Raw physical box-shadow definitions and blur/spread scales. Context-free.
+// Raw physical box-shadow definitions, blur/spread geometry, and alpha scales. Context-free.
 // Never depends on semantic, components, or themes.
 // =============================================================================
+
+@forward 'geometry';
+@forward 'shadow';

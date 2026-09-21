@@ -1,0 +1,13 @@
+// =============================================================================
+// Reference Tokens: Elevation Shadow Geometry (Candidate V1)
+// =============================================================================
+// Responsibility:
+// Raw physical box-shadow geometry offsets, blur, and spread. Context-free.
+// Does NOT emit CSS custom properties.
+// =============================================================================
+
+$honesty-ref-elevation-shadow-none: none;
+
+$honesty-ref-elevation-shadow-geometry-1: 0 1px 2px 0;
+
+$honesty-ref-elevation-shadow-geometry-2: 0 8px 24px 0;

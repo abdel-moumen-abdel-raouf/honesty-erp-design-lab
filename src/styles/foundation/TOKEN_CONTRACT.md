@@ -421,3 +421,57 @@ Each typography role defines three standard CSS custom properties:
 - **No Component-Specific Tokens:** Component tokens such as `--honesty-button-radius`, `--honesty-input-radius`, `--honesty-card-radius`, `--honesty-modal-radius`, or `--honesty-badge-radius` are deferred to Layer 3 (Component Tokens).
 - **No Focus-Ring Geometry:** Focus-ring width, offset, and outline geometry are deferred pending focus behavior specification. The existing theme-sensitive focus ring color token (`--honesty-color-action-focus-ring`) remains untouched.
 - **No Global Application:** Borders and radius tokens are not applied to `html`, `body`, or existing UI views in this phase.
+
+---
+
+## 17. Elevation Technical Contract (Candidate V1)
+
+### A. Design Philosophy: Genuine Physical Elevation Only
+- Honesty ERP uses shadows **strictly for genuine elevation / floating separation**.
+- Ordinary content grouping, cards, panels, and structural layouts must primarily use **surfaces, borders, and spacing**—never shadows.
+- **No Default Card Shadows:** Enterprise data displays require clean boundaries; gratuitous shadows add visual noise and decrease scannability.
+
+### B. Theme-Aware Resolution Principle
+- A shadow opacity that works effectively on the Light theme is insufficient on the graphite Dark theme.
+- Therefore, Elevation tokens are **theme-sensitive**:
+  - The **Reference layer** owns raw physical geometry offsets, blur, spread, and raw color/alpha transparency primitives.
+  - The **Light and Dark themes** resolve the Semantic elevation tokens into runtime CSS custom properties.
+  - Universal shadow values are never emitted in `:root` for raised or overlay states.
+
+### C. Reference Elevation Primitives (Compile-Time Sass Primitives)
+- **Geometry Primitives** (`src/styles/foundation/reference/elevation/_geometry.scss`):
+  - `$honesty-ref-elevation-shadow-none`: `none`
+  - `$honesty-ref-elevation-shadow-geometry-1`: `0 1px 2px 0` (physical geometry level 1)
+  - `$honesty-ref-elevation-shadow-geometry-2`: `0 8px 24px 0` (physical geometry level 2)
+  - Reference geometry names are strictly context-free (`none`, `geometry-1`, `geometry-2`); they must never be named `raised`, `overlay`, `card`, or `modal`.
+- **Shadow Color & Alpha Primitives** (`src/styles/foundation/reference/elevation/_shadow.scss`):
+  - `$honesty-ref-elevation-shadow-color-black`: `#000000` (raw black primitive reserved strictly for physical dark-theme shadow rendering; does not introduce black as a UI surface color)
+  - `$honesty-ref-elevation-shadow-alpha-08`: `0.08`
+  - `$honesty-ref-elevation-shadow-alpha-14`: `0.14`
+  - `$honesty-ref-elevation-shadow-alpha-28`: `0.28`
+  - `$honesty-ref-elevation-shadow-alpha-40`: `0.40`
+  - The Light theme does not duplicate Neutral 950 inside Elevation; it consumes `$honesty-ref-color-neutral-950` from Reference Colors.
+
+### D. Semantic Elevation Roles (Runtime CSS Custom Properties)
+- Declared in `src/styles/foundation/semantic/elevation/_index.scss` and resolved inside theme blocks:
+  - `--honesty-elevation-none`: Flat / flush; no elevation shadow. Valid for the majority of ordinary content regions.
+  - `--honesty-elevation-raised`: Small physical separation from the current surface. Not a default card shadow.
+  - `--honesty-elevation-overlay`: Clear floating-layer separation above normal content. Establishes generic capability; not a component-specific token.
+
+### E. Theme Resolution Mapping
+| Semantic Token | Theme | Resolution Formula | Computed Direction |
+| :--- | :--- | :--- | :--- |
+| `--honesty-elevation-none` | Light & Dark | `$honesty-ref-elevation-shadow-none` | `none` |
+| `--honesty-elevation-raised` | Light | `geometry-1` + `$honesty-ref-color-neutral-950` + `alpha-08` | `0 1px 2px 0 rgba(16, 17, 21, 0.08)` |
+| `--honesty-elevation-overlay` | Light | `geometry-2` + `$honesty-ref-color-neutral-950` + `alpha-14` | `0 8px 24px 0 rgba(16, 17, 21, 0.14)` |
+| `--honesty-elevation-raised` | Dark | `geometry-1` + `black` + `alpha-28` | `0 1px 2px 0 rgba(0, 0, 0, 0.28)` |
+| `--honesty-elevation-overlay` | Dark | `geometry-2` + `black` + `alpha-40` | `0 8px 24px 0 rgba(0, 0, 0, 0.40)` |
+
+### F. Scope Boundaries & Prohibitions (Candidate V1)
+- **No Component-Specific Elevation Roles:** Tokens such as `--honesty-elevation-dropdown`, `--honesty-elevation-modal`, `--honesty-elevation-dialog`, or `--honesty-elevation-tooltip` are deferred to future Component contracts.
+- **No Additional Elevation Levels:** No level 3 geometry or `--honesty-elevation-high`. Candidate V1 deliberately provides only `none`, `raised`, and `overlay`.
+- **No Multi-Shadow Stacks:** Comma-separated ambient + key shadow combinations are prohibited; exactly one controlled shadow per role is used.
+- **No Colored / Brand Shadows:** Shadows remain strictly neutral; no primary, indigo, cyan, or feedback colors.
+- **No Z-Index Coupling:** Visual elevation and stacking order (`z-index` / `layers`) are decoupled concerns and must not be conflated.
+- **No Visual Application:** Elevation tokens are not applied to existing pages, specimen chrome, or components in this phase.
+

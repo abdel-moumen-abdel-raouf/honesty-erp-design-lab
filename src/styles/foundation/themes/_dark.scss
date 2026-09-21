@@ -8,6 +8,7 @@
 // =============================================================================
 
 @use '../reference/colors' as ref;
+@use '../reference/elevation' as ref-elevation;
 
 [data-theme='dark'] {
   // Surfaces
@@ -71,4 +72,9 @@
   --honesty-color-feedback-info-on-strong: #{ref.$honesty-ref-color-white};
   --honesty-color-feedback-info-border: #{ref.$honesty-ref-color-cyan-800};
   --honesty-color-feedback-info-icon: #{ref.$honesty-ref-color-cyan-400};
+
+  // Elevation
+  --honesty-elevation-none: #{ref-elevation.$honesty-ref-elevation-shadow-none};
+  --honesty-elevation-raised: #{ref-elevation.$honesty-ref-elevation-shadow-geometry-1} #{rgba(ref-elevation.$honesty-ref-elevation-shadow-color-black, ref-elevation.$honesty-ref-elevation-shadow-alpha-28)};
+  --honesty-elevation-overlay: #{ref-elevation.$honesty-ref-elevation-shadow-geometry-2} #{rgba(ref-elevation.$honesty-ref-elevation-shadow-color-black, ref-elevation.$honesty-ref-elevation-shadow-alpha-40)};
 }

@@ -1,7 +1,23 @@
 // =============================================================================
-// Semantic Layer: Elevation
+// Semantic Layer: Elevation (Candidate V1)
 // =============================================================================
 // Responsibility:
-// Future semantic elevation and shadow roles (card, dropdown, modal, flyout).
-// Depends on reference/elevation tokens. Must not depend on component tokens.
+// Documents the Candidate V1 Semantic elevation contract.
+// Semantic elevation represents genuine physical/floating separation above surfaces.
+//
+// Semantic Runtime Variables:
+// --honesty-elevation-none    : No elevation shadow (flat / flush)
+// --honesty-elevation-raised  : Small physical separation from current surface
+// --honesty-elevation-overlay : Floating layer separation above normal content
+//
+// Theme-Sensitivity Rule:
+// A shadow opacity tuned for Light theme is insufficient on graphite Dark theme.
+// Therefore, theme-sensitive Raised and Overlay values are NOT emitted here.
+// The runtime CSS custom properties are resolved by theme files:
+// - src/styles/foundation/themes/_light.scss
+// - src/styles/foundation/themes/_dark.scss
+//
+// Dependency Rule:
+// Depends strictly on Reference Elevation primitives.
+// Must not define component-specific roles (e.g. card, modal, dropdown).
 // =============================================================================
