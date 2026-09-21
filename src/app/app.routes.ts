@@ -36,6 +36,11 @@ export const routes: Routes = [
       import('./foundation/charts/charts').then((m) => m.Charts),
   },
   {
+    path: 'foundation/preferences',
+    loadComponent: () =>
+      import('./foundation/preferences/preferences').then((m) => m.Preferences),
+  },
+  {
     path: 'foundation/spacing',
     loadComponent: () =>
       import('./foundation/spacing/spacing').then((m) => m.Spacing),

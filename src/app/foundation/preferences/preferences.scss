@@ -1,0 +1,381 @@
+// =============================================================================
+// Docs-Only Interactive Review: Typed UI Preferences Candidate V1
+// =============================================================================
+
+@use '../../../styles/foundation/queries' as query;
+
+.preferences-specimen-root {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-block: var(--honesty-space-section-gap-large);
+  padding-inline: var(--honesty-space-layout-page-gutter-inline);
+  background: var(--honesty-color-surface-canvas);
+  color: var(--honesty-color-text-primary);
+  font-family: var(--honesty-type-family-ui);
+}
+
+.specimen-header {
+  display: grid;
+  gap: var(--honesty-space-stack-tight);
+  margin-block-end: var(--honesty-space-section-gap);
+  min-width: 0;
+
+  h1,
+  p {
+    max-width: 100%;
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+    line-height: 1.35;
+  }
+
+  p {
+    max-width: 84ch;
+    color: var(--honesty-color-text-secondary);
+    line-height: 1.7;
+  }
+}
+
+.specimen-badge {
+  justify-self: start;
+  padding-block: 0.25rem;
+  padding-inline: 0.625rem;
+  border: 1px solid var(--honesty-border-default);
+  border-radius: 3px;
+  color: var(--honesty-color-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.preferences-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--honesty-space-layout-gap-lg);
+  min-width: 0;
+  max-width: 100%;
+
+  @include query.viewport-down(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.preference-section {
+  display: grid;
+  align-content: start;
+  gap: var(--honesty-space-stack-loose);
+  min-width: 0;
+  max-width: 100%;
+  padding: var(--honesty-space-inset-loose);
+  border: 1px solid var(--honesty-border-default);
+  border-radius: 6px;
+  background: var(--honesty-color-surface-default);
+}
+
+#preferences-numbers,
+#preferences-preview,
+#preferences-storage-reset {
+  grid-column: 1 / -1;
+}
+
+.section-heading {
+  display: grid;
+  gap: var(--honesty-space-stack-tight);
+  min-width: 0;
+
+  h2,
+  p {
+    max-width: 100%;
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  h2 {
+    font-size: 1.125rem;
+  }
+
+  p {
+    color: var(--honesty-color-text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
+}
+
+.settings-group {
+  display: grid;
+  gap: var(--honesty-space-stack-default);
+  min-width: 0;
+  max-width: 100%;
+
+  h3 {
+    margin: 0;
+    color: var(--honesty-color-text-secondary);
+    font-family: var(--honesty-type-family-latin);
+    font-size: 0.875rem;
+  }
+}
+
+.control-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--honesty-space-layout-gap-md);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.contextual-controls {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  @include query.viewport-down(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.control-field,
+.readonly-field {
+  display: grid;
+  gap: var(--honesty-space-stack-tight);
+  min-width: 0;
+  max-width: 100%;
+
+  > span {
+    color: var(--honesty-color-text-secondary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+  }
+}
+
+.control-field select,
+.readonly-field bdi {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  padding-block: 0.6rem;
+  padding-inline: 0.75rem;
+  border: 1px solid var(--honesty-border-default);
+  border-radius: 4px;
+  background: var(--honesty-color-surface-default);
+  color: var(--honesty-color-text-primary);
+  font: inherit;
+}
+
+.readonly-field bdi {
+  overflow-wrap: anywhere;
+}
+
+.resolved-contract-values {
+  display: grid;
+  gap: var(--honesty-space-stack-tight);
+  padding: var(--honesty-space-inset-default);
+  border: 1px solid var(--honesty-border-subtle);
+  border-radius: 4px;
+
+  p {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+}
+
+.live-preview {
+  display: grid;
+  gap: var(--honesty-space-stack-loose);
+  min-width: 0;
+  max-width: 100%;
+  padding: var(--honesty-space-inset-loose);
+  border: 1px solid var(--honesty-border-strong);
+  border-radius: 6px;
+  background: var(--honesty-color-surface-canvas);
+  color: var(--honesty-color-text-primary);
+}
+
+.density-evidence {
+  display: grid;
+  gap: var(--honesty-space-stack-default);
+  min-width: 0;
+  padding: var(--honesty-space-inset-default);
+  border: 1px solid var(--honesty-border-default);
+  border-radius: 4px;
+  background: var(--honesty-color-surface-default);
+
+  span {
+    color: var(--honesty-color-text-secondary);
+    overflow-wrap: anywhere;
+  }
+}
+
+.preview-block {
+  display: grid;
+  gap: var(--honesty-space-stack-default);
+  min-width: 0;
+  max-width: 100%;
+  padding: var(--honesty-space-inset-default);
+  border: 1px solid var(--honesty-border-subtle);
+  border-radius: 4px;
+  background: var(--honesty-color-surface-default);
+
+  h3,
+  p,
+  dl,
+  dt,
+  dd {
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  p {
+    overflow-wrap: anywhere;
+  }
+}
+
+.preview-values,
+.bidi-examples {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--honesty-space-layout-gap-sm);
+  min-width: 0;
+  max-width: 100%;
+
+  > div {
+    display: grid;
+    gap: var(--honesty-space-stack-tight);
+    min-width: 0;
+    padding: var(--honesty-space-inset-tight);
+    border: 1px solid var(--honesty-border-subtle);
+    border-radius: 3px;
+  }
+
+  dt {
+    color: var(--honesty-color-text-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  dd,
+  bdi {
+    min-width: 0;
+    max-width: 100%;
+    color: var(--honesty-color-text-primary);
+    font-family: var(--honesty-type-family-latin);
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+}
+
+.bidi-examples {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.storage-key-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--honesty-space-layout-gap-md);
+  align-items: center;
+  min-width: 0;
+
+  > span {
+    color: var(--honesty-color-text-secondary);
+    font-weight: 700;
+  }
+
+  code {
+    min-width: 0;
+    max-width: 100%;
+    padding: var(--honesty-space-inset-tight);
+    border: 1px solid var(--honesty-border-subtle);
+    border-radius: 3px;
+    color: var(--honesty-color-text-primary);
+    font-family: ui-monospace, monospace;
+    overflow-wrap: anywhere;
+  }
+}
+
+.store-type-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--honesty-space-layout-gap-xs);
+  min-width: 0;
+}
+
+.store-type-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--honesty-space-inline-default);
+  min-width: 0;
+  padding: var(--honesty-space-inset-tight);
+  border: 1px solid var(--honesty-border-subtle);
+  border-radius: 3px;
+
+  code {
+    min-width: 0;
+    color: var(--honesty-color-text-secondary);
+    font-family: ui-monospace, monospace;
+    overflow-wrap: anywhere;
+  }
+
+  strong {
+    flex: 0 0 auto;
+    color: var(--honesty-color-text-primary);
+    font-size: 0.75rem;
+  }
+}
+
+.reset-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--honesty-space-inline-default);
+
+  button {
+    min-width: 0;
+    max-width: 100%;
+    padding-block: 0.55rem;
+    padding-inline: 0.8rem;
+    border: 1px solid var(--honesty-border-default);
+    border-radius: 4px;
+    background: var(--honesty-color-surface-default);
+    color: var(--honesty-color-text-primary);
+    font: inherit;
+    cursor: pointer;
+    overflow-wrap: anywhere;
+  }
+
+  .reset-all {
+    border-color: var(--honesty-color-action-primary-bg);
+    background: var(--honesty-color-action-primary-bg);
+    color: var(--honesty-color-action-primary-fg);
+  }
+}
+
+@include query.viewport-down(md) {
+  #preferences-numbers,
+  #preferences-preview,
+  #preferences-storage-reset {
+    grid-column: auto;
+  }
+
+  .preview-values,
+  .store-type-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@include query.viewport-down(xs) {
+  .preference-section,
+  .live-preview {
+    padding: var(--honesty-space-inset-default);
+  }
+
+  .control-grid,
+  .contextual-controls,
+  .preview-values,
+  .bidi-examples,
+  .store-type-list,
+  .storage-key-row {
+    grid-template-columns: 1fr;
+  }
+}

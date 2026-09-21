@@ -32,6 +32,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     const feedbackColorsLink = compiled.querySelector('#nav-link-feedback-colors');
     const typographyLink = compiled.querySelector('#nav-link-typography');
     const chartsLink = compiled.querySelector('#nav-link-charts');
+    const preferencesLink = compiled.querySelector('#nav-link-preferences');
     const spacingLink = compiled.querySelector('#nav-link-spacing');
     const bordersRadiusLink = compiled.querySelector('#nav-link-borders-radius');
 
@@ -41,6 +42,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(feedbackColorsLink).toBeTruthy();
     expect(typographyLink).toBeTruthy();
     expect(chartsLink).toBeTruthy();
+    expect(preferencesLink).toBeTruthy();
     expect(spacingLink).toBeTruthy();
     expect(bordersRadiusLink).toBeTruthy();
 
@@ -50,6 +52,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(feedbackColorsLink?.textContent?.trim()).toBe('ألوان الحالات الدلالية');
     expect(typographyLink?.textContent?.trim()).toBe('الطباعة');
     expect(chartsLink?.textContent?.trim()).toBe('الرسوم البيانية');
+    expect(preferencesLink?.textContent?.trim()).toBe('التفضيلات');
     expect(spacingLink?.textContent?.trim()).toBe('المسافات');
     expect(bordersRadiusLink?.textContent?.trim()).toBe('الحدود والزوايا');
   });
@@ -70,6 +73,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(linkPaths).toContain('/foundation/feedback-colors');
     expect(linkPaths).toContain('/foundation/typography');
     expect(linkPaths).toContain('/foundation/charts');
+    expect(linkPaths).toContain('/foundation/preferences');
     expect(linkPaths).toContain('/foundation/spacing');
     expect(linkPaths).toContain('/foundation/borders-radius');
   });
