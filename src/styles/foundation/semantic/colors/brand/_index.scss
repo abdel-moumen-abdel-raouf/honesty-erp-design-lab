@@ -1,0 +1,30 @@
+// =============================================================================
+// Semantic Colors: Product Brand Contract (Theme-Sensitive)
+// =============================================================================
+// Theme files resolve this contract; this module emits no universal :root values.
+//
+// Tones (product-brand roles only):
+// - primary
+// - secondary
+// - accent
+//
+// Runtime role grammar for every tone:
+// - --honesty-color-brand-<tone>-solid
+// - --honesty-color-brand-<tone>-solid-strong
+// - --honesty-color-brand-<tone>-subtle
+// - --honesty-color-brand-<tone>-content
+// - --honesty-color-brand-<tone>-on-solid
+//
+// Role meanings:
+// - solid: default filled product-brand tone.
+// - solid-strong: stronger filled product-brand tone available for future
+//   Component contracts.
+// - subtle: low-emphasis brand-tinted surface.
+// - content: brand-colored foreground suitable for subtle/light contexts.
+// - on-solid: foreground intended on the solid / solid-strong brand tone.
+//
+// These roles are not feedback/status aliases, Sidebar-specific roles,
+// Topbar-specific roles, or user-selectable brand preferences in Candidate V1.
+// Future production Components must reach these roles through Component Tokens;
+// Components must not embed Reference palette steps or hex values.
+// =============================================================================

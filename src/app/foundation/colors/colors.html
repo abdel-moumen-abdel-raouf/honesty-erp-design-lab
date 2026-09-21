@@ -3,7 +3,7 @@
     <span id="specimen-badge" class="specimen-badge">مراجعة بصرية توثيقية داخلية — مسوّدة مرجعية V2</span>
     <h1 id="specimen-title">فحص التدرجات اللونية المرجعية (Reference Color Palettes)</h1>
     <p id="specimen-subtitle">
-      معاينة تقييمية مباشرة للقيم اللونية المرجعية المقترحة لمجموعة الحياد (Neutral) والمجموعة الأساسية (Primary) للتأكد من انسيابية التدرج الضوئي واتساق الصبغة قبل أي اعتماد رسمي.
+      معاينة تقييمية مباشرة للقيم اللونية المرجعية لمجموعات Neutral وPrimary وSecondary وAccent، مع مراجعة أدوار ألوان الهوية الدلالية في السمتين الفاتحة والداكنة.
     </p>
   </header>
 
@@ -19,7 +19,7 @@
     <div id="neutral-ramp-scroll-wrapper" class="ramp-scroll-wrapper">
       <div id="neutral-ramp-strip" class="ramp-strip" role="region" aria-label="تدرج ألوان الحياد المرجعية">
         @for (step of steps; track step) {
-          <div id="swatch-neutral-{{ step }}" class="swatch-card swatch-neutral-{{ step }}">
+          <div id="swatch-neutral-{{ step }}" class="swatch-card swatch-neutral-{{ step }}" data-reference-swatch>
             <div id="color-neutral-{{ step }}" class="swatch-color" aria-hidden="true"></div>
             <div id="details-neutral-{{ step }}" class="swatch-details">
               <span id="step-label-neutral-{{ step }}" class="swatch-step">{{ step }}</span>
@@ -43,7 +43,7 @@
     <div id="primary-ramp-scroll-wrapper" class="ramp-scroll-wrapper">
       <div id="primary-ramp-strip" class="ramp-strip" role="region" aria-label="تدرج الألوان الأساسية المرجعية">
         @for (step of steps; track step) {
-          <div id="swatch-primary-{{ step }}" class="swatch-card swatch-primary-{{ step }}">
+          <div id="swatch-primary-{{ step }}" class="swatch-card swatch-primary-{{ step }}" data-reference-swatch>
             <div id="color-primary-{{ step }}" class="swatch-color" aria-hidden="true"></div>
             <div id="details-primary-{{ step }}" class="swatch-details">
               <span id="step-label-primary-{{ step }}" class="swatch-step">{{ step }}</span>
@@ -52,6 +52,92 @@
           </div>
         }
       </div>
+    </div>
+  </section>
+
+  <!-- Secondary Ramp Section -->
+  <section id="secondary-ramp-section" class="ramp-section">
+    <div id="secondary-ramp-meta" class="ramp-meta">
+      <h2 id="secondary-ramp-title">المجموعة الثانوية (Secondary Reference Palette) — 11 خطوة (50 → 950)</h2>
+      <p id="secondary-ramp-desc">
+        Slate Blue supporting product-brand palette، منفصلة عن Primary Indigo وعن Cyan المخصص للمعلومات والحالات.
+      </p>
+    </div>
+
+    <div id="secondary-ramp-scroll-wrapper" class="ramp-scroll-wrapper">
+      <div id="secondary-ramp-strip" class="ramp-strip" role="region" aria-label="تدرج الألوان الثانوية المرجعية">
+        @for (step of steps; track step) {
+          <div id="swatch-secondary-{{ step }}" class="swatch-card swatch-secondary-{{ step }}" data-reference-swatch>
+            <div id="color-secondary-{{ step }}" class="swatch-color" aria-hidden="true"></div>
+            <div id="details-secondary-{{ step }}" class="swatch-details">
+              <span id="step-label-secondary-{{ step }}" class="swatch-step">{{ step }}</span>
+              <span id="hex-label-secondary-{{ step }}" class="swatch-hex"></span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Accent Ramp Section -->
+  <section id="accent-ramp-section" class="ramp-section">
+    <div id="accent-ramp-meta" class="ramp-meta">
+      <h2 id="accent-ramp-title">مجموعة الإبراز (Accent Reference Palette) — 11 خطوة (50 → 950)</h2>
+      <p id="accent-ramp-desc">
+        Controlled Plum selective product-brand emphasis palette، منفصلة عن Red Danger وAmber Warning وPrimary Indigo.
+      </p>
+    </div>
+
+    <div id="accent-ramp-scroll-wrapper" class="ramp-scroll-wrapper">
+      <div id="accent-ramp-strip" class="ramp-strip" role="region" aria-label="تدرج ألوان الإبراز المرجعية">
+        @for (step of steps; track step) {
+          <div id="swatch-accent-{{ step }}" class="swatch-card swatch-accent-{{ step }}" data-reference-swatch>
+            <div id="color-accent-{{ step }}" class="swatch-color" aria-hidden="true"></div>
+            <div id="details-accent-{{ step }}" class="swatch-details">
+              <span id="step-label-accent-{{ step }}" class="swatch-step">{{ step }}</span>
+              <span id="hex-label-accent-{{ step }}" class="swatch-hex"></span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Semantic Product Brand Roles -->
+  <section id="semantic-brand-roles" class="ramp-section">
+    <div class="ramp-meta">
+      <h2>أدوار ألوان الهوية الدلالية</h2>
+      <p>Semantic Product Brand Roles</p>
+    </div>
+
+    <div class="brand-note" dir="ltr">
+      <p>Primary, Secondary, and Accent are product-brand roles.</p>
+      <p>They do not represent Success, Warning, Danger, or Info.</p>
+      <p>Secondary is not Info. Accent is not Warning/Danger.</p>
+    </div>
+
+    <div class="brand-theme-grid">
+      @for (theme of ['light', 'dark']; track theme) {
+        <article
+          class="brand-theme-context"
+          [attr.data-theme]="theme"
+          [attr.data-brand-context]="theme"
+        >
+          <h3>{{ theme === 'light' ? 'Light' : 'Dark' }}</h3>
+          <div class="brand-tone-groups">
+            @for (tone of ['primary', 'secondary', 'accent']; track tone) {
+              <section class="brand-tone-group brand-tone-{{ tone }}" [attr.data-brand-tone]="tone">
+                <h4>{{ tone === 'primary' ? 'Primary' : tone === 'secondary' ? 'Secondary' : 'Accent' }}</h4>
+                <div class="brand-samples">
+                  <div class="brand-sample brand-sample-solid" data-brand-sample="solid">Solid</div>
+                  <div class="brand-sample brand-sample-solid-strong" data-brand-sample="solid-strong">Solid Strong</div>
+                  <div class="brand-sample brand-sample-subtle" data-brand-sample="subtle-content">Subtle / Content</div>
+                </div>
+              </section>
+            }
+          </div>
+        </article>
+      }
     </div>
   </section>
 </main>

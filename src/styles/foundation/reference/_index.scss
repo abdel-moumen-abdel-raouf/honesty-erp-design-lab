@@ -5,7 +5,8 @@
 // Raw, context-agnostic design values (palettes, absolute scales, primitive values).
 //
 // Token Architecture Hierarchy:
-// Reference Tokens (Layer 1) -> Semantic Tokens (Layer 2) -> Component Tokens (Layer 3)
+// Reference Tokens -> Semantic Tokens -> Theme/Density/Query Resolution
+// -> Component Tokens -> Components
 //
 // Dependency Rule:
 // Reference tokens are the root source of truth and must never depend on any
@@ -18,6 +19,7 @@
 @forward 'spacing';
 @forward 'radius';
 @forward 'borders';
+@forward 'outlines';
 @forward 'elevation';
 @forward 'motion';
 @forward 'z-index';

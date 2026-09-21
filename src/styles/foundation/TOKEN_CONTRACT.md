@@ -2,7 +2,7 @@
 
 ## 1. Architectural Token Hierarchy
 
-The Honesty ERP design token system strictly adheres to a three-tier unidirectional token hierarchy:
+The Honesty ERP design token system strictly adheres to this unidirectional architectural sequence:
 
 ```
 Reference Tokens (Sass Compile-Time Primitives)
@@ -11,15 +11,19 @@ Reference Tokens (Sass Compile-Time Primitives)
 Semantic Tokens (Runtime CSS Custom Properties)
        │
        ▼
+Theme / Density / Query Resolution
+       │
+       ▼
 Component Tokens (Runtime Component-Scoped CSS Custom Property Contracts)
        │
        ▼
 Component Implementations
 ```
 
-- **Reference Tokens (Layer 1):** The raw, context-free source of truth for all primitive values (scales, palettes, steps).
-- **Semantic Tokens (Layer 2):** Purpose-driven tokens that assign functional meaning to reference values (surfaces, content, intent, feedback, states).
-- **Component Tokens (Layer 3):** Scoped component contracts that consume semantic tokens (and in explicit exceptions, reference tokens) to isolate component styling from global naming changes.
+- **Reference Tokens:** The raw, context-free source of truth for all primitive values (scales, palettes, steps).
+- **Semantic Tokens:** Purpose-driven tokens that assign functional meaning to reference values (surfaces, content, intent, feedback, states).
+- **Theme / Density / Query Resolution:** Resolves theme-sensitive runtime values, density modulation, and symbolic responsive queries before Component contracts are authored.
+- **Component Tokens:** Scoped component contracts that consume Semantic contracts after Theme/Density/Query resolution to isolate component styling from global naming changes.
 - **Component Implementations:** Scoped component SCSS/CSS consumes only component tokens, never raw literals or reference values directly.
 
 ---
@@ -37,10 +41,10 @@ The Honesty ERP Design System adopts an intentional **Hybrid Representation**:
 | **Density** | CSS Selectors (e.g., `[data-density="..."]`) | Dynamic runtime property overrides | Modulates density-sensitive Semantic/Component properties. Never redefines global raw reference scales. |
 
 Theme-independent Semantic tokens may be emitted from Semantic modules in `:root`.
-Current examples are Typography, Spacing, Radius, Border geometry, Motion, Layout,
-and Layers. Theme-sensitive Semantic tokens are resolved inside the Light/Dark
-theme selectors. Current examples are Surface/Text/Action/Feedback colors,
-Border colors, Elevation, and Charts.
+Current examples are Typography, Spacing, Radius, Border geometry, Focus geometry,
+Motion, Layout, and Layers. Theme-sensitive Semantic tokens are resolved inside
+the Light/Dark theme selectors. Current examples are Surface/Text/Action/Feedback
+colors, Product Brand colors, Border colors, Elevation, and Charts.
 
 ---
 
@@ -50,12 +54,13 @@ Names must describe **purpose and function**, never physical appearance or liter
 
 ### A. Reference Tokens (Sass Compile-Time)
 - **Syntax:** `$honesty-ref-<category>-<name>`
-- **Category:** `color`, `space`, `radius`, `border`, `elevation`, `motion`, `z-index`, `breakpoint`, `chart`, `font-size`, `line-height`, `font-weight`.
+- **Category:** `color`, `space`, `radius`, `border`, `outline`, `elevation`, `motion`, `z-index`, `breakpoint`, `chart`, `font-size`, `line-height`, `font-weight`.
 - **Name:** Scale step, hue step, or numerical designation (e.g., scale index, weight number).
 - **Grammar Examples (Shape Only):**
   - `$honesty-ref-color-<palette>-<step>`
   - `$honesty-ref-space-<step>`
   - `$honesty-ref-radius-<step>`
+  - `$honesty-ref-outline-<property>-<step>`
   - `$honesty-ref-font-size-<step>`
   - `$honesty-ref-motion-duration-<step>`
   - `$honesty-ref-motion-easing-<step>`
@@ -65,13 +70,15 @@ Names must describe **purpose and function**, never physical appearance or liter
 
 ### B. Semantic Tokens (Runtime CSS Custom Properties)
 - **Syntax:** `--honesty-<semantic-category>-<purpose>`
-- **Category:** `color-surface`, `color-text`, `color-action`, `color-feedback`, `type`, `space`, `radius`, `border`, `elevation`, `motion`, `space-layout`, `layer`, `chart`.
+- **Category:** `color-surface`, `color-text`, `color-action`, `color-feedback`, `color-brand`, `focus`, `type`, `space`, `radius`, `border`, `elevation`, `motion`, `space-layout`, `layer`, `chart`.
 - **Purpose:** Functional intent and state (e.g., `canvas`, `default`, `primary`, `muted`, `hover`, `success`, `danger`).
 - **Grammar Examples (Shape Only):**
   - `--honesty-color-surface-<role>`
   - `--honesty-color-text-<role>`
   - `--honesty-color-action-<variant>-<state>`
   - `--honesty-color-feedback-<intent>-<role>`
+  - `--honesty-color-brand-<tone>-<role>`
+  - `--honesty-focus-ring-<property>`
   - `--honesty-type-<role>-<attribute>`
   - `--honesty-space-<purpose>`
   - `--honesty-radius-<role>`
@@ -101,7 +108,6 @@ Names must describe **purpose and function**, never physical appearance or liter
 ```
 Allowed:
 Reference  ────> Semantic
-Reference  ────> Component Tokens (explicit exceptions only, e.g. fixed zero/hairline constants)
 Semantic   ────> Component Tokens
 Semantic   ────> Theme Bindings
 Semantic   ────> Density Overrides
@@ -109,11 +115,12 @@ Component  ────> Component SCSS Implementation
 ```
 
 1. Semantic tokens may read and consume Reference tokens.
-2. Component tokens may read and consume Semantic tokens.
-3. Themes compose Reference tokens into Semantic CSS custom properties.
-4. Density presets modulate density-sensitive Semantic/Component CSS custom properties.
-5. Component stylesheet implementations consume only their designated Component tokens.
-6. Component and layout stylesheet implementations may consume the public Foundation Query API (which internally resolves Reference breakpoints).
+2. Themes compose Reference tokens into theme-sensitive Semantic CSS custom properties.
+3. Density presets modulate density-sensitive Semantic/Component CSS custom properties.
+4. The Query API resolves symbolic queries from Reference breakpoint data.
+5. Component tokens may read and consume resolved Semantic contracts.
+6. Component stylesheet implementations consume only their designated Component tokens.
+7. Component and layout stylesheet implementations may consume the public Foundation Query API.
 
 ---
 
@@ -158,6 +165,7 @@ Feature Code    ──X──> Component Tokens (override bypass)
   - content/text colors
   - action colors
   - feedback colors
+  - product brand colors
   - border colors
   - elevation/shadow treatment
   - chart theme colors
@@ -199,7 +207,8 @@ Feature Code    ──X──> Component Tokens (override bypass)
 
 ## 9. Arbitrary Literals & Design Exception Governance
 
-- **Zero-Tolerance for Unowned Literals:** Arbitrary CSS values (e.g., `margin: 13px`, `color: #4a5d6e`, `box-shadow: 0 3px 7px rgba(...)`) are prohibited in component or feature code.
+- **Production Components / Pages:** Production Component and Page code must not embed arbitrary design hex colors, design spacing, radius, shadow, or typography literals. They consume Foundation or Component contracts.
+- **Docs-Only Boundary:** Docs-only Design Lab chrome and isolated test-fixture geometry may use clearly local literals when they are not product design values.
 - **Foundation Ownership:** Any genuine requirement for a new design dimension, color ramp, or scale step must be proposed, reviewed, and codified into the Design Foundation (`reference/` or `semantic/`).
 - **Documented Temporary Exceptions:** If an urgent business workflow requires an un-tokenized value, it must be isolated in a clearly marked SCSS comment with rationale, owner, and scheduled tokenization review ticket.
 
@@ -340,7 +349,7 @@ Each typography role defines three standard CSS custom properties:
 - **Semantic Layout Spacing Implemented:** Layout spacing and responsive gutters
   are implemented in `semantic/layout/` using the `XXS`, `XS`, `SM`,
   `MD`, `LG`, `XL`, and `XXL` vocabulary.
-- **Component Padding & Gaps Deferred:** Generic inset and stack tokens must not be treated as component-level padding or gaps (e.g., `card-padding`, `button-padding`, `modal-padding`). Component-specific contracts belong exclusively to future Component Tokens (Layer 3).
+- **Component Padding & Gaps Deferred:** Generic inset and stack tokens must not be treated as component-level padding or gaps (e.g., `card-padding`, `button-padding`, `modal-padding`). Component-specific contracts belong exclusively to future Component Tokens.
 - **Density Overrides Implemented:** Candidate V1 Density overrides selected
   Stack and Inset Semantic spacing tokens. Inline and Section spacing remain
   density-invariant.
@@ -442,8 +451,7 @@ Each typography role defines three standard CSS custom properties:
 
 ### F. Excluded Radius & Geometry Scopes (Candidate V1)
 - **No Pill / Full Radius:** Tokens like `--honesty-radius-pill`, `--honesty-radius-full`, and `--honesty-radius-round` are forbidden in Candidate V1 to prevent unapproved rounded/bubbly aesthetics.
-- **No Component-Specific Tokens:** Component tokens such as `--honesty-button-radius`, `--honesty-input-radius`, `--honesty-card-radius`, `--honesty-modal-radius`, or `--honesty-badge-radius` are deferred to Layer 3 (Component Tokens).
-- **No Focus-Ring Geometry:** Focus-ring width, offset, and outline geometry are deferred pending focus behavior specification. The existing theme-sensitive focus ring color token (`--honesty-color-action-focus-ring`) remains untouched.
+- **No Component-Specific Tokens:** Component tokens such as `--honesty-button-radius`, `--honesty-input-radius`, `--honesty-card-radius`, `--honesty-modal-radius`, or `--honesty-badge-radius` are deferred to future Component Tokens.
 - **Application Boundary:** No GLOBAL production Borders/Radius application exists yet.
 - **Docs-Only Review Evidence:** Docs-only Foundation specimens already consume Border/Radius contracts for review evidence.
 - **Production Mapping Deferred:** Production Component mapping remains deferred.
@@ -552,7 +560,7 @@ Each typography role defines three standard CSS custom properties:
 - **No Transition Bundles:** Tokens such as `--honesty-transition-default`, `--honesty-transition-button`, `--honesty-transition-color`, or `--honesty-transition-transform` are prohibited. Duration and easing remain strictly separated.
 - **No Keyframes:** `@keyframes` definitions (e.g., `fade-in`, `fade-out`, `slide`, `spin`, `pulse`) are prohibited in Foundation motion.
 - **No CSS Property Contracts:** Properties like `transition-property`, `animation-name`, `animation-fill-mode`, etc., are deferred to future Component contracts.
-- **No Component-Specific Motion:** Tokens such as `modal-enter`, `modal-exit`, `dropdown-open`, `toast-enter`, `sidebar-collapse`, `accordion-expand`, `tooltip-delay`, or `button-hover` belong to Layer 3 (Component Tokens) and require concrete reference components.
+- **No Component-Specific Motion:** Tokens such as `modal-enter`, `modal-exit`, `dropdown-open`, `toast-enter`, `sidebar-collapse`, `accordion-expand`, `tooltip-delay`, or `button-hover` belong to future Component Tokens and require concrete reference components.
 - **No Global Transition Policy:** No GLOBAL transition policy is applied to `html`, `body`, universal selectors, links, buttons, theme selectors, or general review chrome.
 - **Docs-Only Motion Evidence:** The dedicated docs-only Motion specimen intentionally uses LOCAL, explicit-property transitions solely as review evidence.
 - **Production Transition Contracts Deferred:** Production Component transition-property contracts remain deferred.
@@ -739,7 +747,7 @@ Defines the default separation between columns/cells in data and dashboard grids
 - **Stacking Order vs. Elevation Separation:** Stacking order (`z-index`) is an independent Foundation concern from elevation (`box-shadow`), visual emphasis, or component ownership. A stronger shadow does NOT imply a higher z-index, and an overlay shadow does not automatically imply an overlay z-index. Elevation and Layers remain strictly decoupled dimensions.
 - **Reference Tokens (Compile-Time Sass Primitives):** Context-free numerical primitives defined in `src/styles/foundation/reference/z-index/_scale.scss`.
 - **Semantic Tokens (Runtime CSS Custom Properties):** Purpose-driven roles emitted in `:root` via `src/styles/foundation/semantic/layers/_roles.scss` that resolve strictly from Reference z-index Sass tokens (`ref.$honesty-ref-z-index-*`).
-- **No Component-Specific Layer Tokens:** Tokens such as `--honesty-layer-dropdown`, `--honesty-layer-menu`, `--honesty-layer-popover`, `--honesty-layer-tooltip`, `--honesty-layer-modal`, `--honesty-layer-dialog`, or `--honesty-layer-toast` are prohibited in Candidate V1; component-specific mappings belong to future Component token contracts (Layer 3).
+- **No Component-Specific Layer Tokens:** Tokens such as `--honesty-layer-dropdown`, `--honesty-layer-menu`, `--honesty-layer-popover`, `--honesty-layer-tooltip`, `--honesty-layer-modal`, `--honesty-layer-dialog`, or `--honesty-layer-toast` are prohibited in Candidate V1; component-specific mappings belong to future Component token contracts.
 - **No Global Stacking-Context Rules Yet:** No global or component CSS rules involving `position`, `isolation`, `transform`, `filter`, `opacity`, `contain`, or `will-change` are introduced for stacking context creation. Stacking-context ownership belongs to future components and layout primitives.
 - **Application Boundary:** No GLOBAL production Layer application exists on `html`, `body`, App shell, or navigation.
 - **Docs-Only Review Evidence:** The docs-only Layers specimen intentionally consumes Layer tokens locally inside isolated stacking stages for review evidence.
@@ -840,7 +848,137 @@ Structural Chart roles do not replace the general Text or Border Semantic contra
 
 ---
 
-## 24. UI Preferences Technical Contract (Candidate V1)
+## 24. Product Brand & Focus Ring Technical Contract (Candidate V1)
+
+### A. Current Reference Color Palettes
+
+Candidate V1 Reference Colors contain Neutral, Primary, Secondary, Accent,
+Green, Amber, Red, and Cyan palettes. Secondary and Accent are Product Brand
+palettes and are separate from Feedback semantics.
+
+**Secondary — Slate Blue supporting product-brand palette:**
+
+| Step | Value |
+|---|---|
+| 50 | `$honesty-ref-color-secondary-50` |
+| 100 | `$honesty-ref-color-secondary-100` |
+| 200 | `$honesty-ref-color-secondary-200` |
+| 300 | `$honesty-ref-color-secondary-300` |
+| 400 | `$honesty-ref-color-secondary-400` |
+| 500 | `$honesty-ref-color-secondary-500` |
+| 600 | `$honesty-ref-color-secondary-600` |
+| 700 | `$honesty-ref-color-secondary-700` |
+| 800 | `$honesty-ref-color-secondary-800` |
+| 900 | `$honesty-ref-color-secondary-900` |
+| 950 | `$honesty-ref-color-secondary-950` |
+
+**Accent — Controlled Plum selective product-brand emphasis palette:**
+
+| Step | Value |
+|---|---|
+| 50 | `$honesty-ref-color-accent-50` |
+| 100 | `$honesty-ref-color-accent-100` |
+| 200 | `$honesty-ref-color-accent-200` |
+| 300 | `$honesty-ref-color-accent-300` |
+| 400 | `$honesty-ref-color-accent-400` |
+| 500 | `$honesty-ref-color-accent-500` |
+| 600 | `$honesty-ref-color-accent-600` |
+| 700 | `$honesty-ref-color-accent-700` |
+| 800 | `$honesty-ref-color-accent-800` |
+| 900 | `$honesty-ref-color-accent-900` |
+| 950 | `$honesty-ref-color-accent-950` |
+
+Secondary is not Info. Accent is not Warning or Danger. Primary, Secondary,
+and Accent are Product Brand roles, not Success, Warning, Danger, or Info roles.
+
+### B. Semantic Product Brand Runtime Contract
+
+Each of the exactly three tones (`primary`, `secondary`, `accent`) exposes the
+same five theme-sensitive runtime roles:
+
+- `--honesty-color-brand-<tone>-solid` — default filled product-brand tone.
+- `--honesty-color-brand-<tone>-solid-strong` — stronger filled product-brand tone available for future Component contracts.
+- `--honesty-color-brand-<tone>-subtle` — low-emphasis brand-tinted surface.
+- `--honesty-color-brand-<tone>-content` — brand-colored foreground suitable for subtle/light contexts.
+- `--honesty-color-brand-<tone>-on-solid` — foreground intended on the solid or solid-strong tone.
+
+This grammar creates exactly 15 Semantic Brand runtime variables. It does not
+introduce hover, active, disabled, border, icon, gradient, outline, Feedback,
+Sidebar, Topbar, or user-selectable Preference roles.
+
+### C. Exact Light/Dark Brand Mapping
+
+| Semantic Brand role | Light Reference source | Dark Reference source |
+|---|---|---|
+| `--honesty-color-brand-primary-solid` | Primary 600 | Primary 500 |
+| `--honesty-color-brand-primary-solid-strong` | Primary 700 | Primary 600 |
+| `--honesty-color-brand-primary-subtle` | Primary 50 | Primary 900 |
+| `--honesty-color-brand-primary-content` | Primary 700 | Primary 200 |
+| `--honesty-color-brand-primary-on-solid` | White | White |
+| `--honesty-color-brand-secondary-solid` | Secondary 600 | Secondary 600 |
+| `--honesty-color-brand-secondary-solid-strong` | Secondary 700 | Secondary 700 |
+| `--honesty-color-brand-secondary-subtle` | Secondary 50 | Secondary 900 |
+| `--honesty-color-brand-secondary-content` | Secondary 700 | Secondary 200 |
+| `--honesty-color-brand-secondary-on-solid` | White | White |
+| `--honesty-color-brand-accent-solid` | Accent 600 | Accent 600 |
+| `--honesty-color-brand-accent-solid-strong` | Accent 700 | Accent 700 |
+| `--honesty-color-brand-accent-subtle` | Accent 50 | Accent 900 |
+| `--honesty-color-brand-accent-content` | Accent 700 | Accent 200 |
+| `--honesty-color-brand-accent-on-solid` | White | White |
+
+Every mapping resolves directly from Reference Color Sass tokens. Brand and
+Action remain independently resolved contracts; Action variables do not alias
+Brand variables.
+
+### D. Dynamic Branding Boundary
+
+- Reference palettes define Candidate V1 default Product Brand values.
+- Semantic Brand roles are runtime CSS custom properties and the central runtime abstraction boundary for future dynamic product or tenant branding.
+- Candidate V1 does not implement dynamic tenant or user brand customization.
+- A future dynamic-branding implementation must override the centralized Semantic Brand contract at one application branding scope.
+- Components and Pages must never write arbitrary brand hex values themselves.
+- Brand colors are product-wide and are not user Preference settings in Candidate V1.
+- No branding service exists in Candidate V1.
+
+### E. Reference Outline Geometry
+
+Reference outline geometry is defined by exactly three context-free Sass
+primitives:
+
+- `$honesty-ref-outline-width-2`: `2px`
+- `$honesty-ref-outline-offset-2`: `2px`
+- `$honesty-ref-outline-style-solid`: `solid`
+
+Outline offset does not reuse Spacing tokens, and Focus geometry does not reuse
+Semantic Border tokens.
+
+### F. Semantic Focus Ring Geometry and Default Contract
+
+The theme-independent Semantic Focus geometry contract is:
+
+- `--honesty-focus-ring-width` → `$honesty-ref-outline-width-2`
+- `--honesty-focus-ring-offset` → `$honesty-ref-outline-offset-2`
+- `--honesty-focus-ring-style` → `$honesty-ref-outline-style-solid`
+
+The Foundation Candidate V1 default Focus contract is exactly:
+
+- Behavior: `:focus-visible`
+- Rendering: CSS `outline`
+- Width: `2px`
+- Offset: `2px`
+- Style: `solid`
+- Light Focus color: `--honesty-color-action-focus-ring` → Primary 400
+- Dark Focus color: `--honesty-color-action-focus-ring` → Primary 300
+- Radius: owned by the focused Component or element geometry
+
+There is no `--honesty-focus-ring-radius`, ring offset-color token, default
+box-shadow halo, multi-layer halo, negative outline offset, inset ring, or
+opacity halo. Native focus must not be removed globally without an explicit
+replacement.
+
+---
+
+## 25. UI Preferences Technical Contract (Candidate V1)
 
 ### A. StoreType and Persistence Eligibility
 

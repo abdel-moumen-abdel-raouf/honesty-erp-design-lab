@@ -12,6 +12,7 @@
 // =============================================================================
 
 @use '../../../styles/foundation/reference/colors' as ref;
+@use '../../../styles/foundation/queries' as query;
 
 // Internal specimen maps referencing existing Sass Reference variables
 $specimen-neutral-ramp: (
@@ -42,26 +43,60 @@ $specimen-primary-ramp: (
   950: ref.$honesty-ref-color-primary-950,
 );
 
+$specimen-secondary-ramp: (
+  50: ref.$honesty-ref-color-secondary-50,
+  100: ref.$honesty-ref-color-secondary-100,
+  200: ref.$honesty-ref-color-secondary-200,
+  300: ref.$honesty-ref-color-secondary-300,
+  400: ref.$honesty-ref-color-secondary-400,
+  500: ref.$honesty-ref-color-secondary-500,
+  600: ref.$honesty-ref-color-secondary-600,
+  700: ref.$honesty-ref-color-secondary-700,
+  800: ref.$honesty-ref-color-secondary-800,
+  900: ref.$honesty-ref-color-secondary-900,
+  950: ref.$honesty-ref-color-secondary-950,
+);
+
+$specimen-accent-ramp: (
+  50: ref.$honesty-ref-color-accent-50,
+  100: ref.$honesty-ref-color-accent-100,
+  200: ref.$honesty-ref-color-accent-200,
+  300: ref.$honesty-ref-color-accent-300,
+  400: ref.$honesty-ref-color-accent-400,
+  500: ref.$honesty-ref-color-accent-500,
+  600: ref.$honesty-ref-color-accent-600,
+  700: ref.$honesty-ref-color-accent-700,
+  800: ref.$honesty-ref-color-accent-800,
+  900: ref.$honesty-ref-color-accent-900,
+  950: ref.$honesty-ref-color-accent-950,
+);
+
 // Map Sass reference values to swatch presentation
 @each $step, $color in $specimen-neutral-ramp {
   .swatch-neutral-#{$step} {
-    .swatch-color {
-      background-color: $color;
-    }
-    .swatch-hex::after {
-      content: '#{$color}';
-    }
+    --specimen-swatch-color: #{$color};
+    --specimen-swatch-label: '#{$color}';
   }
 }
 
 @each $step, $color in $specimen-primary-ramp {
   .swatch-primary-#{$step} {
-    .swatch-color {
-      background-color: $color;
-    }
-    .swatch-hex::after {
-      content: '#{$color}';
-    }
+    --specimen-swatch-color: #{$color};
+    --specimen-swatch-label: '#{$color}';
+  }
+}
+
+@each $step, $color in $specimen-secondary-ramp {
+  .swatch-secondary-#{$step} {
+    --specimen-swatch-color: #{$color};
+    --specimen-swatch-label: '#{$color}';
+  }
+}
+
+@each $step, $color in $specimen-accent-ramp {
+  .swatch-accent-#{$step} {
+    --specimen-swatch-color: #{$color};
+    --specimen-swatch-label: '#{$color}';
   }
 }
 
@@ -131,6 +166,7 @@ $specimen-primary-ramp: (
 
 .ramp-scroll-wrapper {
   overflow-x: auto;
+  max-width: 100%;
   padding-bottom: 0.5rem;
 }
 
@@ -153,6 +189,7 @@ $specimen-primary-ramp: (
   .swatch-color {
     height: 110px;
     width: 100%;
+    background-color: var(--specimen-swatch-color);
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   }
 
@@ -175,5 +212,123 @@ $specimen-primary-ramp: (
     font-size: 0.75rem;
     color: #555d6d;
     direction: ltr;
+
+    &::after {
+      content: var(--specimen-swatch-label);
+    }
+  }
+}
+
+.brand-note {
+  max-width: 75ch;
+  margin-bottom: 1.25rem;
+  color: #585f6e;
+
+  p {
+    margin: 0.25rem 0;
+  }
+}
+
+.brand-theme-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+
+  @include query.viewport-down(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.brand-theme-context {
+  min-width: 0;
+  padding: 1rem;
+  color: var(--honesty-color-text-primary);
+  background-color: var(--honesty-color-surface-canvas);
+  border: 1px solid var(--honesty-border-default);
+  border-radius: var(--honesty-radius-surface);
+
+  h3,
+  h4 {
+    margin: 0;
+  }
+}
+
+.brand-tone-groups {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.brand-tone-group {
+  min-width: 0;
+}
+
+.brand-samples {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+
+  @include query.viewport-down(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.brand-sample {
+  min-width: 0;
+  padding: 0.75rem;
+  border-radius: var(--honesty-radius-control);
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.brand-tone-primary {
+  .brand-sample-solid {
+    color: var(--honesty-color-brand-primary-on-solid);
+    background-color: var(--honesty-color-brand-primary-solid);
+  }
+
+  .brand-sample-solid-strong {
+    color: var(--honesty-color-brand-primary-on-solid);
+    background-color: var(--honesty-color-brand-primary-solid-strong);
+  }
+
+  .brand-sample-subtle {
+    color: var(--honesty-color-brand-primary-content);
+    background-color: var(--honesty-color-brand-primary-subtle);
+  }
+}
+
+.brand-tone-secondary {
+  .brand-sample-solid {
+    color: var(--honesty-color-brand-secondary-on-solid);
+    background-color: var(--honesty-color-brand-secondary-solid);
+  }
+
+  .brand-sample-solid-strong {
+    color: var(--honesty-color-brand-secondary-on-solid);
+    background-color: var(--honesty-color-brand-secondary-solid-strong);
+  }
+
+  .brand-sample-subtle {
+    color: var(--honesty-color-brand-secondary-content);
+    background-color: var(--honesty-color-brand-secondary-subtle);
+  }
+}
+
+.brand-tone-accent {
+  .brand-sample-solid {
+    color: var(--honesty-color-brand-accent-on-solid);
+    background-color: var(--honesty-color-brand-accent-solid);
+  }
+
+  .brand-sample-solid-strong {
+    color: var(--honesty-color-brand-accent-on-solid);
+    background-color: var(--honesty-color-brand-accent-solid-strong);
+  }
+
+  .brand-sample-subtle {
+    color: var(--honesty-color-brand-accent-content);
+    background-color: var(--honesty-color-brand-accent-subtle);
   }
 }

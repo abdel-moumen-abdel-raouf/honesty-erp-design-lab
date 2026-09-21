@@ -21,7 +21,7 @@ Technical success, green tests, or Codex judgment do not equal visual approval.
 
 The token architecture is strictly:
 
-Reference → Semantic → Component → Implementation
+Reference → Semantic → Theme/Density/Query resolution → Component Tokens → Components
 
 Reference tokens:
 - Sass compile-time primitives.
@@ -221,3 +221,27 @@ Do not report subjective statements such as:
 - recommended
 
 Visual review belongs exclusively to the Product Owner and ChatGPT.
+
+## Strict Bottom-Up Layer Order
+
+The architectural implementation sequence is exactly:
+
+1. Reference primitives
+2. Semantic contracts
+3. Theme / Density / Query resolution
+4. Foundation application contracts
+5. Component Tokens
+6. Production structural/text primitives
+7. Basic controls
+8. Composites
+9. Patterns
+10. Shell
+11. Features / Pages / migration
+
+A higher layer must not be implemented while a genuine required lower-layer
+dependency remains unresolved.
+
+Overview/closure documentation never drives design order.
+
+The implementation agent does not decide whether a lower dependency exists;
+the task prompt supplies that decision.

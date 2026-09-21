@@ -451,5 +451,58 @@
       </div>
     </section>
 
+    <!-- ================================================================= -->
+    <!-- SECTION 8: FOCUS RING GEOMETRY                                    -->
+    <!-- ================================================================= -->
+    <section id="sec-focus-ring-geometry" class="specimen-section">
+      <div class="section-heading">
+        <h2 id="title-focus-ring-geometry" class="section-title">هندسة حلقة التركيز</h2>
+        <span class="section-subtitle">Focus Ring Geometry</span>
+      </div>
+      <p class="section-lead">
+        العقد الافتراضي يستخدم <code>:focus-visible</code> مع CSS outline، بينما يظل نصف القطر مملوكاً لهندسة العنصر نفسه.
+      </p>
+
+      <div id="focus-contract-tokens" class="focus-contract-tokens composition-tokens-list" dir="ltr">
+        <code data-focus-token>--honesty-focus-ring-width</code>
+        <code data-focus-token>--honesty-focus-ring-offset</code>
+        <code data-focus-token>--honesty-focus-ring-style</code>
+        <code data-focus-token>--honesty-color-action-focus-ring</code>
+        <span>width = 2px</span>
+        <span>offset = 2px</span>
+        <span>style = solid</span>
+      </div>
+
+      <div id="focus-theme-comparison" class="dual-theme-container">
+        @for (theme of ['light', 'dark']; track theme) {
+          <div
+            class="theme-context-box focus-theme-context"
+            [attr.data-theme]="theme"
+            [attr.data-focus-context]="theme"
+          >
+            <div class="theme-context-header">
+              <span class="theme-title">{{ theme === 'light' ? 'السمة الفاتحة (Light Theme)' : 'السمة الداكنة (Dark Theme)' }}</span>
+              <code class="theme-code">data-theme="{{ theme }}"</code>
+            </div>
+
+            <div class="specimen-grid grid-2">
+              <div class="specimen-card focus-static-proof focus-control-proof" data-focus-static-proof="control">
+                <span>Control-radius proof</span>
+                <code>var(--honesty-radius-control)</code>
+              </div>
+              <div class="specimen-card focus-static-proof focus-surface-proof" data-focus-static-proof="surface">
+                <span>Surface-radius proof</span>
+                <code>var(--honesty-radius-surface)</code>
+              </div>
+            </div>
+
+            <button class="focus-keyboard-target" type="button" data-focus-keyboard-target>
+              Native :focus-visible target
+            </button>
+          </div>
+        }
+      </div>
+    </section>
+
   </main>
 </div>

@@ -14,15 +14,38 @@ describe('Colors', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render exactly 11 steps for Neutral and Primary ramps', () => {
+  it('should render exactly 11 steps in each of the four Reference ramps', () => {
     const fixture = TestBed.createComponent(Colors);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
 
-    const neutralSwatches = compiled.querySelectorAll('.swatch-neutral-50, .swatch-neutral-100, .swatch-neutral-200, .swatch-neutral-300, .swatch-neutral-400, .swatch-neutral-500, .swatch-neutral-600, .swatch-neutral-700, .swatch-neutral-800, .swatch-neutral-900, .swatch-neutral-950');
-    expect(neutralSwatches.length).toBe(11);
+    expect(compiled.querySelectorAll('#neutral-ramp-strip .swatch-card')).toHaveLength(11);
+    expect(compiled.querySelectorAll('#primary-ramp-strip .swatch-card')).toHaveLength(11);
+    expect(compiled.querySelectorAll('#secondary-ramp-strip .swatch-card')).toHaveLength(11);
+    expect(compiled.querySelectorAll('#accent-ramp-strip .swatch-card')).toHaveLength(11);
+    expect(compiled.querySelectorAll('[data-reference-swatch]')).toHaveLength(44);
+  });
 
-    const primarySwatches = compiled.querySelectorAll('.swatch-primary-50, .swatch-primary-100, .swatch-primary-200, .swatch-primary-300, .swatch-primary-400, .swatch-primary-500, .swatch-primary-600, .swatch-primary-700, .swatch-primary-800, .swatch-primary-900, .swatch-primary-950');
-    expect(primarySwatches.length).toBe(11);
+  it('should render equivalent Light and Dark Brand evidence with three tones each', () => {
+    const fixture = TestBed.createComponent(Colors);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const lightContext = compiled.querySelector('[data-brand-context="light"]');
+    const darkContext = compiled.querySelector('[data-brand-context="dark"]');
+
+    expect(lightContext).toBeTruthy();
+    expect(darkContext).toBeTruthy();
+
+    for (const context of [lightContext, darkContext]) {
+      const toneGroups = context?.querySelectorAll('[data-brand-tone]');
+      expect(toneGroups).toHaveLength(3);
+
+      for (const group of Array.from(toneGroups ?? [])) {
+        expect(group.querySelectorAll('[data-brand-sample]')).toHaveLength(3);
+        expect(group.querySelector('[data-brand-sample="solid"]')).toBeTruthy();
+        expect(group.querySelector('[data-brand-sample="solid-strong"]')).toBeTruthy();
+        expect(group.querySelector('[data-brand-sample="subtle-content"]')).toBeTruthy();
+      }
+    }
   });
 });

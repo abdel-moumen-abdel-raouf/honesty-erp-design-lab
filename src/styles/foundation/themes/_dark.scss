@@ -24,6 +24,27 @@
   --honesty-color-text-disabled: #{ref.$honesty-ref-color-neutral-600};
   --honesty-color-text-inverse: #{ref.$honesty-ref-color-neutral-950};
 
+  // Product Brand: Primary
+  --honesty-color-brand-primary-solid: #{ref.$honesty-ref-color-primary-500};
+  --honesty-color-brand-primary-solid-strong: #{ref.$honesty-ref-color-primary-600};
+  --honesty-color-brand-primary-subtle: #{ref.$honesty-ref-color-primary-900};
+  --honesty-color-brand-primary-content: #{ref.$honesty-ref-color-primary-200};
+  --honesty-color-brand-primary-on-solid: #{ref.$honesty-ref-color-white};
+
+  // Product Brand: Secondary
+  --honesty-color-brand-secondary-solid: #{ref.$honesty-ref-color-secondary-600};
+  --honesty-color-brand-secondary-solid-strong: #{ref.$honesty-ref-color-secondary-700};
+  --honesty-color-brand-secondary-subtle: #{ref.$honesty-ref-color-secondary-900};
+  --honesty-color-brand-secondary-content: #{ref.$honesty-ref-color-secondary-200};
+  --honesty-color-brand-secondary-on-solid: #{ref.$honesty-ref-color-white};
+
+  // Product Brand: Accent
+  --honesty-color-brand-accent-solid: #{ref.$honesty-ref-color-accent-600};
+  --honesty-color-brand-accent-solid-strong: #{ref.$honesty-ref-color-accent-700};
+  --honesty-color-brand-accent-subtle: #{ref.$honesty-ref-color-accent-900};
+  --honesty-color-brand-accent-content: #{ref.$honesty-ref-color-accent-200};
+  --honesty-color-brand-accent-on-solid: #{ref.$honesty-ref-color-white};
+
   // Borders
   --honesty-border-subtle: #{ref.$honesty-ref-color-neutral-800};
   --honesty-border-default: #{ref.$honesty-ref-color-neutral-700};

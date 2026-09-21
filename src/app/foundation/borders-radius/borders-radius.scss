@@ -319,3 +319,42 @@
     color: var(--honesty-color-text-secondary);
   }
 }
+
+// Focus Ring Geometry Evidence
+.focus-contract-tokens {
+  max-width: 100%;
+  color: var(--honesty-color-text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.focus-static-proof {
+  min-width: 0;
+  color: var(--honesty-color-text-primary);
+  outline-width: var(--honesty-focus-ring-width);
+  outline-style: var(--honesty-focus-ring-style);
+  outline-color: var(--honesty-color-action-focus-ring);
+  outline-offset: var(--honesty-focus-ring-offset);
+  overflow-wrap: anywhere;
+
+  code {
+    color: var(--honesty-color-text-secondary);
+  }
+}
+
+.focus-control-proof {
+  border-radius: var(--honesty-radius-control);
+}
+
+.focus-surface-proof {
+  border-radius: var(--honesty-radius-surface);
+}
+
+.focus-keyboard-target {
+  align-self: flex-start;
+  border-radius: var(--honesty-radius-control);
+
+  &:focus-visible {
+    outline: var(--honesty-focus-ring-width) var(--honesty-focus-ring-style) var(--honesty-color-action-focus-ring);
+    outline-offset: var(--honesty-focus-ring-offset);
+  }
+}

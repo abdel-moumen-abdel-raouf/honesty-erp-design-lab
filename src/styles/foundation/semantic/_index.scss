@@ -5,7 +5,8 @@
 // Purpose-driven, contextual tokens (intent, status, surface, content, interactive).
 //
 // Token Architecture Hierarchy:
-// Reference Tokens (Layer 1) -> Semantic Tokens (Layer 2) -> Component Tokens (Layer 3)
+// Reference Tokens -> Semantic Tokens -> Theme/Density/Query Resolution
+// -> Component Tokens -> Components
 //
 // Dependency Rule:
 // Depends strictly on Reference Tokens.
@@ -14,6 +15,7 @@
 
 @forward 'contract';
 @forward 'colors';
+@forward 'focus';
 @forward 'typography';
 @forward 'spacing';
 @forward 'radius';

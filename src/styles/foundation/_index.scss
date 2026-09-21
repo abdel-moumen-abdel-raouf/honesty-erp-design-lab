@@ -2,7 +2,8 @@
 // Honesty ERP Design System - Foundation Layer Root Entry Point
 // =============================================================================
 // Architectural Hierarchy:
-// Reference Tokens -> Semantic Tokens -> Component Tokens -> Implementations
+// Reference Tokens -> Semantic Tokens -> Theme/Density/Query Resolution
+// -> Component Tokens -> Components
 //
 // Single global Foundation composition entry point:
 // Internal architectural layers are loaded internally via @use and are not

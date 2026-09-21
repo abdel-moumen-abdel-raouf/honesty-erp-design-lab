@@ -24,6 +24,27 @@
   --honesty-color-text-disabled: #{ref.$honesty-ref-color-neutral-400};
   --honesty-color-text-inverse: #{ref.$honesty-ref-color-white};
 
+  // Product Brand: Primary
+  --honesty-color-brand-primary-solid: #{ref.$honesty-ref-color-primary-600};
+  --honesty-color-brand-primary-solid-strong: #{ref.$honesty-ref-color-primary-700};
+  --honesty-color-brand-primary-subtle: #{ref.$honesty-ref-color-primary-50};
+  --honesty-color-brand-primary-content: #{ref.$honesty-ref-color-primary-700};
+  --honesty-color-brand-primary-on-solid: #{ref.$honesty-ref-color-white};
+
+  // Product Brand: Secondary
+  --honesty-color-brand-secondary-solid: #{ref.$honesty-ref-color-secondary-600};
+  --honesty-color-brand-secondary-solid-strong: #{ref.$honesty-ref-color-secondary-700};
+  --honesty-color-brand-secondary-subtle: #{ref.$honesty-ref-color-secondary-50};
+  --honesty-color-brand-secondary-content: #{ref.$honesty-ref-color-secondary-700};
+  --honesty-color-brand-secondary-on-solid: #{ref.$honesty-ref-color-white};
+
+  // Product Brand: Accent
+  --honesty-color-brand-accent-solid: #{ref.$honesty-ref-color-accent-600};
+  --honesty-color-brand-accent-solid-strong: #{ref.$honesty-ref-color-accent-700};
+  --honesty-color-brand-accent-subtle: #{ref.$honesty-ref-color-accent-50};
+  --honesty-color-brand-accent-content: #{ref.$honesty-ref-color-accent-700};
+  --honesty-color-brand-accent-on-solid: #{ref.$honesty-ref-color-white};
+
   // Borders
   --honesty-border-subtle: #{ref.$honesty-ref-color-neutral-200};
   --honesty-border-default: #{ref.$honesty-ref-color-neutral-300};
@@ -39,7 +60,7 @@
   --honesty-color-action-primary-subtle-bg-hover: #{ref.$honesty-ref-color-primary-100};
   --honesty-color-action-primary-subtle-fg: #{ref.$honesty-ref-color-primary-700};
 
-  --honesty-color-action-focus-ring: #{ref.$honesty-ref-color-primary-300};
+  --honesty-color-action-focus-ring: #{ref.$honesty-ref-color-primary-400};
 
   // Feedback: Success
   --honesty-color-feedback-success-surface: #{ref.$honesty-ref-color-green-50};

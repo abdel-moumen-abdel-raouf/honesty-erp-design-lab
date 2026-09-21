@@ -62,4 +62,13 @@ describe('Themes Specimen', () => {
     expect(compiled.querySelector('#inverse-sample-light')).toBeTruthy();
     expect(compiled.querySelector('#inverse-sample-dark')).toBeTruthy();
   });
+
+  it('should document the exact Light and Dark focus-ring source steps', () => {
+    const fixture = TestBed.createComponent(Themes);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+
+    expect(compiled.querySelector('#focus-ring-meta-light')?.textContent).toContain('Primary 400');
+    expect(compiled.querySelector('#focus-ring-meta-dark')?.textContent).toContain('Primary 300');
+  });
 });

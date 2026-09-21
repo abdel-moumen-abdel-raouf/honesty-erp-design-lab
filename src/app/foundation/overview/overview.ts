@@ -1,9 +1,10 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {
-  FOUNDATION_DEFERRED_DECISIONS,
+  FOUNDATION_NEXT_LAYER_DECISIONS,
   FOUNDATION_OVERALL_STATUS,
   FOUNDATION_OVERVIEW_DOMAINS,
+  FOUNDATION_V1_EXCLUSIONS,
 } from './overview.data';
 
 @Component({
@@ -16,5 +17,6 @@ import {
 export class Overview {
   readonly domains = FOUNDATION_OVERVIEW_DOMAINS;
   readonly overallStatus = FOUNDATION_OVERALL_STATUS;
-  readonly deferredDecisions = FOUNDATION_DEFERRED_DECISIONS;
+  readonly nextLayerDecisions = FOUNDATION_NEXT_LAYER_DECISIONS;
+  readonly v1Exclusions = FOUNDATION_V1_EXCLUSIONS;
 }

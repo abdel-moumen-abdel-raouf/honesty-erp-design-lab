@@ -173,4 +173,36 @@ describe('Borders & Radius Candidate V1 Visual Specimen', () => {
       expect(sampleD?.textContent).toContain('--honesty-radius-overlay');
     });
   });
+
+  describe('Section 8: Focus Ring Geometry', () => {
+    it('should render Light and Dark Focus contexts with two static proofs and one native target each', () => {
+      const section = compiled.querySelector('#sec-focus-ring-geometry');
+      const lightContext = section?.querySelector('[data-focus-context="light"]');
+      const darkContext = section?.querySelector('[data-focus-context="dark"]');
+
+      expect(section).toBeTruthy();
+      expect(lightContext).toBeTruthy();
+      expect(darkContext).toBeTruthy();
+
+      for (const context of [lightContext, darkContext]) {
+        expect(context?.querySelectorAll('[data-focus-static-proof]')).toHaveLength(2);
+        expect(context?.querySelector('[data-focus-static-proof="control"]')).toBeTruthy();
+        expect(context?.querySelector('[data-focus-static-proof="surface"]')).toBeTruthy();
+        expect(context?.querySelector('button[data-focus-keyboard-target]')).toBeTruthy();
+      }
+    });
+
+    it('should render the four runtime token names used by the Focus evidence', () => {
+      const tokens = Array.from(
+        compiled.querySelectorAll<HTMLElement>('#focus-contract-tokens [data-focus-token]')
+      ).map((token) => token.textContent?.trim());
+
+      expect(tokens).toEqual([
+        '--honesty-focus-ring-width',
+        '--honesty-focus-ring-offset',
+        '--honesty-focus-ring-style',
+        '--honesty-color-action-focus-ring',
+      ]);
+    });
+  });
 });

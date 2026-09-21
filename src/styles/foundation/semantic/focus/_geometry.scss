@@ -1,0 +1,11 @@
+// =============================================================================
+// Semantic Focus: Default Ring Geometry
+// =============================================================================
+
+@use '../../reference/outlines' as ref;
+
+:root {
+  --honesty-focus-ring-width: #{ref.$honesty-ref-outline-width-2};
+  --honesty-focus-ring-offset: #{ref.$honesty-ref-outline-offset-2};
+  --honesty-focus-ring-style: #{ref.$honesty-ref-outline-style-solid};
+}

@@ -1,8 +1,13 @@
+export interface FoundationOverviewReviewLink {
+  readonly label: string;
+  readonly route: string;
+}
+
 export interface FoundationOverviewDomain {
   readonly id: string;
   readonly arabicLabel: string;
   readonly status: string;
-  readonly reviewRoute: string;
+  readonly reviewLinks: readonly FoundationOverviewReviewLink[];
   readonly summary: string;
   readonly reopenTrigger: string;
   readonly note?: string;
@@ -13,18 +18,25 @@ export const FOUNDATION_OVERVIEW_DOMAINS: readonly FoundationOverviewDomain[] = 
     id: 'colors',
     arabicLabel: 'الألوان',
     status: 'Approved in principle',
-    reviewRoute: '/foundation/colors',
-    summary: 'Reference Neutral, Primary, and status hue palettes are established.',
+    reviewLinks: [
+      {label: 'الألوان المرجعية', route: '/foundation/colors'},
+      {label: 'صبغات الحالات', route: '/foundation/colors/status-hues'},
+    ],
+    summary:
+      'Reference Neutral, Primary, Secondary, Accent, and status hue palettes are established.',
     reopenTrigger:
-      'Secondary / Accent palettes are intentionally deferred to the Sidebar/Topbar reference phase.',
+      'Reopen only by explicit Product Owner decision to change the product brand palette or when concrete contrast evidence invalidates the current mapping.',
   },
   {
     id: 'themes-feedback-surfaces',
     arabicLabel: 'السمات والأسطح والحالات',
     status: 'Approved in principle',
-    reviewRoute: '/foundation/themes',
+    reviewLinks: [
+      {label: 'السمات الفاتحة والداكنة', route: '/foundation/themes'},
+      {label: 'ألوان الحالات الدلالية', route: '/foundation/feedback-colors'},
+    ],
     summary:
-      'Light/Dark surfaces, text, borders, primary action, inverse surfaces and feedback roles are established.',
+      'Light/Dark surfaces, text, borders, primary action, inverse surfaces, feedback roles, and Brand roles are established.',
     reopenTrigger:
       'Only if real Shell/component usage exposes a concrete contrast/hierarchy problem.',
     note:
@@ -34,36 +46,57 @@ export const FOUNDATION_OVERVIEW_DOMAINS: readonly FoundationOverviewDomain[] = 
     id: 'typography',
     arabicLabel: 'الطباعة',
     status: 'Approved in principle',
-    reviewRoute: '/foundation/typography',
+    reviewLinks: [{label: 'الطباعة', route: '/foundation/typography'}],
     summary:
       'Tajawal + Space Grotesk, shared 400/500/700 weights, and nine Semantic roles are established.',
     reopenTrigger:
       'Contextual revalidation is allowed in dense Forms/Tables; explicit letter-spacing/tracking and a production monospace/code role remain deferred until concrete reference evidence requires them.',
   },
   {
+    id: 'charts',
+    arabicLabel: 'ألوان الرسوم البيانية',
+    status: 'Approved in principle',
+    reviewLinks: [{label: 'ألوان الرسوم البيانية', route: '/foundation/charts'}],
+    summary:
+      'Five categorical Chart series, status/delta colors and structural Chart colors are established for Light/Dark.',
+    reopenTrigger:
+      'Expand beyond five series only when concrete dashboard/chart requirements justify it; categorical palette changes require explicit Product Owner reopen.',
+  },
+  {
+    id: 'preferences',
+    arabicLabel: 'التفضيلات',
+    status: 'Approved in principle',
+    reviewLinks: [{label: 'التفضيلات', route: '/foundation/preferences'}],
+    summary:
+      'Typed 11-setting Preferences core, local persistence and deterministic formatting contracts are established.',
+    reopenTrigger:
+      'Production-global application and backend persistence remain deferred.',
+  },
+  {
     id: 'spacing',
     arabicLabel: 'المسافات',
     status: 'Approved in principle',
-    reviewRoute: '/foundation/spacing',
+    reviewLinks: [{label: 'المسافات', route: '/foundation/spacing'}],
     summary:
       '4px Reference grid and Semantic Inline/Stack/Inset/Section rhythm are established.',
-    reopenTrigger: 'Component-specific padding/gaps remain Layer-3 decisions.',
+    reopenTrigger:
+      'Component-specific padding/gaps remain future Component Token decisions.',
   },
   {
     id: 'borders-radius',
     arabicLabel: 'الحدود والزوايا',
     status: 'Approved in principle',
-    reviewRoute: '/foundation/borders-radius',
+    reviewLinks: [{label: 'الحدود والزوايا', route: '/foundation/borders-radius'}],
     summary:
-      'Border width/style geometry and controlled radius roles are established.',
+      'Border width/style geometry, controlled radius roles, and default Focus Ring geometry are established.',
     reopenTrigger:
-      'Focus geometry, pill/full radius, and any Semantic dashed-border role require concrete component/reference evidence.',
+      'Pill/full radius and any Semantic dashed-border role require concrete component/reference evidence.',
   },
   {
     id: 'elevation',
     arabicLabel: 'الارتفاع والظلال',
     status: 'Approved in principle',
-    reviewRoute: '/foundation/elevation',
+    reviewLinks: [{label: 'الارتفاع والظلال', route: '/foundation/elevation'}],
     summary: 'None/Raised/Overlay theme-aware elevation is established.',
     reopenTrigger: 'Component-specific elevation mapping remains deferred.',
   },
@@ -71,7 +104,7 @@ export const FOUNDATION_OVERVIEW_DOMAINS: readonly FoundationOverviewDomain[] = 
     id: 'motion',
     arabicLabel: 'الحركة',
     status: 'Approved in principle — baseline',
-    reviewRoute: '/foundation/motion',
+    reviewLinks: [{label: 'الحركة', route: '/foundation/motion'}],
     summary: 'Duration and easing baseline is established.',
     reopenTrigger:
       'Timing/easing MUST be contextually revalidated in real component interactions.',
@@ -80,7 +113,7 @@ export const FOUNDATION_OVERVIEW_DOMAINS: readonly FoundationOverviewDomain[] = 
     id: 'density',
     arabicLabel: 'الكثافة',
     status: 'Approved in principle',
-    reviewRoute: '/foundation/density',
+    reviewLinks: [{label: 'الكثافة', route: '/foundation/density'}],
     summary:
       'Compact/Comfortable/Spacious Stack + Inset modulation is established.',
     reopenTrigger:
@@ -90,7 +123,7 @@ export const FOUNDATION_OVERVIEW_DOMAINS: readonly FoundationOverviewDomain[] = 
     id: 'responsive-layout',
     arabicLabel: 'التخطيط والاستجابة',
     status: 'Approved in principle',
-    reviewRoute: '/foundation/layout-grid',
+    reviewLinks: [{label: 'التخطيط والاستجابة', route: '/foundation/layout-grid'}],
     summary:
       'Viewport/container Query API, Layout gap vocabulary and responsive gutters are established.',
     reopenTrigger:
@@ -100,31 +133,11 @@ export const FOUNDATION_OVERVIEW_DOMAINS: readonly FoundationOverviewDomain[] = 
     id: 'layers',
     arabicLabel: 'الطبقات',
     status: 'Approved in principle',
-    reviewRoute: '/foundation/layers',
+    reviewLinks: [{label: 'الطبقات', route: '/foundation/layers'}],
     summary:
       'Base/Sticky/Floating/Overlay/Blocking/Notification order is established.',
     reopenTrigger:
       'Component-specific layer mapping and stacking-context ownership remain deferred.',
-  },
-  {
-    id: 'charts',
-    arabicLabel: 'ألوان الرسوم البيانية',
-    status: 'Approved in principle',
-    reviewRoute: '/foundation/charts',
-    summary:
-      'Five categorical Chart series, status/delta colors and structural Chart colors are established for Light/Dark.',
-    reopenTrigger:
-      'Re-evaluate the categorical palette after Secondary/Accent palettes are designed; expand beyond five series only when concrete dashboard/chart requirements justify it.',
-  },
-  {
-    id: 'preferences',
-    arabicLabel: 'التفضيلات',
-    status: 'Approved in principle',
-    reviewRoute: '/foundation/preferences',
-    summary:
-      'Typed 11-setting Preferences core, local persistence and deterministic formatting contracts are established.',
-    reopenTrigger:
-      'Production-global application and backend persistence remain deferred.',
   },
 ] as const;
 
@@ -133,23 +146,23 @@ export const FOUNDATION_OVERALL_STATUS = Object.freeze({
   arabic: 'جاهز لمراجعة الإغلاق النهائية بواسطة مالك المنتج',
 });
 
-export const FOUNDATION_DEFERRED_DECISIONS = [
-  'Secondary / Accent palettes',
+export const FOUNDATION_NEXT_LAYER_DECISIONS = [
   'Component Tokens',
-  'Typography letter-spacing / tracking',
-  'Production monospace / code Typography role',
   'Production structural primitives',
   'Container max-width contract',
   'Production Grid column contract',
-  'Focus-ring geometry',
-  'Pill/full radius',
-  'Semantic dashed-border role when a concrete semantic use exists',
   'Component-specific elevation',
   'Component-specific motion',
   'Component density heights',
   'Component-specific layer mappings',
-  'Chart categorical palette reconsideration after Secondary/Accent',
-  'Chart series expansion beyond five when concrete dashboard/chart requirements justify it',
   'Backend Preferences persistence',
   'Global production Preferences application',
+] as const;
+
+export const FOUNDATION_V1_EXCLUSIONS = [
+  'Typography letter-spacing / tracking',
+  'Production monospace / code Typography role',
+  'Pill/full radius',
+  'Semantic dashed-border role when a concrete semantic use exists',
+  'Chart series expansion beyond five when concrete dashboard/chart requirements justify it',
 ] as const;

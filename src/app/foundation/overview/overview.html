@@ -43,30 +43,44 @@
           @if (domain.note) {
             <p class="domain-note" data-surfaces-consolidation>{{ domain.note }}</p>
           }
-          <a
-            class="domain-link"
-            data-domain-link
-            [routerLink]="domain.reviewRoute"
-          >
-            فتح مسار المراجعة — {{ domain.reviewRoute }}
-          </a>
+          @for (link of domain.reviewLinks; track link.route) {
+            <a
+              class="domain-link"
+              data-domain-link
+              [routerLink]="link.route"
+            >
+              {{ link.label }} — {{ link.route }}
+            </a>
+          }
         </article>
       }
     </div>
   </section>
 
   <section
-    id="intentional-deferrals"
+    id="v1-boundaries-next-layers"
     class="overview-section"
     data-overview-section
   >
-    <h2>القرارات المؤجلة المقصودة</h2>
-    <p>هذه البنود قرارات تأجيل مقصودة وليست عيوباً.</p>
-    <ul class="plain-list" dir="ltr">
-      @for (decision of deferredDecisions; track decision) {
-        <li data-deferred-item>{{ decision }}</li>
-      }
-    </ul>
+    <h2>حدود V1 والطبقات التالية</h2>
+    <section class="boundary-subsection" data-boundary-subsection="next-layer">
+      <h3>قرارات الطبقات الأعلى</h3>
+      <p>هذه ليست نواقص في Foundation؛ تُحسم عند بدء الطبقة الأعلى التي تعتمد عليها.</p>
+      <ul class="plain-list" dir="ltr" data-next-layer-list>
+        @for (decision of nextLayerDecisions; track decision) {
+          <li data-next-layer-item>{{ decision }}</li>
+        }
+      </ul>
+    </section>
+    <section class="boundary-subsection" data-boundary-subsection="v1-exclusions">
+      <h3>مستبعد من Foundation V1 حتى يظهر دليل</h3>
+      <p>لا تُضاف هذه القدرات إلى Foundation V1 إلا عند ظهور مرجع أو متطلب حقيقي يبررها.</p>
+      <ul class="plain-list" dir="ltr" data-v1-exclusion-list>
+        @for (decision of v1Exclusions; track decision) {
+          <li data-v1-exclusion-item>{{ decision }}</li>
+        }
+      </ul>
+    </section>
   </section>
 
   <section
@@ -92,8 +106,8 @@
   >
     <h2>بوابة الإغلاق</h2>
     <ul class="plain-list closure-list" dir="ltr">
-      <li>All current Foundation Candidate V1 domains have technical and human visual evidence.</li>
-      <li>Intentional deferrals are documented.</li>
+      <li>Lower-layer Foundation Candidate V1 contracts are assembled for final Product Owner closure review.</li>
+      <li>Next-layer decisions and explicit V1 exclusions are documented.</li>
       <li>No production Component Token or production Component work has started.</li>
       <li>Final freeze has NOT happened yet.</li>
       <li>Product Owner explicit approval is required before entering production primitives/components.</li>
