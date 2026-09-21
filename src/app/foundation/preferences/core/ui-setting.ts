@@ -3,37 +3,79 @@ import {
   SettingDefinition,
   UiSettingChangeEvent,
   UiSettingChangeSource,
+  UiSettingKey,
+  UiSettingsValueMap,
 } from './ui-settings.types';
 
-export type UiSettingSubscriber<T> = (event: UiSettingChangeEvent<T>) => void;
+export type UiSettingSubscriber<K extends UiSettingKey> = (
+  event: UiSettingChangeEvent<K>
+) => void;
 
-export class UiSetting<T> {
-  private readonly currentValue: WritableSignal<T>;
-  private readonly subscribers = new Set<UiSettingSubscriber<T>>();
+function cloneAndFreezeOwnedValue<T>(value: T): T {
+  if (
+    value === null ||
+    typeof value === 'string' ||
+    typeof value === 'number' ||
+    typeof value === 'boolean'
+  ) {
+    return value;
+  }
 
-  readonly valueSignal: Signal<T>;
+  if (Array.isArray(value)) {
+    return Object.freeze(value.map((item) => cloneAndFreezeOwnedValue(item))) as T;
+  }
 
-  constructor(readonly definition: Readonly<SettingDefinition<T>>) {
-    this.currentValue = signal<T>(definition.defaultValue);
+  if (typeof value !== 'object') {
+    throw new TypeError('UI setting values must contain only JSON-like values.');
+  }
+
+  const prototype = Object.getPrototypeOf(value);
+  if (prototype !== Object.prototype && prototype !== null) {
+    throw new TypeError('UI setting object values must be plain objects.');
+  }
+
+  const ownedValue: Record<string, unknown> = {};
+  for (const [key, item] of Object.entries(value)) {
+    ownedValue[key] = cloneAndFreezeOwnedValue(item);
+  }
+
+  return Object.freeze(ownedValue) as T;
+}
+
+export class UiSetting<K extends UiSettingKey> {
+  private readonly currentValue: WritableSignal<UiSettingsValueMap[K]>;
+  private readonly subscribers = new Set<UiSettingSubscriber<K>>();
+
+  readonly valueSignal: Signal<UiSettingsValueMap[K]>;
+
+  constructor(readonly definition: Readonly<SettingDefinition<K>>) {
+    if (!definition.validate(definition.defaultValue)) {
+      throw new TypeError(`Invalid default value for UI setting "${definition.key}".`);
+    }
+
+    this.currentValue = signal<UiSettingsValueMap[K]>(
+      cloneAndFreezeOwnedValue(definition.defaultValue)
+    );
     this.valueSignal = this.currentValue.asReadonly();
   }
 
-  get value(): T {
+  get value(): UiSettingsValueMap[K] {
     return this.valueSignal();
   }
 
-  set(value: T, source: UiSettingChangeSource = 'user'): void {
+  set(value: UiSettingsValueMap[K], source: UiSettingChangeSource = 'user'): void {
     if (!this.definition.validate(value)) {
       throw new TypeError(`Invalid value for UI setting "${this.definition.key}".`);
     }
 
     const previousValue = this.value;
-    this.currentValue.set(value);
+    const currentValue = cloneAndFreezeOwnedValue(value);
+    this.currentValue.set(currentValue);
 
-    const event: UiSettingChangeEvent<T> = Object.freeze({
+    const event: UiSettingChangeEvent<K> = Object.freeze({
       key: this.definition.key,
       previousValue,
-      currentValue: value,
+      currentValue,
       source,
     });
 
@@ -46,7 +88,7 @@ export class UiSetting<T> {
     this.set(this.definition.defaultValue, source);
   }
 
-  subscribe(subscriber: UiSettingSubscriber<T>): () => void {
+  subscribe(subscriber: UiSettingSubscriber<K>): () => void {
     this.subscribers.add(subscriber);
     return () => this.subscribers.delete(subscriber);
   }

@@ -56,18 +56,18 @@ export interface UiSettingsValueMap {
 
 export type UiSettingKey = keyof UiSettingsValueMap;
 
-export interface SettingDefinition<T> {
-  readonly key: UiSettingKey;
+export interface SettingDefinition<K extends UiSettingKey> {
+  readonly key: K;
   readonly category: UiSettingCategory;
-  readonly defaultValue: T;
+  readonly defaultValue: UiSettingsValueMap[K];
   readonly storeType: StoreType;
-  readonly validate: (value: unknown) => value is T;
+  readonly validate: (value: unknown) => value is UiSettingsValueMap[K];
 }
 
-export interface UiSettingChangeEvent<T> {
-  readonly key: UiSettingKey;
-  readonly previousValue: T;
-  readonly currentValue: T;
+export interface UiSettingChangeEvent<K extends UiSettingKey> {
+  readonly key: K;
+  readonly previousValue: UiSettingsValueMap[K];
+  readonly currentValue: UiSettingsValueMap[K];
   readonly source: UiSettingChangeSource;
 }
 
@@ -80,3 +80,11 @@ export interface UiSettingsStorageContext {
 export type UiSettingsDocument = {
   readonly [K in UiSettingKey]: UiSettingsValueMap[K];
 };
+
+export type UiSettingsLocalDocument = Readonly<Partial<UiSettingsDocument>>;
+
+export function isLocalPersistenceStoreType(storeType: StoreType): boolean {
+  return (
+    storeType === StoreType.LOCAL || storeType === StoreType.LOCAL_AND_BACKEND
+  );
+}

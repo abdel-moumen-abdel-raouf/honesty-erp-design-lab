@@ -15,7 +15,6 @@ import {
   ThemeMode,
   TimeFormat,
   UiSettingKey,
-  UiSettingsValueMap,
 } from './ui-settings.types';
 
 const themeModes = ['light', 'dark', 'system'] as const;
@@ -96,7 +95,7 @@ const defaultDateFormat = Object.freeze({
 }) satisfies ContextualPreference<DateFormat, DateContext>;
 
 export type UiSettingsRegistry = {
-  readonly [K in UiSettingKey]: Readonly<SettingDefinition<UiSettingsValueMap[K]>>;
+  readonly [K in UiSettingKey]: Readonly<SettingDefinition<K>>;
 };
 
 export const UI_SETTINGS_REGISTRY: UiSettingsRegistry = Object.freeze({

@@ -2,16 +2,23 @@ import {UiSetting} from './ui-setting';
 import {UiSettingsLocalStorage} from './ui-settings.local-storage';
 import {UI_SETTING_KEYS, UI_SETTINGS_REGISTRY} from './ui-settings.registry';
 import {
-  StoreType,
+  isLocalPersistenceStoreType,
   UiSettingCategory,
   UiSettingKey,
   UiSettingsDocument,
+  UiSettingsLocalDocument,
   UiSettingsValueMap,
 } from './ui-settings.types';
 
 type UiSettingInstances = {
-  readonly [K in UiSettingKey]: UiSetting<UiSettingsValueMap[K]>;
+  readonly [K in UiSettingKey]: UiSetting<K>;
 };
+
+const LOCAL_PERSISTENCE_KEYS = Object.freeze(
+  UI_SETTING_KEYS.filter((key) =>
+    isLocalPersistenceStoreType(UI_SETTINGS_REGISTRY[key].storeType)
+  )
+);
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
   if (typeof value !== 'object' || value === null || Array.isArray(value)) {
@@ -52,7 +59,7 @@ export class UiSettingsStore {
     }
   }
 
-  get<K extends UiSettingKey>(key: K): UiSetting<UiSettingsValueMap[K]> {
+  get<K extends UiSettingKey>(key: K): UiSetting<K> {
     return this.settings[key];
   }
 
@@ -73,14 +80,14 @@ export class UiSettingsStore {
     }
 
     if (result.status === 'malformed' || !this.isValidLocalDocument(result.value)) {
-      this.resetAllToDefaultsWithoutSaving();
+      this.resetLocalSettingsToDefaultsWithoutSaving();
       this.persist();
       return;
     }
 
-    const document: UiSettingsDocument = result.value;
+    const document: UiSettingsLocalDocument = result.value;
     this.withPersistenceSuppressed(() => {
-      for (const key of UI_SETTING_KEYS) {
+      for (const key of LOCAL_PERSISTENCE_KEYS) {
         this.applyHydratedValue(key, document);
       }
     });
@@ -124,7 +131,11 @@ export class UiSettingsStore {
 
   private observeSetting<K extends UiSettingKey>(key: K): void {
     this.get(key).subscribe((event) => {
-      if (!this.persistenceSuppressed && event.source !== 'hydrate') {
+      if (
+        !this.persistenceSuppressed &&
+        event.source !== 'hydrate' &&
+        isLocalPersistenceStoreType(UI_SETTINGS_REGISTRY[key].storeType)
+      ) {
         this.persist();
       }
     });
@@ -132,30 +143,42 @@ export class UiSettingsStore {
 
   private applyHydratedValue<K extends UiSettingKey>(
     key: K,
-    document: UiSettingsDocument
+    document: UiSettingsLocalDocument
   ): void {
-    this.get(key).set(document[key], 'hydrate');
+    const value = document[key];
+    if (!UI_SETTINGS_REGISTRY[key].validate(value)) {
+      throw new TypeError(`Invalid persisted value for UI setting "${key}".`);
+    }
+
+    this.get(key).set(value, 'hydrate');
   }
 
-  private isValidLocalDocument(value: unknown): value is UiSettingsDocument {
+  private isValidLocalDocument(value: unknown): value is UiSettingsLocalDocument {
     if (!isPlainObject(value)) {
       return false;
     }
 
-    const localKeys = UI_SETTING_KEYS.filter(
-      (key) => UI_SETTINGS_REGISTRY[key].storeType === StoreType.LOCAL
-    );
     const storedKeys = Object.keys(value);
 
     if (
-      storedKeys.length !== localKeys.length ||
-      storedKeys.some((key) => !localKeys.includes(key as UiSettingKey)) ||
-      localKeys.some((key) => !Object.hasOwn(value, key))
+      storedKeys.length !== LOCAL_PERSISTENCE_KEYS.length ||
+      storedKeys.some((key) => !LOCAL_PERSISTENCE_KEYS.includes(key as UiSettingKey)) ||
+      LOCAL_PERSISTENCE_KEYS.some((key) => !Object.hasOwn(value, key))
     ) {
       return false;
     }
 
-    return localKeys.every((key) => UI_SETTINGS_REGISTRY[key].validate(value[key]));
+    return LOCAL_PERSISTENCE_KEYS.every((key) =>
+      UI_SETTINGS_REGISTRY[key].validate(value[key])
+    );
+  }
+
+  private resetLocalSettingsToDefaultsWithoutSaving(): void {
+    this.withPersistenceSuppressed(() => {
+      for (const key of LOCAL_PERSISTENCE_KEYS) {
+        this.get(key).reset('reset');
+      }
+    });
   }
 
   private resetAllToDefaultsWithoutSaving(): void {
@@ -177,6 +200,12 @@ export class UiSettingsStore {
   }
 
   private persist(): void {
-    this.persistence.save(this.snapshot());
+    const entries = LOCAL_PERSISTENCE_KEYS.map(
+      (key) => [key, this.value(key)] as const
+    );
+    const document = Object.freeze(
+      Object.fromEntries(entries)
+    ) as UiSettingsLocalDocument;
+    this.persistence.save(document);
   }
 }

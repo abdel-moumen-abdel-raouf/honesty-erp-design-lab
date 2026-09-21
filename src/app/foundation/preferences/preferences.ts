@@ -30,7 +30,6 @@ import {
   UiSettingCategory,
   UiSettingKey,
   UiSettingsStorageContext,
-  UiSettingsValueMap,
 } from './core/ui-settings.types';
 
 type ContextualSettingKey = 'digits' | 'numberSeparators' | 'dateFormat';
@@ -93,7 +92,7 @@ export class Preferences {
 
   setScalar<K extends ScalarSettingKey>(key: K, event: Event): void {
     const candidate = this.selectValue(event);
-    const definition: SettingDefinition<UiSettingsValueMap[K]> = this.registry[key];
+    const definition: SettingDefinition<K> = this.registry[key];
 
     if (definition.validate(candidate)) {
       this.store.set(key, candidate);

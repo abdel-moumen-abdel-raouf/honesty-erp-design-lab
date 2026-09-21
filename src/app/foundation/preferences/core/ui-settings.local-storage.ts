@@ -1,4 +1,7 @@
-import {UiSettingsDocument, UiSettingsStorageContext} from './ui-settings.types';
+import {
+  UiSettingsLocalDocument,
+  UiSettingsStorageContext,
+} from './ui-settings.types';
 
 export const UI_SETTINGS_STORAGE_PREFIX = 'honesty-erp:ui-settings';
 
@@ -39,7 +42,7 @@ export class UiSettingsLocalStorage {
     }
   }
 
-  save(document: UiSettingsDocument): void {
+  save(document: UiSettingsLocalDocument): void {
     this.storage.setItem(this.key, JSON.stringify(document));
   }
 }

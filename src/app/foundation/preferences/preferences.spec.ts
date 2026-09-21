@@ -22,8 +22,10 @@ import {
   ContextualPreference,
   DigitContext,
   DigitSet,
+  isLocalPersistenceStoreType,
   StoreType,
   ThemeMode,
+  UiSettingChangeEvent,
   UiSettingsDocument,
   UiSettingsStorageContext,
 } from './core/ui-settings.types';
@@ -154,6 +156,54 @@ describe('UiSetting', () => {
     expect(() => setting.set('automatic' as ThemeMode)).toThrowError(TypeError);
     expect(setting.value).toBe('system');
   });
+
+  it('owns an immutable copy of an object-valued default', () => {
+    const setting = new UiSetting(UI_SETTINGS_REGISTRY.digits);
+
+    expect(setting.value).toEqual(UI_SETTINGS_REGISTRY.digits.defaultValue);
+    expect(setting.value).not.toBe(UI_SETTINGS_REGISTRY.digits.defaultValue);
+    expect(setting.value.overrides).not.toBe(
+      UI_SETTINGS_REGISTRY.digits.defaultValue.overrides
+    );
+  });
+
+  it('publishes the owned object value instead of the caller reference', () => {
+    const setting = new UiSetting(UI_SETTINGS_REGISTRY.digits);
+    const events: UiSettingChangeEvent<'digits'>[] = [];
+    const overrides: Partial<Record<DigitContext, DigitSet>> = {
+      view: 'arabic-indic',
+    };
+    const callerValue: {
+      base: DigitSet;
+      overrides: Partial<Record<DigitContext, DigitSet>>;
+    } = {base: 'latin', overrides};
+    setting.subscribe((event) => events.push(event));
+
+    setting.set(callerValue);
+    callerValue.base = 'arabic-indic';
+    overrides.view = 'latin';
+    overrides.export = 'arabic-indic';
+
+    expect(events).toHaveLength(1);
+    expect(events[0]?.currentValue).toBe(setting.value);
+    expect(events[0]?.currentValue).not.toBe(callerValue);
+    expect(events[0]?.currentValue.overrides).not.toBe(overrides);
+    expect(events[0]?.currentValue).toEqual({
+      base: 'latin',
+      overrides: {view: 'arabic-indic'},
+    });
+  });
+});
+
+describe('StoreType local persistence eligibility', () => {
+  it.each([
+    {storeType: StoreType.LOCAL, expected: true},
+    {storeType: StoreType.LOCAL_AND_BACKEND, expected: true},
+    {storeType: StoreType.BACKEND, expected: false},
+    {storeType: StoreType.NONE, expected: false},
+  ])('returns $expected for $storeType', ({storeType, expected}) => {
+    expect(isLocalPersistenceStoreType(storeType)).toBe(expected);
+  });
 });
 
 describe('UI settings registry', () => {
@@ -218,6 +268,41 @@ describe('UiSettingsStore local persistence', () => {
 
     expect(memory.setCalls).toBe(1);
     expect(persistedDocument(memory).theme).toBe('dark');
+  });
+
+  it('owns contextual values independently from mutable caller references', () => {
+    const memory = new MemoryStorage();
+    const store = createStore(memory);
+    store.hydrate();
+    const overrides: Partial<Record<DigitContext, DigitSet>> = {
+      view: 'arabic-indic',
+    };
+    const callerValue: {
+      base: DigitSet;
+      overrides: Partial<Record<DigitContext, DigitSet>>;
+    } = {base: 'latin', overrides};
+
+    store.set('digits', callerValue);
+    const serializedAfterSet = memory.getItem(storageKey);
+    callerValue.base = 'arabic-indic';
+    overrides.view = 'latin';
+    overrides.export = 'arabic-indic';
+
+    expect(store.value('digits')).toEqual({
+      base: 'latin',
+      overrides: {view: 'arabic-indic'},
+    });
+    expect(store.value('digits')).not.toBe(callerValue);
+    expect(store.value('digits').overrides).not.toBe(overrides);
+    expect(memory.getItem(storageKey)).toBe(serializedAfterSet);
+    expect(() => {
+      const storedOverrides = store.value('digits').overrides as Record<
+        DigitContext,
+        DigitSet
+      >;
+      storedOverrides.view = 'latin';
+    }).toThrowError(TypeError);
+    expect(store.value('digits').overrides.view).toBe('arabic-indic');
   });
 
   it('persists resetSetting once', () => {
