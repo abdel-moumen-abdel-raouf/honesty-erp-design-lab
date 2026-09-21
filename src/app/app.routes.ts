@@ -63,6 +63,11 @@ export const routes: Routes = [
       import('./foundation/layout-grid/layout-grid').then((m) => m.LayoutGrid),
   },
   {
+    path: 'foundation/layers',
+    loadComponent: () =>
+      import('./foundation/layers/layers').then((m) => m.Layers),
+  },
+  {
     path: '',
     redirectTo: 'foundation/colors',
     pathMatch: 'full',

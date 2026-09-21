@@ -1,0 +1,204 @@
+<div id="layers-specimen-root" class="layers-specimen" data-theme="light">
+  <!-- Specimen Header -->
+  <header id="layers-header" class="specimen-header">
+    <h1 id="layers-main-title" class="specimen-main-title">
+      الطبقات وترتيب التكديس (Layers / Z-Index Candidate V1)
+    </h1>
+    <p id="layers-lead-desc" class="specimen-lead">
+      توثيق واختبار الأدوار الدلالية لطبقات التكديس الرأسي (z-index) ضمن نظام التصميم.
+      طبقات التكديس بعدٌ معماري مستقل تماماً عن الارتفاع البصري (box-shadow) وعن السمات اللونية والكثافة.
+      كافة العينات الموضحة أدناه مجردة من الظلال عمداً لإثبات صحة التكديس البصري المستند إلى رموز z-index وحدها.
+    </p>
+  </header>
+
+  <!-- Section 1: Semantic Order List -->
+  <section id="section-semantic-order" class="specimen-section">
+    <div class="section-title-wrap">
+      <h2 id="title-semantic-order" class="section-title">ترتيب الطبقات الدلالية</h2>
+      <p class="section-desc">
+        مقياس تصاعدي صارم يتكون من 6 أدوار دلالية محددة الغرض ومصروفة من مقياس المرجع الرقمي الخام، دون أي قيم سالبة أو عشوائية:
+      </p>
+    </div>
+
+    <!-- Strict Order Equation Banner -->
+    <div id="layer-order-equation-banner" class="order-equation-banner">
+      <span class="equation-label">عقد الترتيب الصارم:</span>
+      <code class="equation-code" dir="ltr">
+        base (0) &lt; sticky (10) &lt; floating (20) &lt; overlay (30) &lt; blocking (40) &lt; notification (50)
+      </code>
+    </div>
+
+    <!-- Semantic Layers Table / Cards -->
+    <div id="semantic-layers-list" class="semantic-layers-list">
+      @for (layer of semanticLayers; track layer.id) {
+        <article [id]="layer.id" class="semantic-layer-card">
+          <div class="layer-card-main">
+            <div class="layer-role-badge">
+              <span class="role-name">{{ layer.role }}</span>
+              <span class="numeric-val" title="القيمة الرقمية المرجعية">z: {{ layer.numericValue }}</span>
+            </div>
+            <div class="layer-info">
+              <h3 class="layer-arabic-title">{{ layer.arabicName }}</h3>
+              <p class="layer-arabic-desc">{{ layer.arabicDesc }}</p>
+            </div>
+          </div>
+          <div class="layer-token-meta">
+            <span class="token-property-label">المتغير في وقت التشغيل:</span>
+            <code class="token-code" dir="ltr">{{ layer.token }}</code>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <!-- Section 2: Full Stack Overlap Proof -->
+  <section id="section-full-stack" class="specimen-section">
+    <div class="section-title-wrap">
+      <h2 id="title-full-stack" class="section-title">المكدس الكامل</h2>
+      <p class="section-desc">
+        مرحلة تكديس معزولة محلياً تحتوي على الأشقاء الستة مجتمعين بنفس الأبعاد والحدود والأسطح ودون أي ظلال (box-shadow: none).
+        يتحكم متغير الطبقة الدلالي بكل عنصر لإثبات الترتيب التراكمي الدقيق من القاعدة حتى التنبيهات.
+      </p>
+    </div>
+
+    <div class="full-stack-wrapper">
+      <div id="full-stack-stage" class="full-stack-stage" aria-label="مرحلة المكدس الكامل">
+        <!-- Layer 0: Base -->
+        <div id="full-stack-layer-base" class="full-stack-layer layer-base offset-0">
+          <div class="layer-card-header">
+            <span class="layer-tag">01 · Base</span>
+            <span class="layer-badge-z">z-index: 0</span>
+          </div>
+          <h4 class="layer-title">طبقة الأساس (Base)</h4>
+          <code class="layer-var-code" dir="ltr">--honesty-layer-base</code>
+          <p class="layer-note">المحتوى الطبيعي للواجهة</p>
+        </div>
+
+        <!-- Layer 1: Sticky -->
+        <div id="full-stack-layer-sticky" class="full-stack-layer layer-sticky offset-1">
+          <div class="layer-card-header">
+            <span class="layer-tag">02 · Sticky</span>
+            <span class="layer-badge-z">z-index: 10</span>
+          </div>
+          <h4 class="layer-title">طبقة التثبيت (Sticky)</h4>
+          <code class="layer-var-code" dir="ltr">--honesty-layer-sticky</code>
+          <p class="layer-note">تعلو طبقة الأساس دائماً</p>
+        </div>
+
+        <!-- Layer 2: Floating -->
+        <div id="full-stack-layer-floating" class="full-stack-layer layer-floating offset-2">
+          <div class="layer-card-header">
+            <span class="layer-tag">03 · Floating</span>
+            <span class="layer-badge-z">z-index: 20</span>
+          </div>
+          <h4 class="layer-title">الطبقة العائمة (Floating)</h4>
+          <code class="layer-var-code" dir="ltr">--honesty-layer-floating</code>
+          <p class="layer-note">أسطح عابرة فوق المحتوى والمثبتات</p>
+        </div>
+
+        <!-- Layer 3: Overlay -->
+        <div id="full-stack-layer-overlay" class="full-stack-layer layer-overlay offset-3">
+          <div class="layer-card-header">
+            <span class="layer-tag">04 · Overlay</span>
+            <span class="layer-badge-z">z-index: 30</span>
+          </div>
+          <h4 class="layer-title">طبقة التراكب (Overlay)</h4>
+          <code class="layer-var-code" dir="ltr">--honesty-layer-overlay</code>
+          <p class="layer-note">مستوى الحجب التراكبي العام</p>
+        </div>
+
+        <!-- Layer 4: Blocking -->
+        <div id="full-stack-layer-blocking" class="full-stack-layer layer-blocking offset-4">
+          <div class="layer-card-header">
+            <span class="layer-tag">05 · Blocking</span>
+            <span class="layer-badge-z">z-index: 40</span>
+          </div>
+          <h4 class="layer-title">طبقة الحجب التفاعلي (Blocking)</h4>
+          <code class="layer-var-code" dir="ltr">--honesty-layer-blocking</code>
+          <p class="layer-note">تفاعلات مركزية فوق مستوى التراكب</p>
+        </div>
+
+        <!-- Layer 5: Notification -->
+        <div id="full-stack-layer-notification" class="full-stack-layer layer-notification offset-5">
+          <div class="layer-card-header">
+            <span class="layer-tag">06 · Notification</span>
+            <span class="layer-badge-z">z-index: 50</span>
+          </div>
+          <h4 class="layer-title">طبقة التنبيهات (Notification)</h4>
+          <code class="layer-var-code" dir="ltr">--honesty-layer-notification</code>
+          <p class="layer-note">الأولوية القصوى فوق كافة الطبقات</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Pairwise Order Proof -->
+  <section id="section-pairwise-proof" class="specimen-section">
+    <div class="section-title-wrap">
+      <h2 id="title-pairwise-proof" class="section-title">التحقق الثنائي من الترتيب</h2>
+      <p class="section-desc">
+        خمس مقارنات ثنائية متسلسلة تثبت العلاقة الصارمة بين كل زوج متجاور.
+        لضمان عدم الاعتماد على ترتيب DOM، تم عكس ترتيب الإدراج عمداً في بعض النماذج ليثبت متغير z-index تفوقه واستقلاليته البصرية.
+      </p>
+    </div>
+
+    <div id="pairwise-proofs-grid" class="pairwise-proofs-grid">
+      @for (check of pairwiseChecks; track check.id; let idx = $index) {
+        <article [id]="check.id" class="pairwise-card">
+          <header class="pairwise-card-header">
+            <div class="pairwise-title-row">
+              <span class="pairwise-idx">{{ idx + 1 }}</span>
+              <h3 class="pairwise-title">{{ check.title }}</h3>
+            </div>
+            <p class="pairwise-desc">{{ check.description }}</p>
+            <div class="pairwise-expectation-badge">
+              <span class="badge-label">النتيجة المتوقعة والمثبتة:</span>
+              <strong class="badge-val">{{ check.expectedUpper }}</strong>
+            </div>
+            <div class="pairwise-dom-note" [class.is-reversed]="check.isReversedDomOrder">
+              {{ check.domOrderNote }}
+            </div>
+          </header>
+
+          <div class="pairwise-stage-wrapper">
+            <div class="pairwise-stage" [attr.aria-label]="check.title">
+              <!-- First element in DOM -->
+              <div
+                class="pairwise-layer-region pos-lower-region"
+                [class]="check.layerA.cssClass"
+              >
+                <div class="region-header">
+                  <span class="region-role">{{ check.layerA.role }}</span>
+                  @if (check.layerA.isHigher) {
+                    <span class="region-status-badge is-top">في المقدمة (z-index أعلى)</span>
+                  } @else {
+                    <span class="region-status-badge is-bottom">في الأسفل</span>
+                  }
+                </div>
+                <code class="region-token-code" dir="ltr">{{ check.layerA.token }}</code>
+                <div class="region-dom-flag">1st in DOM</div>
+              </div>
+
+              <!-- Second element in DOM -->
+              <div
+                class="pairwise-layer-region pos-upper-region"
+                [class]="check.layerB.cssClass"
+              >
+                <div class="region-header">
+                  <span class="region-role">{{ check.layerB.role }}</span>
+                  @if (check.layerB.isHigher) {
+                    <span class="region-status-badge is-top">في المقدمة (z-index أعلى)</span>
+                  } @else {
+                    <span class="region-status-badge is-bottom">في الأسفل</span>
+                  }
+                </div>
+                <code class="region-token-code" dir="ltr">{{ check.layerB.token }}</code>
+                <div class="region-dom-flag">2nd in DOM</div>
+              </div>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+</div>
