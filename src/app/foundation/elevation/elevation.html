@@ -1,0 +1,373 @@
+<div id="elevation-specimen-root" class="elevation-root" data-theme="light">
+  <!-- Page Header -->
+  <header id="elevation-specimen-header" class="specimen-header">
+    <div class="header-badge-row">
+      <span id="specimen-badge" class="specimen-badge">توثيق ومراجعة بصرية • Docs-Only</span>
+      <span id="specimen-version-tag" class="specimen-tag">Candidate V1</span>
+    </div>
+    <h1 id="specimen-title" class="specimen-title">مراجعة الارتفاع والظلال (Elevation & Shadows)</h1>
+    <p id="specimen-description" class="specimen-description">
+      معاينة بصرية منعزلة وموضوعية للارتفاع الدلالي والمرجعي لنظام Honesty ERP.
+      تعتمد هذه المراجعة المبدأ الصارم: <strong>الظلال مخصصة حصراً للفصل الفيزيائي والطبقات العائمة الحقيقية</strong>، بينما تعتمد الحاويات والبطاقات العادية على الأسطح والحدود والمسافات دون أي ظلال تجميلية.
+    </p>
+  </header>
+
+  <main id="elevation-main" class="specimen-main">
+
+    <!-- ================================================================= -->
+    <!-- SECTION 1: REFERENCE SHADOW GEOMETRY                              -->
+    <!-- ================================================================= -->
+    <section id="sec-ref-geometry" class="specimen-section">
+      <div class="section-heading">
+        <h2 id="title-ref-geometry" class="section-title">الهندسة المرجعية للظل</h2>
+        <span class="section-subtitle">Reference Shadow Geometry Scale (Isolated Physical Offsets & Blur)</span>
+      </div>
+      <p class="section-lead">
+        تُحدد هندسة الظل الفيزيائية بمقدار الإزاحة الشاقولية ونطاق الضبابية، بمعزل عن لون الظل والشفافية. تُعرض هذه المستويات الثلاثة بلون وشفافية تجريبية موحدة لعزل أثر الهندسة فقط، وتُستمد مباشرة من متغيرات Sass المرجعية.
+      </p>
+
+      <div id="ref-geometry-grid" class="specimen-grid grid-3">
+        <!-- Level: None -->
+        <div id="ref-geom-none" class="specimen-card">
+          <div class="specimen-visual-stage">
+            <div class="elevation-visual-box ref-box-geom-none">
+              <span class="visual-box-label">بدون ظل (None)</span>
+            </div>
+          </div>
+          <div class="specimen-card-meta">
+            <code class="token-name">$honesty-ref-elevation-shadow-none</code>
+            <span class="token-rendered-val">none</span>
+          </div>
+          <p class="specimen-card-note">انعدام أي فصل فيزيائي أو ظل مجاور للسطح.</p>
+        </div>
+
+        <!-- Level: Geometry 1 -->
+        <div id="ref-geom-level-1" class="specimen-card">
+          <div class="specimen-visual-stage">
+            <div class="elevation-visual-box ref-box-geom-1">
+              <span class="visual-box-label">المستوى الهندسي 1 (Geometry 1)</span>
+            </div>
+          </div>
+          <div class="specimen-card-meta">
+            <code class="token-name">$honesty-ref-elevation-shadow-geometry-1</code>
+            <span class="token-rendered-val">0 1px 2px 0</span>
+          </div>
+          <p class="specimen-card-note">إزاحة خفيفة 1px مع ضبابية 2px لتمثيل الارتفاع الطفيف.</p>
+        </div>
+
+        <!-- Level: Geometry 2 -->
+        <div id="ref-geom-level-2" class="specimen-card">
+          <div class="specimen-visual-stage">
+            <div class="elevation-visual-box ref-box-geom-2">
+              <span class="visual-box-label">المستوى الهندسي 2 (Geometry 2)</span>
+            </div>
+          </div>
+          <div class="specimen-card-meta">
+            <code class="token-name">$honesty-ref-elevation-shadow-geometry-2</code>
+            <span class="token-rendered-val">0 8px 24px 0</span>
+          </div>
+          <p class="specimen-card-note">إزاحة 8px مع ضبابية عريضة 24px لتمثيل الفصل العائم.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- SECTION 2: REFERENCE SHADOW ALPHA                                 -->
+    <!-- ================================================================= -->
+    <section id="sec-ref-alpha" class="specimen-section">
+      <div class="section-heading">
+        <h2 id="title-ref-alpha" class="section-title">شفافية الظلال المرجعية</h2>
+        <span class="section-subtitle">Reference Shadow Alpha Transparency Scale (Isolated Opacity)</span>
+      </div>
+      <p class="section-lead">
+        تُحدد قيم الشفافية الفيزيائية الخام دون سياق دلالي مسبق. تُطبق جميع العينات على هندسة موحدة (المستوى الهندسي 2) ولون أسود ثابت لعزل التباين والتأكد من ملاءمة التدرج.
+      </p>
+
+      <div id="ref-alpha-grid" class="specimen-grid grid-4">
+        <!-- Alpha: 0.08 -->
+        <div id="ref-alpha-08" class="specimen-card">
+          <div class="specimen-visual-stage">
+            <div class="elevation-visual-box ref-box-alpha-08">
+              <span class="visual-box-label">شفافية 0.08</span>
+            </div>
+          </div>
+          <div class="specimen-card-meta">
+            <code class="token-name">$honesty-ref-elevation-shadow-alpha-08</code>
+            <span class="token-rendered-val">0.08</span>
+          </div>
+          <p class="specimen-card-note">مخصصة للرفع الفاتح (Light Raised).</p>
+        </div>
+
+        <!-- Alpha: 0.14 -->
+        <div id="ref-alpha-14" class="specimen-card">
+          <div class="specimen-visual-stage">
+            <div class="elevation-visual-box ref-box-alpha-14">
+              <span class="visual-box-label">شفافية 0.14</span>
+            </div>
+          </div>
+          <div class="specimen-card-meta">
+            <code class="token-name">$honesty-ref-elevation-shadow-alpha-14</code>
+            <span class="token-rendered-val">0.14</span>
+          </div>
+          <p class="specimen-card-note">مخصصة للغطاء العائم الفاتح (Light Overlay).</p>
+        </div>
+
+        <!-- Alpha: 0.28 -->
+        <div id="ref-alpha-28" class="specimen-card">
+          <div class="specimen-visual-stage">
+            <div class="elevation-visual-box ref-box-alpha-28">
+              <span class="visual-box-label">شفافية 0.28</span>
+            </div>
+          </div>
+          <div class="specimen-card-meta">
+            <code class="token-name">$honesty-ref-elevation-shadow-alpha-28</code>
+            <span class="token-rendered-val">0.28</span>
+          </div>
+          <p class="specimen-card-note">مخصصة للرفع الداكن (Dark Raised) على الجرافيت.</p>
+        </div>
+
+        <!-- Alpha: 0.40 -->
+        <div id="ref-alpha-40" class="specimen-card">
+          <div class="specimen-visual-stage">
+            <div class="elevation-visual-box ref-box-alpha-40">
+              <span class="visual-box-label">شفافية 0.40</span>
+            </div>
+          </div>
+          <div class="specimen-card-meta">
+            <code class="token-name">$honesty-ref-elevation-shadow-alpha-40</code>
+            <span class="token-rendered-val">0.40</span>
+          </div>
+          <p class="specimen-card-note">مخصصة للغطاء العائم الداكن (Dark Overlay) على الجرافيت.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- SECTION 3: SEMANTIC ELEVATION COMPARISON (LIGHT VS DARK)          -->
+    <!-- ================================================================= -->
+    <section id="sec-semantic-elevation" class="specimen-section">
+      <div class="section-heading">
+        <h2 id="title-semantic-elevation" class="section-title">الارتفاع الدلالي وفق السمة</h2>
+        <span class="section-subtitle">Semantic Elevation by Theme Comparison (--honesty-elevation-*)</span>
+      </div>
+      <p class="section-lead">
+        تُحل المتغيرات الدلالية في بيئة تشغيل كل سمة بشكل مستقل لضمان التمايز فوق سطح الخلفية المناسب.
+        تحتفظ العينات بنفس السطح والحدود ونصف القطر داخل كل سمة ليقتصر التقييم على شدة الظل فقط.
+      </p>
+
+      <div id="semantic-comparison-container" class="themes-comparison-grid">
+        <!-- ================= LIGHT CONTEXT ================= -->
+        <div id="semantic-context-light" class="theme-context-box" data-theme="light">
+          <div class="theme-context-header">
+            <span class="theme-badge">السمة الفاتحة</span>
+            <code class="theme-code">data-theme="light"</code>
+          </div>
+
+          <div class="semantic-specimen-stack">
+            <!-- Light None -->
+            <div id="semantic-light-none" class="semantic-sample-row">
+              <div class="semantic-visual-wrapper">
+                <div class="semantic-specimen-box semantic-elevation-none">
+                  <span class="semantic-box-label">None</span>
+                </div>
+              </div>
+              <div class="semantic-meta-col">
+                <code class="token-role-code">--honesty-elevation-none</code>
+                <span class="semantic-purpose-label">سطح مستوٍ • flat / flush</span>
+                <span class="semantic-rule-hint">انعدام الظل - الحالة الافتراضية للبطاقات والأقسام</span>
+              </div>
+            </div>
+
+            <!-- Light Raised -->
+            <div id="semantic-light-raised" class="semantic-sample-row">
+              <div class="semantic-visual-wrapper">
+                <div class="semantic-specimen-box semantic-elevation-raised">
+                  <span class="semantic-box-label">Raised</span>
+                </div>
+              </div>
+              <div class="semantic-meta-col">
+                <code class="token-role-code">--honesty-elevation-raised</code>
+                <span class="semantic-purpose-label">طبقة مرتفعة • subtle physical separation</span>
+                <span class="semantic-rule-hint">مركب من: Geometry 1 + Neutral 950 + Alpha 0.08</span>
+              </div>
+            </div>
+
+            <!-- Light Overlay -->
+            <div id="semantic-light-overlay" class="semantic-sample-row">
+              <div class="semantic-visual-wrapper">
+                <div class="semantic-specimen-box semantic-elevation-overlay">
+                  <span class="semantic-box-label">Overlay</span>
+                </div>
+              </div>
+              <div class="semantic-meta-col">
+                <code class="token-role-code">--honesty-elevation-overlay</code>
+                <span class="semantic-purpose-label">طبقة عائمة • floating layer separation</span>
+                <span class="semantic-rule-hint">مركب من: Geometry 2 + Neutral 950 + Alpha 0.14</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= DARK CONTEXT ================= -->
+        <div id="semantic-context-dark" class="theme-context-box" data-theme="dark">
+          <div class="theme-context-header">
+            <span class="theme-badge">السمة الداكنة</span>
+            <code class="theme-code">data-theme="dark"</code>
+          </div>
+
+          <div class="semantic-specimen-stack">
+            <!-- Dark None -->
+            <div id="semantic-dark-none" class="semantic-sample-row">
+              <div class="semantic-visual-wrapper">
+                <div class="semantic-specimen-box semantic-elevation-none">
+                  <span class="semantic-box-label">None</span>
+                </div>
+              </div>
+              <div class="semantic-meta-col">
+                <code class="token-role-code">--honesty-elevation-none</code>
+                <span class="semantic-purpose-label">سطح مستوٍ • flat / flush</span>
+                <span class="semantic-rule-hint">انعدام الظل - الحالة الافتراضية للبطاقات والأقسام</span>
+              </div>
+            </div>
+
+            <!-- Dark Raised -->
+            <div id="semantic-dark-raised" class="semantic-sample-row">
+              <div class="semantic-visual-wrapper">
+                <div class="semantic-specimen-box semantic-elevation-raised">
+                  <span class="semantic-box-label">Raised</span>
+                </div>
+              </div>
+              <div class="semantic-meta-col">
+                <code class="token-role-code">--honesty-elevation-raised</code>
+                <span class="semantic-purpose-label">طبقة مرتفعة • subtle physical separation</span>
+                <span class="semantic-rule-hint">مركب من: Geometry 1 + Black + Alpha 0.28</span>
+              </div>
+            </div>
+
+            <!-- Dark Overlay -->
+            <div id="semantic-dark-overlay" class="semantic-sample-row">
+              <div class="semantic-visual-wrapper">
+                <div class="semantic-specimen-box semantic-elevation-overlay">
+                  <span class="semantic-box-label">Overlay</span>
+                </div>
+              </div>
+              <div class="semantic-meta-col">
+                <code class="token-role-code">--honesty-elevation-overlay</code>
+                <span class="semantic-purpose-label">طبقة عائمة • floating layer separation</span>
+                <span class="semantic-rule-hint">مركب من: Geometry 2 + Black + Alpha 0.40</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- SECTION 4: CONTEXTUAL FLOATING-LAYER REVIEW                       -->
+    <!-- ================================================================= -->
+    <section id="sec-contextual-floating" class="specimen-section">
+      <div class="section-heading">
+        <h2 id="title-contextual-floating" class="section-title">فصل الطبقات العائمة</h2>
+        <span class="section-subtitle">Contextual Floating Layer Separation & Layering Fidelity</span>
+      </div>
+      <p class="section-lead">
+        محاكاة واقعية لفصل الطبقات العائمة العامة (generic floating layers) فوق مساحات مستوية غير مرتفعة، بالإضافة للتحقق من خفوت الطبقة المرتفعة (Raised) لضمان عدم مظهرها كظل بطاقات تجميلي.
+      </p>
+
+      <div id="contextual-comparison-grid" class="themes-comparison-grid">
+        <!-- Light Contextual Case -->
+        <div id="contextual-case-light" class="theme-context-box" data-theme="light">
+          <div class="theme-context-header">
+            <span class="theme-badge">السمة الفاتحة</span>
+            <span class="contextual-scenario-title">فصل الطبقة العائمة فوق سطح مستوٍ</span>
+          </div>
+
+          <div class="contextual-stage-container">
+            <!-- Stage: Overlay above Base -->
+            <div id="contextual-stage-light" class="contextual-stage">
+              <!-- Flat Base Region -->
+              <div id="contextual-base-light" class="contextual-base-region">
+                <div class="region-info">
+                  <span class="region-badge">سطح مستوٍ أساسي (Base Region)</span>
+                  <code class="token-inline">--honesty-elevation-none</code>
+                </div>
+                <p class="region-text">
+                  مساحة محتوى اعتيادية تعتمد على السطح والحدود فقط بدون أي ظل.
+                </p>
+              </div>
+
+              <!-- Floating Generic Region (Overlapping) -->
+              <div id="contextual-floating-light" class="contextual-floating-region">
+                <div class="region-info">
+                  <span class="region-badge floating-badge">طبقة عائمة (Floating Layer)</span>
+                  <code class="token-inline">--honesty-elevation-overlay</code>
+                </div>
+                <p class="region-text">
+                  فصل فيزيائي مستقل فوق السطح الأساسي.
+                </p>
+              </div>
+            </div>
+
+            <!-- Raised Contextual Check -->
+            <div id="contextual-raised-light" class="contextual-raised-region">
+              <div class="region-info">
+                <span class="region-badge">تحقق الارتفاع الطفيف (Raised)</span>
+                <code class="token-inline">--honesty-elevation-raised</code>
+              </div>
+              <p class="region-text">
+                تحقق من أن الارتفاع خافت ومحدد ولا يشبه الظلال التجميلية للبطاقات.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dark Contextual Case -->
+        <div id="contextual-case-dark" class="theme-context-box" data-theme="dark">
+          <div class="theme-context-header">
+            <span class="theme-badge">السمة الداكنة</span>
+            <span class="contextual-scenario-title">فصل الطبقة العائمة فوق سطح مستوٍ</span>
+          </div>
+
+          <div class="contextual-stage-container">
+            <!-- Stage: Overlay above Base -->
+            <div id="contextual-stage-dark" class="contextual-stage">
+              <!-- Flat Base Region -->
+              <div id="contextual-base-dark" class="contextual-base-region">
+                <div class="region-info">
+                  <span class="region-badge">سطح مستوٍ أساسي (Base Region)</span>
+                  <code class="token-inline">--honesty-elevation-none</code>
+                </div>
+                <p class="region-text">
+                  مساحة محتوى اعتيادية تعتمد على السطح والحدود فقط بدون أي ظل.
+                </p>
+              </div>
+
+              <!-- Floating Generic Region (Overlapping) -->
+              <div id="contextual-floating-dark" class="contextual-floating-region">
+                <div class="region-info">
+                  <span class="region-badge floating-badge">طبقة عائمة (Floating Layer)</span>
+                  <code class="token-inline">--honesty-elevation-overlay</code>
+                </div>
+                <p class="region-text">
+                  فصل فيزيائي مستقل فوق السطح الأساسي الداكن.
+                </p>
+              </div>
+            </div>
+
+            <!-- Raised Contextual Check -->
+            <div id="contextual-raised-dark" class="contextual-raised-region">
+              <div class="region-info">
+                <span class="region-badge">تحقق الارتفاع الطفيف (Raised)</span>
+                <code class="token-inline">--honesty-elevation-raised</code>
+              </div>
+              <p class="region-text">
+                تحقق من أن الارتفاع خافت ومحدد ولا يشبه الظلال التجميلية للبطاقات.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>

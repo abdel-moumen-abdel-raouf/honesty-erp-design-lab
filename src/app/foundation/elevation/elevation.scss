@@ -1,0 +1,341 @@
+// =============================================================================
+// Docs-Only Visual Review Specimen: Elevation Candidate V1
+// =============================================================================
+@use '../../../styles/foundation/reference/elevation' as ref-elev;
+
+$docs-ref-geometry-color-alpha: rgba(16, 17, 21, 0.20);
+$docs-ref-alpha-color: #000000;
+
+:host {
+  display: block;
+}
+
+.elevation-root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--honesty-space-section-gap);
+  padding: var(--honesty-space-stack-loose);
+  max-width: 1200px;
+  margin-inline: auto;
+  color: var(--honesty-color-text-primary);
+  font-family: var(--honesty-type-family-ui);
+  background-color: var(--honesty-color-surface-canvas);
+}
+
+// Layout Containers
+.specimen-header,
+.specimen-main,
+.specimen-section,
+.section-heading,
+.specimen-card,
+.theme-context-box,
+.semantic-specimen-stack,
+.semantic-meta-col,
+.contextual-stage-container,
+.contextual-base-region,
+.contextual-floating-region,
+.contextual-raised-region {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-badge-row,
+.specimen-card-meta,
+.theme-context-header,
+.semantic-sample-row,
+.region-info {
+  display: flex;
+  align-items: center;
+}
+
+.specimen-header {
+  gap: var(--honesty-space-inline-loose);
+  padding-bottom: var(--honesty-space-stack-loose);
+  border-bottom: 1px solid var(--honesty-border-subtle);
+}
+
+.specimen-main { gap: var(--honesty-space-section-gap-large); }
+.specimen-section { gap: var(--honesty-space-stack-default); }
+.section-heading { gap: 0.25rem; }
+.header-badge-row,
+.theme-context-header,
+.region-info { gap: var(--honesty-space-inline-default); }
+
+// Shared Container Base (Surfaces & Borders, ZERO shadow on docs chrome)
+.specimen-card,
+.theme-context-box,
+.semantic-sample-row,
+.contextual-base-region,
+.contextual-floating-region,
+.contextual-raised-region {
+  border: 1px solid var(--honesty-border-subtle);
+  border-radius: var(--honesty-radius-surface);
+  box-shadow: none;
+}
+
+.specimen-card {
+  gap: var(--honesty-space-stack-tight);
+  padding: var(--honesty-space-inset-default);
+  background-color: var(--honesty-color-surface-default);
+}
+
+.theme-context-box {
+  gap: var(--honesty-space-stack-loose);
+  padding: var(--honesty-space-inset-loose);
+  background-color: var(--honesty-color-surface-canvas);
+}
+
+// Badges & Tags (Zero shadow)
+.specimen-badge,
+.specimen-tag,
+.theme-badge,
+.region-badge,
+.floating-badge {
+  display: inline-flex;
+  border-radius: var(--honesty-radius-control);
+  font-size: var(--honesty-type-caption-font-size);
+  font-weight: var(--honesty-type-label-font-weight);
+  line-height: var(--honesty-type-caption-line-height);
+  background-color: var(--honesty-color-surface-elevated);
+  color: var(--honesty-color-text-primary);
+  padding: 0.125rem 0.375rem;
+}
+
+.specimen-badge {
+  padding: 0.25rem 0.625rem;
+  font-weight: var(--honesty-type-body-strong-font-weight);
+  background-color: var(--honesty-color-surface-default);
+  border: 1px solid var(--honesty-border-subtle);
+  color: var(--honesty-color-text-secondary);
+}
+
+.specimen-tag { padding: 0.25rem 0.5rem; }
+
+.floating-badge {
+  background-color: var(--honesty-color-surface-default);
+  border: 1px solid var(--honesty-border-default);
+}
+
+// Typography Hierarchies
+.specimen-title {
+  font-size: var(--honesty-type-page-title-font-size);
+  font-weight: var(--honesty-type-page-title-font-weight);
+  line-height: var(--honesty-type-page-title-line-height);
+  margin: 0;
+}
+
+.section-title {
+  font-size: var(--honesty-type-section-title-font-size);
+  font-weight: var(--honesty-type-section-title-font-weight);
+  line-height: var(--honesty-type-section-title-line-height);
+  margin: 0;
+}
+
+.specimen-description,
+.section-lead {
+  font-size: var(--honesty-type-body-small-font-size);
+  font-weight: var(--honesty-type-body-small-font-weight);
+  line-height: var(--honesty-type-body-small-line-height);
+  color: var(--honesty-color-text-secondary);
+  margin: 0;
+}
+
+.section-subtitle,
+.visual-box-label,
+.semantic-box-label,
+.specimen-card-meta,
+.theme-code,
+.semantic-purpose-label,
+.semantic-rule-hint,
+.specimen-card-note,
+.region-text,
+.contextual-scenario-title {
+  font-size: var(--honesty-type-caption-font-size);
+  line-height: var(--honesty-type-caption-line-height);
+}
+
+.section-subtitle { color: var(--honesty-color-text-muted); }
+
+.specimen-card-meta {
+  justify-content: space-between;
+  padding-block: var(--honesty-space-stack-tight);
+  border-bottom: 1px solid var(--honesty-border-subtle);
+}
+
+.token-name,
+.token-role-code,
+.theme-code,
+.token-inline,
+.token-rendered-val {
+  font-family: monospace;
+  font-size: var(--honesty-type-caption-font-size);
+  direction: ltr;
+}
+
+.token-name,
+.theme-code,
+.token-inline {
+  color: var(--honesty-color-text-secondary);
+  unicode-bidi: embed;
+}
+
+.token-role-code,
+.token-rendered-val {
+  font-weight: var(--honesty-type-body-strong-font-weight);
+  color: var(--honesty-color-text-primary);
+}
+
+.specimen-card-note,
+.semantic-rule-hint,
+.region-text {
+  color: var(--honesty-color-text-secondary);
+  margin: 0;
+}
+
+.semantic-purpose-label {
+  font-weight: var(--honesty-type-body-strong-font-weight);
+  color: var(--honesty-color-text-primary);
+}
+
+// Grids for Reference Evidence
+.specimen-grid {
+  display: grid;
+  gap: var(--honesty-space-inline-loose);
+
+  &.grid-3 {
+    grid-template-columns: 1fr;
+    @media (min-width: 768px) { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  &.grid-4 {
+    grid-template-columns: 1fr;
+    @media (min-width: 640px) { grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 1024px) { grid-template-columns: repeat(4, 1fr); }
+  }
+}
+
+// Visual Stage & Boxes (With ample breathing room for 24px blur)
+.specimen-visual-stage,
+.semantic-visual-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--honesty-color-surface-canvas);
+  border-radius: var(--honesty-radius-control);
+  border: 1px solid var(--honesty-border-subtle);
+  overflow: visible;
+}
+
+.specimen-visual-stage {
+  min-height: 130px;
+  padding: 32px;
+}
+
+.semantic-visual-wrapper {
+  min-width: 130px;
+  min-height: 90px;
+  padding: 24px;
+}
+
+.elevation-visual-box,
+.semantic-specimen-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--honesty-color-surface-default);
+  border: 1px solid var(--honesty-border-subtle);
+  border-radius: var(--honesty-radius-surface);
+}
+
+.elevation-visual-box {
+  width: 100%;
+  max-width: 190px;
+  height: 60px;
+}
+
+.semantic-specimen-box {
+  width: 90px;
+  height: 44px;
+}
+
+// Section 1: Reference Geometry Shadows
+.ref-box-geom-none { box-shadow: #{ref-elev.$honesty-ref-elevation-shadow-none}; }
+.ref-box-geom-1 { box-shadow: #{ref-elev.$honesty-ref-elevation-shadow-geometry-1} #{$docs-ref-geometry-color-alpha}; }
+.ref-box-geom-2 { box-shadow: #{ref-elev.$honesty-ref-elevation-shadow-geometry-2} #{$docs-ref-geometry-color-alpha}; }
+
+// Section 2: Reference Alpha Shadows
+.ref-box-alpha-08 { box-shadow: #{ref-elev.$honesty-ref-elevation-shadow-geometry-2} #{rgba($docs-ref-alpha-color, ref-elev.$honesty-ref-elevation-shadow-alpha-08)}; }
+.ref-box-alpha-14 { box-shadow: #{ref-elev.$honesty-ref-elevation-shadow-geometry-2} #{rgba($docs-ref-alpha-color, ref-elev.$honesty-ref-elevation-shadow-alpha-14)}; }
+.ref-box-alpha-28 { box-shadow: #{ref-elev.$honesty-ref-elevation-shadow-geometry-2} #{rgba($docs-ref-alpha-color, ref-elev.$honesty-ref-elevation-shadow-alpha-28)}; }
+.ref-box-alpha-40 { box-shadow: #{ref-elev.$honesty-ref-elevation-shadow-geometry-2} #{rgba($docs-ref-alpha-color, ref-elev.$honesty-ref-elevation-shadow-alpha-40)}; }
+
+// Section 3: Semantic Elevation Comparison
+.themes-comparison-grid {
+  display: grid;
+  gap: var(--honesty-space-inline-loose);
+  grid-template-columns: 1fr;
+  @media (min-width: 900px) { grid-template-columns: 1fr 1fr; }
+}
+
+.semantic-specimen-stack { gap: var(--honesty-space-stack-loose); }
+
+.semantic-sample-row {
+  gap: var(--honesty-space-inline-default);
+  padding: var(--honesty-space-inset-default);
+  background-color: var(--honesty-color-surface-default);
+  @media (min-width: 540px) {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.semantic-elevation-none { box-shadow: var(--honesty-elevation-none); }
+.semantic-elevation-raised { box-shadow: var(--honesty-elevation-raised); }
+.semantic-elevation-overlay { box-shadow: var(--honesty-elevation-overlay); }
+
+.semantic-meta-col {
+  gap: var(--honesty-space-stack-tight);
+  flex: 1;
+}
+
+// Section 4: Contextual Floating Layer
+.contextual-stage-container { gap: var(--honesty-space-stack-loose); }
+
+.contextual-stage {
+  position: relative;
+  min-height: 200px;
+  padding: 24px;
+  background-color: var(--honesty-color-surface-canvas);
+  border: 1px solid var(--honesty-border-subtle);
+  border-radius: var(--honesty-radius-surface);
+  overflow: visible;
+}
+
+.contextual-base-region {
+  gap: var(--honesty-space-stack-tight);
+  padding: var(--honesty-space-inset-loose);
+  width: 85%;
+  min-height: 130px;
+  background-color: var(--honesty-color-surface-default);
+  box-shadow: var(--honesty-elevation-none);
+}
+
+.contextual-floating-region {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+  right: auto;
+  width: 65%;
+  gap: var(--honesty-space-stack-tight);
+  padding: var(--honesty-space-inset-default);
+  background-color: var(--honesty-color-surface-default);
+  border-radius: var(--honesty-radius-overlay);
+  box-shadow: var(--honesty-elevation-overlay);
+}
+
+.contextual-raised-region {
+  gap: var(--honesty-space-stack-tight);
+  padding: var(--honesty-space-inset-default);
+  background-color: var(--honesty-color-surface-default);
+  box-shadow: var(--honesty-elevation-raised);
+}

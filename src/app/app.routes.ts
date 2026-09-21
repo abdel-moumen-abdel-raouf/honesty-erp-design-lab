@@ -43,6 +43,11 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'foundation/elevation',
+    loadComponent: () =>
+      import('./foundation/elevation/elevation').then((m) => m.Elevation),
+  },
+  {
     path: '',
     redirectTo: 'foundation/colors',
     pathMatch: 'full',
