@@ -74,7 +74,7 @@ describe('Foundation Overview', () => {
     );
   });
 
-  it('renders exactly the 14 specified intentional deferrals', () => {
+  it('renders exactly the 18 specified intentional deferrals', () => {
     const fixture = TestBed.createComponent(Overview);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
@@ -82,7 +82,7 @@ describe('Foundation Overview', () => {
       compiled.querySelectorAll<HTMLElement>('[data-deferred-item]')
     );
 
-    expect(items).toHaveLength(14);
+    expect(items).toHaveLength(18);
     expect(items.map((item) => item.textContent?.trim())).toEqual([
       ...FOUNDATION_DEFERRED_DECISIONS,
     ]);

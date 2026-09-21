@@ -66,7 +66,7 @@ Names must describe **purpose and function**, never physical appearance or liter
 ### B. Semantic Tokens (Runtime CSS Custom Properties)
 - **Syntax:** `--honesty-<semantic-category>-<purpose>`
 - **Category:** `color-surface`, `color-text`, `color-action`, `color-feedback`, `type`, `space`, `radius`, `border`, `elevation`, `motion`, `space-layout`, `layer`, `chart`.
-- **Purpose:** Functional intent and state (e.g., `canvas`, `panel`, `primary`, `muted`, `hover`, `success`, `error`).
+- **Purpose:** Functional intent and state (e.g., `canvas`, `default`, `primary`, `muted`, `hover`, `success`, `danger`).
 - **Grammar Examples (Shape Only):**
   - `--honesty-color-surface-<role>`
   - `--honesty-color-text-<role>`
@@ -281,7 +281,9 @@ Each typography role defines three standard CSS custom properties:
 ### G. Scope Boundaries (Candidate V1)
 - **No Letter Spacing:** Explicit tracking is deferred pending Arabic visual review.
 - **No Monospace Role:** No production monospace font has been approved; code roles are deferred.
-- **No Global Application:** Typography variables are not applied to `html`, `body`, or component selectors in this phase.
+- **Application Boundary:** No GLOBAL production Typography application to `html` or `body` is established yet.
+- **Docs-Only Review Evidence:** Docs-only Foundation Typography specimens consume the Semantic Typography variables as review evidence.
+- **Production Mapping Deferred:** Production Component Typography mapping remains future Component-contract work.
 
 ---
 
@@ -442,7 +444,9 @@ Each typography role defines three standard CSS custom properties:
 - **No Pill / Full Radius:** Tokens like `--honesty-radius-pill`, `--honesty-radius-full`, and `--honesty-radius-round` are forbidden in Candidate V1 to prevent unapproved rounded/bubbly aesthetics.
 - **No Component-Specific Tokens:** Component tokens such as `--honesty-button-radius`, `--honesty-input-radius`, `--honesty-card-radius`, `--honesty-modal-radius`, or `--honesty-badge-radius` are deferred to Layer 3 (Component Tokens).
 - **No Focus-Ring Geometry:** Focus-ring width, offset, and outline geometry are deferred pending focus behavior specification. The existing theme-sensitive focus ring color token (`--honesty-color-action-focus-ring`) remains untouched.
-- **No Global Application:** Borders and radius tokens are not applied to `html`, `body`, or existing UI views in this phase.
+- **Application Boundary:** No GLOBAL production Borders/Radius application exists yet.
+- **Docs-Only Review Evidence:** Docs-only Foundation specimens already consume Border/Radius contracts for review evidence.
+- **Production Mapping Deferred:** Production Component mapping remains deferred.
 
 ---
 
@@ -549,7 +553,9 @@ Each typography role defines three standard CSS custom properties:
 - **No Keyframes:** `@keyframes` definitions (e.g., `fade-in`, `fade-out`, `slide`, `spin`, `pulse`) are prohibited in Foundation motion.
 - **No CSS Property Contracts:** Properties like `transition-property`, `animation-name`, `animation-fill-mode`, etc., are deferred to future Component contracts.
 - **No Component-Specific Motion:** Tokens such as `modal-enter`, `modal-exit`, `dropdown-open`, `toast-enter`, `sidebar-collapse`, `accordion-expand`, `tooltip-delay`, or `button-hover` belong to Layer 3 (Component Tokens) and require concrete reference components.
-- **No Global Transitions:** No transitions applied to `html`, `body`, `*`, links, buttons, theme selectors, or review pages.
+- **No Global Transition Policy:** No GLOBAL transition policy is applied to `html`, `body`, universal selectors, links, buttons, theme selectors, or general review chrome.
+- **Docs-Only Motion Evidence:** The dedicated docs-only Motion specimen intentionally uses LOCAL, explicit-property transitions solely as review evidence.
+- **Production Transition Contracts Deferred:** Production Component transition-property contracts remain deferred.
 - **No `transition: all`:** Universal property transition shorthand is strictly prohibited.
 - **No Theme or Density Coupling:** Motion timing is theme-independent (not duplicated in `[data-theme='light']` or `[data-theme='dark']`) and density-independent (unchanged across Compact, Comfortable, and Spacious modes).
 - **Accessibility Scope:** No dedicated reduced-motion or screen-reader motion program in this phase; standard interaction correctness is preserved.
@@ -735,7 +741,9 @@ Defines the default separation between columns/cells in data and dashboard grids
 - **Semantic Tokens (Runtime CSS Custom Properties):** Purpose-driven roles emitted in `:root` via `src/styles/foundation/semantic/layers/_roles.scss` that resolve strictly from Reference z-index Sass tokens (`ref.$honesty-ref-z-index-*`).
 - **No Component-Specific Layer Tokens:** Tokens such as `--honesty-layer-dropdown`, `--honesty-layer-menu`, `--honesty-layer-popover`, `--honesty-layer-tooltip`, `--honesty-layer-modal`, `--honesty-layer-dialog`, or `--honesty-layer-toast` are prohibited in Candidate V1; component-specific mappings belong to future Component token contracts (Layer 3).
 - **No Global Stacking-Context Rules Yet:** No global or component CSS rules involving `position`, `isolation`, `transform`, `filter`, `opacity`, `contain`, or `will-change` are introduced for stacking context creation. Stacking-context ownership belongs to future components and layout primitives.
-- **No Global Application:** Layer custom properties are not applied to `html`, `body`, App shell, navigation, or existing specimen pages. Existing UI remains visually and structurally unchanged.
+- **Application Boundary:** No GLOBAL production Layer application exists on `html`, `body`, App shell, or navigation.
+- **Docs-Only Review Evidence:** The docs-only Layers specimen intentionally consumes Layer tokens locally inside isolated stacking stages for review evidence.
+- **Production Ownership Deferred:** Production component-specific stacking-context ownership remains deferred.
 - **No Theme or Density Coupling:** Layer tokens are emitted once in `:root`. They are strictly theme-independent (not declared under `[data-theme='light']` or `[data-theme='dark']`) and density-independent (unchanged across `compact`, `comfortable`, and `spacious` modes).
 
 ### B. Reference Z-Index Scale (Compile-Time Sass Primitives)

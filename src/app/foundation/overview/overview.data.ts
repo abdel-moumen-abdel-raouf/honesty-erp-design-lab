@@ -38,7 +38,7 @@ export const FOUNDATION_OVERVIEW_DOMAINS: readonly FoundationOverviewDomain[] = 
     summary:
       'Tajawal + Space Grotesk, shared 400/500/700 weights, and nine Semantic roles are established.',
     reopenTrigger:
-      'Contextual revalidation is allowed in dense Forms/Tables if real component evidence requires it.',
+      'Contextual revalidation is allowed in dense Forms/Tables; explicit letter-spacing/tracking and a production monospace/code role remain deferred until concrete reference evidence requires them.',
   },
   {
     id: 'spacing',
@@ -57,7 +57,7 @@ export const FOUNDATION_OVERVIEW_DOMAINS: readonly FoundationOverviewDomain[] = 
     summary:
       'Border width/style geometry and controlled radius roles are established.',
     reopenTrigger:
-      'Focus geometry and pill/full radius require real component references.',
+      'Focus geometry, pill/full radius, and any Semantic dashed-border role require concrete component/reference evidence.',
   },
   {
     id: 'elevation',
@@ -114,7 +114,7 @@ export const FOUNDATION_OVERVIEW_DOMAINS: readonly FoundationOverviewDomain[] = 
     summary:
       'Five categorical Chart series, status/delta colors and structural Chart colors are established for Light/Dark.',
     reopenTrigger:
-      'Re-evaluate categorical series after Secondary/Accent palettes are designed.',
+      'Re-evaluate the categorical palette after Secondary/Accent palettes are designed; expand beyond five series only when concrete dashboard/chart requirements justify it.',
   },
   {
     id: 'preferences',
@@ -136,16 +136,20 @@ export const FOUNDATION_OVERALL_STATUS = Object.freeze({
 export const FOUNDATION_DEFERRED_DECISIONS = [
   'Secondary / Accent palettes',
   'Component Tokens',
+  'Typography letter-spacing / tracking',
+  'Production monospace / code Typography role',
   'Production structural primitives',
   'Container max-width contract',
   'Production Grid column contract',
   'Focus-ring geometry',
   'Pill/full radius',
+  'Semantic dashed-border role when a concrete semantic use exists',
   'Component-specific elevation',
   'Component-specific motion',
   'Component density heights',
   'Component-specific layer mappings',
   'Chart categorical palette reconsideration after Secondary/Accent',
+  'Chart series expansion beyond five when concrete dashboard/chart requirements justify it',
   'Backend Preferences persistence',
   'Global production Preferences application',
 ] as const;
