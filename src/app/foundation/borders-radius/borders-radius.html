@@ -71,7 +71,7 @@
         <span class="section-subtitle">Reference Border Stroke Styles</span>
       </div>
       <p class="section-lead">
-        مقارنة نمط الخط الفيزيائي لسماكة 1px. يُرجى ملاحظة أن نمط الخط المتقطع (dashed) مرجعي فقط ولا يملك دوراً دلالياً في Candidate V1.
+        مقارنة نمط الخط الفيزيائي لسماكة 1px مع إثبات الدور الدلالي لنمط الخط المتقطع (dashed).
       </p>
 
       <div id="ref-styles-grid" class="specimen-grid grid-2">
@@ -96,11 +96,17 @@
             <span class="token-rendered-val">dashed</span>
           </div>
         </div>
-      </div>
 
-      <div id="dashed-reference-only-notice" class="specimen-notice-box">
-        <span class="notice-badge">تنبيه تعاقدي</span>
-        <span class="notice-text">Reference only — no Semantic dashed role in Candidate V1 (مرجعي فقط — لا يوجد دور دلالي لنمط dashed في Candidate V1).</span>
+        <!-- Semantic Dashed -->
+        <div id="semantic-border-style-dashed" class="specimen-card semantic-dashed-border-proof">
+          <div class="specimen-visual-box ref-box-style" style="border-style: var(--honesty-border-style-dashed)">
+            <span class="visual-box-label">دور دلالي متقطع (Semantic Dashed)</span>
+          </div>
+          <div class="specimen-card-meta">
+            <code class="token-name">--honesty-border-style-dashed</code>
+            <span class="token-rendered-val">dashed</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -234,7 +240,7 @@
         <span class="section-subtitle">Reference Corner Radius Scale</span>
       </div>
       <p class="section-lead">
-        سلم هندسي مضبوط يعتمد على وحدة rem بالنسبة للجذر 16px. لا تتضمن المنظومة أي قيم دائرية كاملة (pill) أو نسب مئوية.
+        سلم هندسي مضبوط يعتمد على وحدة rem بالنسبة للجذر 16px، مع قدرة full بقيمة 9999px دون جعلها الجمالية الافتراضية.
       </p>
 
       <div id="ref-radius-grid" class="specimen-grid grid-6">
@@ -303,6 +309,17 @@
             <span class="token-rendered-val">0.75rem (12px)</span>
           </div>
         </div>
+
+        <!-- Full -->
+        <div id="ref-radius-specimen-full" class="specimen-card ref-radius-full">
+          <div class="specimen-visual-box ref-box-radius">
+            <span class="visual-box-label">full</span>
+          </div>
+          <div class="specimen-card-meta">
+            <code class="token-name">$honesty-ref-radius-full</code>
+            <span class="token-rendered-val">9999px</span>
+          </div>
+        </div>
       </div>
 
       <div id="unaliased-radius-note" class="specimen-notice-box">
@@ -367,6 +384,17 @@
           <div class="specimen-card-meta">
             <code class="token-name">--honesty-radius-overlay</code>
             <span class="token-rendered-val">0.5rem (8px)</span>
+          </div>
+        </div>
+
+        <!-- Full -->
+        <div id="semantic-radius-full" class="specimen-card semantic-radius-full-card">
+          <div class="specimen-visual-box box-radius-overlay" style="border-radius: var(--honesty-radius-full)">
+            <span class="visual-box-label">قدرة كاملة (Full)</span>
+          </div>
+          <div class="specimen-card-meta">
+            <code class="token-name">--honesty-radius-full</code>
+            <span class="token-rendered-val">9999px</span>
           </div>
         </div>
       </div>

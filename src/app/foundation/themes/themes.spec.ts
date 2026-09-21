@@ -63,6 +63,15 @@ describe('Themes Specimen', () => {
     expect(compiled.querySelector('#inverse-sample-dark')).toBeTruthy();
   });
 
+  it('should render the Light and Dark scrim samples', () => {
+    const fixture = TestBed.createComponent(Themes);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+
+    expect(compiled.querySelector('#scrim-sample-light')).toBeTruthy();
+    expect(compiled.querySelector('#scrim-sample-dark')).toBeTruthy();
+  });
+
   it('should document the exact Light and Dark focus-ring source steps', () => {
     const fixture = TestBed.createComponent(Themes);
     fixture.detectChanges();

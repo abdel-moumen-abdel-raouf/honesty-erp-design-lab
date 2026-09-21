@@ -13,5 +13,21 @@
 // Component naming remains:
 // --honesty-<component>-<property-or-purpose>
 //
-// A production Component implementation must consume its Component Tokens.
+// Source Contract:
+// - Semantic -> Component Tokens is the default path for shared meaning,
+//   theme-sensitive values, density-sensitive values, brand, feedback,
+//   surfaces, text, focus, elevation, motion, and layers.
+// - A Component Token declaration may consume a Reference primitive directly
+//   only when it is a context-free physical primitive, no shared Semantic
+//   meaning is appropriate, and the Product Owner-approved component reference
+//   requires it.
+// - Direct Reference colors are forbidden. Colors go through Semantic contracts.
+// - Direct Reference breakpoints are forbidden. Responsive behavior uses the
+//   Foundation Query API only.
+// - A Component Token may own an inherently component-local structural constant,
+//   such as container max-width, grid column count, or local min/height/width.
+//   It remains in the Component layer and is not automatically promoted into
+//   Foundation.
+// - Production Component implementation SCSS consumes Component Tokens only;
+//   it does not consume Reference or Semantic tokens directly.
 // =============================================================================

@@ -6,7 +6,7 @@ import {
   FOUNDATION_NEXT_LAYER_DECISIONS,
   FOUNDATION_OVERALL_STATUS,
   FOUNDATION_OVERVIEW_DOMAINS,
-  FOUNDATION_V1_EXCLUSIONS,
+  FOUNDATION_V1_CONSTRAINTS,
 } from './overview.data';
 import {Overview} from './overview';
 
@@ -104,35 +104,35 @@ describe('Foundation Overview', () => {
     );
   });
 
-  it('renders exactly 10 next-layer decisions and 5 V1 exclusions in LTR lists', () => {
+  it('renders exactly 10 next-layer decisions and 3 frozen V1 constraints in LTR lists', () => {
     const fixture = TestBed.createComponent(Overview);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     const nextLayerList = compiled.querySelector('[data-next-layer-list]');
-    const exclusionList = compiled.querySelector('[data-v1-exclusion-list]');
+    const constraintList = compiled.querySelector('[data-v1-constraint-list]');
     const nextLayerItems = Array.from(
       compiled.querySelectorAll<HTMLElement>('[data-next-layer-item]')
     );
-    const exclusionItems = Array.from(
-      compiled.querySelectorAll<HTMLElement>('[data-v1-exclusion-item]')
+    const constraintItems = Array.from(
+      compiled.querySelectorAll<HTMLElement>('[data-v1-constraint-item]')
     );
 
     expect(nextLayerList?.getAttribute('dir')).toBe('ltr');
-    expect(exclusionList?.getAttribute('dir')).toBe('ltr');
+    expect(constraintList?.getAttribute('dir')).toBe('ltr');
     expect(nextLayerItems).toHaveLength(10);
-    expect(exclusionItems).toHaveLength(5);
+    expect(constraintItems).toHaveLength(3);
     expect(nextLayerItems.map((item) => item.textContent?.trim())).toEqual([
       ...FOUNDATION_NEXT_LAYER_DECISIONS,
     ]);
-    expect(exclusionItems.map((item) => item.textContent?.trim())).toEqual([
-      ...FOUNDATION_V1_EXCLUSIONS,
+    expect(constraintItems.map((item) => item.textContent?.trim())).toEqual([
+      ...FOUNDATION_V1_CONSTRAINTS,
     ]);
   });
 
   it('removes resolved Brand, Focus, and Chart-after-Brand items from unresolved lists', () => {
     const unresolved = [
       ...FOUNDATION_NEXT_LAYER_DECISIONS,
-      ...FOUNDATION_V1_EXCLUSIONS,
+      ...FOUNDATION_V1_CONSTRAINTS,
     ];
 
     expect(unresolved).not.toContain('Secondary / Accent palettes');
@@ -166,7 +166,7 @@ describe('Foundation Overview', () => {
       'Lower-layer Foundation Candidate V1 contracts are assembled for final Product Owner closure review.'
     );
     expect(gate?.textContent).toContain(
-      'Next-layer decisions and explicit V1 exclusions are documented.'
+      'Next-layer decisions and frozen V1 constraints are documented.'
     );
     expect(gate?.textContent).toContain('Final freeze has NOT happened yet.');
     expect(gate?.textContent).toContain(

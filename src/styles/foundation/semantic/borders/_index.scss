@@ -9,11 +9,9 @@
 // - Widths:
 //   --honesty-border-width-default:  1px ($honesty-ref-border-width-1)
 //   --honesty-border-width-emphasis: 2px ($honesty-ref-border-width-2)
-// - Style:
+// - Styles:
 //   --honesty-border-style-default:  solid ($honesty-ref-border-style-solid)
-//
-// Reference-Only (Candidate V1):
-// - $honesty-ref-border-style-dashed has no semantic token alias in Candidate V1.
+//   --honesty-border-style-dashed:   dashed ($honesty-ref-border-style-dashed)
 // =============================================================================
 
 @use 'geometry';

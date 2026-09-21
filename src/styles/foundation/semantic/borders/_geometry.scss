@@ -20,4 +20,6 @@
   --honesty-border-width-default: #{ref.$honesty-ref-border-width-1};
   --honesty-border-width-emphasis: #{ref.$honesty-ref-border-width-2};
   --honesty-border-style-default: #{ref.$honesty-ref-border-style-solid};
+  --honesty-border-style-dashed:
+    #{ref.$honesty-ref-border-style-dashed};
 }

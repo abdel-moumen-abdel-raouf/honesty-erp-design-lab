@@ -33,8 +33,25 @@ Semantic tokens:
 Component tokens:
 - Runtime component-scoped contracts.
 - Do not create them before the relevant component phase.
+- Semantic → Component Tokens is the default path for shared meaning,
+  theme-sensitive values, density-sensitive values, brand, feedback, surfaces,
+  text, focus, elevation, motion, and layers.
+- A Component Token declaration may consume a Reference primitive directly only
+  when the value is a context-free physical primitive, no shared Semantic
+  meaning is appropriate, and the Product Owner-approved component reference
+  requires it.
+- Direct Reference colors are forbidden in Component Tokens. Colors must go
+  through Semantic contracts.
+- Direct Reference breakpoints are forbidden. Responsive behavior uses the
+  Foundation Query API only.
+- A Component Token may own a component-local structural constant when that
+  value is inherently local to the component, such as a container max-width,
+  grid column count, or component-local min/height/width contract. Such a value
+  stays in the Component layer and is not automatically promoted into
+  Foundation.
 
-Production components must not consume raw Reference values directly.
+Production component implementation SCSS consumes Component Tokens only. It
+does not consume Reference or Semantic tokens directly.
 
 The public responsive Sass API is the Foundation Query API.
 

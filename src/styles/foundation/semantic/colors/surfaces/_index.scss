@@ -2,6 +2,13 @@
 // Semantic Layer: Color Surfaces
 // =============================================================================
 // Responsibility:
-// Future ownership of semantic surface colors (canvas, panel, card, overlay).
+// Documents the current theme-sensitive Surface roles:
+// - --honesty-color-surface-canvas
+// - --honesty-color-surface-default
+// - --honesty-color-surface-elevated
+// - --honesty-color-surface-inverse
+// - --honesty-color-surface-scrim
+//
+// Scrim is the shared backdrop plane for future blocking overlays.
 // Depends on reference color tokens. Must not depend on component tokens.
 // =============================================================================

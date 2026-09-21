@@ -50,7 +50,7 @@ export const FOUNDATION_OVERVIEW_DOMAINS: readonly FoundationOverviewDomain[] = 
     summary:
       'Tajawal + Space Grotesk, shared 400/500/700 weights, and nine Semantic roles are established.',
     reopenTrigger:
-      'Contextual revalidation is allowed in dense Forms/Tables; explicit letter-spacing/tracking and a production monospace/code role remain deferred until concrete reference evidence requires them.',
+      'Contextual revalidation is allowed in dense Forms/Tables; a shared letter-spacing/tracking or production monospace contract requires explicit Foundation reopen.',
   },
   {
     id: 'charts',
@@ -60,7 +60,7 @@ export const FOUNDATION_OVERVIEW_DOMAINS: readonly FoundationOverviewDomain[] = 
     summary:
       'Five categorical Chart series, status/delta colors and structural Chart colors are established for Light/Dark.',
     reopenTrigger:
-      'Expand beyond five series only when concrete dashboard/chart requirements justify it; categorical palette changes require explicit Product Owner reopen.',
+      'Exceeding five concurrent categorical series or changing categorical palette mappings requires explicit Product Owner reopen.',
   },
   {
     id: 'preferences',
@@ -90,7 +90,7 @@ export const FOUNDATION_OVERVIEW_DOMAINS: readonly FoundationOverviewDomain[] = 
     summary:
       'Border width/style geometry, controlled radius roles, and default Focus Ring geometry are established.',
     reopenTrigger:
-      'Pill/full radius and any Semantic dashed-border role require concrete component/reference evidence.',
+      'Changing the full-radius or Semantic dashed-border capabilities requires explicit Foundation reopen.',
   },
   {
     id: 'elevation',
@@ -159,10 +159,8 @@ export const FOUNDATION_NEXT_LAYER_DECISIONS = [
   'Global production Preferences application',
 ] as const;
 
-export const FOUNDATION_V1_EXCLUSIONS = [
-  'Typography letter-spacing / tracking',
-  'Production monospace / code Typography role',
-  'Pill/full radius',
-  'Semantic dashed-border role when a concrete semantic use exists',
-  'Chart series expansion beyond five when concrete dashboard/chart requirements justify it',
+export const FOUNDATION_V1_CONSTRAINTS = [
+  'No shared Foundation letter-spacing/tracking contract; normal letter spacing is the frozen V1 baseline.',
+  'No shared production monospace role; identifiers use the approved UI/Latin family plus bidi/LTR isolation.',
+  'Foundation Charts support a maximum of five concurrent categorical series; larger visualizations must be grouped/split or Foundation explicitly reopened.',
 ] as const;

@@ -148,6 +148,27 @@
   max-width: 100%;
 }
 
+.scrim-sample-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 5rem;
+  background-color: var(--honesty-color-surface-default);
+  border: 1px solid var(--honesty-border-subtle);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.scrim-underlay-label {
+  color: var(--honesty-color-text-primary);
+}
+
+.scrim-sample {
+  position: absolute;
+  inset: 0;
+  background: var(--honesty-color-surface-scrim);
+}
+
 .section-label {
   font-size: 0.8rem;
   font-weight: 700;

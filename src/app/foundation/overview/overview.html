@@ -72,12 +72,12 @@
         }
       </ul>
     </section>
-    <section class="boundary-subsection" data-boundary-subsection="v1-exclusions">
-      <h3>مستبعد من Foundation V1 حتى يظهر دليل</h3>
-      <p>لا تُضاف هذه القدرات إلى Foundation V1 إلا عند ظهور مرجع أو متطلب حقيقي يبررها.</p>
-      <ul class="plain-list" dir="ltr" data-v1-exclusion-list>
-        @for (decision of v1Exclusions; track decision) {
-          <li data-v1-exclusion-item>{{ decision }}</li>
+    <section class="boundary-subsection" data-boundary-subsection="v1-constraints">
+      <h3>قيود Foundation V1 المجمدة</h3>
+      <p>هذه قرارات مكتملة في V1 وليست أعمالاً مؤجلة؛ تغييرها يتطلب إعادة فتح Foundation.</p>
+      <ul class="plain-list" dir="ltr" data-v1-constraint-list>
+        @for (decision of v1Constraints; track decision) {
+          <li data-v1-constraint-item>{{ decision }}</li>
         }
       </ul>
     </section>
@@ -107,7 +107,7 @@
     <h2>بوابة الإغلاق</h2>
     <ul class="plain-list closure-list" dir="ltr">
       <li>Lower-layer Foundation Candidate V1 contracts are assembled for final Product Owner closure review.</li>
-      <li>Next-layer decisions and explicit V1 exclusions are documented.</li>
+      <li>Next-layer decisions and frozen V1 constraints are documented.</li>
       <li>No production Component Token or production Component work has started.</li>
       <li>Final freeze has NOT happened yet.</li>
       <li>Product Owner explicit approval is required before entering production primitives/components.</li>

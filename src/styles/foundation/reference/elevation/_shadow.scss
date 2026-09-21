@@ -6,12 +6,14 @@
 // Does NOT emit CSS custom properties.
 // =============================================================================
 
+@use '../opacity' as opacity;
+
 $honesty-ref-elevation-shadow-color-black: #000000;
 
-$honesty-ref-elevation-shadow-alpha-08: 0.08;
+$honesty-ref-elevation-shadow-alpha-08: opacity.$honesty-ref-opacity-08;
 
-$honesty-ref-elevation-shadow-alpha-14: 0.14;
+$honesty-ref-elevation-shadow-alpha-14: opacity.$honesty-ref-opacity-14;
 
-$honesty-ref-elevation-shadow-alpha-28: 0.28;
+$honesty-ref-elevation-shadow-alpha-28: opacity.$honesty-ref-opacity-28;
 
-$honesty-ref-elevation-shadow-alpha-40: 0.40;
+$honesty-ref-elevation-shadow-alpha-40: opacity.$honesty-ref-opacity-40;

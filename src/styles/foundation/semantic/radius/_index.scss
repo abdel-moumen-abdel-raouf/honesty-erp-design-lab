@@ -2,7 +2,7 @@
 // Semantic Layer: Radius (Candidate V1)
 // =============================================================================
 // Responsibility:
-// Semantic shape and corner radius roles (none, control, surface, overlay).
+// Semantic shape and corner radius roles (none, control, surface, overlay, full).
 // Depends on reference/radius tokens. Must not depend on component tokens.
 //
 // Candidate V1 Roles:
@@ -10,6 +10,9 @@
 // - --honesty-radius-control: 0.25rem ($honesty-ref-radius-4)
 // - --honesty-radius-surface: 0.375rem ($honesty-ref-radius-6)
 // - --honesty-radius-overlay: 0.5rem ($honesty-ref-radius-8)
+// - --honesty-radius-full:    9999px ($honesty-ref-radius-full)
+//
+// Full is an available capability, not the default radius aesthetic.
 //
 // Intentionally Unaliased (Candidate V1):
 // - $honesty-ref-radius-2 (0.125rem)

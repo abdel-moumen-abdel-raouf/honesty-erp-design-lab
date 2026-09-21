@@ -4,7 +4,7 @@ import {
   FOUNDATION_NEXT_LAYER_DECISIONS,
   FOUNDATION_OVERALL_STATUS,
   FOUNDATION_OVERVIEW_DOMAINS,
-  FOUNDATION_V1_EXCLUSIONS,
+  FOUNDATION_V1_CONSTRAINTS,
 } from './overview.data';
 
 @Component({
@@ -18,5 +18,5 @@ export class Overview {
   readonly domains = FOUNDATION_OVERVIEW_DOMAINS;
   readonly overallStatus = FOUNDATION_OVERALL_STATUS;
   readonly nextLayerDecisions = FOUNDATION_NEXT_LAYER_DECISIONS;
-  readonly v1Exclusions = FOUNDATION_V1_EXCLUSIONS;
+  readonly v1Constraints = FOUNDATION_V1_CONSTRAINTS;
 }

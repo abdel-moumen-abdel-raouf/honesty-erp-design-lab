@@ -9,6 +9,7 @@
 
 @use '../reference/colors' as ref;
 @use '../reference/elevation' as ref-elevation;
+@use '../reference/opacity' as ref-opacity;
 
 [data-theme='dark'] {
   // Surfaces
@@ -16,6 +17,7 @@
   --honesty-color-surface-default: #{ref.$honesty-ref-color-neutral-900};
   --honesty-color-surface-elevated: #{ref.$honesty-ref-color-neutral-800};
   --honesty-color-surface-inverse: #{ref.$honesty-ref-color-white};
+  --honesty-color-surface-scrim: #{rgba(ref.$honesty-ref-color-neutral-950, ref-opacity.$honesty-ref-opacity-64)};
 
   // Text / Content
   --honesty-color-text-primary: #{ref.$honesty-ref-color-neutral-50};

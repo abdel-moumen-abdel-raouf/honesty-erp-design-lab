@@ -16,7 +16,10 @@
 //                 $honesty-ref-font-weight-*
 //                 $honesty-ref-line-height-*
 // - Spacing     : $honesty-ref-space-*
+// - Opacity     : $honesty-ref-opacity-*
+//                 Scale: 0, 08, 14, 28, 40, 48, 64, 100.
 // - Radius      : $honesty-ref-radius-*
+//                 Includes the context-free full capability at 9999px.
 // - Borders     : $honesty-ref-border-width-*
 //                 $honesty-ref-border-style-*
 // - Outlines    : $honesty-ref-outline-width-*
@@ -31,10 +34,11 @@
 //
 // Shape Documentation:
 // Reference tokens define raw, context-free primitives without contextual
-// semantics.
+// semantics. Reference opacity remains compile-time Sass only and emits no
+// runtime CSS custom properties.
 //
 // Reference Charts:
-// Candidate V1 introduces no raw Reference Chart values. The Reference Charts
-// domain remains reserved for genuinely visualization-specific primitives if
-// concrete requirements appear.
+// Frozen Foundation V1 requires no Chart-specific Reference primitive.
+// Any future shared lower-level Chart primitive requires explicit Foundation
+// reopen.
 // =============================================================================

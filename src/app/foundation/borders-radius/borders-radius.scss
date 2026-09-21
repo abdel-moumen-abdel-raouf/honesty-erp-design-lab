@@ -238,6 +238,7 @@
 .ref-radius-6 .ref-box-radius { border-radius: ref-radius.$honesty-ref-radius-6; }
 .ref-radius-8 .ref-box-radius { border-radius: ref-radius.$honesty-ref-radius-8; }
 .ref-radius-12 .ref-box-radius { border-radius: ref-radius.$honesty-ref-radius-12; }
+.ref-radius-full .ref-box-radius { border-radius: ref-radius.$honesty-ref-radius-full; }
 
 // Dual Theme Review Contexts
 .dual-theme-container {
@@ -275,16 +276,9 @@
 
 // Shared Default Semantic Border Properties
 .semantic-color-box,
-.box-width-default,
-.box-width-emphasis,
-.box-radius-none,
-.box-radius-control,
-.box-radius-surface,
-.box-radius-overlay,
-.comp-sample-a,
-.comp-sample-b,
-.comp-sample-c,
-.comp-sample-d {
+[class*='box-width-'],
+[class*='box-radius-'],
+[class*='comp-sample-'] {
   border-width: var(--honesty-border-width-default);
   border-style: var(--honesty-border-style-default);
   border-color: var(--honesty-border-default);

@@ -23,8 +23,8 @@ Component Implementations
 - **Reference Tokens:** The raw, context-free source of truth for all primitive values (scales, palettes, steps).
 - **Semantic Tokens:** Purpose-driven tokens that assign functional meaning to reference values (surfaces, content, intent, feedback, states).
 - **Theme / Density / Query Resolution:** Resolves theme-sensitive runtime values, density modulation, and symbolic responsive queries before Component contracts are authored.
-- **Component Tokens:** Scoped component contracts that consume Semantic contracts after Theme/Density/Query resolution to isolate component styling from global naming changes.
-- **Component Implementations:** Scoped component SCSS/CSS consumes only component tokens, never raw literals or reference values directly.
+- **Component Tokens:** Scoped component contracts that consume Semantic contracts by default after Theme/Density/Query resolution. A narrowly governed direct Reference source is allowed only for context-free physical primitives when no shared Semantic meaning is appropriate and the Product Owner-approved component reference requires it.
+- **Component Implementations:** Scoped component SCSS/CSS consumes Component Tokens only; it does not consume Reference or Semantic tokens directly.
 
 ---
 
@@ -54,11 +54,12 @@ Names must describe **purpose and function**, never physical appearance or liter
 
 ### A. Reference Tokens (Sass Compile-Time)
 - **Syntax:** `$honesty-ref-<category>-<name>`
-- **Category:** `color`, `space`, `radius`, `border`, `outline`, `elevation`, `motion`, `z-index`, `breakpoint`, `chart`, `font-size`, `line-height`, `font-weight`.
+- **Category:** `color`, `space`, `opacity`, `radius`, `border`, `outline`, `elevation`, `motion`, `z-index`, `breakpoint`, `chart`, `font-size`, `line-height`, `font-weight`.
 - **Name:** Scale step, hue step, or numerical designation (e.g., scale index, weight number).
 - **Grammar Examples (Shape Only):**
   - `$honesty-ref-color-<palette>-<step>`
   - `$honesty-ref-space-<step>`
+  - `$honesty-ref-opacity-<step>`
   - `$honesty-ref-radius-<step>`
   - `$honesty-ref-outline-<property>-<step>`
   - `$honesty-ref-font-size-<step>`
@@ -99,7 +100,11 @@ Names must describe **purpose and function**, never physical appearance or liter
   - `--honesty-<component>-<variant>-<property>`
   - `--honesty-<component>-<state>-<property>`
   - `--honesty-<component>-<element>-<property>`
-- **Rule:** Component tokens map directly to Semantic tokens by default, acting as an abstraction barrier between component templates and design system tokens.
+- **Default Source Rule:** Component tokens map to Semantic contracts by default for shared meaning, theme-sensitive values, density-sensitive values, brand, feedback, surfaces, text, focus, elevation, motion, and layers.
+- **Governed Reference Exception:** A Component Token declaration may consume a Reference primitive directly only when the value is a context-free physical primitive, no shared Semantic meaning is appropriate, and the Product Owner-approved component reference requires it.
+- **Color Prohibition:** Direct Reference colors are forbidden in Component Tokens. Colors must go through Semantic contracts.
+- **Breakpoint Prohibition:** Direct Reference breakpoints are forbidden. Responsive behavior uses the Foundation Query API only.
+- **Local Structural Ownership:** A Component Token may own an inherently component-local structural constant, such as a container max-width, grid column count, or component-local min/height/width contract. It stays in the Component layer and is not automatically promoted into Foundation.
 
 ---
 
@@ -109,6 +114,7 @@ Names must describe **purpose and function**, never physical appearance or liter
 Allowed:
 Reference  ────> Semantic
 Semantic   ────> Component Tokens
+Reference  ────> Component Tokens (governed context-free physical primitive only)
 Semantic   ────> Theme Bindings
 Semantic   ────> Density Overrides
 Component  ────> Component SCSS Implementation
@@ -118,9 +124,13 @@ Component  ────> Component SCSS Implementation
 2. Themes compose Reference tokens into theme-sensitive Semantic CSS custom properties.
 3. Density presets modulate density-sensitive Semantic/Component CSS custom properties.
 4. The Query API resolves symbolic queries from Reference breakpoint data.
-5. Component tokens may read and consume resolved Semantic contracts.
-6. Component stylesheet implementations consume only their designated Component tokens.
-7. Component and layout stylesheet implementations may consume the public Foundation Query API.
+5. Component tokens consume resolved Semantic contracts by default.
+6. A Component Token declaration may consume a Reference primitive directly only when it is a context-free physical primitive, no shared Semantic meaning is appropriate, and the Product Owner-approved component reference requires it.
+7. Direct Reference colors are forbidden in Component Tokens; colors must resolve through Semantic contracts.
+8. Direct Reference breakpoints are forbidden; responsive behavior uses the public Foundation Query API only.
+9. A Component Token may own an inherently component-local structural constant such as container max-width, grid column count, or a local min/height/width contract. It remains Component-owned and is not automatically promoted into Foundation.
+10. Component stylesheet implementations consume only their designated Component tokens and do not consume Reference or Semantic tokens directly.
+11. Component and layout stylesheet implementations may consume the public Foundation Query API.
 
 ---
 
@@ -130,7 +140,7 @@ Component  ────> Component SCSS Implementation
 Strictly Forbidden:
 Semantic        ──X──> Reference
 Component       ──X──> Semantic (reverse dependency)
-Component       ──X──> Reference (as default bypass)
+Component       ──X──> Reference colors or ungoverned Reference bypass
 Implementation  ──X──> Reference (bypassing Semantic & Component layers)
 Implementation  ──X──> Semantic (bypassing Component token contract)
 Themes          ──X──> Component Implementation
@@ -138,7 +148,7 @@ Feature Code    ──X──> Component Tokens (override bypass)
 ```
 
 1. **No Upward Dependencies:** Lower layers must never import or reference higher layers. Reference layer must have 0 imports from Semantic or Component layers.
-2. **No Layer Skipping:** Component templates and stylesheets must not consume Reference tokens or hardcoded literals directly. Raw Reference Sass variables must not be imported through a public shortcut.
+2. **No Implementation Layer Skipping:** Component templates and implementation stylesheets must not consume Reference or Semantic tokens directly. Component Token declarations may use only the governed context-free physical Reference exception above; raw Reference colors and breakpoints remain forbidden.
 3. **No Semantic Inversion:** Semantic tokens must not reference specific component tokens.
 4. **No Cross-Component Leakage:** A component (e.g., `Table`) must not consume or override the component tokens of an unrelated component (e.g., `Button`).
 
@@ -160,6 +170,11 @@ Feature Code    ──X──> Component Tokens (override bypass)
   no CSS theme selector.
 - Themes map Reference tokens to Semantic CSS custom properties based on the
   resolved Light or Dark visual mode.
+- The current Surface contract contains exactly `canvas`, `default`, `elevated`,
+  `inverse`, and `scrim`. `--honesty-color-surface-scrim` is the shared backdrop
+  plane for future blocking overlays. Light resolves it from Neutral 950 plus
+  `$honesty-ref-opacity-48`; Dark resolves it from Neutral 950 plus
+  `$honesty-ref-opacity-64`.
 - When applicable, theme-sensitive resolution may include:
   - surfaces
   - content/text colors
@@ -168,6 +183,7 @@ Feature Code    ──X──> Component Tokens (override bypass)
   - product brand colors
   - border colors
   - elevation/shadow treatment
+  - scrim/backdrop treatment
   - chart theme colors
 - Themes must **NOT** own:
   - layout structure
@@ -288,8 +304,8 @@ Each typography role defines three standard CSS custom properties:
 | **caption** | `$honesty-ref-font-size-12` | `$honesty-ref-font-weight-regular` | `$honesty-ref-line-height-150` | 0.75rem (12px) / 400 / 1.5 |
 
 ### G. Scope Boundaries (Candidate V1)
-- **No Letter Spacing:** Explicit tracking is deferred pending Arabic visual review.
-- **No Monospace Role:** No production monospace font has been approved; code roles are deferred.
+- **Letter Spacing:** Frozen Foundation V1 has no shared letter-spacing/tracking token. The baseline is normal letter spacing. A future shared tracking system requires explicit Foundation reopen.
+- **Monospace:** Frozen Foundation V1 has no shared production monospace role. Identifiers use the approved UI/Latin family plus bidi/LTR isolation. A future shared monospace system requires explicit Foundation reopen.
 - **Application Boundary:** No GLOBAL production Typography application to `html` or `body` is established yet.
 - **Docs-Only Review Evidence:** Docs-only Foundation Typography specimens consume the Semantic Typography variables as review evidence.
 - **Production Mapping Deferred:** Production Component Typography mapping remains future Component-contract work.
@@ -399,6 +415,7 @@ Each typography role defines three standard CSS custom properties:
   - `--honesty-border-width-default`: `#{ref.$honesty-ref-border-width-1}` (`1px`)
   - `--honesty-border-width-emphasis`: `#{ref.$honesty-ref-border-width-2}` (`2px`)
   - `--honesty-border-style-default`: `#{ref.$honesty-ref-border-style-solid}` (`solid`)
+  - `--honesty-border-style-dashed`: `#{ref.$honesty-ref-border-style-dashed}` (`dashed`)
 - Border geometry is theme-independent.
 - Every semantic value resolves strictly from a Reference Sass token via interpolation.
 
@@ -407,9 +424,9 @@ Each typography role defines three standard CSS custom properties:
 - `--honesty-border-width-emphasis` (2px): Geometric emphasis reserved exclusively for explicit state indicators or heavy boundary contracts when authorized by a component specification.
 - **Prohibition on Automatic "Strong" Mapping:** Ordinary "strong" visual boundaries must **not** automatically consume 2px width. Normal strong hierarchy should remain 1px paired with `--honesty-border-strong` color unless a component contract specifically dictates 2px thickness.
 
-### G. Dashed Style Scope (Reference-Only)
-- `$honesty-ref-border-style-dashed` is preserved as a Reference primitive only.
-- No Semantic dashed border token is created in Candidate V1 because no approved enterprise semantic role (e.g., drag-and-drop target, empty-state placeholder) has been formally approved.
+### G. Dashed Style Capability
+- `$honesty-ref-border-style-dashed` remains the context-free Reference source.
+- `--honesty-border-style-dashed` exposes the theme-independent Semantic dashed-border capability.
 
 ---
 
@@ -427,8 +444,10 @@ Each typography role defines three standard CSS custom properties:
   - `$honesty-ref-radius-6`: `0.375rem` (6px equivalent at 16px root)
   - `$honesty-ref-radius-8`: `0.5rem` (8px equivalent at 16px root)
   - `$honesty-ref-radius-12`: `0.75rem` (12px equivalent at 16px root)
-- Expressed in `rem` relative to the standard 16px root.
-- Values like 16px, 20px, 24px, 9999px, and 50% are strictly excluded in Candidate V1.
+  - `$honesty-ref-radius-full`: `9999px`
+- Numbered radius scale steps are expressed in `rem` relative to the standard 16px root; the `full` capability is `9999px`.
+- The `full` value is a context-free capability and is not the default radius aesthetic.
+- Values like 16px, 20px, 24px, and 50% are strictly excluded in Candidate V1.
 
 ### C. Semantic Radius Roles (Runtime CSS Custom Properties)
 - Emitted in `:root` via `src/styles/foundation/semantic/radius/_roles.scss`:
@@ -436,6 +455,7 @@ Each typography role defines three standard CSS custom properties:
   - `--honesty-radius-control`: `#{ref.$honesty-ref-radius-4}` (`0.25rem` / 4px)
   - `--honesty-radius-surface`: `#{ref.$honesty-ref-radius-6}` (`0.375rem` / 6px)
   - `--honesty-radius-overlay`: `#{ref.$honesty-ref-radius-8}` (`0.5rem` / 8px)
+  - `--honesty-radius-full`: `#{ref.$honesty-ref-radius-full}` (`9999px`)
 - Radius geometry is theme-independent.
 - Every semantic role resolves strictly from a Reference Sass token.
 
@@ -444,13 +464,14 @@ Each typography role defines three standard CSS custom properties:
 - **control (`0.25rem` / 4px):** Generic interactive control corner geometry (buttons, inputs, select triggers, chips). This establishes geometric capability; it does not define component-scoped styling contracts.
 - **surface (`0.375rem` / 6px):** Generic bounded surface corner geometry for cards, panels, and distinct content sections. This does not mandate that every content group become a card.
 - **overlay (`0.5rem` / 8px):** Generic floating or elevated region geometry for dropdown menus, popovers, and modal dialogs.
+- **full (`9999px`):** Available full-radius geometry for a Product Owner-approved component contract; it is not the default radius aesthetic.
 
 ### E. Intentionally Unaliased Radius Primitives
 - `$honesty-ref-radius-2` (2px) and `$honesty-ref-radius-12` (12px) are available in the Reference layer but deliberately have **no Semantic alias** in Candidate V1.
 - Reference scales are context-free mathematical baselines; semantic aliases are only introduced when a concrete functional purpose is justified.
 
 ### F. Excluded Radius & Geometry Scopes (Candidate V1)
-- **No Pill / Full Radius:** Tokens like `--honesty-radius-pill`, `--honesty-radius-full`, and `--honesty-radius-round` are forbidden in Candidate V1 to prevent unapproved rounded/bubbly aesthetics.
+- **No Default Full-Radius Aesthetic:** `--honesty-radius-full` is a capability only and does not authorize a default rounded/bubbly aesthetic. Separate `pill` and `round` roles are not defined.
 - **No Component-Specific Tokens:** Component tokens such as `--honesty-button-radius`, `--honesty-input-radius`, `--honesty-card-radius`, `--honesty-modal-radius`, or `--honesty-badge-radius` are deferred to future Component Tokens.
 - **Application Boundary:** No GLOBAL production Borders/Radius application exists yet.
 - **Docs-Only Review Evidence:** Docs-only Foundation specimens already consume Border/Radius contracts for review evidence.
@@ -472,7 +493,17 @@ Each typography role defines three standard CSS custom properties:
   - The **Light and Dark themes** resolve the Semantic elevation tokens into runtime CSS custom properties.
   - Universal shadow values are never emitted in `:root` for raised or overlay states.
 
-### C. Reference Elevation Primitives (Compile-Time Sass Primitives)
+### C. Reference Opacity & Elevation Primitives (Compile-Time Sass Primitives)
+- **Reference Opacity Scale** (`src/styles/foundation/reference/opacity/_scale.scss`):
+  - `$honesty-ref-opacity-0`: `0`
+  - `$honesty-ref-opacity-08`: `0.08`
+  - `$honesty-ref-opacity-14`: `0.14`
+  - `$honesty-ref-opacity-28`: `0.28`
+  - `$honesty-ref-opacity-40`: `0.40`
+  - `$honesty-ref-opacity-48`: `0.48`
+  - `$honesty-ref-opacity-64`: `0.64`
+  - `$honesty-ref-opacity-100`: `1`
+  - These are compile-time Reference Sass primitives and emit no runtime CSS variables.
 - **Geometry Primitives** (`src/styles/foundation/reference/elevation/_geometry.scss`):
   - `$honesty-ref-elevation-shadow-none`: `none`
   - `$honesty-ref-elevation-shadow-geometry-1`: `0 1px 2px 0` (physical geometry level 1)
@@ -484,6 +515,7 @@ Each typography role defines three standard CSS custom properties:
   - `$honesty-ref-elevation-shadow-alpha-14`: `0.14`
   - `$honesty-ref-elevation-shadow-alpha-28`: `0.28`
   - `$honesty-ref-elevation-shadow-alpha-40`: `0.40`
+  - The public Elevation alpha names alias their corresponding Reference opacity primitives without changing rendered shadows.
   - The Light theme does not duplicate Neutral 950 inside Elevation; it consumes `$honesty-ref-color-neutral-950` from Reference Colors.
 
 ### D. Semantic Elevation Roles (Runtime CSS Custom Properties)
@@ -790,7 +822,7 @@ No negative z-index tokens, underlay tokens, or background-minus-one tokens are 
 ### A. Architecture, Source, and Ownership
 - **Architecture:** Existing Reference Colors → Semantic Chart Contract → Light/Dark Theme Mapping → future Chart Components.
 - **Existing Reference Colors Are the Only Source:** Candidate V1 resolves directly from the approved Primary, Cyan, Green, Amber, Red, and Neutral Reference color Sass tokens.
-- **Reference Charts Adds No Raw Values:** src/styles/foundation/reference/charts/ remains reserved for future genuinely visualization-specific raw primitives. Candidate V1 does not duplicate existing colors or introduce a Chart-specific raw hue palette.
+- **Reference Charts Adds No Raw Values:** Frozen Foundation V1 requires no Chart-specific Reference primitive. Any future shared lower-level Chart primitive requires explicit Foundation reopen. Candidate V1 does not duplicate existing colors or introduce a Chart-specific raw hue palette.
 - **Theme-Sensitive Ownership:** Actual runtime values are emitted only inside [data-theme='light'] and [data-theme='dark']. The Semantic Charts module documents the contract and emits no universal :root values.
 - **Independent Resolution:** Every Chart role resolves independently from Reference Colors. Status/Delta roles do not alias categorical CSS custom properties, Feedback runtime variables, or Action runtime variables.
 
@@ -804,7 +836,7 @@ Candidate V1 contains exactly 12 Semantic Chart runtime roles:
 - --honesty-chart-series-4
 - --honesty-chart-series-5
 
-These five roles are ordinal categorical positions only. They do **not** mean Primary, Info, Success, Warning, or Danger, even when a current mapping resolves to the same underlying Reference hue. Additional roles such as series-6 and above require concrete future dashboard or chart requirements.
+These five roles are ordinal categorical positions only. They do **not** mean Primary, Info, Success, Warning, or Danger, even when a current mapping resolves to the same underlying Reference hue. Foundation V1 supports exactly five concurrent categorical series. A visualization requiring more than five must be grouped/split/restructured, or Foundation must be explicitly reopened.
 
 **Status / Delta semantics:**
 - --honesty-chart-positive

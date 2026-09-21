@@ -13,6 +13,7 @@
 //   --honesty-color-surface-default
 //   --honesty-color-surface-elevated
 //   --honesty-color-surface-inverse
+//   --honesty-color-surface-scrim
 // - Text:
 //   --honesty-color-text-primary
 //   --honesty-color-text-secondary
@@ -39,8 +40,8 @@
 //   --honesty-focus-ring-style
 // - Typography: --honesty-type-*
 // - Spacing: --honesty-space-*
-// - Radius: --honesty-radius-*
-// - Borders: --honesty-border-*
+// - Radius: --honesty-radius-* (including --honesty-radius-full capability)
+// - Borders: --honesty-border-* (including --honesty-border-style-dashed)
 // - Elevation: --honesty-elevation-*
 // - Motion: --honesty-motion-*
 // - Layout: --honesty-space-layout-*
@@ -50,5 +51,14 @@
 // Shape Documentation:
 // Semantic tokens represent functional intent. Theme-independent domains may be
 // emitted from Semantic modules in :root. Theme-sensitive domains are resolved
-// by the Light and Dark theme selectors.
+// by the Light and Dark theme selectors. Scrim is the shared backdrop plane for
+// future blocking overlays.
+//
+// Frozen Foundation V1 Constraints:
+// - No shared Foundation letter-spacing/tracking contract; normal letter spacing
+//   is the frozen V1 baseline.
+// - No shared production monospace role; identifiers use the approved UI/Latin
+//   family plus bidi/LTR isolation.
+// - Foundation Charts support a maximum of five concurrent categorical series;
+//   larger visualizations must be grouped/split or Foundation explicitly reopened.
 // =============================================================================

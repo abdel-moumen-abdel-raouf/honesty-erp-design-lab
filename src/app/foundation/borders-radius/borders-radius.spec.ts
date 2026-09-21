@@ -52,11 +52,10 @@ describe('Borders & Radius Candidate V1 Visual Specimen', () => {
       expect(dashedSpecimen?.textContent).toContain('$honesty-ref-border-style-dashed');
     });
 
-    it('should render the notice stating dashed is Reference-only with no Semantic alias', () => {
-      const dashedNotice = compiled.querySelector('#dashed-reference-only-notice');
-      expect(dashedNotice).toBeTruthy();
-      expect(dashedNotice?.textContent).toContain('Reference only');
-      expect(dashedNotice?.textContent).toContain('Candidate V1');
+    it('should render the Semantic dashed-border proof', () => {
+      const dashedProof = compiled.querySelector('#semantic-border-style-dashed');
+      expect(dashedProof).toBeTruthy();
+      expect(dashedProof?.textContent).toContain('--honesty-border-style-dashed');
     });
   });
 
@@ -118,14 +117,16 @@ describe('Borders & Radius Candidate V1 Visual Specimen', () => {
   });
 
   describe('Section 5: Reference Radius Scale', () => {
-    it('should render all 6 Reference radius scale specimens (0, 2, 4, 6, 8, 12)', () => {
-      const expectedSteps = ['0', '2', '4', '6', '8', '12'];
+    it('should render all 7 Reference radius scale specimens (0, 2, 4, 6, 8, 12, full)', () => {
+      const expectedSteps = ['0', '2', '4', '6', '8', '12', 'full'];
 
       for (const step of expectedSteps) {
         const specimen = compiled.querySelector(`#ref-radius-specimen-${step}`);
         expect(specimen).toBeTruthy();
         expect(specimen?.textContent).toContain(`$honesty-ref-radius-${step}`);
       }
+
+      expect(compiled.querySelector('#ref-radius-specimen-full')?.textContent).toContain('9999px');
     });
 
     it('should render the unaliased radius note for 2px and 12px primitives', () => {
@@ -137,21 +138,24 @@ describe('Borders & Radius Candidate V1 Visual Specimen', () => {
   });
 
   describe('Section 6: Semantic Radius Roles', () => {
-    it('should render all 4 Semantic radius role specimens (none, control, surface, overlay)', () => {
+    it('should render all 5 Semantic radius role specimens (none, control, surface, overlay, full)', () => {
       const noneRole = compiled.querySelector('#semantic-radius-none');
       const controlRole = compiled.querySelector('#semantic-radius-control');
       const surfaceRole = compiled.querySelector('#semantic-radius-surface');
       const overlayRole = compiled.querySelector('#semantic-radius-overlay');
+      const fullRole = compiled.querySelector('#semantic-radius-full');
 
       expect(noneRole).toBeTruthy();
       expect(controlRole).toBeTruthy();
       expect(surfaceRole).toBeTruthy();
       expect(overlayRole).toBeTruthy();
+      expect(fullRole).toBeTruthy();
 
       expect(noneRole?.textContent).toContain('--honesty-radius-none');
       expect(controlRole?.textContent).toContain('--honesty-radius-control');
       expect(surfaceRole?.textContent).toContain('--honesty-radius-surface');
       expect(overlayRole?.textContent).toContain('--honesty-radius-overlay');
+      expect(fullRole?.textContent).toContain('--honesty-radius-full');
     });
   });
 

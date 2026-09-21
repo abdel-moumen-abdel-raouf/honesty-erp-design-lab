@@ -11,6 +11,7 @@
 // - --honesty-radius-control: 0.25rem / 4px ($honesty-ref-radius-4)
 // - --honesty-radius-surface: 0.375rem / 6px ($honesty-ref-radius-6)
 // - --honesty-radius-overlay: 0.5rem / 8px ($honesty-ref-radius-8)
+// - --honesty-radius-full:    9999px ($honesty-ref-radius-full)
 //
 // Reference-Only (Intentionally Unaliased in Candidate V1):
 // - $honesty-ref-radius-2 (0.125rem / 2px)
@@ -24,4 +25,5 @@
   --honesty-radius-control: #{ref.$honesty-ref-radius-4};
   --honesty-radius-surface: #{ref.$honesty-ref-radius-6};
   --honesty-radius-overlay: #{ref.$honesty-ref-radius-8};
+  --honesty-radius-full: #{ref.$honesty-ref-radius-full};
 }
