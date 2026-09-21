@@ -1,16 +1,14 @@
 // =============================================================================
-// Foundation Layer: Component Tokens Entry Point
+// Component Token Layer Entry Point
 // =============================================================================
 // Responsibility:
-// Component-scoped aliases and token contracts (e.g. Button, Input, Table tokens).
-// Currently an empty contract baseline to be populated in component phases.
+// Loads only the Component Token Framework authoring contract.
 //
-// Token Architecture Hierarchy:
-// Reference Tokens (Layer 1) -> Semantic Tokens (Layer 2) -> Component Tokens (Layer 3)
+// Concrete component token modules are NOT globally forwarded here.
+// Each production component imports its own internal token module.
 //
-// Dependency Rule:
-// Depends on Semantic Tokens and/or Reference Tokens.
-// Must never depend on component implementation CSS/SCSS or application code.
+// See:
+// COMPONENT_TOKEN_FRAMEWORK.md
 // =============================================================================
 
 @forward 'contract';

@@ -1,33 +1,41 @@
 // =============================================================================
-// Component Layer: Token Contract & Authoring Guidelines
+// Component Token Framework V1 — Authoring Contract
 // =============================================================================
-// Representation:
-// Runtime CSS Custom Properties (--honesty-<component>- prefix).
+// Foundation V1 is frozen.
 //
-// Naming Syntax:
-// --honesty-<component>-<property-or-purpose>
+// Concrete module:
+// foundation/components/<component>/_tokens.scss
 //
-// Shape Documentation:
-// Component Tokens begin only in production component phases.
-// No current Component Token contract is implemented yet.
-// Component naming remains:
-// --honesty-<component>-<property-or-purpose>
+// Required:
+// - @mixin base
+// - Sass mixin output only
+// - no CSS emitted merely by importing the token module
 //
-// Source Contract:
-// - Semantic -> Component Tokens is the default path for shared meaning,
-//   theme-sensitive values, density-sensitive values, brand, feedback,
-//   surfaces, text, focus, elevation, motion, and layers.
-// - A Component Token declaration may consume a Reference primitive directly
-//   only when it is a context-free physical primitive, no shared Semantic
-//   meaning is appropriate, and the Product Owner-approved component reference
-//   requires it.
-// - Direct Reference colors are forbidden. Colors go through Semantic contracts.
-// - Direct Reference breakpoints are forbidden. Responsive behavior uses the
-//   Foundation Query API only.
-// - A Component Token may own an inherently component-local structural constant,
-//   such as container max-width, grid column count, or local min/height/width.
-//   It remains in the Component layer and is not automatically promoted into
-//   Foundation.
-// - Production Component implementation SCSS consumes Component Tokens only;
-//   it does not consume Reference or Semantic tokens directly.
+// Runtime grammar:
+// --honesty-<component>[-<part>]-<property>[-<state>]
+//
+// Facets:
+// Variants, sizes, tones, densities and orientations remap canonical token slots.
+// They do not create combinatorial token-name matrices.
+//
+// Source order:
+// 1. Semantic runtime contracts by default.
+// 2. Governed context-free Reference physical primitives where allowed.
+// 3. Approved component-local structural constants.
+//
+// Forbidden:
+// - direct Reference colors
+// - direct Reference breakpoints
+// - direct Reference elevation
+// - direct Reference motion
+// - direct Reference z-index
+// - direct Reference font-family
+// - :root/html/body Component Token emission
+// - theme-selector duplication
+// - cross-component token access
+// - Feature/Page Component Token overrides
+// - CSS fallback masking for required tokens
+//
+// Production Component implementation consumes its own Component Tokens for
+// tunable design values.
 // =============================================================================

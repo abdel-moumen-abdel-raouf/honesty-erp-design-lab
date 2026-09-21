@@ -262,3 +262,32 @@ Overview/closure documentation never drives design order.
 
 The implementation agent does not decide whether a lower dependency exists;
 the task prompt supplies that decision.
+
+## Component Token Framework
+
+Concrete Component Token modules live at:
+
+`src/styles/foundation/components/<component>/_tokens.scss`
+
+with sibling `_index.scss`.
+
+Rules:
+
+- every concrete token module defines `@mixin base`;
+- token modules emit no CSS merely by import;
+- runtime grammar is:
+  `--honesty-<component>[-<part>]-<property>[-<state>]`;
+- variants, sizes, tones, densities, orientations and similar facets remap
+  canonical token slots instead of creating combinatorial token names;
+- Semantic runtime contracts are the default source;
+- direct Reference colors and breakpoints are forbidden;
+- permitted direct Reference exceptions are only those documented in
+  `COMPONENT_TOKEN_FRAMEWORK.md`;
+- Component Tokens are host-scoped, never global;
+- Component implementation consumes its own Component Tokens for tunable design
+  values;
+- cross-component token access is forbidden;
+- Feature/Page code must not override Component Tokens;
+- concrete Component Token contracts remain reference-first;
+- do not create a concrete Component Token contract unless the task explicitly
+  supplies the Product Owner reference or reference waiver.

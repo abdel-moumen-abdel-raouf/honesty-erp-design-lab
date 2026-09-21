@@ -1094,6 +1094,35 @@ The current categories are:
 - Candidate V1 Preferences review is isolated to the docs specimen.
 - No global App-shell application exists yet.
 
+## 26. Component Token Framework V1
+
+The authoritative Component Token authoring contract is:
+
+`src/styles/foundation/components/COMPONENT_TOKEN_FRAMEWORK.md`
+
+Frozen framework invariants:
+
+- concrete modules live under:
+  `foundation/components/<component>/`;
+- `_tokens.scss` defines required `@mixin base`;
+- `_index.scss` forwards `tokens`;
+- Component Token runtime grammar is:
+  `--honesty-<component>[-<part>]-<property>[-<state>]`;
+- facets remap canonical slots instead of creating combinatorial token names;
+- Semantic runtime contracts are the default source;
+- governed direct Reference access is restricted to the physical primitive
+  categories defined by the framework;
+- direct Reference colors and breakpoints are forbidden;
+- Component-local structural constants remain Component-owned;
+- Component Tokens are emitted at the component host, never globally;
+- theme-sensitive values flow through Semantic contracts;
+- responsive behavior uses the Foundation Query API;
+- implementation consumes its own Component Tokens for tunable design values;
+- required Component Tokens have no CSS fallback masking;
+- foreign Component Token namespaces are forbidden;
+- Feature/Page token overrides are forbidden;
+- concrete Component Token contracts remain reference-first.
+
 
 
 
