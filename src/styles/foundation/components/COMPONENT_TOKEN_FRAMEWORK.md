@@ -43,6 +43,9 @@ No concrete component directory is created by this framework task.
 
 Importing `_tokens.scss` must not emit CSS by itself.
 
+Token mixin bodies may emit only Component Token custom-property declarations;
+they must not emit ordinary CSS properties or selectors.
+
 Every concrete token module must define:
 
 @mixin base
