@@ -1,0 +1,310 @@
+:host {
+  display: block;
+}
+
+.density-specimen {
+  display: flex;
+  flex-direction: column;
+  gap: var(--honesty-space-section-gap);
+  padding: var(--honesty-space-stack-loose);
+  max-width: 1200px;
+  margin-inline: auto;
+  color: var(--honesty-color-text-primary);
+  font-family: var(--honesty-type-family-ui);
+  background-color: var(--honesty-color-surface-canvas);
+}
+
+// -----------------------------------------------------------------------------
+// Common Typography Roles
+// -----------------------------------------------------------------------------
+.specimen-main-title {
+  font-size: var(--honesty-type-page-title-font-size);
+  font-weight: var(--honesty-type-page-title-font-weight);
+  line-height: var(--honesty-type-page-title-line-height);
+  margin: 0;
+}
+
+.section-title,
+.type-sample-heading {
+  font-size: var(--honesty-type-section-title-font-size);
+  font-weight: var(--honesty-type-section-title-font-weight);
+  line-height: var(--honesty-type-section-title-line-height);
+  margin: 0;
+}
+
+.specimen-entity-title {
+  font-size: var(--honesty-type-subsection-title-font-size);
+  font-weight: var(--honesty-type-subsection-title-font-weight);
+  line-height: var(--honesty-type-subsection-title-line-height);
+  margin: 0;
+}
+
+.column-name,
+.invariance-card-title,
+.nested-item-title {
+  font-size: var(--honesty-type-body-strong-font-size);
+  font-weight: var(--honesty-type-body-strong-font-weight);
+  line-height: var(--honesty-type-body-strong-line-height);
+}
+
+.specimen-lead,
+.type-sample-body {
+  font-size: var(--honesty-type-body-font-size);
+  font-weight: var(--honesty-type-body-font-weight);
+  line-height: var(--honesty-type-body-line-height);
+  margin: 0;
+  color: var(--honesty-color-text-secondary);
+}
+
+.section-subtitle,
+.specimen-entity-desc,
+.type-sample-small,
+.row-label,
+.row-value,
+.nested-scope-badge,
+.restoration-badge,
+.section-sample-block {
+  font-size: var(--honesty-type-body-small-font-size);
+  line-height: var(--honesty-type-body-small-line-height);
+}
+
+.specimen-badge,
+.column-badge,
+.specimen-tag,
+.specimen-group-label,
+.specimen-note-text,
+.invariance-meta-note,
+.inline-item-chip,
+.type-sample-caption,
+.nested-scope-desc,
+.restoration-tag,
+.nested-formula-note {
+  font-size: var(--honesty-type-caption-font-size);
+  line-height: var(--honesty-type-caption-line-height);
+}
+
+// -----------------------------------------------------------------------------
+// Structural Stacks & Insets
+// -----------------------------------------------------------------------------
+.specimen-header,
+.specimen-section,
+.density-scope-column,
+.stack-group-loose,
+.stack-group-default,
+.stack-group-tight,
+.type-sample-stack,
+.nested-rows-stack,
+.nested-content-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.stack-group-loose {
+  gap: var(--honesty-space-stack-loose);
+}
+
+.specimen-section,
+.stack-group-default,
+.invariance-card,
+.nested-child-box,
+.nested-content-box {
+  gap: var(--honesty-space-stack-default);
+}
+
+.specimen-header,
+.section-heading-group,
+.density-scope-column,
+.stack-group-tight,
+.type-sample-stack,
+.nested-rows-stack {
+  gap: var(--honesty-space-stack-tight);
+}
+
+.bounded-region-loose {
+  display: flex;
+  flex-direction: column;
+  padding: var(--honesty-space-inset-loose);
+  border-radius: var(--honesty-radius-surface);
+  border: 1px solid var(--honesty-border-subtle);
+  background-color: var(--honesty-color-surface-default);
+}
+
+.bounded-region-default,
+.invariance-card,
+.nested-child-box {
+  padding: var(--honesty-space-inset-default);
+  border-radius: var(--honesty-radius-control);
+  border: 1px solid var(--honesty-border-subtle);
+  background-color: var(--honesty-color-surface-default);
+}
+
+.bounded-region-default {
+  background-color: var(--honesty-color-surface-canvas);
+}
+
+// -----------------------------------------------------------------------------
+// Component Headers & Metadata
+// -----------------------------------------------------------------------------
+.specimen-header {
+  padding-bottom: var(--honesty-space-stack-loose);
+  border-bottom: 1px solid var(--honesty-border-subtle);
+}
+
+.specimen-header-meta,
+.column-banner,
+.specimen-data-row,
+.nested-banner,
+.nested-child-header,
+.nested-data-row {
+  display: flex;
+  align-items: center;
+}
+
+.specimen-header-meta,
+.nested-banner {
+  flex-wrap: wrap;
+  gap: var(--honesty-space-inline-default);
+}
+
+.column-banner,
+.specimen-data-row,
+.nested-banner,
+.nested-child-header,
+.nested-data-row {
+  justify-content: space-between;
+}
+
+.column-banner {
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--honesty-radius-control);
+  background-color: var(--honesty-color-surface-default);
+  border: 1px solid var(--honesty-border-subtle);
+}
+
+.specimen-badge,
+.specimen-tag,
+.inline-item-chip,
+.restoration-tag {
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--honesty-radius-control);
+  background-color: var(--honesty-color-surface-default);
+  border: 1px solid var(--honesty-border-subtle);
+  color: var(--honesty-color-text-secondary);
+}
+
+.specimen-tag,
+.restoration-tag,
+.inline-item-chip {
+  background-color: var(--honesty-color-surface-canvas);
+}
+
+.specimen-tag {
+  align-self: flex-start;
+}
+
+// -----------------------------------------------------------------------------
+// Grids (Primary, Invariance, Nested)
+// -----------------------------------------------------------------------------
+.primary-density-grid,
+.invariance-trio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--honesty-space-inline-loose);
+  align-items: flex-start; // Preserves natural height difference
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.nested-children-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--honesty-space-inline-loose);
+  align-items: flex-start;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Data Rows & Notes
+// -----------------------------------------------------------------------------
+.specimen-data-row,
+.nested-data-row {
+  padding: var(--honesty-space-inset-tight);
+  background-color: var(--honesty-color-surface-default);
+  border: 1px solid var(--honesty-border-subtle);
+  border-radius: var(--honesty-radius-control);
+}
+
+.nested-data-row {
+  background-color: var(--honesty-color-surface-canvas);
+}
+
+.row-label {
+  color: var(--honesty-color-text-secondary);
+}
+
+.row-value {
+  font-weight: 700;
+  color: var(--honesty-color-text-primary);
+}
+
+.specimen-group-label,
+.nested-scope-badge,
+.restoration-badge {
+  font-weight: 700;
+}
+
+.column-badge,
+.specimen-group-label,
+.invariance-meta-note,
+.type-sample-caption,
+.nested-formula-note {
+  color: var(--honesty-color-text-muted);
+}
+
+.specimen-note-text,
+.section-subtitle,
+.nested-scope-desc {
+  color: var(--honesty-color-text-secondary);
+  margin: 0;
+}
+
+// -----------------------------------------------------------------------------
+// Invariance Sections (Inline & Section Gap)
+// -----------------------------------------------------------------------------
+.inline-sample-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--honesty-space-inline-default); // Constant across all density modes
+}
+
+.section-gap-sample-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--honesty-space-section-gap); // Constant across all modes
+}
+
+.section-sample-block {
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--honesty-radius-control);
+  background-color: var(--honesty-color-surface-canvas);
+  border: 1px solid var(--honesty-border-subtle);
+  color: var(--honesty-color-text-primary);
+}
+
+// -----------------------------------------------------------------------------
+// Nested Restoration Scope
+// -----------------------------------------------------------------------------
+.nested-parent-scope {
+  display: flex;
+  flex-direction: column;
+  gap: var(--honesty-space-stack-default);
+  padding: var(--honesty-space-inset-loose);
+  border-radius: var(--honesty-radius-surface);
+  border: 1px solid var(--honesty-border-default);
+  background-color: var(--honesty-color-surface-canvas);
+}

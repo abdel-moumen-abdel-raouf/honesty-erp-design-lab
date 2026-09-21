@@ -53,6 +53,11 @@ export const routes: Routes = [
       import('./foundation/motion/motion').then((m) => m.Motion),
   },
   {
+    path: 'foundation/density',
+    loadComponent: () =>
+      import('./foundation/density/density').then((m) => m.Density),
+  },
+  {
     path: '',
     redirectTo: 'foundation/colors',
     pathMatch: 'full',
