@@ -30,7 +30,11 @@ describe('ErpButton', () => {
     expect(component.icon()).toBeNull();
     expect(component.iconPosition()).toBe('start');
     expect(component.type()).toBe('button');
+    expect(component.cursor()).toBe('pointer');
+    expect(component.rippleSpeed()).toBe('normal');
     expect(component.state()).toBe('ready');
+    expect(host.getAttribute('data-button-cursor')).toBe('pointer');
+    expect(host.getAttribute('data-button-ripple-speed')).toBe('normal');
     expect(host.querySelectorAll('button').length).toBe(1);
     expect(host.querySelector('erp-text')?.textContent?.trim()).toBe('Save');
   });
@@ -75,9 +79,22 @@ describe('ErpButton', () => {
       expect(host.getAttribute('data-button-border-style')).toBe(borderStyle);
     }
 
+    for (const cursor of ['pointer', 'default']) {
+      fixture.componentRef.setInput('cursor', cursor);
+      fixture.detectChanges();
+      expect(host.getAttribute('data-button-cursor')).toBe(cursor);
+    }
+
+    for (const rippleSpeed of ['fast', 'normal', 'slow']) {
+      fixture.componentRef.setInput('rippleSpeed', rippleSpeed);
+      fixture.detectChanges();
+      expect(host.getAttribute('data-button-ripple-speed')).toBe(rippleSpeed);
+    }
+
     fixture.componentRef.setInput('fullWidth', true);
     fixture.detectChanges();
     expect(host.getAttribute('data-button-full-width')).toBe('true');
+    expect(host.className).toBe('');
   });
 
   it('renders optional ErpIcon in logical start and end positions', () => {
@@ -93,6 +110,7 @@ describe('ErpButton', () => {
     fixture.detectChanges();
     expect(host.getAttribute('data-button-icon-position')).toBe('end');
     expect(host.querySelector('[data-icon-slot="end"]')).toBeTruthy();
+    expect(host.querySelector('[data-icon-slot="end"]')?.classList.contains('i')).toBe(true);
   });
 
   it('forwards native type, name, value, and form', () => {
@@ -222,11 +240,33 @@ describe('ErpButton', () => {
       fixture.componentRef.setInput('loading', inputs.loading);
       fixture.detectChanges();
       const button = fixture.nativeElement.querySelector('button') as HTMLButtonElement;
+      let count = 0;
+      fixture.componentInstance.pressed.subscribe(() => count += 1);
       fixture.componentInstance.handlePointerDown({
         button: 0, currentTarget: button, clientX: 1, clientY: 1,
       } as unknown as PointerEvent);
       fixture.detectChanges();
+      fixture.componentInstance.handleClick();
+      expect(button.disabled).toBe(true);
+      expect(fixture.nativeElement.getAttribute('data-button-state')).toBe(
+        inputs.label.trim().length === 0 ? 'invalid' : inputs.loading ? 'loading' : 'disabled',
+      );
+      expect(button.getAttribute('aria-busy')).toBe(inputs.loading ? 'true' : null);
+      expect(count).toBe(0);
       expect(fixture.nativeElement.querySelector('.erp-pressable__ripple')).toBeNull();
+    }
+  });
+
+  it('changes ripple speed without changing loading state or spinner presence', () => {
+    const fixture = create();
+    fixture.componentRef.setInput('loading', true);
+
+    for (const rippleSpeed of ['fast', 'normal', 'slow']) {
+      fixture.componentRef.setInput('rippleSpeed', rippleSpeed);
+      fixture.detectChanges();
+      expect(fixture.componentInstance.state()).toBe('loading');
+      expect(fixture.nativeElement.getAttribute('data-button-ripple-speed')).toBe(rippleSpeed);
+      expect(fixture.nativeElement.querySelector('.erp-pressable__spinner')).toBeTruthy();
     }
   });
 });

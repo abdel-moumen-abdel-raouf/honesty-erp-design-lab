@@ -28,10 +28,12 @@
   --honesty-icon-button-disabled-opacity: #{opacity.$honesty-ref-opacity-48};
   --honesty-icon-button-ripple-color: currentColor;
   --honesty-icon-button-ripple-opacity: #{opacity.$honesty-ref-opacity-14};
-  --honesty-icon-button-ripple-duration: var(--honesty-motion-duration-deliberate);
+  --honesty-icon-button-ripple-duration: 450ms;
   --honesty-icon-button-ripple-easing: var(--honesty-motion-easing-standard);
   --honesty-icon-button-spinner-size: #{spacing.$honesty-ref-space-20};
   --honesty-icon-button-spinner-border-width: #{borders.$honesty-ref-border-width-2};
+  --honesty-icon-button-spinner-duration: var(--honesty-motion-duration-deliberate);
+  --honesty-icon-button-cursor: pointer;
   --honesty-icon-button-transition-duration: var(--honesty-motion-duration-default);
   --honesty-icon-button-transition-easing: var(--honesty-motion-easing-standard);
 }
@@ -111,7 +113,7 @@
   --honesty-icon-button-tone-solid: var(--honesty-color-feedback-warning-surface-strong);
   --honesty-icon-button-tone-subtle: var(--honesty-color-feedback-warning-surface);
   --honesty-icon-button-tone-content: var(--honesty-color-feedback-warning-text);
-  --honesty-icon-button-tone-on-solid: var(--honesty-color-feedback-warning-on-strong);
+  --honesty-icon-button-tone-on-solid: var(--honesty-color-action-primary-fg);
   --honesty-icon-button-tone-border: var(--honesty-color-feedback-warning-border);
 }
 
@@ -157,4 +159,24 @@
 
 @mixin border-style-dashed {
   --honesty-icon-button-border-style: var(--honesty-border-style-dashed);
+}
+
+@mixin ripple-speed-fast {
+  --honesty-icon-button-ripple-duration: 300ms;
+}
+
+@mixin ripple-speed-normal {
+  --honesty-icon-button-ripple-duration: 450ms;
+}
+
+@mixin ripple-speed-slow {
+  --honesty-icon-button-ripple-duration: 600ms;
+}
+
+@mixin cursor-pointer {
+  --honesty-icon-button-cursor: pointer;
+}
+
+@mixin cursor-default {
+  --honesty-icon-button-cursor: default;
 }

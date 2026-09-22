@@ -8,7 +8,13 @@ import {
 } from '@angular/core';
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
 import {ErpIcon} from '../../primitives/icon/icon';
-import {ErpButtonState, ErpFabSize, ErpFabTone} from '../button-family/button-contracts';
+import {
+  ErpButtonState,
+  ErpFabSize,
+  ErpFabTone,
+  ErpPressableCursor,
+  ErpRippleSpeed,
+} from '../button-family/button-contracts';
 import {PressRippleController} from '../button-family/internal/press-ripple';
 
 @Component({
@@ -22,6 +28,8 @@ import {PressRippleController} from '../button-family/internal/press-ripple';
     '[attr.data-fab-size]': 'size()',
     '[attr.data-fab-tone]': 'tone()',
     '[attr.data-fab-state]': 'state()',
+    '[attr.data-fab-cursor]': 'cursor()',
+    '[attr.data-fab-ripple-speed]': 'rippleSpeed()',
   },
 })
 export class ErpFab {
@@ -31,6 +39,8 @@ export class ErpFab {
   readonly tone = input<ErpFabTone>('primary');
   readonly disabled = input(false, {transform: booleanAttribute});
   readonly loading = input(false, {transform: booleanAttribute});
+  readonly cursor = input<ErpPressableCursor>('pointer');
+  readonly rippleSpeed = input<ErpRippleSpeed>('normal');
   readonly pressed = output<void>();
 
   private readonly ripple = new PressRippleController();

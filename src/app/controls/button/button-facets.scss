@@ -1,0 +1,25 @@
+@use '../../../styles/foundation/components/button' as tokens;
+
+:host([data-button-variant='outline']) { @include tokens.variant-outline; }
+:host([data-button-variant='subtle']) { @include tokens.variant-subtle; }
+:host([data-button-variant='ghost']) { @include tokens.variant-ghost; }
+:host([data-button-variant='text']) { @include tokens.variant-text; }
+
+:host([data-button-tone='secondary']) { @include tokens.tone-secondary; }
+:host([data-button-tone='accent']) { @include tokens.tone-accent; }
+:host([data-button-tone='success']) { @include tokens.tone-success; }
+:host([data-button-tone='warning']) { @include tokens.tone-warning; }
+:host([data-button-tone='danger']) { @include tokens.tone-danger; }
+:host([data-button-tone='info']) { @include tokens.tone-info; }
+:host([data-button-tone='neutral']) { @include tokens.tone-neutral; }
+
+:host([data-button-size='sm']) { @include tokens.size-sm; }
+:host([data-button-size='lg']) { @include tokens.size-lg; }
+
+:host([data-button-shape='rounded']) { @include tokens.shape-rounded; }
+:host([data-button-shape='pill']) { @include tokens.shape-pill; }
+
+:host([data-button-border-style='dashed']) { @include tokens.border-style-dashed; }
+:host([data-button-cursor='default']) { @include tokens.cursor-default; }
+:host([data-button-ripple-speed='fast']) { @include tokens.ripple-speed-fast; }
+:host([data-button-ripple-speed='slow']) { @include tokens.ripple-speed-slow; }

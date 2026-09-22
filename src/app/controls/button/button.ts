@@ -18,6 +18,8 @@ import {
   ErpButtonTone,
   ErpButtonVariant,
   ErpNativeButtonType,
+  ErpPressableCursor,
+  ErpRippleSpeed,
 } from '../button-family/button-contracts';
 import {PressRippleController} from '../button-family/internal/press-ripple';
 
@@ -27,7 +29,7 @@ import {PressRippleController} from '../button-family/internal/press-ripple';
   selector: 'erp-button',
   imports: [ErpIcon, ErpText],
   templateUrl: './button.html',
-  styleUrl: './button.scss',
+  styleUrls: ['./button.scss', './button-facets.scss'],
   host: {
     '[attr.data-button-variant]': 'variant()',
     '[attr.data-button-tone]': 'tone()',
@@ -37,22 +39,8 @@ import {PressRippleController} from '../button-family/internal/press-ripple';
     '[attr.data-button-icon-position]': 'iconPosition()',
     '[attr.data-button-state]': 'state()',
     '[attr.data-button-full-width]': 'fullWidth()',
-    '[class.a]': "variant() === 'outline'",
-    '[class.b]': "variant() === 'subtle'",
-    '[class.c]': "variant() === 'ghost'",
-    '[class.d]': "variant() === 'text'",
-    '[class.e]': "tone() === 'secondary'",
-    '[class.f]': "tone() === 'accent'",
-    '[class.g]': "tone() === 'success'",
-    '[class.h]': "tone() === 'warning'",
-    '[class.i]': "tone() === 'danger'",
-    '[class.j]': "tone() === 'info'",
-    '[class.k]': "tone() === 'neutral'",
-    '[class.l]': "size() === 'sm'",
-    '[class.m]': "size() === 'lg'",
-    '[class.o]': "shape() === 'rounded'",
-    '[class.p]': "shape() === 'pill'",
-    '[class.q]': "borderStyle() === 'dashed'",
+    '[attr.data-button-cursor]': 'cursor()',
+    '[attr.data-button-ripple-speed]': 'rippleSpeed()',
   },
 })
 export class ErpButton {
@@ -72,6 +60,8 @@ export class ErpButton {
   readonly loading = input(false, {transform: booleanAttribute});
   readonly loadingLabel = input<string | null>(null);
   readonly fullWidth = input(false, {transform: booleanAttribute});
+  readonly cursor = input<ErpPressableCursor>('pointer');
+  readonly rippleSpeed = input<ErpRippleSpeed>('normal');
   readonly pressed = output<void>();
 
   private readonly ripple = new PressRippleController();

@@ -17,6 +17,9 @@
 :host([data-extended-fab-tone='secondary']) { @include tokens.tone-secondary; }
 :host([data-extended-fab-tone='accent']) { @include tokens.tone-accent; }
 :host([data-extended-fab-tone='surface']) { @include tokens.tone-surface; }
+:host([data-extended-fab-cursor='default']) { @include tokens.cursor-default; }
+:host([data-extended-fab-ripple-speed='fast']) { @include tokens.ripple-speed-fast; }
+:host([data-extended-fab-ripple-speed='slow']) { @include tokens.ripple-speed-slow; }
 
 .erp-extended-fab__native {
   position: relative;
@@ -38,7 +41,7 @@
   font-size: var(--honesty-extended-fab-font-size);
   font-weight: var(--honesty-extended-fab-font-weight);
   line-height: var(--honesty-extended-fab-line-height);
-  cursor: pointer;
+  cursor: var(--honesty-extended-fab-cursor);
   transition:
     box-shadow var(--honesty-extended-fab-transition-duration) var(--honesty-extended-fab-transition-easing),
     background-color var(--honesty-extended-fab-transition-duration) var(--honesty-extended-fab-transition-easing),
@@ -49,7 +52,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: currentColor;
+  background: var(--honesty-extended-fab-state-layer-color);
   opacity: 0;
   pointer-events: none;
   z-index: 0;
@@ -74,8 +77,12 @@
   outline-offset: var(--honesty-extended-fab-focus-offset);
 }
 
-.erp-extended-fab__native:disabled {
+:host([data-extended-fab-state='disabled']) .erp-extended-fab__native,
+:host([data-extended-fab-state='invalid']) .erp-extended-fab__native {
   opacity: var(--honesty-extended-fab-disabled-opacity);
+}
+
+:host(:not([data-extended-fab-state='ready'])) .erp-extended-fab__native {
   cursor: default;
 }
 
@@ -107,7 +114,7 @@
   border-color: currentColor;
   border-inline-end-color: transparent;
   border-radius: 50%;
-  animation: erp-extended-fab-spinner var(--honesty-extended-fab-ripple-duration) linear infinite;
+  animation: erp-extended-fab-spinner var(--honesty-extended-fab-spinner-duration) linear infinite;
 }
 
 @keyframes erp-extended-fab-spinner {

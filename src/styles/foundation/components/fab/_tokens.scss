@@ -20,10 +20,12 @@
   --honesty-fab-disabled-opacity: #{opacity.$honesty-ref-opacity-48};
   --honesty-fab-ripple-color: currentColor;
   --honesty-fab-ripple-opacity: #{opacity.$honesty-ref-opacity-14};
-  --honesty-fab-ripple-duration: var(--honesty-motion-duration-deliberate);
+  --honesty-fab-ripple-duration: 450ms;
   --honesty-fab-ripple-easing: var(--honesty-motion-easing-standard);
   --honesty-fab-spinner-size: #{spacing.$honesty-ref-space-24};
   --honesty-fab-spinner-border-width: #{borders.$honesty-ref-border-width-2};
+  --honesty-fab-spinner-duration: var(--honesty-motion-duration-deliberate);
+  --honesty-fab-cursor: pointer;
   --honesty-fab-transition-duration: var(--honesty-motion-duration-default);
   --honesty-fab-transition-easing: var(--honesty-motion-easing-standard);
 }
@@ -67,4 +69,24 @@
   --honesty-fab-radius: 1.75rem;
   --honesty-fab-icon-size: #{spacing.$honesty-ref-space-32};
   --honesty-fab-spinner-size: #{spacing.$honesty-ref-space-32};
+}
+
+@mixin ripple-speed-fast {
+  --honesty-fab-ripple-duration: 300ms;
+}
+
+@mixin ripple-speed-normal {
+  --honesty-fab-ripple-duration: 450ms;
+}
+
+@mixin ripple-speed-slow {
+  --honesty-fab-ripple-duration: 600ms;
+}
+
+@mixin cursor-pointer {
+  --honesty-fab-cursor: pointer;
+}
+
+@mixin cursor-default {
+  --honesty-fab-cursor: default;
 }

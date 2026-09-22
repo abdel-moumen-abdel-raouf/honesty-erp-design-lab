@@ -50,6 +50,15 @@ export type ErpButtonState =
   | 'loading'
   | 'invalid';
 
+export type ErpPressableCursor =
+  | 'pointer'
+  | 'default';
+
+export type ErpRippleSpeed =
+  | 'fast'
+  | 'normal'
+  | 'slow';
+
 export type ErpFabSize =
   | 'sm'
   | 'md'

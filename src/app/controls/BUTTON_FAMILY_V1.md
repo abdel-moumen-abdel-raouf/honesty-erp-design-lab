@@ -12,6 +12,12 @@ reference, and Material 3 FAB Menu reference for the future Composite phase.
 Button Family V1 defines exactly four public Basic Controls: `ErpButton`,
 `ErpIconButton`, `ErpFab`, and `ErpExtendedFab`.
 
+All four controls expose `cursor: pointer | default`, default `pointer`, and
+`rippleSpeed: fast | normal | slow`, default `normal`. The controlled ripple
+durations are 300ms, 450ms, and 600ms respectively. Configured cursor behavior
+applies only while ready; loading, disabled, and invalid controls always use the
+default cursor.
+
 ## ErpButton
 
 Selector: `erp-button`.
@@ -33,6 +39,9 @@ Selector: `erp-button`.
 When loading, a non-empty trimmed `loadingLabel` replaces the visible label.
 Otherwise the trimmed `label` remains visible. An empty loading label does not
 invalidate an otherwise valid button.
+
+The solid warning tone uses the shared primary-action foreground to maintain a
+white foreground. Ghost and text variants keep a transparent background.
 
 ## ErpIconButton
 
@@ -100,6 +109,10 @@ then `ready`. A blank trimmed required label is invalid. Invalid, loading, and
 disabled states disable the internally owned native button. Only ready controls
 emit `pressed`.
 
+Disabled and invalid controls use the disabled opacity. Loading controls remain
+at normal opacity while remaining functionally disabled and exposing their
+spinner state.
+
 Every control internally owns exactly one native `button`. ErpButton and
 ErpIconButton forward `type`, `name`, `value`, and `form`. FAB native button
 types are always `button`. Feature and Page templates do not author the native
@@ -118,7 +131,14 @@ All four controls share one press-ripple controller. Pointer ripples originate
 at the clamped press position. Enter and Space keyboard ripples originate at
 the control center. One ripple is active at a time. Invalid, loading, and
 disabled controls do not start a ripple. Ripple visual values are owned by each
-control's Component Tokens.
+control's Component Tokens. Spinner timing is independently owned and is not
+changed by `rippleSpeed`.
+
+## Theme Review
+
+Button Family evidence is mandatory in equivalent Light and Dark theme contexts.
+Theme-sensitive values continue to resolve through the existing Semantic and
+Component Token contracts.
 
 ## Deferred Composites
 

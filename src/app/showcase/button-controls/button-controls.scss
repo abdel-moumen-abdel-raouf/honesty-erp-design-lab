@@ -13,7 +13,8 @@
 
 .showcase-header,
 .review-group,
-.dark-theme-proof {
+.theme-contexts,
+.theme-review-context {
   min-width: 0;
   max-width: 100%;
 }
@@ -26,7 +27,13 @@
   padding-block: var(--honesty-space-section-gap);
 }
 
-.dark-theme-proof {
+.theme-contexts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--honesty-space-layout-grid-gutter);
+}
+
+.theme-review-context {
   padding: var(--honesty-space-inset-default);
   overflow: hidden;
 }
@@ -35,7 +42,12 @@
   .button-showcase,
   .showcase-header,
   .review-group,
-  .dark-theme-proof {
+  .theme-contexts,
+  .theme-review-context {
     max-width: 100%;
+  }
+
+  .theme-contexts {
+    grid-template-columns: 1fr;
   }
 }

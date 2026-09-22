@@ -15,6 +15,9 @@
 :host([data-fab-tone='secondary']) { @include tokens.tone-secondary; }
 :host([data-fab-tone='accent']) { @include tokens.tone-accent; }
 :host([data-fab-tone='surface']) { @include tokens.tone-surface; }
+:host([data-fab-cursor='default']) { @include tokens.cursor-default; }
+:host([data-fab-ripple-speed='fast']) { @include tokens.ripple-speed-fast; }
+:host([data-fab-ripple-speed='slow']) { @include tokens.ripple-speed-slow; }
 
 .erp-fab__native {
   position: relative;
@@ -31,7 +34,7 @@
   background: var(--honesty-fab-bg);
   color: var(--honesty-fab-fg);
   box-shadow: var(--honesty-fab-elevation);
-  cursor: pointer;
+  cursor: var(--honesty-fab-cursor);
   transition:
     box-shadow var(--honesty-fab-transition-duration) var(--honesty-fab-transition-easing),
     background-color var(--honesty-fab-transition-duration) var(--honesty-fab-transition-easing),
@@ -42,7 +45,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: currentColor;
+  background: var(--honesty-fab-state-layer-color);
   opacity: 0;
   pointer-events: none;
   z-index: 0;
@@ -67,8 +70,12 @@
   outline-offset: var(--honesty-fab-focus-offset);
 }
 
-.erp-fab__native:disabled {
+:host([data-fab-state='disabled']) .erp-fab__native,
+:host([data-fab-state='invalid']) .erp-fab__native {
   opacity: var(--honesty-fab-disabled-opacity);
+}
+
+:host(:not([data-fab-state='ready'])) .erp-fab__native {
   cursor: default;
 }
 
@@ -95,7 +102,7 @@
   border-color: currentColor;
   border-inline-end-color: transparent;
   border-radius: 50%;
-  animation: erp-fab-spinner var(--honesty-fab-ripple-duration) linear infinite;
+  animation: erp-fab-spinner var(--honesty-fab-spinner-duration) linear infinite;
 }
 
 @keyframes erp-fab-spinner {

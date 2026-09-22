@@ -10,27 +10,6 @@
   width: 100%;
 }
 
-:host(.a) { @include tokens.variant-outline; }
-:host(.b) { @include tokens.variant-subtle; }
-:host(.c) { @include tokens.variant-ghost; }
-:host(.d) { @include tokens.variant-text; }
-
-:host(.e) { @include tokens.tone-secondary; }
-:host(.f) { @include tokens.tone-accent; }
-:host(.g) { @include tokens.tone-success; }
-:host(.h) { @include tokens.tone-warning; }
-:host(.i) { @include tokens.tone-danger; }
-:host(.j) { @include tokens.tone-info; }
-:host(.k) { @include tokens.tone-neutral; }
-
-:host(.l) { @include tokens.size-sm; }
-:host(.m) { @include tokens.size-lg; }
-
-:host(.o) { @include tokens.shape-rounded; }
-:host(.p) { @include tokens.shape-pill; }
-
-:host(.q) { @include tokens.border-style-dashed; }
-
 .n {
   position: relative;
   isolation: isolate;
@@ -51,7 +30,10 @@
   font-size: var(--honesty-button-font-size);
   font-weight: var(--honesty-button-font-weight);
   line-height: var(--honesty-button-line-height);
-  transition: var(--honesty-button-transition-duration) var(--honesty-button-transition-easing);
+  cursor: var(--honesty-button-cursor);
+  transition-property: background-color, color, border-color, box-shadow;
+  transition-duration: var(--honesty-button-transition-duration);
+  transition-timing-function: var(--honesty-button-transition-easing);
 }
 
 :host([data-button-full-width='true']) .n {
@@ -62,7 +44,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: currentColor;
+  background: var(--honesty-button-state-layer-color);
   opacity: 0;
   pointer-events: none;
   z-index: 0;
@@ -83,8 +65,13 @@
   outline-offset: var(--honesty-button-focus-offset);
 }
 
-.n:disabled {
+:host([data-button-state='disabled']) .n,
+:host([data-button-state='invalid']) .n {
   opacity: var(--honesty-button-disabled-opacity);
+}
+
+:host(:not([data-button-state='ready'])) .n {
+  cursor: default;
 }
 
 .c {
@@ -95,7 +82,12 @@
 }
 
 .i {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
   font-size: var(--honesty-button-icon-size);
+  line-height: 0;
 }
 
 .erp-pressable__spinner {
@@ -106,7 +98,7 @@
   border-color: currentColor;
   border-inline-end-color: transparent;
   border-radius: 50%;
-  animation: erp-control-spin var(--honesty-button-ripple-duration) linear infinite;
+  animation: erp-control-spin var(--honesty-button-spinner-duration) linear infinite;
 }
 
 @keyframes erp-control-spin {

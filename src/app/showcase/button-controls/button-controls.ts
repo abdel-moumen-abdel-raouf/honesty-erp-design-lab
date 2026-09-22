@@ -45,6 +45,7 @@ import {ErpText} from '../../primitives/text/text';
   styleUrl: './button-controls.scss',
 })
 export class ButtonControls {
+  readonly themes = ['light', 'dark'] as const;
   readonly standardVariants: readonly ErpButtonVariant[] = [
     'solid',
     'outline',

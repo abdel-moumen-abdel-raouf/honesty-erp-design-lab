@@ -13,6 +13,8 @@ import {
   ErpButtonState,
   ErpExtendedFabSize,
   ErpFabTone,
+  ErpPressableCursor,
+  ErpRippleSpeed,
 } from '../button-family/button-contracts';
 import {PressRippleController} from '../button-family/internal/press-ripple';
 
@@ -27,6 +29,8 @@ import {PressRippleController} from '../button-family/internal/press-ripple';
     '[attr.data-extended-fab-size]': 'size()',
     '[attr.data-extended-fab-tone]': 'tone()',
     '[attr.data-extended-fab-state]': 'state()',
+    '[attr.data-extended-fab-cursor]': 'cursor()',
+    '[attr.data-extended-fab-ripple-speed]': 'rippleSpeed()',
   },
 })
 export class ErpExtendedFab {
@@ -36,6 +40,8 @@ export class ErpExtendedFab {
   readonly tone = input<ErpFabTone>('primary');
   readonly disabled = input(false, {transform: booleanAttribute});
   readonly loading = input(false, {transform: booleanAttribute});
+  readonly cursor = input<ErpPressableCursor>('pointer');
+  readonly rippleSpeed = input<ErpRippleSpeed>('normal');
   readonly pressed = output<void>();
 
   private readonly ripple = new PressRippleController();

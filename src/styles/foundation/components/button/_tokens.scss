@@ -34,10 +34,12 @@
   --honesty-button-disabled-opacity: #{opacity.$honesty-ref-opacity-48};
   --honesty-button-ripple-color: currentColor;
   --honesty-button-ripple-opacity: #{opacity.$honesty-ref-opacity-14};
-  --honesty-button-ripple-duration: var(--honesty-motion-duration-deliberate);
+  --honesty-button-ripple-duration: 450ms;
   --honesty-button-ripple-easing: var(--honesty-motion-easing-standard);
   --honesty-button-spinner-size: #{spacing.$honesty-ref-space-16};
   --honesty-button-spinner-border-width: #{borders.$honesty-ref-border-width-2};
+  --honesty-button-spinner-duration: var(--honesty-motion-duration-deliberate);
+  --honesty-button-cursor: pointer;
   --honesty-button-transition-duration: var(--honesty-motion-duration-default);
   --honesty-button-transition-easing: var(--honesty-motion-easing-standard);
 }
@@ -70,6 +72,10 @@
 
 @mixin variant-solid {
   --honesty-button-bg: var(--honesty-button-tone-solid);
+  --honesty-button-fg: var(--honesty-button-tone-on-solid);
+  --honesty-button-border-width: 0;
+  --honesty-button-border-color: transparent;
+  --honesty-button-elevation: var(--honesty-elevation-none);
 }
 
 @mixin variant-outline {
@@ -77,20 +83,32 @@
   --honesty-button-fg: var(--honesty-button-tone-content);
   --honesty-button-border-width: var(--honesty-border-width-default);
   --honesty-button-border-color: var(--honesty-button-tone-border);
+  --honesty-button-elevation: var(--honesty-elevation-none);
 }
 
 @mixin variant-subtle {
   --honesty-button-bg: var(--honesty-button-tone-subtle);
   --honesty-button-fg: var(--honesty-button-tone-content);
+  --honesty-button-border-width: 0;
+  --honesty-button-border-color: transparent;
+  --honesty-button-elevation: var(--honesty-elevation-none);
 }
 
 @mixin variant-ghost {
+  --honesty-button-bg: transparent;
   --honesty-button-fg: var(--honesty-button-tone-content);
+  --honesty-button-border-width: 0;
+  --honesty-button-border-color: transparent;
+  --honesty-button-elevation: var(--honesty-elevation-none);
 }
 
 @mixin variant-text {
+  --honesty-button-bg: transparent;
   --honesty-button-fg: var(--honesty-button-tone-content);
+  --honesty-button-border-width: 0;
+  --honesty-button-border-color: transparent;
   --honesty-button-padding-inline: #{spacing.$honesty-ref-space-8};
+  --honesty-button-elevation: var(--honesty-elevation-none);
 }
 
 @mixin tone-primary {
@@ -126,7 +144,7 @@
   --honesty-button-tone-solid: var(--honesty-color-feedback-warning-surface-strong);
   --honesty-button-tone-subtle: var(--honesty-color-feedback-warning-surface);
   --honesty-button-tone-content: var(--honesty-color-feedback-warning-text);
-  --honesty-button-tone-on-solid: var(--honesty-color-feedback-warning-on-strong);
+  --honesty-button-tone-on-solid: var(--honesty-color-action-primary-fg);
   --honesty-button-tone-border: var(--honesty-color-feedback-warning-border);
 }
 
@@ -172,4 +190,24 @@
 
 @mixin border-style-dashed {
   --honesty-button-border-style: var(--honesty-border-style-dashed);
+}
+
+@mixin ripple-speed-fast {
+  --honesty-button-ripple-duration: 300ms;
+}
+
+@mixin ripple-speed-normal {
+  --honesty-button-ripple-duration: 450ms;
+}
+
+@mixin ripple-speed-slow {
+  --honesty-button-ripple-duration: 600ms;
+}
+
+@mixin cursor-pointer {
+  --honesty-button-cursor: pointer;
+}
+
+@mixin cursor-default {
+  --honesty-button-cursor: default;
 }
