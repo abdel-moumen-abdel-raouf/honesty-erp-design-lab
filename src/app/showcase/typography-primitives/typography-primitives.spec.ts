@@ -91,4 +91,42 @@ describe('TypographyPrimitives showcase', () => {
     expect(compiled.querySelector('[data-text-type="sample"]')).toBeTruthy();
     expect(compiled.querySelector('[data-text-type="variable"]')).toBeTruthy();
   });
+
+  it('places the native summary directly inside details', () => {
+    const fixture = TestBed.createComponent(TypographyPrimitives);
+    fixture.detectChanges();
+    const summary = fixture.nativeElement.querySelector('summary[erptext]') as HTMLElement | null;
+
+    expect(summary).toBeTruthy();
+    expect(summary?.parentElement?.tagName).toBe('DETAILS');
+  });
+
+  it('exercises the ErpText direction API on the native bdo host', () => {
+    const fixture = TestBed.createComponent(TypographyPrimitives);
+    fixture.detectChanges();
+    const bdo = fixture.nativeElement.querySelector('bdo[erptext]') as HTMLElement | null;
+
+    expect(bdo?.getAttribute('data-text-type')).toBe('bdo');
+    expect(bdo?.getAttribute('dir')).toBe('ltr');
+  });
+
+  it('identifies the custom-host ellipsis evidence', () => {
+    const fixture = TestBed.createComponent(TypographyPrimitives);
+    fixture.detectChanges();
+    const ellipsis = fixture.nativeElement.querySelector('#ellipsis-proof') as HTMLElement | null;
+
+    expect(ellipsis?.getAttribute('data-text-overflow')).toBe('ellipsis');
+  });
+
+  it('records the conflicting public inputs for clamp precedence evidence', () => {
+    const fixture = TestBed.createComponent(TypographyPrimitives);
+    fixture.detectChanges();
+    const clamp = fixture.nativeElement.querySelector(
+      '#clamp-precedence-proof',
+    ) as HTMLElement | null;
+
+    expect(clamp?.getAttribute('data-text-overflow')).toBe('ellipsis');
+    expect(clamp?.getAttribute('data-text-wrap')).toBe('nowrap');
+    expect(clamp?.getAttribute('data-text-line-clamp')).toBe('2');
+  });
 });

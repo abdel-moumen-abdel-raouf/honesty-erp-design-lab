@@ -257,6 +257,11 @@
   white-space: nowrap;
 }
 
+:host(erp-text[data-text-overflow='ellipsis']) {
+  display: block;
+  max-inline-size: 100%;
+}
+
 :host([data-text-line-clamp='1']),
 :host([data-text-line-clamp='2']),
 :host([data-text-line-clamp='3']),
@@ -264,6 +269,8 @@
 :host([data-text-line-clamp='5']),
 :host([data-text-line-clamp='6']) {
   overflow: hidden;
+  text-overflow: clip;
+  white-space: normal;
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
@@ -322,6 +329,12 @@
 
 :host([data-text-type='mark']) {
   background-color: var(--honesty-text-mark-bg);
+}
+
+:host(
+  [data-text-type='mark'][data-text-tone='brand-accent']
+) {
+  color: var(--honesty-text-mark-fg);
 }
 
 :host([data-text-type='subscript']) {

@@ -182,8 +182,13 @@
           <erp-inline gap="loose" wrap="wrap">
             <time erpText type="time" datetime="2026-09-22">22/09/2026</time>
             <data erpText type="data" value="1240">1,240 EGP</data>
-            <summary erpText type="summary">Summary text</summary>
           </erp-inline>
+          <details>
+            <summary erpText type="summary">Summary text</summary>
+            <erp-text type="paragraph">
+              Details content governed by ErpText.
+            </erp-text>
+          </details>
         </erp-stack>
       </section>
 
@@ -199,7 +204,7 @@
           </erp-inline>
           <erp-inline gap="loose" wrap="wrap" align="baseline">
             <bdi erpText type="bdi">BDI: user-123</bdi>
-            <bdo erpText type="bdo" dir="ltr">BDO: ABC 123</bdo>
+            <bdo erpText type="bdo" direction="ltr">BDO: ABC 123</bdo>
             <ruby erpText type="ruby">
               漢<rp erpText type="ruby-parenthesis">(</rp><rt erpText type="ruby-text">かん</rt><rp erpText type="ruby-parenthesis">)</rp>
             </ruby>
@@ -215,7 +220,11 @@ second line with long-content-proof</erp-text>
           <erp-grid [columns]="3" gap="sm" responsive="auto">
             @for (overflow of overflows; track overflow) {
               <erp-surface class="overflow-proof" border="subtle" padding="tight">
-                <erp-text [overflow]="overflow" wrap="nowrap">
+                <erp-text
+                  [attr.id]="overflow === 'ellipsis' ? 'ellipsis-proof' : null"
+                  [overflow]="overflow"
+                  wrap="nowrap"
+                >
                   Overflow {{ overflow }} — long content for bounded evidence
                 </erp-text>
               </erp-surface>
@@ -223,6 +232,19 @@ second line with long-content-proof</erp-text>
           </erp-grid>
           <erp-text class="clamp-proof" type="paragraph" [lineClamp]="2">
             Line clamp two evidence uses a deliberately extended paragraph. السطر طويل بما يكفي لإظهار حد السطرين داخل مساحة المراجعة دون تغيير عقد الطباعة.
+          </erp-text>
+          <erp-text
+            id="clamp-precedence-proof"
+            class="clamp-proof"
+            type="paragraph"
+            overflow="ellipsis"
+            wrap="nowrap"
+            [lineClamp]="2"
+          >
+            Clamp precedence evidence uses enough English and Arabic content to require
+            more than two rendered lines inside the bounded specimen. هذا النص ممتد
+            عمدًا لإثبات أن lineClamp يتغلب على nowrap و ellipsis ويظل حدًا متعدد
+            الأسطر.
           </erp-text>
           <erp-text type="paragraph">السطر الأول<br>السطر الثاني<wbr>الممتد</erp-text>
           <erp-inline gap="loose" wrap="wrap">

@@ -76,6 +76,20 @@ attribute:
 
 This is the SAME component, not a second primitive.
 
+## Overflow and Clamp Precedence
+
+- `overflow="ellipsis"` establishes truncation behavior.
+- Canonical custom `erp-text` mode creates its own bounded truncation box.
+- Native-host mode preserves native display semantics.
+- `lineClamp > 0` has higher rendering precedence than `wrap` and `overflow`.
+- A positive `lineClamp` forces:
+  - hidden overflow;
+  - clipped text-overflow;
+  - normal white-space;
+  - multi-line clamp mechanics.
+- The public input values/data attributes remain unchanged; precedence is a
+  rendering rule.
+
 ## Breaks and thematic separation
 
 `br` and `wbr` contain no text themselves. They are allowed inside
