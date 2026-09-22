@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component, ElementRef, computed, inject, input} from '@angular/core';
+import {NgTemplateOutlet} from '@angular/common';
+import {ChangeDetectionStrategy, Component, computed, input} from '@angular/core';
 
 export type ErpTextType =
   | 'text'
@@ -109,6 +110,48 @@ export type ErpTextOverflow = 'visible' | 'clip' | 'ellipsis';
 export type ErpTextDirection = 'inherit' | 'auto' | 'rtl' | 'ltr';
 export type ErpTextLineClamp = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
+type ErpTextNativeElement =
+  | 'none'
+  | 'span'
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6'
+  | 'p'
+  | 'div'
+  | 'pre'
+  | 'blockquote'
+  | 'address'
+  | 'strong'
+  | 'b'
+  | 'em'
+  | 'i'
+  | 'u'
+  | 's'
+  | 'del'
+  | 'ins'
+  | 'mark'
+  | 'small'
+  | 'sub'
+  | 'sup'
+  | 'abbr'
+  | 'dfn'
+  | 'cite'
+  | 'q'
+  | 'time'
+  | 'data'
+  | 'bdi'
+  | 'bdo'
+  | 'code'
+  | 'kbd'
+  | 'samp'
+  | 'var'
+  | 'label'
+  | 'output'
+  | 'a';
+
 type ResolvedTextSize = Exclude<ErpTextSize, 'auto'>;
 type ResolvedTextWeight = Exclude<ErpTextWeight, 'auto'>;
 type ResolvedTextTone = Exclude<ErpTextTone, 'auto'>;
@@ -186,13 +229,49 @@ export const ERP_TEXT_TYPE_DEFAULTS = {
   link: preset('md', 'medium', 'brand-primary', 'ui', 'comfortable', 'normal', 'underline', 'normal'),
 } as const satisfies Readonly<Record<ErpTextType, ErpTextTypePreset>>;
 
-const HEADING_LEVELS: Readonly<Partial<Record<ErpTextType, 1 | 2 | 3 | 4 | 5 | 6>>> = {
-  'heading-1': 1,
-  'heading-2': 2,
-  'heading-3': 3,
-  'heading-4': 4,
-  'heading-5': 5,
-  'heading-6': 6,
+const ERP_TEXT_NATIVE_ELEMENTS: Readonly<
+  Partial<Record<ErpTextType, Exclude<ErpTextNativeElement, 'none'>>>
+> = {
+  text: 'span',
+  'heading-1': 'h1',
+  'heading-2': 'h2',
+  'heading-3': 'h3',
+  'heading-4': 'h4',
+  'heading-5': 'h5',
+  'heading-6': 'h6',
+  paragraph: 'p',
+  div: 'div',
+  span: 'span',
+  pre: 'pre',
+  blockquote: 'blockquote',
+  address: 'address',
+  strong: 'strong',
+  bold: 'b',
+  emphasis: 'em',
+  italic: 'i',
+  underline: 'u',
+  strike: 's',
+  deleted: 'del',
+  inserted: 'ins',
+  mark: 'mark',
+  small: 'small',
+  subscript: 'sub',
+  superscript: 'sup',
+  abbreviation: 'abbr',
+  definition: 'dfn',
+  citation: 'cite',
+  quote: 'q',
+  time: 'time',
+  data: 'data',
+  bdi: 'bdi',
+  bdo: 'bdo',
+  code: 'code',
+  keyboard: 'kbd',
+  sample: 'samp',
+  variable: 'var',
+  label: 'label',
+  output: 'output',
+  link: 'a',
 };
 
 function preset(
@@ -211,7 +290,8 @@ function preset(
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'erp-text, [erpText]',
+  selector: 'erp-text',
+  imports: [NgTemplateOutlet],
   templateUrl: './text.html',
   styleUrl: './text.scss',
   host: {
@@ -227,14 +307,11 @@ function preset(
     '[attr.data-text-wrap]': 'resolvedWrap()',
     '[attr.data-text-overflow]': 'overflow()',
     '[attr.data-text-line-clamp]': 'lineClamp()',
+    '[attr.data-text-native-element]': `nativeElement() === 'none' ? null : nativeElement()`,
     '[attr.dir]': 'resolvedDirection()',
-    '[attr.role]': 'resolvedRole()',
-    '[attr.aria-level]': 'resolvedAriaLevel()',
   },
 })
 export class ErpText {
-  private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
-
   readonly type = input<ErpTextType>('text');
   readonly size = input<ErpTextSize>('auto');
   readonly weight = input<ErpTextWeight>('auto');
@@ -248,8 +325,20 @@ export class ErpText {
   readonly overflow = input<ErpTextOverflow>('visible');
   readonly lineClamp = input<ErpTextLineClamp>(0);
   readonly direction = input<ErpTextDirection>('inherit');
+  readonly href = input<string | null>(null);
+  readonly target = input<'_self' | '_blank' | '_parent' | '_top' | null>(null);
+  readonly rel = input<string | null>(null);
+  readonly download = input<string | null>(null);
+  // eslint-disable-next-line @angular-eslint/no-input-rename
+  readonly forId = input<string | null>(null, {alias: 'for'});
+  readonly datetime = input<string | null>(null);
+  readonly value = input<string | null>(null);
+  readonly title = input<string | null>(null);
+  readonly cite = input<string | null>(null);
 
-  readonly isCustomHost = this.elementRef.nativeElement.tagName === 'ERP-TEXT';
+  readonly nativeElement = computed<ErpTextNativeElement>(() => {
+    return ERP_TEXT_NATIVE_ELEMENTS[this.type()] ?? 'none';
+  });
 
   readonly resolvedSize = computed<ResolvedTextSize>(() => {
     const value = this.size();
@@ -295,11 +384,4 @@ export class ErpText {
     const value = this.direction();
     return value === 'inherit' ? null : value;
   });
-
-  private readonly headingLevel = computed(() => {
-    return this.isCustomHost ? (HEADING_LEVELS[this.type()] ?? null) : null;
-  });
-
-  readonly resolvedRole = computed(() => (this.headingLevel() === null ? null : 'heading'));
-  readonly resolvedAriaLevel = computed(() => this.headingLevel());
 }

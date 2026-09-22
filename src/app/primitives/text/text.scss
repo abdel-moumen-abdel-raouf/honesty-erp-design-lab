@@ -349,7 +349,32 @@
   text-decoration-style: dotted;
 }
 
-:host(a[erpText][data-text-type='link']:focus-visible) {
+.erp-text__native {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  font-style: inherit;
+  color: inherit;
+  text-decoration-line: inherit;
+  white-space: inherit;
+}
+
+mark.erp-text__native {
+  background: transparent;
+}
+
+.erp-text__native-link {
+  font: inherit;
+  color: inherit;
+  line-height: inherit;
+  text-decoration: inherit;
+  cursor: pointer;
+}
+
+.erp-text__native-link:focus-visible {
   outline-width: var(--honesty-text-focus-ring-width);
   outline-style: var(--honesty-text-focus-ring-style);
   outline-color: var(--honesty-text-focus-ring-color);

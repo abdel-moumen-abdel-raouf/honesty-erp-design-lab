@@ -1,173 +1,232 @@
-<header id="lab-utility-bar" class="lab-utility-bar">
-  <div id="lab-utility-brand" class="lab-utility-brand">
-    <span id="lab-utility-title" class="lab-utility-title">مختبر تصميم Honesty ERP</span>
-    <span id="lab-utility-badge" class="lab-utility-badge">أداة مراجعة مؤقتة</span>
-  </div>
+@if (isEmbeddedPreview) {
+  <main
+    id="routed-review-content"
+    class="routed-content-wrapper routed-content-wrapper--embedded"
+  >
+    <router-outlet id="app-router-outlet"></router-outlet>
+  </main>
+} @else {
+  <header id="lab-utility-bar" class="lab-utility-bar">
+    <div id="lab-utility-brand" class="lab-utility-brand">
+      <span id="lab-utility-title" class="lab-utility-title">مختبر تصميم Honesty ERP</span>
+      <span id="lab-utility-badge" class="lab-utility-badge">أداة مراجعة مؤقتة</span>
+    </div>
 
-  <nav id="lab-nav" class="lab-nav" aria-label="روابط المراجعة المؤقتة">
-    <a
-      id="nav-link-overview"
-      class="lab-nav-link"
-      routerLink="/foundation/overview"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{exact: true}"
-    >
-      نظرة عامة
-    </a>
-    <a
-      id="nav-link-structural-primitives"
-      class="lab-nav-link"
-      routerLink="/primitives/structural"
-      routerLinkActive="active"
-    >
-      البدائيات الهيكلية
-    </a>
-    <a
-      id="nav-link-typography-primitives"
-      class="lab-nav-link"
-      routerLink="/primitives/typography"
-      routerLinkActive="active"
-    >
-      النصوص الإنتاجية
-    </a>
-    <a
-      id="nav-link-colors"
-      class="lab-nav-link"
-      routerLink="/foundation/colors"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{exact: true}"
-    >
-      الألوان المرجعية
-    </a>
-    <a
-      id="nav-link-themes"
-      class="lab-nav-link"
-      routerLink="/foundation/themes"
-      routerLinkActive="active"
-    >
-      السمات الفاتحة والداكنة
-    </a>
-    <a
-      id="nav-link-status-hues"
-      class="lab-nav-link"
-      routerLink="/foundation/colors/status-hues"
-      routerLinkActive="active"
-    >
-      صبغات الحالات
-    </a>
-    <a
-      id="nav-link-feedback-colors"
-      class="lab-nav-link"
-      routerLink="/foundation/feedback-colors"
-      routerLinkActive="active"
-    >
-      ألوان الحالات الدلالية
-    </a>
-    <a
-      id="nav-link-typography"
-      class="lab-nav-link"
-      routerLink="/foundation/typography"
-      routerLinkActive="active"
-    >
-      الطباعة
-    </a>
-    <a
-      id="nav-link-charts"
-      class="lab-nav-link"
-      routerLink="/foundation/charts"
-      routerLinkActive="active"
-    >
-      الرسوم البيانية
-    </a>
-    <a
-      id="nav-link-preferences"
-      class="lab-nav-link"
-      routerLink="/foundation/preferences"
-      routerLinkActive="active"
-    >
-      التفضيلات
-    </a>
-    <a
-      id="nav-link-spacing"
-      class="lab-nav-link"
-      routerLink="/foundation/spacing"
-      routerLinkActive="active"
-    >
-      المسافات
-    </a>
-    <a
-      id="nav-link-borders-radius"
-      class="lab-nav-link"
-      routerLink="/foundation/borders-radius"
-      routerLinkActive="active"
-    >
-      الحدود والزوايا
-    </a>
-    <a
-      id="nav-link-elevation"
-      class="lab-nav-link"
-      routerLink="/foundation/elevation"
-      routerLinkActive="active"
-    >
-      الارتفاع والظلال
-    </a>
-    <a
-      id="nav-link-motion"
-      class="lab-nav-link"
-      routerLink="/foundation/motion"
-      routerLinkActive="active"
-    >
-      الحركة
-    </a>
-    <a
-      id="nav-link-density"
-      class="lab-nav-link"
-      routerLink="/foundation/density"
-      routerLinkActive="active"
-    >
-      الكثافة
-    </a>
-    <a
-      id="nav-link-layout-grid"
-      class="lab-nav-link"
-      routerLink="/foundation/layout-grid"
-      routerLinkActive="active"
-    >
-      التخطيط والشبكة
-    </a>
-    <a
-      id="nav-link-layers"
-      class="lab-nav-link"
-      routerLink="/foundation/layers"
-      routerLinkActive="active"
-    >
-      الطبقات
-    </a>
-  </nav>
+    <nav id="lab-nav" class="lab-nav" aria-label="روابط المراجعة المؤقتة">
+      <a
+        id="nav-link-overview"
+        class="lab-nav-link"
+        routerLink="/foundation/overview"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}"
+      >
+        نظرة عامة
+      </a>
+      <a
+        id="nav-link-structural-primitives"
+        class="lab-nav-link"
+        routerLink="/primitives/structural"
+        routerLinkActive="active"
+      >
+        البدائيات الهيكلية
+      </a>
+      <a
+        id="nav-link-typography-primitives"
+        class="lab-nav-link"
+        routerLink="/primitives/typography"
+        routerLinkActive="active"
+      >
+        النصوص الإنتاجية
+      </a>
+      <a
+        id="nav-link-colors"
+        class="lab-nav-link"
+        routerLink="/foundation/colors"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}"
+      >
+        الألوان المرجعية
+      </a>
+      <a
+        id="nav-link-themes"
+        class="lab-nav-link"
+        routerLink="/foundation/themes"
+        routerLinkActive="active"
+      >
+        السمات الفاتحة والداكنة
+      </a>
+      <a
+        id="nav-link-status-hues"
+        class="lab-nav-link"
+        routerLink="/foundation/colors/status-hues"
+        routerLinkActive="active"
+      >
+        صبغات الحالات
+      </a>
+      <a
+        id="nav-link-feedback-colors"
+        class="lab-nav-link"
+        routerLink="/foundation/feedback-colors"
+        routerLinkActive="active"
+      >
+        ألوان الحالات الدلالية
+      </a>
+      <a
+        id="nav-link-typography"
+        class="lab-nav-link"
+        routerLink="/foundation/typography"
+        routerLinkActive="active"
+      >
+        الطباعة
+      </a>
+      <a
+        id="nav-link-charts"
+        class="lab-nav-link"
+        routerLink="/foundation/charts"
+        routerLinkActive="active"
+      >
+        الرسوم البيانية
+      </a>
+      <a
+        id="nav-link-preferences"
+        class="lab-nav-link"
+        routerLink="/foundation/preferences"
+        routerLinkActive="active"
+      >
+        التفضيلات
+      </a>
+      <a
+        id="nav-link-spacing"
+        class="lab-nav-link"
+        routerLink="/foundation/spacing"
+        routerLinkActive="active"
+      >
+        المسافات
+      </a>
+      <a
+        id="nav-link-borders-radius"
+        class="lab-nav-link"
+        routerLink="/foundation/borders-radius"
+        routerLinkActive="active"
+      >
+        الحدود والزوايا
+      </a>
+      <a
+        id="nav-link-elevation"
+        class="lab-nav-link"
+        routerLink="/foundation/elevation"
+        routerLinkActive="active"
+      >
+        الارتفاع والظلال
+      </a>
+      <a
+        id="nav-link-motion"
+        class="lab-nav-link"
+        routerLink="/foundation/motion"
+        routerLinkActive="active"
+      >
+        الحركة
+      </a>
+      <a
+        id="nav-link-density"
+        class="lab-nav-link"
+        routerLink="/foundation/density"
+        routerLinkActive="active"
+      >
+        الكثافة
+      </a>
+      <a
+        id="nav-link-layout-grid"
+        class="lab-nav-link"
+        routerLink="/foundation/layout-grid"
+        routerLinkActive="active"
+      >
+        التخطيط والشبكة
+      </a>
+      <a
+        id="nav-link-layers"
+        class="lab-nav-link"
+        routerLink="/foundation/layers"
+        routerLinkActive="active"
+      >
+        الطبقات
+      </a>
+    </nav>
 
-  <div id="lab-actions" class="lab-actions">
-    @if (statusMessage()) {
-      <span id="lab-screenshot-status" class="lab-screenshot-status" [class.is-error]="hasError()">
-        {{ statusMessage() }}
-      </span>
-    }
-    <button
-      id="btn-full-page-screenshot"
-      type="button"
-      class="btn-screenshot"
-      [disabled]="isCapturing()"
-      (click)="captureScreenshot()"
-    >
-      @if (isCapturing()) {
-        جاري الالتقاط...
-      } @else {
-        لقطة كاملة
+    <div id="lab-actions" class="lab-actions">
+      <div
+        id="lab-viewport-controls"
+        class="lab-viewport-controls"
+        role="group"
+        aria-label="Viewport preview"
+      >
+        <button
+          id="btn-preview-desktop"
+          type="button"
+          class="btn-preview"
+          [class.is-active]="currentPreviewMode() === 'desktop'"
+          [attr.aria-pressed]="currentPreviewMode() === 'desktop'"
+          (click)="setPreviewMode('desktop')"
+        >
+          Desktop
+        </button>
+        <button
+          id="btn-preview-tablet"
+          type="button"
+          class="btn-preview"
+          [class.is-active]="currentPreviewMode() === 'tablet'"
+          [attr.aria-pressed]="currentPreviewMode() === 'tablet'"
+          (click)="setPreviewMode('tablet')"
+        >
+          Tablet
+        </button>
+        <button
+          id="btn-preview-mobile"
+          type="button"
+          class="btn-preview"
+          [class.is-active]="currentPreviewMode() === 'mobile'"
+          [attr.aria-pressed]="currentPreviewMode() === 'mobile'"
+          (click)="setPreviewMode('mobile')"
+        >
+          Mobile
+        </button>
+      </div>
+
+      @if (statusMessage()) {
+        <span id="lab-screenshot-status" class="lab-screenshot-status" [class.is-error]="hasError()">
+          {{ statusMessage() }}
+        </span>
       }
-    </button>
+      <button
+        id="btn-full-page-screenshot"
+        type="button"
+        class="btn-screenshot"
+        [disabled]="isCapturing()"
+        (click)="captureScreenshot()"
+      >
+        @if (isCapturing()) {
+          جاري الالتقاط...
+        } @else {
+          لقطة كاملة
+        }
+      </button>
+    </div>
+  </header>
+
+  <div
+    id="lab-preview-stage"
+    class="lab-preview-stage"
+    [attr.data-preview-mode]="currentPreviewMode()"
+  >
+    <iframe
+      #previewFrame
+      id="lab-preview-frame"
+      class="lab-preview-frame"
+      [class.is-desktop]="currentPreviewMode() === 'desktop'"
+      [class.is-tablet]="currentPreviewMode() === 'tablet'"
+      [class.is-mobile]="currentPreviewMode() === 'mobile'"
+      [src]="previewSafeUrl()"
+      title="Honesty ERP Design Lab preview"
+    ></iframe>
   </div>
-</header>
-
-<main id="routed-review-content" class="routed-content-wrapper">
-  <router-outlet id="app-router-outlet"></router-outlet>
-</main>
-
+}

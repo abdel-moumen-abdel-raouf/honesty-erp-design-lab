@@ -1,97 +1,64 @@
-import {Component} from '@angular/core';
+import {Component, reflectComponentType} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
-import {ErpText} from './text';
+import {ERP_TEXT_TYPE_DEFAULTS, ErpText, ErpTextType} from './text';
 
 @Component({
   imports: [ErpText],
-  template: '<erp-text id="custom-text">Projected content</erp-text>',
+  template: '<erp-text id="projected-text">Projected once</erp-text>',
 })
-class CustomTextTestHost {}
-
-@Component({
-  imports: [ErpText],
-  template: '<erp-text type="heading-3">Heading</erp-text>',
-})
-class CustomHeadingTestHost {}
+class ProjectedContentTestHost {}
 
 @Component({
   imports: [ErpText],
   template: `
-    <h1 erpText type="heading-1">Heading</h1>
-    <p erpText type="paragraph">Paragraph</p>
-    <span erpText type="span">Span</span>
-    <strong erpText type="strong">Strong</strong>
-    <blockquote erpText type="blockquote">Quote</blockquote>
-    <figure><figcaption erpText type="figcaption">Caption</figcaption></figure>
-    <label erpText type="label" for="native-test-input">Label</label>
-    <input id="native-test-input">
-    <ul><li erpText type="list-item">Item</li></ul>
-    <dl>
-      <dt erpText type="term">Term</dt>
-      <dd erpText type="description">Description</dd>
-    </dl>
-    <table>
-      <caption erpText type="caption">Table</caption>
-      <tr>
-        <th erpText type="table-header">Header</th>
-        <td erpText type="table-cell">Cell</td>
-      </tr>
-    </table>
-    <time erpText type="time">10:30</time>
-    <bdi erpText type="bdi">BDI</bdi>
-    <ruby erpText type="ruby">漢<rt>かん</rt></ruby>
-    <code erpText type="code">ERP-001</code>
-    <a erpText type="link" href="#proof">Native link</a>
+    <erp-text
+      id="link-proof"
+      type="link"
+      href="#proof"
+      target="_blank"
+      rel="noopener"
+      download="proof.png"
+    >
+      Link
+    </erp-text>
+    <erp-text id="label-proof" type="label" for="customer-proof">Label</erp-text>
+    <erp-text id="time-proof" type="time" datetime="2026-09-22">Time</erp-text>
+    <erp-text id="data-proof" type="data" value="1240">Data</erp-text>
+    <erp-text id="abbr-proof" type="abbreviation" title="Enterprise Resource Planning">
+      ERP
+    </erp-text>
+    <erp-text id="quote-proof" type="quote" cite="/source">Quote</erp-text>
+    <erp-text id="bdo-proof" type="bdo" direction="ltr">BDO</erp-text>
+    <erp-text id="output-proof" type="output" for="customer-proof">Output</erp-text>
   `,
 })
-class NativeTextTestHost {}
-
-@Component({
-  imports: [ErpText],
-  template: `
-    <erp-text id="custom-link" type="link">Link-looking text</erp-text>
-    <a id="native-link" erpText type="link" href="#proof">Native interactive link</a>
-  `,
-})
-class LinkTextTestHost {}
+class AttributeForwardingTestHost {}
 
 describe('ErpText', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        ErpText,
-        CustomTextTestHost,
-        CustomHeadingTestHost,
-        NativeTextTestHost,
-        LinkTextTestHost,
-      ],
+      imports: [ErpText, ProjectedContentTestHost, AttributeForwardingTestHost],
     }).compileComponents();
   });
 
-  it('creates in custom erp-text mode', () => {
-    const fixture = TestBed.createComponent(CustomTextTestHost);
+  it('creates with the custom-element-only selector', () => {
+    const fixture = TestBed.createComponent(ProjectedContentTestHost);
     fixture.detectChanges();
     const text = fixture.debugElement.query(By.directive(ErpText));
 
-    expect(text).toBeTruthy();
     expect(text.componentInstance).toBeInstanceOf(ErpText);
     expect(text.nativeElement.tagName).toBe('ERP-TEXT');
+    expect(reflectComponentType(ErpText)?.selector).toBe('erp-text');
   });
 
-  it('creates in native erpText mode using the same ErpText class', () => {
-    const fixture = TestBed.createComponent(NativeTextTestHost);
-    fixture.detectChanges();
-    const texts = fixture.debugElement.queryAll(By.directive(ErpText));
-
-    expect(texts.length).toBe(18);
-    expect(texts.every((text) => text.componentInstance instanceof ErpText)).toBe(true);
-    expect(texts.some((text) => text.nativeElement.tagName !== 'ERP-TEXT')).toBe(true);
+  it('keeps all 54 type defaults exhaustive', () => {
+    expect(Object.keys(ERP_TEXT_TYPE_DEFAULTS).length).toBe(54);
+    expect(new Set(Object.keys(ERP_TEXT_TYPE_DEFAULTS)).size).toBe(54);
   });
 
   it('uses the exact public input defaults', () => {
-    const fixture = TestBed.createComponent(ErpText);
-    const component = fixture.componentInstance;
+    const component = TestBed.createComponent(ErpText).componentInstance;
 
     expect(component.type()).toBe('text');
     expect(component.size()).toBe('auto');
@@ -106,6 +73,15 @@ describe('ErpText', () => {
     expect(component.overflow()).toBe('visible');
     expect(component.lineClamp()).toBe(0);
     expect(component.direction()).toBe('inherit');
+    expect(component.href()).toBeNull();
+    expect(component.target()).toBeNull();
+    expect(component.rel()).toBeNull();
+    expect(component.download()).toBeNull();
+    expect(component.forId()).toBeNull();
+    expect(component.datetime()).toBeNull();
+    expect(component.value()).toBeNull();
+    expect(component.title()).toBeNull();
+    expect(component.cite()).toBeNull();
   });
 
   it('resolves the text type defaults into host data attributes', () => {
@@ -125,6 +101,7 @@ describe('ErpText', () => {
     expect(host.getAttribute('data-text-wrap')).toBe('normal');
     expect(host.getAttribute('data-text-overflow')).toBe('visible');
     expect(host.getAttribute('data-text-line-clamp')).toBe('0');
+    expect(host.getAttribute('data-text-native-element')).toBe('span');
   });
 
   it('lets every explicit presentation input override the type preset', () => {
@@ -173,57 +150,169 @@ describe('ErpText', () => {
     expect(host.hasAttribute('dir')).toBe(false);
   });
 
-  it('adds heading accessibility only to custom heading hosts', () => {
-    const customFixture = TestBed.createComponent(CustomHeadingTestHost);
-    customFixture.detectChanges();
-    const customHost = customFixture.nativeElement.querySelector('erp-text') as HTMLElement;
+  it('emits the exact safe internal native elements', () => {
+    const fixtures: readonly (readonly [ErpTextType, string])[] = [
+      ['text', 'span'],
+      ['heading-1', 'h1'],
+      ['heading-2', 'h2'],
+      ['heading-3', 'h3'],
+      ['heading-4', 'h4'],
+      ['heading-5', 'h5'],
+      ['heading-6', 'h6'],
+      ['paragraph', 'p'],
+      ['div', 'div'],
+      ['span', 'span'],
+      ['pre', 'pre'],
+      ['blockquote', 'blockquote'],
+      ['address', 'address'],
+      ['strong', 'strong'],
+      ['bold', 'b'],
+      ['emphasis', 'em'],
+      ['italic', 'i'],
+      ['underline', 'u'],
+      ['strike', 's'],
+      ['deleted', 'del'],
+      ['inserted', 'ins'],
+      ['mark', 'mark'],
+      ['small', 'small'],
+      ['subscript', 'sub'],
+      ['superscript', 'sup'],
+      ['abbreviation', 'abbr'],
+      ['definition', 'dfn'],
+      ['citation', 'cite'],
+      ['quote', 'q'],
+      ['time', 'time'],
+      ['data', 'data'],
+      ['bdi', 'bdi'],
+      ['bdo', 'bdo'],
+      ['code', 'code'],
+      ['keyboard', 'kbd'],
+      ['sample', 'samp'],
+      ['variable', 'var'],
+      ['label', 'label'],
+      ['output', 'output'],
+      ['link', 'a'],
+    ];
+    const fixture = TestBed.createComponent(ErpText);
+    const host = fixture.nativeElement as HTMLElement;
 
-    expect(customHost.getAttribute('role')).toBe('heading');
-    expect(customHost.getAttribute('aria-level')).toBe('3');
-
-    const nativeFixture = TestBed.createComponent(NativeTextTestHost);
-    nativeFixture.detectChanges();
-    const nativeHeading = nativeFixture.nativeElement.querySelector('h1') as HTMLElement;
-
-    expect(nativeHeading.tagName).toBe('H1');
-    expect(nativeHeading.hasAttribute('role')).toBe(false);
-    expect(nativeHeading.hasAttribute('aria-level')).toBe(false);
+    for (const [type, tag] of fixtures) {
+      fixture.componentRef.setInput('type', type);
+      fixture.detectChanges();
+      expect(fixture.componentInstance.nativeElement()).toBe(tag);
+      expect(host.getAttribute('data-text-native-element')).toBe(tag);
+      expect(host.querySelectorAll(`:scope > ${tag}.erp-text__native`).length).toBe(1);
+    }
   });
 
-  it('renders projected content through custom mode', () => {
-    const fixture = TestBed.createComponent(CustomTextTestHost);
+  it('uses real internal headings without duplicate host heading semantics', () => {
+    const fixture = TestBed.createComponent(ErpText);
+    const host = fixture.nativeElement as HTMLElement;
+
+    fixture.componentRef.setInput('type', 'heading-1');
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('#custom-text')?.textContent).toContain(
-      'Projected content',
+    expect(host.querySelectorAll(':scope > h1').length).toBe(1);
+    expect(host.hasAttribute('role')).toBe(false);
+    expect(host.hasAttribute('aria-level')).toBe(false);
+
+    fixture.componentRef.setInput('type', 'heading-6');
+    fixture.detectChanges();
+    expect(host.querySelectorAll(':scope > h6').length).toBe(1);
+    expect(host.hasAttribute('role')).toBe(false);
+    expect(host.hasAttribute('aria-level')).toBe(false);
+  });
+
+  it('keeps code on the inherited internal typography contract without a monospace API', () => {
+    const fixture = TestBed.createComponent(ErpText);
+    fixture.componentRef.setInput('type', 'code');
+    fixture.detectChanges();
+    const code = fixture.nativeElement.querySelector(':scope > code.erp-text__native');
+
+    expect(code).toBeTruthy();
+    expect(fixture.nativeElement.getAttribute('data-text-family')).toBe('latin');
+    expect('monospace' in fixture.componentInstance).toBe(false);
+  });
+
+  it('forwards link attributes to exactly one internal anchor', () => {
+    const fixture = TestBed.createComponent(AttributeForwardingTestHost);
+    fixture.detectChanges();
+    const host = fixture.nativeElement.querySelector('#link-proof') as HTMLElement;
+    const anchor = host.querySelector('a') as HTMLAnchorElement;
+
+    expect(host.querySelectorAll('a').length).toBe(1);
+    expect(host.hasAttribute('tabindex')).toBe(false);
+    expect(host.hasAttribute('role')).toBe(false);
+    expect(anchor.getAttribute('href')).toBe('#proof');
+    expect(anchor.getAttribute('target')).toBe('_blank');
+    expect(anchor.getAttribute('rel')).toBe('noopener');
+    expect(anchor.getAttribute('download')).toBe('proof.png');
+  });
+
+  it('forwards label, time, data, abbreviation, quote, and bdo attributes', () => {
+    const fixture = TestBed.createComponent(AttributeForwardingTestHost);
+    fixture.detectChanges();
+    const root = fixture.nativeElement as HTMLElement;
+
+    expect(root.querySelector('#label-proof > label')?.getAttribute('for')).toBe('customer-proof');
+    expect(root.querySelector('#time-proof > time')?.getAttribute('datetime')).toBe('2026-09-22');
+    expect(root.querySelector('#data-proof > data')?.getAttribute('value')).toBe('1240');
+    expect(root.querySelector('#abbr-proof > abbr')?.getAttribute('title')).toBe(
+      'Enterprise Resource Planning',
+    );
+    expect(root.querySelector('#quote-proof > q')?.getAttribute('cite')).toBe('/source');
+    expect(root.querySelector('#bdo-proof > bdo')?.getAttribute('dir')).toBe('ltr');
+    expect(root.querySelector('#output-proof > output')?.getAttribute('for')).toBe(
+      'customer-proof',
     );
   });
 
-  it('keeps custom link mode typography-only', () => {
-    const fixture = TestBed.createComponent(LinkTextTestHost);
-    fixture.detectChanges();
-    const customLink = fixture.nativeElement.querySelector('#custom-link') as HTMLElement;
+  it('emits bdi and output native elements', () => {
+    const fixture = TestBed.createComponent(ErpText);
 
-    expect(customLink.getAttribute('data-text-size')).toBe('md');
-    expect(customLink.getAttribute('data-text-weight')).toBe('medium');
-    expect(customLink.getAttribute('data-text-tone')).toBe('brand-primary');
-    expect(customLink.getAttribute('data-text-decoration')).toBe('underline');
-    expect(customLink.querySelectorAll('a').length).toBe(0);
-    expect(customLink.hasAttribute('tabindex')).toBe(false);
-    expect(customLink.hasAttribute('role')).toBe(false);
+    fixture.componentRef.setInput('type', 'bdi');
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector(':scope > bdi')).toBeTruthy();
+
+    fixture.componentRef.setInput('type', 'output');
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector(':scope > output')).toBeTruthy();
   });
 
-  it('preserves a native interactive anchor without nesting another anchor', () => {
-    const fixture = TestBed.createComponent(LinkTextTestHost);
-    fixture.detectChanges();
-    const nativeLink = fixture.nativeElement.querySelector('#native-link') as HTMLAnchorElement;
-    const debugLink = fixture.debugElement.queryAll(By.directive(ErpText)).find((item) => {
-      return item.nativeElement.id === 'native-link';
-    });
+  it('does not emit invalid native elements for structural-context types', () => {
+    const fixtures: readonly (readonly [ErpTextType, string])[] = [
+      ['hgroup', 'hgroup'],
+      ['figure', 'figure'],
+      ['figcaption', 'figcaption'],
+      ['ruby', 'ruby'],
+      ['ruby-text', 'rt'],
+      ['ruby-parenthesis', 'rp'],
+      ['legend', 'legend'],
+      ['caption', 'caption'],
+      ['summary', 'summary'],
+      ['list-item', 'li'],
+      ['term', 'dt'],
+      ['description', 'dd'],
+      ['table-header', 'th'],
+      ['table-cell', 'td'],
+    ];
+    const fixture = TestBed.createComponent(ErpText);
+    const host = fixture.nativeElement as HTMLElement;
 
-    expect(nativeLink.tagName).toBe('A');
-    expect(debugLink?.componentInstance).toBeInstanceOf(ErpText);
-    expect(nativeLink.getAttribute('href')).toBe('#proof');
-    expect(nativeLink.querySelectorAll('a').length).toBe(0);
+    for (const [type, forbiddenTag] of fixtures) {
+      fixture.componentRef.setInput('type', type);
+      fixture.detectChanges();
+      expect(fixture.componentInstance.nativeElement()).toBe('none');
+      expect(host.hasAttribute('data-text-native-element')).toBe(false);
+      expect(host.querySelector(forbiddenTag)).toBeNull();
+    }
+  });
+
+  it('renders projected content exactly once', () => {
+    const fixture = TestBed.createComponent(ProjectedContentTestHost);
+    fixture.detectChanges();
+    const host = fixture.debugElement.query(By.directive(ErpText)).nativeElement as HTMLElement;
+
+    expect(host.textContent?.match(/Projected once/g)?.length).toBe(1);
   });
 
   it('accepts every supported lineClamp value from 0 through 6', () => {
@@ -234,35 +323,6 @@ describe('ErpText', () => {
       fixture.componentRef.setInput('lineClamp', lineClamp);
       fixture.detectChanges();
       expect(host.getAttribute('data-text-line-clamp')).toBe(String(lineClamp));
-    }
-  });
-
-  it('supports every required representative native host', () => {
-    const fixture = TestBed.createComponent(NativeTextTestHost);
-    fixture.detectChanges();
-    const requiredTags = [
-      'h1',
-      'p',
-      'span',
-      'strong',
-      'blockquote',
-      'figcaption',
-      'label',
-      'li',
-      'dt',
-      'dd',
-      'caption',
-      'th',
-      'td',
-      'time',
-      'bdi',
-      'ruby',
-      'code',
-      'a',
-    ];
-
-    for (const tag of requiredTags) {
-      expect(fixture.nativeElement.querySelector(`${tag}[erptext]`)).toBeTruthy();
     }
   });
 });

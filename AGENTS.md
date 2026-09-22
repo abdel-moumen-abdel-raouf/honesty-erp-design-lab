@@ -295,11 +295,14 @@ Rules:
 ## Production Text Governance
 
 - ErpText is the only public Typography Primitive.
-- Its selector supports both `erp-text` and `[erpText]`.
-- Every production rendered literal or interpolated text node must be governed
-  by ErpText.
-- Custom-element mode is ergonomic.
-- Native-host mode preserves exact native semantics when required.
+- ErpText custom element `<erp-text>` is the sole production Typography
+  authoring gateway.
+- `[erpText]` native-host authoring is forbidden.
+- Every rendered production literal or interpolated text node must be inside
+  `<erp-text>`.
+- ErpText may internally emit a native semantic child where safe.
+- Parent-sensitive HTML semantics remain owned by the future structural,
+  control, or composite that owns that native structure.
 - No ErpHeading exists.
 - No ErpLink exists.
 - Future Controls and Composites render textual UI through ErpText.
@@ -307,6 +310,6 @@ Rules:
 - Production inline Angular templates are forbidden.
 - `br` and `wbr` contain no text and are allowed inside ErpText.
 - Raw `hr` is replaced by ErpDivider.
-- Code-like text does not introduce monospace.
+- Code-like text introduces no monospace role.
 - New Typography primitives may not be created without explicit Product Owner
   reopen.

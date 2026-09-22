@@ -1,1 +1,208 @@
-<ng-content></ng-content>
+<ng-template #projectedContent>
+  <ng-content></ng-content>
+</ng-template>
+
+@switch (nativeElement()) {
+  @case ('span') {
+    <span class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </span>
+  }
+  @case ('h1') {
+    <h1 class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </h1>
+  }
+  @case ('h2') {
+    <h2 class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </h2>
+  }
+  @case ('h3') {
+    <h3 class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </h3>
+  }
+  @case ('h4') {
+    <h4 class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </h4>
+  }
+  @case ('h5') {
+    <h5 class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </h5>
+  }
+  @case ('h6') {
+    <h6 class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </h6>
+  }
+  @case ('p') {
+    <p class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </p>
+  }
+  @case ('div') {
+    <div class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </div>
+  }
+  @case ('pre') {
+    <pre class="erp-text__native"><ng-container [ngTemplateOutlet]="projectedContent"></ng-container></pre>
+  }
+  @case ('blockquote') {
+    <blockquote class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </blockquote>
+  }
+  @case ('address') {
+    <address class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </address>
+  }
+  @case ('strong') {
+    <strong class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </strong>
+  }
+  @case ('b') {
+    <b class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </b>
+  }
+  @case ('em') {
+    <em class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </em>
+  }
+  @case ('i') {
+    <i class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </i>
+  }
+  @case ('u') {
+    <u class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </u>
+  }
+  @case ('s') {
+    <s class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </s>
+  }
+  @case ('del') {
+    <del class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </del>
+  }
+  @case ('ins') {
+    <ins class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </ins>
+  }
+  @case ('mark') {
+    <mark class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </mark>
+  }
+  @case ('small') {
+    <small class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </small>
+  }
+  @case ('sub') {
+    <sub class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </sub>
+  }
+  @case ('sup') {
+    <sup class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </sup>
+  }
+  @case ('abbr') {
+    <abbr class="erp-text__native" [attr.title]="title()">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </abbr>
+  }
+  @case ('dfn') {
+    <dfn class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </dfn>
+  }
+  @case ('cite') {
+    <cite class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </cite>
+  }
+  @case ('q') {
+    <q class="erp-text__native" [attr.cite]="cite()">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </q>
+  }
+  @case ('time') {
+    <time class="erp-text__native" [attr.datetime]="datetime()">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </time>
+  }
+  @case ('data') {
+    <data class="erp-text__native" [attr.value]="value()">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </data>
+  }
+  @case ('bdi') {
+    <bdi class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </bdi>
+  }
+  @case ('bdo') {
+    <bdo class="erp-text__native" [attr.dir]="resolvedDirection()">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </bdo>
+  }
+  @case ('code') {
+    <code class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </code>
+  }
+  @case ('kbd') {
+    <kbd class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </kbd>
+  }
+  @case ('samp') {
+    <samp class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </samp>
+  }
+  @case ('var') {
+    <var class="erp-text__native">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </var>
+  }
+  @case ('label') {
+    <label class="erp-text__native" [attr.for]="forId()">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </label>
+  }
+  @case ('output') {
+    <output class="erp-text__native" [attr.for]="forId()">
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </output>
+  }
+  @case ('a') {
+    <a
+      class="erp-text__native erp-text__native-link"
+      [attr.href]="href()"
+      [attr.target]="target()"
+      [attr.rel]="rel()"
+      [attr.download]="download()"
+    >
+      <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+    </a>
+  }
+  @default {
+    <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
+  }
+}

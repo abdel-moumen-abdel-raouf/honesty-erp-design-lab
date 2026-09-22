@@ -12,75 +12,76 @@
 
 ## Supported usages
 
-The custom-element form is the ergonomic default:
+The only supported authoring form is the custom element:
 
 ```html
 <erp-text type="paragraph">...</erp-text>
 ```
 
-The native-host `[erpText]` form uses the SAME component and is required when
-native element semantics, browser behavior, or strict parent/child HTML structure
-must be preserved:
+`[erpText]` native-host authoring is not supported.
 
-```html
-<h1 erpText type="heading-1">...</h1>
-```
+ErpText has three implementation categories:
 
-Examples requiring or preferring native-host mode include:
+1. A safe internal-native type emits a useful native semantic child inside the
+   `erp-text` host.
+2. A host-only semantic/text type projects content directly when its matching
+   native element would be invalid in the custom host.
+3. A future parent-owned structural semantic is created by the Structural,
+   Control, or Composite component that owns the required native parent/child
+   structure, with ErpText governing its textual content.
 
-- `h1`–`h6`
-- `a`
-- `label`
-- `legend`
+Safe internal-native types include headings, paragraphs, common inline
+semantics, links, labels, time/data values, code-like text, and output.
+
+Structural-context types do not emit invalid matching native elements:
+
+- `hgroup`
+- `figure`
 - `figcaption`
-- `caption`
-- `li`
-- `dt`
-- `dd`
-- `th`
-- `td`
-- `time`
-- `data`
 - `ruby`
-- `rt`
-- `rp`
+- `ruby-text`
+- `ruby-parenthesis`
+- `legend`
+- `caption`
 - `summary`
-- `output`
+- `list-item`
+- `term`
+- `description`
+- `table-header`
+- `table-cell`
 
 No second typography component is introduced.
 
 ## Link typography and navigation
 
-Custom `<erp-text type="link">` provides the link typography preset only. Real
-navigation uses native-host `<a erpText type="link">`. Native `href` and Angular
-`RouterLink` remain owned by the anchor/control layer. There is still no ErpLink
-component.
-
-## Native semantic mode
-
-When exact native semantics matter, use the same ErpText component as an
-attribute:
+An ErpText link with `href` emits one internal native anchor:
 
 ```html
-<h1 erpText type="heading-1">...</h1>
-<label erpText type="label" for="customer">...</label>
-<figcaption erpText type="figcaption">...</figcaption>
-<li erpText type="list-item">...</li>
-<dt erpText type="term">...</dt>
-<dd erpText type="description">...</dd>
-<caption erpText type="caption">...</caption>
-<th erpText type="table-header">...</th>
-<td erpText type="table-cell">...</td>
-<a erpText type="link" [routerLink]="...">...</a>
+<erp-text type="link" href="/path">...</erp-text>
 ```
 
-This is the SAME component, not a second primitive.
+An ErpText link without `href` still emits the same native anchor and provides
+the link typography preset. Typography V1 introduces no Router dependency and
+no ErpLink component.
+
+## ErpContainer policy
+
+ErpContainer is not the replacement for an arbitrary `div`. ErpContainer owns
+width constraints, max-width, centering, and page gutters.
+
+Text-only block content uses:
+
+```html
+<erp-text type="div">...</erp-text>
+```
+
+Use ErpContainer only when its frozen structural contract is required.
 
 ## Overflow and Clamp Precedence
 
 - `overflow="ellipsis"` establishes truncation behavior.
 - Canonical custom `erp-text` mode creates its own bounded truncation box.
-- Native-host mode preserves native display semantics.
+- An internal native child does not change the outer host display contract.
 - `lineClamp > 0` has higher rendering precedence than `wrap` and `overflow`.
 - A positive `lineClamp` forces:
   - hidden overflow;

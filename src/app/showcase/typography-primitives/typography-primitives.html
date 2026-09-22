@@ -2,15 +2,15 @@
   <erp-stack gap="loose">
     <header class="showcase-header">
       <erp-text type="label" tone="secondary" family="latin">Typography Primitives V1</erp-text>
-      <h1 erpText type="heading-1">النصوص الإنتاجية</h1>
+      <erp-text type="heading-1">النصوص الإنتاجية</erp-text>
       <erp-text type="paragraph" tone="secondary">
-        دليل موحّد للمكوّن النصي الإنتاجي ErpText في وضعي العنصر المخصص والمضيف الأصلي.
+        دليل موحّد للمكوّن النصي الإنتاجي ErpText عبر بوابة التأليف المخصصة.
       </erp-text>
     </header>
 
     <erp-section gap="large">
       <section class="review-group" data-review-group="type-defaults">
-        <h2 erpText type="heading-2">Type Defaults</h2>
+        <erp-text type="heading-2">Type Defaults</erp-text>
         <erp-grid [columns]="4" gap="sm" responsive="auto">
           @for (type of allTypes; track type) {
             <erp-surface border="subtle" padding="tight">
@@ -26,7 +26,7 @@
       <erp-divider></erp-divider>
 
       <section class="review-group" data-review-group="scales">
-        <h2 erpText type="heading-2">Sizes / Weights / Line Heights</h2>
+        <erp-text type="heading-2">Sizes / Weights / Line Heights</erp-text>
         <erp-stack gap="loose">
           <erp-grid [columns]="2" gap="sm" responsive="auto">
             @for (size of sizes; track size) {
@@ -53,7 +53,7 @@
       <erp-divider></erp-divider>
 
       <section class="review-group" data-review-group="presentation">
-        <h2 erpText type="heading-2">Tones / Families / Alignment</h2>
+        <erp-text type="heading-2">Tones / Families / Alignment</erp-text>
         <erp-stack gap="loose">
           <erp-grid [columns]="3" gap="sm" responsive="auto">
             @for (tone of tones; track tone) {
@@ -84,60 +84,64 @@
       <erp-divider></erp-divider>
 
       <section class="review-group" data-review-group="blocks">
-        <h2 erpText type="heading-2">Headings / Blocks / Containers</h2>
+        <erp-text type="heading-2">Headings / Blocks / Containers</erp-text>
         <erp-stack gap="default">
-          <h1 erpText type="heading-1">Native heading 1</h1>
-          <h2 erpText type="heading-2">Native heading 2</h2>
-          <h3 erpText type="heading-3">Native heading 3</h3>
-          <h4 erpText type="heading-4">Native heading 4</h4>
-          <h5 erpText type="heading-5">Native heading 5</h5>
-          <h6 erpText type="heading-6">Native heading 6</h6>
+          <erp-text type="heading-1">Heading 1</erp-text>
+          <erp-text type="heading-2">Heading 2</erp-text>
+          <erp-text type="heading-3">Heading 3</erp-text>
+          <erp-text type="heading-4">Heading 4</erp-text>
+          <erp-text type="heading-5">Heading 5</erp-text>
+          <erp-text type="heading-6">Heading 6</erp-text>
           <erp-text type="heading-3">Custom heading typography</erp-text>
-          <p erpText type="paragraph">Native paragraph semantics governed by ErpText.</p>
-          <div erpText type="div">Native div text governed by ErpText.</div>
-          <pre erpText type="pre">PRE-001
-سطر محفوظ</pre>
-          <blockquote erpText type="blockquote">Native blockquote evidence.</blockquote>
-          <address erpText type="address">Cairo — Honesty ERP</address>
-          <hgroup erpText type="hgroup">
-            <h3 erpText type="heading-3">Grouped heading</h3>
-            <p erpText type="paragraph">Grouped supporting paragraph.</p>
-          </hgroup>
-          <figure erpText type="figure" class="figure-proof">
+          <erp-text type="paragraph">Paragraph semantics governed by ErpText.</erp-text>
+          <erp-text type="div">Text-only block content governed by ErpText.</erp-text>
+          <erp-text type="pre">PRE-001
+سطر محفوظ</erp-text>
+          <erp-text type="blockquote">Blockquote evidence.</erp-text>
+          <erp-text type="address">Cairo — Honesty ERP</erp-text>
+          <erp-text type="hgroup">
+            <erp-text type="heading-3">Grouped heading</erp-text>
+            <erp-text type="paragraph">Grouped supporting paragraph.</erp-text>
+          </erp-text>
+          <erp-text type="figure" class="figure-proof">
             <div class="neutral-visual" aria-hidden="true"></div>
-            <figcaption erpText type="figcaption">Native figure caption governed by ErpText.</figcaption>
-          </figure>
+            <erp-text type="figcaption">Figure caption typography.</erp-text>
+          </erp-text>
         </erp-stack>
       </section>
 
       <erp-divider></erp-divider>
 
       <section class="review-group" data-review-group="inline-semantics">
-        <h2 erpText type="heading-2">Inline Semantic Types</h2>
+        <erp-text type="heading-2">Inline Semantic Types</erp-text>
         <erp-inline gap="loose" wrap="wrap" align="baseline">
-          <span erpText type="span">span</span>
-          <strong erpText type="strong">strong</strong>
+          <erp-text type="span">span</erp-text>
+          <erp-text type="strong">strong</erp-text>
           <erp-text type="bold">bold</erp-text>
-          <em erpText type="emphasis">emphasis</em>
-          <i erpText type="italic">italic</i>
-          <u erpText type="underline">underline</u>
-          <s erpText type="strike">strike</s>
-          <del erpText type="deleted">deleted</del>
-          <ins erpText type="inserted">inserted</ins>
-          <mark erpText type="mark">mark</mark>
-          <small erpText type="small">small</small>
-          <span erpText type="text">H<sub erpText type="subscript">2</sub>O</span>
-          <span erpText type="text">x<sup erpText type="superscript">2</sup></span>
-          <abbr erpText type="abbreviation" title="Enterprise Resource Planning">ERP</abbr>
-          <dfn erpText type="definition">definition</dfn>
-          <cite erpText type="citation">citation</cite>
-          <q erpText type="quote">quote</q>
+          <erp-text type="emphasis">emphasis</erp-text>
+          <erp-text type="italic">italic</erp-text>
+          <erp-text type="underline">underline</erp-text>
+          <erp-text type="strike">strike</erp-text>
+          <erp-text type="deleted">deleted</erp-text>
+          <erp-text type="inserted">inserted</erp-text>
+          <erp-text type="mark">mark</erp-text>
+          <erp-text type="small">small</erp-text>
+          <erp-text type="text">
+            H<erp-text type="subscript">2</erp-text>O
+          </erp-text>
+          <erp-text type="text">
+            x<erp-text type="superscript">2</erp-text>
+          </erp-text>
+          <erp-text type="abbreviation" title="Enterprise Resource Planning">ERP</erp-text>
+          <erp-text type="definition">definition</erp-text>
+          <erp-text type="citation">citation</erp-text>
+          <erp-text type="quote">quote</erp-text>
         </erp-inline>
         <erp-stack gap="tight">
-          <code erpText type="code">INV-2026-001</code>
-          <kbd erpText type="keyboard">Ctrl + K</kbd>
-          <samp erpText type="sample">status=ready</samp>
-          <var erpText type="variable">customerTotal</var>
+          <erp-text type="code">INV-2026-001</erp-text>
+          <erp-text type="keyboard">Ctrl + K</erp-text>
+          <erp-text type="sample">status=ready</erp-text>
+          <erp-text type="variable">customerTotal</erp-text>
           <erp-text type="paragraph">
             Frozen V1 intentionally uses the approved Latin/UI family and does not create a monospace role.
           </erp-text>
@@ -147,55 +151,27 @@
       <erp-divider></erp-divider>
 
       <section class="review-group" data-review-group="structured-text">
-        <h2 erpText type="heading-2">Data / Lists / Table / Form Text</h2>
-        <erp-stack gap="loose">
-          <form class="form-proof">
-            <label erpText type="label" for="customer-proof">Customer label</label>
-            <input id="customer-proof" aria-label="Customer proof">
-            <fieldset>
-              <legend erpText type="legend">Native legend</legend>
-            </fieldset>
-            <output erpText type="output">Output 240</output>
-          </form>
-          <ul>
-            <li erpText type="list-item">Native list item</li>
-          </ul>
-          <dl>
-            <dt erpText type="term">Customer</dt>
-            <dd erpText type="description">A governed description value.</dd>
-          </dl>
-          <table>
-            <caption erpText type="caption">Native table caption</caption>
-            <thead>
-              <tr>
-                <th erpText type="table-header">Name</th>
-                <th erpText type="table-header">Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td erpText type="table-cell">Revenue</td>
-                <td erpText type="table-cell">1,240</td>
-              </tr>
-            </tbody>
-          </table>
-          <erp-inline gap="loose" wrap="wrap">
-            <time erpText type="time" datetime="2026-09-22">22/09/2026</time>
-            <data erpText type="data" value="1240">1,240 EGP</data>
-          </erp-inline>
-          <details>
-            <summary erpText type="summary">Summary text</summary>
-            <erp-text type="paragraph">
-              Details content governed by ErpText.
-            </erp-text>
-          </details>
-        </erp-stack>
+        <erp-text type="heading-2">Data / Lists / Table / Form Text</erp-text>
+        <erp-grid [columns]="2" gap="sm" responsive="auto">
+          <erp-text type="label" for="customer-proof">Customer label</erp-text>
+          <erp-text type="legend">Legend typography</erp-text>
+          <erp-text type="output">Output 240</erp-text>
+          <erp-text type="list-item">List item typography</erp-text>
+          <erp-text type="term">Customer</erp-text>
+          <erp-text type="description">Description typography</erp-text>
+          <erp-text type="caption">Table caption typography</erp-text>
+          <erp-text type="table-header">Name</erp-text>
+          <erp-text type="table-cell">1,240</erp-text>
+          <erp-text type="time" datetime="2026-09-22">22/09/2026</erp-text>
+          <erp-text type="data" value="1240">1,240 EGP</erp-text>
+          <erp-text type="summary">Summary typography</erp-text>
+        </erp-grid>
       </section>
 
       <erp-divider></erp-divider>
 
       <section id="link-proof" class="review-group" data-review-group="direction-overflow-link">
-        <h2 erpText type="heading-2">Direction / Ruby / Wrapping / Overflow / Link</h2>
+        <erp-text type="heading-2">Direction / Ruby / Wrapping / Overflow / Link</erp-text>
         <erp-stack gap="loose">
           <erp-inline gap="loose" wrap="wrap">
             @for (direction of directions; track direction) {
@@ -203,11 +179,14 @@
             }
           </erp-inline>
           <erp-inline gap="loose" wrap="wrap" align="baseline">
-            <bdi erpText type="bdi">BDI: user-123</bdi>
-            <bdo erpText type="bdo" direction="ltr">BDO: ABC 123</bdo>
-            <ruby erpText type="ruby">
-              漢<rp erpText type="ruby-parenthesis">(</rp><rt erpText type="ruby-text">かん</rt><rp erpText type="ruby-parenthesis">)</rp>
-            </ruby>
+            <erp-text type="bdi">BDI: user-123</erp-text>
+            <erp-text type="bdo" direction="ltr">BDO: ABC 123</erp-text>
+            <erp-text type="ruby">
+              <erp-text type="text">漢</erp-text>
+              <erp-text type="ruby-parenthesis">(</erp-text>
+              <erp-text type="ruby-text">かん</erp-text>
+              <erp-text type="ruby-parenthesis">)</erp-text>
+            </erp-text>
           </erp-inline>
           <erp-grid [columns]="2" gap="sm" responsive="auto">
             @for (wrap of wraps; track wrap) {
@@ -249,7 +228,9 @@ second line with long-content-proof</erp-text>
           <erp-text type="paragraph">السطر الأول<br>السطر الثاني<wbr>الممتد</erp-text>
           <erp-inline gap="loose" wrap="wrap">
             <erp-text type="link">Link typography preview</erp-text>
-            <a erpText type="link" href="#link-proof">Native interactive link</a>
+            <erp-text id="interactive-link-proof" type="link" href="#link-proof">
+              Native interactive link
+            </erp-text>
           </erp-inline>
           <erp-divider tone="strong"></erp-divider>
         </erp-stack>

@@ -52,11 +52,7 @@ function sourceLocation(sourceSpan) {
 }
 
 function isErpTextHost(node) {
-  if (node.name === 'erp-text') {
-    return true;
-  }
-
-  return (node.attributes ?? []).some((attribute) => attribute.name === 'erpText');
+  return node.name === 'erp-text';
 }
 
 function validateTemplateSource(source, label) {
@@ -173,24 +169,26 @@ function validateTypeScriptSource(source, label) {
 
 function runSelfTest() {
   const validTemplates = [
-    `<erp-text type="paragraph">مرحبا {{ name }}</erp-text>`,
-    `<h1 erpText type="heading-1">عنوان</h1>`,
+    `<erp-text type="paragraph">
+  مرحبا {{ name }}
+</erp-text>`,
+    `<erp-text type="heading-1">
+  عنوان
+</erp-text>`,
     `<figure>
-  <figcaption erpText type="figcaption">شرح</figcaption>
+  <erp-text type="figcaption">
+    شرح
+  </erp-text>
 </figure>`,
     `<erp-text type="paragraph">
   السطر الأول<br>السطر الثاني<wbr>الممتد
 </erp-text>`,
-    `<table>
-  <caption erpText type="caption">الجدول</caption>
-  <tr>
-    <th erpText type="table-header">الاسم</th>
-    <td erpText type="table-cell">{{ value }}</td>
-  </tr>
-</table>`,
   ];
 
   const invalidTemplates = [
+    `<h1 erpText type="heading-1">
+  عنوان
+</h1>`,
     `<p>نص خام</p>`,
     `<div>{{ value }}</div>`,
     `<erp-button>Save</erp-button>`,

@@ -97,6 +97,37 @@
   gap: 0.75rem;
 }
 
+.lab-viewport-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.btn-preview {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #1a1e27;
+  background-color: #ffffff;
+  border: 1px solid #ccd2dc;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f0f2f5;
+    border-color: #b5bcc9;
+  }
+
+  &.is-active {
+    color: #ffffff;
+    background-color: #394150;
+    border-color: #394150;
+  }
+}
+
 .lab-screenshot-status {
   font-size: 0.8rem;
   color: #4b5262;
@@ -140,6 +171,45 @@
   flex: 1;
   width: 100%;
   display: block;
+}
+
+.routed-content-wrapper--embedded {
+  min-width: 0;
+}
+
+.lab-preview-stage {
+  flex: 1;
+  min-width: 0;
+  overflow: auto;
+  display: block;
+  padding: 1rem;
+  background-color: #e5e8ef;
+}
+
+.lab-preview-frame {
+  display: block;
+  margin-inline: auto;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+.lab-preview-frame.is-desktop {
+  width: 100%;
+  height: calc(100vh - 7rem);
+  min-height: 600px;
+  border: 0;
+}
+
+.lab-preview-frame.is-tablet {
+  width: 768px;
+  height: 1024px;
+  border: 1px solid #ccd2dc;
+}
+
+.lab-preview-frame.is-mobile {
+  width: 375px;
+  height: 667px;
+  border: 1px solid #ccd2dc;
 }
 
 @include query.viewport-down(md) {

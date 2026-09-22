@@ -1,8 +1,47 @@
 import {TestBed} from '@angular/core/testing';
 import {provideRouter, RouterLink} from '@angular/router';
 import {By} from '@angular/platform-browser';
-import {App, isFullyTransparent, resolveVisibleBackgroundColor} from './app';
+import {
+  App,
+  buildLabPreviewUrl,
+  buildScreenshotFilename,
+  hasLabPreviewFlag,
+  isFullyTransparent,
+  resolveVisibleBackgroundColor,
+} from './app';
 import {routes} from './app.routes';
+
+describe('Design Lab preview helpers', () => {
+  it('detects only labPreview=1', () => {
+    expect(hasLabPreviewFlag('?labPreview=1')).toBe(true);
+    expect(hasLabPreviewFlag('?labPreview=0')).toBe(false);
+    expect(hasLabPreviewFlag('')).toBe(false);
+  });
+
+  it('builds a preview URL while preserving query parameters and fragments', () => {
+    expect(buildLabPreviewUrl('/primitives/typography')).toBe(
+      '/primitives/typography?labPreview=1',
+    );
+    expect(buildLabPreviewUrl('/primitives/typography?x=1#proof')).toBe(
+      '/primitives/typography?x=1&labPreview=1#proof',
+    );
+  });
+
+  it('builds mode-specific screenshot filenames', () => {
+    expect(buildScreenshotFilename('/primitives/typography', 'desktop')).toBe(
+      'primitives-typography-desktop-view.png',
+    );
+    expect(buildScreenshotFilename('/primitives/typography', 'tablet')).toBe(
+      'primitives-typography-tablet-view.png',
+    );
+    expect(buildScreenshotFilename('/primitives/typography', 'mobile')).toBe(
+      'primitives-typography-mobile-view.png',
+    );
+    expect(buildScreenshotFilename('/', 'desktop')).toBe(
+      'foundation-review-desktop-view.png',
+    );
+  });
+});
 
 describe('App Root Shell & Design Lab Review Utilities', () => {
   beforeEach(async () => {
@@ -130,24 +169,52 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(screenshotBtn?.disabled).toBe(false);
   });
 
-  it('should render the dedicated routed-content capture wrapper outside the utility bar', () => {
+  it('should render the viewport controls and iframe preview in outer mode', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
 
-    const utilityBar = compiled.querySelector('#lab-utility-bar');
-    const captureWrapper = compiled.querySelector('#routed-review-content');
-    const routerOutlet = compiled.querySelector('#app-router-outlet');
+    expect(compiled.querySelector('#lab-viewport-controls')).toBeTruthy();
+    expect(compiled.querySelector('#btn-preview-desktop')).toBeTruthy();
+    expect(compiled.querySelector('#btn-preview-tablet')).toBeTruthy();
+    expect(compiled.querySelector('#btn-preview-mobile')).toBeTruthy();
+    expect(compiled.querySelector('#lab-preview-stage')).toBeTruthy();
+    expect(compiled.querySelector('#lab-preview-frame')).toBeTruthy();
+    expect(compiled.querySelector('#routed-review-content')).toBeNull();
+    expect(compiled.querySelector('#app-router-outlet')).toBeNull();
+  });
 
-    expect(utilityBar).toBeTruthy();
-    expect(captureWrapper).toBeTruthy();
-    expect(routerOutlet).toBeTruthy();
+  it('switches deterministically between desktop, tablet, and mobile preview modes', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const app = fixture.componentInstance;
+    const stage = compiled.querySelector('#lab-preview-stage') as HTMLElement;
+    const desktop = compiled.querySelector('#btn-preview-desktop') as HTMLButtonElement;
+    const tablet = compiled.querySelector('#btn-preview-tablet') as HTMLButtonElement;
+    const mobile = compiled.querySelector('#btn-preview-mobile') as HTMLButtonElement;
 
-    // Ensure routed content wrapper contains the router outlet
-    expect(captureWrapper?.contains(routerOutlet)).toBe(true);
+    expect(app.currentPreviewMode()).toBe('desktop');
+    expect(desktop.getAttribute('aria-pressed')).toBe('true');
+    expect(stage.getAttribute('data-preview-mode')).toBe('desktop');
 
-    // Ensure the utility bar is NOT inside the capture wrapper
-    expect(captureWrapper?.contains(utilityBar)).toBe(false);
+    tablet.click();
+    fixture.detectChanges();
+    expect(app.currentPreviewMode()).toBe('tablet');
+    expect(tablet.getAttribute('aria-pressed')).toBe('true');
+    expect(stage.getAttribute('data-preview-mode')).toBe('tablet');
+
+    mobile.click();
+    fixture.detectChanges();
+    expect(app.currentPreviewMode()).toBe('mobile');
+    expect(mobile.getAttribute('aria-pressed')).toBe('true');
+    expect(stage.getAttribute('data-preview-mode')).toBe('mobile');
+
+    desktop.click();
+    fixture.detectChanges();
+    expect(app.currentPreviewMode()).toBe('desktop');
+    expect(desktop.getAttribute('aria-pressed')).toBe('true');
+    expect(stage.getAttribute('data-preview-mode')).toBe('desktop');
   });
 });
 

@@ -14,7 +14,6 @@
 .showcase-header,
 .review-group,
 .figure-proof,
-.form-proof,
 .wrap-proof,
 .overflow-proof,
 .clamp-proof {
@@ -49,36 +48,6 @@
   border: var(--honesty-border-width-default) var(--honesty-border-style-dashed)
     var(--honesty-border-subtle);
   background: var(--honesty-color-surface-default);
-}
-
-.form-proof,
-fieldset,
-table {
-  min-width: 0;
-  max-width: 100%;
-}
-
-.form-proof {
-  display: grid;
-  gap: var(--honesty-space-stack-tight);
-}
-
-fieldset {
-  border: var(--honesty-border-width-default) var(--honesty-border-style-default)
-    var(--honesty-border-subtle);
-}
-
-table {
-  inline-size: 100%;
-  border-collapse: collapse;
-}
-
-th,
-td {
-  padding: var(--honesty-space-inset-tight);
-  border: var(--honesty-border-width-default) var(--honesty-border-style-default)
-    var(--honesty-border-subtle);
-  text-align: start;
 }
 
 .wrap-proof,
