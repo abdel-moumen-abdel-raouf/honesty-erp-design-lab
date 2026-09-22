@@ -28,6 +28,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'controls/buttons',
+    loadComponent: () =>
+      import('./showcase/button-controls/button-controls').then(
+        (m) => m.ButtonControls
+      ),
+  },
+  {
     path: 'foundation/colors',
     loadComponent: () =>
       import('./foundation/colors/colors').then((m) => m.Colors),

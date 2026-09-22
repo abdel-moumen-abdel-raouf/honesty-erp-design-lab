@@ -1,0 +1,58 @@
+<button
+  class="n"
+  [type]="type()"
+  [attr.name]="name()"
+  [attr.value]="value()"
+  [attr.form]="form()"
+  [disabled]="nativeDisabled()"
+  [attr.aria-busy]="state() === 'loading' ? 'true' : null"
+  (pointerdown)="handlePointerDown($event)"
+  (keydown)="handleKeyDown($event)"
+  (click)="handleClick()"
+>
+  @for (ripple of rippleItems(); track ripple.id) {
+    <span
+      class="erp-pressable__ripple"
+      aria-hidden="true"
+      [style.left.px]="ripple.x"
+      [style.top.px]="ripple.y"
+      [style.inline-size.px]="ripple.diameter"
+      [style.block-size.px]="ripple.diameter"
+      (animationend)="clearRipple(ripple.id)"
+    ></span>
+  }
+
+  <span class="c">
+    @if (state() === 'loading') {
+      <span class="erp-pressable__spinner" aria-hidden="true"></span>
+    } @else if (icon(); as iconName) {
+      @if (iconPosition() === 'start') {
+        <span class="i" data-icon-slot="start" aria-hidden="true">
+          <erp-icon
+            [name]="iconName"
+            size="inherit"
+            tone="inherit"
+            variant="outline"
+            strokeWidth="regular"
+          />
+        </span>
+      }
+    }
+
+    <erp-text type="span">{{ effectiveLabel() }}</erp-text>
+
+    @if (state() !== 'loading' && icon(); as iconName) {
+      @if (iconPosition() === 'end') {
+        <span class="i" data-icon-slot="end" aria-hidden="true">
+          <erp-icon
+            [name]="iconName"
+            size="inherit"
+            tone="inherit"
+            variant="outline"
+            strokeWidth="regular"
+          />
+        </span>
+      }
+    }
+  </span>
+</button>

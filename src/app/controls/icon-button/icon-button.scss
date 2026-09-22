@@ -1,0 +1,105 @@
+@use '../../../styles/foundation/components/icon-button' as tokens;
+@use '../button-family/internal/press-ripple' as ripple;
+
+:host {
+  @include tokens.base;
+}
+
+:host(.a) { @include tokens.variant-solid; }
+:host(.b) { @include tokens.variant-outline; }
+:host(.c) { @include tokens.variant-subtle; }
+
+:host(.d) { @include tokens.tone-primary; }
+:host(.e) { @include tokens.tone-secondary; }
+:host(.f) { @include tokens.tone-accent; }
+:host(.g) { @include tokens.tone-success; }
+:host(.h) { @include tokens.tone-warning; }
+:host(.i) { @include tokens.tone-danger; }
+:host(.j) { @include tokens.tone-info; }
+
+:host(.k) { @include tokens.size-sm; }
+:host(.l) { @include tokens.size-lg; }
+
+:host(.m) { @include tokens.shape-default; }
+:host(.o) { @include tokens.shape-pill; }
+
+:host(.p) { @include tokens.border-style-dashed; }
+
+.n {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--honesty-icon-button-size);
+  block-size: var(--honesty-icon-button-size);
+  padding: var(--honesty-icon-button-padding);
+  border-width: var(--honesty-icon-button-border-width);
+  border-style: var(--honesty-icon-button-border-style);
+  border-color: var(--honesty-icon-button-border-color);
+  border-radius: var(--honesty-icon-button-radius);
+  background: var(--honesty-icon-button-bg);
+  color: var(--honesty-icon-button-fg);
+  box-shadow: var(--honesty-icon-button-elevation);
+  transition: var(--honesty-icon-button-transition-duration) var(--honesty-icon-button-transition-easing);
+}
+
+.n::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.n:not(:disabled):hover::before {
+  opacity: var(--honesty-icon-button-state-hover-opacity);
+}
+
+.n:not(:disabled):active::before {
+  opacity: var(--honesty-icon-button-state-active-opacity);
+}
+
+.n:focus-visible {
+  outline-width: var(--honesty-icon-button-focus-width);
+  outline-style: var(--honesty-icon-button-focus-style);
+  outline-color: var(--honesty-icon-button-focus-color);
+  outline-offset: var(--honesty-icon-button-focus-offset);
+}
+
+.n:disabled {
+  opacity: var(--honesty-icon-button-disabled-opacity);
+}
+
+.c {
+  z-index: 2;
+}
+
+.i {
+  font-size: var(--honesty-icon-button-icon-size);
+}
+
+.erp-pressable__spinner {
+  inline-size: var(--honesty-icon-button-spinner-size);
+  block-size: var(--honesty-icon-button-spinner-size);
+  border-width: var(--honesty-icon-button-spinner-border-width);
+  border-style: solid;
+  border-color: currentColor;
+  border-inline-end-color: transparent;
+  border-radius: 50%;
+  animation: erp-control-spin var(--honesty-icon-button-ripple-duration) linear infinite;
+}
+
+@keyframes erp-control-spin {
+  to { transform: rotate(360deg); }
+}
+
+@include ripple.styles(
+  var(--honesty-icon-button-ripple-color),
+  var(--honesty-icon-button-ripple-opacity),
+  var(--honesty-icon-button-ripple-duration),
+  var(--honesty-icon-button-ripple-easing)
+);

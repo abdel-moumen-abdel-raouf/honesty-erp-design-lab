@@ -1,0 +1,110 @@
+@use '../../../styles/foundation/components/fab' as tokens;
+@use '../button-family/internal/press-ripple' as ripple;
+
+:host {
+  @include tokens.base;
+
+  display: inline-block;
+}
+
+:host([data-fab-size='sm']) { @include tokens.size-sm; }
+:host([data-fab-size='md']) { @include tokens.size-md; }
+:host([data-fab-size='lg']) { @include tokens.size-lg; }
+
+:host([data-fab-tone='primary']) { @include tokens.tone-primary; }
+:host([data-fab-tone='secondary']) { @include tokens.tone-secondary; }
+:host([data-fab-tone='accent']) { @include tokens.tone-accent; }
+:host([data-fab-tone='surface']) { @include tokens.tone-surface; }
+
+.erp-fab__native {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--honesty-fab-size);
+  block-size: var(--honesty-fab-size);
+  padding: 0;
+  border: 0;
+  border-radius: var(--honesty-fab-radius);
+  background: var(--honesty-fab-bg);
+  color: var(--honesty-fab-fg);
+  box-shadow: var(--honesty-fab-elevation);
+  cursor: pointer;
+  transition:
+    box-shadow var(--honesty-fab-transition-duration) var(--honesty-fab-transition-easing),
+    background-color var(--honesty-fab-transition-duration) var(--honesty-fab-transition-easing),
+    color var(--honesty-fab-transition-duration) var(--honesty-fab-transition-easing);
+}
+
+.erp-fab__native::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.erp-fab__native:not(:disabled):hover {
+  box-shadow: var(--honesty-fab-elevation-hover);
+}
+
+.erp-fab__native:not(:disabled):hover::before {
+  opacity: var(--honesty-fab-state-hover-opacity);
+}
+
+.erp-fab__native:not(:disabled):active::before {
+  opacity: var(--honesty-fab-state-active-opacity);
+}
+
+.erp-fab__native:focus-visible {
+  outline-width: var(--honesty-fab-focus-width);
+  outline-style: var(--honesty-fab-focus-style);
+  outline-color: var(--honesty-fab-focus-color);
+  outline-offset: var(--honesty-fab-focus-offset);
+}
+
+.erp-fab__native:disabled {
+  opacity: var(--honesty-fab-disabled-opacity);
+  cursor: default;
+}
+
+.erp-fab__content {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.erp-fab__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--honesty-fab-icon-size);
+}
+
+.erp-pressable__spinner {
+  inline-size: var(--honesty-fab-spinner-size);
+  block-size: var(--honesty-fab-spinner-size);
+  border-width: var(--honesty-fab-spinner-border-width);
+  border-style: solid;
+  border-color: currentColor;
+  border-inline-end-color: transparent;
+  border-radius: 50%;
+  animation: erp-fab-spinner var(--honesty-fab-ripple-duration) linear infinite;
+}
+
+@keyframes erp-fab-spinner {
+  to { transform: rotate(360deg); }
+}
+
+@include ripple.styles(
+  var(--honesty-fab-ripple-color),
+  var(--honesty-fab-ripple-opacity),
+  var(--honesty-fab-ripple-duration),
+  var(--honesty-fab-ripple-easing)
+);

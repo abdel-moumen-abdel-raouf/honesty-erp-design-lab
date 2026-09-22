@@ -352,3 +352,19 @@ Rules:
   to satisfy an approved semantic icon contract; they must remain hidden behind
   the semantic registry and must use an approved redistribution-compatible
   license.
+
+## Production Button Governance
+
+- Standard action authoring uses ERP button controls.
+- Feature/Page templates must not author native `<button>`.
+- Feature/Page templates must not use static input button/submit/reset controls.
+- Feature/Page templates must not synthesize buttons with `role="button"`.
+- ErpButton owns standard text actions.
+- ErpIconButton owns icon-only actions.
+- ErpFab and ErpExtendedFab own FAB actions.
+- Native button semantics remain internal implementation details.
+- Visible button text uses ErpText.
+- Icons use ErpIcon.
+- Button Family owns ripple/focus/disabled/loading interaction.
+- FAB positioning belongs to parent layout/composite.
+- ButtonGroup/SplitButton/FabMenu belong to the Composite layer.

@@ -1,0 +1,70 @@
+@use '../../reference/spacing' as spacing;
+@use '../../reference/borders' as borders;
+@use '../../reference/opacity' as opacity;
+
+@mixin base {
+  --honesty-fab-bg: var(--honesty-color-brand-primary-subtle);
+  --honesty-fab-fg: var(--honesty-color-brand-primary-content);
+  --honesty-fab-size: 3.5rem;
+  --honesty-fab-radius: 1rem;
+  --honesty-fab-icon-size: #{spacing.$honesty-ref-space-24};
+  --honesty-fab-elevation: var(--honesty-elevation-raised);
+  --honesty-fab-elevation-hover: var(--honesty-elevation-overlay);
+  --honesty-fab-focus-width: var(--honesty-focus-ring-width);
+  --honesty-fab-focus-style: var(--honesty-focus-ring-style);
+  --honesty-fab-focus-offset: var(--honesty-focus-ring-offset);
+  --honesty-fab-focus-color: var(--honesty-color-action-focus-ring);
+  --honesty-fab-state-layer-color: currentColor;
+  --honesty-fab-state-hover-opacity: #{opacity.$honesty-ref-opacity-08};
+  --honesty-fab-state-active-opacity: #{opacity.$honesty-ref-opacity-14};
+  --honesty-fab-disabled-opacity: #{opacity.$honesty-ref-opacity-48};
+  --honesty-fab-ripple-color: currentColor;
+  --honesty-fab-ripple-opacity: #{opacity.$honesty-ref-opacity-14};
+  --honesty-fab-ripple-duration: var(--honesty-motion-duration-deliberate);
+  --honesty-fab-ripple-easing: var(--honesty-motion-easing-standard);
+  --honesty-fab-spinner-size: #{spacing.$honesty-ref-space-24};
+  --honesty-fab-spinner-border-width: #{borders.$honesty-ref-border-width-2};
+  --honesty-fab-transition-duration: var(--honesty-motion-duration-default);
+  --honesty-fab-transition-easing: var(--honesty-motion-easing-standard);
+}
+
+@mixin tone-primary {
+  --honesty-fab-bg: var(--honesty-color-brand-primary-subtle);
+  --honesty-fab-fg: var(--honesty-color-brand-primary-content);
+}
+
+@mixin tone-secondary {
+  --honesty-fab-bg: var(--honesty-color-brand-secondary-subtle);
+  --honesty-fab-fg: var(--honesty-color-brand-secondary-content);
+}
+
+@mixin tone-accent {
+  --honesty-fab-bg: var(--honesty-color-brand-accent-subtle);
+  --honesty-fab-fg: var(--honesty-color-brand-accent-content);
+}
+
+@mixin tone-surface {
+  --honesty-fab-bg: var(--honesty-color-surface-elevated);
+  --honesty-fab-fg: var(--honesty-color-text-primary);
+}
+
+@mixin size-sm {
+  --honesty-fab-size: #{spacing.$honesty-ref-space-40};
+  --honesty-fab-radius: 0.75rem;
+  --honesty-fab-icon-size: #{spacing.$honesty-ref-space-20};
+  --honesty-fab-spinner-size: #{spacing.$honesty-ref-space-20};
+}
+
+@mixin size-md {
+  --honesty-fab-size: 3.5rem;
+  --honesty-fab-radius: 1rem;
+  --honesty-fab-icon-size: #{spacing.$honesty-ref-space-24};
+  --honesty-fab-spinner-size: #{spacing.$honesty-ref-space-24};
+}
+
+@mixin size-lg {
+  --honesty-fab-size: 6rem;
+  --honesty-fab-radius: 1.75rem;
+  --honesty-fab-icon-size: #{spacing.$honesty-ref-space-32};
+  --honesty-fab-spinner-size: #{spacing.$honesty-ref-space-32};
+}

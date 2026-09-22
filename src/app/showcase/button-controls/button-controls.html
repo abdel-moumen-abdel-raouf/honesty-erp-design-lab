@@ -1,0 +1,196 @@
+<erp-container class="button-showcase" width="wide" data-theme="light">
+  <erp-stack class="showcase-header" gap="tight">
+    <erp-inline gap="tight" align="center" wrap="wrap">
+      <erp-icon name="info" size="md" tone="brand-primary" />
+      <erp-text type="heading-1">Button Family V1</erp-text>
+    </erp-inline>
+    <erp-text type="paragraph" tone="secondary">
+      مراجعة الأزرار القياسية وأزرار الأيقونات وأزرار الإجراءات العائمة.
+    </erp-text>
+  </erp-stack>
+
+  <erp-section class="review-group" data-review-group="standard-variants">
+    <erp-text type="heading-2">Standard Variants</erp-text>
+    <erp-divider />
+    <erp-inline gap="default" wrap="wrap">
+      @for (variant of standardVariants; track variant) {
+        <erp-button
+          data-standard-variant-evidence
+          [label]="variant"
+          [variant]="variant"
+          tone="primary"
+        />
+      }
+    </erp-inline>
+  </erp-section>
+
+  <erp-section class="review-group" data-review-group="tones">
+    <erp-text type="heading-2">Tones</erp-text>
+    <erp-divider />
+    <erp-text type="heading-3">Solid</erp-text>
+    <erp-grid [columns]="4" gap="sm" responsive="auto">
+      @for (tone of tones; track tone) {
+        <erp-button
+          data-solid-tone-evidence
+          [label]="tone"
+          variant="solid"
+          [tone]="tone"
+        />
+      }
+    </erp-grid>
+    <erp-text type="heading-3">Outline</erp-text>
+    <erp-grid [columns]="4" gap="sm" responsive="auto">
+      @for (tone of tones; track tone) {
+        <erp-button
+          data-outline-tone-evidence
+          [label]="tone"
+          variant="outline"
+          [tone]="tone"
+        />
+      }
+    </erp-grid>
+  </erp-section>
+
+  <erp-section class="review-group" data-review-group="size-shape-border-width">
+    <erp-text type="heading-2">Sizes / Shapes / Borders / Width</erp-text>
+    <erp-divider />
+    <erp-inline gap="default" align="center" wrap="wrap">
+      @for (size of buttonSizes; track size) {
+        <erp-button data-button-size-evidence [label]="size" [size]="size" />
+      }
+    </erp-inline>
+    <erp-inline gap="default" align="center" wrap="wrap">
+      @for (shape of buttonShapes; track shape) {
+        <erp-button data-button-shape-evidence [label]="shape" [shape]="shape" />
+      }
+    </erp-inline>
+    <erp-inline gap="default" align="center" wrap="wrap">
+      <erp-button label="Solid border" variant="outline" borderStyle="solid" />
+      <erp-button
+        data-dashed-border-evidence
+        label="Dashed border"
+        variant="outline"
+        borderStyle="dashed"
+      />
+      <erp-button label="Save" icon="save" iconPosition="start" />
+      <erp-button label="Continue" icon="chevron-end" iconPosition="end" />
+    </erp-inline>
+    <erp-button data-full-width-evidence label="Full width" fullWidth />
+  </erp-section>
+
+  <erp-section class="review-group" data-review-group="icon-buttons">
+    <erp-text type="heading-2">Icon Buttons</erp-text>
+    <erp-divider />
+    <erp-inline gap="default" align="center" wrap="wrap">
+      @for (variant of iconButtonVariants; track variant; let index = $index) {
+        <erp-icon-button
+          data-icon-button-variant-evidence
+          [icon]="index === 0 ? 'settings' : index === 1 ? 'edit' : index === 2 ? 'delete' : 'more-horizontal'"
+          [label]="variant"
+          [variant]="variant"
+        />
+      }
+    </erp-inline>
+    <erp-inline gap="default" align="center" wrap="wrap">
+      @for (size of buttonSizes; track size) {
+        <erp-icon-button
+          data-icon-button-size-evidence
+          icon="settings"
+          [label]="size"
+          [size]="size"
+        />
+      }
+    </erp-inline>
+    <erp-inline gap="default" align="center" wrap="wrap">
+      @for (shape of buttonShapes; track shape) {
+        <erp-icon-button
+          data-icon-button-shape-evidence
+          icon="more-horizontal"
+          [label]="shape"
+          [shape]="shape"
+        />
+      }
+    </erp-inline>
+  </erp-section>
+
+  <erp-section class="review-group" data-review-group="floating-action-buttons">
+    <erp-text type="heading-2">Floating Action Buttons</erp-text>
+    <erp-divider />
+    <erp-inline gap="default" align="center" wrap="wrap">
+      @for (size of fabSizes; track size) {
+        <erp-fab data-fab-size-evidence icon="add" [label]="size" [size]="size" />
+      }
+    </erp-inline>
+    <erp-inline gap="default" align="center" wrap="wrap">
+      @for (tone of fabTones; track tone) {
+        <erp-fab data-fab-tone-evidence icon="add" [label]="tone" [tone]="tone" />
+      }
+    </erp-inline>
+  </erp-section>
+
+  <erp-section class="review-group" data-review-group="extended-fabs">
+    <erp-text type="heading-2">Extended FABs</erp-text>
+    <erp-divider />
+    <erp-inline gap="default" align="center" wrap="wrap">
+      @for (size of extendedFabSizes; track size) {
+        <erp-extended-fab
+          data-extended-fab-size-evidence
+          label="إنشاء جديد"
+          icon="add"
+          [size]="size"
+        />
+      }
+    </erp-inline>
+    <erp-inline gap="default" align="center" wrap="wrap">
+      @for (tone of fabTones; track tone) {
+        <erp-extended-fab
+          data-extended-fab-tone-evidence
+          label="إنشاء جديد"
+          icon="add"
+          [tone]="tone"
+        />
+      }
+      <erp-extended-fab data-extended-fab-no-icon label="بدون أيقونة" />
+    </erp-inline>
+  </erp-section>
+
+  <erp-section class="review-group" data-review-group="states-ripple-theme">
+    <erp-text type="heading-2">States / Ripple / Theme</erp-text>
+    <erp-divider />
+    <erp-text type="paragraph">اضغط الأزرار لمراجعة تأثير Ripple</erp-text>
+    <erp-inline gap="default" align="center" wrap="wrap">
+      <erp-button
+        id="ripple-counter-button"
+        data-state-evidence="button-ready"
+        label="Ready"
+        (pressed)="incrementPressedCount()"
+      />
+      <erp-button data-state-evidence="button-disabled" label="Disabled" disabled />
+      <erp-button data-state-evidence="button-loading" label="Loading" loading />
+      <erp-icon-button data-state-evidence="icon-ready" icon="settings" label="Ready icon" />
+      <erp-icon-button data-state-evidence="icon-disabled" icon="settings" label="Disabled icon" disabled />
+      <erp-icon-button data-state-evidence="icon-loading" icon="settings" label="Loading icon" loading />
+      <erp-fab data-state-evidence="fab-ready" icon="add" label="Ready fab" />
+      <erp-fab data-state-evidence="fab-disabled" icon="add" label="Disabled fab" disabled />
+      <erp-fab data-state-evidence="fab-loading" icon="add" label="Loading fab" loading />
+      <erp-extended-fab data-state-evidence="extended-ready" label="Ready extended" icon="add" />
+      <erp-extended-fab data-state-evidence="extended-disabled" label="Disabled extended" icon="add" disabled />
+      <erp-extended-fab data-state-evidence="extended-loading" label="Loading extended" icon="add" loading />
+    </erp-inline>
+    <erp-text id="ripple-counter-value" type="paragraph">
+      Activations: {{ pressedCount() }}
+    </erp-text>
+    <erp-surface class="dark-theme-proof" data-theme="dark" tone="default" border="subtle">
+      <erp-stack gap="default">
+        <erp-text type="heading-3">Dark Theme</erp-text>
+        <erp-inline gap="default" align="center" wrap="wrap">
+          <erp-button label="Solid primary" />
+          <erp-button label="Outline primary" variant="outline" />
+          <erp-icon-button icon="settings" label="Dark icon" />
+          <erp-fab icon="add" label="Dark fab" />
+          <erp-extended-fab label="إنشاء جديد" icon="add" />
+        </erp-inline>
+      </erp-stack>
+    </erp-surface>
+  </erp-section>
+</erp-container>

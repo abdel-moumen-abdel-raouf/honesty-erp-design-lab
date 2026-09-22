@@ -1,0 +1,39 @@
+<button
+  class="erp-extended-fab__native"
+  type="button"
+  [disabled]="nativeDisabled()"
+  [attr.aria-busy]="state() === 'loading' ? 'true' : null"
+  (pointerdown)="handlePointerDown($event)"
+  (keydown)="handleKeyDown($event)"
+  (click)="handleClick()"
+>
+  @for (ripple of rippleItems(); track ripple.id) {
+    <span
+      class="erp-pressable__ripple"
+      aria-hidden="true"
+      [style.left.px]="ripple.x"
+      [style.top.px]="ripple.y"
+      [style.inline-size.px]="ripple.diameter"
+      [style.block-size.px]="ripple.diameter"
+      (animationend)="clearRipple(ripple.id)"
+    ></span>
+  }
+
+  <span class="erp-extended-fab__content">
+    @if (state() === 'loading') {
+      <span class="erp-pressable__spinner" aria-hidden="true"></span>
+    } @else if (icon(); as iconName) {
+      <span class="erp-extended-fab__icon" aria-hidden="true">
+        <erp-icon
+          [name]="iconName"
+          size="inherit"
+          tone="inherit"
+          variant="outline"
+          strokeWidth="regular"
+        />
+      </span>
+    }
+
+    <erp-text type="span">{{ trimmedLabel() }}</erp-text>
+  </span>
+</button>

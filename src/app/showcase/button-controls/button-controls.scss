@@ -1,0 +1,41 @@
+@use '../../../styles/foundation/queries' as query;
+
+:host {
+  display: block;
+  min-width: 0;
+  background: var(--honesty-color-surface-canvas);
+  color: var(--honesty-color-text-primary);
+}
+
+.button-showcase {
+  padding-block: var(--honesty-space-section-gap-large);
+}
+
+.showcase-header,
+.review-group,
+.dark-theme-proof {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.showcase-header {
+  margin-block-end: var(--honesty-space-section-gap-large);
+}
+
+.review-group {
+  padding-block: var(--honesty-space-section-gap);
+}
+
+.dark-theme-proof {
+  padding: var(--honesty-space-inset-default);
+  overflow: hidden;
+}
+
+@include query.viewport-down(md) {
+  .button-showcase,
+  .showcase-header,
+  .review-group,
+  .dark-theme-proof {
+    max-width: 100%;
+  }
+}

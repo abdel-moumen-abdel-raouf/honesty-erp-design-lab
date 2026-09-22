@@ -1,0 +1,92 @@
+@use '../../reference/spacing' as spacing;
+@use '../../reference/borders' as borders;
+@use '../../reference/opacity' as opacity;
+@use '../../reference/typography' as type;
+
+@mixin base {
+  --honesty-extended-fab-bg: var(--honesty-color-brand-primary-subtle);
+  --honesty-extended-fab-fg: var(--honesty-color-brand-primary-content);
+  --honesty-extended-fab-height: 3.5rem;
+  --honesty-extended-fab-radius: 1rem;
+  --honesty-extended-fab-padding-inline: #{spacing.$honesty-ref-space-16};
+  --honesty-extended-fab-gap: #{spacing.$honesty-ref-space-8};
+  --honesty-extended-fab-icon-size: #{spacing.$honesty-ref-space-24};
+  --honesty-extended-fab-font-family: var(--honesty-type-family-ui);
+  --honesty-extended-fab-font-size: #{type.$honesty-ref-font-size-16};
+  --honesty-extended-fab-font-weight: #{type.$honesty-ref-font-weight-medium};
+  --honesty-extended-fab-line-height: #{type.$honesty-ref-line-height-150};
+  --honesty-extended-fab-elevation: var(--honesty-elevation-raised);
+  --honesty-extended-fab-elevation-hover: var(--honesty-elevation-overlay);
+  --honesty-extended-fab-focus-width: var(--honesty-focus-ring-width);
+  --honesty-extended-fab-focus-style: var(--honesty-focus-ring-style);
+  --honesty-extended-fab-focus-offset: var(--honesty-focus-ring-offset);
+  --honesty-extended-fab-focus-color: var(--honesty-color-action-focus-ring);
+  --honesty-extended-fab-state-layer-color: currentColor;
+  --honesty-extended-fab-state-hover-opacity: #{opacity.$honesty-ref-opacity-08};
+  --honesty-extended-fab-state-active-opacity: #{opacity.$honesty-ref-opacity-14};
+  --honesty-extended-fab-disabled-opacity: #{opacity.$honesty-ref-opacity-48};
+  --honesty-extended-fab-ripple-color: currentColor;
+  --honesty-extended-fab-ripple-opacity: #{opacity.$honesty-ref-opacity-14};
+  --honesty-extended-fab-ripple-duration: var(--honesty-motion-duration-deliberate);
+  --honesty-extended-fab-ripple-easing: var(--honesty-motion-easing-standard);
+  --honesty-extended-fab-spinner-size: #{spacing.$honesty-ref-space-24};
+  --honesty-extended-fab-spinner-border-width: #{borders.$honesty-ref-border-width-2};
+  --honesty-extended-fab-transition-duration: var(--honesty-motion-duration-default);
+  --honesty-extended-fab-transition-easing: var(--honesty-motion-easing-standard);
+}
+
+@mixin tone-primary {
+  --honesty-extended-fab-bg: var(--honesty-color-brand-primary-subtle);
+  --honesty-extended-fab-fg: var(--honesty-color-brand-primary-content);
+}
+
+@mixin tone-secondary {
+  --honesty-extended-fab-bg: var(--honesty-color-brand-secondary-subtle);
+  --honesty-extended-fab-fg: var(--honesty-color-brand-secondary-content);
+}
+
+@mixin tone-accent {
+  --honesty-extended-fab-bg: var(--honesty-color-brand-accent-subtle);
+  --honesty-extended-fab-fg: var(--honesty-color-brand-accent-content);
+}
+
+@mixin tone-surface {
+  --honesty-extended-fab-bg: var(--honesty-color-surface-elevated);
+  --honesty-extended-fab-fg: var(--honesty-color-text-primary);
+}
+
+@mixin size-md {
+  --honesty-extended-fab-height: 3.5rem;
+  --honesty-extended-fab-radius: 1rem;
+  --honesty-extended-fab-padding-inline: #{spacing.$honesty-ref-space-16};
+  --honesty-extended-fab-gap: #{spacing.$honesty-ref-space-8};
+  --honesty-extended-fab-icon-size: #{spacing.$honesty-ref-space-24};
+  --honesty-extended-fab-font-size: #{type.$honesty-ref-font-size-16};
+  --honesty-extended-fab-font-weight: #{type.$honesty-ref-font-weight-medium};
+  --honesty-extended-fab-line-height: #{type.$honesty-ref-line-height-150};
+  --honesty-extended-fab-spinner-size: #{spacing.$honesty-ref-space-24};
+}
+
+@mixin size-lg {
+  --honesty-extended-fab-height: 5rem;
+  --honesty-extended-fab-radius: 1.25rem;
+  --honesty-extended-fab-padding-inline: 1.625rem;
+  --honesty-extended-fab-gap: #{spacing.$honesty-ref-space-16};
+  --honesty-extended-fab-icon-size: 1.75rem;
+  --honesty-extended-fab-font-size: #{type.$honesty-ref-font-size-20};
+  --honesty-extended-fab-font-weight: #{type.$honesty-ref-font-weight-medium};
+  --honesty-extended-fab-line-height: #{type.$honesty-ref-line-height-145};
+  --honesty-extended-fab-spinner-size: 1.75rem;
+}
+
+@mixin size-xl {
+  --honesty-extended-fab-height: 6rem;
+  --honesty-extended-fab-radius: 1.75rem;
+  --honesty-extended-fab-padding-inline: 1.75rem;
+  --honesty-extended-fab-gap: #{spacing.$honesty-ref-space-20};
+  --honesty-extended-fab-icon-size: #{spacing.$honesty-ref-space-32};
+  --honesty-extended-fab-font-size: #{type.$honesty-ref-font-size-24};
+  --honesty-extended-fab-font-weight: #{type.$honesty-ref-font-weight-medium};
+  --honesty-extended-fab-line-height: #{type.$honesty-ref-line-height-140};
+  --honesty-extended-fab-spinner-size: #{spacing.$honesty-ref-space-32};
+}
