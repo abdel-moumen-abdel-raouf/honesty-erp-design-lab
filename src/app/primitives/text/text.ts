@@ -1,5 +1,11 @@
 import {NgTemplateOutlet} from '@angular/common';
-import {ChangeDetectionStrategy, Component, computed, input} from '@angular/core';
+import {
+  booleanAttribute,
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+} from '@angular/core';
 
 export type ErpTextType =
   | 'text'
@@ -307,6 +313,7 @@ function preset(
     '[attr.data-text-wrap]': 'resolvedWrap()',
     '[attr.data-text-overflow]': 'overflow()',
     '[attr.data-text-line-clamp]': 'lineClamp()',
+    '[attr.data-text-selectable]': 'selectable()',
     '[attr.data-text-native-element]': `nativeElement() === 'none' ? null : nativeElement()`,
     '[attr.dir]': 'resolvedDirection()',
   },
@@ -325,6 +332,9 @@ export class ErpText {
   readonly overflow = input<ErpTextOverflow>('visible');
   readonly lineClamp = input<ErpTextLineClamp>(0);
   readonly direction = input<ErpTextDirection>('inherit');
+  readonly selectable = input(false, {
+    transform: booleanAttribute,
+  });
   readonly href = input<string | null>(null);
   readonly target = input<'_self' | '_blank' | '_parent' | '_top' | null>(null);
   readonly rel = input<string | null>(null);

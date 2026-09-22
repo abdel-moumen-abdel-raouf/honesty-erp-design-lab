@@ -122,4 +122,17 @@ describe('TypographyPrimitives showcase', () => {
     expect(clamp?.getAttribute('data-text-line-clamp')).toBe('2');
     expect(bdo?.querySelector('bdo')?.getAttribute('dir')).toBe('ltr');
   });
+
+  it('renders default and explicitly selectable ErpText evidence', () => {
+    const fixture = TestBed.createComponent(TypographyPrimitives);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const defaultProof = compiled.querySelector('#selection-default-proof');
+    const enabledProof = compiled.querySelector('#selection-enabled-proof');
+
+    expect(defaultProof?.tagName).toBe('ERP-TEXT');
+    expect(defaultProof?.getAttribute('data-text-selectable')).toBe('false');
+    expect(enabledProof?.tagName).toBe('ERP-TEXT');
+    expect(enabledProof?.getAttribute('data-text-selectable')).toBe('true');
+  });
 });

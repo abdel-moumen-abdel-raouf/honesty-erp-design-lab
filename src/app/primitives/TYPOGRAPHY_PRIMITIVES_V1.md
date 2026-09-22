@@ -91,6 +91,27 @@ Use ErpContainer only when its frozen structural contract is required.
 - The public input values/data attributes remain unchanged; precedence is a
   rendering rule.
 
+## Text Selection
+
+- Every ErpText is unselectable by default.
+- Public boolean input: `selectable`.
+- Default: `false`.
+- `<erp-text selectable>` enables normal text selection.
+- `[selectable]="true|false"` is supported.
+- `selectable` is independent of type and all presentation presets.
+- Selection is a CSS interaction mechanic, not a Component Token.
+- Internal native semantic elements inherit the host selection behavior.
+
+```html
+<erp-text type="paragraph">
+  Unselectable by default
+</erp-text>
+
+<erp-text type="code" selectable>
+  INV-2026-001
+</erp-text>
+```
+
 ## Breaks and thematic separation
 
 `br` and `wbr` contain no text themselves. They are allowed inside

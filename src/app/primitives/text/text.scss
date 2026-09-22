@@ -262,12 +262,26 @@
   max-inline-size: 100%;
 }
 
-:host([data-text-line-clamp='1']),
-:host([data-text-line-clamp='2']),
-:host([data-text-line-clamp='3']),
-:host([data-text-line-clamp='4']),
-:host([data-text-line-clamp='5']),
-:host([data-text-line-clamp='6']) {
+:host([data-text-selectable='false']) {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+:host([data-text-selectable='true']) {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+:host(
+  :is(
+    [data-text-line-clamp='1'],
+    [data-text-line-clamp='2'],
+    [data-text-line-clamp='3'],
+    [data-text-line-clamp='4'],
+    [data-text-line-clamp='5'],
+    [data-text-line-clamp='6']
+  )
+) {
   overflow: hidden;
   text-overflow: clip;
   white-space: normal;
@@ -303,27 +317,31 @@
   display: inline;
 }
 
-:host(erp-text[data-text-type='heading-1']),
-:host(erp-text[data-text-type='heading-2']),
-:host(erp-text[data-text-type='heading-3']),
-:host(erp-text[data-text-type='heading-4']),
-:host(erp-text[data-text-type='heading-5']),
-:host(erp-text[data-text-type='heading-6']),
-:host(erp-text[data-text-type='paragraph']),
-:host(erp-text[data-text-type='div']),
-:host(erp-text[data-text-type='pre']),
-:host(erp-text[data-text-type='blockquote']),
-:host(erp-text[data-text-type='address']),
-:host(erp-text[data-text-type='hgroup']),
-:host(erp-text[data-text-type='figure']),
-:host(erp-text[data-text-type='figcaption']),
-:host(erp-text[data-text-type='caption']),
-:host(erp-text[data-text-type='summary']),
-:host(erp-text[data-text-type='list-item']),
-:host(erp-text[data-text-type='term']),
-:host(erp-text[data-text-type='description']),
-:host(erp-text[data-text-type='table-header']),
-:host(erp-text[data-text-type='table-cell']) {
+:host(
+  :is(
+    [data-text-type='heading-1'],
+    [data-text-type='heading-2'],
+    [data-text-type='heading-3'],
+    [data-text-type='heading-4'],
+    [data-text-type='heading-5'],
+    [data-text-type='heading-6'],
+    [data-text-type='paragraph'],
+    [data-text-type='div'],
+    [data-text-type='pre'],
+    [data-text-type='blockquote'],
+    [data-text-type='address'],
+    [data-text-type='hgroup'],
+    [data-text-type='figure'],
+    [data-text-type='figcaption'],
+    [data-text-type='caption'],
+    [data-text-type='summary'],
+    [data-text-type='list-item'],
+    [data-text-type='term'],
+    [data-text-type='description'],
+    [data-text-type='table-header'],
+    [data-text-type='table-cell']
+  )
+) {
   display: block;
 }
 
@@ -360,6 +378,8 @@
   color: inherit;
   text-decoration-line: inherit;
   white-space: inherit;
+  user-select: inherit;
+  -webkit-user-select: inherit;
 }
 
 mark.erp-text__native {

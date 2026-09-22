@@ -313,3 +313,10 @@ Rules:
 - Code-like text introduces no monospace role.
 - New Typography primitives may not be created without explicit Product Owner
   reopen.
+- ErpText content is unselectable by default.
+- Consumers explicitly opt into selection with the public `selectable` boolean
+  input.
+- Selection behavior is owned by ErpText and must not be recreated through
+  feature/page CSS overrides.
+- Copyable identifiers, codes, values, or long-form content explicitly opt in
+  when product requirements require user selection.

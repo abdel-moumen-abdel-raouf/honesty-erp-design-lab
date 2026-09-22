@@ -35,10 +35,34 @@ class ProjectedContentTestHost {}
 })
 class AttributeForwardingTestHost {}
 
+@Component({
+  imports: [ErpText],
+  template: `
+    <erp-text id="selection-default" type="paragraph">
+      Default
+    </erp-text>
+    <erp-text id="selection-enabled" type="paragraph" selectable>
+      Enabled
+    </erp-text>
+    <erp-text id="selection-explicit-false" type="paragraph" selectable="false">
+      Explicit false
+    </erp-text>
+    <erp-text id="selection-bound-false" type="paragraph" [selectable]="false">
+      Bound false
+    </erp-text>
+  `,
+})
+class SelectionBooleanAttributeTestHost {}
+
 describe('ErpText', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ErpText, ProjectedContentTestHost, AttributeForwardingTestHost],
+      imports: [
+        ErpText,
+        ProjectedContentTestHost,
+        AttributeForwardingTestHost,
+        SelectionBooleanAttributeTestHost,
+      ],
     }).compileComponents();
   });
 
@@ -73,6 +97,7 @@ describe('ErpText', () => {
     expect(component.overflow()).toBe('visible');
     expect(component.lineClamp()).toBe(0);
     expect(component.direction()).toBe('inherit');
+    expect(component.selectable()).toBe(false);
     expect(component.href()).toBeNull();
     expect(component.target()).toBeNull();
     expect(component.rel()).toBeNull();
@@ -82,6 +107,62 @@ describe('ErpText', () => {
     expect(component.value()).toBeNull();
     expect(component.title()).toBeNull();
     expect(component.cite()).toBeNull();
+  });
+
+  it('is unselectable by default', () => {
+    const fixture = TestBed.createComponent(ErpText);
+    fixture.detectChanges();
+    const host = fixture.nativeElement as HTMLElement;
+
+    expect(fixture.componentInstance.selectable()).toBe(false);
+    expect(host.getAttribute('data-text-selectable')).toBe('false');
+  });
+
+  it('coerces bare, string false, and bound false selectable inputs', () => {
+    const fixture = TestBed.createComponent(SelectionBooleanAttributeTestHost);
+    fixture.detectChanges();
+    const root = fixture.nativeElement as HTMLElement;
+
+    expect(root.querySelector('#selection-default')?.getAttribute('data-text-selectable')).toBe(
+      'false',
+    );
+    expect(root.querySelector('#selection-enabled')?.getAttribute('data-text-selectable')).toBe(
+      'true',
+    );
+    expect(
+      root.querySelector('#selection-explicit-false')?.getAttribute('data-text-selectable'),
+    ).toBe('false');
+    expect(
+      root.querySelector('#selection-bound-false')?.getAttribute('data-text-selectable'),
+    ).toBe('false');
+  });
+
+  it('updates selectable dynamically', () => {
+    const fixture = TestBed.createComponent(ErpText);
+    const host = fixture.nativeElement as HTMLElement;
+
+    fixture.componentRef.setInput('selectable', true);
+    fixture.detectChanges();
+    expect(host.getAttribute('data-text-selectable')).toBe('true');
+
+    fixture.componentRef.setInput('selectable', false);
+    fixture.detectChanges();
+    expect(host.getAttribute('data-text-selectable')).toBe('false');
+  });
+
+  it('keeps selection independent from representative type presets', () => {
+    const fixture = TestBed.createComponent(ErpText);
+    const host = fixture.nativeElement as HTMLElement;
+
+    for (const type of ['heading-1', 'paragraph', 'code', 'link', 'table-cell'] as const) {
+      fixture.componentRef.setInput('type', type);
+      fixture.detectChanges();
+      expect(host.getAttribute('data-text-selectable')).toBe('false');
+    }
+
+    fixture.componentRef.setInput('selectable', true);
+    fixture.detectChanges();
+    expect(host.getAttribute('data-text-selectable')).toBe('true');
   });
 
   it('resolves the text type defaults into host data attributes', () => {
