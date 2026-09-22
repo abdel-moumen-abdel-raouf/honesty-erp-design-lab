@@ -50,6 +50,102 @@
   @include tokens.size-3xl;
 }
 
+:host([data-icon-size='3.5xl']) {
+  @include tokens.size-3-5xl;
+}
+
+:host([data-icon-size='4xl']) {
+  @include tokens.size-4xl;
+}
+
+:host([data-icon-size='4.5xl']) {
+  @include tokens.size-4-5xl;
+}
+
+:host([data-icon-size='5xl']) {
+  @include tokens.size-5xl;
+}
+
+:host([data-icon-size='5.5xl']) {
+  @include tokens.size-5-5xl;
+}
+
+:host([data-icon-size='6xl']) {
+  @include tokens.size-6xl;
+}
+
+:host([data-icon-size='6.5xl']) {
+  @include tokens.size-6-5xl;
+}
+
+:host([data-icon-size='7xl']) {
+  @include tokens.size-7xl;
+}
+
+:host([data-icon-size='7.5xl']) {
+  @include tokens.size-7-5xl;
+}
+
+:host([data-icon-size='8xl']) {
+  @include tokens.size-8xl;
+}
+
+:host([data-icon-size='8.5xl']) {
+  @include tokens.size-8-5xl;
+}
+
+:host([data-icon-size='9xl']) {
+  @include tokens.size-9xl;
+}
+
+:host([data-icon-size='9.5xl']) {
+  @include tokens.size-9-5xl;
+}
+
+:host([data-icon-size='10xl']) {
+  @include tokens.size-10xl;
+}
+
+:host([data-icon-size='10.5xl']) {
+  @include tokens.size-10-5xl;
+}
+
+:host([data-icon-size='11xl']) {
+  @include tokens.size-11xl;
+}
+
+:host([data-icon-size='11.5xl']) {
+  @include tokens.size-11-5xl;
+}
+
+:host([data-icon-size='12xl']) {
+  @include tokens.size-12xl;
+}
+
+:host([data-icon-size='12.5xl']) {
+  @include tokens.size-12-5xl;
+}
+
+:host([data-icon-size='13xl']) {
+  @include tokens.size-13xl;
+}
+
+:host([data-icon-size='13.5xl']) {
+  @include tokens.size-13-5xl;
+}
+
+:host([data-icon-size='14xl']) {
+  @include tokens.size-14xl;
+}
+
+:host([data-icon-size='14.5xl']) {
+  @include tokens.size-14-5xl;
+}
+
+:host([data-icon-size='15xl']) {
+  @include tokens.size-15xl;
+}
+
 :host([data-icon-tone='inherit']) {
   @include tokens.tone-inherit;
 }

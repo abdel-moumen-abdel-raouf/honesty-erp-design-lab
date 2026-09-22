@@ -1,7 +1,12 @@
 import {TestBed} from '@angular/core/testing';
 import {provideRouter} from '@angular/router';
 import {routes} from '../../app.routes';
-import {ERP_ICON_NAMES} from '../../primitives/icon/icon-contracts';
+import {
+  ERP_ICON_NAMES,
+  ERP_ICON_SIZES,
+  ERP_ICON_STROKE_WIDTHS,
+  ERP_ICON_VARIANTS,
+} from '../../primitives/icon/icon-contracts';
 import {IconPrimitives} from './icon-primitives';
 
 describe('IconPrimitives showcase', () => {
@@ -36,12 +41,12 @@ describe('IconPrimitives showcase', () => {
     expect(render().querySelectorAll('[data-review-group]').length).toBe(5);
   });
 
-  it('evidences all 48 unique semantic icon names in the core catalog', () => {
+  it('evidences all 72 unique semantic icon names in the core catalog', () => {
     const icons = [...render().querySelectorAll<HTMLElement>('[data-catalog-icon]')];
     const names = icons.map((icon) => icon.getAttribute('data-icon-name'));
 
-    expect(icons.length).toBe(48);
-    expect(new Set(names).size).toBe(48);
+    expect(icons.length).toBe(72);
+    expect(new Set(names).size).toBe(72);
     expect(names).toEqual([...ERP_ICON_NAMES]);
   });
 
@@ -59,12 +64,41 @@ describe('IconPrimitives showcase', () => {
     expect(compiled.querySelector('honesty-icon')).toBeNull();
   });
 
-  it('evidences all eight controlled sizes', () => {
+  it('evidences all 32 controlled sizes', () => {
     const values = [...render().querySelectorAll<HTMLElement>('[data-size-evidence]')].map(
       (icon) => icon.getAttribute('data-icon-size'),
     );
 
-    expect(values).toEqual(['inherit', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl']);
+    expect(ERP_ICON_SIZES.length).toBe(32);
+    expect(values.length).toBe(32);
+    expect(values).toEqual([...ERP_ICON_SIZES]);
+  });
+
+  it('evidences the exact outline and filled variants', () => {
+    const icons = [...render().querySelectorAll<HTMLElement>('[data-variant-evidence]')];
+
+    expect(icons.length).toBe(2);
+    expect(icons.map((icon) => icon.getAttribute('data-icon-variant'))).toEqual([
+      ...ERP_ICON_VARIANTS,
+    ]);
+    expect(icons.map((icon) => icon.getAttribute('data-icon-name'))).toEqual([
+      'settings',
+      'settings',
+    ]);
+  });
+
+  it('evidences the exact effective outline stroke-width scale', () => {
+    const icons = [...render().querySelectorAll<HTMLElement>('[data-stroke-evidence]')];
+
+    expect(icons.length).toBe(5);
+    expect(icons.map((icon) => icon.getAttribute('data-icon-stroke-width'))).toEqual([
+      ...ERP_ICON_STROKE_WIDTHS,
+    ]);
+
+    for (const icon of icons) {
+      expect(icon.getAttribute('data-icon-variant')).toBe('outline');
+      expect(icon.getAttribute('data-icon-stroke-effective')).toBe('true');
+    }
   });
 
   it('evidences all 13 semantic tones', () => {

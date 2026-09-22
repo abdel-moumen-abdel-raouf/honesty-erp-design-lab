@@ -1,5 +1,5 @@
 @mixin base {
-  --honesty-icon-size: 1.25rem;
+  --honesty-icon-size: 1.5rem;
   --honesty-icon-color: currentColor;
 }
 
@@ -8,19 +8,19 @@
 }
 
 @mixin size-xs {
-  --honesty-icon-size: 0.75rem;
-}
-
-@mixin size-sm {
   --honesty-icon-size: 1rem;
 }
 
-@mixin size-md {
+@mixin size-sm {
   --honesty-icon-size: 1.25rem;
 }
 
-@mixin size-lg {
+@mixin size-md {
   --honesty-icon-size: 1.5rem;
+}
+
+@mixin size-lg {
+  --honesty-icon-size: 1.75rem;
 }
 
 @mixin size-xl {
@@ -33,6 +33,102 @@
 
 @mixin size-3xl {
   --honesty-icon-size: 3rem;
+}
+
+@mixin size-3-5xl {
+  --honesty-icon-size: 3.5rem;
+}
+
+@mixin size-4xl {
+  --honesty-icon-size: 4rem;
+}
+
+@mixin size-4-5xl {
+  --honesty-icon-size: 4.5rem;
+}
+
+@mixin size-5xl {
+  --honesty-icon-size: 5rem;
+}
+
+@mixin size-5-5xl {
+  --honesty-icon-size: 5.5rem;
+}
+
+@mixin size-6xl {
+  --honesty-icon-size: 6rem;
+}
+
+@mixin size-6-5xl {
+  --honesty-icon-size: 6.5rem;
+}
+
+@mixin size-7xl {
+  --honesty-icon-size: 7rem;
+}
+
+@mixin size-7-5xl {
+  --honesty-icon-size: 7.5rem;
+}
+
+@mixin size-8xl {
+  --honesty-icon-size: 8rem;
+}
+
+@mixin size-8-5xl {
+  --honesty-icon-size: 8.5rem;
+}
+
+@mixin size-9xl {
+  --honesty-icon-size: 9rem;
+}
+
+@mixin size-9-5xl {
+  --honesty-icon-size: 9.5rem;
+}
+
+@mixin size-10xl {
+  --honesty-icon-size: 10rem;
+}
+
+@mixin size-10-5xl {
+  --honesty-icon-size: 10.5rem;
+}
+
+@mixin size-11xl {
+  --honesty-icon-size: 11rem;
+}
+
+@mixin size-11-5xl {
+  --honesty-icon-size: 11.5rem;
+}
+
+@mixin size-12xl {
+  --honesty-icon-size: 12rem;
+}
+
+@mixin size-12-5xl {
+  --honesty-icon-size: 12.5rem;
+}
+
+@mixin size-13xl {
+  --honesty-icon-size: 13rem;
+}
+
+@mixin size-13-5xl {
+  --honesty-icon-size: 13.5rem;
+}
+
+@mixin size-14xl {
+  --honesty-icon-size: 14rem;
+}
+
+@mixin size-14-5xl {
+  --honesty-icon-size: 14.5rem;
+}
+
+@mixin size-15xl {
+  --honesty-icon-size: 15rem;
 }
 
 @mixin tone-inherit {

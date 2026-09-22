@@ -96,11 +96,7 @@ function validateTemplateSource(source, label) {
 }
 
 function isForbiddenIconModule(specifier) {
-  return (
-    specifier === '@ng-icons/core' ||
-    specifier === '@ng-icons/fluent-ui' ||
-    specifier.startsWith('@ng-icons/fluent-ui/')
-  );
+  return specifier.startsWith('@ng-icons/');
 }
 
 function validateTypeScriptSource(source, label) {
@@ -139,6 +135,10 @@ function runSelfTest() {
   const invalidTypeScript = [
     "import {NgIcon} from '@ng-icons/core';",
     "import {fluentSearch} from '@ng-icons/fluent-ui';",
+    "import {tablerSearch} from '@ng-icons/tabler-icons';",
+    "import {lucideSearch} from '@ng-icons/lucide';",
+    "import {heroMagnifyingGlass} from '@ng-icons/heroicons/outline';",
+    "import {phMagnifyingGlassFill} from '@ng-icons/phosphor-icons/fill';",
   ];
 
   const validErrors = validateTemplateSource(validHtml, 'valid HTML fixture');

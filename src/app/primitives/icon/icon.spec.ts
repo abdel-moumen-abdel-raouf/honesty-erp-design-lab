@@ -1,6 +1,13 @@
 import {Component, input, reflectComponentType} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
-import {ERP_ICON_NAMES, ErpIconName, ErpIconSize, ErpIconTone} from './icon-contracts';
+import {
+  ERP_ICON_NAMES,
+  ERP_ICON_SIZES,
+  ERP_ICON_STROKE_WIDTHS,
+  ERP_ICON_VARIANTS,
+  ErpIconName,
+  ErpIconTone,
+} from './icon-contracts';
 import {ERP_ICON_REGISTRY} from './icon-registry';
 import {ErpIcon} from './icon';
 
@@ -28,6 +35,8 @@ describe('ErpIcon', () => {
     expect(mirror?.selector).not.toContain('honesty-icon');
     expect(component.size()).toBe('md');
     expect(component.tone()).toBe('inherit');
+    expect(component.variant()).toBe('outline');
+    expect(component.strokeWidth()).toBe('regular');
     expect(component.decorative()).toBe(true);
     expect(component.label()).toBe('');
     expect('retry' in component).toBe(false);
@@ -43,14 +52,16 @@ describe('ErpIcon', () => {
   });
 
   it('keeps the semantic registry exhaustive and exact', () => {
-    expect(ERP_ICON_NAMES.length).toBe(48);
-    expect(Object.keys(ERP_ICON_REGISTRY).length).toBe(48);
+    expect(ERP_ICON_NAMES.length).toBe(72);
+    expect(Object.keys(ERP_ICON_REGISTRY).length).toBe(72);
 
     for (const name of ERP_ICON_NAMES) {
       const definition = ERP_ICON_REGISTRY[name];
       expect(definition).toBeDefined();
-      expect(typeof definition.svg).toBe('string');
-      expect(definition.svg.length).toBeGreaterThan(0);
+      expect(typeof definition.outlineSvg).toBe('string');
+      expect(definition.outlineSvg.length).toBeGreaterThan(0);
+      expect(typeof definition.filledSvg).toBe('string');
+      expect(definition.filledSvg.length).toBeGreaterThan(0);
       expect(typeof definition.mirrorInRtl).toBe('boolean');
     }
 
@@ -60,19 +71,17 @@ describe('ErpIcon', () => {
   });
 
   it('marks exactly the required representative directional behavior', () => {
-    for (const name of [
+    const mirroredNames = new Set<ErpIconName>([
       'chevron-start',
       'chevron-end',
       'login',
       'logout',
       'skip-start',
       'skip-end',
-    ] as const) {
-      expect(ERP_ICON_REGISTRY[name].mirrorInRtl).toBe(true);
-    }
+    ]);
 
-    for (const name of ['search', 'delete', 'user', 'warning', 'refresh'] as const) {
-      expect(ERP_ICON_REGISTRY[name].mirrorInRtl).toBe(false);
+    for (const name of ERP_ICON_NAMES) {
+      expect(ERP_ICON_REGISTRY[name].mirrorInRtl).toBe(mirroredNames.has(name));
     }
   });
 
@@ -86,6 +95,9 @@ describe('ErpIcon', () => {
     expect(host.getAttribute('data-icon-name')).toBe('search');
     expect(host.getAttribute('data-icon-size')).toBe('md');
     expect(host.getAttribute('data-icon-tone')).toBe('inherit');
+    expect(host.getAttribute('data-icon-variant')).toBe('outline');
+    expect(host.getAttribute('data-icon-stroke-width')).toBe('regular');
+    expect(host.getAttribute('data-icon-stroke-effective')).toBe('true');
     expect(host.getAttribute('data-icon-state')).toBe('ready');
     expect(host.querySelectorAll('ng-icon').length).toBe(1);
   });
@@ -105,22 +117,64 @@ describe('ErpIcon', () => {
     const fixture = TestBed.createComponent(ErpIcon);
     fixture.componentRef.setInput('name', 'search');
     const host = fixture.nativeElement as HTMLElement;
-    const sizes: readonly ErpIconSize[] = [
-      'inherit',
-      'xs',
-      'sm',
-      'md',
-      'lg',
-      'xl',
-      '2xl',
-      '3xl',
-    ];
+    expect(ERP_ICON_SIZES.length).toBe(32);
+    expect(ERP_ICON_SIZES.at(-1)).toBe('15xl');
 
-    for (const size of sizes) {
+    for (const size of ERP_ICON_SIZES) {
       fixture.componentRef.setInput('size', size);
       fixture.detectChanges();
       expect(host.getAttribute('data-icon-size')).toBe(size);
     }
+  });
+
+  it('selects the exact outline and filled registry sources', () => {
+    const fixture = TestBed.createComponent(ErpIcon);
+    const component = fixture.componentInstance;
+    const host = fixture.nativeElement as HTMLElement;
+
+    expect(ERP_ICON_VARIANTS).toEqual(['outline', 'filled']);
+    fixture.componentRef.setInput('name', 'settings');
+    fixture.componentRef.setInput('variant', 'outline');
+    fixture.detectChanges();
+
+    expect(component.svg()).toBe(ERP_ICON_REGISTRY.settings.outlineSvg);
+    expect(host.getAttribute('data-icon-variant')).toBe('outline');
+    expect(host.getAttribute('data-icon-stroke-effective')).toBe('true');
+    expect(host.querySelectorAll('ng-icon').length).toBe(1);
+
+    fixture.componentRef.setInput('variant', 'filled');
+    fixture.detectChanges();
+
+    expect(component.svg()).toBe(ERP_ICON_REGISTRY.settings.filledSvg);
+    expect(host.getAttribute('data-icon-variant')).toBe('filled');
+    expect(host.getAttribute('data-icon-stroke-effective')).toBe('false');
+    expect(host.querySelectorAll('ng-icon').length).toBe(1);
+    expect(ERP_ICON_REGISTRY.settings.outlineSvg).not.toBe(
+      ERP_ICON_REGISTRY.settings.filledSvg,
+    );
+  });
+
+  it('resolves every controlled outline stroke width exactly', () => {
+    const fixture = TestBed.createComponent(ErpIcon);
+    const component = fixture.componentInstance;
+    const host = fixture.nativeElement as HTMLElement;
+    const expectedValues = [1, 1.5, 2, 2.5, 3];
+
+    expect(ERP_ICON_STROKE_WIDTHS).toEqual([
+      'thin',
+      'light',
+      'regular',
+      'medium',
+      'bold',
+    ]);
+    fixture.componentRef.setInput('name', 'search');
+
+    ERP_ICON_STROKE_WIDTHS.forEach((strokeWidth, index) => {
+      fixture.componentRef.setInput('strokeWidth', strokeWidth);
+      fixture.detectChanges();
+      expect(host.getAttribute('data-icon-stroke-width')).toBe(strokeWidth);
+      expect(component.resolvedStrokeWidth()).toBe(expectedValues[index]);
+    });
   });
 
   it('updates every semantic tone exactly', () => {

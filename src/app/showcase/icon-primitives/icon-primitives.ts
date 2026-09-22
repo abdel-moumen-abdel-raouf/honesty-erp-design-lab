@@ -5,8 +5,10 @@ import {ErpGrid} from '../../primitives/grid/grid';
 import {ErpIcon} from '../../primitives/icon/icon';
 import {
   ERP_ICON_NAMES,
+  ERP_ICON_SIZES,
+  ERP_ICON_STROKE_WIDTHS,
+  ERP_ICON_VARIANTS,
   ErpIconName,
-  ErpIconSize,
   ErpIconTone,
 } from '../../primitives/icon/icon-contracts';
 import {ErpInline} from '../../primitives/inline/inline';
@@ -34,17 +36,9 @@ import {ErpText} from '../../primitives/text/text';
 })
 export class IconPrimitives {
   readonly iconNames = ERP_ICON_NAMES;
-
-  readonly sizes: readonly ErpIconSize[] = [
-    'inherit',
-    'xs',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    '2xl',
-    '3xl',
-  ];
+  readonly sizes = ERP_ICON_SIZES;
+  readonly variants = ERP_ICON_VARIANTS;
+  readonly strokeWidths = ERP_ICON_STROKE_WIDTHS;
 
   readonly tones: readonly ErpIconTone[] = [
     'inherit',

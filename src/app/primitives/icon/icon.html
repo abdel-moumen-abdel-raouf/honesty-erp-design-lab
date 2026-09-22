@@ -3,6 +3,11 @@
     class="erp-icon__renderer"
     [svg]="iconSvg"
     size="100%"
+    [strokeWidth]="
+      variant() === 'outline'
+        ? resolvedStrokeWidth()
+        : undefined
+    "
     aria-hidden="true"
   />
 }

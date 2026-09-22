@@ -25,7 +25,10 @@
 }
 
 .icon-specimen {
+  min-width: 0;
+  max-width: 100%;
   min-block-size: 5rem;
+  overflow: visible;
 }
 
 @include query.viewport-down(md) {

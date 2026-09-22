@@ -329,6 +329,9 @@ Rules:
 - Feature/Page/Control consumers must not use `<ng-icon>` directly.
 - Feature/Page/Control consumers must not author raw `<svg>` icons.
 - NgIcons and vendor icon packages are ErpIcon implementation details.
+- ErpIcon registry may internally use multiple approved NgIcons packs.
+- Vendor/source-pack selection is never a consumer API.
+- Any `@ng-icons/*` import outside ErpIcon implementation is forbidden.
 - Vendor icon names must never cross the ErpIcon semantic registry boundary.
 - Application code uses semantic `ErpIconName` values only.
 - ErpIcon is non-interactive; Buttons/Controls own interaction.
@@ -336,6 +339,16 @@ Rules:
 - Non-decorative icons require a meaningful explicit label.
 - Invalid registry lookups do not silently render another semantic icon.
 - Logical directional icons mirror centrally in RTL.
+- ErpIcon `tone` owns semantic icon color.
+- ErpIcon `variant` owns outline/filled style.
+- ErpIcon `strokeWidth` owns controlled outline stroke thickness.
+- `strokeWidth` has no effect for the filled variant by design.
+- Raw feature/page color, fill, and stroke overrides are forbidden.
 - Arbitrary pixel icon sizing is forbidden.
+- All sizes must use the controlled `ErpIconSize` scale.
+- The maximum V1 size is `15rem`.
 - Feature/Page code must not override ErpIcon Component Tokens.
-- Adding a new vendor pack requires explicit Product Owner architectural approval.
+- New vendor packs may be added only inside ErpIcon implementation when required
+  to satisfy an approved semantic icon contract; they must remain hidden behind
+  the semantic registry and must use an approved redistribution-compatible
+  license.

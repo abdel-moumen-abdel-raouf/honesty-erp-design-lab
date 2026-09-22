@@ -26,7 +26,7 @@
 
   <erp-section class="review-group" gap="default" data-review-group="sizes">
     <erp-text type="heading-2">Sizes</erp-text>
-    <erp-inline gap="loose" wrap="wrap" align="end">
+    <erp-grid [columns]="4" gap="sm" responsive="auto">
       @for (size of sizes; track size) {
         <erp-surface class="icon-specimen" border="subtle" padding="tight">
           <erp-stack gap="tight" align="center">
@@ -43,19 +43,58 @@
           </erp-stack>
         </erp-surface>
       }
+    </erp-grid>
+
+    <erp-text type="heading-3">Variants</erp-text>
+    <erp-inline gap="loose" wrap="wrap" align="end">
+      @for (variant of variants; track variant) {
+        <erp-surface class="icon-specimen" border="subtle" padding="tight">
+          <erp-stack gap="tight" align="center">
+            <erp-icon
+              data-variant-evidence
+              name="settings"
+              size="xl"
+              [variant]="variant"
+            />
+            <erp-text type="caption" family="latin" tone="secondary" selectable>
+              {{ variant }}
+            </erp-text>
+          </erp-stack>
+        </erp-surface>
+      }
+    </erp-inline>
+
+    <erp-text type="heading-3">Outline Stroke Width</erp-text>
+    <erp-inline gap="loose" wrap="wrap" align="end">
+      @for (strokeWidth of strokeWidths; track strokeWidth) {
+        <erp-surface class="icon-specimen" border="subtle" padding="tight">
+          <erp-stack gap="tight" align="center">
+            <erp-icon
+              data-stroke-evidence
+              name="search"
+              size="xl"
+              variant="outline"
+              [strokeWidth]="strokeWidth"
+            />
+            <erp-text type="caption" family="latin" tone="secondary" selectable>
+              {{ strokeWidth }}
+            </erp-text>
+          </erp-stack>
+        </erp-surface>
+      }
     </erp-inline>
   </erp-section>
 
   <erp-divider></erp-divider>
 
   <erp-section class="review-group" gap="default" data-review-group="tones">
-    <erp-text type="heading-2">Tones</erp-text>
+    <erp-text type="heading-2">Tones / Color</erp-text>
     <erp-grid [columns]="4" gap="sm" responsive="auto">
       @for (tone of tones; track tone) {
         @if (tone === 'inverse') {
           <erp-surface class="icon-specimen" tone="inverse" padding="tight">
             <erp-stack gap="tight" align="center">
-              <erp-icon data-tone-evidence name="info" tone="inverse" />
+              <erp-icon data-tone-evidence name="info" tone="inverse" variant="outline" />
               <erp-text type="caption" family="latin" tone="inverse" selectable>
                 {{ tone }}
               </erp-text>
@@ -64,7 +103,7 @@
         } @else {
           <erp-surface class="icon-specimen" border="subtle" padding="tight">
             <erp-stack gap="tight" align="center">
-              <erp-icon data-tone-evidence name="info" [tone]="tone" />
+              <erp-icon data-tone-evidence name="info" [tone]="tone" variant="outline" />
               <erp-text type="caption" family="latin" tone="secondary" selectable>
                 {{ tone }}
               </erp-text>
