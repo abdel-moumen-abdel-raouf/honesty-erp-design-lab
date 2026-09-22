@@ -21,6 +21,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'primitives/icons',
+    loadComponent: () =>
+      import('./showcase/icon-primitives/icon-primitives').then(
+        (m) => m.IconPrimitives
+      ),
+  },
+  {
     path: 'foundation/colors',
     loadComponent: () =>
       import('./foundation/colors/colors').then((m) => m.Colors),

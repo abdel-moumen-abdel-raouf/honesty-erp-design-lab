@@ -320,3 +320,22 @@ Rules:
   feature/page CSS overrides.
 - Copyable identifiers, codes, values, or long-form content explicitly opt in
   when product requirements require user selection.
+
+## Production Icon Governance
+
+Rules:
+
+- `<erp-icon>` is the sole production icon-authoring gateway.
+- Feature/Page/Control consumers must not use `<ng-icon>` directly.
+- Feature/Page/Control consumers must not author raw `<svg>` icons.
+- NgIcons and vendor icon packages are ErpIcon implementation details.
+- Vendor icon names must never cross the ErpIcon semantic registry boundary.
+- Application code uses semantic `ErpIconName` values only.
+- ErpIcon is non-interactive; Buttons/Controls own interaction.
+- Decorative icons are the default.
+- Non-decorative icons require a meaningful explicit label.
+- Invalid registry lookups do not silently render another semantic icon.
+- Logical directional icons mirror centrally in RTL.
+- Arbitrary pixel icon sizing is forbidden.
+- Feature/Page code must not override ErpIcon Component Tokens.
+- Adding a new vendor pack requires explicit Product Owner architectural approval.

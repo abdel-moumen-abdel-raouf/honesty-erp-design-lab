@@ -1,0 +1,37 @@
+@use '../../../styles/foundation/queries' as query;
+
+:host {
+  display: block;
+  min-width: 0;
+  background: var(--honesty-color-surface-canvas);
+  color: var(--honesty-color-text-primary);
+}
+
+.icon-showcase {
+  padding-block: var(--honesty-space-section-gap-large);
+}
+
+.showcase-header,
+.review-group,
+.catalog-grid,
+.icon-specimen,
+.direction-column {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.review-group {
+  padding-block: var(--honesty-space-section-gap);
+}
+
+.icon-specimen {
+  min-block-size: 5rem;
+}
+
+@include query.viewport-down(md) {
+  .icon-showcase,
+  .showcase-header,
+  .review-group {
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,151 @@
+<erp-container class="icon-showcase" width="wide" data-theme="light">
+  <erp-stack class="showcase-header" gap="tight">
+    <erp-text type="heading-1">الأيقونات الإنتاجية</erp-text>
+    <erp-text type="paragraph" tone="secondary">
+      مراجعة عقد ErpIcon الدلالي وأحجامه وألوانه وسلوكه في اتجاهي الكتابة.
+    </erp-text>
+  </erp-stack>
+
+  <erp-section class="review-group" gap="default" data-review-group="core-catalog">
+    <erp-text type="heading-2">Core Semantic Catalog</erp-text>
+    <erp-grid class="catalog-grid" [columns]="6" gap="sm" responsive="auto">
+      @for (name of iconNames; track name) {
+        <erp-surface class="icon-specimen" border="subtle" padding="tight">
+          <erp-stack gap="tight" align="center">
+            <erp-icon data-catalog-icon [name]="name" />
+            <erp-text type="caption" family="latin" tone="secondary" selectable>
+              {{ name }}
+            </erp-text>
+          </erp-stack>
+        </erp-surface>
+      }
+    </erp-grid>
+  </erp-section>
+
+  <erp-divider></erp-divider>
+
+  <erp-section class="review-group" gap="default" data-review-group="sizes">
+    <erp-text type="heading-2">Sizes</erp-text>
+    <erp-inline gap="loose" wrap="wrap" align="end">
+      @for (size of sizes; track size) {
+        <erp-surface class="icon-specimen" border="subtle" padding="tight">
+          <erp-stack gap="tight" align="center">
+            @if (size === 'inherit') {
+              <erp-text size="2xl">
+                <erp-icon data-size-evidence name="settings" size="inherit" />
+              </erp-text>
+            } @else {
+              <erp-icon data-size-evidence name="settings" [size]="size" />
+            }
+            <erp-text type="caption" family="latin" tone="secondary" selectable>
+              {{ size }}
+            </erp-text>
+          </erp-stack>
+        </erp-surface>
+      }
+    </erp-inline>
+  </erp-section>
+
+  <erp-divider></erp-divider>
+
+  <erp-section class="review-group" gap="default" data-review-group="tones">
+    <erp-text type="heading-2">Tones</erp-text>
+    <erp-grid [columns]="4" gap="sm" responsive="auto">
+      @for (tone of tones; track tone) {
+        @if (tone === 'inverse') {
+          <erp-surface class="icon-specimen" tone="inverse" padding="tight">
+            <erp-stack gap="tight" align="center">
+              <erp-icon data-tone-evidence name="info" tone="inverse" />
+              <erp-text type="caption" family="latin" tone="inverse" selectable>
+                {{ tone }}
+              </erp-text>
+            </erp-stack>
+          </erp-surface>
+        } @else {
+          <erp-surface class="icon-specimen" border="subtle" padding="tight">
+            <erp-stack gap="tight" align="center">
+              <erp-icon data-tone-evidence name="info" [tone]="tone" />
+              <erp-text type="caption" family="latin" tone="secondary" selectable>
+                {{ tone }}
+              </erp-text>
+            </erp-stack>
+          </erp-surface>
+        }
+      }
+    </erp-grid>
+  </erp-section>
+
+  <erp-divider></erp-divider>
+
+  <erp-section class="review-group" gap="default" data-review-group="rtl-directional">
+    <erp-text type="heading-2">RTL Directional Behavior</erp-text>
+    <erp-grid [columns]="2" gap="lg" responsive="auto">
+      <erp-surface class="direction-column" border="subtle" padding="default" dir="ltr">
+        <erp-stack gap="default">
+          <erp-text type="heading-3" family="latin">LTR context</erp-text>
+          @for (name of directionalIconNames; track name) {
+            <erp-inline gap="tight" align="center">
+              <erp-icon data-directional-ltr [name]="name" />
+              <erp-text type="caption" family="latin" tone="secondary" selectable>
+                {{ name }}
+              </erp-text>
+            </erp-inline>
+          }
+        </erp-stack>
+      </erp-surface>
+
+      <erp-surface class="direction-column" border="subtle" padding="default" dir="rtl">
+        <erp-stack gap="default">
+          <erp-text type="heading-3" family="latin">RTL context</erp-text>
+          @for (name of directionalIconNames; track name) {
+            <erp-inline gap="tight" align="center">
+              <erp-icon data-directional-rtl [name]="name" />
+              <erp-text type="caption" family="latin" tone="secondary" selectable>
+                {{ name }}
+              </erp-text>
+            </erp-inline>
+          }
+        </erp-stack>
+      </erp-surface>
+    </erp-grid>
+  </erp-section>
+
+  <erp-divider></erp-divider>
+
+  <erp-section class="review-group" gap="default" data-review-group="accessibility">
+    <erp-text type="heading-2">Accessibility Contract</erp-text>
+    <erp-grid [columns]="3" gap="md" responsive="auto">
+      <erp-surface class="icon-specimen" border="subtle" padding="default">
+        <erp-stack gap="tight" align="center">
+          <erp-icon id="decorative-icon-proof" name="info" />
+          <erp-text type="caption" tone="secondary">
+            Decorative icon: the host is hidden from the accessibility tree.
+          </erp-text>
+        </erp-stack>
+      </erp-surface>
+
+      <erp-surface class="icon-specimen" border="subtle" padding="default">
+        <erp-stack gap="tight" align="center">
+          <erp-icon
+            id="labelled-icon-proof"
+            name="warning"
+            [decorative]="false"
+            label="تحذير"
+          />
+          <erp-text type="caption" tone="secondary">
+            Labelled icon: exposed as an image with an explicit label.
+          </erp-text>
+        </erp-stack>
+      </erp-surface>
+
+      <erp-surface class="icon-specimen" border="subtle" padding="default">
+        <erp-stack gap="tight" align="center">
+          <erp-icon id="invalid-accessibility-icon-proof" name="warning" [decorative]="false" />
+          <erp-text type="caption" tone="secondary">
+            Missing label: invalid accessibility state and hidden from the accessibility tree.
+          </erp-text>
+        </erp-stack>
+      </erp-surface>
+    </erp-grid>
+  </erp-section>
+</erp-container>

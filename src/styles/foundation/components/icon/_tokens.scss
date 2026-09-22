@@ -1,0 +1,88 @@
+@mixin base {
+  --honesty-icon-size: 1.25rem;
+  --honesty-icon-color: currentColor;
+}
+
+@mixin size-inherit {
+  --honesty-icon-size: 1em;
+}
+
+@mixin size-xs {
+  --honesty-icon-size: 0.75rem;
+}
+
+@mixin size-sm {
+  --honesty-icon-size: 1rem;
+}
+
+@mixin size-md {
+  --honesty-icon-size: 1.25rem;
+}
+
+@mixin size-lg {
+  --honesty-icon-size: 1.5rem;
+}
+
+@mixin size-xl {
+  --honesty-icon-size: 2rem;
+}
+
+@mixin size-2xl {
+  --honesty-icon-size: 2.5rem;
+}
+
+@mixin size-3xl {
+  --honesty-icon-size: 3rem;
+}
+
+@mixin tone-inherit {
+  --honesty-icon-color: currentColor;
+}
+
+@mixin tone-primary {
+  --honesty-icon-color: var(--honesty-color-text-primary);
+}
+
+@mixin tone-secondary {
+  --honesty-icon-color: var(--honesty-color-text-secondary);
+}
+
+@mixin tone-muted {
+  --honesty-icon-color: var(--honesty-color-text-muted);
+}
+
+@mixin tone-disabled {
+  --honesty-icon-color: var(--honesty-color-text-disabled);
+}
+
+@mixin tone-inverse {
+  --honesty-icon-color: var(--honesty-color-text-inverse);
+}
+
+@mixin tone-brand-primary {
+  --honesty-icon-color: var(--honesty-color-brand-primary-content);
+}
+
+@mixin tone-brand-secondary {
+  --honesty-icon-color: var(--honesty-color-brand-secondary-content);
+}
+
+@mixin tone-brand-accent {
+  --honesty-icon-color: var(--honesty-color-brand-accent-content);
+}
+
+@mixin tone-success {
+  --honesty-icon-color: var(--honesty-color-feedback-success-text);
+}
+
+@mixin tone-warning {
+  --honesty-icon-color: var(--honesty-color-feedback-warning-text);
+}
+
+@mixin tone-danger {
+  --honesty-icon-color: var(--honesty-color-feedback-danger-text);
+}
+
+@mixin tone-info {
+  --honesty-icon-color: var(--honesty-color-feedback-info-text);
+}

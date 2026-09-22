@@ -1,0 +1,117 @@
+@use '../../../styles/foundation/components/icon' as tokens;
+
+:host {
+  @include tokens.base;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  inline-size: var(--honesty-icon-size);
+  block-size: var(--honesty-icon-size);
+  color: var(--honesty-icon-color);
+  line-height: 0;
+  vertical-align: middle;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  overflow: visible;
+}
+
+:host([data-icon-size='inherit']) {
+  @include tokens.size-inherit;
+}
+
+:host([data-icon-size='xs']) {
+  @include tokens.size-xs;
+}
+
+:host([data-icon-size='sm']) {
+  @include tokens.size-sm;
+}
+
+:host([data-icon-size='md']) {
+  @include tokens.size-md;
+}
+
+:host([data-icon-size='lg']) {
+  @include tokens.size-lg;
+}
+
+:host([data-icon-size='xl']) {
+  @include tokens.size-xl;
+}
+
+:host([data-icon-size='2xl']) {
+  @include tokens.size-2xl;
+}
+
+:host([data-icon-size='3xl']) {
+  @include tokens.size-3xl;
+}
+
+:host([data-icon-tone='inherit']) {
+  @include tokens.tone-inherit;
+}
+
+:host([data-icon-tone='primary']) {
+  @include tokens.tone-primary;
+}
+
+:host([data-icon-tone='secondary']) {
+  @include tokens.tone-secondary;
+}
+
+:host([data-icon-tone='muted']) {
+  @include tokens.tone-muted;
+}
+
+:host([data-icon-tone='disabled']) {
+  @include tokens.tone-disabled;
+}
+
+:host([data-icon-tone='inverse']) {
+  @include tokens.tone-inverse;
+}
+
+:host([data-icon-tone='brand-primary']) {
+  @include tokens.tone-brand-primary;
+}
+
+:host([data-icon-tone='brand-secondary']) {
+  @include tokens.tone-brand-secondary;
+}
+
+:host([data-icon-tone='brand-accent']) {
+  @include tokens.tone-brand-accent;
+}
+
+:host([data-icon-tone='success']) {
+  @include tokens.tone-success;
+}
+
+:host([data-icon-tone='warning']) {
+  @include tokens.tone-warning;
+}
+
+:host([data-icon-tone='danger']) {
+  @include tokens.tone-danger;
+}
+
+:host([data-icon-tone='info']) {
+  @include tokens.tone-info;
+}
+
+.erp-icon__renderer {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  color: inherit;
+  transform-origin: center;
+}
+
+:host(
+  [data-icon-mirror-rtl='true']:dir(rtl)
+) .erp-icon__renderer {
+  transform: scaleX(-1);
+}
