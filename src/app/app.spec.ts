@@ -28,6 +28,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
 
     const overviewLink = compiled.querySelector('#nav-link-overview');
     const structuralPrimitivesLink = compiled.querySelector('#nav-link-structural-primitives');
+    const typographyPrimitivesLink = compiled.querySelector('#nav-link-typography-primitives');
     const colorsLink = compiled.querySelector('#nav-link-colors');
     const themesLink = compiled.querySelector('#nav-link-themes');
     const statusHuesLink = compiled.querySelector('#nav-link-status-hues');
@@ -40,6 +41,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
 
     expect(overviewLink).toBeTruthy();
     expect(structuralPrimitivesLink).toBeTruthy();
+    expect(typographyPrimitivesLink).toBeTruthy();
     expect(colorsLink).toBeTruthy();
     expect(themesLink).toBeTruthy();
     expect(statusHuesLink).toBeTruthy();
@@ -53,6 +55,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(overviewLink?.textContent?.trim()).toBe('نظرة عامة');
     expect(nav?.querySelector('a')).toBe(overviewLink);
     expect(structuralPrimitivesLink?.textContent?.trim()).toBe('البدائيات الهيكلية');
+    expect(typographyPrimitivesLink?.textContent?.trim()).toBe('النصوص الإنتاجية');
     expect(colorsLink?.textContent?.trim()).toBe('الألوان المرجعية');
     expect(themesLink?.textContent?.trim()).toBe('السمات الفاتحة والداكنة');
     expect(statusHuesLink?.textContent?.trim()).toBe('صبغات الحالات');
@@ -76,6 +79,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
 
     expect(linkPaths).toContain('/foundation/overview');
     expect(linkPaths).toContain('/primitives/structural');
+    expect(linkPaths).toContain('/primitives/typography');
     expect(linkPaths).toContain('/foundation/colors');
     expect(linkPaths).toContain('/foundation/themes');
     expect(linkPaths).toContain('/foundation/colors/status-hues');
@@ -91,6 +95,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(routes.map((route) => route.path)).toEqual([
       'foundation/overview',
       'primitives/structural',
+      'primitives/typography',
       'foundation/colors',
       'foundation/colors/status-hues',
       'foundation/themes',

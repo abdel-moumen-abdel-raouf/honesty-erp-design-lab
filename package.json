@@ -10,7 +10,9 @@
     "test": "ng test",
     "component-tokens:check": "node tools/foundation/check-component-token-framework.mjs",
     "component-tokens:check:self-test": "node tools/foundation/check-component-token-framework.mjs --self-test",
-    "lint": "npm run component-tokens:check && ng lint"
+    "erp-text:check": "node tools/typography/check-erp-text-coverage.mjs",
+    "erp-text:check:self-test": "node tools/typography/check-erp-text-coverage.mjs --self-test",
+    "lint": "npm run component-tokens:check && npm run erp-text:check && ng lint"
   },
   "private": true,
   "dependencies": {

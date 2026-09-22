@@ -1,0 +1,103 @@
+@use '../../../styles/foundation/queries' as query;
+
+:host {
+  display: block;
+  min-width: 0;
+  background: var(--honesty-color-surface-canvas);
+  color: var(--honesty-color-text-primary);
+}
+
+.typography-showcase {
+  padding-block: var(--honesty-space-section-gap-large);
+}
+
+.showcase-header,
+.review-group,
+.figure-proof,
+.form-proof,
+.wrap-proof,
+.overflow-proof,
+.clamp-proof {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.showcase-header,
+.review-group {
+  display: grid;
+  gap: var(--honesty-space-stack-default);
+}
+
+.review-group {
+  padding-block: var(--honesty-space-section-gap);
+}
+
+.alignment-proof {
+  inline-size: 100%;
+  padding-block: var(--honesty-space-inset-tight);
+  border-block-end: var(--honesty-border-width-default) var(--honesty-border-style-default)
+    var(--honesty-border-subtle);
+}
+
+.figure-proof {
+  display: grid;
+  gap: var(--honesty-space-stack-tight);
+}
+
+.neutral-visual {
+  min-block-size: 5rem;
+  border: var(--honesty-border-width-default) var(--honesty-border-style-dashed)
+    var(--honesty-border-subtle);
+  background: var(--honesty-color-surface-default);
+}
+
+.form-proof,
+fieldset,
+table {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.form-proof {
+  display: grid;
+  gap: var(--honesty-space-stack-tight);
+}
+
+fieldset {
+  border: var(--honesty-border-width-default) var(--honesty-border-style-default)
+    var(--honesty-border-subtle);
+}
+
+table {
+  inline-size: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: var(--honesty-space-inset-tight);
+  border: var(--honesty-border-width-default) var(--honesty-border-style-default)
+    var(--honesty-border-subtle);
+  text-align: start;
+}
+
+.wrap-proof,
+.overflow-proof {
+  overflow: hidden;
+}
+
+.overflow-proof {
+  max-inline-size: 16rem;
+}
+
+.clamp-proof {
+  max-inline-size: 48rem;
+}
+
+@include query.viewport-down(md) {
+  .typography-showcase,
+  .showcase-header,
+  .review-group {
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,205 @@
+@use '../../reference/typography' as ref;
+
+@mixin base {
+  --honesty-text-font-family: var(--honesty-type-family-ui);
+  --honesty-text-font-size: var(--honesty-type-body-font-size);
+  --honesty-text-font-weight: var(--honesty-type-body-font-weight);
+  --honesty-text-line-height: var(--honesty-type-body-line-height);
+  --honesty-text-color: var(--honesty-color-text-primary);
+  --honesty-text-font-style: normal;
+  --honesty-text-decoration-line: none;
+  --honesty-text-mark-bg: var(--honesty-color-brand-accent-subtle);
+  --honesty-text-mark-fg: var(--honesty-color-brand-accent-content);
+  --honesty-text-focus-ring-width: var(--honesty-focus-ring-width);
+  --honesty-text-focus-ring-style: var(--honesty-focus-ring-style);
+  --honesty-text-focus-ring-offset: var(--honesty-focus-ring-offset);
+  --honesty-text-focus-ring-color: var(--honesty-color-action-focus-ring);
+}
+
+@mixin size-inherit {
+  --honesty-text-font-size: inherit;
+}
+
+@mixin size-2xs {
+  --honesty-text-font-size: #{ref.$honesty-ref-font-size-12};
+}
+
+@mixin size-xs {
+  --honesty-text-font-size: #{ref.$honesty-ref-font-size-13};
+}
+
+@mixin size-sm {
+  --honesty-text-font-size: #{ref.$honesty-ref-font-size-14};
+}
+
+@mixin size-md {
+  --honesty-text-font-size: #{ref.$honesty-ref-font-size-16};
+}
+
+@mixin size-lg {
+  --honesty-text-font-size: #{ref.$honesty-ref-font-size-18};
+}
+
+@mixin size-xl {
+  --honesty-text-font-size: #{ref.$honesty-ref-font-size-20};
+}
+
+@mixin size-2xl {
+  --honesty-text-font-size: #{ref.$honesty-ref-font-size-24};
+}
+
+@mixin size-3xl {
+  --honesty-text-font-size: #{ref.$honesty-ref-font-size-28};
+}
+
+@mixin size-4xl {
+  --honesty-text-font-size: #{ref.$honesty-ref-font-size-32};
+}
+
+@mixin size-5xl {
+  --honesty-text-font-size: #{ref.$honesty-ref-font-size-40};
+}
+
+@mixin weight-inherit {
+  --honesty-text-font-weight: inherit;
+}
+
+@mixin weight-regular {
+  --honesty-text-font-weight: #{ref.$honesty-ref-font-weight-regular};
+}
+
+@mixin weight-medium {
+  --honesty-text-font-weight: #{ref.$honesty-ref-font-weight-medium};
+}
+
+@mixin weight-bold {
+  --honesty-text-font-weight: #{ref.$honesty-ref-font-weight-bold};
+}
+
+@mixin tone-inherit {
+  --honesty-text-color: inherit;
+}
+
+@mixin tone-primary {
+  --honesty-text-color: var(--honesty-color-text-primary);
+}
+
+@mixin tone-secondary {
+  --honesty-text-color: var(--honesty-color-text-secondary);
+}
+
+@mixin tone-muted {
+  --honesty-text-color: var(--honesty-color-text-muted);
+}
+
+@mixin tone-disabled {
+  --honesty-text-color: var(--honesty-color-text-disabled);
+}
+
+@mixin tone-inverse {
+  --honesty-text-color: var(--honesty-color-text-inverse);
+}
+
+@mixin tone-brand-primary {
+  --honesty-text-color: var(--honesty-color-brand-primary-content);
+}
+
+@mixin tone-brand-secondary {
+  --honesty-text-color: var(--honesty-color-brand-secondary-content);
+}
+
+@mixin tone-brand-accent {
+  --honesty-text-color: var(--honesty-color-brand-accent-content);
+}
+
+@mixin tone-success {
+  --honesty-text-color: var(--honesty-color-feedback-success-text);
+}
+
+@mixin tone-warning {
+  --honesty-text-color: var(--honesty-color-feedback-warning-text);
+}
+
+@mixin tone-danger {
+  --honesty-text-color: var(--honesty-color-feedback-danger-text);
+}
+
+@mixin tone-info {
+  --honesty-text-color: var(--honesty-color-feedback-info-text);
+}
+
+@mixin family-inherit {
+  --honesty-text-font-family: inherit;
+}
+
+@mixin family-ui {
+  --honesty-text-font-family: var(--honesty-type-family-ui);
+}
+
+@mixin family-arabic {
+  --honesty-text-font-family: var(--honesty-type-family-arabic);
+}
+
+@mixin family-latin {
+  --honesty-text-font-family: var(--honesty-type-family-latin);
+}
+
+@mixin line-height-inherit {
+  --honesty-text-line-height: inherit;
+}
+
+@mixin line-height-tight {
+  --honesty-text-line-height: #{ref.$honesty-ref-line-height-125};
+}
+
+@mixin line-height-snug {
+  --honesty-text-line-height: #{ref.$honesty-ref-line-height-135};
+}
+
+@mixin line-height-compact {
+  --honesty-text-line-height: #{ref.$honesty-ref-line-height-140};
+}
+
+@mixin line-height-normal {
+  --honesty-text-line-height: #{ref.$honesty-ref-line-height-145};
+}
+
+@mixin line-height-comfortable {
+  --honesty-text-line-height: #{ref.$honesty-ref-line-height-150};
+}
+
+@mixin line-height-relaxed {
+  --honesty-text-line-height: #{ref.$honesty-ref-line-height-155};
+}
+
+@mixin line-height-loose {
+  --honesty-text-line-height: #{ref.$honesty-ref-line-height-160};
+}
+
+@mixin font-style-inherit {
+  --honesty-text-font-style: inherit;
+}
+
+@mixin font-style-normal {
+  --honesty-text-font-style: normal;
+}
+
+@mixin font-style-italic {
+  --honesty-text-font-style: italic;
+}
+
+@mixin decoration-inherit {
+  --honesty-text-decoration-line: inherit;
+}
+
+@mixin decoration-none {
+  --honesty-text-decoration-line: none;
+}
+
+@mixin decoration-underline {
+  --honesty-text-decoration-line: underline;
+}
+
+@mixin decoration-line-through {
+  --honesty-text-decoration-line: line-through;
+}

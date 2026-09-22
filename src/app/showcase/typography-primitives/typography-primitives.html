@@ -1,0 +1,237 @@
+<erp-container class="typography-showcase" width="wide" data-theme="light">
+  <erp-stack gap="loose">
+    <header class="showcase-header">
+      <erp-text type="label" tone="secondary" family="latin">Typography Primitives V1</erp-text>
+      <h1 erpText type="heading-1">النصوص الإنتاجية</h1>
+      <erp-text type="paragraph" tone="secondary">
+        دليل موحّد للمكوّن النصي الإنتاجي ErpText في وضعي العنصر المخصص والمضيف الأصلي.
+      </erp-text>
+    </header>
+
+    <erp-section gap="large">
+      <section class="review-group" data-review-group="type-defaults">
+        <h2 erpText type="heading-2">Type Defaults</h2>
+        <erp-grid [columns]="4" gap="sm" responsive="auto">
+          @for (type of allTypes; track type) {
+            <erp-surface border="subtle" padding="tight">
+              <erp-stack gap="tight">
+                <erp-text type="label" tone="muted" family="latin">{{ type }}</erp-text>
+                <erp-text [type]="type">نموذج {{ type }}</erp-text>
+              </erp-stack>
+            </erp-surface>
+          }
+        </erp-grid>
+      </section>
+
+      <erp-divider></erp-divider>
+
+      <section class="review-group" data-review-group="scales">
+        <h2 erpText type="heading-2">Sizes / Weights / Line Heights</h2>
+        <erp-stack gap="loose">
+          <erp-grid [columns]="2" gap="sm" responsive="auto">
+            @for (size of sizes; track size) {
+              <erp-surface border="subtle" padding="tight">
+                <erp-text [size]="size">Size {{ size }} — نص عربي Latin 123</erp-text>
+              </erp-surface>
+            }
+          </erp-grid>
+          <erp-inline gap="loose" wrap="wrap" align="baseline">
+            @for (weight of weights; track weight) {
+              <erp-text [weight]="weight">Weight {{ weight }}</erp-text>
+            }
+          </erp-inline>
+          <erp-grid [columns]="3" gap="sm" responsive="auto">
+            @for (lineHeight of lineHeights; track lineHeight) {
+              <erp-text [lineHeight]="lineHeight">
+                Line height {{ lineHeight }}<br>سطر ثانٍ للمقارنة
+              </erp-text>
+            }
+          </erp-grid>
+        </erp-stack>
+      </section>
+
+      <erp-divider></erp-divider>
+
+      <section class="review-group" data-review-group="presentation">
+        <h2 erpText type="heading-2">Tones / Families / Alignment</h2>
+        <erp-stack gap="loose">
+          <erp-grid [columns]="3" gap="sm" responsive="auto">
+            @for (tone of tones; track tone) {
+              <erp-surface
+                border="subtle"
+                padding="tight"
+                [tone]="tone === 'inverse' ? 'inverse' : 'default'"
+              >
+                <erp-text [tone]="tone">Tone {{ tone }}</erp-text>
+              </erp-surface>
+            }
+          </erp-grid>
+          <erp-inline gap="loose" wrap="wrap">
+            @for (family of families; track family) {
+              <erp-text [family]="family">Family {{ family }} — العربية Latin</erp-text>
+            }
+          </erp-inline>
+          <erp-stack gap="tight">
+            @for (alignment of alignments; track alignment) {
+              <erp-text class="alignment-proof" [align]="alignment">
+                Alignment {{ alignment }} — محاذاة نصية ممتدة للمراجعة
+              </erp-text>
+            }
+          </erp-stack>
+        </erp-stack>
+      </section>
+
+      <erp-divider></erp-divider>
+
+      <section class="review-group" data-review-group="blocks">
+        <h2 erpText type="heading-2">Headings / Blocks / Containers</h2>
+        <erp-stack gap="default">
+          <h1 erpText type="heading-1">Native heading 1</h1>
+          <h2 erpText type="heading-2">Native heading 2</h2>
+          <h3 erpText type="heading-3">Native heading 3</h3>
+          <h4 erpText type="heading-4">Native heading 4</h4>
+          <h5 erpText type="heading-5">Native heading 5</h5>
+          <h6 erpText type="heading-6">Native heading 6</h6>
+          <erp-text type="heading-3">Custom heading typography</erp-text>
+          <p erpText type="paragraph">Native paragraph semantics governed by ErpText.</p>
+          <div erpText type="div">Native div text governed by ErpText.</div>
+          <pre erpText type="pre">PRE-001
+سطر محفوظ</pre>
+          <blockquote erpText type="blockquote">Native blockquote evidence.</blockquote>
+          <address erpText type="address">Cairo — Honesty ERP</address>
+          <hgroup erpText type="hgroup">
+            <h3 erpText type="heading-3">Grouped heading</h3>
+            <p erpText type="paragraph">Grouped supporting paragraph.</p>
+          </hgroup>
+          <figure erpText type="figure" class="figure-proof">
+            <div class="neutral-visual" aria-hidden="true"></div>
+            <figcaption erpText type="figcaption">Native figure caption governed by ErpText.</figcaption>
+          </figure>
+        </erp-stack>
+      </section>
+
+      <erp-divider></erp-divider>
+
+      <section class="review-group" data-review-group="inline-semantics">
+        <h2 erpText type="heading-2">Inline Semantic Types</h2>
+        <erp-inline gap="loose" wrap="wrap" align="baseline">
+          <span erpText type="span">span</span>
+          <strong erpText type="strong">strong</strong>
+          <erp-text type="bold">bold</erp-text>
+          <em erpText type="emphasis">emphasis</em>
+          <i erpText type="italic">italic</i>
+          <u erpText type="underline">underline</u>
+          <s erpText type="strike">strike</s>
+          <del erpText type="deleted">deleted</del>
+          <ins erpText type="inserted">inserted</ins>
+          <mark erpText type="mark">mark</mark>
+          <small erpText type="small">small</small>
+          <span erpText type="text">H<sub erpText type="subscript">2</sub>O</span>
+          <span erpText type="text">x<sup erpText type="superscript">2</sup></span>
+          <abbr erpText type="abbreviation" title="Enterprise Resource Planning">ERP</abbr>
+          <dfn erpText type="definition">definition</dfn>
+          <cite erpText type="citation">citation</cite>
+          <q erpText type="quote">quote</q>
+        </erp-inline>
+        <erp-stack gap="tight">
+          <code erpText type="code">INV-2026-001</code>
+          <kbd erpText type="keyboard">Ctrl + K</kbd>
+          <samp erpText type="sample">status=ready</samp>
+          <var erpText type="variable">customerTotal</var>
+          <erp-text type="paragraph">
+            Frozen V1 intentionally uses the approved Latin/UI family and does not create a monospace role.
+          </erp-text>
+        </erp-stack>
+      </section>
+
+      <erp-divider></erp-divider>
+
+      <section class="review-group" data-review-group="structured-text">
+        <h2 erpText type="heading-2">Data / Lists / Table / Form Text</h2>
+        <erp-stack gap="loose">
+          <form class="form-proof">
+            <label erpText type="label" for="customer-proof">Customer label</label>
+            <input id="customer-proof" aria-label="Customer proof">
+            <fieldset>
+              <legend erpText type="legend">Native legend</legend>
+            </fieldset>
+            <output erpText type="output">Output 240</output>
+          </form>
+          <ul>
+            <li erpText type="list-item">Native list item</li>
+          </ul>
+          <dl>
+            <dt erpText type="term">Customer</dt>
+            <dd erpText type="description">A governed description value.</dd>
+          </dl>
+          <table>
+            <caption erpText type="caption">Native table caption</caption>
+            <thead>
+              <tr>
+                <th erpText type="table-header">Name</th>
+                <th erpText type="table-header">Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td erpText type="table-cell">Revenue</td>
+                <td erpText type="table-cell">1,240</td>
+              </tr>
+            </tbody>
+          </table>
+          <erp-inline gap="loose" wrap="wrap">
+            <time erpText type="time" datetime="2026-09-22">22/09/2026</time>
+            <data erpText type="data" value="1240">1,240 EGP</data>
+            <summary erpText type="summary">Summary text</summary>
+          </erp-inline>
+        </erp-stack>
+      </section>
+
+      <erp-divider></erp-divider>
+
+      <section id="link-proof" class="review-group" data-review-group="direction-overflow-link">
+        <h2 erpText type="heading-2">Direction / Ruby / Wrapping / Overflow / Link</h2>
+        <erp-stack gap="loose">
+          <erp-inline gap="loose" wrap="wrap">
+            @for (direction of directions; track direction) {
+              <erp-text [direction]="direction">Direction {{ direction }} — نص ABC 123</erp-text>
+            }
+          </erp-inline>
+          <erp-inline gap="loose" wrap="wrap" align="baseline">
+            <bdi erpText type="bdi">BDI: user-123</bdi>
+            <bdo erpText type="bdo" dir="ltr">BDO: ABC 123</bdo>
+            <ruby erpText type="ruby">
+              漢<rp erpText type="ruby-parenthesis">(</rp><rt erpText type="ruby-text">かん</rt><rp erpText type="ruby-parenthesis">)</rp>
+            </ruby>
+          </erp-inline>
+          <erp-grid [columns]="2" gap="sm" responsive="auto">
+            @for (wrap of wraps; track wrap) {
+              <erp-surface class="wrap-proof" border="subtle" padding="tight">
+                <erp-text [wrap]="wrap">Wrap {{ wrap }} — first line
+second line with long-content-proof</erp-text>
+              </erp-surface>
+            }
+          </erp-grid>
+          <erp-grid [columns]="3" gap="sm" responsive="auto">
+            @for (overflow of overflows; track overflow) {
+              <erp-surface class="overflow-proof" border="subtle" padding="tight">
+                <erp-text [overflow]="overflow" wrap="nowrap">
+                  Overflow {{ overflow }} — long content for bounded evidence
+                </erp-text>
+              </erp-surface>
+            }
+          </erp-grid>
+          <erp-text class="clamp-proof" type="paragraph" [lineClamp]="2">
+            Line clamp two evidence uses a deliberately extended paragraph. السطر طويل بما يكفي لإظهار حد السطرين داخل مساحة المراجعة دون تغيير عقد الطباعة.
+          </erp-text>
+          <erp-text type="paragraph">السطر الأول<br>السطر الثاني<wbr>الممتد</erp-text>
+          <erp-inline gap="loose" wrap="wrap">
+            <erp-text type="link">Link typography preview</erp-text>
+            <a erpText type="link" href="#link-proof">Native interactive link</a>
+          </erp-inline>
+          <erp-divider tone="strong"></erp-divider>
+        </erp-stack>
+      </section>
+    </erp-section>
+  </erp-stack>
+</erp-container>

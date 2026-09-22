@@ -276,16 +276,6 @@ function validateSource(component, source, label) {
     );
   }
 
-  if (
-    /:root\b|\bhtml\b|\bbody\b|\[data-theme(?:=|\])/.test(
-      sanitized,
-    )
-  ) {
-    errors.push(
-      `${label}: global/theme selectors are forbidden`,
-    );
-  }
-
   if (/!important|::ng-deep/.test(sanitized)) {
     errors.push(
       `${label}: !important / ::ng-deep are forbidden`,
@@ -453,6 +443,9 @@ function runSelfTest() {
   --honesty-button-gap: #{spacing.$honesty-ref-space-8};
   --honesty-button-bg: var(--honesty-color-action-primary-bg);
   --honesty-button-height: 2.5rem;
+  --honesty-button-font-size: var(--honesty-type-body-font-size);
+  --honesty-button-font-weight: var(--honesty-type-body-font-weight);
+  --honesty-button-line-height: var(--honesty-type-body-line-height);
   --_honesty-button-inner-height: calc(var(--honesty-button-height) - 2px);
 }
 
@@ -548,6 +541,33 @@ function runSelfTest() {
 @mixin base {
   --honesty-button-bg: var(--honesty-color-action-primary-bg);
   color: red;
+}
+`,
+    `
+body {
+  color: red;
+}
+
+@mixin base {
+  --honesty-button-bg: var(--honesty-color-action-primary-bg);
+}
+`,
+    `
+:root {
+  --x: 1;
+}
+
+@mixin base {
+  --honesty-button-bg: var(--honesty-color-action-primary-bg);
+}
+`,
+    `
+[data-theme='dark'] {
+  --x: 1;
+}
+
+@mixin base {
+  --honesty-button-bg: var(--honesty-color-action-primary-bg);
 }
 `,
   ];

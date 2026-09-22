@@ -14,6 +14,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'primitives/typography',
+    loadComponent: () =>
+      import('./showcase/typography-primitives/typography-primitives').then(
+        (m) => m.TypographyPrimitives
+      ),
+  },
+  {
     path: 'foundation/colors',
     loadComponent: () =>
       import('./foundation/colors/colors').then((m) => m.Colors),

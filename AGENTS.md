@@ -291,3 +291,22 @@ Rules:
 - concrete Component Token contracts remain reference-first;
 - do not create a concrete Component Token contract unless the task explicitly
   supplies the Product Owner reference or reference waiver.
+
+## Production Text Governance
+
+- ErpText is the only public Typography Primitive.
+- Its selector supports both `erp-text` and `[erpText]`.
+- Every production rendered literal or interpolated text node must be governed
+  by ErpText.
+- Custom-element mode is ergonomic.
+- Native-host mode preserves exact native semantics when required.
+- No ErpHeading exists.
+- No ErpLink exists.
+- Future Controls and Composites render textual UI through ErpText.
+- `innerHTML`, `innerText`, and `textContent` template bypasses are forbidden.
+- Production inline Angular templates are forbidden.
+- `br` and `wbr` contain no text and are allowed inside ErpText.
+- Raw `hr` is replaced by ErpDivider.
+- Code-like text does not introduce monospace.
+- New Typography primitives may not be created without explicit Product Owner
+  reopen.
