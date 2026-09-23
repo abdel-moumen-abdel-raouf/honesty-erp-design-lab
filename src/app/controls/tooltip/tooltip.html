@@ -1,0 +1,35 @@
+<span
+  #trigger
+  class="erp-tooltip__trigger"
+  (pointerenter)="handleTriggerPointerEnter($event)"
+  (pointerleave)="handleTriggerPointerLeave($event)"
+  (pointerdown)="handlePointerDown($event)"
+  (pointermove)="handlePointerMove($event)"
+  (pointerup)="handlePointerUp($event)"
+  (pointercancel)="handlePointerCancel()"
+  (contextmenu)="handleContextMenu($event)"
+  (focusin)="handleFocusIn()"
+  (focusout)="handleFocusOut($event)"
+><ng-content select=":not(erp-tooltip-content)"></ng-content></span>
+
+<span
+  #surface
+  class="erp-tooltip__surface"
+  popover="manual"
+  [id]="tooltipId"
+  [attr.role]="interactive() ? 'dialog' : 'tooltip'"
+  [attr.aria-label]="interactive() ? trimmedText() : null"
+  (pointerenter)="handleSurfacePointerEnter()"
+  (pointerleave)="handleSurfacePointerLeave()"
+  (focusin)="handleFocusIn()"
+  (focusout)="handleFocusOut($event)"
+>
+  @if (variant() === 'plain') {
+    <erp-text type="caption" tone="inherit">{{ trimmedText() }}</erp-text>
+  } @else {
+    <ng-content select="erp-tooltip-content"></ng-content>
+  }
+  @if (showArrow()) {
+    <span #arrow class="erp-tooltip__arrow" aria-hidden="true"></span>
+  }
+</span>

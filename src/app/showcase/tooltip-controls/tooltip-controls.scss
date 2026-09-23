@@ -1,0 +1,11 @@
+@use '../../../styles/foundation/queries' as query;
+
+:host { display: block; min-width: 0; background: var(--honesty-color-surface-canvas); color: var(--honesty-color-text-primary); }
+.tooltip-showcase { padding-block: var(--honesty-space-section-gap-large); }
+.showcase-header { margin-block-end: var(--honesty-space-section-gap-large); }
+.showcase-header, .review-group, .theme-contexts, [data-theme-context] { min-width: 0; max-width: 100%; }
+.review-group { padding-block: var(--honesty-space-section-gap); }
+.theme-contexts > [data-theme-context] { flex: 1 1 20rem; padding: var(--honesty-space-inset-default); }
+.edge-review { flex-direction: column; }
+.edge-review > [data-theme-context] { flex: 0 0 auto; min-block-size: 10rem; }
+@include query.viewport-down(md) { .theme-contexts { flex-direction: column; } .theme-contexts > [data-theme-context] { flex-basis: auto; } }

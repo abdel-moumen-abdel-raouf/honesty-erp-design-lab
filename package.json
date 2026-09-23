@@ -18,7 +18,9 @@
     "erp-icon:check:self-test": "node tools/icons/check-erp-icon-governance.mjs --self-test",
     "erp-button:check": "node tools/controls/check-erp-button-governance.mjs",
     "erp-button:check:self-test": "node tools/controls/check-erp-button-governance.mjs --self-test",
-    "lint": "npm run component-tokens:check && npm run erp-text:check && npm run erp-icon:check && npm run erp-button:check && ng lint"
+    "erp-tooltip:check": "node tools/controls/check-erp-tooltip-governance.mjs",
+    "erp-tooltip:check:self-test": "node tools/controls/check-erp-tooltip-governance.mjs --self-test",
+    "lint": "npm run component-tokens:check && npm run erp-text:check && npm run erp-icon:check && npm run erp-button:check && npm run erp-tooltip:check && ng lint"
   },
   "private": true,
   "dependencies": {

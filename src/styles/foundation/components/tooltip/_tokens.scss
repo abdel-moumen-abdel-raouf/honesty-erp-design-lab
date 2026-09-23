@@ -1,0 +1,43 @@
+@use '../../reference/spacing' as ref;
+
+@mixin base {
+  --honesty-tooltip-bg: var(--honesty-color-surface-inverse);
+  --honesty-tooltip-fg: var(--honesty-color-text-inverse);
+  --honesty-tooltip-max-width: 12.5rem;
+  --honesty-tooltip-min-width: #{ref.$honesty-ref-space-40};
+  --honesty-tooltip-min-height: #{ref.$honesty-ref-space-24};
+  --honesty-tooltip-padding-block: #{ref.$honesty-ref-space-4};
+  --honesty-tooltip-padding-inline: #{ref.$honesty-ref-space-8};
+  --honesty-tooltip-radius: var(--honesty-radius-control);
+  --honesty-tooltip-elevation: var(--honesty-elevation-none);
+  --honesty-tooltip-layer: var(--honesty-layer-overlay);
+  --honesty-tooltip-anchor-gap: #{ref.$honesty-ref-space-4};
+  --honesty-tooltip-viewport-inset: #{ref.$honesty-ref-space-8};
+  --honesty-tooltip-arrow-bg: var(--honesty-tooltip-bg);
+  --honesty-tooltip-arrow-width: #{ref.$honesty-ref-space-16};
+  --honesty-tooltip-arrow-height: #{ref.$honesty-ref-space-8};
+  --honesty-tooltip-arrow-safe-inset: #{ref.$honesty-ref-space-8};
+  --honesty-tooltip-enter-duration: var(--honesty-motion-duration-default);
+  --honesty-tooltip-exit-duration: var(--honesty-motion-duration-fast);
+  --honesty-tooltip-enter-easing: var(--honesty-motion-easing-enter);
+  --honesty-tooltip-exit-easing: var(--honesty-motion-easing-exit);
+  --honesty-tooltip-enter-scale: 0.96;
+  --honesty-tooltip-reduced-duration: var(--honesty-motion-duration-instant);
+}
+
+@mixin placement-side {
+  --honesty-tooltip-arrow-width: #{ref.$honesty-ref-space-8};
+  --honesty-tooltip-arrow-height: #{ref.$honesty-ref-space-4};
+}
+
+@mixin variant-rich {
+  --honesty-tooltip-bg: var(--honesty-color-surface-elevated);
+  --honesty-tooltip-fg: var(--honesty-color-text-primary);
+  --honesty-tooltip-max-width: 20rem;
+  --honesty-tooltip-min-width: #{ref.$honesty-ref-space-0};
+  --honesty-tooltip-min-height: #{ref.$honesty-ref-space-0};
+  --honesty-tooltip-padding-block: #{ref.$honesty-ref-space-16};
+  --honesty-tooltip-padding-inline: #{ref.$honesty-ref-space-16};
+  --honesty-tooltip-radius: var(--honesty-radius-overlay);
+  --honesty-tooltip-elevation: var(--honesty-elevation-overlay);
+}

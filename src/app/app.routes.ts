@@ -35,6 +35,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'controls/tooltips',
+    loadComponent: () =>
+      import('./showcase/tooltip-controls/tooltip-controls').then(
+        (m) => m.TooltipControls
+      ),
+  },
+  {
     path: 'foundation/colors',
     loadComponent: () =>
       import('./foundation/colors/colors').then((m) => m.Colors),

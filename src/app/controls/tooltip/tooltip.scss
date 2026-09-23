@@ -1,0 +1,64 @@
+@use '../../../styles/foundation/components/tooltip' as tokens;
+
+:host {
+  @include tokens.base;
+  display: inline-block;
+  min-width: 0;
+}
+
+:host([data-tooltip-variant='rich']) { @include tokens.variant-rich; }
+
+:host([data-tooltip-placement='start']),
+:host([data-tooltip-placement='end']) {
+  @include tokens.placement-side;
+}
+
+.erp-tooltip__trigger { display: contents; }
+
+.erp-tooltip__surface {
+  position: fixed;
+  inset: auto;
+  box-sizing: border-box;
+  margin: 0;
+  inline-size: max-content;
+  max-inline-size: min(var(--honesty-tooltip-max-width), calc(100vw - (var(--honesty-tooltip-viewport-inset) * 2)));
+  min-inline-size: var(--honesty-tooltip-min-width);
+  min-block-size: var(--honesty-tooltip-min-height);
+  padding-block: var(--honesty-tooltip-padding-block);
+  padding-inline: var(--honesty-tooltip-padding-inline);
+  border: 0;
+  border-radius: var(--honesty-tooltip-radius);
+  background: var(--honesty-tooltip-bg);
+  color: var(--honesty-tooltip-fg);
+  box-shadow: var(--honesty-tooltip-elevation);
+  z-index: var(--honesty-tooltip-layer);
+  overflow-wrap: anywhere;
+  overflow: visible;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(var(--honesty-tooltip-enter-scale));
+  transition: opacity var(--honesty-tooltip-exit-duration) var(--honesty-tooltip-exit-easing), transform var(--honesty-tooltip-exit-duration) var(--honesty-tooltip-exit-easing);
+}
+
+:host([data-tooltip-interactive='true']) .erp-tooltip__surface[data-phase='open'] { pointer-events: auto; }
+.erp-tooltip__surface[data-phase='measuring'] { visibility: hidden; }
+.erp-tooltip__surface[data-phase='open'] {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+  transition-duration: var(--honesty-tooltip-enter-duration);
+  transition-timing-function: var(--honesty-tooltip-enter-easing);
+}
+
+.erp-tooltip__arrow {
+  position: absolute;
+  background: var(--honesty-tooltip-arrow-bg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-tooltip__surface,
+  .erp-tooltip__surface[data-phase='open'] {
+    transform: none;
+    transition-duration: var(--honesty-tooltip-reduced-duration);
+  }
+}
