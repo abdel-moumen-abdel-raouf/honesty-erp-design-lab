@@ -13,7 +13,7 @@ Button Family V1 defines exactly four public Basic Controls: `ErpButton`,
 `ErpIconButton`, `ErpFab`, and `ErpExtendedFab`.
 
 All four controls expose `cursor: pointer | default`, default `pointer`, and
-`rippleSpeed: fast | normal | slow`, default `slow`. The Product
+`rippleSpeed: fast | normal | slow`, default `normal`. The Product
 Owner-approved final Ripple timing contract is:
 
 - `fast = 750ms`;

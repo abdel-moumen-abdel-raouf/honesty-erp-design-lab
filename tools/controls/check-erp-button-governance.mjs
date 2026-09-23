@@ -82,6 +82,29 @@ const RIPPLE_TOKEN_MODULES = [
     property: '--honesty-extended-fab-ripple-duration',
   },
 ];
+const RIPPLE_DEFAULT_SOURCES = [
+  {
+    file: path.join(APP_ROOT, 'controls', 'button', 'button.ts'),
+    control: 'ErpButton',
+  },
+  {
+    file: path.join(APP_ROOT, 'controls', 'icon-button', 'icon-button.ts'),
+    control: 'ErpIconButton',
+  },
+  {
+    file: path.join(APP_ROOT, 'controls', 'fab', 'fab.ts'),
+    control: 'ErpFab',
+  },
+  {
+    file: path.join(
+      APP_ROOT,
+      'controls',
+      'extended-fab',
+      'extended-fab.ts',
+    ),
+    control: 'ErpExtendedFab',
+  },
+];
 const FINAL_RIPPLE_MIXINS = [
   ['ripple-speed-fast', 750],
   ['ripple-speed-normal', 1100],
@@ -350,6 +373,32 @@ function validateRippleTokenSource(source, label, property) {
   return errors;
 }
 
+function validateRippleDefaultSource(source, label) {
+  const errors = [];
+  const matches = [
+    ...source.matchAll(
+      /readonly\s+rippleSpeed\s*=\s*input<ErpRippleSpeed>\(\s*'([^']+)'\s*\)\s*;/g,
+    ),
+  ];
+
+  if (matches.length !== 1) {
+    errors.push(
+      `${label}: expected exactly one rippleSpeed ErpRippleSpeed input default, found ${matches.length}`,
+    );
+    return errors;
+  }
+
+  const actualDefault = matches[0][1];
+
+  if (actualDefault !== 'normal') {
+    errors.push(
+      `${label}: rippleSpeed default must be exactly normal, found ${actualDefault}`,
+    );
+  }
+
+  return errors;
+}
+
 function runSelfTest() {
   const validFixtures = [
     '<erp-button label="Save"></erp-button>',
@@ -460,16 +509,8 @@ function runSelfTest() {
 }
 `,
     `${validRippleFixture}
-@mixin ripple-speed-slower {
-  --honesty-button-ripple-duration: 750ms;
-}
-
-@mixin ripple-speed-very-slow {
-  --honesty-button-ripple-duration: 900ms;
-}
-
-@mixin ripple-speed-slowest {
-  --honesty-button-ripple-duration: 1050ms;
+@mixin ripple-speed-extra {
+  --honesty-button-ripple-duration: 1200ms;
 }
 `,
     validRippleFixture.replace(
@@ -499,6 +540,40 @@ function runSelfTest() {
     if (rippleErrors.length === 0) {
       throw new Error(
         `ErpButton governance checker accepted invalid Ripple fixture ${index + 1}`,
+      );
+    }
+  }
+
+  const validRippleDefaultFixture =
+    "readonly rippleSpeed = input<ErpRippleSpeed>('normal');";
+  const invalidRippleDefaultFixtures = [
+    "readonly rippleSpeed = input<ErpRippleSpeed>('slow');",
+    "readonly rippleSpeed = input<ErpRippleSpeed>('fast');",
+    'export class Fixture {}',
+    `${validRippleDefaultFixture}
+${validRippleDefaultFixture}`,
+  ];
+
+  const validRippleDefaultErrors = validateRippleDefaultSource(
+    validRippleDefaultFixture,
+    'valid Ripple default fixture',
+  );
+
+  if (validRippleDefaultErrors.length > 0) {
+    throw new Error(
+      `ErpButton governance checker rejected valid Ripple default fixture:\n${validRippleDefaultErrors.join('\n')}`,
+    );
+  }
+
+  for (const [index, fixture] of invalidRippleDefaultFixtures.entries()) {
+    const rippleDefaultErrors = validateRippleDefaultSource(
+      fixture,
+      `invalid Ripple default fixture ${index + 1}`,
+    );
+
+    if (rippleDefaultErrors.length === 0) {
+      throw new Error(
+        `ErpButton governance checker accepted invalid Ripple default fixture ${index + 1}`,
       );
     }
   }
@@ -536,6 +611,16 @@ for (const {file, property} of RIPPLE_TOKEN_MODULES) {
       source,
       relative(file),
       property,
+    ),
+  );
+}
+
+for (const {file, control} of RIPPLE_DEFAULT_SOURCES) {
+  const source = fs.readFileSync(file, 'utf8');
+  errors.push(
+    ...validateRippleDefaultSource(
+      source,
+      `${control} (${relative(file)})`,
     ),
   );
 }

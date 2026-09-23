@@ -41,7 +41,7 @@ export class ErpExtendedFab {
   readonly disabled = input(false, {transform: booleanAttribute});
   readonly loading = input(false, {transform: booleanAttribute});
   readonly cursor = input<ErpPressableCursor>('pointer');
-  readonly rippleSpeed = input<ErpRippleSpeed>('slow');
+  readonly rippleSpeed = input<ErpRippleSpeed>('normal');
   readonly pressed = output<void>();
 
   private readonly ripple = new PressRippleController();

@@ -131,7 +131,7 @@ describe('ButtonControls showcase', () => {
     }
   });
 
-  it('evidences the slow default ripple for all four controls in both themes', () => {
+  it('evidences the normal default ripple for all four controls in both themes', () => {
     const compiled = createFixture().nativeElement as HTMLElement;
     const controls = [
       ...compiled.querySelectorAll<HTMLElement>('[data-default-ripple-evidence]'),
@@ -141,16 +141,16 @@ describe('ButtonControls showcase', () => {
     for (const control of controls) {
       switch (control.tagName) {
         case 'ERP-BUTTON':
-          expect(control.getAttribute('data-button-ripple-speed')).toBe('slow');
+          expect(control.getAttribute('data-button-ripple-speed')).toBe('normal');
           break;
         case 'ERP-ICON-BUTTON':
-          expect(control.getAttribute('data-icon-button-ripple-speed')).toBe('slow');
+          expect(control.getAttribute('data-icon-button-ripple-speed')).toBe('normal');
           break;
         case 'ERP-FAB':
-          expect(control.getAttribute('data-fab-ripple-speed')).toBe('slow');
+          expect(control.getAttribute('data-fab-ripple-speed')).toBe('normal');
           break;
         case 'ERP-EXTENDED-FAB':
-          expect(control.getAttribute('data-extended-fab-ripple-speed')).toBe('slow');
+          expect(control.getAttribute('data-extended-fab-ripple-speed')).toBe('normal');
           break;
         default:
           throw new Error(`Unexpected default ripple evidence host: ${control.tagName}`);
