@@ -4,7 +4,28 @@ describe('AnchoredOverlayController', () => {
   it('refuses to open when the native Popover API is unavailable', () => {
     const anchor = document.createElement('button');
     const surface = document.createElement('span');
-    const controller = new AnchoredOverlayController({anchor, surface, readGeometryInput: () => ({preferredPlacement: 'top', direction: 'ltr', anchorGap: 0, viewportInset: 0, showArrow: false, arrowWidth: 0, arrowHeight: 0, arrowSafeInset: 0}), applyGeometry: () => undefined});
+
+    Object.defineProperty(surface, 'showPopover', {
+      configurable: true,
+      value: undefined,
+    });
+
+    const controller = new AnchoredOverlayController({
+      anchor,
+      surface,
+      readGeometryInput: () => ({
+        preferredPlacement: 'top',
+        direction: 'ltr',
+        anchorGap: 0,
+        viewportInset: 0,
+        showArrow: false,
+        arrowWidth: 0,
+        arrowHeight: 0,
+        arrowSafeInset: 0,
+      }),
+      applyGeometry: () => undefined,
+    });
+
     expect(controller.show()).toBe(false);
   });
 
