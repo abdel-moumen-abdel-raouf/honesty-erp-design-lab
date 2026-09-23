@@ -92,5 +92,7 @@ geometry, color, radius, elevation, layer, motion, or arrow styling API exists.
 
 The docs-only review route is `/controls/tooltips`. Tooltip visual approval
 remains the Product Owner's responsibility; this document does not claim visual
-approval. ErpIconButton and ErpFab Tooltip integration is explicitly deferred to
-the next separate Button Family review/integration wave.
+approval. Button Family integration now composes plain ErpTooltip externally
+around icon-only ErpIconButton and ErpFab usage. ErpTooltip itself remains
+unchanged, and Button controls create no hidden automatic Tooltips internally.
+Final Button Family visual and freeze review remains separate.

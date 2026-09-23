@@ -12,7 +12,12 @@
   <erp-section class="review-group" data-review-group="standard-variants">
     <erp-text type="heading-2">Standard Variants</erp-text>
     <erp-divider />
-    <div class="theme-contexts">
+    <erp-grid
+      class="theme-contexts"
+      [columns]="2"
+      gap="grid"
+      responsive="auto"
+    >
       @for (theme of themes; track theme) {
         <erp-surface
           class="theme-review-context"
@@ -36,13 +41,18 @@
           </erp-stack>
         </erp-surface>
       }
-    </div>
+    </erp-grid>
   </erp-section>
 
   <erp-section class="review-group" data-review-group="tones">
     <erp-text type="heading-2">Tones</erp-text>
     <erp-divider />
-    <div class="theme-contexts">
+    <erp-grid
+      class="theme-contexts"
+      [columns]="2"
+      gap="grid"
+      responsive="auto"
+    >
       @for (theme of themes; track theme) {
         <erp-surface
           class="theme-review-context"
@@ -78,13 +88,18 @@
           </erp-stack>
         </erp-surface>
       }
-    </div>
+    </erp-grid>
   </erp-section>
 
   <erp-section class="review-group" data-review-group="size-shape-border-width">
     <erp-text type="heading-2">Sizes / Shapes / Borders / Width</erp-text>
     <erp-divider />
-    <div class="theme-contexts">
+    <erp-grid
+      class="theme-contexts"
+      [columns]="2"
+      gap="grid"
+      responsive="auto"
+    >
       @for (theme of themes; track theme) {
         <erp-surface
           class="theme-review-context"
@@ -124,13 +139,18 @@
           </erp-stack>
         </erp-surface>
       }
-    </div>
+    </erp-grid>
   </erp-section>
 
   <erp-section class="review-group" data-review-group="icon-buttons">
     <erp-text type="heading-2">Icon Buttons</erp-text>
     <erp-divider />
-    <div class="theme-contexts">
+    <erp-grid
+      class="theme-contexts"
+      [columns]="2"
+      gap="grid"
+      responsive="auto"
+    >
       @for (theme of themes; track theme) {
         <erp-surface
           class="theme-review-context"
@@ -141,6 +161,15 @@
         >
           <erp-stack gap="default">
             <erp-text type="heading-3">{{ theme }}</erp-text>
+            <erp-tooltip
+              data-icon-button-tooltip-evidence
+              text="Settings"
+            >
+              <erp-icon-button
+                icon="settings"
+                label="Settings"
+              />
+            </erp-tooltip>
             <erp-inline gap="default" align="center" wrap="wrap">
               @for (variant of iconButtonVariants; track variant; let index = $index) {
                 <erp-icon-button
@@ -174,13 +203,18 @@
           </erp-stack>
         </erp-surface>
       }
-    </div>
+    </erp-grid>
   </erp-section>
 
   <erp-section class="review-group" data-review-group="floating-action-buttons">
     <erp-text type="heading-2">Floating Action Buttons</erp-text>
     <erp-divider />
-    <div class="theme-contexts">
+    <erp-grid
+      class="theme-contexts"
+      [columns]="2"
+      gap="grid"
+      responsive="auto"
+    >
       @for (theme of themes; track theme) {
         <erp-surface
           class="theme-review-context"
@@ -191,11 +225,20 @@
         >
           <erp-stack gap="default">
             <erp-text type="heading-3">{{ theme }}</erp-text>
+            <erp-tooltip
+              data-fab-tooltip-evidence
+              text="Add"
+            >
+              <erp-fab
+                icon="plus"
+                label="Add"
+              />
+            </erp-tooltip>
             <erp-inline gap="default" align="center" wrap="wrap">
               @for (size of fabSizes; track size) {
                 <erp-fab
                   data-fab-size-evidence
-                  icon="add"
+                  icon="plus"
                   [label]="size"
                   [size]="size"
                 />
@@ -205,7 +248,7 @@
               @for (tone of fabTones; track tone) {
                 <erp-fab
                   data-fab-tone-evidence
-                  icon="add"
+                  icon="plus"
                   [label]="tone"
                   [tone]="tone"
                 />
@@ -214,13 +257,18 @@
           </erp-stack>
         </erp-surface>
       }
-    </div>
+    </erp-grid>
   </erp-section>
 
   <erp-section class="review-group" data-review-group="extended-fabs">
     <erp-text type="heading-2">Extended FABs</erp-text>
     <erp-divider />
-    <div class="theme-contexts">
+    <erp-grid
+      class="theme-contexts"
+      [columns]="2"
+      gap="grid"
+      responsive="auto"
+    >
       @for (theme of themes; track theme) {
         <erp-surface
           class="theme-review-context"
@@ -236,7 +284,7 @@
                 <erp-extended-fab
                   data-extended-fab-size-evidence
                   label="إنشاء جديد"
-                  icon="add"
+                  icon="plus"
                   [size]="size"
                 />
               }
@@ -246,7 +294,7 @@
                 <erp-extended-fab
                   data-extended-fab-tone-evidence
                   label="إنشاء جديد"
-                  icon="add"
+                  icon="plus"
                   [tone]="tone"
                 />
               }
@@ -255,14 +303,19 @@
           </erp-stack>
         </erp-surface>
       }
-    </div>
+    </erp-grid>
   </erp-section>
 
   <erp-section class="review-group" data-review-group="states-ripple-theme">
     <erp-text type="heading-2">States / Ripple / Theme</erp-text>
     <erp-divider />
     <erp-text type="paragraph">اضغط الأزرار لمراجعة تأثير Ripple</erp-text>
-    <div class="theme-contexts">
+    <erp-grid
+      class="theme-contexts"
+      [columns]="2"
+      gap="grid"
+      responsive="auto"
+    >
       @for (theme of themes; track theme) {
         <erp-surface
           class="theme-review-context"
@@ -277,6 +330,7 @@
               @if (theme === 'light') {
                 <erp-button
                   id="ripple-counter-button"
+                  data-default-ripple-evidence
                   data-state-evidence="button-ready"
                   data-cursor-evidence="pointer"
                   label="Ready"
@@ -284,6 +338,7 @@
                 />
               } @else {
                 <erp-button
+                  data-default-ripple-evidence
                   data-state-evidence="button-ready"
                   data-cursor-evidence="pointer"
                   label="Ready"
@@ -320,6 +375,7 @@
                 loading
               />
               <erp-icon-button
+                data-default-ripple-evidence
                 data-state-evidence="icon-ready"
                 icon="settings"
                 label="Ready icon"
@@ -337,44 +393,46 @@
                 loading
               />
               <erp-fab
+                data-default-ripple-evidence
                 data-state-evidence="fab-ready"
-                icon="add"
+                icon="plus"
                 label="Ready fab"
               />
               <erp-fab
                 data-state-evidence="fab-disabled"
-                icon="add"
+                icon="plus"
                 label="Disabled fab"
                 disabled
               />
               <erp-fab
                 data-state-evidence="fab-loading"
-                icon="add"
+                icon="plus"
                 label="Loading fab"
                 loading
               />
               <erp-extended-fab
+                data-default-ripple-evidence
                 data-state-evidence="extended-ready"
                 label="Ready extended"
-                icon="add"
+                icon="plus"
               />
               <erp-extended-fab
                 data-state-evidence="extended-disabled"
                 label="Disabled extended"
-                icon="add"
+                icon="plus"
                 disabled
               />
               <erp-extended-fab
                 data-state-evidence="extended-loading"
                 label="Loading extended"
-                icon="add"
+                icon="plus"
                 loading
               />
             </erp-inline>
           </erp-stack>
         </erp-surface>
       }
-    </div>
+    </erp-grid>
     <erp-text id="ripple-counter-value" type="paragraph">
       Activations: {{ pressedCount() }}
     </erp-text>

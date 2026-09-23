@@ -31,10 +31,10 @@ describe('ErpButton', () => {
     expect(component.iconPosition()).toBe('start');
     expect(component.type()).toBe('button');
     expect(component.cursor()).toBe('pointer');
-    expect(component.rippleSpeed()).toBe('normal');
+    expect(component.rippleSpeed()).toBe('slow');
     expect(component.state()).toBe('ready');
     expect(host.getAttribute('data-button-cursor')).toBe('pointer');
-    expect(host.getAttribute('data-button-ripple-speed')).toBe('normal');
+    expect(host.getAttribute('data-button-ripple-speed')).toBe('slow');
     expect(host.querySelectorAll('button').length).toBe(1);
     expect(host.querySelector('erp-text')?.textContent?.trim()).toBe('Save');
   });

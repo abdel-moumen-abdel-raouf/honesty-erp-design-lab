@@ -26,9 +26,9 @@ describe('ErpFab', () => {
     expect(component.size()).toBe('md');
     expect(component.tone()).toBe('primary');
     expect(component.cursor()).toBe('pointer');
-    expect(component.rippleSpeed()).toBe('normal');
+    expect(component.rippleSpeed()).toBe('slow');
     expect(host.getAttribute('data-fab-cursor')).toBe('pointer');
-    expect(host.getAttribute('data-fab-ripple-speed')).toBe('normal');
+    expect(host.getAttribute('data-fab-ripple-speed')).toBe('slow');
     expect(host.querySelectorAll('button').length).toBe(1);
     expect(host.querySelector('button')?.getAttribute('aria-label')).toBe('Add');
     expect(host.querySelector('erp-icon')?.getAttribute('data-icon-name')).toBe('add');

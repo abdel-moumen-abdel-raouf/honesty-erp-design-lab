@@ -5,7 +5,88 @@ import {parseTemplate} from '@angular/compiler';
 
 const ROOT = process.cwd();
 const APP_ROOT = path.join(ROOT, 'src', 'app');
+const BUTTON_SHOWCASE_FILE = path.join(
+  APP_ROOT,
+  'showcase',
+  'button-controls',
+  'button-controls.html',
+);
 const FORBIDDEN_INPUT_TYPES = new Set(['button', 'submit', 'reset']);
+const BUTTON_SHOWCASE_RAW_VISIBLE_ELEMENTS = new Set([
+  'div',
+  'section',
+  'header',
+  'footer',
+  'main',
+  'aside',
+  'nav',
+  'p',
+  'span',
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'h5',
+  'h6',
+  'button',
+  'a',
+  'hr',
+]);
+const RIPPLE_TOKEN_MODULES = [
+  {
+    file: path.join(
+      ROOT,
+      'src',
+      'styles',
+      'foundation',
+      'components',
+      'button',
+      '_tokens.scss',
+    ),
+    property: '--honesty-button-ripple-duration',
+  },
+  {
+    file: path.join(
+      ROOT,
+      'src',
+      'styles',
+      'foundation',
+      'components',
+      'icon-button',
+      '_tokens.scss',
+    ),
+    property: '--honesty-icon-button-ripple-duration',
+  },
+  {
+    file: path.join(
+      ROOT,
+      'src',
+      'styles',
+      'foundation',
+      'components',
+      'fab',
+      '_tokens.scss',
+    ),
+    property: '--honesty-fab-ripple-duration',
+  },
+  {
+    file: path.join(
+      ROOT,
+      'src',
+      'styles',
+      'foundation',
+      'components',
+      'extended-fab',
+      '_tokens.scss',
+    ),
+    property: '--honesty-extended-fab-ripple-duration',
+  },
+];
+const FINAL_RIPPLE_MIXINS = [
+  ['ripple-speed-fast', 750],
+  ['ripple-speed-normal', 1100],
+  ['ripple-speed-slow', 1800],
+];
 
 function walk(directory) {
   if (!fs.existsSync(directory)) {
@@ -48,6 +129,31 @@ function staticAttribute(node, name) {
   );
 }
 
+function boundInput(node, name) {
+  return (node.inputs ?? []).find(
+    (input) => input.name.toLowerCase() === name,
+  );
+}
+
+function isPlainNoninteractiveTooltip(node) {
+  const variant = staticAttribute(node, 'variant');
+  const interactive = staticAttribute(node, 'interactive');
+
+  if (boundInput(node, 'variant') || boundInput(node, 'interactive')) {
+    return false;
+  }
+
+  if (variant && variant.value.toLowerCase() !== 'plain') {
+    return false;
+  }
+
+  if (interactive && interactive.value.toLowerCase() !== 'false') {
+    return false;
+  }
+
+  return true;
+}
+
 function validateTemplateSource(source, label) {
   const parsed = parseTemplate(source, label, {preserveWhitespaces: true});
   const errors = [];
@@ -56,7 +162,7 @@ function validateTemplateSource(source, label) {
     errors.push(`${label}: Angular template parse error: ${error}`);
   }
 
-  function visit(nodes) {
+  function visit(nodes, inPlainTooltipTrigger = false) {
     for (const node of nodes) {
       const elementName =
         typeof node.name === 'string'
@@ -66,6 +172,15 @@ function validateTemplateSource(source, label) {
       if (elementName === 'button') {
         errors.push(
           `${label}${sourceLocation(node.sourceSpan)}: native <button> bypasses ERP Button governance`,
+        );
+      }
+
+      if (
+        (elementName === 'erp-icon-button' || elementName === 'erp-fab') &&
+        !inPlainTooltipTrigger
+      ) {
+        errors.push(
+          `${label}${sourceLocation(node.sourceSpan)}: <${elementName}> production usage must be nested in a plain noninteractive <erp-tooltip> trigger`,
         );
       }
 
@@ -84,6 +199,60 @@ function validateTemplateSource(source, label) {
       if (role === 'button' && elementName !== null && !elementName.startsWith('erp-')) {
         errors.push(
           `${label}${sourceLocation(node.sourceSpan)}: static role="button" on <${elementName}> bypasses ERP Button governance`,
+        );
+      }
+
+      let childPlainTooltipTrigger = inPlainTooltipTrigger;
+
+      if (elementName === 'erp-tooltip') {
+        childPlainTooltipTrigger = isPlainNoninteractiveTooltip(node);
+      } else if (elementName === 'erp-tooltip-content') {
+        childPlainTooltipTrigger = false;
+      }
+
+      if (Array.isArray(node.children)) {
+        visit(node.children, childPlainTooltipTrigger);
+      }
+
+      for (const branch of node.branches ?? []) {
+        visit(branch.children ?? [], childPlainTooltipTrigger);
+      }
+
+      for (const blockCase of node.cases ?? []) {
+        visit(blockCase.children ?? [], childPlainTooltipTrigger);
+      }
+
+      if (Array.isArray(node.empty?.children)) {
+        visit(node.empty.children, childPlainTooltipTrigger);
+      }
+    }
+  }
+
+  visit(parsed.nodes);
+  return errors;
+}
+
+function validateButtonShowcaseSource(source, label) {
+  const parsed = parseTemplate(source, label, {preserveWhitespaces: true});
+  const errors = [];
+
+  for (const error of parsed.errors ?? []) {
+    errors.push(`${label}: Angular template parse error: ${error}`);
+  }
+
+  function visit(nodes) {
+    for (const node of nodes) {
+      const elementName =
+        typeof node.name === 'string'
+          ? node.name.split(':').at(-1)?.toLowerCase()
+          : null;
+
+      if (
+        elementName !== null &&
+        BUTTON_SHOWCASE_RAW_VISIBLE_ELEMENTS.has(elementName)
+      ) {
+        errors.push(
+          `${label}${sourceLocation(node.sourceSpan)}: raw visible <${elementName}> is forbidden in Button showcase`,
         );
       }
 
@@ -109,15 +278,112 @@ function validateTemplateSource(source, label) {
   return errors;
 }
 
+function escapeRegExp(value) {
+  return value.replace(/[|\\{}()[\]^$+*?.-]/g, '\\$&');
+}
+
+function mixinSections(source, name) {
+  const pattern = new RegExp(`@mixin\\s+${escapeRegExp(name)}\\b`, 'g');
+  const matches = [...source.matchAll(pattern)];
+
+  return matches.map((match) => {
+    const start = match.index;
+    const nextMixin = source.indexOf('@mixin', start + match[0].length);
+    return source.slice(start, nextMixin === -1 ? source.length : nextMixin);
+  });
+}
+
+function validateRippleTokenSource(source, label, property) {
+  const errors = [];
+  const expectedMixins = FINAL_RIPPLE_MIXINS.map(([name]) => name);
+  const actualMixins = [
+    ...source.matchAll(/@mixin\s+(ripple-speed-[a-z-]+)\b/g),
+  ].map((match) => match[1]);
+
+  if (
+    actualMixins.length !== expectedMixins.length ||
+    actualMixins.some((name, index) => name !== expectedMixins[index])
+  ) {
+    errors.push(
+      `${label}: Ripple mixins must be exactly ${expectedMixins.join(', ')}`,
+    );
+  }
+
+  const expectedSections = [
+    ['base', 1100],
+    ...FINAL_RIPPLE_MIXINS,
+  ];
+  const propertyPattern = new RegExp(
+    `${escapeRegExp(property)}\\s*:\\s*(\\d+)ms\\s*;`,
+    'g',
+  );
+
+  for (const [mixin, duration] of expectedSections) {
+    const sections = mixinSections(source, mixin);
+
+    if (sections.length !== 1) {
+      errors.push(
+        `${label}: expected exactly one @mixin ${mixin}, found ${sections.length}`,
+      );
+      continue;
+    }
+
+    const declarations = [
+      ...sections[0].matchAll(propertyPattern),
+    ].map((match) => Number(match[1]));
+
+    if (declarations.length !== 1 || declarations[0] !== duration) {
+      errors.push(
+        `${label}: @mixin ${mixin} must declare ${property}: ${duration}ms exactly once`,
+      );
+    }
+  }
+
+  const allDeclarations = [...source.matchAll(propertyPattern)];
+
+  if (allDeclarations.length !== expectedSections.length) {
+    errors.push(
+      `${label}: expected exactly ${expectedSections.length} ${property} declarations, found ${allDeclarations.length}`,
+    );
+  }
+
+  return errors;
+}
+
 function runSelfTest() {
   const validFixtures = [
     '<erp-button label="Save"></erp-button>',
-    '<erp-icon-button icon="settings" label="Settings"></erp-icon-button>',
+    `<erp-tooltip text="Settings">
+  <erp-icon-button icon="settings" label="Settings"></erp-icon-button>
+</erp-tooltip>`,
+    `<erp-tooltip text="Add">
+  <erp-fab icon="add" label="Add"></erp-fab>
+</erp-tooltip>`,
+`<erp-tooltip variant="plain" text="Settings">
+  <erp-icon-button icon="settings" label="Settings"></erp-icon-button>
+</erp-tooltip>`,
   ];
   const invalidFixtures = [
     '<button>Save</button>',
     '<input type="submit">',
     '<div role="button">Action</div>',
+    '<erp-icon-button icon="settings" label="Settings"></erp-icon-button>',
+    '<erp-fab icon="add" label="Add"></erp-fab>',
+    `<erp-tooltip text="Actions">
+  <erp-button label="Open"></erp-button>
+  <erp-tooltip-content>
+    <erp-icon-button icon="settings" label="Settings"></erp-icon-button>
+  </erp-tooltip-content>
+</erp-tooltip>`,
+`<erp-tooltip variant="rich" text="Settings">
+  <erp-icon-button icon="settings" label="Settings"></erp-icon-button>
+</erp-tooltip>`,
+`<erp-tooltip interactive text="Add">
+  <erp-fab icon="add" label="Add"></erp-fab>
+</erp-tooltip>`,
+`<erp-tooltip [variant]="tooltipVariant" text="Settings">
+  <erp-icon-button icon="settings" label="Settings"></erp-icon-button>
+</erp-tooltip>`,
   ];
 
   for (const [index, fixture] of validFixtures.entries()) {
@@ -138,6 +404,105 @@ function runSelfTest() {
     }
   }
 
+  const validShowcaseErrors = validateButtonShowcaseSource(
+    '<erp-grid><erp-surface></erp-surface></erp-grid>',
+    'valid showcase fixture',
+  );
+
+  if (validShowcaseErrors.length > 0) {
+    throw new Error(
+      `ErpButton governance checker rejected valid showcase fixture:\n${validShowcaseErrors.join('\n')}`,
+    );
+  }
+
+  const invalidShowcaseErrors = validateButtonShowcaseSource(
+    '<erp-grid><div></div></erp-grid>',
+    'invalid showcase fixture',
+  );
+
+  if (invalidShowcaseErrors.length === 0) {
+    throw new Error('ErpButton governance checker accepted invalid showcase fixture');
+  }
+
+  const validRippleFixture = `
+@mixin base {
+  --honesty-button-ripple-duration: 1100ms;
+}
+
+@mixin ripple-speed-fast {
+  --honesty-button-ripple-duration: 750ms;
+}
+
+@mixin ripple-speed-normal {
+  --honesty-button-ripple-duration: 1100ms;
+}
+
+@mixin ripple-speed-slow {
+  --honesty-button-ripple-duration: 1800ms;
+}
+`;
+  const invalidRippleFixtures = [
+    `
+@mixin base {
+  --honesty-button-ripple-duration: 450ms;
+}
+
+@mixin ripple-speed-fast {
+  --honesty-button-ripple-duration: 300ms;
+}
+
+@mixin ripple-speed-normal {
+  --honesty-button-ripple-duration: 450ms;
+}
+
+@mixin ripple-speed-slow {
+  --honesty-button-ripple-duration: 600ms;
+}
+`,
+    `${validRippleFixture}
+@mixin ripple-speed-slower {
+  --honesty-button-ripple-duration: 750ms;
+}
+
+@mixin ripple-speed-very-slow {
+  --honesty-button-ripple-duration: 900ms;
+}
+
+@mixin ripple-speed-slowest {
+  --honesty-button-ripple-duration: 1050ms;
+}
+`,
+    validRippleFixture.replace(
+      '--honesty-button-ripple-duration: 1100ms;',
+      '--honesty-button-ripple-duration: 900ms;',
+    ),
+  ];
+  const validRippleErrors = validateRippleTokenSource(
+    validRippleFixture,
+    'valid Ripple fixture',
+    '--honesty-button-ripple-duration',
+  );
+
+  if (validRippleErrors.length > 0) {
+    throw new Error(
+      `ErpButton governance checker rejected valid Ripple fixture:\n${validRippleErrors.join('\n')}`,
+    );
+  }
+
+  for (const [index, fixture] of invalidRippleFixtures.entries()) {
+    const rippleErrors = validateRippleTokenSource(
+      fixture,
+      `invalid Ripple fixture ${index + 1}`,
+      '--honesty-button-ripple-duration',
+    );
+
+    if (rippleErrors.length === 0) {
+      throw new Error(
+        `ErpButton governance checker accepted invalid Ripple fixture ${index + 1}`,
+      );
+    }
+  }
+
   console.log('ErpButton governance checker self-test passed.');
 }
 
@@ -154,6 +519,25 @@ const errors = [];
 for (const file of htmlFiles) {
   const source = fs.readFileSync(file, 'utf8');
   errors.push(...validateTemplateSource(source, relative(file)));
+}
+
+const buttonShowcaseSource = fs.readFileSync(BUTTON_SHOWCASE_FILE, 'utf8');
+errors.push(
+  ...validateButtonShowcaseSource(
+    buttonShowcaseSource,
+    relative(BUTTON_SHOWCASE_FILE),
+  ),
+);
+
+for (const {file, property} of RIPPLE_TOKEN_MODULES) {
+  const source = fs.readFileSync(file, 'utf8');
+  errors.push(
+    ...validateRippleTokenSource(
+      source,
+      relative(file),
+      property,
+    ),
+  );
 }
 
 if (errors.length > 0) {

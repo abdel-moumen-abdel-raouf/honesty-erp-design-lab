@@ -13,6 +13,7 @@ import {
 import {ErpExtendedFab} from '../../controls/extended-fab/extended-fab';
 import {ErpFab} from '../../controls/fab/fab';
 import {ErpIconButton} from '../../controls/icon-button/icon-button';
+import {ErpTooltip} from '../../controls/tooltip/tooltip';
 import {ErpContainer} from '../../primitives/container/container';
 import {ErpDivider} from '../../primitives/divider/divider';
 import {ErpGrid} from '../../primitives/grid/grid';
@@ -40,6 +41,7 @@ import {ErpText} from '../../primitives/text/text';
     ErpStack,
     ErpSurface,
     ErpText,
+    ErpTooltip,
   ],
   templateUrl: './button-controls.html',
   styleUrl: './button-controls.scss',

@@ -368,3 +368,13 @@ Rules:
 - Button Family owns ripple/focus/disabled/loading interaction.
 - FAB positioning belongs to parent layout/composite.
 - ButtonGroup/SplitButton/FabMenu belong to the Composite layer.
+- Production Feature/Page uses of `ErpIconButton` and `ErpFab` must be
+  composed inside `ErpTooltip` so icon-only actions have visible explanatory
+  Tooltip evidence.
+- Tooltip text and the control accessible label represent the same semantic
+  action.
+- `ErpIconButton` and `ErpFab` remain internally Tooltip-agnostic; they do
+  not create hidden automatic Tooltips.
+- `ErpButton` and `ErpExtendedFab` have visible labels and do not require a
+  default Tooltip wrapper.
+- Do not nest an automatic/internal Tooltip because Button Family owns none.

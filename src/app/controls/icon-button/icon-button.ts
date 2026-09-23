@@ -54,7 +54,7 @@ export class ErpIconButton {
   readonly disabled = input(false, {transform: booleanAttribute});
   readonly loading = input(false, {transform: booleanAttribute});
   readonly cursor = input<ErpPressableCursor>('pointer');
-  readonly rippleSpeed = input<ErpRippleSpeed>('normal');
+  readonly rippleSpeed = input<ErpRippleSpeed>('slow');
   readonly pressed = output<void>();
 
   private readonly ripple = new PressRippleController();

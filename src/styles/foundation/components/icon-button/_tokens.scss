@@ -28,7 +28,7 @@
   --honesty-icon-button-disabled-opacity: #{opacity.$honesty-ref-opacity-48};
   --honesty-icon-button-ripple-color: currentColor;
   --honesty-icon-button-ripple-opacity: #{opacity.$honesty-ref-opacity-14};
-  --honesty-icon-button-ripple-duration: 450ms;
+  --honesty-icon-button-ripple-duration: 1100ms;
   --honesty-icon-button-ripple-easing: var(--honesty-motion-easing-standard);
   --honesty-icon-button-spinner-size: #{spacing.$honesty-ref-space-20};
   --honesty-icon-button-spinner-border-width: #{borders.$honesty-ref-border-width-2};
@@ -162,15 +162,15 @@
 }
 
 @mixin ripple-speed-fast {
-  --honesty-icon-button-ripple-duration: 300ms;
+  --honesty-icon-button-ripple-duration: 750ms;
 }
 
 @mixin ripple-speed-normal {
-  --honesty-icon-button-ripple-duration: 450ms;
+  --honesty-icon-button-ripple-duration: 1100ms;
 }
 
 @mixin ripple-speed-slow {
-  --honesty-icon-button-ripple-duration: 600ms;
+  --honesty-icon-button-ripple-duration: 1800ms;
 }
 
 @mixin cursor-pointer {

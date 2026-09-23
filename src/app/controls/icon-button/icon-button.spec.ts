@@ -28,9 +28,9 @@ describe('ErpIconButton', () => {
     expect(component.size()).toBe('md');
     expect(component.shape()).toBe('rounded');
     expect(component.cursor()).toBe('pointer');
-    expect(component.rippleSpeed()).toBe('normal');
+    expect(component.rippleSpeed()).toBe('slow');
     expect(host.getAttribute('data-icon-button-cursor')).toBe('pointer');
-    expect(host.getAttribute('data-icon-button-ripple-speed')).toBe('normal');
+    expect(host.getAttribute('data-icon-button-ripple-speed')).toBe('slow');
     expect(host.querySelectorAll('button').length).toBe(1);
     expect(host.querySelector('button')?.getAttribute('aria-label')).toBe('Settings');
     expect(host.querySelector('erp-icon')?.getAttribute('data-icon-name')).toBe('settings');

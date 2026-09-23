@@ -34,7 +34,7 @@
   --honesty-button-disabled-opacity: #{opacity.$honesty-ref-opacity-48};
   --honesty-button-ripple-color: currentColor;
   --honesty-button-ripple-opacity: #{opacity.$honesty-ref-opacity-14};
-  --honesty-button-ripple-duration: 450ms;
+  --honesty-button-ripple-duration: 1100ms;
   --honesty-button-ripple-easing: var(--honesty-motion-easing-standard);
   --honesty-button-spinner-size: #{spacing.$honesty-ref-space-16};
   --honesty-button-spinner-border-width: #{borders.$honesty-ref-border-width-2};
@@ -193,15 +193,15 @@
 }
 
 @mixin ripple-speed-fast {
-  --honesty-button-ripple-duration: 300ms;
+  --honesty-button-ripple-duration: 750ms;
 }
 
 @mixin ripple-speed-normal {
-  --honesty-button-ripple-duration: 450ms;
+  --honesty-button-ripple-duration: 1100ms;
 }
 
 @mixin ripple-speed-slow {
-  --honesty-button-ripple-duration: 600ms;
+  --honesty-button-ripple-duration: 1800ms;
 }
 
 @mixin cursor-pointer {

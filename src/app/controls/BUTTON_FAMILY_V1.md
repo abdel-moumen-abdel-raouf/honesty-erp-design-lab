@@ -13,10 +13,15 @@ Button Family V1 defines exactly four public Basic Controls: `ErpButton`,
 `ErpIconButton`, `ErpFab`, and `ErpExtendedFab`.
 
 All four controls expose `cursor: pointer | default`, default `pointer`, and
-`rippleSpeed: fast | normal | slow`, default `normal`. The controlled ripple
-durations are 300ms, 450ms, and 600ms respectively. Configured cursor behavior
-applies only while ready; loading, disabled, and invalid controls always use the
-default cursor.
+`rippleSpeed: fast | normal | slow`, default `slow`. The Product
+Owner-approved final Ripple timing contract is:
+
+- `fast = 750ms`;
+- `normal = 1100ms`;
+- `slow = 1800ms`.
+
+Configured cursor behavior applies only while ready; loading, disabled, and
+invalid controls always use the default cursor.
 
 ## ErpButton
 
@@ -80,6 +85,10 @@ FAB dimensions are:
 ErpFab is not self-positioning. Placement belongs to its parent layout or
 composite.
 
+Creation-action FAB evidence uses the plain semantic `plus` icon rather than the
+circled `add` glyph because the FAB container already provides the surrounding
+shape.
+
 ## ErpExtendedFab
 
 Selector: `erp-extended-fab`.
@@ -101,6 +110,20 @@ Extended FAB size contracts are:
   2rem icon, 1.5rem label.
 
 The label weight is 500. ErpExtendedFab is not self-positioning.
+
+## Tooltip Integration
+
+ErpIconButton and ErpFab are icon-only controls. They remain internally
+Tooltip-agnostic. Production Feature/Page use composes each control as the
+trigger of a plain ErpTooltip. Tooltip text uses the same semantic user-facing
+label as the control's accessible `label`, while the Button control continues
+to own the native `aria-label`.
+
+ErpButton and ErpExtendedFab already expose visible text and have no mandatory
+default Tooltip wrapper. Button Family controls create no hidden or internal
+automatic Tooltip. Tooltip orchestration remains explicit, avoiding
+double/nested automatic Tooltips. This is the final Button Family integration
+candidate pending visual and freeze review.
 
 ## State and Native Ownership
 

@@ -64,6 +64,28 @@ describe('ButtonControls showcase', () => {
     expect(compiled.querySelectorAll('[data-icon-button-shape-evidence]').length).toBe(6);
   });
 
+  it('evidences external Tooltip composition for IconButton and FAB in both themes', () => {
+    const compiled = createFixture().nativeElement as HTMLElement;
+    const iconButtonTooltips = [
+      ...compiled.querySelectorAll<HTMLElement>('[data-icon-button-tooltip-evidence]'),
+    ];
+    const fabTooltips = [
+      ...compiled.querySelectorAll<HTMLElement>('[data-fab-tooltip-evidence]'),
+    ];
+
+    expect(iconButtonTooltips.length).toBe(2);
+    for (const tooltip of iconButtonTooltips) {
+      expect(tooltip.querySelectorAll('erp-icon-button').length).toBe(1);
+      expect(tooltip.getAttribute('data-tooltip-state')).toBe('ready');
+    }
+
+    expect(fabTooltips.length).toBe(2);
+    for (const tooltip of fabTooltips) {
+      expect(tooltip.querySelectorAll('erp-fab').length).toBe(1);
+      expect(tooltip.getAttribute('data-tooltip-state')).toBe('ready');
+    }
+  });
+
   it('evidences all required FAB sizes and tones', () => {
     const compiled = createFixture().nativeElement as HTMLElement;
 
@@ -105,6 +127,33 @@ describe('ButtonControls showcase', () => {
       expect(controls.length).toBe(2);
       for (const control of controls) {
         expect(control.getAttribute('data-button-ripple-speed')).toBe(speed);
+      }
+    }
+  });
+
+  it('evidences the slow default ripple for all four controls in both themes', () => {
+    const compiled = createFixture().nativeElement as HTMLElement;
+    const controls = [
+      ...compiled.querySelectorAll<HTMLElement>('[data-default-ripple-evidence]'),
+    ];
+
+    expect(controls.length).toBe(8);
+    for (const control of controls) {
+      switch (control.tagName) {
+        case 'ERP-BUTTON':
+          expect(control.getAttribute('data-button-ripple-speed')).toBe('slow');
+          break;
+        case 'ERP-ICON-BUTTON':
+          expect(control.getAttribute('data-icon-button-ripple-speed')).toBe('slow');
+          break;
+        case 'ERP-FAB':
+          expect(control.getAttribute('data-fab-ripple-speed')).toBe('slow');
+          break;
+        case 'ERP-EXTENDED-FAB':
+          expect(control.getAttribute('data-extended-fab-ripple-speed')).toBe('slow');
+          break;
+        default:
+          throw new Error(`Unexpected default ripple evidence host: ${control.tagName}`);
       }
     }
   });
