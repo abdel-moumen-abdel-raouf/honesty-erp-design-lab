@@ -28,6 +28,10 @@ const EXPECTED_RICH_TOKENS = [
   '--honesty-tooltip-padding-block', '--honesty-tooltip-padding-inline',
   '--honesty-tooltip-radius', '--honesty-tooltip-elevation',
 ];
+const EXPECTED_SIDE_REMAPS = [
+  ['--honesty-tooltip-arrow-width', '#{ref.$honesty-ref-space-8}'],
+  ['--honesty-tooltip-arrow-height', '#{ref.$honesty-ref-space-4}'],
+];
 
 function walk(directory) {
   if (!fs.existsSync(directory)) return [];
@@ -68,6 +72,24 @@ function declarations(body) {
   return [...body.matchAll(/(--honesty-tooltip-[a-z0-9-]+)\s*:/g)].map((match) => match[1]);
 }
 
+function remaps(body) {
+  return [...body.matchAll(/(--honesty-tooltip-[a-z0-9-]+)\s*:\s*([^;]+);/g)]
+    .map((match) => [match[1], match[2].trim()]);
+}
+
+function validateSideCaretContract(tokenSource) {
+  const errors = [];
+  const side = tokenSource.match(/@mixin\s+placement-side\s*\{([\s\S]*?)\r?\n\s*\}/)?.[1] ?? '';
+
+  if (JSON.stringify(remaps(side)) !== JSON.stringify(EXPECTED_SIDE_REMAPS)) {
+    errors.push(
+      'Tooltip side placement caret remap must remain exactly width=Reference space-8 and height=Reference space-4',
+    );
+  }
+
+  return errors;
+}
+
 function validateProductionContracts() {
   const errors = [];
   const tokenSource = fs.readFileSync(TOKEN_FILE, 'utf8');
@@ -75,6 +97,7 @@ function validateProductionContracts() {
   const rich = tokenSource.match(/@mixin\s+variant-rich\s*\{([\s\S]*?)\n\}/)?.[1] ?? '';
   if (JSON.stringify(declarations(base)) !== JSON.stringify(EXPECTED_BASE_TOKENS)) errors.push('Tooltip base token slots do not match the exact V1 contract');
   if (JSON.stringify(declarations(rich)) !== JSON.stringify(EXPECTED_RICH_TOKENS)) errors.push('Tooltip rich facet remaps do not match the exact V1 contract');
+  errors.push(...validateSideCaretContract(tokenSource));
   if (!/@use\s+['"]\.\.\/\.\.\/reference\/spacing['"]\s+as\s+ref/.test(tokenSource)) errors.push('Tooltip tokens must import only Reference spacing');
   if (/\$honesty-ref-(?!space-)/.test(tokenSource)) errors.push('Tooltip tokens consume a forbidden Reference category');
 
@@ -104,6 +127,27 @@ function selfTest() {
   ];
   for (const [index, fixture] of fixtures.entries()) {
     if (validate(fixture).length === 0) throw new Error(`Tooltip checker accepted invalid fixture ${index + 1}`);
+  }
+    const validSideCaret = `
+  @mixin placement-side {
+    --honesty-tooltip-arrow-width: #{ref.$honesty-ref-space-8};
+    --honesty-tooltip-arrow-height: #{ref.$honesty-ref-space-4};
+  }
+  `;
+
+  if (validateSideCaretContract(validSideCaret).length !== 0) {
+    throw new Error('Tooltip checker rejected the valid side-caret contract');
+  }
+
+  const invalidSideCaret = `
+  @mixin placement-side {
+    --honesty-tooltip-arrow-width: #{ref.$honesty-ref-space-16};
+    --honesty-tooltip-arrow-height: #{ref.$honesty-ref-space-8};
+  }
+  `;
+
+  if (validateSideCaretContract(invalidSideCaret).length === 0) {
+    throw new Error('Tooltip checker accepted an invalid side-caret contract');
   }
   console.log('ErpTooltip governance checker self-test passed.');
 }

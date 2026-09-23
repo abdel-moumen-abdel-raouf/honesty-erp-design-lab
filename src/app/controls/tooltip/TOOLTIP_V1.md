@@ -73,6 +73,11 @@ side with more room; the surface and arrow are clamped to the visual viewport.
 Positioning reacts to window/visual-viewport resize and scroll and anchor/surface
 resize through one animation-frame-coalesced pipeline. The arrow is private,
 optional, nonsemantic evidence and uses the Tooltip Component Token contract.
+V1 caret geometry is orientation-specific while retaining the same canonical
+arrow slots. Top and bottom use Reference spacing `space-16` as the caret base
+and `space-8` as its depth. Logical start and end remap those same slots to
+`space-8` as the caret base and `space-4` as its depth. These geometry values
+are private implementation contracts and are not consumer styling API.
 
 ## Motion and ownership
 
