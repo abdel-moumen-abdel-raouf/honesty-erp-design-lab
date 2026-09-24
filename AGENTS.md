@@ -378,3 +378,24 @@ Rules:
 - `ErpButton` and `ErpExtendedFab` have visible labels and do not require a
   default Tooltip wrapper.
 - Do not nest an automatic/internal Tooltip because Button Family owns none.
+
+## Production Input Foundation Governance
+
+- `ErpInputBase` is internal and non-renderable; Feature/Page code never authors
+  it directly.
+- `ErpInputBase` owns shared nonvisual input behavior only.
+- It has no selector, template, styles, or Component Tokens.
+- Concrete input controls own their own native semantics, templates, visual
+  reference, and Component Tokens.
+- Cross-component Component Token access remains forbidden.
+- Input Family V1 uses stable `ControlValueAccessor`.
+- Do not use experimental Angular Signal Forms in this Angular 21 repository
+  without an explicit Product Owner architecture reopen.
+- Concrete input controls register themselves as value accessors; the base does
+  not provide `NG_VALUE_ACCESSOR`.
+- Do not introduce a competing generic `value`/`valueChange` API in the base.
+- Do not pre-create secondary input base classes before repeated concrete
+  behavior proves the need.
+- A Basic Control family freeze never closes the Basic Controls layer.
+- Internal derived InputBase state stays protected; only approved inherited inputs form public base API.
+- Concrete controls must not mutate InputBase value/focus state directly; user mutations go through the protected base helpers.
