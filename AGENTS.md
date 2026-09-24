@@ -399,3 +399,53 @@ Rules:
 - A Basic Control family freeze never closes the Basic Controls layer.
 - Internal derived InputBase state stays protected; only approved inherited inputs form public base API.
 - Concrete controls must not mutate InputBase value/focus state directly; user mutations go through the protected base helpers.
+
+## Production Field Family Governance
+
+- `ErpInputBase V1` is frozen with exactly `label`, `name`, `form`, and
+  `disabled` as inherited public inputs.
+- `ErpFieldBase`, `ErpFieldFrame`, and `ErpFieldFeedback` are internal Field
+  Family infrastructure; Feature/Page code never authors them directly.
+- `ErpFieldFeedback` is an in-flow field message surface. It is not Tooltip,
+  Popover, Overlay, a portal client, or an `ErpOverlayManager` client.
+- Field tone is normal brand identity; field status is semantic state. Active
+  status visuals take precedence without replacing the configured tone.
+- Field implementations use genuine semantic labels. Placeholder never replaces
+  the label.
+- The Product Owner explicitly waives an external visual reference for the
+  standard Field Family appearance; only the approved standard contract and
+  frozen Honesty ERP token/theme language may be used.
+- The glass-field visual reference is:
+  `https://cdn.dribbble.com/userupload/45261316/file/82db561b5ced954d82f92fab7b3d05f0.jpg?resize=752x&vertical=center`.
+- `ErpNumberStepper` is the canonical scalar increment/decrement control and is
+  distinct from `ErpRangeSlider`.
+- The NumberStepper visual reference is:
+  `https://cdn.dribbble.com/userupload/28671846/file/original-dcafb540346e260c39fa27f8d9ff90e1.gif`.
+- `ErpRangeSlider` is the canonical two-thumb interval control. Do not create
+  or retain `ErpRangeBox` or `ErpNumberUpDown`.
+- The RangeSlider visual reference is:
+  `https://cdn.dribbble.com/userupload/44001748/file/original-18b5e92b66ba47eabdb4cd8ce03dde2e.png?resize=1024x768&vertical=center`.
+- Date, time, date-time, date-range, color, icon, item, and combo selection
+  controls are overlay-backed Composites even when their public names contain
+  `Box`.
+- File and image pickers remain single-file and single-image Basic Controls in
+  V1; browser-native filesystem selection remains the security boundary.
+- A Field Family or Basic Control checkpoint does not close or freeze the Basic
+  Controls layer.
+
+## Production Overlay Governance
+
+- Blocking modal/drawer selection surfaces use the shared `ErpOverlayManager`,
+  `ErpOverlayRef`, and exactly one application-level `ErpOverlayHost`.
+- Do not add Angular CDK, Angular Material, or a third-party overlay dependency.
+- Blocking overlays own stack order, backdrop, backdrop blur, scroll lock,
+  background inertness, focus trapping/restoration, dismissal policy, nested
+  stacking, reduced motion, responsive sizing, and RTL logical drawer placement.
+- Tooltip continues to use its existing nonblocking anchored-overlay
+  architecture and must not migrate to `ErpOverlayManager`.
+- `ErpFieldFeedback` remains in normal document flow and must never use
+  Tooltip, anchored-overlay, or `ErpOverlayManager`.
+- Feature/Page code must not instantiate internal overlay host/ref
+  infrastructure or recreate custom blocking backdrops and z-index systems.
+- Overlay-backed pickers stage selection and commit only on confirmation;
+  cancel or dismissal does not mutate the CVA value.

@@ -33,19 +33,20 @@
 - `ErpTelBox`
 - `ErpNumberBox`
 - `ErpMoneyBox`
-- `ErpRangeBox`
+- `ErpNumberStepper`
+- `ErpRangeSlider`
 - `ErpCheckBox`
 - `ErpRadioBox`
-- `ErpDateBox`
-- `ErpDateTimeBox`
-- `ErpTimeBox`
 - `ErpFilePicker` (single-file V1)
 - `ErpImagePicker` (single-image V1)
-- `ErpColorPicker`
 
 ### Composite-classified
 
+- `ErpDateBox`
+- `ErpTimeBox`
+- `ErpDateTimeBox`
 - `ErpDateRangeBox`
+- `ErpColorPicker`
 - `ErpIconPicker`
 - `ErpItemPicker`
 - `ErpComboBox`
