@@ -81,7 +81,7 @@ export function validate(files) {
     if (
       !control &&
       !isSpec(normalized) &&
-      /<(?:textarea\b|input\b[^>]*\btype\s*=\s*['"](?:text|password|search|url|tel|checkbox|radio|number|range)['"])/i.test(
+      /<(?:textarea\b|input\b[^>]*\btype\s*=\s*['"](?:text|password|search|url|tel|checkbox|radio|number|range|file)['"])/i.test(
         source,
       )
     ) {
@@ -207,6 +207,9 @@ function runSelfTest() {
     ]),
     new Map([
       ['src/app/showcase/x.html', '<input type="range" />'],
+    ]),
+    new Map([
+      ['src/app/showcase/x.html', '<input type="file" />'],
     ]),
   ];
 

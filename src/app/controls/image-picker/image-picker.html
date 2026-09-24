@@ -1,0 +1,68 @@
+<erp-field-frame
+  [label]="label()"
+  [controlId]="controlId"
+  [tone]="tone()"
+  [status]="status()"
+  [variant]="variant()"
+  [borderMode]="effectiveBorderMode()"
+  [shape]="shape()"
+  [size]="size()"
+  [appearance]="appearance()"
+  [labelMode]="labelMode()"
+  [floatingPosition]="floatingPosition()"
+  [helperText]="helperText()"
+  [helperPosition]="helperPosition()"
+  [leadingIcon]="leadingIcon()"
+  [trailingIcon]="trailingIcon()"
+  [clearable]="clearActionVisible()"
+  [feedbackText]="feedbackText()"
+  [feedbackDismissible]="feedbackDismissible()"
+  [feedbackVisible]="feedbackVisible()"
+  [focused]="fieldFocused()"
+  [hasDisplayValue]="currentValue() !== null"
+  [disabled]="fieldEffectiveDisabled()"
+  [configurationState]="fieldConfigurationState()"
+  (clearRequested)="handleClear(nativeInput)"
+  (feedbackDismissed)="dismissFeedback()"
+>
+  <span field-control class="image-picker__value">
+    <input
+      #nativeInput
+      class="image-picker__native"
+      type="file"
+      [id]="controlId"
+      [attr.name]="name()"
+      [attr.form]="form()"
+      [accept]="accept()"
+      [disabled]="fieldEffectiveDisabled()"
+      [attr.aria-invalid]="status() === 'danger' ? 'true' : null"
+      [attr.aria-describedby]="fieldAriaDescribedBy(controlId)"
+      [attr.aria-errormessage]="fieldAriaErrorMessage(controlId)"
+      (change)="handleSelection($event)"
+      (focus)="handleNativeFocus()"
+      (blur)="handleNativeBlur()"
+    />
+    @if (previewUrl()) {
+      <img
+        class="image-picker__preview"
+        [src]="previewUrl()!"
+        [alt]="label() + ' preview'"
+      />
+    }
+    <erp-text
+      type="text"
+      tone="inherit"
+    >{{ displayText() }}</erp-text>
+  </span>
+
+  <erp-button
+    field-domain-action
+    data-image-picker-browse
+    label="Choose image"
+    variant="ghost"
+    tone="neutral"
+    size="sm"
+    [disabled]="fieldEffectiveDisabled()"
+    (pressed)="openNativePicker(nativeInput)"
+  />
+</erp-field-frame>

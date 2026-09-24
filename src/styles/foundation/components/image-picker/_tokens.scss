@@ -1,0 +1,11 @@
+@mixin base {
+  --honesty-image-picker-value-color: var(--honesty-color-text-primary);
+  --honesty-image-picker-placeholder-color: var(--honesty-color-text-muted);
+  --honesty-image-picker-gap: var(--honesty-space-inline-tight);
+  --honesty-image-picker-preview-size: 3rem;
+  --honesty-image-picker-preview-radius: var(--honesty-radius-control);
+  --honesty-image-picker-preview-border-width: var(--honesty-border-width-default);
+  --honesty-image-picker-preview-border-style: var(--honesty-border-style-default);
+  --honesty-image-picker-preview-border-color: var(--honesty-border-subtle);
+  --honesty-image-picker-preview-bg: var(--honesty-color-surface-default);
+}

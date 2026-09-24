@@ -24,7 +24,7 @@ describe('InputControls showcase', () => {
     expect(create().componentInstance).toBeTruthy();
   });
 
-  it('renders seven review groups with equivalent Light and Dark contexts', () => {
+  it('renders eight review groups with equivalent Light and Dark contexts', () => {
     const root = create().nativeElement as HTMLElement;
     const groups = [...root.querySelectorAll('[data-review-group]')];
     expect(groups.map((group) => group.getAttribute('data-review-group'))).toEqual([
@@ -35,6 +35,7 @@ describe('InputControls showcase', () => {
       'behavior-direction',
       'boolean-choice',
       'numeric-family',
+      'file-image-basics',
     ]);
     for (const group of groups) {
       expect(
@@ -68,6 +69,16 @@ describe('InputControls showcase', () => {
       expect(group?.querySelectorAll(selector).length).toBe(2);
     }
     expect(group?.querySelectorAll('[data-range-thumb]').length).toBe(4);
+  });
+
+  it('contains single-file and single-image picker evidence in both themes', () => {
+    const root = create().nativeElement as HTMLElement;
+    const group = root.querySelector('[data-review-group="file-image-basics"]');
+
+    expect(group?.querySelectorAll('erp-file-picker').length).toBe(2);
+    expect(group?.querySelectorAll('erp-image-picker').length).toBe(2);
+    expect(group?.querySelectorAll('input[type="file"]').length).toBe(4);
+    expect(group?.querySelectorAll('input[multiple]').length).toBe(0);
   });
 
   it('contains every text-entry control and complete variant/size evidence', () => {

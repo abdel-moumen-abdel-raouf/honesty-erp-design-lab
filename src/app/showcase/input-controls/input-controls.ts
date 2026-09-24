@@ -1,6 +1,8 @@
 import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {ErpCheckBox} from '../../controls/check-box/check-box';
+import {ErpFilePicker} from '../../controls/file-picker/file-picker';
+import {ErpImagePicker} from '../../controls/image-picker/image-picker';
 import {ErpMoneyBox} from '../../controls/money-box/money-box';
 import {ErpNumberBox} from '../../controls/number-box/number-box';
 import {ErpNumberStepper} from '../../controls/number-stepper/number-stepper';
@@ -27,7 +29,9 @@ import {ErpText} from '../../primitives/text/text';
     ErpContainer,
     ErpCheckBox,
     ErpDivider,
+    ErpFilePicker,
     ErpGrid,
+    ErpImagePicker,
     ErpMoneyBox,
     ErpNumberBox,
     ErpNumberStepper,

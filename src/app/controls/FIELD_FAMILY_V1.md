@@ -427,6 +427,21 @@ Its invariant is `min <= lower <= upper <= max`; thumbs do not cross in V1.
 - NumberStepper is not a range selector. RangeSlider is not a scalar stepper.
 - No `ErpRangeBox` or `ErpNumberUpDown` exists.
 
+## File / Image Basics
+
+- `ErpFilePicker` is a single-file `File | null` ControlValueAccessor. Its
+  optional `accept` input defaults to null and `clearable` defaults to true.
+- `ErpImagePicker` is a single-image `File | null` ControlValueAccessor. Its
+  `accept` input defaults to `image/*` and `clearable` defaults to true.
+- Both controls retain a genuine browser-native file input as the filesystem
+  security boundary. V1 has no multi-file queue or multi-image gallery.
+- A non-null programmatic CVA write may update controlled display state but
+  cannot populate the native file input. No implementation attempts to bypass
+  this browser security rule.
+- Clearing commits null and clears the native input value.
+- ImagePicker creates a local Object URL preview for a valid image and revokes
+  the URL on replacement, clearing, and destruction.
+
 Do not create or retain `ErpRangeBox` or `ErpNumberUpDown`.
 
 Boolean/choice Basic Controls are `ErpCheckBox` and `ErpRadioBox`.

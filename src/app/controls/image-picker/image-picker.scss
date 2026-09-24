@@ -1,0 +1,43 @@
+@use '../../../styles/foundation/components/image-picker' as tokens;
+
+:host {
+  @include tokens.base;
+  display: block;
+  min-width: 0;
+}
+
+.image-picker__value {
+  display: flex;
+  align-items: center;
+  gap: var(--honesty-image-picker-gap);
+  min-width: 0;
+  color: var(--honesty-image-picker-placeholder-color);
+}
+
+:host([data-image-picker-selected='true']) .image-picker__value {
+  color: var(--honesty-image-picker-value-color);
+}
+
+.image-picker__native {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  border: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.image-picker__preview {
+  flex: none;
+  inline-size: var(--honesty-image-picker-preview-size);
+  block-size: var(--honesty-image-picker-preview-size);
+  border: var(--honesty-image-picker-preview-border-width)
+    var(--honesty-image-picker-preview-border-style)
+    var(--honesty-image-picker-preview-border-color);
+  border-radius: var(--honesty-image-picker-preview-radius);
+  background: var(--honesty-image-picker-preview-bg);
+  object-fit: cover;
+}
