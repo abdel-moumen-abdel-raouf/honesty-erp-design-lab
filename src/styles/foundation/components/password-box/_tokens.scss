@@ -1,0 +1,5 @@
+@mixin base {
+  --honesty-password-box-value-color: var(--honesty-color-text-primary);
+  --honesty-password-box-placeholder-color: var(--honesty-color-text-muted);
+  --honesty-password-box-caret-color: var(--honesty-color-action-focus-ring);
+}

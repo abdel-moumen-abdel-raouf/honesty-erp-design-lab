@@ -24,6 +24,7 @@ import {
   ErpFieldVariant,
 } from '../field-contracts';
 import {ErpFieldFeedback} from './field-feedback';
+import {ErpInputConfigurationState} from '../input-contracts';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -52,6 +53,8 @@ import {ErpFieldFeedback} from './field-feedback';
     '[attr.data-field-focused]': 'focused()',
     '[attr.data-field-floating]': 'floatingLabelActive()',
     '[attr.data-field-disabled]': 'disabled()',
+    '[attr.data-field-configuration-state]': 'configurationState()',
+    '[attr.data-field-multiline]': 'multiline()',
   },
 })
 export class ErpFieldFrame {
@@ -82,6 +85,9 @@ export class ErpFieldFrame {
   readonly hasDisplayValue = input(false, {transform: booleanAttribute});
   readonly placeholder = input<string | null>(null);
   readonly disabled = input(false, {transform: booleanAttribute});
+  readonly configurationState =
+    input<ErpInputConfigurationState>('ready');
+  readonly multiline = input(false, {transform: booleanAttribute});
 
   readonly clearRequested = output<void>();
   readonly feedbackDismissed = output<void>();

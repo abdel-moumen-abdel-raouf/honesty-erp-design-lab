@@ -22,6 +22,7 @@
   --honesty-field-frame-focus-start: var(--honesty-color-action-focus-ring);
   --honesty-field-frame-focus-end: var(--honesty-color-brand-primary-content);
   --honesty-field-frame-backdrop-blur: 0;
+  --honesty-field-frame-glass-surface-mix: 100%;
 }
 
 @mixin variant-solid {
@@ -182,4 +183,5 @@
   --honesty-field-frame-bg: var(--honesty-color-surface-elevated);
   --honesty-field-frame-backdrop-blur:
     var(--honesty-effect-backdrop-blur-glass);
+  --honesty-field-frame-glass-surface-mix: 72%;
 }

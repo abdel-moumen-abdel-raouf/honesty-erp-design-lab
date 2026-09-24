@@ -1,0 +1,5 @@
+@mixin base {
+  --honesty-url-box-value-color: var(--honesty-color-text-primary);
+  --honesty-url-box-placeholder-color: var(--honesty-color-text-muted);
+  --honesty-url-box-caret-color: var(--honesty-color-action-focus-ring);
+}

@@ -1,0 +1,24 @@
+@use '../../../styles/foundation/components/tel-box' as tokens;
+
+:host {
+  @include tokens.base;
+  display: block;
+  min-width: 0;
+}
+
+.tel-box__native {
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--honesty-tel-box-value-color);
+  caret-color: var(--honesty-tel-box-caret-color);
+  font: inherit;
+}
+
+.tel-box__native::placeholder {
+  color: var(--honesty-tel-box-placeholder-color);
+}

@@ -1,0 +1,24 @@
+@use '../../../styles/foundation/components/url-box' as tokens;
+
+:host {
+  @include tokens.base;
+  display: block;
+  min-width: 0;
+}
+
+.url-box__native {
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--honesty-url-box-value-color);
+  caret-color: var(--honesty-url-box-caret-color);
+  font: inherit;
+}
+
+.url-box__native::placeholder {
+  color: var(--honesty-url-box-placeholder-color);
+}

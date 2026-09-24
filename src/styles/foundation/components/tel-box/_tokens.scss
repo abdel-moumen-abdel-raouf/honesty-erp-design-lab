@@ -1,0 +1,5 @@
+@mixin base {
+  --honesty-tel-box-value-color: var(--honesty-color-text-primary);
+  --honesty-tel-box-placeholder-color: var(--honesty-color-text-muted);
+  --honesty-tel-box-caret-color: var(--honesty-color-action-focus-ring);
+}

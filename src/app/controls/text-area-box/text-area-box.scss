@@ -1,0 +1,36 @@
+@use '../../../styles/foundation/components/text-area-box' as tokens;
+
+:host {
+  @include tokens.base;
+  display: block;
+  min-width: 0;
+}
+
+.text-area-box__native {
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--honesty-text-area-box-value-color);
+  caret-color: var(--honesty-text-area-box-caret-color);
+  font: inherit;
+}
+
+.text-area-box__native::placeholder {
+  color: var(--honesty-text-area-box-placeholder-color);
+}
+
+:host([data-text-area-resize='vertical']) .text-area-box__native {
+  resize: vertical;
+}
+
+:host([data-text-area-resize='both']) .text-area-box__native {
+  resize: both;
+}
+
+:host([data-text-area-resize='none']) .text-area-box__native {
+  resize: none;
+}

@@ -1,0 +1,206 @@
+<erp-container class="input-showcase" width="wide" data-theme="light">
+  <erp-stack class="showcase-header" gap="tight">
+    <erp-text type="heading-1">Text Entry Family V1</erp-text>
+    <erp-text type="paragraph" tone="secondary">
+      دليل مراجعة حقول الإدخال القياسية والزجاجية في السياقين الفاتح والداكن.
+    </erp-text>
+  </erp-stack>
+
+  <erp-section class="review-group" data-review-group="family">
+    <erp-text type="heading-2">Control family</erp-text>
+    <erp-divider />
+    <erp-grid [columns]="2" gap="md" responsive="auto">
+      @for (theme of themes; track theme) {
+        <erp-surface
+          data-theme-context
+          [attr.data-theme]="theme"
+          border="subtle"
+        >
+          <erp-stack>
+            <erp-text-box label="Text" placeholder="Enter text" />
+            <erp-text-area-box label="Text area" placeholder="Enter notes" />
+            <erp-password-box label="Password" placeholder="Enter password" />
+            <erp-search-box label="Search" placeholder="Search records" />
+            <erp-url-box label="URL" placeholder="https://example.com" />
+            <erp-tel-box label="Telephone" placeholder="+20" />
+          </erp-stack>
+        </erp-surface>
+      }
+    </erp-grid>
+  </erp-section>
+
+  <erp-section class="review-group" data-review-group="variants-appearance">
+    <erp-text type="heading-2">Variants / Appearance</erp-text>
+    <erp-divider />
+    <erp-grid [columns]="2" gap="md" responsive="auto">
+      @for (theme of themes; track theme) {
+        <erp-surface
+          data-theme-context
+          [attr.data-theme]="theme"
+          border="subtle"
+        >
+          <erp-stack>
+            @for (variant of variants; track variant) {
+              <erp-text-box
+                data-variant-evidence
+                [label]="'Variant ' + variant"
+                [variant]="variant"
+              />
+            }
+            <erp-text-box
+              data-glass-evidence
+              label="Glass outline"
+              appearance="glass"
+              variant="outline"
+              placeholder="Glass placeholder"
+            />
+          </erp-stack>
+        </erp-surface>
+      }
+    </erp-grid>
+  </erp-section>
+
+  <erp-section class="review-group" data-review-group="sizes">
+    <erp-text type="heading-2">Seven sizes</erp-text>
+    <erp-divider />
+    <erp-grid [columns]="2" gap="md" responsive="auto">
+      @for (theme of themes; track theme) {
+        <erp-surface
+          data-theme-context
+          [attr.data-theme]="theme"
+          border="subtle"
+        >
+          <erp-stack>
+            @for (size of sizes; track size) {
+              <erp-text-box
+                data-size-evidence
+                [label]="'Size ' + size"
+                [size]="size"
+              />
+            }
+          </erp-stack>
+        </erp-surface>
+      }
+    </erp-grid>
+  </erp-section>
+
+  <erp-section class="review-group" data-review-group="matrix">
+    <erp-text type="heading-2">Field matrix</erp-text>
+    <erp-divider />
+    <erp-grid [columns]="2" gap="md" responsive="auto">
+      @for (theme of themes; track theme) {
+        <erp-surface
+          data-theme-context
+          [attr.data-theme]="theme"
+          border="subtle"
+        >
+          <erp-grid [columns]="2" gap="sm" responsive="auto">
+            <erp-text-box label="Dashed outline" borderMode="dashed" />
+            <erp-text-box
+              label="Dashed subtle"
+              variant="subtle"
+              borderMode="dashed"
+            />
+            <erp-text-box label="Underline" borderMode="underline" />
+            <erp-text-box label="Rounded" shape="rounded" />
+            <erp-text-box label="Pill" shape="pill" />
+            <erp-text-box label="Primary" tone="primary" />
+            <erp-text-box label="Secondary" tone="secondary" />
+            <erp-text-box label="Accent" tone="accent" />
+            <erp-text-box label="Success" status="success" />
+            <erp-text-box label="Warning" status="warning" />
+            <erp-text-box label="Danger" status="danger" />
+            <erp-text-box label="Info" status="info" />
+            <erp-text-box
+              label="Floating top"
+              labelMode="floating"
+              placeholder="Top"
+            />
+            <erp-text-box
+              label="Floating bottom"
+              labelMode="floating"
+              floatingPosition="bottom"
+              placeholder="Bottom"
+            />
+            <erp-text-box
+              label="Helper above"
+              helperText="Above guidance"
+              helperPosition="above"
+            />
+            <erp-text-box
+              label="Helper below"
+              helperText="Below guidance"
+              helperPosition="below"
+            />
+            <erp-text-box
+              label="Icons"
+              leadingIcon="user"
+              trailingIcon="info"
+            />
+            <erp-text-box
+              data-invalid-combination="glass-ghost"
+              label="Invalid glass ghost"
+              appearance="glass"
+              variant="ghost"
+            />
+            <erp-text-area-box
+              data-invalid-combination="textarea-pill"
+              label="Invalid textarea pill"
+              shape="pill"
+            />
+          </erp-grid>
+        </erp-surface>
+      }
+    </erp-grid>
+  </erp-section>
+
+  <erp-section class="review-group" data-review-group="behavior-direction">
+    <erp-text type="heading-2">Behavior / Direction</erp-text>
+    <erp-divider />
+    <erp-grid [columns]="2" gap="md" responsive="auto">
+      @for (theme of themes; track theme) {
+        <erp-surface
+          data-theme-context
+          [attr.data-theme]="theme"
+          border="subtle"
+        >
+          <erp-stack>
+            <erp-password-box
+              data-password-evidence
+              label="Password reveal"
+            />
+            <erp-text-box
+              data-clear-evidence
+              label="Clear action"
+              clearable
+              [ngModel]="clearValue()"
+              (ngModelChange)="clearValue.set($event)"
+            />
+            <erp-text-box
+              data-feedback-evidence
+              label="Feedback"
+              status="danger"
+              feedbackText="The entered value is invalid."
+              feedbackDismissible
+              helperText="Helper remains after dismissal."
+            />
+            <erp-text-box label="Disabled" disabled />
+            <erp-text-box label="Readonly" readonly />
+            <erp-text-box
+              data-gradient-direction-evidence="ltr"
+              dir="ltr"
+              label="LTR focus gradient"
+              tone="primary"
+            />
+            <erp-text-box
+              data-gradient-direction-evidence="rtl"
+              dir="rtl"
+              label="RTL focus gradient"
+              tone="primary"
+            />
+          </erp-stack>
+        </erp-surface>
+      }
+    </erp-grid>
+  </erp-section>
+</erp-container>

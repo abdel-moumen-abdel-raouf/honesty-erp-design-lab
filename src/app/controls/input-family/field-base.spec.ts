@@ -24,6 +24,18 @@ class TestFieldBase extends ErpFieldBase<string> {
     return this.feedbackVisible();
   }
 
+  get fieldConfigurationStateForTest() {
+    return this.fieldConfigurationState();
+  }
+
+  get fieldEffectiveDisabledForTest(): boolean {
+    return this.fieldEffectiveDisabled();
+  }
+
+  get effectiveBorderModeForTest() {
+    return this.effectiveBorderMode();
+  }
+
   dismissFeedbackForTest(): boolean {
     return this.dismissFeedback();
   }
@@ -112,5 +124,34 @@ describe('ErpFieldBase', () => {
     fixture.componentRef.setInput('status', 'danger');
     fixture.detectChanges();
     expect(control.feedbackVisibleForTest).toBe(true);
+  });
+
+  it('propagates compatibility failures into deterministic configuration-invalid state', () => {
+    const fixture = createFixture();
+    const control = fixture.componentInstance;
+
+    fixture.componentRef.setInput('variant', 'text');
+    fixture.componentRef.setInput('borderMode', 'solid');
+    fixture.detectChanges();
+    expect(control.effectiveBorderModeForTest).toBe('underline');
+    expect(control.fieldConfigurationStateForTest).toBe('ready');
+
+    fixture.componentRef.setInput('appearance', 'glass');
+    fixture.detectChanges();
+    expect(control.fieldConfigurationStateForTest).toBe('invalid');
+    expect(control.fieldEffectiveDisabledForTest).toBe(true);
+  });
+
+  it('keeps helper and floating positions independently configurable', () => {
+    const fixture = createFixture();
+    const control = fixture.componentInstance;
+
+    fixture.componentRef.setInput('helperPosition', 'above');
+    fixture.componentRef.setInput('floatingPosition', 'bottom');
+    fixture.detectChanges();
+
+    expect(control.helperPosition()).toBe('above');
+    expect(control.floatingPosition()).toBe('bottom');
+    expect(control.fieldConfigurationStateForTest).toBe('ready');
   });
 });

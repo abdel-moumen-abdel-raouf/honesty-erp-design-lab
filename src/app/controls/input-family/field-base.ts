@@ -21,6 +21,8 @@ import {
   ErpFieldVariant,
 } from './field-contracts';
 import {ErpInputBase} from './input-base';
+import {ErpInputConfigurationState} from './input-contracts';
+import {resolveFieldCompatibility} from './internal/field-compatibility';
 
 @Directive()
 export abstract class ErpFieldBase<TValue> extends ErpInputBase<TValue> {
@@ -59,6 +61,34 @@ export abstract class ErpFieldBase<TValue> extends ErpInputBase<TValue> {
       this.trimmedFeedbackText().length > 0 &&
       !this.feedbackDismissed(),
   );
+  protected readonly fieldCompatibility = computed(() =>
+    resolveFieldCompatibility({
+      appearance: this.appearance(),
+      borderMode: this.borderMode(),
+      shape: this.shape(),
+      variant: this.variant(),
+      multiline: this.isMultilineField(),
+      clearable: this.clearable(),
+      canRepresentEmpty: this.canRepresentEmptyValue(),
+    }),
+  );
+  protected readonly fieldConfigurationState =
+    computed<ErpInputConfigurationState>(() =>
+      this.configurationState() === 'ready'
+        ? this.fieldCompatibility().configurationState
+        : 'invalid',
+    );
+  protected readonly fieldEffectiveDisabled = computed(
+    () =>
+      this.effectiveDisabled() ||
+      this.fieldConfigurationState() === 'invalid',
+  );
+  protected readonly fieldFocused = computed(
+    () => !this.fieldEffectiveDisabled() && this.focused(),
+  );
+  protected readonly effectiveBorderMode = computed(
+    () => this.fieldCompatibility().effectiveBorderMode,
+  );
 
   // eslint-disable-next-line @angular-eslint/prefer-inject -- The constructor receives a generic initial value, not an Angular dependency.
   protected constructor(initialValue: TValue) {
@@ -78,5 +108,38 @@ export abstract class ErpFieldBase<TValue> extends ErpInputBase<TValue> {
 
     this.feedbackDismissedState.set(true);
     return true;
+  }
+
+  protected isMultilineField(): boolean {
+    return false;
+  }
+
+  protected canRepresentEmptyValue(): boolean {
+    return true;
+  }
+
+  protected helperIdFor(controlId: string): string {
+    return `${controlId}-helper`;
+  }
+
+  protected feedbackIdFor(controlId: string): string {
+    return `${controlId}-feedback`;
+  }
+
+  protected fieldAriaDescribedBy(controlId: string): string | null {
+    const relationships = [
+      this.trimmedHelperText().length > 0
+        ? this.helperIdFor(controlId)
+        : null,
+      this.feedbackVisible() ? this.feedbackIdFor(controlId) : null,
+    ].filter((value): value is string => value !== null);
+
+    return relationships.length > 0 ? relationships.join(' ') : null;
+  }
+
+  protected fieldAriaErrorMessage(controlId: string): string | null {
+    return this.status() === 'danger' && this.feedbackVisible()
+      ? this.feedbackIdFor(controlId)
+      : null;
   }
 }

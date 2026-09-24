@@ -42,6 +42,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'controls/inputs',
+    loadComponent: () =>
+      import('./showcase/input-controls/input-controls').then(
+        (m) => m.InputControls
+      ),
+  },
+  {
     path: 'foundation/colors',
     loadComponent: () =>
       import('./foundation/colors/colors').then((m) => m.Colors),

@@ -1,0 +1,5 @@
+@mixin base {
+  --honesty-text-area-box-value-color: var(--honesty-color-text-primary);
+  --honesty-text-area-box-placeholder-color: var(--honesty-color-text-muted);
+  --honesty-text-area-box-caret-color: var(--honesty-color-action-focus-ring);
+}

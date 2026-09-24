@@ -32,8 +32,23 @@ describe('ErpFieldFrame', () => {
     expect(host.getAttribute('data-field-appearance')).toBe('standard');
     expect(host.getAttribute('data-field-label-mode')).toBe('static');
     expect(host.getAttribute('data-field-helper-position')).toBe('below');
+    expect(host.getAttribute('data-field-configuration-state')).toBe('ready');
+    expect(host.getAttribute('data-field-multiline')).toBe('false');
     expect(label?.getAttribute('for')).toBe('name-control');
     expect(label?.textContent?.trim()).toBe('Name');
+  });
+
+  it('exposes deterministic invalid and multiline state without changing field facets', () => {
+    const fixture = createFixture();
+    const host = fixture.nativeElement as HTMLElement;
+
+    fixture.componentRef.setInput('configurationState', 'invalid');
+    fixture.componentRef.setInput('multiline', true);
+    fixture.detectChanges();
+
+    expect(host.getAttribute('data-field-configuration-state')).toBe('invalid');
+    expect(host.getAttribute('data-field-multiline')).toBe('true');
+    expect(host.getAttribute('data-field-variant')).toBe('outline');
   });
 
   it('updates every visual contract group through stable host evidence', () => {

@@ -118,6 +118,31 @@ It does not own placeholder, readonly, min/max/step, maxlength, autocomplete,
 inputMode, or parser/formatter domain logic. Those remain concrete-control
 capabilities.
 
+## Compatibility Matrix
+
+Field combinations resolve deterministically before a concrete control is
+interactive:
+
+| Contract | V1 rule |
+|---|---|
+| text variant | Always resolves the effective border mode to underline |
+| glass appearance | Valid only with solid, outline, or subtle |
+| glass + ghost/text | Configuration-invalid |
+| dashed border | Valid only with outline or subtle |
+| underline border | Valid with every variant |
+| pill shape | Valid for single-line text entry; invalid for ErpTextAreaBox |
+| helper/floating positions | Independently configurable |
+| clear | Valid only when the concrete control can represent an empty value |
+
+Invalid combinations produce deterministic configuration-invalid state and
+effectively disable user commits. They are not silently remapped, except for
+the explicit text-variant rule that resolves its effective border to
+underline.
+
+Domain actions remain distinct from configured trailingIcon and clear.
+Password reveal is a domain action; the logical end order remains domain
+action, trailing icon/adornment, then clear.
+
 ## Tone and Status
 
 Tone and status are separate:
@@ -211,6 +236,10 @@ Tone mapping:
 When status is active, gradient start uses the matching feedback border/icon
 role and gradient end uses the matching feedback text/content role.
 
+Gradient color order follows logical inline direction. LTR and RTL reverse the
+physical start/end color order for both perimeter and underline focus
+gradients without adding a public direction API.
+
 ### Shape
 
 - default → `--honesty-radius-control`
@@ -256,8 +285,9 @@ The authoritative Product Owner reference is:
 
 The reference asset is not downloaded, committed, or redistributed.
 
-`appearance='glass'` is orthogonal to variant, status, tone, size, and shape.
-It uses:
+`appearance='glass'` composes with status, tone, size, shape, and the valid
+solid, outline, or subtle variants defined by the compatibility matrix. It
+uses:
 
 - Semantic surface variables through `color-mix`, never raw colors;
 - a translucent elevated/default surface;
@@ -269,6 +299,32 @@ It uses:
 
 When backdrop filtering is unsupported, a readable translucent or opaque
 Semantic surface preserves legibility. Feedback never uses glass.
+
+The glass surface mix is owned by
+--honesty-field-frame-glass-surface-mix; the glass facet resolves it to 72%.
+Production FieldFrame SCSS contains no tunable mix literal.
+
+## Text Entry Family
+
+- ErpTextBox uses native text semantics and supports placeholder, readonly,
+  required, min/max length, pattern, autocomplete, input mode, spellcheck, and
+  ERP clear behavior.
+- ErpTextAreaBox uses native textarea semantics, defaults to four rows and
+  vertical resize, and shows a counter only when maxLength exists and
+  showCounter=true.
+- ErpPasswordBox is hidden by default. Its Tooltip-wrapped eye/eye-off domain
+  action changes only native input type and never the stored value.
+- ErpSearchBox uses native search semantics, defaults autocomplete to off,
+  defaults its leading semantic icon to search, and uses the ERP clear action.
+  It has no search-submit output in V1.
+- ErpUrlBox uses native url semantics with url autocomplete and input mode.
+- ErpTelBox uses native tel semantics with tel autocomplete and input mode.
+  It performs no formatting or masking.
+
+All six controls register themselves as stable ControlValueAccessor providers.
+They keep labels semantic, compose helper and visible feedback relationships,
+set native aria-invalid for danger status, and preserve invalid state when
+feedback is dismissed.
 
 ## Placeholder
 

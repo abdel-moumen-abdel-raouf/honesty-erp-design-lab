@@ -37,7 +37,7 @@ export function validate(files) {
     const token = normalized.startsWith(TOKEN_ROOT);
 
     if (
-      !internal &&
+      !control &&
       !isSpec(normalized) &&
       /<erp-field-(?:frame|feedback)\b/.test(source)
     ) {
@@ -77,6 +77,65 @@ export function validate(files) {
         `${normalized}: Tooltip must not be used as field validation feedback`,
       );
     }
+
+    if (
+      !control &&
+      !isSpec(normalized) &&
+      /<(?:textarea\b|input\b[^>]*\btype\s*=\s*['"](?:text|password|search|url|tel)['"])/i.test(
+        source,
+      )
+    ) {
+      errors.push(
+        normalized +
+          ': native text-entry authoring must use the matching ERP control',
+      );
+    }
+  }
+
+  return errors;
+}
+
+export function validateFieldRenderingContracts(tokenSource, styleSource) {
+  const errors = [];
+  const declarations = [
+    ...tokenSource.matchAll(
+      /--honesty-field-frame-glass-surface-mix:\s*([^;]+);/g,
+    ),
+  ].map((match) => match[1].trim());
+
+  if (
+    declarations.length !== 2 ||
+    declarations[0] !== '100%' ||
+    declarations[1] !== '72%'
+  ) {
+    errors.push(
+      'FieldFrame glass surface mix must declare base 100% and glass 72% exactly',
+    );
+  }
+
+  if (
+    !styleSource.includes(
+      'var(--honesty-field-frame-glass-surface-mix)',
+    ) ||
+    styleSource.includes('72%')
+  ) {
+    errors.push(
+      'FieldFrame implementation must consume the glass surface mix token without a 72% literal',
+    );
+  }
+
+  if (
+    !styleSource.includes(":host-context([dir='rtl'])") ||
+    !styleSource.includes(
+      '--_honesty-field-frame-focus-inline-start',
+    ) ||
+    !styleSource.includes(
+      '--_honesty-field-frame-focus-inline-end',
+    )
+  ) {
+    errors.push(
+      'FieldFrame focus gradients must expose deterministic RTL-aware color ordering',
+    );
   }
 
   return errors;
@@ -95,6 +154,10 @@ function runSelfTest() {
     [
       'src/styles/foundation/components/field-frame/_tokens.scss',
       '--honesty-field-frame-fg: var(--honesty-color-text-primary);',
+    ],
+    [
+      'src/app/controls/text-box/text-box.html',
+      '<input type="text" />',
     ],
   ]);
 
@@ -127,12 +190,75 @@ function runSelfTest() {
         '<erp-tooltip data-validation-feedback="true" />',
       ],
     ]),
+    new Map([
+      ['src/app/showcase/x.html', '<input type="text" />'],
+    ]),
+    new Map([
+      ['src/app/showcase/x.html', '<textarea></textarea>'],
+    ]),
   ];
 
   for (const [index, fixture] of invalidFixtures.entries()) {
     if (validate(fixture).length === 0) {
       throw new Error(
         `ErpField checker accepted invalid fixture ${index + 1}`,
+      );
+    }
+  }
+
+  const validTokenSource = [
+    '@mixin base {',
+    '  --honesty-field-frame-glass-surface-mix: 100%;',
+    '}',
+    '@mixin appearance-glass {',
+    '  --honesty-field-frame-glass-surface-mix: 72%;',
+    '}',
+  ].join('\n');
+  const validStyleSource = [
+    ':host {',
+    '  --_honesty-field-frame-focus-inline-start: var(--honesty-field-frame-focus-start);',
+    '  --_honesty-field-frame-focus-inline-end: var(--honesty-field-frame-focus-end);',
+    '}',
+    ":host-context([dir='rtl']) {",
+    '  --_honesty-field-frame-focus-inline-start: var(--honesty-field-frame-focus-end);',
+    '}',
+    '.glass {',
+    '  background: color-mix(in srgb, red var(--honesty-field-frame-glass-surface-mix), transparent);',
+    '}',
+  ].join('\n');
+
+  if (
+    validateFieldRenderingContracts(
+      validTokenSource,
+      validStyleSource,
+    ).length > 0
+  ) {
+    throw new Error(
+      'ErpField checker rejected valid rendering contracts',
+    );
+  }
+
+  for (const [index, fixture] of [
+    [
+      validTokenSource.replace('72%', '70%'),
+      validStyleSource,
+    ],
+    [
+      validTokenSource,
+      validStyleSource.replace(
+        'var(--honesty-field-frame-glass-surface-mix)',
+        '72%',
+      ),
+    ],
+    [
+      validTokenSource,
+      validStyleSource.replace(":host-context([dir='rtl'])", ':host'),
+    ],
+  ].entries()) {
+    if (validateFieldRenderingContracts(...fixture).length === 0) {
+      throw new Error(
+        'ErpField checker accepted invalid rendering fixture ' +
+          (index + 1),
       );
     }
   }
@@ -158,6 +284,34 @@ const files = new Map(
 );
 
 const errors = validate(files);
+errors.push(
+  ...validateFieldRenderingContracts(
+    fs.readFileSync(
+      path.join(
+        ROOT,
+        'src',
+        'styles',
+        'foundation',
+        'components',
+        'field-frame',
+        '_tokens.scss',
+      ),
+      'utf8',
+    ),
+    fs.readFileSync(
+      path.join(
+        ROOT,
+        'src',
+        'app',
+        'controls',
+        'input-family',
+        'internal',
+        'field-frame.scss',
+      ),
+      'utf8',
+    ),
+  ),
+);
 
 if (errors.length > 0) {
   console.error('ErpField governance check failed:\n');

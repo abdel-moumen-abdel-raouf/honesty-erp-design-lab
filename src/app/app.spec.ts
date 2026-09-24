@@ -71,6 +71,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     const iconPrimitivesLink = compiled.querySelector('#nav-link-icon-primitives');
     const buttonControlsLink = compiled.querySelector('#nav-link-button-controls');
     const tooltipControlsLink = compiled.querySelector('#nav-link-tooltip-controls');
+    const inputControlsLink = compiled.querySelector('#nav-link-input-controls');
     const colorsLink = compiled.querySelector('#nav-link-colors');
     const themesLink = compiled.querySelector('#nav-link-themes');
     const statusHuesLink = compiled.querySelector('#nav-link-status-hues');
@@ -87,6 +88,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(iconPrimitivesLink).toBeTruthy();
     expect(buttonControlsLink).toBeTruthy();
     expect(tooltipControlsLink).toBeTruthy();
+    expect(inputControlsLink).toBeTruthy();
     expect(colorsLink).toBeTruthy();
     expect(themesLink).toBeTruthy();
     expect(statusHuesLink).toBeTruthy();
@@ -104,6 +106,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(iconPrimitivesLink?.textContent?.trim()).toBe('الأيقونات الإنتاجية');
     expect(buttonControlsLink?.textContent?.trim()).toBe('الأزرار الإنتاجية');
     expect(tooltipControlsLink?.textContent?.trim()).toBe('التلميحات الإنتاجية');
+    expect(inputControlsLink?.textContent?.trim()).toBe('حقول الإدخال الإنتاجية');
     expect(colorsLink?.textContent?.trim()).toBe('الألوان المرجعية');
     expect(themesLink?.textContent?.trim()).toBe('السمات الفاتحة والداكنة');
     expect(statusHuesLink?.textContent?.trim()).toBe('صبغات الحالات');
@@ -131,6 +134,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(linkPaths).toContain('/primitives/icons');
     expect(linkPaths).toContain('/controls/buttons');
     expect(linkPaths).toContain('/controls/tooltips');
+    expect(linkPaths).toContain('/controls/inputs');
     expect(linkPaths).toContain('/foundation/colors');
     expect(linkPaths).toContain('/foundation/themes');
     expect(linkPaths).toContain('/foundation/colors/status-hues');
@@ -150,6 +154,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
       'primitives/icons',
       'controls/buttons',
       'controls/tooltips',
+      'controls/inputs',
       'foundation/colors',
       'foundation/colors/status-hues',
       'foundation/themes',
