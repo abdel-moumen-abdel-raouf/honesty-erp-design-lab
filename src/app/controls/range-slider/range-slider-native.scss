@@ -1,0 +1,63 @@
+.range-slider__native {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: var(--honesty-range-slider-thumb-size);
+  padding: 0;
+  margin: 0;
+  appearance: none;
+  background: transparent;
+  direction: ltr;
+  pointer-events: none;
+}
+
+.range-slider__native::-webkit-slider-runnable-track {
+  block-size: var(--honesty-range-slider-rail-height);
+  background: transparent;
+}
+
+.range-slider__native::-webkit-slider-thumb {
+  inline-size: var(--honesty-range-slider-thumb-size);
+  block-size: var(--honesty-range-slider-thumb-size);
+  margin-block-start: calc(
+    (var(--honesty-range-slider-rail-height) -
+      var(--honesty-range-slider-thumb-size)) / 2
+  );
+  border: var(--honesty-range-slider-thumb-border-width)
+    var(--honesty-range-slider-thumb-border-style)
+    var(--honesty-range-slider-thumb-border-color);
+  border-radius: var(--honesty-range-slider-thumb-radius);
+  appearance: none;
+  background: var(--honesty-range-slider-thumb-color);
+  pointer-events: auto;
+}
+
+.range-slider__native::-moz-range-track {
+  block-size: var(--honesty-range-slider-rail-height);
+  background: transparent;
+}
+
+.range-slider__native::-moz-range-thumb {
+  inline-size: var(--honesty-range-slider-thumb-size);
+  block-size: var(--honesty-range-slider-thumb-size);
+  border: var(--honesty-range-slider-thumb-border-width)
+    var(--honesty-range-slider-thumb-border-style)
+    var(--honesty-range-slider-thumb-border-color);
+  border-radius: var(--honesty-range-slider-thumb-radius);
+  background: var(--honesty-range-slider-thumb-color);
+  pointer-events: auto;
+}
+
+.range-slider__native:focus-visible::-webkit-slider-thumb {
+  outline: var(--honesty-range-slider-focus-width)
+    var(--honesty-range-slider-focus-style)
+    var(--honesty-range-slider-focus-color);
+  outline-offset: var(--honesty-range-slider-focus-offset);
+}
+
+.range-slider__native:focus-visible::-moz-range-thumb {
+  outline: var(--honesty-range-slider-focus-width)
+    var(--honesty-range-slider-focus-style)
+    var(--honesty-range-slider-focus-color);
+  outline-offset: var(--honesty-range-slider-focus-offset);
+}

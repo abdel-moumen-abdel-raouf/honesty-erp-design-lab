@@ -1,0 +1,96 @@
+<fieldset
+  class="range-slider"
+  [disabled]="rangeEffectiveDisabled()"
+  [attr.aria-invalid]="status() === 'danger' ? 'true' : null"
+  [attr.aria-describedby]="trimmedHelperText() ? helperId : null"
+>
+  <legend class="range-slider__legend">
+    <erp-text type="label">{{ label() }}</erp-text>
+  </legend>
+
+  @if (helperPosition() === 'above' && trimmedHelperText()) {
+    <erp-text
+      type="caption"
+      tone="muted"
+      [id]="helperId"
+    >{{ trimmedHelperText() }}</erp-text>
+  }
+
+  <div
+    class="range-slider__surface"
+    [style.--_honesty-range-slider-lower]="lowerPosition() + '%'"
+    [style.--_honesty-range-slider-upper]="upperPosition() + '%'"
+  >
+    <div class="range-slider__values" aria-hidden="true">
+      <erp-text type="data" [value]="currentValue().lower.toString()">
+        {{ currentValue().lower }}
+      </erp-text>
+      <erp-text type="text">–</erp-text>
+      <erp-text type="data" [value]="currentValue().upper.toString()">
+        {{ currentValue().upper }}
+      </erp-text>
+    </div>
+
+    <div class="range-slider__inputs">
+      <span class="range-slider__rail" aria-hidden="true"></span>
+      <input
+        data-range-thumb="lower"
+        class="range-slider__native"
+        type="range"
+        [id]="lowerId"
+        [attr.name]="name()"
+        [attr.form]="form()"
+        [min]="min()"
+        [max]="currentValue().upper"
+        [step]="step()"
+        [value]="currentValue().lower"
+        [disabled]="rangeEffectiveDisabled()"
+        [attr.aria-label]="label() + ' lower'"
+        (input)="handleInput('lower', $event)"
+        (keydown)="handleKeyDown('lower', $event)"
+        (focus)="handleNativeFocus()"
+        (blur)="handleNativeBlur()"
+      />
+      <input
+        data-range-thumb="upper"
+        class="range-slider__native"
+        type="range"
+        [id]="upperId"
+        [attr.name]="name()"
+        [attr.form]="form()"
+        [min]="currentValue().lower"
+        [max]="max()"
+        [step]="step()"
+        [value]="currentValue().upper"
+        [disabled]="rangeEffectiveDisabled()"
+        [attr.aria-label]="label() + ' upper'"
+        (input)="handleInput('upper', $event)"
+        (keydown)="handleKeyDown('upper', $event)"
+        (focus)="handleNativeFocus()"
+        (blur)="handleNativeBlur()"
+      />
+    </div>
+
+    @if (clearable()) {
+      <erp-tooltip text="Reset range">
+        <erp-icon-button
+          icon="close"
+          label="Reset range"
+          variant="ghost"
+          tone="neutral"
+          size="sm"
+          [disabled]="rangeEffectiveDisabled()"
+          (pressed)="handleClear()"
+        />
+      </erp-tooltip>
+    }
+  </div>
+
+  @if (helperPosition() === 'below' && trimmedHelperText()) {
+    <erp-text
+      type="caption"
+      tone="muted"
+      [id]="helperId"
+    >{{ trimmedHelperText() }}</erp-text>
+  }
+</fieldset>

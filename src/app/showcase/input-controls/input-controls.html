@@ -236,4 +236,55 @@
       }
     </erp-grid>
   </erp-section>
+
+  <erp-section class="review-group" data-review-group="numeric-family">
+    <erp-text type="heading-2">Numeric family</erp-text>
+    <erp-divider />
+    <erp-grid [columns]="2" gap="md" responsive="auto">
+      @for (theme of themes; track theme) {
+        <erp-surface
+          data-theme-context
+          [attr.data-theme]="theme"
+          border="subtle"
+        >
+          <erp-stack>
+            <erp-number-box
+              data-number-box-evidence
+              label="Number"
+              placeholder="0"
+              [min]="0"
+              [max]="100"
+              [ngModel]="numberValue()"
+              (ngModelChange)="numberValue.set($event)"
+            />
+            <erp-money-box
+              data-money-box-evidence
+              label="Money"
+              currency="EGP"
+              locale="ar-EG"
+              [ngModel]="moneyValue()"
+              (ngModelChange)="moneyValue.set($event)"
+            />
+            <erp-number-stepper
+              data-number-stepper-evidence
+              label="Number stepper"
+              [min]="0"
+              [max]="10"
+              [ngModel]="stepperValue()"
+              (ngModelChange)="stepperValue.set($event)"
+            />
+            <erp-range-slider
+              data-range-slider-evidence
+              label="Range slider"
+              helperText="ArrowRight increases and ArrowLeft decreases in RTL."
+              clearable
+              [defaultRange]="{lower: 20, upper: 80}"
+              [ngModel]="rangeValue()"
+              (ngModelChange)="rangeValue.set($event)"
+            />
+          </erp-stack>
+        </erp-surface>
+      }
+    </erp-grid>
+  </erp-section>
 </erp-container>

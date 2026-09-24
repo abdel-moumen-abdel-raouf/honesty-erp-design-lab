@@ -1,0 +1,72 @@
+@mixin base {
+  --honesty-range-slider-label-color: var(--honesty-color-text-primary);
+  --honesty-range-slider-helper-color: var(--honesty-color-text-muted);
+  --honesty-range-slider-rail-color: var(--honesty-border-subtle);
+  --honesty-range-slider-range-color: var(--honesty-color-brand-primary-content);
+  --honesty-range-slider-thumb-color: var(--honesty-color-surface-elevated);
+  --honesty-range-slider-thumb-border-color: var(--honesty-color-brand-primary-content);
+  --honesty-range-slider-focus-color: var(--honesty-color-action-focus-ring);
+  --honesty-range-slider-surface-bg: transparent;
+  --honesty-range-slider-surface-border-color: transparent;
+  --honesty-range-slider-surface-border-width: 0;
+  --honesty-range-slider-surface-border-style: var(--honesty-border-style-default);
+  --honesty-range-slider-surface-radius: var(--honesty-radius-control);
+  --honesty-range-slider-backdrop-blur: 0;
+  --honesty-range-slider-surface-mix: 100%;
+  --honesty-range-slider-rail-height: 0.25rem;
+  --honesty-range-slider-rail-radius: var(--honesty-radius-full);
+  --honesty-range-slider-thumb-size: 1rem;
+  --honesty-range-slider-thumb-border-width: var(--honesty-border-width-default);
+  --honesty-range-slider-thumb-border-style: var(--honesty-border-style-default);
+  --honesty-range-slider-thumb-radius: var(--honesty-radius-full);
+  --honesty-range-slider-focus-width: var(--honesty-focus-ring-width);
+  --honesty-range-slider-focus-style: var(--honesty-focus-ring-style);
+  --honesty-range-slider-focus-offset: var(--honesty-focus-ring-offset);
+  --honesty-range-slider-padding: 0;
+  --honesty-range-slider-stack-gap: var(--honesty-space-stack-tight);
+}
+
+@mixin tone-neutral { --honesty-range-slider-range-color: var(--honesty-color-action-focus-ring); }
+@mixin tone-primary { --honesty-range-slider-range-color: var(--honesty-color-brand-primary-content); }
+@mixin tone-secondary { --honesty-range-slider-range-color: var(--honesty-color-brand-secondary-content); }
+@mixin tone-accent { --honesty-range-slider-range-color: var(--honesty-color-brand-accent-content); }
+@mixin status-none { --honesty-range-slider-thumb-border-color: var(--honesty-range-slider-range-color); }
+@mixin status-success {
+  --honesty-range-slider-range-color: var(--honesty-color-feedback-success-icon);
+  --honesty-range-slider-thumb-border-color: var(--honesty-color-feedback-success-icon);
+}
+@mixin status-warning {
+  --honesty-range-slider-range-color: var(--honesty-color-feedback-warning-icon);
+  --honesty-range-slider-thumb-border-color: var(--honesty-color-feedback-warning-icon);
+}
+@mixin status-danger {
+  --honesty-range-slider-range-color: var(--honesty-color-feedback-danger-icon);
+  --honesty-range-slider-thumb-border-color: var(--honesty-color-feedback-danger-icon);
+}
+@mixin status-info {
+  --honesty-range-slider-range-color: var(--honesty-color-feedback-info-icon);
+  --honesty-range-slider-thumb-border-color: var(--honesty-color-feedback-info-icon);
+}
+@mixin size-sm { --honesty-range-slider-thumb-size: 1rem; }
+@mixin size-md { --honesty-range-slider-thumb-size: 1rem; }
+@mixin size-lg { --honesty-range-slider-thumb-size: 1.25rem; }
+@mixin size-xl { --honesty-range-slider-thumb-size: 1.25rem; }
+@mixin size-xxl { --honesty-range-slider-thumb-size: 1.5rem; }
+@mixin size-xxxl { --honesty-range-slider-thumb-size: 1.75rem; }
+@mixin size-xxxxl { --honesty-range-slider-thumb-size: 2rem; }
+@mixin appearance-standard {
+  --honesty-range-slider-surface-bg: transparent;
+  --honesty-range-slider-surface-border-color: transparent;
+  --honesty-range-slider-surface-border-width: 0;
+  --honesty-range-slider-backdrop-blur: 0;
+  --honesty-range-slider-surface-mix: 100%;
+  --honesty-range-slider-padding: 0;
+}
+@mixin appearance-glass {
+  --honesty-range-slider-surface-bg: var(--honesty-color-surface-elevated);
+  --honesty-range-slider-surface-border-color: var(--honesty-border-subtle);
+  --honesty-range-slider-surface-border-width: var(--honesty-border-width-default);
+  --honesty-range-slider-backdrop-blur: var(--honesty-effect-backdrop-blur-glass);
+  --honesty-range-slider-surface-mix: 72%;
+  --honesty-range-slider-padding: var(--honesty-space-inset-tight);
+}

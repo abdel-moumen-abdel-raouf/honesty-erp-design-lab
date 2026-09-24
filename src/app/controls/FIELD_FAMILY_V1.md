@@ -406,6 +406,27 @@ Its invariant is `min <= lower <= upper <= max`; thumbs do not cross in V1.
 
 `https://cdn.dribbble.com/userupload/44001748/file/original-18b5e92b66ba47eabdb4cd8ce03dde2e.png?resize=1024x768&vertical=center`
 
+## Numeric Family
+
+- `ErpNumberBox` stores `number | null`, supports direct native numeric entry,
+  defaults `step` to 1 and `allowEmpty` to true, accepts nullable min/max, and
+  clamps normalized commits to configured bounds.
+- `ErpMoneyBox` stores `number | null`; required currency and optional locale
+  are formatting metadata. Focused editing uses normalized numeric text, while
+  the unfocused display uses `Intl.NumberFormat`. It has no currency picker.
+- `ErpNumberStepper` stores one `number | null` scalar. It combines direct
+  numeric entry with labeled ERP decrement/increment actions, nullable bounds,
+  a default step of 1, ArrowUp/ArrowDown, and Home/End when bounds exist.
+- `ErpRangeSlider` extends `ErpInputBase<ErpRangeSliderValue>` directly and
+  owns two stable native range thumbs over one rail. Its normalized invariant
+  is `min <= lower <= upper <= max`; thumbs do not cross.
+- RangeSlider defaults to `{lower: min, upper: max}`. Clear/reset uses a valid
+  configured `defaultRange`, otherwise the full configured range.
+- RangeSlider ArrowRight increases and ArrowLeft decreases numeric value in
+  both LTR and RTL. Its visual rail mirrors logically in RTL.
+- NumberStepper is not a range selector. RangeSlider is not a scalar stepper.
+- No `ErpRangeBox` or `ErpNumberUpDown` exists.
+
 Do not create or retain `ErpRangeBox` or `ErpNumberUpDown`.
 
 Boolean/choice Basic Controls are `ErpCheckBox` and `ErpRadioBox`.

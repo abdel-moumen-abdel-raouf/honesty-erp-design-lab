@@ -1,0 +1,20 @@
+@use '../../../styles/foundation/components/range-slider' as tokens;
+
+:host([data-range-slider-tone='neutral']) { @include tokens.tone-neutral; }
+:host([data-range-slider-tone='primary']) { @include tokens.tone-primary; }
+:host([data-range-slider-tone='secondary']) { @include tokens.tone-secondary; }
+:host([data-range-slider-tone='accent']) { @include tokens.tone-accent; }
+:host([data-range-slider-status='none']) { @include tokens.status-none; }
+:host([data-range-slider-status='success']) { @include tokens.status-success; }
+:host([data-range-slider-status='warning']) { @include tokens.status-warning; }
+:host([data-range-slider-status='danger']) { @include tokens.status-danger; }
+:host([data-range-slider-status='info']) { @include tokens.status-info; }
+:host([data-range-slider-size='sm']) { @include tokens.size-sm; }
+:host([data-range-slider-size='md']) { @include tokens.size-md; }
+:host([data-range-slider-size='lg']) { @include tokens.size-lg; }
+:host([data-range-slider-size='xl']) { @include tokens.size-xl; }
+:host([data-range-slider-size='xxl']) { @include tokens.size-xxl; }
+:host([data-range-slider-size='xxxl']) { @include tokens.size-xxxl; }
+:host([data-range-slider-size='xxxxl']) { @include tokens.size-xxxxl; }
+:host([data-range-slider-appearance='standard']) { @include tokens.appearance-standard; }
+:host([data-range-slider-appearance='glass']) { @include tokens.appearance-glass; }

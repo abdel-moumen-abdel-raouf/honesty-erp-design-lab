@@ -24,7 +24,7 @@ describe('InputControls showcase', () => {
     expect(create().componentInstance).toBeTruthy();
   });
 
-  it('renders six review groups with equivalent Light and Dark contexts', () => {
+  it('renders seven review groups with equivalent Light and Dark contexts', () => {
     const root = create().nativeElement as HTMLElement;
     const groups = [...root.querySelectorAll('[data-review-group]')];
     expect(groups.map((group) => group.getAttribute('data-review-group'))).toEqual([
@@ -34,6 +34,7 @@ describe('InputControls showcase', () => {
       'matrix',
       'behavior-direction',
       'boolean-choice',
+      'numeric-family',
     ]);
     for (const group of groups) {
       expect(
@@ -52,6 +53,21 @@ describe('InputControls showcase', () => {
     expect(group?.querySelectorAll('erp-radio-box').length).toBe(6);
     expect(group?.querySelectorAll('[data-check-box-evidence]').length).toBe(2);
     expect(group?.querySelectorAll('[data-radio-box-evidence]').length).toBe(2);
+  });
+
+  it('contains all four numeric controls in both theme contexts', () => {
+    const root = create().nativeElement as HTMLElement;
+    const group = root.querySelector('[data-review-group="numeric-family"]');
+
+    for (const selector of [
+      'erp-number-box',
+      'erp-money-box',
+      'erp-number-stepper',
+      'erp-range-slider',
+    ]) {
+      expect(group?.querySelectorAll(selector).length).toBe(2);
+    }
+    expect(group?.querySelectorAll('[data-range-thumb]').length).toBe(4);
   });
 
   it('contains every text-entry control and complete variant/size evidence', () => {

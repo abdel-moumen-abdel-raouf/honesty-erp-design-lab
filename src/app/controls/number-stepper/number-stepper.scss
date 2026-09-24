@@ -1,0 +1,32 @@
+@use '../../../styles/foundation/components/number-stepper' as tokens;
+
+:host {
+  @include tokens.base;
+  display: block;
+  min-width: 0;
+}
+
+.number-stepper__native {
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  appearance: textfield;
+  background: transparent;
+  color: var(--honesty-number-stepper-value-color);
+  caret-color: var(--honesty-number-stepper-caret-color);
+  font: inherit;
+  text-align: center;
+}
+
+.number-stepper__native::-webkit-inner-spin-button,
+.number-stepper__native::-webkit-outer-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+.number-stepper__native::placeholder {
+  color: var(--honesty-number-stepper-placeholder-color);
+}

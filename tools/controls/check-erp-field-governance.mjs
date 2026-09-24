@@ -81,7 +81,7 @@ export function validate(files) {
     if (
       !control &&
       !isSpec(normalized) &&
-      /<(?:textarea\b|input\b[^>]*\btype\s*=\s*['"](?:text|password|search|url|tel|checkbox|radio)['"])/i.test(
+      /<(?:textarea\b|input\b[^>]*\btype\s*=\s*['"](?:text|password|search|url|tel|checkbox|radio|number|range)['"])/i.test(
         source,
       )
     ) {
@@ -201,6 +201,12 @@ function runSelfTest() {
     ]),
     new Map([
       ['src/app/showcase/x.html', '<input type="radio" />'],
+    ]),
+    new Map([
+      ['src/app/showcase/x.html', '<input type="number" />'],
+    ]),
+    new Map([
+      ['src/app/showcase/x.html', '<input type="range" />'],
     ]),
   ];
 
