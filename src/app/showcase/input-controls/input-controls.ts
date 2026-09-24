@@ -1,6 +1,8 @@
 import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {ErpCheckBox} from '../../controls/check-box/check-box';
 import {ErpPasswordBox} from '../../controls/password-box/password-box';
+import {ErpRadioBox} from '../../controls/radio-box/radio-box';
 import {ErpSearchBox} from '../../controls/search-box/search-box';
 import {ErpTelBox} from '../../controls/tel-box/tel-box';
 import {ErpTextAreaBox} from '../../controls/text-area-box/text-area-box';
@@ -19,9 +21,11 @@ import {ErpText} from '../../primitives/text/text';
   selector: 'app-input-controls',
   imports: [
     ErpContainer,
+    ErpCheckBox,
     ErpDivider,
     ErpGrid,
     ErpPasswordBox,
+    ErpRadioBox,
     ErpSearchBox,
     ErpSection,
     ErpStack,
@@ -41,4 +45,6 @@ export class InputControls {
   readonly sizes = ['sm', 'md', 'lg', 'xl', 'xxl', 'xxxl', 'xxxxl'] as const;
   readonly variants = ['solid', 'outline', 'subtle', 'ghost', 'text'] as const;
   readonly clearValue = signal('قيمة قابلة للمسح');
+  readonly checkValue = signal(false);
+  readonly radioValue = signal(false);
 }

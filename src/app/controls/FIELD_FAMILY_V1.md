@@ -326,6 +326,23 @@ They keep labels semantic, compose helper and visible feedback relationships,
 set native aria-invalid for danger status, and preserve invalid state when
 feedback is dismissed.
 
+## Boolean / Choice Basics
+
+- `ErpCheckBox` is a Basic boolean ControlValueAccessor with a required label,
+  authoritative native checkbox semantics, checked state from the current CVA
+  value, inherited disabled behavior, and `indeterminate = false`.
+- `ErpRadioBox` is a Basic boolean ControlValueAccessor leaf with a required
+  label, authoritative native radio semantics, checked state from the current
+  CVA value, and inherited disabled behavior.
+- Native Space-key behavior remains authoritative for both controls.
+- User activation changes `ErpRadioBox` from false to true. A checked radio
+  does not toggle itself from true to false through user activation; form
+  writes may still clear its boolean value.
+- Both controls expose the existing Field tone, status, and size vocabularies
+  where visually applicable. They own no FieldFrame chrome.
+- `ErpRadioGroup` remains Composite-classified and is not part of the Basic
+  boolean/choice implementation.
+
 ## Placeholder
 
 Placeholder is not added to frozen `ErpInputBase`.

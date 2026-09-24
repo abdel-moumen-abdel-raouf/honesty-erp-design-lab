@@ -24,7 +24,7 @@ describe('InputControls showcase', () => {
     expect(create().componentInstance).toBeTruthy();
   });
 
-  it('renders five review groups with equivalent Light and Dark contexts', () => {
+  it('renders six review groups with equivalent Light and Dark contexts', () => {
     const root = create().nativeElement as HTMLElement;
     const groups = [...root.querySelectorAll('[data-review-group]')];
     expect(groups.map((group) => group.getAttribute('data-review-group'))).toEqual([
@@ -33,6 +33,7 @@ describe('InputControls showcase', () => {
       'sizes',
       'matrix',
       'behavior-direction',
+      'boolean-choice',
     ]);
     for (const group of groups) {
       expect(
@@ -41,6 +42,16 @@ describe('InputControls showcase', () => {
         ),
       ).toEqual(['light', 'dark']);
     }
+  });
+
+  it('contains checkbox and radio basics in both theme contexts', () => {
+    const root = create().nativeElement as HTMLElement;
+    const group = root.querySelector('[data-review-group="boolean-choice"]');
+
+    expect(group?.querySelectorAll('erp-check-box').length).toBe(6);
+    expect(group?.querySelectorAll('erp-radio-box').length).toBe(6);
+    expect(group?.querySelectorAll('[data-check-box-evidence]').length).toBe(2);
+    expect(group?.querySelectorAll('[data-radio-box-evidence]').length).toBe(2);
   });
 
   it('contains every text-entry control and complete variant/size evidence', () => {

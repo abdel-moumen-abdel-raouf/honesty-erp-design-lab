@@ -203,4 +203,37 @@
       }
     </erp-grid>
   </erp-section>
+
+  <erp-section class="review-group" data-review-group="boolean-choice">
+    <erp-text type="heading-2">Boolean / Choice basics</erp-text>
+    <erp-divider />
+    <erp-grid [columns]="2" gap="md" responsive="auto">
+      @for (theme of themes; track theme) {
+        <erp-surface
+          data-theme-context
+          [attr.data-theme]="theme"
+          border="subtle"
+        >
+          <erp-stack>
+            <erp-check-box
+              data-check-box-evidence
+              label="Checkbox"
+              [ngModel]="checkValue()"
+              (ngModelChange)="checkValue.set($event)"
+            />
+            <erp-check-box label="Indeterminate checkbox" indeterminate />
+            <erp-check-box label="Disabled checkbox" disabled />
+            <erp-radio-box
+              data-radio-box-evidence
+              label="Radio choice"
+              [ngModel]="radioValue()"
+              (ngModelChange)="radioValue.set($event)"
+            />
+            <erp-radio-box label="Selected radio" [ngModel]="true" />
+            <erp-radio-box label="Disabled radio" disabled />
+          </erp-stack>
+        </erp-surface>
+      }
+    </erp-grid>
+  </erp-section>
 </erp-container>

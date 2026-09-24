@@ -1,0 +1,23 @@
+@mixin base {
+  --honesty-radio-box-accent-color: var(--honesty-color-brand-primary-content);
+  --honesty-radio-box-label-color: var(--honesty-color-text-primary);
+  --honesty-radio-box-gap: var(--honesty-space-inline-tight);
+  --honesty-radio-box-control-size: 1rem;
+}
+
+@mixin tone-neutral { --honesty-radio-box-accent-color: var(--honesty-color-action-focus-ring); }
+@mixin tone-primary { --honesty-radio-box-accent-color: var(--honesty-color-brand-primary-content); }
+@mixin tone-secondary { --honesty-radio-box-accent-color: var(--honesty-color-brand-secondary-content); }
+@mixin tone-accent { --honesty-radio-box-accent-color: var(--honesty-color-brand-accent-content); }
+@mixin status-none { --honesty-radio-box-label-color: var(--honesty-color-text-primary); }
+@mixin status-success { --honesty-radio-box-accent-color: var(--honesty-color-feedback-success-icon); }
+@mixin status-warning { --honesty-radio-box-accent-color: var(--honesty-color-feedback-warning-icon); }
+@mixin status-danger { --honesty-radio-box-accent-color: var(--honesty-color-feedback-danger-icon); }
+@mixin status-info { --honesty-radio-box-accent-color: var(--honesty-color-feedback-info-icon); }
+@mixin size-sm { --honesty-radio-box-control-size: 1rem; }
+@mixin size-md { --honesty-radio-box-control-size: 1rem; }
+@mixin size-lg { --honesty-radio-box-control-size: 1.25rem; }
+@mixin size-xl { --honesty-radio-box-control-size: 1.25rem; }
+@mixin size-xxl { --honesty-radio-box-control-size: 1.5rem; }
+@mixin size-xxxl { --honesty-radio-box-control-size: 1.75rem; }
+@mixin size-xxxxl { --honesty-radio-box-control-size: 2rem; }

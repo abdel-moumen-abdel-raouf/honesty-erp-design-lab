@@ -1,0 +1,46 @@
+@use '../../../styles/foundation/components/radio-box' as tokens;
+
+:host {
+  @include tokens.base;
+  display: inline-block;
+  min-width: 0;
+}
+
+.radio-box {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--honesty-radio-box-gap);
+  min-width: 0;
+  color: var(--honesty-radio-box-label-color);
+  cursor: pointer;
+}
+
+.radio-box__native {
+  flex: none;
+  inline-size: var(--honesty-radio-box-control-size);
+  block-size: var(--honesty-radio-box-control-size);
+  margin: 0;
+  accent-color: var(--honesty-radio-box-accent-color);
+}
+
+:host([data-radio-box-state='disabled']) .radio-box,
+:host([data-radio-box-state='invalid']) .radio-box {
+  cursor: not-allowed;
+}
+
+:host([data-radio-box-tone='neutral']) { @include tokens.tone-neutral; }
+:host([data-radio-box-tone='primary']) { @include tokens.tone-primary; }
+:host([data-radio-box-tone='secondary']) { @include tokens.tone-secondary; }
+:host([data-radio-box-tone='accent']) { @include tokens.tone-accent; }
+:host([data-radio-box-status='none']) { @include tokens.status-none; }
+:host([data-radio-box-status='success']) { @include tokens.status-success; }
+:host([data-radio-box-status='warning']) { @include tokens.status-warning; }
+:host([data-radio-box-status='danger']) { @include tokens.status-danger; }
+:host([data-radio-box-status='info']) { @include tokens.status-info; }
+:host([data-radio-box-size='sm']) { @include tokens.size-sm; }
+:host([data-radio-box-size='md']) { @include tokens.size-md; }
+:host([data-radio-box-size='lg']) { @include tokens.size-lg; }
+:host([data-radio-box-size='xl']) { @include tokens.size-xl; }
+:host([data-radio-box-size='xxl']) { @include tokens.size-xxl; }
+:host([data-radio-box-size='xxxl']) { @include tokens.size-xxxl; }
+:host([data-radio-box-size='xxxxl']) { @include tokens.size-xxxxl; }

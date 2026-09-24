@@ -1,0 +1,46 @@
+@use '../../../styles/foundation/components/check-box' as tokens;
+
+:host {
+  @include tokens.base;
+  display: inline-block;
+  min-width: 0;
+}
+
+.check-box {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--honesty-check-box-gap);
+  min-width: 0;
+  color: var(--honesty-check-box-label-color);
+  cursor: pointer;
+}
+
+.check-box__native {
+  flex: none;
+  inline-size: var(--honesty-check-box-control-size);
+  block-size: var(--honesty-check-box-control-size);
+  margin: 0;
+  accent-color: var(--honesty-check-box-accent-color);
+}
+
+:host([data-check-box-state='disabled']) .check-box,
+:host([data-check-box-state='invalid']) .check-box {
+  cursor: not-allowed;
+}
+
+:host([data-check-box-tone='neutral']) { @include tokens.tone-neutral; }
+:host([data-check-box-tone='primary']) { @include tokens.tone-primary; }
+:host([data-check-box-tone='secondary']) { @include tokens.tone-secondary; }
+:host([data-check-box-tone='accent']) { @include tokens.tone-accent; }
+:host([data-check-box-status='none']) { @include tokens.status-none; }
+:host([data-check-box-status='success']) { @include tokens.status-success; }
+:host([data-check-box-status='warning']) { @include tokens.status-warning; }
+:host([data-check-box-status='danger']) { @include tokens.status-danger; }
+:host([data-check-box-status='info']) { @include tokens.status-info; }
+:host([data-check-box-size='sm']) { @include tokens.size-sm; }
+:host([data-check-box-size='md']) { @include tokens.size-md; }
+:host([data-check-box-size='lg']) { @include tokens.size-lg; }
+:host([data-check-box-size='xl']) { @include tokens.size-xl; }
+:host([data-check-box-size='xxl']) { @include tokens.size-xxl; }
+:host([data-check-box-size='xxxl']) { @include tokens.size-xxxl; }
+:host([data-check-box-size='xxxxl']) { @include tokens.size-xxxxl; }

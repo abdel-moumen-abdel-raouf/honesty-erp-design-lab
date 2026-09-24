@@ -81,13 +81,13 @@ export function validate(files) {
     if (
       !control &&
       !isSpec(normalized) &&
-      /<(?:textarea\b|input\b[^>]*\btype\s*=\s*['"](?:text|password|search|url|tel)['"])/i.test(
+      /<(?:textarea\b|input\b[^>]*\btype\s*=\s*['"](?:text|password|search|url|tel|checkbox|radio)['"])/i.test(
         source,
       )
     ) {
       errors.push(
         normalized +
-          ': native text-entry authoring must use the matching ERP control',
+          ': native input authoring must use the matching ERP control',
       );
     }
   }
@@ -195,6 +195,12 @@ function runSelfTest() {
     ]),
     new Map([
       ['src/app/showcase/x.html', '<textarea></textarea>'],
+    ]),
+    new Map([
+      ['src/app/showcase/x.html', '<input type="checkbox" />'],
+    ]),
+    new Map([
+      ['src/app/showcase/x.html', '<input type="radio" />'],
     ]),
   ];
 

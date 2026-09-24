@@ -1,0 +1,16 @@
+<label class="check-box" [for]="controlId">
+  <input
+    class="check-box__native"
+    type="checkbox"
+    [id]="controlId"
+    [attr.name]="name()"
+    [attr.form]="form()"
+    [checked]="currentValue()"
+    [indeterminate]="indeterminate()"
+    [disabled]="effectiveDisabled()"
+    (change)="handleChange($event)"
+    (focus)="handleNativeFocus()"
+    (blur)="handleNativeBlur()"
+  />
+  <erp-text type="label">{{ label() }}</erp-text>
+</label>

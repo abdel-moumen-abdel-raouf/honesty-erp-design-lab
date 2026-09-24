@@ -1,0 +1,23 @@
+@mixin base {
+  --honesty-check-box-accent-color: var(--honesty-color-brand-primary-content);
+  --honesty-check-box-label-color: var(--honesty-color-text-primary);
+  --honesty-check-box-gap: var(--honesty-space-inline-tight);
+  --honesty-check-box-control-size: 1rem;
+}
+
+@mixin tone-neutral { --honesty-check-box-accent-color: var(--honesty-color-action-focus-ring); }
+@mixin tone-primary { --honesty-check-box-accent-color: var(--honesty-color-brand-primary-content); }
+@mixin tone-secondary { --honesty-check-box-accent-color: var(--honesty-color-brand-secondary-content); }
+@mixin tone-accent { --honesty-check-box-accent-color: var(--honesty-color-brand-accent-content); }
+@mixin status-none { --honesty-check-box-label-color: var(--honesty-color-text-primary); }
+@mixin status-success { --honesty-check-box-accent-color: var(--honesty-color-feedback-success-icon); }
+@mixin status-warning { --honesty-check-box-accent-color: var(--honesty-color-feedback-warning-icon); }
+@mixin status-danger { --honesty-check-box-accent-color: var(--honesty-color-feedback-danger-icon); }
+@mixin status-info { --honesty-check-box-accent-color: var(--honesty-color-feedback-info-icon); }
+@mixin size-sm { --honesty-check-box-control-size: 1rem; }
+@mixin size-md { --honesty-check-box-control-size: 1rem; }
+@mixin size-lg { --honesty-check-box-control-size: 1.25rem; }
+@mixin size-xl { --honesty-check-box-control-size: 1.25rem; }
+@mixin size-xxl { --honesty-check-box-control-size: 1.5rem; }
+@mixin size-xxxl { --honesty-check-box-control-size: 1.75rem; }
+@mixin size-xxxxl { --honesty-check-box-control-size: 2rem; }
