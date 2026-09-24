@@ -1,0 +1,36 @@
+@mixin base {
+  --honesty-field-feedback-bg: var(--honesty-color-surface-default);
+  --honesty-field-feedback-fg: var(--honesty-color-text-secondary);
+  --honesty-field-feedback-border-color: var(--honesty-border-subtle);
+  --honesty-field-feedback-border-width: var(--honesty-border-width-default);
+  --honesty-field-feedback-border-style: var(--honesty-border-style-default);
+  --honesty-field-feedback-radius: var(--honesty-radius-control);
+  --honesty-field-feedback-padding-block: 0.5rem;
+  --honesty-field-feedback-padding-inline: 0.75rem;
+  --honesty-field-feedback-gap: var(--honesty-space-inline-tight);
+  --honesty-field-feedback-caret-size: 0.5rem;
+}
+
+@mixin status-success {
+  --honesty-field-feedback-bg: var(--honesty-color-feedback-success-surface);
+  --honesty-field-feedback-fg: var(--honesty-color-feedback-success-text);
+  --honesty-field-feedback-border-color: var(--honesty-color-feedback-success-border);
+}
+
+@mixin status-warning {
+  --honesty-field-feedback-bg: var(--honesty-color-feedback-warning-surface);
+  --honesty-field-feedback-fg: var(--honesty-color-feedback-warning-text);
+  --honesty-field-feedback-border-color: var(--honesty-color-feedback-warning-border);
+}
+
+@mixin status-danger {
+  --honesty-field-feedback-bg: var(--honesty-color-feedback-danger-surface);
+  --honesty-field-feedback-fg: var(--honesty-color-feedback-danger-text);
+  --honesty-field-feedback-border-color: var(--honesty-color-feedback-danger-border);
+}
+
+@mixin status-info {
+  --honesty-field-feedback-bg: var(--honesty-color-feedback-info-surface);
+  --honesty-field-feedback-fg: var(--honesty-color-feedback-info-text);
+  --honesty-field-feedback-border-color: var(--honesty-color-feedback-info-border);
+}

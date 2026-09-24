@@ -1,0 +1,60 @@
+@use '../../../../styles/foundation/components/field-feedback' as tokens;
+
+:host {
+  @include tokens.base;
+  display: block;
+  min-width: 0;
+}
+
+:host([data-field-feedback-status='success']) {
+  @include tokens.status-success;
+}
+
+:host([data-field-feedback-status='warning']) {
+  @include tokens.status-warning;
+}
+
+:host([data-field-feedback-status='danger']) {
+  @include tokens.status-danger;
+}
+
+:host([data-field-feedback-status='info']) {
+  @include tokens.status-info;
+}
+
+.field-feedback__surface {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--honesty-field-feedback-gap);
+  min-width: 0;
+  padding-block: var(--honesty-field-feedback-padding-block);
+  padding-inline: var(--honesty-field-feedback-padding-inline);
+  border-width: var(--honesty-field-feedback-border-width);
+  border-style: var(--honesty-field-feedback-border-style);
+  border-color: var(--honesty-field-feedback-border-color);
+  border-radius: var(--honesty-field-feedback-radius);
+  background: var(--honesty-field-feedback-bg);
+  color: var(--honesty-field-feedback-fg);
+}
+
+.field-feedback__caret {
+  position: absolute;
+  inset-block-start: calc(var(--honesty-field-feedback-caret-size) * -0.5);
+  inset-inline-start: var(--honesty-field-feedback-padding-inline);
+  inline-size: var(--honesty-field-feedback-caret-size);
+  block-size: var(--honesty-field-feedback-caret-size);
+  border-block-start: var(--honesty-field-feedback-border-width)
+    var(--honesty-field-feedback-border-style)
+    var(--honesty-field-feedback-border-color);
+  border-inline-start: var(--honesty-field-feedback-border-width)
+    var(--honesty-field-feedback-border-style)
+    var(--honesty-field-feedback-border-color);
+  background: var(--honesty-field-feedback-bg);
+  transform: rotate(45deg);
+}
+
+.field-feedback__message {
+  flex: 1 1 auto;
+  min-width: 0;
+}

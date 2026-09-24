@@ -1,0 +1,125 @@
+@use '../../../../styles/foundation/components/field-frame' as tokens;
+
+:host {
+  @include tokens.base;
+  display: flex;
+  flex-direction: column;
+  gap: var(--honesty-field-frame-stack-gap);
+  min-width: 0;
+}
+
+.field-frame__control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--honesty-field-frame-inline-gap);
+  min-width: 0;
+  min-block-size: var(--honesty-field-frame-height);
+  padding-inline: var(--honesty-field-frame-padding-inline);
+  border-width: var(--honesty-field-frame-border-width);
+  border-style: var(--honesty-field-frame-border-style);
+  border-color: var(--honesty-field-frame-border-color);
+  border-radius: var(--honesty-field-frame-radius);
+  background: var(--honesty-field-frame-bg);
+  color: var(--honesty-field-frame-fg);
+  backdrop-filter: blur(var(--honesty-field-frame-backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--honesty-field-frame-backdrop-blur));
+}
+
+:host([data-field-appearance='glass']) .field-frame__control {
+  background: color-mix(
+    in srgb,
+    var(--honesty-field-frame-bg) 72%,
+    transparent
+  );
+}
+
+:host([data-field-focused='true']:not([data-field-border-mode='underline']))
+  .field-frame__control {
+  border-color: transparent;
+  background:
+    linear-gradient(
+      var(--honesty-field-frame-bg),
+      var(--honesty-field-frame-bg)
+    ) padding-box,
+    linear-gradient(
+      90deg,
+      var(--honesty-field-frame-focus-start),
+      var(--honesty-field-frame-focus-end)
+    ) border-box;
+}
+
+:host([data-field-border-mode='underline']) .field-frame__control {
+  border: 0;
+  border-block-end-width: var(--honesty-field-frame-underline-width);
+  border-block-end-style: var(--honesty-field-frame-border-style);
+  border-block-end-color: var(--honesty-field-frame-border-color);
+  border-radius: 0;
+}
+
+:host([data-field-focused='true'][data-field-border-mode='underline'])
+  .field-frame__control::after {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  block-size: var(--honesty-field-frame-underline-focus-width);
+  background: linear-gradient(
+    90deg,
+    var(--honesty-field-frame-focus-start),
+    var(--honesty-field-frame-focus-end)
+  );
+  content: '';
+}
+
+.field-frame__label--floating {
+  position: absolute;
+  inset-inline-start: var(--honesty-field-frame-padding-inline);
+  max-inline-size: calc(100% - (var(--honesty-field-frame-padding-inline) * 2));
+  padding-inline: var(--honesty-field-frame-label-padding-inline);
+  background: var(--honesty-field-frame-label-bg);
+  color: var(--honesty-field-frame-label-color);
+  transform-origin: inline-start center;
+  pointer-events: none;
+}
+
+:host([data-field-floating-position='top'])
+  .field-frame__label--floating {
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+}
+
+:host([data-field-floating-position='bottom'])
+  .field-frame__label--floating {
+  inset-block-end: 50%;
+  transform: translateY(50%);
+}
+
+:host([data-field-floating='true'][data-field-floating-position='top'])
+  .field-frame__label--floating {
+  inset-block-start: 0;
+  transform: translateY(-50%) scale(0.85);
+}
+
+:host([data-field-floating='true'][data-field-floating-position='bottom'])
+  .field-frame__label--floating {
+  inset-block-end: 0;
+  transform: translateY(50%) scale(0.85);
+}
+
+.field-frame__value {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: var(--honesty-field-frame-value-font-size);
+}
+
+.field-frame__actions {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--honesty-field-frame-inline-gap);
+}
+
+.field-frame__icon {
+  flex: 0 0 auto;
+  font-size: var(--honesty-field-frame-icon-size);
+}

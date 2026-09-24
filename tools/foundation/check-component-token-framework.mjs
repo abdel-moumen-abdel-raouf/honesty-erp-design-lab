@@ -29,6 +29,7 @@ const SEMANTIC_PREFIXES = [
   '--honesty-border-',
   '--honesty-focus-',
   '--honesty-elevation-',
+  '--honesty-effect-',
   '--honesty-motion-',
   '--honesty-layer-',
   '--honesty-chart-',
@@ -446,6 +447,7 @@ function runSelfTest() {
   --honesty-button-font-size: var(--honesty-type-body-font-size);
   --honesty-button-font-weight: var(--honesty-type-body-font-weight);
   --honesty-button-line-height: var(--honesty-type-body-line-height);
+  --honesty-button-backdrop-blur: var(--honesty-effect-backdrop-blur-glass);
   --_honesty-button-inner-height: calc(var(--honesty-button-height) - 2px);
 }
 

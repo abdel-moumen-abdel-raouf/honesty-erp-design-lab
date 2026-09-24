@@ -1,0 +1,25 @@
+<div
+  class="field-feedback__surface"
+  [id]="messageId()"
+  [attr.role]="status() === 'danger' ? 'alert' : 'status'"
+>
+  <span class="field-feedback__caret" aria-hidden="true"></span>
+  <erp-text
+    class="field-feedback__message"
+    type="caption"
+    [tone]="textTone()"
+  >{{ text() }}</erp-text>
+
+  @if (dismissible()) {
+    <erp-tooltip [text]="dismissLabel()">
+      <erp-icon-button
+        icon="close"
+        [label]="dismissLabel()"
+        variant="ghost"
+        [tone]="actionTone()"
+        size="sm"
+        (pressed)="dismissed.emit()"
+      />
+    </erp-tooltip>
+  }
+</div>

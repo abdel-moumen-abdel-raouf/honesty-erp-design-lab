@@ -1,0 +1,42 @@
+@use '../../../../styles/foundation/components/field-frame' as tokens;
+
+:host([data-field-variant='solid']) { @include tokens.variant-solid; }
+:host([data-field-variant='outline']) { @include tokens.variant-outline; }
+:host([data-field-variant='subtle']) { @include tokens.variant-subtle; }
+:host([data-field-variant='ghost']) { @include tokens.variant-ghost; }
+:host([data-field-variant='text']) { @include tokens.variant-text; }
+
+:host([data-field-tone='neutral']) { @include tokens.tone-neutral; }
+:host([data-field-tone='primary']) { @include tokens.tone-primary; }
+:host([data-field-tone='secondary']) { @include tokens.tone-secondary; }
+:host([data-field-tone='accent']) { @include tokens.tone-accent; }
+
+:host([data-field-status='none']) { @include tokens.status-none; }
+:host([data-field-status='success']) { @include tokens.status-success; }
+:host([data-field-status='warning']) { @include tokens.status-warning; }
+:host([data-field-status='danger']) { @include tokens.status-danger; }
+:host([data-field-status='info']) { @include tokens.status-info; }
+
+:host([data-field-border-mode='solid']) { @include tokens.border-solid; }
+:host([data-field-border-mode='dashed']) { @include tokens.border-dashed; }
+:host([data-field-border-mode='underline']) { @include tokens.border-underline; }
+
+:host([data-field-shape='default']) { @include tokens.shape-default; }
+:host([data-field-shape='rounded']) { @include tokens.shape-rounded; }
+:host([data-field-shape='pill']) { @include tokens.shape-pill; }
+
+:host([data-field-size='sm']) { @include tokens.size-sm; }
+:host([data-field-size='md']) { @include tokens.size-md; }
+:host([data-field-size='lg']) { @include tokens.size-lg; }
+:host([data-field-size='xl']) { @include tokens.size-xl; }
+:host([data-field-size='xxl']) { @include tokens.size-xxl; }
+:host([data-field-size='xxxl']) { @include tokens.size-xxxl; }
+:host([data-field-size='xxxxl']) { @include tokens.size-xxxxl; }
+
+:host([data-field-appearance='standard']) {
+  @include tokens.appearance-standard;
+}
+
+:host([data-field-appearance='glass']) {
+  @include tokens.appearance-glass;
+}

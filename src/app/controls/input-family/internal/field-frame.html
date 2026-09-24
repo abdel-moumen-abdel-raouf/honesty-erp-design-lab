@@ -1,0 +1,92 @@
+@if (labelMode() === 'static') {
+  <erp-text
+    class="field-frame__label field-frame__label--static"
+    type="label"
+    tone="secondary"
+    [for]="controlId()"
+  >{{ label() }}</erp-text>
+}
+
+@if (helperPosition() === 'above' && trimmedHelperText()) {
+  <erp-text
+    class="field-frame__helper"
+    type="caption"
+    tone="muted"
+    [id]="helperId()"
+  >{{ trimmedHelperText() }}</erp-text>
+}
+
+<div class="field-frame__control">
+  @if (labelMode() === 'floating') {
+    <erp-text
+      class="field-frame__label field-frame__label--floating"
+      type="label"
+      tone="secondary"
+      [for]="controlId()"
+    >{{ label() }}</erp-text>
+  }
+
+  @if (leadingIcon()) {
+    <erp-icon
+      class="field-frame__icon"
+      [name]="leadingIcon()!"
+      size="inherit"
+      tone="inherit"
+      aria-hidden="true"
+    />
+  }
+
+  <span class="field-frame__value">
+    <ng-content select="[field-control]"></ng-content>
+  </span>
+
+  <span class="field-frame__actions">
+    <ng-content select="[field-domain-action]"></ng-content>
+
+    @if (trailingIcon()) {
+      <erp-icon
+        class="field-frame__icon"
+        [name]="trailingIcon()!"
+        size="inherit"
+        tone="inherit"
+        aria-hidden="true"
+      />
+    }
+
+    <ng-content select="[field-trailing]"></ng-content>
+
+    @if (clearable()) {
+      <erp-tooltip [text]="clearLabel()">
+        <erp-icon-button
+          icon="close"
+          [label]="clearLabel()"
+          variant="ghost"
+          tone="neutral"
+          size="sm"
+          [disabled]="disabled()"
+          (pressed)="clearRequested.emit()"
+        />
+      </erp-tooltip>
+    }
+  </span>
+</div>
+
+@if (feedbackVisible()) {
+  <erp-field-feedback
+    [messageId]="feedbackId()"
+    [text]="feedbackText()!"
+    [status]="status()"
+    [dismissible]="feedbackDismissible()"
+    [dismissLabel]="feedbackDismissLabel()"
+    (dismissed)="feedbackDismissed.emit()"
+  />
+}
+
+@if (helperPosition() === 'below' && trimmedHelperText()) {
+  <erp-text
+    class="field-frame__helper"
+    type="caption"
+    tone="muted"
+    [id]="helperId()"
+  >{{ trimmedHelperText() }}</erp-text>
+}
