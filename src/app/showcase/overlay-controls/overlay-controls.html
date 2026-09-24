@@ -61,4 +61,21 @@
       }
     </erp-grid>
   </erp-section>
+
+  <erp-section class="review-group" data-review-group="temporal-pickers">
+    <erp-text type="heading-2">Temporal picker overlays</erp-text>
+    <erp-divider />
+    <erp-grid [columns]="2" gap="sm" responsive="auto">
+      @for (theme of themes; track theme) {
+        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
+          <erp-stack gap="tight">
+            <erp-date-box data-temporal-overlay-evidence="date" label="Open date picker" />
+            <erp-time-box data-temporal-overlay-evidence="time" label="Open time picker" />
+            <erp-date-time-box data-temporal-overlay-evidence="datetime" label="Open date-time picker" />
+            <erp-date-range-box data-temporal-overlay-evidence="range" label="Open date-range picker" />
+          </erp-stack>
+        </erp-surface>
+      }
+    </erp-grid>
+  </erp-section>
 </erp-container>

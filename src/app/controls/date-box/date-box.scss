@@ -1,0 +1,4 @@
+@use '../../../styles/foundation/components/date-box' as tokens;
+:host { @include tokens.base; display: block; min-width: 0; }
+.date-box__trigger { inline-size: 100%; min-width: 0; padding: 0; border: 0; outline: 0; text-align: start; color: var(--honesty-date-box-value-color); background: transparent; font: inherit; cursor: var(--honesty-date-box-cursor); }
+:host([data-date-box-value='']) .date-box__trigger { color: var(--honesty-date-box-placeholder-color); }

@@ -1,6 +1,9 @@
 import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {ErpCheckBox} from '../../controls/check-box/check-box';
+import {ErpDateBox} from '../../controls/date-box/date-box';
+import {ErpDateRangeBox} from '../../controls/date-range-box/date-range-box';
+import {ErpDateTimeBox} from '../../controls/date-time-box/date-time-box';
 import {ErpFilePicker} from '../../controls/file-picker/file-picker';
 import {ErpImagePicker} from '../../controls/image-picker/image-picker';
 import {ErpMoneyBox} from '../../controls/money-box/money-box';
@@ -11,6 +14,7 @@ import {ErpRadioBox} from '../../controls/radio-box/radio-box';
 import {ErpRangeSlider} from '../../controls/range-slider/range-slider';
 import {ErpSearchBox} from '../../controls/search-box/search-box';
 import {ErpTelBox} from '../../controls/tel-box/tel-box';
+import {ErpTimeBox} from '../../controls/time-box/time-box';
 import {ErpTextAreaBox} from '../../controls/text-area-box/text-area-box';
 import {ErpTextBox} from '../../controls/text-box/text-box';
 import {ErpUrlBox} from '../../controls/url-box/url-box';
@@ -29,6 +33,9 @@ import {ErpText} from '../../primitives/text/text';
     ErpContainer,
     ErpCheckBox,
     ErpDivider,
+    ErpDateBox,
+    ErpDateRangeBox,
+    ErpDateTimeBox,
     ErpFilePicker,
     ErpGrid,
     ErpImagePicker,
@@ -43,6 +50,7 @@ import {ErpText} from '../../primitives/text/text';
     ErpStack,
     ErpSurface,
     ErpTelBox,
+    ErpTimeBox,
     ErpText,
     ErpTextAreaBox,
     ErpTextBox,
@@ -63,4 +71,8 @@ export class InputControls {
   readonly moneyValue = signal<number | null>(1250);
   readonly stepperValue = signal<number | null>(4);
   readonly rangeValue = signal({lower: 20, upper: 80});
+  readonly dateValue = signal<string | null>('2026-09-24');
+  readonly timeValue = signal<string | null>('09:30');
+  readonly dateTimeValue = signal<string | null>('2026-09-24T09:30');
+  readonly dateRangeValue = signal({start: '2026-09-24', end: '2026-09-30'});
 }

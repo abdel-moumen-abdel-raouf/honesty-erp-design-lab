@@ -1,0 +1,40 @@
+@use '../../../../styles/foundation/components/temporal-picker' as tokens;
+
+:host {
+  @include tokens.base;
+  display: block;
+  min-inline-size: 0;
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: var(--honesty-temporal-picker-calendar-gap);
+  min-inline-size: 0;
+  outline-color: var(--honesty-temporal-picker-focus-color);
+}
+
+.weekday {
+  text-align: center;
+}
+
+[data-calendar-day][data-current-month='false'] {
+  opacity: var(--honesty-temporal-picker-adjacent-opacity);
+}
+
+[data-calendar-day][data-in-range='true'] {
+  background: var(--honesty-temporal-picker-range-bg);
+}
+
+.time-list {
+  max-block-size: var(--honesty-temporal-picker-time-list-max-block-size);
+  padding-inline-end: var(--honesty-temporal-picker-scroll-padding);
+  overflow: auto;
+}
+
+.picker-actions {
+  padding-block-start: var(--honesty-temporal-picker-actions-gap);
+  border-block-start: var(--honesty-temporal-picker-divider-width)
+    var(--honesty-temporal-picker-divider-style)
+    var(--honesty-temporal-picker-divider-color);
+}

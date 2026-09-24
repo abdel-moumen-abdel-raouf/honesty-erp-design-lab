@@ -1,5 +1,9 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {ErpButton} from '../../controls/button/button';
+import {ErpDateBox} from '../../controls/date-box/date-box';
+import {ErpDateRangeBox} from '../../controls/date-range-box/date-range-box';
+import {ErpDateTimeBox} from '../../controls/date-time-box/date-time-box';
+import {ErpTimeBox} from '../../controls/time-box/time-box';
 import {ErpContainer} from '../../primitives/container/container';
 import {ErpDivider} from '../../primitives/divider/divider';
 import {ErpGrid} from '../../primitives/grid/grid';
@@ -20,12 +24,16 @@ import {
   imports: [
     ErpButton,
     ErpContainer,
+    ErpDateBox,
+    ErpDateRangeBox,
+    ErpDateTimeBox,
     ErpDivider,
     ErpGrid,
     ErpSection,
     ErpStack,
     ErpSurface,
     ErpText,
+    ErpTimeBox,
   ],
   templateUrl: './overlay-controls.html',
   styleUrl: './overlay-controls.scss',

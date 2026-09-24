@@ -1,0 +1,12 @@
+@mixin base {
+  --honesty-temporal-picker-calendar-gap: var(--honesty-space-layout-gap-xxs);
+  --honesty-temporal-picker-focus-color: var(--honesty-color-action-focus-ring);
+  --honesty-temporal-picker-adjacent-opacity: 0.48;
+  --honesty-temporal-picker-range-bg: var(--honesty-color-brand-primary-subtle);
+  --honesty-temporal-picker-time-list-max-block-size: 16rem;
+  --honesty-temporal-picker-scroll-padding: var(--honesty-space-inline-tight);
+  --honesty-temporal-picker-actions-gap: var(--honesty-space-stack-tight);
+  --honesty-temporal-picker-divider-width: var(--honesty-border-width-default);
+  --honesty-temporal-picker-divider-style: var(--honesty-border-style-default);
+  --honesty-temporal-picker-divider-color: var(--honesty-border-subtle);
+}

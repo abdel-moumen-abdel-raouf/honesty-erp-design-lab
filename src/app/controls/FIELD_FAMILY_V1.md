@@ -442,6 +442,30 @@ Its invariant is `min <= lower <= upper <= max`; thumbs do not cross in V1.
 - ImagePicker creates a local Object URL preview for a valid image and revokes
   the URL on replacement, clearing, and destruction.
 
+## Temporal Overlay Picker Family
+
+- `ErpDateBox` stores `string | null` in ISO `YYYY-MM-DD` form and exposes
+  nullable min/max, `weekStartsOn = 0`, nullable locale, and inherited clear.
+- `ErpTimeBox` stores `string | null` in `HH:mm` form and exposes
+  `minuteStep = 5`, nullable min/max, and nullable locale.
+- `ErpDateTimeBox` stores `string | null` in local `YYYY-MM-DDTHH:mm` form and
+  combines date and time staging in one modal.
+- `ErpDateRangeBox` stores `{start: string | null; end: string | null}` and
+  preserves `start <= end` whenever both values exist.
+- All four use Field Family trigger chrome and never use browser-native
+  date/time picker popups as the main selection UX.
+- Calendar selection provides month navigation, weekday headers, a Gregorian
+  month grid, today, clear when available, cancel, and confirm.
+- Calendar keyboard behavior supports Arrow movement, Home/End week edges,
+  PageUp/PageDown month movement, Enter selection, and OverlayManager Escape.
+- Time selection exposes hours `00` through `23` and minutes derived from the
+  configured step.
+- Every temporal selection remains staged in `ErpOverlayManager`; confirm is
+  the only action that commits through CVA, while cancel or dismissal leaves
+  the committed value unchanged.
+- The date-range overlay stages start and then end and provides selected-range
+  evidence before confirmation.
+
 Do not create or retain `ErpRangeBox` or `ErpNumberUpDown`.
 
 Boolean/choice Basic Controls are `ErpCheckBox` and `ErpRadioBox`.

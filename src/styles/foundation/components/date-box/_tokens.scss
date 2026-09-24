@@ -1,0 +1,5 @@
+@mixin base {
+  --honesty-date-box-value-color: var(--honesty-color-text-primary);
+  --honesty-date-box-placeholder-color: var(--honesty-color-text-muted);
+  --honesty-date-box-cursor: pointer;
+}

@@ -111,6 +111,11 @@ Overlay-backed selection Composites are:
 These controls stage selection inside the overlay and commit the CVA value only
 on confirmation. Cancel or dismissal does not mutate the committed value.
 
+The implemented temporal family (`ErpDateBox`, `ErpTimeBox`,
+`ErpDateTimeBox`, and `ErpDateRangeBox`) uses this transaction contract and the
+shared injected temporal overlay surface. Browser-native date/time picker
+popups are not the primary selection experience.
+
 ## Explicit Separations
 
 Tooltip remains on its existing nonblocking anchored-overlay architecture and

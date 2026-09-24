@@ -24,7 +24,7 @@ describe('InputControls showcase', () => {
     expect(create().componentInstance).toBeTruthy();
   });
 
-  it('renders eight review groups with equivalent Light and Dark contexts', () => {
+  it('renders nine review groups with equivalent Light and Dark contexts', () => {
     const root = create().nativeElement as HTMLElement;
     const groups = [...root.querySelectorAll('[data-review-group]')];
     expect(groups.map((group) => group.getAttribute('data-review-group'))).toEqual([
@@ -36,6 +36,7 @@ describe('InputControls showcase', () => {
       'boolean-choice',
       'numeric-family',
       'file-image-basics',
+      'temporal-pickers',
     ]);
     for (const group of groups) {
       expect(
@@ -44,6 +45,22 @@ describe('InputControls showcase', () => {
         ),
       ).toEqual(['light', 'dark']);
     }
+  });
+
+  it('contains all four temporal overlay triggers in both themes', () => {
+    const root = create().nativeElement as HTMLElement;
+    const group = root.querySelector('[data-review-group="temporal-pickers"]');
+    for (const selector of [
+      'erp-date-box',
+      'erp-time-box',
+      'erp-date-time-box',
+      'erp-date-range-box',
+    ]) {
+      expect(group?.querySelectorAll(selector).length).toBe(2);
+    }
+    expect(group?.querySelectorAll('input[type="date"]').length).toBe(0);
+    expect(group?.querySelectorAll('input[type="time"]').length).toBe(0);
+    expect(group?.querySelectorAll('input[type="datetime-local"]').length).toBe(0);
   });
 
   it('contains checkbox and radio basics in both theme contexts', () => {

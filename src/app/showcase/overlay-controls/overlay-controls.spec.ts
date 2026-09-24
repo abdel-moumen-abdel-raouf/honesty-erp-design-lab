@@ -23,7 +23,7 @@ describe('OverlayControls showcase', () => {
     expect(create().componentInstance).toBeTruthy();
   });
 
-  it('renders four technical groups with equivalent Light and Dark contexts', () => {
+  it('renders five technical groups with equivalent Light and Dark contexts', () => {
     const root = create().nativeElement as HTMLElement;
     const groups = [...root.querySelectorAll('[data-review-group]')];
     expect(groups.map((group) => group.getAttribute('data-review-group'))).toEqual([
@@ -31,6 +31,7 @@ describe('OverlayControls showcase', () => {
       'drawers',
       'nested-stack',
       'dismissal-focus',
+      'temporal-pickers',
     ]);
 
     for (const group of groups) {
@@ -40,6 +41,15 @@ describe('OverlayControls showcase', () => {
         ),
       ).toEqual(['light', 'dark']);
     }
+  });
+
+  it('contains all four OverlayManager-backed temporal triggers in both themes', () => {
+    const root = create().nativeElement as HTMLElement;
+    expect(root.querySelectorAll('[data-temporal-overlay-evidence]').length).toBe(8);
+    expect(
+      [...root.querySelectorAll<HTMLElement>('[data-temporal-overlay-evidence]')]
+        .map((item) => item.getAttribute('data-temporal-overlay-evidence')),
+    ).toEqual(['date', 'time', 'datetime', 'range', 'date', 'time', 'datetime', 'range']);
   });
 
   it('contains modal, logical drawer, nested, and policy evidence', () => {

@@ -315,4 +315,21 @@
       }
     </erp-grid>
   </erp-section>
+
+  <erp-section class="review-group" data-review-group="temporal-pickers">
+    <erp-text type="heading-2">Temporal overlay pickers</erp-text>
+    <erp-divider />
+    <erp-grid [columns]="2" gap="md" responsive="auto">
+      @for (theme of themes; track theme) {
+        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
+          <erp-stack>
+            <erp-date-box data-date-box-evidence label="Date" clearable locale="en-GB" [ngModel]="dateValue()" (ngModelChange)="dateValue.set($event)" />
+            <erp-time-box data-time-box-evidence label="Time" [minuteStep]="5" [ngModel]="timeValue()" (ngModelChange)="timeValue.set($event)" />
+            <erp-date-time-box data-date-time-box-evidence label="Date and time" clearable [ngModel]="dateTimeValue()" (ngModelChange)="dateTimeValue.set($event)" />
+            <erp-date-range-box data-date-range-box-evidence label="Date range" [ngModel]="dateRangeValue()" (ngModelChange)="dateRangeValue.set($event)" />
+          </erp-stack>
+        </erp-surface>
+      }
+    </erp-grid>
+  </erp-section>
 </erp-container>

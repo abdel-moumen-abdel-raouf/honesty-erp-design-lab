@@ -95,6 +95,18 @@ export function validate(files) {
   return errors;
 }
 
+export function validateTemporalPickers(files) {
+  const errors = [];
+  for (const control of ['date-box', 'time-box', 'date-time-box', 'date-range-box']) {
+    const file = `src/app/controls/${control}/${control}.ts`;
+    const source = files.get(file) ?? '';
+    if (!source.includes('ErpOverlayManager') || !source.includes('ErpTemporalPickerContent')) {
+      errors.push(`${file}: temporal picker must use ErpOverlayManager and the shared staged surface`);
+    }
+  }
+  return errors;
+}
+
 function runSelfTest() {
   const valid = new Map([
     [APP_TEMPLATE, '<main></main><erp-overlay-host />'],
@@ -126,6 +138,20 @@ function runSelfTest() {
 
   if (validate(valid).length > 0) {
     throw new Error('Overlay governance rejected valid fixtures');
+  }
+
+  const validTemporal = new Map(
+    ['date-box', 'time-box', 'date-time-box', 'date-range-box'].map((control) => [
+      `src/app/controls/${control}/${control}.ts`,
+      'ErpOverlayManager ErpTemporalPickerContent',
+    ]),
+  );
+  if (validateTemporalPickers(validTemporal).length > 0) {
+    throw new Error('Overlay governance rejected valid temporal picker fixtures');
+  }
+  validTemporal.set('src/app/controls/date-box/date-box.ts', 'native date');
+  if (validateTemporalPickers(validTemporal).length === 0) {
+    throw new Error('Overlay governance accepted a temporal picker bypass');
   }
 
   const invalidFixtures = [
@@ -188,6 +214,7 @@ files.set(
 );
 
 const errors = validate(files);
+errors.push(...validateTemporalPickers(files));
 
 if (errors.length > 0) {
   console.error('ErpOverlay governance check failed:\n');
