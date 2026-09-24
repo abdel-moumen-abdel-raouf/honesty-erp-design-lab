@@ -1,0 +1,16 @@
+// =============================================================================
+// Semantic Tokens: Effects
+// =============================================================================
+// Responsibility:
+// Purpose-driven, theme-independent runtime effects.
+// Resolves strictly from compile-time Reference effect primitives.
+// =============================================================================
+
+@use '../../reference/effects' as ref;
+
+:root {
+  --honesty-effect-backdrop-blur-blocking:
+    #{ref.$honesty-ref-backdrop-blur-8};
+  --honesty-effect-backdrop-blur-glass:
+    #{ref.$honesty-ref-backdrop-blur-16};
+}
