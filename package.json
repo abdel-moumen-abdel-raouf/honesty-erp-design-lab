@@ -22,7 +22,9 @@
     "erp-tooltip:check:self-test": "node tools/controls/check-erp-tooltip-governance.mjs --self-test",
     "erp-field:check": "node tools/controls/check-erp-field-governance.mjs",
     "erp-field:check:self-test": "node tools/controls/check-erp-field-governance.mjs --self-test",
-    "lint": "npm run component-tokens:check && npm run erp-text:check && npm run erp-icon:check && npm run erp-button:check && npm run erp-tooltip:check && npm run erp-field:check && ng lint"
+    "erp-overlay:check": "node tools/controls/check-erp-overlay-governance.mjs",
+    "erp-overlay:check:self-test": "node tools/controls/check-erp-overlay-governance.mjs --self-test",
+    "lint": "npm run component-tokens:check && npm run erp-text:check && npm run erp-icon:check && npm run erp-button:check && npm run erp-tooltip:check && npm run erp-field:check && npm run erp-overlay:check && ng lint"
   },
   "private": true,
   "dependencies": {

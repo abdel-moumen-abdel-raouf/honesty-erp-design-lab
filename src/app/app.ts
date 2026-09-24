@@ -10,6 +10,7 @@ import {
 } from '@angular/router';
 import html2canvas from 'html2canvas';
 import {filter} from 'rxjs';
+import {ErpOverlayHost} from './shared/overlay/overlay-host';
 
 export type LabPreviewMode = 'desktop' | 'tablet' | 'mobile';
 
@@ -117,7 +118,7 @@ export function resolveVisibleBackgroundColor(target: HTMLElement): string {
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, ErpOverlayHost],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

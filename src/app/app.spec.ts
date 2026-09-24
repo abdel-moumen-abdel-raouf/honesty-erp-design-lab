@@ -72,6 +72,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     const buttonControlsLink = compiled.querySelector('#nav-link-button-controls');
     const tooltipControlsLink = compiled.querySelector('#nav-link-tooltip-controls');
     const inputControlsLink = compiled.querySelector('#nav-link-input-controls');
+    const overlayControlsLink = compiled.querySelector('#nav-link-overlay-controls');
     const colorsLink = compiled.querySelector('#nav-link-colors');
     const themesLink = compiled.querySelector('#nav-link-themes');
     const statusHuesLink = compiled.querySelector('#nav-link-status-hues');
@@ -89,6 +90,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(buttonControlsLink).toBeTruthy();
     expect(tooltipControlsLink).toBeTruthy();
     expect(inputControlsLink).toBeTruthy();
+    expect(overlayControlsLink).toBeTruthy();
     expect(colorsLink).toBeTruthy();
     expect(themesLink).toBeTruthy();
     expect(statusHuesLink).toBeTruthy();
@@ -107,6 +109,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(buttonControlsLink?.textContent?.trim()).toBe('الأزرار الإنتاجية');
     expect(tooltipControlsLink?.textContent?.trim()).toBe('التلميحات الإنتاجية');
     expect(inputControlsLink?.textContent?.trim()).toBe('حقول الإدخال الإنتاجية');
+    expect(overlayControlsLink?.textContent?.trim()).toBe('النوافذ الحاجبة');
     expect(colorsLink?.textContent?.trim()).toBe('الألوان المرجعية');
     expect(themesLink?.textContent?.trim()).toBe('السمات الفاتحة والداكنة');
     expect(statusHuesLink?.textContent?.trim()).toBe('صبغات الحالات');
@@ -135,6 +138,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(linkPaths).toContain('/controls/buttons');
     expect(linkPaths).toContain('/controls/tooltips');
     expect(linkPaths).toContain('/controls/inputs');
+    expect(linkPaths).toContain('/controls/overlays');
     expect(linkPaths).toContain('/foundation/colors');
     expect(linkPaths).toContain('/foundation/themes');
     expect(linkPaths).toContain('/foundation/colors/status-hues');
@@ -155,6 +159,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
       'controls/buttons',
       'controls/tooltips',
       'controls/inputs',
+      'controls/overlays',
       'foundation/colors',
       'foundation/colors/status-hues',
       'foundation/themes',
@@ -176,6 +181,15 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
       redirectTo: 'foundation/overview',
       pathMatch: 'full',
     });
+  });
+
+  it('renders exactly one application OverlayHost', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    expect(
+      (fixture.nativeElement as HTMLElement).querySelectorAll('erp-overlay-host')
+        .length,
+    ).toBe(1);
   });
 
   it('should render the full-page screenshot button', () => {

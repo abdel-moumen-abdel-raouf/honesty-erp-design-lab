@@ -2,9 +2,9 @@
 
 ## Status
 
-This is the canonical roadmap contract for the shared blocking overlay system.
-It does not claim implementation completion, visual approval, or a frozen
-Overlay System.
+This is the implemented V1 contract for the shared blocking overlay system.
+It does not claim Product Owner visual approval or freeze later overlay-backed
+picker contracts.
 
 The system must exist before any overlay-backed picker is implemented.
 
@@ -121,3 +121,19 @@ anchored-overlay, portals, or `ErpOverlayManager`.
 
 Feature/Page code does not instantiate internal overlay host/reference
 infrastructure and does not recreate blocking backdrops or z-index systems.
+
+## Runtime Ownership
+
+- The application shell renders exactly one `ErpOverlayHost`.
+- The manager owns an ordered overlay stack and only its top entry responds to
+  Escape or backdrop dismissal.
+- Blocking entries lock body scrolling and make application-shell siblings
+  inert until the blocking stack is empty.
+- Initial focus enters the top surface, Tab remains trapped when configured,
+  and closing restores the captured origin when configured.
+- Dynamic content receives `ErpOverlayRef` and optional data through Angular
+  dependency injection.
+- The host consumes the overlay Component Token contract, the semantic blocking
+  layer, Surface scrim, and Foundation blocking backdrop-blur effect.
+- Responsive sizing uses the Foundation Query API and reduced-motion timing
+  resolves through the overlay token contract.

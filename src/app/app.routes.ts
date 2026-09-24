@@ -49,6 +49,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'controls/overlays',
+    loadComponent: () =>
+      import('./showcase/overlay-controls/overlay-controls').then(
+        (m) => m.OverlayControls
+      ),
+  },
+  {
     path: 'foundation/colors',
     loadComponent: () =>
       import('./foundation/colors/colors').then((m) => m.Colors),

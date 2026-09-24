@@ -1,0 +1,47 @@
+@mixin base {
+  --honesty-overlay-backdrop-bg: var(--honesty-color-surface-scrim);
+  --honesty-overlay-backdrop-blur:
+    var(--honesty-effect-backdrop-blur-blocking);
+  --honesty-overlay-surface-bg: var(--honesty-color-surface-elevated);
+  --honesty-overlay-surface-fg: var(--honesty-color-text-primary);
+  --honesty-overlay-surface-border-color: var(--honesty-border-subtle);
+  --honesty-overlay-surface-border-width:
+    var(--honesty-border-width-default);
+  --honesty-overlay-surface-border-style:
+    var(--honesty-border-style-default);
+  --honesty-overlay-surface-radius: var(--honesty-radius-overlay);
+  --honesty-overlay-surface-elevation: var(--honesty-elevation-overlay);
+  --honesty-overlay-layer: var(--honesty-layer-blocking);
+  --honesty-overlay-viewport-inset: var(--honesty-space-inset-default);
+  --honesty-overlay-viewport-inset-compact: var(--honesty-space-inset-tight);
+  --honesty-overlay-surface-padding: var(--honesty-space-inset-loose);
+  --honesty-overlay-surface-inline-size: 36rem;
+  --honesty-overlay-surface-max-block-size: calc(100dvh - 2 * var(--honesty-overlay-viewport-inset));
+  --honesty-overlay-enter-duration: var(--honesty-motion-duration-default);
+  --honesty-overlay-enter-easing: var(--honesty-motion-easing-enter);
+  --honesty-overlay-enter-opacity-start: 0;
+  --honesty-overlay-enter-opacity-end: 1;
+  --honesty-overlay-reduced-duration: var(--honesty-motion-duration-instant);
+}
+
+@mixin size-sm {
+  --honesty-overlay-surface-inline-size: 24rem;
+}
+
+@mixin size-md {
+  --honesty-overlay-surface-inline-size: 36rem;
+}
+
+@mixin size-lg {
+  --honesty-overlay-surface-inline-size: 48rem;
+}
+
+@mixin size-xl {
+  --honesty-overlay-surface-inline-size: 64rem;
+}
+
+@mixin size-full {
+  --honesty-overlay-surface-inline-size: 100%;
+  --honesty-overlay-surface-max-block-size: 100%;
+  --honesty-overlay-surface-radius: var(--honesty-radius-none);
+}

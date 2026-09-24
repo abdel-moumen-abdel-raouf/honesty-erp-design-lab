@@ -400,6 +400,19 @@ Rules:
 - Internal derived InputBase state stays protected; only approved inherited inputs form public base API.
 - Concrete controls must not mutate InputBase value/focus state directly; user mutations go through the protected base helpers.
 
+## Production Blocking Overlay Governance
+
+- `ErpOverlayManager` is the shared gateway for blocking modal and drawer surfaces.
+- The application shell renders exactly one `ErpOverlayHost`; controls, Features, and Pages never create additional hosts.
+- `ErpOverlayRef` instances are manager-owned and are injected into dynamic overlay content.
+- Blocking overlays own stack order, backdrop, scroll lock, background inertness, focus trap, initial focus, focus restoration, and top-only dismissal.
+- Modal and drawer surfaces require an accessible name.
+- Drawer start/end positions are logical and RTL-aware.
+- Feature/Page code must not recreate blocking backdrops, blocking z-index systems, or focus/scroll/inert controllers.
+- Tooltip remains on its nonblocking anchored-overlay architecture and does not use `ErpOverlayManager`.
+- `ErpFieldFeedback` remains in document flow and never uses `ErpOverlayManager`.
+- Overlay-backed pickers use `ErpOverlayManager`; no third-party overlay dependency is introduced.
+
 ## Production Field Family Governance
 
 - `ErpInputBase V1` is frozen with exactly `label`, `name`, `form`, and

@@ -1,0 +1,26 @@
+@for (entry of manager.entries(); track entry.ref.id; let index = $index) {
+  <div
+    class="overlay-layer"
+    [attr.data-overlay-layer]="index"
+    [attr.data-overlay-top]="manager.isTop(entry.ref.id)"
+    [attr.data-overlay-kind]="entry.ref.config.kind"
+    [attr.data-overlay-position]="entry.ref.config.position"
+    [attr.data-overlay-size]="entry.ref.config.size"
+    [attr.inert]="manager.isTop(entry.ref.id) ? null : ''"
+    (pointerdown)="handleBackdropPointerDown($event, entry.ref.id)"
+  >
+    <section
+      class="overlay-surface"
+      role="dialog"
+      tabindex="-1"
+      [attr.data-overlay-id]="entry.ref.id"
+      [attr.aria-label]="entry.ref.config.label"
+      [attr.aria-modal]="entry.ref.config.blocking ? 'true' : null"
+      [attr.aria-hidden]="manager.isTop(entry.ref.id) ? null : 'true'"
+    >
+      <ng-container
+        *ngComponentOutlet="entry.component; injector: entry.injector"
+      ></ng-container>
+    </section>
+  </div>
+}

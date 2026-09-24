@@ -1,0 +1,14 @@
+<erp-stack
+  gap="default"
+  [attr.data-theme]="data.theme"
+  data-overlay-content-evidence
+>
+  <erp-text type="heading-2">{{ data.title }}</erp-text>
+  <erp-text type="paragraph">
+    Blocking overlay content with focus, dismissal, and restoration evidence.
+  </erp-text>
+  @if (data.allowNested) {
+    <erp-button label="Open nested overlay" (pressed)="openNested()" />
+  }
+  <erp-button label="Close overlay" (pressed)="ref.close('confirmed')" />
+</erp-stack>

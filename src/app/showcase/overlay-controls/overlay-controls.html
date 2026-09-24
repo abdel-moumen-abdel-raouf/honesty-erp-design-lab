@@ -1,0 +1,64 @@
+<erp-container class="overlay-showcase" width="wide" data-theme="light">
+  <erp-stack class="showcase-header" gap="tight">
+    <erp-text type="heading-1">Blocking Overlay System V1</erp-text>
+    <erp-text type="paragraph" tone="secondary">
+      Technical evidence for modal, logical drawers, stack, focus, and dismissal.
+    </erp-text>
+  </erp-stack>
+
+  <erp-section class="review-group" data-review-group="modal">
+    <erp-text type="heading-2">Modal</erp-text>
+    <erp-divider />
+    <erp-grid [columns]="2" gap="sm" responsive="auto">
+      @for (theme of themes; track theme) {
+        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
+          <erp-button
+            data-modal-evidence
+            [label]="'Open ' + theme + ' modal'"
+            (pressed)="openModal(theme)"
+          />
+        </erp-surface>
+      }
+    </erp-grid>
+  </erp-section>
+
+  <erp-section class="review-group" data-review-group="drawers">
+    <erp-text type="heading-2">Logical drawers</erp-text>
+    <erp-divider />
+    <erp-grid [columns]="2" gap="sm" responsive="auto">
+      @for (theme of themes; track theme) {
+        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle" dir="rtl">
+          <erp-stack gap="tight">
+            <erp-button data-drawer-evidence="start" label="Open start drawer" (pressed)="openDrawer('start', theme)" />
+            <erp-button data-drawer-evidence="end" label="Open end drawer" (pressed)="openDrawer('end', theme)" />
+            <erp-button data-drawer-evidence="bottom" label="Open bottom drawer" (pressed)="openDrawer('bottom', theme)" />
+          </erp-stack>
+        </erp-surface>
+      }
+    </erp-grid>
+  </erp-section>
+
+  <erp-section class="review-group" data-review-group="nested-stack">
+    <erp-text type="heading-2">Nested stack</erp-text>
+    <erp-divider />
+    <erp-grid [columns]="2" gap="sm" responsive="auto">
+      @for (theme of themes; track theme) {
+        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
+          <erp-button data-nested-evidence label="Open nested stack" (pressed)="openModal(theme, true)" />
+        </erp-surface>
+      }
+    </erp-grid>
+  </erp-section>
+
+  <erp-section class="review-group" data-review-group="dismissal-focus">
+    <erp-text type="heading-2">Dismissal / focus / blocking</erp-text>
+    <erp-divider />
+    <erp-grid [columns]="2" gap="sm" responsive="auto">
+      @for (theme of themes; track theme) {
+        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
+          <erp-button data-policy-evidence label="Open explicit-close overlay" (pressed)="openPolicy(theme)" />
+        </erp-surface>
+      }
+    </erp-grid>
+  </erp-section>
+</erp-container>
