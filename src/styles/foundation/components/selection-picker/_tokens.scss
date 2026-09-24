@@ -1,0 +1,18 @@
+@mixin base {
+  --honesty-selection-picker-swatch-size: 3rem;
+  --honesty-selection-picker-color-input-size: 3rem;
+  --honesty-selection-picker-list-max-block-size: 22rem;
+  --honesty-selection-picker-gap: var(--honesty-space-stack-tight);
+  --honesty-selection-picker-border-width: var(--honesty-border-width-default);
+  --honesty-selection-picker-border-style: var(--honesty-border-style-default);
+  --honesty-selection-picker-border-color: var(--honesty-border-subtle);
+  --honesty-selection-picker-radius: var(--honesty-radius-control);
+  --honesty-selection-picker-focus-color: var(--honesty-color-action-focus-ring);
+  --honesty-selection-picker-swatch-primary: var(--honesty-color-brand-primary-solid);
+  --honesty-selection-picker-swatch-secondary: var(--honesty-color-brand-secondary-solid);
+  --honesty-selection-picker-swatch-accent: var(--honesty-color-brand-accent-solid);
+  --honesty-selection-picker-swatch-success: var(--honesty-color-feedback-success-surface-strong);
+  --honesty-selection-picker-swatch-warning: var(--honesty-color-feedback-warning-surface-strong);
+  --honesty-selection-picker-swatch-danger: var(--honesty-color-feedback-danger-surface-strong);
+  --honesty-selection-picker-swatch-info: var(--honesty-color-feedback-info-surface-strong);
+}

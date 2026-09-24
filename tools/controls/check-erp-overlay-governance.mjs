@@ -107,6 +107,18 @@ export function validateTemporalPickers(files) {
   return errors;
 }
 
+export function validateSelectionPickers(files) {
+  const errors = [];
+  for (const control of ['color-picker', 'icon-picker', 'item-picker', 'combo-box']) {
+    const file = `src/app/controls/${control}/${control}.ts`;
+    const source = files.get(file) ?? '';
+    if (!source.includes('ErpOverlayManager') || !source.includes('ErpSelectionPickerContent')) {
+      errors.push(`${file}: selection picker must use ErpOverlayManager and the shared staged surface`);
+    }
+  }
+  return errors;
+}
+
 function runSelfTest() {
   const valid = new Map([
     [APP_TEMPLATE, '<main></main><erp-overlay-host />'],
@@ -152,6 +164,20 @@ function runSelfTest() {
   validTemporal.set('src/app/controls/date-box/date-box.ts', 'native date');
   if (validateTemporalPickers(validTemporal).length === 0) {
     throw new Error('Overlay governance accepted a temporal picker bypass');
+  }
+
+  const validSelection = new Map(
+    ['color-picker', 'icon-picker', 'item-picker', 'combo-box'].map((control) => [
+      `src/app/controls/${control}/${control}.ts`,
+      'ErpOverlayManager ErpSelectionPickerContent',
+    ]),
+  );
+  if (validateSelectionPickers(validSelection).length > 0) {
+    throw new Error('Overlay governance rejected valid selection picker fixtures');
+  }
+  validSelection.set('src/app/controls/icon-picker/icon-picker.ts', 'vendor icon popup');
+  if (validateSelectionPickers(validSelection).length === 0) {
+    throw new Error('Overlay governance accepted a selection picker bypass');
   }
 
   const invalidFixtures = [
@@ -215,6 +241,7 @@ files.set(
 
 const errors = validate(files);
 errors.push(...validateTemporalPickers(files));
+errors.push(...validateSelectionPickers(files));
 
 if (errors.length > 0) {
   console.error('ErpOverlay governance check failed:\n');

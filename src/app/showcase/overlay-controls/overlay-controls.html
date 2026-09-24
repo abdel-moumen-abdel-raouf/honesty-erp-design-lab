@@ -78,4 +78,21 @@
       }
     </erp-grid>
   </erp-section>
+
+  <erp-section class="review-group" data-review-group="selection-pickers">
+    <erp-text type="heading-2">Selection picker overlays</erp-text>
+    <erp-divider />
+    <erp-grid [columns]="2" gap="sm" responsive="auto">
+      @for (theme of themes; track theme) {
+        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
+          <erp-stack gap="tight">
+            <erp-color-picker data-selection-overlay-evidence="color" label="Open color picker" />
+            <erp-icon-picker data-selection-overlay-evidence="icon" label="Open icon picker" />
+            <erp-item-picker data-selection-overlay-evidence="item" label="Open item picker" [items]="pickerItems" searchable />
+            <erp-combo-box data-selection-overlay-evidence="combo" label="Open combo box" [items]="pickerItems" />
+          </erp-stack>
+        </erp-surface>
+      }
+    </erp-grid>
+  </erp-section>
 </erp-container>

@@ -1,0 +1,25 @@
+@use '../../../../styles/foundation/components/selection-picker' as tokens;
+
+:host {
+  @include tokens.base;
+  display: block;
+  min-inline-size: 0;
+}
+
+.swatch {
+  min-block-size: var(--honesty-selection-picker-swatch-size);
+  border: var(--honesty-selection-picker-border-width) var(--honesty-selection-picker-border-style) var(--honesty-selection-picker-border-color);
+  border-radius: var(--honesty-selection-picker-radius);
+  cursor: pointer;
+}
+
+@each $name in primary, secondary, accent, success, warning, danger, info {
+  [data-color-preset='#{$name}'] {
+    background: var(--honesty-selection-picker-swatch-#{$name});
+  }
+}
+
+.native-color { display: grid; gap: var(--honesty-selection-picker-gap); }
+.native-color input { inline-size: 100%; min-block-size: var(--honesty-selection-picker-color-input-size); }
+.option-list { max-block-size: var(--honesty-selection-picker-list-max-block-size); overflow: auto; outline-color: var(--honesty-selection-picker-focus-color); }
+.selection-actions { padding-block-start: var(--honesty-selection-picker-gap); border-block-start: var(--honesty-selection-picker-border-width) var(--honesty-selection-picker-border-style) var(--honesty-selection-picker-border-color); }

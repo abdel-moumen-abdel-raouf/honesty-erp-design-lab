@@ -1,0 +1,4 @@
+@use '../../../styles/foundation/components/color-picker' as tokens;
+:host { @include tokens.base; display: block; min-width: 0; }
+.color-picker__trigger { display: flex; align-items: center; gap: var(--honesty-color-picker-gap); inline-size: 100%; min-width: 0; padding: 0; border: 0; outline: 0; text-align: start; color: var(--honesty-color-picker-value-color); background: transparent; font: inherit; cursor: var(--honesty-color-picker-cursor); }
+.color-picker__swatch { flex: 0 0 auto; inline-size: var(--honesty-color-picker-swatch-size); block-size: var(--honesty-color-picker-swatch-size); border: var(--honesty-color-picker-swatch-border-width) var(--honesty-color-picker-swatch-border-style) var(--honesty-color-picker-swatch-border-color); border-radius: var(--honesty-color-picker-swatch-radius); }

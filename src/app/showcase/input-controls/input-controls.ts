@@ -1,11 +1,15 @@
 import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {ErpCheckBox} from '../../controls/check-box/check-box';
+import {ErpColorPicker} from '../../controls/color-picker/color-picker';
+import {ErpComboBox} from '../../controls/combo-box/combo-box';
 import {ErpDateBox} from '../../controls/date-box/date-box';
 import {ErpDateRangeBox} from '../../controls/date-range-box/date-range-box';
 import {ErpDateTimeBox} from '../../controls/date-time-box/date-time-box';
 import {ErpFilePicker} from '../../controls/file-picker/file-picker';
 import {ErpImagePicker} from '../../controls/image-picker/image-picker';
+import {ErpIconPicker} from '../../controls/icon-picker/icon-picker';
+import {ErpItemPicker} from '../../controls/item-picker/item-picker';
 import {ErpMoneyBox} from '../../controls/money-box/money-box';
 import {ErpNumberBox} from '../../controls/number-box/number-box';
 import {ErpNumberStepper} from '../../controls/number-stepper/number-stepper';
@@ -13,6 +17,7 @@ import {ErpPasswordBox} from '../../controls/password-box/password-box';
 import {ErpRadioBox} from '../../controls/radio-box/radio-box';
 import {ErpRangeSlider} from '../../controls/range-slider/range-slider';
 import {ErpSearchBox} from '../../controls/search-box/search-box';
+import {ErpItemPickerOption} from '../../controls/selection-family/selection-contracts';
 import {ErpTelBox} from '../../controls/tel-box/tel-box';
 import {ErpTimeBox} from '../../controls/time-box/time-box';
 import {ErpTextAreaBox} from '../../controls/text-area-box/text-area-box';
@@ -32,6 +37,8 @@ import {ErpText} from '../../primitives/text/text';
   imports: [
     ErpContainer,
     ErpCheckBox,
+    ErpColorPicker,
+    ErpComboBox,
     ErpDivider,
     ErpDateBox,
     ErpDateRangeBox,
@@ -39,6 +46,8 @@ import {ErpText} from '../../primitives/text/text';
     ErpFilePicker,
     ErpGrid,
     ErpImagePicker,
+    ErpIconPicker,
+    ErpItemPicker,
     ErpMoneyBox,
     ErpNumberBox,
     ErpNumberStepper,
@@ -75,4 +84,13 @@ export class InputControls {
   readonly timeValue = signal<string | null>('09:30');
   readonly dateTimeValue = signal<string | null>('2026-09-24T09:30');
   readonly dateRangeValue = signal({start: '2026-09-24', end: '2026-09-30'});
+  readonly pickerItems: readonly ErpItemPickerOption[] = [
+    {value: 'customer', label: 'Customer', icon: 'customer'},
+    {value: 'inventory', label: 'Inventory', icon: 'inventory'},
+    {value: 'maintenance', label: 'Maintenance', icon: 'maintenance'},
+  ];
+  readonly colorValue = signal<string | null>('#2563EB');
+  readonly iconValue = signal<'settings' | null>('settings');
+  readonly itemValue = signal<string | null>('customer');
+  readonly comboValue = signal<string | null>('inventory');
 }

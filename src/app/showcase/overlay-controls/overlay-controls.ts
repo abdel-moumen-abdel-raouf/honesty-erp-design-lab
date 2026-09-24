@@ -1,8 +1,13 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {ErpButton} from '../../controls/button/button';
+import {ErpColorPicker} from '../../controls/color-picker/color-picker';
+import {ErpComboBox} from '../../controls/combo-box/combo-box';
 import {ErpDateBox} from '../../controls/date-box/date-box';
 import {ErpDateRangeBox} from '../../controls/date-range-box/date-range-box';
 import {ErpDateTimeBox} from '../../controls/date-time-box/date-time-box';
+import {ErpIconPicker} from '../../controls/icon-picker/icon-picker';
+import {ErpItemPicker} from '../../controls/item-picker/item-picker';
+import {ErpItemPickerOption} from '../../controls/selection-family/selection-contracts';
 import {ErpTimeBox} from '../../controls/time-box/time-box';
 import {ErpContainer} from '../../primitives/container/container';
 import {ErpDivider} from '../../primitives/divider/divider';
@@ -23,10 +28,14 @@ import {
   selector: 'app-overlay-controls',
   imports: [
     ErpButton,
+    ErpColorPicker,
+    ErpComboBox,
     ErpContainer,
     ErpDateBox,
     ErpDateRangeBox,
     ErpDateTimeBox,
+    ErpIconPicker,
+    ErpItemPicker,
     ErpDivider,
     ErpGrid,
     ErpSection,
@@ -40,6 +49,11 @@ import {
 })
 export class OverlayControls {
   readonly themes = ['light', 'dark'] as const;
+  readonly pickerItems: readonly ErpItemPickerOption[] = [
+    {value: 'customer', label: 'Customer', icon: 'customer'},
+    {value: 'inventory', label: 'Inventory', icon: 'inventory'},
+    {value: 'maintenance', label: 'Maintenance', icon: 'maintenance'},
+  ];
   private readonly overlays = inject(ErpOverlayManager);
 
   openModal(theme: 'light' | 'dark', nested = false): void {

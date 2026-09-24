@@ -111,7 +111,7 @@ function validateProductionContracts() {
   if (!/transition:\s*opacity[^;]+,\s*transform/.test(style) || /transition:\s*all/.test(style)) errors.push('Tooltip motion must transition opacity and transform explicitly');
 
   const modules = walk(path.join(ROOT, 'src', 'styles', 'foundation', 'components')).filter((file) => path.basename(file) === '_tokens.scss');
-  if (modules.length !== 36) errors.push(`Expected 36 concrete Component Token modules, found ${modules.length}`);
+  if (modules.length !== 41) errors.push(`Expected 41 concrete Component Token modules, found ${modules.length}`);
   if (fs.existsSync(path.join(ROOT, 'src', 'styles', 'foundation', 'components', 'tooltip-content'))) errors.push('ErpTooltipContent must not own a Component Token module');
   return errors;
 }

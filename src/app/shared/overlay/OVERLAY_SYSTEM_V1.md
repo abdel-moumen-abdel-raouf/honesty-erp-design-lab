@@ -116,6 +116,11 @@ The implemented temporal family (`ErpDateBox`, `ErpTimeBox`,
 shared injected temporal overlay surface. Browser-native date/time picker
 popups are not the primary selection experience.
 
+The implemented selection family (`ErpColorPicker`, `ErpIconPicker`,
+`ErpItemPicker`, and `ErpComboBox`) uses the same staged transaction boundary.
+Semantic icon names and matched item values cross the overlay boundary; vendor
+icon names and unmatched combo queries do not.
+
 ## Explicit Separations
 
 Tooltip remains on its existing nonblocking anchored-overlay architecture and

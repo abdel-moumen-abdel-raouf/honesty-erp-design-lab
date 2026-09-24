@@ -1,0 +1,40 @@
+<erp-stack class="selection-picker" gap="default" [attr.data-theme]="data.theme">
+  @if (data.mode === 'color') {
+    <erp-text type="label">Semantic presets</erp-text>
+    <erp-grid class="swatch-grid" [columns]="4" gap="sm" responsive="auto">
+      @for (preset of colorPresets; track preset.id) {
+        <button type="button" class="swatch" [attr.data-color-preset]="preset.id" [attr.data-selected]="false" [attr.aria-label]="preset.label" (click)="selectPreset(preset.id)"></button>
+      }
+    </erp-grid>
+    <label class="native-color">
+      <erp-text type="label">Custom color</erp-text>
+      <input data-native-color type="color" [value]="staged() ?? '#000000'" (input)="selectColor($any($event.target).value)" />
+    </label>
+    <erp-text data-current-color type="data" family="latin" selectable>{{ staged() ?? 'No color selected' }}</erp-text>
+  } @else {
+    @if (data.searchable || data.mode === 'icon' || data.mode === 'combo') {
+      <erp-text-box data-selection-search label="Search" leadingIcon="search" [ngModel]="query()" (ngModelChange)="updateQuery($event)" />
+    }
+    <div class="option-list" tabindex="0" data-selection-list (keydown)="handleListKeydown($event)">
+      @if (data.mode === 'icon') {
+        <erp-grid [columns]="4" gap="sm" responsive="auto">
+          @for (icon of filteredIcons(); track icon; let index = $index) {
+            <erp-button data-icon-option [attr.data-active]="activeIndex() === index" [attr.data-selected]="staged() === icon" [label]="icon" [icon]="icon" [variant]="staged() === icon ? 'solid' : 'outline'" tone="neutral" size="sm" (pressed)="selectIcon(icon)" />
+          }
+        </erp-grid>
+      } @else {
+        @for (item of filteredItems(); track item.value; let index = $index) {
+          <erp-button data-item-option [attr.data-value]="item.value" [attr.data-active]="activeIndex() === index" [attr.data-selected]="staged() === item.value" [label]="item.label" [icon]="item.icon ?? null" [variant]="staged() === item.value ? 'solid' : 'ghost'" tone="neutral" size="sm" [disabled]="item.disabled ?? false" (pressed)="selectItem(item)" />
+        }
+      }
+    </div>
+  }
+
+  <erp-inline class="selection-actions" gap="tight" wrap="wrap" justify="end">
+    @if (data.clearable || data.mode === 'color' || data.mode === 'icon' || data.mode === 'combo') {
+      <erp-button data-clear-action label="Clear" variant="ghost" tone="neutral" size="sm" (pressed)="clear()" />
+    }
+    <erp-button data-cancel-action label="Cancel" variant="outline" tone="neutral" size="sm" (pressed)="cancel()" />
+    <erp-button data-confirm-action label="Confirm" size="sm" (pressed)="confirm()" />
+  </erp-inline>
+</erp-stack>

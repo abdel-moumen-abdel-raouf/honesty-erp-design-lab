@@ -24,7 +24,7 @@ describe('InputControls showcase', () => {
     expect(create().componentInstance).toBeTruthy();
   });
 
-  it('renders nine review groups with equivalent Light and Dark contexts', () => {
+  it('renders ten review groups with equivalent Light and Dark contexts', () => {
     const root = create().nativeElement as HTMLElement;
     const groups = [...root.querySelectorAll('[data-review-group]')];
     expect(groups.map((group) => group.getAttribute('data-review-group'))).toEqual([
@@ -37,6 +37,7 @@ describe('InputControls showcase', () => {
       'numeric-family',
       'file-image-basics',
       'temporal-pickers',
+      'selection-pickers',
     ]);
     for (const group of groups) {
       expect(
@@ -44,6 +45,14 @@ describe('InputControls showcase', () => {
           context.getAttribute('data-theme'),
         ),
       ).toEqual(['light', 'dark']);
+    }
+  });
+
+  it('contains all four selection picker controls in both themes', () => {
+    const root = create().nativeElement as HTMLElement;
+    const group = root.querySelector('[data-review-group="selection-pickers"]');
+    for (const selector of ['erp-color-picker', 'erp-icon-picker', 'erp-item-picker', 'erp-combo-box']) {
+      expect(group?.querySelectorAll(selector).length).toBe(2);
     }
   });
 

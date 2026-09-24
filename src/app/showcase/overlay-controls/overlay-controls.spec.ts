@@ -23,7 +23,7 @@ describe('OverlayControls showcase', () => {
     expect(create().componentInstance).toBeTruthy();
   });
 
-  it('renders five technical groups with equivalent Light and Dark contexts', () => {
+  it('renders six technical groups with equivalent Light and Dark contexts', () => {
     const root = create().nativeElement as HTMLElement;
     const groups = [...root.querySelectorAll('[data-review-group]')];
     expect(groups.map((group) => group.getAttribute('data-review-group'))).toEqual([
@@ -32,6 +32,7 @@ describe('OverlayControls showcase', () => {
       'nested-stack',
       'dismissal-focus',
       'temporal-pickers',
+      'selection-pickers',
     ]);
 
     for (const group of groups) {
@@ -41,6 +42,12 @@ describe('OverlayControls showcase', () => {
         ),
       ).toEqual(['light', 'dark']);
     }
+  });
+
+  it('contains all four OverlayManager-backed selection triggers in both themes', () => {
+    const root = create().nativeElement as HTMLElement;
+    expect(root.querySelectorAll('[data-selection-overlay-evidence]').length).toBe(8);
+    expect([...root.querySelectorAll<HTMLElement>('[data-selection-overlay-evidence]')].map((item) => item.getAttribute('data-selection-overlay-evidence'))).toEqual(['color', 'icon', 'item', 'combo', 'color', 'icon', 'item', 'combo']);
   });
 
   it('contains all four OverlayManager-backed temporal triggers in both themes', () => {

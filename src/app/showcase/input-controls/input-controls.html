@@ -332,4 +332,21 @@
       }
     </erp-grid>
   </erp-section>
+
+  <erp-section class="review-group" data-review-group="selection-pickers">
+    <erp-text type="heading-2">Overlay selection pickers</erp-text>
+    <erp-divider />
+    <erp-grid [columns]="2" gap="md" responsive="auto">
+      @for (theme of themes; track theme) {
+        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
+          <erp-stack>
+            <erp-color-picker data-color-picker-evidence label="Color" clearable [ngModel]="colorValue()" (ngModelChange)="colorValue.set($event)" />
+            <erp-icon-picker data-icon-picker-evidence label="Icon" clearable [ngModel]="iconValue()" (ngModelChange)="iconValue.set($event)" />
+            <erp-item-picker data-item-picker-evidence label="Item" placeholder="Select item" searchable clearable [items]="pickerItems" [ngModel]="itemValue()" (ngModelChange)="itemValue.set($event)" />
+            <erp-combo-box data-combo-box-evidence label="Combo box" placeholder="Search items" [items]="pickerItems" [ngModel]="comboValue()" (ngModelChange)="comboValue.set($event)" />
+          </erp-stack>
+        </erp-surface>
+      }
+    </erp-grid>
+  </erp-section>
 </erp-container>

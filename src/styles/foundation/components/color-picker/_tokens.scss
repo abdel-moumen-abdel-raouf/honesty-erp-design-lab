@@ -1,0 +1,10 @@
+@mixin base {
+  --honesty-color-picker-value-color: var(--honesty-color-text-primary);
+  --honesty-color-picker-cursor: pointer;
+  --honesty-color-picker-gap: var(--honesty-space-inline-tight);
+  --honesty-color-picker-swatch-size: 1.25rem;
+  --honesty-color-picker-swatch-border-width: var(--honesty-border-width-default);
+  --honesty-color-picker-swatch-border-style: var(--honesty-border-style-default);
+  --honesty-color-picker-swatch-border-color: var(--honesty-border-default);
+  --honesty-color-picker-swatch-radius: var(--honesty-radius-control);
+}

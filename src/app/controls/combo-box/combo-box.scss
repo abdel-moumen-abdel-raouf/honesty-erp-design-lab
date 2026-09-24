@@ -1,0 +1,4 @@
+@use '../../../styles/foundation/components/combo-box' as tokens;
+:host { @include tokens.base; display: block; min-width: 0; }
+.combo-box__native { inline-size: 100%; min-width: 0; padding: 0; border: 0; outline: 0; color: var(--honesty-combo-box-value-color); background: transparent; font: inherit; cursor: var(--honesty-combo-box-cursor); }
+.combo-box__native::placeholder { color: var(--honesty-combo-box-placeholder-color); opacity: 1; }

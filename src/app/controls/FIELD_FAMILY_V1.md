@@ -466,6 +466,23 @@ Its invariant is `min <= lower <= upper <= max`; thumbs do not cross in V1.
 - The date-range overlay stages start and then end and provides selected-range
   evidence before confirmation.
 
+## Selection Overlay Picker Family
+
+- `ErpColorPicker` stores `string | null` as canonical uppercase `#RRGGBB`,
+  provides semantic preset swatches and an allowed native custom color input,
+  and stages clear/selection until confirmation.
+- `ErpIconPicker` stores `ErpIconName | null`, searches the complete semantic
+  icon registry, supports keyboard selection, and never exposes vendor names.
+- `ErpItemPicker` stores `string | null` and consumes readonly options with
+  `value`, `label`, optional `disabled`, and optional semantic `icon`; its
+  defaults are nullable placeholder, `searchable = false`, and
+  `clearable = false`.
+- `ErpComboBox` uses the same option contract, keeps an editable search query,
+  commits only a matched enabled option value, and never commits free-form text
+  in V1.
+- All four use Field Family chrome and `ErpOverlayManager`; overlay selection is
+  staged so cancel or dismissal does not mutate the CVA value.
+
 Do not create or retain `ErpRangeBox` or `ErpNumberUpDown`.
 
 Boolean/choice Basic Controls are `ErpCheckBox` and `ErpRadioBox`.
