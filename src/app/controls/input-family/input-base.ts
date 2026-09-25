@@ -47,7 +47,7 @@ export abstract class ErpInputBase<TValue> implements ControlValueAccessor {
 
     effect(() => {
       if (this.effectiveDisabled()) {
-        this.focusedState.set(false);
+        this.clearFocusState();
       }
     });
   }
@@ -68,8 +68,12 @@ export abstract class ErpInputBase<TValue> implements ControlValueAccessor {
     this.formDisabled.set(isDisabled);
 
     if (isDisabled) {
-      this.focusedState.set(false);
+      this.clearFocusState();
     }
+  }
+
+  protected clearFocusState(): void {
+    this.focusedState.set(false);
   }
 
   protected commitUserValue(value: unknown): boolean {
@@ -90,7 +94,7 @@ export abstract class ErpInputBase<TValue> implements ControlValueAccessor {
   }
 
   protected handleBlur(): void {
-    this.focusedState.set(false);
+    this.clearFocusState();
     this.onTouched();
   }
 

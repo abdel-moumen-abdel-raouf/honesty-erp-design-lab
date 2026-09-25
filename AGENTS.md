@@ -425,8 +425,14 @@ Rules:
 
 - `ErpInputBase V1` is frozen with exactly `label`, `name`, `form`, and
   `disabled` as inherited public inputs.
-- `ErpFieldBase`, `ErpFieldFrame`, and `ErpFieldFeedback` are internal Field
-  Family infrastructure; Feature/Page code never authors them directly.
+- `ErpFieldBase`, `ErpFieldFrame`, `ErpFieldTrigger`, and `ErpFieldFeedback` are
+  internal Field Family infrastructure; Feature/Page code never authors them
+  directly.
+- Concrete picker controls use `ErpFieldTrigger` for whole-field button
+  semantics and do not author independent raw trigger buttons.
+- Concrete Controls and Composites do not author raw native buttons outside
+  approved internal semantic primitive roots. Legitimate native input,
+  textarea, and file-input elements remain allowed in their owning controls.
 - `ErpFieldFeedback` is an in-flow field message surface. It is not Tooltip,
   Popover, Overlay, a portal client, or an `ErpOverlayManager` client.
 - Field tone is normal brand identity; field status is semantic state. Active

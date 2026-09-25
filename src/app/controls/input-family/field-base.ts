@@ -99,6 +99,24 @@ export abstract class ErpFieldBase<TValue> extends ErpInputBase<TValue> {
       this.status();
       untracked(() => this.feedbackDismissedState.set(false));
     });
+
+    effect(() => {
+      if (this.fieldEffectiveDisabled()) {
+        this.clearFocusState();
+      }
+    });
+  }
+
+  protected override commitUserValue(value: unknown): boolean {
+    return this.fieldEffectiveDisabled()
+      ? false
+      : super.commitUserValue(value);
+  }
+
+  protected override handleFocus(): void {
+    if (!this.fieldEffectiveDisabled()) {
+      super.handleFocus();
+    }
   }
 
   protected dismissFeedback(): boolean {

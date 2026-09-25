@@ -7,6 +7,7 @@ import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
 import {ErpOverlayRef} from '../../shared/overlay/overlay-ref';
 import {ErpFieldBase} from '../input-family/field-base';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
+import {ErpFieldTrigger} from '../input-family/internal/field-trigger';
 import {ErpSelectionPickerContent} from '../selection-family/internal/selection-picker-content';
 import {ErpSelectionPickerData} from '../selection-family/selection-contracts';
 import {normalizeIconName} from '../selection-family/selection-utils';
@@ -17,7 +18,7 @@ let nextIconPickerId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-icon-picker',
-  imports: [ErpFieldFrame, ErpIcon, ErpText],
+  imports: [ErpFieldFrame, ErpFieldTrigger, ErpIcon, ErpText],
   providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => ErpIconPicker), multi: true}],
   templateUrl: './icon-picker.html',
   styleUrl: './icon-picker.scss',

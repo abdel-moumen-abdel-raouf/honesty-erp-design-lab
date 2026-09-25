@@ -6,6 +6,7 @@ import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
 import {ErpOverlayRef} from '../../shared/overlay/overlay-ref';
 import {ErpFieldBase} from '../input-family/field-base';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
+import {ErpFieldTrigger} from '../input-family/internal/field-trigger';
 import {ErpTemporalPickerContent} from '../temporal-family/internal/temporal-picker-content';
 import {ErpDateRangeValue, ErpTemporalPickerData, ErpTemporalValue} from '../temporal-family/temporal-contracts';
 import {normalizeDateRange} from '../temporal-family/temporal-utils';
@@ -16,7 +17,7 @@ let nextDateRangeBoxId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-date-range-box',
-  imports: [ErpFieldFrame, ErpText],
+  imports: [ErpFieldFrame, ErpFieldTrigger, ErpText],
   providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => ErpDateRangeBox), multi: true}],
   templateUrl: './date-range-box.html',
   styleUrl: './date-range-box.scss',

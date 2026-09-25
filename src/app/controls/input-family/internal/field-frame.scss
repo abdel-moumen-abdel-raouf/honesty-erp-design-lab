@@ -44,6 +44,11 @@
       var(--honesty-field-frame-glass-surface-mix),
     transparent
   );
+  box-shadow:
+    inset 0 0 0 var(--honesty-field-frame-border-width)
+      var(--honesty-field-frame-glass-border-color),
+    inset 0 var(--honesty-field-frame-border-width) 0
+      var(--honesty-field-frame-glass-highlight-color);
 }
 
 :host([data-field-focused='true']:not([data-field-border-mode='underline']))

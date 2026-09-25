@@ -29,10 +29,12 @@ The internal foundation is:
 2. `ErpFieldBase<TValue>` — internal abstract `@Directive()`, non-renderable,
    extending `ErpInputBase<TValue>`.
 3. `ErpFieldFrame` — internal rendered shared field chrome.
-4. `ErpFieldFeedback` — internal in-flow feedback surface.
-5. Concrete public controls.
+4. `ErpFieldTrigger` — internal transparent semantic button surface for picker
+   controls.
+5. `ErpFieldFeedback` — internal in-flow feedback surface.
+6. Concrete public controls.
 
-Feature/Page code never authors the three internal Field Family types directly.
+Feature/Page code never authors the internal Field Family types directly.
 
 ## Canonical Contracts
 
@@ -144,6 +146,10 @@ Invalid combinations produce deterministic configuration-invalid state and
 effectively disable user commits. They are not silently remapped, except for
 the explicit text-variant rule that resolves its effective border to
 underline.
+
+Entering Field-level effective-disabled state clears stored focus. While that
+state is active, protected user commits and focus acquisition are blocked; a
+later return to valid configuration does not resurrect prior focus evidence.
 
 Domain actions remain distinct from configured trailingIcon and clear.
 Password reveal is a domain action; the logical end order remains domain
@@ -295,8 +301,9 @@ The reference asset is not downloaded, committed, or redistributed.
 solid, outline, or subtle variants defined by the compatibility matrix. It
 uses:
 
-- Semantic surface variables through `color-mix`, never raw colors;
-- a translucent elevated/default surface;
+- the theme-sensitive Semantic glass surface, border, and highlight roles;
+- the Component-owned surface-mix slot through `color-mix`, never raw colors;
+- a perceptible translucent surface with subtle border and inset highlight;
 - `backdrop-filter` and `-webkit-backdrop-filter`;
 - the Foundation Effect semantic blur contract;
 - a subtle semantic border;
@@ -309,6 +316,18 @@ Semantic surface preserves legibility. Feedback never uses glass.
 The glass surface mix is owned by
 --honesty-field-frame-glass-surface-mix; the glass facet resolves it to 72%.
 Production FieldFrame SCSS contains no tunable mix literal.
+
+## Internal Field Trigger
+
+`ErpFieldTrigger` is the only internal whole-field button-semantic surface. It
+owns one native `button type="button"`, transparent Field-compatible chrome,
+disabled state, id/name/form association, described-by/error-message/invalid
+relationships, activation, keyboard, focus, blur, and projected content.
+
+Picker controls compose `ErpFieldTrigger` instead of authoring independent raw
+trigger buttons. It does not import Button Family visual chrome or ripple.
+Legitimate native input, textarea, and file-input elements remain owned by
+their concrete ERP controls.
 
 ## Text Entry Family
 

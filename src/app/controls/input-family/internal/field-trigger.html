@@ -1,0 +1,15 @@
+<button
+  class="field-trigger__button"
+  type="button"
+  [id]="id()"
+  [attr.name]="name()"
+  [attr.form]="form()"
+  [disabled]="disabled()"
+  [attr.aria-describedby]="ariaDescribedBy()"
+  [attr.aria-errormessage]="ariaErrorMessage()"
+  [attr.aria-invalid]="ariaInvalid()"
+  (click)="activated.emit($event)"
+  (keydown)="keyPressed.emit($event)"
+  (focus)="focused.emit($event)"
+  (blur)="blurred.emit($event)"
+><ng-content></ng-content></button>

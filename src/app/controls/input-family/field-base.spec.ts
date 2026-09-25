@@ -32,12 +32,28 @@ class TestFieldBase extends ErpFieldBase<string> {
     return this.fieldEffectiveDisabled();
   }
 
+  get fieldFocusedForTest(): boolean {
+    return this.fieldFocused();
+  }
+
+  get valueForTest(): string {
+    return this.currentValue();
+  }
+
   get effectiveBorderModeForTest() {
     return this.effectiveBorderMode();
   }
 
   dismissFeedbackForTest(): boolean {
     return this.dismissFeedback();
+  }
+
+  commitForTest(value: unknown): boolean {
+    return this.commitUserValue(value);
+  }
+
+  focusForTest(): void {
+    this.handleFocus();
   }
 
   protected override normalizeValue(value: unknown): string {
@@ -153,5 +169,62 @@ describe('ErpFieldBase', () => {
     expect(control.helperPosition()).toBe('above');
     expect(control.floatingPosition()).toBe('bottom');
     expect(control.fieldConfigurationStateForTest).toBe('ready');
+  });
+
+  it('clears stored focus across compatibility-invalid state transitions', () => {
+    const fixture = createFixture();
+    const control = fixture.componentInstance;
+
+    control.focusForTest();
+    expect(control.fieldFocusedForTest).toBe(true);
+
+    fixture.componentRef.setInput('variant', 'ghost');
+    fixture.componentRef.setInput('appearance', 'glass');
+    fixture.detectChanges();
+    expect(control.fieldConfigurationStateForTest).toBe('invalid');
+    expect(control.fieldFocusedForTest).toBe(false);
+
+    fixture.componentRef.setInput('appearance', 'standard');
+    fixture.detectChanges();
+    expect(control.fieldConfigurationStateForTest).toBe('ready');
+    expect(control.fieldFocusedForTest).toBe(false);
+  });
+
+  it('blocks protected user commits while field compatibility is invalid', () => {
+    const fixture = createFixture();
+    const control = fixture.componentInstance;
+    const onChange = vi.fn();
+    control.registerOnChange(onChange);
+
+    fixture.componentRef.setInput('variant', 'solid');
+    fixture.componentRef.setInput('borderMode', 'dashed');
+    fixture.detectChanges();
+
+    expect(control.fieldEffectiveDisabledForTest).toBe(true);
+    expect(control.commitForTest('blocked')).toBe(false);
+    expect(control.valueForTest).toBe('');
+    expect(onChange).not.toHaveBeenCalled();
+  });
+
+  it('preserves explicit and Forms disabled enforcement at Field level', () => {
+    const fixture = createFixture();
+    const control = fixture.componentInstance;
+
+    fixture.componentRef.setInput('disabled', true);
+    fixture.detectChanges();
+    expect(control.commitForTest('explicit')).toBe(false);
+    control.focusForTest();
+    expect(control.fieldFocusedForTest).toBe(false);
+
+    fixture.componentRef.setInput('disabled', false);
+    fixture.detectChanges();
+    control.setDisabledState(true);
+    fixture.detectChanges();
+    expect(control.commitForTest('forms')).toBe(false);
+
+    control.setDisabledState(false);
+    fixture.detectChanges();
+    expect(control.commitForTest('accepted')).toBe(true);
+    expect(control.valueForTest).toBe('accepted');
   });
 });

@@ -6,6 +6,7 @@ import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
 import {ErpOverlayRef} from '../../shared/overlay/overlay-ref';
 import {ErpFieldBase} from '../input-family/field-base';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
+import {ErpFieldTrigger} from '../input-family/internal/field-trigger';
 import {ErpSelectionPickerContent} from '../selection-family/internal/selection-picker-content';
 import {ErpItemPickerOption, ErpSelectionPickerData} from '../selection-family/selection-contracts';
 import {normalizeItemValue} from '../selection-family/selection-utils';
@@ -16,7 +17,7 @@ let nextItemPickerId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-item-picker',
-  imports: [ErpFieldFrame, ErpText],
+  imports: [ErpFieldFrame, ErpFieldTrigger, ErpText],
   providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => ErpItemPicker), multi: true}],
   templateUrl: './item-picker.html',
   styleUrl: './item-picker.scss',

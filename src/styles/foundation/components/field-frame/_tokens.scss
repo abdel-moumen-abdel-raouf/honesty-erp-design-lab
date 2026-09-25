@@ -23,6 +23,8 @@
   --honesty-field-frame-focus-end: var(--honesty-color-brand-primary-content);
   --honesty-field-frame-backdrop-blur: 0;
   --honesty-field-frame-glass-surface-mix: 100%;
+  --honesty-field-frame-glass-border-color: transparent;
+  --honesty-field-frame-glass-highlight-color: transparent;
 }
 
 @mixin variant-solid {
@@ -180,8 +182,12 @@
 }
 
 @mixin appearance-glass {
-  --honesty-field-frame-bg: var(--honesty-color-surface-elevated);
+  --honesty-field-frame-bg: var(--honesty-color-surface-glass);
   --honesty-field-frame-backdrop-blur:
     var(--honesty-effect-backdrop-blur-glass);
   --honesty-field-frame-glass-surface-mix: 72%;
+  --honesty-field-frame-glass-border-color:
+    var(--honesty-color-surface-glass-border);
+  --honesty-field-frame-glass-highlight-color:
+    var(--honesty-color-surface-glass-highlight);
 }

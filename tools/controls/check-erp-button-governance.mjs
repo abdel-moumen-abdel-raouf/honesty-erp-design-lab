@@ -5,6 +5,7 @@ import {parseTemplate} from '@angular/compiler';
 
 const ROOT = process.cwd();
 const APP_ROOT = path.join(ROOT, 'src', 'app');
+const CONTROLS_ROOT = path.join(APP_ROOT, 'controls');
 const BUTTON_SHOWCASE_FILE = path.join(
   APP_ROOT,
   'showcase',
@@ -110,6 +111,14 @@ const FINAL_RIPPLE_MIXINS = [
   ['ripple-speed-normal', 1100],
   ['ripple-speed-slow', 1800],
 ];
+const APPROVED_NATIVE_BUTTON_ROOTS = new Set([
+  'src/app/controls/button/button.html',
+  'src/app/controls/icon-button/icon-button.html',
+  'src/app/controls/fab/fab.html',
+  'src/app/controls/extended-fab/extended-fab.html',
+  'src/app/controls/input-family/internal/field-trigger.html',
+  'src/app/controls/selection-family/internal/selection-picker-content.html',
+]);
 
 function walk(directory) {
   if (!fs.existsSync(directory)) {
@@ -275,6 +284,53 @@ function validateButtonShowcaseSource(source, label) {
       ) {
         errors.push(
           `${label}${sourceLocation(node.sourceSpan)}: raw visible <${elementName}> is forbidden in Button showcase`,
+        );
+      }
+
+      if (Array.isArray(node.children)) {
+        visit(node.children);
+      }
+
+      for (const branch of node.branches ?? []) {
+        visit(branch.children ?? []);
+      }
+
+      for (const blockCase of node.cases ?? []) {
+        visit(blockCase.children ?? []);
+      }
+
+      if (Array.isArray(node.empty?.children)) {
+        visit(node.empty.children);
+      }
+    }
+  }
+
+  visit(parsed.nodes);
+  return errors;
+}
+
+function validateControlNativeButtonSource(source, label) {
+  if (APPROVED_NATIVE_BUTTON_ROOTS.has(label)) {
+    return [];
+  }
+
+  const parsed = parseTemplate(source, label, {preserveWhitespaces: true});
+  const errors = [];
+
+  for (const error of parsed.errors ?? []) {
+    errors.push(`${label}: Angular template parse error: ${error}`);
+  }
+
+  function visit(nodes) {
+    for (const node of nodes) {
+      const elementName =
+        typeof node.name === 'string'
+          ? node.name.split(':').at(-1)?.toLowerCase()
+          : null;
+
+      if (elementName === 'button') {
+        errors.push(
+          `${label}${sourceLocation(node.sourceSpan)}: concrete Controls and Composites must use an approved internal button primitive`,
         );
       }
 
@@ -472,6 +528,28 @@ function runSelfTest() {
     throw new Error('ErpButton governance checker accepted invalid showcase fixture');
   }
 
+  const validInternalButtonErrors = validateControlNativeButtonSource(
+    '<button type="button">Trigger</button>',
+    'src/app/controls/input-family/internal/field-trigger.html',
+  );
+
+  if (validInternalButtonErrors.length > 0) {
+    throw new Error(
+      `ErpButton governance checker rejected approved internal button root:\n${validInternalButtonErrors.join('\n')}`,
+    );
+  }
+
+  const invalidConcreteButtonErrors = validateControlNativeButtonSource(
+    '<button type="button">Open</button>',
+    'src/app/controls/date-box/date-box.html',
+  );
+
+  if (invalidConcreteButtonErrors.length === 0) {
+    throw new Error(
+      'ErpButton governance checker accepted a concrete control raw button',
+    );
+  }
+
   const validRippleFixture = `
 @mixin base {
   --honesty-button-ripple-duration: 1100ms;
@@ -589,6 +667,15 @@ const htmlFiles = walk(APP_ROOT).filter(
   (file) => file.endsWith('.html') && !isExcluded(file),
 );
 const errors = [];
+
+for (const file of walk(CONTROLS_ROOT).filter((candidate) =>
+  candidate.endsWith('.html'),
+)) {
+  const source = fs.readFileSync(file, 'utf8');
+  errors.push(
+    ...validateControlNativeButtonSource(source, relative(file)),
+  );
+}
 
 for (const file of htmlFiles) {
   const source = fs.readFileSync(file, 'utf8');

@@ -13,6 +13,17 @@ const OVERLAY_SHOWCASE =
   'src/app/showcase/overlay-controls/overlay-controls.html';
 const FIELD_CONTRACT = 'src/app/controls/FIELD_FAMILY_V1.md';
 const BUTTON_CONTRACT = 'src/app/controls/BUTTON_FAMILY_V1.md';
+const FIELD_TRIGGER_TEMPLATE =
+  'src/app/controls/input-family/internal/field-trigger.html';
+const FIELD_TRIGGER_CONSUMERS = [
+  'date-box',
+  'time-box',
+  'date-time-box',
+  'date-range-box',
+  'color-picker',
+  'icon-picker',
+  'item-picker',
+];
 const PROGRAM_PUBLIC_CONTROLS = [
   ['ErpTextBox', 'text-box', INPUT_SHOWCASE],
   ['ErpTextAreaBox', 'text-area-box', INPUT_SHOWCASE],
@@ -73,7 +84,7 @@ export function validate(files) {
     if (
       !control &&
       !isSpec(normalized) &&
-      /<erp-field-(?:frame|feedback)\b/.test(source)
+      /<erp-field-(?:frame|feedback|trigger)\b/.test(source)
     ) {
       errors.push(
         `${normalized}: internal Field components must not be authored directly`,
@@ -165,6 +176,31 @@ export function validateFieldRenderingContracts(tokenSource, styleSource) {
     );
   }
 
+  for (const semanticRole of [
+    '--honesty-color-surface-glass',
+    '--honesty-color-surface-glass-border',
+    '--honesty-color-surface-glass-highlight',
+  ]) {
+    if (!tokenSource.includes(semanticRole)) {
+      errors.push(
+        `FieldFrame glass tokens must consume ${semanticRole}`,
+      );
+    }
+  }
+
+  if (
+    !styleSource.includes(
+      'var(--honesty-field-frame-glass-border-color)',
+    ) ||
+    !styleSource.includes(
+      'var(--honesty-field-frame-glass-highlight-color)',
+    )
+  ) {
+    errors.push(
+      'FieldFrame glass implementation must consume its semantic border and highlight slots',
+    );
+  }
+
   if (
     !styleSource.includes(
       'var(--honesty-field-frame-glass-surface-mix)',
@@ -188,6 +224,33 @@ export function validateFieldRenderingContracts(tokenSource, styleSource) {
     errors.push(
       'FieldFrame focus gradients must expose deterministic RTL-aware color ordering',
     );
+  }
+
+  return errors;
+}
+
+export function validateFieldTriggerContracts(files) {
+  const errors = [];
+  const triggerSource = files.get(FIELD_TRIGGER_TEMPLATE) ?? '';
+
+  if (
+    (triggerSource.match(/<button\b/g) ?? []).length !== 1 ||
+    !/<button\b[^>]*\btype="button"/.test(triggerSource)
+  ) {
+    errors.push(
+      `${FIELD_TRIGGER_TEMPLATE}: ErpFieldTrigger must own exactly one native type="button" root`,
+    );
+  }
+
+  for (const slug of FIELD_TRIGGER_CONSUMERS) {
+    const template = `src/app/controls/${slug}/${slug}.html`;
+    const source = files.get(template) ?? '';
+
+    if (!/<erp-field-trigger\b/.test(source) || /<button\b/.test(source)) {
+      errors.push(
+        `${template}: picker trigger must use ErpFieldTrigger without a raw button`,
+      );
+    }
   }
 
   return errors;
@@ -249,10 +312,32 @@ function runSelfTest() {
       'src/app/controls/text-box/text-box.html',
       '<input type="text" />',
     ],
+    [FIELD_TRIGGER_TEMPLATE, '<button type="button"></button>'],
   ]);
+
+  for (const slug of FIELD_TRIGGER_CONSUMERS) {
+    valid.set(
+      `src/app/controls/${slug}/${slug}.html`,
+      '<erp-field-trigger></erp-field-trigger>',
+    );
+  }
 
   if (validate(valid).length > 0) {
     throw new Error('ErpField checker rejected valid internal fixtures');
+  }
+
+  if (validateFieldTriggerContracts(valid).length > 0) {
+    throw new Error('ErpField checker rejected valid trigger fixtures');
+  }
+
+  const invalidTriggerFixtures = new Map(valid);
+  invalidTriggerFixtures.set(
+    'src/app/controls/date-box/date-box.html',
+    '<button type="button"></button>',
+  );
+
+  if (validateFieldTriggerContracts(invalidTriggerFixtures).length === 0) {
+    throw new Error('ErpField checker accepted a raw picker trigger');
   }
 
   const invalidFixtures = [
@@ -332,6 +417,9 @@ function runSelfTest() {
     '}',
     '@mixin appearance-glass {',
     '  --honesty-field-frame-glass-surface-mix: 72%;',
+    '  --honesty-field-frame-bg: var(--honesty-color-surface-glass);',
+    '  --honesty-field-frame-glass-border-color: var(--honesty-color-surface-glass-border);',
+    '  --honesty-field-frame-glass-highlight-color: var(--honesty-color-surface-glass-highlight);',
     '}',
   ].join('\n');
   const validStyleSource = [
@@ -344,6 +432,8 @@ function runSelfTest() {
     '}',
     '.glass {',
     '  background: color-mix(in srgb, red var(--honesty-field-frame-glass-surface-mix), transparent);',
+    '  border-color: var(--honesty-field-frame-glass-border-color);',
+    '  box-shadow: var(--honesty-field-frame-glass-highlight-color);',
     '}',
   ].join('\n');
 
@@ -455,6 +545,7 @@ const files = new Map(
 );
 
 const errors = validate(files);
+errors.push(...validateFieldTriggerContracts(files));
 errors.push(
   ...validateProgramControlInventory(
     files,

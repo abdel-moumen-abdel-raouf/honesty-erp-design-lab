@@ -44,6 +44,10 @@ class TestInputBase extends ErpInputBase<string> {
     this.handleBlur();
   }
 
+  clearFocusForTest(): void {
+    this.clearFocusState();
+  }
+
   protected override normalizeValue(value: unknown): string {
     return value === null || value === undefined ? '' : String(value);
   }
@@ -159,6 +163,19 @@ describe('ErpInputBase', () => {
     control.blurForTest();
     expect(control.focusedForTest).toBe(false);
     expect(onTouched).toHaveBeenCalledOnce();
+  });
+
+  it('clears stored focus without reporting touched through the protected helper', () => {
+    const fixture = createFixture();
+    const control = fixture.componentInstance;
+    const onTouched = vi.fn();
+
+    control.registerOnTouched(onTouched);
+    control.focusForTest();
+    control.clearFocusForTest();
+
+    expect(control.focusedForTest).toBe(false);
+    expect(onTouched).not.toHaveBeenCalled();
   });
 
   it('clears stored focus across every effective-disabled transition', () => {
