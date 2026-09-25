@@ -40,6 +40,24 @@ export type ErpOverlaySize =
   | 'lg'
   | 'xl'
   | 'full';
+
+export type ErpOverlayBlur = 'low' | 'medium' | 'high';
+
+export type ErpOverlayBackdropTone =
+  | 'default'
+  | 'neutral'
+  | 'primary'
+  | 'secondary'
+  | 'accent';
+
+export type ErpOverlayAnimation =
+  | 'fade'
+  | 'scale'
+  | 'fade-scale'
+  | 'slide-up'
+  | 'slide-down'
+  | 'slide-start'
+  | 'slide-end';
 ```
 
 Exact defaults:
@@ -49,6 +67,12 @@ Exact defaults:
 - size: md
 - dismissOnEscape: true
 - dismissOnBackdrop: true
+- blur: medium
+- backdropTone: default
+- modal enter/exit: fade-scale
+- start drawer enter/exit: slide-start
+- end drawer enter/exit: slide-end
+- bottom drawer enter/exit: slide-up / slide-down
 - restoreFocus: true
 - trapFocus: true
 - blocking: true
@@ -91,6 +115,13 @@ Each opened overlay receives or injects its `ErpOverlayRef`.
 - an `afterClosed` Promise
 - immutable overlay id and config
 
+Entries follow `entering -> open -> leaving -> removed`. A close or dismissal
+records one outcome and keeps the backdrop and surface mounted through the exit
+animation. The host reports transition completion; only then does the manager
+remove the entry, resolve `afterClosed`, and restore focus. Scroll lock and
+background inertness remain active while a blocking leaving entry is mounted.
+Reduced motion uses a deterministic completion path.
+
 ## Modal and Drawer Semantics
 
 A modal surface has dialog role, a blocking surface uses
@@ -99,6 +130,10 @@ configuration/surface contract.
 
 Drawers use the same manager, stack, backdrop, and focus contract. Drawer start
 and end are logical and RTL-aware.
+
+Start/end drawers attach to the logical viewport edge at full viewport block
+size. Bottom drawers attach to the bottom at full inline size. Modal viewport
+inset does not turn drawers into floating cards.
 
 ## Picker Transaction Contract
 

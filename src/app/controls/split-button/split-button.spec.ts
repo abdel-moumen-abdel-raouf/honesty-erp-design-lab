@@ -46,7 +46,9 @@ describe('ErpSplitButton', () => {
     expect(manager.entries()[0].ref.config.blocking).toBe(true);
     expect(manager.entries()[0].ref.config.size).toBe('sm');
 
-    manager.entries()[0].ref.close('csv');
+    const ref = manager.entries()[0].ref;
+    ref.close('csv');
+    manager.completeTransition(ref.id, 'leaving');
     await Promise.resolve();
     expect(selected).toHaveBeenCalledWith('csv');
   });

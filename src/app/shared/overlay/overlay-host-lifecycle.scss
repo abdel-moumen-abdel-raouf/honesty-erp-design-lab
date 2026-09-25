@@ -1,0 +1,26 @@
+.erp-ol[data-overlay-phase='entering'] {
+  animation: overlay-backdrop-enter var(--honesty-overlay-enter-duration)
+    var(--honesty-overlay-enter-easing) both;
+}
+
+.erp-ol[data-overlay-phase='leaving'] {
+  animation: overlay-backdrop-exit var(--honesty-overlay-exit-duration)
+    var(--honesty-overlay-exit-easing) both;
+}
+
+.erp-ol[data-overlay-phase='entering'] .erp-os {
+  animation: overlay-surface-enter var(--honesty-overlay-enter-duration)
+    var(--honesty-overlay-enter-easing) both;
+}
+
+.erp-ol[data-overlay-phase='leaving'] .erp-os {
+  animation: overlay-surface-exit var(--honesty-overlay-exit-duration)
+    var(--honesty-overlay-exit-easing) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erp-ol,
+  .erp-os {
+    animation-duration: var(--honesty-overlay-reduced-duration);
+  }
+}

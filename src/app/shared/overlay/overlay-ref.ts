@@ -3,7 +3,9 @@ import {ErpOverlayCloseResult, ErpOverlayConfig} from './overlay-contracts';
 export class ErpOverlayRef<TResult = unknown> {
   readonly afterClosed: Promise<ErpOverlayCloseResult<TResult>>;
 
+  private closing = false;
   private settled = false;
+  private pendingResult: ErpOverlayCloseResult<TResult> | null = null;
   private readonly resolveClosed: (
     result: ErpOverlayCloseResult<TResult>,
   ) => void;
@@ -11,9 +13,9 @@ export class ErpOverlayRef<TResult = unknown> {
   constructor(
     readonly id: string,
     readonly config: Readonly<ErpOverlayConfig>,
-    private readonly finalize: (
+    private readonly requestClose: (
       result: ErpOverlayCloseResult<TResult>,
-    ) => void,
+    ) => boolean,
   ) {
     let resolveClosed!: (
       result: ErpOverlayCloseResult<TResult>,
@@ -32,13 +34,23 @@ export class ErpOverlayRef<TResult = unknown> {
     this.finish({type: 'dismissed', reason});
   }
 
-  private finish(result: ErpOverlayCloseResult<TResult>): void {
-    if (this.settled) {
+  completeTransition(): void {
+    if (this.settled || this.pendingResult === null) {
       return;
     }
 
     this.settled = true;
-    this.finalize(result);
-    this.resolveClosed(result);
+    this.resolveClosed(this.pendingResult);
+  }
+
+  private finish(result: ErpOverlayCloseResult<TResult>): void {
+    if (this.closing || this.settled) {
+      return;
+    }
+
+    if (this.requestClose(result)) {
+      this.closing = true;
+      this.pendingResult = result;
+    }
   }
 }

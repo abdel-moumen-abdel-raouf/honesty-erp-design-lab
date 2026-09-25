@@ -1,0 +1,65 @@
+@use '../../../styles/foundation/components/overlay' as tokens;
+
+.erp-ol[data-overlay-blur='low'] {
+  @include tokens.blur-low;
+}
+
+.erp-ol[data-overlay-blur='high'] {
+  @include tokens.blur-high;
+}
+
+.erp-ol[data-overlay-backdrop-tone='neutral'] {
+  @include tokens.backdrop-tone-neutral;
+}
+
+.erp-ol[data-overlay-backdrop-tone='primary'] {
+  @include tokens.backdrop-tone-primary;
+}
+
+.erp-ol[data-overlay-backdrop-tone='secondary'] {
+  @include tokens.backdrop-tone-secondary;
+}
+
+.erp-ol[data-overlay-backdrop-tone='accent'] {
+  @include tokens.backdrop-tone-accent;
+}
+
+.erp-ol[data-overlay-animation='fade'] {
+  @include tokens.animation-fade;
+}
+
+.erp-ol[data-overlay-animation='scale'] {
+  @include tokens.animation-scale;
+}
+
+.erp-ol[data-overlay-animation='slide-up'] {
+  @include tokens.animation-slide-up;
+}
+
+.erp-ol[data-overlay-animation='slide-down'] {
+  @include tokens.animation-slide-down;
+}
+
+.erp-ol[data-overlay-animation='slide-start'] {
+  @include tokens.animation-slide-start;
+}
+
+.erp-ol[data-overlay-animation='slide-end'] {
+  @include tokens.animation-slide-end;
+}
+
+.erp-ol[data-overlay-phase='leaving'][data-overlay-animation='slide-up'] {
+  @include tokens.animation-slide-up-exit;
+}
+
+.erp-ol[data-overlay-phase='leaving'][data-overlay-animation='slide-down'] {
+  @include tokens.animation-slide-down-exit;
+}
+
+[dir='rtl'] erp-overlay-host .erp-ol[data-overlay-animation='slide-start'] {
+  @include tokens.animation-slide-end;
+}
+
+[dir='rtl'] erp-overlay-host .erp-ol[data-overlay-animation='slide-end'] {
+  @include tokens.animation-slide-start;
+}

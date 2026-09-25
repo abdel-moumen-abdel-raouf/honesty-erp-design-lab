@@ -1,0 +1,5 @@
+@use '../../../styles/foundation/components/overlay' as tokens;
+
+erp-overlay-host {
+  @include tokens.base;
+}

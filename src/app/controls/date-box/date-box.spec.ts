@@ -24,8 +24,8 @@ describe('ErpDateBox', () => {
   it('opens on ArrowDown and commits only a confirmed staged result', async () => {
     const fixture = create(); const control = fixture.componentInstance; const manager = TestBed.inject(ErpOverlayManager); const onChange = vi.fn(); control.registerOnChange(onChange);
     (fixture.nativeElement as HTMLElement).querySelector('button')?.dispatchEvent(new KeyboardEvent('keydown', {key: 'ArrowDown'}));
-    expect(manager.entries().length).toBe(1); manager.entries()[0].ref.dismiss('cancel'); await Promise.resolve(); expect(onChange).not.toHaveBeenCalled();
-    (fixture.nativeElement as HTMLElement).querySelector('button')?.click(); manager.entries()[0].ref.close('2026-05-04'); await Promise.resolve();
+    expect(manager.entries().length).toBe(1); const dismissed = manager.entries()[0].ref; dismissed.dismiss('cancel'); manager.completeTransition(dismissed.id, 'leaving'); await Promise.resolve(); expect(onChange).not.toHaveBeenCalled();
+    (fixture.nativeElement as HTMLElement).querySelector('button')?.click(); const confirmed = manager.entries()[0].ref; confirmed.close('2026-05-04'); manager.completeTransition(confirmed.id, 'leaving'); await Promise.resolve();
     expect(onChange).toHaveBeenCalledOnce(); expect(onChange).toHaveBeenCalledWith('2026-05-04');
   });
 });

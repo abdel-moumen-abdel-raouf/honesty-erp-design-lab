@@ -10,13 +10,41 @@ export type ErpOverlayPosition =
 
 export type ErpOverlaySize = 'sm' | 'md' | 'lg' | 'xl' | 'full';
 
-export interface ErpOverlayConfig<TData = unknown> {
+export type ErpOverlayBlur = 'low' | 'medium' | 'high';
+
+export type ErpOverlayBackdropTone =
+  | 'default'
+  | 'neutral'
+  | 'primary'
+  | 'secondary'
+  | 'accent';
+
+export type ErpOverlayAnimation =
+  | 'fade'
+  | 'scale'
+  | 'fade-scale'
+  | 'slide-up'
+  | 'slide-down'
+  | 'slide-start'
+  | 'slide-end';
+
+export type ErpOverlayPhase = 'entering' | 'open' | 'leaving';
+
+export interface ErpOverlayBehaviorConfig {
+  readonly dismissOnEscape: boolean;
+  readonly dismissOnBackdrop: boolean;
+  readonly blur: ErpOverlayBlur;
+  readonly backdropTone: ErpOverlayBackdropTone;
+  readonly enterAnimation: ErpOverlayAnimation;
+  readonly exitAnimation: ErpOverlayAnimation;
+}
+
+export interface ErpOverlayConfig<TData = unknown>
+  extends ErpOverlayBehaviorConfig {
   readonly kind: ErpOverlayKind;
   readonly position: ErpOverlayPosition;
   readonly size: ErpOverlaySize;
   readonly label: string;
-  readonly dismissOnEscape: boolean;
-  readonly dismissOnBackdrop: boolean;
   readonly restoreFocus: boolean;
   readonly trapFocus: boolean;
   readonly blocking: boolean;
@@ -31,6 +59,10 @@ export interface ErpOverlayOpenConfig<TData = undefined> {
   readonly label: string;
   readonly dismissOnEscape?: boolean;
   readonly dismissOnBackdrop?: boolean;
+  readonly blur?: ErpOverlayBlur;
+  readonly backdropTone?: ErpOverlayBackdropTone;
+  readonly enterAnimation?: ErpOverlayAnimation;
+  readonly exitAnimation?: ErpOverlayAnimation;
   readonly restoreFocus?: boolean;
   readonly trapFocus?: boolean;
   readonly blocking?: boolean;
@@ -47,4 +79,6 @@ export interface ErpOverlayEntry {
   readonly injector: import('@angular/core').Injector;
   readonly ref: import('./overlay-ref').ErpOverlayRef<unknown>;
   readonly origin: HTMLElement | null;
+  readonly phase: ErpOverlayPhase;
+  readonly animation: ErpOverlayAnimation;
 }

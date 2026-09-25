@@ -1,7 +1,8 @@
 @mixin base {
-  --honesty-overlay-backdrop-bg: var(--honesty-color-surface-scrim);
+  --honesty-overlay-backdrop-bg:
+    var(--honesty-color-overlay-backdrop-default);
   --honesty-overlay-backdrop-blur:
-    var(--honesty-effect-backdrop-blur-blocking);
+    var(--honesty-effect-backdrop-blur-medium);
   --honesty-overlay-surface-bg: var(--honesty-color-surface-elevated);
   --honesty-overlay-surface-fg: var(--honesty-color-text-primary);
   --honesty-overlay-surface-border-color: var(--honesty-border-subtle);
@@ -10,6 +11,7 @@
   --honesty-overlay-surface-border-style:
     var(--honesty-border-style-default);
   --honesty-overlay-surface-radius: var(--honesty-radius-overlay);
+  --honesty-overlay-drawer-surface-radius: var(--honesty-radius-none);
   --honesty-overlay-surface-elevation: var(--honesty-elevation-overlay);
   --honesty-overlay-layer: var(--honesty-layer-blocking);
   --honesty-overlay-viewport-inset: var(--honesty-space-inset-default);
@@ -18,10 +20,104 @@
   --honesty-overlay-surface-inline-size: 36rem;
   --honesty-overlay-surface-max-block-size: calc(100dvh - 2 * var(--honesty-overlay-viewport-inset));
   --honesty-overlay-enter-duration: var(--honesty-motion-duration-default);
+  --honesty-overlay-exit-duration: var(--honesty-motion-duration-default);
   --honesty-overlay-enter-easing: var(--honesty-motion-easing-enter);
-  --honesty-overlay-enter-opacity-start: 0;
-  --honesty-overlay-enter-opacity-end: 1;
+  --honesty-overlay-exit-easing: var(--honesty-motion-easing-exit);
+  --honesty-overlay-backdrop-opacity-start: 0;
+  --honesty-overlay-backdrop-opacity-end: 1;
+  --honesty-overlay-motion-opacity: 0;
+  --honesty-overlay-motion-transform: scale(0.96);
+  --honesty-overlay-motion-slide-distance: 2rem;
   --honesty-overlay-reduced-duration: var(--honesty-motion-duration-instant);
+}
+
+@mixin blur-low {
+  --honesty-overlay-backdrop-blur:
+    var(--honesty-effect-backdrop-blur-low);
+}
+
+@mixin blur-medium {
+  --honesty-overlay-backdrop-blur:
+    var(--honesty-effect-backdrop-blur-medium);
+}
+
+@mixin blur-high {
+  --honesty-overlay-backdrop-blur:
+    var(--honesty-effect-backdrop-blur-high);
+}
+
+@mixin backdrop-tone-default {
+  --honesty-overlay-backdrop-bg:
+    var(--honesty-color-overlay-backdrop-default);
+}
+
+@mixin backdrop-tone-neutral {
+  --honesty-overlay-backdrop-bg:
+    var(--honesty-color-overlay-backdrop-neutral);
+}
+
+@mixin backdrop-tone-primary {
+  --honesty-overlay-backdrop-bg:
+    var(--honesty-color-overlay-backdrop-primary);
+}
+
+@mixin backdrop-tone-secondary {
+  --honesty-overlay-backdrop-bg:
+    var(--honesty-color-overlay-backdrop-secondary);
+}
+
+@mixin backdrop-tone-accent {
+  --honesty-overlay-backdrop-bg:
+    var(--honesty-color-overlay-backdrop-accent);
+}
+
+@mixin animation-fade {
+  --honesty-overlay-motion-opacity: 0;
+  --honesty-overlay-motion-transform: none;
+}
+
+@mixin animation-scale {
+  --honesty-overlay-motion-opacity: 1;
+  --honesty-overlay-motion-transform: scale(0.96);
+}
+
+@mixin animation-fade-scale {
+  --honesty-overlay-motion-opacity: 0;
+  --honesty-overlay-motion-transform: scale(0.96);
+}
+
+@mixin animation-slide-up {
+  --honesty-overlay-motion-opacity: 1;
+  --honesty-overlay-motion-transform:
+    translateY(var(--honesty-overlay-motion-slide-distance));
+}
+
+@mixin animation-slide-down {
+  --honesty-overlay-motion-opacity: 1;
+  --honesty-overlay-motion-transform:
+    translateY(calc(-1 * var(--honesty-overlay-motion-slide-distance)));
+}
+
+@mixin animation-slide-start {
+  --honesty-overlay-motion-opacity: 1;
+  --honesty-overlay-motion-transform:
+    translateX(calc(-1 * var(--honesty-overlay-motion-slide-distance)));
+}
+
+@mixin animation-slide-end {
+  --honesty-overlay-motion-opacity: 1;
+  --honesty-overlay-motion-transform:
+    translateX(var(--honesty-overlay-motion-slide-distance));
+}
+
+@mixin animation-slide-up-exit {
+  --honesty-overlay-motion-transform:
+    translateY(calc(-1 * var(--honesty-overlay-motion-slide-distance)));
+}
+
+@mixin animation-slide-down-exit {
+  --honesty-overlay-motion-transform:
+    translateY(var(--honesty-overlay-motion-slide-distance));
 }
 
 @mixin size-sm {

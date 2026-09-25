@@ -1,0 +1,43 @@
+@keyframes overlay-backdrop-enter {
+  from {
+    opacity: var(--honesty-overlay-backdrop-opacity-start);
+  }
+
+  to {
+    opacity: var(--honesty-overlay-backdrop-opacity-end);
+  }
+}
+
+@keyframes overlay-backdrop-exit {
+  from {
+    opacity: var(--honesty-overlay-backdrop-opacity-end);
+  }
+
+  to {
+    opacity: var(--honesty-overlay-backdrop-opacity-start);
+  }
+}
+
+@keyframes overlay-surface-enter {
+  from {
+    opacity: var(--honesty-overlay-motion-opacity);
+    transform: var(--honesty-overlay-motion-transform);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes overlay-surface-exit {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+
+  to {
+    opacity: var(--honesty-overlay-motion-opacity);
+    transform: var(--honesty-overlay-motion-transform);
+  }
+}

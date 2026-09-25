@@ -1,16 +1,21 @@
 @for (entry of manager.entries(); track entry.ref.id; let index = $index) {
   <div
-    class="overlay-layer"
+    class="erp-ol"
     [attr.data-overlay-layer]="index"
     [attr.data-overlay-top]="manager.isTop(entry.ref.id)"
     [attr.data-overlay-kind]="entry.ref.config.kind"
     [attr.data-overlay-position]="entry.ref.config.position"
     [attr.data-overlay-size]="entry.ref.config.size"
+    [attr.data-overlay-blur]="entry.ref.config.blur"
+    [attr.data-overlay-backdrop-tone]="entry.ref.config.backdropTone"
+    [attr.data-overlay-phase]="entry.phase"
+    [attr.data-overlay-animation]="entry.animation"
     [attr.inert]="manager.isTop(entry.ref.id) ? null : ''"
     (pointerdown)="handleBackdropPointerDown($event, entry.ref.id)"
+    (animationend)="handleAnimationEnd($event, entry.ref.id)"
   >
     <section
-      class="overlay-surface"
+      class="erp-os"
       [id]="entry.ref.id"
       role="dialog"
       tabindex="-1"

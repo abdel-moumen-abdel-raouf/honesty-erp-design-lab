@@ -6,8 +6,10 @@ import {
   ElementRef,
   effect,
   inject,
+  ViewEncapsulation,
 } from '@angular/core';
 import {ErpOverlayManager} from './overlay-manager';
+import {ErpOverlayPhase} from './overlay-contracts';
 
 const FOCUSABLE_SELECTOR = [
   'a[href]',
@@ -31,7 +33,14 @@ interface BackgroundState {
   selector: 'erp-overlay-host',
   imports: [NgComponentOutlet],
   templateUrl: './overlay-host.html',
-  styleUrl: './overlay-host.scss',
+  styleUrls: [
+    './overlay-host-tokens.scss',
+    './overlay-host.scss',
+    './overlay-host-lifecycle.scss',
+    './overlay-host-facets.scss',
+    './overlay-host-motion.scss',
+  ],
+  encapsulation: ViewEncapsulation.None,
   host: {
     '[attr.data-overlay-count]': 'manager.entries().length',
   },
@@ -45,6 +54,7 @@ export class ErpOverlayHost {
   private backgroundState: BackgroundState[] = [];
   private bodyOverflow: string | null = null;
   private lastFocusedId: string | null = null;
+  private readonly reducedMotionCompletions = new Set<string>();
 
   constructor() {
     const onKeydown = (event: KeyboardEvent) => this.handleKeydown(event);
@@ -61,19 +71,38 @@ export class ErpOverlayHost {
 
       this.syncDocumentState(blocking);
 
-      if (top?.ref.id !== this.lastFocusedId) {
+      if (top?.ref.id !== this.lastFocusedId && top?.phase !== 'leaving') {
         this.lastFocusedId = top?.ref.id ?? null;
 
         if (top) {
           queueMicrotask(() => this.focusInitial(top.ref.id));
         }
       }
+
+      this.scheduleReducedMotionCompletion(entries);
     });
   }
 
   handleBackdropPointerDown(event: PointerEvent, id: string): void {
     if (event.target === event.currentTarget) {
       this.manager.dismissFromBackdrop(id);
+    }
+  }
+
+  handleAnimationEnd(event: AnimationEvent, id: string): void {
+    if (event.target !== event.currentTarget) {
+      return;
+    }
+
+    const phase: ErpOverlayPhase | null =
+      event.animationName === 'overlay-backdrop-enter'
+        ? 'entering'
+        : event.animationName === 'overlay-backdrop-exit'
+          ? 'leaving'
+          : null;
+
+    if (phase !== null) {
+      this.manager.completeTransition(id, phase);
     }
   }
 
@@ -132,7 +161,7 @@ export class ErpOverlayHost {
     const surface = this.findSurface(id);
     const entry = this.manager.entries().at(-1);
 
-    if (!surface || !entry) {
+    if (!surface || !entry || entry.phase === 'leaving') {
       return;
     }
 
@@ -153,6 +182,35 @@ export class ErpOverlayHost {
       [...this.host.nativeElement.querySelectorAll<HTMLElement>('[data-overlay-id]')]
         .find((surface) => surface.dataset['overlayId'] === id) ?? null
     );
+  }
+
+  private scheduleReducedMotionCompletion(
+    entries: ReturnType<ErpOverlayManager['entries']>,
+  ): void {
+    if (
+      typeof window.matchMedia !== 'function' ||
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      return;
+    }
+
+    for (const entry of entries) {
+      if (entry.phase === 'open') {
+        continue;
+      }
+
+      const key = `${entry.ref.id}:${entry.phase}`;
+
+      if (this.reducedMotionCompletions.has(key)) {
+        continue;
+      }
+
+      this.reducedMotionCompletions.add(key);
+      queueMicrotask(() => {
+        this.reducedMotionCompletions.delete(key);
+        this.manager.completeTransition(entry.ref.id, entry.phase);
+      });
+    }
   }
 
   private syncDocumentState(blocking: boolean): void {
