@@ -21,9 +21,9 @@
 - Entering any effective-disabled state clears stored focus so re-enabling cannot resurrect stale focus evidence.
 - Do not pre-create secondary abstract input bases.
 
-## Current Roadmap Classification
+## Implemented Technical Candidate Classification
 
-### Basic planned
+### Basic controls
 
 - `ErpTextBox`
 - `ErpTextAreaBox`
@@ -40,7 +40,7 @@
 - `ErpFilePicker` (single-file V1)
 - `ErpImagePicker` (single-image V1)
 
-### Composite-classified
+### Composite-classified controls
 
 - `ErpDateBox`
 - `ErpTimeBox`
@@ -55,4 +55,6 @@
 - `ErpSplitButton`
 - `ErpFabMenu`
 
-This roadmap does not close the Basic Controls layer.
+All listed controls have implementation, contract, test, and showcase evidence.
+This technical checkpoint does not declare visual approval, freeze a family, or
+close the Basic Controls layer.

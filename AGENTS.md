@@ -434,8 +434,8 @@ Rules:
   distinct from `ErpRangeSlider`.
 - The NumberStepper visual reference is:
   `https://cdn.dribbble.com/userupload/28671846/file/original-dcafb540346e260c39fa27f8d9ff90e1.gif`.
-- `ErpRangeSlider` is the canonical two-thumb interval control. Do not create
-  or retain `ErpRangeBox` or `ErpNumberUpDown`.
+- `ErpRangeSlider` is the canonical two-thumb interval control. Alternate
+  scalar/range public control names are not part of V1.
 - The RangeSlider visual reference is:
   `https://cdn.dribbble.com/userupload/44001748/file/original-18b5e92b66ba47eabdb4cd8ce03dde2e.png?resize=1024x768&vertical=center`.
 - Date, time, date-time, date-range, color, icon, item, and combo selection

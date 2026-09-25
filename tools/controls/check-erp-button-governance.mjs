@@ -135,7 +135,6 @@ function isExcluded(file) {
   return (
     filePath === 'src/app/app.html' ||
     filePath.startsWith('src/app/foundation/') ||
-    filePath.startsWith('src/app/showcase/') ||
     filePath.startsWith('src/app/primitives/') ||
     filePath.startsWith('src/app/controls/')
   );

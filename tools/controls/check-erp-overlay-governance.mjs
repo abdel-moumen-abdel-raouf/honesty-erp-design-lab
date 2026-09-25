@@ -47,6 +47,10 @@ export function validate(files) {
     const normalized = normalize(file);
     const spec = normalized.endsWith('.spec.ts');
     const overlayInternal = normalized.startsWith(OVERLAY_ROOT);
+    const consumer =
+      normalized.startsWith('src/app/showcase/') ||
+      normalized.startsWith('src/app/features/') ||
+      normalized.startsWith('src/app/pages/');
 
     if (
       normalized !== APP_TEMPLATE &&
@@ -89,6 +93,33 @@ export function validate(files) {
 
     if (/(?:@angular\/cdk|floating-ui|popper)/i.test(source)) {
       errors.push(`${normalized}: prohibited overlay dependency`);
+    }
+
+    if (
+      consumer &&
+      !spec &&
+      /(?:^|[;{]\s*)(?:-webkit-)?backdrop-filter\s*:/.test(source)
+    ) {
+      errors.push(
+        `${normalized}: Feature/Page showcase code must not recreate backdrop effects`,
+      );
+    }
+
+    if (consumer && !spec && /z-index\s*:\s*-?\d+/.test(source)) {
+      errors.push(
+        `${normalized}: Feature/Page showcase code must not create numeric overlay layers`,
+      );
+    }
+
+    if (
+      consumer &&
+      !spec &&
+      /position\s*:\s*fixed/.test(source) &&
+      /inset\s*:\s*0/.test(source)
+    ) {
+      errors.push(
+        `${normalized}: Feature/Page showcase code must not recreate a blocking backdrop`,
+      );
     }
   }
 
@@ -244,6 +275,27 @@ function runSelfTest() {
     new Map([
       [APP_TEMPLATE, '<erp-overlay-host />'],
       [APP_SOURCE, "import {Overlay} from '@angular/cdk/overlay';"],
+    ]),
+    new Map([
+      [APP_TEMPLATE, '<erp-overlay-host />'],
+      [APP_SOURCE, 'ErpOverlayHost'],
+      [
+        'src/app/showcase/x.scss',
+        'backdrop-filter: blur(1rem);',
+      ],
+    ]),
+    new Map([
+      [APP_TEMPLATE, '<erp-overlay-host />'],
+      [APP_SOURCE, 'ErpOverlayHost'],
+      ['src/app/showcase/x.scss', 'z-index: 9999;'],
+    ]),
+    new Map([
+      [APP_TEMPLATE, '<erp-overlay-host />'],
+      [APP_SOURCE, 'ErpOverlayHost'],
+      [
+        'src/app/showcase/x.scss',
+        'position: fixed; inset: 0;',
+      ],
     ]),
   ];
 

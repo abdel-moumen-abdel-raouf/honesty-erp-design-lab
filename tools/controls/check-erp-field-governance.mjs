@@ -7,6 +7,40 @@ const SOURCE_ROOT = path.join(ROOT, 'src', 'app');
 const INTERNAL_ROOT = 'src/app/controls/input-family/internal/';
 const CONTROLS_ROOT = 'src/app/controls/';
 const TOKEN_ROOT = 'src/styles/foundation/components/';
+const INPUT_SHOWCASE =
+  'src/app/showcase/input-controls/input-controls.html';
+const OVERLAY_SHOWCASE =
+  'src/app/showcase/overlay-controls/overlay-controls.html';
+const FIELD_CONTRACT = 'src/app/controls/FIELD_FAMILY_V1.md';
+const BUTTON_CONTRACT = 'src/app/controls/BUTTON_FAMILY_V1.md';
+const PROGRAM_PUBLIC_CONTROLS = [
+  ['ErpTextBox', 'text-box', INPUT_SHOWCASE],
+  ['ErpTextAreaBox', 'text-area-box', INPUT_SHOWCASE],
+  ['ErpPasswordBox', 'password-box', INPUT_SHOWCASE],
+  ['ErpSearchBox', 'search-box', INPUT_SHOWCASE],
+  ['ErpUrlBox', 'url-box', INPUT_SHOWCASE],
+  ['ErpTelBox', 'tel-box', INPUT_SHOWCASE],
+  ['ErpCheckBox', 'check-box', INPUT_SHOWCASE],
+  ['ErpRadioBox', 'radio-box', INPUT_SHOWCASE],
+  ['ErpNumberBox', 'number-box', INPUT_SHOWCASE],
+  ['ErpNumberStepper', 'number-stepper', INPUT_SHOWCASE],
+  ['ErpMoneyBox', 'money-box', INPUT_SHOWCASE],
+  ['ErpRangeSlider', 'range-slider', INPUT_SHOWCASE],
+  ['ErpFilePicker', 'file-picker', INPUT_SHOWCASE],
+  ['ErpImagePicker', 'image-picker', INPUT_SHOWCASE],
+  ['ErpDateBox', 'date-box', OVERLAY_SHOWCASE],
+  ['ErpTimeBox', 'time-box', OVERLAY_SHOWCASE],
+  ['ErpDateTimeBox', 'date-time-box', OVERLAY_SHOWCASE],
+  ['ErpDateRangeBox', 'date-range-box', OVERLAY_SHOWCASE],
+  ['ErpColorPicker', 'color-picker', OVERLAY_SHOWCASE],
+  ['ErpIconPicker', 'icon-picker', OVERLAY_SHOWCASE],
+  ['ErpItemPicker', 'item-picker', OVERLAY_SHOWCASE],
+  ['ErpComboBox', 'combo-box', OVERLAY_SHOWCASE],
+  ['ErpRadioGroup', 'radio-group', OVERLAY_SHOWCASE],
+  ['ErpButtonGroup', 'button-group', OVERLAY_SHOWCASE],
+  ['ErpSplitButton', 'split-button', OVERLAY_SHOWCASE],
+  ['ErpFabMenu', 'fab-menu', OVERLAY_SHOWCASE],
+];
 
 function walk(directory) {
   if (!fs.existsSync(directory)) {
@@ -90,6 +124,24 @@ export function validate(files) {
           ': native input authoring must use the matching ERP control',
       );
     }
+
+    const featurePage =
+      normalized.startsWith('src/app/showcase/') ||
+      normalized.startsWith('src/app/features/') ||
+      normalized.startsWith('src/app/pages/');
+
+    if (
+      featurePage &&
+      !isSpec(normalized) &&
+      /<(?:select\b|input\b[^>]*\btype\s*=\s*['"]color['"])/i.test(
+        source,
+      )
+    ) {
+      errors.push(
+        normalized +
+          ': native selection authoring must use the matching ERP picker',
+      );
+    }
   }
 
   return errors;
@@ -136,6 +188,44 @@ export function validateFieldRenderingContracts(tokenSource, styleSource) {
     errors.push(
       'FieldFrame focus gradients must expose deterministic RTL-aware color ordering',
     );
+  }
+
+  return errors;
+}
+
+export function validateProgramControlInventory(files, documentation) {
+  const errors = [];
+
+  for (const [className, slug, showcase] of PROGRAM_PUBLIC_CONTROLS) {
+    const componentRoot = `src/app/controls/${slug}/${slug}`;
+    const requiredFiles = [
+      `${componentRoot}.ts`,
+      `${componentRoot}.html`,
+      `${componentRoot}.scss`,
+      `${componentRoot}.spec.ts`,
+      `${TOKEN_ROOT}${slug}/_tokens.scss`,
+      `${TOKEN_ROOT}${slug}/_index.scss`,
+    ];
+
+    for (const file of requiredFiles) {
+      if (!files.has(file)) {
+        errors.push(`${className}: missing required program file ${file}`);
+      }
+    }
+
+    const componentSource = files.get(`${componentRoot}.ts`) ?? '';
+    if (!componentSource.includes(`export class ${className}`)) {
+      errors.push(`${componentRoot}.ts: missing exported ${className}`);
+    }
+
+    const showcaseSource = files.get(showcase) ?? '';
+    if (!showcaseSource.includes(`<erp-${slug}`)) {
+      errors.push(`${className}: missing showcase evidence in ${showcase}`);
+    }
+
+    if (!documentation.includes(className)) {
+      errors.push(`${className}: missing authoritative contract documentation`);
+    }
   }
 
   return errors;
@@ -195,6 +285,12 @@ function runSelfTest() {
     ]),
     new Map([
       ['src/app/showcase/x.html', '<textarea></textarea>'],
+    ]),
+    new Map([
+      ['src/app/showcase/x.html', '<select></select>'],
+    ]),
+    new Map([
+      ['src/app/showcase/x.html', '<input type="color" />'],
     ]),
     new Map([
       ['src/app/showcase/x.html', '<input type="checkbox" />'],
@@ -287,6 +383,57 @@ function runSelfTest() {
     }
   }
 
+  const validInventory = new Map([
+    [INPUT_SHOWCASE, ''],
+    [OVERLAY_SHOWCASE, ''],
+    [FIELD_CONTRACT, ''],
+    [BUTTON_CONTRACT, ''],
+  ]);
+
+  for (const [className, slug, showcase] of PROGRAM_PUBLIC_CONTROLS) {
+    const componentRoot = `src/app/controls/${slug}/${slug}`;
+    validInventory.set(
+      `${componentRoot}.ts`,
+      `export class ${className} {}`,
+    );
+    validInventory.set(`${componentRoot}.html`, '');
+    validInventory.set(`${componentRoot}.scss`, '');
+    validInventory.set(`${componentRoot}.spec.ts`, '');
+    validInventory.set(`${TOKEN_ROOT}${slug}/_tokens.scss`, '');
+    validInventory.set(`${TOKEN_ROOT}${slug}/_index.scss`, '');
+    validInventory.set(
+      showcase,
+      `${validInventory.get(showcase)}<erp-${slug} />`,
+    );
+    validInventory.set(
+      FIELD_CONTRACT,
+      `${validInventory.get(FIELD_CONTRACT)} ${className}`,
+    );
+  }
+
+  const validDocumentation =
+    (validInventory.get(FIELD_CONTRACT) ?? '') +
+    (validInventory.get(BUTTON_CONTRACT) ?? '');
+  if (
+    validateProgramControlInventory(
+      validInventory,
+      validDocumentation,
+    ).length > 0
+  ) {
+    throw new Error('ErpField checker rejected valid program inventory');
+  }
+
+  const invalidInventory = new Map(validInventory);
+  invalidInventory.delete('src/app/controls/text-box/text-box.spec.ts');
+  if (
+    validateProgramControlInventory(
+      invalidInventory,
+      validDocumentation,
+    ).length === 0
+  ) {
+    throw new Error('ErpField checker accepted incomplete program inventory');
+  }
+
   console.log('ErpField governance checker self-test passed.');
 }
 
@@ -308,6 +455,13 @@ const files = new Map(
 );
 
 const errors = validate(files);
+errors.push(
+  ...validateProgramControlInventory(
+    files,
+    fs.readFileSync(path.join(ROOT, FIELD_CONTRACT), 'utf8') +
+      fs.readFileSync(path.join(ROOT, BUTTON_CONTRACT), 'utf8'),
+  ),
+);
 errors.push(
   ...validateFieldRenderingContracts(
     fs.readFileSync(

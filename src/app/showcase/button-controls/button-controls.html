@@ -172,32 +172,38 @@
             </erp-tooltip>
             <erp-inline gap="default" align="center" wrap="wrap">
               @for (variant of iconButtonVariants; track variant; let index = $index) {
-                <erp-icon-button
-                  data-icon-button-variant-evidence
-                  [icon]="index === 0 ? 'settings' : index === 1 ? 'edit' : index === 2 ? 'delete' : 'more-horizontal'"
-                  [label]="variant"
-                  [variant]="variant"
-                />
+                <erp-tooltip [text]="variant">
+                  <erp-icon-button
+                    data-icon-button-variant-evidence
+                    [icon]="index === 0 ? 'settings' : index === 1 ? 'edit' : index === 2 ? 'delete' : 'more-horizontal'"
+                    [label]="variant"
+                    [variant]="variant"
+                  />
+                </erp-tooltip>
               }
             </erp-inline>
             <erp-inline gap="default" align="center" wrap="wrap">
               @for (size of buttonSizes; track size) {
-                <erp-icon-button
-                  data-icon-button-size-evidence
-                  icon="settings"
-                  [label]="size"
-                  [size]="size"
-                />
+                <erp-tooltip [text]="size">
+                  <erp-icon-button
+                    data-icon-button-size-evidence
+                    icon="settings"
+                    [label]="size"
+                    [size]="size"
+                  />
+                </erp-tooltip>
               }
             </erp-inline>
             <erp-inline gap="default" align="center" wrap="wrap">
               @for (shape of buttonShapes; track shape) {
-                <erp-icon-button
-                  data-icon-button-shape-evidence
-                  icon="more-horizontal"
-                  [label]="shape"
-                  [shape]="shape"
-                />
+                <erp-tooltip [text]="shape">
+                  <erp-icon-button
+                    data-icon-button-shape-evidence
+                    icon="more-horizontal"
+                    [label]="shape"
+                    [shape]="shape"
+                  />
+                </erp-tooltip>
               }
             </erp-inline>
           </erp-stack>
@@ -236,22 +242,26 @@
             </erp-tooltip>
             <erp-inline gap="default" align="center" wrap="wrap">
               @for (size of fabSizes; track size) {
-                <erp-fab
-                  data-fab-size-evidence
-                  icon="plus"
-                  [label]="size"
-                  [size]="size"
-                />
+                <erp-tooltip [text]="size">
+                  <erp-fab
+                    data-fab-size-evidence
+                    icon="plus"
+                    [label]="size"
+                    [size]="size"
+                  />
+                </erp-tooltip>
               }
             </erp-inline>
             <erp-inline gap="default" align="center" wrap="wrap">
               @for (tone of fabTones; track tone) {
-                <erp-fab
-                  data-fab-tone-evidence
-                  icon="plus"
-                  [label]="tone"
-                  [tone]="tone"
-                />
+                <erp-tooltip [text]="tone">
+                  <erp-fab
+                    data-fab-tone-evidence
+                    icon="plus"
+                    [label]="tone"
+                    [tone]="tone"
+                  />
+                </erp-tooltip>
               }
             </erp-inline>
           </erp-stack>
@@ -374,42 +384,54 @@
                 label="Loading"
                 loading
               />
-              <erp-icon-button
-                data-default-ripple-evidence
-                data-state-evidence="icon-ready"
-                icon="settings"
-                label="Ready icon"
-              />
-              <erp-icon-button
-                data-state-evidence="icon-disabled"
-                icon="settings"
-                label="Disabled icon"
-                disabled
-              />
-              <erp-icon-button
-                data-state-evidence="icon-loading"
-                icon="settings"
-                label="Loading icon"
-                loading
-              />
-              <erp-fab
-                data-default-ripple-evidence
-                data-state-evidence="fab-ready"
-                icon="plus"
-                label="Ready fab"
-              />
-              <erp-fab
-                data-state-evidence="fab-disabled"
-                icon="plus"
-                label="Disabled fab"
-                disabled
-              />
-              <erp-fab
-                data-state-evidence="fab-loading"
-                icon="plus"
-                label="Loading fab"
-                loading
-              />
+              <erp-tooltip text="Ready icon">
+                <erp-icon-button
+                  data-default-ripple-evidence
+                  data-state-evidence="icon-ready"
+                  icon="settings"
+                  label="Ready icon"
+                />
+              </erp-tooltip>
+              <erp-tooltip text="Disabled icon">
+                <erp-icon-button
+                  data-state-evidence="icon-disabled"
+                  icon="settings"
+                  label="Disabled icon"
+                  disabled
+                />
+              </erp-tooltip>
+              <erp-tooltip text="Loading icon">
+                <erp-icon-button
+                  data-state-evidence="icon-loading"
+                  icon="settings"
+                  label="Loading icon"
+                  loading
+                />
+              </erp-tooltip>
+              <erp-tooltip text="Ready fab">
+                <erp-fab
+                  data-default-ripple-evidence
+                  data-state-evidence="fab-ready"
+                  icon="plus"
+                  label="Ready fab"
+                />
+              </erp-tooltip>
+              <erp-tooltip text="Disabled fab">
+                <erp-fab
+                  data-state-evidence="fab-disabled"
+                  icon="plus"
+                  label="Disabled fab"
+                  disabled
+                />
+              </erp-tooltip>
+              <erp-tooltip text="Loading fab">
+                <erp-fab
+                  data-state-evidence="fab-loading"
+                  icon="plus"
+                  label="Loading fab"
+                  loading
+                />
+              </erp-tooltip>
               <erp-extended-fab
                 data-default-ripple-evidence
                 data-state-evidence="extended-ready"

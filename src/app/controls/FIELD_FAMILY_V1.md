@@ -425,7 +425,8 @@ Its invariant is `min <= lower <= upper <= max`; thumbs do not cross in V1.
 - RangeSlider ArrowRight increases and ArrowLeft decreases numeric value in
   both LTR and RTL. Its visual rail mirrors logically in RTL.
 - NumberStepper is not a range selector. RangeSlider is not a scalar stepper.
-- No `ErpRangeBox` or `ErpNumberUpDown` exists.
+- Their canonical V1 public names remain `ErpNumberStepper` and
+  `ErpRangeSlider`; alternate scalar/range names are not public contracts.
 
 ## File / Image Basics
 
@@ -482,8 +483,6 @@ Its invariant is `min <= lower <= upper <= max`; thumbs do not cross in V1.
   in V1.
 - All four use Field Family chrome and `ErpOverlayManager`; overlay selection is
   staged so cancel or dismissal does not mutate the CVA value.
-
-Do not create or retain `ErpRangeBox` or `ErpNumberUpDown`.
 
 Boolean/choice Basic Controls are `ErpCheckBox` and `ErpRadioBox`.
 `ErpRadioGroup` remains Composite.
