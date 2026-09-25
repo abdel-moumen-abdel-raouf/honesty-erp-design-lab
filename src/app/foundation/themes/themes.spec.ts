@@ -1,12 +1,33 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {provideRouter} from '@angular/router';
 import {routes} from '../../app.routes';
 import {Themes} from './themes';
 
+@Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+  imports: [],
+  selector: 'app-theme-role-test-host',
+  styleUrls: [
+    '../../../styles/foundation/themes/_light.scss',
+    '../../../styles/foundation/themes/_dark.scss',
+  ],
+  template: `
+    <div id="theme-role-light" data-theme="light"></div>
+    <div id="theme-role-dark" data-theme="dark"></div>
+  `,
+})
+class ThemeRoleTestHost {}
+
 describe('Themes Specimen', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Themes],
+      imports: [Themes, ThemeRoleTestHost],
       providers: [provideRouter(routes)],
     }).compileComponents();
   });
@@ -79,5 +100,35 @@ describe('Themes Specimen', () => {
 
     expect(compiled.querySelector('#focus-ring-meta-light')?.textContent).toContain('Primary 400');
     expect(compiled.querySelector('#focus-ring-meta-dark')?.textContent).toContain('Primary 300');
+  });
+
+  it('emits every overlay backdrop and glass role in both themes with distinct theme resolutions', () => {
+    const fixture = TestBed.createComponent(ThemeRoleTestHost);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const light = compiled.querySelector<HTMLElement>('#theme-role-light');
+    const dark = compiled.querySelector<HTMLElement>('#theme-role-dark');
+    const roles = [
+      '--honesty-color-overlay-backdrop-default',
+      '--honesty-color-overlay-backdrop-neutral',
+      '--honesty-color-overlay-backdrop-primary',
+      '--honesty-color-overlay-backdrop-secondary',
+      '--honesty-color-overlay-backdrop-accent',
+      '--honesty-color-surface-glass',
+      '--honesty-color-surface-glass-border',
+      '--honesty-color-surface-glass-highlight',
+    ];
+
+    expect(light).toBeTruthy();
+    expect(dark).toBeTruthy();
+
+    for (const role of roles) {
+      const lightValue = getComputedStyle(light!).getPropertyValue(role).trim();
+      const darkValue = getComputedStyle(dark!).getPropertyValue(role).trim();
+
+      expect(lightValue).not.toBe('');
+      expect(darkValue).not.toBe('');
+      expect(lightValue).not.toBe(darkValue);
+    }
   });
 });

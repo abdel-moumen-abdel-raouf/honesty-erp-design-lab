@@ -21,20 +21,35 @@ describe('Foundation effects contract', () => {
     }).compileComponents();
   });
 
-  it('emits the exact blocking and glass backdrop blur runtime roles', () => {
+  it('emits the exact low, medium, high, blocking, and glass backdrop blur runtime roles', () => {
     const fixture = TestBed.createComponent(FoundationEffectsTestHost);
     fixture.detectChanges();
     const rootStyles = getComputedStyle(document.documentElement);
 
     expect(
       rootStyles
-        .getPropertyValue('--honesty-effect-backdrop-blur-blocking')
+        .getPropertyValue('--honesty-effect-backdrop-blur-low')
+        .trim(),
+    ).toBe('0.25rem');
+    expect(
+      rootStyles
+        .getPropertyValue('--honesty-effect-backdrop-blur-medium')
         .trim(),
     ).toBe('0.5rem');
     expect(
       rootStyles
-        .getPropertyValue('--honesty-effect-backdrop-blur-glass')
+        .getPropertyValue('--honesty-effect-backdrop-blur-high')
         .trim(),
     ).toBe('1rem');
+    expect(
+      rootStyles
+        .getPropertyValue('--honesty-effect-backdrop-blur-blocking')
+        .trim(),
+    ).toBe('var(--honesty-effect-backdrop-blur-medium)');
+    expect(
+      rootStyles
+        .getPropertyValue('--honesty-effect-backdrop-blur-glass')
+        .trim(),
+    ).toBe('var(--honesty-effect-backdrop-blur-high)');
   });
 });

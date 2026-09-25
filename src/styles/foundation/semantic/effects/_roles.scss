@@ -9,8 +9,14 @@
 @use '../../reference/effects' as ref;
 
 :root {
-  --honesty-effect-backdrop-blur-blocking:
+  --honesty-effect-backdrop-blur-low:
+    #{ref.$honesty-ref-backdrop-blur-4};
+  --honesty-effect-backdrop-blur-medium:
     #{ref.$honesty-ref-backdrop-blur-8};
-  --honesty-effect-backdrop-blur-glass:
+  --honesty-effect-backdrop-blur-high:
     #{ref.$honesty-ref-backdrop-blur-16};
+  --honesty-effect-backdrop-blur-blocking:
+    var(--honesty-effect-backdrop-blur-medium);
+  --honesty-effect-backdrop-blur-glass:
+    var(--honesty-effect-backdrop-blur-high);
 }

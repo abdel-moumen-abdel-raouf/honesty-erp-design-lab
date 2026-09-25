@@ -8,7 +8,17 @@
 // - --honesty-color-surface-elevated
 // - --honesty-color-surface-inverse
 // - --honesty-color-surface-scrim
+// - --honesty-color-surface-glass
+// - --honesty-color-surface-glass-border
+// - --honesty-color-surface-glass-highlight
+// - --honesty-color-overlay-backdrop-default
+// - --honesty-color-overlay-backdrop-neutral
+// - --honesty-color-overlay-backdrop-primary
+// - --honesty-color-overlay-backdrop-secondary
+// - --honesty-color-overlay-backdrop-accent
 //
-// Scrim is the shared backdrop plane for future blocking overlays.
+// Scrim remains the shared generic backdrop plane. Overlay backdrop roles own
+// the corrected blocking tone contract, while glass roles own translucent
+// component surfaces.
 // Depends on reference color tokens. Must not depend on component tokens.
 // =============================================================================

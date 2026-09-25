@@ -2,8 +2,8 @@
 // Semantic Layer: Effects
 // =============================================================================
 // Responsibility:
-// Theme-independent backdrop effect roles for blocking overlays and glass
-// surfaces.
+// Theme-independent low, medium, and high backdrop effect roles, with blocking
+// and glass compatibility aliases.
 // =============================================================================
 
 @use 'roles';

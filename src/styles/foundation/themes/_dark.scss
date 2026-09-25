@@ -18,6 +18,16 @@
   --honesty-color-surface-elevated: #{ref.$honesty-ref-color-neutral-800};
   --honesty-color-surface-inverse: #{ref.$honesty-ref-color-white};
   --honesty-color-surface-scrim: #{rgba(ref.$honesty-ref-color-neutral-950, ref-opacity.$honesty-ref-opacity-64)};
+  --honesty-color-surface-glass: #{rgba(ref.$honesty-ref-color-neutral-800, ref-opacity.$honesty-ref-opacity-64)};
+  --honesty-color-surface-glass-border: #{rgba(ref.$honesty-ref-color-neutral-50, ref-opacity.$honesty-ref-opacity-28)};
+  --honesty-color-surface-glass-highlight: #{rgba(ref.$honesty-ref-color-white, ref-opacity.$honesty-ref-opacity-14)};
+
+  // Overlay Backdrops
+  --honesty-color-overlay-backdrop-default: #{rgba(ref.$honesty-ref-color-neutral-950, ref-opacity.$honesty-ref-opacity-64)};
+  --honesty-color-overlay-backdrop-neutral: #{rgba(ref.$honesty-ref-color-neutral-950, ref-opacity.$honesty-ref-opacity-48)};
+  --honesty-color-overlay-backdrop-primary: #{rgba(ref.$honesty-ref-color-primary-950, ref-opacity.$honesty-ref-opacity-48)};
+  --honesty-color-overlay-backdrop-secondary: #{rgba(ref.$honesty-ref-color-secondary-950, ref-opacity.$honesty-ref-opacity-48)};
+  --honesty-color-overlay-backdrop-accent: #{rgba(ref.$honesty-ref-color-accent-950, ref-opacity.$honesty-ref-opacity-48)};
 
   // Text / Content
   --honesty-color-text-primary: #{ref.$honesty-ref-color-neutral-50};
