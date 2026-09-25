@@ -45,6 +45,23 @@ describe('OverlayControls showcase', () => {
     }
   });
 
+  it('provides internal wide and narrow responsive review evidence', () => {
+    const root = create().nativeElement as HTMLElement;
+    const evidence = [
+      ...root.querySelectorAll<HTMLElement>(
+        '[data-overlay-responsive-evidence]',
+      ),
+    ];
+
+    expect(
+      evidence.map((item) => item.dataset['overlayResponsiveEvidence']),
+    ).toEqual(['wide', 'narrow']);
+    expect(evidence.map((item) => item.getAttribute('data-width'))).toEqual([
+      'wide',
+      'narrow',
+    ]);
+  });
+
   it('contains all four deferred composites in both themes', () => {
     const root = create().nativeElement as HTMLElement;
     const evidence = [

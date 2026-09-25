@@ -1,18 +1,30 @@
-@if (isEmbeddedPreview) {
-  <main
-    id="routed-review-content"
-    class="routed-content-wrapper routed-content-wrapper--embedded"
-  >
-    <router-outlet id="app-router-outlet"></router-outlet>
-  </main>
-} @else {
-  <header id="lab-utility-bar" class="lab-utility-bar">
-    <div id="lab-utility-brand" class="lab-utility-brand">
-      <span id="lab-utility-title" class="lab-utility-title">مختبر تصميم Honesty ERP</span>
-      <span id="lab-utility-badge" class="lab-utility-badge">أداة مراجعة مؤقتة</span>
-    </div>
+<div
+  id="lab-capture-root"
+  class="lab-capture-root"
+  [class.lab-capture-root--direct]="isDirectOverlayReview()"
+  [attr.data-capture-mode]="
+    isEmbeddedPreview
+      ? 'embedded'
+      : isDirectOverlayReview()
+        ? 'direct'
+        : 'outer'
+  "
+>
+  @if (isEmbeddedPreview) {
+    <main
+      id="routed-review-content"
+      class="routed-content-wrapper routed-content-wrapper--embedded"
+    >
+      <router-outlet id="app-router-outlet"></router-outlet>
+    </main>
+  } @else {
+    <header id="lab-utility-bar" class="lab-utility-bar">
+      <div id="lab-utility-brand" class="lab-utility-brand">
+        <span id="lab-utility-title" class="lab-utility-title">مختبر تصميم Honesty ERP</span>
+        <span id="lab-utility-badge" class="lab-utility-badge">أداة مراجعة مؤقتة</span>
+      </div>
 
-    <nav id="lab-nav" class="lab-nav" aria-label="روابط المراجعة المؤقتة">
+      <nav id="lab-nav" class="lab-nav" aria-label="روابط المراجعة المؤقتة">
       <a
         id="nav-link-overview"
         class="lab-nav-link"
@@ -194,43 +206,45 @@
     </nav>
 
     <div id="lab-actions" class="lab-actions">
-      <div
-        id="lab-viewport-controls"
-        class="lab-viewport-controls"
-        role="group"
-        aria-label="Viewport preview"
-      >
-        <button
-          id="btn-preview-desktop"
-          type="button"
-          class="btn-preview"
-          [class.is-active]="currentPreviewMode() === 'desktop'"
-          [attr.aria-pressed]="currentPreviewMode() === 'desktop'"
-          (click)="setPreviewMode('desktop')"
+      @if (!isDirectOverlayReview()) {
+        <div
+          id="lab-viewport-controls"
+          class="lab-viewport-controls"
+          role="group"
+          aria-label="Viewport preview"
         >
-          Desktop
-        </button>
-        <button
-          id="btn-preview-tablet"
-          type="button"
-          class="btn-preview"
-          [class.is-active]="currentPreviewMode() === 'tablet'"
-          [attr.aria-pressed]="currentPreviewMode() === 'tablet'"
-          (click)="setPreviewMode('tablet')"
-        >
-          Tablet
-        </button>
-        <button
-          id="btn-preview-mobile"
-          type="button"
-          class="btn-preview"
-          [class.is-active]="currentPreviewMode() === 'mobile'"
-          [attr.aria-pressed]="currentPreviewMode() === 'mobile'"
-          (click)="setPreviewMode('mobile')"
-        >
-          Mobile
-        </button>
-      </div>
+          <button
+            id="btn-preview-desktop"
+            type="button"
+            class="btn-preview"
+            [class.is-active]="currentPreviewMode() === 'desktop'"
+            [attr.aria-pressed]="currentPreviewMode() === 'desktop'"
+            (click)="setPreviewMode('desktop')"
+          >
+            Desktop
+          </button>
+          <button
+            id="btn-preview-tablet"
+            type="button"
+            class="btn-preview"
+            [class.is-active]="currentPreviewMode() === 'tablet'"
+            [attr.aria-pressed]="currentPreviewMode() === 'tablet'"
+            (click)="setPreviewMode('tablet')"
+          >
+            Tablet
+          </button>
+          <button
+            id="btn-preview-mobile"
+            type="button"
+            class="btn-preview"
+            [class.is-active]="currentPreviewMode() === 'mobile'"
+            [attr.aria-pressed]="currentPreviewMode() === 'mobile'"
+            (click)="setPreviewMode('mobile')"
+          >
+            Mobile
+          </button>
+        </div>
+      }
 
       @if (statusMessage()) {
         <span id="lab-screenshot-status" class="lab-screenshot-status" [class.is-error]="hasError()">
@@ -253,22 +267,32 @@
     </div>
   </header>
 
-  <div
-    id="lab-preview-stage"
-    class="lab-preview-stage"
-    [attr.data-preview-mode]="currentPreviewMode()"
-  >
-    <iframe
-      #previewFrame
-      id="lab-preview-frame"
-      class="lab-preview-frame"
-      [class.is-desktop]="currentPreviewMode() === 'desktop'"
-      [class.is-tablet]="currentPreviewMode() === 'tablet'"
-      [class.is-mobile]="currentPreviewMode() === 'mobile'"
-      [src]="previewSafeUrl()"
-      title="Honesty ERP Design Lab preview"
-    ></iframe>
-  </div>
-}
+    @if (isDirectOverlayReview()) {
+      <main
+        id="routed-review-content"
+        class="routed-content-wrapper routed-content-wrapper--direct"
+      >
+        <router-outlet id="app-router-outlet"></router-outlet>
+      </main>
+    } @else {
+      <div
+        id="lab-preview-stage"
+        class="lab-preview-stage"
+        [attr.data-preview-mode]="currentPreviewMode()"
+      >
+        <iframe
+          #previewFrame
+          id="lab-preview-frame"
+          class="lab-preview-frame"
+          [class.is-desktop]="currentPreviewMode() === 'desktop'"
+          [class.is-tablet]="currentPreviewMode() === 'tablet'"
+          [class.is-mobile]="currentPreviewMode() === 'mobile'"
+          [src]="previewSafeUrl()"
+          title="Honesty ERP Design Lab preview"
+        ></iframe>
+      </div>
+    }
+  }
 
-<erp-overlay-host />
+  <erp-overlay-host />
+</div>

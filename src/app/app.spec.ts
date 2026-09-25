@@ -1,15 +1,22 @@
+import {Component} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
-import {provideRouter, RouterLink} from '@angular/router';
+import {provideRouter, Router, RouterLink} from '@angular/router';
 import {By} from '@angular/platform-browser';
 import {
   App,
   buildLabPreviewUrl,
   buildScreenshotFilename,
   hasLabPreviewFlag,
+  isDirectOverlayReviewRoute,
   isFullyTransparent,
+  resolveLabScreenshotTarget,
   resolveVisibleBackgroundColor,
 } from './app';
 import {routes} from './app.routes';
+import {ErpOverlayManager} from './shared/overlay/overlay-manager';
+
+@Component({template: ''})
+class ScreenshotOverlayContent {}
 
 describe('Design Lab preview helpers', () => {
   it('detects only labPreview=1', () => {
@@ -40,6 +47,48 @@ describe('Design Lab preview helpers', () => {
     expect(buildScreenshotFilename('/', 'desktop')).toBe(
       'foundation-review-desktop-view.png',
     );
+  });
+
+  it('detects only the Overlay showcase as a direct review route', () => {
+    expect(isDirectOverlayReviewRoute('/controls/overlays')).toBe(true);
+    expect(
+      isDirectOverlayReviewRoute('/controls/overlays?labPreview=1#proof'),
+    ).toBe(true);
+    expect(isDirectOverlayReviewRoute('/controls/inputs')).toBe(false);
+  });
+
+  it('resolves ordinary and Dark iframe capture roots deterministically', () => {
+    const embeddedDocument = document.implementation.createHTMLDocument();
+    const embeddedRoot = embeddedDocument.createElement('main');
+    embeddedRoot.id = 'lab-capture-root';
+    embeddedRoot.dataset['theme'] = 'dark';
+    embeddedDocument.body.appendChild(embeddedRoot);
+
+    const outerDocument = document.implementation.createHTMLDocument();
+    const frame = outerDocument.createElement('iframe');
+    frame.id = 'lab-preview-frame';
+    Object.defineProperty(frame, 'contentDocument', {
+      configurable: true,
+      value: embeddedDocument,
+    });
+    outerDocument.body.appendChild(frame);
+
+    expect(resolveLabScreenshotTarget(outerDocument, false)).toBe(
+      embeddedRoot,
+    );
+    expect(
+      resolveLabScreenshotTarget(outerDocument, false)?.dataset['theme'],
+    ).toBe('dark');
+  });
+
+  it('resolves only the outer capture root for direct review', () => {
+    const directDocument = document.implementation.createHTMLDocument();
+    const directRoot = directDocument.createElement('main');
+    directRoot.id = 'lab-capture-root';
+    directDocument.body.appendChild(directRoot);
+
+    expect(resolveLabScreenshotTarget(directDocument, true)).toBe(directRoot);
+    expect(resolveLabScreenshotTarget(directDocument, false)).toBeNull();
   });
 });
 
@@ -216,6 +265,93 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(compiled.querySelector('#lab-preview-frame')).toBeTruthy();
     expect(compiled.querySelector('#routed-review-content')).toBeNull();
     expect(compiled.querySelector('#app-router-outlet')).toBeNull();
+  });
+
+  it('renders the Overlay route directly with one host and no recursive iframe', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+
+    await router.navigateByUrl('/controls/overlays');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const root = fixture.nativeElement as HTMLElement;
+    const captureRoot = root.querySelector('#lab-capture-root');
+
+    expect(fixture.componentInstance.isDirectOverlayReview()).toBe(true);
+    expect(captureRoot?.getAttribute('data-capture-mode')).toBe('direct');
+    expect(captureRoot?.querySelector('#app-router-outlet')).toBeTruthy();
+    expect(captureRoot?.querySelector('app-overlay-controls')).toBeTruthy();
+    expect(captureRoot?.querySelectorAll('erp-overlay-host')).toHaveLength(1);
+    expect(root.querySelectorAll('erp-overlay-host')).toHaveLength(1);
+    expect(root.querySelector('#lab-preview-frame')).toBeNull();
+    expect(root.querySelector('#lab-viewport-controls')).toBeNull();
+    expect(resolveLabScreenshotTarget(document, true)).toBe(captureRoot);
+  });
+
+  it('keeps modal and logical drawers inside the direct screenshot target', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+    const manager = TestBed.inject(ErpOverlayManager);
+
+    await router.navigateByUrl('/controls/overlays');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    manager.open(ScreenshotOverlayContent, {label: 'Capture modal'});
+    manager.open(ScreenshotOverlayContent, {
+      kind: 'drawer',
+      position: 'start',
+      label: 'Capture start drawer',
+    });
+    manager.open(ScreenshotOverlayContent, {
+      kind: 'drawer',
+      position: 'end',
+      label: 'Capture end drawer',
+    });
+    fixture.detectChanges();
+
+    const target = resolveLabScreenshotTarget(document, true);
+    expect(target?.querySelector('[data-overlay-kind="modal"]')).toBeTruthy();
+    expect(
+      target?.querySelector('[data-overlay-position="start"]'),
+    ).toBeTruthy();
+    expect(
+      target?.querySelector('[data-overlay-position="end"]'),
+    ).toBeTruthy();
+  });
+
+  it('returns to iframe preview mode after direct Overlay review', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+
+    await router.navigateByUrl('/controls/overlays');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+    expect(
+      (fixture.nativeElement as HTMLElement).querySelector(
+        '#lab-preview-frame',
+      ),
+    ).toBeNull();
+
+    await router.navigateByUrl('/controls/inputs');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const root = fixture.nativeElement as HTMLElement;
+    expect(fixture.componentInstance.isDirectOverlayReview()).toBe(false);
+    expect(root.querySelector('#lab-preview-frame')).toBeTruthy();
+    expect(root.querySelector('#lab-viewport-controls')).toBeTruthy();
+    expect(
+      root.querySelector('#lab-capture-root')?.getAttribute(
+        'data-capture-mode',
+      ),
+    ).toBe('outer');
+    expect(root.querySelectorAll('erp-overlay-host')).toHaveLength(1);
   });
 
   it('switches deterministically between desktop, tablet, and mobile preview modes', () => {

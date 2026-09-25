@@ -173,8 +173,24 @@
   display: block;
 }
 
+.lab-capture-root {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-inline-size: 0;
+  min-block-size: 0;
+}
+
+.lab-capture-root--direct {
+  position: relative;
+}
+
 .routed-content-wrapper--embedded {
   min-width: 0;
+}
+
+.routed-content-wrapper--direct {
+  min-inline-size: 0;
 }
 
 .lab-preview-stage {

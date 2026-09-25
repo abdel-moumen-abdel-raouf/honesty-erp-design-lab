@@ -1,4 +1,9 @@
-<erp-container class="overlay-showcase" width="wide" data-theme="light">
+<erp-container
+  class="overlay-showcase"
+  width="wide"
+  data-theme="light"
+  data-overlay-responsive-evidence="wide"
+>
   <erp-stack class="showcase-header" gap="tight">
     <erp-text type="heading-1">Blocking Overlay System V1</erp-text>
     <erp-text type="paragraph" tone="secondary">
@@ -53,13 +58,19 @@
   <erp-section class="review-group" data-review-group="dismissal-focus">
     <erp-text type="heading-2">Dismissal / focus / blocking</erp-text>
     <erp-divider />
-    <erp-grid [columns]="2" gap="sm" responsive="auto">
-      @for (theme of themes; track theme) {
-        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
-          <erp-button data-policy-evidence label="Open explicit-close overlay" (pressed)="openPolicy(theme)" />
-        </erp-surface>
-      }
-    </erp-grid>
+    <erp-container
+      width="narrow"
+      gutter="none"
+      data-overlay-responsive-evidence="narrow"
+    >
+      <erp-grid [columns]="2" gap="sm" responsive="auto">
+        @for (theme of themes; track theme) {
+          <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
+            <erp-button data-policy-evidence label="Open explicit-close overlay" (pressed)="openPolicy(theme)" />
+          </erp-surface>
+        }
+      </erp-grid>
+    </erp-container>
   </erp-section>
 
   <erp-section class="review-group" data-review-group="temporal-pickers">

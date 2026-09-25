@@ -8,7 +8,6 @@ import {
   RouterLinkActive,
   RouterOutlet,
 } from '@angular/router';
-import html2canvas from 'html2canvas';
 import {filter} from 'rxjs';
 import {ErpOverlayHost} from './shared/overlay/overlay-host';
 
@@ -43,6 +42,25 @@ export function buildScreenshotFilename(routerUrl: string, mode: LabPreviewMode)
       .replace(/\//g, '-') || 'foundation-review';
 
   return `${cleanPath}-${mode}-view.png`;
+}
+
+export function isDirectOverlayReviewRoute(routerUrl: string): boolean {
+  return routerUrl.split('?')[0].split('#')[0] === '/controls/overlays';
+}
+
+export function resolveLabScreenshotTarget(
+  rootDocument: Document,
+  directReview: boolean,
+): HTMLElement | null {
+  if (directReview) {
+    return rootDocument.getElementById('lab-capture-root');
+  }
+
+  const previewFrame = rootDocument.getElementById(
+    'lab-preview-frame',
+  ) as HTMLIFrameElement | null;
+
+  return previewFrame?.contentDocument?.getElementById('lab-capture-root') ?? null;
 }
 
 /**
@@ -132,6 +150,11 @@ export class App {
     typeof window === 'undefined' ? '' : window.location.search,
   );
   readonly currentPreviewMode = signal<LabPreviewMode>('desktop');
+  readonly isDirectOverlayReview = computed(
+    () =>
+      !this.isEmbeddedPreview &&
+      isDirectOverlayReviewRoute(this.previewRouterUrl()),
+  );
   readonly previewSafeUrl = computed<SafeResourceUrl>(() => {
     return this.sanitizer.bypassSecurityTrustResourceUrl(
       buildLabPreviewUrl(this.previewRouterUrl()),
@@ -163,9 +186,10 @@ export class App {
       return;
     }
 
-    const previewFrame = document.getElementById('lab-preview-frame') as HTMLIFrameElement | null;
-    const previewDocument = previewFrame?.contentDocument;
-    const target = previewDocument?.getElementById('routed-review-content') as HTMLElement | null;
+    const target = resolveLabScreenshotTarget(
+      document,
+      this.isDirectOverlayReview(),
+    );
 
     if (!target) {
       this.hasError.set(true);
@@ -178,6 +202,7 @@ export class App {
     this.statusMessage.set('جاري الالتقاط...');
 
     try {
+      const {default: html2canvas} = await import('html2canvas');
       const width = target.scrollWidth;
       const height = target.scrollHeight;
       const previewWindow = target.ownerDocument.defaultView;
