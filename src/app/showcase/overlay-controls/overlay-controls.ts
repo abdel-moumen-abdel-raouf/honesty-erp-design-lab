@@ -1,14 +1,19 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {ErpButton} from '../../controls/button/button';
+import {ErpButtonGroup} from '../../controls/button-group/button-group';
 import {ErpColorPicker} from '../../controls/color-picker/color-picker';
 import {ErpComboBox} from '../../controls/combo-box/combo-box';
+import {ErpButtonGroupItem, ErpRadioGroupOption} from '../../controls/composite-family/composite-contracts';
 import {ErpDateBox} from '../../controls/date-box/date-box';
 import {ErpDateRangeBox} from '../../controls/date-range-box/date-range-box';
 import {ErpDateTimeBox} from '../../controls/date-time-box/date-time-box';
 import {ErpIconPicker} from '../../controls/icon-picker/icon-picker';
 import {ErpItemPicker} from '../../controls/item-picker/item-picker';
+import {ErpFabMenu} from '../../controls/fab-menu/fab-menu';
+import {ErpRadioGroup} from '../../controls/radio-group/radio-group';
 import {ErpItemPickerOption} from '../../controls/selection-family/selection-contracts';
 import {ErpTimeBox} from '../../controls/time-box/time-box';
+import {ErpSplitButton} from '../../controls/split-button/split-button';
 import {ErpContainer} from '../../primitives/container/container';
 import {ErpDivider} from '../../primitives/divider/divider';
 import {ErpGrid} from '../../primitives/grid/grid';
@@ -28,14 +33,17 @@ import {
   selector: 'app-overlay-controls',
   imports: [
     ErpButton,
+    ErpButtonGroup,
     ErpColorPicker,
     ErpComboBox,
     ErpContainer,
     ErpDateBox,
     ErpDateRangeBox,
     ErpDateTimeBox,
+    ErpFabMenu,
     ErpIconPicker,
     ErpItemPicker,
+    ErpRadioGroup,
     ErpDivider,
     ErpGrid,
     ErpSection,
@@ -43,6 +51,7 @@ import {
     ErpSurface,
     ErpText,
     ErpTimeBox,
+    ErpSplitButton,
   ],
   templateUrl: './overlay-controls.html',
   styleUrl: './overlay-controls.scss',
@@ -53,6 +62,16 @@ export class OverlayControls {
     {value: 'customer', label: 'Customer', icon: 'customer'},
     {value: 'inventory', label: 'Inventory', icon: 'inventory'},
     {value: 'maintenance', label: 'Maintenance', icon: 'maintenance'},
+  ];
+  readonly radioItems: readonly ErpRadioGroupOption[] = [
+    {value: 'draft', label: 'Draft'},
+    {value: 'review', label: 'Review'},
+    {value: 'approved', label: 'Approved'},
+  ];
+  readonly buttonItems: readonly ErpButtonGroupItem[] = [
+    {value: 'day', label: 'Day'},
+    {value: 'week', label: 'Week'},
+    {value: 'month', label: 'Month'},
   ];
   private readonly overlays = inject(ErpOverlayManager);
 

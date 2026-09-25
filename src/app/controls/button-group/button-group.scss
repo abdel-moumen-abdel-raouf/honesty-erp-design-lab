@@ -1,0 +1,39 @@
+@use '../../../styles/foundation/components/button-group' as tokens;
+
+:host {
+  @include tokens.base;
+  display: inline-block;
+  min-width: 0;
+}
+
+.button-group {
+  display: flex;
+  gap: var(--honesty-button-group-gap);
+  min-width: 0;
+}
+
+:host([data-button-group-orientation='horizontal']) .button-group {
+  flex-direction: row;
+}
+
+:host([data-button-group-orientation='vertical']) .button-group {
+  flex-direction: column;
+}
+
+:host([data-button-group-attached='true']) {
+  @include tokens.attached-true;
+}
+
+:host([data-button-group-attached='false']) {
+  @include tokens.attached-false;
+}
+
+:host([data-button-group-attached='true'][data-button-group-orientation='horizontal'])
+  erp-button:not(:first-child) {
+  margin-inline-start: var(--honesty-button-group-overlap);
+}
+
+:host([data-button-group-attached='true'][data-button-group-orientation='vertical'])
+  erp-button:not(:first-child) {
+  margin-block-start: var(--honesty-button-group-overlap);
+}

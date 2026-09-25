@@ -1,0 +1,6 @@
+<fieldset class="radio-group" [disabled]="effectiveDisabled()" [attr.aria-required]="required()" (keydown)="handleKeydown($event)">
+  <legend><erp-text type="label">{{ label() }}</erp-text></legend>
+  @for (option of options(); track option.value) {
+    <erp-radio-box [label]="option.label" [name]="coordinatedName()" [form]="form()" [disabled]="effectiveDisabled() || (option.disabled ?? false)" [attr.data-radio-value]="option.value" [attr.value]="option.value" [ngModel]="currentValue() === option.value" (ngModelChange)="select(option, $event)" />
+  }
+</fieldset>

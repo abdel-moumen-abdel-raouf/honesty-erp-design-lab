@@ -1,0 +1,2 @@
+@use '../../../../styles/foundation/components/action-menu' as tokens;
+:host { @include tokens.base; display: block; min-inline-size: var(--honesty-action-menu-min-inline-size); }

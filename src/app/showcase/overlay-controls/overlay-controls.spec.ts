@@ -23,7 +23,7 @@ describe('OverlayControls showcase', () => {
     expect(create().componentInstance).toBeTruthy();
   });
 
-  it('renders six technical groups with equivalent Light and Dark contexts', () => {
+  it('renders seven technical groups with equivalent Light and Dark contexts', () => {
     const root = create().nativeElement as HTMLElement;
     const groups = [...root.querySelectorAll('[data-review-group]')];
     expect(groups.map((group) => group.getAttribute('data-review-group'))).toEqual([
@@ -33,6 +33,7 @@ describe('OverlayControls showcase', () => {
       'dismissal-focus',
       'temporal-pickers',
       'selection-pickers',
+      'deferred-composites',
     ]);
 
     for (const group of groups) {
@@ -42,6 +43,28 @@ describe('OverlayControls showcase', () => {
         ),
       ).toEqual(['light', 'dark']);
     }
+  });
+
+  it('contains all four deferred composites in both themes', () => {
+    const root = create().nativeElement as HTMLElement;
+    const evidence = [
+      ...root.querySelectorAll<HTMLElement>('[data-composite-evidence]'),
+    ];
+
+    expect(evidence.map((item) => item.dataset['compositeEvidence'])).toEqual([
+      'radio-group',
+      'button-group',
+      'split-button',
+      'fab-menu',
+      'radio-group',
+      'button-group',
+      'split-button',
+      'fab-menu',
+    ]);
+    expect(root.querySelectorAll('erp-radio-group')).toHaveLength(2);
+    expect(root.querySelectorAll('erp-button-group')).toHaveLength(2);
+    expect(root.querySelectorAll('erp-split-button')).toHaveLength(2);
+    expect(root.querySelectorAll('erp-fab-menu')).toHaveLength(2);
   });
 
   it('contains all four OverlayManager-backed selection triggers in both themes', () => {

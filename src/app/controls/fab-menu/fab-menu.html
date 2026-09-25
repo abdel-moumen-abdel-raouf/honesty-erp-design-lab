@@ -1,0 +1,22 @@
+<div class="fab-menu">
+  @if (open()) {
+    <div class="fab-menu__actions">
+      @for (item of items(); track item.value) {
+        <erp-extended-fab
+          data-fab-menu-action
+          [label]="item.label"
+          [icon]="item.icon ?? null"
+          [disabled]="item.disabled ?? false"
+          (pressed)="select(item)"
+        />
+      }
+    </div>
+  }
+  <erp-fab
+    data-fab-menu-trigger
+    [icon]="open() ? 'close' : icon()"
+    [label]="label()"
+    [disabled]="disabled()"
+    (pressed)="toggle()"
+  />
+</div>

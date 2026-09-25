@@ -1,0 +1,13 @@
+<div class="split-button">
+  <erp-button
+    [label]="label()"
+    [disabled]="disabled()"
+    (pressed)="primaryPressed.emit()"
+  />
+  <erp-icon-button
+    icon="chevron-down"
+    [label]="label() + ' menu'"
+    [disabled]="disabled()"
+    (pressed)="openMenu()"
+  />
+</div>

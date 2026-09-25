@@ -1,0 +1,12 @@
+@mixin base {
+  --honesty-button-group-gap: 0;
+  --honesty-button-group-overlap: calc(var(--honesty-border-width-default) * -1);
+}
+
+@mixin attached-true {
+  --honesty-button-group-gap: 0;
+}
+
+@mixin attached-false {
+  --honesty-button-group-gap: var(--honesty-space-inline-tight);
+}

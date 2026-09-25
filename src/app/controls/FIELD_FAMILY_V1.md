@@ -496,5 +496,17 @@ File/Image Basic Controls are single-file `ErpFilePicker` and single-image
 `ErpImagePicker`. Browser-native filesystem selection remains the security
 boundary.
 
-Other deferred Composites are `ErpRadioGroup`, `ErpButtonGroup`,
-`ErpSplitButton`, and `ErpFabMenu`.
+## Implemented Deferred Composites
+
+- `ErpRadioGroup` is a `string | null` CVA over declared
+  `ErpRadioBox`-compatible options. It owns selected value, coordinated native
+  radio names, required group semantics, and cyclic Arrow-key navigation across
+  enabled options.
+- `ErpButtonGroup` composes ERP Button controls, defaults to horizontal attached
+  layout, supports vertical/detached layout, and exposes logical
+  first/middle/last position evidence without replacing native child semantics.
+- `ErpSplitButton` owns one primary ERP Button action and one secondary ERP
+  IconButton menu trigger. Its simple actions use the ItemPicker option contract.
+- `ErpFabMenu` composes frozen ErpFab and ErpExtendedFab controls and owns
+  open/close state, action collection, logical block placement, focus
+  restoration, Escape, and Arrow-key navigation.

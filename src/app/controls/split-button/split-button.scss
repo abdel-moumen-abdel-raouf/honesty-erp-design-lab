@@ -1,0 +1,17 @@
+@use '../../../styles/foundation/components/split-button' as tokens;
+
+:host {
+  @include tokens.base;
+  display: inline-block;
+  min-width: 0;
+}
+
+.split-button {
+  display: inline-flex;
+  gap: var(--honesty-split-button-gap);
+  min-width: 0;
+}
+
+erp-icon-button {
+  margin-inline-start: var(--honesty-split-button-overlap);
+}

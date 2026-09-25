@@ -1,0 +1,6 @@
+<erp-stack class="action-menu" gap="tight" [attr.data-theme]="data.theme" (keydown)="handleKeydown($event)">
+  @for (item of data.items; track item.value) {
+    <erp-button data-action-item [attr.data-value]="item.value" [label]="item.label" [icon]="item.icon ?? null" variant="ghost" tone="neutral" [disabled]="item.disabled ?? false" fullWidth (pressed)="select(item)" />
+  }
+  <erp-button data-cancel-action label="Close" variant="outline" tone="neutral" size="sm" (pressed)="cancel()" />
+</erp-stack>

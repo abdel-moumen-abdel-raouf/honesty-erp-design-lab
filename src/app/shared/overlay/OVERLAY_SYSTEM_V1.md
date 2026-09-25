@@ -121,6 +121,14 @@ The implemented selection family (`ErpColorPicker`, `ErpIconPicker`,
 Semantic icon names and matched item values cross the overlay boundary; vendor
 icon names and unmatched combo queries do not.
 
+## Compact Composite Action Menu
+
+`ErpSplitButton` uses `ErpOverlayManager` for its V1 compact blocking action
+menu. This is the prescribed V1 choice because no generic nonblocking anchored
+menu foundation exists. The menu consumes the shared ItemPicker option/action
+shape, restores trigger focus through the manager, and never uses Tooltip as a
+menu subsystem.
+
 ## Explicit Separations
 
 Tooltip remains on its existing nonblocking anchored-overlay architecture and

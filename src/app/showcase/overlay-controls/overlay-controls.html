@@ -95,4 +95,37 @@
       }
     </erp-grid>
   </erp-section>
+
+  <erp-section class="review-group" data-review-group="deferred-composites">
+    <erp-text type="heading-2">Deferred control composites</erp-text>
+    <erp-divider />
+    <erp-grid [columns]="2" gap="sm" responsive="auto">
+      @for (theme of themes; track theme) {
+        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
+          <erp-stack gap="tight">
+            <erp-radio-group
+              data-composite-evidence="radio-group"
+              label="Approval state"
+              [options]="radioItems"
+              required
+            />
+            <erp-button-group
+              data-composite-evidence="button-group"
+              [items]="buttonItems"
+            />
+            <erp-split-button
+              data-composite-evidence="split-button"
+              label="Export"
+              [items]="pickerItems"
+            />
+            <erp-fab-menu
+              data-composite-evidence="fab-menu"
+              label="Create item"
+              [items]="pickerItems"
+            />
+          </erp-stack>
+        </erp-surface>
+      }
+    </erp-grid>
+  </erp-section>
 </erp-container>

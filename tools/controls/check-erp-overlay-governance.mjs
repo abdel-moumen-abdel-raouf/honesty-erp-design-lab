@@ -119,6 +119,27 @@ export function validateSelectionPickers(files) {
   return errors;
 }
 
+export function validateDeferredCompositeOverlay(files) {
+  const errors = [];
+  const file = 'src/app/controls/split-button/split-button.ts';
+  const source = files.get(file) ?? '';
+
+  if (
+    !source.includes('ErpOverlayManager') ||
+    !source.includes('ErpActionMenuContent')
+  ) {
+    errors.push(
+      `${file}: SplitButton must use OverlayManager and its compact action menu`,
+    );
+  }
+
+  if (/ErpTooltip|anchored-overlay/.test(source)) {
+    errors.push(`${file}: SplitButton action menu must not use Tooltip`);
+  }
+
+  return errors;
+}
+
 function runSelfTest() {
   const valid = new Map([
     [APP_TEMPLATE, '<main></main><erp-overlay-host />'],
@@ -178,6 +199,23 @@ function runSelfTest() {
   validSelection.set('src/app/controls/icon-picker/icon-picker.ts', 'vendor icon popup');
   if (validateSelectionPickers(validSelection).length === 0) {
     throw new Error('Overlay governance accepted a selection picker bypass');
+  }
+
+  const validComposite = new Map([
+    [
+      'src/app/controls/split-button/split-button.ts',
+      'ErpOverlayManager ErpActionMenuContent',
+    ],
+  ]);
+  if (validateDeferredCompositeOverlay(validComposite).length > 0) {
+    throw new Error('Overlay governance rejected valid SplitButton fixture');
+  }
+  validComposite.set(
+    'src/app/controls/split-button/split-button.ts',
+    'ErpTooltip anchored-overlay',
+  );
+  if (validateDeferredCompositeOverlay(validComposite).length === 0) {
+    throw new Error('Overlay governance accepted a SplitButton Tooltip menu');
   }
 
   const invalidFixtures = [
@@ -242,6 +280,7 @@ files.set(
 const errors = validate(files);
 errors.push(...validateTemporalPickers(files));
 errors.push(...validateSelectionPickers(files));
+errors.push(...validateDeferredCompositeOverlay(files));
 
 if (errors.length > 0) {
   console.error('ErpOverlay governance check failed:\n');

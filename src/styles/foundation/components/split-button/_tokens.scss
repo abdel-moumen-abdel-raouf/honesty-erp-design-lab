@@ -1,0 +1,4 @@
+@mixin base {
+  --honesty-split-button-gap: 0;
+  --honesty-split-button-overlap: calc(var(--honesty-border-width-default) * -1);
+}

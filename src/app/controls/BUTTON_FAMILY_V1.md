@@ -165,11 +165,17 @@ Component Token contracts.
 
 ## Deferred Composites
 
-`ErpButtonGroup`, `ErpSplitButton`, and `ErpFabMenu` are not missing Basic
-Controls. They are Composite-layer components.
+`ErpButtonGroup`, `ErpSplitButton`, and `ErpFabMenu` are implemented
+Composite-layer components, not Basic Controls.
 
-The Product Owner supplied Material 3 FAB Menu as the future ErpFabMenu visual
-and interaction reference. ErpFabMenu will compose the frozen ErpFab and
-ErpExtendedFab controls and own open/close state, action collection, placement,
-focus management, keyboard navigation, and menu orchestration. It is not
-implemented in Button Family V1.
+The Product Owner supplied Material 3 FAB Menu as the ErpFabMenu visual and
+interaction reference. ErpFabMenu composes the frozen ErpFab and ErpExtendedFab
+controls and owns open/close state, action collection, logical block placement,
+focus management, keyboard navigation, and menu orchestration.
+
+ErpButtonGroup composes existing ERP Buttons and owns horizontal/vertical and
+attached/detached grouping without replacing child button semantics.
+
+ErpSplitButton composes a primary ErpButton and secondary ErpIconButton. V1 uses
+a compact blocking OverlayManager action menu because the repository has no
+generic nonblocking anchored-menu foundation. It does not use Tooltip as a menu.

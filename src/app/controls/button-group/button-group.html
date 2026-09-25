@@ -1,0 +1,11 @@
+<div class="button-group" role="group">
+  @for (item of items(); track item.value; let index = $index) {
+    <erp-button
+      [attr.data-group-position]="position(index)"
+      [label]="item.label"
+      [icon]="item.icon ?? null"
+      [disabled]="item.disabled ?? false"
+      (pressed)="itemPressed.emit(item.value)"
+    />
+  }
+</div>
