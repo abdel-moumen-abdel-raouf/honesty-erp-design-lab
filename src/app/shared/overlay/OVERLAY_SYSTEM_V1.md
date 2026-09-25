@@ -6,6 +6,11 @@ This is the implemented V1 contract for the shared blocking overlay system.
 It does not claim Product Owner visual approval or freeze later overlay-backed
 picker contracts.
 
+The current implementation is provisional during the Primary Controls
+Correction Program. The lifecycle, blur, backdrop-tone, motion, geometry, and
+dismissal corrections in `CONTROLS_CORRECTION_PROGRAM_V1.md` are authoritative
+until the correction program completes.
+
 The system must exist before any overlay-backed picker is implemented.
 
 ## Architecture

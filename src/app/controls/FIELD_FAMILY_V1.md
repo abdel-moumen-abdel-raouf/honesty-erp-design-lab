@@ -5,6 +5,12 @@
 This document is the canonical implementation contract for the Field Family
 program.
 
+The current implementation is provisional during the Primary Controls
+Correction Program. The bounded corrections in
+`CONTROLS_CORRECTION_PROGRAM_V1.md` supersede conflicting checkpoint wording
+until that program completes; this status does not declare visual approval or
+freeze.
+
 - `ErpInputBase V1` is frozen.
 - Its inherited public API remains exactly `label`, `name`, `form`, and
   `disabled`.

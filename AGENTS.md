@@ -400,6 +400,14 @@ Rules:
 - Internal derived InputBase state stays protected; only approved inherited inputs form public base API.
 - Concrete controls must not mutate InputBase value/focus state directly; user mutations go through the protected base helpers.
 
+## Primary Controls Correction Program Governance
+
+- Do not add new public control families while the Primary Controls Correction Program is active.
+- Execute correction phases in the documented CR00 through CR12 order so shared lower-layer corrections land before dependent control corrections.
+- Phase 10 and Phase 11 component-specific product, architecture, and visual review is deferred to a separate second review wave.
+- Shared lower-layer corrections may make only the smallest mechanical Phase 10/11 compatibility updates required to keep compilation and tests green.
+- Correction commits are technical checkpoints only; they do not declare visual approval, family freeze, or closure of the Basic Controls layer.
+
 ## Production Blocking Overlay Governance
 
 - `ErpOverlayManager` is the shared gateway for blocking modal and drawer surfaces.

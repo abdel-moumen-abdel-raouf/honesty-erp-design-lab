@@ -184,3 +184,8 @@ the implemented program.
 This status records technical implementation only. It does not declare visual
 approval, close Basic Controls, or freeze any family; those decisions remain
 with the Product Owner and ChatGPT.
+
+The Phase 00 through Phase 11 checkpoint is provisional and is now governed by
+`CONTROLS_CORRECTION_PROGRAM_V1.md`. All known Phase 00–09 and shared
+infrastructure corrections in that program must complete before new controls
+are added. Detailed Phase 10/11 review remains deferred to a separate wave.

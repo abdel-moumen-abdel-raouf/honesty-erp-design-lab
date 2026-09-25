@@ -58,3 +58,8 @@
 All listed controls have implementation, contract, test, and showcase evidence.
 This technical checkpoint does not declare visual approval, freeze a family, or
 close the Basic Controls layer.
+
+This implementation inventory is provisional during the Primary Controls
+Correction Program. The corrected public contracts are recorded in
+`CONTROLS_CORRECTION_PROGRAM_V1.md`; no visual approval or family freeze is
+implied by the existing technical checkpoint.
