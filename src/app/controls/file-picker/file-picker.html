@@ -1,61 +1,122 @@
-<erp-field-frame
-  [label]="label()"
-  [controlId]="controlId"
-  [tone]="tone()"
-  [status]="status()"
-  [variant]="variant()"
-  [borderMode]="effectiveBorderMode()"
-  [shape]="shape()"
-  [size]="size()"
-  [appearance]="appearance()"
-  [labelMode]="labelMode()"
-  [floatingPosition]="floatingPosition()"
-  [helperText]="helperText()"
-  [helperPosition]="helperPosition()"
-  [leadingIcon]="leadingIcon()"
-  [trailingIcon]="trailingIcon()"
-  [clearable]="clearActionVisible()"
-  [feedbackText]="feedbackText()"
-  [feedbackDismissible]="feedbackDismissible()"
-  [feedbackVisible]="feedbackVisible()"
-  [focused]="fieldFocused()"
-  [hasDisplayValue]="currentValue() !== null"
-  [disabled]="fieldEffectiveDisabled()"
-  [configurationState]="fieldConfigurationState()"
-  (clearRequested)="handleClear(nativeInput)"
-  (feedbackDismissed)="dismissFeedback()"
->
-  <span field-control class="file-picker__value">
+<div class="file-picker">
+  <erp-text type="label" [id]="labelId">{{ label() }}</erp-text>
+
+  @if (helperPosition() === 'above' && trimmedHelperText()) {
+    <erp-text type="caption" tone="muted" [id]="helperIdFor(controlId)">
+      {{ trimmedHelperText() }}
+    </erp-text>
+  }
+
+  <div
+    class="file-picker__drop-zone"
+    [attr.aria-disabled]="selectionEffectiveDisabled()"
+    (dragenter)="handleDragEnter($event)"
+    (dragover)="handleDragOver($event)"
+    (dragleave)="handleDragLeave($event)"
+    (drop)="handleDrop($event)"
+  >
     <input
       #nativeInput
       class="file-picker__native"
       type="file"
+      multiple
       [id]="controlId"
       [attr.name]="name()"
       [attr.form]="form()"
       [attr.accept]="accept()"
-      [disabled]="fieldEffectiveDisabled()"
-      [attr.aria-invalid]="status() === 'danger' ? 'true' : null"
-      [attr.aria-describedby]="fieldAriaDescribedBy(controlId)"
-      [attr.aria-errormessage]="fieldAriaErrorMessage(controlId)"
-      (change)="handleSelection($event)"
-      (focus)="handleNativeFocus()"
-      (blur)="handleNativeBlur()"
+      [disabled]="selectionEffectiveDisabled()"
+      [attr.aria-labelledby]="labelId"
+      [attr.aria-describedby]="guidanceId"
+      [attr.aria-invalid]="selectionConfigurationState() === 'invalid' || status() === 'danger' ? 'true' : null"
+      (change)="handleNativeSelection($event)"
     />
-    <erp-text
-      type="text"
-      tone="inherit"
-    >{{ displayText() }}</erp-text>
-  </span>
 
-  <erp-button
-    field-domain-action
-    data-file-picker-browse
-    label="Choose file"
-    variant="ghost"
-    tone="neutral"
-    size="sm"
-    [disabled]="fieldEffectiveDisabled()"
-    (pressed)="openNativePicker(nativeInput)"
-  />
-</erp-field-frame>
+    <erp-icon name="upload" size="2xl" tone="brand-primary" />
+    <erp-text type="paragraph" align="center">
+      اسحب الملفات وأفلتها هنا، أو اخترها من جهازك.
+    </erp-text>
+    <erp-button
+      data-file-picker-browse
+      label="اختيار الملفات"
+      variant="outline"
+      tone="primary"
+      size="sm"
+      [disabled]="selectionEffectiveDisabled()"
+      (pressed)="openNativePicker(nativeInput)"
+    />
+    <erp-text type="caption" tone="muted" align="center" [id]="guidanceId">
+      {{ guidanceText() }}
+    </erp-text>
+  </div>
+
+  @if (policyFeedback(); as message) {
+    <erp-field-feedback
+      [messageId]="policyFeedbackId"
+      [text]="message"
+      status="warning"
+    />
+  }
+
+  @if (selectedFiles().length > 0) {
+    <div class="file-picker__selection">
+      <div class="file-picker__selection-header">
+        <erp-text type="label">
+          الملفات المحددة ({{ selectedFiles().length }})
+        </erp-text>
+        @if (clearAllVisible()) {
+          <erp-button
+            data-file-picker-clear-all
+            label="مسح الكل"
+            variant="ghost"
+            tone="neutral"
+            size="sm"
+            (pressed)="clearAll(nativeInput)"
+          />
+        }
+      </div>
+
+      <div class="file-picker__list">
+        @for (file of selectedFiles(); track fileIdentity(file)) {
+          <div class="file-picker__item" data-file-picker-item>
+            <erp-icon name="file" size="lg" tone="secondary" />
+            <div class="file-picker__item-copy">
+              <erp-text type="text" overflow="ellipsis" selectable>
+                {{ file.name }}
+              </erp-text>
+              <erp-text type="caption" tone="muted">
+                {{ formatFileSize(file.size) }} · {{ fileSupportingText(file) }}
+              </erp-text>
+            </div>
+            <erp-tooltip [text]="'إزالة ' + file.name">
+              <erp-icon-button
+                data-file-picker-remove
+                icon="close"
+                [label]="'إزالة ' + file.name"
+                variant="ghost"
+                tone="neutral"
+                size="sm"
+                (pressed)="removeFile(file)"
+              />
+            </erp-tooltip>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  @if (helperPosition() === 'below' && trimmedHelperText()) {
+    <erp-text type="caption" tone="muted" [id]="helperIdFor(controlId)">
+      {{ trimmedHelperText() }}
+    </erp-text>
+  }
+
+  @if (feedbackVisible()) {
+    <erp-field-feedback
+      [messageId]="feedbackIdFor(controlId)"
+      [text]="trimmedFeedbackText()"
+      [status]="status()"
+      [dismissible]="feedbackDismissible()"
+      (dismissed)="dismissFeedback()"
+    />
+  }
+</div>

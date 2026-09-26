@@ -1,11 +1,87 @@
 @mixin base {
-  --honesty-image-picker-value-color: var(--honesty-color-text-primary);
-  --honesty-image-picker-placeholder-color: var(--honesty-color-text-muted);
-  --honesty-image-picker-gap: var(--honesty-space-inline-tight);
-  --honesty-image-picker-preview-size: 3rem;
+  --honesty-image-picker-fg: var(--honesty-color-text-primary);
+  --honesty-image-picker-disabled-color: var(--honesty-color-text-disabled);
+  --honesty-image-picker-drop-zone-bg: var(--honesty-color-surface-default);
+  --honesty-image-picker-drop-zone-bg-active:
+    var(--honesty-color-action-primary-subtle-bg-hover);
+  --honesty-image-picker-drop-zone-border-color: var(--honesty-border-default);
+  --honesty-image-picker-drop-zone-border-color-active:
+    var(--honesty-color-action-focus-ring);
+  --honesty-image-picker-drop-zone-border-width:
+    var(--honesty-border-width-default);
+  --honesty-image-picker-drop-zone-border-style:
+    var(--honesty-border-style-dashed);
+  --honesty-image-picker-drop-zone-radius: var(--honesty-radius-overlay);
+  --honesty-image-picker-drop-zone-padding: var(--honesty-space-inset-loose);
+  --honesty-image-picker-drop-zone-gap: var(--honesty-space-stack-tight);
+  --honesty-image-picker-stack-gap: var(--honesty-space-stack-default);
+  --honesty-image-picker-item-gap: var(--honesty-space-inline-default);
+  --honesty-image-picker-item-copy-gap: var(--honesty-space-stack-tight);
+  --honesty-image-picker-item-padding: var(--honesty-space-inset-tight);
+  --honesty-image-picker-item-bg: var(--honesty-color-surface-default);
+  --honesty-image-picker-item-border-color: var(--honesty-border-subtle);
+  --honesty-image-picker-item-border-width: var(--honesty-border-width-default);
+  --honesty-image-picker-item-border-style: var(--honesty-border-style-default);
+  --honesty-image-picker-item-radius: var(--honesty-radius-control);
+  --honesty-image-picker-preview-size: 4rem;
   --honesty-image-picker-preview-radius: var(--honesty-radius-control);
-  --honesty-image-picker-preview-border-width: var(--honesty-border-width-default);
-  --honesty-image-picker-preview-border-style: var(--honesty-border-style-default);
+  --honesty-image-picker-preview-border-width:
+    var(--honesty-border-width-default);
+  --honesty-image-picker-preview-border-style:
+    var(--honesty-border-style-default);
   --honesty-image-picker-preview-border-color: var(--honesty-border-subtle);
   --honesty-image-picker-preview-bg: var(--honesty-color-surface-default);
+  --honesty-image-picker-transition-duration:
+    var(--honesty-motion-duration-fast);
+  --honesty-image-picker-transition-easing:
+    var(--honesty-motion-easing-standard);
+  --honesty-image-picker-reduced-duration:
+    var(--honesty-motion-duration-instant);
+}
+
+@mixin tone-primary {
+  --honesty-image-picker-drop-zone-border-color:
+    var(--honesty-color-brand-primary-content);
+}
+
+@mixin tone-secondary {
+  --honesty-image-picker-drop-zone-border-color:
+    var(--honesty-color-brand-secondary-content);
+}
+
+@mixin tone-accent {
+  --honesty-image-picker-drop-zone-border-color:
+    var(--honesty-color-brand-accent-content);
+}
+
+@mixin status-success {
+  --honesty-image-picker-drop-zone-border-color:
+    var(--honesty-color-feedback-success-border);
+}
+
+@mixin status-warning {
+  --honesty-image-picker-drop-zone-border-color:
+    var(--honesty-color-feedback-warning-border);
+}
+
+@mixin status-danger {
+  --honesty-image-picker-drop-zone-border-color:
+    var(--honesty-color-feedback-danger-border);
+}
+
+@mixin status-info {
+  --honesty-image-picker-drop-zone-border-color:
+    var(--honesty-color-feedback-info-border);
+}
+
+@mixin preview-size-sm {
+  --honesty-image-picker-preview-size: 3rem;
+}
+
+@mixin preview-size-md {
+  --honesty-image-picker-preview-size: 4rem;
+}
+
+@mixin preview-size-lg {
+  --honesty-image-picker-preview-size: 6rem;
 }

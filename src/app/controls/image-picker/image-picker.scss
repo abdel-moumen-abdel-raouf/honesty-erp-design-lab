@@ -6,16 +6,40 @@
   min-width: 0;
 }
 
-.image-picker__value {
-  display: flex;
-  align-items: center;
-  gap: var(--honesty-image-picker-gap);
+.image-picker,
+.image-picker__selection,
+.image-picker__list {
+  display: grid;
+  gap: var(--honesty-image-picker-stack-gap);
   min-width: 0;
-  color: var(--honesty-image-picker-placeholder-color);
 }
 
-:host([data-image-picker-selected='true']) .image-picker__value {
-  color: var(--honesty-image-picker-value-color);
+.image-picker__drop-zone {
+  display: grid;
+  place-items: center;
+  gap: var(--honesty-image-picker-drop-zone-gap);
+  min-width: 0;
+  padding: var(--honesty-image-picker-drop-zone-padding);
+  border-width: var(--honesty-image-picker-drop-zone-border-width);
+  border-style: var(--honesty-image-picker-drop-zone-border-style);
+  border-color: var(--honesty-image-picker-drop-zone-border-color);
+  border-radius: var(--honesty-image-picker-drop-zone-radius);
+  background: var(--honesty-image-picker-drop-zone-bg);
+  color: var(--honesty-image-picker-fg);
+  transition: background var(--honesty-image-picker-transition-duration)
+      var(--honesty-image-picker-transition-easing),
+    border-color var(--honesty-image-picker-transition-duration)
+      var(--honesty-image-picker-transition-easing);
+}
+
+:host([data-image-picker-drag-active='true']) .image-picker__drop-zone {
+  background: var(--honesty-image-picker-drop-zone-bg-active);
+  border-color: var(--honesty-image-picker-drop-zone-border-color-active);
+}
+
+:host([data-image-picker-disabled='true']) .image-picker__drop-zone {
+  color: var(--honesty-image-picker-disabled-color);
+  cursor: not-allowed;
 }
 
 .image-picker__native {
@@ -30,14 +54,8 @@
   white-space: nowrap;
 }
 
-.image-picker__preview {
-  flex: none;
-  inline-size: var(--honesty-image-picker-preview-size);
-  block-size: var(--honesty-image-picker-preview-size);
-  border: var(--honesty-image-picker-preview-border-width)
-    var(--honesty-image-picker-preview-border-style)
-    var(--honesty-image-picker-preview-border-color);
-  border-radius: var(--honesty-image-picker-preview-radius);
-  background: var(--honesty-image-picker-preview-bg);
-  object-fit: cover;
+@media (prefers-reduced-motion: reduce) {
+  .image-picker__drop-zone {
+    transition-duration: var(--honesty-image-picker-reduced-duration);
+  }
 }

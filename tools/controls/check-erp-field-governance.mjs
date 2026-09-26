@@ -26,6 +26,20 @@ const SEARCH_BOX_STYLES = [
   'src/app/controls/search-box/search-box-popup.scss',
   'src/app/controls/search-box/search-box-popup-facets.scss',
 ];
+const FILE_SELECTION_BASE =
+  'src/app/controls/input-family/file-selection-base.ts';
+const FILE_PICKER_SOURCE =
+  'src/app/controls/file-picker/file-picker.ts';
+const FILE_PICKER_TEMPLATE =
+  'src/app/controls/file-picker/file-picker.html';
+const FILE_PICKER_TOKENS =
+  'src/styles/foundation/components/file-picker/_tokens.scss';
+const IMAGE_PICKER_SOURCE =
+  'src/app/controls/image-picker/image-picker.ts';
+const IMAGE_PICKER_TEMPLATE =
+  'src/app/controls/image-picker/image-picker.html';
+const IMAGE_PICKER_TOKENS =
+  'src/styles/foundation/components/image-picker/_tokens.scss';
 const FIELD_TRIGGER_CONSUMERS = [
   'date-box',
   'time-box',
@@ -442,6 +456,84 @@ export function validateProgramControlInventory(files, documentation) {
   return errors;
 }
 
+export function validateFileSelectionContracts(
+  baseSource,
+  fileSource,
+  fileTemplate,
+  fileTokens,
+  imageSource,
+  imageTemplate,
+  imageTokens,
+) {
+  const errors = [];
+  const baseRequirements = [
+    'export abstract class ErpFileSelectionBase',
+    'extends ErpFieldBase<',
+    'readonly File[]',
+    'accept = input<string | null>(null)',
+    'maxFileSize = input<number | null>(null)',
+    'maxFiles = input<number | null>(null)',
+    'clearable = input(true, {transform: booleanAttribute})',
+    'handleNativeSelection',
+    'handleDrop',
+    'removeFile',
+    'clearAll',
+    'file.name, file.size, file.lastModified, file.type',
+    "inputElement.value = ''",
+  ];
+
+  for (const requirement of baseRequirements) {
+    if (!baseSource.includes(requirement)) {
+      errors.push(
+        `FileSelectionBase: missing required contract ${requirement}`,
+      );
+    }
+  }
+
+  if (/HttpClient|@angular\/common\/http|uploadProgress|serverResponse/.test(
+    `${baseSource}\n${fileSource}\n${imageSource}`,
+  )) {
+    errors.push(
+      'File/Image pickers must not own HTTP upload, progress, or server-response behavior',
+    );
+  }
+
+  if (
+    !fileSource.includes('extends ErpFileSelectionBase') ||
+    !/<input[\s\S]*?type="file"[\s\S]*?multiple/.test(fileTemplate) ||
+    !fileTemplate.includes('(drop)="handleDrop($event)"') ||
+    !fileTemplate.includes('<erp-tooltip') ||
+    !fileTemplate.includes('data-file-picker-remove') ||
+    !fileTokens.includes(
+      '--honesty-file-picker-drop-zone-border-style:',
+    ) ||
+    !fileTokens.includes('var(--honesty-border-style-dashed)')
+  ) {
+    errors.push(
+      'FilePicker: multi-file drop zone, Tooltip removal, and dashed token contract are required',
+    );
+  }
+
+  if (
+    !imageSource.includes('extends ErpFileSelectionBase') ||
+    !imageSource.includes("input<string | null>('image/*')") ||
+    !imageSource.includes("input<ErpImagePickerPreviewSize>('md')") ||
+    !imageSource.includes('URL.createObjectURL') ||
+    !imageSource.includes('URL.revokeObjectURL') ||
+    !/<input[\s\S]*?type="file"[\s\S]*?multiple/.test(imageTemplate) ||
+    !imageTemplate.includes('data-image-picker-remove') ||
+    !imageTokens.includes('@mixin preview-size-sm') ||
+    !imageTokens.includes('@mixin preview-size-md') ||
+    !imageTokens.includes('@mixin preview-size-lg')
+  ) {
+    errors.push(
+      'ImagePicker: multi-image, stable Object URL, removal, and preview-size contracts are required',
+    );
+  }
+
+  return errors;
+}
+
 function runSelfTest() {
   const valid = new Map([
     [
@@ -476,6 +568,64 @@ function runSelfTest() {
 
   if (validateFieldTriggerContracts(valid).length > 0) {
     throw new Error('ErpField checker rejected valid trigger fixtures');
+  }
+
+  const validFileBase = `
+export abstract class ErpFileSelectionBase extends ErpFieldBase<readonly File[]> {
+  accept = input<string | null>(null);
+  maxFileSize = input<number | null>(null);
+  maxFiles = input<number | null>(null);
+  clearable = input(true, {transform: booleanAttribute});
+  handleNativeSelection() { inputElement.value = ''; }
+  handleDrop() {}
+  removeFile() {}
+  clearAll() {}
+  identity(file) { return [file.name, file.size, file.lastModified, file.type]; }
+}`;
+  const validFileSource =
+    'export class ErpFilePicker extends ErpFileSelectionBase {}';
+  const validFileTemplate =
+    '<input type="file" multiple (drop)="handleDrop($event)"><erp-tooltip><erp-icon-button data-file-picker-remove /></erp-tooltip>';
+  const validFileTokens =
+    '--honesty-file-picker-drop-zone-border-style: var(--honesty-border-style-dashed);';
+  const validImageSource = `
+export class ErpImagePicker extends ErpFileSelectionBase {
+  accept = input<string | null>('image/*');
+  previewSize = input<ErpImagePickerPreviewSize>('md');
+  create(file) { URL.createObjectURL(file); }
+  revoke(url) { URL.revokeObjectURL(url); }
+}`;
+  const validImageTemplate =
+    '<input type="file" multiple><erp-icon-button data-image-picker-remove />';
+  const validImageTokens =
+    '@mixin preview-size-sm {} @mixin preview-size-md {} @mixin preview-size-lg {}';
+
+  if (
+    validateFileSelectionContracts(
+      validFileBase,
+      validFileSource,
+      validFileTemplate,
+      validFileTokens,
+      validImageSource,
+      validImageTemplate,
+      validImageTokens,
+    ).length > 0
+  ) {
+    throw new Error('ErpField checker rejected valid File/Image fixtures');
+  }
+
+  if (
+    validateFileSelectionContracts(
+      `${validFileBase}\nHttpClient`,
+      validFileSource,
+      validFileTemplate.replace(' multiple', ''),
+      validFileTokens,
+      validImageSource,
+      validImageTemplate,
+      validImageTokens,
+    ).length === 0
+  ) {
+    throw new Error('ErpField checker accepted invalid File/Image fixtures');
   }
 
   const invalidTriggerFixtures = new Map(valid);
@@ -795,6 +945,17 @@ errors.push(
     files,
     fs.readFileSync(path.join(ROOT, FIELD_CONTRACT), 'utf8') +
       fs.readFileSync(path.join(ROOT, BUTTON_CONTRACT), 'utf8'),
+  ),
+);
+errors.push(
+  ...validateFileSelectionContracts(
+    files.get(FILE_SELECTION_BASE) ?? '',
+    files.get(FILE_PICKER_SOURCE) ?? '',
+    files.get(FILE_PICKER_TEMPLATE) ?? '',
+    files.get(FILE_PICKER_TOKENS) ?? '',
+    files.get(IMAGE_PICKER_SOURCE) ?? '',
+    files.get(IMAGE_PICKER_TEMPLATE) ?? '',
+    files.get(IMAGE_PICKER_TOKENS) ?? '',
   ),
 );
 errors.push(

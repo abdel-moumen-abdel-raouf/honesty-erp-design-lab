@@ -17,87 +17,139 @@ describe('ErpImagePicker', () => {
 
   function create() {
     const fixture = TestBed.createComponent(ErpImagePicker);
-    fixture.componentRef.setInput('label', 'Image');
+    fixture.componentRef.setInput('label', 'الصور');
     fixture.detectChanges();
     return fixture;
   }
 
-  it('creates as a single-image CVA with exact defaults', () => {
+  it('creates as a multi-image CVA with the exact defaults and preview contract', () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const host = fixture.nativeElement as HTMLElement;
-    const native = host.querySelector('input') as HTMLInputElement;
+    const native = host.querySelector('input[type="file"]') as HTMLInputElement;
 
     expect(reflectComponentType(ErpImagePicker)?.selector).toBe('erp-image-picker');
     expect(control.accept()).toBe('image/*');
+    expect(control.maxFileSize()).toBeNull();
+    expect(control.maxFiles()).toBeNull();
     expect(control.clearable()).toBe(true);
-    expect(native.type).toBe('file');
-    expect(native.multiple).toBe(false);
-    expect(host.querySelector('img')).toBeNull();
+    expect(control.previewSize()).toBe('md');
+    expect(native.multiple).toBe(true);
+    expect(host.getAttribute('data-image-picker-preview-size')).toBe('md');
+    expect('upload' in (control as unknown as Record<string, unknown>)).toBe(false);
   });
 
-  it('creates a local preview for an image and rejects non-image files', () => {
+  it('creates stable Object URLs for additive image selection without recreating duplicates', () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const host = fixture.nativeElement as HTMLElement;
-    const image = new File(['image'], 'photo.png', {type: 'image/png'});
-    const text = new File(['text'], 'proof.txt', {type: 'text/plain'});
-
-    control.writeValue(image);
-    fixture.detectChanges();
-    expect(host.querySelector('img')?.getAttribute('src')).toBe('blob:photo.png');
-    expect(host.getAttribute('data-image-picker-file-name')).toBe('photo.png');
-
-    control.writeValue(text);
-    fixture.detectChanges();
-    expect(host.querySelector('img')).toBeNull();
-    expect(host.getAttribute('data-image-picker-selected')).toBe('false');
-  });
-
-  it('revokes previews on replacement and destroy', () => {
-    const fixture = create();
-    const control = fixture.componentInstance;
-    const first = new File(['one'], 'one.png', {type: 'image/png'});
-    const second = new File(['two'], 'two.png', {type: 'image/png'});
-
-    control.writeValue(first);
-    control.writeValue(second);
-    expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:one.png');
-
-    fixture.destroy();
-    expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:two.png');
-  });
-
-  it('publishes native image selection and clears native/value state', () => {
-    const fixture = create();
-    const control = fixture.componentInstance;
-    const host = fixture.nativeElement as HTMLElement;
-    const native = host.querySelector('input') as HTMLInputElement;
-    const image = new File(['image'], 'selected.png', {type: 'image/png'});
+    const native = host.querySelector('input[type="file"]') as HTMLInputElement;
+    const first = image('first.png', 1);
+    const second = image('second.jpg', 2, 'image/jpeg');
     const onChange = vi.fn();
     control.registerOnChange(onChange);
-    setFiles(native, image);
 
-    native.dispatchEvent(new Event('change'));
+    selectFiles(native, [first]);
     fixture.detectChanges();
-    expect(onChange).toHaveBeenCalledWith(image);
-    expect(host.querySelector('img')?.getAttribute('src')).toBe('blob:selected.png');
+    selectFiles(native, [first, second]);
+    fixture.detectChanges();
 
-    (host.querySelector('erp-icon-button button') as HTMLButtonElement).click();
+    expect(onChange).toHaveBeenCalledTimes(2);
+    expect(onChange).toHaveBeenLastCalledWith([first, second]);
+    expect(URL.createObjectURL).toHaveBeenCalledTimes(2);
+    expect(host.querySelectorAll('img').length).toBe(2);
+    expect(host.querySelectorAll('[data-image-picker-item]').length).toBe(2);
+  });
+
+  it('rejects non-image files through the default local accept policy', () => {
+    const fixture = create();
+    const control = fixture.componentInstance;
+    const host = fixture.nativeElement as HTMLElement;
+    const native = host.querySelector('input[type="file"]') as HTMLInputElement;
+    const text = new File(['text'], 'proof.txt', {type: 'text/plain'});
+    const onChange = vi.fn();
+    control.registerOnChange(onChange);
+
+    selectFiles(native, [text]);
     fixture.detectChanges();
-    expect(onChange).toHaveBeenLastCalledWith(null);
-    expect(native.value).toBe('');
-    expect(host.querySelector('img')).toBeNull();
+
+    expect(onChange).not.toHaveBeenCalled();
+    expect(host.querySelectorAll('img').length).toBe(0);
+    expect(host.querySelector('erp-field-feedback')?.textContent).toContain(
+      'غير مسموح',
+    );
+  });
+
+  it('revokes one preview on removal and every remaining preview on clear', () => {
+    const fixture = create();
+    const control = fixture.componentInstance;
+    const host = fixture.nativeElement as HTMLElement;
+    const native = host.querySelector('input[type="file"]') as HTMLInputElement;
+    const first = image('first.png', 1);
+    const second = image('second.png', 2);
+    control.registerOnChange(vi.fn());
+
+    selectFiles(native, [first, second]);
+    fixture.detectChanges();
+    (host.querySelector('[data-image-picker-remove] button') as HTMLButtonElement).click();
+    fixture.detectChanges();
+    expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:first.png');
+    expect(URL.revokeObjectURL).not.toHaveBeenCalledWith('blob:second.png');
+
+    (host.querySelector('[data-image-picker-clear-all] button') as HTMLButtonElement).click();
+    fixture.detectChanges();
+    expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:second.png');
+    expect(host.querySelectorAll('img').length).toBe(0);
+  });
+
+  it('reconciles programmatic writes and revokes remaining previews on destroy', () => {
+    const fixture = create();
+    const control = fixture.componentInstance;
+    const first = image('first.png', 1);
+    const second = image('second.png', 2);
+
+    control.writeValue([first]);
+    control.writeValue([first, second]);
+    expect(URL.createObjectURL).toHaveBeenCalledTimes(2);
+    expect(URL.revokeObjectURL).not.toHaveBeenCalled();
+
+    fixture.destroy();
+    expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:first.png');
+    expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:second.png');
+  });
+
+  it('supports all three preview-size host facets', () => {
+    const fixture = create();
+    const host = fixture.nativeElement as HTMLElement;
+
+    for (const size of ['sm', 'md', 'lg'] as const) {
+      fixture.componentRef.setInput('previewSize', size);
+      fixture.detectChanges();
+      expect(host.getAttribute('data-image-picker-preview-size')).toBe(size);
+    }
   });
 });
 
-function setFiles(input: HTMLInputElement, file: File): void {
+function image(
+  name: string,
+  lastModified: number,
+  type = 'image/png',
+): File {
+  return new File(['image'], name, {type, lastModified});
+}
+
+function fileList(files: readonly File[]): FileList {
+  return {
+    ...Object.fromEntries(files.map((entry, index) => [index, entry])),
+    length: files.length,
+    item: (index: number) => files[index] ?? null,
+  } as unknown as FileList;
+}
+
+function selectFiles(input: HTMLInputElement, files: readonly File[]): void {
   Object.defineProperty(input, 'files', {
     configurable: true,
-    value: {
-      0: file,
-      length: 1,
-      item: (index: number) => (index === 0 ? file : null),
-    },
+    value: fileList(files),
   });
+  input.dispatchEvent(new Event('change'));
 }

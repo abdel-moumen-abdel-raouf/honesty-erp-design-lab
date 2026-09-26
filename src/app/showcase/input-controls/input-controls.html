@@ -308,26 +308,33 @@
   </erp-section>
 
   <erp-section class="review-group" data-review-group="file-image-basics">
-    <erp-text type="heading-2">File / Image basics</erp-text>
+    <erp-text type="heading-2">اختيار الملفات والصور</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="md" responsive="auto">
       @for (theme of themes; track theme) {
         <erp-surface
           data-theme-context
+          data-file-image-rtl-evidence
           [attr.data-theme]="theme"
+          dir="rtl"
           border="subtle"
         >
           <erp-stack>
             <erp-file-picker
               data-file-picker-evidence
-              label="Single file"
-              helperText="Browser-native single-file selection."
+              label="مستندات المعاملة"
+              helperText="الاختيار محلي في المتصفح؛ التحقق النهائي مسؤولية الخادم."
               accept=".pdf,.txt"
+              [maxFileSize]="5242880"
+              [maxFiles]="4"
             />
             <erp-image-picker
               data-image-picker-evidence
-              label="Single image"
-              helperText="Browser-native image selection with local preview."
+              label="صور المعاملة"
+              helperText="يمكن إضافة عدة صور ومعاينتها محليًا قبل الإرسال."
+              [maxFileSize]="3145728"
+              [maxFiles]="6"
+              previewSize="md"
             />
           </erp-stack>
         </erp-surface>

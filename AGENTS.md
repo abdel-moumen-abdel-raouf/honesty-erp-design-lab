@@ -394,8 +394,9 @@ Rules:
 - Concrete input controls register themselves as value accessors; the base does
   not provide `NG_VALUE_ACCESSOR`.
 - Do not introduce a competing generic `value`/`valueChange` API in the base.
-- Do not pre-create secondary input base classes before repeated concrete
-  behavior proves the need.
+- `ErpFileSelectionBase` is the approved internal non-renderable shared base
+  for File/Image selection; do not pre-create further secondary input bases
+  before repeated concrete behavior proves the need.
 - A Basic Control family freeze never closes the Basic Controls layer.
 - Internal derived InputBase state stays protected; only approved inherited inputs form public base API.
 - Concrete controls must not mutate InputBase value/focus state directly; user mutations go through the protected base helpers.
@@ -461,8 +462,14 @@ Rules:
 - Date, time, date-time, date-range, color, icon, item, and combo selection
   controls are overlay-backed Composites even when their public names contain
   `Box`.
-- File and image pickers remain single-file and single-image Basic Controls in
-  V1; browser-native filesystem selection remains the security boundary.
+- File and image pickers are multi-selection Basic Controls backed by the
+  internal non-renderable `ErpFileSelectionBase`; their CVA value is immutable
+  `readonly File[]`.
+- File/Image local accept, size, and count policy is a usability boundary only.
+  Backend content/MIME, size, count, malware/security, and business validation
+  remains authoritative.
+- File/Image controls own no HTTP upload, progress, retry, or server-response
+  behavior; browser-native filesystem selection remains the security boundary.
 - A Field Family or Basic Control checkpoint does not close or freeze the Basic
   Controls layer.
 - Specialized parser controls use their built-in final-value pattern when the

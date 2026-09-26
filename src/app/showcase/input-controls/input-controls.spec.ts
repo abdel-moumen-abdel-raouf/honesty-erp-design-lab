@@ -97,14 +97,22 @@ describe('InputControls showcase', () => {
     expect(group?.querySelectorAll('[data-range-thumb]').length).toBe(4);
   });
 
-  it('contains single-file and single-image picker evidence in both themes', () => {
+  it('contains multi-file and multi-image RTL evidence in both themes', () => {
     const root = create().nativeElement as HTMLElement;
     const group = root.querySelector('[data-review-group="file-image-basics"]');
 
     expect(group?.querySelectorAll('erp-file-picker').length).toBe(2);
     expect(group?.querySelectorAll('erp-image-picker').length).toBe(2);
     expect(group?.querySelectorAll('input[type="file"]').length).toBe(4);
-    expect(group?.querySelectorAll('input[multiple]').length).toBe(0);
+    expect(group?.querySelectorAll('input[multiple]').length).toBe(4);
+    expect(
+      [...(group?.querySelectorAll<HTMLElement>('[data-theme-context]') ?? [])]
+        .map((context) => [context.dataset['theme'], context.dir]),
+    ).toEqual([
+      ['light', 'rtl'],
+      ['dark', 'rtl'],
+    ]);
+    expect(group?.querySelectorAll('[data-file-image-rtl-evidence]').length).toBe(2);
   });
 
   it('contains every text-entry control and complete variant/size evidence', () => {

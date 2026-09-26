@@ -19,7 +19,9 @@
 - Internal derived state is protected; only the inherited Angular inputs are public base API.
 - Concrete controls read normalized value through protected read-only state and must use base helpers for user value/focus mutation.
 - Entering any effective-disabled state clears stored focus so re-enabling cannot resurrect stale focus evidence.
-- Do not pre-create secondary abstract input bases.
+- `ErpFileSelectionBase` is the approved internal, non-renderable shared base
+  for File/Image multi-selection behavior; do not pre-create further secondary
+  abstract input bases.
 
 ## Implemented Technical Candidate Classification
 
@@ -37,8 +39,8 @@
 - `ErpRangeSlider`
 - `ErpCheckBox`
 - `ErpRadioBox`
-- `ErpFilePicker` (single-file V1)
-- `ErpImagePicker` (single-image V1)
+- `ErpFilePicker` (multi-file V1)
+- `ErpImagePicker` (multi-image V1)
 
 ### Composite-classified controls
 

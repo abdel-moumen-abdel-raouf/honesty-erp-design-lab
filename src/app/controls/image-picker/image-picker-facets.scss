@@ -1,0 +1,12 @@
+@use '../../../styles/foundation/components/image-picker' as tokens;
+
+:host([data-field-tone='primary']) { @include tokens.tone-primary; }
+:host([data-field-tone='secondary']) { @include tokens.tone-secondary; }
+:host([data-field-tone='accent']) { @include tokens.tone-accent; }
+:host([data-field-status='success']) { @include tokens.status-success; }
+:host([data-field-status='warning']) { @include tokens.status-warning; }
+:host([data-field-status='danger']) { @include tokens.status-danger; }
+:host([data-field-status='info']) { @include tokens.status-info; }
+:host([data-image-picker-preview-size='sm']) { @include tokens.preview-size-sm; }
+:host([data-image-picker-preview-size='md']) { @include tokens.preview-size-md; }
+:host([data-image-picker-preview-size='lg']) { @include tokens.preview-size-lg; }

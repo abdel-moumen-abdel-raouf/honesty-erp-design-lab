@@ -24,6 +24,7 @@ Internal Field Family foundation:
 - `ErpFieldBase<TValue>`
 - `ErpFieldFrame`
 - `ErpFieldFeedback`
+- `ErpFileSelectionBase`
 
 Field Entry Basic Controls:
 
@@ -48,8 +49,8 @@ Boolean/choice Basic Controls:
 
 File/Image Basic Controls:
 
-- `ErpFilePicker` — single-file V1
-- `ErpImagePicker` — single-image V1
+- `ErpFilePicker` — multi-file V1
+- `ErpImagePicker` — multi-image V1
 
 Overlay-backed selection Composites:
 
@@ -125,9 +126,11 @@ NumberStepper remains a distinct scalar direct-entry and keyboard control.
 
 Commit: `feat(controls): add file and image pickers`
 
-Implement single-file `ErpFilePicker` and single-image `ErpImagePicker`,
-preserve the browser-native filesystem security boundary, manage image-preview
-lifecycle, and add specs/showcase/governance. No multi-file queue or gallery.
+Implement `ErpFilePicker` and `ErpImagePicker`, preserve the browser-native
+filesystem security boundary, manage image-preview lifecycle, and add
+specs/showcase/governance. The Primary Controls Correction Program later
+supersedes the initial single-selection checkpoint with the shared immutable
+multi-selection contract.
 
 ### Phase 07 — Overlay Foundation
 

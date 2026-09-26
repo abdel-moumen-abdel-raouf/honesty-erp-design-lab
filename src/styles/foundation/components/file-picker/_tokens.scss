@@ -1,4 +1,67 @@
 @mixin base {
-  --honesty-file-picker-value-color: var(--honesty-color-text-primary);
-  --honesty-file-picker-placeholder-color: var(--honesty-color-text-muted);
+  --honesty-file-picker-fg: var(--honesty-color-text-primary);
+  --honesty-file-picker-disabled-color: var(--honesty-color-text-disabled);
+  --honesty-file-picker-drop-zone-bg: var(--honesty-color-surface-default);
+  --honesty-file-picker-drop-zone-bg-active:
+    var(--honesty-color-action-primary-subtle-bg-hover);
+  --honesty-file-picker-drop-zone-border-color: var(--honesty-border-default);
+  --honesty-file-picker-drop-zone-border-color-active:
+    var(--honesty-color-action-focus-ring);
+  --honesty-file-picker-drop-zone-border-width:
+    var(--honesty-border-width-default);
+  --honesty-file-picker-drop-zone-border-style:
+    var(--honesty-border-style-dashed);
+  --honesty-file-picker-drop-zone-radius: var(--honesty-radius-overlay);
+  --honesty-file-picker-drop-zone-padding: var(--honesty-space-inset-loose);
+  --honesty-file-picker-drop-zone-gap: var(--honesty-space-stack-tight);
+  --honesty-file-picker-stack-gap: var(--honesty-space-stack-default);
+  --honesty-file-picker-item-gap: var(--honesty-space-inline-default);
+  --honesty-file-picker-item-copy-gap: var(--honesty-space-stack-tight);
+  --honesty-file-picker-item-padding: var(--honesty-space-inset-tight);
+  --honesty-file-picker-item-bg: var(--honesty-color-surface-default);
+  --honesty-file-picker-item-border-color: var(--honesty-border-subtle);
+  --honesty-file-picker-item-border-width: var(--honesty-border-width-default);
+  --honesty-file-picker-item-border-style: var(--honesty-border-style-default);
+  --honesty-file-picker-item-radius: var(--honesty-radius-control);
+  --honesty-file-picker-transition-duration:
+    var(--honesty-motion-duration-fast);
+  --honesty-file-picker-transition-easing:
+    var(--honesty-motion-easing-standard);
+  --honesty-file-picker-reduced-duration:
+    var(--honesty-motion-duration-instant);
+}
+
+@mixin tone-primary {
+  --honesty-file-picker-drop-zone-border-color:
+    var(--honesty-color-brand-primary-content);
+}
+
+@mixin tone-secondary {
+  --honesty-file-picker-drop-zone-border-color:
+    var(--honesty-color-brand-secondary-content);
+}
+
+@mixin tone-accent {
+  --honesty-file-picker-drop-zone-border-color:
+    var(--honesty-color-brand-accent-content);
+}
+
+@mixin status-success {
+  --honesty-file-picker-drop-zone-border-color:
+    var(--honesty-color-feedback-success-border);
+}
+
+@mixin status-warning {
+  --honesty-file-picker-drop-zone-border-color:
+    var(--honesty-color-feedback-warning-border);
+}
+
+@mixin status-danger {
+  --honesty-file-picker-drop-zone-border-color:
+    var(--honesty-color-feedback-danger-border);
+}
+
+@mixin status-info {
+  --honesty-file-picker-drop-zone-border-color:
+    var(--honesty-color-feedback-info-border);
 }

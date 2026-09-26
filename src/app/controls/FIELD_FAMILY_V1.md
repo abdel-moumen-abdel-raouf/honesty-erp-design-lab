@@ -485,18 +485,28 @@ Its invariant is `min <= lower <= upper <= max`; thumbs do not cross in V1.
 
 ## File / Image Basics
 
-- `ErpFilePicker` is a single-file `File | null` ControlValueAccessor. Its
-  optional `accept` input defaults to null and `clearable` defaults to true.
-- `ErpImagePicker` is a single-image `File | null` ControlValueAccessor. Its
-  `accept` input defaults to `image/*` and `clearable` defaults to true.
-- Both controls retain a genuine browser-native file input as the filesystem
-  security boundary. V1 has no multi-file queue or multi-image gallery.
-- A non-null programmatic CVA write may update controlled display state but
-  cannot populate the native file input. No implementation attempts to bypass
-  this browser security rule.
-- Clearing commits null and clears the native input value.
-- ImagePicker creates a local Object URL preview for a valid image and revokes
-  the URL on replacement, clearing, and destruction.
+- `ErpFileSelectionBase` is internal and non-renderable. It owns the shared
+  immutable `readonly File[]` CVA queue, browser-native multiple selection,
+  additive browse/drop processing, stable duplicate identity, remove-one,
+  clear-all, size formatting, and native-input reset after every selection.
+- `ErpFilePicker` and `ErpImagePicker` both expose `accept`, `maxFileSize`,
+  `maxFiles`, and `clearable`. FilePicker defaults `accept` to null;
+  ImagePicker defaults it to `image/*`.
+- Local `accept`, per-file size, and count policy rejects obvious invalid
+  selections before queue insertion and reports useful in-flow feedback.
+- Browser accept and frontend policy are usability checks, not security.
+  Backend validation remains authoritative for content/MIME, size, count,
+  malware/security, and business rules.
+- Both controls retain a genuine browser-native multiple file input as the
+  filesystem security boundary. Programmatic CVA writes update controlled
+  queue state but never attempt to populate that native input.
+- FilePicker presents a dashed browse/drop zone plus a selected-file list with
+  semantic file identity, formatted size, and Tooltip-labelled remove actions.
+- ImagePicker presents the same selection boundary plus stable Object URL
+  thumbnails and `sm | md | lg` preview sizing. URLs are reused while a file
+  remains selected and revoked on remove, clear, and destruction.
+- Neither control owns HTTP upload, progress, retry, server response, or
+  backend policy behavior.
 
 ## Temporal Overlay Picker Family
 
@@ -546,9 +556,9 @@ Overlay-backed selection Composites are `ErpDateBox`, `ErpTimeBox`,
 `ErpDateTimeBox`, `ErpDateRangeBox`, `ErpColorPicker`, `ErpIconPicker`,
 `ErpItemPicker`, and `ErpComboBox`.
 
-File/Image Basic Controls are single-file `ErpFilePicker` and single-image
-`ErpImagePicker`. Browser-native filesystem selection remains the security
-boundary.
+File/Image Basic Controls are multi-file `ErpFilePicker` and multi-image
+`ErpImagePicker`, both backed by the internal `ErpFileSelectionBase`.
+Browser-native filesystem selection remains the security boundary.
 
 ## Implemented Deferred Composites
 
