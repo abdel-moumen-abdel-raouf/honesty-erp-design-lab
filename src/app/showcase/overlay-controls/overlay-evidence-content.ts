@@ -26,11 +26,11 @@ export class OverlayEvidenceContent {
 
   openNested(): void {
     this.overlays.open(OverlayEvidenceContent, {
-      label: 'Nested overlay evidence',
+      label: 'دليل التراكب المتداخل',
       size: 'sm',
       data: {
         theme: this.data.theme,
-        title: 'Nested overlay',
+        title: 'تراكب متداخل',
         allowNested: false,
       } satisfies OverlayEvidenceData,
     });

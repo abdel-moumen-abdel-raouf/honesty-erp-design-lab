@@ -5,21 +5,22 @@
   data-overlay-responsive-evidence="wide"
 >
   <erp-stack class="showcase-header" gap="tight">
-    <erp-text type="heading-1">Blocking Overlay System V1</erp-text>
+    <erp-text type="heading-1">نظام التراكب الحاجب V1</erp-text>
     <erp-text type="paragraph" tone="secondary">
-      Technical evidence for modal, logical drawers, stack, focus, and dismissal.
+      دليل تقني للنوافذ والأدراج المنطقية والتكديس والتركيز وسياسات الإغلاق.
     </erp-text>
   </erp-stack>
 
   <erp-section class="review-group" data-review-group="modal">
-    <erp-text type="heading-2">Modal</erp-text>
+    <erp-text type="heading-2">النوافذ الحوارية والخلفية الافتراضية</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="sm" responsive="auto">
       @for (theme of themes; track theme) {
         <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
           <erp-button
             data-modal-evidence
-            [label]="'Open ' + theme + ' modal'"
+            data-default-backdrop-evidence
+            [label]="theme === 'light' ? 'فتح نافذة في السياق الفاتح' : 'فتح نافذة في السياق الداكن'"
             (pressed)="openModal(theme)"
           />
         </erp-surface>
@@ -28,15 +29,15 @@
   </erp-section>
 
   <erp-section class="review-group" data-review-group="drawers">
-    <erp-text type="heading-2">Logical drawers</erp-text>
+    <erp-text type="heading-2">الأدراج المنطقية في RTL</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="sm" responsive="auto">
       @for (theme of themes; track theme) {
         <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle" dir="rtl">
           <erp-stack gap="tight">
-            <erp-button data-drawer-evidence="start" label="Open start drawer" (pressed)="openDrawer('start', theme)" />
-            <erp-button data-drawer-evidence="end" label="Open end drawer" (pressed)="openDrawer('end', theme)" />
-            <erp-button data-drawer-evidence="bottom" label="Open bottom drawer" (pressed)="openDrawer('bottom', theme)" />
+            <erp-button data-drawer-evidence="start" label="فتح درج البداية" (pressed)="openDrawer('start', theme)" />
+            <erp-button data-drawer-evidence="end" label="فتح درج النهاية" (pressed)="openDrawer('end', theme)" />
+            <erp-button data-drawer-evidence="bottom" label="فتح الدرج السفلي" (pressed)="openDrawer('bottom', theme)" />
           </erp-stack>
         </erp-surface>
       }
@@ -44,46 +45,78 @@
   </erp-section>
 
   <erp-section class="review-group" data-review-group="nested-stack">
-    <erp-text type="heading-2">Nested stack</erp-text>
+    <erp-text type="heading-2">التراكب المتداخل</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="sm" responsive="auto">
       @for (theme of themes; track theme) {
         <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
-          <erp-button data-nested-evidence label="Open nested stack" (pressed)="openModal(theme, true)" />
+          <erp-button data-nested-evidence label="فتح تراكب متداخل" (pressed)="openModal(theme, true)" />
         </erp-surface>
       }
     </erp-grid>
   </erp-section>
 
   <erp-section class="review-group" data-review-group="dismissal-focus">
-    <erp-text type="heading-2">Dismissal / focus / blocking</erp-text>
+    <erp-text type="heading-2">الإغلاق والضبابية والنبرة والحركة</erp-text>
     <erp-divider />
-    <erp-container
-      width="narrow"
-      gutter="none"
-      data-overlay-responsive-evidence="narrow"
-    >
+    <erp-container width="narrow" gutter="none" data-overlay-responsive-evidence="narrow">
       <erp-grid [columns]="2" gap="sm" responsive="auto">
         @for (theme of themes; track theme) {
           <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
-            <erp-button data-policy-evidence label="Open explicit-close overlay" (pressed)="openPolicy(theme)" />
+            <erp-button data-policy-evidence label="فتح تراكب بإغلاق صريح" (pressed)="openPolicy(theme)" />
           </erp-surface>
         }
       </erp-grid>
     </erp-container>
+
+    <erp-surface class="configuration-evidence" border="subtle" padding="tight">
+      <erp-stack gap="default">
+        <erp-text type="heading-3">سياسات الإغلاق</erp-text>
+        <erp-inline gap="tight" wrap="wrap">
+          <erp-button data-backdrop-dismiss-evidence="true" label="الإغلاق الخارجي: مفعّل" size="sm" (pressed)="openConfigured('الإغلاق الخارجي مفعّل', {dismissOnBackdrop: true})" />
+          <erp-button data-backdrop-dismiss-evidence="false" label="الإغلاق الخارجي: متوقف" size="sm" (pressed)="openConfigured('الإغلاق الخارجي متوقف', {dismissOnBackdrop: false})" />
+          <erp-button data-escape-dismiss-evidence="true" label="Escape: مفعّل" size="sm" (pressed)="openConfigured('Escape مفعّل', {dismissOnEscape: true})" />
+          <erp-button data-escape-dismiss-evidence="false" label="Escape: متوقف" size="sm" (pressed)="openConfigured('Escape متوقف', {dismissOnEscape: false})" />
+        </erp-inline>
+
+        <erp-text type="heading-3">مستويات الضبابية</erp-text>
+        <erp-inline gap="tight" wrap="wrap">
+          @for (blur of blurLevels; track blur) {
+            <erp-button data-blur-evidence [attr.data-blur-value]="blur" [label]="'ضبابية ' + blur" size="sm" (pressed)="openConfigured('ضبابية ' + blur, {blur})" />
+          }
+        </erp-inline>
+
+        <erp-text type="heading-3">نبرات الخلفية البديلة</erp-text>
+        <erp-inline gap="tight" wrap="wrap">
+          @for (tone of backdropTones; track tone) {
+            <erp-button data-backdrop-tone-evidence [attr.data-backdrop-tone-value]="tone" [label]="'نبرة ' + tone" size="sm" (pressed)="openConfigured('نبرة ' + tone, {backdropTone: tone})" />
+          }
+        </erp-inline>
+
+        <erp-text type="heading-3">حركات الدخول والخروج</erp-text>
+        <erp-inline gap="tight" wrap="wrap">
+          @for (animation of animations; track animation) {
+            <erp-button data-animation-evidence [attr.data-animation-value]="animation" [label]="'حركة ' + animation" size="sm" (pressed)="openConfigured('حركة ' + animation, {enterAnimation: animation, exitAnimation: animation})" />
+          }
+        </erp-inline>
+        <erp-text data-reduced-motion-evidence type="caption" tone="secondary">
+          يحترم التراكب إعداد prefers-reduced-motion تلقائيًا.
+        </erp-text>
+      </erp-stack>
+    </erp-surface>
   </erp-section>
 
   <erp-section class="review-group" data-review-group="temporal-pickers">
-    <erp-text type="heading-2">Temporal picker overlays</erp-text>
+    <erp-text type="heading-2">منتقيات التاريخ والوقت</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="sm" responsive="auto">
       @for (theme of themes; track theme) {
-        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
+        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle" dir="rtl">
           <erp-stack gap="tight">
-            <erp-date-box data-temporal-overlay-evidence="date" label="Open date picker" />
-            <erp-time-box data-temporal-overlay-evidence="time" label="Open time picker" />
-            <erp-date-time-box data-temporal-overlay-evidence="datetime" label="Open date-time picker" />
-            <erp-date-range-box data-temporal-overlay-evidence="range" label="Open date-range picker" />
+            <erp-date-box data-temporal-overlay-evidence="date" label="فتح منتقي التاريخ" />
+            <erp-time-box data-temporal-overlay-evidence="time" label="فتح منتقي الوقت" />
+            <erp-date-time-box data-temporal-overlay-evidence="datetime" label="فتح منتقي التاريخ والوقت" />
+            <erp-date-range-box data-temporal-overlay-evidence="range" data-date-range-selected-evidence label="نطاق محدد — افتح لمعاينة المرور" [ngModel]="dateRangeValue()" (ngModelChange)="dateRangeValue.set($event)" />
           </erp-stack>
         </erp-surface>
       }
@@ -91,16 +124,17 @@
   </erp-section>
 
   <erp-section class="review-group" data-review-group="selection-pickers">
-    <erp-text type="heading-2">Selection picker overlays</erp-text>
+    <erp-text type="heading-2">منتقيات الاختيار</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="sm" responsive="auto">
       @for (theme of themes; track theme) {
         <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
           <erp-stack gap="tight">
-            <erp-color-picker data-selection-overlay-evidence="color" label="Open color picker" />
-            <erp-icon-picker data-selection-overlay-evidence="icon" label="Open icon picker" />
-            <erp-item-picker data-selection-overlay-evidence="item" label="Open item picker" [items]="pickerItems" searchable />
-            <erp-combo-box data-selection-overlay-evidence="combo" label="Open combo box" [items]="pickerItems" />
+            <erp-color-picker data-selection-overlay-evidence="color-system" label="ألوان النظام — المجموعات الكاملة" [ngModel]="systemColorValue()" (ngModelChange)="systemColorValue.set($event)" />
+            <erp-color-picker data-selection-overlay-evidence="color-free" label="اللون الحر" [ngModel]="freeColorValue()" (ngModelChange)="freeColorValue.set($event)" />
+            <erp-icon-picker data-selection-overlay-evidence="icon" label="شبكة الأيقونات الثابتة" />
+            <erp-item-picker data-selection-overlay-evidence="item" label="منتقي العناصر" [items]="pickerItems" searchable />
+            <erp-combo-box data-selection-overlay-evidence="combo" label="قائمة البحث والاختيار" [items]="pickerItems" />
           </erp-stack>
         </erp-surface>
       }
@@ -108,32 +142,16 @@
   </erp-section>
 
   <erp-section class="review-group" data-review-group="deferred-composites">
-    <erp-text type="heading-2">Deferred control composites</erp-text>
+    <erp-text type="heading-2">المركبات المؤجلة</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="sm" responsive="auto">
       @for (theme of themes; track theme) {
         <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
           <erp-stack gap="tight">
-            <erp-radio-group
-              data-composite-evidence="radio-group"
-              label="Approval state"
-              [options]="radioItems"
-              required
-            />
-            <erp-button-group
-              data-composite-evidence="button-group"
-              [items]="buttonItems"
-            />
-            <erp-split-button
-              data-composite-evidence="split-button"
-              label="Export"
-              [items]="pickerItems"
-            />
-            <erp-fab-menu
-              data-composite-evidence="fab-menu"
-              label="Create item"
-              [items]="pickerItems"
-            />
+            <erp-radio-group data-composite-evidence="radio-group" label="حالة الاعتماد" [options]="radioItems" required />
+            <erp-button-group data-composite-evidence="button-group" [items]="buttonItems" />
+            <erp-split-button data-composite-evidence="split-button" label="تصدير" [items]="pickerItems" />
+            <erp-fab-menu data-composite-evidence="fab-menu" label="إنشاء عنصر" [items]="pickerItems" />
           </erp-stack>
         </erp-surface>
       }

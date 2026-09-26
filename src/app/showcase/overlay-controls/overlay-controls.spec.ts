@@ -84,10 +84,24 @@ describe('OverlayControls showcase', () => {
     expect(root.querySelectorAll('erp-fab-menu')).toHaveLength(2);
   });
 
-  it('contains all four OverlayManager-backed selection triggers in both themes', () => {
+  it('contains the complete OverlayManager-backed selection evidence in both themes', () => {
     const root = create().nativeElement as HTMLElement;
-    expect(root.querySelectorAll('[data-selection-overlay-evidence]').length).toBe(8);
-    expect([...root.querySelectorAll<HTMLElement>('[data-selection-overlay-evidence]')].map((item) => item.getAttribute('data-selection-overlay-evidence'))).toEqual(['color', 'icon', 'item', 'combo', 'color', 'icon', 'item', 'combo']);
+    expect(root.querySelectorAll('[data-selection-overlay-evidence]').length).toBe(10);
+    expect(
+      [...root.querySelectorAll<HTMLElement>('[data-selection-overlay-evidence]')]
+        .map((item) => item.getAttribute('data-selection-overlay-evidence')),
+    ).toEqual([
+      'color-system',
+      'color-free',
+      'icon',
+      'item',
+      'combo',
+      'color-system',
+      'color-free',
+      'icon',
+      'item',
+      'combo',
+    ]);
   });
 
   it('contains all four OverlayManager-backed temporal triggers in both themes', () => {
@@ -113,6 +127,71 @@ describe('OverlayControls showcase', () => {
     ).toEqual(['rtl', 'rtl']);
   });
 
+  it('contains the full dismissal, backdrop, blur, motion, and reduced-motion matrix', () => {
+    const root = create().nativeElement as HTMLElement;
+
+    expect(root.querySelectorAll('[data-default-backdrop-evidence]')).toHaveLength(2);
+    expect(
+      [...root.querySelectorAll<HTMLElement>('[data-backdrop-dismiss-evidence]')]
+        .map((item) => item.dataset['backdropDismissEvidence']),
+    ).toEqual(['true', 'false']);
+    expect(
+      [...root.querySelectorAll<HTMLElement>('[data-escape-dismiss-evidence]')]
+        .map((item) => item.dataset['escapeDismissEvidence']),
+    ).toEqual(['true', 'false']);
+    expect(
+      [...root.querySelectorAll<HTMLElement>('[data-blur-evidence]')]
+        .map((item) => item.dataset['blurValue']),
+    ).toEqual(['low', 'medium', 'high']);
+    expect(
+      [...root.querySelectorAll<HTMLElement>('[data-backdrop-tone-evidence]')]
+        .map((item) => item.dataset['backdropToneValue']),
+    ).toEqual(['neutral', 'primary', 'secondary', 'accent']);
+    expect(
+      [...root.querySelectorAll<HTMLElement>('[data-animation-evidence]')]
+        .map((item) => item.dataset['animationValue']),
+    ).toEqual([
+      'fade',
+      'scale',
+      'fade-scale',
+      'slide-up',
+      'slide-down',
+      'slide-start',
+      'slide-end',
+    ]);
+    expect(root.querySelectorAll('[data-reduced-motion-evidence]')).toHaveLength(1);
+  });
+
+  it('contains selected DateRange hover-preview evidence in Light and Dark RTL contexts', async () => {
+    const fixture = create();
+    await fixture.whenStable();
+    fixture.detectChanges();
+    const root = fixture.nativeElement as HTMLElement;
+    const contexts = [
+      ...root.querySelectorAll<HTMLElement>(
+        '[data-review-group="temporal-pickers"] [data-theme-context]',
+      ),
+    ];
+    const ranges = [
+      ...root.querySelectorAll<HTMLElement>('[data-date-range-selected-evidence]'),
+    ];
+
+    expect(contexts.map((context) => [context.dataset['theme'], context.dir])).toEqual([
+      ['light', 'rtl'],
+      ['dark', 'rtl'],
+    ]);
+    expect(ranges).toHaveLength(2);
+    expect(
+      ranges.map((range) => [
+        range.dataset['dateRangeStart'],
+        range.dataset['dateRangeEnd'],
+      ]),
+    ).toEqual([
+      ['2026-09-24', '2026-09-30'],
+      ['2026-09-24', '2026-09-30'],
+    ]);
+  });
+
   it('opens exact modal and drawer configurations through the shared manager', () => {
     const fixture = create();
     const manager = TestBed.inject(ErpOverlayManager);
@@ -129,5 +208,30 @@ describe('OverlayControls showcase', () => {
       {kind: 'modal', position: 'center'},
       {kind: 'drawer', position: 'start'},
     ]);
+  });
+
+  it('opens the explicit dismissal and visual configuration through the shared manager', () => {
+    const fixture = create();
+    const manager = TestBed.inject(ErpOverlayManager);
+
+    fixture.componentInstance.openConfigured('دليل الإعدادات', {
+      dismissOnBackdrop: false,
+      dismissOnEscape: false,
+      blur: 'high',
+      backdropTone: 'accent',
+      enterAnimation: 'slide-start',
+      exitAnimation: 'slide-end',
+    });
+
+    expect(manager.entries().at(-1)?.ref.config).toEqual(
+      expect.objectContaining({
+        dismissOnBackdrop: false,
+        dismissOnEscape: false,
+        blur: 'high',
+        backdropTone: 'accent',
+        enterAnimation: 'slide-start',
+        exitAnimation: 'slide-end',
+      }),
+    );
   });
 });

@@ -29,6 +29,10 @@
   padding: var(--honesty-space-inset-default);
 }
 
+.configuration-evidence {
+  margin-block-start: var(--honesty-space-stack-default);
+}
+
 @include query.viewport-down(md) {
   .overlay-showcase {
     padding-block: var(--honesty-space-section-gap);

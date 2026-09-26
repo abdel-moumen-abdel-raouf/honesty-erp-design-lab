@@ -5,10 +5,10 @@
 >
   <erp-text type="heading-2">{{ data.title }}</erp-text>
   <erp-text type="paragraph">
-    Blocking overlay content with focus, dismissal, and restoration evidence.
+    محتوى تراكب حاجب يثبت التركيز والإغلاق واستعادة التركيز.
   </erp-text>
   @if (data.allowNested) {
-    <erp-button label="Open nested overlay" (pressed)="openNested()" />
+    <erp-button label="فتح تراكب متداخل" (pressed)="openNested()" />
   }
-  <erp-button label="Close overlay" (pressed)="ref.close('confirmed')" />
+  <erp-button label="إغلاق التراكب" (pressed)="ref.close('confirmed')" />
 </erp-stack>

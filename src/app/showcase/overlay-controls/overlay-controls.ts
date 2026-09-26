@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 import {ErpButton} from '../../controls/button/button';
 import {ErpButtonGroup} from '../../controls/button-group/button-group';
 import {ErpColorPicker} from '../../controls/color-picker/color-picker';
@@ -11,17 +12,27 @@ import {ErpIconPicker} from '../../controls/icon-picker/icon-picker';
 import {ErpItemPicker} from '../../controls/item-picker/item-picker';
 import {ErpFabMenu} from '../../controls/fab-menu/fab-menu';
 import {ErpRadioGroup} from '../../controls/radio-group/radio-group';
-import {ErpItemPickerOption} from '../../controls/selection-family/selection-contracts';
+import {
+  ErpColorPickerValue,
+  ErpItemPickerOption,
+} from '../../controls/selection-family/selection-contracts';
 import {ErpTimeBox} from '../../controls/time-box/time-box';
 import {ErpSplitButton} from '../../controls/split-button/split-button';
 import {ErpContainer} from '../../primitives/container/container';
 import {ErpDivider} from '../../primitives/divider/divider';
 import {ErpGrid} from '../../primitives/grid/grid';
+import {ErpInline} from '../../primitives/inline/inline';
 import {ErpSection} from '../../primitives/section/section';
 import {ErpStack} from '../../primitives/stack/stack';
 import {ErpSurface} from '../../primitives/surface/surface';
 import {ErpText} from '../../primitives/text/text';
-import {ErpOverlayPosition} from '../../shared/overlay/overlay-contracts';
+import {
+  ErpOverlayAnimation,
+  ErpOverlayBackdropTone,
+  ErpOverlayBehaviorConfig,
+  ErpOverlayBlur,
+  ErpOverlayPosition,
+} from '../../shared/overlay/overlay-contracts';
 import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
 import {
   OverlayEvidenceContent,
@@ -46,54 +57,96 @@ import {
     ErpRadioGroup,
     ErpDivider,
     ErpGrid,
+    ErpInline,
     ErpSection,
     ErpStack,
     ErpSurface,
     ErpText,
     ErpTimeBox,
     ErpSplitButton,
+    FormsModule,
   ],
   templateUrl: './overlay-controls.html',
   styleUrl: './overlay-controls.scss',
 })
 export class OverlayControls {
   readonly themes = ['light', 'dark'] as const;
+  readonly blurLevels: readonly ErpOverlayBlur[] = ['low', 'medium', 'high'];
+  readonly backdropTones: readonly Exclude<ErpOverlayBackdropTone, 'default'>[] = [
+    'neutral',
+    'primary',
+    'secondary',
+    'accent',
+  ];
+  readonly animations: readonly ErpOverlayAnimation[] = [
+    'fade',
+    'scale',
+    'fade-scale',
+    'slide-up',
+    'slide-down',
+    'slide-start',
+    'slide-end',
+  ];
   readonly pickerItems: readonly ErpItemPickerOption[] = [
-    {value: 'customer', label: 'Customer', icon: 'customer'},
-    {value: 'inventory', label: 'Inventory', icon: 'inventory'},
-    {value: 'maintenance', label: 'Maintenance', icon: 'maintenance'},
+    {value: 'customer', label: 'العملاء', icon: 'customer'},
+    {value: 'inventory', label: 'المخزون', icon: 'inventory'},
+    {value: 'maintenance', label: 'الصيانة', icon: 'maintenance'},
   ];
   readonly radioItems: readonly ErpRadioGroupOption[] = [
-    {value: 'draft', label: 'Draft'},
-    {value: 'review', label: 'Review'},
-    {value: 'approved', label: 'Approved'},
+    {value: 'draft', label: 'مسودة'},
+    {value: 'review', label: 'مراجعة'},
+    {value: 'approved', label: 'معتمد'},
   ];
   readonly buttonItems: readonly ErpButtonGroupItem[] = [
-    {value: 'day', label: 'Day'},
-    {value: 'week', label: 'Week'},
-    {value: 'month', label: 'Month'},
+    {value: 'day', label: 'يوم'},
+    {value: 'week', label: 'أسبوع'},
+    {value: 'month', label: 'شهر'},
   ];
+  readonly dateRangeValue = signal({start: '2026-09-24', end: '2026-09-30'});
+  readonly systemColorValue = signal<ErpColorPickerValue | null>({mode: 'system', token: 'primary-500'});
+  readonly freeColorValue = signal<ErpColorPickerValue | null>({mode: 'free', value: '#2563EB'});
   private readonly overlays = inject(ErpOverlayManager);
 
   openModal(theme: 'light' | 'dark', nested = false): void {
-    this.open('modal', 'center', theme, nested ? 'Nested stack root' : 'Modal');
+    this.open(
+      'modal',
+      'center',
+      theme,
+      nested ? 'جذر التراكب المتداخل' : 'نافذة حوار',
+      nested,
+    );
   }
 
   openDrawer(
     position: Exclude<ErpOverlayPosition, 'center'>,
     theme: 'light' | 'dark',
   ): void {
-    this.open('drawer', position, theme, `Drawer ${position}`);
+    this.open('drawer', position, theme, `درج ${position}`);
   }
 
   openPolicy(theme: 'light' | 'dark'): void {
     this.overlays.open(OverlayEvidenceContent, {
-      label: 'Persistent policy evidence',
+      label: 'دليل سياسة الإغلاق الصريح',
       dismissOnBackdrop: false,
       dismissOnEscape: false,
       data: {
         theme,
-        title: 'Explicit close policy',
+        title: 'سياسة الإغلاق الصريح',
+        allowNested: false,
+      } satisfies OverlayEvidenceData,
+    });
+  }
+
+  openConfigured(
+    label: string,
+    config: Partial<ErpOverlayBehaviorConfig>,
+  ): void {
+    this.overlays.open(OverlayEvidenceContent, {
+      label,
+      ...config,
+      data: {
+        theme: 'light',
+        title: label,
         allowNested: false,
       } satisfies OverlayEvidenceData,
     });
@@ -104,12 +157,13 @@ export class OverlayControls {
     position: ErpOverlayPosition,
     theme: 'light' | 'dark',
     title: string,
+    allowNested = false,
   ): void {
     this.overlays.open(OverlayEvidenceContent, {
       kind,
       position,
       label: title,
-      data: {theme, title, allowNested: title === 'Nested stack root'} satisfies OverlayEvidenceData,
+      data: {theme, title, allowNested} satisfies OverlayEvidenceData,
     });
   }
 }

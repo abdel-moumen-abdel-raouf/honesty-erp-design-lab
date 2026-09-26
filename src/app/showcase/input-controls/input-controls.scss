@@ -30,6 +30,28 @@
   padding: var(--honesty-space-inset-default);
 }
 
+.glass-evidence-substrate {
+  position: relative;
+  overflow: hidden;
+  padding: var(--honesty-space-inset-default);
+  background: var(--honesty-color-brand-primary-surface);
+  border: var(--honesty-border-width-default)
+    var(--honesty-border-style-default) var(--honesty-border-subtle);
+  border-radius: var(--honesty-radius-surface);
+}
+
+.glass-evidence-substrate__tone {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 0;
+  inline-size: 42%;
+  background: var(--honesty-color-brand-accent-surface);
+}
+
+.glass-evidence-substrate erp-stack {
+  position: relative;
+}
+
 @include query.viewport-down(md) {
   [data-theme-context] {
     padding: var(--honesty-space-inset-tight);

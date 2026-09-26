@@ -17,7 +17,10 @@ import {ErpPasswordBox} from '../../controls/password-box/password-box';
 import {ErpRadioBox} from '../../controls/radio-box/radio-box';
 import {ErpRangeSlider} from '../../controls/range-slider/range-slider';
 import {ErpSearchBox} from '../../controls/search-box/search-box';
-import {ErpItemPickerOption} from '../../controls/selection-family/selection-contracts';
+import {
+  ErpColorPickerValue,
+  ErpItemPickerOption,
+} from '../../controls/selection-family/selection-contracts';
 import {ErpTelBox} from '../../controls/tel-box/tel-box';
 import {ErpTimeBox} from '../../controls/time-box/time-box';
 import {ErpTextAreaBox} from '../../controls/text-area-box/text-area-box';
@@ -85,12 +88,27 @@ export class InputControls {
   readonly dateTimeValue = signal<string | null>('2026-09-24T09:30');
   readonly dateRangeValue = signal({start: '2026-09-24', end: '2026-09-30'});
   readonly pickerItems: readonly ErpItemPickerOption[] = [
-    {value: 'customer', label: 'Customer', icon: 'customer'},
-    {value: 'inventory', label: 'Inventory', icon: 'inventory'},
-    {value: 'maintenance', label: 'Maintenance', icon: 'maintenance'},
+    {value: 'customer', label: 'العملاء', icon: 'customer'},
+    {value: 'inventory', label: 'المخزون', icon: 'inventory'},
+    {value: 'maintenance', label: 'الصيانة', icon: 'maintenance'},
   ];
-  readonly colorValue = signal<string | null>('#2563EB');
+  readonly colorValue = signal<ErpColorPickerValue | null>({
+    mode: 'system',
+    token: 'primary-500',
+  });
+  readonly freeColorValue = signal<ErpColorPickerValue | null>({
+    mode: 'free',
+    value: '#2563EB',
+  });
   readonly iconValue = signal<'settings' | null>('settings');
   readonly itemValue = signal<string | null>('customer');
   readonly comboValue = signal<string | null>('inventory');
+  readonly fileEvidence = Object.freeze([
+    new File(['invoice'], 'invoice-2026.pdf', {type: 'application/pdf'}),
+    new File(['notes'], 'notes.txt', {type: 'text/plain'}),
+  ]);
+  readonly imageEvidence = Object.freeze([
+    new File(['image-a'], 'product-a.png', {type: 'image/png'}),
+    new File(['image-b'], 'product-b.jpg', {type: 'image/jpeg'}),
+  ]);
 }
