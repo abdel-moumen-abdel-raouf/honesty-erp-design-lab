@@ -342,9 +342,11 @@ their concrete ERP controls.
 - ErpSearchBox uses native search semantics, defaults autocomplete to off,
   defaults its leading semantic icon to search, and uses the ERP clear action.
   It has no search-submit output in V1.
-- ErpUrlBox uses native url semantics with url autocomplete and input mode.
-- ErpTelBox uses native tel semantics with tel autocomplete and input mode.
-  It performs no formatting or masking.
+- ErpUrlBox uses native url semantics with url autocomplete and input mode. A
+  committed value must pass its effective final pattern, real URL parsing, and
+  the HTTP/HTTPS protocol rule.
+- ErpTelBox uses native tel semantics with tel autocomplete and input mode. It
+  rejects alphabetic draft input and performs no formatting or masking.
 
 All six controls register themselves as stable ControlValueAccessor providers.
 They keep labels semantic, compose helper and visible feedback relationships,
@@ -433,15 +435,26 @@ Its invariant is `min <= lower <= upper <= max`; thumbs do not cross in V1.
 
 ## Numeric Family
 
-- `ErpNumberBox` stores `number | null`, supports direct native numeric entry,
-  defaults `step` to 1 and `allowEmpty` to true, accepts nullable min/max, and
-  clamps normalized commits to configured bounds.
+- `ErpNumberBox` stores `number | null`, uses a text-like decimal editor without
+  browser-native number spinners, defaults `step` to 1 and `allowEmpty` to
+  true, accepts nullable min/max, and clamps normalized commits to configured
+  bounds.
 - `ErpMoneyBox` stores `number | null`; required currency and optional locale
   are formatting metadata. Focused editing uses normalized numeric text, while
   the unfocused display uses `Intl.NumberFormat`. It has no currency picker.
-- `ErpNumberStepper` stores one `number | null` scalar. It combines direct
-  numeric entry with labeled ERP decrement/increment actions, nullable bounds,
-  a default step of 1, ArrowUp/ArrowDown, and Home/End when bounds exist.
+- `ErpNumberStepper` stores one `number | null` scalar. It combines a text-like
+  decimal editor without browser-native number spinners with labeled ERP
+  decrement/increment actions, nullable bounds, a default step of 1,
+  ArrowUp/ArrowDown, and Home/End when bounds exist.
+- NumberBox, NumberStepper, MoneyBox, UrlBox, and TelBox expose nullable
+  `pattern`. Null selects the built-in final expression; a supplied expression
+  replaces it; an invalid regular expression is configuration-invalid.
+- Pattern matching is shape/admission only. Numeric, URL, and telephone domain
+  parsing remains authoritative. Progressive editing text is separate from
+  committed CVA value, and invalid final-domain drafts never publish.
+- MoneyBox accepts monetary numeric draft syntax only. Its built-in final
+  pattern permits a trailing decimal separator while focused; blur returns to
+  `Intl.NumberFormat` output.
 - `ErpRangeSlider` extends `ErpInputBase<ErpRangeSliderValue>` directly and
   owns two stable native range thumbs over one rail. Its normalized invariant
   is `min <= lower <= upper <= max`; thumbs do not cross.

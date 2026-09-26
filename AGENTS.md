@@ -459,6 +459,13 @@ Rules:
   V1; browser-native filesystem selection remains the security boundary.
 - A Field Family or Basic Control checkpoint does not close or freeze the Basic
   Controls layer.
+- Specialized parser controls use their built-in final-value pattern when the
+  public `pattern` override is null; invalid override regex is
+  configuration-invalid.
+- Progressive domain drafts stay separate from committed CVA values. Invalid
+  final-domain values never publish.
+- NumberBox and NumberStepper use ERP-owned text-like decimal editing and must
+  not expose browser-native number spinners.
 
 ## Production Overlay Governance
 

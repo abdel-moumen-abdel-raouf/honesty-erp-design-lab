@@ -18,11 +18,11 @@
   [feedbackText]="feedbackText()"
   [feedbackDismissible]="feedbackDismissible()"
   [feedbackVisible]="feedbackVisible()"
-  [focused]="fieldFocused()"
-  [hasDisplayValue]="currentValue() !== null"
+  [focused]="numberFocused()"
+  [hasDisplayValue]="displayValue().length > 0"
   [placeholder]="placeholder()"
-  [disabled]="fieldEffectiveDisabled()"
-  [configurationState]="fieldConfigurationState()"
+  [disabled]="numberEffectiveDisabled()"
+  [configurationState]="numberConfigurationState()"
   (clearRequested)="handleClear(nativeInput)"
   (feedbackDismissed)="dismissFeedback()"
 >
@@ -38,22 +38,23 @@
       (pressed)="handleStep(nativeInput, -1)"
     />
   </erp-tooltip>
-
   <input
     #nativeInput
     field-control
     class="number-stepper__native"
-    type="number"
+    type="text"
+    inputmode="decimal"
     [id]="controlId"
     [attr.name]="name()"
     [attr.form]="form()"
-    [value]="currentValue() ?? ''"
+    [value]="displayValue()"
     [placeholder]="placeholder() ?? ''"
-    [disabled]="fieldEffectiveDisabled()"
+    [disabled]="numberEffectiveDisabled()"
     [readOnly]="readonly()"
     [attr.min]="min()"
     [attr.max]="max()"
     [attr.step]="step()"
+    [attr.pattern]="effectivePatternExpression()"
     [attr.aria-invalid]="status() === 'danger' ? 'true' : null"
     [attr.aria-describedby]="fieldAriaDescribedBy(controlId)"
     [attr.aria-errormessage]="fieldAriaErrorMessage(controlId)"
@@ -62,7 +63,6 @@
     (focus)="handleNativeFocus()"
     (blur)="handleNativeBlur()"
   />
-
   <erp-tooltip field-domain-action text="Increase value">
     <erp-icon-button
       data-stepper-increment

@@ -3,11 +3,21 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   forwardRef,
   input,
+  signal,
 } from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {
+  ERP_NUMBER_FINAL_PATTERN,
+  isProgressiveNumericDraft,
+  matchesDomainPattern,
+  parseFiniteDomainNumber,
+  resolveDomainPattern,
+} from '../input-family/domain-validation';
 import {ErpFieldBase} from '../input-family/field-base';
+import {ErpInputConfigurationState} from '../input-family/input-contracts';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
 
 let nextNumberBoxId = 0;
@@ -27,7 +37,7 @@ let nextNumberBoxId = 0;
   templateUrl: './number-box.html',
   styleUrl: './number-box.scss',
   host: {
-    '[attr.data-field-configuration-state]': 'fieldConfigurationState()',
+    '[attr.data-field-configuration-state]': 'numberConfigurationState()',
   },
 })
 export class ErpNumberBox extends ErpFieldBase<number | null> {
@@ -38,20 +48,56 @@ export class ErpNumberBox extends ErpFieldBase<number | null> {
   readonly max = input<number | null>(null);
   readonly step = input(1);
   readonly allowEmpty = input(true, {transform: booleanAttribute});
+  readonly pattern = input<string | null>(null);
 
   protected readonly controlId = `erp-number-box-${++nextNumberBoxId}`;
+  private readonly draftText = signal('');
+  private readonly editing = signal(false);
+  private readonly effectivePattern = computed(() =>
+    resolveDomainPattern(this.pattern(), ERP_NUMBER_FINAL_PATTERN),
+  );
+  protected readonly numberConfigurationState =
+    computed<ErpInputConfigurationState>(() =>
+      this.fieldConfigurationState() === 'ready' &&
+      this.effectivePattern().configurationState === 'ready'
+        ? 'ready'
+        : 'invalid',
+    );
+  protected readonly numberEffectiveDisabled = computed(
+    () =>
+      this.fieldEffectiveDisabled() ||
+      this.numberConfigurationState() === 'invalid',
+  );
+  protected readonly numberFocused = computed(
+    () => !this.numberEffectiveDisabled() && this.fieldFocused(),
+  );
+  protected readonly displayValue = computed(() =>
+    this.editing()
+      ? this.draftText()
+      : (this.currentValue()?.toString() ?? ''),
+  );
+  protected readonly effectivePatternExpression = computed(
+    () => this.effectivePattern().expression,
+  );
   protected readonly clearActionVisible = computed(
     () =>
       this.clearable() &&
       this.allowEmpty() &&
       this.currentValue() !== null &&
-      this.fieldConfigurationState() === 'ready' &&
-      !this.fieldEffectiveDisabled() &&
+      this.numberConfigurationState() === 'ready' &&
+      !this.numberEffectiveDisabled() &&
       !this.readonly(),
   );
 
   constructor() {
     super(null);
+
+    effect(() => {
+      if (this.numberEffectiveDisabled()) {
+        this.editing.set(false);
+        this.clearFocusState();
+      }
+    });
   }
 
   protected override normalizeValue(value: unknown): number | null {
@@ -59,12 +105,16 @@ export class ErpNumberBox extends ErpFieldBase<number | null> {
       return this.allowEmpty() ? null : this.clamp(0);
     }
 
-    const numeric = typeof value === 'number' ? value : Number(value);
-    return Number.isFinite(numeric)
-      ? this.clamp(numeric)
-      : this.allowEmpty()
+    const numeric = parseFiniteDomainNumber(
+      value,
+      this.effectivePattern().regex,
+    );
+
+    return numeric === null
+      ? this.allowEmpty()
         ? null
-        : this.clamp(0);
+        : this.clamp(0)
+      : this.clamp(numeric);
   }
 
   protected override canRepresentEmptyValue(): boolean {
@@ -72,19 +122,44 @@ export class ErpNumberBox extends ErpFieldBase<number | null> {
   }
 
   protected handleInput(event: Event): void {
-    if (this.readonly()) {
+    const native = event.target as HTMLInputElement;
+
+    if (this.readonly() || this.numberEffectiveDisabled()) {
+      native.value = this.draftText();
       return;
     }
 
-    const native = event.target as HTMLInputElement;
-    this.commitUserValue(native.value === '' ? null : native.valueAsNumber);
+    const value = native.value;
+
+    if (!isProgressiveNumericDraft(value)) {
+      native.value = this.draftText();
+      return;
+    }
+
+    this.draftText.set(value);
+
+    if (value === '') {
+      this.commitUserValue(null);
+      return;
+    }
+
+    if (matchesDomainPattern(value, this.effectivePattern().regex)) {
+      this.commitUserValue(value);
+    }
   }
 
   protected handleNativeFocus(): void {
+    if (this.numberEffectiveDisabled()) {
+      return;
+    }
+
+    this.draftText.set(this.currentValue()?.toString() ?? '');
+    this.editing.set(true);
     this.handleFocus();
   }
 
   protected handleNativeBlur(): void {
+    this.editing.set(false);
     this.handleBlur();
   }
 
@@ -93,12 +168,16 @@ export class ErpNumberBox extends ErpFieldBase<number | null> {
       return;
     }
 
+    this.draftText.set('');
     inputElement.value = '';
     inputElement.focus();
     this.handleFocus();
   }
 
   private clamp(value: number): number {
-    return Math.min(this.max() ?? Infinity, Math.max(this.min() ?? -Infinity, value));
+    return Math.min(
+      this.max() ?? Infinity,
+      Math.max(this.min() ?? -Infinity, value),
+    );
   }
 }

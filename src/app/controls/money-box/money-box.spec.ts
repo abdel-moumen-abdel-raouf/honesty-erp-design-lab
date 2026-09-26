@@ -1,5 +1,6 @@
 import {reflectComponentType} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
+import {ERP_MONEY_FINAL_PATTERN} from '../input-family/domain-validation';
 import {ErpMoneyBox} from './money-box';
 
 describe('ErpMoneyBox', () => {
@@ -18,7 +19,7 @@ describe('ErpMoneyBox', () => {
     return fixture;
   }
 
-  it('creates with the exact money contract defaults', () => {
+  it('creates with the exact money contract defaults and built-in pattern', () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
@@ -31,42 +32,66 @@ describe('ErpMoneyBox', () => {
     expect(control.placeholder()).toBeNull();
     expect(control.readonly()).toBe(false);
     expect(control.allowEmpty()).toBe(true);
+    expect(control.pattern()).toBeNull();
     expect(native.type).toBe('text');
     expect(native.inputMode).toBe('decimal');
+    expect(native.pattern).toBe(ERP_MONEY_FINAL_PATTERN);
   });
 
-  it('formats while not editing and exposes normalized numeric text while focused', () => {
+  it('formats committed money and accepts only monetary numeric draft syntax', () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
     const onChange = vi.fn();
     control.registerOnChange(onChange);
-
     control.writeValue(1234.5);
     fixture.detectChanges();
     expect(native.value).toBe('$1,234.50');
-
     native.dispatchEvent(new FocusEvent('focus'));
     fixture.detectChanges();
     expect(native.value).toBe('1234.5');
 
-    native.value = '50.25';
+    native.value = 'arbitrary';
     native.dispatchEvent(new Event('input'));
-    expect(onChange).toHaveBeenCalledWith(50.25);
+    expect(native.value).toBe('1234.5');
+    expect(onChange).not.toHaveBeenCalled();
 
+    native.value = '50.';
+    native.dispatchEvent(new Event('input'));
+    expect(onChange).toHaveBeenCalledWith(50);
     native.dispatchEvent(new FocusEvent('blur'));
     fixture.detectChanges();
-    expect(native.value).toBe('$50.25');
+    expect(native.value).toBe('$50.00');
+  });
+
+  it('uses custom patterns and invalid regex is invalid configuration', () => {
+    const fixture = create();
+    const host = fixture.nativeElement as HTMLElement;
+    const native = host.querySelector('input') as HTMLInputElement;
+    const onChange = vi.fn();
+    fixture.componentInstance.registerOnChange(onChange);
+    fixture.componentRef.setInput('pattern', '^\\d+\\.\\d{2}$');
+    fixture.detectChanges();
+    native.dispatchEvent(new FocusEvent('focus'));
+    native.value = '12.5';
+    native.dispatchEvent(new Event('input'));
+    expect(onChange).not.toHaveBeenCalled();
+    native.value = '12.50';
+    native.dispatchEvent(new Event('input'));
+    expect(onChange).toHaveBeenCalledWith(12.5);
+
+    fixture.componentRef.setInput('pattern', '[');
+    fixture.detectChanges();
+    expect(host.getAttribute('data-field-configuration-state')).toBe('invalid');
+    expect(native.disabled).toBe(true);
   });
 
   it('treats blank required currency metadata as invalid configuration', () => {
     const fixture = create();
     const host = fixture.nativeElement as HTMLElement;
     const native = host.querySelector('input') as HTMLInputElement;
-
     fixture.componentRef.setInput('currency', '   ');
     fixture.detectChanges();
-
     expect(host.getAttribute('data-field-configuration-state')).toBe('invalid');
     expect(native.disabled).toBe(true);
   });

@@ -1,5 +1,6 @@
 import {reflectComponentType} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
+import {ERP_NUMBER_FINAL_PATTERN} from '../input-family/domain-validation';
 import {ErpNumberBox} from './number-box';
 
 describe('ErpNumberBox', () => {
@@ -14,7 +15,7 @@ describe('ErpNumberBox', () => {
     return fixture;
   }
 
-  it('creates with exact numeric defaults and native number semantics', () => {
+  it('creates with a text-like decimal editor and exact numeric defaults', () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
@@ -27,11 +28,65 @@ describe('ErpNumberBox', () => {
     expect(control.max()).toBeNull();
     expect(control.step()).toBe(1);
     expect(control.allowEmpty()).toBe(true);
-    expect(native.type).toBe('number');
+    expect(control.pattern()).toBeNull();
+    expect(native.type).toBe('text');
+    expect(native.inputMode).toBe('decimal');
+    expect(native.pattern).toBe(ERP_NUMBER_FINAL_PATTERN);
     expect(native.value).toBe('');
   });
 
-  it('normalizes writes without publishing and clamps user commits to bounds', () => {
+  it('keeps progressive drafts separate and publishes only valid final values', () => {
+    const fixture = create();
+    const control = fixture.componentInstance;
+    const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
+    const onChange = vi.fn();
+    control.registerOnChange(onChange);
+    control.writeValue(6);
+    fixture.detectChanges();
+    native.dispatchEvent(new FocusEvent('focus'));
+    fixture.detectChanges();
+
+    native.value = '12.';
+    native.dispatchEvent(new Event('input'));
+    expect(native.value).toBe('12.');
+    expect(onChange).not.toHaveBeenCalled();
+
+    native.value = '12.5';
+    native.dispatchEvent(new Event('input'));
+    expect(onChange).toHaveBeenCalledOnce();
+    expect(onChange).toHaveBeenCalledWith(12.5);
+
+    native.value = '12.5x';
+    native.dispatchEvent(new Event('input'));
+    expect(native.value).toBe('12.5');
+    expect(onChange).toHaveBeenCalledOnce();
+  });
+
+  it('uses developer override patterns and invalid regex disables configuration', () => {
+    const fixture = create();
+    const control = fixture.componentInstance;
+    const host = fixture.nativeElement as HTMLElement;
+    const native = host.querySelector('input') as HTMLInputElement;
+    const onChange = vi.fn();
+    control.registerOnChange(onChange);
+
+    fixture.componentRef.setInput('pattern', '^\\d{2}$');
+    fixture.detectChanges();
+    native.dispatchEvent(new FocusEvent('focus'));
+    native.value = '123';
+    native.dispatchEvent(new Event('input'));
+    expect(onChange).not.toHaveBeenCalled();
+    native.value = '12';
+    native.dispatchEvent(new Event('input'));
+    expect(onChange).toHaveBeenCalledWith(12);
+
+    fixture.componentRef.setInput('pattern', '[');
+    fixture.detectChanges();
+    expect(host.getAttribute('data-field-configuration-state')).toBe('invalid');
+    expect(native.disabled).toBe(true);
+  });
+
+  it('normalizes writes without publishing and clamps committed values', () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
@@ -39,33 +94,42 @@ describe('ErpNumberBox', () => {
     control.registerOnChange(onChange);
     fixture.componentRef.setInput('min', 2);
     fixture.componentRef.setInput('max', 10);
-
     control.writeValue('6');
     fixture.detectChanges();
-    expect(native.valueAsNumber).toBe(6);
+    expect(native.value).toBe('6');
     expect(onChange).not.toHaveBeenCalled();
-
+    native.dispatchEvent(new FocusEvent('focus'));
     native.value = '20';
     native.dispatchEvent(new Event('input'));
     fixture.detectChanges();
     expect(onChange).toHaveBeenCalledWith(10);
-    expect(native.valueAsNumber).toBe(10);
   });
 
-  it('supports empty values only when allowEmpty is true', () => {
+  it('preserves disabled and readonly commits while clear publishes empty', () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
     const onChange = vi.fn();
     control.registerOnChange(onChange);
+    fixture.componentRef.setInput('clearable', true);
+    control.writeValue(5);
+    fixture.detectChanges();
 
-    native.value = '';
-    native.dispatchEvent(new Event('input'));
+    control['handleClear'](native);
     expect(onChange).toHaveBeenLastCalledWith(null);
 
-    fixture.componentRef.setInput('allowEmpty', false);
-    native.value = '';
+    control.writeValue(5);
+    fixture.componentRef.setInput('readonly', true);
+    fixture.detectChanges();
+    native.value = '8';
     native.dispatchEvent(new Event('input'));
-    expect(onChange).toHaveBeenLastCalledWith(0);
+    expect(onChange).toHaveBeenCalledOnce();
+
+    fixture.componentRef.setInput('readonly', false);
+    fixture.componentRef.setInput('disabled', true);
+    fixture.detectChanges();
+    native.value = '9';
+    native.dispatchEvent(new Event('input'));
+    expect(onChange).toHaveBeenCalledOnce();
   });
 });

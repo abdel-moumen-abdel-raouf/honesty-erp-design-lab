@@ -3,11 +3,19 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   forwardRef,
   input,
   signal,
 } from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {
+  ERP_MONEY_FINAL_PATTERN,
+  isProgressiveNumericDraft,
+  matchesDomainPattern,
+  parseFiniteDomainNumber,
+  resolveDomainPattern,
+} from '../input-family/domain-validation';
 import {ErpFieldBase} from '../input-family/field-base';
 import {ErpInputConfigurationState} from '../input-family/input-contracts';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
@@ -43,20 +51,37 @@ export class ErpMoneyBox extends ErpFieldBase<number | null> {
   readonly placeholder = input<string | null>(null);
   readonly readonly = input(false, {transform: booleanAttribute});
   readonly allowEmpty = input(true, {transform: booleanAttribute});
+  readonly pattern = input<string | null>(null);
 
   protected readonly controlId = `erp-money-box-${++nextMoneyBoxId}`;
   private readonly editingText = signal('');
+  private readonly editing = signal(false);
+  private readonly effectivePattern = computed(() =>
+    resolveDomainPattern(this.pattern(), ERP_MONEY_FINAL_PATTERN),
+  );
   protected readonly moneyConfigurationState =
     computed<ErpInputConfigurationState>(() =>
-      this.fieldConfigurationState() === 'ready' && this.currency().trim().length > 0
+      this.fieldConfigurationState() === 'ready' &&
+      this.currency().trim().length > 0 &&
+      this.effectivePattern().configurationState === 'ready'
         ? 'ready'
         : 'invalid',
     );
   protected readonly moneyEffectiveDisabled = computed(
-    () => this.fieldEffectiveDisabled() || this.moneyConfigurationState() === 'invalid',
+    () =>
+      this.fieldEffectiveDisabled() ||
+      this.moneyConfigurationState() === 'invalid',
+  );
+  protected readonly moneyFocused = computed(
+    () => !this.moneyEffectiveDisabled() && this.fieldFocused(),
   );
   protected readonly displayValue = computed(() =>
-    this.fieldFocused() ? this.editingText() : this.formatValue(this.currentValue()),
+    this.editing()
+      ? this.editingText()
+      : this.formatValue(this.currentValue()),
+  );
+  protected readonly effectivePatternExpression = computed(
+    () => this.effectivePattern().expression,
   );
   protected readonly clearActionVisible = computed(
     () =>
@@ -70,6 +95,13 @@ export class ErpMoneyBox extends ErpFieldBase<number | null> {
 
   constructor() {
     super(null);
+
+    effect(() => {
+      if (this.moneyEffectiveDisabled()) {
+        this.editing.set(false);
+        this.clearFocusState();
+      }
+    });
   }
 
   protected override normalizeValue(value: unknown): number | null {
@@ -77,12 +109,16 @@ export class ErpMoneyBox extends ErpFieldBase<number | null> {
       return this.allowEmpty() ? null : this.clamp(0);
     }
 
-    const numeric = typeof value === 'number' ? value : Number(value);
-    return Number.isFinite(numeric)
-      ? this.clamp(numeric)
-      : this.allowEmpty()
+    const numeric = parseFiniteDomainNumber(
+      value,
+      this.effectivePattern().regex,
+    );
+
+    return numeric === null
+      ? this.allowEmpty()
         ? null
-        : this.clamp(0);
+        : this.clamp(0)
+      : this.clamp(numeric);
   }
 
   protected override canRepresentEmptyValue(): boolean {
@@ -90,20 +126,29 @@ export class ErpMoneyBox extends ErpFieldBase<number | null> {
   }
 
   protected handleInput(event: Event): void {
+    const native = event.target as HTMLInputElement;
+
     if (this.readonly() || this.moneyEffectiveDisabled()) {
+      native.value = this.editingText();
       return;
     }
 
-    const value = (event.target as HTMLInputElement).value;
+    const value = native.value;
+
+    if (!isProgressiveNumericDraft(value)) {
+      native.value = this.editingText();
+      return;
+    }
+
     this.editingText.set(value);
-    if (value.trim() === '') {
+
+    if (value === '') {
       this.commitUserValue(null);
       return;
     }
 
-    const numeric = Number(value);
-    if (Number.isFinite(numeric)) {
-      this.commitUserValue(numeric);
+    if (matchesDomainPattern(value, this.effectivePattern().regex)) {
+      this.commitUserValue(value);
     }
   }
 
@@ -113,10 +158,12 @@ export class ErpMoneyBox extends ErpFieldBase<number | null> {
     }
 
     this.editingText.set(this.currentValue()?.toString() ?? '');
+    this.editing.set(true);
     this.handleFocus();
   }
 
   protected handleNativeBlur(): void {
+    this.editing.set(false);
     this.handleBlur();
   }
 
@@ -132,7 +179,10 @@ export class ErpMoneyBox extends ErpFieldBase<number | null> {
   }
 
   private clamp(value: number): number {
-    return Math.min(this.max() ?? Infinity, Math.max(this.min() ?? -Infinity, value));
+    return Math.min(
+      this.max() ?? Infinity,
+      Math.max(this.min() ?? -Infinity, value),
+    );
   }
 
   private formatValue(value: number | null): string {

@@ -1,5 +1,6 @@
 import {reflectComponentType} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
+import {ERP_NUMBER_FINAL_PATTERN} from '../input-family/domain-validation';
 import {ErpNumberStepper} from './number-stepper';
 
 describe('ErpNumberStepper', () => {
@@ -17,7 +18,7 @@ describe('ErpNumberStepper', () => {
     return fixture;
   }
 
-  it('creates as a scalar native spinbutton with deterministic action labels', () => {
+  it('creates with a text-like decimal editor and deterministic actions', () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const host = fixture.nativeElement as HTMLElement;
@@ -28,12 +29,15 @@ describe('ErpNumberStepper', () => {
     expect(control.max()).toBe(10);
     expect(control.step()).toBe(2);
     expect(control.allowEmpty()).toBe(true);
-    expect(native.type).toBe('number');
+    expect(control.pattern()).toBeNull();
+    expect(native.type).toBe('text');
+    expect(native.inputMode).toBe('decimal');
+    expect(native.pattern).toBe(ERP_NUMBER_FINAL_PATTERN);
     expect(host.querySelector('[data-stepper-decrement] button')?.getAttribute('aria-label')).toBe('Decrease value');
     expect(host.querySelector('[data-stepper-increment] button')?.getAttribute('aria-label')).toBe('Increase value');
   });
 
-  it('increments and decrements one scalar value through ERP action controls', () => {
+  it('increments and decrements one scalar value through ERP actions', () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
@@ -44,12 +48,12 @@ describe('ErpNumberStepper', () => {
 
     (fixture.nativeElement.querySelector('[data-stepper-increment] button') as HTMLButtonElement).click();
     fixture.detectChanges();
-    expect(native.valueAsNumber).toBe(6);
+    expect(native.value).toBe('6');
     expect(onChange).toHaveBeenLastCalledWith(6);
 
     (fixture.nativeElement.querySelector('[data-stepper-decrement] button') as HTMLButtonElement).click();
     fixture.detectChanges();
-    expect(native.valueAsNumber).toBe(4);
+    expect(native.value).toBe('4');
     expect(onChange).toHaveBeenLastCalledWith(4);
   });
 
@@ -61,14 +65,39 @@ describe('ErpNumberStepper', () => {
     fixture.detectChanges();
 
     for (const [key, expected] of [
-      ['ArrowUp', 6],
-      ['ArrowDown', 4],
-      ['Home', 0],
-      ['End', 10],
+      ['ArrowUp', '6'],
+      ['ArrowDown', '4'],
+      ['Home', '0'],
+      ['End', '10'],
     ] as const) {
       native.dispatchEvent(new KeyboardEvent('keydown', {key, bubbles: true}));
       fixture.detectChanges();
-      expect(native.valueAsNumber).toBe(expected);
+      expect(native.value).toBe(expected);
     }
+  });
+
+  it('keeps invalid drafts from publishing and honors pattern configuration', () => {
+    const fixture = create();
+    const control = fixture.componentInstance;
+    const host = fixture.nativeElement as HTMLElement;
+    const native = host.querySelector('input') as HTMLInputElement;
+    const onChange = vi.fn();
+    control.registerOnChange(onChange);
+    control.writeValue(4);
+    native.dispatchEvent(new FocusEvent('focus'));
+    fixture.detectChanges();
+
+    native.value = '4.';
+    native.dispatchEvent(new Event('input'));
+    expect(native.value).toBe('4.');
+    expect(onChange).not.toHaveBeenCalled();
+    native.value = '4x';
+    native.dispatchEvent(new Event('input'));
+    expect(native.value).toBe('4.');
+
+    fixture.componentRef.setInput('pattern', '[');
+    fixture.detectChanges();
+    expect(host.getAttribute('data-field-configuration-state')).toBe('invalid');
+    expect(native.disabled).toBe(true);
   });
 });
