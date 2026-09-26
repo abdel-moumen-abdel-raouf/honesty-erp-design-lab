@@ -1,15 +1,20 @@
 <label class="radio-box" [for]="controlId">
-  <input
-    class="radio-box__native"
-    type="radio"
-    [id]="controlId"
-    [attr.name]="name()"
-    [attr.form]="form()"
-    [checked]="currentValue()"
-    [disabled]="effectiveDisabled()"
-    (change)="handleChange($event)"
-    (focus)="handleNativeFocus()"
-    (blur)="handleNativeBlur()"
-  />
+  <span class="radio-box__control">
+    <input
+      class="radio-box__native"
+      type="radio"
+      [id]="controlId"
+      [attr.name]="name()"
+      [attr.form]="form()"
+      [checked]="currentValue()"
+      [disabled]="effectiveDisabled()"
+      (change)="handleChange($event)"
+      (focus)="handleNativeFocus()"
+      (blur)="handleNativeBlur()"
+    />
+    <span class="radio-box__visual" aria-hidden="true">
+      <span class="radio-box__dot"></span>
+    </span>
+  </span>
   <erp-text type="label">{{ label() }}</erp-text>
 </label>

@@ -224,32 +224,37 @@
   </erp-section>
 
   <erp-section class="review-group" data-review-group="boolean-choice">
-    <erp-text type="heading-2">Boolean / Choice basics</erp-text>
+    <erp-text type="heading-2">الاختيار المنطقي والمفرد</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="md" responsive="auto">
       @for (theme of themes; track theme) {
         <erp-surface
           data-theme-context
+          data-boolean-choice-rtl-evidence
           [attr.data-theme]="theme"
+          dir="rtl"
           border="subtle"
         >
           <erp-stack>
             <erp-check-box
               data-check-box-evidence
-              label="Checkbox"
+              label="خيار غير محدد"
               [ngModel]="checkValue()"
               (ngModelChange)="checkValue.set($event)"
             />
-            <erp-check-box label="Indeterminate checkbox" indeterminate />
-            <erp-check-box label="Disabled checkbox" disabled />
+            <erp-check-box label="خيار محدد" [ngModel]="true" tone="primary" />
+            <erp-check-box label="خيار غير محسوم" indeterminate tone="secondary" />
+            <erp-check-box label="خيار معطل" disabled />
+            <erp-check-box label="خيار بحالة خطأ" status="danger" />
             <erp-radio-box
               data-radio-box-evidence
-              label="Radio choice"
+              label="اختيار مفرد غير محدد"
               [ngModel]="radioValue()"
               (ngModelChange)="radioValue.set($event)"
             />
-            <erp-radio-box label="Selected radio" [ngModel]="true" />
-            <erp-radio-box label="Disabled radio" disabled />
+            <erp-radio-box label="اختيار مفرد محدد" [ngModel]="true" tone="primary" />
+            <erp-radio-box label="اختيار مفرد معطل" disabled />
+            <erp-radio-box label="اختيار مفرد بتحذير" status="warning" />
           </erp-stack>
         </erp-surface>
       }

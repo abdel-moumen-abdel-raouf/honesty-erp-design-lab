@@ -53,6 +53,30 @@ describe('ErpRadioBox', () => {
     expect(hostAttribute(fixture, 'data-radio-box-checked')).toBe('true');
   });
 
+  it('keeps one fixed circular visual and centered dot across selection', () => {
+    const fixture = create();
+    const control = fixture.componentInstance;
+    const host = fixture.nativeElement as HTMLElement;
+    const visual = host.querySelector('.radio-box__visual');
+    const dot = host.querySelector('.radio-box__dot');
+
+    expect(host.querySelectorAll('.radio-box__control').length).toBe(1);
+    expect(host.querySelectorAll('.radio-box__visual').length).toBe(1);
+    expect(host.querySelectorAll('.radio-box__dot').length).toBe(1);
+
+    control.writeValue(true);
+    fixture.detectChanges();
+    expect(host.querySelector('.radio-box__visual')).toBe(visual);
+    expect(host.querySelector('.radio-box__dot')).toBe(dot);
+    expect(host.getAttribute('data-radio-box-checked')).toBe('true');
+
+    control.writeValue(false);
+    fixture.detectChanges();
+    expect(host.querySelector('.radio-box__visual')).toBe(visual);
+    expect(host.querySelector('.radio-box__dot')).toBe(dot);
+    expect(host.getAttribute('data-radio-box-checked')).toBe('false');
+  });
+
   it('allows form writes to clear without publishing a user change', () => {
     const fixture = create();
     const control = fixture.componentInstance;
@@ -90,12 +114,19 @@ describe('ErpRadioBox', () => {
     const fixture = create();
     fixture.componentRef.setInput('tone', 'secondary');
     fixture.componentRef.setInput('status', 'success');
-    fixture.componentRef.setInput('size', 'xxxl');
     fixture.detectChanges();
 
     expect(hostAttribute(fixture, 'data-radio-box-tone')).toBe('secondary');
     expect(hostAttribute(fixture, 'data-radio-box-status')).toBe('success');
-    expect(hostAttribute(fixture, 'data-radio-box-size')).toBe('xxxl');
+
+    for (const size of ['sm', 'md', 'lg', 'xl', 'xxl', 'xxxl', 'xxxxl'] as const) {
+      fixture.componentRef.setInput('size', size);
+      fixture.detectChanges();
+      expect(hostAttribute(fixture, 'data-radio-box-size')).toBe(size);
+      expect(
+        fixture.nativeElement.querySelectorAll('.radio-box__visual').length,
+      ).toBe(1);
+    }
   });
 });
 

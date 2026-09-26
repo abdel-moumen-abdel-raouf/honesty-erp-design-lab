@@ -29,7 +29,12 @@ let nextRadioBoxId = 0;
     },
   ],
   templateUrl: './radio-box.html',
-  styleUrl: './radio-box.scss',
+  styleUrls: [
+    './radio-box.scss',
+    './radio-box-states.scss',
+    './radio-box-facets.scss',
+    './radio-box-sizes.scss',
+  ],
   host: {
     '[attr.data-radio-box-tone]': 'tone()',
     '[attr.data-radio-box-status]': 'status()',

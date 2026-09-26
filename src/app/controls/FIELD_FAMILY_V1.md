@@ -384,6 +384,15 @@ feedback is dismissed.
   writes may still clear its boolean value.
 - Both controls expose the existing Field tone, status, and size vocabularies
   where visually applicable. They own no FieldFrame chrome.
+- CheckBox renders one fixed-size custom visual box around the authoritative
+  native checkbox. Checked and indeterminate marks use semantic `ErpIcon`
+  `check` and `minus` names, remain centered, and do not change outer geometry.
+- RadioBox renders one fixed circular visual around the authoritative native
+  radio. Its selected dot remains centered and present in the same outer
+  geometry for selected and unselected states.
+- Both visual contracts include deterministic hover, focus-visible, disabled,
+  invalid, tone, and status treatment. State transitions use Foundation Motion
+  and honor reduced motion. No raw SVG mark is authored.
 - `ErpRadioGroup` remains Composite-classified and is not part of the Basic
   boolean/choice implementation.
 

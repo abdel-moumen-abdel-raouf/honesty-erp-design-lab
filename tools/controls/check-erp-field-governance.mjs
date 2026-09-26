@@ -40,6 +40,26 @@ const IMAGE_PICKER_TEMPLATE =
   'src/app/controls/image-picker/image-picker.html';
 const IMAGE_PICKER_TOKENS =
   'src/styles/foundation/components/image-picker/_tokens.scss';
+const CHECK_BOX_TEMPLATE =
+  'src/app/controls/check-box/check-box.html';
+const CHECK_BOX_TOKENS =
+  'src/styles/foundation/components/check-box/_tokens.scss';
+const CHECK_BOX_STYLES = [
+  'src/app/controls/check-box/check-box.scss',
+  'src/app/controls/check-box/check-box-states.scss',
+  'src/app/controls/check-box/check-box-facets.scss',
+  'src/app/controls/check-box/check-box-sizes.scss',
+];
+const RADIO_BOX_TEMPLATE =
+  'src/app/controls/radio-box/radio-box.html';
+const RADIO_BOX_TOKENS =
+  'src/styles/foundation/components/radio-box/_tokens.scss';
+const RADIO_BOX_STYLES = [
+  'src/app/controls/radio-box/radio-box.scss',
+  'src/app/controls/radio-box/radio-box-states.scss',
+  'src/app/controls/radio-box/radio-box-facets.scss',
+  'src/app/controls/radio-box/radio-box-sizes.scss',
+];
 const FIELD_TRIGGER_CONSUMERS = [
   'date-box',
   'time-box',
@@ -534,6 +554,55 @@ export function validateFileSelectionContracts(
   return errors;
 }
 
+export function validateChoiceVisualContracts(
+  checkTemplate,
+  checkTokens,
+  checkStyles,
+  radioTemplate,
+  radioTokens,
+  radioStyles,
+) {
+  const errors = [];
+
+  if (
+    !checkTemplate.includes('type="checkbox"') ||
+    !checkTemplate.includes('class="check-box__visual"') ||
+    !checkTemplate.includes('name="check"') ||
+    !checkTemplate.includes('name="minus"') ||
+    /<svg\b/.test(checkTemplate) ||
+    !checkTokens.includes('--honesty-check-box-control-size:') ||
+    !checkTokens.includes('--honesty-check-box-mark-size:') ||
+    !checkTokens.includes('var(--honesty-motion-duration-fast)') ||
+    !checkStyles.includes("data-check-box-checked='true'") ||
+    !checkStyles.includes("data-check-box-indeterminate='true'") ||
+    !checkStyles.includes('.check-box__native:focus-visible') ||
+    !checkStyles.includes('prefers-reduced-motion: reduce')
+  ) {
+    errors.push(
+      'CheckBox: native semantics, fixed geometry, semantic marks, state visuals, and Foundation Motion are required',
+    );
+  }
+
+  if (
+    !radioTemplate.includes('type="radio"') ||
+    !radioTemplate.includes('class="radio-box__visual"') ||
+    !radioTemplate.includes('class="radio-box__dot"') ||
+    /<svg\b/.test(radioTemplate) ||
+    !radioTokens.includes('--honesty-radio-box-control-size:') ||
+    !radioTokens.includes('--honesty-radio-box-dot-size:') ||
+    !radioTokens.includes('var(--honesty-motion-duration-fast)') ||
+    !radioStyles.includes("data-radio-box-checked='true'") ||
+    !radioStyles.includes('.radio-box__native:focus-visible') ||
+    !radioStyles.includes('prefers-reduced-motion: reduce')
+  ) {
+    errors.push(
+      'RadioBox: native semantics, fixed circular geometry, centered dot, state visuals, and Foundation Motion are required',
+    );
+  }
+
+  return errors;
+}
+
 function runSelfTest() {
   const valid = new Map([
     [
@@ -626,6 +695,45 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     ).length === 0
   ) {
     throw new Error('ErpField checker accepted invalid File/Image fixtures');
+  }
+
+  const validCheckTemplate =
+    '<input type="checkbox"><span class="check-box__visual"><erp-icon name="check" /><erp-icon name="minus" /></span>';
+  const validCheckTokens =
+    '--honesty-check-box-control-size: 1rem; --honesty-check-box-mark-size: 0.75rem; --honesty-check-box-transition-duration: var(--honesty-motion-duration-fast);';
+  const validCheckStyles =
+    ".check-box__native:focus-visible {} :host([data-check-box-checked='true']) {} :host([data-check-box-indeterminate='true']) {} @media (prefers-reduced-motion: reduce) {}";
+  const validRadioTemplate =
+    '<input type="radio"><span class="radio-box__visual"><span class="radio-box__dot"></span></span>';
+  const validRadioTokens =
+    '--honesty-radio-box-control-size: 1rem; --honesty-radio-box-dot-size: 0.5rem; --honesty-radio-box-transition-duration: var(--honesty-motion-duration-fast);';
+  const validRadioStyles =
+    ".radio-box__native:focus-visible {} :host([data-radio-box-checked='true']) {} @media (prefers-reduced-motion: reduce) {}";
+
+  if (
+    validateChoiceVisualContracts(
+      validCheckTemplate,
+      validCheckTokens,
+      validCheckStyles,
+      validRadioTemplate,
+      validRadioTokens,
+      validRadioStyles,
+    ).length > 0
+  ) {
+    throw new Error('ErpField checker rejected valid choice visual fixtures');
+  }
+
+  if (
+    validateChoiceVisualContracts(
+      `${validCheckTemplate}<svg></svg>`,
+      validCheckTokens,
+      validCheckStyles,
+      validRadioTemplate.replace('radio-box__dot', 'missing-dot'),
+      validRadioTokens,
+      validRadioStyles,
+    ).length === 0
+  ) {
+    throw new Error('ErpField checker accepted invalid choice visual fixtures');
   }
 
   const invalidTriggerFixtures = new Map(valid);
@@ -956,6 +1064,16 @@ errors.push(
     files.get(IMAGE_PICKER_SOURCE) ?? '',
     files.get(IMAGE_PICKER_TEMPLATE) ?? '',
     files.get(IMAGE_PICKER_TOKENS) ?? '',
+  ),
+);
+errors.push(
+  ...validateChoiceVisualContracts(
+    files.get(CHECK_BOX_TEMPLATE) ?? '',
+    files.get(CHECK_BOX_TOKENS) ?? '',
+    CHECK_BOX_STYLES.map((file) => files.get(file) ?? '').join('\n'),
+    files.get(RADIO_BOX_TEMPLATE) ?? '',
+    files.get(RADIO_BOX_TOKENS) ?? '',
+    RADIO_BOX_STYLES.map((file) => files.get(file) ?? '').join('\n'),
   ),
 );
 errors.push(

@@ -53,6 +53,32 @@ describe('ErpCheckBox', () => {
     expect(hostAttribute(fixture, 'data-check-box-checked')).toBe('false');
   });
 
+  it('keeps one fixed visual box while switching centered semantic marks', () => {
+    const fixture = create();
+    const control = fixture.componentInstance;
+    const host = fixture.nativeElement as HTMLElement;
+    const visual = host.querySelector('.check-box__visual');
+
+    expect(host.querySelectorAll('.check-box__control').length).toBe(1);
+    expect(host.querySelectorAll('.check-box__visual').length).toBe(1);
+    expect(host.querySelector('erp-icon')).toBeNull();
+
+    control.writeValue(true);
+    fixture.detectChanges();
+    expect(host.querySelector('.check-box__visual')).toBe(visual);
+    expect(host.querySelector('erp-icon')?.getAttribute('data-icon-name')).toBe(
+      'check',
+    );
+
+    fixture.componentRef.setInput('indeterminate', true);
+    fixture.detectChanges();
+    expect(host.querySelector('.check-box__visual')).toBe(visual);
+    expect(host.querySelector('erp-icon')?.getAttribute('data-icon-name')).toBe(
+      'minus',
+    );
+    expect(host.querySelectorAll('erp-icon').length).toBe(1);
+  });
+
   it('forwards indeterminate and blocks invalid or disabled user changes', () => {
     const fixture = create();
     const control = fixture.componentInstance;
@@ -81,12 +107,19 @@ describe('ErpCheckBox', () => {
     const fixture = create();
     fixture.componentRef.setInput('tone', 'accent');
     fixture.componentRef.setInput('status', 'warning');
-    fixture.componentRef.setInput('size', 'xxxxl');
     fixture.detectChanges();
 
     expect(hostAttribute(fixture, 'data-check-box-tone')).toBe('accent');
     expect(hostAttribute(fixture, 'data-check-box-status')).toBe('warning');
-    expect(hostAttribute(fixture, 'data-check-box-size')).toBe('xxxxl');
+
+    for (const size of ['sm', 'md', 'lg', 'xl', 'xxl', 'xxxl', 'xxxxl'] as const) {
+      fixture.componentRef.setInput('size', size);
+      fixture.detectChanges();
+      expect(hostAttribute(fixture, 'data-check-box-size')).toBe(size);
+      expect(
+        fixture.nativeElement.querySelectorAll('.check-box__visual').length,
+      ).toBe(1);
+    }
   });
 });
 

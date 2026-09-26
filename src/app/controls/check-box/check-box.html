@@ -1,16 +1,25 @@
 <label class="check-box" [for]="controlId">
-  <input
-    class="check-box__native"
-    type="checkbox"
-    [id]="controlId"
-    [attr.name]="name()"
-    [attr.form]="form()"
-    [checked]="currentValue()"
-    [indeterminate]="indeterminate()"
-    [disabled]="effectiveDisabled()"
-    (change)="handleChange($event)"
-    (focus)="handleNativeFocus()"
-    (blur)="handleNativeBlur()"
-  />
+  <span class="check-box__control">
+    <input
+      class="check-box__native"
+      type="checkbox"
+      [id]="controlId"
+      [attr.name]="name()"
+      [attr.form]="form()"
+      [checked]="currentValue()"
+      [indeterminate]="indeterminate()"
+      [disabled]="effectiveDisabled()"
+      (change)="handleChange($event)"
+      (focus)="handleNativeFocus()"
+      (blur)="handleNativeBlur()"
+    />
+    <span class="check-box__visual" aria-hidden="true">
+      @if (indeterminate()) {
+        <erp-icon class="check-box__mark" name="minus" size="inherit" />
+      } @else if (currentValue()) {
+        <erp-icon class="check-box__mark" name="check" size="inherit" />
+      }
+    </span>
+  </span>
   <erp-text type="label">{{ label() }}</erp-text>
 </label>

@@ -7,13 +7,14 @@ import {
   input,
 } from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ErpIcon} from '../../primitives/icon/icon';
+import {ErpText} from '../../primitives/text/text';
 import {
   ErpFieldSize,
   ErpFieldStatus,
   ErpFieldTone,
 } from '../input-family/field-contracts';
 import {ErpInputBase} from '../input-family/input-base';
-import {ErpText} from '../../primitives/text/text';
 
 let nextCheckBoxId = 0;
 
@@ -21,7 +22,7 @@ let nextCheckBoxId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-check-box',
-  imports: [ErpText],
+  imports: [ErpIcon, ErpText],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -30,7 +31,12 @@ let nextCheckBoxId = 0;
     },
   ],
   templateUrl: './check-box.html',
-  styleUrl: './check-box.scss',
+  styleUrls: [
+    './check-box.scss',
+    './check-box-states.scss',
+    './check-box-facets.scss',
+    './check-box-sizes.scss',
+  ],
   host: {
     '[attr.data-check-box-tone]': 'tone()',
     '[attr.data-check-box-status]': 'status()',

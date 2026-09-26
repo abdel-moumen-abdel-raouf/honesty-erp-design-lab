@@ -1,0 +1,9 @@
+@use '../../../styles/foundation/components/radio-box' as tokens;
+
+:host([data-radio-box-size='sm']) { @include tokens.size-sm; }
+:host([data-radio-box-size='md']) { @include tokens.size-md; }
+:host([data-radio-box-size='lg']) { @include tokens.size-lg; }
+:host([data-radio-box-size='xl']) { @include tokens.size-xl; }
+:host([data-radio-box-size='xxl']) { @include tokens.size-xxl; }
+:host([data-radio-box-size='xxxl']) { @include tokens.size-xxxl; }
+:host([data-radio-box-size='xxxxl']) { @include tokens.size-xxxxl; }

@@ -72,14 +72,27 @@ describe('InputControls showcase', () => {
     expect(group?.querySelectorAll('input[type="datetime-local"]').length).toBe(0);
   });
 
-  it('contains checkbox and radio basics in both theme contexts', () => {
-    const root = create().nativeElement as HTMLElement;
+  it('contains checkbox and radio basics in both theme contexts', async () => {
+    const fixture = create();
+    await fixture.whenStable();
+    fixture.detectChanges();
+    const root = fixture.nativeElement as HTMLElement;
     const group = root.querySelector('[data-review-group="boolean-choice"]');
 
-    expect(group?.querySelectorAll('erp-check-box').length).toBe(6);
-    expect(group?.querySelectorAll('erp-radio-box').length).toBe(6);
+    expect(group?.querySelectorAll('erp-check-box').length).toBe(10);
+    expect(group?.querySelectorAll('erp-radio-box').length).toBe(8);
     expect(group?.querySelectorAll('[data-check-box-evidence]').length).toBe(2);
     expect(group?.querySelectorAll('[data-radio-box-evidence]').length).toBe(2);
+    expect(group?.querySelectorAll('[data-boolean-choice-rtl-evidence]').length).toBe(2);
+    expect(
+      [...(group?.querySelectorAll<HTMLElement>('[data-theme-context]') ?? [])]
+        .map((context) => [context.dataset['theme'], context.dir]),
+    ).toEqual([
+      ['light', 'rtl'],
+      ['dark', 'rtl'],
+    ]);
+    expect(group?.querySelectorAll('erp-icon[data-icon-name="check"]').length).toBe(2);
+    expect(group?.querySelectorAll('erp-icon[data-icon-name="minus"]').length).toBe(2);
   });
 
   it('contains all four numeric controls in both theme contexts', () => {

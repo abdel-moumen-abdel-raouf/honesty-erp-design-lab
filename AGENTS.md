@@ -479,6 +479,11 @@ Rules:
   final-domain values never publish.
 - NumberBox and NumberStepper use ERP-owned text-like decimal editing and must
   not expose browser-native number spinners.
+- CheckBox and RadioBox preserve authoritative native input semantics behind
+  fixed custom geometry; selected, unselected, and indeterminate states must
+  not change outer dimensions or cause layout shift.
+- CheckBox marks use semantic ErpIcon `check` / `minus`; raw SVG marks are
+  forbidden. RadioBox owns one centered inner dot.
 
 ## Production Overlay Governance
 

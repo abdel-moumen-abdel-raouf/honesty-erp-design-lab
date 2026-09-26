@@ -1,0 +1,11 @@
+@use '../../../styles/foundation/components/check-box' as tokens;
+
+:host([data-check-box-tone='neutral']) { @include tokens.tone-neutral; }
+:host([data-check-box-tone='primary']) { @include tokens.tone-primary; }
+:host([data-check-box-tone='secondary']) { @include tokens.tone-secondary; }
+:host([data-check-box-tone='accent']) { @include tokens.tone-accent; }
+:host([data-check-box-status='none']) { @include tokens.status-none; }
+:host([data-check-box-status='success']) { @include tokens.status-success; }
+:host([data-check-box-status='warning']) { @include tokens.status-warning; }
+:host([data-check-box-status='danger']) { @include tokens.status-danger; }
+:host([data-check-box-status='info']) { @include tokens.status-info; }

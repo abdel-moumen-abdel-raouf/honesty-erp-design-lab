@@ -1,23 +1,92 @@
 @mixin base {
-  --honesty-radio-box-accent-color: var(--honesty-color-brand-primary-content);
+  --honesty-radio-box-bg: var(--honesty-color-surface-default);
+  --honesty-radio-box-bg-hover: var(--honesty-color-action-primary-subtle-bg-hover);
+  --honesty-radio-box-bg-disabled: var(--honesty-color-surface-default);
+  --honesty-radio-box-border-color: var(--honesty-border-default);
+  --honesty-radio-box-border-color-hover: var(--honesty-color-action-focus-ring);
+  --honesty-radio-box-border-color-selected: var(--honesty-color-brand-primary-content);
+  --honesty-radio-box-border-color-disabled: var(--honesty-border-subtle);
+  --honesty-radio-box-border-width: var(--honesty-border-width-default);
+  --honesty-radio-box-border-style: var(--honesty-border-style-default);
+  --honesty-radio-box-radius: var(--honesty-radius-full);
+  --honesty-radio-box-dot-color: var(--honesty-color-brand-primary-content);
+  --honesty-radio-box-dot-color-disabled: var(--honesty-color-text-disabled);
   --honesty-radio-box-label-color: var(--honesty-color-text-primary);
+  --honesty-radio-box-label-color-disabled: var(--honesty-color-text-disabled);
+  --honesty-radio-box-focus-color: var(--honesty-color-action-focus-ring);
+  --honesty-radio-box-focus-width: var(--honesty-focus-ring-width);
+  --honesty-radio-box-focus-style: var(--honesty-focus-ring-style);
+  --honesty-radio-box-focus-offset: var(--honesty-focus-ring-offset);
   --honesty-radio-box-gap: var(--honesty-space-inline-tight);
   --honesty-radio-box-control-size: 1rem;
+  --honesty-radio-box-dot-size: 0.5rem;
+  --honesty-radio-box-transition-duration: var(--honesty-motion-duration-fast);
+  --honesty-radio-box-transition-easing: var(--honesty-motion-easing-standard);
+  --honesty-radio-box-reduced-duration: var(--honesty-motion-duration-instant);
 }
 
-@mixin tone-neutral { --honesty-radio-box-accent-color: var(--honesty-color-action-focus-ring); }
-@mixin tone-primary { --honesty-radio-box-accent-color: var(--honesty-color-brand-primary-content); }
-@mixin tone-secondary { --honesty-radio-box-accent-color: var(--honesty-color-brand-secondary-content); }
-@mixin tone-accent { --honesty-radio-box-accent-color: var(--honesty-color-brand-accent-content); }
+@mixin tone-neutral {
+  --honesty-radio-box-border-color-selected: var(--honesty-color-action-focus-ring);
+  --honesty-radio-box-dot-color: var(--honesty-color-action-focus-ring);
+}
+@mixin tone-primary {
+  --honesty-radio-box-border-color-selected: var(--honesty-color-brand-primary-content);
+  --honesty-radio-box-dot-color: var(--honesty-color-brand-primary-content);
+}
+@mixin tone-secondary {
+  --honesty-radio-box-border-color-selected: var(--honesty-color-brand-secondary-content);
+  --honesty-radio-box-dot-color: var(--honesty-color-brand-secondary-content);
+}
+@mixin tone-accent {
+  --honesty-radio-box-border-color-selected: var(--honesty-color-brand-accent-content);
+  --honesty-radio-box-dot-color: var(--honesty-color-brand-accent-content);
+}
 @mixin status-none { --honesty-radio-box-label-color: var(--honesty-color-text-primary); }
-@mixin status-success { --honesty-radio-box-accent-color: var(--honesty-color-feedback-success-icon); }
-@mixin status-warning { --honesty-radio-box-accent-color: var(--honesty-color-feedback-warning-icon); }
-@mixin status-danger { --honesty-radio-box-accent-color: var(--honesty-color-feedback-danger-icon); }
-@mixin status-info { --honesty-radio-box-accent-color: var(--honesty-color-feedback-info-icon); }
-@mixin size-sm { --honesty-radio-box-control-size: 1rem; }
-@mixin size-md { --honesty-radio-box-control-size: 1rem; }
-@mixin size-lg { --honesty-radio-box-control-size: 1.25rem; }
-@mixin size-xl { --honesty-radio-box-control-size: 1.25rem; }
-@mixin size-xxl { --honesty-radio-box-control-size: 1.5rem; }
-@mixin size-xxxl { --honesty-radio-box-control-size: 1.75rem; }
-@mixin size-xxxxl { --honesty-radio-box-control-size: 2rem; }
+@mixin status-success {
+  --honesty-radio-box-border-color: var(--honesty-color-feedback-success-border);
+  --honesty-radio-box-border-color-selected: var(--honesty-color-feedback-success-icon);
+  --honesty-radio-box-dot-color: var(--honesty-color-feedback-success-icon);
+}
+@mixin status-warning {
+  --honesty-radio-box-border-color: var(--honesty-color-feedback-warning-border);
+  --honesty-radio-box-border-color-selected: var(--honesty-color-feedback-warning-icon);
+  --honesty-radio-box-dot-color: var(--honesty-color-feedback-warning-icon);
+}
+@mixin status-danger {
+  --honesty-radio-box-border-color: var(--honesty-color-feedback-danger-border);
+  --honesty-radio-box-border-color-selected: var(--honesty-color-feedback-danger-icon);
+  --honesty-radio-box-dot-color: var(--honesty-color-feedback-danger-icon);
+}
+@mixin status-info {
+  --honesty-radio-box-border-color: var(--honesty-color-feedback-info-border);
+  --honesty-radio-box-border-color-selected: var(--honesty-color-feedback-info-icon);
+  --honesty-radio-box-dot-color: var(--honesty-color-feedback-info-icon);
+}
+@mixin size-sm {
+  --honesty-radio-box-control-size: 1rem;
+  --honesty-radio-box-dot-size: 0.5rem;
+}
+@mixin size-md {
+  --honesty-radio-box-control-size: 1rem;
+  --honesty-radio-box-dot-size: 0.5rem;
+}
+@mixin size-lg {
+  --honesty-radio-box-control-size: 1.25rem;
+  --honesty-radio-box-dot-size: 0.625rem;
+}
+@mixin size-xl {
+  --honesty-radio-box-control-size: 1.25rem;
+  --honesty-radio-box-dot-size: 0.625rem;
+}
+@mixin size-xxl {
+  --honesty-radio-box-control-size: 1.5rem;
+  --honesty-radio-box-dot-size: 0.75rem;
+}
+@mixin size-xxxl {
+  --honesty-radio-box-control-size: 1.75rem;
+  --honesty-radio-box-dot-size: 0.875rem;
+}
+@mixin size-xxxxl {
+  --honesty-radio-box-control-size: 2rem;
+  --honesty-radio-box-dot-size: 1rem;
+}

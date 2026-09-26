@@ -1,23 +1,99 @@
 @mixin base {
-  --honesty-check-box-accent-color: var(--honesty-color-brand-primary-content);
+  --honesty-check-box-bg: var(--honesty-color-surface-default);
+  --honesty-check-box-bg-hover: var(--honesty-color-action-primary-subtle-bg-hover);
+  --honesty-check-box-bg-selected: var(--honesty-color-brand-primary-solid);
+  --honesty-check-box-bg-disabled: var(--honesty-color-surface-default);
+  --honesty-check-box-border-color: var(--honesty-border-default);
+  --honesty-check-box-border-color-hover: var(--honesty-color-action-focus-ring);
+  --honesty-check-box-border-color-selected: var(--honesty-color-brand-primary-solid);
+  --honesty-check-box-border-color-disabled: var(--honesty-border-subtle);
+  --honesty-check-box-border-width: var(--honesty-border-width-default);
+  --honesty-check-box-border-style: var(--honesty-border-style-default);
+  --honesty-check-box-radius: var(--honesty-radius-control);
+  --honesty-check-box-mark-color: var(--honesty-color-brand-primary-on-solid);
+  --honesty-check-box-mark-color-disabled: var(--honesty-color-text-disabled);
   --honesty-check-box-label-color: var(--honesty-color-text-primary);
+  --honesty-check-box-label-color-disabled: var(--honesty-color-text-disabled);
+  --honesty-check-box-focus-color: var(--honesty-color-action-focus-ring);
+  --honesty-check-box-focus-width: var(--honesty-focus-ring-width);
+  --honesty-check-box-focus-style: var(--honesty-focus-ring-style);
+  --honesty-check-box-focus-offset: var(--honesty-focus-ring-offset);
   --honesty-check-box-gap: var(--honesty-space-inline-tight);
   --honesty-check-box-control-size: 1rem;
+  --honesty-check-box-mark-size: 0.75rem;
+  --honesty-check-box-transition-duration: var(--honesty-motion-duration-fast);
+  --honesty-check-box-transition-easing: var(--honesty-motion-easing-standard);
+  --honesty-check-box-reduced-duration: var(--honesty-motion-duration-instant);
 }
 
-@mixin tone-neutral { --honesty-check-box-accent-color: var(--honesty-color-action-focus-ring); }
-@mixin tone-primary { --honesty-check-box-accent-color: var(--honesty-color-brand-primary-content); }
-@mixin tone-secondary { --honesty-check-box-accent-color: var(--honesty-color-brand-secondary-content); }
-@mixin tone-accent { --honesty-check-box-accent-color: var(--honesty-color-brand-accent-content); }
+@mixin tone-neutral {
+  --honesty-check-box-bg-selected: var(--honesty-color-action-focus-ring);
+  --honesty-check-box-border-color-selected: var(--honesty-color-action-focus-ring);
+}
+@mixin tone-primary {
+  --honesty-check-box-bg-selected: var(--honesty-color-brand-primary-solid);
+  --honesty-check-box-border-color-selected: var(--honesty-color-brand-primary-solid);
+}
+@mixin tone-secondary {
+  --honesty-check-box-bg-selected: var(--honesty-color-brand-secondary-solid);
+  --honesty-check-box-border-color-selected: var(--honesty-color-brand-secondary-solid);
+  --honesty-check-box-mark-color: var(--honesty-color-brand-secondary-on-solid);
+}
+@mixin tone-accent {
+  --honesty-check-box-bg-selected: var(--honesty-color-brand-accent-solid);
+  --honesty-check-box-border-color-selected: var(--honesty-color-brand-accent-solid);
+  --honesty-check-box-mark-color: var(--honesty-color-brand-accent-on-solid);
+}
 @mixin status-none { --honesty-check-box-label-color: var(--honesty-color-text-primary); }
-@mixin status-success { --honesty-check-box-accent-color: var(--honesty-color-feedback-success-icon); }
-@mixin status-warning { --honesty-check-box-accent-color: var(--honesty-color-feedback-warning-icon); }
-@mixin status-danger { --honesty-check-box-accent-color: var(--honesty-color-feedback-danger-icon); }
-@mixin status-info { --honesty-check-box-accent-color: var(--honesty-color-feedback-info-icon); }
-@mixin size-sm { --honesty-check-box-control-size: 1rem; }
-@mixin size-md { --honesty-check-box-control-size: 1rem; }
-@mixin size-lg { --honesty-check-box-control-size: 1.25rem; }
-@mixin size-xl { --honesty-check-box-control-size: 1.25rem; }
-@mixin size-xxl { --honesty-check-box-control-size: 1.5rem; }
-@mixin size-xxxl { --honesty-check-box-control-size: 1.75rem; }
-@mixin size-xxxxl { --honesty-check-box-control-size: 2rem; }
+@mixin status-success {
+  --honesty-check-box-bg-selected: var(--honesty-color-feedback-success-surface-strong);
+  --honesty-check-box-border-color: var(--honesty-color-feedback-success-border);
+  --honesty-check-box-border-color-selected: var(--honesty-color-feedback-success-surface-strong);
+  --honesty-check-box-mark-color: var(--honesty-color-feedback-success-on-strong);
+}
+@mixin status-warning {
+  --honesty-check-box-bg-selected: var(--honesty-color-feedback-warning-surface-strong);
+  --honesty-check-box-border-color: var(--honesty-color-feedback-warning-border);
+  --honesty-check-box-border-color-selected: var(--honesty-color-feedback-warning-surface-strong);
+  --honesty-check-box-mark-color: var(--honesty-color-feedback-warning-on-strong);
+}
+@mixin status-danger {
+  --honesty-check-box-bg-selected: var(--honesty-color-feedback-danger-surface-strong);
+  --honesty-check-box-border-color: var(--honesty-color-feedback-danger-border);
+  --honesty-check-box-border-color-selected: var(--honesty-color-feedback-danger-surface-strong);
+  --honesty-check-box-mark-color: var(--honesty-color-feedback-danger-on-strong);
+}
+@mixin status-info {
+  --honesty-check-box-bg-selected: var(--honesty-color-feedback-info-surface-strong);
+  --honesty-check-box-border-color: var(--honesty-color-feedback-info-border);
+  --honesty-check-box-border-color-selected: var(--honesty-color-feedback-info-surface-strong);
+  --honesty-check-box-mark-color: var(--honesty-color-feedback-info-on-strong);
+}
+@mixin size-sm {
+  --honesty-check-box-control-size: 1rem;
+  --honesty-check-box-mark-size: 0.75rem;
+}
+@mixin size-md {
+  --honesty-check-box-control-size: 1rem;
+  --honesty-check-box-mark-size: 0.75rem;
+}
+@mixin size-lg {
+  --honesty-check-box-control-size: 1.25rem;
+  --honesty-check-box-mark-size: 0.875rem;
+}
+@mixin size-xl {
+  --honesty-check-box-control-size: 1.25rem;
+  --honesty-check-box-mark-size: 0.875rem;
+}
+@mixin size-xxl {
+  --honesty-check-box-control-size: 1.5rem;
+  --honesty-check-box-mark-size: 1rem;
+}
+@mixin size-xxxl {
+  --honesty-check-box-control-size: 1.75rem;
+  --honesty-check-box-mark-size: 1.25rem;
+}
+@mixin size-xxxxl {
+  --honesty-check-box-control-size: 2rem;
+  --honesty-check-box-mark-size: 1.5rem;
+}
