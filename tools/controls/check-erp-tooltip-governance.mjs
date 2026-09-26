@@ -6,6 +6,8 @@ const ROOT = process.cwd();
 const SOURCE_ROOT = path.join(ROOT, 'src', 'app');
 const CONTROLLER = 'src/app/shared/anchored-overlay/anchored-overlay-controller.ts';
 const TOOLTIP_ROOT = 'src/app/controls/tooltip/';
+const SEARCH_BOX_TEMPLATE =
+  'src/app/controls/search-box/search-box.html';
 const SHOWCASE = 'src/app/showcase/tooltip-controls/tooltip-controls.html';
 const TOKEN_FILE = path.join(ROOT, 'src', 'styles', 'foundation', 'components', 'tooltip', '_tokens.scss');
 const TOOLTIP_STYLE = path.join(ROOT, 'src', 'app', 'controls', 'tooltip', 'tooltip.scss');
@@ -49,8 +51,14 @@ export function validate(files) {
     if (/(?:showPopover|hidePopover)\s*\(/.test(source) && normalized !== CONTROLLER && !normalized.endsWith('.spec.ts')) {
       errors.push(`${normalized}: native popover methods are controller-owned`);
     }
-    if (/\bpopover\s*=/.test(source) && !normalized.startsWith(TOOLTIP_ROOT)) {
-      errors.push(`${normalized}: manual popover markup is Tooltip-private`);
+    if (
+      /\bpopover\s*=/.test(source) &&
+      !normalized.startsWith(TOOLTIP_ROOT) &&
+      normalized !== SEARCH_BOX_TEMPLATE
+    ) {
+      errors.push(
+        `${normalized}: manual popover markup is limited to approved anchored-overlay owners`,
+      );
     }
     if (/<erp-tooltip-content\b/.test(source) && !/<erp-tooltip[\s>][\s\S]*<erp-tooltip-content\b/.test(source)) {
       errors.push(`${normalized}: erp-tooltip-content must be nested in erp-tooltip`);
@@ -117,6 +125,16 @@ function validateProductionContracts() {
 }
 
 function selfTest() {
+  if (
+    validate(
+      new Map([[SEARCH_BOX_TEMPLATE, '<div popover="manual"></div>']]),
+    ).length !== 0
+  ) {
+    throw new Error(
+      'Tooltip checker rejected the approved SearchBox anchored popover',
+    );
+  }
+
   const fixtures = [
     new Map([['src/app/x.ts', 'element.showPopover();']]),
     new Map([['src/app/x.html', '<span popover="manual"></span>']]),

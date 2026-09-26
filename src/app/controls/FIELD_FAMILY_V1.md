@@ -339,9 +339,26 @@ their concrete ERP controls.
   showCounter=true.
 - ErpPasswordBox is hidden by default. Its Tooltip-wrapped eye/eye-off domain
   action changes only native input type and never the stored value.
-- ErpSearchBox uses native search semantics, defaults autocomplete to off,
-  defaults its leading semantic icon to search, and uses the ERP clear action.
-  It has no search-submit output in V1.
+- ErpSearchBox defaults to a nonblocking anchored popup with no backdrop. The
+  trigger uses Field chrome and the popup contains the native search editor
+  followed by one generic projected `search-results` container.
+- SearchBox popup mode uses `AnchoredOverlayController` geometry directly. It
+  does not use `ErpOverlayManager`, Tooltip, or Overlay Component Tokens.
+- `popupMode = true`, `dismissOnOutside = true`, `dismissOnEscape = true`,
+  `showDefaultSearchIcon = true`, and both animation inputs default to
+  `fade-scale`. `popupMode = false` preserves the direct inline editor.
+- SearchBox supports the shared seven-name Overlay animation vocabulary while
+  owning its motion values in the SearchBox Component Token namespace. Logical
+  slide start/end motion reverses in RTL and reduced motion uses the SearchBox
+  reduced-duration slot.
+- Popup width starts from the trigger inline size, clamps between 20rem and
+  36rem when viewport space permits, and always remains inside the configured
+  viewport inset. Its maximum block size is 28rem and remains viewport-capped.
+- The query is one continuous CVA string between trigger, inline editor, and
+  popup editor. Results projection has no forced list, table, card, or item
+  schema, and there is no search-submit output in V1.
+- SearchBox icon priority is custom `leadingIcon`, then the semantic search icon
+  when enabled, then no icon.
 - ErpUrlBox uses native url semantics with url autocomplete and input mode. A
   committed value must pass its effective final pattern, real URL parsing, and
   the HTTP/HTTPS protocol rule.

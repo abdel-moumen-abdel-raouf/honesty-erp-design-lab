@@ -399,6 +399,12 @@ Rules:
 - A Basic Control family freeze never closes the Basic Controls layer.
 - Internal derived InputBase state stays protected; only approved inherited inputs form public base API.
 - Concrete controls must not mutate InputBase value/focus state directly; user mutations go through the protected base helpers.
+- `ErpSearchBox` popup mode is a nonblocking anchored popup with no backdrop;
+  it uses AnchoredOverlay geometry, not `ErpOverlayManager` or Tooltip.
+- SearchBox popup visuals and motion remain in the SearchBox Component Token
+  namespace and must not consume Overlay Component Tokens.
+- SearchBox results projection remains generic; Feature/Page code owns result
+  rendering without replacing the SearchBox popup container contract.
 
 ## Primary Controls Correction Program Governance
 

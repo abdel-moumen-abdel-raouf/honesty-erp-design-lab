@@ -20,7 +20,20 @@
             <erp-text-box label="Text" placeholder="Enter text" />
             <erp-text-area-box label="Text area" placeholder="Enter notes" />
             <erp-password-box label="Password" placeholder="Enter password" />
-            <erp-search-box label="Search" placeholder="Search records" />
+            <erp-search-box
+              data-search-popup-evidence
+              label="Search"
+              placeholder="Search records"
+            >
+              <erp-stack search-results gap="tight">
+                <erp-text type="caption" tone="secondary">
+                  نتائج البحث المتوقعة
+                </erp-text>
+                <erp-text type="paragraph">
+                  فاتورة INV-2026-001
+                </erp-text>
+              </erp-stack>
+            </erp-search-box>
             <erp-url-box label="URL" placeholder="https://example.com" />
             <erp-tel-box label="Telephone" placeholder="+20" />
           </erp-stack>
@@ -186,6 +199,12 @@
             />
             <erp-text-box label="Disabled" disabled />
             <erp-text-box label="Readonly" readonly />
+            <erp-search-box
+              data-search-inline-evidence
+              label="Inline search"
+              placeholder="Search inline"
+              [popupMode]="false"
+            />
             <erp-text-box
               data-gradient-direction-evidence="ltr"
               dir="ltr"

@@ -1,0 +1,65 @@
+@use '../../../styles/foundation/components/search-box' as tokens;
+
+:host([data-search-box-animation='fade']) {
+  @include tokens.animation-fade;
+}
+
+:host([data-search-box-animation='scale']) {
+  @include tokens.animation-scale;
+}
+
+:host([data-search-box-animation='fade-scale']) {
+  @include tokens.animation-fade-scale;
+}
+
+:host([data-search-box-animation='slide-up']) {
+  @include tokens.animation-slide-up;
+}
+
+:host([data-search-box-animation='slide-down']) {
+  @include tokens.animation-slide-down;
+}
+
+:host([data-search-box-animation='slide-start']) {
+  @include tokens.animation-slide-start;
+}
+
+:host([data-search-box-animation='slide-end']) {
+  @include tokens.animation-slide-end;
+}
+
+:host([data-search-box-popup-phase='leaving'][data-search-box-animation='slide-up']) {
+  @include tokens.animation-slide-up-exit;
+}
+
+:host([data-search-box-popup-phase='leaving'][data-search-box-animation='slide-down']) {
+  @include tokens.animation-slide-down-exit;
+}
+
+:host([data-search-box-popup-phase='leaving'][data-search-box-animation='slide-start']) {
+  @include tokens.animation-slide-start-exit;
+}
+
+:host([data-search-box-popup-phase='leaving'][data-search-box-animation='slide-end']) {
+  @include tokens.animation-slide-end-exit;
+}
+
+:host-context([dir='rtl'])[data-search-box-animation='slide-start'] {
+  @include tokens.animation-slide-end;
+}
+
+:host-context([dir='rtl'])[data-search-box-animation='slide-end'] {
+  @include tokens.animation-slide-start;
+}
+
+:host-context([dir='rtl'])[
+  data-search-box-popup-phase='leaving'
+][data-search-box-animation='slide-start'] {
+  @include tokens.animation-slide-end-exit;
+}
+
+:host-context([dir='rtl'])[
+  data-search-box-popup-phase='leaving'
+][data-search-box-animation='slide-end'] {
+  @include tokens.animation-slide-start-exit;
+}

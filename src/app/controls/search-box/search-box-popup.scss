@@ -1,0 +1,67 @@
+.search-box__popup {
+  --_honesty-search-box-popup-trigger-inline-size:
+    var(--honesty-search-box-popup-min-inline-size);
+
+  position: fixed;
+  inset: auto;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: var(--honesty-search-box-popup-content-gap);
+  inline-size: clamp(
+    min(
+      var(--honesty-search-box-popup-min-inline-size),
+      calc(100dvw - (2 * var(--honesty-search-box-popup-viewport-inset)))
+    ),
+    var(--_honesty-search-box-popup-trigger-inline-size),
+    min(
+      var(--honesty-search-box-popup-max-inline-size),
+      calc(100dvw - (2 * var(--honesty-search-box-popup-viewport-inset)))
+    )
+  );
+  max-inline-size: calc(
+    100dvw - (2 * var(--honesty-search-box-popup-viewport-inset))
+  );
+  max-block-size: min(
+    var(--honesty-search-box-popup-max-block-size),
+    calc(100dvh - (2 * var(--honesty-search-box-popup-viewport-inset)))
+  );
+  margin: 0;
+  padding: var(--honesty-search-box-popup-padding);
+  border-color: var(--honesty-search-box-popup-border-color);
+  border-width: var(--honesty-search-box-popup-border-width);
+  border-style: var(--honesty-search-box-popup-border-style);
+  border-radius: var(--honesty-search-box-popup-radius);
+  background: var(--honesty-search-box-popup-bg);
+  color: var(--honesty-search-box-popup-fg);
+  box-shadow: var(--honesty-search-box-popup-elevation);
+  z-index: var(--honesty-search-box-popup-layer);
+  overflow: hidden;
+  opacity: var(--honesty-search-box-popup-motion-opacity);
+  transform: var(--honesty-search-box-popup-motion-transform);
+  transition:
+    opacity var(--honesty-search-box-popup-exit-duration)
+      var(--honesty-search-box-popup-exit-easing),
+    transform var(--honesty-search-box-popup-exit-duration)
+      var(--honesty-search-box-popup-exit-easing);
+}
+
+.search-box__popup[data-search-popup-phase='open'] {
+  opacity: 1;
+  transform: none;
+  transition-duration: var(--honesty-search-box-popup-enter-duration);
+  transition-timing-function: var(--honesty-search-box-popup-enter-easing);
+}
+
+.search-box__results {
+  min-width: 0;
+  min-block-size: 0;
+  overflow: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .search-box__popup {
+    transform: none;
+    transition-duration: var(--honesty-search-box-popup-reduced-duration);
+  }
+}

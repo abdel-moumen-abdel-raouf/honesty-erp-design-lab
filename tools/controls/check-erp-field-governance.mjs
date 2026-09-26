@@ -15,6 +15,17 @@ const FIELD_CONTRACT = 'src/app/controls/FIELD_FAMILY_V1.md';
 const BUTTON_CONTRACT = 'src/app/controls/BUTTON_FAMILY_V1.md';
 const FIELD_TRIGGER_TEMPLATE =
   'src/app/controls/input-family/internal/field-trigger.html';
+const SEARCH_BOX_SOURCE =
+  'src/app/controls/search-box/search-box.ts';
+const SEARCH_BOX_TEMPLATE =
+  'src/app/controls/search-box/search-box.html';
+const SEARCH_BOX_TOKENS =
+  'src/styles/foundation/components/search-box/_tokens.scss';
+const SEARCH_BOX_STYLES = [
+  'src/app/controls/search-box/search-box.scss',
+  'src/app/controls/search-box/search-box-popup.scss',
+  'src/app/controls/search-box/search-box-popup-facets.scss',
+];
 const FIELD_TRIGGER_CONSUMERS = [
   'date-box',
   'time-box',
@@ -256,6 +267,143 @@ export function validateFieldTriggerContracts(files) {
   return errors;
 }
 
+export function validateSearchBoxPopupContracts(
+  source,
+  template,
+  tokenSource,
+  styleSource,
+) {
+  const errors = [];
+  const requiredInputs = [
+    [
+      'popupMode',
+      /popupMode\s*=\s*input\(true,\s*\{transform:\s*booleanAttribute\}\)/,
+    ],
+    [
+      'dismissOnOutside',
+      /dismissOnOutside\s*=\s*input\(true,\s*\{transform:\s*booleanAttribute\}\)/,
+    ],
+    [
+      'dismissOnEscape',
+      /dismissOnEscape\s*=\s*input\(true,\s*\{transform:\s*booleanAttribute\}\)/,
+    ],
+    [
+      'showDefaultSearchIcon',
+      /showDefaultSearchIcon\s*=\s*input\(true,\s*\{\s*transform:\s*booleanAttribute,?\s*\}\)/,
+    ],
+    [
+      'enterAnimation',
+      /enterAnimation\s*=\s*input<ErpOverlayAnimation>\('fade-scale'\)/,
+    ],
+    [
+      'exitAnimation',
+      /exitAnimation\s*=\s*input<ErpOverlayAnimation>\('fade-scale'\)/,
+    ],
+  ];
+
+  for (const [name, pattern] of requiredInputs) {
+    if (!pattern.test(source)) {
+      errors.push(`SearchBox: missing exact ${name} popup input contract`);
+    }
+  }
+
+  if (
+    !source.includes('AnchoredOverlayController') ||
+    !source.includes('ErpOverlayAnimation')
+  ) {
+    errors.push(
+      'SearchBox: popup must use anchored geometry and the shared animation type',
+    );
+  }
+
+  if (
+    source.includes('ErpOverlayManager') ||
+    source.includes('ErpTooltip') ||
+    source.includes('--honesty-overlay-') ||
+    styleSource.includes('--honesty-overlay-') ||
+    tokenSource.includes('--honesty-overlay-')
+  ) {
+    errors.push(
+      'SearchBox: popup must not consume OverlayManager, Tooltip, or Overlay Component Tokens',
+    );
+  }
+
+  if (
+    !/<erp-field-trigger\b/.test(template) ||
+    !/popover="manual"/.test(template) ||
+    !/<ng-content\s+select="\[search-results\]"/.test(template)
+  ) {
+    errors.push(
+      'SearchBox: popup must use FieldTrigger, manual popover, and generic search-results projection',
+    );
+  }
+
+  const exactTokens = new Map([
+    ['bg', 'var(--honesty-color-surface-elevated)'],
+    ['fg', 'var(--honesty-color-text-primary)'],
+    ['border-color', 'var(--honesty-border-subtle)'],
+    ['border-width', 'var(--honesty-border-width-default)'],
+    ['border-style', 'var(--honesty-border-style-default)'],
+    ['radius', 'var(--honesty-radius-overlay)'],
+    ['elevation', 'var(--honesty-elevation-overlay)'],
+    ['layer', 'var(--honesty-layer-overlay)'],
+    ['anchor-gap', 'var(--honesty-space-inline-default)'],
+    ['viewport-inset', 'var(--honesty-space-inset-tight)'],
+    ['padding', 'var(--honesty-space-inset-default)'],
+    ['content-gap', 'var(--honesty-space-stack-tight)'],
+    ['min-inline-size', '20rem'],
+    ['max-inline-size', '36rem'],
+    ['max-block-size', '28rem'],
+    ['enter-duration', 'var(--honesty-motion-duration-default)'],
+    ['exit-duration', 'var(--honesty-motion-duration-fast)'],
+    ['enter-easing', 'var(--honesty-motion-easing-enter)'],
+    ['exit-easing', 'var(--honesty-motion-easing-exit)'],
+    ['motion-opacity', '0'],
+    ['motion-transform', 'scale(0.96)'],
+    ['motion-slide-distance', '0.5rem'],
+    ['reduced-duration', 'var(--honesty-motion-duration-instant)'],
+  ]);
+  const baseTokenSource =
+    tokenSource.match(/@mixin\s+base\s*\{([\s\S]*?)\n\}/)?.[1] ?? '';
+
+  for (const [slot, value] of exactTokens) {
+    const pattern = new RegExp(
+      `--honesty-search-box-popup-${slot}:\\s*${value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*;`,
+    );
+    if (!pattern.test(baseTokenSource)) {
+      errors.push(
+        `SearchBox: popup token ${slot} must map exactly to ${value}`,
+      );
+    }
+  }
+
+  for (const animation of [
+    'fade',
+    'scale',
+    'fade-scale',
+    'slide-up',
+    'slide-down',
+    'slide-start',
+    'slide-end',
+  ]) {
+    if (!styleSource.includes(`data-search-box-animation='${animation}'`)) {
+      errors.push(`SearchBox: missing ${animation} animation mapping`);
+    }
+  }
+
+  if (
+    !styleSource.includes("dir='rtl'") ||
+    !styleSource.includes('prefers-reduced-motion: reduce') ||
+    !styleSource.includes('var(--honesty-search-box-popup-max-block-size)')
+  ) {
+    errors.push(
+      'SearchBox: popup styles must retain RTL motion, reduced motion, and viewport-capped sizing',
+    );
+  }
+
+  return errors;
+}
+
 export function validateProgramControlInventory(files, documentation) {
   const errors = [];
 
@@ -473,6 +621,102 @@ function runSelfTest() {
     }
   }
 
+  const validSearchSource = [
+    'popupMode = input(true, {transform: booleanAttribute})',
+    'dismissOnOutside = input(true, {transform: booleanAttribute})',
+    'dismissOnEscape = input(true, {transform: booleanAttribute})',
+    'showDefaultSearchIcon = input(true, {transform: booleanAttribute})',
+    "enterAnimation = input<ErpOverlayAnimation>('fade-scale')",
+    "exitAnimation = input<ErpOverlayAnimation>('fade-scale')",
+    'AnchoredOverlayController ErpOverlayAnimation',
+  ].join('\n');
+  const validSearchTemplate = [
+    '<erp-field-trigger></erp-field-trigger>',
+    '<div popover="manual">',
+    '  <ng-content select="[search-results]"></ng-content>',
+    '</div>',
+  ].join('\n');
+  const validSearchTokens = `@mixin base {\n${[...new Map([
+    ['bg', 'var(--honesty-color-surface-elevated)'],
+    ['fg', 'var(--honesty-color-text-primary)'],
+    ['border-color', 'var(--honesty-border-subtle)'],
+    ['border-width', 'var(--honesty-border-width-default)'],
+    ['border-style', 'var(--honesty-border-style-default)'],
+    ['radius', 'var(--honesty-radius-overlay)'],
+    ['elevation', 'var(--honesty-elevation-overlay)'],
+    ['layer', 'var(--honesty-layer-overlay)'],
+    ['anchor-gap', 'var(--honesty-space-inline-default)'],
+    ['viewport-inset', 'var(--honesty-space-inset-tight)'],
+    ['padding', 'var(--honesty-space-inset-default)'],
+    ['content-gap', 'var(--honesty-space-stack-tight)'],
+    ['min-inline-size', '20rem'],
+    ['max-inline-size', '36rem'],
+    ['max-block-size', '28rem'],
+    ['enter-duration', 'var(--honesty-motion-duration-default)'],
+    ['exit-duration', 'var(--honesty-motion-duration-fast)'],
+    ['enter-easing', 'var(--honesty-motion-easing-enter)'],
+    ['exit-easing', 'var(--honesty-motion-easing-exit)'],
+    ['motion-opacity', '0'],
+    ['motion-transform', 'scale(0.96)'],
+    ['motion-slide-distance', '0.5rem'],
+    ['reduced-duration', 'var(--honesty-motion-duration-instant)'],
+  ])].map(
+    ([slot, value]) =>
+      `--honesty-search-box-popup-${slot}: ${value};`,
+  ).join('\n')}\n}`;
+  const validSearchStyles = [
+    ...[
+      'fade',
+      'scale',
+      'fade-scale',
+      'slide-up',
+      'slide-down',
+      'slide-start',
+      'slide-end',
+    ].map((animation) => `data-search-box-animation='${animation}'`),
+    "dir='rtl'",
+    'prefers-reduced-motion: reduce',
+    'var(--honesty-search-box-popup-max-block-size)',
+  ].join('\n');
+
+  if (
+    validateSearchBoxPopupContracts(
+      validSearchSource,
+      validSearchTemplate,
+      validSearchTokens,
+      validSearchStyles,
+    ).length > 0
+  ) {
+    throw new Error('ErpField checker rejected valid SearchBox popup fixtures');
+  }
+
+  for (const [index, fixture] of [
+    [
+      validSearchSource.replace('AnchoredOverlayController', 'ErpOverlayManager'),
+      validSearchTemplate,
+      validSearchTokens,
+      validSearchStyles,
+    ],
+    [
+      validSearchSource,
+      validSearchTemplate.replace('popover="manual"', ''),
+      validSearchTokens,
+      validSearchStyles,
+    ],
+    [
+      validSearchSource,
+      validSearchTemplate,
+      validSearchTokens.replace('36rem', '40rem'),
+      validSearchStyles,
+    ],
+  ].entries()) {
+    if (validateSearchBoxPopupContracts(...fixture).length === 0) {
+      throw new Error(
+        `ErpField checker accepted invalid SearchBox fixture ${index + 1}`,
+      );
+    }
+  }
+
   const validInventory = new Map([
     [INPUT_SHOWCASE, ''],
     [OVERLAY_SHOWCASE, ''],
@@ -551,6 +795,14 @@ errors.push(
     files,
     fs.readFileSync(path.join(ROOT, FIELD_CONTRACT), 'utf8') +
       fs.readFileSync(path.join(ROOT, BUTTON_CONTRACT), 'utf8'),
+  ),
+);
+errors.push(
+  ...validateSearchBoxPopupContracts(
+    files.get(SEARCH_BOX_SOURCE) ?? '',
+    files.get(SEARCH_BOX_TEMPLATE) ?? '',
+    files.get(SEARCH_BOX_TOKENS) ?? '',
+    SEARCH_BOX_STYLES.map((file) => files.get(file) ?? '').join('\n'),
   ),
 );
 errors.push(

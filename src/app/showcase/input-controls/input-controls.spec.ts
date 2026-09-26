@@ -171,4 +171,36 @@ describe('InputControls showcase', () => {
       root.querySelectorAll('[data-feedback-evidence] erp-field-feedback').length,
     ).toBe(2);
   });
+
+  it('provides SearchBox popup and inline-mode evidence in both themes', () => {
+    const root = create().nativeElement as HTMLElement;
+    const popup = [
+      ...root.querySelectorAll<HTMLElement>(
+        '[data-search-popup-evidence]',
+      ),
+    ];
+    const inline = [
+      ...root.querySelectorAll<HTMLElement>(
+        '[data-search-inline-evidence]',
+      ),
+    ];
+
+    expect(popup.length).toBe(2);
+    expect(
+      popup.map((control) =>
+        control.getAttribute('data-search-box-popup-mode'),
+      ),
+    ).toEqual(['true', 'true']);
+    expect(
+      popup.map((control) =>
+        control.querySelectorAll('[search-results]').length,
+      ),
+    ).toEqual([1, 1]);
+    expect(inline.length).toBe(2);
+    expect(
+      inline.map((control) =>
+        control.getAttribute('data-search-box-popup-mode'),
+      ),
+    ).toEqual(['false', 'false']);
+  });
 });

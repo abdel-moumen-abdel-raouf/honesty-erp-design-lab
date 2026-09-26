@@ -1,49 +1,161 @@
-<erp-field-frame
-  [label]="label()"
-  [controlId]="controlId"
-  [tone]="tone()"
-  [status]="status()"
-  [variant]="variant()"
-  [borderMode]="effectiveBorderMode()"
-  [shape]="shape()"
-  [size]="size()"
-  [appearance]="appearance()"
-  [labelMode]="labelMode()"
-  [floatingPosition]="floatingPosition()"
-  [helperText]="helperText()"
-  [helperPosition]="helperPosition()"
-  [leadingIcon]="effectiveLeadingIcon()"
-  [trailingIcon]="trailingIcon()"
-  [clearable]="clearActionVisible()"
-  [feedbackText]="feedbackText()"
-  [feedbackDismissible]="feedbackDismissible()"
-  [feedbackVisible]="feedbackVisible()"
-  [focused]="fieldFocused()"
-  [hasDisplayValue]="currentValue().length > 0"
-  [placeholder]="placeholder()"
-  [disabled]="fieldEffectiveDisabled()"
-  [configurationState]="fieldConfigurationState()"
-  (clearRequested)="handleClear(nativeInput)"
-  (feedbackDismissed)="dismissFeedback()"
->
-  <input
-    #nativeInput
-    field-control
-    class="search-box__native"
-    type="search"
-    [id]="controlId"
-    [attr.name]="name()"
-    [attr.form]="form()"
-    [value]="currentValue()"
-    [placeholder]="placeholder() ?? ''"
+@if (popupMode()) {
+  <erp-field-frame
+    [label]="label()"
+    [controlId]="controlId"
+    [tone]="tone()"
+    [status]="status()"
+    [variant]="variant()"
+    [borderMode]="effectiveBorderMode()"
+    [shape]="shape()"
+    [size]="size()"
+    [appearance]="appearance()"
+    [labelMode]="labelMode()"
+    [floatingPosition]="floatingPosition()"
+    [helperText]="helperText()"
+    [helperPosition]="helperPosition()"
+    [leadingIcon]="effectiveLeadingIcon()"
+    [trailingIcon]="trailingIcon()"
+    [clearable]="clearActionVisible()"
+    [feedbackText]="feedbackText()"
+    [feedbackDismissible]="feedbackDismissible()"
+    [feedbackVisible]="feedbackVisible()"
+    [focused]="fieldFocused()"
+    [hasDisplayValue]="currentValue().length > 0"
+    [placeholder]="placeholder()"
     [disabled]="fieldEffectiveDisabled()"
-    [readOnly]="readonly()"
-    [attr.autocomplete]="autocomplete()"
-    [attr.aria-invalid]="status() === 'danger' ? 'true' : null"
-    [attr.aria-describedby]="fieldAriaDescribedBy(controlId)"
-    [attr.aria-errormessage]="fieldAriaErrorMessage(controlId)"
-    (input)="handleInput($event)"
-    (focus)="handleNativeFocus()"
-    (blur)="handleNativeBlur()"
-  />
-</erp-field-frame>
+    [configurationState]="fieldConfigurationState()"
+    (clearRequested)="handleClear()"
+    (feedbackDismissed)="dismissFeedback()"
+  >
+    <erp-field-trigger
+      #popupAnchor
+      field-control
+      class="search-box__trigger"
+      [id]="controlId"
+      [name]="name()"
+      [form]="form()"
+      [disabled]="fieldEffectiveDisabled()"
+      [ariaDescribedBy]="fieldAriaDescribedBy(controlId)"
+      [ariaErrorMessage]="fieldAriaErrorMessage(controlId)"
+      [ariaInvalid]="status() === 'danger'"
+      ariaHasPopup="dialog"
+      [ariaControls]="popupId"
+      [ariaExpanded]="popupOpen()"
+      (activated)="togglePopup()"
+      (keyPressed)="handlePopupKeydown($event)"
+      (focused)="handleNativeFocus()"
+    >
+      <erp-text type="text" tone="inherit">
+        {{ currentValue() || placeholder() || '' }}
+      </erp-text>
+    </erp-field-trigger>
+  </erp-field-frame>
+
+  <div
+    #popupSurface
+    class="search-box__popup"
+    popover="manual"
+    role="dialog"
+    [id]="popupId"
+    [attr.aria-label]="label()"
+    [attr.data-search-popup-phase]="popupPhase()"
+    [attr.data-search-popup-animation]="activeAnimation()"
+    (transitionend)="handlePopupTransitionEnd($event)"
+  >
+    <erp-field-frame
+      [label]="label()"
+      [controlId]="popupInputId"
+      [tone]="tone()"
+      [status]="status()"
+      [variant]="variant()"
+      [borderMode]="effectiveBorderMode()"
+      [shape]="shape()"
+      [size]="size()"
+      [appearance]="appearance()"
+      [labelMode]="labelMode()"
+      [floatingPosition]="floatingPosition()"
+      [leadingIcon]="effectiveLeadingIcon()"
+      [trailingIcon]="trailingIcon()"
+      [focused]="fieldFocused()"
+      [hasDisplayValue]="currentValue().length > 0"
+      [placeholder]="placeholder()"
+      [disabled]="fieldEffectiveDisabled()"
+      [configurationState]="fieldConfigurationState()"
+    >
+      <input
+        #nativeInput
+        field-control
+        class="search-box__native"
+        type="search"
+        [id]="popupInputId"
+        [attr.name]="name()"
+        [attr.form]="form()"
+        [value]="currentValue()"
+        [placeholder]="placeholder() ?? ''"
+        [disabled]="fieldEffectiveDisabled()"
+        [readOnly]="readonly()"
+        [attr.autocomplete]="autocomplete()"
+        [attr.aria-invalid]="status() === 'danger' ? 'true' : null"
+        [attr.aria-describedby]="fieldAriaDescribedBy(controlId)"
+        [attr.aria-errormessage]="fieldAriaErrorMessage(controlId)"
+        (input)="handleInput($event)"
+        (focus)="handleNativeFocus()"
+        (blur)="handleNativeBlur()"
+      />
+    </erp-field-frame>
+
+    <div class="search-box__results">
+      <ng-content select="[search-results]"></ng-content>
+    </div>
+  </div>
+} @else {
+  <erp-field-frame
+    [label]="label()"
+    [controlId]="controlId"
+    [tone]="tone()"
+    [status]="status()"
+    [variant]="variant()"
+    [borderMode]="effectiveBorderMode()"
+    [shape]="shape()"
+    [size]="size()"
+    [appearance]="appearance()"
+    [labelMode]="labelMode()"
+    [floatingPosition]="floatingPosition()"
+    [helperText]="helperText()"
+    [helperPosition]="helperPosition()"
+    [leadingIcon]="effectiveLeadingIcon()"
+    [trailingIcon]="trailingIcon()"
+    [clearable]="clearActionVisible()"
+    [feedbackText]="feedbackText()"
+    [feedbackDismissible]="feedbackDismissible()"
+    [feedbackVisible]="feedbackVisible()"
+    [focused]="fieldFocused()"
+    [hasDisplayValue]="currentValue().length > 0"
+    [placeholder]="placeholder()"
+    [disabled]="fieldEffectiveDisabled()"
+    [configurationState]="fieldConfigurationState()"
+    (clearRequested)="handleClear()"
+    (feedbackDismissed)="dismissFeedback()"
+  >
+    <input
+      #nativeInput
+      field-control
+      class="search-box__native"
+      type="search"
+      [id]="controlId"
+      [attr.name]="name()"
+      [attr.form]="form()"
+      [value]="currentValue()"
+      [placeholder]="placeholder() ?? ''"
+      [disabled]="fieldEffectiveDisabled()"
+      [readOnly]="readonly()"
+      [attr.autocomplete]="autocomplete()"
+      [attr.aria-invalid]="status() === 'danger' ? 'true' : null"
+      [attr.aria-describedby]="fieldAriaDescribedBy(controlId)"
+      [attr.aria-errormessage]="fieldAriaErrorMessage(controlId)"
+      (input)="handleInput($event)"
+      (focus)="handleNativeFocus()"
+      (blur)="handleNativeBlur()"
+    />
+  </erp-field-frame>
+}

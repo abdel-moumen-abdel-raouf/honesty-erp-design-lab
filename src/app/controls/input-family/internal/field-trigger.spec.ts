@@ -12,6 +12,9 @@ import {ErpFieldTrigger} from './field-trigger';
       ariaDescribedBy="picker-helper"
       ariaErrorMessage="picker-error"
       [ariaInvalid]="true"
+      ariaHasPopup="dialog"
+      ariaControls="picker-popup"
+      [ariaExpanded]="true"
       (activated)="activated = true"
       (keyPressed)="key = $event.key"
       (focused)="focused = true"
@@ -48,6 +51,9 @@ describe('ErpFieldTrigger', () => {
     expect(button.getAttribute('aria-describedby')).toBe('picker-helper');
     expect(button.getAttribute('aria-errormessage')).toBe('picker-error');
     expect(button.getAttribute('aria-invalid')).toBe('true');
+    expect(button.getAttribute('aria-haspopup')).toBe('dialog');
+    expect(button.getAttribute('aria-controls')).toBe('picker-popup');
+    expect(button.getAttribute('aria-expanded')).toBe('true');
     expect(button.textContent?.trim()).toBe('Projected value');
   });
 
