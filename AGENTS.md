@@ -484,6 +484,12 @@ Rules:
   not change outer dimensions or cause layout shift.
 - CheckBox marks use semantic ErpIcon `check` / `minus`; raw SVG marks are
   forbidden. RadioBox owns one centered inner dot.
+- Temporal controls keep ASCII canonical ISO CVA values while defaulting
+  display/picker locale and visible actions to the shared Arabic contract.
+- DateRange owns one chronological staged interval with pointer and keyboard
+  preview; backward selection must not discard the original anchor.
+- Blocking temporal picker customization is limited to the typed Overlay
+  behavior subset and must not expose internal Overlay wiring.
 
 ## Production Overlay Governance
 

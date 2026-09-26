@@ -1,14 +1,17 @@
-import {ChangeDetectionStrategy, Component, ElementRef, computed, forwardRef, inject, input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ElementRef, computed, effect, forwardRef, inject, input} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
 import {ErpText} from '../../primitives/text/text';
 import {ErpOverlayRef} from '../../shared/overlay/overlay-ref';
 import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
+import {ErpOverlayBehaviorConfig} from '../../shared/overlay/overlay-contracts';
+import {ERP_DATE_FINAL_PATTERN, resolveDomainPattern} from '../input-family/domain-validation';
 import {ErpFieldBase} from '../input-family/field-base';
+import {ErpInputConfigurationState} from '../input-family/input-contracts';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
 import {ErpFieldTrigger} from '../input-family/internal/field-trigger';
 import {ErpTemporalPickerContent} from '../temporal-family/internal/temporal-picker-content';
-import {ErpTemporalPickerData, ErpTemporalValue} from '../temporal-family/temporal-contracts';
+import {ERP_TEMPORAL_DEFAULT_ACTION_LABELS, ErpTemporalPickerData, ErpTemporalValue} from '../temporal-family/temporal-contracts';
 import {normalizeIsoDate, parseIsoDate} from '../temporal-family/temporal-utils';
 
 let nextDateBoxId = 0;
@@ -22,7 +25,7 @@ let nextDateBoxId = 0;
   templateUrl: './date-box.html',
   styleUrl: './date-box.scss',
   host: {
-    '[attr.data-field-configuration-state]': 'fieldConfigurationState()',
+    '[attr.data-field-configuration-state]': 'dateConfigurationState()',
     '[attr.data-date-box-value]': 'currentValue()',
   },
 })
@@ -30,10 +33,27 @@ export class ErpDateBox extends ErpFieldBase<string | null> {
   readonly min = input<string | null>(null);
   readonly max = input<string | null>(null);
   readonly weekStartsOn = input(0);
-  readonly locale = input<string | null>(null);
+  readonly locale = input('ar-EG');
+  readonly pattern = input<string | null>(null);
+  readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null);
   override readonly trailingIcon = input<ErpIconName | null>('calendar');
 
   protected readonly controlId = `erp-date-box-${++nextDateBoxId}`;
+  private readonly effectivePattern = computed(() =>
+    resolveDomainPattern(this.pattern(), ERP_DATE_FINAL_PATTERN),
+  );
+  protected readonly dateConfigurationState = computed<ErpInputConfigurationState>(() =>
+    this.fieldConfigurationState() === 'ready' &&
+    this.effectivePattern().configurationState === 'ready'
+      ? 'ready'
+      : 'invalid',
+  );
+  protected readonly dateEffectiveDisabled = computed(() =>
+    this.fieldEffectiveDisabled() || this.dateConfigurationState() === 'invalid',
+  );
+  protected readonly dateFocused = computed(() =>
+    !this.dateEffectiveDisabled() && this.fieldFocused(),
+  );
   protected readonly displayValue = computed(() => {
     const value = this.currentValue();
     return value ? new Intl.DateTimeFormat(this.locale() ?? undefined).format(parseIsoDate(value) as Date) : 'Select date';
@@ -42,22 +62,28 @@ export class ErpDateBox extends ErpFieldBase<string | null> {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private activeRef: ErpOverlayRef<ErpTemporalValue> | null = null;
 
-  constructor() { super(null); }
+  constructor() {
+    super(null);
+    effect(() => {
+      if (this.dateEffectiveDisabled()) this.clearFocusState();
+    });
+  }
 
   protected override normalizeValue(value: unknown): string | null {
-    return normalizeIsoDate(value, this.min(), this.max());
+    return normalizeIsoDate(value, this.min(), this.max(), this.effectivePattern().regex);
   }
 
   protected openPicker(): void {
-    if (this.fieldEffectiveDisabled() || this.activeRef) return;
+    if (this.dateEffectiveDisabled() || this.activeRef) return;
     const ref = this.overlays.open<ErpTemporalPickerContent, ErpTemporalPickerData, ErpTemporalValue>(ErpTemporalPickerContent, {
       label: `${this.trimmedLabel()} date picker`,
+      ...(this.overlayConfig() ?? {}),
       data: this.pickerData(),
     });
     this.activeRef = ref;
     void ref.afterClosed.then((outcome) => {
       this.activeRef = null;
-      if (outcome.type === 'closed') this.commitUserValue(outcome.result);
+      if (outcome.type === 'closed') this.commitPickerResult(outcome.result);
     });
   }
 
@@ -70,7 +96,15 @@ export class ErpDateBox extends ErpFieldBase<string | null> {
   protected handleNativeBlur(): void { this.handleBlur(); }
 
   private pickerData(): ErpTemporalPickerData {
-    return {mode: 'date', value: this.currentValue(), min: this.min(), max: this.max(), weekStartsOn: this.weekStartsOn(), minuteStep: 5, locale: this.locale(), clearable: this.clearable(), theme: this.theme()};
+    return {mode: 'date', value: this.currentValue(), min: this.min(), max: this.max(), weekStartsOn: this.weekStartsOn(), minuteStep: 5, locale: this.locale(), actionLabels: ERP_TEMPORAL_DEFAULT_ACTION_LABELS, clearable: this.clearable(), theme: this.theme()};
+  }
+
+  private commitPickerResult(value: ErpTemporalValue | undefined): void {
+    if (value === null) {
+      this.commitUserValue(null);
+    } else if (typeof value === 'string' && this.normalizeValue(value) === value) {
+      this.commitUserValue(value);
+    }
   }
 
   private theme(): 'light' | 'dark' {

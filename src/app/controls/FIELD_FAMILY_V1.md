@@ -520,17 +520,28 @@ Its invariant is `min <= lower <= upper <= max`; thumbs do not cross in V1.
 ## Temporal Overlay Picker Family
 
 - `ErpDateBox` stores `string | null` in ISO `YYYY-MM-DD` form and exposes
-  nullable min/max, `weekStartsOn = 0`, nullable locale, and inherited clear.
+  nullable min/max, `weekStartsOn = 0`, `locale = 'ar-EG'`, and inherited clear.
 - `ErpTimeBox` stores `string | null` in `HH:mm` form and exposes
-  `minuteStep = 5`, nullable min/max, and nullable locale.
+  `minuteStep = 5`, nullable min/max, and `locale = 'ar-EG'`.
 - `ErpDateTimeBox` stores `string | null` in local `YYYY-MM-DDTHH:mm` form and
   combines date and time staging in one modal.
 - `ErpDateRangeBox` stores `{start: string | null; end: string | null}` and
   preserves `start <= end` whenever both values exist.
+- Date, time, date-time, and both DateRange endpoints combine the shared
+  built-in final-value pattern with real temporal parsing. A developer pattern
+  replaces the built-in admission expression, while semantic parsing remains
+  authoritative; invalid regex is configuration-invalid and invalid overlay
+  confirmation never publishes.
+- All four expose one `overlayConfig` input restricted to the typed blocking
+  behavior subset: backdrop/Escape dismissal, blur, backdrop tone, and
+  enter/exit animation. System overlay wiring and defaults remain internal.
 - All four use Field Family trigger chrome and never use browser-native
   date/time picker popups as the main selection UX.
 - Calendar selection provides month navigation, weekday headers, a Gregorian
   month grid, today, clear when available, cancel, and confirm.
+- Default visible action labels are Arabic: الشهر السابق, الشهر التالي, اليوم,
+  مسح, إلغاء, تأكيد, الساعة, and الدقيقة. They are owned by one shared
+  localizable action-label contract rather than scattered strings.
 - Calendar keyboard behavior supports Arrow movement, Home/End week edges,
   PageUp/PageDown month movement, Enter selection, and OverlayManager Escape.
 - Time selection exposes hours `00` through `23` and minutes derived from the
@@ -538,8 +549,11 @@ Its invariant is `min <= lower <= upper <= max`; thumbs do not cross in V1.
 - Every temporal selection remains staged in `ErpOverlayManager`; confirm is
   the only action that commits through CVA, while cancel or dismissal leaves
   the committed value unchanged.
-- The date-range overlay stages start and then end and provides selected-range
-  evidence before confirmation.
+- The date-range overlay owns a staged anchor, pointer/keyboard preview
+  candidate, and final staged range. Forward or backward selection always
+  produces one chronological interval; preview leave clears preview only,
+  Enter selects the keyboard endpoint, disabled dates are ignored, and the
+  semantic interval remains continuous across week rows in LTR and RTL.
 
 ## Selection Overlay Picker Family
 

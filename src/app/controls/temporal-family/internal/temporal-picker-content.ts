@@ -34,6 +34,18 @@ export class ErpTemporalPickerContent {
   protected readonly stagedHour = signal(this.resolveTimePart(0));
   protected readonly stagedMinute = signal(this.resolveTimePart(1));
   protected readonly stagedRange = signal(this.resolveRange());
+  protected readonly rangeAnchor = signal(this.resolveRangeAnchor());
+  protected readonly rangePreviewCandidate = signal<string | null>(null);
+  private readonly rangePreview = computed(() => {
+    const anchor = this.rangeAnchor();
+    const candidate = this.rangePreviewCandidate();
+
+    if (anchor === null || candidate === null) {
+      return null;
+    }
+
+    return this.orderRange(anchor, candidate);
+  });
   protected readonly hours = Array.from({length: 24}, (_, value) => padTemporal(value));
   protected readonly minutes = computed(() => {
     const step = Math.max(1, Math.min(60, Math.trunc(this.data.minuteStep)));
@@ -83,17 +95,34 @@ export class ErpTemporalPickerContent {
     if (this.dateDisabled(value)) return;
     this.cursor.set(value);
     if (this.data.mode === 'range') {
-      const range = this.stagedRange();
-      this.stagedRange.set(
-        range.start === null || range.end !== null
-          ? {start: value, end: null}
-          : value >= range.start
-            ? {start: range.start, end: value}
-            : {start: value, end: null},
-      );
+      const anchor = this.rangeAnchor();
+
+      if (anchor === null) {
+        this.rangeAnchor.set(value);
+        this.stagedRange.set({start: value, end: null});
+      } else {
+        this.stagedRange.set(this.orderRange(anchor, value));
+        this.rangeAnchor.set(null);
+      }
+
+      this.rangePreviewCandidate.set(null);
     } else {
       this.stagedDate.set(value);
     }
+  }
+
+  protected previewDate(value: string): void {
+    if (
+      this.data.mode === 'range' &&
+      this.rangeAnchor() !== null &&
+      !this.dateDisabled(value)
+    ) {
+      this.rangePreviewCandidate.set(value);
+    }
+  }
+
+  protected clearRangePreview(): void {
+    this.rangePreviewCandidate.set(null);
   }
 
   protected selectHour(value: string): void {
@@ -128,6 +157,8 @@ export class ErpTemporalPickerContent {
     this.stagedHour.set(null);
     this.stagedMinute.set(null);
     this.stagedRange.set({start: null, end: null});
+    this.rangeAnchor.set(null);
+    this.rangePreviewCandidate.set(null);
   }
 
   protected cancel(): void {
@@ -164,9 +195,32 @@ export class ErpTemporalPickerContent {
     return this.stagedDate() === value;
   }
 
+  protected dateRangeStart(value: string): boolean {
+    return this.stagedRange().start === value;
+  }
+
+  protected dateRangeEnd(value: string): boolean {
+    return this.stagedRange().end === value;
+  }
+
   protected dateInRange(value: string): boolean {
     const range = this.stagedRange();
     return Boolean(range.start && range.end && value > range.start && value < range.end);
+  }
+
+  protected dateInPreview(value: string): boolean {
+    const preview = this.rangePreview();
+    return Boolean(
+      preview?.start &&
+      preview.end &&
+      value >= preview.start &&
+      value <= preview.end,
+    );
+  }
+
+  protected datePreviewEndpoint(value: string): boolean {
+    const preview = this.rangePreview();
+    return value === preview?.start || value === preview?.end;
   }
 
   protected inCurrentMonth(value: string): boolean {
@@ -201,6 +255,11 @@ export class ErpTemporalPickerContent {
       : {start: null, end: null};
   }
 
+  private resolveRangeAnchor(): string | null {
+    const range = this.resolveRange();
+    return range.start !== null && range.end === null ? range.start : null;
+  }
+
   private timeValue(): string | null {
     const hour = this.stagedHour();
     const minute = this.stagedMinute();
@@ -217,6 +276,7 @@ export class ErpTemporalPickerContent {
     if (!this.dateDisabled(next)) {
       this.cursor.set(next);
       this.monthAnchor.set(next.slice(0, 7) + '-01');
+      this.updateKeyboardPreview(next);
     }
   }
 
@@ -225,6 +285,7 @@ export class ErpTemporalPickerContent {
     if (!this.dateDisabled(next)) {
       this.cursor.set(next);
       this.monthAnchor.set(next.slice(0, 7) + '-01');
+      this.updateKeyboardPreview(next);
     }
   }
 
@@ -232,5 +293,17 @@ export class ErpTemporalPickerContent {
     const date = parseIsoDate(this.cursor()) as Date;
     const offset = (date.getDay() - this.data.weekStartsOn + 7) % 7;
     this.moveCursor(end ? 6 - offset : -offset);
+  }
+
+  private updateKeyboardPreview(value: string): void {
+    if (this.data.mode === 'range' && this.rangeAnchor() !== null) {
+      this.rangePreviewCandidate.set(value);
+    }
+  }
+
+  private orderRange(first: string, second: string): ErpDateRangeValue {
+    return first <= second
+      ? {start: first, end: second}
+      : {start: second, end: first};
   }
 }

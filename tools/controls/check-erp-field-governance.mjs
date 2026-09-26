@@ -60,6 +60,31 @@ const RADIO_BOX_STYLES = [
   'src/app/controls/radio-box/radio-box-facets.scss',
   'src/app/controls/radio-box/radio-box-sizes.scss',
 ];
+const TEMPORAL_CONTROL_SLUGS = [
+  'date-box',
+  'time-box',
+  'date-time-box',
+  'date-range-box',
+];
+const TEMPORAL_CONTENT_SOURCE =
+  'src/app/controls/temporal-family/internal/temporal-picker-content.ts';
+const TEMPORAL_CONTENT_TEMPLATE =
+  'src/app/controls/temporal-family/internal/temporal-picker-content.html';
+const TEMPORAL_TOKENS =
+  'src/styles/foundation/components/temporal-picker/_tokens.scss';
+const DOMAIN_VALIDATION =
+  'src/app/controls/input-family/domain-validation.ts';
+const TEMPORAL_REQUIRED_TOKENS = [
+  '--honesty-temporal-picker-range-endpoint-bg:',
+  '--honesty-temporal-picker-range-endpoint-fg:',
+  '--honesty-temporal-picker-range-bg:',
+  '--honesty-temporal-picker-range-fg:',
+  '--honesty-temporal-picker-range-preview-bg:',
+  '--honesty-temporal-picker-range-preview-fg:',
+  '--honesty-temporal-picker-range-preview-endpoint-bg:',
+  '--honesty-temporal-picker-range-radius:',
+  '--honesty-temporal-picker-range-transition-duration:',
+];
 const FIELD_TRIGGER_CONSUMERS = [
   'date-box',
   'time-box',
@@ -603,6 +628,62 @@ export function validateChoiceVisualContracts(
   return errors;
 }
 
+export function validateTemporalCorrectionContracts(files) {
+  const errors = [];
+
+  for (const slug of TEMPORAL_CONTROL_SLUGS) {
+    const source = files.get(`src/app/controls/${slug}/${slug}.ts`) ?? '';
+    const template = files.get(`src/app/controls/${slug}/${slug}.html`) ?? '';
+
+    if (
+      !source.includes("readonly locale = input('ar-EG')") ||
+      !source.includes('readonly pattern = input<string | null>(null)') ||
+      !source.includes(
+        'readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null)',
+      ) ||
+      !source.includes('resolveDomainPattern(') ||
+      !source.includes('commitPickerResult(') ||
+      !template.includes('<erp-field-trigger')
+    ) {
+      errors.push(
+        `${slug}: temporal pattern, ar-EG locale, safe overlay behavior, validated confirm, and FieldTrigger contracts are required`,
+      );
+    }
+  }
+
+  const domain = files.get(DOMAIN_VALIDATION) ?? '';
+  if (
+    !domain.includes("ERP_DATE_FINAL_PATTERN = '^\\\\d{4}-\\\\d{2}-\\\\d{2}$'") ||
+    !domain.includes("ERP_TIME_FINAL_PATTERN = '^\\\\d{2}:\\\\d{2}$'") ||
+    !domain.includes(
+      "'^\\\\d{4}-\\\\d{2}-\\\\d{2}T\\\\d{2}:\\\\d{2}$'",
+    )
+  ) {
+    errors.push('Temporal built-in final-value patterns are incomplete');
+  }
+
+  const content = files.get(TEMPORAL_CONTENT_SOURCE) ?? '';
+  const template = files.get(TEMPORAL_CONTENT_TEMPLATE) ?? '';
+  const tokens = files.get(TEMPORAL_TOKENS) ?? '';
+  if (
+    !content.includes('rangeAnchor = signal(') ||
+    !content.includes('rangePreviewCandidate = signal<string | null>(null)') ||
+    !content.includes('orderRange(') ||
+    !content.includes('updateKeyboardPreview(') ||
+    !template.includes('(pointerenter)="previewDate(date)"') ||
+    !template.includes('(pointerleave)="clearRangePreview()"') ||
+    !template.includes('data.actionLabels.previousMonth') ||
+    !template.includes('data.actionLabels.confirm') ||
+    TEMPORAL_REQUIRED_TOKENS.some((token) => !tokens.includes(token))
+  ) {
+    errors.push(
+      'Temporal picker: staged anchor/preview/final range, Arabic action contract, and range token slots are required',
+    );
+  }
+
+  return errors;
+}
+
 function runSelfTest() {
   const valid = new Map([
     [
@@ -734,6 +815,43 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     ).length === 0
   ) {
     throw new Error('ErpField checker accepted invalid choice visual fixtures');
+  }
+
+  const validTemporalFiles = new Map([
+    [
+      DOMAIN_VALIDATION,
+      "ERP_DATE_FINAL_PATTERN = '^\\\\d{4}-\\\\d{2}-\\\\d{2}$'; ERP_TIME_FINAL_PATTERN = '^\\\\d{2}:\\\\d{2}$'; ERP_DATE_TIME_FINAL_PATTERN = '^\\\\d{4}-\\\\d{2}-\\\\d{2}T\\\\d{2}:\\\\d{2}$';",
+    ],
+    [
+      TEMPORAL_CONTENT_SOURCE,
+      'rangeAnchor = signal(null); rangePreviewCandidate = signal<string | null>(null); orderRange(); updateKeyboardPreview();',
+    ],
+    [
+      TEMPORAL_CONTENT_TEMPLATE,
+      '<div (pointerleave)="clearRangePreview()"><span (pointerenter)="previewDate(date)">{{ data.actionLabels.previousMonth }} {{ data.actionLabels.confirm }}</span></div>',
+    ],
+    [TEMPORAL_TOKENS, TEMPORAL_REQUIRED_TOKENS.join('\n')],
+  ]);
+  for (const slug of TEMPORAL_CONTROL_SLUGS) {
+    validTemporalFiles.set(
+      `src/app/controls/${slug}/${slug}.ts`,
+      "readonly locale = input('ar-EG'); readonly pattern = input<string | null>(null); readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null); resolveDomainPattern(); commitPickerResult();",
+    );
+    validTemporalFiles.set(
+      `src/app/controls/${slug}/${slug}.html`,
+      '<erp-field-trigger />',
+    );
+  }
+  if (validateTemporalCorrectionContracts(validTemporalFiles).length > 0) {
+    throw new Error('ErpField checker rejected valid temporal fixtures');
+  }
+  validTemporalFiles.set(
+    'src/app/controls/date-box/date-box.ts',
+    (validTemporalFiles.get('src/app/controls/date-box/date-box.ts') ?? '')
+      .replace("'ar-EG'", "'en-US'"),
+  );
+  if (validateTemporalCorrectionContracts(validTemporalFiles).length === 0) {
+    throw new Error('ErpField checker accepted invalid temporal fixtures');
   }
 
   const invalidTriggerFixtures = new Map(valid);
@@ -1076,6 +1194,7 @@ errors.push(
     RADIO_BOX_STYLES.map((file) => files.get(file) ?? '').join('\n'),
   ),
 );
+errors.push(...validateTemporalCorrectionContracts(files));
 errors.push(
   ...validateSearchBoxPopupContracts(
     files.get(SEARCH_BOX_SOURCE) ?? '',

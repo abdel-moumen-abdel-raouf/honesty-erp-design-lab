@@ -11,6 +11,29 @@ export type ErpTemporalPickerMode =
   | 'datetime'
   | 'range';
 
+export interface ErpTemporalActionLabels {
+  readonly previousMonth: string;
+  readonly nextMonth: string;
+  readonly today: string;
+  readonly clear: string;
+  readonly cancel: string;
+  readonly confirm: string;
+  readonly hour: string;
+  readonly minute: string;
+}
+
+export const ERP_TEMPORAL_DEFAULT_ACTION_LABELS =
+  Object.freeze<ErpTemporalActionLabels>({
+    previousMonth: 'الشهر السابق',
+    nextMonth: 'الشهر التالي',
+    today: 'اليوم',
+    clear: 'مسح',
+    cancel: 'إلغاء',
+    confirm: 'تأكيد',
+    hour: 'الساعة',
+    minute: 'الدقيقة',
+  });
+
 export interface ErpTemporalPickerData {
   readonly mode: ErpTemporalPickerMode;
   readonly value: ErpTemporalValue;
@@ -19,6 +42,7 @@ export interface ErpTemporalPickerData {
   readonly weekStartsOn: number;
   readonly minuteStep: number;
   readonly locale: string | null;
+  readonly actionLabels: ErpTemporalActionLabels;
   readonly clearable: boolean;
   readonly theme: 'light' | 'dark';
 }

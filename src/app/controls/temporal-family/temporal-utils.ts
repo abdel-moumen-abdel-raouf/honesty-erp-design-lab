@@ -1,4 +1,5 @@
 import {ErpDateRangeValue} from './temporal-contracts';
+import {matchesDomainPattern} from '../input-family/domain-validation';
 
 const DATE_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/;
 const TIME_PATTERN = /^(\d{2}):(\d{2})$/;
@@ -22,8 +23,13 @@ export function normalizeIsoDate(
   value: unknown,
   min: string | null = null,
   max: string | null = null,
+  pattern: RegExp | null = DATE_PATTERN,
 ): string | null {
-  if (typeof value !== 'string' || parseIsoDate(value) === null) return null;
+  if (
+    typeof value !== 'string' ||
+    !matchesDomainPattern(value, pattern) ||
+    parseIsoDate(value) === null
+  ) return null;
   if (min && value < min) return min;
   if (max && value > max) return max;
   return value;
@@ -33,17 +39,27 @@ export function normalizeIsoTime(
   value: unknown,
   min: string | null = null,
   max: string | null = null,
+  pattern: RegExp | null = TIME_PATTERN,
 ): string | null {
   if (typeof value !== 'string') return null;
   const match = TIME_PATTERN.exec(value);
-  if (!match || Number(match[1]) > 23 || Number(match[2]) > 59) return null;
+  if (
+    !matchesDomainPattern(value, pattern) ||
+    !match ||
+    Number(match[1]) > 23 ||
+    Number(match[2]) > 59
+  ) return null;
   if (min && value < min) return min;
   if (max && value > max) return max;
   return value;
 }
 
-export function normalizeIsoDateTime(value: unknown): string | null {
+export function normalizeIsoDateTime(
+  value: unknown,
+  pattern: RegExp | null = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/,
+): string | null {
   if (typeof value !== 'string') return null;
+  if (!matchesDomainPattern(value, pattern)) return null;
   const [date, time, remainder] = value.split('T');
   return remainder === undefined &&
     normalizeIsoDate(date) === date &&
@@ -52,11 +68,14 @@ export function normalizeIsoDateTime(value: unknown): string | null {
     : null;
 }
 
-export function normalizeDateRange(value: unknown): ErpDateRangeValue {
+export function normalizeDateRange(
+  value: unknown,
+  pattern: RegExp | null = DATE_PATTERN,
+): ErpDateRangeValue {
   if (!value || typeof value !== 'object') return {start: null, end: null};
   const candidate = value as {start?: unknown; end?: unknown};
-  const start = normalizeIsoDate(candidate.start);
-  const end = normalizeIsoDate(candidate.end);
+  const start = normalizeIsoDate(candidate.start, null, null, pattern);
+  const end = normalizeIsoDate(candidate.end, null, null, pattern);
   return start && end && start > end ? {start, end: null} : {start, end};
 }
 

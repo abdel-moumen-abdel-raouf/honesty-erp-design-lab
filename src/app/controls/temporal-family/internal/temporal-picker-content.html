@@ -1,29 +1,39 @@
 <erp-stack class="temporal-picker" gap="default" [attr.data-theme]="data.theme">
   @if (calendarVisible) {
     <erp-inline justify="between" gap="tight">
-      <erp-button data-previous-month label="Previous month" variant="ghost" tone="neutral" size="sm" (pressed)="previousMonth()" />
+      <erp-button data-previous-month [label]="data.actionLabels.previousMonth" variant="ghost" tone="neutral" size="sm" (pressed)="previousMonth()" />
       <erp-text type="heading-3">{{ monthLabel() }}</erp-text>
-      <erp-button data-next-month label="Next month" variant="ghost" tone="neutral" size="sm" (pressed)="nextMonth()" />
+      <erp-button data-next-month [label]="data.actionLabels.nextMonth" variant="ghost" tone="neutral" size="sm" (pressed)="nextMonth()" />
     </erp-inline>
-    <div class="calendar" tabindex="0" data-calendar-grid (keydown)="handleCalendarKeydown($event)">
+    <div class="calendar" tabindex="0" data-calendar-grid (keydown)="handleCalendarKeydown($event)" (pointerleave)="clearRangePreview()">
       @for (weekday of weekdayHeaders(); track weekday) {
         <erp-text class="weekday" type="caption" tone="secondary">{{ weekday }}</erp-text>
       }
       @for (date of calendarDays(); track date) {
-        <erp-button
-          data-calendar-day
+        <span
+          class="calendar-day"
           [attr.data-date]="date"
           [attr.data-selected]="dateSelected(date)"
+          [attr.data-range-start]="dateRangeStart(date)"
+          [attr.data-range-end]="dateRangeEnd(date)"
           [attr.data-in-range]="dateInRange(date)"
+          [attr.data-in-preview]="dateInPreview(date)"
+          [attr.data-preview-endpoint]="datePreviewEndpoint(date)"
           [attr.data-current-month]="inCurrentMonth(date)"
-          [label]="dayLabel(date)"
-          [variant]="dateSelected(date) ? 'solid' : 'ghost'"
-          tone="neutral"
-          size="sm"
-          shape="rounded"
-          [disabled]="dateDisabled(date)"
-          (pressed)="selectDate(date)"
-        />
+          (pointerenter)="previewDate(date)"
+        >
+          <erp-button
+            data-calendar-day
+            [attr.data-date]="date"
+            [label]="dayLabel(date)"
+            [variant]="dateSelected(date) ? 'solid' : 'ghost'"
+            tone="neutral"
+            size="sm"
+            shape="rounded"
+            [disabled]="dateDisabled(date)"
+            (pressed)="selectDate(date)"
+          />
+        </span>
       }
     </div>
   }
@@ -31,13 +41,13 @@
   @if (timeVisible) {
     <erp-grid class="time-grid" [columns]="2" gap="sm" responsive="fixed">
       <erp-stack class="time-list" gap="tight">
-        <erp-text type="label">Hour</erp-text>
+        <erp-text type="label">{{ data.actionLabels.hour }}</erp-text>
         @for (hour of hours; track hour) {
           <erp-button data-time-hour [attr.data-selected]="stagedHour() === hour" [label]="hour" [variant]="stagedHour() === hour ? 'solid' : 'ghost'" tone="neutral" size="sm" (pressed)="selectHour(hour)" />
         }
       </erp-stack>
       <erp-stack class="time-list" gap="tight">
-        <erp-text type="label">Minute</erp-text>
+        <erp-text type="label">{{ data.actionLabels.minute }}</erp-text>
         @for (minute of minutes(); track minute) {
           <erp-button data-time-minute [attr.data-selected]="stagedMinute() === minute" [label]="minute" [variant]="stagedMinute() === minute ? 'solid' : 'ghost'" tone="neutral" size="sm" (pressed)="selectMinute(minute)" />
         }
@@ -47,12 +57,12 @@
 
   <erp-inline class="picker-actions" gap="tight" wrap="wrap" justify="end">
     @if (calendarVisible) {
-      <erp-button data-today-action label="Today" variant="ghost" tone="neutral" size="sm" (pressed)="selectToday()" />
+      <erp-button data-today-action [label]="data.actionLabels.today" variant="ghost" tone="neutral" size="sm" (pressed)="selectToday()" />
     }
     @if (data.clearable) {
-      <erp-button data-clear-action label="Clear" variant="ghost" tone="neutral" size="sm" (pressed)="clear()" />
+      <erp-button data-clear-action [label]="data.actionLabels.clear" variant="ghost" tone="neutral" size="sm" (pressed)="clear()" />
     }
-    <erp-button data-cancel-action label="Cancel" variant="outline" tone="neutral" size="sm" (pressed)="cancel()" />
-    <erp-button data-confirm-action label="Confirm" size="sm" (pressed)="confirm()" />
+    <erp-button data-cancel-action [label]="data.actionLabels.cancel" variant="outline" tone="neutral" size="sm" (pressed)="cancel()" />
+    <erp-button data-confirm-action [label]="data.actionLabels.confirm" size="sm" (pressed)="confirm()" />
   </erp-inline>
 </erp-stack>

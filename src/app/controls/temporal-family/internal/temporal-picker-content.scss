@@ -9,7 +9,7 @@
 .calendar {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: var(--honesty-temporal-picker-calendar-gap);
+  gap: 0;
   min-inline-size: 0;
   outline-color: var(--honesty-temporal-picker-focus-color);
 }
@@ -18,12 +18,45 @@
   text-align: center;
 }
 
-[data-calendar-day][data-current-month='false'] {
+.calendar-day {
+  min-inline-size: 0;
+  color: var(--honesty-temporal-picker-range-fg);
+  transition: background-color
+      var(--honesty-temporal-picker-range-transition-duration)
+      var(--honesty-temporal-picker-range-transition-easing),
+    color var(--honesty-temporal-picker-range-transition-duration)
+      var(--honesty-temporal-picker-range-transition-easing);
+}
+
+.calendar-day > [data-calendar-day] {
+  inline-size: 100%;
+}
+
+.calendar-day[data-current-month='false'] {
   opacity: var(--honesty-temporal-picker-adjacent-opacity);
 }
 
-[data-calendar-day][data-in-range='true'] {
+.calendar-day[data-in-range='true'] {
   background: var(--honesty-temporal-picker-range-bg);
+  color: var(--honesty-temporal-picker-range-fg);
+}
+
+.calendar-day[data-range-start='true'],
+.calendar-day[data-range-end='true'] {
+  border-radius: var(--honesty-temporal-picker-range-radius);
+  background: var(--honesty-temporal-picker-range-endpoint-bg);
+  color: var(--honesty-temporal-picker-range-endpoint-fg);
+}
+
+.calendar-day[data-in-preview='true'] {
+  background: var(--honesty-temporal-picker-range-preview-bg);
+  color: var(--honesty-temporal-picker-range-preview-fg);
+}
+
+.calendar-day[data-preview-endpoint='true'] {
+  border-radius: var(--honesty-temporal-picker-range-radius);
+  background: var(--honesty-temporal-picker-range-preview-endpoint-bg);
+  color: var(--honesty-temporal-picker-range-preview-endpoint-fg);
 }
 
 .time-list {
@@ -37,4 +70,10 @@
   border-block-start: var(--honesty-temporal-picker-divider-width)
     var(--honesty-temporal-picker-divider-style)
     var(--honesty-temporal-picker-divider-color);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calendar-day {
+    transition-duration: var(--honesty-temporal-picker-range-reduced-duration);
+  }
 }

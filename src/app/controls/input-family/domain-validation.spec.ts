@@ -1,8 +1,11 @@
 import {
   containsAlphabeticCharacter,
+  ERP_DATE_FINAL_PATTERN,
+  ERP_DATE_TIME_FINAL_PATTERN,
   ERP_MONEY_FINAL_PATTERN,
   ERP_NUMBER_FINAL_PATTERN,
   ERP_TEL_FINAL_PATTERN,
+  ERP_TIME_FINAL_PATTERN,
   ERP_URL_FINAL_PATTERN,
   isHttpUrlDomainValue,
   isProgressiveNumericDraft,
@@ -53,5 +56,21 @@ describe('domain validation', () => {
     expect(matchesDomainPattern('+20 ABC', pattern)).toBe(false);
     expect(containsAlphabeticCharacter('+20 ABC')).toBe(true);
     expect(containsAlphabeticCharacter('+20 100')).toBe(false);
+  });
+
+  it('provides the exact temporal final-value admission patterns', () => {
+    const date = resolveDomainPattern(null, ERP_DATE_FINAL_PATTERN).regex;
+    const time = resolveDomainPattern(null, ERP_TIME_FINAL_PATTERN).regex;
+    const dateTime = resolveDomainPattern(
+      null,
+      ERP_DATE_TIME_FINAL_PATTERN,
+    ).regex;
+
+    expect(matchesDomainPattern('2026-05-04', date)).toBe(true);
+    expect(matchesDomainPattern('04/05/2026', date)).toBe(false);
+    expect(matchesDomainPattern('09:35', time)).toBe(true);
+    expect(matchesDomainPattern('9:35', time)).toBe(false);
+    expect(matchesDomainPattern('2026-05-04T09:35', dateTime)).toBe(true);
+    expect(matchesDomainPattern('2026-05-04 09:35', dateTime)).toBe(false);
   });
 });

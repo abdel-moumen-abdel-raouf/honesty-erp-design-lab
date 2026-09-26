@@ -3,6 +3,17 @@
   --honesty-temporal-picker-focus-color: var(--honesty-color-action-focus-ring);
   --honesty-temporal-picker-adjacent-opacity: 0.48;
   --honesty-temporal-picker-range-bg: var(--honesty-color-brand-primary-subtle);
+  --honesty-temporal-picker-range-fg: var(--honesty-color-brand-primary-content);
+  --honesty-temporal-picker-range-endpoint-bg: var(--honesty-color-brand-primary-solid);
+  --honesty-temporal-picker-range-endpoint-fg: var(--honesty-color-brand-primary-on-solid);
+  --honesty-temporal-picker-range-preview-bg: var(--honesty-color-action-primary-subtle-bg-hover);
+  --honesty-temporal-picker-range-preview-fg: var(--honesty-color-action-primary-subtle-fg);
+  --honesty-temporal-picker-range-preview-endpoint-bg: var(--honesty-color-brand-primary-solid-strong);
+  --honesty-temporal-picker-range-preview-endpoint-fg: var(--honesty-color-brand-primary-on-solid);
+  --honesty-temporal-picker-range-radius: var(--honesty-radius-control);
+  --honesty-temporal-picker-range-transition-duration: var(--honesty-motion-duration-fast);
+  --honesty-temporal-picker-range-transition-easing: var(--honesty-motion-easing-standard);
+  --honesty-temporal-picker-range-reduced-duration: var(--honesty-motion-duration-instant);
   --honesty-temporal-picker-time-list-max-block-size: 16rem;
   --honesty-temporal-picker-scroll-padding: var(--honesty-space-inline-tight);
   --honesty-temporal-picker-actions-gap: var(--honesty-space-stack-tight);

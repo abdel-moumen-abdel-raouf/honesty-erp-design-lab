@@ -6,6 +6,10 @@ export const ERP_MONEY_FINAL_PATTERN =
   '^[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)$';
 export const ERP_URL_FINAL_PATTERN = '^https?:\\/\\/[^\\s]+$';
 export const ERP_TEL_FINAL_PATTERN = '^\\+?[0-9][0-9\\s().-]{5,19}$';
+export const ERP_DATE_FINAL_PATTERN = '^\\d{4}-\\d{2}-\\d{2}$';
+export const ERP_TIME_FINAL_PATTERN = '^\\d{2}:\\d{2}$';
+export const ERP_DATE_TIME_FINAL_PATTERN =
+  '^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}$';
 
 export interface ErpDomainPatternResolution {
   readonly configurationState: ErpInputConfigurationState;
