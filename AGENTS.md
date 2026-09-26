@@ -400,6 +400,32 @@ Rules:
 - A Basic Control family freeze never closes the Basic Controls layer.
 - Internal derived InputBase state stays protected; only approved inherited inputs form public base API.
 - Concrete controls must not mutate InputBase value/focus state directly; user mutations go through the protected base helpers.
+
+## Production Corrected Controls Governance
+
+- Concrete Controls and Composites use approved ERP/internal semantic button
+  owners; raw native button authoring is forbidden outside those internals.
+- NumberBox and NumberStepper remain text-like decimal editors and must not
+  reintroduce browser-native number spinners.
+- ColorPicker system colors come only from the generated Foundation System
+  Color Registry; copied palettes are forbidden.
+- FilePicker and ImagePicker remain multi-selection controls and own no HTTP
+  upload, progress, retry, server-response, or backend-policy behavior.
+- SearchBox popup mode remains nonblocking, anchored, backdrop-free, and
+  independent from both `ErpOverlayManager` and Tooltip popup behavior.
+- IconPicker selection tiles retain fixed, tokenized, content-independent
+  geometry.
+- Blocking Overlay backdrop, layer, lifecycle, dismissal, blur, tone, motion,
+  reduced-motion, and drawer geometry remain owned by the shared Overlay
+  system; Feature/Page code must not recreate or override them.
+- Field Component Tokens remain internal to the Field implementation; picker
+  controls use `ErpFieldTrigger` instead of raw trigger buttons.
+- DateRange staging retains anchor, preview, chronological interval, keyboard,
+  disabled-date, Light/Dark, and RTL contracts.
+- Corrected showcase and internal picker default copy is Arabic-first; stable
+  API identifiers may remain English.
+- These rules are technical regression guards only. They do not declare visual
+  approval, freeze a control family, or close the Basic Controls layer.
 - `ErpSearchBox` popup mode is a nonblocking anchored popup with no backdrop;
   it uses AnchoredOverlay geometry, not `ErpOverlayManager` or Tooltip.
 - SearchBox popup visuals and motion remain in the SearchBox Component Token

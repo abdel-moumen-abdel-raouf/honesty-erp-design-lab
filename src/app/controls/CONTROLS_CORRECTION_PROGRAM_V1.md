@@ -298,3 +298,26 @@ redistributed:
 13. CR12 — final governance, test, and documentation consolidation.
 
 `DEFERRED_PHASE_10_11_REVIEW` remains pending and outside this program.
+
+## Final governance consolidation
+
+The repository governance gates mechanically retain the corrected contracts:
+
+- ERP/internal semantic button ownership and FieldTrigger picker ownership;
+- text-like NumberBox/NumberStepper editors without browser spinners;
+- generated Foundation System Color Registry use without copied palettes;
+- multi-file/image selection without upload-network ownership;
+- nonblocking SearchBox popup separation from OverlayManager and Tooltip;
+- fixed tokenized IconPicker tile geometry;
+- blocking Overlay ownership, exact public config/motion unions, defaults,
+  lifecycle phases, RTL/reduced-motion behavior, and drawer geometry;
+- internal-only Field Component Token consumption;
+- DateRange anchor/preview/final interval staging;
+- Arabic-first corrected showcase and picker defaults; and
+- complete source/template/token/spec/showcase inventory for implemented
+  Phase 00–09 controls and shared correction participants.
+
+All checker self-tests contain valid acceptance and invalid rejection fixtures.
+This final technical consolidation does not declare visual approval, freeze any
+control family, close Basic Controls, or execute the deferred Phase 10/11
+review.

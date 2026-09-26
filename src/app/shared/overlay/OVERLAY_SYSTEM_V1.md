@@ -174,6 +174,11 @@ menu subsystem.
 Tooltip remains on its existing nonblocking anchored-overlay architecture and
 must not migrate to `ErpOverlayManager`.
 
+SearchBox popup mode is also nonblocking and anchored, but it owns its popup
+surface, sizing, motion, dismissal, and Component Tokens inside the SearchBox
+namespace. It has no backdrop and does not consume `ErpOverlayManager`, Tooltip,
+or Overlay Component Tokens.
+
 `ErpFieldFeedback` stays in normal document flow and never uses Tooltip,
 anchored-overlay, portals, or `ErpOverlayManager`.
 
@@ -195,3 +200,18 @@ infrastructure and does not recreate blocking backdrops or z-index systems.
   layer, Surface scrim, and Foundation blocking backdrop-blur effect.
 - Responsive sizing uses the Foundation Query API and reduced-motion timing
   resolves through the overlay token contract.
+
+## Correction Governance
+
+- Public blur, backdrop-tone, animation, and lifecycle-phase unions are checked
+  exactly against this contract.
+- Manager defaults and modal/drawer motion defaults are checked mechanically.
+- All seven public animation presets, logical RTL start/end reversal,
+  reduced-motion completion, leaving-phase retention, and full-viewport drawer
+  geometry remain covered by governance and unit tests.
+- Feature/Page code cannot author another OverlayHost, instantiate OverlayRef,
+  or recreate blocking fixed backdrops, raw backdrop effects, or numeric
+  overlay layers.
+
+This is a technical correction checkpoint only. It does not declare visual
+approval, freeze an Overlay-backed control family, or close Basic Controls.

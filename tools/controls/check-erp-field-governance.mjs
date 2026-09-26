@@ -90,6 +90,14 @@ const SELECTION_CONTROL_SLUGS = [
 ];
 const DOMAIN_VALIDATION =
   'src/app/controls/input-family/domain-validation.ts';
+const NUMBER_BOX_TEMPLATE =
+  'src/app/controls/number-box/number-box.html';
+const NUMBER_STEPPER_TEMPLATE =
+  'src/app/controls/number-stepper/number-stepper.html';
+const SELECTION_CONTENT_STYLES =
+  'src/app/controls/selection-family/internal/selection-picker-content.scss';
+const TEMPORAL_CONTRACTS =
+  'src/app/controls/temporal-family/temporal-contracts.ts';
 const TEMPORAL_REQUIRED_TOKENS = [
   '--honesty-temporal-picker-range-endpoint-bg:',
   '--honesty-temporal-picker-range-endpoint-fg:',
@@ -479,6 +487,93 @@ export function validateSearchBoxPopupContracts(
   return errors;
 }
 
+export function validateNumericEditorContracts(files) {
+  const errors = [];
+
+  for (const file of [NUMBER_BOX_TEMPLATE, NUMBER_STEPPER_TEMPLATE]) {
+    const source = files.get(file) ?? '';
+
+    if (
+      !/<input\b[\s\S]*?type="text"[\s\S]*?inputmode="decimal"/.test(
+        source,
+      ) ||
+      /type="number"/.test(source)
+    ) {
+      errors.push(
+        `${file}: numeric editors must remain text-like decimal inputs without browser spinners`,
+      );
+    }
+  }
+
+  return errors;
+}
+
+export function validateArabicFirstDefaults(files) {
+  const errors = [];
+  const temporal = files.get(TEMPORAL_CONTRACTS) ?? '';
+  const selection = files.get(SELECTION_CONTRACTS) ?? '';
+
+  for (const value of [
+    'الشهر السابق',
+    'الشهر التالي',
+    'اليوم',
+    'مسح',
+    'إلغاء',
+    'تأكيد',
+    'الساعة',
+    'الدقيقة',
+  ]) {
+    if (!temporal.includes(`'${value}'`)) {
+      errors.push(
+        `${TEMPORAL_CONTRACTS}: missing Arabic-first default "${value}"`,
+      );
+    }
+  }
+
+  for (const value of [
+    'ألوان النظام',
+    'لون حر',
+    'لم يتم اختيار قيمة',
+    'بحث',
+    'مسح',
+    'إلغاء',
+    'تأكيد',
+  ]) {
+    if (!selection.includes(`'${value}'`)) {
+      errors.push(
+        `${SELECTION_CONTRACTS}: missing Arabic-first default "${value}"`,
+      );
+    }
+  }
+
+  const showcaseSources = [
+    files.get(INPUT_SHOWCASE) ?? '',
+    files.get(OVERLAY_SHOWCASE) ?? '',
+  ].join('\n');
+
+  for (const staleCopy of [
+    'Text Entry Family V1',
+    'Control family',
+    'Variants / Appearance',
+    'Seven sizes',
+    'Field matrix',
+    'Behavior / Direction',
+    'Temporal picker overlays',
+    'Selection picker overlays',
+    'Deferred control composites',
+    'Open date picker',
+    'Open color picker',
+  ]) {
+    if (showcaseSources.includes(staleCopy)) {
+      errors.push(
+        `Corrected showcase contains stale English-only copy "${staleCopy}"`,
+      );
+    }
+  }
+
+  return errors;
+}
+
 export function validateProgramControlInventory(files, documentation) {
   const errors = [];
 
@@ -707,6 +802,7 @@ export function validateSelectionCorrectionContracts(files) {
   const template = files.get(SELECTION_CONTENT_TEMPLATE) ?? '';
   const tileTemplate = files.get(SELECTION_TILE_TEMPLATE) ?? '';
   const tokens = files.get(SELECTION_TOKENS) ?? '';
+  const styles = files.get(SELECTION_CONTENT_STYLES) ?? '';
 
   if (
     !contracts.includes("readonly mode: 'system';") ||
@@ -729,6 +825,17 @@ export function validateSelectionCorrectionContracts(files) {
   ) {
     errors.push(
       'Selection picker: generated system colors, SelectionTile, Tooltip, and no direct raw buttons are required',
+    );
+  }
+
+  if (
+    (content.match(/#[0-9a-fA-F]{3,8}\b/g) ?? []).length > 1 ||
+    /const\s+[A-Z0-9_]*(?:COLOR|PALETTE)[A-Z0-9_]*\s*=\s*\[/.test(
+      content,
+    )
+  ) {
+    errors.push(
+      'ColorPicker: a hand-maintained color palette is forbidden; use the generated Foundation registry',
     );
   }
 
@@ -759,6 +866,17 @@ export function validateSelectionCorrectionContracts(files) {
     if (!tokens.includes(token)) {
       errors.push(`SelectionPicker tokens must declare ${token}`);
     }
+  }
+
+  if (
+    !tokens.includes('--honesty-selection-picker-tile-size: 4rem;') ||
+    !styles.includes(
+      'grid-template-columns: repeat(auto-fill, var(--honesty-selection-picker-tile-size))',
+    )
+  ) {
+    errors.push(
+      'IconPicker: fixed equal tile geometry must remain tokenized and content-independent',
+    );
   }
 
   return errors;
@@ -941,9 +1059,13 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     ],
     [SELECTION_TILE_TEMPLATE, '<button type="button"></button>'],
     [
+      SELECTION_CONTENT_STYLES,
+      'grid-template-columns: repeat(auto-fill, var(--honesty-selection-picker-tile-size));',
+    ],
+    [
       SELECTION_TOKENS,
       [
-        '--honesty-selection-picker-tile-size:',
+        '--honesty-selection-picker-tile-size: 4rem;',
         '--honesty-selection-picker-tile-bg:',
         '--honesty-selection-picker-tile-bg-hover:',
         '--honesty-selection-picker-tile-bg-selected:',
@@ -967,6 +1089,72 @@ export class ErpImagePicker extends ErpFileSelectionBase {
   );
   if (validateSelectionCorrectionContracts(validSelectionFiles).length === 0) {
     throw new Error('ErpField checker accepted invalid selection fixtures');
+  }
+  validSelectionFiles.set(
+    SELECTION_CONTENT_TEMPLATE,
+    '<erp-selection-tile><erp-tooltip></erp-tooltip></erp-selection-tile>',
+  );
+  validSelectionFiles.set(
+    SELECTION_CONTENT_SOURCE,
+    'ERP_SYSTEM_COLOR_FAMILIES ERP_SYSTEM_COLOR_STEPS ERP_SYSTEM_COLOR_PALETTES const LOCAL_PALETTE = ["#ffffff"];',
+  );
+  if (validateSelectionCorrectionContracts(validSelectionFiles).length === 0) {
+    throw new Error('ErpField checker accepted a duplicate ColorPicker palette');
+  }
+
+  const validNumericEditors = new Map([
+    [NUMBER_BOX_TEMPLATE, '<input type="text" inputmode="decimal">'],
+    [NUMBER_STEPPER_TEMPLATE, '<input type="text" inputmode="decimal">'],
+  ]);
+  if (validateNumericEditorContracts(validNumericEditors).length > 0) {
+    throw new Error('ErpField checker rejected valid numeric editors');
+  }
+  validNumericEditors.set(
+    NUMBER_STEPPER_TEMPLATE,
+    '<input type="number">',
+  );
+  if (validateNumericEditorContracts(validNumericEditors).length === 0) {
+    throw new Error('ErpField checker accepted a browser spinner regression');
+  }
+
+  const validArabicDefaults = new Map([
+    [
+      TEMPORAL_CONTRACTS,
+      [
+        'الشهر السابق',
+        'الشهر التالي',
+        'اليوم',
+        'مسح',
+        'إلغاء',
+        'تأكيد',
+        'الساعة',
+        'الدقيقة',
+      ].map((value) => `'${value}'`).join(' '),
+    ],
+    [
+      SELECTION_CONTRACTS,
+      [
+        'ألوان النظام',
+        'لون حر',
+        'لم يتم اختيار قيمة',
+        'بحث',
+        'مسح',
+        'إلغاء',
+        'تأكيد',
+      ].map((value) => `'${value}'`).join(' '),
+    ],
+    [INPUT_SHOWCASE, '<erp-text>عناصر الإدخال</erp-text>'],
+    [OVERLAY_SHOWCASE, '<erp-text>منتقيات الاختيار</erp-text>'],
+  ]);
+  if (validateArabicFirstDefaults(validArabicDefaults).length > 0) {
+    throw new Error('ErpField checker rejected valid Arabic-first defaults');
+  }
+  validArabicDefaults.set(
+    INPUT_SHOWCASE,
+    '<erp-text>Control family</erp-text>',
+  );
+  if (validateArabicFirstDefaults(validArabicDefaults).length === 0) {
+    throw new Error('ErpField checker accepted stale English-only showcase copy');
   }
   validTemporalFiles.set(
     'src/app/controls/date-box/date-box.ts',
@@ -1289,6 +1477,8 @@ const files = new Map(
 
 const errors = validate(files);
 errors.push(...validateFieldTriggerContracts(files));
+errors.push(...validateNumericEditorContracts(files));
+errors.push(...validateArabicFirstDefaults(files));
 errors.push(
   ...validateProgramControlInventory(
     files,

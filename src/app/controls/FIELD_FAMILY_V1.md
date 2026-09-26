@@ -557,11 +557,14 @@ Its invariant is `min <= lower <= upper <= max`; thumbs do not cross in V1.
 
 ## Selection Overlay Picker Family
 
-- `ErpColorPicker` stores `string | null` as canonical uppercase `#RRGGBB`,
-  provides semantic preset swatches and an allowed native custom color input,
-  and stages clear/selection until confirmation.
+- `ErpColorPicker` stores `ErpColorPickerValue | null`. System mode preserves a
+  generated Foundation System Color token identity; free mode preserves a
+  normalized uppercase `#RRGGBB`. It owns no copied palette, provides the
+  allowed native custom color input, and stages clear/selection until
+  confirmation.
 - `ErpIconPicker` stores `ErpIconName | null`, searches the complete semantic
-  icon registry, supports keyboard selection, and never exposes vendor names.
+  icon registry, uses fixed tokenized equal tiles, supports keyboard selection,
+  and never exposes vendor names.
 - `ErpItemPicker` stores `string | null` and consumes readonly options with
   `value`, `label`, optional `disabled`, and optional semantic `icon`; its
   defaults are nullable placeholder, `searchable = false`, and
@@ -570,7 +573,8 @@ Its invariant is `min <= lower <= upper <= max`; thumbs do not cross in V1.
   commits only a matched enabled option value, and never commits free-form text
   in V1.
 - All four use Field Family chrome and `ErpOverlayManager`; overlay selection is
-  staged so cancel or dismissal does not mutate the CVA value.
+  staged so cancel or dismissal does not mutate the CVA value. Their default
+  actions are Arabic-first and they expose the typed Overlay behavior subset.
 
 Boolean/choice Basic Controls are `ErpCheckBox` and `ErpRadioBox`.
 `ErpRadioGroup` remains Composite.

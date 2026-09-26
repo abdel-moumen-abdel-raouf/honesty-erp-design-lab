@@ -82,3 +82,27 @@ implied by the existing technical checkpoint.
 - Selection is staged inside the overlay and reaches the CVA only after explicit
   confirmation.
 - Default selection-picker action copy is Arabic-first.
+
+## Corrected Shared Contracts
+
+- NumberBox and NumberStepper use text-like decimal editors without
+  browser-native number spinners. Number, stepper, money, URL, telephone, and
+  temporal controls separate progressive draft state from committed CVA state
+  and apply their documented built-in/developer pattern rules.
+- SearchBox defaults to a nonblocking anchored popup with no backdrop. It owns
+  its popup tokens and geometry, projects an application-defined results
+  container, and uses neither `ErpOverlayManager` nor Tooltip as its popup.
+- FilePicker and ImagePicker use the internal `ErpFileSelectionBase` and an
+  immutable `readonly File[]` value. Both preserve multiple native selection,
+  additive browse/drop, local policy feedback, remove-one, and clear-all;
+  neither owns upload networking.
+- Temporal and selection pickers stage values in the shared blocking Overlay
+  and commit only on confirmation. DateRange owns anchor, hover/keyboard
+  preview, and one chronological interval in LTR and RTL.
+- Corrected default picker actions and showcase copy are Arabic-first. API
+  identifiers and canonical stored values remain unchanged.
+- Governance verifies the full implemented control inventory, required source,
+  template, Component Token, unit-test, and showcase files.
+
+These are technical correction contracts. They do not declare visual approval,
+freeze the Input/Field families, or close the Basic Controls layer.

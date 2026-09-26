@@ -192,3 +192,14 @@ The Phase 00 through Phase 11 checkpoint is provisional and is now governed by
 `CONTROLS_CORRECTION_PROGRAM_V1.md`. All known Phase 00–09 and shared
 infrastructure corrections in that program must complete before new controls
 are added. Detailed Phase 10/11 review remains deferred to a separate wave.
+
+The Primary Controls Correction Program now supplies the authoritative
+technical contracts for Overlay lifecycle/configuration, Field compatibility
+and glass, specialized domains, SearchBox popup behavior, multi-file/image
+selection, Boolean/Choice visuals, temporal range staging, generated system
+colors, fixed IconPicker tiles, Arabic-first evidence, and their governance
+checks. The public Phase 00–09 inventory retains implementation and unit-test
+coverage.
+
+This synchronization does not perform the deferred Phase 10/11 product review,
+declare visual approval, freeze a family, or close the Basic Controls layer.
