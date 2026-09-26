@@ -1,15 +1,31 @@
-import {ChangeDetectionStrategy, Component, ElementRef, computed, forwardRef, inject, input} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  computed,
+  forwardRef,
+  inject,
+  input,
+} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
 import {ErpText} from '../../primitives/text/text';
+import {ErpOverlayBehaviorConfig} from '../../shared/overlay/overlay-contracts';
 import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
 import {ErpOverlayRef} from '../../shared/overlay/overlay-ref';
 import {ErpFieldBase} from '../input-family/field-base';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
 import {ErpFieldTrigger} from '../input-family/internal/field-trigger';
 import {ErpSelectionPickerContent} from '../selection-family/internal/selection-picker-content';
-import {ErpSelectionPickerData} from '../selection-family/selection-contracts';
-import {normalizeHexColor} from '../selection-family/selection-utils';
+import {
+  ERP_SELECTION_DEFAULT_ACTION_LABELS,
+  ErpColorPickerValue,
+  ErpSelectionPickerData,
+} from '../selection-family/selection-contracts';
+import {
+  normalizeColorPickerValue,
+  resolveColorPickerValue,
+} from '../selection-family/selection-utils';
 
 let nextColorPickerId = 0;
 
@@ -18,30 +34,98 @@ let nextColorPickerId = 0;
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-color-picker',
   imports: [ErpFieldFrame, ErpFieldTrigger, ErpText],
-  providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => ErpColorPicker), multi: true}],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ErpColorPicker),
+      multi: true,
+    },
+  ],
   templateUrl: './color-picker.html',
   styleUrl: './color-picker.scss',
-  host: {'[attr.data-field-configuration-state]': 'fieldConfigurationState()', '[attr.data-color-picker-value]': 'currentValue()'},
+  host: {
+    '[attr.data-field-configuration-state]': 'fieldConfigurationState()',
+    '[attr.data-color-picker-mode]': 'currentValue()?.mode ?? null',
+    '[attr.data-color-picker-value]': 'valueIdentity()',
+  },
 })
-export class ErpColorPicker extends ErpFieldBase<string | null> {
+export class ErpColorPicker extends ErpFieldBase<ErpColorPickerValue | null> {
+  readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null);
   override readonly trailingIcon = input<ErpIconName | null>('chevron-down');
   protected readonly controlId = `erp-color-picker-${++nextColorPickerId}`;
-  protected readonly displayValue = computed(() => this.currentValue() ?? 'Select color');
+  protected readonly displayValue = computed(
+    () => this.valueIdentity() ?? ERP_SELECTION_DEFAULT_ACTION_LABELS.noSelection,
+  );
+  protected readonly resolvedColor = computed(() =>
+    resolveColorPickerValue(this.currentValue()),
+  );
+  protected readonly valueIdentity = computed(() => {
+    const value = this.currentValue();
+    return value === null
+      ? null
+      : value.mode === 'system'
+        ? value.token
+        : value.value;
+  });
   private readonly overlays = inject(ErpOverlayManager);
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
-  private activeRef: ErpOverlayRef<string | null> | null = null;
+  private activeRef: ErpOverlayRef<ErpColorPickerValue | null> | null = null;
 
-  constructor() { super(null); }
-  protected override normalizeValue(value: unknown): string | null { return normalizeHexColor(value); }
+  constructor() {
+    super(null);
+  }
+
+  protected override normalizeValue(value: unknown): ErpColorPickerValue | null {
+    return normalizeColorPickerValue(value);
+  }
+
   protected openPicker(): void {
     if (this.fieldEffectiveDisabled() || this.activeRef) return;
-    const ref = this.overlays.open<ErpSelectionPickerContent, ErpSelectionPickerData, string | null>(ErpSelectionPickerContent, {label: `${this.trimmedLabel()} color picker`, data: this.pickerData()});
+    const ref = this.overlays.open<
+      ErpSelectionPickerContent,
+      ErpSelectionPickerData,
+      ErpColorPickerValue | null
+    >(ErpSelectionPickerContent, {
+      label: `${this.trimmedLabel()} color picker`,
+      ...(this.overlayConfig() ?? {}),
+      data: this.pickerData(),
+    });
     this.activeRef = ref;
-    void ref.afterClosed.then((outcome) => { this.activeRef = null; if (outcome.type === 'closed') this.commitUserValue(outcome.result); });
+    void ref.afterClosed.then((outcome) => {
+      this.activeRef = null;
+      if (outcome.type === 'closed') this.commitUserValue(outcome.result);
+    });
   }
-  protected handleClear(): void { this.commitUserValue(null); }
-  protected handleNativeFocus(): void { this.handleFocus(); }
-  protected handleNativeBlur(): void { this.handleBlur(); }
-  private pickerData(): ErpSelectionPickerData { return {mode: 'color', value: this.currentValue(), items: [], query: '', searchable: false, clearable: true, theme: this.theme()}; }
-  private theme(): 'light' | 'dark' { return this.host.nativeElement.closest('[data-theme="dark"]') ? 'dark' : 'light'; }
+
+  protected handleClear(): void {
+    this.commitUserValue(null);
+  }
+
+  protected handleNativeFocus(): void {
+    this.handleFocus();
+  }
+
+  protected handleNativeBlur(): void {
+    this.handleBlur();
+  }
+
+  private pickerData(): ErpSelectionPickerData {
+    return {
+      mode: 'color',
+      value: this.currentValue(),
+      colorMode: this.currentValue()?.mode ?? 'system',
+      items: [],
+      query: '',
+      searchable: false,
+      clearable: true,
+      actionLabels: ERP_SELECTION_DEFAULT_ACTION_LABELS,
+      theme: this.theme(),
+    };
+  }
+
+  private theme(): 'light' | 'dark' {
+    return this.host.nativeElement.closest('[data-theme="dark"]')
+      ? 'dark'
+      : 'light';
+  }
 }

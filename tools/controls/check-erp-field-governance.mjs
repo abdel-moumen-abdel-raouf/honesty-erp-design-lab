@@ -72,6 +72,22 @@ const TEMPORAL_CONTENT_TEMPLATE =
   'src/app/controls/temporal-family/internal/temporal-picker-content.html';
 const TEMPORAL_TOKENS =
   'src/styles/foundation/components/temporal-picker/_tokens.scss';
+const SELECTION_CONTRACTS =
+  'src/app/controls/selection-family/selection-contracts.ts';
+const SELECTION_CONTENT_SOURCE =
+  'src/app/controls/selection-family/internal/selection-picker-content.ts';
+const SELECTION_CONTENT_TEMPLATE =
+  'src/app/controls/selection-family/internal/selection-picker-content.html';
+const SELECTION_TILE_TEMPLATE =
+  'src/app/controls/selection-family/internal/selection-tile.html';
+const SELECTION_TOKENS =
+  'src/styles/foundation/components/selection-picker/_tokens.scss';
+const SELECTION_CONTROL_SLUGS = [
+  'color-picker',
+  'icon-picker',
+  'item-picker',
+  'combo-box',
+];
 const DOMAIN_VALIDATION =
   'src/app/controls/input-family/domain-validation.ts';
 const TEMPORAL_REQUIRED_TOKENS = [
@@ -684,6 +700,70 @@ export function validateTemporalCorrectionContracts(files) {
   return errors;
 }
 
+export function validateSelectionCorrectionContracts(files) {
+  const errors = [];
+  const contracts = files.get(SELECTION_CONTRACTS) ?? '';
+  const content = files.get(SELECTION_CONTENT_SOURCE) ?? '';
+  const template = files.get(SELECTION_CONTENT_TEMPLATE) ?? '';
+  const tileTemplate = files.get(SELECTION_TILE_TEMPLATE) ?? '';
+  const tokens = files.get(SELECTION_TOKENS) ?? '';
+
+  if (
+    !contracts.includes("readonly mode: 'system';") ||
+    !contracts.includes('readonly token: ErpSystemColorToken;') ||
+    !contracts.includes("readonly mode: 'free';") ||
+    !contracts.includes('readonly value: string;')
+  ) {
+    errors.push(
+      'ColorPicker: exact system-token/free-color value union is required',
+    );
+  }
+
+  if (
+    !content.includes('ERP_SYSTEM_COLOR_FAMILIES') ||
+    !content.includes('ERP_SYSTEM_COLOR_STEPS') ||
+    !content.includes('ERP_SYSTEM_COLOR_PALETTES') ||
+    !template.includes('<erp-selection-tile') ||
+    !template.includes('<erp-tooltip') ||
+    /<button\b/.test(template)
+  ) {
+    errors.push(
+      'Selection picker: generated system colors, SelectionTile, Tooltip, and no direct raw buttons are required',
+    );
+  }
+
+  if ((tileTemplate.match(/<button\b/g) ?? []).length !== 1) {
+    errors.push('SelectionTile must own exactly one native button root');
+  }
+
+  for (const slug of SELECTION_CONTROL_SLUGS) {
+    const source = files.get(`src/app/controls/${slug}/${slug}.ts`) ?? '';
+    if (
+      !source.includes(
+        'readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null)',
+      ) ||
+      !source.includes('...(this.overlayConfig() ?? {})')
+    ) {
+      errors.push(`${slug}: typed Overlay behavior pass-through is required`);
+    }
+  }
+
+  for (const token of [
+    '--honesty-selection-picker-tile-size:',
+    '--honesty-selection-picker-tile-bg:',
+    '--honesty-selection-picker-tile-bg-hover:',
+    '--honesty-selection-picker-tile-bg-selected:',
+    '--honesty-selection-picker-tile-border-color-selected:',
+    '--honesty-selection-picker-tile-disabled-opacity:',
+  ]) {
+    if (!tokens.includes(token)) {
+      errors.push(`SelectionPicker tokens must declare ${token}`);
+    }
+  }
+
+  return errors;
+}
+
 function runSelfTest() {
   const valid = new Map([
     [
@@ -844,6 +924,49 @@ export class ErpImagePicker extends ErpFileSelectionBase {
   }
   if (validateTemporalCorrectionContracts(validTemporalFiles).length > 0) {
     throw new Error('ErpField checker rejected valid temporal fixtures');
+  }
+
+  const validSelectionFiles = new Map([
+    [
+      SELECTION_CONTRACTS,
+      "readonly mode: 'system'; readonly token: ErpSystemColorToken; readonly mode: 'free'; readonly value: string;",
+    ],
+    [
+      SELECTION_CONTENT_SOURCE,
+      'ERP_SYSTEM_COLOR_FAMILIES ERP_SYSTEM_COLOR_STEPS ERP_SYSTEM_COLOR_PALETTES',
+    ],
+    [
+      SELECTION_CONTENT_TEMPLATE,
+      '<erp-selection-tile><erp-tooltip></erp-tooltip></erp-selection-tile>',
+    ],
+    [SELECTION_TILE_TEMPLATE, '<button type="button"></button>'],
+    [
+      SELECTION_TOKENS,
+      [
+        '--honesty-selection-picker-tile-size:',
+        '--honesty-selection-picker-tile-bg:',
+        '--honesty-selection-picker-tile-bg-hover:',
+        '--honesty-selection-picker-tile-bg-selected:',
+        '--honesty-selection-picker-tile-border-color-selected:',
+        '--honesty-selection-picker-tile-disabled-opacity:',
+      ].join('\n'),
+    ],
+  ]);
+  for (const slug of SELECTION_CONTROL_SLUGS) {
+    validSelectionFiles.set(
+      `src/app/controls/${slug}/${slug}.ts`,
+      'readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null); ...(this.overlayConfig() ?? {})',
+    );
+  }
+  if (validateSelectionCorrectionContracts(validSelectionFiles).length > 0) {
+    throw new Error('ErpField checker rejected valid selection fixtures');
+  }
+  validSelectionFiles.set(
+    SELECTION_CONTENT_TEMPLATE,
+    '<button type="button"></button>',
+  );
+  if (validateSelectionCorrectionContracts(validSelectionFiles).length === 0) {
+    throw new Error('ErpField checker accepted invalid selection fixtures');
   }
   validTemporalFiles.set(
     'src/app/controls/date-box/date-box.ts',
@@ -1195,6 +1318,7 @@ errors.push(
   ),
 );
 errors.push(...validateTemporalCorrectionContracts(files));
+errors.push(...validateSelectionCorrectionContracts(files));
 errors.push(
   ...validateSearchBoxPopupContracts(
     files.get(SEARCH_BOX_SOURCE) ?? '',

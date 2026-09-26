@@ -1,5 +1,4 @@
 @mixin base {
-  --honesty-selection-picker-swatch-size: 3rem;
   --honesty-selection-picker-color-input-size: 3rem;
   --honesty-selection-picker-list-max-block-size: 22rem;
   --honesty-selection-picker-gap: var(--honesty-space-stack-tight);
@@ -8,11 +7,19 @@
   --honesty-selection-picker-border-color: var(--honesty-border-subtle);
   --honesty-selection-picker-radius: var(--honesty-radius-control);
   --honesty-selection-picker-focus-color: var(--honesty-color-action-focus-ring);
-  --honesty-selection-picker-swatch-primary: var(--honesty-color-brand-primary-solid);
-  --honesty-selection-picker-swatch-secondary: var(--honesty-color-brand-secondary-solid);
-  --honesty-selection-picker-swatch-accent: var(--honesty-color-brand-accent-solid);
-  --honesty-selection-picker-swatch-success: var(--honesty-color-feedback-success-surface-strong);
-  --honesty-selection-picker-swatch-warning: var(--honesty-color-feedback-warning-surface-strong);
-  --honesty-selection-picker-swatch-danger: var(--honesty-color-feedback-danger-surface-strong);
-  --honesty-selection-picker-swatch-info: var(--honesty-color-feedback-info-surface-strong);
+  --honesty-selection-picker-tile-size: 4rem;
+  --honesty-selection-picker-tile-bg: var(--honesty-color-surface-default);
+  --honesty-selection-picker-tile-bg-hover: var(--honesty-color-action-primary-subtle-bg-hover);
+  --honesty-selection-picker-tile-bg-selected: var(--honesty-color-action-primary-subtle-bg);
+  --honesty-selection-picker-tile-fg: var(--honesty-color-text-primary);
+  --honesty-selection-picker-tile-fg-selected: var(--honesty-color-action-primary-subtle-fg);
+  --honesty-selection-picker-tile-border-color: var(--honesty-border-subtle);
+  --honesty-selection-picker-tile-border-color-selected: var(--honesty-color-brand-primary-content);
+  --honesty-selection-picker-tile-disabled-opacity: 0.48;
+  --honesty-selection-picker-tile-focus-width: var(--honesty-focus-ring-width);
+  --honesty-selection-picker-tile-focus-style: var(--honesty-focus-ring-style);
+  --honesty-selection-picker-tile-focus-offset: var(--honesty-focus-ring-offset);
+  --honesty-selection-picker-tile-transition-duration: var(--honesty-motion-duration-fast);
+  --honesty-selection-picker-tile-transition-easing: var(--honesty-motion-easing-standard);
+  --honesty-selection-picker-tile-reduced-duration: var(--honesty-motion-duration-instant);
 }

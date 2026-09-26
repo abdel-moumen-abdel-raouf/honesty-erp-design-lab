@@ -3,10 +3,11 @@ import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
 import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
 import {ErpOverlayRef} from '../../shared/overlay/overlay-ref';
+import {ErpOverlayBehaviorConfig} from '../../shared/overlay/overlay-contracts';
 import {ErpFieldBase} from '../input-family/field-base';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
 import {ErpSelectionPickerContent} from '../selection-family/internal/selection-picker-content';
-import {ErpItemPickerOption, ErpSelectionPickerData} from '../selection-family/selection-contracts';
+import {ERP_SELECTION_DEFAULT_ACTION_LABELS, ErpItemPickerOption, ErpSelectionPickerData} from '../selection-family/selection-contracts';
 import {normalizeItemValue} from '../selection-family/selection-utils';
 
 let nextComboBoxId = 0;
@@ -24,6 +25,7 @@ let nextComboBoxId = 0;
 export class ErpComboBox extends ErpFieldBase<string | null> {
   readonly items = input.required<readonly ErpItemPickerOption[]>();
   readonly placeholder = input<string | null>(null);
+  readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null);
   override readonly trailingIcon = input<ErpIconName | null>('chevron-down');
   protected readonly controlId = `erp-combo-box-${++nextComboBoxId}`;
   protected readonly query = signal('');
@@ -40,7 +42,7 @@ export class ErpComboBox extends ErpFieldBase<string | null> {
   protected handleInput(event: Event): void { this.queryEditing.set(true); this.query.set((event.target as HTMLInputElement).value); }
   protected openPicker(): void {
     if (this.fieldEffectiveDisabled() || this.activeRef) return;
-    const ref = this.overlays.open<ErpSelectionPickerContent, ErpSelectionPickerData, string | null>(ErpSelectionPickerContent, {label: `${this.trimmedLabel()} combo box`, data: this.pickerData()});
+    const ref = this.overlays.open<ErpSelectionPickerContent, ErpSelectionPickerData, string | null>(ErpSelectionPickerContent, {label: `${this.trimmedLabel()} combo box`, ...(this.overlayConfig() ?? {}), data: this.pickerData()});
     this.activeRef = ref;
     this.activeOverlayId.set(ref.id);
     void ref.afterClosed.then((outcome) => {
@@ -53,6 +55,6 @@ export class ErpComboBox extends ErpFieldBase<string | null> {
   protected handleClear(input: HTMLInputElement): void { if (this.commitUserValue(null)) { this.query.set(''); this.queryEditing.set(false); input.value = ''; } }
   protected handleNativeFocus(): void { this.handleFocus(); }
   protected handleNativeBlur(): void { this.handleBlur(); }
-  private pickerData(): ErpSelectionPickerData { return {mode: 'combo', value: this.currentValue(), items: this.items(), query: this.queryEditing() ? this.query() : '', searchable: true, clearable: true, theme: this.theme()}; }
+  private pickerData(): ErpSelectionPickerData { return {mode: 'combo', value: this.currentValue(), colorMode: 'system', items: this.items(), query: this.queryEditing() ? this.query() : '', searchable: true, clearable: true, actionLabels: ERP_SELECTION_DEFAULT_ACTION_LABELS, theme: this.theme()}; }
   private theme(): 'light' | 'dark' { return this.host.nativeElement.closest('[data-theme="dark"]') ? 'dark' : 'light'; }
 }

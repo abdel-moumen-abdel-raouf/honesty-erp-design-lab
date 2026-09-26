@@ -6,20 +6,48 @@
   min-inline-size: 0;
 }
 
-.swatch {
-  min-block-size: var(--honesty-selection-picker-swatch-size);
-  border: var(--honesty-selection-picker-border-width) var(--honesty-selection-picker-border-style) var(--honesty-selection-picker-border-color);
-  border-radius: var(--honesty-selection-picker-radius);
-  cursor: pointer;
+.system-colors {
+  display: grid;
+  gap: var(--honesty-selection-picker-gap);
+  max-block-size: var(--honesty-selection-picker-list-max-block-size);
+  overflow: auto;
 }
 
-@each $name in primary, secondary, accent, success, warning, danger, info {
-  [data-color-preset='#{$name}'] {
-    background: var(--honesty-selection-picker-swatch-#{$name});
-  }
+.system-color-grid,
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--honesty-selection-picker-tile-size));
+  gap: var(--honesty-selection-picker-gap);
+  align-items: start;
+  justify-content: start;
 }
 
-.native-color { display: grid; gap: var(--honesty-selection-picker-gap); }
-.native-color input { inline-size: 100%; min-block-size: var(--honesty-selection-picker-color-input-size); }
-.option-list { max-block-size: var(--honesty-selection-picker-list-max-block-size); overflow: auto; outline-color: var(--honesty-selection-picker-focus-color); }
-.selection-actions { padding-block-start: var(--honesty-selection-picker-gap); border-block-start: var(--honesty-selection-picker-border-width) var(--honesty-selection-picker-border-style) var(--honesty-selection-picker-border-color); }
+.color-swatch {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  border-radius: inherit;
+}
+
+.native-color {
+  display: grid;
+  gap: var(--honesty-selection-picker-gap);
+}
+
+.native-color input {
+  inline-size: 100%;
+  min-block-size: var(--honesty-selection-picker-color-input-size);
+}
+
+.option-list {
+  max-block-size: var(--honesty-selection-picker-list-max-block-size);
+  overflow: auto;
+  outline-color: var(--honesty-selection-picker-focus-color);
+}
+
+.selection-actions {
+  padding-block-start: var(--honesty-selection-picker-gap);
+  border-block-start: var(--honesty-selection-picker-border-width)
+    var(--honesty-selection-picker-border-style)
+    var(--honesty-selection-picker-border-color);
+}

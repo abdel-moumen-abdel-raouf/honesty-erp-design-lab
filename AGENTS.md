@@ -490,6 +490,14 @@ Rules:
   preview; backward selection must not discard the original anchor.
 - Blocking temporal picker customization is limited to the typed Overlay
   behavior subset and must not expose internal Overlay wiring.
+- Color, icon, item, and combo pickers expose the same typed blocking Overlay
+  behavior subset and stage values until explicit confirmation.
+- ColorPicker system values preserve generated Foundation System Color token
+  identity; production code must not copy or hand-maintain the system palette.
+- Concrete selection-picker content uses the internal `ErpSelectionTile` for
+  native selectable-button semantics and must not author raw native buttons.
+- IconPicker selection geometry is fixed and content-independent; semantic icon
+  names are exposed through accessible labels and Tooltips.
 
 ## Production Overlay Governance
 

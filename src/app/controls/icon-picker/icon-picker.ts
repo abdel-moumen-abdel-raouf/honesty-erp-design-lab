@@ -5,11 +5,12 @@ import {ErpIconName} from '../../primitives/icon/icon-contracts';
 import {ErpText} from '../../primitives/text/text';
 import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
 import {ErpOverlayRef} from '../../shared/overlay/overlay-ref';
+import {ErpOverlayBehaviorConfig} from '../../shared/overlay/overlay-contracts';
 import {ErpFieldBase} from '../input-family/field-base';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
 import {ErpFieldTrigger} from '../input-family/internal/field-trigger';
 import {ErpSelectionPickerContent} from '../selection-family/internal/selection-picker-content';
-import {ErpSelectionPickerData} from '../selection-family/selection-contracts';
+import {ERP_SELECTION_DEFAULT_ACTION_LABELS, ErpSelectionPickerData} from '../selection-family/selection-contracts';
 import {normalizeIconName} from '../selection-family/selection-utils';
 
 let nextIconPickerId = 0;
@@ -25,9 +26,12 @@ let nextIconPickerId = 0;
   host: {'[attr.data-field-configuration-state]': 'fieldConfigurationState()', '[attr.data-icon-picker-value]': 'currentValue()'},
 })
 export class ErpIconPicker extends ErpFieldBase<ErpIconName | null> {
+  readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null);
   override readonly trailingIcon = input<ErpIconName | null>('chevron-down');
   protected readonly controlId = `erp-icon-picker-${++nextIconPickerId}`;
-  protected readonly displayValue = computed(() => this.currentValue() ?? 'Select icon');
+  protected readonly displayValue = computed(
+    () => this.currentValue() ?? 'اختر أيقونة',
+  );
   private readonly overlays = inject(ErpOverlayManager);
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private activeRef: ErpOverlayRef<string | null> | null = null;
@@ -35,13 +39,13 @@ export class ErpIconPicker extends ErpFieldBase<ErpIconName | null> {
   protected override normalizeValue(value: unknown): ErpIconName | null { return normalizeIconName(value); }
   protected openPicker(): void {
     if (this.fieldEffectiveDisabled() || this.activeRef) return;
-    const ref = this.overlays.open<ErpSelectionPickerContent, ErpSelectionPickerData, string | null>(ErpSelectionPickerContent, {label: `${this.trimmedLabel()} icon picker`, size: 'lg', data: this.pickerData()});
+    const ref = this.overlays.open<ErpSelectionPickerContent, ErpSelectionPickerData, string | null>(ErpSelectionPickerContent, {label: `${this.trimmedLabel()} icon picker`, size: 'lg', ...(this.overlayConfig() ?? {}), data: this.pickerData()});
     this.activeRef = ref;
     void ref.afterClosed.then((outcome) => { this.activeRef = null; if (outcome.type === 'closed') this.commitUserValue(outcome.result); });
   }
   protected handleClear(): void { this.commitUserValue(null); }
   protected handleNativeFocus(): void { this.handleFocus(); }
   protected handleNativeBlur(): void { this.handleBlur(); }
-  private pickerData(): ErpSelectionPickerData { return {mode: 'icon', value: this.currentValue(), items: [], query: '', searchable: true, clearable: true, theme: this.theme()}; }
+  private pickerData(): ErpSelectionPickerData { return {mode: 'icon', value: this.currentValue(), colorMode: 'system', items: [], query: '', searchable: true, clearable: true, actionLabels: ERP_SELECTION_DEFAULT_ACTION_LABELS, theme: this.theme()}; }
   private theme(): 'light' | 'dark' { return this.host.nativeElement.closest('[data-theme="dark"]') ? 'dark' : 'light'; }
 }

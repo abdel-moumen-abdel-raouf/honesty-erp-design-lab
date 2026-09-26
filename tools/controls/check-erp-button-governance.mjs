@@ -117,7 +117,7 @@ const APPROVED_NATIVE_BUTTON_ROOTS = new Set([
   'src/app/controls/fab/fab.html',
   'src/app/controls/extended-fab/extended-fab.html',
   'src/app/controls/input-family/internal/field-trigger.html',
-  'src/app/controls/selection-family/internal/selection-picker-content.html',
+  'src/app/controls/selection-family/internal/selection-tile.html',
 ]);
 
 function walk(directory) {
@@ -528,9 +528,14 @@ function runSelfTest() {
     throw new Error('ErpButton governance checker accepted invalid showcase fixture');
   }
 
-  const validInternalButtonErrors = validateControlNativeButtonSource(
-    '<button type="button">Trigger</button>',
+  const validInternalButtonErrors = [
     'src/app/controls/input-family/internal/field-trigger.html',
+    'src/app/controls/selection-family/internal/selection-tile.html',
+  ].flatMap((file) =>
+    validateControlNativeButtonSource(
+      '<button type="button">Trigger</button>',
+      file,
+    ),
   );
 
   if (validInternalButtonErrors.length > 0) {

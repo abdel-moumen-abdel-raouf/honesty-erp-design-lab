@@ -65,3 +65,20 @@ This implementation inventory is provisional during the Primary Controls
 Correction Program. The corrected public contracts are recorded in
 `CONTROLS_CORRECTION_PROGRAM_V1.md`; no visual approval or family freeze is
 implied by the existing technical checkpoint.
+
+## Selection Picker Correction Contract
+
+- `ErpColorPicker` uses `ErpColorPickerValue | null`; system values preserve
+  generated Foundation System Color token identity and free values preserve a
+  normalized uppercase `#RRGGBB` value.
+- System colors render from the generated registry in its authoritative family
+  and step order. ColorPicker owns no copied palette.
+- `ErpIconPicker` uses fixed equal internal selection tiles with normalized
+  `ErpIcon` content and accessible Tooltip names.
+- Selection picker content uses the internal `ErpSelectionTile` semantic button
+  root rather than authoring raw native buttons.
+- Color, icon, item, and combo pickers expose the typed blocking Overlay
+  behavior subset used by temporal pickers.
+- Selection is staged inside the overlay and reaches the CVA only after explicit
+  confirmation.
+- Default selection-picker action copy is Arabic-first.

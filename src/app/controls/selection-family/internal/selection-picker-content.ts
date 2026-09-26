@@ -1,45 +1,87 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {ChangeDetectionStrategy, Component, ElementRef, computed, inject, signal} from '@angular/core';
-import {ErpButton} from '../../button/button';
+import {
+  ERP_SYSTEM_COLOR_FAMILIES,
+  ERP_SYSTEM_COLOR_PALETTES,
+  ERP_SYSTEM_COLOR_STEPS,
+  ErpSystemColorToken,
+} from '../../../foundation/colors/system-color-registry';
 import {ERP_ICON_NAMES, ErpIconName} from '../../../primitives/icon/icon-contracts';
-import {ErpGrid} from '../../../primitives/grid/grid';
+import {ErpIcon} from '../../../primitives/icon/icon';
 import {ErpInline} from '../../../primitives/inline/inline';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpText} from '../../../primitives/text/text';
-import {ErpTextBox} from '../../text-box/text-box';
-import {ERP_OVERLAY_DATA, ERP_OVERLAY_REF} from '../../../shared/overlay/overlay-tokens';
 import {ErpOverlayRef} from '../../../shared/overlay/overlay-ref';
-import {ErpItemPickerOption, ErpSelectionPickerData} from '../selection-contracts';
-import {colorToHex, normalizeHexColor} from '../selection-utils';
-
-const COLOR_PRESETS = [
-  {id: 'primary', label: 'Primary'},
-  {id: 'secondary', label: 'Secondary'},
-  {id: 'accent', label: 'Accent'},
-  {id: 'success', label: 'Success'},
-  {id: 'warning', label: 'Warning'},
-  {id: 'danger', label: 'Danger'},
-  {id: 'info', label: 'Info'},
-] as const;
+import {
+  ERP_OVERLAY_DATA,
+  ERP_OVERLAY_REF,
+} from '../../../shared/overlay/overlay-tokens';
+import {ErpButton} from '../../button/button';
+import {ErpTextBox} from '../../text-box/text-box';
+import {ErpTooltip} from '../../tooltip/tooltip';
+import {
+  ErpColorPickerMode,
+  ErpItemPickerOption,
+  ErpSelectionPickerData,
+  ErpSelectionPickerValue,
+} from '../selection-contracts';
+import {normalizeHexColor} from '../selection-utils';
+import {ErpSelectionTile} from './selection-tile';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-selection-picker-content',
-  imports: [ErpButton, ErpGrid, ErpInline, ErpStack, ErpText, ErpTextBox, FormsModule],
+  imports: [
+    ErpButton,
+    ErpIcon,
+    ErpInline,
+    ErpSelectionTile,
+    ErpStack,
+    ErpText,
+    ErpTextBox,
+    ErpTooltip,
+    FormsModule,
+  ],
   templateUrl: './selection-picker-content.html',
   styleUrl: './selection-picker-content.scss',
   host: {'[attr.data-selection-picker-mode]': 'data.mode'},
 })
 export class ErpSelectionPickerContent {
   readonly data = inject(ERP_OVERLAY_DATA) as ErpSelectionPickerData;
-  private readonly ref = inject(ERP_OVERLAY_REF) as ErpOverlayRef<string | null>;
-  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly ref = inject(ERP_OVERLAY_REF) as ErpOverlayRef<ErpSelectionPickerValue>;
 
   protected readonly query = signal(this.data.query);
-  protected readonly staged = signal<string | null>(this.data.value);
+  protected readonly staged = signal<ErpSelectionPickerValue>(this.data.value);
+  protected readonly colorMode = signal<ErpColorPickerMode>(this.data.colorMode);
   protected readonly activeIndex = signal(0);
-  protected readonly colorPresets = COLOR_PRESETS;
+  protected readonly systemColorGroups = ERP_SYSTEM_COLOR_FAMILIES.map(
+    (family) => ({
+      family,
+      colors: ERP_SYSTEM_COLOR_STEPS.map((step) => ({
+        step,
+        token: `${family}-${step}` as ErpSystemColorToken,
+        value: ERP_SYSTEM_COLOR_PALETTES[family][step],
+      })),
+    }),
+  );
+  protected readonly freeColorValue = computed(() => {
+    const value = this.staged();
+    return typeof value === 'object' && value?.mode === 'free'
+      ? value.value
+      : '#000000';
+  });
+  protected readonly stagedColorIdentity = computed(() => {
+    const value = this.staged();
+    if (typeof value !== 'object' || value === null) return null;
+    return value.mode === 'system' ? value.token : value.value;
+  });
   protected readonly filteredIcons = computed(() => {
     const query = this.query().trim().toLowerCase();
     return ERP_ICON_NAMES.filter((name) => name.includes(query));
@@ -47,7 +89,9 @@ export class ErpSelectionPickerContent {
   protected readonly filteredItems = computed(() => {
     const query = this.query().trim().toLocaleLowerCase();
     return this.data.items.filter((item) =>
-      !query || item.label.toLocaleLowerCase().includes(query) || item.value.toLocaleLowerCase().includes(query),
+      !query ||
+      item.label.toLocaleLowerCase().includes(query) ||
+      item.value.toLocaleLowerCase().includes(query),
     );
   });
 
@@ -56,16 +100,28 @@ export class ErpSelectionPickerContent {
     this.activeIndex.set(0);
   }
 
-  protected selectColor(value: string): void {
-    this.staged.set(normalizeHexColor(value));
+  protected setColorMode(mode: ErpColorPickerMode): void {
+    this.colorMode.set(mode);
   }
 
-  protected selectPreset(id: string): void {
-    const value = getComputedStyle(this.host.nativeElement)
-      .getPropertyValue(`--honesty-selection-picker-swatch-${id}`)
-      .trim();
-    const normalized = colorToHex(value);
-    if (normalized) this.staged.set(normalized);
+  protected selectSystemColor(token: ErpSystemColorToken): void {
+    this.staged.set({mode: 'system', token});
+  }
+
+  protected selectFreeColor(value: string): void {
+    const normalized = normalizeHexColor(value);
+    if (normalized !== null) {
+      this.staged.set({mode: 'free', value: normalized});
+    }
+  }
+
+  protected isSelectedSystemColor(token: ErpSystemColorToken): boolean {
+    const value = this.staged();
+    return (
+      typeof value === 'object' &&
+      value?.mode === 'system' &&
+      value.token === token
+    );
   }
 
   protected selectIcon(value: ErpIconName): void {
@@ -99,11 +155,21 @@ export class ErpSelectionPickerContent {
     }
   }
 
-  protected clear(): void { this.staged.set(null); }
-  protected cancel(): void { this.ref.dismiss('cancel'); }
-  protected confirm(): void { this.ref.close(this.staged()); }
+  protected clear(): void {
+    this.staged.set(null);
+  }
+
+  protected cancel(): void {
+    this.ref.dismiss('cancel');
+  }
+
+  protected confirm(): void {
+    this.ref.close(this.staged());
+  }
 
   private currentOptions(): readonly (ErpIconName | ErpItemPickerOption)[] {
-    return this.data.mode === 'icon' ? this.filteredIcons() : this.filteredItems();
+    return this.data.mode === 'icon'
+      ? this.filteredIcons()
+      : this.filteredItems();
   }
 }

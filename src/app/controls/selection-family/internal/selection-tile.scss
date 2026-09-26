@@ -1,0 +1,61 @@
+@use '../../../../styles/foundation/components/selection-picker' as tokens;
+
+:host {
+  @include tokens.base;
+  display: block;
+  inline-size: var(--honesty-selection-picker-tile-size);
+  block-size: var(--honesty-selection-picker-tile-size);
+  min-inline-size: 0;
+}
+
+button {
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  inline-size: 100%;
+  block-size: 100%;
+  padding: 0;
+  border: var(--honesty-selection-picker-border-width)
+    var(--honesty-selection-picker-border-style)
+    var(--honesty-selection-picker-tile-border-color);
+  border-radius: var(--honesty-selection-picker-radius);
+  background: var(--honesty-selection-picker-tile-bg);
+  color: var(--honesty-selection-picker-tile-fg);
+  cursor: pointer;
+  transition: background-color
+      var(--honesty-selection-picker-tile-transition-duration)
+      var(--honesty-selection-picker-tile-transition-easing),
+    border-color var(--honesty-selection-picker-tile-transition-duration)
+      var(--honesty-selection-picker-tile-transition-easing),
+    color var(--honesty-selection-picker-tile-transition-duration)
+      var(--honesty-selection-picker-tile-transition-easing);
+}
+
+button:hover {
+  background: var(--honesty-selection-picker-tile-bg-hover);
+}
+
+button:focus-visible,
+:host([data-selection-tile-active='true']) button {
+  outline: var(--honesty-selection-picker-tile-focus-width)
+    var(--honesty-selection-picker-tile-focus-style)
+    var(--honesty-selection-picker-focus-color);
+  outline-offset: var(--honesty-selection-picker-tile-focus-offset);
+}
+
+:host([data-selection-tile-selected='true']) button {
+  border-color: var(--honesty-selection-picker-tile-border-color-selected);
+  background: var(--honesty-selection-picker-tile-bg-selected);
+  color: var(--honesty-selection-picker-tile-fg-selected);
+}
+
+button:disabled {
+  opacity: var(--honesty-selection-picker-tile-disabled-opacity);
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button {
+    transition-duration: var(--honesty-selection-picker-tile-reduced-duration);
+  }
+}
