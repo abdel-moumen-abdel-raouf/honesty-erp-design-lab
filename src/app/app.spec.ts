@@ -390,6 +390,17 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     const host = target?.querySelector('erp-overlay-host') as HTMLElement;
     expect(toolbar).toBeTruthy();
     expect(host).toBeTruthy();
+    expect(toolbar.inert).toBe(true);
+    expect(toolbar.getAttribute('aria-hidden')).toBe('true');
+    expect(getComputedStyle(toolbar).zIndex).toBe(
+      'var(--honesty-layer-sticky)',
+    );
+    expect(getComputedStyle(host).zIndex).toBe(
+      'var(--honesty-overlay-layer)',
+    );
+    expect(
+      getComputedStyle(host).getPropertyValue('--honesty-overlay-layer'),
+    ).toBe('var(--honesty-layer-blocking)');
     expect(
       toolbar.compareDocumentPosition(host) &
         Node.DOCUMENT_POSITION_FOLLOWING,

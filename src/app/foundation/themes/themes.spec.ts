@@ -142,34 +142,34 @@ describe('Themes Specimen', () => {
       getComputedStyle(element).getPropertyValue(role).replaceAll(' ', '').trim();
 
     expect(normalized(light, '--honesty-color-overlay-backdrop-default')).toBe(
-      'rgba(16,17,21,0.32)',
+      'rgba(16,17,21,0.44)',
     );
     expect(normalized(light, '--honesty-color-overlay-backdrop-neutral')).toBe(
-      'rgba(24,26,32,0.28)',
+      'rgba(24,26,32,0.38)',
     );
     expect(normalized(light, '--honesty-color-overlay-backdrop-primary')).toBe(
-      'rgba(35,34,101,0.28)',
+      'rgba(35,34,101,0.38)',
     );
     expect(normalized(light, '--honesty-color-overlay-backdrop-secondary')).toBe(
-      'rgba(48,59,86,0.28)',
+      'rgba(48,59,86,0.38)',
     );
     expect(normalized(light, '--honesty-color-overlay-backdrop-accent')).toBe(
-      'rgba(81,43,74,0.28)',
+      'rgba(81,43,74,0.38)',
     );
     expect(normalized(dark, '--honesty-color-overlay-backdrop-default')).toBe(
-      'rgba(16,17,21,0.54)',
+      'rgba(16,17,21,0.48)',
     );
     expect(normalized(dark, '--honesty-color-overlay-backdrop-neutral')).toBe(
-      'rgba(16,17,21,0.5)',
+      'rgba(16,17,21,0.42)',
     );
     expect(normalized(dark, '--honesty-color-overlay-backdrop-primary')).toBe(
-      'rgba(23,22,69,0.46)',
+      'rgba(23,22,69,0.42)',
     );
     expect(normalized(dark, '--honesty-color-overlay-backdrop-secondary')).toBe(
-      'rgba(29,37,54,0.46)',
+      'rgba(29,37,54,0.42)',
     );
     expect(normalized(dark, '--honesty-color-overlay-backdrop-accent')).toBe(
-      'rgba(48,21,41,0.46)',
+      'rgba(48,21,41,0.42)',
     );
   });
 });

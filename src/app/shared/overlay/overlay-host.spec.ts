@@ -30,12 +30,30 @@ describe('ErpOverlayHost', () => {
       position: 'start',
       label: 'Start drawer',
     });
+    manager.open(TestOverlayContent, {
+      kind: 'drawer',
+      position: 'end',
+      label: 'End drawer',
+    });
+    manager.open(TestOverlayContent, {
+      kind: 'drawer',
+      position: 'bottom',
+      label: 'Bottom drawer',
+    });
     fixture.detectChanges();
 
     const root = fixture.nativeElement as HTMLElement;
     const host = root.querySelector('erp-overlay-host') as HTMLElement;
     const layer = root.querySelector('.erp-ol') as HTMLElement;
-    const surface = root.querySelector('.erp-os') as HTMLElement;
+    const startSurface = root.querySelector(
+      '[data-overlay-position="start"] .erp-os',
+    ) as HTMLElement;
+    const endSurface = root.querySelector(
+      '[data-overlay-position="end"] .erp-os',
+    ) as HTMLElement;
+    const bottomSurface = root.querySelector(
+      '[data-overlay-position="bottom"] .erp-os',
+    ) as HTMLElement;
     const hostStyle = getComputedStyle(host);
     const layerStyle = getComputedStyle(layer);
 
@@ -48,7 +66,9 @@ describe('ErpOverlayHost', () => {
     expect(hostStyle.blockSize).toBe('100dvh');
     expect(layerStyle.inlineSize).toBe('100vw');
     expect(layerStyle.blockSize).toBe('100dvh');
-    expect(getComputedStyle(surface).blockSize).toBe('100dvh');
+    expect(getComputedStyle(startSurface).blockSize).toBe('100dvh');
+    expect(getComputedStyle(endSurface).blockSize).toBe('100dvh');
+    expect(getComputedStyle(bottomSurface).inlineSize).toBe('100%');
   });
 
   it('renders dialog semantics, locks scroll, and makes shell background inert', () => {
