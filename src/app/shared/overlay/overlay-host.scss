@@ -3,7 +3,12 @@
 
 erp-overlay-host {
   position: fixed;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  inline-size: 100vw;
+  block-size: 100dvh;
   z-index: var(--honesty-overlay-layer);
   display: block;
   pointer-events: none;
@@ -11,7 +16,12 @@ erp-overlay-host {
 
 .erp-ol {
   position: fixed;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  inline-size: 100vw;
+  block-size: 100dvh;
   display: grid;
   place-items: center;
   min-inline-size: 0;

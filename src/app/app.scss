@@ -138,7 +138,8 @@
   }
 }
 
-.btn-screenshot {
+.btn-screenshot,
+.btn-theme {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -179,6 +180,7 @@
   flex-direction: column;
   min-inline-size: 0;
   min-block-size: 0;
+  background-color: #ffffff;
 }
 
 .lab-capture-root--direct {
@@ -226,6 +228,18 @@
   width: 375px;
   height: 667px;
   border: 1px solid #ccd2dc;
+}
+
+.lab-capture-root[data-theme='dark'] {
+  background-color: #10131a;
+
+  .lab-preview-stage {
+    background-color: #202630;
+  }
+
+  .lab-preview-frame {
+    background-color: #10131a;
+  }
 }
 
 @include query.viewport-down(md) {

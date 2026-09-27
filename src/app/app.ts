@@ -12,12 +12,47 @@ import {filter} from 'rxjs';
 import {ErpOverlayHost} from './shared/overlay/overlay-host';
 
 export type LabPreviewMode = 'desktop' | 'tablet' | 'mobile';
+export type LabTheme = 'light' | 'dark';
+
+const LAB_THEME_STORAGE_KEY = 'honesty-lab-theme';
 
 export function hasLabPreviewFlag(search: string): boolean {
   return new URLSearchParams(search).get('labPreview') === '1';
 }
 
-export function buildLabPreviewUrl(routerUrl: string): string {
+export function resolveLabTheme(
+  search: string,
+  storage: Pick<Storage, 'getItem'> | null,
+): LabTheme {
+  const queryTheme = new URLSearchParams(search).get('labTheme');
+
+  if (queryTheme === 'light' || queryTheme === 'dark') {
+    return queryTheme;
+  }
+
+  try {
+    const storedTheme = storage?.getItem(LAB_THEME_STORAGE_KEY);
+    return storedTheme === 'dark' ? 'dark' : 'light';
+  } catch {
+    return 'light';
+  }
+}
+
+export function persistLabTheme(
+  theme: LabTheme,
+  storage: Pick<Storage, 'setItem'> | null,
+): void {
+  try {
+    storage?.setItem(LAB_THEME_STORAGE_KEY, theme);
+  } catch {
+    // Design Lab theme persistence is optional when storage is unavailable.
+  }
+}
+
+export function buildLabPreviewUrl(
+  routerUrl: string,
+  theme: LabTheme,
+): string {
   const fragmentIndex = routerUrl.indexOf('#');
   const fragment = fragmentIndex >= 0 ? routerUrl.slice(fragmentIndex + 1) : '';
   const withoutFragment = fragmentIndex >= 0 ? routerUrl.slice(0, fragmentIndex) : routerUrl;
@@ -27,6 +62,7 @@ export function buildLabPreviewUrl(routerUrl: string): string {
   const parameters = new URLSearchParams(query);
 
   parameters.set('labPreview', '1');
+  parameters.set('labTheme', theme);
 
   const resolvedPath = path || '/';
   const resolvedFragment = fragment ? `#${fragment}` : '';
@@ -44,23 +80,54 @@ export function buildScreenshotFilename(routerUrl: string, mode: LabPreviewMode)
   return `${cleanPath}-${mode}-view.png`;
 }
 
-export function isDirectOverlayReviewRoute(routerUrl: string): boolean {
-  return routerUrl.split('?')[0].split('#')[0] === '/controls/overlays';
+export function isDirectLabReviewRoute(routerUrl: string): boolean {
+  const route = routerUrl.split('?')[0].split('#')[0];
+  return route === '/controls/inputs' || route === '/controls/overlays';
+}
+
+export interface LabScreenshotSources {
+  readonly outerRoot: HTMLElement;
+  readonly toolbar: HTMLElement | null;
+  readonly embeddedRoot: HTMLElement | null;
+}
+
+export function resolveLabScreenshotSources(
+  rootDocument: Document,
+  directReview: boolean,
+): LabScreenshotSources | null {
+  const outerRoot = rootDocument.getElementById('lab-capture-root');
+
+  if (!outerRoot) {
+    return null;
+  }
+
+  if (directReview) {
+    return {outerRoot, toolbar: null, embeddedRoot: null};
+  }
+
+  const previewFrame = rootDocument.getElementById(
+    'lab-preview-frame',
+  ) as HTMLIFrameElement | null;
+  const embeddedRoot =
+    previewFrame?.contentDocument?.getElementById('lab-capture-root') ?? null;
+
+  if (!embeddedRoot) {
+    return null;
+  }
+
+  return {
+    outerRoot,
+    toolbar: rootDocument.getElementById('lab-utility-bar'),
+    embeddedRoot,
+  };
 }
 
 export function resolveLabScreenshotTarget(
   rootDocument: Document,
   directReview: boolean,
 ): HTMLElement | null {
-  if (directReview) {
-    return rootDocument.getElementById('lab-capture-root');
-  }
-
-  const previewFrame = rootDocument.getElementById(
-    'lab-preview-frame',
-  ) as HTMLIFrameElement | null;
-
-  return previewFrame?.contentDocument?.getElementById('lab-capture-root') ?? null;
+  const sources = resolveLabScreenshotSources(rootDocument, directReview);
+  return directReview ? sources?.outerRoot ?? null : sources?.embeddedRoot ?? null;
 }
 
 /**
@@ -145,19 +212,26 @@ export class App {
   private readonly sanitizer = inject(DomSanitizer);
   private readonly destroyRef = inject(DestroyRef);
   private readonly previewRouterUrl = signal(this.router.url);
+  private readonly storage = this.resolveStorage();
 
   readonly isEmbeddedPreview = hasLabPreviewFlag(
     typeof window === 'undefined' ? '' : window.location.search,
   );
   readonly currentPreviewMode = signal<LabPreviewMode>('desktop');
-  readonly isDirectOverlayReview = computed(
+  readonly theme = signal<LabTheme>(
+    resolveLabTheme(
+      typeof window === 'undefined' ? '' : window.location.search,
+      this.storage,
+    ),
+  );
+  readonly isDirectReview = computed(
     () =>
       !this.isEmbeddedPreview &&
-      isDirectOverlayReviewRoute(this.previewRouterUrl()),
+      isDirectLabReviewRoute(this.previewRouterUrl()),
   );
   readonly previewSafeUrl = computed<SafeResourceUrl>(() => {
     return this.sanitizer.bypassSecurityTrustResourceUrl(
-      buildLabPreviewUrl(this.previewRouterUrl()),
+      buildLabPreviewUrl(this.previewRouterUrl(), this.theme()),
     );
   });
   readonly isCapturing = signal(false);
@@ -181,17 +255,20 @@ export class App {
     this.currentPreviewMode.set(mode);
   }
 
+  toggleTheme(): void {
+    const theme = this.theme() === 'light' ? 'dark' : 'light';
+    this.theme.set(theme);
+    persistLabTheme(theme, this.storage);
+  }
+
   async captureScreenshot(): Promise<void> {
     if (this.isCapturing()) {
       return;
     }
 
-    const target = resolveLabScreenshotTarget(
-      document,
-      this.isDirectOverlayReview(),
-    );
+    const sources = resolveLabScreenshotSources(document, this.isDirectReview());
 
-    if (!target) {
+    if (!sources) {
       this.hasError.set(true);
       this.statusMessage.set('تعذر العثور على محتوى الصفحة');
       return;
@@ -203,22 +280,52 @@ export class App {
 
     try {
       const {default: html2canvas} = await import('html2canvas');
-      const width = target.scrollWidth;
-      const height = target.scrollHeight;
-      const previewWindow = target.ownerDocument.defaultView;
-      const resolvedBackgroundColor = resolveVisibleBackgroundColor(target);
+      const captureElement = (target: HTMLElement) => {
+        const width = target.scrollWidth;
+        const height = target.scrollHeight;
+        const targetWindow = target.ownerDocument.defaultView;
 
-      const canvas = await html2canvas(target, {
-        scale: 1,
-        width,
-        height,
-        windowWidth: previewWindow?.innerWidth ?? width,
-        windowHeight: previewWindow?.innerHeight ?? height,
-        scrollX: 0,
-        scrollY: 0,
-        useCORS: true,
-        backgroundColor: resolvedBackgroundColor,
-      });
+        return html2canvas(target, {
+          scale: 1,
+          width,
+          height,
+          windowWidth: targetWindow?.innerWidth ?? width,
+          windowHeight: targetWindow?.innerHeight ?? height,
+          scrollX: 0,
+          scrollY: 0,
+          useCORS: true,
+          backgroundColor: resolveVisibleBackgroundColor(target),
+        });
+      };
+
+      let canvas: HTMLCanvasElement;
+
+      if (this.isDirectReview()) {
+        canvas = await captureElement(sources.outerRoot);
+      } else {
+        if (!sources.toolbar || !sources.embeddedRoot) {
+          throw new Error('Incomplete iframe screenshot sources.');
+        }
+
+        const [toolbarCanvas, embeddedCanvas] = await Promise.all([
+          captureElement(sources.toolbar),
+          captureElement(sources.embeddedRoot),
+        ]);
+        canvas = document.createElement('canvas');
+        canvas.width = Math.max(toolbarCanvas.width, embeddedCanvas.width);
+        canvas.height = toolbarCanvas.height + embeddedCanvas.height;
+
+        const context = canvas.getContext('2d');
+
+        if (!context) {
+          throw new Error('Screenshot composition canvas is unavailable.');
+        }
+
+        context.fillStyle = resolveVisibleBackgroundColor(sources.outerRoot);
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(toolbarCanvas, 0, 0);
+        context.drawImage(embeddedCanvas, 0, toolbarCanvas.height);
+      }
 
       const dataUrl = canvas.toDataURL('image/png');
       const link = document.createElement('a');
@@ -235,6 +342,18 @@ export class App {
       this.statusMessage.set('فشل التقاط الصفحة');
     } finally {
       this.isCapturing.set(false);
+    }
+  }
+
+  private resolveStorage(): Storage | null {
+    if (typeof window === 'undefined') {
+      return null;
+    }
+
+    try {
+      return window.localStorage;
+    } catch {
+      return null;
     }
   }
 }

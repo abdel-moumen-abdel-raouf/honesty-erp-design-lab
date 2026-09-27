@@ -7,9 +7,12 @@ import {
   buildLabPreviewUrl,
   buildScreenshotFilename,
   hasLabPreviewFlag,
-  isDirectOverlayReviewRoute,
+  isDirectLabReviewRoute,
   isFullyTransparent,
+  persistLabTheme,
+  resolveLabScreenshotSources,
   resolveLabScreenshotTarget,
+  resolveLabTheme,
   resolveVisibleBackgroundColor,
 } from './app';
 import {routes} from './app.routes';
@@ -26,12 +29,26 @@ describe('Design Lab preview helpers', () => {
   });
 
   it('builds a preview URL while preserving query parameters and fragments', () => {
-    expect(buildLabPreviewUrl('/primitives/typography')).toBe(
-      '/primitives/typography?labPreview=1',
+    expect(buildLabPreviewUrl('/primitives/typography', 'light')).toBe(
+      '/primitives/typography?labPreview=1&labTheme=light',
     );
-    expect(buildLabPreviewUrl('/primitives/typography?x=1#proof')).toBe(
-      '/primitives/typography?x=1&labPreview=1#proof',
+    expect(buildLabPreviewUrl('/primitives/typography?x=1#proof', 'dark')).toBe(
+      '/primitives/typography?x=1&labPreview=1&labTheme=dark#proof',
     );
+  });
+
+  it('resolves and persists the global Lab theme without requiring storage', () => {
+    const storage = {
+      getItem: vi.fn(() => 'dark'),
+      setItem: vi.fn(),
+    };
+
+    expect(resolveLabTheme('', storage)).toBe('dark');
+    expect(resolveLabTheme('?labTheme=light', storage)).toBe('light');
+    expect(resolveLabTheme('', null)).toBe('light');
+
+    persistLabTheme('dark', storage);
+    expect(storage.setItem).toHaveBeenCalledWith('honesty-lab-theme', 'dark');
   });
 
   it('builds mode-specific screenshot filenames', () => {
@@ -49,12 +66,13 @@ describe('Design Lab preview helpers', () => {
     );
   });
 
-  it('detects only the Overlay showcase as a direct review route', () => {
-    expect(isDirectOverlayReviewRoute('/controls/overlays')).toBe(true);
+  it('detects the Input and Overlay showcases as direct review routes', () => {
+    expect(isDirectLabReviewRoute('/controls/overlays')).toBe(true);
     expect(
-      isDirectOverlayReviewRoute('/controls/overlays?labPreview=1#proof'),
+      isDirectLabReviewRoute('/controls/overlays?labPreview=1#proof'),
     ).toBe(true);
-    expect(isDirectOverlayReviewRoute('/controls/inputs')).toBe(false);
+    expect(isDirectLabReviewRoute('/controls/inputs')).toBe(true);
+    expect(isDirectLabReviewRoute('/foundation/overview')).toBe(false);
   });
 
   it('resolves ordinary and Dark iframe capture roots deterministically', () => {
@@ -65,13 +83,18 @@ describe('Design Lab preview helpers', () => {
     embeddedDocument.body.appendChild(embeddedRoot);
 
     const outerDocument = document.implementation.createHTMLDocument();
+    const outerRoot = outerDocument.createElement('main');
+    outerRoot.id = 'lab-capture-root';
+    const toolbar = outerDocument.createElement('header');
+    toolbar.id = 'lab-utility-bar';
     const frame = outerDocument.createElement('iframe');
     frame.id = 'lab-preview-frame';
     Object.defineProperty(frame, 'contentDocument', {
       configurable: true,
       value: embeddedDocument,
     });
-    outerDocument.body.appendChild(frame);
+    outerRoot.append(toolbar, frame);
+    outerDocument.body.appendChild(outerRoot);
 
     expect(resolveLabScreenshotTarget(outerDocument, false)).toBe(
       embeddedRoot,
@@ -79,6 +102,11 @@ describe('Design Lab preview helpers', () => {
     expect(
       resolveLabScreenshotTarget(outerDocument, false)?.dataset['theme'],
     ).toBe('dark');
+    expect(resolveLabScreenshotSources(outerDocument, false)).toEqual({
+      outerRoot,
+      toolbar,
+      embeddedRoot,
+    });
   });
 
   it('resolves only the outer capture root for direct review', () => {
@@ -94,6 +122,7 @@ describe('Design Lab preview helpers', () => {
 
 describe('App Root Shell & Design Lab Review Utilities', () => {
   beforeEach(async () => {
+    window.localStorage.removeItem('honesty-lab-theme');
     await TestBed.configureTestingModule({
       imports: [App],
       providers: [provideRouter(routes)],
@@ -252,6 +281,40 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(screenshotBtn?.disabled).toBe(false);
   });
 
+  it('applies and persists one global Lab theme across route navigation and app recreation', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+    fixture.detectChanges();
+    const root = fixture.nativeElement as HTMLElement;
+    const themeButton = root.querySelector('#btn-lab-theme') as HTMLButtonElement;
+
+    expect(root.querySelector('#lab-capture-root')?.getAttribute('data-theme')).toBe(
+      'light',
+    );
+
+    themeButton.click();
+    fixture.detectChanges();
+    expect(fixture.componentInstance.theme()).toBe('dark');
+    expect(root.querySelector('#lab-capture-root')?.getAttribute('data-theme')).toBe(
+      'dark',
+    );
+    expect(window.localStorage.getItem('honesty-lab-theme')).toBe('dark');
+
+    await router.navigateByUrl('/foundation/colors');
+    fixture.detectChanges();
+    expect(fixture.componentInstance.theme()).toBe('dark');
+
+    fixture.destroy();
+    TestBed.resetTestingModule();
+    await TestBed.configureTestingModule({
+      imports: [App],
+      providers: [provideRouter(routes)],
+    }).compileComponents();
+    const recreated = TestBed.createComponent(App);
+    recreated.detectChanges();
+    expect(recreated.componentInstance.theme()).toBe('dark');
+  });
+
   it('should render the viewport controls and iframe preview in outer mode', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
@@ -262,7 +325,11 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(compiled.querySelector('#btn-preview-tablet')).toBeTruthy();
     expect(compiled.querySelector('#btn-preview-mobile')).toBeTruthy();
     expect(compiled.querySelector('#lab-preview-stage')).toBeTruthy();
-    expect(compiled.querySelector('#lab-preview-frame')).toBeTruthy();
+    const previewFrame = compiled.querySelector(
+      '#lab-preview-frame',
+    ) as HTMLIFrameElement;
+    expect(previewFrame).toBeTruthy();
+    expect(previewFrame.src).toContain('labTheme=light');
     expect(compiled.querySelector('#routed-review-content')).toBeNull();
     expect(compiled.querySelector('#app-router-outlet')).toBeNull();
   });
@@ -279,7 +346,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     const root = fixture.nativeElement as HTMLElement;
     const captureRoot = root.querySelector('#lab-capture-root');
 
-    expect(fixture.componentInstance.isDirectOverlayReview()).toBe(true);
+    expect(fixture.componentInstance.isDirectReview()).toBe(true);
     expect(captureRoot?.getAttribute('data-capture-mode')).toBe('direct');
     expect(captureRoot?.querySelector('#app-router-outlet')).toBeTruthy();
     expect(captureRoot?.querySelector('app-overlay-controls')).toBeTruthy();
@@ -314,6 +381,14 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     fixture.detectChanges();
 
     const target = resolveLabScreenshotTarget(document, true);
+    const toolbar = target?.querySelector('#lab-utility-bar') as HTMLElement;
+    const host = target?.querySelector('erp-overlay-host') as HTMLElement;
+    expect(toolbar).toBeTruthy();
+    expect(host).toBeTruthy();
+    expect(
+      toolbar.compareDocumentPosition(host) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
     expect(target?.querySelector('[data-overlay-kind="modal"]')).toBeTruthy();
     expect(
       target?.querySelector('[data-overlay-position="start"]'),
@@ -323,7 +398,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     ).toBeTruthy();
   });
 
-  it('returns to iframe preview mode after direct Overlay review', async () => {
+  it('renders Inputs directly and returns to iframe mode for ordinary Foundation review', async () => {
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);
 
@@ -342,8 +417,19 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     await fixture.whenStable();
     fixture.detectChanges();
 
-    const root = fixture.nativeElement as HTMLElement;
-    expect(fixture.componentInstance.isDirectOverlayReview()).toBe(false);
+    let root = fixture.nativeElement as HTMLElement;
+    expect(fixture.componentInstance.isDirectReview()).toBe(true);
+    expect(root.querySelector('#lab-preview-frame')).toBeNull();
+    expect(root.querySelector('#lab-viewport-controls')).toBeNull();
+    expect(root.querySelector('app-input-controls')).toBeTruthy();
+
+    await router.navigateByUrl('/foundation/overview');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    root = fixture.nativeElement as HTMLElement;
+    expect(fixture.componentInstance.isDirectReview()).toBe(false);
     expect(root.querySelector('#lab-preview-frame')).toBeTruthy();
     expect(root.querySelector('#lab-viewport-controls')).toBeTruthy();
     expect(

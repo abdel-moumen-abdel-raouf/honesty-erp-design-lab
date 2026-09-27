@@ -1,11 +1,12 @@
 <div
   id="lab-capture-root"
   class="lab-capture-root"
-  [class.lab-capture-root--direct]="isDirectOverlayReview()"
+  [class.lab-capture-root--direct]="isDirectReview()"
+  [attr.data-theme]="theme()"
   [attr.data-capture-mode]="
     isEmbeddedPreview
       ? 'embedded'
-      : isDirectOverlayReview()
+      : isDirectReview()
         ? 'direct'
         : 'outer'
   "
@@ -206,7 +207,7 @@
     </nav>
 
     <div id="lab-actions" class="lab-actions">
-      @if (!isDirectOverlayReview()) {
+      @if (!isDirectReview()) {
         <div
           id="lab-viewport-controls"
           class="lab-viewport-controls"
@@ -252,6 +253,15 @@
         </span>
       }
       <button
+        id="btn-lab-theme"
+        type="button"
+        class="btn-theme"
+        [attr.aria-pressed]="theme() === 'dark'"
+        (click)="toggleTheme()"
+      >
+        {{ theme() === 'light' ? 'السمة الداكنة' : 'السمة الفاتحة' }}
+      </button>
+      <button
         id="btn-full-page-screenshot"
         type="button"
         class="btn-screenshot"
@@ -267,7 +277,7 @@
     </div>
   </header>
 
-    @if (isDirectOverlayReview()) {
+    @if (isDirectReview()) {
       <main
         id="routed-review-content"
         class="routed-content-wrapper routed-content-wrapper--direct"
