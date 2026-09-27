@@ -110,4 +110,11 @@ describe('ErpTextBox', () => {
     expect(host.getAttribute('data-field-configuration-state')).toBe('invalid');
     expect(native.disabled).toBe(true);
   });
+  it('focuses the native editor when the shared field surface is clicked', () => {
+    const fixture = create();
+    const host = fixture.nativeElement as HTMLElement;
+    const native = host.querySelector('input') as HTMLInputElement;
+    host.querySelector<HTMLElement>('.field-frame__control')?.click();
+    expect(document.activeElement).toBe(native);
+  });
 });

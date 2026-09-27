@@ -3,6 +3,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  ElementRef,
+  inject,
   input,
   output,
 } from '@angular/core';
@@ -40,6 +42,7 @@ import {ErpInputConfigurationState} from '../input-contracts';
   templateUrl: './field-frame.html',
   styleUrls: ['./field-frame.scss', './field-frame-facets.scss'],
   host: {
+    '(click)': 'handleControlSurfaceClick($event)',
     '[attr.data-field-tone]': 'tone()',
     '[attr.data-field-status]': 'status()',
     '[attr.data-field-variant]': 'variant()',
@@ -58,6 +61,8 @@ import {ErpInputConfigurationState} from '../input-contracts';
   },
 })
 export class ErpFieldFrame {
+  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+
   readonly label = input.required<string>();
   readonly controlId = input.required<string>();
   readonly tone = input<ErpFieldTone>('neutral');
@@ -110,4 +115,48 @@ export class ErpFieldFrame {
   );
   readonly helperId = computed(() => `${this.controlId()}-helper`);
   readonly feedbackId = computed(() => `${this.controlId()}-feedback`);
+
+  handleControlSurfaceClick(event: MouseEvent): void {
+    if (this.disabled() || this.configurationState() !== 'ready') {
+      return;
+    }
+
+    const target = event.target;
+
+    if (!(target instanceof Element)) {
+      return;
+    }
+
+    if (target.closest('.field-frame__control') === null) {
+      return;
+    }
+
+    const interactive = target.closest(
+      '[field-leading-action], [field-domain-action], [field-trailing], button, input, textarea, select, a[href], [role="button"], [tabindex]',
+    );
+
+    if (interactive !== null) {
+      return;
+    }
+
+    const controlId = this.controlId();
+    const control = [
+      ...this.host.nativeElement.querySelectorAll<HTMLElement>('[id]'),
+    ].find((candidate) => candidate.id === controlId);
+
+    if (
+      control instanceof HTMLInputElement ||
+      control instanceof HTMLTextAreaElement
+    ) {
+      if (!control.disabled) {
+        control.focus();
+      }
+      return;
+    }
+
+    if (control instanceof HTMLButtonElement && !control.disabled) {
+      control.focus();
+      control.click();
+    }
+  }
 }

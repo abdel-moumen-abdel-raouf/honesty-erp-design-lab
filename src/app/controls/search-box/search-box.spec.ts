@@ -351,4 +351,13 @@ describe('ErpSearchBox', () => {
       'search',
     );
   });
+  it('activates popup mode through the shared field surface', () => {
+    const fixture = create();
+    const host = fixture.nativeElement as HTMLElement;
+    const surface = host.querySelector('.search-box__popup') as HTMLElement;
+    installPopover(surface);
+    host.querySelector<HTMLElement>('.field-frame__control')?.click();
+    fixture.detectChanges();
+    expect(host.getAttribute('data-search-box-popup-phase')).toBe('entering');
+  });
 });

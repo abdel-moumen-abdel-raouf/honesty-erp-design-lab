@@ -124,9 +124,18 @@
 }
 
 .field-frame__value {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
   flex: 1 1 auto;
+  inline-size: 100%;
   min-width: 0;
   font-size: var(--honesty-field-frame-value-font-size);
+}
+
+.field-frame__value > :where([field-control]) {
+  flex: 1 1 auto;
+  min-inline-size: 0;
 }
 
 .field-frame__actions {

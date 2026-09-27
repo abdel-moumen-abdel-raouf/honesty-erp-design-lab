@@ -50,4 +50,10 @@ describe('ErpDateBox', () => {
     (fixture.nativeElement as HTMLElement).querySelector('button')?.click(); const confirmed = manager.entries()[0].ref; confirmed.close('2026-05-04'); manager.completeTransition(confirmed.id, 'leaving'); await Promise.resolve();
     expect(onChange).toHaveBeenCalledOnce(); expect(onChange).toHaveBeenCalledWith('2026-05-04');
   });
+  it('activates the picker through the shared field surface', () => {
+    const fixture = create();
+    const host = fixture.nativeElement as HTMLElement;
+    host.querySelector<HTMLElement>('.field-frame__control')?.click();
+    expect(TestBed.inject(ErpOverlayManager).entries()).toHaveLength(1);
+  });
 });

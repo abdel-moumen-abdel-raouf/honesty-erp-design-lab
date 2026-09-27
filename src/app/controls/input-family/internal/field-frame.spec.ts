@@ -1,12 +1,68 @@
+import {Component} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {ErpIconButton} from '../../icon-button/icon-button';
 import {ErpFieldFeedback} from './field-feedback';
 import {ErpFieldFrame} from './field-frame';
+import {ErpFieldTrigger} from './field-trigger';
+
+@Component({
+  imports: [ErpFieldFrame],
+  template: `
+    <erp-field-frame
+      label="Name"
+      controlId="delegated-input"
+      [disabled]="disabled"
+      [helperText]="'Guidance'"
+      [helperPosition]="helperPosition"
+      [tone]="tone"
+      [status]="status"
+      leadingIcon="search"
+      trailingIcon="filter"
+    >
+      <input id="delegated-input" field-control [disabled]="disabled" />
+      <button field-domain-action type="button" (click)="actionCount += 1">
+        action
+      </button>
+    </erp-field-frame>
+  `,
+})
+class FieldFrameInputHarness {
+  disabled = false;
+  helperPosition: 'above' | 'below' = 'below';
+  tone: 'primary' | 'secondary' = 'primary';
+  status: 'success' | 'warning' | 'danger' | 'info' = 'success';
+  actionCount = 0;
+}
+
+@Component({
+  imports: [ErpFieldFrame, ErpFieldTrigger],
+  template: `
+    <erp-field-frame
+      label="Picker"
+      controlId="delegated-trigger"
+      [disabled]="disabled"
+    >
+      <erp-field-trigger
+        field-control
+        id="trigger-host"
+        [id]="'delegated-trigger'"
+        [disabled]="disabled"
+        (activated)="activationCount += 1"
+      >
+        Picker
+      </erp-field-trigger>
+    </erp-field-frame>
+  `,
+})
+class FieldFrameTriggerHarness {
+  disabled = false;
+  activationCount = 0;
+}
 
 describe('ErpFieldFrame', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ErpFieldFrame],
+      imports: [ErpFieldFrame, FieldFrameInputHarness, FieldFrameTriggerHarness],
     });
   });
 
@@ -156,5 +212,81 @@ describe('ErpFieldFrame', () => {
 
     expect(clearRequested).toHaveBeenCalledOnce();
     expect(feedbackDismissed).toHaveBeenCalledOnce();
+  });
+
+  it('delegates center and inline padding surface clicks to the native editor', () => {
+    const fixture = TestBed.createComponent(FieldFrameInputHarness);
+    fixture.detectChanges();
+    const host = fixture.nativeElement as HTMLElement;
+    const control = host.querySelector('.field-frame__control') as HTMLElement;
+    const icons = host.querySelectorAll<HTMLElement>('.field-frame__icon');
+    const native = host.querySelector('#delegated-input') as HTMLInputElement;
+
+    expect(icons).toHaveLength(2);
+
+    for (const surface of [control, icons[0], icons[1]]) {
+      native.blur();
+      surface.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+      expect(document.activeElement).toBe(native);
+    }
+  });
+
+  it('focuses and activates the owned FieldTrigger from the shared surface', () => {
+    const fixture = TestBed.createComponent(FieldFrameTriggerHarness);
+    fixture.detectChanges();
+    const host = fixture.nativeElement as HTMLElement;
+    const surface = host.querySelector('.field-frame__control') as HTMLElement;
+    const trigger = host.querySelector('#delegated-trigger') as HTMLButtonElement;
+
+    surface.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+
+    expect(document.activeElement).toBe(trigger);
+    expect(fixture.componentInstance.activationCount).toBe(1);
+  });
+
+  it('isolates explicit actions and ignores disabled field surfaces', () => {
+    const fixture = TestBed.createComponent(FieldFrameInputHarness);
+    fixture.detectChanges();
+    const host = fixture.nativeElement as HTMLElement;
+    const native = host.querySelector('#delegated-input') as HTMLInputElement;
+    const action = host.querySelector('[field-domain-action]') as HTMLButtonElement;
+    const surface = host.querySelector('.field-frame__control') as HTMLElement;
+    const focus = vi.spyOn(native, 'focus');
+
+    action.click();
+    expect(fixture.componentInstance.actionCount).toBe(1);
+    expect(focus).not.toHaveBeenCalled();
+
+    fixture.componentInstance.disabled = true;
+    fixture.detectChanges();
+    surface.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+    expect(focus).not.toHaveBeenCalled();
+  });
+
+  it('keeps delegation invariant across helper, tone, and status facets', () => {
+    for (const helperPosition of ['above', 'below'] as const) {
+      for (const [tone, status] of [
+        ['primary', 'success'],
+        ['secondary', 'warning'],
+        ['primary', 'danger'],
+        ['secondary', 'info'],
+      ] as const) {
+        const fixture = TestBed.createComponent(FieldFrameInputHarness);
+        fixture.componentInstance.helperPosition = helperPosition;
+        fixture.componentInstance.tone = tone;
+        fixture.componentInstance.status = status;
+        fixture.detectChanges();
+        const host = fixture.nativeElement as HTMLElement;
+        const native = host.querySelector(
+          '#delegated-input',
+        ) as HTMLInputElement;
+        const surface = host.querySelector(
+          '.field-frame__control',
+        ) as HTMLElement;
+        surface.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+        expect(document.activeElement).toBe(native);
+        fixture.destroy();
+      }
+    }
   });
 });
