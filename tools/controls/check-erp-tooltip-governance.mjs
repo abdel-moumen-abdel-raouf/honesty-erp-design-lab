@@ -11,16 +11,14 @@ const TOOLTIP_TEMPLATE = 'src/app/controls/tooltip/tooltip.html';
 const SEARCH_BOX_SOURCE = 'src/app/controls/search-box/search-box.ts';
 const MOTION_CONTRACTS =
   'src/app/foundation/motion/motion-contracts.ts';
+const MOTION_ADAPTER =
+  'src/app/foundation/motion/animate-css-motion-adapter.ts';
 const SEARCH_BOX_TEMPLATE =
   'src/app/controls/search-box/search-box.html';
 const SHOWCASE = 'src/app/showcase/tooltip-controls/tooltip-controls.html';
 const TOKEN_FILE = path.join(ROOT, 'src', 'styles', 'foundation', 'components', 'tooltip', '_tokens.scss');
 const TOOLTIP_STYLE_FILES = [
   'tooltip.scss',
-  'tooltip-motion-facets.scss',
-  'tooltip-motion-slide-facets.scss',
-  'tooltip-motion-advanced-facets.scss',
-  'tooltip-motion.scss',
 ].map((file) => path.join(ROOT, 'src', 'app', 'controls', 'tooltip', file));
 const EXPECTED_BASE_TOKENS = [
   '--honesty-tooltip-bg', '--honesty-tooltip-fg', '--honesty-tooltip-max-width',
@@ -30,14 +28,7 @@ const EXPECTED_BASE_TOKENS = [
   '--honesty-tooltip-layer', '--honesty-tooltip-anchor-gap',
   '--honesty-tooltip-viewport-inset', '--honesty-tooltip-arrow-bg',
   '--honesty-tooltip-arrow-width', '--honesty-tooltip-arrow-height',
-  '--honesty-tooltip-arrow-safe-inset', '--honesty-tooltip-enter-duration',
-  '--honesty-tooltip-exit-duration', '--honesty-tooltip-enter-easing',
-  '--honesty-tooltip-exit-easing', '--honesty-tooltip-enter-opacity',
-  '--honesty-tooltip-enter-transform',
-  '--honesty-tooltip-enter-transform-overshoot',
-  '--honesty-tooltip-exit-opacity', '--honesty-tooltip-exit-transform',
-  '--honesty-tooltip-motion-slide-distance',
-  '--honesty-tooltip-reduced-duration',
+  '--honesty-tooltip-arrow-safe-inset',
 ];
 const EXPECTED_RICH_TOKENS = [
   '--honesty-tooltip-bg', '--honesty-tooltip-fg', '--honesty-tooltip-max-width',
@@ -74,7 +65,6 @@ const EXPECTED_MOTIONS = [
   'rotate',
   'roll',
 ];
-const CURRENT_TOOLTIP_STYLE_MOTIONS = EXPECTED_MOTIONS.slice(0, 13);
 
 function walk(directory) {
   if (!fs.existsSync(directory)) return [];
@@ -161,6 +151,7 @@ export function validateTooltipMotionContract(
   source,
   template,
   motionSource,
+  adapterSource,
   style,
 ) {
   const errors = [];
@@ -173,29 +164,44 @@ export function validateTooltipMotionContract(
   }
 
   for (const required of [
+    'AnimateCssMotionAdapter',
+    'ERP_TOOLTIP_MOTION_DURATION_MS',
     "import {ErpMotionPreset} from '../../foundation/motion/motion-contracts';",
     "readonly enterAnimation = input<ErpMotionPreset>('fade-scale');",
     "readonly exitAnimation = input<ErpMotionPreset>('fade');",
     "'[attr.data-tooltip-enter-animation]': 'enterAnimation()'",
     "'[attr.data-tooltip-exit-animation]': 'exitAnimation()'",
-    'handleSurfaceAnimationEnd(event: AnimationEvent)',
-    'scheduleReducedMotionCompletion(',
+    'this.motion.start({',
+    'durationMs: ERP_TOOLTIP_MOTION_DURATION_MS[phase]',
+    "if (phase === 'enter') this.completeEnter(surface)",
+    'else this.finalizeClose(surface)',
   ]) {
     if (!source.includes(required)) {
       errors.push(`Tooltip motion: missing shared contract ${required}`);
     }
   }
 
-  if (!template.includes('(animationend)="handleSurfaceAnimationEnd($event)"')) {
-    errors.push('Tooltip motion: exit completion must be animation-event driven');
+  if (template.includes('(animationend)=')) {
+    errors.push('Tooltip motion: vendor lifecycle must remain adapter-owned');
   }
 
-  for (const motion of CURRENT_TOOLTIP_STYLE_MOTIONS) {
-    for (const phase of ['enter', 'exit']) {
-      if (!style.includes(`data-tooltip-${phase}-animation='${motion}'`)) {
-        errors.push(`Tooltip motion: missing ${phase} mapping for ${motion}`);
-      }
+  for (const required of [
+    'export const ERP_TOOLTIP_MOTION_DURATION_MS',
+    'enter: 320',
+    'exit: 220',
+    "window.matchMedia('(prefers-reduced-motion: reduce)')",
+  ]) {
+    if (!adapterSource.includes(required)) {
+      errors.push(`Tooltip motion adapter: missing ${required}`);
     }
+  }
+
+  if (
+    /@keyframes\s+tooltip-surface-|data-tooltip-(?:enter|exit)-animation/.test(
+      style,
+    )
+  ) {
+    errors.push('Tooltip motion: obsolete component-authored motion CSS remains');
   }
 
   return errors;
@@ -218,18 +224,16 @@ function validateProductionContracts(files) {
       files.get(TOOLTIP_SOURCE) ?? '',
       files.get(TOOLTIP_TEMPLATE) ?? '',
       files.get(MOTION_CONTRACTS) ?? '',
+      files.get(MOTION_ADAPTER) ?? '',
       style,
     ),
   );
   for (const match of style.matchAll(/var\(\s*(--honesty-[a-z0-9-]+)/g)) {
     if (!match[1].startsWith('--honesty-tooltip-')) errors.push(`Tooltip SCSS consumes foreign token "${match[1]}"`);
   }
-  if (!/@media\s*\(prefers-reduced-motion:\s*reduce\)/.test(style) || !/@keyframes\s+tooltip-surface-reduced[\s\S]*transform:\s*none/.test(style)) errors.push('Tooltip reduced-motion rule is missing transform removal');
-  if (!/@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]*animation-name:\s*tooltip-surface-reduced[\s\S]*animation-duration:\s*var\(--honesty-tooltip-reduced-duration\)/.test(style)) errors.push('Tooltip reduced-motion phases must use the reduced animation and duration');
   if (!/:host\(\[data-tooltip-interactive='true'\]\)\s+\.erp-tooltip__surface\[data-phase='open'\]\s*\{\s*pointer-events:\s*auto/.test(style)) errors.push('Interactive Tooltip pointer events must be enabled only in the open phase');
-  if (!/@keyframes\s+tooltip-surface-enter/.test(style) || !/@keyframes\s+tooltip-surface-exit/.test(style) || /transition:\s*all/.test(style)) errors.push('Tooltip motion must use explicit enter and exit keyframes');
-  if (!/:host-context\(\[dir='rtl'\]\)\[data-tooltip-enter-animation='slide-start'\][\s\S]*@include\s+tokens\.enter-slide-end/.test(style) || !/:host-context\(\[dir='rtl'\]\)\[data-tooltip-exit-animation='slide-start'\][\s\S]*@include\s+tokens\.exit-slide-end/.test(style)) errors.push('Tooltip logical slide-start motion must reverse in RTL');
-  if (!/:host-context\(\[dir='rtl'\]\)\[data-tooltip-enter-animation='slide-end'\][\s\S]*@include\s+tokens\.enter-slide-start/.test(style) || !/:host-context\(\[dir='rtl'\]\)\[data-tooltip-exit-animation='slide-end'\][\s\S]*@include\s+tokens\.exit-slide-start/.test(style)) errors.push('Tooltip logical slide-end motion must reverse in RTL');
+  if (/transition:\s*all/.test(style)) errors.push('Tooltip must not use transition: all');
+  if (/(?:@mixin\s+(?:enter|exit)-|--honesty-tooltip-(?:enter|exit|motion|reduced)-)/.test(tokenSource)) errors.push('Tooltip tokens must not recreate adapter-owned motion');
 
   const modules = walk(path.join(ROOT, 'src', 'styles', 'foundation', 'components')).filter((file) => path.basename(file) === '_tokens.scss');
   if (modules.length !== 46) errors.push(`Expected 46 concrete Component Token modules, found ${modules.length}`);
@@ -284,26 +288,29 @@ function selfTest() {
   }
 
   const validMotionSource = `
+AnimateCssMotionAdapter ERP_TOOLTIP_MOTION_DURATION_MS
 import {ErpMotionPreset} from '../../foundation/motion/motion-contracts';
 readonly enterAnimation = input<ErpMotionPreset>('fade-scale');
 readonly exitAnimation = input<ErpMotionPreset>('fade');
 '[attr.data-tooltip-enter-animation]': 'enterAnimation()'
 '[attr.data-tooltip-exit-animation]': 'exitAnimation()'
-handleSurfaceAnimationEnd(event: AnimationEvent)
-scheduleReducedMotionCompletion(`;
+this.motion.start({
+durationMs: ERP_TOOLTIP_MOTION_DURATION_MS[phase]
+if (phase === 'enter') this.completeEnter(surface)
+else this.finalizeClose(surface)`;
   const validMotionCatalog = `export const ERP_MOTION_PRESETS = [${EXPECTED_MOTIONS.map((motion) => `'${motion}'`).join(', ')}] as const;`;
-  const validMotionStyle = EXPECTED_MOTIONS.flatMap((motion) => [
-    `data-tooltip-enter-animation='${motion}'`,
-    `data-tooltip-exit-animation='${motion}'`,
-  ]).join('\n');
-  const validMotionTemplate =
-    '<div (animationend)="handleSurfaceAnimationEnd($event)"></div>';
+  const validMotionAdapter = `
+export const ERP_TOOLTIP_MOTION_DURATION_MS = {enter: 320, exit: 220};
+window.matchMedia('(prefers-reduced-motion: reduce)');`;
+  const validMotionStyle = '.erp-tooltip__surface { opacity: 1; }';
+  const validMotionTemplate = '<div></div>';
 
   if (
     validateTooltipMotionContract(
       validMotionSource,
       validMotionTemplate,
       validMotionCatalog,
+      validMotionAdapter,
       validMotionStyle,
     ).length > 0
   ) {
@@ -315,10 +322,23 @@ scheduleReducedMotionCompletion(`;
       validMotionSource,
       validMotionTemplate,
       validMotionCatalog.replace(', \'swing\'', ''),
+      validMotionAdapter,
       validMotionStyle,
     ).length === 0
   ) {
     throw new Error('Tooltip checker accepted a divergent motion catalog');
+  }
+
+  if (
+    validateTooltipMotionContract(
+      validMotionSource,
+      validMotionTemplate,
+      validMotionCatalog,
+      validMotionAdapter.replace('enter: 320', 'enter: 100'),
+      validMotionStyle,
+    ).length === 0
+  ) {
+    throw new Error('Tooltip checker accepted divergent adapter timing');
   }
   console.log('ErpTooltip governance checker self-test passed.');
 }

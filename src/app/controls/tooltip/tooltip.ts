@@ -16,6 +16,11 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
+import {
+  AnimateCssMotionAdapter,
+  ERP_TOOLTIP_MOTION_DURATION_MS,
+  ErpMotionPhase,
+} from '../../foundation/motion/animate-css-motion-adapter';
 import {ErpMotionPreset} from '../../foundation/motion/motion-contracts';
 import {ErpText} from '../../primitives/text/text';
 import {AnchoredOverlayController} from '../../shared/anchored-overlay/anchored-overlay-controller';
@@ -32,13 +37,7 @@ let nextTooltipId = 0;
   selector: 'erp-tooltip',
   imports: [ErpText],
   templateUrl: './tooltip.html',
-  styleUrls: [
-    './tooltip.scss',
-    './tooltip-motion-facets.scss',
-    './tooltip-motion-slide-facets.scss',
-    './tooltip-motion.scss',
-    './tooltip-motion-advanced-facets.scss',
-  ],
+  styleUrl: './tooltip.scss',
   host: {
     '[attr.data-tooltip-variant]': 'variant()',
     '[attr.data-tooltip-interactive]': 'interactive()',
@@ -78,6 +77,7 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
   private readonly arrow = viewChild<ElementRef<HTMLElement>>('arrow');
   private readonly richContents = contentChildren(ErpTooltipContent);
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly motion = inject(AnimateCssMotionAdapter);
   private controller: AnchoredOverlayController | null = null;
   private controllerAnchor: HTMLElement | null = null;
   private actualTrigger: HTMLElement | null = null;
@@ -92,6 +92,8 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
   private placementTransformOrigin = 'center';
   private originalAttributes = new Map<string, string | null>();
   private semanticMode: 'described' | 'interactive' | null = null;
+  private motionCancel: (() => void) | null = null;
+  private motionGeneration = 0;
 
   constructor() {
     effect(() => {
@@ -127,6 +129,7 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
   }
 
   ngOnDestroy(): void {
+    this.cancelMotion();
     this.clearTimer();
     this.host.nativeElement.removeEventListener('click', this.handleCapturedClick, true);
     document.removeEventListener('pointerdown', this.handleDocumentPointerDown, true);
@@ -254,6 +257,7 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
     }
 
     this.clearTimer();
+    this.cancelMotion();
 
     if (this.shown && !this.closing) {
       this.controller?.requestPosition();
@@ -297,7 +301,7 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
       if (this.shown) {
         surface.dataset['phase'] = 'entering';
         this.applyMotionTransformOrigin(surface, this.enterAnimation());
-        this.scheduleReducedMotionCompletion('entering');
+        this.startMotion(surface, this.enterAnimation(), 'enter');
       }
     });
     document.addEventListener('pointerdown', this.handleDocumentPointerDown, true);
@@ -320,25 +324,7 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
     if (this.interactive() && this.state() === 'ready') this.applyTriggerSemantics(false);
     else this.restoreTriggerSemantics();
     if (returnFocus) this.actualTrigger?.focus();
-    this.scheduleReducedMotionCompletion('closing');
-  }
-
-  handleSurfaceAnimationEnd(event: AnimationEvent): void {
-    if (event.target !== event.currentTarget) return;
-    const surface = event.currentTarget as HTMLElement;
-    if (
-      surface.dataset['phase'] === 'entering' &&
-      ['tooltip-surface-enter', 'tooltip-surface-overshoot-enter'].includes(
-        event.animationName,
-      )
-    ) {
-      this.completeEnter(surface);
-    } else if (
-      surface.dataset['phase'] === 'closing' &&
-      event.animationName === 'tooltip-surface-exit'
-    ) {
-      this.finalizeClose(surface);
-    }
+    this.startMotion(surface, this.exitAnimation(), 'exit');
   }
 
   private readonly handleDocumentPointerDown = (event: Event): void => {
@@ -376,22 +362,42 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
     delete surface.dataset['phase'];
   }
 
-  private scheduleReducedMotionCompletion(
-    phase: 'entering' | 'closing',
+  private startMotion(
+    surface: HTMLElement,
+    preset: ErpMotionPreset,
+    phase: ErpMotionPhase,
   ): void {
-    if (
-      typeof window.matchMedia !== 'function' ||
-      !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    ) {
-      return;
+    const generation = ++this.motionGeneration;
+    this.motionCancel?.();
+    this.motionCancel = this.motion.start({
+      element: surface,
+      preset,
+      phase,
+      direction: this.resolveDirection(surface),
+      durationMs: ERP_TOOLTIP_MOTION_DURATION_MS[phase],
+      completed: () => {
+        if (generation !== this.motionGeneration) return;
+        this.motionCancel = null;
+        if (phase === 'enter') this.completeEnter(surface);
+        else this.finalizeClose(surface);
+      },
+    });
+  }
+
+  private cancelMotion(): void {
+    this.motionGeneration += 1;
+    this.motionCancel?.();
+    this.motionCancel = null;
+  }
+
+  private resolveDirection(surface: HTMLElement): 'ltr' | 'rtl' {
+    const authoredDirection = surface.closest<HTMLElement>('[dir]')?.dir;
+
+    if (authoredDirection === 'rtl' || authoredDirection === 'ltr') {
+      return authoredDirection;
     }
 
-    queueMicrotask(() => {
-      const surface = this.surface().nativeElement;
-      if (surface.dataset['phase'] !== phase) return;
-      if (phase === 'entering') this.completeEnter(surface);
-      else this.finalizeClose(surface);
-    });
+    return getComputedStyle(surface).direction === 'rtl' ? 'rtl' : 'ltr';
   }
 
   private applyMotionTransformOrigin(

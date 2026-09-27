@@ -1,6 +1,10 @@
 import {Component, reflectComponentType, signal} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {
+  ERP_TOOLTIP_MOTION_DURATION_MS,
+  resolveAnimateCssEffect,
+} from '../../foundation/motion/animate-css-motion-adapter';
+import {
   ERP_MOTION_PRESETS,
   ErpMotionPreset,
 } from '../../foundation/motion/motion-contracts';
@@ -49,10 +53,8 @@ class TooltipValidationHost {
 }
 
 describe('ErpTooltip', () => {
-  function dispatchAnimationEnd(surface: HTMLElement, animationName: string): void {
-    const event = new Event('animationend', {bubbles: true});
-    Object.defineProperty(event, 'animationName', {value: animationName});
-    surface.dispatchEvent(event);
+  function dispatchAnimationEnd(surface: HTMLElement): void {
+    surface.dispatchEvent(new Event('animationend', {bubbles: true}));
   }
 
   beforeEach(async () => {
@@ -86,10 +88,12 @@ describe('ErpTooltip', () => {
     expect(tooltip.querySelectorAll('.erp-tooltip__arrow').length).toBe(1);
   });
 
-  it('accepts every shared motion preset independently for enter and exit', () => {
+  it('runs every shared motion preset independently for enter and exit', () => {
     const fixture = create();
     const host = fixture.componentInstance;
     const tooltip = fixture.nativeElement.querySelector('erp-tooltip') as HTMLElement;
+    const wrapper = tooltip.querySelector('.erp-tooltip__trigger') as HTMLElement;
+    const surface = tooltip.querySelector('.erp-tooltip__surface') as HTMLElement;
 
     expect(ERP_MOTION_PRESETS).toHaveLength(23);
     for (const preset of ERP_MOTION_PRESETS) {
@@ -98,6 +102,37 @@ describe('ErpTooltip', () => {
       fixture.detectChanges();
       expect(tooltip.getAttribute('data-tooltip-enter-animation')).toBe(preset);
       expect(tooltip.getAttribute('data-tooltip-exit-animation')).toBe(preset);
+
+      wrapper.dispatchEvent(new FocusEvent('focusin', {bubbles: true}));
+      vi.runAllTimers();
+      fixture.detectChanges();
+      expect(surface.classList.contains('animate__animated')).toBe(true);
+      expect(
+        surface.classList.contains(
+          `animate__${resolveAnimateCssEffect(preset, 'enter', 'ltr')}`,
+        ),
+      ).toBe(true);
+      expect(surface.style.getPropertyValue('--animate-duration')).toBe(
+        `${ERP_TOOLTIP_MOTION_DURATION_MS.enter}ms`,
+      );
+      dispatchAnimationEnd(surface);
+      fixture.detectChanges();
+      expect(surface.dataset['phase']).toBe('open');
+
+      host.open.set(false);
+      fixture.detectChanges();
+      expect(
+        surface.classList.contains(
+          `animate__${resolveAnimateCssEffect(preset, 'exit', 'ltr')}`,
+        ),
+        `${preset}: ${surface.className}`,
+      ).toBe(true);
+      expect(surface.style.getPropertyValue('--animate-duration')).toBe(
+        `${ERP_TOOLTIP_MOTION_DURATION_MS.exit}ms`,
+      );
+      dispatchAnimationEnd(surface);
+      fixture.detectChanges();
+      expect(surface.hasAttribute('data-popover-open')).toBe(false);
     }
   });
 
@@ -115,7 +150,8 @@ describe('ErpTooltip', () => {
     vi.runAllTimers();
 
     expect(surface.dataset['phase']).toBe('entering');
-    dispatchAnimationEnd(surface, 'tooltip-surface-overshoot-enter');
+    expect(surface.classList.contains('animate__bounceIn')).toBe(true);
+    dispatchAnimationEnd(surface);
     expect(surface.dataset['phase']).toBe('open');
 
     host.open.set(false);
@@ -125,7 +161,8 @@ describe('ErpTooltip', () => {
 
     vi.advanceTimersByTime(1000);
     expect(surface.hasAttribute('data-popover-open')).toBe(true);
-    dispatchAnimationEnd(surface, 'tooltip-surface-exit');
+    expect(surface.classList.contains('animate__bounceOut')).toBe(true);
+    dispatchAnimationEnd(surface);
     expect(surface.hasAttribute('data-popover-open')).toBe(false);
     expect(surface.hasAttribute('data-phase')).toBe(false);
   });
@@ -148,17 +185,27 @@ describe('ErpTooltip', () => {
     expect(surface.hasAttribute('data-phase')).toBe(false);
   });
 
-  it('retains logical slide preset evidence in RTL', () => {
+  it('runs logical slide presets in the RTL physical direction', () => {
     document.documentElement.setAttribute('dir', 'rtl');
     const fixture = create();
     fixture.componentInstance.enterAnimation.set('slide-start');
     fixture.componentInstance.exitAnimation.set('slide-end');
     fixture.detectChanges();
     const tooltip = fixture.nativeElement.querySelector('erp-tooltip') as HTMLElement;
+    const wrapper = tooltip.querySelector('.erp-tooltip__trigger') as HTMLElement;
+    const surface = tooltip.querySelector('.erp-tooltip__surface') as HTMLElement;
 
     expect(document.documentElement.dir).toBe('rtl');
     expect(tooltip.getAttribute('data-tooltip-enter-animation')).toBe('slide-start');
     expect(tooltip.getAttribute('data-tooltip-exit-animation')).toBe('slide-end');
+    wrapper.dispatchEvent(new FocusEvent('focusin', {bubbles: true}));
+    vi.runAllTimers();
+    expect(surface.classList.contains('animate__slideInRight')).toBe(true);
+    dispatchAnimationEnd(surface);
+    fixture.componentInstance.open.set(false);
+    fixture.detectChanges();
+    expect(surface.classList.contains('animate__slideOutLeft')).toBe(true);
+    dispatchAnimationEnd(surface);
     document.documentElement.removeAttribute('dir');
   });
 
