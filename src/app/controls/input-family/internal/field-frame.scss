@@ -37,6 +37,21 @@
   -webkit-backdrop-filter: blur(var(--honesty-field-frame-backdrop-blur));
 }
 
+:host([data-field-interaction='editor']:not([data-field-disabled='true']):not([data-field-configuration-state='invalid']))
+  .field-frame__control {
+  cursor: text;
+}
+
+:host([data-field-interaction='trigger']:not([data-field-disabled='true']):not([data-field-configuration-state='invalid']))
+  .field-frame__control {
+  cursor: pointer;
+}
+
+:host([data-field-disabled='true']) .field-frame__control,
+:host([data-field-configuration-state='invalid']) .field-frame__control {
+  cursor: default;
+}
+
 :host([data-field-appearance='glass']) .field-frame__control {
   background: color-mix(
     in srgb,

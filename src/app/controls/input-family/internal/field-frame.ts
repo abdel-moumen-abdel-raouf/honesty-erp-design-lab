@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   booleanAttribute,
   ChangeDetectionStrategy,
   Component,
@@ -60,7 +61,7 @@ import {ErpInputConfigurationState} from '../input-contracts';
     '[attr.data-field-multiline]': 'multiline()',
   },
 })
-export class ErpFieldFrame {
+export class ErpFieldFrame implements AfterViewInit {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
 
   readonly label = input.required<string>();
@@ -116,6 +117,13 @@ export class ErpFieldFrame {
   readonly helperId = computed(() => `${this.controlId()}-helper`);
   readonly feedbackId = computed(() => `${this.controlId()}-feedback`);
 
+  ngAfterViewInit(): void {
+    this.host.nativeElement.setAttribute(
+      'data-field-interaction',
+      this.controlInteraction(),
+    );
+  }
+
   handleControlSurfaceClick(event: MouseEvent): void {
     if (this.disabled() || this.configurationState() !== 'ready') {
       return;
@@ -139,10 +147,7 @@ export class ErpFieldFrame {
       return;
     }
 
-    const controlId = this.controlId();
-    const control = [
-      ...this.host.nativeElement.querySelectorAll<HTMLElement>('[id]'),
-    ].find((candidate) => candidate.id === controlId);
+    const control = this.owningControl();
 
     if (
       control instanceof HTMLInputElement ||
@@ -158,5 +163,26 @@ export class ErpFieldFrame {
       control.focus();
       control.click();
     }
+  }
+
+  private controlInteraction(): 'editor' | 'trigger' | 'none' {
+    const control = this.owningControl();
+
+    if (
+      control instanceof HTMLInputElement ||
+      control instanceof HTMLTextAreaElement
+    ) {
+      return 'editor';
+    }
+
+    return control instanceof HTMLButtonElement ? 'trigger' : 'none';
+  }
+
+  private owningControl(): HTMLElement | undefined {
+    const controlId = this.controlId();
+
+    return [
+      ...this.host.nativeElement.querySelectorAll<HTMLElement>('[id]'),
+    ].find((candidate) => candidate.id === controlId);
   }
 }

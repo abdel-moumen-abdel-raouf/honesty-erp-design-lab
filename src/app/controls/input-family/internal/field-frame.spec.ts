@@ -90,6 +90,7 @@ describe('ErpFieldFrame', () => {
     expect(host.getAttribute('data-field-helper-position')).toBe('below');
     expect(host.getAttribute('data-field-configuration-state')).toBe('ready');
     expect(host.getAttribute('data-field-multiline')).toBe('false');
+    expect(host.getAttribute('data-field-interaction')).toBe('none');
     expect(label?.getAttribute('for')).toBe('name-control');
     expect(label?.textContent?.trim()).toBe('Name');
   });
@@ -223,6 +224,11 @@ describe('ErpFieldFrame', () => {
     const native = host.querySelector('#delegated-input') as HTMLInputElement;
 
     expect(icons).toHaveLength(2);
+    expect(
+      host.querySelector('erp-field-frame')?.getAttribute(
+        'data-field-interaction',
+      ),
+    ).toBe('editor');
 
     for (const surface of [control, icons[0], icons[1]]) {
       native.blur();
@@ -237,6 +243,12 @@ describe('ErpFieldFrame', () => {
     const host = fixture.nativeElement as HTMLElement;
     const surface = host.querySelector('.field-frame__control') as HTMLElement;
     const trigger = host.querySelector('#delegated-trigger') as HTMLButtonElement;
+
+    expect(
+      host.querySelector('erp-field-frame')?.getAttribute(
+        'data-field-interaction',
+      ),
+    ).toBe('trigger');
 
     surface.dispatchEvent(new MouseEvent('click', {bubbles: true}));
 
