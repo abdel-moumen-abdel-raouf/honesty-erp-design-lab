@@ -9,6 +9,7 @@ import {
   hasLabPreviewFlag,
   isDirectLabReviewRoute,
   isFullyTransparent,
+  normalizeScreenshotColorFunctions,
   persistLabTheme,
   resolveLabScreenshotSources,
   resolveLabScreenshotTarget,
@@ -117,6 +118,22 @@ describe('Design Lab preview helpers', () => {
 
     expect(resolveLabScreenshotTarget(directDocument, true)).toBe(directRoot);
     expect(resolveLabScreenshotTarget(directDocument, false)).toBeNull();
+  });
+
+  it('normalizes browser color(srgb) serialization for html2canvas parsing', () => {
+    expect(
+      normalizeScreenshotColorFunctions(
+        'color(srgb 0.152941 0.164706 0.196078 / 0.460235)',
+      ),
+    ).toBe('rgba(39, 42, 50, 0.460235)');
+    expect(
+      normalizeScreenshotColorFunctions(
+        '0 0 0 1px color(srgb 1 0.5 0 / 1)',
+      ),
+    ).toBe('0 0 0 1px rgba(255, 128, 0, 1)');
+    expect(normalizeScreenshotColorFunctions('rgb(1, 2, 3)')).toBe(
+      'rgb(1, 2, 3)',
+    );
   });
 });
 

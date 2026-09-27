@@ -200,6 +200,47 @@ export function resolveVisibleBackgroundColor(target: HTMLElement): string {
   return '#ffffff';
 }
 
+const SCREENSHOT_SRGB_COLOR_PATTERN =
+  /color\(\s*srgb\s+(-?(?:\d+\.?\d*|\.\d+))\s+(-?(?:\d+\.?\d*|\.\d+))\s+(-?(?:\d+\.?\d*|\.\d+))(?:\s*\/\s*(-?(?:\d+\.?\d*|\.\d+)))?\s*\)/gi;
+
+export function normalizeScreenshotColorFunctions(value: string): string {
+  return value.replace(
+    SCREENSHOT_SRGB_COLOR_PATTERN,
+    (_match, red: string, green: string, blue: string, alpha?: string) => {
+      const channel = (component: string) =>
+        Math.round(Math.min(1, Math.max(0, Number.parseFloat(component))) * 255);
+      const resolvedAlpha = Math.min(
+        1,
+        Math.max(0, alpha === undefined ? 1 : Number.parseFloat(alpha)),
+      );
+
+      return `rgba(${channel(red)}, ${channel(green)}, ${channel(blue)}, ${resolvedAlpha})`;
+    },
+  );
+}
+
+export function normalizeScreenshotCloneColors(root: HTMLElement): void {
+  const targetWindow = root.ownerDocument.defaultView;
+
+  if (!targetWindow) {
+    return;
+  }
+
+  for (const element of [root, ...root.querySelectorAll<HTMLElement>('*')]) {
+    const style = targetWindow.getComputedStyle(element);
+
+    for (let index = 0; index < style.length; index += 1) {
+      const property = style.item(index);
+      const value = style.getPropertyValue(property);
+      const normalized = normalizeScreenshotColorFunctions(value);
+
+      if (normalized !== value) {
+        element.style.setProperty(property, normalized, 'important');
+      }
+    }
+  }
+}
+
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-root',
@@ -295,6 +336,9 @@ export class App {
           scrollY: 0,
           useCORS: true,
           backgroundColor: resolveVisibleBackgroundColor(target),
+          onclone: (_clonedDocument, clonedElement) => {
+            normalizeScreenshotCloneColors(clonedElement);
+          },
         });
       };
 
