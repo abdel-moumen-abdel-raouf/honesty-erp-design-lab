@@ -62,6 +62,13 @@ describe('TooltipControls showcase', () => {
     expect(root.querySelectorAll('[data-exit-motion-selector]')).toHaveLength(1);
     expect(root.querySelectorAll('[data-motion-plain-evidence]')).toHaveLength(1);
     expect(root.querySelectorAll('[data-motion-rich-evidence]')).toHaveLength(1);
+    expect(root.querySelectorAll('[data-motion-replay-action]')).toHaveLength(1);
+    expect(
+      root.querySelector('[data-selected-enter-preset]')?.textContent?.trim(),
+    ).toContain('fade-scale');
+    expect(
+      root.querySelector('[data-selected-exit-preset]')?.textContent?.trim(),
+    ).toContain('fade');
 
     fixture.componentInstance.selectEnterAnimation('bounce');
     fixture.componentInstance.selectExitAnimation('swing');
@@ -72,5 +79,24 @@ describe('TooltipControls showcase', () => {
       expect(evidence.getAttribute('data-tooltip-enter-animation')).toBe('bounce');
       expect(evidence.getAttribute('data-tooltip-exit-animation')).toBe('swing');
     }
+    expect(
+      root.querySelector('[data-selected-enter-preset]')?.textContent?.trim(),
+    ).toContain('bounce');
+    expect(
+      root.querySelector('[data-selected-exit-preset]')?.textContent?.trim(),
+    ).toContain('swing');
+  });
+
+  it('provides an explicit replay action for the controlled plain motion proof', async () => {
+    const fixture = create();
+    const component = fixture.componentInstance;
+
+    expect(component.motionPreviewOpen()).toBe(true);
+    component.replayMotion();
+    expect(component.motionPreviewOpen()).toBe(false);
+
+    await Promise.resolve();
+    fixture.detectChanges();
+    expect(component.motionPreviewOpen()).toBe(true);
   });
 });

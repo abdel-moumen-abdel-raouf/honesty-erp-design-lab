@@ -36,12 +36,26 @@
         [attached]="false"
         (itemPressed)="selectExitAnimation($event)"
       />
+      <erp-inline class="motion-selection" gap="default" wrap="wrap">
+        <erp-text data-selected-enter-preset type="label" tone="brand-primary">
+          حركة الدخول المحددة: {{ enterAnimation() }}
+        </erp-text>
+        <erp-text data-selected-exit-preset type="label" tone="brand-secondary">
+          حركة الخروج المحددة: {{ exitAnimation() }}
+        </erp-text>
+        <erp-button
+          data-motion-replay-action
+          label="إعادة تشغيل الحركة"
+          (pressed)="replayMotion()"
+        />
+      </erp-inline>
       <erp-inline gap="default" wrap="wrap">
         <erp-tooltip
           data-motion-plain-evidence
           text="دليل حركة تلميح بسيط"
           [enterAnimation]="enterAnimation()"
           [exitAnimation]="exitAnimation()"
+          [(open)]="motionPreviewOpen"
         >
           <erp-button label="تلميح بسيط متحرك" />
         </erp-tooltip>

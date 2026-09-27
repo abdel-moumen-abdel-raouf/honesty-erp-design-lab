@@ -31,6 +31,7 @@ export class TooltipControls {
     ERP_MOTION_PRESETS.map((preset) => ({value: preset, label: preset}));
   readonly enterAnimation = signal<ErpMotionPreset>('fade-scale');
   readonly exitAnimation = signal<ErpMotionPreset>('fade');
+  readonly motionPreviewOpen = signal(true);
 
   selectEnterAnimation(value: string): void {
     const preset = ERP_MOTION_PRESETS.find((candidate) => candidate === value);
@@ -40,5 +41,10 @@ export class TooltipControls {
   selectExitAnimation(value: string): void {
     const preset = ERP_MOTION_PRESETS.find((candidate) => candidate === value);
     if (preset !== undefined) this.exitAnimation.set(preset);
+  }
+
+  replayMotion(): void {
+    this.motionPreviewOpen.set(false);
+    queueMicrotask(() => this.motionPreviewOpen.set(true));
   }
 }
