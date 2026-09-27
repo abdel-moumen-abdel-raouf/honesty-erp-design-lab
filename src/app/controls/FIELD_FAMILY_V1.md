@@ -36,6 +36,19 @@ The internal foundation is:
 
 Feature/Page code never authors the internal Field Family types directly.
 
+## Control-Surface Hit Area
+
+The complete `.field-frame__control` surface is the owning control hit target.
+A non-action click resolves the owning element by `controlId`: native input or
+textarea controls receive focus, while an `ErpFieldTrigger` button receives
+focus and activation. Explicit leading, domain, trailing, and clear actions,
+plus any nested interactive element, remain isolated and never delegate to the
+main control. Effective-disabled or configuration-invalid fields do nothing.
+
+The value region grows across all available field space, FieldTrigger fills
+that value surface, and floating labels never intercept pointer events. Helper
+placement, tone, and status do not change the hit-area behavior.
+
 ## Canonical Contracts
 
 ```ts
@@ -347,10 +360,10 @@ their concrete ERP controls.
 - `popupMode = true`, `dismissOnOutside = true`, `dismissOnEscape = true`,
   `showDefaultSearchIcon = true`, and both animation inputs default to
   `fade-scale`. `popupMode = false` preserves the direct inline editor.
-- SearchBox supports the shared seven-name Overlay animation vocabulary while
-  owning its motion values in the SearchBox Component Token namespace. Logical
-  slide start/end motion reverses in RTL and reduced motion uses the SearchBox
-  reduced-duration slot.
+- SearchBox animation inputs consume the shared `ErpOverlayAnimation` type while
+  owning motion values in the SearchBox Component Token namespace. It exposes
+  no arbitrary CSS-class motion API. Logical slide start/end motion reverses in
+  RTL and reduced motion uses the SearchBox reduced-duration slot.
 - Popup width starts from the trigger inline size, clamps between 20rem and
   36rem when viewport space permits, and always remains inside the configured
   viewport inset. Its maximum block size is 28rem and remains viewport-capped.

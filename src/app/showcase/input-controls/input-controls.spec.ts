@@ -17,6 +17,16 @@ describe('InputControls showcase', () => {
     return fixture;
   }
 
+  it('provides concise full FieldFrame hit-area review evidence', () => {
+    const root = create().nativeElement as HTMLElement;
+    const evidence = root.querySelector(
+      '[data-field-hit-area-review-evidence]',
+    );
+
+    expect(evidence).toBeTruthy();
+    expect(evidence?.textContent).toContain('انقر');
+  });
+
   it('has the /controls/inputs route and creates', () => {
     expect(
       routes.find((route) => route.path === 'controls/inputs'),

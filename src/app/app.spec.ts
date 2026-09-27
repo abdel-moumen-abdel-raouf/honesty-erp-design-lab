@@ -277,6 +277,9 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
 
     const screenshotBtn = compiled.querySelector('#btn-full-page-screenshot') as HTMLButtonElement | null;
     expect(screenshotBtn).toBeTruthy();
+    expect(screenshotBtn?.hasAttribute('data-wave-a-screenshot-evidence')).toBe(
+      true,
+    );
     expect(screenshotBtn?.textContent?.trim()).toContain('لقطة كاملة');
     expect(screenshotBtn?.disabled).toBe(false);
   });
@@ -287,6 +290,8 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     fixture.detectChanges();
     const root = fixture.nativeElement as HTMLElement;
     const themeButton = root.querySelector('#btn-lab-theme') as HTMLButtonElement;
+
+    expect(themeButton.hasAttribute('data-wave-a-theme-evidence')).toBe(true);
 
     expect(root.querySelector('#lab-capture-root')?.getAttribute('data-theme')).toBe(
       'light',

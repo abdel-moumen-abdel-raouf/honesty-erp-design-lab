@@ -54,6 +54,9 @@ describe('TooltipControls showcase', () => {
       ...ERP_MOTION_PRESETS,
     ]);
     expect(root.querySelectorAll('[data-motion-selector-evidence]')).toHaveLength(1);
+    expect(
+      root.querySelectorAll('[data-wave-a-tooltip-motion-evidence]'),
+    ).toHaveLength(1);
     expect(root.querySelectorAll('[data-enter-motion-selector]')).toHaveLength(1);
     expect(root.querySelectorAll('[data-exit-motion-selector]')).toHaveLength(1);
     expect(root.querySelectorAll('[data-motion-plain-evidence]')).toHaveLength(1);

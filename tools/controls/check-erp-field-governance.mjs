@@ -13,6 +13,12 @@ const OVERLAY_SHOWCASE =
   'src/app/showcase/overlay-controls/overlay-controls.html';
 const FIELD_CONTRACT = 'src/app/controls/FIELD_FAMILY_V1.md';
 const BUTTON_CONTRACT = 'src/app/controls/BUTTON_FAMILY_V1.md';
+const FIELD_FRAME_SOURCE =
+  'src/app/controls/input-family/internal/field-frame.ts';
+const FIELD_FRAME_TEMPLATE =
+  'src/app/controls/input-family/internal/field-frame.html';
+const FIELD_FRAME_STYLE =
+  'src/app/controls/input-family/internal/field-frame.scss';
 const FIELD_TRIGGER_TEMPLATE =
   'src/app/controls/input-family/internal/field-trigger.html';
 const SEARCH_BOX_SOURCE =
@@ -318,6 +324,53 @@ export function validateFieldRenderingContracts(tokenSource, styleSource) {
     errors.push(
       'FieldFrame focus gradients must expose deterministic RTL-aware color ordering',
     );
+  }
+
+  return errors;
+}
+
+export function validateFieldHitAreaContract(source, template, style) {
+  const errors = [];
+
+  for (const required of [
+    "'(click)': 'handleControlSurfaceClick($event)'",
+    'handleControlSurfaceClick(event: MouseEvent)',
+    "target.closest('.field-frame__control')",
+    '[field-leading-action]',
+    '[field-domain-action]',
+    '[field-trailing]',
+    'this.controlId()',
+    'control instanceof HTMLInputElement',
+    'control instanceof HTMLTextAreaElement',
+    'control instanceof HTMLButtonElement',
+    'control.focus();',
+    'control.click();',
+    "this.configurationState() !== 'ready'",
+  ]) {
+    if (!source.includes(required)) {
+      errors.push(`FieldFrame hit area: missing shared contract ${required}`);
+    }
+  }
+
+  for (const required of [
+    'class="field-frame__control"',
+    'class="field-frame__value"',
+    '<ng-content select="[field-control]"></ng-content>',
+  ]) {
+    if (!template.includes(required)) {
+      errors.push(`FieldFrame template: missing hit-area contract ${required}`);
+    }
+  }
+
+  for (const required of [
+    '.field-frame__value',
+    'flex: 1 1 auto;',
+    'inline-size: 100%;',
+    'pointer-events: none;',
+  ]) {
+    if (!style.includes(required)) {
+      errors.push(`FieldFrame styles: missing hit-area contract ${required}`);
+    }
   }
 
   return errors;
@@ -1283,6 +1336,64 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     );
   }
 
+  const validHitAreaSource = [
+    "'(click)': 'handleControlSurfaceClick($event)'",
+    'handleControlSurfaceClick(event: MouseEvent)',
+    "target.closest('.field-frame__control')",
+    '[field-leading-action]',
+    '[field-domain-action]',
+    '[field-trailing]',
+    'this.controlId()',
+    'control instanceof HTMLInputElement',
+    'control instanceof HTMLTextAreaElement',
+    'control instanceof HTMLButtonElement',
+    'control.focus();',
+    'control.click();',
+    "this.configurationState() !== 'ready'",
+  ].join('\n');
+  const validHitAreaTemplate = [
+    '<div class="field-frame__control">',
+    '<span class="field-frame__value">',
+    '<ng-content select="[field-control]"></ng-content>',
+  ].join('\n');
+  const validHitAreaStyle = [
+    '.field-frame__value',
+    'flex: 1 1 auto;',
+    'inline-size: 100%;',
+    'pointer-events: none;',
+  ].join('\n');
+
+  if (
+    validateFieldHitAreaContract(
+      validHitAreaSource,
+      validHitAreaTemplate,
+      validHitAreaStyle,
+    ).length > 0
+  ) {
+    throw new Error('ErpField checker rejected valid hit-area fixtures');
+  }
+
+  for (const [index, source] of [
+    validHitAreaSource.replace('control.click();', ''),
+    validHitAreaSource.replace('[field-domain-action]', ''),
+    validHitAreaSource.replace(
+      "'(click)': 'handleControlSurfaceClick($event)'",
+      '',
+    ),
+  ].entries()) {
+    if (
+      validateFieldHitAreaContract(
+        source,
+        validHitAreaTemplate,
+        validHitAreaStyle,
+      ).length === 0
+    ) {
+      throw new Error(
+        `ErpField checker accepted invalid hit-area fixture ${index + 1}`,
+      );
+    }
+  }
+
   for (const [index, fixture] of [
     [
       validTokenSource.replace('72%', '70%'),
@@ -1543,6 +1654,13 @@ errors.push(
       ),
       'utf8',
     ),
+  ),
+);
+errors.push(
+  ...validateFieldHitAreaContract(
+    files.get(FIELD_FRAME_SOURCE) ?? '',
+    files.get(FIELD_FRAME_TEMPLATE) ?? '',
+    files.get(FIELD_FRAME_STYLE) ?? '',
   ),
 );
 

@@ -150,6 +150,40 @@ export function validate(files) {
   return errors;
 }
 
+export function validateWaveALabContract(files) {
+  const errors = [];
+  const source = files.get(APP_SOURCE) ?? '';
+  const template = files.get(APP_TEMPLATE) ?? '';
+
+  for (const required of [
+    "export type LabTheme = 'light' | 'dark';",
+    "const LAB_THEME_STORAGE_KEY = 'honesty-lab-theme';",
+    "parameters.set('labTheme', theme);",
+    "return route === '/controls/inputs' || route === '/controls/overlays';",
+    'const [toolbarCanvas, embeddedCanvas] = await Promise.all([',
+    'context.drawImage(toolbarCanvas, 0, 0);',
+    'context.drawImage(embeddedCanvas, 0, toolbarCanvas.height);',
+  ]) {
+    if (!source.includes(required)) {
+      errors.push(`App shell: missing Wave A Lab contract ${required}`);
+    }
+  }
+
+  for (const required of [
+    '[attr.data-theme]="theme()"',
+    'id="btn-lab-theme"',
+    'id="btn-full-page-screenshot"',
+    'data-wave-a-theme-evidence',
+    'data-wave-a-screenshot-evidence',
+  ]) {
+    if (!template.includes(required)) {
+      errors.push(`App template: missing Wave A Lab contract ${required}`);
+    }
+  }
+
+  return errors;
+}
+
 function stringUnion(source, typeName) {
   const body = source.match(
     new RegExp(`export type ${typeName}\\s*=([\\s\\S]*?);`),
@@ -418,6 +452,20 @@ phase: 'entering'; phase: 'open'; phase: 'leaving'; top?.ref.id === id;`,
       ),
     ),
     new Map(validDriftFiles).set(
+      OVERLAY_MANAGER,
+      (validDriftFiles.get(OVERLAY_MANAGER) ?? '').replace(
+        'dismissOnEscape: options.dismissOnEscape ?? false',
+        'dismissOnEscape: options.dismissOnEscape ?? true',
+      ),
+    ),
+    new Map(validDriftFiles).set(
+      OVERLAY_MANAGER,
+      (validDriftFiles.get(OVERLAY_MANAGER) ?? '').replace(
+        'dismissOnBackdrop: options.dismissOnBackdrop ?? false',
+        'dismissOnBackdrop: options.dismissOnBackdrop ?? true',
+      ),
+    ),
+    new Map(validDriftFiles).set(
       MOTION_CONTRACTS,
       (validDriftFiles.get(MOTION_CONTRACTS) ?? '').replace(', \'swing\'', ''),
     ),
@@ -428,6 +476,43 @@ phase: 'entering'; phase: 'open'; phase: 'leaving'; top?.ref.id === id;`,
         `Overlay governance accepted drift fixture ${index + 1}`,
       );
     }
+  }
+
+  const validLab = new Map([
+    [
+      APP_SOURCE,
+      `export type LabTheme = 'light' | 'dark';
+const LAB_THEME_STORAGE_KEY = 'honesty-lab-theme';
+parameters.set('labTheme', theme);
+return route === '/controls/inputs' || route === '/controls/overlays';
+const [toolbarCanvas, embeddedCanvas] = await Promise.all([
+context.drawImage(toolbarCanvas, 0, 0);
+context.drawImage(embeddedCanvas, 0, toolbarCanvas.height);`,
+    ],
+    [
+      APP_TEMPLATE,
+      `<div [attr.data-theme]="theme()">
+<button id="btn-lab-theme" data-wave-a-theme-evidence></button>
+<button id="btn-full-page-screenshot" data-wave-a-screenshot-evidence></button>
+<erp-overlay-host />
+</div>`,
+    ],
+  ]);
+
+  if (validateWaveALabContract(validLab).length > 0) {
+    throw new Error('Overlay governance rejected valid Wave A Lab fixtures');
+  }
+
+  const invalidLab = new Map(validLab);
+  invalidLab.set(
+    APP_SOURCE,
+    (invalidLab.get(APP_SOURCE) ?? '').replace(
+      " || route === '/controls/overlays'",
+      '',
+    ),
+  );
+  if (validateWaveALabContract(invalidLab).length === 0) {
+    throw new Error('Overlay governance accepted an iframe Overlay route');
   }
 
   const validTemporal = new Map(
@@ -564,6 +649,7 @@ files.set(
 );
 
 const errors = validate(files);
+errors.push(...validateWaveALabContract(files));
 errors.push(...validateOverlayContractDrift(files));
 errors.push(...validateTemporalPickers(files));
 errors.push(...validateSelectionPickers(files));

@@ -6,10 +6,9 @@ This is the implemented V1 contract for the shared blocking overlay system.
 It does not claim Product Owner visual approval or freeze later overlay-backed
 picker contracts.
 
-The current implementation is provisional during the Primary Controls
-Correction Program. The lifecycle, blur, backdrop-tone, motion, geometry, and
-dismissal corrections in `CONTROLS_CORRECTION_PROGRAM_V1.md` are authoritative
-until the correction program completes.
+The post-CR12 Wave A lifecycle, blur, backdrop-tone, motion, geometry, and
+dismissal corrections are implemented technical contracts. They do not claim
+Product Owner visual approval or freeze.
 
 The system must exist before any overlay-backed picker is implemented.
 
@@ -50,14 +49,22 @@ export type ErpOverlayBackdropTone =
   | 'secondary'
   | 'accent';
 
-export type ErpOverlayAnimation =
+export type ErpMotionPreset =
   | 'fade'
   | 'scale'
   | 'fade-scale'
   | 'slide-up'
   | 'slide-down'
   | 'slide-start'
-  | 'slide-end';
+  | 'slide-end'
+  | 'zoom'
+  | 'pop'
+  | 'flip-x'
+  | 'flip-y'
+  | 'bounce'
+  | 'swing';
+
+export type ErpOverlayAnimation = ErpMotionPreset;
 ```
 
 Exact defaults:
@@ -65,9 +72,9 @@ Exact defaults:
 - kind: modal
 - position: center
 - size: md
-- dismissOnEscape: true
-- dismissOnBackdrop: true
-- blur: medium
+- dismissOnEscape: false
+- dismissOnBackdrop: false
+- blur: low
 - backdropTone: default
 - modal enter/exit: fade-scale
 - start drawer enter/exit: slide-start
@@ -99,7 +106,19 @@ Exact defaults:
 ## Host
 
 Exactly one `ErpOverlayHost` is rendered in the application shell. Controls do
-not render individual hosts.
+not render individual hosts. It covers the complete application viewport above
+the Lab toolbar and routed content. The Inputs and Overlays review routes render
+directly in that top-level document so blocking surfaces are never constrained
+by an iframe or content rectangle.
+
+## Backdrop
+
+The blocking backdrop combines the configured Foundation blur with a
+theme-sensitive Semantic scrim. The default Light mapping uses Neutral 950 at
+32%, and the default Dark mapping uses Neutral 950 at 54%. Alternate neutral,
+primary, secondary, and accent tones use their approved 900/950 palette roles
+and theme-specific percentages. Overlay Component Tokens consume those
+Semantic roles; they contain no raw palette colors.
 
 ## Dynamic Content
 
@@ -206,7 +225,7 @@ infrastructure and does not recreate blocking backdrops or z-index systems.
 - Public blur, backdrop-tone, animation, and lifecycle-phase unions are checked
   exactly against this contract.
 - Manager defaults and modal/drawer motion defaults are checked mechanically.
-- All seven public animation presets, logical RTL start/end reversal,
+- All thirteen shared animation presets, logical RTL start/end reversal,
   reduced-motion completion, leaving-phase retention, and full-viewport drawer
   geometry remain covered by governance and unit tests.
 - Feature/Page code cannot author another OverlayHost, instantiate OverlayRef,

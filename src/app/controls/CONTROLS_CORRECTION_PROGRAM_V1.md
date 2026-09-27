@@ -35,7 +35,8 @@ pushed.
 ### Blocking overlay dismissal
 
 Blocking overlays expose `dismissOnBackdrop` and `dismissOnEscape`, both
-defaulting to `true`. Only the top overlay responds.
+defaulting to `false`. Developers opt into either policy independently, and
+only the top overlay responds.
 
 The nonblocking anchored SearchBox popup exposes `dismissOnOutside` and
 `dismissOnEscape`, both defaulting to `true`. Only the top popover responds.
@@ -49,7 +50,7 @@ export type ErpOverlayBlur =
   | 'high';
 ```
 
-The default is `medium`. Reference values are `low = 0.25rem`,
+The default is `low`. Reference values are `low = 0.25rem`,
 `medium = 0.5rem`, and `high = 1rem`. This correction wave exposes no public
 `none` value.
 
@@ -70,14 +71,22 @@ tint construction. Raw color strings are not the primary overlay backdrop API.
 ### Overlay motion
 
 ```ts
-export type ErpOverlayAnimation =
+export type ErpMotionPreset =
   | 'fade'
   | 'scale'
   | 'fade-scale'
   | 'slide-up'
   | 'slide-down'
   | 'slide-start'
-  | 'slide-end';
+  | 'slide-end'
+  | 'zoom'
+  | 'pop'
+  | 'flip-x'
+  | 'flip-y'
+  | 'bounce'
+  | 'swing';
+
+export type ErpOverlayAnimation = ErpMotionPreset;
 ```
 
 Configuration exposes independent `enterAnimation` and `exitAnimation`.
@@ -86,6 +95,10 @@ drawer entry and exit; `slide-end` for end drawer entry and exit; and
 `slide-up` / `slide-down` for bottom drawer entry / exit. Logical start/end
 reverse physically in RTL, the backdrop always fades, and reduced-motion is
 honored.
+
+Tooltip uses the same shared catalog, defaults to `fade-scale` entry and
+`fade` exit, and remains mounted until its configured exit animation actually
+completes.
 
 ### SearchBox
 
@@ -150,6 +163,11 @@ Theme-sensitive overlay backdrop roles are:
 - `--honesty-color-overlay-backdrop-secondary`
 - `--honesty-color-overlay-backdrop-accent`
 
+The default backdrop composes Neutral 950 at 32% in Light and 54% in Dark.
+Light alternate tones use Neutral/Primary/Secondary/Accent 900 at 28%. Dark
+neutral uses Neutral 950 at 50%; Dark primary/secondary/accent use the matching
+950 palette at 46%.
+
 Theme-sensitive glass roles are:
 
 - `--honesty-color-surface-glass`
@@ -184,6 +202,12 @@ size. Drawers are not floating cards.
 effective-disabled state clears focus, blocks user commits, and blocks focus
 acquisition. Concrete picker triggers use the internal `ErpFieldTrigger`, which
 owns native button semantics without Button Family visual chrome or ripple.
+
+FieldFrame owns one `controlId`-based control-surface delegation path. A
+non-action click anywhere in `.field-frame__control` focuses an editable native
+input/textarea or focuses and activates an owned FieldTrigger button. Explicit
+actions, nested interactive elements, and effective-disabled fields are
+isolated from delegation.
 
 Glass FieldFrame surfaces consume the shared Semantic glass roles and
 Foundation glass blur. Glass remains valid only with solid, outline, or subtle
@@ -251,10 +275,13 @@ Foundation tokens. Default visible copy is Arabic-first.
 
 ## Design Lab and screenshot correction
 
-`/controls/overlays` renders directly in the outer Lab review stage so blocking
-surfaces cover the full application viewport. Non-overlay routes retain iframe
-desktop/tablet/mobile review. One outer OverlayHost is active, and deterministic
-capture roots select the embedded app or direct full-viewport review root.
+`/controls/inputs` and `/controls/overlays` render directly in the outer Lab
+review stage so blocking surfaces cover the full application viewport. Other
+routes retain iframe desktop/tablet/mobile review. One outer OverlayHost is
+active. The toolbar owns one persisted global Light/Dark theme and bridges it
+to same-origin iframe previews. Full-page capture includes the toolbar and
+complete direct review, or composes the toolbar with the complete embedded
+document for iframe routes.
 
 Screenshot regression covers an ordinary input page, closed overlay page, open
 modal, open start/end drawer, and Dark specimen. Failures are diagnosed from

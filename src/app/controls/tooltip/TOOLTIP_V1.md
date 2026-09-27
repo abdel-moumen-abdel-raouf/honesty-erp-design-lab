@@ -29,6 +29,10 @@ and `disabled` are booleans; `enterAnimation` and `exitAnimation` use the shared
 auto, noninteractive, arrow shown, enabled, closed, `fade-scale` enter, and
 `fade` exit.
 
+The shared motion values are exactly `fade`, `scale`, `fade-scale`, `slide-up`,
+`slide-down`, `slide-start`, `slide-end`, `zoom`, `pop`, `flip-x`, `flip-y`,
+`bounce`, and `swing`. Tooltip does not define a second catalog.
+
 Plain mode requires trimmed nonempty `text`, is noninteractive, and accepts no
 `ErpTooltipContent`. Rich mode requires exactly one content child. A
 noninteractive rich tooltip contains no focusable content. An interactive rich

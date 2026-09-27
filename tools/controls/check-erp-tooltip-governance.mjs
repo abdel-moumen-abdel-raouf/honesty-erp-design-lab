@@ -6,6 +6,11 @@ const ROOT = process.cwd();
 const SOURCE_ROOT = path.join(ROOT, 'src', 'app');
 const CONTROLLER = 'src/app/shared/anchored-overlay/anchored-overlay-controller.ts';
 const TOOLTIP_ROOT = 'src/app/controls/tooltip/';
+const TOOLTIP_SOURCE = 'src/app/controls/tooltip/tooltip.ts';
+const TOOLTIP_TEMPLATE = 'src/app/controls/tooltip/tooltip.html';
+const SEARCH_BOX_SOURCE = 'src/app/controls/search-box/search-box.ts';
+const MOTION_CONTRACTS =
+  'src/app/foundation/motion/motion-contracts.ts';
 const SEARCH_BOX_TEMPLATE =
   'src/app/controls/search-box/search-box.html';
 const SHOWCASE = 'src/app/showcase/tooltip-controls/tooltip-controls.html';
@@ -44,6 +49,21 @@ const EXPECTED_SIDE_REMAPS = [
   ['--honesty-tooltip-arrow-width', '#{ref.$honesty-ref-space-8}'],
   ['--honesty-tooltip-arrow-height', '#{ref.$honesty-ref-space-4}'],
 ];
+const EXPECTED_MOTIONS = [
+  'fade',
+  'scale',
+  'fade-scale',
+  'slide-up',
+  'slide-down',
+  'slide-start',
+  'slide-end',
+  'zoom',
+  'pop',
+  'flip-x',
+  'flip-y',
+  'bounce',
+  'swing',
+];
 
 function walk(directory) {
   if (!fs.existsSync(directory)) return [];
@@ -79,6 +99,17 @@ export function validate(files) {
     if (normalized.startsWith(TOOLTIP_ROOT) && /readonly\s+(?:delay|duration|gap|offset|inset|width|height|radius|elevation|layer)\s*=\s*input/.test(source)) {
       errors.push(`${normalized}: prohibited public timing/geometry styling API`);
     }
+    if (
+      !normalized.endsWith('.spec.ts') &&
+      (normalized.startsWith(TOOLTIP_ROOT) || normalized === SEARCH_BOX_SOURCE) &&
+      /readonly\s+(?:motionClass|animationClass|enterClass|exitClass)\s*=\s*input/.test(
+        source,
+      )
+    ) {
+      errors.push(
+        `${normalized}: arbitrary CSS-class motion inputs are forbidden`,
+      );
+    }
     if (/(?:@angular\/cdk|floating-ui|popper)/i.test(source)) {
       errors.push(`${normalized}: prohibited overlay/CDK dependency`);
     }
@@ -108,7 +139,58 @@ function validateSideCaretContract(tokenSource) {
   return errors;
 }
 
-function validateProductionContracts() {
+function stringConstArray(source, constName) {
+  const body = source.match(
+    new RegExp(`export const ${constName}\\s*=\\s*\\[([\\s\\S]*?)\\]\\s*as const`),
+  )?.[1] ?? '';
+  return [...body.matchAll(/'([^']+)'/g)].map((match) => match[1]);
+}
+
+export function validateTooltipMotionContract(
+  source,
+  template,
+  motionSource,
+  style,
+) {
+  const errors = [];
+
+  if (
+    JSON.stringify(stringConstArray(motionSource, 'ERP_MOTION_PRESETS')) !==
+    JSON.stringify(EXPECTED_MOTIONS)
+  ) {
+    errors.push('Tooltip motion must use the exact shared ErpMotionPreset catalog');
+  }
+
+  for (const required of [
+    "import {ErpMotionPreset} from '../../foundation/motion/motion-contracts';",
+    "readonly enterAnimation = input<ErpMotionPreset>('fade-scale');",
+    "readonly exitAnimation = input<ErpMotionPreset>('fade');",
+    "'[attr.data-tooltip-enter-animation]': 'enterAnimation()'",
+    "'[attr.data-tooltip-exit-animation]': 'exitAnimation()'",
+    'handleSurfaceAnimationEnd(event: AnimationEvent)',
+    'scheduleReducedMotionCompletion(',
+  ]) {
+    if (!source.includes(required)) {
+      errors.push(`Tooltip motion: missing shared contract ${required}`);
+    }
+  }
+
+  if (!template.includes('(animationend)="handleSurfaceAnimationEnd($event)"')) {
+    errors.push('Tooltip motion: exit completion must be animation-event driven');
+  }
+
+  for (const motion of EXPECTED_MOTIONS) {
+    for (const phase of ['enter', 'exit']) {
+      if (!style.includes(`data-tooltip-${phase}-animation='${motion}'`)) {
+        errors.push(`Tooltip motion: missing ${phase} mapping for ${motion}`);
+      }
+    }
+  }
+
+  return errors;
+}
+
+function validateProductionContracts(files) {
   const errors = [];
   const tokenSource = fs.readFileSync(TOKEN_FILE, 'utf8');
   const base = tokenSource.match(/@mixin\s+base\s*\{([\s\S]*?)\n\}/)?.[1] ?? '';
@@ -120,6 +202,14 @@ function validateProductionContracts() {
   if (/\$honesty-ref-(?!space-)/.test(tokenSource)) errors.push('Tooltip tokens consume a forbidden Reference category');
 
   const style = TOOLTIP_STYLE_FILES.map((file) => fs.readFileSync(file, 'utf8')).join('\n');
+  errors.push(
+    ...validateTooltipMotionContract(
+      files.get(TOOLTIP_SOURCE) ?? '',
+      files.get(TOOLTIP_TEMPLATE) ?? '',
+      files.get(MOTION_CONTRACTS) ?? '',
+      style,
+    ),
+  );
   for (const match of style.matchAll(/var\(\s*(--honesty-[a-z0-9-]+)/g)) {
     if (!match[1].startsWith('--honesty-tooltip-')) errors.push(`Tooltip SCSS consumes foreign token "${match[1]}"`);
   }
@@ -153,6 +243,8 @@ function selfTest() {
     new Map([['src/app/x.html', '<erp-tooltip-content />']]),
     new Map([[SHOWCASE, '<div></div>']]),
     new Map([[`${TOOLTIP_ROOT}tooltip.ts`, 'readonly delay = input(2);']]),
+    new Map([[TOOLTIP_SOURCE, "readonly animationClass = input('fade');"]]),
+    new Map([[SEARCH_BOX_SOURCE, "readonly motionClass = input('slide');"]]),
     new Map([['src/app/x.ts', "import '@angular/cdk/overlay';"]]),
   ];
   for (const [index, fixture] of fixtures.entries()) {
@@ -179,12 +271,50 @@ function selfTest() {
   if (validateSideCaretContract(invalidSideCaret).length === 0) {
     throw new Error('Tooltip checker accepted an invalid side-caret contract');
   }
+
+  const validMotionSource = `
+import {ErpMotionPreset} from '../../foundation/motion/motion-contracts';
+readonly enterAnimation = input<ErpMotionPreset>('fade-scale');
+readonly exitAnimation = input<ErpMotionPreset>('fade');
+'[attr.data-tooltip-enter-animation]': 'enterAnimation()'
+'[attr.data-tooltip-exit-animation]': 'exitAnimation()'
+handleSurfaceAnimationEnd(event: AnimationEvent)
+scheduleReducedMotionCompletion(`;
+  const validMotionCatalog = `export const ERP_MOTION_PRESETS = [${EXPECTED_MOTIONS.map((motion) => `'${motion}'`).join(', ')}] as const;`;
+  const validMotionStyle = EXPECTED_MOTIONS.flatMap((motion) => [
+    `data-tooltip-enter-animation='${motion}'`,
+    `data-tooltip-exit-animation='${motion}'`,
+  ]).join('\n');
+  const validMotionTemplate =
+    '<div (animationend)="handleSurfaceAnimationEnd($event)"></div>';
+
+  if (
+    validateTooltipMotionContract(
+      validMotionSource,
+      validMotionTemplate,
+      validMotionCatalog,
+      validMotionStyle,
+    ).length > 0
+  ) {
+    throw new Error('Tooltip checker rejected valid shared-motion fixtures');
+  }
+
+  if (
+    validateTooltipMotionContract(
+      validMotionSource,
+      validMotionTemplate,
+      validMotionCatalog.replace(', \'swing\'', ''),
+      validMotionStyle,
+    ).length === 0
+  ) {
+    throw new Error('Tooltip checker accepted a divergent motion catalog');
+  }
   console.log('ErpTooltip governance checker self-test passed.');
 }
 
 if (process.argv.includes('--self-test')) { selfTest(); process.exit(0); }
 const files = new Map(walk(SOURCE_ROOT).filter((file) => /\.(?:ts|html)$/.test(file)).map((file) => [normalize(path.relative(ROOT, file)), fs.readFileSync(file, 'utf8')]));
 const errors = validate(files);
-errors.push(...validateProductionContracts());
+errors.push(...validateProductionContracts(files));
 if (errors.length) { console.error('ErpTooltip governance check failed:\n'); for (const error of errors) console.error(`- ${error}`); process.exit(1); }
 console.log('ErpTooltip governance check passed.');

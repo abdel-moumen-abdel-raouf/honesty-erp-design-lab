@@ -19,6 +19,17 @@ describe('OverlayControls showcase', () => {
     return fixture;
   }
 
+  it('provides concise full-application and backdrop review evidence', () => {
+    const root = create().nativeElement as HTMLElement;
+    const fullApp = root.querySelector('[data-full-app-overlay-evidence]');
+    const backdrop = root.querySelector('[data-backdrop-review-evidence]');
+
+    expect(fullApp).toBeTruthy();
+    expect(backdrop).toBe(fullApp);
+    expect(fullApp?.textContent).toContain('شريط المختبر');
+    expect(fullApp?.textContent).toContain('الخلفية');
+  });
+
   it('has the /controls/overlays route and creates', () => {
     expect(routes.find((route) => route.path === 'controls/overlays')).toBeDefined();
     expect(create().componentInstance).toBeTruthy();

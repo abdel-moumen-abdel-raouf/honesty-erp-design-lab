@@ -452,6 +452,23 @@ Rules:
   DateRange changes, CheckBox/RadioBox redesign, FabMenu/SplitButton changes,
   and deferred Phase 10/11 review remain outside Wave A.
 
+## Post-CR12 Wave A Infrastructure Governance
+
+- Wave A is correction-only and introduces no new public component family.
+- Blocking Overlay dismissal defaults remain `false` for Escape and backdrop;
+  either behavior requires explicit opt-in.
+- Blocking Overlay default blur remains `low` and backdrop composition remains
+  theme-sensitive.
+- Overlay and Tooltip share the Foundation-owned `ErpMotionPreset` catalog;
+  neither exposes arbitrary CSS-class motion APIs.
+- The Lab authors exactly one top-level OverlayHost; Inputs and Overlays review
+  routes render directly in its document.
+- The Lab owns one persisted Light/Dark theme and full-page capture includes
+  toolbar plus complete direct or embedded review content.
+- FieldFrame owns shared full control-surface interaction delegation; concrete
+  controls do not duplicate it.
+- Wave A technical checkpoints do not declare visual approval or freeze.
+
 ## Production Blocking Overlay Governance
 
 - `ErpOverlayManager` is the shared gateway for blocking modal and drawer surfaces.

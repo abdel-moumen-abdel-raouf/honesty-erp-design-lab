@@ -91,8 +91,16 @@ bottom drawers use `slide-up` entry and `slide-down` exit. Tooltip defaults are
 `fade-scale` entry and `fade` exit, and Tooltip removal waits for configured
 exit completion.
 
+## Review evidence
+
+- The Lab toolbar exposes Arabic Light/Dark and full-page screenshot actions.
+- The direct Overlay showcase identifies full-application modal/drawer and
+  backdrop review above the toolbar.
+- The direct Inputs showcase identifies full FieldFrame surface interaction.
+- The Tooltip showcase exposes one compact Arabic-first enter/exit selector
+  backed by the shared thirteen-preset catalog, with plain and rich evidence.
+
 ## Wave boundary
 
 Wave A technical checkpoints are regression guards only. They do not establish
 visual approval, freeze any family, close Basic Controls, or authorize Wave B.
-
