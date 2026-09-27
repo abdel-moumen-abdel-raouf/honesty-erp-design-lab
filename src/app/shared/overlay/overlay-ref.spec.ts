@@ -5,7 +5,14 @@ const CONFIG: Readonly<ErpOverlayConfig> = Object.freeze({
   kind: 'modal',
   position: 'center',
   size: 'md',
-  label: 'Proof',
+  frame: {
+    header: {title: 'Proof', subtitle: 'Supporting text', icon: 'info' as const},
+    footer: {
+      primary: {label: 'Confirm'},
+      secondary: {label: 'Cancel'},
+    },
+  },
+  legacyCompactMenuLabel: null,
   dismissOnEscape: true,
   dismissOnBackdrop: true,
   blur: 'medium',
@@ -61,5 +68,33 @@ describe('ErpOverlayRef', () => {
 
     expect(requestClose).toHaveBeenCalledOnce();
     expect(settled).toBe(false);
+  });
+
+  it('dispatches one active handler per frame action and cleans registrations', () => {
+    const ref = new ErpOverlayRef('overlay-4', CONFIG, () => true);
+    const first = vi.fn();
+    const second = vi.fn();
+    const cleanupFirst = ref.registerFrameAction('primary', first);
+    const cleanupSecond = ref.registerFrameAction('primary', second);
+
+    expect(ref.requestFrameAction('primary')).toBe(true);
+    expect(first).not.toHaveBeenCalled();
+    expect(second).toHaveBeenCalledOnce();
+
+    cleanupFirst();
+    expect(ref.requestFrameAction('primary')).toBe(true);
+    cleanupSecond();
+    expect(ref.requestFrameAction('primary')).toBe(false);
+  });
+
+  it('uses secondary-action only when no secondary handler is registered', () => {
+    const requestClose = vi.fn(() => true);
+    const ref = new ErpOverlayRef('overlay-5', CONFIG, requestClose);
+
+    expect(ref.requestFrameAction('secondary')).toBe(false);
+    expect(requestClose).toHaveBeenCalledWith({
+      type: 'dismissed',
+      reason: 'secondary-action',
+    });
   });
 });

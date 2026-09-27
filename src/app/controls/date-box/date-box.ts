@@ -76,7 +76,13 @@ export class ErpDateBox extends ErpFieldBase<string | null> {
   protected openPicker(): void {
     if (this.dateEffectiveDisabled() || this.activeRef) return;
     const ref = this.overlays.open<ErpTemporalPickerContent, ErpTemporalPickerData, ErpTemporalValue>(ErpTemporalPickerContent, {
-      label: `${this.trimmedLabel()} date picker`,
+      frame: {
+        header: {title: this.trimmedLabel(), subtitle: 'اختر التاريخ', icon: 'calendar'},
+        footer: {
+          primary: {label: ERP_TEMPORAL_DEFAULT_ACTION_LABELS.confirm},
+          secondary: {label: ERP_TEMPORAL_DEFAULT_ACTION_LABELS.cancel},
+        },
+      },
       ...(this.overlayConfig() ?? {}),
       data: this.pickerData(),
     });

@@ -15,18 +15,40 @@ class TestOverlayContent {
   readonly data = inject(ERP_OVERLAY_DATA);
 }
 
+function frame(title = 'Proof') {
+  return {
+    header: {title, subtitle: 'Supporting text', icon: 'info' as const},
+    footer: {
+      primary: {label: 'Confirm'},
+      secondary: {label: 'Cancel'},
+    },
+  };
+}
+
 describe('ErpOverlayManager', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('applies the exact immutable modal defaults', () => {
     const manager = TestBed.inject(ErpOverlayManager);
-    const ref = manager.open(TestOverlayContent, {label: '  Account  '});
+    const ref = manager.open(TestOverlayContent, {frame: frame('  Account  ')});
 
     expect(ref.config).toEqual({
       kind: 'modal',
       position: 'center',
       size: 'md',
-      label: 'Account',
+      frame: {
+        header: {
+          title: 'Account',
+          subtitle: 'Supporting text',
+          icon: 'info',
+          closeLabel: 'إغلاق',
+        },
+        footer: {
+          primary: {label: 'Confirm', icon: null, disabled: false, loading: false},
+          secondary: {label: 'Cancel', icon: null, disabled: false, loading: false},
+        },
+      },
+      legacyCompactMenuLabel: null,
       dismissOnEscape: false,
       dismissOnBackdrop: false,
       blur: 'low',
@@ -58,7 +80,7 @@ describe('ErpOverlayManager', () => {
       const ref = manager.open(TestOverlayContent, {
         kind: 'drawer',
         position,
-        label: `${position} drawer`,
+        frame: frame(`${position} drawer`),
       });
 
       expect(ref.config.enterAnimation).toBe(enterAnimation);
@@ -71,9 +93,19 @@ describe('ErpOverlayManager', () => {
 
   it('rejects a missing accessible name', () => {
     const manager = TestBed.inject(ErpOverlayManager);
-    expect(() => manager.open(TestOverlayContent, {label: '   '})).toThrowError(
+    expect(() => manager.open(TestOverlayContent, {frame: frame('   ')})).toThrowError(
       TypeError,
     );
+  });
+
+  it('rejects missing frame subtitle and semantic icon', () => {
+    const manager = TestBed.inject(ErpOverlayManager);
+    expect(() => manager.open(TestOverlayContent, {
+      frame: {...frame(), header: {...frame().header, subtitle: '   '}},
+    })).toThrowError(TypeError);
+    expect(() => manager.open(TestOverlayContent, {
+      frame: {...frame(), header: {...frame().header, icon: 'missing' as never}},
+    })).toThrowError(TypeError);
   });
 
   it('keeps leaving content mounted and resolves once after exit completion', async () => {
@@ -81,7 +113,7 @@ describe('ErpOverlayManager', () => {
     const ref = manager.open<TestOverlayContent, undefined, string>(
       TestOverlayContent,
       {
-        label: 'Lifecycle',
+        frame: frame('Lifecycle'),
       },
     );
     let settled = false;
@@ -115,12 +147,12 @@ describe('ErpOverlayManager', () => {
   it('keeps a stack and dismisses only its top entry without replaying the underlying entry', async () => {
     const manager = TestBed.inject(ErpOverlayManager);
     const first = manager.open(TestOverlayContent, {
-      label: 'First',
+      frame: frame('First'),
       dismissOnEscape: true,
     });
     manager.completeTransition(first.id, 'entering');
     const second = manager.open(TestOverlayContent, {
-      label: 'Second',
+      frame: frame('Second'),
       dismissOnBackdrop: true,
     });
     manager.completeTransition(second.id, 'entering');
@@ -155,7 +187,7 @@ describe('ErpOverlayManager', () => {
 
   it('ignores dismissal by default and enables backdrop and Escape independently', () => {
     const manager = TestBed.inject(ErpOverlayManager);
-    const ref = manager.open(TestOverlayContent, {label: 'Persistent'});
+    const ref = manager.open(TestOverlayContent, {frame: frame('Persistent')});
 
     manager.dismissFromBackdrop(ref.id);
     manager.dismissTopFromEscape();
@@ -170,7 +202,7 @@ describe('ErpOverlayManager', () => {
     manager.completeTransition(ref.id, 'leaving');
 
     const backdrop = manager.open(TestOverlayContent, {
-      label: 'Backdrop',
+      frame: frame('Backdrop'),
       dismissOnBackdrop: true,
     });
     manager.dismissFromBackdrop(backdrop.id);
@@ -178,7 +210,7 @@ describe('ErpOverlayManager', () => {
     manager.completeTransition(backdrop.id, 'leaving');
 
     const escape = manager.open(TestOverlayContent, {
-      label: 'Escape',
+      frame: frame('Escape'),
       dismissOnEscape: true,
     });
     manager.dismissTopFromEscape();
@@ -203,7 +235,7 @@ describe('ErpOverlayManager', () => {
       const backdropTone = tones[index % tones.length];
       const animation = animations[index];
       const ref = manager.open(TestOverlayContent, {
-        label: `Config ${index}`,
+        frame: frame(`Config ${index}`),
         blur,
         backdropTone,
         enterAnimation: animation,

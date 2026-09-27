@@ -45,7 +45,7 @@ export class ErpSplitButton {
     const theme = this.host.nativeElement
       .closest<HTMLElement>('[data-theme]')
       ?.dataset['theme'];
-    const ref = this.overlays.open<
+    const ref = this.overlays.openLegacyCompactMenu<
       ErpActionMenuContent,
       ErpActionMenuData,
       string

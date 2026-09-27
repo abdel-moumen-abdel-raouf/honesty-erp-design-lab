@@ -32,6 +32,7 @@ import {
   ErpOverlayBackdropTone,
   ErpOverlayBehaviorConfig,
   ErpOverlayBlur,
+  ErpOverlayFrameConfig,
   ErpOverlayPosition,
 } from '../../shared/overlay/overlay-contracts';
 import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
@@ -115,8 +116,8 @@ export class OverlayControls {
   }
 
   openPolicy(): void {
-    this.overlays.open(OverlayEvidenceContent, {
-      label: 'دليل سياسة الإغلاق الصريح',
+    this.overlays.open<OverlayEvidenceContent, OverlayEvidenceData>(OverlayEvidenceContent, {
+      frame: this.frame('دليل سياسة الإغلاق الصريح'),
       dismissOnBackdrop: false,
       dismissOnEscape: false,
       data: {
@@ -130,8 +131,8 @@ export class OverlayControls {
     label: string,
     config: Partial<ErpOverlayBehaviorConfig>,
   ): void {
-    this.overlays.open(OverlayEvidenceContent, {
-      label,
+    this.overlays.open<OverlayEvidenceContent, OverlayEvidenceData>(OverlayEvidenceContent, {
+      frame: this.frame(label),
       ...config,
       data: {
         title: label,
@@ -146,11 +147,25 @@ export class OverlayControls {
     title: string,
     allowNested = false,
   ): void {
-    this.overlays.open(OverlayEvidenceContent, {
+    this.overlays.open<OverlayEvidenceContent, OverlayEvidenceData>(OverlayEvidenceContent, {
       kind,
       position,
-      label: title,
+      frame: this.frame(title),
       data: {title, allowNested} satisfies OverlayEvidenceData,
     });
+  }
+
+  private frame(title: string): ErpOverlayFrameConfig {
+    return {
+      header: {
+        title,
+        subtitle: 'دليل إطار التراكب المشترك',
+        icon: 'layers',
+      },
+      footer: {
+        primary: {label: 'تأكيد'},
+        secondary: {label: 'إلغاء'},
+      },
+    };
   }
 }

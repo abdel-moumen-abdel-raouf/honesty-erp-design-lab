@@ -1,4 +1,8 @@
-import {ErpOverlayCloseResult, ErpOverlayConfig} from './overlay-contracts';
+import {
+  ErpOverlayCloseResult,
+  ErpOverlayConfig,
+  ErpOverlayFrameAction,
+} from './overlay-contracts';
 
 export class ErpOverlayRef<TResult = unknown> {
   readonly afterClosed: Promise<ErpOverlayCloseResult<TResult>>;
@@ -6,6 +10,10 @@ export class ErpOverlayRef<TResult = unknown> {
   private closing = false;
   private settled = false;
   private pendingResult: ErpOverlayCloseResult<TResult> | null = null;
+  private readonly frameActions = new Map<
+    ErpOverlayFrameAction,
+    () => void
+  >();
   private readonly resolveClosed: (
     result: ErpOverlayCloseResult<TResult>,
   ) => void;
@@ -34,12 +42,41 @@ export class ErpOverlayRef<TResult = unknown> {
     this.finish({type: 'dismissed', reason});
   }
 
+  registerFrameAction(
+    action: ErpOverlayFrameAction,
+    handler: () => void,
+  ): () => void {
+    this.frameActions.set(action, handler);
+
+    return () => {
+      if (this.frameActions.get(action) === handler) {
+        this.frameActions.delete(action);
+      }
+    };
+  }
+
+  requestFrameAction(action: ErpOverlayFrameAction): boolean {
+    const handler = this.frameActions.get(action);
+
+    if (handler) {
+      handler();
+      return true;
+    }
+
+    if (action === 'secondary') {
+      this.dismiss('secondary-action');
+    }
+
+    return false;
+  }
+
   completeTransition(): void {
     if (this.settled || this.pendingResult === null) {
       return;
     }
 
     this.settled = true;
+    this.frameActions.clear();
     this.resolveClosed(this.pendingResult);
   }
 

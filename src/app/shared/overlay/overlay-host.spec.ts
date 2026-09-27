@@ -1,5 +1,9 @@
 import {Component, inject} from '@angular/core';
-import {TestBed} from '@angular/core/testing';
+import {
+  DeferBlockBehavior,
+  DeferBlockState,
+  TestBed,
+} from '@angular/core/testing';
 import {ERP_MOTION_PRESETS} from '../../foundation/motion/motion-contracts';
 import {ErpOverlayHost} from './overlay-host';
 import {ErpOverlayManager} from './overlay-manager';
@@ -18,9 +22,22 @@ class TestOverlayContent {
 })
 class TestOverlayShell {}
 
+function frame(title = 'Proof') {
+  return {
+    header: {title, subtitle: 'Supporting text', icon: 'info' as const},
+    footer: {
+      primary: {label: 'Confirm'},
+      secondary: {label: 'Cancel'},
+    },
+  };
+}
+
 describe('ErpOverlayHost', () => {
   beforeEach(() => {
-    TestBed.configureTestingModule({imports: [TestOverlayShell]});
+    TestBed.configureTestingModule({
+      imports: [TestOverlayShell],
+      deferBlockBehavior: DeferBlockBehavior.Manual,
+    });
   });
 
   it('owns the complete visual viewport and keeps drawer geometry application-wide', () => {
@@ -29,17 +46,17 @@ describe('ErpOverlayHost', () => {
     manager.open(TestOverlayContent, {
       kind: 'drawer',
       position: 'start',
-      label: 'Start drawer',
+      frame: frame('Start drawer'),
     });
     manager.open(TestOverlayContent, {
       kind: 'drawer',
       position: 'end',
-      label: 'End drawer',
+      frame: frame('End drawer'),
     });
     manager.open(TestOverlayContent, {
       kind: 'drawer',
       position: 'bottom',
-      label: 'Bottom drawer',
+      frame: frame('Bottom drawer'),
     });
     fixture.detectChanges();
 
@@ -75,14 +92,15 @@ describe('ErpOverlayHost', () => {
   it('renders dialog semantics, locks scroll, and makes shell background inert', () => {
     const fixture = TestBed.createComponent(TestOverlayShell);
     const manager = TestBed.inject(ErpOverlayManager);
-    manager.open(TestOverlayContent, {label: 'Proof dialog'});
+    manager.open(TestOverlayContent, {frame: frame('Proof dialog')});
     fixture.detectChanges();
 
     const root = fixture.nativeElement as HTMLElement;
     const surface = root.querySelector('[role="dialog"]');
     const background = root.querySelector('#background') as HTMLElement;
 
-    expect(surface?.getAttribute('aria-label')).toBe('Proof dialog');
+    expect(surface?.getAttribute('aria-labelledby')).toContain('-title');
+    expect(surface?.getAttribute('aria-describedby')).toContain('-subtitle');
     expect(surface?.getAttribute('aria-modal')).toBe('true');
     expect(document.body.style.overflow).toBe('hidden');
     expect(background.inert).toBe(true);
@@ -104,13 +122,19 @@ describe('ErpOverlayHost', () => {
   it('traps focus and restores document state after closing', async () => {
     const fixture = TestBed.createComponent(TestOverlayShell);
     const manager = TestBed.inject(ErpOverlayManager);
-    const ref = manager.open(TestOverlayContent, {label: 'Focus proof'});
+    const ref = manager.open(TestOverlayContent, {frame: frame('Focus proof')});
+    fixture.detectChanges();
+    const [frameBlock] = await fixture.getDeferBlocks();
+    await frameBlock.render(DeferBlockState.Complete);
     fixture.detectChanges();
     await Promise.resolve();
 
     const root = fixture.nativeElement as HTMLElement;
-    const first = root.querySelector('#first') as HTMLButtonElement;
-    const last = root.querySelector('#last') as HTMLButtonElement;
+    const focusable = Array.from(
+      root.querySelectorAll<HTMLButtonElement>('[role="dialog"] button'),
+    );
+    const first = focusable[0];
+    const last = focusable.at(-1) as HTMLButtonElement;
     const background = root.querySelector('#background') as HTMLElement;
 
     expect(document.activeElement).toBe(first);
@@ -140,13 +164,13 @@ describe('ErpOverlayHost', () => {
     const first = manager.open(TestOverlayContent, {
       kind: 'drawer',
       position: 'start',
-      label: 'Start drawer',
+      frame: frame('Start drawer'),
       dismissOnEscape: true,
     });
     const second = manager.open(TestOverlayContent, {
       kind: 'drawer',
       position: 'end',
-      label: 'End drawer',
+      frame: frame('End drawer'),
       dismissOnEscape: true,
     });
     fixture.detectChanges();
@@ -193,7 +217,7 @@ describe('ErpOverlayHost', () => {
         const ref = manager.open(TestOverlayContent, {
           kind: 'drawer',
           position: 'start',
-          label: 'Logical motion',
+          frame: frame('Logical motion'),
           enterAnimation: 'slide-start',
           exitAnimation: 'slide-start',
         });
@@ -229,7 +253,7 @@ describe('ErpOverlayHost', () => {
 
     for (const preset of ERP_MOTION_PRESETS) {
       const ref = manager.open(TestOverlayContent, {
-        label: preset,
+        frame: frame(preset),
         enterAnimation: preset,
         exitAnimation: preset,
       });
@@ -264,7 +288,7 @@ describe('ErpOverlayHost', () => {
     ) as HTMLButtonElement;
     origin.focus();
 
-    const ref = manager.open(TestOverlayContent, {label: 'Restore proof'});
+    const ref = manager.open(TestOverlayContent, {frame: frame('Restore proof')});
     fixture.detectChanges();
     await Promise.resolve();
     expect(document.activeElement).not.toBe(origin);
@@ -284,7 +308,7 @@ describe('ErpOverlayHost', () => {
   it('completes entering and leaving only from surface animation events', async () => {
     const fixture = TestBed.createComponent(TestOverlayShell);
     const manager = TestBed.inject(ErpOverlayManager);
-    const ref = manager.open(TestOverlayContent, {label: 'Animation proof'});
+    const ref = manager.open(TestOverlayContent, {frame: frame('Animation proof')});
     fixture.detectChanges();
     await Promise.resolve();
     const surface = (fixture.nativeElement as HTMLElement).querySelector(
@@ -311,7 +335,7 @@ describe('ErpOverlayHost', () => {
     try {
       const fixture = TestBed.createComponent(TestOverlayShell);
       const manager = TestBed.inject(ErpOverlayManager);
-      const ref = manager.open(TestOverlayContent, {label: 'Reduced motion'});
+      const ref = manager.open(TestOverlayContent, {frame: frame('Reduced motion')});
       fixture.detectChanges();
       await Promise.resolve();
       await Promise.resolve();
@@ -337,7 +361,7 @@ describe('ErpOverlayHost', () => {
     const removeListener = vi.spyOn(document, 'removeEventListener');
     const fixture = TestBed.createComponent(TestOverlayShell);
     const manager = TestBed.inject(ErpOverlayManager);
-    manager.open(TestOverlayContent, {label: 'Destroy cleanup'});
+    manager.open(TestOverlayContent, {frame: frame('Destroy cleanup')});
     fixture.detectChanges();
 
     const background = (fixture.nativeElement as HTMLElement).querySelector(

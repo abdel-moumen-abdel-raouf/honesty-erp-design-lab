@@ -1,5 +1,9 @@
 import {Component} from '@angular/core';
-import {TestBed} from '@angular/core/testing';
+import {
+  DeferBlockBehavior,
+  DeferBlockState,
+  TestBed,
+} from '@angular/core/testing';
 import {
   ERP_SYSTEM_COLOR_FAMILIES,
   ERP_SYSTEM_COLOR_STEPS,
@@ -23,9 +27,12 @@ class TestShell {
 }
 
 describe('ErpSelectionPickerContent', () => {
-  beforeEach(() => TestBed.configureTestingModule({imports: [TestShell]}));
+  beforeEach(() => TestBed.configureTestingModule({
+    imports: [TestShell],
+    deferBlockBehavior: DeferBlockBehavior.Manual,
+  }));
 
-  function open(
+  async function open(
     data: ErpSelectionPickerData,
     direction: 'ltr' | 'rtl' = 'ltr',
   ) {
@@ -36,7 +43,16 @@ describe('ErpSelectionPickerContent', () => {
       ErpSelectionPickerContent,
       ErpSelectionPickerData,
       ErpSelectionPickerValue
-    >(ErpSelectionPickerContent, {label: 'Selection proof', data});
+    >(ErpSelectionPickerContent, {
+      frame: {
+        header: {title: 'Selection proof', subtitle: 'Supporting text', icon: 'layers'},
+        footer: {primary: {label: 'Confirm'}, secondary: {label: 'Cancel'}},
+      },
+      data,
+    });
+    fixture.detectChanges();
+    const [frameBlock] = await fixture.getDeferBlocks();
+    await frameBlock.render(DeferBlockState.Complete);
     fixture.detectChanges();
     return {fixture, manager, ref};
   }
@@ -52,8 +68,8 @@ describe('ErpSelectionPickerContent', () => {
     theme: 'light',
   } as const;
 
-  it('renders the generated system registry in exact family and step order', () => {
-    const {fixture} = open({...base, mode: 'color'});
+  it('renders the generated system registry in exact family and step order', async () => {
+    const {fixture} = await open({...base, mode: 'color'});
     const root = fixture.nativeElement as HTMLElement;
     const families = Array.from(root.querySelectorAll('[data-color-family]'));
     const tokens = Array.from(root.querySelectorAll('[data-color-token]'));
@@ -74,7 +90,7 @@ describe('ErpSelectionPickerContent', () => {
   });
 
   it('commits system token identity instead of a copied color value', async () => {
-    const {fixture, manager, ref} = open({...base, mode: 'color'});
+    const {fixture, manager, ref} = await open({...base, mode: 'color'});
     const root = fixture.nativeElement as HTMLElement;
     root
       .querySelector<HTMLButtonElement>('[data-color-token="primary-500"] button')
@@ -89,7 +105,7 @@ describe('ErpSelectionPickerContent', () => {
   });
 
   it('defaults to system mode and commits a canonical free color', async () => {
-    const {fixture, manager, ref} = open({...base, mode: 'color'});
+    const {fixture, manager, ref} = await open({...base, mode: 'color'});
     const root = fixture.nativeElement as HTMLElement;
 
     expect(root.querySelector('[data-system-colors]')).not.toBeNull();
@@ -107,8 +123,8 @@ describe('ErpSelectionPickerContent', () => {
     });
   });
 
-  it('renders every icon in a fixed semantic tile with a tooltip label', () => {
-    const {fixture} = open({...base, mode: 'icon', searchable: true});
+  it('renders every icon in a fixed semantic tile with a tooltip label', async () => {
+    const {fixture} = await open({...base, mode: 'icon', searchable: true});
     const root = fixture.nativeElement as HTMLElement;
     const options = Array.from(
       root.querySelectorAll<HTMLElement>('[data-icon-option]'),
@@ -125,8 +141,8 @@ describe('ErpSelectionPickerContent', () => {
     }
   });
 
-  it('filters icons without changing the tile primitive', () => {
-    const {fixture} = open({...base, mode: 'icon', searchable: true});
+  it('filters icons without changing the tile primitive', async () => {
+    const {fixture} = await open({...base, mode: 'icon', searchable: true});
     const root = fixture.nativeElement as HTMLElement;
     const search = root.querySelector<HTMLInputElement>(
       '[data-selection-search] input',
@@ -142,7 +158,7 @@ describe('ErpSelectionPickerContent', () => {
   });
 
   it('supports keyboard icon selection', async () => {
-    const {fixture, manager, ref} = open({
+    const {fixture, manager, ref} = await open({
       ...base,
       mode: 'icon',
       searchable: true,
@@ -160,8 +176,8 @@ describe('ErpSelectionPickerContent', () => {
     });
   });
 
-  it('filters items and prevents disabled selection', () => {
-    const {fixture} = open({
+  it('filters items and prevents disabled selection', async () => {
+    const {fixture} = await open({
       ...base,
       mode: 'item',
       searchable: true,
@@ -184,8 +200,8 @@ describe('ErpSelectionPickerContent', () => {
     ['dark', 'ltr'],
     ['light', 'rtl'],
     ['dark', 'rtl'],
-  ] as const)('preserves %s theme evidence in %s direction', (theme, direction) => {
-    const {fixture} = open({...base, mode: 'icon', theme}, direction);
+  ] as const)('preserves %s theme evidence in %s direction', async (theme, direction) => {
+    const {fixture} = await open({...base, mode: 'icon', theme}, direction);
     const root = fixture.nativeElement as HTMLElement;
     const picker = root.querySelector('.selection-picker') as HTMLElement;
 

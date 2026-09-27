@@ -19,13 +19,29 @@
       role="dialog"
       tabindex="-1"
       [attr.data-overlay-id]="entry.ref.id"
-      [attr.aria-label]="entry.ref.config.label"
+      [attr.aria-labelledby]="entry.ref.config.frame ? entry.ref.id + '-title' : null"
+      [attr.aria-describedby]="entry.ref.config.frame ? entry.ref.id + '-subtitle' : null"
+      [attr.aria-label]="entry.ref.config.legacyCompactMenuLabel"
       [attr.aria-modal]="entry.ref.config.blocking ? 'true' : null"
       [attr.aria-hidden]="manager.isTop(entry.ref.id) ? null : 'true'"
     >
-      <ng-container
-        *ngComponentOutlet="entry.component; injector: entry.injector"
-      ></ng-container>
+      @if (entry.ref.config.frame; as frame) {
+        @defer (on immediate) {
+          <erp-overlay-frame
+            [config]="frame"
+            [ref]="entry.ref"
+            (ready)="handleFrameReady(entry.ref.id)"
+          >
+            <ng-container
+              *ngComponentOutlet="entry.component; injector: entry.injector"
+            ></ng-container>
+          </erp-overlay-frame>
+        }
+      } @else {
+        <ng-container
+          *ngComponentOutlet="entry.component; injector: entry.injector"
+        ></ng-container>
+      }
     </section>
   </div>
 }

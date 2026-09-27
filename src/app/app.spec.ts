@@ -22,6 +22,16 @@ import {ErpOverlayManager} from './shared/overlay/overlay-manager';
 @Component({template: ''})
 class ScreenshotOverlayContent {}
 
+function screenshotFrame(title: string) {
+  return {
+    header: {title, subtitle: 'Screenshot proof', icon: 'info' as const},
+    footer: {
+      primary: {label: 'Confirm'},
+      secondary: {label: 'Cancel'},
+    },
+  };
+}
+
 describe('Design Lab preview helpers', () => {
   it('detects only labPreview=1', () => {
     expect(hasLabPreviewFlag('?labPreview=1')).toBe(true);
@@ -389,16 +399,18 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     await fixture.whenStable();
     fixture.detectChanges();
 
-    manager.open(ScreenshotOverlayContent, {label: 'Capture modal'});
+    manager.open(ScreenshotOverlayContent, {
+      frame: screenshotFrame('Capture modal'),
+    });
     manager.open(ScreenshotOverlayContent, {
       kind: 'drawer',
       position: 'start',
-      label: 'Capture start drawer',
+      frame: screenshotFrame('Capture start drawer'),
     });
     manager.open(ScreenshotOverlayContent, {
       kind: 'drawer',
       position: 'end',
-      label: 'Capture end drawer',
+      frame: screenshotFrame('Capture end drawer'),
     });
     fixture.detectChanges();
 

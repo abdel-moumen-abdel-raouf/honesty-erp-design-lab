@@ -17,6 +17,7 @@ import {
 } from './overlay-contracts';
 import {ErpOverlayRef} from './overlay-ref';
 import {ERP_OVERLAY_DATA, ERP_OVERLAY_REF} from './overlay-tokens';
+import {ERP_ICON_NAMES} from '../../primitives/icon/icon-contracts';
 
 let nextOverlayId = 0;
 
@@ -55,10 +56,26 @@ export class ErpOverlayManager {
     component: Type<TComponent>,
     options: ErpOverlayOpenConfig<TData>,
   ): ErpOverlayRef<TResult> {
-    const label = options.label.trim();
+    const title = options.frame.header.title.trim();
+    const subtitle = options.frame.header.subtitle.trim();
+    const closeLabel = options.frame.header.closeLabel?.trim() || 'إغلاق';
+    const primaryLabel = options.frame.footer.primary.label.trim();
+    const secondaryLabel = options.frame.footer.secondary.label.trim();
 
-    if (label.length === 0) {
-      throw new TypeError('ErpOverlay requires a non-empty accessible label.');
+    if (title.length === 0) {
+      throw new TypeError('ErpOverlay frame requires a non-empty title.');
+    }
+
+    if (subtitle.length === 0) {
+      throw new TypeError('ErpOverlay frame requires a non-empty subtitle.');
+    }
+
+    if (!ERP_ICON_NAMES.includes(options.frame.header.icon)) {
+      throw new TypeError('ErpOverlay frame requires a semantic icon.');
+    }
+
+    if (primaryLabel.length === 0 || secondaryLabel.length === 0) {
+      throw new TypeError('ErpOverlay frame actions require non-empty labels.');
     }
 
     const kind = options.kind ?? 'modal';
@@ -72,7 +89,29 @@ export class ErpOverlayManager {
       kind,
       position,
       size: options.size ?? 'md',
-      label,
+      frame: Object.freeze({
+        header: Object.freeze({
+          title,
+          subtitle,
+          icon: options.frame.header.icon,
+          closeLabel,
+        }),
+        footer: Object.freeze({
+          primary: Object.freeze({
+            label: primaryLabel,
+            icon: options.frame.footer.primary.icon ?? null,
+            disabled: options.frame.footer.primary.disabled ?? false,
+            loading: options.frame.footer.primary.loading ?? false,
+          }),
+          secondary: Object.freeze({
+            label: secondaryLabel,
+            icon: options.frame.footer.secondary.icon ?? null,
+            disabled: options.frame.footer.secondary.disabled ?? false,
+            loading: options.frame.footer.secondary.loading ?? false,
+          }),
+        }),
+      }),
+      legacyCompactMenuLabel: null,
       dismissOnEscape: options.dismissOnEscape ?? false,
       dismissOnBackdrop: options.dismissOnBackdrop ?? false,
       blur: options.blur ?? 'low',
@@ -111,6 +150,71 @@ export class ErpOverlayManager {
     };
 
     this.stackState.update((entries) => [...entries, entry]);
+    return ref;
+  }
+
+  openLegacyCompactMenu<TComponent, TData = undefined, TResult = unknown>(
+    component: Type<TComponent>,
+    options: Omit<ErpOverlayOpenConfig<TData>, 'frame'> & {
+      readonly label: string;
+    },
+  ): ErpOverlayRef<TResult> {
+    const label = options.label.trim();
+
+    if (label.length === 0) {
+      throw new TypeError('Legacy compact Overlay menu requires a label.');
+    }
+
+    const kind = options.kind ?? 'modal';
+    const position = options.position ?? 'center';
+    const [defaultEnterAnimation, defaultExitAnimation] = defaultAnimations(
+      kind,
+      position,
+    );
+    const config = Object.freeze<ErpOverlayConfig<TData>>({
+      kind,
+      position,
+      size: options.size ?? 'sm',
+      frame: null,
+      legacyCompactMenuLabel: label,
+      dismissOnEscape: options.dismissOnEscape ?? false,
+      dismissOnBackdrop: options.dismissOnBackdrop ?? false,
+      blur: options.blur ?? 'low',
+      backdropTone: options.backdropTone ?? 'default',
+      enterAnimation: options.enterAnimation ?? defaultEnterAnimation,
+      exitAnimation: options.exitAnimation ?? defaultExitAnimation,
+      restoreFocus: options.restoreFocus ?? true,
+      trapFocus: options.trapFocus ?? true,
+      blocking: options.blocking ?? true,
+      initialFocus: options.initialFocus ?? null,
+      data: options.data as TData,
+    });
+    const id = `honesty-overlay-${++nextOverlayId}`;
+    const origin =
+      this.document.activeElement instanceof HTMLElement
+        ? this.document.activeElement
+        : null;
+    const ref = new ErpOverlayRef<TResult>(id, config, () =>
+      this.beginClose(id, config.exitAnimation),
+    );
+    const childInjector = Injector.create({
+      parent: this.injector,
+      providers: [
+        {provide: ERP_OVERLAY_REF, useValue: ref},
+        {provide: ERP_OVERLAY_DATA, useValue: config.data},
+      ],
+    });
+    this.stackState.update((entries) => [
+      ...entries,
+      {
+        component,
+        injector: childInjector,
+        ref: ref as ErpOverlayRef<unknown>,
+        origin,
+        phase: 'entering',
+        animation: config.enterAnimation,
+      },
+    ]);
     return ref;
   }
 

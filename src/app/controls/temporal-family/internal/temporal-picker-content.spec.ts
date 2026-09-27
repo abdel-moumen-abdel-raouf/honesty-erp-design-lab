@@ -1,5 +1,9 @@
 import {Component} from '@angular/core';
-import {TestBed} from '@angular/core/testing';
+import {
+  DeferBlockBehavior,
+  DeferBlockState,
+  TestBed,
+} from '@angular/core/testing';
 import {ErpOverlayHost} from '../../../shared/overlay/overlay-host';
 import {ErpOverlayManager} from '../../../shared/overlay/overlay-manager';
 import {
@@ -24,16 +28,28 @@ describe('ErpTemporalPickerContent', () => {
     theme: 'light',
   } as const;
 
-  beforeEach(() => TestBed.configureTestingModule({imports: [TestShell]}));
+  beforeEach(() => TestBed.configureTestingModule({
+    imports: [TestShell],
+    deferBlockBehavior: DeferBlockBehavior.Manual,
+  }));
 
-  function open(data: ErpTemporalPickerData) {
+  async function open(data: ErpTemporalPickerData) {
     const fixture = TestBed.createComponent(TestShell);
     const manager = TestBed.inject(ErpOverlayManager);
     const ref = manager.open<
       ErpTemporalPickerContent,
       ErpTemporalPickerData,
       ErpTemporalValue
-    >(ErpTemporalPickerContent, {label: 'Temporal proof', data});
+    >(ErpTemporalPickerContent, {
+      frame: {
+        header: {title: 'Temporal proof', subtitle: 'Supporting text', icon: 'calendar'},
+        footer: {primary: {label: 'Confirm'}, secondary: {label: 'Cancel'}},
+      },
+      data,
+    });
+    fixture.detectChanges();
+    const [frameBlock] = await fixture.getDeferBlocks();
+    await frameBlock.render(DeferBlockState.Complete);
     fixture.detectChanges();
     return {fixture, manager, ref};
   }
@@ -47,7 +63,7 @@ describe('ErpTemporalPickerContent', () => {
   }
 
   it('renders a Gregorian month grid and commits a keyboard-selected date', async () => {
-    const {fixture, manager, ref} = open({
+    const {fixture, manager, ref} = await open({
       ...base,
       mode: 'date',
       value: '2026-01-15',
@@ -67,7 +83,7 @@ describe('ErpTemporalPickerContent', () => {
   });
 
   it('uses the Arabic action contract and commits staged time', async () => {
-    const {fixture, manager, ref} = open({...base, mode: 'time', value: null});
+    const {fixture, manager, ref} = await open({...base, mode: 'time', value: null});
     const root = fixture.nativeElement as HTMLElement;
     expect(root.querySelectorAll('[data-time-hour]').length).toBe(24);
     expect(root.querySelectorAll('[data-time-minute]').length).toBe(12);
@@ -85,8 +101,8 @@ describe('ErpTemporalPickerContent', () => {
     });
   });
 
-  it('previews forward and backward ranges, moves the preview, and clears it on leave', () => {
-    const {fixture} = open({
+  it('previews forward and backward ranges, moves the preview, and clears it on leave', async () => {
+    const {fixture} = await open({
       ...base,
       mode: 'range',
       value: {start: '2026-01-15', end: '2026-01-16'},
@@ -111,7 +127,7 @@ describe('ErpTemporalPickerContent', () => {
   });
 
   it('orders a backward RTL range and marks every cross-week intermediate date', async () => {
-    const {fixture, manager, ref} = open({
+    const {fixture, manager, ref} = await open({
       ...base,
       mode: 'range',
       value: {start: '2026-01-15', end: '2026-01-16'},
@@ -136,8 +152,8 @@ describe('ErpTemporalPickerContent', () => {
     });
   });
 
-  it('previews keyboard movement from the anchor and Enter stores the endpoint', () => {
-    const {fixture} = open({
+  it('previews keyboard movement from the anchor and Enter stores the endpoint', async () => {
+    const {fixture} = await open({
       ...base,
       mode: 'range',
       value: {start: '2026-01-15', end: '2026-01-16'},
@@ -157,8 +173,8 @@ describe('ErpTemporalPickerContent', () => {
     expect(day(root, '2026-01-12').dataset['rangeEnd']).toBe('true');
   });
 
-  it('does not stage a disabled date', () => {
-    const {fixture} = open({
+  it('does not stage a disabled date', async () => {
+    const {fixture} = await open({
       ...base,
       mode: 'range',
       value: {start: '2026-01-15', end: '2026-01-16'},

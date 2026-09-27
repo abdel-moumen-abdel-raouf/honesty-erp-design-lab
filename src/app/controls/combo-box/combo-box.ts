@@ -42,7 +42,7 @@ export class ErpComboBox extends ErpFieldBase<string | null> {
   protected handleInput(event: Event): void { this.queryEditing.set(true); this.query.set((event.target as HTMLInputElement).value); }
   protected openPicker(): void {
     if (this.fieldEffectiveDisabled() || this.activeRef) return;
-    const ref = this.overlays.open<ErpSelectionPickerContent, ErpSelectionPickerData, string | null>(ErpSelectionPickerContent, {label: `${this.trimmedLabel()} combo box`, ...(this.overlayConfig() ?? {}), data: this.pickerData()});
+    const ref = this.overlays.open<ErpSelectionPickerContent, ErpSelectionPickerData, string | null>(ErpSelectionPickerContent, {frame: {header: {title: this.trimmedLabel(), subtitle: 'ابحث واختر قيمة', icon: 'search'}, footer: {primary: {label: ERP_SELECTION_DEFAULT_ACTION_LABELS.confirm}, secondary: {label: ERP_SELECTION_DEFAULT_ACTION_LABELS.cancel}}}, ...(this.overlayConfig() ?? {}), data: this.pickerData()});
     this.activeRef = ref;
     this.activeOverlayId.set(ref.id);
     void ref.afterClosed.then((outcome) => {

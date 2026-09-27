@@ -42,7 +42,7 @@ export class ErpItemPicker extends ErpFieldBase<string | null> {
   protected override normalizeValue(value: unknown): string | null { return normalizeItemValue(value, this.items()); }
   protected openPicker(): void {
     if (this.fieldEffectiveDisabled() || this.activeRef) return;
-    const ref = this.overlays.open<ErpSelectionPickerContent, ErpSelectionPickerData, string | null>(ErpSelectionPickerContent, {label: `${this.trimmedLabel()} item picker`, ...(this.overlayConfig() ?? {}), data: this.pickerData()});
+    const ref = this.overlays.open<ErpSelectionPickerContent, ErpSelectionPickerData, string | null>(ErpSelectionPickerContent, {frame: {header: {title: this.trimmedLabel(), subtitle: 'اختر عنصرًا', icon: 'menu'}, footer: {primary: {label: ERP_SELECTION_DEFAULT_ACTION_LABELS.confirm}, secondary: {label: ERP_SELECTION_DEFAULT_ACTION_LABELS.cancel}}}, ...(this.overlayConfig() ?? {}), data: this.pickerData()});
     this.activeRef = ref;
     void ref.afterClosed.then((outcome) => { this.activeRef = null; if (outcome.type === 'closed') this.commitUserValue(outcome.result); });
   }

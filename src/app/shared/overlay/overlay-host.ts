@@ -14,6 +14,7 @@ import {
 } from '../../foundation/motion/animate-css-motion-adapter';
 import {ErpOverlayManager} from './overlay-manager';
 import {ErpOverlayEntry} from './overlay-contracts';
+import {ErpOverlayFrame} from './overlay-frame/overlay-frame';
 
 const FOCUSABLE_SELECTOR = [
   'a[href]',
@@ -35,7 +36,7 @@ interface BackgroundState {
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-overlay-host',
-  imports: [NgComponentOutlet],
+  imports: [ErpOverlayFrame, NgComponentOutlet],
   templateUrl: './overlay-host.html',
   styleUrls: [
     './overlay-host-tokens.scss',
@@ -99,6 +100,10 @@ export class ErpOverlayHost {
     if (event.target === event.currentTarget) {
       this.manager.dismissFromBackdrop(id);
     }
+  }
+
+  handleFrameReady(id: string): void {
+    queueMicrotask(() => this.focusInitial(id));
   }
 
   private handleKeydown(event: KeyboardEvent): void {

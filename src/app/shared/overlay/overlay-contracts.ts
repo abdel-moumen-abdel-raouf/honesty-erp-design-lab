@@ -1,5 +1,6 @@
 import {Type} from '@angular/core';
 import {ErpMotionPreset} from '../../foundation/motion/motion-contracts';
+import {ErpIconName} from '../../primitives/icon/icon-contracts';
 
 export type ErpOverlayKind = 'modal' | 'drawer';
 
@@ -24,6 +25,34 @@ export type ErpOverlayAnimation = ErpMotionPreset;
 
 export type ErpOverlayPhase = 'entering' | 'open' | 'leaving';
 
+export interface ErpOverlayHeaderConfig {
+  readonly title: string;
+  readonly subtitle: string;
+  readonly icon: ErpIconName;
+  readonly closeLabel?: string;
+}
+
+export interface ErpOverlayActionConfig {
+  readonly label: string;
+  readonly icon?: ErpIconName | null;
+  readonly disabled?: boolean;
+  readonly loading?: boolean;
+}
+
+export interface ErpOverlayFooterConfig {
+  readonly primary: ErpOverlayActionConfig;
+  readonly secondary: ErpOverlayActionConfig;
+}
+
+export interface ErpOverlayFrameConfig {
+  readonly header: ErpOverlayHeaderConfig;
+  readonly footer: ErpOverlayFooterConfig;
+}
+
+export type ErpOverlayFrameAction =
+  | 'primary'
+  | 'secondary';
+
 export interface ErpOverlayBehaviorConfig {
   readonly dismissOnEscape: boolean;
   readonly dismissOnBackdrop: boolean;
@@ -38,7 +67,8 @@ export interface ErpOverlayConfig<TData = unknown>
   readonly kind: ErpOverlayKind;
   readonly position: ErpOverlayPosition;
   readonly size: ErpOverlaySize;
-  readonly label: string;
+  readonly frame: ErpOverlayFrameConfig | null;
+  readonly legacyCompactMenuLabel: string | null;
   readonly restoreFocus: boolean;
   readonly trapFocus: boolean;
   readonly blocking: boolean;
@@ -50,7 +80,7 @@ export interface ErpOverlayOpenConfig<TData = undefined> {
   readonly kind?: ErpOverlayKind;
   readonly position?: ErpOverlayPosition;
   readonly size?: ErpOverlaySize;
-  readonly label: string;
+  readonly frame: ErpOverlayFrameConfig;
   readonly dismissOnEscape?: boolean;
   readonly dismissOnBackdrop?: boolean;
   readonly blur?: ErpOverlayBlur;

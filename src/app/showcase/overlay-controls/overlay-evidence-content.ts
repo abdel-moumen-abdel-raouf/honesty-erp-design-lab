@@ -24,8 +24,18 @@ export class OverlayEvidenceContent {
   private readonly overlays = inject(ErpOverlayManager);
 
   openNested(): void {
-    this.overlays.open(OverlayEvidenceContent, {
-      label: 'دليل التراكب المتداخل',
+    this.overlays.open<OverlayEvidenceContent, OverlayEvidenceData>(OverlayEvidenceContent, {
+      frame: {
+        header: {
+          title: 'دليل التراكب المتداخل',
+          subtitle: 'تراكب ثانٍ داخل المكدس',
+          icon: 'layers',
+        },
+        footer: {
+          primary: {label: 'تأكيد'},
+          secondary: {label: 'إلغاء'},
+        },
+      },
       size: 'sm',
       data: {
         title: 'تراكب متداخل',

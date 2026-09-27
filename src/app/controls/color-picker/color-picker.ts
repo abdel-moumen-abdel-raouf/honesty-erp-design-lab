@@ -86,7 +86,13 @@ export class ErpColorPicker extends ErpFieldBase<ErpColorPickerValue | null> {
       ErpSelectionPickerData,
       ErpColorPickerValue | null
     >(ErpSelectionPickerContent, {
-      label: `${this.trimmedLabel()} color picker`,
+      frame: {
+        header: {title: this.trimmedLabel(), subtitle: 'اختر لونًا', icon: 'layers'},
+        footer: {
+          primary: {label: ERP_SELECTION_DEFAULT_ACTION_LABELS.confirm},
+          secondary: {label: ERP_SELECTION_DEFAULT_ACTION_LABELS.cancel},
+        },
+      },
       ...(this.overlayConfig() ?? {}),
       data: this.pickerData(),
     });

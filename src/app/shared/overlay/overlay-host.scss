@@ -39,8 +39,8 @@ erp-overlay-host {
   max-inline-size: 100%;
   max-block-size: var(--honesty-overlay-surface-max-block-size);
   min-inline-size: 0;
-  padding: var(--honesty-overlay-surface-padding);
-  overflow: auto;
+  padding: 0;
+  overflow: hidden;
   color: var(--honesty-overlay-surface-fg);
   background: var(--honesty-overlay-surface-bg);
   border-color: var(--honesty-overlay-surface-border-color);
