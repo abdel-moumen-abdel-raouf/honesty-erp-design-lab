@@ -1,4 +1,9 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnDestroy,
+} from '@angular/core';
 import {ErpButton} from '../../controls/button/button';
 import {ErpStack} from '../../primitives/stack/stack';
 import {ErpText} from '../../primitives/text/text';
@@ -18,10 +23,20 @@ export interface OverlayEvidenceData {
   templateUrl: './overlay-evidence-content.html',
   styleUrl: './overlay-evidence-content.scss',
 })
-export class OverlayEvidenceContent {
+export class OverlayEvidenceContent implements OnDestroy {
   readonly ref = inject(ERP_OVERLAY_REF) as ErpOverlayRef<string>;
   readonly data = inject(ERP_OVERLAY_DATA) as OverlayEvidenceData;
   private readonly overlays = inject(ErpOverlayManager);
+  private readonly frameActionCleanup = [
+    this.ref.registerFrameAction('primary', () => this.ref.close('confirmed')),
+    this.ref.registerFrameAction('secondary', () => this.ref.dismiss('cancel')),
+  ];
+
+  ngOnDestroy(): void {
+    for (const cleanup of this.frameActionCleanup) {
+      cleanup();
+    }
+  }
 
   openNested(): void {
     this.overlays.open<OverlayEvidenceContent, OverlayEvidenceData>(OverlayEvidenceContent, {

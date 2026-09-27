@@ -43,7 +43,10 @@ describe('ErpTemporalPickerContent', () => {
     >(ErpTemporalPickerContent, {
       frame: {
         header: {title: 'Temporal proof', subtitle: 'Supporting text', icon: 'calendar'},
-        footer: {primary: {label: 'Confirm'}, secondary: {label: 'Cancel'}},
+        footer: {
+          primary: {label: data.actionLabels.confirm},
+          secondary: {label: data.actionLabels.cancel},
+        },
       },
       data,
     });
@@ -74,7 +77,7 @@ describe('ErpTemporalPickerContent', () => {
     const grid = root.querySelector('[data-calendar-grid]') as HTMLElement;
     grid.dispatchEvent(new KeyboardEvent('keydown', {key: 'ArrowRight'}));
     grid.dispatchEvent(new KeyboardEvent('keydown', {key: 'Enter'}));
-    (root.querySelector('[data-confirm-action] button') as HTMLButtonElement).click();
+    (root.querySelector('[data-overlay-frame-primary] button') as HTMLButtonElement).click();
     manager.completeTransition(ref.id, 'leaving');
     await expect(ref.afterClosed).resolves.toEqual({
       type: 'closed',
@@ -93,11 +96,33 @@ describe('ErpTemporalPickerContent', () => {
     expect(root.textContent).toContain('تأكيد');
     (root.querySelector('[data-time-hour] button') as HTMLButtonElement).click();
     (root.querySelectorAll('[data-time-minute] button')[1] as HTMLButtonElement).click();
-    (root.querySelector('[data-confirm-action] button') as HTMLButtonElement).click();
+    (root.querySelector('[data-overlay-frame-primary] button') as HTMLButtonElement).click();
     manager.completeTransition(ref.id, 'leaving');
     await expect(ref.afterClosed).resolves.toEqual({
       type: 'closed',
       result: '00:05',
+    });
+  });
+
+  it('uses shared frame actions and removes duplicate body footer chrome', async () => {
+    const {fixture, manager, ref} = await open({
+      ...base,
+      mode: 'date',
+      value: '2026-01-15',
+    });
+    const root = fixture.nativeElement as HTMLElement;
+
+    expect(root.querySelector('[data-confirm-action]')).toBeNull();
+    expect(root.querySelector('[data-cancel-action]')).toBeNull();
+
+    root
+      .querySelector<HTMLButtonElement>('[data-overlay-frame-secondary] button')
+      ?.click();
+    manager.completeTransition(ref.id, 'leaving');
+
+    await expect(ref.afterClosed).resolves.toEqual({
+      type: 'dismissed',
+      reason: 'cancel',
     });
   });
 
@@ -144,7 +169,7 @@ describe('ErpTemporalPickerContent', () => {
     expect(day(root, '2026-01-05').dataset['inRange']).toBe('true');
     expect(day(root, '2026-01-10').dataset['inRange']).toBe('true');
 
-    (root.querySelector('[data-confirm-action] button') as HTMLButtonElement).click();
+    (root.querySelector('[data-overlay-frame-primary] button') as HTMLButtonElement).click();
     manager.completeTransition(ref.id, 'leaving');
     await expect(ref.afterClosed).resolves.toEqual({
       type: 'closed',

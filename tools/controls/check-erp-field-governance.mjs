@@ -834,14 +834,17 @@ export function validateTemporalCorrectionContracts(files) {
     !content.includes('rangePreviewCandidate = signal<string | null>(null)') ||
     !content.includes('orderRange(') ||
     !content.includes('updateKeyboardPreview(') ||
+    !content.includes("registerFrameAction('primary'") ||
+    !content.includes("registerFrameAction('secondary'") ||
     !template.includes('(pointerenter)="previewDate(date)"') ||
     !template.includes('(pointerleave)="clearRangePreview()"') ||
     !template.includes('data.actionLabels.previousMonth') ||
-    !template.includes('data.actionLabels.confirm') ||
+    template.includes('data-confirm-action') ||
+    template.includes('data-cancel-action') ||
     TEMPORAL_REQUIRED_TOKENS.some((token) => !tokens.includes(token))
   ) {
     errors.push(
-      'Temporal picker: staged anchor/preview/final range, Arabic action contract, and range token slots are required',
+      'Temporal picker: staged range, shared frame actions, body-only actions, and range token slots are required',
     );
   }
 
@@ -872,12 +875,16 @@ export function validateSelectionCorrectionContracts(files) {
     !content.includes('ERP_SYSTEM_COLOR_FAMILIES') ||
     !content.includes('ERP_SYSTEM_COLOR_STEPS') ||
     !content.includes('ERP_SYSTEM_COLOR_PALETTES') ||
+    !content.includes("registerFrameAction('primary'") ||
+    !content.includes("registerFrameAction('secondary'") ||
     !template.includes('<erp-selection-tile') ||
     !template.includes('<erp-tooltip') ||
+    template.includes('data-confirm-action') ||
+    template.includes('data-cancel-action') ||
     /<button\b/.test(template)
   ) {
     errors.push(
-      'Selection picker: generated system colors, SelectionTile, Tooltip, and no direct raw buttons are required',
+      'Selection picker: generated system colors, shared frame actions, SelectionTile, Tooltip, and no duplicate footer or raw buttons are required',
     );
   }
 
@@ -1075,11 +1082,11 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     ],
     [
       TEMPORAL_CONTENT_SOURCE,
-      'rangeAnchor = signal(null); rangePreviewCandidate = signal<string | null>(null); orderRange(); updateKeyboardPreview();',
+      "rangeAnchor = signal(null); rangePreviewCandidate = signal<string | null>(null); orderRange(); updateKeyboardPreview(); registerFrameAction('primary'); registerFrameAction('secondary');",
     ],
     [
       TEMPORAL_CONTENT_TEMPLATE,
-      '<div (pointerleave)="clearRangePreview()"><span (pointerenter)="previewDate(date)">{{ data.actionLabels.previousMonth }} {{ data.actionLabels.confirm }}</span></div>',
+      '<div (pointerleave)="clearRangePreview()"><span (pointerenter)="previewDate(date)">{{ data.actionLabels.previousMonth }}</span></div>',
     ],
     [TEMPORAL_TOKENS, TEMPORAL_REQUIRED_TOKENS.join('\n')],
   ]);
@@ -1096,6 +1103,17 @@ export class ErpImagePicker extends ErpFileSelectionBase {
   if (validateTemporalCorrectionContracts(validTemporalFiles).length > 0) {
     throw new Error('ErpField checker rejected valid temporal fixtures');
   }
+  validTemporalFiles.set(
+    TEMPORAL_CONTENT_TEMPLATE,
+    `${validTemporalFiles.get(TEMPORAL_CONTENT_TEMPLATE)}<erp-button data-confirm-action />`,
+  );
+  if (validateTemporalCorrectionContracts(validTemporalFiles).length === 0) {
+    throw new Error('ErpField checker accepted duplicate temporal footer chrome');
+  }
+  validTemporalFiles.set(
+    TEMPORAL_CONTENT_TEMPLATE,
+    '<div (pointerleave)="clearRangePreview()"><span (pointerenter)="previewDate(date)">{{ data.actionLabels.previousMonth }}</span></div>',
+  );
 
   const validSelectionFiles = new Map([
     [
@@ -1104,7 +1122,7 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     ],
     [
       SELECTION_CONTENT_SOURCE,
-      'ERP_SYSTEM_COLOR_FAMILIES ERP_SYSTEM_COLOR_STEPS ERP_SYSTEM_COLOR_PALETTES',
+      "ERP_SYSTEM_COLOR_FAMILIES ERP_SYSTEM_COLOR_STEPS ERP_SYSTEM_COLOR_PALETTES registerFrameAction('primary') registerFrameAction('secondary')",
     ],
     [
       SELECTION_CONTENT_TEMPLATE,
@@ -1135,6 +1153,13 @@ export class ErpImagePicker extends ErpFileSelectionBase {
   }
   if (validateSelectionCorrectionContracts(validSelectionFiles).length > 0) {
     throw new Error('ErpField checker rejected valid selection fixtures');
+  }
+  validSelectionFiles.set(
+    SELECTION_CONTENT_TEMPLATE,
+    '<erp-selection-tile><erp-tooltip></erp-tooltip></erp-selection-tile><erp-button data-cancel-action />',
+  );
+  if (validateSelectionCorrectionContracts(validSelectionFiles).length === 0) {
+    throw new Error('ErpField checker accepted duplicate selection footer chrome');
   }
   validSelectionFiles.set(
     SELECTION_CONTENT_TEMPLATE,

@@ -1,4 +1,11 @@
-import {ChangeDetectionStrategy, Component, computed, inject, signal} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnDestroy,
+  signal,
+} from '@angular/core';
 import {ErpButton} from '../../button/button';
 import {ErpGrid} from '../../../primitives/grid/grid';
 import {ErpInline} from '../../../primitives/inline/inline';
@@ -22,11 +29,15 @@ import {addDays, addMonths, padTemporal, parseIsoDate, toIsoDate} from '../tempo
   styleUrl: './temporal-picker-content.scss',
   host: {'[attr.data-temporal-picker-mode]': 'data.mode'},
 })
-export class ErpTemporalPickerContent {
+export class ErpTemporalPickerContent implements OnDestroy {
   readonly data = inject(ERP_OVERLAY_DATA) as ErpTemporalPickerData;
   private readonly ref = inject(ERP_OVERLAY_REF) as ErpOverlayRef<ErpTemporalValue>;
   private readonly today = toIsoDate(new Date());
   private readonly initialDate = this.resolveInitialDate();
+  private readonly frameActionCleanup = [
+    this.ref.registerFrameAction('primary', () => this.confirm()),
+    this.ref.registerFrameAction('secondary', () => this.cancel()),
+  ];
 
   protected readonly cursor = signal(this.initialDate);
   protected readonly monthAnchor = signal(this.initialDate.slice(0, 7) + '-01');
@@ -76,6 +87,12 @@ export class ErpTemporalPickerContent {
       return toIsoDate(date);
     });
   });
+
+  ngOnDestroy(): void {
+    for (const cleanup of this.frameActionCleanup) {
+      cleanup();
+    }
+  }
 
   protected previousMonth(): void {
     this.moveMonth(-1);

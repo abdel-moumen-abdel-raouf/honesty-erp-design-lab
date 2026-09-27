@@ -46,7 +46,10 @@ describe('ErpSelectionPickerContent', () => {
     >(ErpSelectionPickerContent, {
       frame: {
         header: {title: 'Selection proof', subtitle: 'Supporting text', icon: 'layers'},
-        footer: {primary: {label: 'Confirm'}, secondary: {label: 'Cancel'}},
+        footer: {
+          primary: {label: data.actionLabels.confirm},
+          secondary: {label: data.actionLabels.cancel},
+        },
       },
       data,
     });
@@ -95,12 +98,33 @@ describe('ErpSelectionPickerContent', () => {
     root
       .querySelector<HTMLButtonElement>('[data-color-token="primary-500"] button')
       ?.click();
-    root.querySelector<HTMLButtonElement>('[data-confirm-action] button')?.click();
+    root.querySelector<HTMLButtonElement>('[data-overlay-frame-primary] button')?.click();
     manager.completeTransition(ref.id, 'leaving');
 
     await expect(ref.afterClosed).resolves.toEqual({
       type: 'closed',
       result: {mode: 'system', token: 'primary-500'},
+    });
+  });
+
+  it('uses shared frame actions and close dismisses without committing staged selection', async () => {
+    const {fixture, manager, ref} = await open({...base, mode: 'color'});
+    const root = fixture.nativeElement as HTMLElement;
+
+    expect(root.querySelector('[data-confirm-action]')).toBeNull();
+    expect(root.querySelector('[data-cancel-action]')).toBeNull();
+
+    root
+      .querySelector<HTMLButtonElement>('[data-color-token="primary-500"] button')
+      ?.click();
+    root
+      .querySelector<HTMLButtonElement>('[data-overlay-frame-close] button')
+      ?.click();
+    manager.completeTransition(ref.id, 'leaving');
+
+    await expect(ref.afterClosed).resolves.toEqual({
+      type: 'dismissed',
+      reason: 'close-action',
     });
   });
 
@@ -114,7 +138,7 @@ describe('ErpSelectionPickerContent', () => {
     const input = root.querySelector('[data-native-color]') as HTMLInputElement;
     input.value = '#abcdef';
     input.dispatchEvent(new Event('input'));
-    root.querySelector<HTMLButtonElement>('[data-confirm-action] button')?.click();
+    root.querySelector<HTMLButtonElement>('[data-overlay-frame-primary] button')?.click();
     manager.completeTransition(ref.id, 'leaving');
 
     await expect(ref.afterClosed).resolves.toEqual({
@@ -167,7 +191,7 @@ describe('ErpSelectionPickerContent', () => {
     const list = root.querySelector('[data-selection-list]') as HTMLElement;
     list.dispatchEvent(new KeyboardEvent('keydown', {key: 'ArrowDown'}));
     list.dispatchEvent(new KeyboardEvent('keydown', {key: 'Enter'}));
-    root.querySelector<HTMLButtonElement>('[data-confirm-action] button')?.click();
+    root.querySelector<HTMLButtonElement>('[data-overlay-frame-primary] button')?.click();
     manager.completeTransition(ref.id, 'leaving');
 
     await expect(ref.afterClosed).resolves.toEqual({

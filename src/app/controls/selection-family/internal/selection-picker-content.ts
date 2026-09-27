@@ -3,6 +3,7 @@ import {
   Component,
   computed,
   inject,
+  OnDestroy,
   signal,
 } from '@angular/core';
 import {FormsModule} from '@angular/forms';
@@ -53,9 +54,13 @@ import {ErpSelectionTile} from './selection-tile';
   styleUrl: './selection-picker-content.scss',
   host: {'[attr.data-selection-picker-mode]': 'data.mode'},
 })
-export class ErpSelectionPickerContent {
+export class ErpSelectionPickerContent implements OnDestroy {
   readonly data = inject(ERP_OVERLAY_DATA) as ErpSelectionPickerData;
   private readonly ref = inject(ERP_OVERLAY_REF) as ErpOverlayRef<ErpSelectionPickerValue>;
+  private readonly frameActionCleanup = [
+    this.ref.registerFrameAction('primary', () => this.confirm()),
+    this.ref.registerFrameAction('secondary', () => this.cancel()),
+  ];
 
   protected readonly query = signal(this.data.query);
   protected readonly staged = signal<ErpSelectionPickerValue>(this.data.value);
@@ -94,6 +99,12 @@ export class ErpSelectionPickerContent {
       item.value.toLocaleLowerCase().includes(query),
     );
   });
+
+  ngOnDestroy(): void {
+    for (const cleanup of this.frameActionCleanup) {
+      cleanup();
+    }
+  }
 
   protected updateQuery(value: string): void {
     this.query.set(value);
