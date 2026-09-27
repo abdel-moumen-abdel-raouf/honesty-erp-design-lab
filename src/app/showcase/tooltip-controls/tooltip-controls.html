@@ -1,4 +1,4 @@
-<erp-container class="tooltip-showcase" width="wide" data-theme="light">
+<erp-container class="tooltip-showcase" width="wide">
   <erp-stack class="showcase-header" gap="tight">
     <erp-text type="heading-1">Tooltip V1</erp-text>
     <erp-text type="paragraph" tone="secondary">مراجعة سلوك التلميحات البسيطة والغنية.</erp-text>
@@ -7,14 +7,12 @@
   <erp-section class="review-group" data-review-group="plain-basics">
     <erp-text type="heading-2">Plain basics</erp-text><erp-divider />
     <erp-inline class="theme-contexts" gap="default" wrap="wrap">
-      @for (theme of themes; track theme) {
-        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
+        <erp-surface border="subtle">
           <erp-inline gap="default" wrap="wrap">
             <erp-tooltip text="Search records"><erp-icon-button icon="search" label="Search" /></erp-tooltip>
             <erp-tooltip text="Save changes"><erp-button label="Save" /></erp-tooltip>
           </erp-inline>
         </erp-surface>
-      }
     </erp-inline>
     <erp-stack
       data-motion-selector-evidence
@@ -69,63 +67,54 @@
   <erp-section class="review-group" data-review-group="placements">
     <erp-text type="heading-2">Placements</erp-text><erp-divider />
     <erp-inline class="theme-contexts" gap="default" wrap="wrap">
-      @for (theme of themes; track theme) {
-        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle" dir="rtl">
+        <erp-surface border="subtle" dir="rtl">
           <erp-inline gap="default" wrap="wrap">
             @for (place of placements; track place) {
               <erp-tooltip data-placement-evidence [placement]="place" [text]="'موضع ' + place"><erp-button [label]="place" /></erp-tooltip>
             }
           </erp-inline>
         </erp-surface>
-      }
     </erp-inline>
   </erp-section>
 
   <erp-section class="review-group" data-review-group="arrow">
     <erp-text type="heading-2">Arrow</erp-text><erp-divider />
     <erp-inline class="theme-contexts" gap="default" wrap="wrap">
-      @for (theme of themes; track theme) {
-        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
+        <erp-surface border="subtle">
           <erp-inline gap="default" wrap="wrap">
             <erp-tooltip data-arrow-evidence text="Arrow shown" [showArrow]="true"><erp-button label="Arrow true" /></erp-tooltip>
             <erp-tooltip data-arrow-evidence text="Arrow hidden" [showArrow]="false"><erp-button label="Arrow false" /></erp-tooltip>
           </erp-inline>
         </erp-surface>
-      }
     </erp-inline>
   </erp-section>
 
   <erp-section class="review-group" data-review-group="rich-informational">
     <erp-text type="heading-2">Rich informational</erp-text><erp-divider />
     <erp-inline class="theme-contexts" gap="default" wrap="wrap">
-      @for (theme of themes; track theme) {
-        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
+        <erp-surface border="subtle">
           <erp-tooltip data-rich-informational-evidence variant="rich"><erp-button label="Information" />
             <erp-tooltip-content><erp-stack gap="tight"><erp-text type="heading-4">Invoice status</erp-text><erp-text type="paragraph">This explanation contains no focusable content.</erp-text></erp-stack></erp-tooltip-content>
           </erp-tooltip>
         </erp-surface>
-      }
     </erp-inline>
   </erp-section>
 
   <erp-section class="review-group" data-review-group="rich-interactive">
     <erp-text type="heading-2">Rich interactive</erp-text><erp-divider />
     <erp-inline class="theme-contexts" gap="default" wrap="wrap">
-      @for (theme of themes; track theme) {
-        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
+        <erp-surface border="subtle">
           <erp-tooltip data-rich-interactive-evidence variant="rich" interactive text="Invoice actions"><erp-button label="Open actions" />
             <erp-tooltip-content><erp-stack gap="tight"><erp-text type="heading-4">Invoice actions</erp-text><erp-text type="paragraph">Choose an approved action.</erp-text><erp-button label="Apply" /><erp-text type="link" href="#tooltip-link-action">Learn more</erp-text></erp-stack></erp-tooltip-content>
           </erp-tooltip>
         </erp-surface>
-      }
     </erp-inline>
   </erp-section>
 
   <erp-section class="review-group" data-review-group="activation-controlled-disabled">
     <erp-text type="heading-2">Activation / controlled / disabled</erp-text><erp-divider />
     <erp-inline class="theme-contexts" gap="default" wrap="wrap">
-      @for (theme of themes; track theme) {
-        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
+        <erp-surface border="subtle">
           <erp-inline gap="default" wrap="wrap">
             <erp-tooltip data-activation-evidence="auto" text="Automatic"><erp-button label="Auto" /></erp-tooltip>
             <erp-tooltip data-activation-evidence="press" text="Press" activation="press"><erp-button label="Press" /></erp-tooltip>
@@ -133,15 +122,13 @@
             <erp-tooltip data-disabled-evidence text="Disabled" disabled><erp-button label="Disabled tooltip" /></erp-tooltip>
           </erp-inline>
         </erp-surface>
-      }
     </erp-inline>
   </erp-section>
 
   <erp-section class="review-group" data-review-group="collision-dismissal-keyboard">
     <erp-text type="heading-2">Collision / dismissal / keyboard</erp-text><erp-divider />
     <erp-inline class="theme-contexts edge-review" gap="default">
-      @for (theme of themes; track theme) {
-        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle" dir="rtl">
+        <erp-surface border="subtle" dir="rtl">
           <erp-stack gap="default">
             <erp-inline gap="default" justify="between">
               <erp-tooltip data-collision-evidence="start-edge" text="Start edge collision" placement="start">
@@ -175,7 +162,6 @@
             </erp-text>
           </erp-stack>
         </erp-surface>
-      }
     </erp-inline>
   </erp-section>
 </erp-container>

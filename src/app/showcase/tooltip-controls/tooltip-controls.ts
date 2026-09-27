@@ -25,7 +25,6 @@ import {ErpText} from '../../primitives/text/text';
   styleUrl: './tooltip-controls.scss',
 })
 export class TooltipControls {
-  readonly themes = ['light', 'dark'] as const;
   readonly placements = ['top', 'bottom', 'start', 'end'] as const;
   readonly controlledOpen = signal(false);
   readonly motionOptions: readonly ErpButtonGroupItem[] =

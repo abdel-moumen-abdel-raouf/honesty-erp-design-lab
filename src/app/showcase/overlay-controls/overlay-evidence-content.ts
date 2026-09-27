@@ -7,7 +7,6 @@ import {ErpOverlayRef} from '../../shared/overlay/overlay-ref';
 import {ERP_OVERLAY_DATA, ERP_OVERLAY_REF} from '../../shared/overlay/overlay-tokens';
 
 export interface OverlayEvidenceData {
-  readonly theme: 'light' | 'dark';
   readonly title: string;
   readonly allowNested: boolean;
 }
@@ -29,7 +28,6 @@ export class OverlayEvidenceContent {
       label: 'دليل التراكب المتداخل',
       size: 'sm',
       data: {
-        theme: this.data.theme,
         title: 'تراكب متداخل',
         allowNested: false,
       } satisfies OverlayEvidenceData,

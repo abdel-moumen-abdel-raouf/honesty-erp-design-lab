@@ -71,7 +71,6 @@ import {
   styleUrl: './overlay-controls.scss',
 })
 export class OverlayControls {
-  readonly themes = ['light', 'dark'] as const;
   readonly blurLevels: readonly ErpOverlayBlur[] = ['low', 'medium', 'high'];
   readonly backdropTones: readonly Exclude<ErpOverlayBackdropTone, 'default'>[] = [
     'neutral',
@@ -100,11 +99,10 @@ export class OverlayControls {
   readonly freeColorValue = signal<ErpColorPickerValue | null>({mode: 'free', value: '#2563EB'});
   private readonly overlays = inject(ErpOverlayManager);
 
-  openModal(theme: 'light' | 'dark', nested = false): void {
+  openModal(nested = false): void {
     this.open(
       'modal',
       'center',
-      theme,
       nested ? 'جذر التراكب المتداخل' : 'نافذة حوار',
       nested,
     );
@@ -112,18 +110,16 @@ export class OverlayControls {
 
   openDrawer(
     position: Exclude<ErpOverlayPosition, 'center'>,
-    theme: 'light' | 'dark',
   ): void {
-    this.open('drawer', position, theme, `درج ${position}`);
+    this.open('drawer', position, `درج ${position}`);
   }
 
-  openPolicy(theme: 'light' | 'dark'): void {
+  openPolicy(): void {
     this.overlays.open(OverlayEvidenceContent, {
       label: 'دليل سياسة الإغلاق الصريح',
       dismissOnBackdrop: false,
       dismissOnEscape: false,
       data: {
-        theme,
         title: 'سياسة الإغلاق الصريح',
         allowNested: false,
       } satisfies OverlayEvidenceData,
@@ -138,7 +134,6 @@ export class OverlayControls {
       label,
       ...config,
       data: {
-        theme: 'light',
         title: label,
         allowNested: false,
       } satisfies OverlayEvidenceData,
@@ -148,7 +143,6 @@ export class OverlayControls {
   private open(
     kind: 'modal' | 'drawer',
     position: ErpOverlayPosition,
-    theme: 'light' | 'dark',
     title: string,
     allowNested = false,
   ): void {
@@ -156,7 +150,7 @@ export class OverlayControls {
       kind,
       position,
       label: title,
-      data: {theme, title, allowNested} satisfies OverlayEvidenceData,
+      data: {title, allowNested} satisfies OverlayEvidenceData,
     });
   }
 }

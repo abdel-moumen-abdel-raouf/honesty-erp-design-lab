@@ -1,7 +1,6 @@
 <erp-container
   class="overlay-showcase"
   width="wide"
-  data-theme="light"
   data-overlay-responsive-evidence="wide"
 >
   <erp-stack class="showcase-header" gap="tight">
@@ -24,16 +23,14 @@
     <erp-text type="heading-2">النوافذ الحوارية والخلفية الافتراضية</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="sm" responsive="auto">
-      @for (theme of themes; track theme) {
-        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
+        <erp-surface border="subtle">
           <erp-button
             data-modal-evidence
             data-default-backdrop-evidence
-            [label]="theme === 'light' ? 'فتح نافذة في السياق الفاتح' : 'فتح نافذة في السياق الداكن'"
-            (pressed)="openModal(theme)"
+            label="فتح نافذة"
+            (pressed)="openModal()"
           />
         </erp-surface>
-      }
     </erp-grid>
   </erp-section>
 
@@ -41,15 +38,13 @@
     <erp-text type="heading-2">الأدراج المنطقية في RTL</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="sm" responsive="auto">
-      @for (theme of themes; track theme) {
-        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle" dir="rtl">
+        <erp-surface border="subtle" dir="rtl">
           <erp-stack gap="tight">
-            <erp-button data-drawer-evidence="start" label="فتح درج البداية" (pressed)="openDrawer('start', theme)" />
-            <erp-button data-drawer-evidence="end" label="فتح درج النهاية" (pressed)="openDrawer('end', theme)" />
-            <erp-button data-drawer-evidence="bottom" label="فتح الدرج السفلي" (pressed)="openDrawer('bottom', theme)" />
+            <erp-button data-drawer-evidence="start" label="فتح درج البداية" (pressed)="openDrawer('start')" />
+            <erp-button data-drawer-evidence="end" label="فتح درج النهاية" (pressed)="openDrawer('end')" />
+            <erp-button data-drawer-evidence="bottom" label="فتح الدرج السفلي" (pressed)="openDrawer('bottom')" />
           </erp-stack>
         </erp-surface>
-      }
     </erp-grid>
   </erp-section>
 
@@ -57,11 +52,9 @@
     <erp-text type="heading-2">التراكب المتداخل</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="sm" responsive="auto">
-      @for (theme of themes; track theme) {
-        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
-          <erp-button data-nested-evidence label="فتح تراكب متداخل" (pressed)="openModal(theme, true)" />
+        <erp-surface border="subtle">
+          <erp-button data-nested-evidence label="فتح تراكب متداخل" (pressed)="openModal(true)" />
         </erp-surface>
-      }
     </erp-grid>
   </erp-section>
 
@@ -70,11 +63,9 @@
     <erp-divider />
     <erp-container width="narrow" gutter="none" data-overlay-responsive-evidence="narrow">
       <erp-grid [columns]="2" gap="sm" responsive="auto">
-        @for (theme of themes; track theme) {
-          <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
-            <erp-button data-policy-evidence label="فتح تراكب بإغلاق صريح" (pressed)="openPolicy(theme)" />
+          <erp-surface border="subtle">
+            <erp-button data-policy-evidence label="فتح تراكب بإغلاق صريح" (pressed)="openPolicy()" />
           </erp-surface>
-        }
       </erp-grid>
     </erp-container>
 
@@ -119,8 +110,7 @@
     <erp-text type="heading-2">منتقيات التاريخ والوقت</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="sm" responsive="auto">
-      @for (theme of themes; track theme) {
-        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle" dir="rtl">
+        <erp-surface border="subtle" dir="rtl">
           <erp-stack gap="tight">
             <erp-date-box data-temporal-overlay-evidence="date" label="فتح منتقي التاريخ" />
             <erp-time-box data-temporal-overlay-evidence="time" label="فتح منتقي الوقت" />
@@ -128,7 +118,6 @@
             <erp-date-range-box data-temporal-overlay-evidence="range" data-date-range-selected-evidence label="نطاق محدد — افتح لمعاينة المرور" [ngModel]="dateRangeValue()" (ngModelChange)="dateRangeValue.set($event)" />
           </erp-stack>
         </erp-surface>
-      }
     </erp-grid>
   </erp-section>
 
@@ -136,8 +125,7 @@
     <erp-text type="heading-2">منتقيات الاختيار</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="sm" responsive="auto">
-      @for (theme of themes; track theme) {
-        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
+        <erp-surface border="subtle">
           <erp-stack gap="tight">
             <erp-color-picker data-selection-overlay-evidence="color-system" label="ألوان النظام — المجموعات الكاملة" [ngModel]="systemColorValue()" (ngModelChange)="systemColorValue.set($event)" />
             <erp-color-picker data-selection-overlay-evidence="color-free" label="اللون الحر" [ngModel]="freeColorValue()" (ngModelChange)="freeColorValue.set($event)" />
@@ -146,7 +134,6 @@
             <erp-combo-box data-selection-overlay-evidence="combo" label="قائمة البحث والاختيار" [items]="pickerItems" />
           </erp-stack>
         </erp-surface>
-      }
     </erp-grid>
   </erp-section>
 
@@ -154,8 +141,7 @@
     <erp-text type="heading-2">المركبات المؤجلة</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="sm" responsive="auto">
-      @for (theme of themes; track theme) {
-        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
+        <erp-surface border="subtle">
           <erp-stack gap="tight">
             <erp-radio-group data-composite-evidence="radio-group" label="حالة الاعتماد" [options]="radioItems" required />
             <erp-button-group data-composite-evidence="button-group" [items]="buttonItems" />
@@ -163,7 +149,6 @@
             <erp-fab-menu data-composite-evidence="fab-menu" label="إنشاء عنصر" [items]="pickerItems" />
           </erp-stack>
         </erp-surface>
-      }
     </erp-grid>
   </erp-section>
 </erp-container>

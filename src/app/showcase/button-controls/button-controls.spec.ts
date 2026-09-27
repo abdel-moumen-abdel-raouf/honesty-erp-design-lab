@@ -25,46 +25,36 @@ describe('ButtonControls showcase', () => {
     expect(createFixture().componentInstance).toBeTruthy();
   });
 
-  it('renders exactly seven review groups with equivalent Light and Dark contexts', () => {
+  it('renders exactly seven review groups under the inherited global theme', () => {
     const compiled = createFixture().nativeElement as HTMLElement;
 
-    expect(
-      compiled.querySelector('erp-container.button-showcase')?.getAttribute('data-theme'),
-    ).toBe('light');
     const groups = [...compiled.querySelectorAll<HTMLElement>('[data-review-group]')];
     expect(groups.length).toBe(7);
-
-    for (const group of groups) {
-      const contexts = [...group.querySelectorAll<HTMLElement>('[data-theme-context]')];
-      expect(contexts.length).toBe(2);
-      expect(contexts.map((context) => context.getAttribute('data-theme'))).toEqual([
-        'light',
-        'dark',
-      ]);
-    }
+    expect(compiled.querySelectorAll('[data-theme-context]').length).toBe(0);
+    expect(compiled.querySelector('erp-container.button-showcase')?.hasAttribute('data-theme')).toBe(false);
   });
 
   it('evidences Standard Button variants, tones, sizes, shapes, border, and width', () => {
     const compiled = createFixture().nativeElement as HTMLElement;
 
-    expect(compiled.querySelectorAll('[data-standard-variant-evidence]').length).toBe(10);
-    expect(compiled.querySelectorAll('[data-solid-tone-evidence]').length).toBe(16);
-    expect(compiled.querySelectorAll('[data-outline-tone-evidence]').length).toBe(16);
-    expect(compiled.querySelectorAll('[data-button-size-evidence]').length).toBe(6);
-    expect(compiled.querySelectorAll('[data-button-shape-evidence]').length).toBe(6);
-    expect(compiled.querySelectorAll('[data-dashed-border-evidence]').length).toBe(2);
-    expect(compiled.querySelectorAll('[data-full-width-evidence]').length).toBe(2);
+    expect(compiled.querySelectorAll('[data-standard-variant-evidence]').length).toBe(5);
+    expect(compiled.querySelectorAll('[data-solid-tone-evidence]').length).toBe(8);
+    expect(compiled.querySelectorAll('[data-outline-tone-evidence]').length).toBe(8);
+    expect(compiled.querySelectorAll('[data-button-size-evidence]').length).toBe(3);
+    expect(compiled.querySelectorAll('[data-button-shape-evidence]').length).toBe(3);
+    expect(compiled.querySelectorAll('[data-dashed-border-evidence]').length).toBe(1);
+    expect(compiled.querySelectorAll('[data-full-width-evidence]').length).toBe(1);
   });
 
   it('evidences all required IconButton variants and sizes', () => {
     const compiled = createFixture().nativeElement as HTMLElement;
 
-    expect(compiled.querySelectorAll('[data-icon-button-variant-evidence]').length).toBe(8);
-    expect(compiled.querySelectorAll('[data-icon-button-size-evidence]').length).toBe(6);
-    expect(compiled.querySelectorAll('[data-icon-button-shape-evidence]').length).toBe(6);
+    expect(compiled.querySelectorAll('[data-icon-button-variant-evidence]').length).toBe(4);
+    expect(compiled.querySelectorAll('[data-icon-button-size-evidence]').length).toBe(3);
+    expect(compiled.querySelectorAll('[data-icon-button-shape-evidence]').length).toBe(3);
   });
 
-  it('evidences external Tooltip composition for IconButton and FAB in both themes', () => {
+  it('evidences external Tooltip composition for IconButton and FAB', () => {
     const compiled = createFixture().nativeElement as HTMLElement;
     const iconButtonTooltips = [
       ...compiled.querySelectorAll<HTMLElement>('[data-icon-button-tooltip-evidence]'),
@@ -73,13 +63,13 @@ describe('ButtonControls showcase', () => {
       ...compiled.querySelectorAll<HTMLElement>('[data-fab-tooltip-evidence]'),
     ];
 
-    expect(iconButtonTooltips.length).toBe(2);
+    expect(iconButtonTooltips.length).toBe(1);
     for (const tooltip of iconButtonTooltips) {
       expect(tooltip.querySelectorAll('erp-icon-button').length).toBe(1);
       expect(tooltip.getAttribute('data-tooltip-state')).toBe('ready');
     }
 
-    expect(fabTooltips.length).toBe(2);
+    expect(fabTooltips.length).toBe(1);
     for (const tooltip of fabTooltips) {
       expect(tooltip.querySelectorAll('erp-fab').length).toBe(1);
       expect(tooltip.getAttribute('data-tooltip-state')).toBe('ready');
@@ -89,30 +79,30 @@ describe('ButtonControls showcase', () => {
   it('evidences all required FAB sizes and tones', () => {
     const compiled = createFixture().nativeElement as HTMLElement;
 
-    expect(compiled.querySelectorAll('[data-fab-size-evidence]').length).toBe(6);
-    expect(compiled.querySelectorAll('[data-fab-tone-evidence]').length).toBe(8);
+    expect(compiled.querySelectorAll('[data-fab-size-evidence]').length).toBe(3);
+    expect(compiled.querySelectorAll('[data-fab-tone-evidence]').length).toBe(4);
   });
 
   it('evidences all required Extended FAB sizes and tones', () => {
     const compiled = createFixture().nativeElement as HTMLElement;
 
-    expect(compiled.querySelectorAll('[data-extended-fab-size-evidence]').length).toBe(6);
-    expect(compiled.querySelectorAll('[data-extended-fab-tone-evidence]').length).toBe(8);
-    expect(compiled.querySelectorAll('[data-extended-fab-no-icon]').length).toBe(2);
+    expect(compiled.querySelectorAll('[data-extended-fab-size-evidence]').length).toBe(3);
+    expect(compiled.querySelectorAll('[data-extended-fab-tone-evidence]').length).toBe(4);
+    expect(compiled.querySelectorAll('[data-extended-fab-no-icon]').length).toBe(1);
   });
 
-  it('evidences ready, disabled, loading, cursor, and ripple speed in both themes', () => {
+  it('evidences ready, disabled, loading, cursor, and ripple speed', () => {
     const compiled = createFixture().nativeElement as HTMLElement;
     const states = [...compiled.querySelectorAll<HTMLElement>('[data-state-evidence]')];
 
-    expect(states.length).toBe(24);
-    expect(states.filter((control) => control.getAttribute('data-state-evidence')?.endsWith('ready')).length).toBe(8);
-    expect(states.filter((control) => control.getAttribute('data-state-evidence')?.endsWith('disabled')).length).toBe(8);
-    expect(states.filter((control) => control.getAttribute('data-state-evidence')?.endsWith('loading')).length).toBe(8);
+    expect(states.length).toBe(12);
+    expect(states.filter((control) => control.getAttribute('data-state-evidence')?.endsWith('ready')).length).toBe(4);
+    expect(states.filter((control) => control.getAttribute('data-state-evidence')?.endsWith('disabled')).length).toBe(4);
+    expect(states.filter((control) => control.getAttribute('data-state-evidence')?.endsWith('loading')).length).toBe(4);
     const pointerControls = compiled.querySelectorAll('[data-cursor-evidence="pointer"]');
     const defaultControls = compiled.querySelectorAll('[data-cursor-evidence="default"]');
-    expect(pointerControls.length).toBe(2);
-    expect(defaultControls.length).toBe(2);
+    expect(pointerControls.length).toBe(1);
+    expect(defaultControls.length).toBe(1);
     for (const control of pointerControls) {
       expect(control.getAttribute('data-button-cursor')).toBe('pointer');
     }
@@ -124,20 +114,20 @@ describe('ButtonControls showcase', () => {
       const controls = compiled.querySelectorAll(
         `[data-ripple-speed-evidence="${speed}"]`,
       );
-      expect(controls.length).toBe(2);
+      expect(controls.length).toBe(1);
       for (const control of controls) {
         expect(control.getAttribute('data-button-ripple-speed')).toBe(speed);
       }
     }
   });
 
-  it('evidences the normal default ripple for all four controls in both themes', () => {
+  it('evidences the normal default ripple for all four controls', () => {
     const compiled = createFixture().nativeElement as HTMLElement;
     const controls = [
       ...compiled.querySelectorAll<HTMLElement>('[data-default-ripple-evidence]'),
     ];
 
-    expect(controls.length).toBe(8);
+    expect(controls.length).toBe(4);
     for (const control of controls) {
       switch (control.tagName) {
         case 'ERP-BUTTON':

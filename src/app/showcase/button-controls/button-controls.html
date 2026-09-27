@@ -1,4 +1,4 @@
-<erp-container class="button-showcase" width="wide" data-theme="light">
+<erp-container class="button-showcase" width="wide">
   <erp-stack class="showcase-header" gap="tight">
     <erp-inline gap="tight" align="center" wrap="wrap">
       <erp-icon name="info" size="md" tone="brand-primary" />
@@ -14,20 +14,16 @@
     <erp-divider />
     <erp-grid
       class="theme-contexts"
-      [columns]="2"
+      [columns]="1"
       gap="grid"
       responsive="auto"
     >
-      @for (theme of themes; track theme) {
-        <erp-surface
+      <erp-surface
           class="theme-review-context"
-          data-theme-context
-          [attr.data-theme]="theme"
           tone="default"
           border="subtle"
         >
           <erp-stack gap="default">
-            <erp-text type="heading-3">{{ theme }}</erp-text>
             <erp-inline gap="default" wrap="wrap">
               @for (variant of standardVariants; track variant) {
                 <erp-button
@@ -39,8 +35,7 @@
               }
             </erp-inline>
           </erp-stack>
-        </erp-surface>
-      }
+      </erp-surface>
     </erp-grid>
   </erp-section>
 
@@ -49,20 +44,16 @@
     <erp-divider />
     <erp-grid
       class="theme-contexts"
-      [columns]="2"
+      [columns]="1"
       gap="grid"
       responsive="auto"
     >
-      @for (theme of themes; track theme) {
-        <erp-surface
+      <erp-surface
           class="theme-review-context"
-          data-theme-context
-          [attr.data-theme]="theme"
           tone="default"
           border="subtle"
         >
           <erp-stack gap="default">
-            <erp-text type="heading-3">{{ theme }}</erp-text>
             <erp-text type="heading-4">Solid</erp-text>
             <erp-grid [columns]="4" gap="sm" responsive="auto">
               @for (tone of tones; track tone) {
@@ -86,8 +77,7 @@
               }
             </erp-grid>
           </erp-stack>
-        </erp-surface>
-      }
+      </erp-surface>
     </erp-grid>
   </erp-section>
 
@@ -96,20 +86,16 @@
     <erp-divider />
     <erp-grid
       class="theme-contexts"
-      [columns]="2"
+      [columns]="1"
       gap="grid"
       responsive="auto"
     >
-      @for (theme of themes; track theme) {
-        <erp-surface
+      <erp-surface
           class="theme-review-context"
-          data-theme-context
-          [attr.data-theme]="theme"
           tone="default"
           border="subtle"
         >
           <erp-stack gap="default">
-            <erp-text type="heading-3">{{ theme }}</erp-text>
             <erp-inline gap="default" align="center" wrap="wrap">
               @for (size of buttonSizes; track size) {
                 <erp-button data-button-size-evidence [label]="size" [size]="size" />
@@ -137,8 +123,7 @@
             </erp-inline>
             <erp-button data-full-width-evidence label="Full width" fullWidth />
           </erp-stack>
-        </erp-surface>
-      }
+      </erp-surface>
     </erp-grid>
   </erp-section>
 
@@ -147,20 +132,16 @@
     <erp-divider />
     <erp-grid
       class="theme-contexts"
-      [columns]="2"
+      [columns]="1"
       gap="grid"
       responsive="auto"
     >
-      @for (theme of themes; track theme) {
-        <erp-surface
+      <erp-surface
           class="theme-review-context"
-          data-theme-context
-          [attr.data-theme]="theme"
           tone="default"
           border="subtle"
         >
           <erp-stack gap="default">
-            <erp-text type="heading-3">{{ theme }}</erp-text>
             <erp-tooltip
               data-icon-button-tooltip-evidence
               text="Settings"
@@ -207,8 +188,7 @@
               }
             </erp-inline>
           </erp-stack>
-        </erp-surface>
-      }
+      </erp-surface>
     </erp-grid>
   </erp-section>
 
@@ -217,20 +197,16 @@
     <erp-divider />
     <erp-grid
       class="theme-contexts"
-      [columns]="2"
+      [columns]="1"
       gap="grid"
       responsive="auto"
     >
-      @for (theme of themes; track theme) {
-        <erp-surface
+      <erp-surface
           class="theme-review-context"
-          data-theme-context
-          [attr.data-theme]="theme"
           tone="default"
           border="subtle"
         >
           <erp-stack gap="default">
-            <erp-text type="heading-3">{{ theme }}</erp-text>
             <erp-tooltip
               data-fab-tooltip-evidence
               text="Add"
@@ -265,8 +241,7 @@
               }
             </erp-inline>
           </erp-stack>
-        </erp-surface>
-      }
+      </erp-surface>
     </erp-grid>
   </erp-section>
 
@@ -275,20 +250,16 @@
     <erp-divider />
     <erp-grid
       class="theme-contexts"
-      [columns]="2"
+      [columns]="1"
       gap="grid"
       responsive="auto"
     >
-      @for (theme of themes; track theme) {
-        <erp-surface
+      <erp-surface
           class="theme-review-context"
-          data-theme-context
-          [attr.data-theme]="theme"
           tone="default"
           border="subtle"
         >
           <erp-stack gap="default">
-            <erp-text type="heading-3">{{ theme }}</erp-text>
             <erp-inline gap="default" align="center" wrap="wrap">
               @for (size of extendedFabSizes; track size) {
                 <erp-extended-fab
@@ -311,8 +282,7 @@
               <erp-extended-fab data-extended-fab-no-icon label="بدون أيقونة" />
             </erp-inline>
           </erp-stack>
-        </erp-surface>
-      }
+      </erp-surface>
     </erp-grid>
   </erp-section>
 
@@ -322,38 +292,25 @@
     <erp-text type="paragraph">اضغط الأزرار لمراجعة تأثير Ripple</erp-text>
     <erp-grid
       class="theme-contexts"
-      [columns]="2"
+      [columns]="1"
       gap="grid"
       responsive="auto"
     >
-      @for (theme of themes; track theme) {
-        <erp-surface
+      <erp-surface
           class="theme-review-context"
-          data-theme-context
-          [attr.data-theme]="theme"
           tone="default"
           border="subtle"
         >
           <erp-stack gap="default">
-            <erp-text type="heading-3">{{ theme }}</erp-text>
             <erp-inline gap="default" align="center" wrap="wrap">
-              @if (theme === 'light') {
-                <erp-button
-                  id="ripple-counter-button"
-                  data-default-ripple-evidence
-                  data-state-evidence="button-ready"
-                  data-cursor-evidence="pointer"
-                  label="Ready"
-                  (pressed)="incrementPressedCount()"
-                />
-              } @else {
-                <erp-button
-                  data-default-ripple-evidence
-                  data-state-evidence="button-ready"
-                  data-cursor-evidence="pointer"
-                  label="Ready"
-                />
-              }
+              <erp-button
+                id="ripple-counter-button"
+                data-default-ripple-evidence
+                data-state-evidence="button-ready"
+                data-cursor-evidence="pointer"
+                label="Ready"
+                (pressed)="incrementPressedCount()"
+              />
               <erp-button
                 data-cursor-evidence="default"
                 label="Ready default cursor"
@@ -452,8 +409,7 @@
               />
             </erp-inline>
           </erp-stack>
-        </erp-surface>
-      }
+      </erp-surface>
     </erp-grid>
     <erp-text id="ripple-counter-value" type="paragraph">
       Activations: {{ pressedCount() }}

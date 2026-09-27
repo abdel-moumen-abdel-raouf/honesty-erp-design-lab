@@ -34,7 +34,7 @@ describe('InputControls showcase', () => {
     expect(create().componentInstance).toBeTruthy();
   });
 
-  it('renders ten review groups with equivalent Light and Dark contexts', () => {
+  it('renders ten review groups under the inherited global theme', () => {
     const root = create().nativeElement as HTMLElement;
     const groups = [...root.querySelectorAll('[data-review-group]')];
     expect(groups.map((group) => group.getAttribute('data-review-group'))).toEqual([
@@ -49,29 +49,24 @@ describe('InputControls showcase', () => {
       'temporal-pickers',
       'selection-pickers',
     ]);
-    for (const group of groups) {
-      expect(
-        [...group.querySelectorAll('[data-theme-context]')].map((context) =>
-          context.getAttribute('data-theme'),
-        ),
-      ).toEqual(['light', 'dark']);
-    }
+    expect(root.querySelectorAll('[data-theme-context]')).toHaveLength(0);
+    expect(root.querySelector('erp-container.input-showcase')?.hasAttribute('data-theme')).toBe(false);
   });
 
-  it('contains all four selection picker controls in both themes', () => {
+  it('contains all four selection picker controls', () => {
     const root = create().nativeElement as HTMLElement;
     const group = root.querySelector('[data-review-group="selection-pickers"]');
-    expect(group?.querySelectorAll('erp-color-picker').length).toBe(4);
+    expect(group?.querySelectorAll('erp-color-picker').length).toBe(2);
     for (const selector of ['erp-icon-picker', 'erp-item-picker', 'erp-combo-box']) {
-      expect(group?.querySelectorAll(selector).length).toBe(2);
+      expect(group?.querySelectorAll(selector).length).toBe(1);
     }
     expect(
       [...(group?.querySelectorAll<HTMLElement>('[data-color-picker-evidence]') ?? [])]
         .map((control) => control.dataset['colorPickerEvidence']),
-    ).toEqual(['system', 'free', 'system', 'free']);
+    ).toEqual(['system', 'free']);
   });
 
-  it('contains all four temporal overlay triggers in both themes', () => {
+  it('contains all four temporal overlay triggers', () => {
     const root = create().nativeElement as HTMLElement;
     const group = root.querySelector('[data-review-group="temporal-pickers"]');
     for (const selector of [
@@ -80,37 +75,31 @@ describe('InputControls showcase', () => {
       'erp-date-time-box',
       'erp-date-range-box',
     ]) {
-      expect(group?.querySelectorAll(selector).length).toBe(2);
+      expect(group?.querySelectorAll(selector).length).toBe(1);
     }
     expect(group?.querySelectorAll('input[type="date"]').length).toBe(0);
     expect(group?.querySelectorAll('input[type="time"]').length).toBe(0);
     expect(group?.querySelectorAll('input[type="datetime-local"]').length).toBe(0);
   });
 
-  it('contains checkbox and radio basics in both theme contexts', async () => {
+  it('contains checkbox and radio basics in the inherited theme', async () => {
     const fixture = create();
     await fixture.whenStable();
     fixture.detectChanges();
     const root = fixture.nativeElement as HTMLElement;
     const group = root.querySelector('[data-review-group="boolean-choice"]');
 
-    expect(group?.querySelectorAll('erp-check-box').length).toBe(10);
-    expect(group?.querySelectorAll('erp-radio-box').length).toBe(8);
-    expect(group?.querySelectorAll('[data-check-box-evidence]').length).toBe(2);
-    expect(group?.querySelectorAll('[data-radio-box-evidence]').length).toBe(2);
-    expect(group?.querySelectorAll('[data-boolean-choice-rtl-evidence]').length).toBe(2);
-    expect(
-      [...(group?.querySelectorAll<HTMLElement>('[data-theme-context]') ?? [])]
-        .map((context) => [context.dataset['theme'], context.dir]),
-    ).toEqual([
-      ['light', 'rtl'],
-      ['dark', 'rtl'],
-    ]);
-    expect(group?.querySelectorAll('erp-icon[data-icon-name="check"]').length).toBe(2);
-    expect(group?.querySelectorAll('erp-icon[data-icon-name="minus"]').length).toBe(2);
+    expect(group?.querySelectorAll('erp-check-box').length).toBe(5);
+    expect(group?.querySelectorAll('erp-radio-box').length).toBe(4);
+    expect(group?.querySelectorAll('[data-check-box-evidence]').length).toBe(1);
+    expect(group?.querySelectorAll('[data-radio-box-evidence]').length).toBe(1);
+    expect(group?.querySelectorAll('[data-boolean-choice-rtl-evidence]').length).toBe(1);
+    expect(group?.querySelector<HTMLElement>('[data-boolean-choice-rtl-evidence]')?.dir).toBe('rtl');
+    expect(group?.querySelectorAll('erp-icon[data-icon-name="check"]').length).toBe(1);
+    expect(group?.querySelectorAll('erp-icon[data-icon-name="minus"]').length).toBe(1);
   });
 
-  it('contains all four numeric controls in both theme contexts', () => {
+  it('contains all four numeric controls', () => {
     const root = create().nativeElement as HTMLElement;
     const group = root.querySelector('[data-review-group="numeric-family"]');
 
@@ -120,37 +109,31 @@ describe('InputControls showcase', () => {
       'erp-number-stepper',
       'erp-range-slider',
     ]) {
-      expect(group?.querySelectorAll(selector).length).toBe(2);
+      expect(group?.querySelectorAll(selector).length).toBe(1);
     }
-    expect(group?.querySelectorAll('[data-range-thumb]').length).toBe(4);
+    expect(group?.querySelectorAll('[data-range-thumb]').length).toBe(2);
   });
 
-  it('contains multi-file and multi-image RTL evidence in both themes', async () => {
+  it('contains multi-file and multi-image RTL evidence', async () => {
     const fixture = create();
     await fixture.whenStable();
     fixture.detectChanges();
     const root = fixture.nativeElement as HTMLElement;
     const group = root.querySelector('[data-review-group="file-image-basics"]');
 
-    expect(group?.querySelectorAll('erp-file-picker').length).toBe(4);
-    expect(group?.querySelectorAll('erp-image-picker').length).toBe(6);
-    expect(group?.querySelectorAll('input[type="file"]').length).toBe(10);
-    expect(group?.querySelectorAll('input[multiple]').length).toBe(10);
-    expect(group?.querySelectorAll('[data-file-picker-item]').length).toBe(4);
-    expect(group?.querySelectorAll('[data-image-picker-item]').length).toBe(12);
-    expect(group?.querySelectorAll('[data-local-rejection-evidence]').length).toBe(2);
+    expect(group?.querySelectorAll('erp-file-picker').length).toBe(2);
+    expect(group?.querySelectorAll('erp-image-picker').length).toBe(3);
+    expect(group?.querySelectorAll('input[type="file"]').length).toBe(5);
+    expect(group?.querySelectorAll('input[multiple]').length).toBe(5);
+    expect(group?.querySelectorAll('[data-file-picker-item]').length).toBe(2);
+    expect(group?.querySelectorAll('[data-image-picker-item]').length).toBe(6);
+    expect(group?.querySelectorAll('[data-local-rejection-evidence]').length).toBe(1);
     expect(
       [...(group?.querySelectorAll<HTMLElement>('[data-image-picker-evidence]') ?? [])]
         .map((control) => control.dataset['imagePickerEvidence']),
-    ).toEqual(['md', 'sm', 'lg', 'md', 'sm', 'lg']);
-    expect(
-      [...(group?.querySelectorAll<HTMLElement>('[data-theme-context]') ?? [])]
-        .map((context) => [context.dataset['theme'], context.dir]),
-    ).toEqual([
-      ['light', 'rtl'],
-      ['dark', 'rtl'],
-    ]);
-    expect(group?.querySelectorAll('[data-file-image-rtl-evidence]').length).toBe(2);
+    ).toEqual(['md', 'sm', 'lg']);
+    expect(group?.querySelector<HTMLElement>('[data-file-image-rtl-evidence]')?.dir).toBe('rtl');
+    expect(group?.querySelectorAll('[data-file-image-rtl-evidence]').length).toBe(1);
   });
 
   it('contains every text-entry control and complete variant/size evidence', () => {
@@ -167,19 +150,16 @@ describe('InputControls showcase', () => {
         root.querySelectorAll(
           `[data-review-group="family"] ${selector}`,
         ).length,
-      ).toBe(2);
+      ).toBe(1);
     }
-    expect(root.querySelectorAll('[data-variant-evidence]').length).toBe(10);
-    expect(root.querySelectorAll('[data-size-evidence]').length).toBe(14);
-    expect(root.querySelectorAll('[data-glass-substrate]').length).toBe(2);
-    expect(root.querySelectorAll('[data-glass-evidence]').length).toBe(6);
+    expect(root.querySelectorAll('[data-variant-evidence]').length).toBe(5);
+    expect(root.querySelectorAll('[data-size-evidence]').length).toBe(7);
+    expect(root.querySelectorAll('[data-glass-substrate]').length).toBe(1);
+    expect(root.querySelectorAll('[data-glass-evidence]').length).toBe(3);
     expect(
       [...root.querySelectorAll<HTMLElement>('[data-glass-evidence]')]
         .map((field) => field.dataset['glassEvidence']),
     ).toEqual([
-      'outline-focus',
-      'solid-status',
-      'subtle-status',
       'outline-focus',
       'solid-status',
       'subtle-status',
@@ -191,12 +171,12 @@ describe('InputControls showcase', () => {
     const invalid = [
       ...root.querySelectorAll<HTMLElement>('[data-invalid-combination]'),
     ];
-    expect(invalid.length).toBe(4);
+    expect(invalid.length).toBe(2);
     expect(
       invalid.map((item) =>
         item.getAttribute('data-field-configuration-state'),
       ),
-    ).toEqual(['invalid', 'invalid', 'invalid', 'invalid']);
+    ).toEqual(['invalid', 'invalid']);
   });
 
   it('provides LTR and RTL focus-gradient review contexts without a direction API', () => {
@@ -206,7 +186,7 @@ describe('InputControls showcase', () => {
         '[data-gradient-direction-evidence]',
       ),
     ];
-    expect(evidence.length).toBe(4);
+    expect(evidence.length).toBe(2);
     expect(
       evidence.map((item) => [
         item.getAttribute('data-gradient-direction-evidence'),
@@ -215,22 +195,20 @@ describe('InputControls showcase', () => {
     ).toEqual([
       ['ltr', 'ltr'],
       ['rtl', 'rtl'],
-      ['ltr', 'ltr'],
-      ['rtl', 'rtl'],
     ]);
   });
 
   it('includes password, clear, feedback, disabled, and readonly behavior evidence', () => {
     const root = create().nativeElement as HTMLElement;
-    expect(root.querySelectorAll('[data-password-evidence]').length).toBe(2);
-    expect(root.querySelectorAll('[data-clear-evidence]').length).toBe(2);
-    expect(root.querySelectorAll('[data-feedback-evidence]').length).toBe(2);
+    expect(root.querySelectorAll('[data-password-evidence]').length).toBe(1);
+    expect(root.querySelectorAll('[data-clear-evidence]').length).toBe(1);
+    expect(root.querySelectorAll('[data-feedback-evidence]').length).toBe(1);
     expect(
       root.querySelectorAll('[data-feedback-evidence] erp-field-feedback').length,
-    ).toBe(2);
+    ).toBe(1);
   });
 
-  it('provides SearchBox popup and inline-mode evidence in both themes', () => {
+  it('provides SearchBox popup and inline-mode evidence', () => {
     const root = create().nativeElement as HTMLElement;
     const popup = [
       ...root.querySelectorAll<HTMLElement>(
@@ -243,32 +221,32 @@ describe('InputControls showcase', () => {
       ),
     ];
 
-    expect(popup.length).toBe(2);
+    expect(popup.length).toBe(1);
     expect(
       popup.map((control) =>
         control.getAttribute('data-search-box-popup-mode'),
       ),
-    ).toEqual(['true', 'true']);
+    ).toEqual(['true']);
     expect(
       popup.map((control) =>
         control.querySelectorAll('[search-results]').length,
       ),
-    ).toEqual([1, 1]);
+    ).toEqual([1]);
     expect(
       popup.map((control) =>
         control.querySelector<HTMLElement>('[search-results]')
           ?.dataset['searchResultsPresentation'],
       ),
-    ).toEqual(['list', 'card']);
-    expect(inline.length).toBe(2);
+    ).toEqual(['list']);
+    expect(inline.length).toBe(1);
     expect(
       inline.map((control) =>
         control.getAttribute('data-search-box-popup-mode'),
       ),
-    ).toEqual(['false', 'false']);
+    ).toEqual(['false']);
   });
 
-  it('provides selected DateRange evidence in Light and Dark RTL contexts', async () => {
+  it('provides selected DateRange evidence in an RTL context', async () => {
     const fixture = create();
     await fixture.whenStable();
     fixture.detectChanges();
@@ -276,21 +254,14 @@ describe('InputControls showcase', () => {
     const group = root.querySelector('[data-review-group="temporal-pickers"]');
     const ranges = group?.querySelectorAll<HTMLElement>('[data-date-range-box-evidence]');
 
-    expect(ranges?.length).toBe(2);
-    expect(
-      [...(group?.querySelectorAll<HTMLElement>('[data-date-range-rtl-evidence]') ?? [])]
-        .map((context) => [context.dataset['theme'], context.dir]),
-    ).toEqual([
-      ['light', 'rtl'],
-      ['dark', 'rtl'],
-    ]);
+    expect(ranges?.length).toBe(1);
+    expect(group?.querySelector<HTMLElement>('[data-date-range-rtl-evidence]')?.dir).toBe('rtl');
     expect(
       [...(ranges ?? [])].map((range) => [
         range.dataset['dateRangeStart'],
         range.dataset['dateRangeEnd'],
       ]),
     ).toEqual([
-      ['2026-09-24', '2026-09-30'],
       ['2026-09-24', '2026-09-30'],
     ]);
   });

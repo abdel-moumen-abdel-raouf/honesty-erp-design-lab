@@ -35,7 +35,7 @@ describe('OverlayControls showcase', () => {
     expect(create().componentInstance).toBeTruthy();
   });
 
-  it('renders seven technical groups with equivalent Light and Dark contexts', () => {
+  it('renders seven technical groups under the inherited global theme', () => {
     const root = create().nativeElement as HTMLElement;
     const groups = [...root.querySelectorAll('[data-review-group]')];
     expect(groups.map((group) => group.getAttribute('data-review-group'))).toEqual([
@@ -48,13 +48,8 @@ describe('OverlayControls showcase', () => {
       'deferred-composites',
     ]);
 
-    for (const group of groups) {
-      expect(
-        [...group.querySelectorAll('[data-theme-context]')].map((context) =>
-          context.getAttribute('data-theme'),
-        ),
-      ).toEqual(['light', 'dark']);
-    }
+    expect(root.querySelectorAll('[data-theme-context]')).toHaveLength(0);
+    expect(root.querySelector('erp-container.overlay-showcase')?.hasAttribute('data-theme')).toBe(false);
   });
 
   it('provides internal wide and narrow responsive review evidence', () => {
@@ -74,7 +69,7 @@ describe('OverlayControls showcase', () => {
     ]);
   });
 
-  it('contains all four deferred composites in both themes', () => {
+  it('contains all four deferred composites', () => {
     const root = create().nativeElement as HTMLElement;
     const evidence = [
       ...root.querySelectorAll<HTMLElement>('[data-composite-evidence]'),
@@ -85,20 +80,16 @@ describe('OverlayControls showcase', () => {
       'button-group',
       'split-button',
       'fab-menu',
-      'radio-group',
-      'button-group',
-      'split-button',
-      'fab-menu',
     ]);
-    expect(root.querySelectorAll('erp-radio-group')).toHaveLength(2);
-    expect(root.querySelectorAll('erp-button-group')).toHaveLength(2);
-    expect(root.querySelectorAll('erp-split-button')).toHaveLength(2);
-    expect(root.querySelectorAll('erp-fab-menu')).toHaveLength(2);
+    expect(root.querySelectorAll('erp-radio-group')).toHaveLength(1);
+    expect(root.querySelectorAll('erp-button-group')).toHaveLength(1);
+    expect(root.querySelectorAll('erp-split-button')).toHaveLength(1);
+    expect(root.querySelectorAll('erp-fab-menu')).toHaveLength(1);
   });
 
-  it('contains the complete OverlayManager-backed selection evidence in both themes', () => {
+  it('contains the complete OverlayManager-backed selection evidence', () => {
     const root = create().nativeElement as HTMLElement;
-    expect(root.querySelectorAll('[data-selection-overlay-evidence]').length).toBe(10);
+    expect(root.querySelectorAll('[data-selection-overlay-evidence]').length).toBe(5);
     expect(
       [...root.querySelectorAll<HTMLElement>('[data-selection-overlay-evidence]')]
         .map((item) => item.getAttribute('data-selection-overlay-evidence')),
@@ -108,41 +99,36 @@ describe('OverlayControls showcase', () => {
       'icon',
       'item',
       'combo',
-      'color-system',
-      'color-free',
-      'icon',
-      'item',
-      'combo',
     ]);
   });
 
-  it('contains all four OverlayManager-backed temporal triggers in both themes', () => {
+  it('contains all four OverlayManager-backed temporal triggers', () => {
     const root = create().nativeElement as HTMLElement;
-    expect(root.querySelectorAll('[data-temporal-overlay-evidence]').length).toBe(8);
+    expect(root.querySelectorAll('[data-temporal-overlay-evidence]').length).toBe(4);
     expect(
       [...root.querySelectorAll<HTMLElement>('[data-temporal-overlay-evidence]')]
         .map((item) => item.getAttribute('data-temporal-overlay-evidence')),
-    ).toEqual(['date', 'time', 'datetime', 'range', 'date', 'time', 'datetime', 'range']);
+    ).toEqual(['date', 'time', 'datetime', 'range']);
   });
 
   it('contains modal, logical drawer, nested, and policy evidence', () => {
     const root = create().nativeElement as HTMLElement;
-    expect(root.querySelectorAll('[data-modal-evidence]').length).toBe(2);
-    expect(root.querySelectorAll('[data-drawer-evidence="start"]').length).toBe(2);
-    expect(root.querySelectorAll('[data-drawer-evidence="end"]').length).toBe(2);
-    expect(root.querySelectorAll('[data-drawer-evidence="bottom"]').length).toBe(2);
-    expect(root.querySelectorAll('[data-nested-evidence]').length).toBe(2);
-    expect(root.querySelectorAll('[data-policy-evidence]').length).toBe(2);
+    expect(root.querySelectorAll('[data-modal-evidence]').length).toBe(1);
+    expect(root.querySelectorAll('[data-drawer-evidence="start"]').length).toBe(1);
+    expect(root.querySelectorAll('[data-drawer-evidence="end"]').length).toBe(1);
+    expect(root.querySelectorAll('[data-drawer-evidence="bottom"]').length).toBe(1);
+    expect(root.querySelectorAll('[data-nested-evidence]').length).toBe(1);
+    expect(root.querySelectorAll('[data-policy-evidence]').length).toBe(1);
     expect(
-      [...root.querySelectorAll('[data-review-group="drawers"] [data-theme-context]')]
+      [...root.querySelectorAll('[data-review-group="drawers"] erp-surface')]
         .map((context) => context.getAttribute('dir')),
-    ).toEqual(['rtl', 'rtl']);
+    ).toEqual(['rtl']);
   });
 
   it('contains the full dismissal, backdrop, blur, motion, and reduced-motion matrix', () => {
     const root = create().nativeElement as HTMLElement;
 
-    expect(root.querySelectorAll('[data-default-backdrop-evidence]')).toHaveLength(2);
+    expect(root.querySelectorAll('[data-default-backdrop-evidence]')).toHaveLength(1);
     expect(
       [...root.querySelectorAll<HTMLElement>('[data-backdrop-dismiss-evidence]')]
         .map((item) => item.dataset['backdropDismissEvidence']),
@@ -166,32 +152,26 @@ describe('OverlayControls showcase', () => {
     expect(root.querySelectorAll('[data-reduced-motion-evidence]')).toHaveLength(1);
   });
 
-  it('contains selected DateRange hover-preview evidence in Light and Dark RTL contexts', async () => {
+  it('contains selected DateRange hover-preview evidence in an RTL context', async () => {
     const fixture = create();
     await fixture.whenStable();
     fixture.detectChanges();
     const root = fixture.nativeElement as HTMLElement;
-    const contexts = [
-      ...root.querySelectorAll<HTMLElement>(
-        '[data-review-group="temporal-pickers"] [data-theme-context]',
-      ),
-    ];
+    const context = root.querySelector<HTMLElement>(
+      '[data-review-group="temporal-pickers"] erp-surface',
+    );
     const ranges = [
       ...root.querySelectorAll<HTMLElement>('[data-date-range-selected-evidence]'),
     ];
 
-    expect(contexts.map((context) => [context.dataset['theme'], context.dir])).toEqual([
-      ['light', 'rtl'],
-      ['dark', 'rtl'],
-    ]);
-    expect(ranges).toHaveLength(2);
+    expect(context?.dir).toBe('rtl');
+    expect(ranges).toHaveLength(1);
     expect(
       ranges.map((range) => [
         range.dataset['dateRangeStart'],
         range.dataset['dateRangeEnd'],
       ]),
     ).toEqual([
-      ['2026-09-24', '2026-09-30'],
       ['2026-09-24', '2026-09-30'],
     ]);
   });
@@ -200,8 +180,8 @@ describe('OverlayControls showcase', () => {
     const fixture = create();
     const manager = TestBed.inject(ErpOverlayManager);
 
-    fixture.componentInstance.openModal('light');
-    fixture.componentInstance.openDrawer('start', 'dark');
+    fixture.componentInstance.openModal();
+    fixture.componentInstance.openDrawer('start');
 
     expect(
       manager.entries().map((entry) => ({

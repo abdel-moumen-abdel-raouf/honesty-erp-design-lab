@@ -73,7 +73,6 @@ import {ErpText} from '../../primitives/text/text';
   styleUrl: './input-controls.scss',
 })
 export class InputControls {
-  readonly themes = ['light', 'dark'] as const;
   readonly sizes = ['sm', 'md', 'lg', 'xl', 'xxl', 'xxxl', 'xxxxl'] as const;
   readonly variants = ['solid', 'outline', 'subtle', 'ghost', 'text'] as const;
   readonly clearValue = signal('قيمة قابلة للمسح');

@@ -1,8 +1,8 @@
-<erp-container class="input-showcase" width="wide" data-theme="light">
+<erp-container class="input-showcase" width="wide">
   <erp-stack class="showcase-header" gap="tight">
     <erp-text type="heading-1">عائلة إدخال النصوص V1</erp-text>
     <erp-text type="paragraph" tone="secondary">
-      دليل مراجعة حقول الإدخال القياسية والزجاجية في السياقين الفاتح والداكن.
+      دليل مراجعة حقول الإدخال القياسية والزجاجية في السمة العامة النشطة.
     </erp-text>
   </erp-stack>
 
@@ -10,10 +10,7 @@
     <erp-text type="heading-2">عائلة عناصر الإدخال</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="md" responsive="auto">
-      @for (theme of themes; track theme) {
         <erp-surface
-          data-theme-context
-          [attr.data-theme]="theme"
           border="subtle"
         >
           <erp-stack>
@@ -25,26 +22,16 @@
               label="البحث"
               placeholder="ابحث في السجلات"
             >
-              @if (theme === 'light') {
-                <erp-stack search-results data-search-results-presentation="list" gap="tight">
-                  <erp-text type="caption" tone="secondary">عرض نتائج قائم</erp-text>
-                  <erp-text type="paragraph">فاتورة INV-2026-001</erp-text>
-                  <erp-text type="paragraph">طلب شراء PO-2026-014</erp-text>
-                </erp-stack>
-              } @else {
-                <erp-surface search-results data-search-results-presentation="card" border="subtle" padding="tight">
-                  <erp-stack gap="tight">
-                    <erp-text type="label">نتيجة على هيئة سطح</erp-text>
-                    <erp-text type="caption" tone="secondary">العميل: شركة الأمانة</erp-text>
-                  </erp-stack>
-                </erp-surface>
-              }
+              <erp-stack search-results data-search-results-presentation="list" gap="tight">
+                <erp-text type="caption" tone="secondary">عرض نتائج قائم</erp-text>
+                <erp-text type="paragraph">فاتورة INV-2026-001</erp-text>
+                <erp-text type="paragraph">طلب شراء PO-2026-014</erp-text>
+              </erp-stack>
             </erp-search-box>
             <erp-url-box label="الرابط" placeholder="https://example.com" />
             <erp-tel-box label="الهاتف" placeholder="+20" />
           </erp-stack>
         </erp-surface>
-      }
     </erp-grid>
   </erp-section>
 
@@ -52,10 +39,7 @@
     <erp-text type="heading-2">الأنماط والمظهر</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="md" responsive="auto">
-      @for (theme of themes; track theme) {
         <erp-surface
-          data-theme-context
-          [attr.data-theme]="theme"
           border="subtle"
         >
           <erp-stack>
@@ -76,7 +60,6 @@
             </div>
           </erp-stack>
         </erp-surface>
-      }
     </erp-grid>
   </erp-section>
 
@@ -84,10 +67,7 @@
     <erp-text type="heading-2">الأحجام السبعة</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="md" responsive="auto">
-      @for (theme of themes; track theme) {
         <erp-surface
-          data-theme-context
-          [attr.data-theme]="theme"
           border="subtle"
         >
           <erp-stack>
@@ -100,7 +80,6 @@
             }
           </erp-stack>
         </erp-surface>
-      }
     </erp-grid>
   </erp-section>
 
@@ -108,10 +87,7 @@
     <erp-text type="heading-2">مصفوفة الحقول</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="md" responsive="auto">
-      @for (theme of themes; track theme) {
         <erp-surface
-          data-theme-context
-          [attr.data-theme]="theme"
           border="subtle"
         >
           <erp-grid [columns]="2" gap="sm" responsive="auto">
@@ -170,7 +146,6 @@
             />
           </erp-grid>
         </erp-surface>
-      }
     </erp-grid>
   </erp-section>
 
@@ -186,10 +161,7 @@
       الكاملين.
     </erp-text>
     <erp-grid [columns]="2" gap="md" responsive="auto">
-      @for (theme of themes; track theme) {
         <erp-surface
-          data-theme-context
-          [attr.data-theme]="theme"
           border="subtle"
         >
           <erp-stack>
@@ -234,7 +206,6 @@
             />
           </erp-stack>
         </erp-surface>
-      }
     </erp-grid>
   </erp-section>
 
@@ -242,11 +213,8 @@
     <erp-text type="heading-2">الاختيار المنطقي والمفرد</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="md" responsive="auto">
-      @for (theme of themes; track theme) {
         <erp-surface
-          data-theme-context
           data-boolean-choice-rtl-evidence
-          [attr.data-theme]="theme"
           dir="rtl"
           border="subtle"
         >
@@ -272,7 +240,6 @@
             <erp-radio-box label="اختيار مفرد بتحذير" status="warning" />
           </erp-stack>
         </erp-surface>
-      }
     </erp-grid>
   </erp-section>
 
@@ -280,10 +247,7 @@
     <erp-text type="heading-2">العائلة الرقمية</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="md" responsive="auto">
-      @for (theme of themes; track theme) {
         <erp-surface
-          data-theme-context
-          [attr.data-theme]="theme"
           border="subtle"
         >
           <erp-stack>
@@ -323,7 +287,6 @@
             />
           </erp-stack>
         </erp-surface>
-      }
     </erp-grid>
   </erp-section>
 
@@ -331,11 +294,8 @@
     <erp-text type="heading-2">اختيار الملفات والصور</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="md" responsive="auto">
-      @for (theme of themes; track theme) {
         <erp-surface
-          data-theme-context
           data-file-image-rtl-evidence
-          [attr.data-theme]="theme"
           dir="rtl"
           border="subtle"
         >
@@ -369,7 +329,6 @@
             />
           </erp-stack>
         </erp-surface>
-      }
     </erp-grid>
   </erp-section>
 
@@ -377,8 +336,7 @@
     <erp-text type="heading-2">منتقيات التاريخ والوقت</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="md" responsive="auto">
-      @for (theme of themes; track theme) {
-        <erp-surface data-theme-context data-date-range-rtl-evidence [attr.data-theme]="theme" dir="rtl" border="subtle">
+        <erp-surface data-date-range-rtl-evidence dir="rtl" border="subtle">
           <erp-stack>
             <erp-date-box data-date-box-evidence label="التاريخ" clearable [ngModel]="dateValue()" (ngModelChange)="dateValue.set($event)" />
             <erp-time-box data-time-box-evidence label="الوقت" [minuteStep]="5" [ngModel]="timeValue()" (ngModelChange)="timeValue.set($event)" />
@@ -386,7 +344,6 @@
             <erp-date-range-box data-date-range-box-evidence label="نطاق التاريخ — افتح لمعاينة المرور والفترة المحددة" [ngModel]="dateRangeValue()" (ngModelChange)="dateRangeValue.set($event)" />
           </erp-stack>
         </erp-surface>
-      }
     </erp-grid>
   </erp-section>
 
@@ -394,8 +351,7 @@
     <erp-text type="heading-2">منتقيات الاختيار</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="md" responsive="auto">
-      @for (theme of themes; track theme) {
-        <erp-surface data-theme-context [attr.data-theme]="theme" border="subtle">
+        <erp-surface border="subtle">
           <erp-stack>
             <erp-color-picker data-color-picker-evidence="system" label="لون النظام — ألوان النظام افتراضيًا" clearable [ngModel]="colorValue()" (ngModelChange)="colorValue.set($event)" />
             <erp-color-picker data-color-picker-evidence="free" label="لون حر" clearable [ngModel]="freeColorValue()" (ngModelChange)="freeColorValue.set($event)" />
@@ -404,7 +360,6 @@
             <erp-combo-box data-combo-box-evidence label="قائمة البحث والاختيار" placeholder="ابحث في العناصر" [items]="pickerItems" [ngModel]="comboValue()" (ngModelChange)="comboValue.set($event)" />
           </erp-stack>
         </erp-surface>
-      }
     </erp-grid>
   </erp-section>
 </erp-container>
