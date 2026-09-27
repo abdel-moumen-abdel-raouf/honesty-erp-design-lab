@@ -31,7 +31,9 @@ auto, noninteractive, arrow shown, enabled, closed, `fade-scale` enter, and
 
 The shared motion values are exactly `fade`, `scale`, `fade-scale`, `slide-up`,
 `slide-down`, `slide-start`, `slide-end`, `zoom`, `pop`, `flip-x`, `flip-y`,
-`bounce`, and `swing`. Tooltip does not define a second catalog.
+`bounce`, `swing`, `fade-up`, `fade-down`, `fade-start`, `fade-end`,
+`zoom-up`, `zoom-down`, `back`, `light-speed`, `rotate`, and `roll`.
+Tooltip does not define a second catalog.
 
 Plain mode requires trimmed nonempty `text`, is noninteractive, and accepts no
 `ErpTooltipContent`. Rich mode requires exactly one content child. A
@@ -90,13 +92,14 @@ are private implementation contracts and are not consumer styling API.
 Open measures hidden, positions, then runs the selected enter animation on the
 next animation frame. Close publishes `open=false` immediately and remains
 mounted until the selected exit animation completes. Reopening cancels that
-exit. The shared catalog contains fade, scale, fade-scale, logical slides,
-zoom, pop, flip-x, flip-y, bounce, and swing. Reduced motion removes transforms
-and completes deterministically with the reduced-duration token. Tooltip stays
-on the nonblocking AnchoredOverlayController architecture and consumes only its
-own Component Tokens. No CDK, third-party overlay, polling, arbitrary CSS-class
-motion API, or public timing, geometry, color, radius, elevation, layer, or
-arrow styling API exists.
+exit. The Foundation motion adapter is the sole owner of Animate.css class
+mapping, duration, cancellation, cleanup, and deterministic reduced-motion
+completion. Tooltip supplies the canonical system preset and its fixed
+320ms/220ms component durations; vendor names never cross its API or showcase.
+Tooltip stays on the nonblocking AnchoredOverlayController architecture and
+consumes only its own Component Tokens. No CDK, blocking OverlayManager,
+polling, arbitrary CSS-class motion API, or public timing, geometry, color,
+radius, elevation, layer, or arrow styling API exists.
 
 ## Design Lab evidence and status
 

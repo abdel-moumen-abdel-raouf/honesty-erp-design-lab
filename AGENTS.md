@@ -569,3 +569,25 @@ Rules:
   infrastructure or recreate custom blocking backdrops and z-index systems.
 - Overlay-backed pickers stage selection and commit only on confirmation;
   cancel or dismissal does not mutate the CVA value.
+
+## Production Motion and Overlay Frame Governance
+
+- `ErpMotionPreset` is the sole shared Overlay/Tooltip motion vocabulary.
+- Animate.css is internal to the Foundation motion adapter; vendor classes and
+  raw vendor effect names are forbidden outside that adapter and its tests.
+- Overlay and Tooltip use the shared adapter for animation start, cancellation,
+  completion, cleanup, direction mapping, and reduced-motion completion.
+- Every user-facing blocking Modal and Drawer uses the shared
+  `ErpOverlayFrame` Header/Body/Footer contract.
+- Frame Header data requires a nonblank title, nonblank subtitle, and semantic
+  ErpIcon name; the title supplies the dialog accessible name.
+- Frame close uses a Tooltip-wrapped ErpIconButton and always dismisses with
+  `close-action`.
+- Frame Footer uses ERP Buttons for developer-configured primary and secondary
+  actions; dynamic content responds through `ErpOverlayRef` frame actions.
+- Frame Body is the primary scroll region; blocking picker bodies must not
+  recreate duplicate confirm/cancel footer chrome.
+- `ErpSplitButton` is the only temporary `openLegacyCompactMenu` exception
+  pending its deferred Phase 10/11 migration away from blocking modal
+  semantics. No new exception is allowed.
+- These technical rules do not declare visual approval or start Wave B.

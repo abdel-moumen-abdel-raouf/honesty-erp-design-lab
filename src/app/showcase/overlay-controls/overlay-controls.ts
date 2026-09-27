@@ -121,7 +121,6 @@ export class OverlayControls {
       dismissOnBackdrop: false,
       dismissOnEscape: false,
       data: {
-        title: 'سياسة الإغلاق الصريح',
         allowNested: false,
       } satisfies OverlayEvidenceData,
     });
@@ -135,10 +134,34 @@ export class OverlayControls {
       frame: this.frame(label),
       ...config,
       data: {
-        title: label,
         allowNested: false,
       } satisfies OverlayEvidenceData,
     });
+  }
+
+  openLongBody(): void {
+    this.overlays.open<OverlayEvidenceContent, OverlayEvidenceData>(
+      OverlayEvidenceContent,
+      {
+        size: 'lg',
+        frame: {
+          header: {
+            title: 'مراجعة الإطار ذي المحتوى الطويل',
+            subtitle: 'يبقى الرأس والتذييل ظاهرين بينما يمرر الجسم فقط',
+            icon: 'layers',
+            closeLabel: 'إغلاق مراجعة الإطار',
+          },
+          footer: {
+            primary: {label: 'اعتماد المراجعة', icon: 'check'},
+            secondary: {label: 'إلغاء المراجعة'},
+          },
+        },
+        data: {
+          allowNested: false,
+          longBody: true,
+        },
+      },
+    );
   }
 
   private open(
@@ -151,7 +174,7 @@ export class OverlayControls {
       kind,
       position,
       frame: this.frame(title),
-      data: {title, allowNested} satisfies OverlayEvidenceData,
+      data: {allowNested} satisfies OverlayEvidenceData,
     });
   }
 

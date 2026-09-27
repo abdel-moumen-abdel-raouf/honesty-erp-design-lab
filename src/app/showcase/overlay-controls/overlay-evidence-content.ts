@@ -12,8 +12,8 @@ import {ErpOverlayRef} from '../../shared/overlay/overlay-ref';
 import {ERP_OVERLAY_DATA, ERP_OVERLAY_REF} from '../../shared/overlay/overlay-tokens';
 
 export interface OverlayEvidenceData {
-  readonly title: string;
   readonly allowNested: boolean;
+  readonly longBody?: boolean;
 }
 
 @Component({
@@ -27,6 +27,10 @@ export class OverlayEvidenceContent implements OnDestroy {
   readonly ref = inject(ERP_OVERLAY_REF) as ErpOverlayRef<string>;
   readonly data = inject(ERP_OVERLAY_DATA) as OverlayEvidenceData;
   private readonly overlays = inject(ErpOverlayManager);
+  protected readonly longBodyLines = Array.from(
+    {length: 24},
+    (_, index) => `سطر مراجعة المحتوى الطويل ${index + 1}`,
+  );
   private readonly frameActionCleanup = [
     this.ref.registerFrameAction('primary', () => this.ref.close('confirmed')),
     this.ref.registerFrameAction('secondary', () => this.ref.dismiss('cancel')),
@@ -53,7 +57,6 @@ export class OverlayEvidenceContent implements OnDestroy {
       },
       size: 'sm',
       data: {
-        title: 'تراكب متداخل',
         allowNested: false,
       } satisfies OverlayEvidenceData,
     });

@@ -194,6 +194,42 @@ describe('OverlayControls showcase', () => {
     ]);
   });
 
+  it('opens custom long-body Header Body Footer review evidence', () => {
+    const fixture = create();
+    const manager = TestBed.inject(ErpOverlayManager);
+
+    expect(
+      (fixture.nativeElement as HTMLElement).querySelectorAll(
+        '[data-long-body-frame-evidence]',
+      ),
+    ).toHaveLength(1);
+
+    fixture.componentInstance.openLongBody();
+
+    expect(manager.entries().at(-1)?.ref.config.frame).toEqual({
+      header: {
+        title: 'مراجعة الإطار ذي المحتوى الطويل',
+        subtitle: 'يبقى الرأس والتذييل ظاهرين بينما يمرر الجسم فقط',
+        icon: 'layers',
+        closeLabel: 'إغلاق مراجعة الإطار',
+      },
+      footer: {
+        primary: {
+          label: 'اعتماد المراجعة',
+          icon: 'check',
+          disabled: false,
+          loading: false,
+        },
+        secondary: {
+          label: 'إلغاء المراجعة',
+          icon: null,
+          disabled: false,
+          loading: false,
+        },
+      },
+    });
+  });
+
   it('opens the explicit dismissal and visual configuration through the shared manager', () => {
     const fixture = create();
     const manager = TestBed.inject(ErpOverlayManager);

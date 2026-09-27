@@ -17,10 +17,14 @@ The system must exist before any overlay-backed picker is implemented.
 - `ErpOverlayManager` — injectable service.
 - `ErpOverlayHost` — application-level host rendered exactly once.
 - `ErpOverlayRef<TResult>` — reference supplied to an opened overlay.
+- `ErpOverlayFrame` — mandatory internal Header/Body/Footer frame for
+  user-facing modal and drawer surfaces.
 - Overlay contracts and types.
 - Internal focus, scroll, and inert controllers as required.
 
-No Angular CDK or third-party overlay dependency is introduced.
+No Angular CDK or third-party overlay dependency is introduced. Surface motion
+uses the Foundation-owned motion adapter; Animate.css is an internal
+implementation dependency and its class/effect names are not public API.
 
 ## Contracts
 
@@ -62,7 +66,17 @@ export type ErpMotionPreset =
   | 'flip-x'
   | 'flip-y'
   | 'bounce'
-  | 'swing';
+  | 'swing'
+  | 'fade-up'
+  | 'fade-down'
+  | 'fade-start'
+  | 'fade-end'
+  | 'zoom-up'
+  | 'zoom-down'
+  | 'back'
+  | 'light-speed'
+  | 'rotate'
+  | 'roll';
 
 export type ErpOverlayAnimation = ErpMotionPreset;
 ```
@@ -115,10 +129,10 @@ by an iframe or content rectangle.
 
 The blocking backdrop combines the configured Foundation blur with a
 theme-sensitive Semantic scrim. The default Light mapping uses Neutral 950 at
-32%, and the default Dark mapping uses Neutral 950 at 54%. Alternate neutral,
-primary, secondary, and accent tones use their approved 900/950 palette roles
-and theme-specific percentages. Overlay Component Tokens consume those
-Semantic roles; they contain no raw palette colors.
+44%, and the default Dark mapping uses Neutral 950 at 48%. Light alternate
+tones use their approved 900 palette roles at 38%; Dark alternate tones use
+their approved 950 palette roles at 42%. Overlay Component Tokens consume
+those Semantic roles; they contain no raw palette colors.
 
 ## Dynamic Content
 
@@ -131,6 +145,8 @@ Each opened overlay receives or injects its `ErpOverlayRef`.
 
 - `close(result?)`
 - `dismiss(reason)`
+- `registerFrameAction('primary' | 'secondary', handler)`
+- internal `requestFrameAction('primary' | 'secondary')`
 - an `afterClosed` Promise
 - immutable overlay id and config
 
@@ -143,9 +159,24 @@ Reduced motion uses a deterministic completion path.
 
 ## Modal and Drawer Semantics
 
-A modal surface has dialog role, a blocking surface uses
-`aria-modal='true'`, and an accessible name is required through the
-configuration/surface contract.
+A modal surface has dialog role and a blocking surface uses
+`aria-modal='true'`. Every user-facing modal/drawer requires
+`ErpOverlayFrameConfig`: a nonblank title, nonblank subtitle, semantic icon,
+and developer-configured primary/secondary actions. The title is the dialog's
+accessible name and the subtitle its visible description.
+
+The shared frame owns:
+
+- a Header with ErpIcon, ErpText title/subtitle, and a Tooltip-wrapped close
+  ErpIconButton;
+- a primary scrolling Body for dynamic content;
+- a Footer with primary and secondary ErpButton actions.
+
+The close action always dismisses with `close-action`. Dynamic content
+registers its business behavior through the frame action channel. A primary
+action without a handler does nothing; a secondary action without a handler
+dismisses with `secondary-action`. Header and Footer remain available while
+only the Body scrolls.
 
 Drawers use the same manager, stack, backdrop, and focus contract. Drawer start
 and end are logical and RTL-aware.
@@ -167,8 +198,11 @@ Overlay-backed selection Composites are:
 - `ErpItemPicker`
 - `ErpComboBox`
 
-These controls stage selection inside the overlay and commit the CVA value only
-on confirmation. Cancel or dismissal does not mutate the committed value.
+These controls stage selection inside the overlay and register the shared frame
+primary/secondary actions. They commit the CVA value only on the primary
+confirmation action. Secondary, close, or other dismissal does not mutate the
+committed value. Picker bodies do not recreate duplicate confirm/cancel footer
+chrome.
 
 The implemented temporal family (`ErpDateBox`, `ErpTimeBox`,
 `ErpDateTimeBox`, and `ErpDateRangeBox`) uses this transaction contract and the
@@ -182,11 +216,11 @@ icon names and unmatched combo queries do not.
 
 ## Compact Composite Action Menu
 
-`ErpSplitButton` uses `ErpOverlayManager` for its V1 compact blocking action
-menu. This is the prescribed V1 choice because no generic nonblocking anchored
-menu foundation exists. The menu consumes the shared ItemPicker option/action
-shape, restores trigger focus through the manager, and never uses Tooltip as a
-menu subsystem.
+`ErpSplitButton` remains the one explicit legacy compact-menu exception. It
+uses `openLegacyCompactMenu` without the modal/drawer frame until the deferred
+Phase 10/11 composite migration. No other consumer may use that entry point.
+The menu consumes the shared ItemPicker option/action shape, restores trigger
+focus through the manager, and never uses Tooltip as a menu subsystem.
 
 ## Explicit Separations
 
@@ -225,9 +259,13 @@ infrastructure and does not recreate blocking backdrops or z-index systems.
 - Public blur, backdrop-tone, animation, and lifecycle-phase unions are checked
   exactly against this contract.
 - Manager defaults and modal/drawer motion defaults are checked mechanically.
-- All thirteen shared animation presets, logical RTL start/end reversal,
+- All twenty-three shared animation presets, logical RTL start/end reversal,
   reduced-motion completion, leaving-phase retention, and full-viewport drawer
   geometry remain covered by governance and unit tests.
+- Animate.css class/effect names remain confined to the Foundation motion
+  adapter.
+- User-facing modal/drawer opens require the shared frame and picker bodies
+  cannot recreate its confirm/cancel footer.
 - Feature/Page code cannot author another OverlayHost, instantiate OverlayRef,
   or recreate blocking fixed backdrops, raw backdrop effects, or numeric
   overlay layers.

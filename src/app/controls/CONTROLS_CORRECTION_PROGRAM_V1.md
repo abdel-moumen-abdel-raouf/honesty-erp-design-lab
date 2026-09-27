@@ -30,6 +30,10 @@ pushed.
   identifiers may remain English.
 - Technical commits are checkpoints only and do not establish visual approval.
 
+The later Product Owner-authorized Animate.css Motion + Overlay Frame Program
+supersedes only the hand-authored motion mechanics and unframed user-facing
+blocking surfaces recorded here. It does not reopen other correction contracts.
+
 ## Fixed correction contracts
 
 ### Blocking overlay dismissal
@@ -84,7 +88,17 @@ export type ErpMotionPreset =
   | 'flip-x'
   | 'flip-y'
   | 'bounce'
-  | 'swing';
+  | 'swing'
+  | 'fade-up'
+  | 'fade-down'
+  | 'fade-start'
+  | 'fade-end'
+  | 'zoom-up'
+  | 'zoom-down'
+  | 'back'
+  | 'light-speed'
+  | 'rotate'
+  | 'roll';
 
 export type ErpOverlayAnimation = ErpMotionPreset;
 ```
@@ -98,7 +112,8 @@ honored.
 
 Tooltip uses the same shared catalog, defaults to `fade-scale` entry and
 `fade` exit, and remains mounted until its configured exit animation actually
-completes.
+completes. Overlay and Tooltip now execute that catalog through the central
+Animate.css motion adapter; vendor class/effect names remain internal.
 
 ### SearchBox
 
@@ -163,10 +178,9 @@ Theme-sensitive overlay backdrop roles are:
 - `--honesty-color-overlay-backdrop-secondary`
 - `--honesty-color-overlay-backdrop-accent`
 
-The default backdrop composes Neutral 950 at 32% in Light and 54% in Dark.
-Light alternate tones use Neutral/Primary/Secondary/Accent 900 at 28%. Dark
-neutral uses Neutral 950 at 50%; Dark primary/secondary/accent use the matching
-950 palette at 46%.
+The repaired default backdrop composes Neutral 950 at 44% in Light and 48% in
+Dark. Light alternate tones use Neutral/Primary/Secondary/Accent 900 at 38%.
+Dark alternate tones use the matching 950 palette at 42%.
 
 Theme-sensitive glass roles are:
 
@@ -195,6 +209,13 @@ underlying entry without replaying its entry animation.
 Modals may use a viewport inset. Start/end drawers attach to their logical
 viewport edge at `100dvh`; bottom drawers attach to the bottom at full inline
 size. Drawers are not floating cards.
+
+Every user-facing blocking modal/drawer now uses the shared Overlay
+Header/Body/Footer frame. The frame owns its accessible title/subtitle/icon,
+Tooltip-wrapped close IconButton, scrollable body boundary, and developer-
+configured ERP primary/secondary buttons. Dynamic picker content stages data
+and registers frame actions instead of recreating confirm/cancel footer chrome.
+SplitButton remains the one isolated deferred compact-menu exception.
 
 ## Input and field correction
 
@@ -338,6 +359,8 @@ The repository governance gates mechanically retain the corrected contracts:
 - fixed tokenized IconPicker tile geometry;
 - blocking Overlay ownership, exact public config/motion unions, defaults,
   lifecycle phases, RTL/reduced-motion behavior, and drawer geometry;
+- central Animate.css adapter ownership and mandatory user-facing
+  Header/Body/Footer frame composition;
 - internal-only Field Component Token consumption;
 - DateRange anchor/preview/final interval staging;
 - Arabic-first corrected showcase and picker defaults; and

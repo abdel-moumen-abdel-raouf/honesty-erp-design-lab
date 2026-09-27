@@ -67,29 +67,26 @@ not change this behavior.
 The Foundation-owned preset catalog is exactly:
 
 `fade | scale | fade-scale | slide-up | slide-down | slide-start | slide-end |
-zoom | pop | flip-x | flip-y | bounce | swing`
+zoom | pop | flip-x | flip-y | bounce | swing | fade-up | fade-down |
+fade-start | fade-end | zoom-up | zoom-down | back | light-speed | rotate |
+roll`
 
 `ErpOverlayAnimation` remains a compatibility alias to the shared catalog.
 Overlay and Tooltip do not own divergent public catalogs or arbitrary CSS-class
 motion APIs. Logical slide start/end reverse physically in RTL. Reduced motion
 disables transforms and resolves with instant duration.
 
-Exact motion tuning is authoritative from the Wave A execution request:
+The later Product Owner-authorized motion program replaces Wave A's
+hand-authored effect mechanics with the central Animate.css adapter while
+retaining Honesty ERP system names. Modal/Drawer duration is 360ms/260ms and
+Tooltip duration is 320ms/220ms. Modal defaults remain `fade-scale`; logical
+drawers use their logical slide; bottom drawers use `slide-up` entry and
+`slide-down` exit. Tooltip defaults are `fade-scale` entry and `fade` exit.
+Both lifecycles wait for adapter completion.
 
-- fade: enter 220ms, exit 160ms;
-- scale: enter 220ms, exit 160ms, start scale 0.92;
-- fade-scale: enter 240ms, exit 180ms, opacity 0, start scale 0.90;
-- slide presets: enter 220ms, exit 180ms, distance 1.5rem;
-- zoom: enter 260ms, exit 180ms, opacity 0, start scale 0.82;
-- pop: enter 280ms, exit 180ms, `0.90 -> 1.03 -> 1.00`;
-- flip-x/y: enter 300ms, exit 220ms, perspective 48rem, start angle -12deg;
-- bounce: enter 360ms, exit 200ms, `1rem -> -0.25rem -> 0`;
-- swing: enter 320ms, exit 200ms, top-center origin and `-3deg -> 1deg -> 0`.
-
-Modal defaults remain `fade-scale`; logical drawers use their logical slide;
-bottom drawers use `slide-up` entry and `slide-down` exit. Tooltip defaults are
-`fade-scale` entry and `fade` exit, and Tooltip removal waits for configured
-exit completion.
+User-facing blocking surfaces also use the later mandatory shared Overlay
+Header/Body/Footer frame. This inserted program remains correction-only and
+does not authorize Wave B.
 
 ## Review evidence
 

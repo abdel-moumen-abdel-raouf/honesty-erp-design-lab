@@ -2,10 +2,16 @@
   gap="default"
   data-overlay-content-evidence
 >
-  <erp-text type="heading-2">{{ data.title }}</erp-text>
   <erp-text type="paragraph">
     محتوى تراكب حاجب يثبت التركيز والإغلاق واستعادة التركيز.
   </erp-text>
+  @if (data.longBody) {
+    <erp-stack data-overlay-long-body-evidence gap="tight">
+      @for (line of longBodyLines; track line) {
+        <erp-text type="paragraph">{{ line }}</erp-text>
+      }
+    </erp-stack>
+  }
   @if (data.allowNested) {
     <erp-button label="فتح تراكب متداخل" (pressed)="openNested()" />
   }

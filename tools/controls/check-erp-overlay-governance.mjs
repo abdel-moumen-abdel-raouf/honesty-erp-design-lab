@@ -16,6 +16,21 @@ const OVERLAY_LIFECYCLE =
 const OVERLAY_CONTRACTS =
   'src/app/shared/overlay/overlay-contracts.ts';
 const OVERLAY_MANAGER = 'src/app/shared/overlay/overlay-manager.ts';
+const OVERLAY_REF = 'src/app/shared/overlay/overlay-ref.ts';
+const OVERLAY_FRAME_SOURCE =
+  'src/app/shared/overlay/overlay-frame/overlay-frame.ts';
+const OVERLAY_FRAME_TEMPLATE =
+  'src/app/shared/overlay/overlay-frame/overlay-frame.html';
+const TEMPORAL_PICKER_SOURCE =
+  'src/app/controls/temporal-family/internal/temporal-picker-content.ts';
+const TEMPORAL_PICKER_TEMPLATE =
+  'src/app/controls/temporal-family/internal/temporal-picker-content.html';
+const SELECTION_PICKER_SOURCE =
+  'src/app/controls/selection-family/internal/selection-picker-content.ts';
+const SELECTION_PICKER_TEMPLATE =
+  'src/app/controls/selection-family/internal/selection-picker-content.html';
+const SPLIT_BUTTON_SOURCE =
+  'src/app/controls/split-button/split-button.ts';
 const MOTION_CONTRACTS =
   'src/app/foundation/motion/motion-contracts.ts';
 const MOTION_ADAPTER =
@@ -375,6 +390,123 @@ export function validateOverlayContractDrift(files) {
   return errors;
 }
 
+export function validateOverlayFrameContract(files) {
+  const errors = [];
+  const contracts = files.get(OVERLAY_CONTRACTS) ?? '';
+  const manager = files.get(OVERLAY_MANAGER) ?? '';
+  const ref = files.get(OVERLAY_REF) ?? '';
+  const frameSource = files.get(OVERLAY_FRAME_SOURCE) ?? '';
+  const frameTemplate = files.get(OVERLAY_FRAME_TEMPLATE) ?? '';
+  const temporalSource = files.get(TEMPORAL_PICKER_SOURCE) ?? '';
+  const temporalTemplate = files.get(TEMPORAL_PICKER_TEMPLATE) ?? '';
+  const selectionSource = files.get(SELECTION_PICKER_SOURCE) ?? '';
+  const selectionTemplate = files.get(SELECTION_PICKER_TEMPLATE) ?? '';
+
+  for (const required of [
+    'export interface ErpOverlayHeaderConfig',
+    'readonly title: string;',
+    'readonly subtitle: string;',
+    'readonly icon: ErpIconName;',
+    'readonly closeLabel?: string;',
+    'export interface ErpOverlayFooterConfig',
+    'readonly primary: ErpOverlayActionConfig;',
+    'readonly secondary: ErpOverlayActionConfig;',
+    'readonly frame: ErpOverlayFrameConfig;',
+    "export type ErpOverlayFrameAction =\n  | 'primary'\n  | 'secondary';",
+  ]) {
+    if (!contracts.includes(required)) {
+      errors.push(`Overlay frame contracts: missing ${required}`);
+    }
+  }
+
+  for (const required of [
+    'options.frame.header.title.trim()',
+    'options.frame.header.subtitle.trim()',
+    "options.frame.header.closeLabel?.trim() || 'إغلاق'",
+    'ERP_ICON_NAMES.includes(options.frame.header.icon)',
+    'options.frame.footer.primary.label.trim()',
+    'options.frame.footer.secondary.label.trim()',
+  ]) {
+    if (!manager.includes(required)) {
+      errors.push(`OverlayManager: missing frame validation ${required}`);
+    }
+  }
+
+  for (const required of [
+    'registerFrameAction(',
+    'requestFrameAction(',
+    "if (action === 'secondary')",
+    "this.dismiss('secondary-action')",
+  ]) {
+    if (!ref.includes(required)) {
+      errors.push(`OverlayRef: missing frame action contract ${required}`);
+    }
+  }
+
+  for (const required of [
+    'ErpButton',
+    'ErpIconButton',
+    'ErpTooltip',
+    "this.ref().dismiss('close-action')",
+  ]) {
+    if (!frameSource.includes(required)) {
+      errors.push(`OverlayFrame: missing shared control contract ${required}`);
+    }
+  }
+
+  for (const required of [
+    '<header class="overlay-frame__header">',
+    '<div class="overlay-frame__body">',
+    '<footer class="overlay-frame__footer">',
+    '<erp-tooltip',
+    '<erp-icon-button',
+    'data-overlay-frame-close',
+    'data-overlay-frame-primary',
+    'data-overlay-frame-secondary',
+  ]) {
+    if (!frameTemplate.includes(required)) {
+      errors.push(`OverlayFrame template: missing ${required}`);
+    }
+  }
+
+  if ((frameTemplate.match(/<erp-button\b/g) ?? []).length !== 2) {
+    errors.push('OverlayFrame footer must own exactly two ERP buttons');
+  }
+
+  for (const [name, source, template] of [
+    ['Temporal picker', temporalSource, temporalTemplate],
+    ['Selection picker', selectionSource, selectionTemplate],
+  ]) {
+    if (
+      !source.includes("registerFrameAction('primary'") ||
+      !source.includes("registerFrameAction('secondary'")
+    ) {
+      errors.push(`${name}: shared frame action registration is required`);
+    }
+
+    if (
+      template.includes('data-confirm-action') ||
+      template.includes('data-cancel-action')
+    ) {
+      errors.push(`${name}: duplicate body confirm/cancel footer is forbidden`);
+    }
+  }
+
+  const legacyUsers = [...files]
+    .filter(([, source]) => source.includes('openLegacyCompactMenu'))
+    .map(([file]) => file)
+    .sort();
+  const expectedLegacyUsers = [OVERLAY_MANAGER, SPLIT_BUTTON_SOURCE].sort();
+
+  if (JSON.stringify(legacyUsers) !== JSON.stringify(expectedLegacyUsers)) {
+    errors.push(
+      'Legacy compact Overlay menu exception must remain isolated to SplitButton and OverlayManager',
+    );
+  }
+
+  return errors;
+}
+
 export function validateTemporalPickers(files) {
   const errors = [];
   for (const control of ['date-box', 'time-box', 'date-time-box', 'date-range-box']) {
@@ -406,7 +538,8 @@ export function validateDeferredCompositeOverlay(files) {
 
   if (
     !source.includes('ErpOverlayManager') ||
-    !source.includes('ErpActionMenuContent')
+    !source.includes('ErpActionMenuContent') ||
+    !source.includes('openLegacyCompactMenu')
   ) {
     errors.push(
       `${file}: SplitButton must use OverlayManager and its compact action menu`,
@@ -618,11 +751,103 @@ context.drawImage(embeddedCanvas, 0, toolbarCanvas.height);`,
   const validComposite = new Map([
     [
       'src/app/controls/split-button/split-button.ts',
-      'ErpOverlayManager ErpActionMenuContent',
+      'ErpOverlayManager ErpActionMenuContent openLegacyCompactMenu',
     ],
   ]);
   if (validateDeferredCompositeOverlay(validComposite).length > 0) {
     throw new Error('Overlay governance rejected valid SplitButton fixture');
+  }
+
+  const validFrame = new Map([
+    [
+      OVERLAY_CONTRACTS,
+      `export interface ErpOverlayHeaderConfig {
+readonly title: string;
+readonly subtitle: string;
+readonly icon: ErpIconName;
+readonly closeLabel?: string;
+}
+export interface ErpOverlayActionConfig {}
+export interface ErpOverlayFooterConfig {
+readonly primary: ErpOverlayActionConfig;
+readonly secondary: ErpOverlayActionConfig;
+}
+export interface ErpOverlayFrameConfig {}
+export interface ErpOverlayOpenConfig { readonly frame: ErpOverlayFrameConfig; }
+export type ErpOverlayFrameAction =
+  | 'primary'
+  | 'secondary';`,
+    ],
+    [
+      OVERLAY_MANAGER,
+      `options.frame.header.title.trim()
+options.frame.header.subtitle.trim()
+options.frame.header.closeLabel?.trim() || 'إغلاق'
+ERP_ICON_NAMES.includes(options.frame.header.icon)
+options.frame.footer.primary.label.trim()
+options.frame.footer.secondary.label.trim()
+openLegacyCompactMenu`,
+    ],
+    [
+      OVERLAY_REF,
+      `registerFrameAction(
+requestFrameAction(
+if (action === 'secondary')
+this.dismiss('secondary-action')`,
+    ],
+    [
+      OVERLAY_FRAME_SOURCE,
+      `ErpButton ErpIconButton ErpTooltip
+this.ref().dismiss('close-action')`,
+    ],
+    [
+      OVERLAY_FRAME_TEMPLATE,
+      `<header class="overlay-frame__header">
+<div class="overlay-frame__body">
+<footer class="overlay-frame__footer">
+<erp-tooltip><erp-icon-button data-overlay-frame-close />
+<erp-button data-overlay-frame-secondary />
+<erp-button data-overlay-frame-primary />`,
+    ],
+    [
+      TEMPORAL_PICKER_SOURCE,
+      "registerFrameAction('primary') registerFrameAction('secondary')",
+    ],
+    [TEMPORAL_PICKER_TEMPLATE, '<erp-button data-clear-action />'],
+    [
+      SELECTION_PICKER_SOURCE,
+      "registerFrameAction('primary') registerFrameAction('secondary')",
+    ],
+    [SELECTION_PICKER_TEMPLATE, '<erp-selection-tile />'],
+    [SPLIT_BUTTON_SOURCE, 'openLegacyCompactMenu'],
+  ]);
+
+  if (validateOverlayFrameContract(validFrame).length > 0) {
+    throw new Error('Overlay governance rejected valid frame fixtures');
+  }
+
+  for (const [index, fixture] of [
+    new Map(validFrame).set(
+      OVERLAY_CONTRACTS,
+      (validFrame.get(OVERLAY_CONTRACTS) ?? '').replace(
+        'readonly subtitle: string;',
+        '',
+      ),
+    ),
+    new Map(validFrame).set(
+      TEMPORAL_PICKER_TEMPLATE,
+      '<erp-button data-confirm-action />',
+    ),
+    new Map(validFrame).set(
+      'src/app/controls/another-control/another-control.ts',
+      'openLegacyCompactMenu',
+    ),
+  ].entries()) {
+    if (validateOverlayFrameContract(fixture).length === 0) {
+      throw new Error(
+        `Overlay governance accepted invalid frame fixture ${index + 1}`,
+      );
+    }
   }
   validComposite.set(
     'src/app/controls/split-button/split-button.ts',
@@ -733,6 +958,7 @@ files.set(
 const errors = validate(files);
 errors.push(...validateWaveALabContract(files));
 errors.push(...validateOverlayContractDrift(files));
+errors.push(...validateOverlayFrameContract(files));
 errors.push(...validateTemporalPickers(files));
 errors.push(...validateSelectionPickers(files));
 errors.push(...validateDeferredCompositeOverlay(files));

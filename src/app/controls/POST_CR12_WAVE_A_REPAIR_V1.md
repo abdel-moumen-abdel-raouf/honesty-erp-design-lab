@@ -47,3 +47,13 @@ FabMenu, SplitButton, and Wave B remain outside this repair.
 
 R05 completion stops for Product Owner review. Technical success does not equal
 visual approval.
+
+## Subsequent inserted infrastructure program
+
+After the Wave A repair checkpoint, the Product Owner authorized the bounded
+Animate.css Motion + Overlay Frame Program before Wave B. It centralizes the
+expanded Honesty ERP motion catalog behind one vendor adapter and requires a
+shared Header/Body/Footer frame for every user-facing blocking modal/drawer.
+SplitButton remains one documented deferred compact-menu exception. Completion
+of that inserted program still stops for Product Owner review and does not
+start Wave B.
