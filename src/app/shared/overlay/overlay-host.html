@@ -12,7 +12,6 @@
     [attr.data-overlay-animation]="entry.animation"
     [attr.inert]="manager.isTop(entry.ref.id) ? null : ''"
     (pointerdown)="handleBackdropPointerDown($event, entry.ref.id)"
-    (animationend)="handleAnimationEnd($event, entry.ref.id)"
   >
     <section
       class="erp-os"

@@ -7,11 +7,10 @@ const APP_ROOT = path.join(ROOT, 'src', 'app');
 const APP_TEMPLATE = 'src/app/app.html';
 const APP_SOURCE = 'src/app/app.ts';
 const OVERLAY_ROOT = 'src/app/shared/overlay/';
+const OVERLAY_HOST = 'src/app/shared/overlay/overlay-host.ts';
 const OVERLAY_STYLE = 'src/app/shared/overlay/overlay-host.scss';
 const OVERLAY_FACETS =
   'src/app/shared/overlay/overlay-host-facets.scss';
-const OVERLAY_MOTION_FACETS =
-  'src/app/shared/overlay/overlay-host-motion-facets.scss';
 const OVERLAY_LIFECYCLE =
   'src/app/shared/overlay/overlay-host-lifecycle.scss';
 const OVERLAY_CONTRACTS =
@@ -234,9 +233,10 @@ export function validateOverlayContractDrift(files) {
   const contracts = files.get(OVERLAY_CONTRACTS) ?? '';
   const manager = files.get(OVERLAY_MANAGER) ?? '';
   const motionContracts = files.get(MOTION_CONTRACTS) ?? '';
+  const motionAdapter = files.get(MOTION_ADAPTER) ?? '';
+  const host = files.get(OVERLAY_HOST) ?? '';
   const hostStyle = files.get(OVERLAY_STYLE) ?? '';
   const facets = files.get(OVERLAY_FACETS) ?? '';
-  const motionFacets = files.get(OVERLAY_MOTION_FACETS) ?? '';
   const lifecycle = files.get(OVERLAY_LIFECYCLE) ?? '';
   const tokens = files.get(OVERLAY_TOKENS) ?? '';
 
@@ -311,19 +311,9 @@ export function validateOverlayContractDrift(files) {
     }
   }
 
-  for (const animation of expectedMotions.slice(0, 13).filter(
-    (animation) => animation !== 'fade-scale',
-  )) {
-    if (!`${facets}\n${motionFacets}`.includes(`data-overlay-animation='${animation}'`)) {
-      errors.push(`OverlayHost: missing ${animation} motion mapping`);
-    }
-  }
-
   for (const required of [
-    "[dir='rtl'] erp-overlay-host",
     "data-overlay-phase='entering'",
     "data-overlay-phase='leaving'",
-    'prefers-reduced-motion: reduce',
     "data-overlay-kind='drawer'][data-overlay-position='start']",
     "data-overlay-kind='drawer'][data-overlay-position='end']",
     "data-overlay-kind='drawer'][data-overlay-position='bottom']",
@@ -336,17 +326,49 @@ export function validateOverlayContractDrift(files) {
   }
 
   for (const required of [
+    'AnimateCssMotionAdapter',
+    'ERP_OVERLAY_MOTION_DURATION_MS',
+    'this.motion.start({',
+    'preset: entry.animation',
+    'ERP_OVERLAY_MOTION_DURATION_MS[phase]',
+    'this.manager.completeTransition(entry.ref.id, entry.phase)',
+  ]) {
+    if (!host.includes(required)) {
+      errors.push(`OverlayHost: missing motion-adapter integration ${required}`);
+    }
+  }
+
+  for (const required of [
+    'export const ERP_OVERLAY_MOTION_DURATION_MS',
+    'enter: 360',
+    'exit: 260',
+    "window.matchMedia('(prefers-reduced-motion: reduce)')",
+  ]) {
+    if (!motionAdapter.includes(required)) {
+      errors.push(`Motion adapter: missing Overlay contract ${required}`);
+    }
+  }
+
+  for (const required of [
     '--honesty-overlay-backdrop-bg:',
     '--honesty-overlay-backdrop-blur:',
     '--honesty-overlay-layer:',
-    '@mixin animation-fade-scale',
-    '--honesty-overlay-reduced-duration:',
-    '--honesty-overlay-enter-duration: 240ms;',
-    '--honesty-overlay-exit-duration: 180ms;',
-    '--honesty-overlay-motion-slide-distance: 1.5rem;',
+    '--honesty-overlay-enter-duration: 360ms;',
+    '--honesty-overlay-exit-duration: 260ms;',
   ]) {
     if (!tokens.includes(required)) {
       errors.push(`Overlay tokens: missing corrected contract ${required}`);
+    }
+  }
+
+  for (const forbidden of [
+    '@mixin animation-',
+    '--honesty-overlay-motion-',
+    '--honesty-overlay-reduced-duration:',
+    '@keyframes overlay-surface-',
+  ]) {
+    if (`${tokens}\n${hostStyle}\n${facets}\n${lifecycle}`.includes(forbidden)) {
+      errors.push(`Overlay motion: obsolete surface contract remains ${forbidden}`);
     }
   }
 
@@ -444,6 +466,11 @@ export type ErpOverlayPhase = 'entering' | 'open' | 'leaving';`,
       `export const ERP_MOTION_PRESETS = ['fade', 'scale', 'fade-scale', 'slide-up', 'slide-down', 'slide-start', 'slide-end', 'zoom', 'pop', 'flip-x', 'flip-y', 'bounce', 'swing', 'fade-up', 'fade-down', 'fade-start', 'fade-end', 'zoom-up', 'zoom-down', 'back', 'light-speed', 'rotate', 'roll'] as const;`,
     ],
     [
+      MOTION_ADAPTER,
+      `export const ERP_OVERLAY_MOTION_DURATION_MS = {enter: 360, exit: 260};
+window.matchMedia('(prefers-reduced-motion: reduce)');`,
+    ],
+    [
       OVERLAY_MANAGER,
       `return ['fade-scale', 'fade-scale'];
 return ['slide-start', 'slide-start'];
@@ -459,17 +486,21 @@ phase: 'entering'; phase: 'open'; phase: 'leaving'; top?.ref.id === id;`,
       OVERLAY_STYLE,
       "data-overlay-kind='drawer'][data-overlay-position='start'] data-overlay-kind='drawer'][data-overlay-position='end'] data-overlay-kind='drawer'][data-overlay-position='bottom'] block-size: 100dvh; inline-size: 100%;",
     ],
+    [OVERLAY_FACETS, 'data-overlay-blur data-overlay-backdrop-tone'],
     [
-      OVERLAY_FACETS,
-      "data-overlay-animation='fade' data-overlay-animation='scale' data-overlay-animation='slide-up' data-overlay-animation='slide-down' data-overlay-animation='slide-start' data-overlay-animation='slide-end' data-overlay-animation='zoom' data-overlay-animation='pop' data-overlay-animation='flip-x' data-overlay-animation='flip-y' data-overlay-animation='bounce' data-overlay-animation='swing' [dir='rtl'] erp-overlay-host",
+      OVERLAY_HOST,
+      `AnimateCssMotionAdapter ERP_OVERLAY_MOTION_DURATION_MS
+this.motion.start({ preset: entry.animation
+ERP_OVERLAY_MOTION_DURATION_MS[phase]
+this.manager.completeTransition(entry.ref.id, entry.phase)`,
     ],
     [
       OVERLAY_LIFECYCLE,
-      "data-overlay-phase='entering' data-overlay-phase='leaving' prefers-reduced-motion: reduce",
+      "data-overlay-phase='entering' data-overlay-phase='leaving'",
     ],
     [
       OVERLAY_TOKENS,
-      '--honesty-overlay-backdrop-bg: x; --honesty-overlay-backdrop-blur: x; --honesty-overlay-layer: x; @mixin animation-fade-scale {} --honesty-overlay-reduced-duration: x; --honesty-overlay-enter-duration: 240ms; --honesty-overlay-exit-duration: 180ms; --honesty-overlay-motion-slide-distance: 1.5rem;',
+      '--honesty-overlay-backdrop-bg: x; --honesty-overlay-backdrop-blur: x; --honesty-overlay-layer: x; --honesty-overlay-enter-duration: 360ms; --honesty-overlay-exit-duration: 260ms;',
     ],
   ]);
 

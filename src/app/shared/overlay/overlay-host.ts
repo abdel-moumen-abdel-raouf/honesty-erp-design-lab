@@ -8,8 +8,12 @@ import {
   inject,
   ViewEncapsulation,
 } from '@angular/core';
+import {
+  AnimateCssMotionAdapter,
+  ERP_OVERLAY_MOTION_DURATION_MS,
+} from '../../foundation/motion/animate-css-motion-adapter';
 import {ErpOverlayManager} from './overlay-manager';
-import {ErpOverlayPhase} from './overlay-contracts';
+import {ErpOverlayEntry} from './overlay-contracts';
 
 const FOCUSABLE_SELECTOR = [
   'a[href]',
@@ -38,7 +42,6 @@ interface BackgroundState {
     './overlay-host.scss',
     './overlay-host-lifecycle.scss',
     './overlay-host-facets.scss',
-    './overlay-host-motion-facets.scss',
     './overlay-host-motion.scss',
   ],
   encapsulation: ViewEncapsulation.None,
@@ -52,16 +55,24 @@ export class ErpOverlayHost {
   private readonly document = inject(DOCUMENT);
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly motion = inject(AnimateCssMotionAdapter);
   private backgroundState: BackgroundState[] = [];
   private bodyOverflow: string | null = null;
   private lastFocusedId: string | null = null;
-  private readonly reducedMotionCompletions = new Set<string>();
+  private readonly surfaceMotions = new Map<
+    string,
+    {readonly phase: ErpOverlayEntry['phase']; readonly cancel: () => void}
+  >();
 
   constructor() {
     const onKeydown = (event: KeyboardEvent) => this.handleKeydown(event);
     this.document.addEventListener('keydown', onKeydown);
     this.destroyRef.onDestroy(() => {
       this.document.removeEventListener('keydown', onKeydown);
+      for (const active of this.surfaceMotions.values()) {
+        active.cancel();
+      }
+      this.surfaceMotions.clear();
       this.restoreDocumentState();
     });
 
@@ -80,30 +91,13 @@ export class ErpOverlayHost {
         }
       }
 
-      this.scheduleReducedMotionCompletion(entries);
+      queueMicrotask(() => this.syncSurfaceMotions(entries));
     });
   }
 
   handleBackdropPointerDown(event: PointerEvent, id: string): void {
     if (event.target === event.currentTarget) {
       this.manager.dismissFromBackdrop(id);
-    }
-  }
-
-  handleAnimationEnd(event: AnimationEvent, id: string): void {
-    if (event.target !== event.currentTarget) {
-      return;
-    }
-
-    const phase: ErpOverlayPhase | null =
-      event.animationName === 'overlay-backdrop-enter'
-        ? 'entering'
-        : event.animationName === 'overlay-backdrop-exit'
-          ? 'leaving'
-          : null;
-
-    if (phase !== null) {
-      this.manager.completeTransition(id, phase);
     }
   }
 
@@ -185,14 +179,14 @@ export class ErpOverlayHost {
     );
   }
 
-  private scheduleReducedMotionCompletion(
-    entries: ReturnType<ErpOverlayManager['entries']>,
-  ): void {
-    if (
-      typeof window.matchMedia !== 'function' ||
-      !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    ) {
-      return;
+  private syncSurfaceMotions(entries: readonly ErpOverlayEntry[]): void {
+    const ids = new Set(entries.map((entry) => entry.ref.id));
+
+    for (const [id, active] of this.surfaceMotions) {
+      if (!ids.has(id)) {
+        active.cancel();
+        this.surfaceMotions.delete(id);
+      }
     }
 
     for (const entry of entries) {
@@ -200,18 +194,44 @@ export class ErpOverlayHost {
         continue;
       }
 
-      const key = `${entry.ref.id}:${entry.phase}`;
+      const current = this.surfaceMotions.get(entry.ref.id);
 
-      if (this.reducedMotionCompletions.has(key)) {
+      if (current?.phase === entry.phase) {
         continue;
       }
 
-      this.reducedMotionCompletions.add(key);
-      queueMicrotask(() => {
-        this.reducedMotionCompletions.delete(key);
-        this.manager.completeTransition(entry.ref.id, entry.phase);
+      current?.cancel();
+      const surface = this.findSurface(entry.ref.id);
+
+      if (!surface) {
+        continue;
+      }
+
+      const phase = entry.phase === 'entering' ? 'enter' : 'exit';
+      const cancel = this.motion.start({
+        element: surface,
+        preset: entry.animation,
+        phase,
+        direction: this.resolveDirection(surface),
+        durationMs: ERP_OVERLAY_MOTION_DURATION_MS[phase],
+        completed: () => {
+          this.surfaceMotions.delete(entry.ref.id);
+          this.manager.completeTransition(entry.ref.id, entry.phase);
+        },
       });
+
+      this.surfaceMotions.set(entry.ref.id, {phase: entry.phase, cancel});
     }
+  }
+
+  private resolveDirection(surface: HTMLElement): 'ltr' | 'rtl' {
+    const authoredDirection = surface.closest<HTMLElement>('[dir]')?.dir;
+
+    if (authoredDirection === 'rtl' || authoredDirection === 'ltr') {
+      return authoredDirection;
+    }
+
+    return getComputedStyle(surface).direction === 'rtl' ? 'rtl' : 'ltr';
   }
 
   private syncDocumentState(blocking: boolean): void {

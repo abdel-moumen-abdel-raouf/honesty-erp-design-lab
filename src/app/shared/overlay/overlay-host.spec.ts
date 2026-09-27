@@ -1,5 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
+import {ERP_MOTION_PRESETS} from '../../foundation/motion/motion-contracts';
 import {ErpOverlayHost} from './overlay-host';
 import {ErpOverlayManager} from './overlay-manager';
 import {ERP_OVERLAY_REF} from './overlay-tokens';
@@ -177,44 +178,42 @@ describe('ErpOverlayHost', () => {
     expect(manager.entries().map((entry) => entry.ref.id)).toEqual([first.id]);
   });
 
-  it('reverses logical start and end motion between LTR and RTL', () => {
+  it('reverses logical start motion between LTR and RTL through the adapter', async () => {
     const fixture = TestBed.createComponent(TestOverlayShell);
     const manager = TestBed.inject(ErpOverlayManager);
-    manager.open(TestOverlayContent, {
-      kind: 'drawer',
-      position: 'start',
-      label: 'Logical motion',
-    });
-    fixture.detectChanges();
-
-    const layer = (fixture.nativeElement as HTMLElement).querySelector(
-      '.erp-ol',
-    ) as HTMLElement;
     const originalDirection = document.documentElement.getAttribute('dir');
 
     try {
-      document.documentElement.setAttribute('dir', 'ltr');
-      expect(
-        getComputedStyle(layer).getPropertyValue(
-          '--honesty-overlay-motion-transform',
-        ),
-      ).toContain('calc(-1 *');
+      for (const [direction, enterClass, exitClass] of [
+        ['ltr', 'animate__slideInLeft', 'animate__slideOutLeft'],
+        ['rtl', 'animate__slideInRight', 'animate__slideOutRight'],
+      ] as const) {
+        document.documentElement.setAttribute('dir', direction);
+        (fixture.nativeElement as HTMLElement).setAttribute('dir', direction);
+        const ref = manager.open(TestOverlayContent, {
+          kind: 'drawer',
+          position: 'start',
+          label: 'Logical motion',
+          enterAnimation: 'slide-start',
+          exitAnimation: 'slide-start',
+        });
+        fixture.detectChanges();
+        await Promise.resolve();
 
-      document.documentElement.setAttribute('dir', 'rtl');
-      expect(
-        getComputedStyle(layer).getPropertyValue(
-          '--honesty-overlay-motion-transform',
-        ),
-      ).toBe('translateX(var(--honesty-overlay-motion-slide-distance))');
+        const surface = (fixture.nativeElement as HTMLElement).querySelector(
+          `[data-overlay-id="${ref.id}"]`,
+        ) as HTMLElement;
+        expect(surface.classList.contains(enterClass)).toBe(true);
+        surface.dispatchEvent(new Event('animationend'));
 
-      manager.completeTransition(manager.entries()[0].ref.id, 'entering');
-      manager.entries()[0].ref.close();
-      fixture.detectChanges();
-      expect(
-        getComputedStyle(layer).getPropertyValue(
-          '--honesty-overlay-motion-transform',
-        ),
-      ).toContain('calc(-1 *');
+        ref.close();
+        fixture.detectChanges();
+        await Promise.resolve();
+        expect(surface.classList.contains(exitClass)).toBe(true);
+        surface.dispatchEvent(new Event('animationend'));
+        fixture.detectChanges();
+        expect(manager.entries()).toEqual([]);
+      }
     } finally {
       if (originalDirection === null) {
         document.documentElement.removeAttribute('dir');
@@ -224,52 +223,36 @@ describe('ErpOverlayHost', () => {
     }
   });
 
-  it('emits the exact tuned fade and fade-scale durations and transforms', () => {
+  it('accepts every system motion preset with fixed Overlay durations', async () => {
     const fixture = TestBed.createComponent(TestOverlayShell);
     const manager = TestBed.inject(ErpOverlayManager);
-    const fade = manager.open(TestOverlayContent, {
-      label: 'Fade',
-      enterAnimation: 'fade',
-      exitAnimation: 'fade',
-    });
-    fixture.detectChanges();
-    const layer = (fixture.nativeElement as HTMLElement).querySelector(
-      '.erp-ol',
-    ) as HTMLElement;
-    let style = getComputedStyle(layer);
 
-    expect(style.getPropertyValue('--honesty-overlay-enter-duration')).toBe(
-      '220ms',
-    );
-    expect(style.getPropertyValue('--honesty-overlay-exit-duration')).toBe(
-      '160ms',
-    );
-    expect(style.getPropertyValue('--honesty-overlay-motion-transform')).toBe(
-      'none',
-    );
+    for (const preset of ERP_MOTION_PRESETS) {
+      const ref = manager.open(TestOverlayContent, {
+        label: preset,
+        enterAnimation: preset,
+        exitAnimation: preset,
+      });
+      fixture.detectChanges();
+      await Promise.resolve();
 
-    manager.completeTransition(fade.id, 'entering');
-    fade.close();
-    manager.completeTransition(fade.id, 'leaving');
+      const surface = (fixture.nativeElement as HTMLElement).querySelector(
+        `[data-overlay-id="${ref.id}"]`,
+      ) as HTMLElement;
+      expect(surface.classList.contains('animate__animated')).toBe(true);
+      expect(surface.style.getPropertyValue('--animate-duration')).toBe('360ms');
+      surface.dispatchEvent(new Event('animationend'));
+      expect(manager.entries()[0].phase).toBe('open');
 
-    manager.open(TestOverlayContent, {label: 'Fade scale'});
-    fixture.detectChanges();
-    const host = (fixture.nativeElement as HTMLElement).querySelector(
-      'erp-overlay-host',
-    ) as HTMLElement;
-    style = getComputedStyle(host);
-    expect(style.getPropertyValue('--honesty-overlay-enter-duration')).toBe(
-      '240ms',
-    );
-    expect(style.getPropertyValue('--honesty-overlay-exit-duration')).toBe(
-      '180ms',
-    );
-    expect(style.getPropertyValue('--honesty-overlay-motion-transform')).toBe(
-      'scale(0.90)',
-    );
-    expect(
-      style.getPropertyValue('--honesty-overlay-motion-slide-distance'),
-    ).toBe('1.5rem');
+      ref.close();
+      fixture.detectChanges();
+      await Promise.resolve();
+      expect(surface.classList.contains('animate__animated')).toBe(true);
+      expect(surface.style.getPropertyValue('--animate-duration')).toBe('260ms');
+      surface.dispatchEvent(new Event('animationend'));
+      fixture.detectChanges();
+      expect(manager.entries()).toEqual([]);
+    }
   });
 
   it('restores focus to the captured origin after close', async () => {
@@ -298,37 +281,23 @@ describe('ErpOverlayHost', () => {
     expect(document.activeElement).toBe(origin);
   });
 
-  it('completes entering and leaving only from matching backdrop animation events', () => {
+  it('completes entering and leaving only from surface animation events', async () => {
     const fixture = TestBed.createComponent(TestOverlayShell);
-    const host = fixture.debugElement.children.find(
-      (child) => child.componentInstance instanceof ErpOverlayHost,
-    )?.componentInstance as ErpOverlayHost;
     const manager = TestBed.inject(ErpOverlayManager);
     const ref = manager.open(TestOverlayContent, {label: 'Animation proof'});
     fixture.detectChanges();
-    const layer = (fixture.nativeElement as HTMLElement).querySelector(
-      '.erp-ol',
+    await Promise.resolve();
+    const surface = (fixture.nativeElement as HTMLElement).querySelector(
+      `[data-overlay-id="${ref.id}"]`,
     ) as HTMLElement;
 
-    host.handleAnimationEnd(
-      {
-        target: layer,
-        currentTarget: layer,
-        animationName: 'overlay-backdrop-enter',
-      } as unknown as AnimationEvent,
-      ref.id,
-    );
+    surface.dispatchEvent(new Event('animationend'));
     expect(manager.entries()[0].phase).toBe('open');
 
     ref.close();
-    host.handleAnimationEnd(
-      {
-        target: layer,
-        currentTarget: layer,
-        animationName: 'overlay-backdrop-exit',
-      } as unknown as AnimationEvent,
-      ref.id,
-    );
+    fixture.detectChanges();
+    await Promise.resolve();
+    surface.dispatchEvent(new Event('animationend'));
     expect(manager.entries()).toEqual([]);
   });
 
@@ -345,11 +314,13 @@ describe('ErpOverlayHost', () => {
       const ref = manager.open(TestOverlayContent, {label: 'Reduced motion'});
       fixture.detectChanges();
       await Promise.resolve();
+      await Promise.resolve();
       fixture.detectChanges();
       expect(manager.entries()[0].phase).toBe('open');
 
       ref.close();
       fixture.detectChanges();
+      await Promise.resolve();
       await Promise.resolve();
       fixture.detectChanges();
       expect(manager.entries()).toEqual([]);
