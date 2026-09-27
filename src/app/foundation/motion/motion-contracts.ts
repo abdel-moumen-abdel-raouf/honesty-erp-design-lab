@@ -12,6 +12,16 @@ export const ERP_MOTION_PRESETS = [
   'flip-y',
   'bounce',
   'swing',
+  'fade-up',
+  'fade-down',
+  'fade-start',
+  'fade-end',
+  'zoom-up',
+  'zoom-down',
+  'back',
+  'light-speed',
+  'rotate',
+  'roll',
 ] as const;
 
 export type ErpMotionPreset = (typeof ERP_MOTION_PRESETS)[number];

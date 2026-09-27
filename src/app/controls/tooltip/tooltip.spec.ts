@@ -91,7 +91,7 @@ describe('ErpTooltip', () => {
     const host = fixture.componentInstance;
     const tooltip = fixture.nativeElement.querySelector('erp-tooltip') as HTMLElement;
 
-    expect(ERP_MOTION_PRESETS).toHaveLength(13);
+    expect(ERP_MOTION_PRESETS).toHaveLength(23);
     for (const preset of ERP_MOTION_PRESETS) {
       host.enterAnimation.set(preset);
       host.exitAnimation.set(preset);

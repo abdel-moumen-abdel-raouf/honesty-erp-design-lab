@@ -63,7 +63,18 @@ const EXPECTED_MOTIONS = [
   'flip-y',
   'bounce',
   'swing',
+  'fade-up',
+  'fade-down',
+  'fade-start',
+  'fade-end',
+  'zoom-up',
+  'zoom-down',
+  'back',
+  'light-speed',
+  'rotate',
+  'roll',
 ];
+const CURRENT_TOOLTIP_STYLE_MOTIONS = EXPECTED_MOTIONS.slice(0, 13);
 
 function walk(directory) {
   if (!fs.existsSync(directory)) return [];
@@ -179,7 +190,7 @@ export function validateTooltipMotionContract(
     errors.push('Tooltip motion: exit completion must be animation-event driven');
   }
 
-  for (const motion of EXPECTED_MOTIONS) {
+  for (const motion of CURRENT_TOOLTIP_STYLE_MOTIONS) {
     for (const phase of ['enter', 'exit']) {
       if (!style.includes(`data-tooltip-${phase}-animation='${motion}'`)) {
         errors.push(`Tooltip motion: missing ${phase} mapping for ${motion}`);

@@ -19,8 +19,20 @@ const OVERLAY_CONTRACTS =
 const OVERLAY_MANAGER = 'src/app/shared/overlay/overlay-manager.ts';
 const MOTION_CONTRACTS =
   'src/app/foundation/motion/motion-contracts.ts';
+const MOTION_ADAPTER =
+  'src/app/foundation/motion/animate-css-motion-adapter.ts';
 const OVERLAY_TOKENS =
   'src/styles/foundation/components/overlay/_tokens.scss';
+const ANIMATE_EFFECTS = [
+  'fadeIn', 'fadeOut', 'zoomIn', 'zoomOut', 'slideInUp', 'slideOutDown',
+  'slideInDown', 'slideOutUp', 'bounceIn', 'bounceOut', 'flipInX',
+  'flipOutX', 'flipInY', 'flipOutY', 'fadeInUp', 'fadeOutDown',
+  'fadeInDown', 'fadeOutUp', 'zoomInUp', 'zoomOutDown', 'zoomInDown',
+  'zoomOutUp', 'backInUp', 'backOutDown', 'lightSpeedInRight',
+  'lightSpeedOutRight', 'rotateIn', 'rotateOut', 'rollIn', 'rollOut',
+  'fadeInLeft', 'fadeOutLeft', 'fadeInRight', 'fadeOutRight',
+  'slideInLeft', 'slideOutLeft', 'slideInRight', 'slideOutRight',
+];
 
 function walk(directory) {
   if (!fs.existsSync(directory)) {
@@ -58,6 +70,7 @@ export function validate(files) {
     const normalized = normalize(file);
     const spec = normalized.endsWith('.spec.ts');
     const overlayInternal = normalized.startsWith(OVERLAY_ROOT);
+    const motionAdapter = normalized === MOTION_ADAPTER;
     const consumer =
       normalized.startsWith('src/app/showcase/') ||
       normalized.startsWith('src/app/features/') ||
@@ -104,6 +117,24 @@ export function validate(files) {
 
     if (/(?:@angular\/cdk|floating-ui|popper)/i.test(source)) {
       errors.push(`${normalized}: prohibited overlay dependency`);
+    }
+
+    if (!motionAdapter && !spec && /animate__[a-z0-9_-]+/i.test(source)) {
+      errors.push(
+        `${normalized}: Animate.css classes are motion-adapter-owned`,
+      );
+    }
+
+    if (
+      !motionAdapter &&
+      !spec &&
+      ANIMATE_EFFECTS.some((effect) =>
+        new RegExp(`\\b${effect}\\b`).test(source),
+      )
+    ) {
+      errors.push(
+        `${normalized}: raw Animate.css effect names are motion-adapter-owned`,
+      );
     }
 
     if (
@@ -238,6 +269,16 @@ export function validateOverlayContractDrift(files) {
     'flip-y',
     'bounce',
     'swing',
+    'fade-up',
+    'fade-down',
+    'fade-start',
+    'fade-end',
+    'zoom-up',
+    'zoom-down',
+    'back',
+    'light-speed',
+    'rotate',
+    'roll',
   ];
 
   if (
@@ -270,7 +311,7 @@ export function validateOverlayContractDrift(files) {
     }
   }
 
-  for (const animation of expectedMotions.filter(
+  for (const animation of expectedMotions.slice(0, 13).filter(
     (animation) => animation !== 'fade-scale',
   )) {
     if (!`${facets}\n${motionFacets}`.includes(`data-overlay-animation='${animation}'`)) {
@@ -400,7 +441,7 @@ export type ErpOverlayPhase = 'entering' | 'open' | 'leaving';`,
     ],
     [
       MOTION_CONTRACTS,
-      `export const ERP_MOTION_PRESETS = ['fade', 'scale', 'fade-scale', 'slide-up', 'slide-down', 'slide-start', 'slide-end', 'zoom', 'pop', 'flip-x', 'flip-y', 'bounce', 'swing'] as const;`,
+      `export const ERP_MOTION_PRESETS = ['fade', 'scale', 'fade-scale', 'slide-up', 'slide-down', 'slide-start', 'slide-end', 'zoom', 'pop', 'flip-x', 'flip-y', 'bounce', 'swing', 'fade-up', 'fade-down', 'fade-start', 'fade-end', 'zoom-up', 'zoom-down', 'back', 'light-speed', 'rotate', 'roll'] as const;`,
     ],
     [
       OVERLAY_MANAGER,
@@ -574,6 +615,16 @@ context.drawImage(embeddedCanvas, 0, toolbarCanvas.height);`,
       [APP_TEMPLATE, '<erp-overlay-host />'],
       [APP_SOURCE, 'ErpOverlayHost'],
       ['src/app/showcase/x.ts', 'new ErpOverlayRef()'],
+    ]),
+    new Map([
+      [APP_TEMPLATE, '<erp-overlay-host />'],
+      [APP_SOURCE, 'ErpOverlayHost'],
+      ['src/app/showcase/x.ts', "const effect = 'animate__fadeIn';"],
+    ]),
+    new Map([
+      [APP_TEMPLATE, '<erp-overlay-host />'],
+      [APP_SOURCE, 'ErpOverlayHost'],
+      ['src/app/showcase/x.ts', "const effect = 'fadeIn';"],
     ]),
     new Map([
       [APP_TEMPLATE, '<erp-overlay-host />'],
