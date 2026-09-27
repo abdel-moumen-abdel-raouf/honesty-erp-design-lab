@@ -131,4 +131,45 @@ describe('Themes Specimen', () => {
       expect(lightValue).not.toBe(darkValue);
     }
   });
+
+  it('emits the exact Light and Dark Overlay backdrop palette compositions', () => {
+    const fixture = TestBed.createComponent(ThemeRoleTestHost);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const light = compiled.querySelector<HTMLElement>('#theme-role-light')!;
+    const dark = compiled.querySelector<HTMLElement>('#theme-role-dark')!;
+    const normalized = (element: HTMLElement, role: string) =>
+      getComputedStyle(element).getPropertyValue(role).replaceAll(' ', '').trim();
+
+    expect(normalized(light, '--honesty-color-overlay-backdrop-default')).toBe(
+      'rgba(16,17,21,0.32)',
+    );
+    expect(normalized(light, '--honesty-color-overlay-backdrop-neutral')).toBe(
+      'rgba(24,26,32,0.28)',
+    );
+    expect(normalized(light, '--honesty-color-overlay-backdrop-primary')).toBe(
+      'rgba(35,34,101,0.28)',
+    );
+    expect(normalized(light, '--honesty-color-overlay-backdrop-secondary')).toBe(
+      'rgba(48,59,86,0.28)',
+    );
+    expect(normalized(light, '--honesty-color-overlay-backdrop-accent')).toBe(
+      'rgba(81,43,74,0.28)',
+    );
+    expect(normalized(dark, '--honesty-color-overlay-backdrop-default')).toBe(
+      'rgba(16,17,21,0.54)',
+    );
+    expect(normalized(dark, '--honesty-color-overlay-backdrop-neutral')).toBe(
+      'rgba(16,17,21,0.5)',
+    );
+    expect(normalized(dark, '--honesty-color-overlay-backdrop-primary')).toBe(
+      'rgba(23,22,69,0.46)',
+    );
+    expect(normalized(dark, '--honesty-color-overlay-backdrop-secondary')).toBe(
+      'rgba(29,37,54,0.46)',
+    );
+    expect(normalized(dark, '--honesty-color-overlay-backdrop-accent')).toBe(
+      'rgba(48,21,41,0.46)',
+    );
+  });
 });

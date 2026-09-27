@@ -48,6 +48,7 @@ erp-overlay-host {
   border-width: var(--honesty-overlay-surface-border-width);
   border-radius: var(--honesty-overlay-surface-radius);
   box-shadow: var(--honesty-overlay-surface-elevation);
+  transform-origin: var(--honesty-overlay-motion-transform-origin);
 }
 
 .erp-ol[data-overlay-kind='modal'] {

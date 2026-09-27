@@ -23,4 +23,8 @@
   .erp-os {
     animation-duration: var(--honesty-overlay-reduced-duration);
   }
+
+  .erp-ol .erp-os {
+    animation-name: overlay-surface-reduced;
+  }
 }

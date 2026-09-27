@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {ERP_MOTION_PRESETS} from '../../foundation/motion/motion-contracts';
 import {ErpButton} from '../../controls/button/button';
 import {ErpButtonGroup} from '../../controls/button-group/button-group';
 import {ErpColorPicker} from '../../controls/color-picker/color-picker';
@@ -78,15 +79,7 @@ export class OverlayControls {
     'secondary',
     'accent',
   ];
-  readonly animations: readonly ErpOverlayAnimation[] = [
-    'fade',
-    'scale',
-    'fade-scale',
-    'slide-up',
-    'slide-down',
-    'slide-start',
-    'slide-end',
-  ];
+  readonly animations: readonly ErpOverlayAnimation[] = ERP_MOTION_PRESETS;
   readonly pickerItems: readonly ErpItemPickerOption[] = [
     {value: 'customer', label: 'العملاء', icon: 'customer'},
     {value: 'inventory', label: 'المخزون', icon: 'inventory'},

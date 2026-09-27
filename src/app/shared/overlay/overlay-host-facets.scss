@@ -56,10 +56,30 @@
   @include tokens.animation-slide-down-exit;
 }
 
+.erp-ol[data-overlay-phase='leaving'][data-overlay-animation='slide-start'] {
+  @include tokens.animation-slide-start-exit;
+}
+
+.erp-ol[data-overlay-phase='leaving'][data-overlay-animation='slide-end'] {
+  @include tokens.animation-slide-end-exit;
+}
+
 [dir='rtl'] erp-overlay-host .erp-ol[data-overlay-animation='slide-start'] {
   @include tokens.animation-slide-end;
 }
 
 [dir='rtl'] erp-overlay-host .erp-ol[data-overlay-animation='slide-end'] {
   @include tokens.animation-slide-start;
+}
+
+[dir='rtl']
+  erp-overlay-host
+  .erp-ol[data-overlay-phase='leaving'][data-overlay-animation='slide-start'] {
+  @include tokens.animation-slide-end-exit;
+}
+
+[dir='rtl']
+  erp-overlay-host
+  .erp-ol[data-overlay-phase='leaving'][data-overlay-animation='slide-end'] {
+  @include tokens.animation-slide-start-exit;
 }

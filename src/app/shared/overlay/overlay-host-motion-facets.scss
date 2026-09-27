@@ -1,0 +1,37 @@
+@use '../../../styles/foundation/components/overlay' as tokens;
+
+.erp-ol[data-overlay-animation='zoom'] {
+  @include tokens.animation-zoom;
+}
+
+.erp-ol[data-overlay-animation='pop'] {
+  @include tokens.animation-pop;
+}
+
+.erp-ol[data-overlay-animation='flip-x'] {
+  @include tokens.animation-flip-x;
+}
+
+.erp-ol[data-overlay-animation='flip-y'] {
+  @include tokens.animation-flip-y;
+}
+
+.erp-ol[data-overlay-animation='bounce'] {
+  @include tokens.animation-bounce;
+}
+
+.erp-ol[data-overlay-animation='swing'] {
+  @include tokens.animation-swing;
+}
+
+.erp-ol[data-overlay-phase='entering'][data-overlay-animation='pop'] .erp-os {
+  animation-name: overlay-surface-pop-enter;
+}
+
+.erp-ol[data-overlay-phase='entering'][data-overlay-animation='bounce'] .erp-os {
+  animation-name: overlay-surface-bounce-enter;
+}
+
+.erp-ol[data-overlay-phase='entering'][data-overlay-animation='swing'] .erp-os {
+  animation-name: overlay-surface-swing-enter;
+}

@@ -1,4 +1,5 @@
 import {Type} from '@angular/core';
+import {ErpMotionPreset} from '../../foundation/motion/motion-contracts';
 
 export type ErpOverlayKind = 'modal' | 'drawer';
 
@@ -19,14 +20,7 @@ export type ErpOverlayBackdropTone =
   | 'secondary'
   | 'accent';
 
-export type ErpOverlayAnimation =
-  | 'fade'
-  | 'scale'
-  | 'fade-scale'
-  | 'slide-up'
-  | 'slide-down'
-  | 'slide-start'
-  | 'slide-end';
+export type ErpOverlayAnimation = ErpMotionPreset;
 
 export type ErpOverlayPhase = 'entering' | 'open' | 'leaving';
 

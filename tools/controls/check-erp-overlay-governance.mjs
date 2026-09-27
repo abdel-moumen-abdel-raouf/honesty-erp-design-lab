@@ -10,11 +10,15 @@ const OVERLAY_ROOT = 'src/app/shared/overlay/';
 const OVERLAY_STYLE = 'src/app/shared/overlay/overlay-host.scss';
 const OVERLAY_FACETS =
   'src/app/shared/overlay/overlay-host-facets.scss';
+const OVERLAY_MOTION_FACETS =
+  'src/app/shared/overlay/overlay-host-motion-facets.scss';
 const OVERLAY_LIFECYCLE =
   'src/app/shared/overlay/overlay-host-lifecycle.scss';
 const OVERLAY_CONTRACTS =
   'src/app/shared/overlay/overlay-contracts.ts';
 const OVERLAY_MANAGER = 'src/app/shared/overlay/overlay-manager.ts';
+const MOTION_CONTRACTS =
+  'src/app/foundation/motion/motion-contracts.ts';
 const OVERLAY_TOKENS =
   'src/styles/foundation/components/overlay/_tokens.scss';
 
@@ -153,12 +157,21 @@ function stringUnion(source, typeName) {
   return [...body.matchAll(/'([^']+)'/g)].map((match) => match[1]);
 }
 
+function stringConstArray(source, constName) {
+  const body = source.match(
+    new RegExp(`export const ${constName}\\s*=\\s*\\[([\\s\\S]*?)\\]\\s*as const`),
+  )?.[1] ?? '';
+  return [...body.matchAll(/'([^']+)'/g)].map((match) => match[1]);
+}
+
 export function validateOverlayContractDrift(files) {
   const errors = [];
   const contracts = files.get(OVERLAY_CONTRACTS) ?? '';
   const manager = files.get(OVERLAY_MANAGER) ?? '';
+  const motionContracts = files.get(MOTION_CONTRACTS) ?? '';
   const hostStyle = files.get(OVERLAY_STYLE) ?? '';
   const facets = files.get(OVERLAY_FACETS) ?? '';
+  const motionFacets = files.get(OVERLAY_MOTION_FACETS) ?? '';
   const lifecycle = files.get(OVERLAY_LIFECYCLE) ?? '';
   const tokens = files.get(OVERLAY_TOKENS) ?? '';
 
@@ -167,18 +180,6 @@ export function validateOverlayContractDrift(files) {
     [
       'ErpOverlayBackdropTone',
       ['default', 'neutral', 'primary', 'secondary', 'accent'],
-    ],
-    [
-      'ErpOverlayAnimation',
-      [
-        'fade',
-        'scale',
-        'fade-scale',
-        'slide-up',
-        'slide-down',
-        'slide-start',
-        'slide-end',
-      ],
     ],
     ['ErpOverlayPhase', ['entering', 'open', 'leaving']],
   ]);
@@ -189,14 +190,41 @@ export function validateOverlayContractDrift(files) {
     }
   }
 
+  const expectedMotions = [
+    'fade',
+    'scale',
+    'fade-scale',
+    'slide-up',
+    'slide-down',
+    'slide-start',
+    'slide-end',
+    'zoom',
+    'pop',
+    'flip-x',
+    'flip-y',
+    'bounce',
+    'swing',
+  ];
+
+  if (
+    JSON.stringify(stringConstArray(motionContracts, 'ERP_MOTION_PRESETS')) !==
+    JSON.stringify(expectedMotions)
+  ) {
+    errors.push('ErpMotionPreset: shared catalog drifted from the correction contract');
+  }
+
+  if (!contracts.includes('export type ErpOverlayAnimation = ErpMotionPreset;')) {
+    errors.push('ErpOverlayAnimation must alias the shared ErpMotionPreset');
+  }
+
   for (const required of [
     "return ['fade-scale', 'fade-scale']",
     "return ['slide-start', 'slide-start']",
     "return ['slide-end', 'slide-end']",
     "return ['slide-up', 'slide-down']",
-    "dismissOnEscape: options.dismissOnEscape ?? true",
-    "dismissOnBackdrop: options.dismissOnBackdrop ?? true",
-    "blur: options.blur ?? 'medium'",
+    "dismissOnEscape: options.dismissOnEscape ?? false",
+    "dismissOnBackdrop: options.dismissOnBackdrop ?? false",
+    "blur: options.blur ?? 'low'",
     "backdropTone: options.backdropTone ?? 'default'",
     "phase: 'entering'",
     "phase: 'open'",
@@ -208,15 +236,10 @@ export function validateOverlayContractDrift(files) {
     }
   }
 
-  for (const animation of [
-    'fade',
-    'scale',
-    'slide-up',
-    'slide-down',
-    'slide-start',
-    'slide-end',
-  ]) {
-    if (!facets.includes(`data-overlay-animation='${animation}'`)) {
+  for (const animation of expectedMotions.filter(
+    (animation) => animation !== 'fade-scale',
+  )) {
+    if (!`${facets}\n${motionFacets}`.includes(`data-overlay-animation='${animation}'`)) {
       errors.push(`OverlayHost: missing ${animation} motion mapping`);
     }
   }
@@ -243,6 +266,9 @@ export function validateOverlayContractDrift(files) {
     '--honesty-overlay-layer:',
     '@mixin animation-fade-scale',
     '--honesty-overlay-reduced-duration:',
+    '--honesty-overlay-enter-duration: 240ms;',
+    '--honesty-overlay-exit-duration: 180ms;',
+    '--honesty-overlay-motion-slide-distance: 1.5rem;',
   ]) {
     if (!tokens.includes(required)) {
       errors.push(`Overlay tokens: missing corrected contract ${required}`);
@@ -335,8 +361,12 @@ function runSelfTest() {
       OVERLAY_CONTRACTS,
       `export type ErpOverlayBlur = 'low' | 'medium' | 'high';
 export type ErpOverlayBackdropTone = 'default' | 'neutral' | 'primary' | 'secondary' | 'accent';
-export type ErpOverlayAnimation = 'fade' | 'scale' | 'fade-scale' | 'slide-up' | 'slide-down' | 'slide-start' | 'slide-end';
+export type ErpOverlayAnimation = ErpMotionPreset;
 export type ErpOverlayPhase = 'entering' | 'open' | 'leaving';`,
+    ],
+    [
+      MOTION_CONTRACTS,
+      `export const ERP_MOTION_PRESETS = ['fade', 'scale', 'fade-scale', 'slide-up', 'slide-down', 'slide-start', 'slide-end', 'zoom', 'pop', 'flip-x', 'flip-y', 'bounce', 'swing'] as const;`,
     ],
     [
       OVERLAY_MANAGER,
@@ -344,9 +374,9 @@ export type ErpOverlayPhase = 'entering' | 'open' | 'leaving';`,
 return ['slide-start', 'slide-start'];
 return ['slide-end', 'slide-end'];
 return ['slide-up', 'slide-down'];
-dismissOnEscape: options.dismissOnEscape ?? true;
-dismissOnBackdrop: options.dismissOnBackdrop ?? true;
-blur: options.blur ?? 'medium';
+dismissOnEscape: options.dismissOnEscape ?? false;
+dismissOnBackdrop: options.dismissOnBackdrop ?? false;
+blur: options.blur ?? 'low';
 backdropTone: options.backdropTone ?? 'default';
 phase: 'entering'; phase: 'open'; phase: 'leaving'; top?.ref.id === id;`,
     ],
@@ -356,7 +386,7 @@ phase: 'entering'; phase: 'open'; phase: 'leaving'; top?.ref.id === id;`,
     ],
     [
       OVERLAY_FACETS,
-      "data-overlay-animation='fade' data-overlay-animation='scale' data-overlay-animation='slide-up' data-overlay-animation='slide-down' data-overlay-animation='slide-start' data-overlay-animation='slide-end' [dir='rtl'] erp-overlay-host",
+      "data-overlay-animation='fade' data-overlay-animation='scale' data-overlay-animation='slide-up' data-overlay-animation='slide-down' data-overlay-animation='slide-start' data-overlay-animation='slide-end' data-overlay-animation='zoom' data-overlay-animation='pop' data-overlay-animation='flip-x' data-overlay-animation='flip-y' data-overlay-animation='bounce' data-overlay-animation='swing' [dir='rtl'] erp-overlay-host",
     ],
     [
       OVERLAY_LIFECYCLE,
@@ -364,7 +394,7 @@ phase: 'entering'; phase: 'open'; phase: 'leaving'; top?.ref.id === id;`,
     ],
     [
       OVERLAY_TOKENS,
-      '--honesty-overlay-backdrop-bg: x; --honesty-overlay-backdrop-blur: x; --honesty-overlay-layer: x; @mixin animation-fade-scale {} --honesty-overlay-reduced-duration: x;',
+      '--honesty-overlay-backdrop-bg: x; --honesty-overlay-backdrop-blur: x; --honesty-overlay-layer: x; @mixin animation-fade-scale {} --honesty-overlay-reduced-duration: x; --honesty-overlay-enter-duration: 240ms; --honesty-overlay-exit-duration: 180ms; --honesty-overlay-motion-slide-distance: 1.5rem;',
     ],
   ]);
 
@@ -383,9 +413,13 @@ phase: 'entering'; phase: 'open'; phase: 'leaving'; top?.ref.id === id;`,
     new Map(validDriftFiles).set(
       OVERLAY_MANAGER,
       (validDriftFiles.get(OVERLAY_MANAGER) ?? '').replace(
-        "blur: options.blur ?? 'medium'",
         "blur: options.blur ?? 'low'",
+        "blur: options.blur ?? 'medium'",
       ),
+    ),
+    new Map(validDriftFiles).set(
+      MOTION_CONTRACTS,
+      (validDriftFiles.get(MOTION_CONTRACTS) ?? '').replace(', \'swing\'', ''),
     ),
     new Map(validDriftFiles).set(OVERLAY_LIFECYCLE, ''),
   ].entries()) {

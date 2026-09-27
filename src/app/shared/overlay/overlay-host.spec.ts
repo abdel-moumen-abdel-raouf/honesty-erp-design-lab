@@ -70,7 +70,7 @@ describe('ErpOverlayHost', () => {
       root.querySelector('[data-overlay-phase="entering"]'),
     ).toBeTruthy();
     expect(
-      root.querySelector('[data-overlay-blur="medium"]'),
+      root.querySelector('[data-overlay-blur="low"]'),
     ).toBeTruthy();
     expect(
       root.querySelector('[data-overlay-backdrop-tone="default"]'),
@@ -120,11 +120,13 @@ describe('ErpOverlayHost', () => {
       kind: 'drawer',
       position: 'start',
       label: 'Start drawer',
+      dismissOnEscape: true,
     });
     const second = manager.open(TestOverlayContent, {
       kind: 'drawer',
       position: 'end',
       label: 'End drawer',
+      dismissOnEscape: true,
     });
     fixture.detectChanges();
 
@@ -184,6 +186,15 @@ describe('ErpOverlayHost', () => {
           '--honesty-overlay-motion-transform',
         ),
       ).toBe('translateX(var(--honesty-overlay-motion-slide-distance))');
+
+      manager.completeTransition(manager.entries()[0].ref.id, 'entering');
+      manager.entries()[0].ref.close();
+      fixture.detectChanges();
+      expect(
+        getComputedStyle(layer).getPropertyValue(
+          '--honesty-overlay-motion-transform',
+        ),
+      ).toContain('calc(-1 *');
     } finally {
       if (originalDirection === null) {
         document.documentElement.removeAttribute('dir');
@@ -191,6 +202,54 @@ describe('ErpOverlayHost', () => {
         document.documentElement.setAttribute('dir', originalDirection);
       }
     }
+  });
+
+  it('emits the exact tuned fade and fade-scale durations and transforms', () => {
+    const fixture = TestBed.createComponent(TestOverlayShell);
+    const manager = TestBed.inject(ErpOverlayManager);
+    const fade = manager.open(TestOverlayContent, {
+      label: 'Fade',
+      enterAnimation: 'fade',
+      exitAnimation: 'fade',
+    });
+    fixture.detectChanges();
+    const layer = (fixture.nativeElement as HTMLElement).querySelector(
+      '.erp-ol',
+    ) as HTMLElement;
+    let style = getComputedStyle(layer);
+
+    expect(style.getPropertyValue('--honesty-overlay-enter-duration')).toBe(
+      '220ms',
+    );
+    expect(style.getPropertyValue('--honesty-overlay-exit-duration')).toBe(
+      '160ms',
+    );
+    expect(style.getPropertyValue('--honesty-overlay-motion-transform')).toBe(
+      'none',
+    );
+
+    manager.completeTransition(fade.id, 'entering');
+    fade.close();
+    manager.completeTransition(fade.id, 'leaving');
+
+    manager.open(TestOverlayContent, {label: 'Fade scale'});
+    fixture.detectChanges();
+    const host = (fixture.nativeElement as HTMLElement).querySelector(
+      'erp-overlay-host',
+    ) as HTMLElement;
+    style = getComputedStyle(host);
+    expect(style.getPropertyValue('--honesty-overlay-enter-duration')).toBe(
+      '240ms',
+    );
+    expect(style.getPropertyValue('--honesty-overlay-exit-duration')).toBe(
+      '180ms',
+    );
+    expect(style.getPropertyValue('--honesty-overlay-motion-transform')).toBe(
+      'scale(0.90)',
+    );
+    expect(
+      style.getPropertyValue('--honesty-overlay-motion-slide-distance'),
+    ).toBe('1.5rem');
   });
 
   it('restores focus to the captured origin after close', async () => {

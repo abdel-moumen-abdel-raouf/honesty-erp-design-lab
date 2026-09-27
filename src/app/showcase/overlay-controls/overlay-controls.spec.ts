@@ -1,6 +1,7 @@
 import {TestBed} from '@angular/core/testing';
 import {provideRouter} from '@angular/router';
 import {routes} from '../../app.routes';
+import {ERP_MOTION_PRESETS} from '../../foundation/motion/motion-contracts';
 import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
 import {OverlayControls} from './overlay-controls';
 
@@ -150,15 +151,7 @@ describe('OverlayControls showcase', () => {
     expect(
       [...root.querySelectorAll<HTMLElement>('[data-animation-evidence]')]
         .map((item) => item.dataset['animationValue']),
-    ).toEqual([
-      'fade',
-      'scale',
-      'fade-scale',
-      'slide-up',
-      'slide-down',
-      'slide-start',
-      'slide-end',
-    ]);
+    ).toEqual([...ERP_MOTION_PRESETS]);
     expect(root.querySelectorAll('[data-reduced-motion-evidence]')).toHaveLength(1);
   });
 

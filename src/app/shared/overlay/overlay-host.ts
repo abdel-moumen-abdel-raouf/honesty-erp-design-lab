@@ -38,6 +38,7 @@ interface BackgroundState {
     './overlay-host.scss',
     './overlay-host-lifecycle.scss',
     './overlay-host-facets.scss',
+    './overlay-host-motion-facets.scss',
     './overlay-host-motion.scss',
   ],
   encapsulation: ViewEncapsulation.None,

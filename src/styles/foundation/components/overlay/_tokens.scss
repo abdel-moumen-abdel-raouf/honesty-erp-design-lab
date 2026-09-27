@@ -2,7 +2,7 @@
   --honesty-overlay-backdrop-bg:
     var(--honesty-color-overlay-backdrop-default);
   --honesty-overlay-backdrop-blur:
-    var(--honesty-effect-backdrop-blur-medium);
+    var(--honesty-effect-backdrop-blur-low);
   --honesty-overlay-surface-bg: var(--honesty-color-surface-elevated);
   --honesty-overlay-surface-fg: var(--honesty-color-text-primary);
   --honesty-overlay-surface-border-color: var(--honesty-border-subtle);
@@ -19,15 +19,17 @@
   --honesty-overlay-surface-padding: var(--honesty-space-inset-loose);
   --honesty-overlay-surface-inline-size: 36rem;
   --honesty-overlay-surface-max-block-size: calc(100dvh - 2 * var(--honesty-overlay-viewport-inset));
-  --honesty-overlay-enter-duration: var(--honesty-motion-duration-default);
-  --honesty-overlay-exit-duration: var(--honesty-motion-duration-default);
+  --honesty-overlay-enter-duration: 240ms;
+  --honesty-overlay-exit-duration: 180ms;
   --honesty-overlay-enter-easing: var(--honesty-motion-easing-enter);
   --honesty-overlay-exit-easing: var(--honesty-motion-easing-exit);
   --honesty-overlay-backdrop-opacity-start: 0;
   --honesty-overlay-backdrop-opacity-end: 1;
   --honesty-overlay-motion-opacity: 0;
-  --honesty-overlay-motion-transform: scale(0.96);
-  --honesty-overlay-motion-slide-distance: 2rem;
+  --honesty-overlay-motion-transform: scale(0.90);
+  --honesty-overlay-motion-transform-overshoot: none;
+  --honesty-overlay-motion-transform-origin: center;
+  --honesty-overlay-motion-slide-distance: 1.5rem;
   --honesty-overlay-reduced-duration: var(--honesty-motion-duration-instant);
 }
 
@@ -72,39 +74,53 @@
 }
 
 @mixin animation-fade {
+  --honesty-overlay-enter-duration: 220ms;
+  --honesty-overlay-exit-duration: 160ms;
   --honesty-overlay-motion-opacity: 0;
   --honesty-overlay-motion-transform: none;
 }
 
 @mixin animation-scale {
+  --honesty-overlay-enter-duration: 220ms;
+  --honesty-overlay-exit-duration: 160ms;
   --honesty-overlay-motion-opacity: 1;
-  --honesty-overlay-motion-transform: scale(0.96);
+  --honesty-overlay-motion-transform: scale(0.92);
 }
 
 @mixin animation-fade-scale {
+  --honesty-overlay-enter-duration: 240ms;
+  --honesty-overlay-exit-duration: 180ms;
   --honesty-overlay-motion-opacity: 0;
-  --honesty-overlay-motion-transform: scale(0.96);
+  --honesty-overlay-motion-transform: scale(0.90);
 }
 
 @mixin animation-slide-up {
+  --honesty-overlay-enter-duration: 220ms;
+  --honesty-overlay-exit-duration: 180ms;
   --honesty-overlay-motion-opacity: 1;
   --honesty-overlay-motion-transform:
     translateY(var(--honesty-overlay-motion-slide-distance));
 }
 
 @mixin animation-slide-down {
+  --honesty-overlay-enter-duration: 220ms;
+  --honesty-overlay-exit-duration: 180ms;
   --honesty-overlay-motion-opacity: 1;
   --honesty-overlay-motion-transform:
     translateY(calc(-1 * var(--honesty-overlay-motion-slide-distance)));
 }
 
 @mixin animation-slide-start {
+  --honesty-overlay-enter-duration: 220ms;
+  --honesty-overlay-exit-duration: 180ms;
   --honesty-overlay-motion-opacity: 1;
   --honesty-overlay-motion-transform:
     translateX(calc(-1 * var(--honesty-overlay-motion-slide-distance)));
 }
 
 @mixin animation-slide-end {
+  --honesty-overlay-enter-duration: 220ms;
+  --honesty-overlay-exit-duration: 180ms;
   --honesty-overlay-motion-opacity: 1;
   --honesty-overlay-motion-transform:
     translateX(var(--honesty-overlay-motion-slide-distance));
@@ -118,6 +134,62 @@
 @mixin animation-slide-down-exit {
   --honesty-overlay-motion-transform:
     translateY(var(--honesty-overlay-motion-slide-distance));
+}
+
+@mixin animation-slide-start-exit {
+  --honesty-overlay-motion-transform:
+    translateX(var(--honesty-overlay-motion-slide-distance));
+}
+
+@mixin animation-slide-end-exit {
+  --honesty-overlay-motion-transform:
+    translateX(calc(-1 * var(--honesty-overlay-motion-slide-distance)));
+}
+
+@mixin animation-zoom {
+  --honesty-overlay-enter-duration: 260ms;
+  --honesty-overlay-exit-duration: 180ms;
+  --honesty-overlay-motion-opacity: 0;
+  --honesty-overlay-motion-transform: scale(0.82);
+}
+
+@mixin animation-pop {
+  --honesty-overlay-enter-duration: 280ms;
+  --honesty-overlay-exit-duration: 180ms;
+  --honesty-overlay-motion-opacity: 0;
+  --honesty-overlay-motion-transform: scale(0.90);
+  --honesty-overlay-motion-transform-overshoot: scale(1.03);
+}
+
+@mixin animation-flip-x {
+  --honesty-overlay-enter-duration: 300ms;
+  --honesty-overlay-exit-duration: 220ms;
+  --honesty-overlay-motion-opacity: 0;
+  --honesty-overlay-motion-transform: perspective(48rem) rotateX(-12deg);
+}
+
+@mixin animation-flip-y {
+  --honesty-overlay-enter-duration: 300ms;
+  --honesty-overlay-exit-duration: 220ms;
+  --honesty-overlay-motion-opacity: 0;
+  --honesty-overlay-motion-transform: perspective(48rem) rotateY(-12deg);
+}
+
+@mixin animation-bounce {
+  --honesty-overlay-enter-duration: 360ms;
+  --honesty-overlay-exit-duration: 200ms;
+  --honesty-overlay-motion-opacity: 0;
+  --honesty-overlay-motion-transform: translateY(1rem);
+  --honesty-overlay-motion-transform-overshoot: translateY(-0.25rem);
+}
+
+@mixin animation-swing {
+  --honesty-overlay-enter-duration: 320ms;
+  --honesty-overlay-exit-duration: 200ms;
+  --honesty-overlay-motion-opacity: 0;
+  --honesty-overlay-motion-transform: rotate(-3deg);
+  --honesty-overlay-motion-transform-overshoot: rotate(1deg);
+  --honesty-overlay-motion-transform-origin: top center;
 }
 
 @mixin size-sm {

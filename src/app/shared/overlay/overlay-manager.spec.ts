@@ -1,5 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
+import {ERP_MOTION_PRESETS} from '../../foundation/motion/motion-contracts';
 import {
   ErpOverlayAnimation,
   ErpOverlayBackdropTone,
@@ -26,9 +27,9 @@ describe('ErpOverlayManager', () => {
       position: 'center',
       size: 'md',
       label: 'Account',
-      dismissOnEscape: true,
-      dismissOnBackdrop: true,
-      blur: 'medium',
+      dismissOnEscape: false,
+      dismissOnBackdrop: false,
+      blur: 'low',
       backdropTone: 'default',
       enterAnimation: 'fade-scale',
       exitAnimation: 'fade-scale',
@@ -113,9 +114,15 @@ describe('ErpOverlayManager', () => {
 
   it('keeps a stack and dismisses only its top entry without replaying the underlying entry', async () => {
     const manager = TestBed.inject(ErpOverlayManager);
-    const first = manager.open(TestOverlayContent, {label: 'First'});
+    const first = manager.open(TestOverlayContent, {
+      label: 'First',
+      dismissOnEscape: true,
+    });
     manager.completeTransition(first.id, 'entering');
-    const second = manager.open(TestOverlayContent, {label: 'Second'});
+    const second = manager.open(TestOverlayContent, {
+      label: 'Second',
+      dismissOnBackdrop: true,
+    });
     manager.completeTransition(second.id, 'entering');
 
     manager.dismissFromBackdrop(first.id);
@@ -146,13 +153,9 @@ describe('ErpOverlayManager', () => {
     });
   });
 
-  it('honors disabled Escape and backdrop dismissal policies', () => {
+  it('ignores dismissal by default and enables backdrop and Escape independently', () => {
     const manager = TestBed.inject(ErpOverlayManager);
-    const ref = manager.open(TestOverlayContent, {
-      label: 'Persistent',
-      dismissOnBackdrop: false,
-      dismissOnEscape: false,
-    });
+    const ref = manager.open(TestOverlayContent, {label: 'Persistent'});
 
     manager.dismissFromBackdrop(ref.id);
     manager.dismissTopFromEscape();
@@ -161,6 +164,26 @@ describe('ErpOverlayManager', () => {
       phase: 'entering',
       ref,
     });
+
+    manager.completeTransition(ref.id, 'entering');
+    ref.close();
+    manager.completeTransition(ref.id, 'leaving');
+
+    const backdrop = manager.open(TestOverlayContent, {
+      label: 'Backdrop',
+      dismissOnBackdrop: true,
+    });
+    manager.dismissFromBackdrop(backdrop.id);
+    expect(manager.entries().at(-1)?.phase).toBe('leaving');
+    manager.completeTransition(backdrop.id, 'leaving');
+
+    const escape = manager.open(TestOverlayContent, {
+      label: 'Escape',
+      dismissOnEscape: true,
+    });
+    manager.dismissTopFromEscape();
+    expect(manager.entries().at(-1)?.phase).toBe('leaving');
+    manager.completeTransition(escape.id, 'leaving');
   });
 
   it('retains every configured blur, tone, and animation preset per entry', () => {
@@ -173,15 +196,7 @@ describe('ErpOverlayManager', () => {
       'secondary',
       'accent',
     ];
-    const animations: readonly ErpOverlayAnimation[] = [
-      'fade',
-      'scale',
-      'fade-scale',
-      'slide-up',
-      'slide-down',
-      'slide-start',
-      'slide-end',
-    ];
+    const animations: readonly ErpOverlayAnimation[] = ERP_MOTION_PRESETS;
 
     for (let index = 0; index < animations.length; index += 1) {
       const blur = blurs[index % blurs.length];
