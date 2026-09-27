@@ -16,6 +16,7 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
+import {ErpMotionPreset} from '../../foundation/motion/motion-contracts';
 import {ErpText} from '../../primitives/text/text';
 import {AnchoredOverlayController} from '../../shared/anchored-overlay/anchored-overlay-controller';
 import {AnchoredOverlayGeometryResult, AnchoredOverlayPhysicalPlacement} from '../../shared/anchored-overlay/anchored-overlay-contracts';
@@ -31,7 +32,13 @@ let nextTooltipId = 0;
   selector: 'erp-tooltip',
   imports: [ErpText],
   templateUrl: './tooltip.html',
-  styleUrl: './tooltip.scss',
+  styleUrls: [
+    './tooltip.scss',
+    './tooltip-motion-facets.scss',
+    './tooltip-motion-slide-facets.scss',
+    './tooltip-motion.scss',
+    './tooltip-motion-advanced-facets.scss',
+  ],
   host: {
     '[attr.data-tooltip-variant]': 'variant()',
     '[attr.data-tooltip-interactive]': 'interactive()',
@@ -41,6 +48,8 @@ let nextTooltipId = 0;
     '[attr.data-tooltip-state]': 'state()',
     '[attr.data-tooltip-open]': 'open()',
     '[attr.data-tooltip-resolved-placement]': 'resolvedPlacement()',
+    '[attr.data-tooltip-enter-animation]': 'enterAnimation()',
+    '[attr.data-tooltip-exit-animation]': 'exitAnimation()',
   },
 })
 export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnDestroy {
@@ -51,6 +60,8 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
   readonly activation = input<ErpTooltipActivation>('auto');
   readonly showArrow = input(true, {transform: booleanAttribute});
   readonly disabled = input(false, {transform: booleanAttribute});
+  readonly enterAnimation = input<ErpMotionPreset>('fade-scale');
+  readonly exitAnimation = input<ErpMotionPreset>('fade');
   readonly open = model(false);
 
   readonly tooltipId = `honesty-tooltip-${++nextTooltipId}`;
@@ -78,6 +89,7 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
   private shown = false;
   private closing = false;
   private viewReady = false;
+  private placementTransformOrigin = 'center';
   private originalAttributes = new Map<string, string | null>();
   private semanticMode: 'described' | 'interactive' | null = null;
 
@@ -282,7 +294,11 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
     this.closing = false;
     this.writeOpen(true);
     requestAnimationFrame(() => {
-      if (this.shown) surface.dataset['phase'] = 'open';
+      if (this.shown) {
+        surface.dataset['phase'] = 'entering';
+        this.applyMotionTransformOrigin(surface, this.enterAnimation());
+        this.scheduleReducedMotionCompletion('entering');
+      }
     });
     document.addEventListener('pointerdown', this.handleDocumentPointerDown, true);
     document.addEventListener('keydown', this.handleDocumentKeyDown, true);
@@ -297,15 +313,32 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
     this.writeOpen(false);
     const surface = this.surface().nativeElement;
     surface.dataset['phase'] = 'closing';
+    this.applyMotionTransformOrigin(surface, this.exitAnimation());
     document.removeEventListener('pointerdown', this.handleDocumentPointerDown, true);
     document.removeEventListener('keydown', this.handleDocumentKeyDown, true);
     window.removeEventListener('scroll', this.handleTouchScroll, true);
     if (this.interactive() && this.state() === 'ready') this.applyTriggerSemantics(false);
     else this.restoreTriggerSemantics();
     if (returnFocus) this.actualTrigger?.focus();
-    this.timer = setTimeout(() => {
-      if (!this.shown) { this.controller?.hide(); this.closing = false; this.resolvedPlacement.set(null); delete surface.dataset['phase']; }
-    }, 100);
+    this.scheduleReducedMotionCompletion('closing');
+  }
+
+  handleSurfaceAnimationEnd(event: AnimationEvent): void {
+    if (event.target !== event.currentTarget) return;
+    const surface = event.currentTarget as HTMLElement;
+    if (
+      surface.dataset['phase'] === 'entering' &&
+      ['tooltip-surface-enter', 'tooltip-surface-overshoot-enter'].includes(
+        event.animationName,
+      )
+    ) {
+      this.completeEnter(surface);
+    } else if (
+      surface.dataset['phase'] === 'closing' &&
+      event.animationName === 'tooltip-surface-exit'
+    ) {
+      this.finalizeClose(surface);
+    }
   }
 
   private readonly handleDocumentPointerDown = (event: Event): void => {
@@ -331,6 +364,44 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
   private clearTimer(): void { if (this.timer !== null) clearTimeout(this.timer); this.timer = null; }
   private writeOpen(value: boolean): void { this.open.set(value); }
 
+  private completeEnter(surface: HTMLElement): void {
+    if (this.shown && !this.closing) surface.dataset['phase'] = 'open';
+  }
+
+  private finalizeClose(surface: HTMLElement): void {
+    if (this.shown) return;
+    this.controller?.hide();
+    this.closing = false;
+    this.resolvedPlacement.set(null);
+    delete surface.dataset['phase'];
+  }
+
+  private scheduleReducedMotionCompletion(
+    phase: 'entering' | 'closing',
+  ): void {
+    if (
+      typeof window.matchMedia !== 'function' ||
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      return;
+    }
+
+    queueMicrotask(() => {
+      const surface = this.surface().nativeElement;
+      if (surface.dataset['phase'] !== phase) return;
+      if (phase === 'entering') this.completeEnter(surface);
+      else this.finalizeClose(surface);
+    });
+  }
+
+  private applyMotionTransformOrigin(
+    surface: HTMLElement,
+    animation: ErpMotionPreset,
+  ): void {
+    surface.style.transformOrigin =
+      animation === 'swing' ? 'top center' : this.placementTransformOrigin;
+  }
+
   private cssLengthPx(name: string): number {
     const surfaceStyle = getComputedStyle(this.surface().nativeElement);
     const raw = surfaceStyle.getPropertyValue(name).trim();
@@ -353,14 +424,21 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
     surface.style.top = `${result.y}px`;
 
     const crossAxis = `${result.arrowCrossAxisCenter}px`;
-    surface.style.transformOrigin = {
+    this.placementTransformOrigin = {
       top: `${crossAxis} 100%`,
       bottom: `${crossAxis} 0%`,
       left: `100% ${crossAxis}`,
       right: `0% ${crossAxis}`,
     }[result.placement];
+    surface.style.transformOrigin = this.placementTransformOrigin;
 
     this.resolvedPlacement.set(result.placement);
+    const phase = surface.dataset['phase'];
+    if (phase === 'entering') {
+      this.applyMotionTransformOrigin(surface, this.enterAnimation());
+    } else if (phase === 'closing') {
+      this.applyMotionTransformOrigin(surface, this.exitAnimation());
+    }
     const arrow = this.arrow()?.nativeElement;
     if (arrow) this.applyArrowGeometry(arrow, result);
   }

@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { routes } from '../../app.routes';
+import { ERP_MOTION_PRESETS } from '../../foundation/motion/motion-contracts';
 import { TooltipControls } from './tooltip-controls';
 
 describe('TooltipControls showcase', () => {
@@ -15,7 +16,7 @@ describe('TooltipControls showcase', () => {
   it('uses only approved ERP visible composition and includes all required evidence', () => {
     const root = create().nativeElement as HTMLElement;
     expect(root.querySelectorAll('erp-tooltip').length).toBeGreaterThan(0);
-    expect(root.querySelectorAll('erp-tooltip-content').length).toBe(6);
+    expect(root.querySelectorAll('erp-tooltip-content').length).toBe(7);
     expect(root.querySelectorAll('[data-review-group="placements"] erp-tooltip').length).toBe(8);
     expect(root.querySelectorAll('[data-review-group="rich-interactive"] erp-button').length).toBe(4);
     expect(root.querySelectorAll('[data-review-group="activation-controlled-disabled"] erp-tooltip').length).toBe(8);
@@ -44,5 +45,28 @@ describe('TooltipControls showcase', () => {
     fixture.componentInstance.controlledOpen.set(false);
     fixture.detectChanges();
     expect(controlled.map((item) => item.getAttribute('data-tooltip-open'))).toEqual(['false', 'false']);
+  });
+
+  it('provides one shared-catalog motion selector with plain and rich evidence', () => {
+    const fixture = create();
+    const root = fixture.nativeElement as HTMLElement;
+    expect(fixture.componentInstance.motionOptions.map((item) => item.value)).toEqual([
+      ...ERP_MOTION_PRESETS,
+    ]);
+    expect(root.querySelectorAll('[data-motion-selector-evidence]')).toHaveLength(1);
+    expect(root.querySelectorAll('[data-enter-motion-selector]')).toHaveLength(1);
+    expect(root.querySelectorAll('[data-exit-motion-selector]')).toHaveLength(1);
+    expect(root.querySelectorAll('[data-motion-plain-evidence]')).toHaveLength(1);
+    expect(root.querySelectorAll('[data-motion-rich-evidence]')).toHaveLength(1);
+
+    fixture.componentInstance.selectEnterAnimation('bounce');
+    fixture.componentInstance.selectExitAnimation('swing');
+    fixture.detectChanges();
+    for (const evidence of root.querySelectorAll<HTMLElement>(
+      '[data-motion-plain-evidence], [data-motion-rich-evidence]',
+    )) {
+      expect(evidence.getAttribute('data-tooltip-enter-animation')).toBe('bounce');
+      expect(evidence.getAttribute('data-tooltip-exit-animation')).toBe('swing');
+    }
   });
 });

@@ -35,30 +35,23 @@
   overflow-wrap: anywhere;
   overflow: visible;
   pointer-events: none;
-  opacity: 0;
-  transform: scale(var(--honesty-tooltip-enter-scale));
-  transition: opacity var(--honesty-tooltip-exit-duration) var(--honesty-tooltip-exit-easing), transform var(--honesty-tooltip-exit-duration) var(--honesty-tooltip-exit-easing);
+  opacity: 1;
+  transform: none;
 }
 
 :host([data-tooltip-interactive='true']) .erp-tooltip__surface[data-phase='open'] { pointer-events: auto; }
 .erp-tooltip__surface[data-phase='measuring'] { visibility: hidden; }
-.erp-tooltip__surface[data-phase='open'] {
+.erp-tooltip__surface[data-phase='entering'],
+.erp-tooltip__surface[data-phase='open'],
+.erp-tooltip__surface[data-phase='closing'] {
   visibility: visible;
+}
+.erp-tooltip__surface[data-phase='open'] {
   opacity: 1;
-  transform: scale(1);
-  transition-duration: var(--honesty-tooltip-enter-duration);
-  transition-timing-function: var(--honesty-tooltip-enter-easing);
+  transform: none;
 }
 
 .erp-tooltip__arrow {
   position: absolute;
   background: var(--honesty-tooltip-arrow-bg);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .erp-tooltip__surface,
-  .erp-tooltip__surface[data-phase='open'] {
-    transform: none;
-    transition-duration: var(--honesty-tooltip-reduced-duration);
-  }
 }

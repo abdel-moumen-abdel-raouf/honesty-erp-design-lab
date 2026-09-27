@@ -10,7 +10,13 @@ const SEARCH_BOX_TEMPLATE =
   'src/app/controls/search-box/search-box.html';
 const SHOWCASE = 'src/app/showcase/tooltip-controls/tooltip-controls.html';
 const TOKEN_FILE = path.join(ROOT, 'src', 'styles', 'foundation', 'components', 'tooltip', '_tokens.scss');
-const TOOLTIP_STYLE = path.join(ROOT, 'src', 'app', 'controls', 'tooltip', 'tooltip.scss');
+const TOOLTIP_STYLE_FILES = [
+  'tooltip.scss',
+  'tooltip-motion-facets.scss',
+  'tooltip-motion-slide-facets.scss',
+  'tooltip-motion-advanced-facets.scss',
+  'tooltip-motion.scss',
+].map((file) => path.join(ROOT, 'src', 'app', 'controls', 'tooltip', file));
 const EXPECTED_BASE_TOKENS = [
   '--honesty-tooltip-bg', '--honesty-tooltip-fg', '--honesty-tooltip-max-width',
   '--honesty-tooltip-min-width', '--honesty-tooltip-min-height',
@@ -21,7 +27,11 @@ const EXPECTED_BASE_TOKENS = [
   '--honesty-tooltip-arrow-width', '--honesty-tooltip-arrow-height',
   '--honesty-tooltip-arrow-safe-inset', '--honesty-tooltip-enter-duration',
   '--honesty-tooltip-exit-duration', '--honesty-tooltip-enter-easing',
-  '--honesty-tooltip-exit-easing', '--honesty-tooltip-enter-scale',
+  '--honesty-tooltip-exit-easing', '--honesty-tooltip-enter-opacity',
+  '--honesty-tooltip-enter-transform',
+  '--honesty-tooltip-enter-transform-overshoot',
+  '--honesty-tooltip-exit-opacity', '--honesty-tooltip-exit-transform',
+  '--honesty-tooltip-motion-slide-distance',
   '--honesty-tooltip-reduced-duration',
 ];
 const EXPECTED_RICH_TOKENS = [
@@ -109,14 +119,16 @@ function validateProductionContracts() {
   if (!/@use\s+['"]\.\.\/\.\.\/reference\/spacing['"]\s+as\s+ref/.test(tokenSource)) errors.push('Tooltip tokens must import only Reference spacing');
   if (/\$honesty-ref-(?!space-)/.test(tokenSource)) errors.push('Tooltip tokens consume a forbidden Reference category');
 
-  const style = fs.readFileSync(TOOLTIP_STYLE, 'utf8');
+  const style = TOOLTIP_STYLE_FILES.map((file) => fs.readFileSync(file, 'utf8')).join('\n');
   for (const match of style.matchAll(/var\(\s*(--honesty-[a-z0-9-]+)/g)) {
     if (!match[1].startsWith('--honesty-tooltip-')) errors.push(`Tooltip SCSS consumes foreign token "${match[1]}"`);
   }
-  if (!/@media\s*\(prefers-reduced-motion:\s*reduce\)/.test(style) || !/transform:\s*none/.test(style)) errors.push('Tooltip reduced-motion rule is missing scale removal');
-  if (!/@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]*\.erp-tooltip__surface\[data-phase='open'\][\s\S]*transform:\s*none[\s\S]*transition-duration:\s*var\(--honesty-tooltip-reduced-duration\)/.test(style)) errors.push('Tooltip reduced-motion open phase must override scale and duration');
+  if (!/@media\s*\(prefers-reduced-motion:\s*reduce\)/.test(style) || !/@keyframes\s+tooltip-surface-reduced[\s\S]*transform:\s*none/.test(style)) errors.push('Tooltip reduced-motion rule is missing transform removal');
+  if (!/@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]*animation-name:\s*tooltip-surface-reduced[\s\S]*animation-duration:\s*var\(--honesty-tooltip-reduced-duration\)/.test(style)) errors.push('Tooltip reduced-motion phases must use the reduced animation and duration');
   if (!/:host\(\[data-tooltip-interactive='true'\]\)\s+\.erp-tooltip__surface\[data-phase='open'\]\s*\{\s*pointer-events:\s*auto/.test(style)) errors.push('Interactive Tooltip pointer events must be enabled only in the open phase');
-  if (!/transition:\s*opacity[^;]+,\s*transform/.test(style) || /transition:\s*all/.test(style)) errors.push('Tooltip motion must transition opacity and transform explicitly');
+  if (!/@keyframes\s+tooltip-surface-enter/.test(style) || !/@keyframes\s+tooltip-surface-exit/.test(style) || /transition:\s*all/.test(style)) errors.push('Tooltip motion must use explicit enter and exit keyframes');
+  if (!/:host-context\(\[dir='rtl'\]\)\[data-tooltip-enter-animation='slide-start'\][\s\S]*@include\s+tokens\.enter-slide-end/.test(style) || !/:host-context\(\[dir='rtl'\]\)\[data-tooltip-exit-animation='slide-start'\][\s\S]*@include\s+tokens\.exit-slide-end/.test(style)) errors.push('Tooltip logical slide-start motion must reverse in RTL');
+  if (!/:host-context\(\[dir='rtl'\]\)\[data-tooltip-enter-animation='slide-end'\][\s\S]*@include\s+tokens\.enter-slide-start/.test(style) || !/:host-context\(\[dir='rtl'\]\)\[data-tooltip-exit-animation='slide-end'\][\s\S]*@include\s+tokens\.exit-slide-start/.test(style)) errors.push('Tooltip logical slide-end motion must reverse in RTL');
 
   const modules = walk(path.join(ROOT, 'src', 'styles', 'foundation', 'components')).filter((file) => path.basename(file) === '_tokens.scss');
   if (modules.length !== 46) errors.push(`Expected 46 concrete Component Token modules, found ${modules.length}`);

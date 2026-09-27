@@ -17,11 +17,16 @@
   --honesty-tooltip-arrow-width: #{ref.$honesty-ref-space-16};
   --honesty-tooltip-arrow-height: #{ref.$honesty-ref-space-8};
   --honesty-tooltip-arrow-safe-inset: #{ref.$honesty-ref-space-8};
-  --honesty-tooltip-enter-duration: var(--honesty-motion-duration-default);
-  --honesty-tooltip-exit-duration: var(--honesty-motion-duration-fast);
+  --honesty-tooltip-enter-duration: 240ms;
+  --honesty-tooltip-exit-duration: 160ms;
   --honesty-tooltip-enter-easing: var(--honesty-motion-easing-enter);
   --honesty-tooltip-exit-easing: var(--honesty-motion-easing-exit);
-  --honesty-tooltip-enter-scale: 0.96;
+  --honesty-tooltip-enter-opacity: 0;
+  --honesty-tooltip-enter-transform: scale(0.90);
+  --honesty-tooltip-enter-transform-overshoot: none;
+  --honesty-tooltip-exit-opacity: 0;
+  --honesty-tooltip-exit-transform: none;
+  --honesty-tooltip-motion-slide-distance: 1.5rem;
   --honesty-tooltip-reduced-duration: var(--honesty-motion-duration-instant);
 }
 
@@ -40,4 +45,181 @@
   --honesty-tooltip-padding-inline: #{ref.$honesty-ref-space-16};
   --honesty-tooltip-radius: var(--honesty-radius-overlay);
   --honesty-tooltip-elevation: var(--honesty-elevation-overlay);
+}
+
+@mixin enter-fade {
+  --honesty-tooltip-enter-duration: 220ms;
+  --honesty-tooltip-enter-opacity: 0;
+  --honesty-tooltip-enter-transform: none;
+  --honesty-tooltip-enter-transform-overshoot: none;
+}
+
+@mixin exit-fade {
+  --honesty-tooltip-exit-duration: 160ms;
+  --honesty-tooltip-exit-opacity: 0;
+  --honesty-tooltip-exit-transform: none;
+}
+
+@mixin enter-scale {
+  --honesty-tooltip-enter-duration: 220ms;
+  --honesty-tooltip-enter-opacity: 1;
+  --honesty-tooltip-enter-transform: scale(0.92);
+  --honesty-tooltip-enter-transform-overshoot: none;
+}
+
+@mixin exit-scale {
+  --honesty-tooltip-exit-duration: 160ms;
+  --honesty-tooltip-exit-opacity: 1;
+  --honesty-tooltip-exit-transform: scale(0.92);
+}
+
+@mixin enter-fade-scale {
+  --honesty-tooltip-enter-duration: 240ms;
+  --honesty-tooltip-enter-opacity: 0;
+  --honesty-tooltip-enter-transform: scale(0.90);
+  --honesty-tooltip-enter-transform-overshoot: none;
+}
+
+@mixin exit-fade-scale {
+  --honesty-tooltip-exit-duration: 180ms;
+  --honesty-tooltip-exit-opacity: 0;
+  --honesty-tooltip-exit-transform: scale(0.90);
+}
+
+@mixin enter-slide-up {
+  --honesty-tooltip-enter-duration: 220ms;
+  --honesty-tooltip-enter-opacity: 1;
+  --honesty-tooltip-enter-transform:
+    translateY(var(--honesty-tooltip-motion-slide-distance));
+  --honesty-tooltip-enter-transform-overshoot: none;
+}
+
+@mixin exit-slide-up {
+  --honesty-tooltip-exit-duration: 180ms;
+  --honesty-tooltip-exit-opacity: 1;
+  --honesty-tooltip-exit-transform:
+    translateY(calc(-1 * var(--honesty-tooltip-motion-slide-distance)));
+}
+
+@mixin enter-slide-down {
+  --honesty-tooltip-enter-duration: 220ms;
+  --honesty-tooltip-enter-opacity: 1;
+  --honesty-tooltip-enter-transform:
+    translateY(calc(-1 * var(--honesty-tooltip-motion-slide-distance)));
+  --honesty-tooltip-enter-transform-overshoot: none;
+}
+
+@mixin exit-slide-down {
+  --honesty-tooltip-exit-duration: 180ms;
+  --honesty-tooltip-exit-opacity: 1;
+  --honesty-tooltip-exit-transform:
+    translateY(var(--honesty-tooltip-motion-slide-distance));
+}
+
+@mixin enter-slide-start {
+  --honesty-tooltip-enter-duration: 220ms;
+  --honesty-tooltip-enter-opacity: 1;
+  --honesty-tooltip-enter-transform:
+    translateX(calc(-1 * var(--honesty-tooltip-motion-slide-distance)));
+  --honesty-tooltip-enter-transform-overshoot: none;
+}
+
+@mixin exit-slide-start {
+  --honesty-tooltip-exit-duration: 180ms;
+  --honesty-tooltip-exit-opacity: 1;
+  --honesty-tooltip-exit-transform:
+    translateX(var(--honesty-tooltip-motion-slide-distance));
+}
+
+@mixin enter-slide-end {
+  --honesty-tooltip-enter-duration: 220ms;
+  --honesty-tooltip-enter-opacity: 1;
+  --honesty-tooltip-enter-transform:
+    translateX(var(--honesty-tooltip-motion-slide-distance));
+  --honesty-tooltip-enter-transform-overshoot: none;
+}
+
+@mixin exit-slide-end {
+  --honesty-tooltip-exit-duration: 180ms;
+  --honesty-tooltip-exit-opacity: 1;
+  --honesty-tooltip-exit-transform:
+    translateX(calc(-1 * var(--honesty-tooltip-motion-slide-distance)));
+}
+
+@mixin enter-zoom {
+  --honesty-tooltip-enter-duration: 260ms;
+  --honesty-tooltip-enter-opacity: 0;
+  --honesty-tooltip-enter-transform: scale(0.82);
+  --honesty-tooltip-enter-transform-overshoot: none;
+}
+
+@mixin exit-zoom {
+  --honesty-tooltip-exit-duration: 180ms;
+  --honesty-tooltip-exit-opacity: 0;
+  --honesty-tooltip-exit-transform: scale(0.82);
+}
+
+@mixin enter-pop {
+  --honesty-tooltip-enter-duration: 280ms;
+  --honesty-tooltip-enter-opacity: 0;
+  --honesty-tooltip-enter-transform: scale(0.90);
+  --honesty-tooltip-enter-transform-overshoot: scale(1.03);
+}
+
+@mixin exit-pop {
+  --honesty-tooltip-exit-duration: 180ms;
+  --honesty-tooltip-exit-opacity: 0;
+  --honesty-tooltip-exit-transform: scale(0.90);
+}
+
+@mixin enter-flip-x {
+  --honesty-tooltip-enter-duration: 300ms;
+  --honesty-tooltip-enter-opacity: 0;
+  --honesty-tooltip-enter-transform: perspective(48rem) rotateX(-12deg);
+  --honesty-tooltip-enter-transform-overshoot: none;
+}
+
+@mixin exit-flip-x {
+  --honesty-tooltip-exit-duration: 220ms;
+  --honesty-tooltip-exit-opacity: 0;
+  --honesty-tooltip-exit-transform: perspective(48rem) rotateX(-12deg);
+}
+
+@mixin enter-flip-y {
+  --honesty-tooltip-enter-duration: 300ms;
+  --honesty-tooltip-enter-opacity: 0;
+  --honesty-tooltip-enter-transform: perspective(48rem) rotateY(-12deg);
+  --honesty-tooltip-enter-transform-overshoot: none;
+}
+
+@mixin exit-flip-y {
+  --honesty-tooltip-exit-duration: 220ms;
+  --honesty-tooltip-exit-opacity: 0;
+  --honesty-tooltip-exit-transform: perspective(48rem) rotateY(-12deg);
+}
+
+@mixin enter-bounce {
+  --honesty-tooltip-enter-duration: 360ms;
+  --honesty-tooltip-enter-opacity: 0;
+  --honesty-tooltip-enter-transform: translateY(1rem);
+  --honesty-tooltip-enter-transform-overshoot: translateY(-0.25rem);
+}
+
+@mixin exit-bounce {
+  --honesty-tooltip-exit-duration: 200ms;
+  --honesty-tooltip-exit-opacity: 0;
+  --honesty-tooltip-exit-transform: translateY(1rem);
+}
+
+@mixin enter-swing {
+  --honesty-tooltip-enter-duration: 320ms;
+  --honesty-tooltip-enter-opacity: 0;
+  --honesty-tooltip-enter-transform: rotate(-3deg);
+  --honesty-tooltip-enter-transform-overshoot: rotate(1deg);
+}
+
+@mixin exit-swing {
+  --honesty-tooltip-exit-duration: 200ms;
+  --honesty-tooltip-exit-opacity: 0;
+  --honesty-tooltip-exit-transform: rotate(-3deg);
 }

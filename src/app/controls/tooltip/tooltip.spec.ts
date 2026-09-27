@@ -1,10 +1,14 @@
 import {Component, reflectComponentType, signal} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
+import {
+  ERP_MOTION_PRESETS,
+  ErpMotionPreset,
+} from '../../foundation/motion/motion-contracts';
 import {ErpTooltip} from './tooltip';
 import {ErpTooltipContent} from './tooltip-content';
 
 @Component({imports: [ErpTooltip, ErpTooltipContent], template: `
-  <erp-tooltip [text]="text()" [variant]="variant()" [interactive]="interactive()" [activation]="activation()" [showArrow]="showArrow()" [disabled]="disabled()" [(open)]="open">
+  <erp-tooltip [text]="text()" [variant]="variant()" [interactive]="interactive()" [activation]="activation()" [showArrow]="showArrow()" [disabled]="disabled()" [enterAnimation]="enterAnimation()" [exitAnimation]="exitAnimation()" [(open)]="open">
     <button id="trigger" aria-describedby="existing">Trigger</button>
     @if (variant() === 'rich') { <erp-tooltip-content>@if (interactive()) { <button id="inside">Action</button> } @else { Information }</erp-tooltip-content> }
   </erp-tooltip>
@@ -16,6 +20,8 @@ class TooltipHost {
   readonly activation = signal<'auto' | 'press'>('auto');
   readonly disabled = signal(false);
   readonly showArrow = signal(true);
+  readonly enterAnimation = signal<ErpMotionPreset>('fade-scale');
+  readonly exitAnimation = signal<ErpMotionPreset>('fade');
   readonly open = signal(false);
 }
 
@@ -43,6 +49,12 @@ class TooltipValidationHost {
 }
 
 describe('ErpTooltip', () => {
+  function dispatchAnimationEnd(surface: HTMLElement, animationName: string): void {
+    const event = new Event('animationend', {bubbles: true});
+    Object.defineProperty(event, 'animationName', {value: animationName});
+    surface.dispatchEvent(event);
+  }
+
   beforeEach(async () => {
     vi.useFakeTimers();
     Object.assign(HTMLElement.prototype, {
@@ -65,10 +77,89 @@ describe('ErpTooltip', () => {
     expect(reflectComponentType(ErpTooltip)?.selector).toBe('erp-tooltip');
     expect(instance.variant()).toBe('plain'); expect(instance.placement()).toBe('top'); expect(instance.activation()).toBe('auto');
     expect(instance.interactive()).toBe(false); expect(instance.showArrow()).toBe(true); expect(instance.disabled()).toBe(false); expect(instance.open()).toBe(false);
+    expect(instance.enterAnimation()).toBe('fade-scale'); expect(instance.exitAnimation()).toBe('fade');
     expect(tooltip.getAttribute('data-tooltip-state')).toBe('ready');
+    expect(tooltip.getAttribute('data-tooltip-enter-animation')).toBe('fade-scale');
+    expect(tooltip.getAttribute('data-tooltip-exit-animation')).toBe('fade');
     expect(tooltip.querySelector('[role="tooltip"]')).toBeTruthy();
     expect(tooltip.querySelector('erp-text')?.getAttribute('data-text-tone')).toBe('inherit');
     expect(tooltip.querySelectorAll('.erp-tooltip__arrow').length).toBe(1);
+  });
+
+  it('accepts every shared motion preset independently for enter and exit', () => {
+    const fixture = create();
+    const host = fixture.componentInstance;
+    const tooltip = fixture.nativeElement.querySelector('erp-tooltip') as HTMLElement;
+
+    expect(ERP_MOTION_PRESETS).toHaveLength(13);
+    for (const preset of ERP_MOTION_PRESETS) {
+      host.enterAnimation.set(preset);
+      host.exitAnimation.set(preset);
+      fixture.detectChanges();
+      expect(tooltip.getAttribute('data-tooltip-enter-animation')).toBe(preset);
+      expect(tooltip.getAttribute('data-tooltip-exit-animation')).toBe(preset);
+    }
+  });
+
+  it('keeps the surface mounted until the configured exit animation completes', () => {
+    const fixture = create();
+    const host = fixture.componentInstance;
+    host.enterAnimation.set('pop');
+    host.exitAnimation.set('bounce');
+    fixture.detectChanges();
+
+    const root = fixture.nativeElement as HTMLElement;
+    const wrapper = root.querySelector('.erp-tooltip__trigger')!;
+    const surface = root.querySelector('.erp-tooltip__surface') as HTMLElement;
+    wrapper.dispatchEvent(new FocusEvent('focusin', {bubbles: true}));
+    vi.runAllTimers();
+
+    expect(surface.dataset['phase']).toBe('entering');
+    dispatchAnimationEnd(surface, 'tooltip-surface-overshoot-enter');
+    expect(surface.dataset['phase']).toBe('open');
+
+    host.open.set(false);
+    fixture.detectChanges();
+    expect(surface.dataset['phase']).toBe('closing');
+    expect(surface.hasAttribute('data-popover-open')).toBe(true);
+
+    vi.advanceTimersByTime(1000);
+    expect(surface.hasAttribute('data-popover-open')).toBe(true);
+    dispatchAnimationEnd(surface, 'tooltip-surface-exit');
+    expect(surface.hasAttribute('data-popover-open')).toBe(false);
+    expect(surface.hasAttribute('data-phase')).toBe(false);
+  });
+
+  it('completes enter and exit deterministically under reduced motion', async () => {
+    vi.stubGlobal('matchMedia', vi.fn().mockReturnValue({matches: true}));
+    const fixture = create();
+    const root = fixture.nativeElement as HTMLElement;
+    const wrapper = root.querySelector('.erp-tooltip__trigger')!;
+    const surface = root.querySelector('.erp-tooltip__surface') as HTMLElement;
+
+    wrapper.dispatchEvent(new FocusEvent('focusin', {bubbles: true}));
+    await vi.runAllTimersAsync();
+    expect(surface.dataset['phase']).toBe('open');
+
+    fixture.componentInstance.open.set(false);
+    fixture.detectChanges();
+    await vi.runAllTimersAsync();
+    expect(surface.hasAttribute('data-popover-open')).toBe(false);
+    expect(surface.hasAttribute('data-phase')).toBe(false);
+  });
+
+  it('retains logical slide preset evidence in RTL', () => {
+    document.documentElement.setAttribute('dir', 'rtl');
+    const fixture = create();
+    fixture.componentInstance.enterAnimation.set('slide-start');
+    fixture.componentInstance.exitAnimation.set('slide-end');
+    fixture.detectChanges();
+    const tooltip = fixture.nativeElement.querySelector('erp-tooltip') as HTMLElement;
+
+    expect(document.documentElement.dir).toBe('rtl');
+    expect(tooltip.getAttribute('data-tooltip-enter-animation')).toBe('slide-start');
+    expect(tooltip.getAttribute('data-tooltip-exit-animation')).toBe('slide-end');
+    document.documentElement.removeAttribute('dir');
   });
 
   it('enforces invalid then disabled then ready state and forces open false', () => {

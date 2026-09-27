@@ -1,0 +1,25 @@
+@use '../../../styles/foundation/components/tooltip' as tokens;
+
+:host([data-tooltip-enter-animation='fade']) {
+  @include tokens.enter-fade;
+}
+
+:host([data-tooltip-exit-animation='fade']) {
+  @include tokens.exit-fade;
+}
+
+:host([data-tooltip-enter-animation='scale']) {
+  @include tokens.enter-scale;
+}
+
+:host([data-tooltip-exit-animation='scale']) {
+  @include tokens.exit-scale;
+}
+
+:host([data-tooltip-enter-animation='fade-scale']) {
+  @include tokens.enter-fade-scale;
+}
+
+:host([data-tooltip-exit-animation='fade-scale']) {
+  @include tokens.exit-fade-scale;
+}

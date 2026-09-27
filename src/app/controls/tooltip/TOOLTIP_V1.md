@@ -24,8 +24,10 @@ separate post-Tooltip integration wave.
 
 `variant`: `plain | rich`; `placement`: `top | bottom | start | end`;
 `activation`: `auto | press`; `text: string | null`; `interactive`, `showArrow`,
-and `disabled` are booleans; `open` is a two-way model. Defaults are plain,
-top, auto, noninteractive, arrow shown, enabled, and closed.
+and `disabled` are booleans; `enterAnimation` and `exitAnimation` use the shared
+`ErpMotionPreset` catalog; `open` is a two-way model. Defaults are plain, top,
+auto, noninteractive, arrow shown, enabled, closed, `fade-scale` enter, and
+`fade` exit.
 
 Plain mode requires trimmed nonempty `text`, is noninteractive, and accepts no
 `ErpTooltipContent`. Rich mode requires exactly one content child. A
@@ -81,12 +83,16 @@ are private implementation contracts and are not consumer styling API.
 
 ## Motion and ownership
 
-Open measures hidden, positions, then becomes visible on the next animation
-frame. Close publishes `open=false` immediately and hides/detaches after the
-100ms exit. Reopening cancels that exit. Reduced motion removes scale and uses
-the reduced-duration token. Tooltip implementation consumes only its own
-Component Tokens. No CDK, third-party overlay, polling, or public timing,
-geometry, color, radius, elevation, layer, motion, or arrow styling API exists.
+Open measures hidden, positions, then runs the selected enter animation on the
+next animation frame. Close publishes `open=false` immediately and remains
+mounted until the selected exit animation completes. Reopening cancels that
+exit. The shared catalog contains fade, scale, fade-scale, logical slides,
+zoom, pop, flip-x, flip-y, bounce, and swing. Reduced motion removes transforms
+and completes deterministically with the reduced-duration token. Tooltip stays
+on the nonblocking AnchoredOverlayController architecture and consumes only its
+own Component Tokens. No CDK, third-party overlay, polling, arbitrary CSS-class
+motion API, or public timing, geometry, color, radius, elevation, layer, or
+arrow styling API exists.
 
 ## Design Lab evidence and status
 

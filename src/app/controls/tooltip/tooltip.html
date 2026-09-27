@@ -23,6 +23,7 @@
   (pointerleave)="handleSurfacePointerLeave()"
   (focusin)="handleFocusIn()"
   (focusout)="handleFocusOut($event)"
+  (animationend)="handleSurfaceAnimationEnd($event)"
 >
   @if (variant() === 'plain') {
     <erp-text type="caption" tone="inherit">{{ trimmedText() }}</erp-text>

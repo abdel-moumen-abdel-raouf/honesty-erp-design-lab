@@ -1,0 +1,49 @@
+@use '../../../styles/foundation/components/tooltip' as tokens;
+
+:host([data-tooltip-enter-animation='slide-up']) {
+  @include tokens.enter-slide-up;
+}
+
+:host([data-tooltip-exit-animation='slide-up']) {
+  @include tokens.exit-slide-up;
+}
+
+:host([data-tooltip-enter-animation='slide-down']) {
+  @include tokens.enter-slide-down;
+}
+
+:host([data-tooltip-exit-animation='slide-down']) {
+  @include tokens.exit-slide-down;
+}
+
+:host([data-tooltip-enter-animation='slide-start']) {
+  @include tokens.enter-slide-start;
+}
+
+:host([data-tooltip-exit-animation='slide-start']) {
+  @include tokens.exit-slide-start;
+}
+
+:host([data-tooltip-enter-animation='slide-end']) {
+  @include tokens.enter-slide-end;
+}
+
+:host([data-tooltip-exit-animation='slide-end']) {
+  @include tokens.exit-slide-end;
+}
+
+:host-context([dir='rtl'])[data-tooltip-enter-animation='slide-start'] {
+  @include tokens.enter-slide-end;
+}
+
+:host-context([dir='rtl'])[data-tooltip-exit-animation='slide-start'] {
+  @include tokens.exit-slide-end;
+}
+
+:host-context([dir='rtl'])[data-tooltip-enter-animation='slide-end'] {
+  @include tokens.enter-slide-start;
+}
+
+:host-context([dir='rtl'])[data-tooltip-exit-animation='slide-end'] {
+  @include tokens.exit-slide-start;
+}

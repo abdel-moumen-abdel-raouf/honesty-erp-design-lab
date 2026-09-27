@@ -1,0 +1,58 @@
+@use '../../../styles/foundation/components/tooltip' as tokens;
+
+:host([data-tooltip-enter-animation='zoom']) {
+  @include tokens.enter-zoom;
+}
+
+:host([data-tooltip-exit-animation='zoom']) {
+  @include tokens.exit-zoom;
+}
+
+:host([data-tooltip-enter-animation='pop']) {
+  @include tokens.enter-pop;
+}
+
+:host([data-tooltip-exit-animation='pop']) {
+  @include tokens.exit-pop;
+}
+
+:host([data-tooltip-enter-animation='flip-x']) {
+  @include tokens.enter-flip-x;
+}
+
+:host([data-tooltip-exit-animation='flip-x']) {
+  @include tokens.exit-flip-x;
+}
+
+:host([data-tooltip-enter-animation='flip-y']) {
+  @include tokens.enter-flip-y;
+}
+
+:host([data-tooltip-exit-animation='flip-y']) {
+  @include tokens.exit-flip-y;
+}
+
+:host([data-tooltip-enter-animation='bounce']) {
+  @include tokens.enter-bounce;
+}
+
+:host([data-tooltip-exit-animation='bounce']) {
+  @include tokens.exit-bounce;
+}
+
+:host([data-tooltip-enter-animation='swing']) {
+  @include tokens.enter-swing;
+}
+
+:host([data-tooltip-exit-animation='swing']) {
+  @include tokens.exit-swing;
+}
+
+:host([data-tooltip-enter-animation='pop'])
+  .erp-tooltip__surface[data-phase='entering'],
+:host([data-tooltip-enter-animation='bounce'])
+  .erp-tooltip__surface[data-phase='entering'],
+:host([data-tooltip-enter-animation='swing'])
+  .erp-tooltip__surface[data-phase='entering'] {
+  animation-name: tooltip-surface-overshoot-enter;
+}

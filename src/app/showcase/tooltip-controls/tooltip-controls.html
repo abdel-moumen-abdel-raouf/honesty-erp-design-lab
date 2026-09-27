@@ -16,6 +16,50 @@
         </erp-surface>
       }
     </erp-inline>
+    <erp-stack data-motion-selector-evidence gap="default">
+      <erp-text type="heading-3">اختيار حركة الدخول والخروج</erp-text>
+      <erp-text type="caption" tone="secondary">حركة الدخول</erp-text>
+      <erp-button-group
+        class="motion-selector"
+        data-enter-motion-selector
+        [items]="motionOptions"
+        [attached]="false"
+        (itemPressed)="selectEnterAnimation($event)"
+      />
+      <erp-text type="caption" tone="secondary">حركة الخروج</erp-text>
+      <erp-button-group
+        class="motion-selector"
+        data-exit-motion-selector
+        [items]="motionOptions"
+        [attached]="false"
+        (itemPressed)="selectExitAnimation($event)"
+      />
+      <erp-inline gap="default" wrap="wrap">
+        <erp-tooltip
+          data-motion-plain-evidence
+          text="دليل حركة تلميح بسيط"
+          [enterAnimation]="enterAnimation()"
+          [exitAnimation]="exitAnimation()"
+        >
+          <erp-button label="تلميح بسيط متحرك" />
+        </erp-tooltip>
+        <erp-tooltip
+          data-motion-rich-evidence
+          variant="rich"
+          text="دليل حركة تلميح غني"
+          [enterAnimation]="enterAnimation()"
+          [exitAnimation]="exitAnimation()"
+        >
+          <erp-button label="تلميح غني متحرك" />
+          <erp-tooltip-content>
+            <erp-stack gap="tight">
+              <erp-text type="heading-4">دليل غني</erp-text>
+              <erp-text type="paragraph">يتبع إعدادات الحركة المشتركة.</erp-text>
+            </erp-stack>
+          </erp-tooltip-content>
+        </erp-tooltip>
+      </erp-inline>
+    </erp-stack>
   </erp-section>
 
   <erp-section class="review-group" data-review-group="placements">
