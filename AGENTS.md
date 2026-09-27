@@ -441,6 +441,17 @@ Rules:
 - Shared lower-layer corrections may make only the smallest mechanical Phase 10/11 compatibility updates required to keep compilation and tests green.
 - Correction commits are technical checkpoints only; they do not declare visual approval, family freeze, or closure of the Basic Controls layer.
 
+## Post-CR12 Review Wave A Governance
+
+- Wave A is correction-only and does not authorize a new public component
+  family.
+- The no-new-components gate remains active throughout WA00 through WA05.
+- Wave A technical checkpoints do not declare visual approval, freeze a control
+  family, or close the Basic Controls layer.
+- SearchBox mode changes, Glass removal, Solid/Ghost redesign, Number/Money/
+  DateRange changes, CheckBox/RadioBox redesign, FabMenu/SplitButton changes,
+  and deferred Phase 10/11 review remain outside Wave A.
+
 ## Production Blocking Overlay Governance
 
 - `ErpOverlayManager` is the shared gateway for blocking modal and drawer surfaces.
