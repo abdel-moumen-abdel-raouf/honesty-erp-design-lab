@@ -470,3 +470,52 @@ Technical gating for this correction round is therefore complete.
 
 This evidence does not equal Product Owner visual approval. Remaining work is
 runtime/visual inspection and any explicit Product Owner findings.
+
+
+## Latest Product Owner decision — remove iframe architecture
+
+This decision was made after the fully green local technical gate and is the
+current next implementation target.
+
+The Design Lab must stop using iframe-based route previews and become a normal
+single-document Angular application.
+
+Current implementation facts that motivated the decision:
+
+- ordinary Foundation/showcase routes are rendered inside
+  `#lab-preview-frame`;
+- `/controls/inputs` and `/controls/overlays` are special direct-review
+  exceptions and therefore do not receive the same Desktop / Tablet / Mobile
+  controls;
+- `app.ts` owns iframe-specific state/helpers including embedded-preview
+  detection, preview URL construction, theme query propagation, direct-review
+  route exceptions, and cross-document screenshot composition.
+
+Product Owner requirements for the correction:
+
+1. Remove the iframe architecture entirely.
+2. Remove iframe-only query/state/branching and special direct-route handling.
+3. Render every route directly through one normal `router-outlet`.
+4. Re-evaluate Desktop / Tablet / Mobile controls:
+   - retain them only if they can provide truthful responsive review without an
+     iframe;
+   - do not pretend that container width is equivalent to browser viewport media
+     queries;
+   - if truthful simulation is not possible, remove these controls.
+5. Re-evaluate screenshot:
+   - retain it only if direct single-document capture is clean and deterministic;
+   - otherwise remove it.
+6. Inputs and Overlays must use the same rendering model as every other route.
+7. Preserve the single App theme authority and all existing governance gates.
+8. Do not start unrelated visual redesign while performing this architectural
+   simplification.
+
+This decision is recorded but not yet implemented.
+
+### Current stop point
+
+Technical verification for the current source is fully green locally. The next
+authorized task is repository review + bounded implementation of the no-iframe
+Design Lab architecture described above.
+
+Product Owner visual review remains pending after that structural correction.

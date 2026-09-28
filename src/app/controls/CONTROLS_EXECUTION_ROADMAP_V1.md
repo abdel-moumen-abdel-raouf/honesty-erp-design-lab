@@ -339,3 +339,26 @@ Verified evidence:
 
 No additional technical correction phase is authorized from this gate alone.
 The next authorized action is Product Owner runtime/visual review.
+
+
+### Next authorized execution — remove iframe preview architecture
+
+The fully green technical gate is complete. The Product Owner has now
+authorized one bounded structural correction to the Design Lab shell:
+
+- eliminate the iframe preview architecture;
+- remove embedded/direct dual-mode code and iframe-specific query parameters;
+- render all review routes directly through one router outlet;
+- remove the Inputs/Overlays special-case rendering distinction;
+- attempt to preserve screenshot only if direct single-document capture remains
+  clean;
+- attempt to preserve Desktop/Tablet/Mobile review controls only if their
+  behavior is technically truthful without an iframe;
+- otherwise remove those optional tools rather than preserve misleading
+  behavior.
+
+No unrelated component redesign or new public component family is authorized in
+this execution unit.
+
+After implementation, the complete `npm run verify:clean` gate is required,
+followed by Product Owner visual/runtime review.

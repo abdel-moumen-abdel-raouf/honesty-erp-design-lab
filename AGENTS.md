@@ -731,3 +731,58 @@ Do not repeat corrective implementation solely for technical gating unless a
 new regression is observed. The next authorized work is Product Owner
 page-by-page visual/runtime review and any findings explicitly produced by
 that review.
+
+
+## Persistent Handoff Synchronization
+
+The following files are mandatory persistent project-state artifacts:
+
+- `README_FIRST.md`
+- `NEW_CHAT_HANDOFF.md`
+- `AGENTS.md`
+- `src/app/controls/POST_CR12_PRODUCT_OWNER_REVIEW_STATE_V1.md`
+- `src/app/controls/CONTROLS_EXECUTION_ROADMAP_V1.md`
+
+After every Product Owner decision, implementation result, external review,
+verification result, blocker, or next-step authorization, synchronize the
+relevant state before issuing the next implementation task.
+
+Do not leave a new Product Owner decision only in chat history or only inside an
+implementation prompt.
+
+`NEW_CHAT_HANDOFF.md` is the canonical conversational recovery document for a
+new ChatGPT thread. It must record the current Git checkpoint, accepted
+decisions, deferred scope, open findings, and exact next authorized action.
+
+
+## No-Iframe Design Lab Direction
+
+The Product Owner has decided that the Design Lab must become a normal
+single-document Angular application with no iframe preview architecture.
+
+Next authorized work must review and remove:
+
+- the preview iframe from `app.html`;
+- embedded-preview query flags such as `labPreview`;
+- iframe-specific theme propagation such as `labTheme`;
+- embedded/direct dual rendering modes that exist only because of the iframe;
+- iframe-specific screenshot composition and document traversal.
+
+The Product Owner would prefer to retain the Desktop / Tablet / Mobile controls
+and screenshot feature only if they can be implemented truthfully and cleanly
+without an iframe.
+
+Do not fake viewport-media-query behavior by merely resizing a container and
+calling that a real mobile/tablet viewport.
+
+If true responsive viewport simulation cannot be preserved without iframe,
+remove the Desktop / Tablet / Mobile simulation controls.
+
+If screenshot capture cannot be preserved cleanly without iframe, remove the
+screenshot feature.
+
+Inputs and Overlays must no longer be special direct-review exceptions. After
+the iframe architecture is removed, all routes use the same direct
+`router-outlet` rendering model.
+
+This decision is authorized but not yet implemented at the current handoff.
