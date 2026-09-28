@@ -20,6 +20,14 @@ First page-by-page correction checkpoint:
 
 b7a1030bd64cab8d789b0193e7aa6f0c37c3faf9 — fix(review): resolve first-round showcase findings
 
+Overview ERP-only authoring checkpoint:
+
+ce7404252902353ca2f7432ede9aeead2cb84053 — fix(overview): enforce ERP-only authoring
+
+All routed pages ERP-only authoring checkpoint:
+
+b96a6f70da6b232268b6e117c0307c0f23a50a36 — fix(lab): enforce ERP-only routed pages
+
 GitHub ancestry was externally verified as two commits ahead of the reviewed baseline and zero commits behind. Both commits are present on main.
 
 GitHub exposes no combined commit-status contexts and no workflow runs for these two commits. Hosted CI evidence is therefore absent. The implementation agent reported local build/lint/test/browser evidence; that report is evidence from the execution environment, not GitHub-hosted verification.
@@ -171,6 +179,8 @@ The execution agent reported the following for b7a1030bd64cab8d789b0193e7aa6f0c3
 - no requested deterministic acceptance criterion was reported unproven
 
 External review confirmed Git ancestry and changed-file scope and spot checked the key production contracts for Tooltip motion, SearchBox lifecycle, generic Overlay footer/action state, Overlay initial focus, selection presentation/focus, ComboBox opening, and shared Preferences-backed MoneyBox.
+
+The later ERP-only authoring review statically verified all 22 templates resolved from `app.routes.ts`: every authored element tag is `erp-*`, with zero route-template native HTML/SVG/form tags. Native semantics required by Charts, Preferences, and line/word-break review evidence are encapsulated by Design-Lab-only `erp-review-*` owners.
 
 This is a technical implementation checkpoint only. Product Owner subjective visual re-review is still required.
 
