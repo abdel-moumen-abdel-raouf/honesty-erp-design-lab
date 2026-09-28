@@ -1,14 +1,24 @@
 <label class="review-select__field">
-  <span class="review-select__label">{{ label() }}</span>
+  <erp-text
+    class="review-select__label"
+    type="caption"
+    weight="bold"
+    tone="secondary"
+  >
+    {{ label() }}
+  </erp-text>
   <select
     class="review-select__native"
     [value]="value()"
     (change)="change.emit($event)"
   >
     @for (choice of choices(); track choice.value()) {
-      <option [value]="choice.value()" [disabled]="choice.disabled()">
-        {{ choice.label() }}
-      </option>
+      <option
+        [value]="choice.value()"
+        [disabled]="choice.disabled()"
+        [attr.label]="choice.label()"
+        [attr.aria-label]="choice.label()"
+      ></option>
     }
   </select>
 </label>
