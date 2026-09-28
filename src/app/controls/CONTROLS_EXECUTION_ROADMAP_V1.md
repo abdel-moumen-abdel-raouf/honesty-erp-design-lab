@@ -210,9 +210,10 @@ The current page-by-page Product Owner review/execution state is authoritative i
 
 Current technical candidate checkpoint:
 
-`320f66879036530dbfc509bd587724f799ba62c6` — `fix(theme): enforce single App theme authority`
+`b1b20585adcb272f17835ef8182935353a67d243` — `fix(tooling): close remaining zero-warning gaps`
 
-This checkpoint is pushed to `main` and is pending a fresh local
+This checkpoint includes the earlier single-App-theme and Windows-safe runner
+corrections. It is pushed to `main` and is pending a fresh local
 `npm run verify:clean` before it may be considered fully verified.
 
 The preceding tooling correction is `9afec19d133f9414ebd1fedd537f91637bf98db8` — `fix(tooling): eliminate build and editor diagnostics`.

@@ -602,7 +602,11 @@ src/app/controls/POST_CR12_PRODUCT_OWNER_REVIEW_STATE_V1.md
 
 The latest technical candidate checkpoint is:
 
-320f66879036530dbfc509bd587724f799ba62c6 — fix(theme): enforce single App theme authority
+b1b20585adcb272f17835ef8182935353a67d243 — fix(tooling): close remaining zero-warning gaps
+
+It includes the single-App-theme correction from
+`320f66879036530dbfc509bd587724f799ba62c6` and the Windows-safe build runner
+from `e31de1bfcd9aa9fb25ff0a01e6c5fd1448a2a1fb`.
 
 This checkpoint is pending a fresh local `npm run verify:clean`. It does not
 declare Product Owner visual approval or a frozen family.
