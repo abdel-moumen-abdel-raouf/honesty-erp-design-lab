@@ -20,14 +20,13 @@ First page-by-page correction checkpoint:
 
 b7a1030bd64cab8d789b0193e7aa6f0c37c3faf9 — fix(review): resolve first-round showcase findings
 
-Current technical candidate:
+Current fully verified technical checkpoint:
 
-b1b20585adcb272f17835ef8182935353a67d243 — fix(tooling): close remaining zero-warning gaps
+`b1b20585adcb272f17835ef8182935353a67d243` — `fix(tooling): close remaining zero-warning gaps`
 
 This checkpoint includes the single-App-theme correction and the final
-style-budget / ANSI warning-detector repair. It is pushed to `main` and is
-awaiting a fresh local `npm run verify:clean` before it may be called fully
-verified.
+style-budget / ANSI warning-detector repair. It is pushed to `main` and has
+completed the full local verification gate successfully.
 
 Overview ERP-only authoring checkpoint:
 
@@ -228,12 +227,11 @@ This is a technical implementation checkpoint only. Product Owner subjective vis
 
 No additional implementation phase is authorized at this checkpoint.
 
-The immediate required action is a fresh local `npm run verify:clean` at or after
-`b1b20585adcb272f17835ef8182935353a67d243`. After that gate passes, the next
-authorized action is Product Owner page-by-page runtime/visual re-review of the
-corrected pages, beginning with the same first-round surfaces and then
-continuing to later showcase screens only when the Product Owner chooses to
-proceed.
+The full local `npm run verify:clean` gate has passed at
+`b1b20585adcb272f17835ef8182935353a67d243`. The next authorized action is
+Product Owner page-by-page runtime/visual re-review of the corrected pages,
+beginning with the same first-round surfaces and then continuing to later
+showcase screens only when the Product Owner chooses to proceed.
 
 Until new Product Owner findings are supplied, do not:
 
@@ -439,3 +437,36 @@ A fresh local `npm run build:clean:self-test`, followed by
 `npm run build:clean` and finally `npm run verify:clean`, remains the
 required proof. This checkpoint is not fully green until the build contains no
 Angular warnings and ends with `Zero-warning build gate: PASS`.
+
+
+## Fully Green local verification evidence
+
+The Product Owner locally verified the repository after
+`b1b20585adcb272f17835ef8182935353a67d243`.
+
+Observed results:
+
+- `npm run build:clean:self-test` — PASS;
+- standalone `npm run build:clean` — PASS with no Angular warnings;
+- `theme-authority:check` — PASS;
+- `route-pages:check` — PASS for 22 routed templates;
+- Component Token governance — PASS;
+- system-color registry check — PASS;
+- ErpText governance — PASS;
+- ErpIcon governance — PASS;
+- ErpButton governance — PASS;
+- ErpTooltip governance — PASS;
+- ErpField governance — PASS;
+- ErpOverlay governance — PASS;
+- Angular lint — PASS;
+- test files — 87/87 PASS;
+- tests — 618/618 PASS;
+- `typecheck:app` — PASS;
+- `typecheck:spec` — PASS;
+- final production `build:clean` — PASS with no warnings;
+- final `Zero-warning build gate: PASS`.
+
+Technical gating for this correction round is therefore complete.
+
+This evidence does not equal Product Owner visual approval. Remaining work is
+runtime/visual inspection and any explicit Product Owner findings.

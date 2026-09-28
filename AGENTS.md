@@ -600,16 +600,27 @@ Current execution/review state is recorded in:
 
 src/app/controls/POST_CR12_PRODUCT_OWNER_REVIEW_STATE_V1.md
 
-The latest technical candidate checkpoint is:
+The latest locally verified technical checkpoint is:
 
-b1b20585adcb272f17835ef8182935353a67d243 — fix(tooling): close remaining zero-warning gaps
+`b1b20585adcb272f17835ef8182935353a67d243` — `fix(tooling): close remaining zero-warning gaps`
 
 It includes the single-App-theme correction from
 `320f66879036530dbfc509bd587724f799ba62c6` and the Windows-safe build runner
 from `e31de1bfcd9aa9fb25ff0a01e6c5fd1448a2a1fb`.
 
-This checkpoint is pending a fresh local `npm run verify:clean`. It does not
-declare Product Owner visual approval or a frozen family.
+Local verification is complete and fully green:
+
+- every lint/governance gate passed;
+- Angular lint passed;
+- 87/87 test files passed;
+- 618/618 tests passed;
+- `typecheck:app` passed;
+- `typecheck:spec` passed;
+- production `build:clean` completed with zero Angular warnings;
+- `Zero-warning build gate: PASS`.
+
+This does not declare Product Owner visual approval or a frozen family. The
+next authorized action is Product Owner runtime/visual re-review.
 
 Current mandatory decisions:
 
@@ -701,3 +712,22 @@ Zero-warning verification must inspect normalized build output.
   merely to make the build green. Split/refactor the owning styles instead.
 - The zero-warning wrapper self-test must include an ANSI-colored Angular
   warning example so a colored warning can never produce a false PASS.
+
+
+## Fully Green Local Verification
+
+The current technical source checkpoint
+`b1b20585adcb272f17835ef8182935353a67d243` is fully green in the Product
+Owner's Windows workspace.
+
+The canonical `npm run verify:clean` completed successfully through all
+lint/governance checks, 87 test files / 618 tests, both TypeScript no-emit
+checks, and a production build with no Angular warnings.
+
+The zero-warning wrapper also passed its dedicated self-test and standalone
+`build:clean` execution.
+
+Do not repeat corrective implementation solely for technical gating unless a
+new regression is observed. The next authorized work is Product Owner
+page-by-page visual/runtime review and any findings explicitly produced by
+that review.

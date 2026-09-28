@@ -208,13 +208,14 @@ declare visual approval, freeze a family, or close the Basic Controls layer.
 
 The current page-by-page Product Owner review/execution state is authoritative in POST_CR12_PRODUCT_OWNER_REVIEW_STATE_V1.md.
 
-Current technical candidate checkpoint:
+Current fully verified technical checkpoint:
 
 `b1b20585adcb272f17835ef8182935353a67d243` — `fix(tooling): close remaining zero-warning gaps`
 
 This checkpoint includes the earlier single-App-theme and Windows-safe runner
-corrections. It is pushed to `main` and is pending a fresh local
-`npm run verify:clean` before it may be considered fully verified.
+corrections. The Product Owner's local `npm run verify:clean` completed
+successfully through governance/lint, 87/87 test files (618/618 tests), both
+TypeScript no-emit gates, and a zero-warning production build.
 
 The preceding tooling correction is `9afec19d133f9414ebd1fedd537f91637bf98db8` — `fix(tooling): eliminate build and editor diagnostics`.
 
@@ -320,3 +321,21 @@ into smaller style parts, Status Hues docs chrome uses semantic tokens, and the
 zero-warning detector strips ANSI before matching warning output.
 
 A fresh local `npm run verify:clean` is mandatory.
+
+
+### Fully Green local verification
+
+The current technical correction round is fully green locally at
+`b1b20585adcb272f17835ef8182935353a67d243`.
+
+Verified evidence:
+
+- all lint/governance gates pass;
+- 87/87 test files and 618/618 tests pass;
+- application/spec TypeScript no-emit gates pass;
+- standalone and final production `build:clean` pass with no warnings;
+- the zero-warning wrapper self-test passes;
+- final `Zero-warning build gate: PASS`.
+
+No additional technical correction phase is authorized from this gate alone.
+The next authorized action is Product Owner runtime/visual review.
