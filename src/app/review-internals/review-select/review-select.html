@@ -1,0 +1,17 @@
+<label class="review-select__field">
+  <span class="review-select__label">{{ label() }}</span>
+  <select
+    class="review-select__native"
+    [value]="value()"
+    (change)="change.emit($event)"
+  >
+    @for (choice of choices(); track choice.value()) {
+      <option [value]="choice.value()" [disabled]="choice.disabled()">
+        {{ choice.label() }}
+      </option>
+    }
+  </select>
+</label>
+<span class="review-select__choices" aria-hidden="true">
+  <ng-content></ng-content>
+</span>

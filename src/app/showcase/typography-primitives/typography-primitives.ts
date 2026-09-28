@@ -1,3 +1,6 @@
+import {ErpReviewWordBreak} from '../../review-internals/review-word-break/review-word-break';
+import {ErpReviewBreak} from '../../review-internals/review-break/review-break';
+import {ErpReviewBox} from '../../review-internals/review-box/review-box';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ErpContainer} from '../../primitives/container/container';
 import {ErpDivider} from '../../primitives/divider/divider';
@@ -25,6 +28,9 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-typography-primitives',
   imports: [
+    ErpReviewBox,
+    ErpReviewBreak,
+    ErpReviewWordBreak,
     ErpContainer,
     ErpDivider,
     ErpGrid,

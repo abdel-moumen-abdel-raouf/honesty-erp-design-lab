@@ -1,3 +1,4 @@
+import {ErpReviewBox} from '../../review-internals/review-box/review-box';
 import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {ErpCheckBox} from '../../controls/check-box/check-box';
@@ -38,6 +39,7 @@ import {ErpText} from '../../primitives/text/text';
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-input-controls',
   imports: [
+    ErpReviewBox,
     ErpContainer,
     ErpCheckBox,
     ErpColorPicker,

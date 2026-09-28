@@ -50,14 +50,14 @@
                 [variant]="variant"
               />
             }
-            <div class="glass-evidence-substrate" data-glass-substrate>
-              <span class="glass-evidence-substrate__tone" aria-hidden="true"></span>
+            <erp-review-box data-review-native-role="div" class="glass-evidence-substrate" data-glass-substrate>
+              <erp-text type="span" data-review-native-role="span" class="glass-evidence-substrate__tone" aria-hidden="true"></erp-text>
               <erp-stack gap="tight">
                 <erp-text-box data-glass-evidence="outline-focus" label="زجاج outline — ركّز الحقل" appearance="glass" variant="outline" placeholder="دليل التركيز" />
                 <erp-text-box data-glass-evidence="solid-status" label="زجاج solid — حالة نجاح" appearance="glass" variant="solid" status="success" />
                 <erp-text-box data-glass-evidence="subtle-status" label="زجاج subtle — حالة خطر" appearance="glass" variant="subtle" status="danger" />
               </erp-stack>
-            </div>
+            </erp-review-box>
           </erp-stack>
         </erp-surface>
     </erp-grid>

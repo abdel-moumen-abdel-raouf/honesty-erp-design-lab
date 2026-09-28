@@ -1,388 +1,369 @@
-<main id="preferences-specimen-root" class="preferences-specimen-root">
-  <header class="specimen-header">
-    <span class="specimen-badge">Foundation Candidate V1 — إعدادات واجهة موثّقة</span>
-    <h1>التفضيلات وإعدادات العرض</h1>
-    <p>
+<erp-container width="wide" data-review-native-role="main" id="preferences-specimen-root" class="preferences-specimen-root">
+  <erp-stack gap="tight" data-review-native-role="header" class="specimen-header">
+    <erp-text type="span" data-review-native-role="span" class="specimen-badge">Foundation Candidate V1 — إعدادات واجهة موثّقة</erp-text>
+    <erp-text type="heading-1" data-review-native-role="h1">التفضيلات وإعدادات العرض</erp-text>
+    <erp-text type="paragraph" data-review-native-role="p">
       مراجعة تفاعلية معزولة للعقود المعرّفة نوعياً، والتنسيق الحتمي، والتخزين المحلي الخاص بهذه الصفحة.
-    </p>
-  </header>
+    </erp-text>
+  </erp-stack>
 
-  <div class="preferences-layout">
-    <section id="preferences-appearance" class="preference-section" data-preference-section>
-      <header class="section-heading">
-        <h2>1. المظهر والكثافة</h2>
-        <p>إعدادات محلية لمعاينة السمة والكثافة داخل منطقة المعاينة فقط.</p>
-      </header>
-      <div class="control-grid">
-        <label class="control-field" for="preference-theme">
-          <span>Theme</span>
-          <select id="preference-theme" [value]="theme()" (change)="setScalar('theme', $event)">
-            <option value="system">System</option>
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-          </select>
-        </label>
-        <label class="control-field" for="preference-density">
-          <span>Density</span>
-          <select id="preference-density" [value]="density()" (change)="setScalar('density', $event)">
-            <option value="comfortable">Comfortable</option>
-            <option value="compact">Compact</option>
-            <option value="spacious">Spacious</option>
-          </select>
-        </label>
-      </div>
-    </section>
+  <erp-review-box data-review-native-role="div" class="preferences-layout">
+    <erp-section data-review-native-role="section" id="preferences-appearance" class="preference-section" data-preference-section>
+      <erp-stack gap="tight" data-review-native-role="header" class="section-heading">
+        <erp-text type="heading-2" data-review-native-role="h2">1. المظهر والكثافة</erp-text>
+        <erp-text type="paragraph" data-review-native-role="p">إعدادات محلية لمعاينة السمة والكثافة داخل منطقة المعاينة فقط.</erp-text>
+      </erp-stack>
+      <erp-review-box data-review-native-role="div" class="control-grid">
+        <erp-review-select class="control-field" label="Theme" id="preference-theme" [value]="theme()" (change)="setScalar('theme', $event)">
+            <erp-review-choice value="system" label="System"></erp-review-choice>
+            
+            <erp-review-choice value="light" label="Light"></erp-review-choice>
+            
+            <erp-review-choice value="dark" label="Dark"></erp-review-choice>
+          </erp-review-select>
+        <erp-review-select class="control-field" label="Density" id="preference-density" [value]="density()" (change)="setScalar('density', $event)">
+            <erp-review-choice value="comfortable" label="Comfortable"></erp-review-choice>
+            
+            <erp-review-choice value="compact" label="Compact"></erp-review-choice>
+            
+            <erp-review-choice value="spacious" label="Spacious"></erp-review-choice>
+          </erp-review-select>
+      </erp-review-box>
+    </erp-section>
 
-    <section id="preferences-forms" class="preference-section" data-preference-section>
-      <header class="section-heading">
-        <h2>2. عرض النماذج</h2>
-        <p>قيم تعاقدية موثّقة من دون تصميم حقل إنتاجي.</p>
-      </header>
-      <div class="control-grid">
-        <label class="control-field" for="preference-form-label-placement">
-          <span>Form Label Placement</span>
-          <select
+    <erp-section data-review-native-role="section" id="preferences-forms" class="preference-section" data-preference-section>
+      <erp-stack gap="tight" data-review-native-role="header" class="section-heading">
+        <erp-text type="heading-2" data-review-native-role="h2">2. عرض النماذج</erp-text>
+        <erp-text type="paragraph" data-review-native-role="p">قيم تعاقدية موثّقة من دون تصميم حقل إنتاجي.</erp-text>
+      </erp-stack>
+      <erp-review-box data-review-native-role="div" class="control-grid">
+        <erp-review-select class="control-field" label="Form Label Placement"
             id="preference-form-label-placement"
             [value]="formLabelPlacement()"
             (change)="setScalar('formLabelPlacement', $event)"
           >
-            <option value="top">Top</option>
-            <option value="side">Side</option>
-          </select>
-        </label>
-        <label class="control-field" for="preference-form-appearance">
-          <span>Form Appearance</span>
-          <select
+            <erp-review-choice value="top" label="Top"></erp-review-choice>
+            
+            <erp-review-choice value="side" label="Side"></erp-review-choice>
+          </erp-review-select>
+        <erp-review-select class="control-field" label="Form Appearance"
             id="preference-form-appearance"
             [value]="formAppearance()"
             (change)="setScalar('formAppearance', $event)"
           >
-            <option value="outlined">Outlined</option>
-            <option value="filled">Filled</option>
-            <option value="underline">Underline</option>
-          </select>
-        </label>
-      </div>
-      <div class="resolved-contract-values">
-        <p>Current label placement: <strong>{{ formLabelPlacement() }}</strong></p>
-        <p>Current appearance: <strong>{{ formAppearance() }}</strong></p>
-      </div>
-    </section>
+            <erp-review-choice value="outlined" label="Outlined"></erp-review-choice>
+            
+            <erp-review-choice value="filled" label="Filled"></erp-review-choice>
+            
+            <erp-review-choice value="underline" label="Underline"></erp-review-choice>
+          </erp-review-select>
+      </erp-review-box>
+      <erp-review-box data-review-native-role="div" class="resolved-contract-values">
+        <erp-text type="paragraph" data-review-native-role="p">Current label placement: <erp-text type="strong" data-review-native-role="strong">{{ formLabelPlacement() }}</erp-text></erp-text>
+        <erp-text type="paragraph" data-review-native-role="p">Current appearance: <erp-text type="strong" data-review-native-role="strong">{{ formAppearance() }}</erp-text></erp-text>
+      </erp-review-box>
+    </erp-section>
 
-    <section id="preferences-numbers" class="preference-section" data-preference-section>
-      <header class="section-heading">
-        <h2>3. الأرقام والفواصل</h2>
-        <p>قيمة أساسية مع تجاوزات سياقية مستقلة للعرض والحقل والطباعة والتصدير والأموال.</p>
-      </header>
+    <erp-section data-review-native-role="section" id="preferences-numbers" class="preference-section" data-preference-section>
+      <erp-stack gap="tight" data-review-native-role="header" class="section-heading">
+        <erp-text type="heading-2" data-review-native-role="h2">3. الأرقام والفواصل</erp-text>
+        <erp-text type="paragraph" data-review-native-role="p">قيمة أساسية مع تجاوزات سياقية مستقلة للعرض والحقل والطباعة والتصدير والأموال.</erp-text>
+      </erp-stack>
 
-      <div class="settings-group">
-        <h3>Digit Set</h3>
-        <div class="control-grid contextual-controls">
-          <label class="control-field" for="digits-base">
-            <span>Base</span>
-            <select id="digits-base" [value]="digits().base" (change)="setDigitBase($event)">
-              <option value="latin">Latin</option>
-              <option value="arabic-indic">Arabic-Indic</option>
-            </select>
-          </label>
-          <label class="control-field" for="digits-view">
-            <span>View</span>
-            <select id="digits-view" [value]="contextualOverrideValue('digits', 'view')" (change)="setDigitOverride('view', $event)">
-              <option value="inherit">Inherit base</option>
-              <option value="latin">Latin</option>
-              <option value="arabic-indic">Arabic-Indic</option>
-            </select>
-          </label>
-          <label class="control-field" for="digits-field">
-            <span>Field</span>
-            <select id="digits-field" [value]="contextualOverrideValue('digits', 'field')" (change)="setDigitOverride('field', $event)">
-              <option value="inherit">Inherit base</option>
-              <option value="latin">Latin</option>
-              <option value="arabic-indic">Arabic-Indic</option>
-            </select>
-          </label>
-          <label class="control-field" for="digits-print">
-            <span>Print</span>
-            <select id="digits-print" [value]="contextualOverrideValue('digits', 'print')" (change)="setDigitOverride('print', $event)">
-              <option value="inherit">Inherit base</option>
-              <option value="latin">Latin</option>
-              <option value="arabic-indic">Arabic-Indic</option>
-            </select>
-          </label>
-          <label class="control-field" for="digits-export">
-            <span>Export</span>
-            <select id="digits-export" [value]="contextualOverrideValue('digits', 'export')" (change)="setDigitOverride('export', $event)">
-              <option value="inherit">Inherit base</option>
-              <option value="latin">Latin</option>
-              <option value="arabic-indic">Arabic-Indic</option>
-            </select>
-          </label>
-          <label class="control-field" for="digits-money">
-            <span>Money</span>
-            <select id="digits-money" [value]="contextualOverrideValue('digits', 'money')" (change)="setDigitOverride('money', $event)">
-              <option value="inherit">Inherit base</option>
-              <option value="latin">Latin</option>
-              <option value="arabic-indic">Arabic-Indic</option>
-            </select>
-          </label>
-        </div>
-      </div>
+      <erp-review-box data-review-native-role="div" class="settings-group">
+        <erp-text type="heading-3" data-review-native-role="h3">Digit Set</erp-text>
+        <erp-review-box data-review-native-role="div" class="control-grid contextual-controls">
+          <erp-review-select class="control-field" label="Base" id="digits-base" [value]="digits().base" (change)="setDigitBase($event)">
+            <erp-review-choice value="latin" label="Latin"></erp-review-choice>
+              
+            <erp-review-choice value="arabic-indic" label="Arabic-Indic"></erp-review-choice>
+          </erp-review-select>
+          <erp-review-select class="control-field" label="View" id="digits-view" [value]="contextualOverrideValue('digits', 'view')" (change)="setDigitOverride('view', $event)">
+            <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
+              
+            <erp-review-choice value="latin" label="Latin"></erp-review-choice>
+              
+            <erp-review-choice value="arabic-indic" label="Arabic-Indic"></erp-review-choice>
+          </erp-review-select>
+          <erp-review-select class="control-field" label="Field" id="digits-field" [value]="contextualOverrideValue('digits', 'field')" (change)="setDigitOverride('field', $event)">
+            <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
+              
+            <erp-review-choice value="latin" label="Latin"></erp-review-choice>
+              
+            <erp-review-choice value="arabic-indic" label="Arabic-Indic"></erp-review-choice>
+          </erp-review-select>
+          <erp-review-select class="control-field" label="Print" id="digits-print" [value]="contextualOverrideValue('digits', 'print')" (change)="setDigitOverride('print', $event)">
+            <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
+              
+            <erp-review-choice value="latin" label="Latin"></erp-review-choice>
+              
+            <erp-review-choice value="arabic-indic" label="Arabic-Indic"></erp-review-choice>
+          </erp-review-select>
+          <erp-review-select class="control-field" label="Export" id="digits-export" [value]="contextualOverrideValue('digits', 'export')" (change)="setDigitOverride('export', $event)">
+            <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
+              
+            <erp-review-choice value="latin" label="Latin"></erp-review-choice>
+              
+            <erp-review-choice value="arabic-indic" label="Arabic-Indic"></erp-review-choice>
+          </erp-review-select>
+          <erp-review-select class="control-field" label="Money" id="digits-money" [value]="contextualOverrideValue('digits', 'money')" (change)="setDigitOverride('money', $event)">
+            <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
+              
+            <erp-review-choice value="latin" label="Latin"></erp-review-choice>
+              
+            <erp-review-choice value="arabic-indic" label="Arabic-Indic"></erp-review-choice>
+          </erp-review-select>
+        </erp-review-box>
+      </erp-review-box>
 
-      <div class="settings-group">
-        <h3>Identifier Digits</h3>
-        <div class="control-grid">
-          <label class="control-field" for="identifier-digits">
-            <span>Independent identifier digits</span>
-            <select
+      <erp-review-box data-review-native-role="div" class="settings-group">
+        <erp-text type="heading-3" data-review-native-role="h3">Identifier Digits</erp-text>
+        <erp-review-box data-review-native-role="div" class="control-grid">
+          <erp-review-select class="control-field" label="Independent identifier digits"
               id="identifier-digits"
               [value]="identifierDigits()"
               (change)="setScalar('identifierDigits', $event)"
             >
-              <option value="latin">Latin</option>
-              <option value="arabic-indic">Arabic-Indic</option>
-            </select>
-          </label>
-        </div>
-      </div>
+            <erp-review-choice value="latin" label="Latin"></erp-review-choice>
+              
+            <erp-review-choice value="arabic-indic" label="Arabic-Indic"></erp-review-choice>
+          </erp-review-select>
+        </erp-review-box>
+      </erp-review-box>
 
-      <div class="settings-group">
-        <h3>Number Separator Profile</h3>
-        <div class="control-grid contextual-controls">
-          <label class="control-field" for="separators-base">
-            <span>Base</span>
-            <select id="separators-base" [value]="numberSeparators().base" (change)="setSeparatorBase($event)">
-              <option value="comma-dot">Comma / Dot</option>
-              <option value="dot-comma">Dot / Comma</option>
-              <option value="space-comma">Space / Comma</option>
-              <option value="arabic">Arabic separators</option>
-            </select>
-          </label>
-          <label class="control-field" for="separators-view">
-            <span>View</span>
-            <select id="separators-view" [value]="contextualOverrideValue('numberSeparators', 'view')" (change)="setSeparatorOverride('view', $event)">
-              <option value="inherit">Inherit base</option>
-              <option value="comma-dot">Comma / Dot</option>
-              <option value="dot-comma">Dot / Comma</option>
-              <option value="space-comma">Space / Comma</option>
-              <option value="arabic">Arabic separators</option>
-            </select>
-          </label>
-          <label class="control-field" for="separators-field">
-            <span>Field</span>
-            <select id="separators-field" [value]="contextualOverrideValue('numberSeparators', 'field')" (change)="setSeparatorOverride('field', $event)">
-              <option value="inherit">Inherit base</option>
-              <option value="comma-dot">Comma / Dot</option>
-              <option value="dot-comma">Dot / Comma</option>
-              <option value="space-comma">Space / Comma</option>
-              <option value="arabic">Arabic separators</option>
-            </select>
-          </label>
-          <label class="control-field" for="separators-print">
-            <span>Print</span>
-            <select id="separators-print" [value]="contextualOverrideValue('numberSeparators', 'print')" (change)="setSeparatorOverride('print', $event)">
-              <option value="inherit">Inherit base</option>
-              <option value="comma-dot">Comma / Dot</option>
-              <option value="dot-comma">Dot / Comma</option>
-              <option value="space-comma">Space / Comma</option>
-              <option value="arabic">Arabic separators</option>
-            </select>
-          </label>
-          <label class="control-field" for="separators-export">
-            <span>Export</span>
-            <select id="separators-export" [value]="contextualOverrideValue('numberSeparators', 'export')" (change)="setSeparatorOverride('export', $event)">
-              <option value="inherit">Inherit base</option>
-              <option value="comma-dot">Comma / Dot</option>
-              <option value="dot-comma">Dot / Comma</option>
-              <option value="space-comma">Space / Comma</option>
-              <option value="arabic">Arabic separators</option>
-            </select>
-          </label>
-          <label class="control-field" for="separators-money">
-            <span>Money</span>
-            <select id="separators-money" [value]="contextualOverrideValue('numberSeparators', 'money')" (change)="setSeparatorOverride('money', $event)">
-              <option value="inherit">Inherit base</option>
-              <option value="comma-dot">Comma / Dot</option>
-              <option value="dot-comma">Dot / Comma</option>
-              <option value="space-comma">Space / Comma</option>
-              <option value="arabic">Arabic separators</option>
-            </select>
-          </label>
-        </div>
-      </div>
-    </section>
+      <erp-review-box data-review-native-role="div" class="settings-group">
+        <erp-text type="heading-3" data-review-native-role="h3">Number Separator Profile</erp-text>
+        <erp-review-box data-review-native-role="div" class="control-grid contextual-controls">
+          <erp-review-select class="control-field" label="Base" id="separators-base" [value]="numberSeparators().base" (change)="setSeparatorBase($event)">
+            <erp-review-choice value="comma-dot" label="Comma / Dot"></erp-review-choice>
+              
+            <erp-review-choice value="dot-comma" label="Dot / Comma"></erp-review-choice>
+              
+            <erp-review-choice value="space-comma" label="Space / Comma"></erp-review-choice>
+              
+            <erp-review-choice value="arabic" label="Arabic separators"></erp-review-choice>
+          </erp-review-select>
+          <erp-review-select class="control-field" label="View" id="separators-view" [value]="contextualOverrideValue('numberSeparators', 'view')" (change)="setSeparatorOverride('view', $event)">
+            <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
+              
+            <erp-review-choice value="comma-dot" label="Comma / Dot"></erp-review-choice>
+              
+            <erp-review-choice value="dot-comma" label="Dot / Comma"></erp-review-choice>
+              
+            <erp-review-choice value="space-comma" label="Space / Comma"></erp-review-choice>
+              
+            <erp-review-choice value="arabic" label="Arabic separators"></erp-review-choice>
+          </erp-review-select>
+          <erp-review-select class="control-field" label="Field" id="separators-field" [value]="contextualOverrideValue('numberSeparators', 'field')" (change)="setSeparatorOverride('field', $event)">
+            <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
+              
+            <erp-review-choice value="comma-dot" label="Comma / Dot"></erp-review-choice>
+              
+            <erp-review-choice value="dot-comma" label="Dot / Comma"></erp-review-choice>
+              
+            <erp-review-choice value="space-comma" label="Space / Comma"></erp-review-choice>
+              
+            <erp-review-choice value="arabic" label="Arabic separators"></erp-review-choice>
+          </erp-review-select>
+          <erp-review-select class="control-field" label="Print" id="separators-print" [value]="contextualOverrideValue('numberSeparators', 'print')" (change)="setSeparatorOverride('print', $event)">
+            <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
+              
+            <erp-review-choice value="comma-dot" label="Comma / Dot"></erp-review-choice>
+              
+            <erp-review-choice value="dot-comma" label="Dot / Comma"></erp-review-choice>
+              
+            <erp-review-choice value="space-comma" label="Space / Comma"></erp-review-choice>
+              
+            <erp-review-choice value="arabic" label="Arabic separators"></erp-review-choice>
+          </erp-review-select>
+          <erp-review-select class="control-field" label="Export" id="separators-export" [value]="contextualOverrideValue('numberSeparators', 'export')" (change)="setSeparatorOverride('export', $event)">
+            <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
+              
+            <erp-review-choice value="comma-dot" label="Comma / Dot"></erp-review-choice>
+              
+            <erp-review-choice value="dot-comma" label="Dot / Comma"></erp-review-choice>
+              
+            <erp-review-choice value="space-comma" label="Space / Comma"></erp-review-choice>
+              
+            <erp-review-choice value="arabic" label="Arabic separators"></erp-review-choice>
+          </erp-review-select>
+          <erp-review-select class="control-field" label="Money" id="separators-money" [value]="contextualOverrideValue('numberSeparators', 'money')" (change)="setSeparatorOverride('money', $event)">
+            <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
+              
+            <erp-review-choice value="comma-dot" label="Comma / Dot"></erp-review-choice>
+              
+            <erp-review-choice value="dot-comma" label="Dot / Comma"></erp-review-choice>
+              
+            <erp-review-choice value="space-comma" label="Space / Comma"></erp-review-choice>
+              
+            <erp-review-choice value="arabic" label="Arabic separators"></erp-review-choice>
+          </erp-review-select>
+        </erp-review-box>
+      </erp-review-box>
+    </erp-section>
 
-    <section id="preferences-money" class="preference-section" data-preference-section>
-      <header class="section-heading">
-        <h2>4. عرض الأموال</h2>
-        <p>يتحكم في موضع الكود أو الرمز فقط؛ العملة والقيمة بيانات نطاق.</p>
-      </header>
-      <div class="control-grid">
-        <label class="control-field" for="money-display">
-          <span>Money Display Profile</span>
-          <select id="money-display" [value]="moneyDisplay()" (change)="setScalar('moneyDisplay', $event)">
-            <option value="code-after">Code after</option>
-            <option value="code-before">Code before</option>
-            <option value="symbol-after">Symbol after</option>
-            <option value="symbol-before">Symbol before</option>
-          </select>
-        </label>
-      </div>
-    </section>
+    <erp-section data-review-native-role="section" id="preferences-money" class="preference-section" data-preference-section>
+      <erp-stack gap="tight" data-review-native-role="header" class="section-heading">
+        <erp-text type="heading-2" data-review-native-role="h2">4. عرض الأموال</erp-text>
+        <erp-text type="paragraph" data-review-native-role="p">يتحكم في موضع الكود أو الرمز فقط؛ العملة والقيمة بيانات نطاق.</erp-text>
+      </erp-stack>
+      <erp-review-box data-review-native-role="div" class="control-grid">
+        <erp-review-select class="control-field" label="Money Display Profile" id="money-display" [value]="moneyDisplay()" (change)="setScalar('moneyDisplay', $event)">
+            <erp-review-choice value="code-after" label="Code after"></erp-review-choice>
+            
+            <erp-review-choice value="code-before" label="Code before"></erp-review-choice>
+            
+            <erp-review-choice value="symbol-after" label="Symbol after"></erp-review-choice>
+            
+            <erp-review-choice value="symbol-before" label="Symbol before"></erp-review-choice>
+          </erp-review-select>
+      </erp-review-box>
+    </erp-section>
 
-    <section id="preferences-date-time" class="preference-section" data-preference-section>
-      <header class="section-heading">
-        <h2>5. التاريخ والوقت</h2>
-        <p>تنسيقات حتمية ثابتة، مع عرض المنطقة الزمنية الحالية للمتصفح كمعلومة فقط.</p>
-      </header>
+    <erp-section data-review-native-role="section" id="preferences-date-time" class="preference-section" data-preference-section>
+      <erp-stack gap="tight" data-review-native-role="header" class="section-heading">
+        <erp-text type="heading-2" data-review-native-role="h2">5. التاريخ والوقت</erp-text>
+        <erp-text type="paragraph" data-review-native-role="p">تنسيقات حتمية ثابتة، مع عرض المنطقة الزمنية الحالية للمتصفح كمعلومة فقط.</erp-text>
+      </erp-stack>
 
-      <div class="settings-group">
-        <h3>Date Format</h3>
-        <div class="control-grid contextual-controls">
-          <label class="control-field" for="date-format-base">
-            <span>Base Date Format</span>
-            <select id="date-format-base" [value]="dateFormat().base" (change)="setDateBase($event)">
-              <option value="DD/MM/YYYY">DD/MM/YYYY</option>
-              <option value="YYYY-MM-DD">YYYY-MM-DD</option>
-            </select>
-          </label>
-          <label class="control-field" for="date-format-view">
-            <span>View</span>
-            <select id="date-format-view" [value]="contextualOverrideValue('dateFormat', 'view')" (change)="setDateOverride('view', $event)">
-              <option value="inherit">Inherit base</option>
-              <option value="DD/MM/YYYY">DD/MM/YYYY</option>
-              <option value="YYYY-MM-DD">YYYY-MM-DD</option>
-            </select>
-          </label>
-          <label class="control-field" for="date-format-field">
-            <span>Field</span>
-            <select id="date-format-field" [value]="contextualOverrideValue('dateFormat', 'field')" (change)="setDateOverride('field', $event)">
-              <option value="inherit">Inherit base</option>
-              <option value="DD/MM/YYYY">DD/MM/YYYY</option>
-              <option value="YYYY-MM-DD">YYYY-MM-DD</option>
-            </select>
-          </label>
-          <label class="control-field" for="date-format-print">
-            <span>Print</span>
-            <select id="date-format-print" [value]="contextualOverrideValue('dateFormat', 'print')" (change)="setDateOverride('print', $event)">
-              <option value="inherit">Inherit base</option>
-              <option value="DD/MM/YYYY">DD/MM/YYYY</option>
-              <option value="YYYY-MM-DD">YYYY-MM-DD</option>
-            </select>
-          </label>
-          <label class="control-field" for="date-format-export">
-            <span>Export</span>
-            <select id="date-format-export" [value]="contextualOverrideValue('dateFormat', 'export')" (change)="setDateOverride('export', $event)">
-              <option value="inherit">Inherit base</option>
-              <option value="DD/MM/YYYY">DD/MM/YYYY</option>
-              <option value="YYYY-MM-DD">YYYY-MM-DD</option>
-            </select>
-          </label>
-        </div>
-      </div>
+      <erp-review-box data-review-native-role="div" class="settings-group">
+        <erp-text type="heading-3" data-review-native-role="h3">Date Format</erp-text>
+        <erp-review-box data-review-native-role="div" class="control-grid contextual-controls">
+          <erp-review-select class="control-field" label="Base Date Format" id="date-format-base" [value]="dateFormat().base" (change)="setDateBase($event)">
+            <erp-review-choice value="DD/MM/YYYY" label="DD/MM/YYYY"></erp-review-choice>
+              
+            <erp-review-choice value="YYYY-MM-DD" label="YYYY-MM-DD"></erp-review-choice>
+          </erp-review-select>
+          <erp-review-select class="control-field" label="View" id="date-format-view" [value]="contextualOverrideValue('dateFormat', 'view')" (change)="setDateOverride('view', $event)">
+            <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
+              
+            <erp-review-choice value="DD/MM/YYYY" label="DD/MM/YYYY"></erp-review-choice>
+              
+            <erp-review-choice value="YYYY-MM-DD" label="YYYY-MM-DD"></erp-review-choice>
+          </erp-review-select>
+          <erp-review-select class="control-field" label="Field" id="date-format-field" [value]="contextualOverrideValue('dateFormat', 'field')" (change)="setDateOverride('field', $event)">
+            <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
+              
+            <erp-review-choice value="DD/MM/YYYY" label="DD/MM/YYYY"></erp-review-choice>
+              
+            <erp-review-choice value="YYYY-MM-DD" label="YYYY-MM-DD"></erp-review-choice>
+          </erp-review-select>
+          <erp-review-select class="control-field" label="Print" id="date-format-print" [value]="contextualOverrideValue('dateFormat', 'print')" (change)="setDateOverride('print', $event)">
+            <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
+              
+            <erp-review-choice value="DD/MM/YYYY" label="DD/MM/YYYY"></erp-review-choice>
+              
+            <erp-review-choice value="YYYY-MM-DD" label="YYYY-MM-DD"></erp-review-choice>
+          </erp-review-select>
+          <erp-review-select class="control-field" label="Export" id="date-format-export" [value]="contextualOverrideValue('dateFormat', 'export')" (change)="setDateOverride('export', $event)">
+            <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
+              
+            <erp-review-choice value="DD/MM/YYYY" label="DD/MM/YYYY"></erp-review-choice>
+              
+            <erp-review-choice value="YYYY-MM-DD" label="YYYY-MM-DD"></erp-review-choice>
+          </erp-review-select>
+        </erp-review-box>
+      </erp-review-box>
 
-      <div class="control-grid">
-        <label class="control-field" for="date-view-style">
-          <span>Date View Style</span>
-          <select id="date-view-style" [value]="dateViewStyle()" (change)="setScalar('dateViewStyle', $event)">
-            <option value="numeric">Numeric</option>
-            <option value="long-arabic">Long Arabic</option>
-          </select>
-        </label>
-        <label class="control-field" for="time-format">
-          <span>Time Format</span>
-          <select id="time-format" [value]="timeFormat()" (change)="setScalar('timeFormat', $event)">
-            <option value="24h">24 hour</option>
-            <option value="12h">12 hour</option>
-          </select>
-        </label>
-        <div class="readonly-field">
-          <span>System timezone</span>
-          <bdi dir="ltr">{{ systemTimezone }}</bdi>
-        </div>
-      </div>
-    </section>
+      <erp-review-box data-review-native-role="div" class="control-grid">
+        <erp-review-select class="control-field" label="Date View Style" id="date-view-style" [value]="dateViewStyle()" (change)="setScalar('dateViewStyle', $event)">
+            <erp-review-choice value="numeric" label="Numeric"></erp-review-choice>
+            
+            <erp-review-choice value="long-arabic" label="Long Arabic"></erp-review-choice>
+          </erp-review-select>
+        <erp-review-select class="control-field" label="Time Format" id="time-format" [value]="timeFormat()" (change)="setScalar('timeFormat', $event)">
+            <erp-review-choice value="24h" label="24 hour"></erp-review-choice>
+            
+            <erp-review-choice value="12h" label="12 hour"></erp-review-choice>
+          </erp-review-select>
+        <erp-review-box data-review-native-role="div" class="readonly-field">
+          <erp-text type="span" data-review-native-role="span">System timezone</erp-text>
+          <erp-text type="bdi" data-review-native-role="bdi" dir="ltr">{{ systemTimezone }}</erp-text>
+        </erp-review-box>
+      </erp-review-box>
+    </erp-section>
 
-    <section id="preferences-preview" class="preference-section" data-preference-section>
-      <header class="section-heading">
-        <h2>6. المعاينة الحية</h2>
-        <p>منطقة معزولة تستخدم السمة والكثافة الحالية وتعرض نتائج التنسيق المحسوبة.</p>
-      </header>
+    <erp-section data-review-native-role="section" id="preferences-preview" class="preference-section" data-preference-section>
+      <erp-stack gap="tight" data-review-native-role="header" class="section-heading">
+        <erp-text type="heading-2" data-review-native-role="h2">6. المعاينة الحية</erp-text>
+        <erp-text type="paragraph" data-review-native-role="p">منطقة معزولة تستخدم السمة والكثافة الحالية وتعرض نتائج التنسيق المحسوبة.</erp-text>
+      </erp-stack>
 
-      <div
+      <erp-review-box data-review-native-role="div"
         id="preferences-live-preview"
         class="live-preview"
         [attr.data-density]="density()"
       >
-        <div class="density-evidence">
-          <strong>Density spacing evidence</strong>
-          <span>Stack default + Inset default</span>
-          <span>Current density: {{ density() }}</span>
-        </div>
+        <erp-review-box data-review-native-role="div" class="density-evidence">
+          <erp-text type="strong" data-review-native-role="strong">Density spacing evidence</erp-text>
+          <erp-text type="span" data-review-native-role="span">Stack default + Inset default</erp-text>
+          <erp-text type="span" data-review-native-role="span">Current density: {{ density() }}</erp-text>
+        </erp-review-box>
 
-        <div class="preview-block">
-          <h3>Form contract values</h3>
-          <p>Current label placement: <strong>{{ formLabelPlacement() }}</strong></p>
-          <p>Current appearance: <strong>{{ formAppearance() }}</strong></p>
-        </div>
+        <erp-review-box data-review-native-role="div" class="preview-block">
+          <erp-text type="heading-3" data-review-native-role="h3">Form contract values</erp-text>
+          <erp-text type="paragraph" data-review-native-role="p">Current label placement: <erp-text type="strong" data-review-native-role="strong">{{ formLabelPlacement() }}</erp-text></erp-text>
+          <erp-text type="paragraph" data-review-native-role="p">Current appearance: <erp-text type="strong" data-review-native-role="strong">{{ formAppearance() }}</erp-text></erp-text>
+        </erp-review-box>
 
-        <div class="preview-block">
-          <h3>Formatting examples</h3>
-          <dl class="preview-values">
-            <div><dt>View number</dt><dd><bdi dir="ltr">{{ numberPreview('view') }}</bdi></dd></div>
-            <div><dt>Field number</dt><dd><bdi dir="ltr">{{ numberPreview('field') }}</bdi></dd></div>
-            <div><dt>Print number</dt><dd><bdi dir="ltr">{{ numberPreview('print') }}</bdi></dd></div>
-            <div><dt>Export number</dt><dd><bdi dir="ltr">{{ numberPreview('export') }}</bdi></dd></div>
-            <div><dt>Money</dt><dd><bdi dir="ltr">{{ moneyPreview() }}</bdi></dd></div>
-            <div><dt>Identifier digits</dt><dd><bdi dir="ltr">{{ identifierPreview('INV-2026-001') }}</bdi></dd></div>
-            <div><dt>View date</dt><dd><bdi dir="ltr">{{ datePreview('view') }}</bdi></dd></div>
-            <div><dt>Field date</dt><dd><bdi dir="ltr">{{ datePreview('field') }}</bdi></dd></div>
-            <div><dt>Print date</dt><dd><bdi dir="ltr">{{ datePreview('print') }}</bdi></dd></div>
-            <div><dt>Export date</dt><dd><bdi dir="ltr">{{ datePreview('export') }}</bdi></dd></div>
-            <div><dt>Time</dt><dd><bdi dir="ltr">{{ timePreview() }}</bdi></dd></div>
-          </dl>
-        </div>
+        <erp-review-box data-review-native-role="div" class="preview-block">
+          <erp-text type="heading-3" data-review-native-role="h3">Formatting examples</erp-text>
+          <erp-review-box data-review-native-role="dl" class="preview-values">
+            <erp-review-box data-review-native-role="div"><erp-text type="term" data-review-native-role="dt">View number</erp-text><erp-text type="description" data-review-native-role="dd"><erp-text type="bdi" data-review-native-role="bdi" dir="ltr">{{ numberPreview('view') }}</erp-text></erp-text></erp-review-box>
+            <erp-review-box data-review-native-role="div"><erp-text type="term" data-review-native-role="dt">Field number</erp-text><erp-text type="description" data-review-native-role="dd"><erp-text type="bdi" data-review-native-role="bdi" dir="ltr">{{ numberPreview('field') }}</erp-text></erp-text></erp-review-box>
+            <erp-review-box data-review-native-role="div"><erp-text type="term" data-review-native-role="dt">Print number</erp-text><erp-text type="description" data-review-native-role="dd"><erp-text type="bdi" data-review-native-role="bdi" dir="ltr">{{ numberPreview('print') }}</erp-text></erp-text></erp-review-box>
+            <erp-review-box data-review-native-role="div"><erp-text type="term" data-review-native-role="dt">Export number</erp-text><erp-text type="description" data-review-native-role="dd"><erp-text type="bdi" data-review-native-role="bdi" dir="ltr">{{ numberPreview('export') }}</erp-text></erp-text></erp-review-box>
+            <erp-review-box data-review-native-role="div"><erp-text type="term" data-review-native-role="dt">Money</erp-text><erp-text type="description" data-review-native-role="dd"><erp-text type="bdi" data-review-native-role="bdi" dir="ltr">{{ moneyPreview() }}</erp-text></erp-text></erp-review-box>
+            <erp-review-box data-review-native-role="div"><erp-text type="term" data-review-native-role="dt">Identifier digits</erp-text><erp-text type="description" data-review-native-role="dd"><erp-text type="bdi" data-review-native-role="bdi" dir="ltr">{{ identifierPreview('INV-2026-001') }}</erp-text></erp-text></erp-review-box>
+            <erp-review-box data-review-native-role="div"><erp-text type="term" data-review-native-role="dt">View date</erp-text><erp-text type="description" data-review-native-role="dd"><erp-text type="bdi" data-review-native-role="bdi" dir="ltr">{{ datePreview('view') }}</erp-text></erp-text></erp-review-box>
+            <erp-review-box data-review-native-role="div"><erp-text type="term" data-review-native-role="dt">Field date</erp-text><erp-text type="description" data-review-native-role="dd"><erp-text type="bdi" data-review-native-role="bdi" dir="ltr">{{ datePreview('field') }}</erp-text></erp-text></erp-review-box>
+            <erp-review-box data-review-native-role="div"><erp-text type="term" data-review-native-role="dt">Print date</erp-text><erp-text type="description" data-review-native-role="dd"><erp-text type="bdi" data-review-native-role="bdi" dir="ltr">{{ datePreview('print') }}</erp-text></erp-text></erp-review-box>
+            <erp-review-box data-review-native-role="div"><erp-text type="term" data-review-native-role="dt">Export date</erp-text><erp-text type="description" data-review-native-role="dd"><erp-text type="bdi" data-review-native-role="bdi" dir="ltr">{{ datePreview('export') }}</erp-text></erp-text></erp-review-box>
+            <erp-review-box data-review-native-role="div"><erp-text type="term" data-review-native-role="dt">Time</erp-text><erp-text type="description" data-review-native-role="dd"><erp-text type="bdi" data-review-native-role="bdi" dir="ltr">{{ timePreview() }}</erp-text></erp-text></erp-review-box>
+          </erp-review-box>
+        </erp-review-box>
 
-        <div class="preview-block">
-          <h3>Mixed RTL / LTR evidence</h3>
-          <dl class="bidi-examples">
-            <div><dt>Identifier</dt><dd><bdi dir="ltr">{{ identifierPreview('INV-2026-001') }}</bdi></dd></div>
-            <div><dt>Email</dt><dd><bdi dir="ltr">finance.audit@example.com</bdi></dd></div>
-            <div><dt>Phone</dt><dd><bdi dir="ltr">{{ identifierPreview('+20 100 234 5678') }}</bdi></dd></div>
-            <div><dt>Numeric code</dt><dd><bdi dir="ltr">{{ identifierPreview('1100-01-003') }}</bdi></dd></div>
-          </dl>
-        </div>
-      </div>
-    </section>
+        <erp-review-box data-review-native-role="div" class="preview-block">
+          <erp-text type="heading-3" data-review-native-role="h3">Mixed RTL / LTR evidence</erp-text>
+          <erp-review-box data-review-native-role="dl" class="bidi-examples">
+            <erp-review-box data-review-native-role="div"><erp-text type="term" data-review-native-role="dt">Identifier</erp-text><erp-text type="description" data-review-native-role="dd"><erp-text type="bdi" data-review-native-role="bdi" dir="ltr">{{ identifierPreview('INV-2026-001') }}</erp-text></erp-text></erp-review-box>
+            <erp-review-box data-review-native-role="div"><erp-text type="term" data-review-native-role="dt">Email</erp-text><erp-text type="description" data-review-native-role="dd"><erp-text type="bdi" data-review-native-role="bdi" dir="ltr">finance.audit@example.com</erp-text></erp-text></erp-review-box>
+            <erp-review-box data-review-native-role="div"><erp-text type="term" data-review-native-role="dt">Phone</erp-text><erp-text type="description" data-review-native-role="dd"><erp-text type="bdi" data-review-native-role="bdi" dir="ltr">{{ identifierPreview('+20 100 234 5678') }}</erp-text></erp-text></erp-review-box>
+            <erp-review-box data-review-native-role="div"><erp-text type="term" data-review-native-role="dt">Numeric code</erp-text><erp-text type="description" data-review-native-role="dd"><erp-text type="bdi" data-review-native-role="bdi" dir="ltr">{{ identifierPreview('1100-01-003') }}</erp-text></erp-text></erp-review-box>
+          </erp-review-box>
+        </erp-review-box>
+      </erp-review-box>
+    </erp-section>
 
-    <section id="preferences-storage-reset" class="preference-section" data-preference-section>
-      <header class="section-heading">
-        <h2>7. التخزين وإعادة الضبط</h2>
-        <p>مساحة الاسم وأنواع التخزين للقراءة فقط، مع عمليات إعادة ضبط محددة النطاق.</p>
-      </header>
+    <erp-section data-review-native-role="section" id="preferences-storage-reset" class="preference-section" data-preference-section>
+      <erp-stack gap="tight" data-review-native-role="header" class="section-heading">
+        <erp-text type="heading-2" data-review-native-role="h2">7. التخزين وإعادة الضبط</erp-text>
+        <erp-text type="paragraph" data-review-native-role="p">مساحة الاسم وأنواع التخزين للقراءة فقط، مع عمليات إعادة ضبط محددة النطاق.</erp-text>
+      </erp-stack>
 
-      <div class="storage-key-row">
-        <span>Storage key</span>
-        <code id="preferences-storage-key" dir="ltr">{{ store.storageKey }}</code>
-      </div>
+      <erp-review-box data-review-native-role="div" class="storage-key-row">
+        <erp-text type="span" data-review-native-role="span">Storage key</erp-text>
+        <erp-text type="code" data-review-native-role="code" id="preferences-storage-key" dir="ltr">{{ store.storageKey }}</erp-text>
+      </erp-review-box>
 
-      <div class="store-type-list" aria-label="Setting StoreType metadata">
+      <erp-review-box data-review-native-role="div" class="store-type-list" aria-label="Setting StoreType metadata">
         @for (key of settingKeys; track key) {
-          <div class="store-type-row" [attr.data-setting-key]="key">
-            <code>{{ key }}</code>
-            <strong>{{ registry[key].storeType }}</strong>
-          </div>
+          <erp-review-box data-review-native-role="div" class="store-type-row" [attr.data-setting-key]="key">
+            <erp-text type="code" data-review-native-role="code">{{ key }}</erp-text>
+            <erp-text type="strong" data-review-native-role="strong">{{ registry[key].storeType }}</erp-text>
+          </erp-review-box>
         }
-      </div>
+      </erp-review-box>
 
-      <div class="reset-actions">
-        <button type="button" (click)="resetCategory('appearance')">Reset Appearance category</button>
-        <button type="button" (click)="resetCategory('forms')">Reset Forms category</button>
-        <button type="button" (click)="resetCategory('numbers')">Reset Numbers category</button>
-        <button type="button" (click)="resetCategory('money')">Reset Money category</button>
-        <button type="button" (click)="resetCategory('dateTime')">Reset Date/Time category</button>
-        <button type="button" (click)="resetSetting('theme')">Reset Theme setting</button>
-        <button type="button" class="reset-all" (click)="resetAll()">Reset All</button>
-      </div>
-    </section>
-  </div>
-</main>
+      <erp-review-box data-review-native-role="div" class="reset-actions">
+        <erp-button (pressed)="resetCategory('appearance')" label="Reset Appearance category"></erp-button>
+        <erp-button (pressed)="resetCategory('forms')" label="Reset Forms category"></erp-button>
+        <erp-button (pressed)="resetCategory('numbers')" label="Reset Numbers category"></erp-button>
+        <erp-button (pressed)="resetCategory('money')" label="Reset Money category"></erp-button>
+        <erp-button (pressed)="resetCategory('dateTime')" label="Reset Date/Time category"></erp-button>
+        <erp-button (pressed)="resetSetting('theme')" label="Reset Theme setting"></erp-button>
+        <erp-button class="reset-all" (pressed)="resetAll()" label="Reset All"></erp-button>
+      </erp-review-box>
+    </erp-section>
+  </erp-review-box>
+</erp-container>

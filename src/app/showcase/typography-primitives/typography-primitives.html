@@ -1,15 +1,15 @@
 <erp-container class="typography-showcase" width="wide">
   <erp-stack gap="loose">
-    <header class="showcase-header">
+    <erp-stack gap="tight" data-review-native-role="header" class="showcase-header">
       <erp-text type="label" tone="secondary" family="latin">Typography Primitives V1</erp-text>
       <erp-text type="heading-1">النصوص الإنتاجية</erp-text>
       <erp-text type="paragraph" tone="secondary">
         دليل موحّد للمكوّن النصي الإنتاجي ErpText عبر بوابة التأليف المخصصة.
       </erp-text>
-    </header>
+    </erp-stack>
 
     <erp-section gap="large">
-      <section class="review-group" data-review-group="type-defaults">
+      <erp-section data-review-native-role="section" class="review-group" data-review-group="type-defaults">
         <erp-text type="heading-2">Type Defaults</erp-text>
         <erp-grid [columns]="4" gap="sm" responsive="auto">
           @for (type of allTypes; track type) {
@@ -21,11 +21,11 @@
             </erp-surface>
           }
         </erp-grid>
-      </section>
+      </erp-section>
 
       <erp-divider></erp-divider>
 
-      <section class="review-group" data-review-group="scales">
+      <erp-section data-review-native-role="section" class="review-group" data-review-group="scales">
         <erp-text type="heading-2">Sizes / Weights / Line Heights</erp-text>
         <erp-stack gap="loose">
           <erp-grid [columns]="2" gap="sm" responsive="auto">
@@ -43,16 +43,16 @@
           <erp-grid [columns]="3" gap="sm" responsive="auto">
             @for (lineHeight of lineHeights; track lineHeight) {
               <erp-text [lineHeight]="lineHeight">
-                Line height {{ lineHeight }}<br>سطر ثانٍ للمقارنة
+                Line height {{ lineHeight }}<erp-review-break></erp-review-break>سطر ثانٍ للمقارنة
               </erp-text>
             }
           </erp-grid>
         </erp-stack>
-      </section>
+      </erp-section>
 
       <erp-divider></erp-divider>
 
-      <section class="review-group" data-review-group="presentation">
+      <erp-section data-review-native-role="section" class="review-group" data-review-group="presentation">
         <erp-text type="heading-2">Tones / Families / Alignment</erp-text>
         <erp-stack gap="loose">
           <erp-grid [columns]="3" gap="sm" responsive="auto">
@@ -79,11 +79,11 @@
             }
           </erp-stack>
         </erp-stack>
-      </section>
+      </erp-section>
 
       <erp-divider></erp-divider>
 
-      <section class="review-group" data-review-group="blocks">
+      <erp-section data-review-native-role="section" class="review-group" data-review-group="blocks">
         <erp-text type="heading-2">Headings / Blocks / Containers</erp-text>
         <erp-stack gap="default">
           <erp-text type="heading-1">Heading 1</erp-text>
@@ -104,15 +104,15 @@
             <erp-text type="paragraph">Grouped supporting paragraph.</erp-text>
           </erp-text>
           <erp-text type="figure" class="figure-proof">
-            <div class="neutral-visual" aria-hidden="true"></div>
+            <erp-review-box data-review-native-role="div" class="neutral-visual" aria-hidden="true"></erp-review-box>
             <erp-text type="figcaption">Figure caption typography.</erp-text>
           </erp-text>
         </erp-stack>
-      </section>
+      </erp-section>
 
       <erp-divider></erp-divider>
 
-      <section class="review-group" data-review-group="inline-semantics">
+      <erp-section data-review-native-role="section" class="review-group" data-review-group="inline-semantics">
         <erp-text type="heading-2">Inline Semantic Types</erp-text>
         <erp-inline gap="loose" wrap="wrap" align="baseline">
           <erp-text type="span">span</erp-text>
@@ -146,11 +146,11 @@
             Frozen V1 intentionally uses the approved Latin/UI family and does not create a monospace role.
           </erp-text>
         </erp-stack>
-      </section>
+      </erp-section>
 
       <erp-divider></erp-divider>
 
-      <section class="review-group" data-review-group="structured-text">
+      <erp-section data-review-native-role="section" class="review-group" data-review-group="structured-text">
         <erp-text type="heading-2">Data / Lists / Table / Form Text</erp-text>
         <erp-grid [columns]="2" gap="sm" responsive="auto">
           <erp-text type="label" for="customer-proof">Customer label</erp-text>
@@ -166,11 +166,11 @@
           <erp-text type="data" value="1240">1,240 EGP</erp-text>
           <erp-text type="summary">Summary typography</erp-text>
         </erp-grid>
-      </section>
+      </erp-section>
 
       <erp-divider></erp-divider>
 
-      <section id="link-proof" class="review-group" data-review-group="direction-overflow-link">
+      <erp-section data-review-native-role="section" id="link-proof" class="review-group" data-review-group="direction-overflow-link">
         <erp-text type="heading-2">Direction / Ruby / Wrapping / Overflow / Link</erp-text>
         <erp-stack gap="loose">
           <erp-inline gap="loose" wrap="wrap">
@@ -225,7 +225,7 @@ second line with long-content-proof</erp-text>
             عمدًا لإثبات أن lineClamp يتغلب على nowrap و ellipsis ويظل حدًا متعدد
             الأسطر.
           </erp-text>
-          <erp-text type="paragraph">السطر الأول<br>السطر الثاني<wbr>الممتد</erp-text>
+          <erp-text type="paragraph">السطر الأول<erp-review-break></erp-review-break>السطر الثاني<erp-review-word-break></erp-review-word-break>الممتد</erp-text>
           <erp-text
             id="selection-default-proof"
             type="paragraph"
@@ -247,7 +247,7 @@ second line with long-content-proof</erp-text>
           </erp-inline>
           <erp-divider tone="strong"></erp-divider>
         </erp-stack>
-      </section>
+      </erp-section>
     </erp-section>
   </erp-stack>
 </erp-container>

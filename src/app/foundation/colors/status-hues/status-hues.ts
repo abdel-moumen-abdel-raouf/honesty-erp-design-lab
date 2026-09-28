@@ -1,7 +1,13 @@
+import {ErpReviewBox} from '../../../review-internals/review-box/review-box';
+import {ErpText} from '../../../primitives/text/text';
+import {ErpSection} from '../../../primitives/section/section';
+import {ErpStack} from '../../../primitives/stack/stack';
+import {ErpContainer} from '../../../primitives/container/container';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ErpContainer, ErpStack, ErpSection, ErpText, ErpReviewBox],
   selector: 'app-status-hues-specimen',
   templateUrl: './status-hues.html',
   styleUrl: './status-hues.scss',

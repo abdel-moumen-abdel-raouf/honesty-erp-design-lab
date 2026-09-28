@@ -1,3 +1,5 @@
+import {ErpReviewBox} from '../../review-internals/review-box/review-box';
+import {ErpText} from '../../primitives/text/text';
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ErpContainer} from '../../primitives/container/container';
 import {ErpDivider} from '../../primitives/divider/divider';
@@ -11,6 +13,8 @@ import {ErpSurface} from '../../primitives/surface/surface';
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-structural-primitives',
   imports: [
+    ErpText,
+    ErpReviewBox,
     ErpContainer,
     ErpDivider,
     ErpGrid,

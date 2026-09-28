@@ -1,3 +1,11 @@
+import {ErpButton} from '../../controls/button/button';
+import {ErpReviewChoice} from '../../review-internals/review-choice/review-choice';
+import {ErpReviewSelect} from '../../review-internals/review-select/review-select';
+import {ErpReviewBox} from '../../review-internals/review-box/review-box';
+import {ErpText} from '../../primitives/text/text';
+import {ErpSection} from '../../primitives/section/section';
+import {ErpStack} from '../../primitives/stack/stack';
+import {ErpContainer} from '../../primitives/container/container';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -35,6 +43,7 @@ type ScalarSettingKey = Exclude<UiSettingKey, ContextualSettingKey>;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ErpContainer, ErpStack, ErpSection, ErpText, ErpReviewBox, ErpReviewSelect, ErpReviewChoice, ErpButton],
   selector: 'app-preferences-specimen',
   templateUrl: './preferences.html',
   styleUrl: './preferences.scss',

@@ -192,7 +192,7 @@ describe('Borders & Radius Candidate V1 Visual Specimen', () => {
         expect(context?.querySelectorAll('[data-focus-static-proof]')).toHaveLength(2);
         expect(context?.querySelector('[data-focus-static-proof="control"]')).toBeTruthy();
         expect(context?.querySelector('[data-focus-static-proof="surface"]')).toBeTruthy();
-        expect(context?.querySelector('button[data-focus-keyboard-target]')).toBeTruthy();
+        expect(context?.querySelector('erp-button[data-focus-keyboard-target] button')).toBeTruthy();
       }
     });
 

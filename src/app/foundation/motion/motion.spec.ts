@@ -78,8 +78,8 @@ describe('Motion Candidate V1 Visual Specimen', () => {
     });
 
     it('should provide Play and Reset controls and not auto-play on initial render', () => {
-      const playBtn = compiled.querySelector('#btn-play-durations') as HTMLButtonElement | null;
-      const resetBtn = compiled.querySelector('#btn-reset-durations') as HTMLButtonElement | null;
+      const playBtn = compiled.querySelector('#btn-play-durations button') as HTMLButtonElement | null;
+      const resetBtn = compiled.querySelector('#btn-reset-durations button') as HTMLButtonElement | null;
 
       expect(playBtn).toBeTruthy();
       expect(resetBtn).toBeTruthy();
@@ -135,8 +135,8 @@ describe('Motion Candidate V1 Visual Specimen', () => {
     });
 
     it('should provide Play and Reset controls for easings and not auto-play on initial render', () => {
-      const playBtn = compiled.querySelector('#btn-play-easings') as HTMLButtonElement | null;
-      const resetBtn = compiled.querySelector('#btn-reset-easings') as HTMLButtonElement | null;
+      const playBtn = compiled.querySelector('#btn-play-easings button') as HTMLButtonElement | null;
+      const resetBtn = compiled.querySelector('#btn-reset-easings button') as HTMLButtonElement | null;
 
       expect(playBtn).toBeTruthy();
       expect(resetBtn).toBeTruthy();
@@ -158,7 +158,7 @@ describe('Motion Candidate V1 Visual Specimen', () => {
 
   describe('Section 3: Functional State Change Sample', () => {
     it('should render functional indicator and toggle button with initial untoggled state', () => {
-      const toggleBtn = compiled.querySelector('#btn-toggle-functional-state') as HTMLButtonElement | null;
+      const toggleBtn = compiled.querySelector('#btn-toggle-functional-state button') as HTMLButtonElement | null;
       const indicator = compiled.querySelector('#functional-state-indicator');
 
       expect(toggleBtn).toBeTruthy();
@@ -168,7 +168,7 @@ describe('Motion Candidate V1 Visual Specimen', () => {
     });
 
     it('should toggle functional state on click', () => {
-      const toggleBtn = compiled.querySelector('#btn-toggle-functional-state') as HTMLButtonElement | null;
+      const toggleBtn = compiled.querySelector('#btn-toggle-functional-state button') as HTMLButtonElement | null;
       toggleBtn?.click();
       fixture.detectChanges();
 
@@ -185,7 +185,7 @@ describe('Motion Candidate V1 Visual Specimen', () => {
 
   describe('Section 4: Enter / Exit Pair Review', () => {
     it('should render enter/exit box in visible resting state without auto-play', () => {
-      const toggleBtn = compiled.querySelector('#btn-toggle-enter-exit') as HTMLButtonElement | null;
+      const toggleBtn = compiled.querySelector('#btn-toggle-enter-exit button') as HTMLButtonElement | null;
       const box = compiled.querySelector('#enter-exit-box');
 
       expect(toggleBtn).toBeTruthy();
@@ -196,7 +196,7 @@ describe('Motion Candidate V1 Visual Specimen', () => {
     });
 
     it('should toggle enter/exit visibility state on click', () => {
-      const toggleBtn = compiled.querySelector('#btn-toggle-enter-exit') as HTMLButtonElement | null;
+      const toggleBtn = compiled.querySelector('#btn-toggle-enter-exit button') as HTMLButtonElement | null;
       toggleBtn?.click();
       fixture.detectChanges();
 

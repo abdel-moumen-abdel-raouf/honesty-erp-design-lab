@@ -1,534 +1,532 @@
-<div id="borders-radius-specimen-root" class="borders-radius-root">
+<erp-review-box data-review-native-role="div" id="borders-radius-specimen-root" class="borders-radius-root">
   <!-- Page Header -->
-  <header id="borders-radius-specimen-header" class="specimen-header">
-    <div class="header-badge-row">
-      <span id="specimen-badge" class="specimen-badge">توثيق ومراجعة بصرية • Docs-Only</span>
-      <span id="specimen-version-tag" class="specimen-tag">Candidate V1</span>
-    </div>
-    <h1 id="specimen-title" class="specimen-title">مراجعة الحدود ونصف قطر الزوايا (Borders & Radius)</h1>
-    <p id="specimen-description" class="specimen-description">
+  <erp-stack gap="tight" data-review-native-role="header" id="borders-radius-specimen-header" class="specimen-header">
+    <erp-review-box data-review-native-role="div" class="header-badge-row">
+      <erp-text type="span" data-review-native-role="span" id="specimen-badge" class="specimen-badge">توثيق ومراجعة بصرية • Docs-Only</erp-text>
+      <erp-text type="span" data-review-native-role="span" id="specimen-version-tag" class="specimen-tag">Candidate V1</erp-text>
+    </erp-review-box>
+    <erp-text type="heading-1" data-review-native-role="h1" id="specimen-title" class="specimen-title">مراجعة الحدود ونصف قطر الزوايا (Borders & Radius)</erp-text>
+    <erp-text type="paragraph" data-review-native-role="p" id="specimen-description" class="specimen-description">
       معاينة بصرية منعزلة للمرجعية الهندسية والدلالية للحدود وأنصاف أقطار الزوايا.
       تتحقق هذه الصفحة من الفصل الصارم بين عقد لون الحدود وعقد هندستها، ومن دقة مقاييس نصف القطر المضبوط، دون استخدام أي ظلال أو أنماط مرتجلة.
-    </p>
-  </header>
+    </erp-text>
+  </erp-stack>
 
-  <main id="borders-radius-main" class="specimen-main">
+  <erp-container width="wide" data-review-native-role="main" id="borders-radius-main" class="specimen-main">
 
     <!-- ================================================================= -->
     <!-- SECTION 1: REFERENCE BORDER WIDTHS                                -->
     <!-- ================================================================= -->
-    <section id="sec-ref-border-widths" class="specimen-section">
-      <div class="section-heading">
-        <h2 id="title-ref-border-widths" class="section-title">سماكات الحدود المرجعية</h2>
-        <span class="section-subtitle">Reference Border Width Scale (Physical Pixels)</span>
-      </div>
-      <p class="section-lead">
+    <erp-section data-review-native-role="section" id="sec-ref-border-widths" class="specimen-section">
+      <erp-review-box data-review-native-role="div" class="section-heading">
+        <erp-text type="heading-2" data-review-native-role="h2" id="title-ref-border-widths" class="section-title">سماكات الحدود المرجعية</erp-text>
+        <erp-text type="span" data-review-native-role="span" class="section-subtitle">Reference Border Width Scale (Physical Pixels)</erp-text>
+      </erp-review-box>
+      <erp-text type="paragraph" data-review-native-role="p" class="section-lead">
         تُعرف سماكات الحدود بوحدات البكسل الفيزيائي (px) حصراً، وتُستمد هذه العينات مباشرة من متغيرات Sass المرجعية دون مضاعفات بصرية.
-      </p>
+      </erp-text>
 
-      <div id="ref-widths-grid" class="specimen-grid grid-3">
+      <erp-review-box data-review-native-role="div" id="ref-widths-grid" class="specimen-grid grid-3">
         <!-- Width 0 -->
-        <div id="ref-width-specimen-0" class="specimen-card ref-width-0">
-          <div class="specimen-visual-box ref-box-width">
-            <span class="visual-box-label">بدون حدود (None)</span>
-          </div>
-          <div class="specimen-card-meta">
-            <code class="token-name">$honesty-ref-border-width-0</code>
-            <span class="token-rendered-val">0</span>
-          </div>
-        </div>
+        <erp-review-box data-review-native-role="div" id="ref-width-specimen-0" class="specimen-card ref-width-0">
+          <erp-review-box data-review-native-role="div" class="specimen-visual-box ref-box-width">
+            <erp-text type="span" data-review-native-role="span" class="visual-box-label">بدون حدود (None)</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="specimen-card-meta">
+            <erp-text type="code" data-review-native-role="code" class="token-name">$honesty-ref-border-width-0</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="token-rendered-val">0</erp-text>
+          </erp-review-box>
+        </erp-review-box>
 
         <!-- Width 1 -->
-        <div id="ref-width-specimen-1" class="specimen-card ref-width-1">
-          <div class="specimen-visual-box ref-box-width">
-            <span class="visual-box-label">سماكة افتراضية (1px)</span>
-          </div>
-          <div class="specimen-card-meta">
-            <code class="token-name">$honesty-ref-border-width-1</code>
-            <span class="token-rendered-val">1px</span>
-          </div>
-        </div>
+        <erp-review-box data-review-native-role="div" id="ref-width-specimen-1" class="specimen-card ref-width-1">
+          <erp-review-box data-review-native-role="div" class="specimen-visual-box ref-box-width">
+            <erp-text type="span" data-review-native-role="span" class="visual-box-label">سماكة افتراضية (1px)</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="specimen-card-meta">
+            <erp-text type="code" data-review-native-role="code" class="token-name">$honesty-ref-border-width-1</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="token-rendered-val">1px</erp-text>
+          </erp-review-box>
+        </erp-review-box>
 
         <!-- Width 2 -->
-        <div id="ref-width-specimen-2" class="specimen-card ref-width-2">
-          <div class="specimen-visual-box ref-box-width">
-            <span class="visual-box-label">سماكة تأكيد (2px)</span>
-          </div>
-          <div class="specimen-card-meta">
-            <code class="token-name">$honesty-ref-border-width-2</code>
-            <span class="token-rendered-val">2px</span>
-          </div>
-        </div>
-      </div>
-    </section>
+        <erp-review-box data-review-native-role="div" id="ref-width-specimen-2" class="specimen-card ref-width-2">
+          <erp-review-box data-review-native-role="div" class="specimen-visual-box ref-box-width">
+            <erp-text type="span" data-review-native-role="span" class="visual-box-label">سماكة تأكيد (2px)</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="specimen-card-meta">
+            <erp-text type="code" data-review-native-role="code" class="token-name">$honesty-ref-border-width-2</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="token-rendered-val">2px</erp-text>
+          </erp-review-box>
+        </erp-review-box>
+      </erp-review-box>
+    </erp-section>
 
     <!-- ================================================================= -->
     <!-- SECTION 2: REFERENCE BORDER STYLES                                -->
     <!-- ================================================================= -->
-    <section id="sec-ref-border-styles" class="specimen-section">
-      <div class="section-heading">
-        <h2 id="title-ref-border-styles" class="section-title">أنماط الحدود المرجعية</h2>
-        <span class="section-subtitle">Reference Border Stroke Styles</span>
-      </div>
-      <p class="section-lead">
+    <erp-section data-review-native-role="section" id="sec-ref-border-styles" class="specimen-section">
+      <erp-review-box data-review-native-role="div" class="section-heading">
+        <erp-text type="heading-2" data-review-native-role="h2" id="title-ref-border-styles" class="section-title">أنماط الحدود المرجعية</erp-text>
+        <erp-text type="span" data-review-native-role="span" class="section-subtitle">Reference Border Stroke Styles</erp-text>
+      </erp-review-box>
+      <erp-text type="paragraph" data-review-native-role="p" class="section-lead">
         مقارنة نمط الخط الفيزيائي لسماكة 1px مع إثبات الدور الدلالي لنمط الخط المتقطع (dashed).
-      </p>
+      </erp-text>
 
-      <div id="ref-styles-grid" class="specimen-grid grid-2">
+      <erp-review-box data-review-native-role="div" id="ref-styles-grid" class="specimen-grid grid-2">
         <!-- Solid -->
-        <div id="ref-style-specimen-solid" class="specimen-card ref-style-solid">
-          <div class="specimen-visual-box ref-box-style">
-            <span class="visual-box-label">خط مصمت (Solid Stroke)</span>
-          </div>
-          <div class="specimen-card-meta">
-            <code class="token-name">$honesty-ref-border-style-solid</code>
-            <span class="token-rendered-val">solid</span>
-          </div>
-        </div>
+        <erp-review-box data-review-native-role="div" id="ref-style-specimen-solid" class="specimen-card ref-style-solid">
+          <erp-review-box data-review-native-role="div" class="specimen-visual-box ref-box-style">
+            <erp-text type="span" data-review-native-role="span" class="visual-box-label">خط مصمت (Solid Stroke)</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="specimen-card-meta">
+            <erp-text type="code" data-review-native-role="code" class="token-name">$honesty-ref-border-style-solid</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="token-rendered-val">solid</erp-text>
+          </erp-review-box>
+        </erp-review-box>
 
         <!-- Dashed -->
-        <div id="ref-style-specimen-dashed" class="specimen-card ref-style-dashed">
-          <div class="specimen-visual-box ref-box-style">
-            <span class="visual-box-label">خط متقطع (Dashed Stroke)</span>
-          </div>
-          <div class="specimen-card-meta">
-            <code class="token-name">$honesty-ref-border-style-dashed</code>
-            <span class="token-rendered-val">dashed</span>
-          </div>
-        </div>
+        <erp-review-box data-review-native-role="div" id="ref-style-specimen-dashed" class="specimen-card ref-style-dashed">
+          <erp-review-box data-review-native-role="div" class="specimen-visual-box ref-box-style">
+            <erp-text type="span" data-review-native-role="span" class="visual-box-label">خط متقطع (Dashed Stroke)</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="specimen-card-meta">
+            <erp-text type="code" data-review-native-role="code" class="token-name">$honesty-ref-border-style-dashed</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="token-rendered-val">dashed</erp-text>
+          </erp-review-box>
+        </erp-review-box>
 
         <!-- Semantic Dashed -->
-        <div id="semantic-border-style-dashed" class="specimen-card semantic-dashed-border-proof">
-          <div class="specimen-visual-box ref-box-style" style="border-style: var(--honesty-border-style-dashed)">
-            <span class="visual-box-label">دور دلالي متقطع (Semantic Dashed)</span>
-          </div>
-          <div class="specimen-card-meta">
-            <code class="token-name">--honesty-border-style-dashed</code>
-            <span class="token-rendered-val">dashed</span>
-          </div>
-        </div>
-      </div>
-    </section>
+        <erp-review-box data-review-native-role="div" id="semantic-border-style-dashed" class="specimen-card semantic-dashed-border-proof">
+          <erp-review-box data-review-native-role="div" class="specimen-visual-box ref-box-style" style="border-style: var(--honesty-border-style-dashed)">
+            <erp-text type="span" data-review-native-role="span" class="visual-box-label">دور دلالي متقطع (Semantic Dashed)</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="specimen-card-meta">
+            <erp-text type="code" data-review-native-role="code" class="token-name">--honesty-border-style-dashed</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="token-rendered-val">dashed</erp-text>
+          </erp-review-box>
+        </erp-review-box>
+      </erp-review-box>
+    </erp-section>
 
     <!-- ================================================================= -->
     <!-- SECTION 3: BORDER COLOR VS GEOMETRY CONTRACT                      -->
     <!-- ================================================================= -->
-    <section id="sec-border-color-hierarchy" class="specimen-section">
-      <div class="section-heading">
-        <h2 id="title-border-color-hierarchy" class="section-title">عقد لون الحدود مقابل عقد هندسة الحدود</h2>
-        <span class="section-subtitle">Border Color Hierarchy vs Geometry Separation (Subtle / Default / Strong)</span>
-      </div>
-      <p class="section-lead">
-        التسلسل البصري للحدود في Honesty ERP يتحقق بتغيير <strong>قوة لون الحد</strong> وليس زيادة سماكته.
-        كافة العينات الثلاث أدناه تستخدم سماكة 1px تماماً عبر <code>--honesty-border-width-default</code> ونمط <code>--honesty-border-style-default</code>.
+    <erp-section data-review-native-role="section" id="sec-border-color-hierarchy" class="specimen-section">
+      <erp-review-box data-review-native-role="div" class="section-heading">
+        <erp-text type="heading-2" data-review-native-role="h2" id="title-border-color-hierarchy" class="section-title">عقد لون الحدود مقابل عقد هندسة الحدود</erp-text>
+        <erp-text type="span" data-review-native-role="span" class="section-subtitle">Border Color Hierarchy vs Geometry Separation (Subtle / Default / Strong)</erp-text>
+      </erp-review-box>
+      <erp-text type="paragraph" data-review-native-role="p" class="section-lead">
+        التسلسل البصري للحدود في Honesty ERP يتحقق بتغيير <erp-text type="strong" data-review-native-role="strong">قوة لون الحد</erp-text> وليس زيادة سماكته.
+        كافة العينات الثلاث أدناه تستخدم سماكة 1px تماماً عبر <erp-text type="code" data-review-native-role="code">--honesty-border-width-default</erp-text> ونمط <erp-text type="code" data-review-native-role="code">--honesty-border-style-default</erp-text>.
         لا يُستخدم 2px للحدود البارزة (Strong).
-      </p>
+      </erp-text>
 
-      <div id="border-theme-comparison" class="dual-theme-container">
+      <erp-review-box data-review-native-role="div" id="border-theme-comparison" class="dual-theme-container">
         <!-- LIGHT CONTEXT -->
-        <div id="border-theme-context-light" class="theme-context-box">
-          <div class="theme-context-header">
-            <span class="theme-title">السمة الفاتحة (Light Theme)</span>
-          </div>
+        <erp-review-box data-review-native-role="div" id="border-theme-context-light" class="theme-context-box">
+          <erp-review-box data-review-native-role="div" class="theme-context-header">
+            <erp-text type="span" data-review-native-role="span" class="theme-title">السمة الفاتحة (Light Theme)</erp-text>
+          </erp-review-box>
 
-          <div class="theme-specimen-stack">
+          <erp-review-box data-review-native-role="div" class="theme-specimen-stack">
             <!-- Subtle -->
-            <div id="light-border-subtle" class="semantic-color-box border-subtle-sample">
-              <span class="sample-role-title">حد خفيف (Subtle Border)</span>
-              <code class="token-role-code">var(--honesty-border-subtle)</code>
-              <span class="sample-fixed-note">1px • solid</span>
-            </div>
+            <erp-review-box data-review-native-role="div" id="light-border-subtle" class="semantic-color-box border-subtle-sample">
+              <erp-text type="span" data-review-native-role="span" class="sample-role-title">حد خفيف (Subtle Border)</erp-text>
+              <erp-text type="code" data-review-native-role="code" class="token-role-code">var(--honesty-border-subtle)</erp-text>
+              <erp-text type="span" data-review-native-role="span" class="sample-fixed-note">1px • solid</erp-text>
+            </erp-review-box>
 
             <!-- Default -->
-            <div id="light-border-default" class="semantic-color-box border-default-sample">
-              <span class="sample-role-title">حد افتراضي (Default Border)</span>
-              <code class="token-role-code">var(--honesty-border-default)</code>
-              <span class="sample-fixed-note">1px • solid</span>
-            </div>
+            <erp-review-box data-review-native-role="div" id="light-border-default" class="semantic-color-box border-default-sample">
+              <erp-text type="span" data-review-native-role="span" class="sample-role-title">حد افتراضي (Default Border)</erp-text>
+              <erp-text type="code" data-review-native-role="code" class="token-role-code">var(--honesty-border-default)</erp-text>
+              <erp-text type="span" data-review-native-role="span" class="sample-fixed-note">1px • solid</erp-text>
+            </erp-review-box>
 
             <!-- Strong -->
-            <div id="light-border-strong" class="semantic-color-box border-strong-sample">
-              <span class="sample-role-title">حد بارز (Strong Border)</span>
-              <code class="token-role-code">var(--honesty-border-strong)</code>
-              <span class="sample-fixed-note">1px (ثابت) • solid</span>
-            </div>
-          </div>
-        </div>
+            <erp-review-box data-review-native-role="div" id="light-border-strong" class="semantic-color-box border-strong-sample">
+              <erp-text type="span" data-review-native-role="span" class="sample-role-title">حد بارز (Strong Border)</erp-text>
+              <erp-text type="code" data-review-native-role="code" class="token-role-code">var(--honesty-border-strong)</erp-text>
+              <erp-text type="span" data-review-native-role="span" class="sample-fixed-note">1px (ثابت) • solid</erp-text>
+            </erp-review-box>
+          </erp-review-box>
+        </erp-review-box>
 
         <!-- DARK CONTEXT -->
-        <div id="border-theme-context-dark" class="theme-context-box">
-          <div class="theme-context-header">
-            <span class="theme-title">السمة الداكنة (Dark Theme)</span>
-          </div>
+        <erp-review-box data-review-native-role="div" id="border-theme-context-dark" class="theme-context-box">
+          <erp-review-box data-review-native-role="div" class="theme-context-header">
+            <erp-text type="span" data-review-native-role="span" class="theme-title">السمة الداكنة (Dark Theme)</erp-text>
+          </erp-review-box>
 
-          <div class="theme-specimen-stack">
+          <erp-review-box data-review-native-role="div" class="theme-specimen-stack">
             <!-- Subtle -->
-            <div id="dark-border-subtle" class="semantic-color-box border-subtle-sample">
-              <span class="sample-role-title">حد خفيف (Subtle Border)</span>
-              <code class="token-role-code">var(--honesty-border-subtle)</code>
-              <span class="sample-fixed-note">1px • solid</span>
-            </div>
+            <erp-review-box data-review-native-role="div" id="dark-border-subtle" class="semantic-color-box border-subtle-sample">
+              <erp-text type="span" data-review-native-role="span" class="sample-role-title">حد خفيف (Subtle Border)</erp-text>
+              <erp-text type="code" data-review-native-role="code" class="token-role-code">var(--honesty-border-subtle)</erp-text>
+              <erp-text type="span" data-review-native-role="span" class="sample-fixed-note">1px • solid</erp-text>
+            </erp-review-box>
 
             <!-- Default -->
-            <div id="dark-border-default" class="semantic-color-box border-default-sample">
-              <span class="sample-role-title">حد افتراضي (Default Border)</span>
-              <code class="token-role-code">var(--honesty-border-default)</code>
-              <span class="sample-fixed-note">1px • solid</span>
-            </div>
+            <erp-review-box data-review-native-role="div" id="dark-border-default" class="semantic-color-box border-default-sample">
+              <erp-text type="span" data-review-native-role="span" class="sample-role-title">حد افتراضي (Default Border)</erp-text>
+              <erp-text type="code" data-review-native-role="code" class="token-role-code">var(--honesty-border-default)</erp-text>
+              <erp-text type="span" data-review-native-role="span" class="sample-fixed-note">1px • solid</erp-text>
+            </erp-review-box>
 
             <!-- Strong -->
-            <div id="dark-border-strong" class="semantic-color-box border-strong-sample">
-              <span class="sample-role-title">حد بارز (Strong Border)</span>
-              <code class="token-role-code">var(--honesty-border-strong)</code>
-              <span class="sample-fixed-note">1px (ثابت) • solid</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+            <erp-review-box data-review-native-role="div" id="dark-border-strong" class="semantic-color-box border-strong-sample">
+              <erp-text type="span" data-review-native-role="span" class="sample-role-title">حد بارز (Strong Border)</erp-text>
+              <erp-text type="code" data-review-native-role="code" class="token-role-code">var(--honesty-border-strong)</erp-text>
+              <erp-text type="span" data-review-native-role="span" class="sample-fixed-note">1px (ثابت) • solid</erp-text>
+            </erp-review-box>
+          </erp-review-box>
+        </erp-review-box>
+      </erp-review-box>
+    </erp-section>
 
     <!-- ================================================================= -->
     <!-- SECTION 4: EMPHASIS WIDTH REVIEW                                  -->
     <!-- ================================================================= -->
-    <section id="sec-emphasis-width" class="specimen-section">
-      <div class="section-heading">
-        <h2 id="title-emphasis-width" class="section-title">سماكة التأكيد مقابل السماكة الافتراضية</h2>
-        <span class="section-subtitle">Default Width (1px) vs Emphasis Width (2px)</span>
-      </div>
+    <erp-section data-review-native-role="section" id="sec-emphasis-width" class="specimen-section">
+      <erp-review-box data-review-native-role="div" class="section-heading">
+        <erp-text type="heading-2" data-review-native-role="h2" id="title-emphasis-width" class="section-title">سماكة التأكيد مقابل السماكة الافتراضية</erp-text>
+        <erp-text type="span" data-review-native-role="span" class="section-subtitle">Default Width (1px) vs Emphasis Width (2px)</erp-text>
+      </erp-review-box>
 
-      <div id="emphasis-explanation-note" class="specimen-notice-box emphasis-notice">
-        <span class="notice-badge">قاعدة تصميم حاسمة</span>
-        <span class="notice-text">
-          سماكة التأكيد (2px emphasis) <strong>ليست معادلاً</strong> لمتغير <code>--honesty-border-strong</code>.
+      <erp-review-box data-review-native-role="div" id="emphasis-explanation-note" class="specimen-notice-box emphasis-notice">
+        <erp-text type="span" data-review-native-role="span" class="notice-badge">قاعدة تصميم حاسمة</erp-text>
+        <erp-text type="span" data-review-native-role="span" class="notice-text">
+          سماكة التأكيد (2px emphasis) <erp-text type="strong" data-review-native-role="strong">ليست معادلاً</erp-text> لمتغير <erp-text type="code" data-review-native-role="code">--honesty-border-strong</erp-text>.
           الحدود البارزة (Strong) تمثل تدرجاً لونياً دلالياً في حين أن التأكيد (Emphasis) يمثل سماكة هندسية مخصصة لحالات استثنائية.
-        </span>
-      </div>
+        </erp-text>
+      </erp-review-box>
 
-      <div id="emphasis-width-comparison" class="specimen-grid grid-2">
+      <erp-review-box data-review-native-role="div" id="emphasis-width-comparison" class="specimen-grid grid-2">
         <!-- Default Width -->
-        <div id="specimen-width-default" class="specimen-card width-default-card">
-          <div class="specimen-visual-box box-width-default">
-            <span class="visual-box-label">السماكة الافتراضية (1px)</span>
-          </div>
-          <div class="specimen-card-meta">
-            <code class="token-name">--honesty-border-width-default</code>
-            <span class="token-rendered-val">1px</span>
-          </div>
-        </div>
+        <erp-review-box data-review-native-role="div" id="specimen-width-default" class="specimen-card width-default-card">
+          <erp-review-box data-review-native-role="div" class="specimen-visual-box box-width-default">
+            <erp-text type="span" data-review-native-role="span" class="visual-box-label">السماكة الافتراضية (1px)</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="specimen-card-meta">
+            <erp-text type="code" data-review-native-role="code" class="token-name">--honesty-border-width-default</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="token-rendered-val">1px</erp-text>
+          </erp-review-box>
+        </erp-review-box>
 
         <!-- Emphasis Width -->
-        <div id="specimen-width-emphasis" class="specimen-card width-emphasis-card">
-          <div class="specimen-visual-box box-width-emphasis">
-            <span class="visual-box-label">سماكة التأكيد (2px)</span>
-          </div>
-          <div class="specimen-card-meta">
-            <code class="token-name">--honesty-border-width-emphasis</code>
-            <span class="token-rendered-val">2px</span>
-          </div>
-        </div>
-      </div>
-    </section>
+        <erp-review-box data-review-native-role="div" id="specimen-width-emphasis" class="specimen-card width-emphasis-card">
+          <erp-review-box data-review-native-role="div" class="specimen-visual-box box-width-emphasis">
+            <erp-text type="span" data-review-native-role="span" class="visual-box-label">سماكة التأكيد (2px)</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="specimen-card-meta">
+            <erp-text type="code" data-review-native-role="code" class="token-name">--honesty-border-width-emphasis</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="token-rendered-val">2px</erp-text>
+          </erp-review-box>
+        </erp-review-box>
+      </erp-review-box>
+    </erp-section>
 
     <!-- ================================================================= -->
     <!-- SECTION 5: REFERENCE RADIUS SCALE                                 -->
     <!-- ================================================================= -->
-    <section id="sec-ref-radius-scale" class="specimen-section">
-      <div class="section-heading">
-        <h2 id="title-ref-radius-scale" class="section-title">السلم المرجعي لنصف قطر الزوايا</h2>
-        <span class="section-subtitle">Reference Corner Radius Scale</span>
-      </div>
-      <p class="section-lead">
+    <erp-section data-review-native-role="section" id="sec-ref-radius-scale" class="specimen-section">
+      <erp-review-box data-review-native-role="div" class="section-heading">
+        <erp-text type="heading-2" data-review-native-role="h2" id="title-ref-radius-scale" class="section-title">السلم المرجعي لنصف قطر الزوايا</erp-text>
+        <erp-text type="span" data-review-native-role="span" class="section-subtitle">Reference Corner Radius Scale</erp-text>
+      </erp-review-box>
+      <erp-text type="paragraph" data-review-native-role="p" class="section-lead">
         سلم هندسي مضبوط يعتمد على وحدة rem بالنسبة للجذر 16px، مع قدرة full بقيمة 9999px دون جعلها الجمالية الافتراضية.
-      </p>
+      </erp-text>
 
-      <div id="ref-radius-grid" class="specimen-grid grid-6">
+      <erp-review-box data-review-native-role="div" id="ref-radius-grid" class="specimen-grid grid-6">
         <!-- 0 -->
-        <div id="ref-radius-specimen-0" class="specimen-card ref-radius-0">
-          <div class="specimen-visual-box ref-box-radius">
-            <span class="visual-box-label">0</span>
-          </div>
-          <div class="specimen-card-meta">
-            <code class="token-name">$honesty-ref-radius-0</code>
-            <span class="token-rendered-val">0</span>
-          </div>
-        </div>
+        <erp-review-box data-review-native-role="div" id="ref-radius-specimen-0" class="specimen-card ref-radius-0">
+          <erp-review-box data-review-native-role="div" class="specimen-visual-box ref-box-radius">
+            <erp-text type="span" data-review-native-role="span" class="visual-box-label">0</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="specimen-card-meta">
+            <erp-text type="code" data-review-native-role="code" class="token-name">$honesty-ref-radius-0</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="token-rendered-val">0</erp-text>
+          </erp-review-box>
+        </erp-review-box>
 
         <!-- 2 -->
-        <div id="ref-radius-specimen-2" class="specimen-card ref-radius-2">
-          <div class="specimen-visual-box ref-box-radius">
-            <span class="visual-box-label">2</span>
-          </div>
-          <div class="specimen-card-meta">
-            <code class="token-name">$honesty-ref-radius-2</code>
-            <span class="token-rendered-val">0.125rem (2px)</span>
-          </div>
-        </div>
+        <erp-review-box data-review-native-role="div" id="ref-radius-specimen-2" class="specimen-card ref-radius-2">
+          <erp-review-box data-review-native-role="div" class="specimen-visual-box ref-box-radius">
+            <erp-text type="span" data-review-native-role="span" class="visual-box-label">2</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="specimen-card-meta">
+            <erp-text type="code" data-review-native-role="code" class="token-name">$honesty-ref-radius-2</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="token-rendered-val">0.125rem (2px)</erp-text>
+          </erp-review-box>
+        </erp-review-box>
 
         <!-- 4 -->
-        <div id="ref-radius-specimen-4" class="specimen-card ref-radius-4">
-          <div class="specimen-visual-box ref-box-radius">
-            <span class="visual-box-label">4</span>
-          </div>
-          <div class="specimen-card-meta">
-            <code class="token-name">$honesty-ref-radius-4</code>
-            <span class="token-rendered-val">0.25rem (4px)</span>
-          </div>
-        </div>
+        <erp-review-box data-review-native-role="div" id="ref-radius-specimen-4" class="specimen-card ref-radius-4">
+          <erp-review-box data-review-native-role="div" class="specimen-visual-box ref-box-radius">
+            <erp-text type="span" data-review-native-role="span" class="visual-box-label">4</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="specimen-card-meta">
+            <erp-text type="code" data-review-native-role="code" class="token-name">$honesty-ref-radius-4</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="token-rendered-val">0.25rem (4px)</erp-text>
+          </erp-review-box>
+        </erp-review-box>
 
         <!-- 6 -->
-        <div id="ref-radius-specimen-6" class="specimen-card ref-radius-6">
-          <div class="specimen-visual-box ref-box-radius">
-            <span class="visual-box-label">6</span>
-          </div>
-          <div class="specimen-card-meta">
-            <code class="token-name">$honesty-ref-radius-6</code>
-            <span class="token-rendered-val">0.375rem (6px)</span>
-          </div>
-        </div>
+        <erp-review-box data-review-native-role="div" id="ref-radius-specimen-6" class="specimen-card ref-radius-6">
+          <erp-review-box data-review-native-role="div" class="specimen-visual-box ref-box-radius">
+            <erp-text type="span" data-review-native-role="span" class="visual-box-label">6</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="specimen-card-meta">
+            <erp-text type="code" data-review-native-role="code" class="token-name">$honesty-ref-radius-6</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="token-rendered-val">0.375rem (6px)</erp-text>
+          </erp-review-box>
+        </erp-review-box>
 
         <!-- 8 -->
-        <div id="ref-radius-specimen-8" class="specimen-card ref-radius-8">
-          <div class="specimen-visual-box ref-box-radius">
-            <span class="visual-box-label">8</span>
-          </div>
-          <div class="specimen-card-meta">
-            <code class="token-name">$honesty-ref-radius-8</code>
-            <span class="token-rendered-val">0.5rem (8px)</span>
-          </div>
-        </div>
+        <erp-review-box data-review-native-role="div" id="ref-radius-specimen-8" class="specimen-card ref-radius-8">
+          <erp-review-box data-review-native-role="div" class="specimen-visual-box ref-box-radius">
+            <erp-text type="span" data-review-native-role="span" class="visual-box-label">8</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="specimen-card-meta">
+            <erp-text type="code" data-review-native-role="code" class="token-name">$honesty-ref-radius-8</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="token-rendered-val">0.5rem (8px)</erp-text>
+          </erp-review-box>
+        </erp-review-box>
 
         <!-- 12 -->
-        <div id="ref-radius-specimen-12" class="specimen-card ref-radius-12">
-          <div class="specimen-visual-box ref-box-radius">
-            <span class="visual-box-label">12</span>
-          </div>
-          <div class="specimen-card-meta">
-            <code class="token-name">$honesty-ref-radius-12</code>
-            <span class="token-rendered-val">0.75rem (12px)</span>
-          </div>
-        </div>
+        <erp-review-box data-review-native-role="div" id="ref-radius-specimen-12" class="specimen-card ref-radius-12">
+          <erp-review-box data-review-native-role="div" class="specimen-visual-box ref-box-radius">
+            <erp-text type="span" data-review-native-role="span" class="visual-box-label">12</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="specimen-card-meta">
+            <erp-text type="code" data-review-native-role="code" class="token-name">$honesty-ref-radius-12</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="token-rendered-val">0.75rem (12px)</erp-text>
+          </erp-review-box>
+        </erp-review-box>
 
         <!-- Full -->
-        <div id="ref-radius-specimen-full" class="specimen-card ref-radius-full">
-          <div class="specimen-visual-box ref-box-radius">
-            <span class="visual-box-label">full</span>
-          </div>
-          <div class="specimen-card-meta">
-            <code class="token-name">$honesty-ref-radius-full</code>
-            <span class="token-rendered-val">9999px</span>
-          </div>
-        </div>
-      </div>
+        <erp-review-box data-review-native-role="div" id="ref-radius-specimen-full" class="specimen-card ref-radius-full">
+          <erp-review-box data-review-native-role="div" class="specimen-visual-box ref-box-radius">
+            <erp-text type="span" data-review-native-role="span" class="visual-box-label">full</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="specimen-card-meta">
+            <erp-text type="code" data-review-native-role="code" class="token-name">$honesty-ref-radius-full</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="token-rendered-val">9999px</erp-text>
+          </erp-review-box>
+        </erp-review-box>
+      </erp-review-box>
 
-      <div id="unaliased-radius-note" class="specimen-notice-box">
-        <span class="notice-badge">توثيق الحصر</span>
-        <span class="notice-text">
-          قيمتا <strong>2px ($honesty-ref-radius-2)</strong> و <strong>12px ($honesty-ref-radius-12)</strong> متاحتان في السلم المرجعي فقط ولا تمتلكان أي دور دلالي (Semantic Alias) في Candidate V1.
-        </span>
-      </div>
-    </section>
+      <erp-review-box data-review-native-role="div" id="unaliased-radius-note" class="specimen-notice-box">
+        <erp-text type="span" data-review-native-role="span" class="notice-badge">توثيق الحصر</erp-text>
+        <erp-text type="span" data-review-native-role="span" class="notice-text">
+          قيمتا <erp-text type="strong" data-review-native-role="strong">2px ($honesty-ref-radius-2)</erp-text> و <erp-text type="strong" data-review-native-role="strong">12px ($honesty-ref-radius-12)</erp-text> متاحتان في السلم المرجعي فقط ولا تمتلكان أي دور دلالي (Semantic Alias) في Candidate V1.
+        </erp-text>
+      </erp-review-box>
+    </erp-section>
 
     <!-- ================================================================= -->
     <!-- SECTION 6: SEMANTIC RADIUS ROLES                                  -->
     <!-- ================================================================= -->
-    <section id="sec-semantic-radius-roles" class="specimen-section">
-      <div class="section-heading">
-        <h2 id="title-semantic-radius-roles" class="section-title">الأدوار الدلالية للزوايا</h2>
-        <span class="section-subtitle">Semantic Radius Roles (Runtime CSS Variables)</span>
-      </div>
-      <p class="section-lead">
+    <erp-section data-review-native-role="section" id="sec-semantic-radius-roles" class="specimen-section">
+      <erp-review-box data-review-native-role="div" class="section-heading">
+        <erp-text type="heading-2" data-review-native-role="h2" id="title-semantic-radius-roles" class="section-title">الأدوار الدلالية للزوايا</erp-text>
+        <erp-text type="span" data-review-native-role="span" class="section-subtitle">Semantic Radius Roles (Runtime CSS Variables)</erp-text>
+      </erp-review-box>
+      <erp-text type="paragraph" data-review-native-role="p" class="section-lead">
         أدوار دلالية تعبر عن الاستخدام الوظيفي. هذه العينات مستطيلات هندسية محايدة لمراجعة الشكل حصراً وليست مكونات فعلية كالأزرار أو البطاقات.
-      </p>
+      </erp-text>
 
-      <div id="semantic-radius-grid" class="specimen-grid grid-4">
+      <erp-review-box data-review-native-role="div" id="semantic-radius-grid" class="specimen-grid grid-4">
         <!-- None -->
-        <div id="semantic-radius-none" class="specimen-card semantic-radius-none-card">
-          <div class="specimen-visual-box box-radius-none">
-            <span class="visual-box-label">مربع تماماً (None)</span>
-          </div>
-          <div class="specimen-card-meta">
-            <code class="token-name">--honesty-radius-none</code>
-            <span class="token-rendered-val">0</span>
-          </div>
-        </div>
+        <erp-review-box data-review-native-role="div" id="semantic-radius-none" class="specimen-card semantic-radius-none-card">
+          <erp-review-box data-review-native-role="div" class="specimen-visual-box box-radius-none">
+            <erp-text type="span" data-review-native-role="span" class="visual-box-label">مربع تماماً (None)</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="specimen-card-meta">
+            <erp-text type="code" data-review-native-role="code" class="token-name">--honesty-radius-none</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="token-rendered-val">0</erp-text>
+          </erp-review-box>
+        </erp-review-box>
 
         <!-- Control -->
-        <div id="semantic-radius-control" class="specimen-card semantic-radius-control-card">
-          <div class="specimen-visual-box box-radius-control">
-            <span class="visual-box-label">أداة تحكم (Control)</span>
-          </div>
-          <div class="specimen-card-meta">
-            <code class="token-name">--honesty-radius-control</code>
-            <span class="token-rendered-val">0.25rem (4px)</span>
-          </div>
-        </div>
+        <erp-review-box data-review-native-role="div" id="semantic-radius-control" class="specimen-card semantic-radius-control-card">
+          <erp-review-box data-review-native-role="div" class="specimen-visual-box box-radius-control">
+            <erp-text type="span" data-review-native-role="span" class="visual-box-label">أداة تحكم (Control)</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="specimen-card-meta">
+            <erp-text type="code" data-review-native-role="code" class="token-name">--honesty-radius-control</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="token-rendered-val">0.25rem (4px)</erp-text>
+          </erp-review-box>
+        </erp-review-box>
 
         <!-- Surface -->
-        <div id="semantic-radius-surface" class="specimen-card semantic-radius-surface-card">
-          <div class="specimen-visual-box box-radius-surface">
-            <span class="visual-box-label">سطح حاوي (Surface)</span>
-          </div>
-          <div class="specimen-card-meta">
-            <code class="token-name">--honesty-radius-surface</code>
-            <span class="token-rendered-val">0.375rem (6px)</span>
-          </div>
-        </div>
+        <erp-review-box data-review-native-role="div" id="semantic-radius-surface" class="specimen-card semantic-radius-surface-card">
+          <erp-review-box data-review-native-role="div" class="specimen-visual-box box-radius-surface">
+            <erp-text type="span" data-review-native-role="span" class="visual-box-label">سطح حاوي (Surface)</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="specimen-card-meta">
+            <erp-text type="code" data-review-native-role="code" class="token-name">--honesty-radius-surface</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="token-rendered-val">0.375rem (6px)</erp-text>
+          </erp-review-box>
+        </erp-review-box>
 
         <!-- Overlay -->
-        <div id="semantic-radius-overlay" class="specimen-card semantic-radius-overlay-card">
-          <div class="specimen-visual-box box-radius-overlay">
-            <span class="visual-box-label">طبقة طافية (Overlay)</span>
-          </div>
-          <div class="specimen-card-meta">
-            <code class="token-name">--honesty-radius-overlay</code>
-            <span class="token-rendered-val">0.5rem (8px)</span>
-          </div>
-        </div>
+        <erp-review-box data-review-native-role="div" id="semantic-radius-overlay" class="specimen-card semantic-radius-overlay-card">
+          <erp-review-box data-review-native-role="div" class="specimen-visual-box box-radius-overlay">
+            <erp-text type="span" data-review-native-role="span" class="visual-box-label">طبقة طافية (Overlay)</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="specimen-card-meta">
+            <erp-text type="code" data-review-native-role="code" class="token-name">--honesty-radius-overlay</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="token-rendered-val">0.5rem (8px)</erp-text>
+          </erp-review-box>
+        </erp-review-box>
 
         <!-- Full -->
-        <div id="semantic-radius-full" class="specimen-card semantic-radius-full-card">
-          <div class="specimen-visual-box box-radius-overlay" style="border-radius: var(--honesty-radius-full)">
-            <span class="visual-box-label">قدرة كاملة (Full)</span>
-          </div>
-          <div class="specimen-card-meta">
-            <code class="token-name">--honesty-radius-full</code>
-            <span class="token-rendered-val">9999px</span>
-          </div>
-        </div>
-      </div>
-    </section>
+        <erp-review-box data-review-native-role="div" id="semantic-radius-full" class="specimen-card semantic-radius-full-card">
+          <erp-review-box data-review-native-role="div" class="specimen-visual-box box-radius-overlay" style="border-radius: var(--honesty-radius-full)">
+            <erp-text type="span" data-review-native-role="span" class="visual-box-label">قدرة كاملة (Full)</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="specimen-card-meta">
+            <erp-text type="code" data-review-native-role="code" class="token-name">--honesty-radius-full</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="token-rendered-val">9999px</erp-text>
+          </erp-review-box>
+        </erp-review-box>
+      </erp-review-box>
+    </erp-section>
 
     <!-- ================================================================= -->
     <!-- SECTION 7: COMBINED GEOMETRY COMPOSITION                          -->
     <!-- ================================================================= -->
-    <section id="sec-combined-geometry" class="specimen-section">
-      <div class="section-heading">
-        <h2 id="title-combined-geometry" class="section-title">تركيب هندسي محايد</h2>
-        <span class="section-subtitle">Neutral Geometry Composition Matrix</span>
-      </div>
-      <p class="section-lead">
+    <erp-section data-review-native-role="section" id="sec-combined-geometry" class="specimen-section">
+      <erp-review-box data-review-native-role="div" class="section-heading">
+        <erp-text type="heading-2" data-review-native-role="h2" id="title-combined-geometry" class="section-title">تركيب هندسي محايد</erp-text>
+        <erp-text type="span" data-review-native-role="span" class="section-subtitle">Neutral Geometry Composition Matrix</erp-text>
+      </erp-review-box>
+      <erp-text type="paragraph" data-review-native-role="p" class="section-lead">
         مصفوفة توضح استقلالية وتكامل عقود التصميم: تباين ألوان الحدود مقابل سماكة الخط الفيزيائي مقابل نصف قطر الزوايا، دون أي ظلال أو تأثيرات رفع.
-      </p>
+      </erp-text>
 
-      <div id="combined-geometry-matrix" class="specimen-grid grid-2">
+      <erp-review-box data-review-native-role="div" id="combined-geometry-matrix" class="specimen-grid grid-2">
         <!-- Composition A -->
-        <div id="composition-sample-a" class="composition-card comp-sample-a">
-          <div class="composition-header">
-            <span class="comp-tag">تركيب أ (A)</span>
-            <span class="comp-title">سماكة افتراضية + لون افتراضي + زاوية سطح</span>
-          </div>
-          <div class="composition-preview">
-            <span class="comp-inner-text">Default Width (1px) • Default Color • Surface Radius (6px)</span>
-          </div>
-          <div class="composition-tokens-list">
-            <code>var(--honesty-border-width-default)</code>
-            <code>var(--honesty-border-default)</code>
-            <code>var(--honesty-radius-surface)</code>
-          </div>
-        </div>
+        <erp-review-box data-review-native-role="div" id="composition-sample-a" class="composition-card comp-sample-a">
+          <erp-review-box data-review-native-role="div" class="composition-header">
+            <erp-text type="span" data-review-native-role="span" class="comp-tag">تركيب أ (A)</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="comp-title">سماكة افتراضية + لون افتراضي + زاوية سطح</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="composition-preview">
+            <erp-text type="span" data-review-native-role="span" class="comp-inner-text">Default Width (1px) • Default Color • Surface Radius (6px)</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="composition-tokens-list">
+            <erp-text type="code" data-review-native-role="code">var(--honesty-border-width-default)</erp-text>
+            <erp-text type="code" data-review-native-role="code">var(--honesty-border-default)</erp-text>
+            <erp-text type="code" data-review-native-role="code">var(--honesty-radius-surface)</erp-text>
+          </erp-review-box>
+        </erp-review-box>
 
         <!-- Composition B -->
-        <div id="composition-sample-b" class="composition-card comp-sample-b">
-          <div class="composition-header">
-            <span class="comp-tag">تركيب ب (B)</span>
-            <span class="comp-title">سماكة افتراضية + لون بارز + زاوية سطح</span>
-          </div>
-          <div class="composition-preview">
-            <span class="comp-inner-text">Default Width (1px) • Strong Color • Surface Radius (6px)</span>
-          </div>
-          <div class="composition-tokens-list">
-            <code>var(--honesty-border-width-default)</code>
-            <code>var(--honesty-border-strong)</code>
-            <code>var(--honesty-radius-surface)</code>
-          </div>
-        </div>
+        <erp-review-box data-review-native-role="div" id="composition-sample-b" class="composition-card comp-sample-b">
+          <erp-review-box data-review-native-role="div" class="composition-header">
+            <erp-text type="span" data-review-native-role="span" class="comp-tag">تركيب ب (B)</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="comp-title">سماكة افتراضية + لون بارز + زاوية سطح</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="composition-preview">
+            <erp-text type="span" data-review-native-role="span" class="comp-inner-text">Default Width (1px) • Strong Color • Surface Radius (6px)</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="composition-tokens-list">
+            <erp-text type="code" data-review-native-role="code">var(--honesty-border-width-default)</erp-text>
+            <erp-text type="code" data-review-native-role="code">var(--honesty-border-strong)</erp-text>
+            <erp-text type="code" data-review-native-role="code">var(--honesty-radius-surface)</erp-text>
+          </erp-review-box>
+        </erp-review-box>
 
         <!-- Composition C -->
-        <div id="composition-sample-c" class="composition-card comp-sample-c">
-          <div class="composition-header">
-            <span class="comp-tag">تركيب ج (C)</span>
-            <span class="comp-title">سماكة تأكيد + لون افتراضي + زاوية سطح</span>
-          </div>
-          <div class="composition-preview">
-            <span class="comp-inner-text">Emphasis Width (2px) • Default Color • Surface Radius (6px)</span>
-          </div>
-          <div class="composition-tokens-list">
-            <code>var(--honesty-border-width-emphasis)</code>
-            <code>var(--honesty-border-default)</code>
-            <code>var(--honesty-radius-surface)</code>
-          </div>
-        </div>
+        <erp-review-box data-review-native-role="div" id="composition-sample-c" class="composition-card comp-sample-c">
+          <erp-review-box data-review-native-role="div" class="composition-header">
+            <erp-text type="span" data-review-native-role="span" class="comp-tag">تركيب ج (C)</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="comp-title">سماكة تأكيد + لون افتراضي + زاوية سطح</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="composition-preview">
+            <erp-text type="span" data-review-native-role="span" class="comp-inner-text">Emphasis Width (2px) • Default Color • Surface Radius (6px)</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="composition-tokens-list">
+            <erp-text type="code" data-review-native-role="code">var(--honesty-border-width-emphasis)</erp-text>
+            <erp-text type="code" data-review-native-role="code">var(--honesty-border-default)</erp-text>
+            <erp-text type="code" data-review-native-role="code">var(--honesty-radius-surface)</erp-text>
+          </erp-review-box>
+        </erp-review-box>
 
         <!-- Composition D -->
-        <div id="composition-sample-d" class="composition-card comp-sample-d">
-          <div class="composition-header">
-            <span class="comp-tag">تركيب د (D)</span>
-            <span class="comp-title">سماكة افتراضية + لون افتراضي + زاوية طافية (بدون ظل)</span>
-          </div>
-          <div class="composition-preview">
-            <span class="comp-inner-text">Default Width (1px) • Default Color • Overlay Radius (8px, No Shadow)</span>
-          </div>
-          <div class="composition-tokens-list">
-            <code>var(--honesty-border-width-default)</code>
-            <code>var(--honesty-border-default)</code>
-            <code>var(--honesty-radius-overlay)</code>
-          </div>
-        </div>
-      </div>
-    </section>
+        <erp-review-box data-review-native-role="div" id="composition-sample-d" class="composition-card comp-sample-d">
+          <erp-review-box data-review-native-role="div" class="composition-header">
+            <erp-text type="span" data-review-native-role="span" class="comp-tag">تركيب د (D)</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="comp-title">سماكة افتراضية + لون افتراضي + زاوية طافية (بدون ظل)</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="composition-preview">
+            <erp-text type="span" data-review-native-role="span" class="comp-inner-text">Default Width (1px) • Default Color • Overlay Radius (8px, No Shadow)</erp-text>
+          </erp-review-box>
+          <erp-review-box data-review-native-role="div" class="composition-tokens-list">
+            <erp-text type="code" data-review-native-role="code">var(--honesty-border-width-default)</erp-text>
+            <erp-text type="code" data-review-native-role="code">var(--honesty-border-default)</erp-text>
+            <erp-text type="code" data-review-native-role="code">var(--honesty-radius-overlay)</erp-text>
+          </erp-review-box>
+        </erp-review-box>
+      </erp-review-box>
+    </erp-section>
 
     <!-- ================================================================= -->
     <!-- SECTION 8: FOCUS RING GEOMETRY                                    -->
     <!-- ================================================================= -->
-    <section id="sec-focus-ring-geometry" class="specimen-section">
-      <div class="section-heading">
-        <h2 id="title-focus-ring-geometry" class="section-title">هندسة حلقة التركيز</h2>
-        <span class="section-subtitle">Focus Ring Geometry</span>
-      </div>
-      <p class="section-lead">
-        العقد الافتراضي يستخدم <code>:focus-visible</code> مع CSS outline، بينما يظل نصف القطر مملوكاً لهندسة العنصر نفسه.
-      </p>
+    <erp-section data-review-native-role="section" id="sec-focus-ring-geometry" class="specimen-section">
+      <erp-review-box data-review-native-role="div" class="section-heading">
+        <erp-text type="heading-2" data-review-native-role="h2" id="title-focus-ring-geometry" class="section-title">هندسة حلقة التركيز</erp-text>
+        <erp-text type="span" data-review-native-role="span" class="section-subtitle">Focus Ring Geometry</erp-text>
+      </erp-review-box>
+      <erp-text type="paragraph" data-review-native-role="p" class="section-lead">
+        العقد الافتراضي يستخدم <erp-text type="code" data-review-native-role="code">:focus-visible</erp-text> مع CSS outline، بينما يظل نصف القطر مملوكاً لهندسة العنصر نفسه.
+      </erp-text>
 
-      <div id="focus-contract-tokens" class="focus-contract-tokens composition-tokens-list" dir="ltr">
-        <code data-focus-token>--honesty-focus-ring-width</code>
-        <code data-focus-token>--honesty-focus-ring-offset</code>
-        <code data-focus-token>--honesty-focus-ring-style</code>
-        <code data-focus-token>--honesty-color-action-focus-ring</code>
-        <span>width = 2px</span>
-        <span>offset = 2px</span>
-        <span>style = solid</span>
-      </div>
+      <erp-review-box data-review-native-role="div" id="focus-contract-tokens" class="focus-contract-tokens composition-tokens-list" dir="ltr">
+        <erp-text type="code" data-review-native-role="code" data-focus-token>--honesty-focus-ring-width</erp-text>
+        <erp-text type="code" data-review-native-role="code" data-focus-token>--honesty-focus-ring-offset</erp-text>
+        <erp-text type="code" data-review-native-role="code" data-focus-token>--honesty-focus-ring-style</erp-text>
+        <erp-text type="code" data-review-native-role="code" data-focus-token>--honesty-color-action-focus-ring</erp-text>
+        <erp-text type="span" data-review-native-role="span">width = 2px</erp-text>
+        <erp-text type="span" data-review-native-role="span">offset = 2px</erp-text>
+        <erp-text type="span" data-review-native-role="span">style = solid</erp-text>
+      </erp-review-box>
 
-      <div id="focus-theme-comparison" class="dual-theme-container">
+      <erp-review-box data-review-native-role="div" id="focus-theme-comparison" class="dual-theme-container">
         @for (theme of ['light', 'dark']; track theme) {
-          <div
+          <erp-review-box data-review-native-role="div"
             class="theme-context-box focus-theme-context"
             [attr.data-theme]="theme"
             [attr.data-focus-context]="theme"
           >
-            <div class="theme-context-header">
-              <span class="theme-title">{{ theme === 'light' ? 'السمة الفاتحة (Light Theme)' : 'السمة الداكنة (Dark Theme)' }}</span>
-              <code class="theme-code">data-theme="{{ theme }}"</code>
-            </div>
+            <erp-review-box data-review-native-role="div" class="theme-context-header">
+              <erp-text type="span" data-review-native-role="span" class="theme-title">{{ theme === 'light' ? 'السمة الفاتحة (Light Theme)' : 'السمة الداكنة (Dark Theme)' }}</erp-text>
+              <erp-text type="code" data-review-native-role="code" class="theme-code">data-theme="{{ theme }}"</erp-text>
+            </erp-review-box>
 
-            <div class="specimen-grid grid-2">
-              <div class="specimen-card focus-static-proof focus-control-proof" data-focus-static-proof="control">
-                <span>Control-radius proof</span>
-                <code>var(--honesty-radius-control)</code>
-              </div>
-              <div class="specimen-card focus-static-proof focus-surface-proof" data-focus-static-proof="surface">
-                <span>Surface-radius proof</span>
-                <code>var(--honesty-radius-surface)</code>
-              </div>
-            </div>
+            <erp-review-box data-review-native-role="div" class="specimen-grid grid-2">
+              <erp-review-box data-review-native-role="div" class="specimen-card focus-static-proof focus-control-proof" data-focus-static-proof="control">
+                <erp-text type="span" data-review-native-role="span">Control-radius proof</erp-text>
+                <erp-text type="code" data-review-native-role="code">var(--honesty-radius-control)</erp-text>
+              </erp-review-box>
+              <erp-review-box data-review-native-role="div" class="specimen-card focus-static-proof focus-surface-proof" data-focus-static-proof="surface">
+                <erp-text type="span" data-review-native-role="span">Surface-radius proof</erp-text>
+                <erp-text type="code" data-review-native-role="code">var(--honesty-radius-surface)</erp-text>
+              </erp-review-box>
+            </erp-review-box>
 
-            <button class="focus-keyboard-target" type="button" data-focus-keyboard-target>
-              Native :focus-visible target
-            </button>
-          </div>
+            <erp-button class="focus-keyboard-target" data-focus-keyboard-target label="Native :focus-visible target" />
+          </erp-review-box>
         }
-      </div>
-    </section>
+      </erp-review-box>
+    </erp-section>
 
-  </main>
-</div>
+  </erp-container>
+</erp-review-box>
