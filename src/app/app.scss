@@ -12,8 +12,6 @@
 // do NOT represent Foundation tokens or production design decisions.
 // =============================================================================
 
-@use '../styles/foundation/queries' as query;
-
 :host {
   display: flex;
   flex-direction: column;

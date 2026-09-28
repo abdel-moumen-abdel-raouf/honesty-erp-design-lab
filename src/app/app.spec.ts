@@ -4,14 +4,10 @@ import {provideRouter, Router, RouterLink} from '@angular/router';
 import {By} from '@angular/platform-browser';
 import {
   App,
-  buildLabPreviewUrl,
   buildScreenshotFilename,
-  hasLabPreviewFlag,
-  isDirectLabReviewRoute,
   isFullyTransparent,
   normalizeScreenshotColorFunctions,
   persistLabTheme,
-  resolveLabScreenshotSources,
   resolveLabScreenshotTarget,
   resolveLabTheme,
   resolveVisibleBackgroundColor,
@@ -34,102 +30,41 @@ function screenshotFrame(title: string) {
   };
 }
 
-describe('Design Lab preview helpers', () => {
-  it('detects only labPreview=1', () => {
-    expect(hasLabPreviewFlag('?labPreview=1')).toBe(true);
-    expect(hasLabPreviewFlag('?labPreview=0')).toBe(false);
-    expect(hasLabPreviewFlag('')).toBe(false);
-  });
-
-  it('builds a preview URL while preserving query parameters and fragments', () => {
-    expect(buildLabPreviewUrl('/primitives/typography', 'light')).toBe(
-      '/primitives/typography?labPreview=1&labTheme=light',
-    );
-    expect(buildLabPreviewUrl('/primitives/typography?x=1#proof', 'dark')).toBe(
-      '/primitives/typography?x=1&labPreview=1&labTheme=dark#proof',
-    );
-  });
-
-  it('resolves and persists the global Lab theme without requiring storage', () => {
+describe('Design Lab App helpers', () => {
+  it('resolves and persists the global Lab theme without query propagation', () => {
     const storage = {
       getItem: vi.fn(() => 'dark'),
       setItem: vi.fn(),
     };
 
-    expect(resolveLabTheme('', storage)).toBe('dark');
-    expect(resolveLabTheme('?labTheme=light', storage)).toBe('light');
-    expect(resolveLabTheme('', null)).toBe('light');
+    expect(resolveLabTheme(storage)).toBe('dark');
+    expect(resolveLabTheme(null)).toBe('light');
 
     persistLabTheme('dark', storage);
     expect(storage.setItem).toHaveBeenCalledWith('honesty-lab-theme', 'dark');
   });
 
-  it('builds mode-specific screenshot filenames', () => {
-    expect(buildScreenshotFilename('/primitives/typography', 'desktop')).toBe(
-      'primitives-typography-desktop-view.png',
+  it('builds theme-specific screenshot filenames', () => {
+    expect(buildScreenshotFilename('/primitives/typography', 'light')).toBe(
+      'primitives-typography-light-view.png',
     );
-    expect(buildScreenshotFilename('/primitives/typography', 'tablet')).toBe(
-      'primitives-typography-tablet-view.png',
+    expect(buildScreenshotFilename('/primitives/typography', 'dark')).toBe(
+      'primitives-typography-dark-view.png',
     );
-    expect(buildScreenshotFilename('/primitives/typography', 'mobile')).toBe(
-      'primitives-typography-mobile-view.png',
-    );
-    expect(buildScreenshotFilename('/', 'desktop')).toBe(
-      'foundation-review-desktop-view.png',
+    expect(buildScreenshotFilename('/', 'light')).toBe(
+      'foundation-review-light-view.png',
     );
   });
 
-  it('detects the Input and Overlay showcases as direct review routes', () => {
-    expect(isDirectLabReviewRoute('/controls/overlays')).toBe(true);
-    expect(
-      isDirectLabReviewRoute('/controls/overlays?labPreview=1#proof'),
-    ).toBe(true);
-    expect(isDirectLabReviewRoute('/controls/inputs')).toBe(true);
-    expect(isDirectLabReviewRoute('/foundation/overview')).toBe(false);
-  });
+  it('resolves the single-document capture root deterministically', () => {
+    const rootDocument = document.implementation.createHTMLDocument();
+    const captureRoot = rootDocument.createElement('main');
+    captureRoot.id = 'lab-capture-root';
+    rootDocument.body.appendChild(captureRoot);
 
-  it('resolves ordinary and Dark iframe capture roots deterministically', () => {
-    const embeddedDocument = document.implementation.createHTMLDocument();
-    const embeddedRoot = embeddedDocument.createElement('main');
-    embeddedRoot.id = 'lab-capture-root';
-    embeddedRoot.dataset['theme'] = 'dark';
-    embeddedDocument.body.appendChild(embeddedRoot);
-
-    const outerDocument = document.implementation.createHTMLDocument();
-    const outerRoot = outerDocument.createElement('main');
-    outerRoot.id = 'lab-capture-root';
-    const toolbar = outerDocument.createElement('header');
-    toolbar.id = 'lab-utility-bar';
-    const frame = outerDocument.createElement('iframe');
-    frame.id = 'lab-preview-frame';
-    Object.defineProperty(frame, 'contentDocument', {
-      configurable: true,
-      value: embeddedDocument,
-    });
-    outerRoot.append(toolbar, frame);
-    outerDocument.body.appendChild(outerRoot);
-
-    expect(resolveLabScreenshotTarget(outerDocument, false)).toBe(
-      embeddedRoot,
-    );
-    expect(
-      resolveLabScreenshotTarget(outerDocument, false)?.dataset['theme'],
-    ).toBe('dark');
-    expect(resolveLabScreenshotSources(outerDocument, false)).toEqual({
-      outerRoot,
-      toolbar,
-      embeddedRoot,
-    });
-  });
-
-  it('resolves only the outer capture root for direct review', () => {
-    const directDocument = document.implementation.createHTMLDocument();
-    const directRoot = directDocument.createElement('main');
-    directRoot.id = 'lab-capture-root';
-    directDocument.body.appendChild(directRoot);
-
-    expect(resolveLabScreenshotTarget(directDocument, true)).toBe(directRoot);
-    expect(resolveLabScreenshotTarget(directDocument, false)).toBeNull();
+    expect(resolveLabScreenshotTarget(rootDocument)).toBe(captureRoot);
+    captureRoot.remove();
+    expect(resolveLabScreenshotTarget(rootDocument)).toBeNull();
   });
 
   it('normalizes browser color(srgb) serialization for html2canvas parsing', () => {
@@ -349,46 +284,47 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(recreated.componentInstance.theme()).toBe('dark');
   });
 
-  it('should render the viewport controls and iframe preview in outer mode', () => {
+  it('renders one direct router outlet with no preview browsing context', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-
-    expect(compiled.querySelector('#lab-viewport-controls')).toBeTruthy();
-    expect(compiled.querySelector('#btn-preview-desktop')).toBeTruthy();
-    expect(compiled.querySelector('#btn-preview-tablet')).toBeTruthy();
-    expect(compiled.querySelector('#btn-preview-mobile')).toBeTruthy();
-    expect(compiled.querySelector('#lab-preview-stage')).toBeTruthy();
-    const previewFrame = compiled.querySelector(
-      '#lab-preview-frame',
-    ) as HTMLIFrameElement;
-    expect(previewFrame).toBeTruthy();
-    expect(previewFrame.src).toContain('labTheme=light');
-    expect(compiled.querySelector('#routed-review-content')).toBeNull();
-    expect(compiled.querySelector('#app-router-outlet')).toBeNull();
-  });
-
-  it('renders the Overlay route directly with one host and no recursive iframe', async () => {
-    const fixture = TestBed.createComponent(App);
-    const router = TestBed.inject(Router);
-
-    await router.navigateByUrl('/controls/overlays');
-    fixture.detectChanges();
-    await fixture.whenStable();
-    fixture.detectChanges();
-
     const root = fixture.nativeElement as HTMLElement;
     const captureRoot = root.querySelector('#lab-capture-root');
 
-    expect(fixture.componentInstance.isDirectReview()).toBe(true);
-    expect(captureRoot?.getAttribute('data-capture-mode')).toBe('direct');
+    expect(captureRoot).toBeTruthy();
+    expect(captureRoot?.querySelector('#lab-utility-bar')).toBeTruthy();
+    expect(captureRoot?.querySelector('#routed-review-content')).toBeTruthy();
     expect(captureRoot?.querySelector('#app-router-outlet')).toBeTruthy();
-    expect(captureRoot?.querySelector('app-overlay-controls')).toBeTruthy();
-    expect(captureRoot?.querySelectorAll('erp-overlay-host')).toHaveLength(1);
+    expect(captureRoot?.querySelector('iframe')).toBeNull();
+    expect(captureRoot?.querySelector('[id^="btn-preview-"]')).toBeNull();
     expect(root.querySelectorAll('erp-overlay-host')).toHaveLength(1);
-    expect(root.querySelector('#lab-preview-frame')).toBeNull();
-    expect(root.querySelector('#lab-viewport-controls')).toBeNull();
-    expect(resolveLabScreenshotTarget(document, true)).toBe(captureRoot);
+  });
+
+  it('renders Foundation, Inputs, and Overlays through the same direct document model', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+
+    const cases = [
+      ['/foundation/overview', 'app-foundation-overview'],
+      ['/controls/inputs', 'app-input-controls'],
+      ['/controls/overlays', 'app-overlay-controls'],
+    ] as const;
+
+    for (const [url, selector] of cases) {
+      await router.navigateByUrl(url);
+      fixture.detectChanges();
+      await fixture.whenStable();
+      fixture.detectChanges();
+
+      const root = fixture.nativeElement as HTMLElement;
+      const captureRoot = root.querySelector('#lab-capture-root');
+
+      expect(captureRoot?.querySelector('#app-router-outlet')).toBeTruthy();
+      expect(captureRoot?.querySelector(selector)).toBeTruthy();
+      expect(root.querySelector('iframe')).toBeNull();
+      expect(root.querySelector('[id^="btn-preview-"]')).toBeNull();
+      expect(root.querySelectorAll('erp-overlay-host')).toHaveLength(1);
+      expect(resolveLabScreenshotTarget(document)).toBe(captureRoot);
+    }
   });
 
   it('keeps modal and logical drawers inside the direct screenshot target', async () => {
@@ -416,7 +352,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     });
     fixture.detectChanges();
 
-    const target = resolveLabScreenshotTarget(document, true);
+    const target = resolveLabScreenshotTarget(document);
     const toolbar = target?.querySelector('#lab-utility-bar') as HTMLElement;
     const host = target?.querySelector('erp-overlay-host') as HTMLElement;
     expect(toolbar).toBeTruthy();
@@ -443,81 +379,6 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(
       target?.querySelector('[data-overlay-position="end"]'),
     ).toBeTruthy();
-  });
-
-  it('renders Inputs directly and returns to iframe mode for ordinary Foundation review', async () => {
-    const fixture = TestBed.createComponent(App);
-    const router = TestBed.inject(Router);
-
-    await router.navigateByUrl('/controls/overlays');
-    fixture.detectChanges();
-    await fixture.whenStable();
-    fixture.detectChanges();
-    expect(
-      (fixture.nativeElement as HTMLElement).querySelector(
-        '#lab-preview-frame',
-      ),
-    ).toBeNull();
-
-    await router.navigateByUrl('/controls/inputs');
-    fixture.detectChanges();
-    await fixture.whenStable();
-    fixture.detectChanges();
-
-    let root = fixture.nativeElement as HTMLElement;
-    expect(fixture.componentInstance.isDirectReview()).toBe(true);
-    expect(root.querySelector('#lab-preview-frame')).toBeNull();
-    expect(root.querySelector('#lab-viewport-controls')).toBeNull();
-    expect(root.querySelector('app-input-controls')).toBeTruthy();
-
-    await router.navigateByUrl('/foundation/overview');
-    fixture.detectChanges();
-    await fixture.whenStable();
-    fixture.detectChanges();
-
-    root = fixture.nativeElement as HTMLElement;
-    expect(fixture.componentInstance.isDirectReview()).toBe(false);
-    expect(root.querySelector('#lab-preview-frame')).toBeTruthy();
-    expect(root.querySelector('#lab-viewport-controls')).toBeTruthy();
-    expect(
-      root.querySelector('#lab-capture-root')?.getAttribute(
-        'data-capture-mode',
-      ),
-    ).toBe('outer');
-    expect(root.querySelectorAll('erp-overlay-host')).toHaveLength(1);
-  });
-
-  it('switches deterministically between desktop, tablet, and mobile preview modes', () => {
-    const fixture = TestBed.createComponent(App);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    const app = fixture.componentInstance;
-    const stage = compiled.querySelector('#lab-preview-stage') as HTMLElement;
-    const desktop = compiled.querySelector('#btn-preview-desktop') as HTMLButtonElement;
-    const tablet = compiled.querySelector('#btn-preview-tablet') as HTMLButtonElement;
-    const mobile = compiled.querySelector('#btn-preview-mobile') as HTMLButtonElement;
-
-    expect(app.currentPreviewMode()).toBe('desktop');
-    expect(desktop.getAttribute('aria-pressed')).toBe('true');
-    expect(stage.getAttribute('data-preview-mode')).toBe('desktop');
-
-    tablet.click();
-    fixture.detectChanges();
-    expect(app.currentPreviewMode()).toBe('tablet');
-    expect(tablet.getAttribute('aria-pressed')).toBe('true');
-    expect(stage.getAttribute('data-preview-mode')).toBe('tablet');
-
-    mobile.click();
-    fixture.detectChanges();
-    expect(app.currentPreviewMode()).toBe('mobile');
-    expect(mobile.getAttribute('aria-pressed')).toBe('true');
-    expect(stage.getAttribute('data-preview-mode')).toBe('mobile');
-
-    desktop.click();
-    fixture.detectChanges();
-    expect(app.currentPreviewMode()).toBe('desktop');
-    expect(desktop.getAttribute('aria-pressed')).toBe('true');
-    expect(stage.getAttribute('data-preview-mode')).toBe('desktop');
   });
 });
 
