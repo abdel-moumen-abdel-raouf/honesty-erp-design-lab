@@ -190,8 +190,12 @@ This is a technical implementation checkpoint only. Product Owner subjective vis
 - Checkbox/RadioBox visual redesign remains deferred until the Product Owner supplies the dedicated templates/references.
 - Broader page/component Light/Dark-specific SCSS cleanup remains deferred.
 - Remaining showcase pages not yet reviewed page-by-page remain outside the current correction authorization.
-- Historical component-style budget warnings and the existing html2canvas CommonJS warning remain historical warnings; no budget threshold change is authorized solely to hide them.
-- Hosted GitHub CI/status evidence is still absent.
+- The previously reported component-style budget warnings are resolved by source stylesheet partitioning while retaining the existing 4kB/8kB `anyComponentStyle` warning/error thresholds; the budget was not raised to hide violations.
+- The previous `html2canvas` CommonJS warning is resolved by consuming the package's ESM distribution entry with a local type declaration; no CommonJS allow-list suppression was added.
+- Angular Language Service `ErpOverlayFrame` template-member diagnostics are resolved by making the template-consumed frame members public; runtime behavior is unchanged.
+- TypeScript editor `rootDir` diagnostics are resolved explicitly in both `tsconfig.app.json` and `tsconfig.spec.json`.
+- Repository verification now includes `typecheck:app`, `typecheck:spec`, and a cross-platform `build:clean` gate that fails if Angular emits a build warning.
+- Hosted GitHub CI/status evidence is still absent; local verification remains required after pulling.
 
 ## Next authorized action
 
@@ -206,3 +210,22 @@ Until new Product Owner findings are supplied, do not:
 - perform the deferred broad Light/Dark SCSS cleanup;
 - redesign later unreviewed showcase families;
 - declare visual approval, family freeze, Basic Controls closure, or Wave B.
+
+
+## Zero-warning tooling correction checkpoint
+
+The tooling/diagnostic correction sequence is:
+
+- `9afec19d133f9414ebd1fedd537f91637bf98db8` — `fix(tooling): eliminate build and editor diagnostics`
+- `ea43868cb98545c62b4173f854a6bec576dee48e` — `fix(tooling): finalize zero-warning verification`
+
+The final verification contract after the follow-up governance/gate synchronization is:
+
+`npm run verify:clean`
+
+It runs repository lint/governance, the full unit-test suite, application and
+spec TypeScript no-emit checks, and a production build that fails if Angular
+emits any warning marker.
+
+This tooling correction does not change Product Owner visual approval state,
+component-family freeze state, or authorize later page-by-page implementation.

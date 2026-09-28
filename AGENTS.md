@@ -627,3 +627,27 @@ Current mandatory decisions:
 - No later unreviewed showcase family or new public component family is authorized until the Product Owner supplies the next page-by-page findings.
 
 The first-round correction checkpoint is a technical implementation candidate, not Product Owner visual approval. Do not declare family freeze, Basic Controls closure, or Wave B from it.
+
+
+## Zero-Warning Verification Governance
+
+Zero-warning verification is mandatory for review/tooling checkpoints.
+
+Before reporting success, run:
+
+`npm run verify:clean`
+
+That command must cover:
+
+- all repository lint/governance checks;
+- the complete unit-test suite;
+- `tsc -p tsconfig.app.json --noEmit`;
+- `tsc -p tsconfig.spec.json --noEmit`;
+- a production Angular build that fails when warning markers are emitted.
+
+Do not raise component-style budgets merely to silence warnings. Split/refactor
+the owning styles where practical and keep the approved 4kB warning / 8kB error
+component-style thresholds unless the Product Owner explicitly reopens them.
+
+Do not suppress CommonJS warnings with an allow-list when an owned ESM entry is
+available and verified.

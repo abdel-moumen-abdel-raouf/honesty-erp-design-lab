@@ -208,12 +208,25 @@ declare visual approval, freeze a family, or close the Basic Controls layer.
 
 The current page-by-page Product Owner review/execution state is authoritative in POST_CR12_PRODUCT_OWNER_REVIEW_STATE_V1.md.
 
-Current reviewed implementation checkpoint:
+Current reviewed implementation/tooling checkpoint:
 
-b7a1030bd64cab8d789b0193e7aa6f0c37c3faf9 — fix(review): resolve first-round showcase findings
+`ea43868cb98545c62b4173f854a6bec576dee48e` — `fix(tooling): finalize zero-warning verification`
+
+The preceding tooling correction is `9afec19d133f9414ebd1fedd537f91637bf98db8` — `fix(tooling): eliminate build and editor diagnostics`.
+
+The first-round functional correction remains `b7a1030bd64cab8d789b0193e7aa6f0c37c3faf9` — `fix(review): resolve first-round showcase findings`.
 
 The preceding Product Owner theme-authority preservation checkpoint is:
 
 06ab7d326b6f2b6c5d6d863e2acefcc994b04b53 — fix(lab): inherit review pages from global theme
 
 No additional implementation phase is authorized after that checkpoint until the Product Owner completes runtime/visual re-review and supplies the next page-by-page findings. Checkbox/RadioBox redesign, broad Light/Dark SCSS cleanup, and later unreviewed showcase work remain explicitly deferred.
+
+
+### Current verification gate
+
+Zero-warning verification is part of the current repository gate. The canonical
+local command is `npm run verify:clean`, which covers lint/governance, unit
+tests, application/spec TypeScript no-emit checks, and a production build that
+fails on emitted Angular warnings. Component-style budget thresholds remain at
+4kB warning / 8kB error; they were not increased to suppress warnings.

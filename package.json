@@ -30,7 +30,10 @@
     "lint": "npm run route-pages:check && npm run component-tokens:check && npm run system-colors:check && npm run erp-text:check && npm run erp-icon:check && npm run erp-button:check && npm run erp-tooltip:check && npm run erp-field:check && npm run erp-overlay:check && ng lint",
     "route-pages:check": "node tools/foundation/check-route-page-erp-authoring.mjs",
     "route-pages:check:self-test": "node tools/foundation/check-route-page-erp-authoring.mjs --self-test",
-    "verify:clean": "npm run lint && npm run test -- --watch=false && npm run build"
+    "verify:clean": "npm run lint && npm run test -- --watch=false && npm run typecheck:app && npm run typecheck:spec && npm run build:clean",
+    "typecheck:app": "tsc -p tsconfig.app.json --noEmit",
+    "typecheck:spec": "tsc -p tsconfig.spec.json --noEmit",
+    "build:clean": "node tools/verification/check-zero-warning-build.mjs"
   },
   "private": true,
   "dependencies": {
