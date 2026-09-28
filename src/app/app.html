@@ -4,12 +4,13 @@
   [attr.data-theme]="theme()"
 >
   <header id="lab-utility-bar" class="lab-utility-bar">
-      <div id="lab-utility-brand" class="lab-utility-brand">
-        <span id="lab-utility-title" class="lab-utility-title">مختبر تصميم Honesty ERP</span>
-        <span id="lab-utility-badge" class="lab-utility-badge">أداة مراجعة مؤقتة</span>
-      </div>
-  
-      <nav id="lab-nav" class="lab-nav" aria-label="روابط المراجعة المؤقتة">
+    <div id="lab-utility-brand" class="lab-utility-brand">
+      <span id="lab-utility-title" class="lab-utility-title">مختبر تصميم Honesty ERP</span>
+      <span id="lab-utility-badge" class="lab-utility-badge">أداة مراجعة مؤقتة</span>
+    </div>
+
+
+    <nav id="lab-nav" class="lab-nav" aria-label="روابط المراجعة المؤقتة">
       <a
         id="nav-link-overview"
         class="lab-nav-link"
@@ -189,9 +190,9 @@
         الطبقات
       </a>
     </nav>
-  
+
     <div id="lab-actions" class="lab-actions">
-            @if (statusMessage()) {
+      @if (statusMessage()) {
         <span id="lab-screenshot-status" class="lab-screenshot-status" [class.is-error]="hasError()">
           {{ statusMessage() }}
         </span>
@@ -221,7 +222,7 @@
         }
       </button>
     </div>
-    </header>
+  </header>
 
   <main
     id="routed-review-content"
