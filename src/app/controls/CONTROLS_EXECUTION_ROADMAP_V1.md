@@ -230,3 +230,15 @@ local command is `npm run verify:clean`, which covers lint/governance, unit
 tests, application/spec TypeScript no-emit checks, and a production build that
 fails on emitted Angular warnings. Component-style budget thresholds remain at
 4kB warning / 8kB error; they were not increased to suppress warnings.
+
+
+### Review-select ErpText governance correction
+
+The zero-warning/clean verification sequence found one additional governance
+failure in the Design-Lab-only `erp-review-select` internal. It was corrected
+at `a2e1793faa489702dac4721d9ac1c3ec6c5b7d74`
+(`fix(review): govern review select text with ErpText`).
+
+Current verification is not considered complete until a fresh local
+`npm run verify:clean` passes from this checkpoint or a later fast-forward
+checkpoint.

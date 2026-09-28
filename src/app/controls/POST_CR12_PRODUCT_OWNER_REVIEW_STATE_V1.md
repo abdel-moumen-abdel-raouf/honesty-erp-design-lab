@@ -229,3 +229,29 @@ emits any warning marker.
 
 This tooling correction does not change Product Owner visual approval state,
 component-family freeze state, or authorize later page-by-page implementation.
+
+
+### Review-select ErpText governance correction
+
+Local verification at `e403fa73d96bdfe18bd8c2b4fa61e28eb5b3b43b`
+did not complete successfully. `npm run verify:clean` stopped in
+`erp-text:check` because the Design-Lab internal
+`erp-review-select` rendered its field label and native option text outside
+`ErpText` governance.
+
+The correction checkpoint is:
+
+`a2e1793faa489702dac4721d9ac1c3ec6c5b7d74`
+— `fix(review): govern review select text with ErpText`
+
+The corrected internal now:
+
+- renders the visible field label through `ErpText`;
+- keeps native `select/option` platform semantics inside the internal owner;
+- supplies option display labels through the native option `label` attribute
+  instead of an ungoverned rendered text node;
+- adds a focused regression specification covering governed label rendering,
+  selected native value, option labels, and absence of raw option text nodes.
+
+The required next verification remains `npm run verify:clean`. This checkpoint
+must not be called clean until that complete command passes locally.
