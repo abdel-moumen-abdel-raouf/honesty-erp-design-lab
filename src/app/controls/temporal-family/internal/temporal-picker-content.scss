@@ -65,13 +65,6 @@
   overflow: auto;
 }
 
-.picker-actions {
-  padding-block-start: var(--honesty-temporal-picker-actions-gap);
-  border-block-start: var(--honesty-temporal-picker-divider-width)
-    var(--honesty-temporal-picker-divider-style)
-    var(--honesty-temporal-picker-divider-color);
-}
-
 @media (prefers-reduced-motion: reduce) {
   .calendar-day {
     transition-duration: var(--honesty-temporal-picker-range-reduced-duration);

@@ -19,6 +19,8 @@ const FIELD_FRAME_TEMPLATE =
   'src/app/controls/input-family/internal/field-frame.html';
 const FIELD_FRAME_STYLE =
   'src/app/controls/input-family/internal/field-frame.scss';
+const FIELD_FEEDBACK_STYLE =
+  'src/app/controls/input-family/internal/field-feedback.scss';
 const FIELD_TRIGGER_TEMPLATE =
   'src/app/controls/input-family/internal/field-trigger.html';
 const SEARCH_BOX_SOURCE =
@@ -40,12 +42,16 @@ const FILE_PICKER_TEMPLATE =
   'src/app/controls/file-picker/file-picker.html';
 const FILE_PICKER_TOKENS =
   'src/styles/foundation/components/file-picker/_tokens.scss';
+const FILE_PICKER_STYLES =
+  'src/app/controls/file-picker/file-picker-selection.scss';
 const IMAGE_PICKER_SOURCE =
   'src/app/controls/image-picker/image-picker.ts';
 const IMAGE_PICKER_TEMPLATE =
   'src/app/controls/image-picker/image-picker.html';
 const IMAGE_PICKER_TOKENS =
   'src/styles/foundation/components/image-picker/_tokens.scss';
+const IMAGE_PICKER_STYLES =
+  'src/app/controls/image-picker/image-picker-selection.scss';
 const CHECK_BOX_TEMPLATE =
   'src/app/controls/check-box/check-box.html';
 const CHECK_BOX_TOKENS =
@@ -376,6 +382,31 @@ export function validateFieldHitAreaContract(source, template, style) {
   return errors;
 }
 
+export function validateFieldFeedbackCaretContract(style) {
+  const errors = [];
+
+  for (const required of [
+    '.field-feedback__caret',
+    'border-top:',
+    'border-left:',
+    'transform: rotate(45deg);',
+  ]) {
+    if (!style.includes(required)) {
+      errors.push(
+        `FieldFeedback caret: missing direction-independent upward contract ${required}`,
+      );
+    }
+  }
+
+  if (/border-inline-(?:start|end):/.test(style)) {
+    errors.push(
+      'FieldFeedback caret: arrow orientation must not use logical inline borders',
+    );
+  }
+
+  return errors;
+}
+
 export function validateFieldTriggerContracts(files) {
   const errors = [];
   const triggerSource = files.get(FIELD_TRIGGER_TEMPLATE) ?? '';
@@ -467,11 +498,27 @@ export function validateSearchBoxPopupContracts(
   if (
     !/<erp-field-trigger\b/.test(template) ||
     !/popover="manual"/.test(template) ||
+    !template.includes('(blurred)="handleNativeBlur()"') ||
     !/<ng-content\s+select="\[search-results\]"/.test(template)
   ) {
     errors.push(
-      'SearchBox: popup must use FieldTrigger, manual popover, and generic search-results projection',
+      'SearchBox: popup must use FieldTrigger focus/blur, manual popover, and generic search-results projection',
     );
+  }
+
+  for (const requirement of [
+    "'--_honesty-search-box-popup-trigger-inline-size'",
+    'anchor.getBoundingClientRect().width',
+    "this.popupPhase.set('leaving')",
+    'setTimeout(',
+    'this.controller?.hide();',
+    'this.removeFromOpenStack();',
+    'this.popupOpen()',
+    ': this.anchorElement()',
+  ]) {
+    if (!source.includes(requirement)) {
+      errors.push(`SearchBox: missing corrected popup lifecycle ${requirement}`);
+    }
   }
 
   const exactTokens = new Map([
@@ -530,10 +577,17 @@ export function validateSearchBoxPopupContracts(
   if (
     !styleSource.includes("dir='rtl'") ||
     !styleSource.includes('prefers-reduced-motion: reduce') ||
-    !styleSource.includes('var(--honesty-search-box-popup-max-block-size)')
+    !styleSource.includes('var(--honesty-search-box-popup-max-block-size)') ||
+    !styleSource.includes(
+      'var(--_honesty-search-box-popup-trigger-inline-size)',
+    ) ||
+    !styleSource.includes(
+      ".search-box__popup[data-search-popup-phase='leaving']",
+    ) ||
+    !styleSource.includes('pointer-events: none;')
   ) {
     errors.push(
-      'SearchBox: popup styles must retain RTL motion, reduced motion, and viewport-capped sizing',
+      'SearchBox: popup styles must retain trigger sizing, noninteractive leaving, RTL motion, reduced motion, and viewport capping',
     );
   }
 
@@ -670,9 +724,11 @@ export function validateFileSelectionContracts(
   fileSource,
   fileTemplate,
   fileTokens,
+  fileStyles,
   imageSource,
   imageTemplate,
   imageTokens,
+  imageStyles,
 ) {
   const errors = [];
   const baseRequirements = [
@@ -716,10 +772,16 @@ export function validateFileSelectionContracts(
     !fileTokens.includes(
       '--honesty-file-picker-drop-zone-border-style:',
     ) ||
-    !fileTokens.includes('var(--honesty-border-style-dashed)')
+    !fileTokens.includes('var(--honesty-border-style-dashed)') ||
+    !fileTokens.includes('--honesty-file-picker-item-bg-hover:') ||
+    !fileTokens.includes('--honesty-file-picker-item-border-color-hover:') ||
+    !fileTokens.includes('--honesty-file-picker-transition-duration:') ||
+    !fileStyles.includes('.file-picker__item:hover,') ||
+    !fileStyles.includes('.file-picker__item:focus-within') ||
+    !fileStyles.includes('prefers-reduced-motion: reduce')
   ) {
     errors.push(
-      'FilePicker: multi-file drop zone, Tooltip removal, and dashed token contract are required',
+      'FilePicker: multi-file drop zone, Tooltip removal, and tokenized hover/focus feedback are required',
     );
   }
 
@@ -733,10 +795,16 @@ export function validateFileSelectionContracts(
     !imageTemplate.includes('data-image-picker-remove') ||
     !imageTokens.includes('@mixin preview-size-sm') ||
     !imageTokens.includes('@mixin preview-size-md') ||
-    !imageTokens.includes('@mixin preview-size-lg')
+    !imageTokens.includes('@mixin preview-size-lg') ||
+    !imageTokens.includes('--honesty-image-picker-item-bg-hover:') ||
+    !imageTokens.includes('--honesty-image-picker-item-border-color-hover:') ||
+    !imageTokens.includes('--honesty-image-picker-transition-duration:') ||
+    !imageStyles.includes('.image-picker__item:hover,') ||
+    !imageStyles.includes('.image-picker__item:focus-within') ||
+    !imageStyles.includes('prefers-reduced-motion: reduce')
   ) {
     errors.push(
-      'ImagePicker: multi-image, stable Object URL, removal, and preview-size contracts are required',
+      'ImagePicker: multi-image, stable Object URL, preview sizing, and tokenized hover/focus feedback are required',
     );
   }
 
@@ -834,13 +902,18 @@ export function validateTemporalCorrectionContracts(files) {
     !content.includes('rangePreviewCandidate = signal<string | null>(null)') ||
     !content.includes('orderRange(') ||
     !content.includes('updateKeyboardPreview(') ||
-    !content.includes("registerFrameAction('primary'") ||
-    !content.includes("registerFrameAction('secondary'") ||
+    !content.includes("registerFrameAction('confirm'") ||
+    !content.includes("registerFrameAction('cancel'") ||
+    !content.includes("registerFrameAction('today'") ||
+    !content.includes("registerFrameAction('clear'") ||
+    !content.includes("updateFrameActionState('clear'") ||
+    !content.includes("updateFrameActionState('today'") ||
     !template.includes('(pointerenter)="previewDate(date)"') ||
     !template.includes('(pointerleave)="clearRangePreview()"') ||
     !template.includes('data.actionLabels.previousMonth') ||
     template.includes('data-confirm-action') ||
     template.includes('data-cancel-action') ||
+    template.includes('picker-actions') ||
     TEMPORAL_REQUIRED_TOKENS.some((token) => !tokens.includes(token))
   ) {
     errors.push(
@@ -875,12 +948,17 @@ export function validateSelectionCorrectionContracts(files) {
     !content.includes('ERP_SYSTEM_COLOR_FAMILIES') ||
     !content.includes('ERP_SYSTEM_COLOR_STEPS') ||
     !content.includes('ERP_SYSTEM_COLOR_PALETTES') ||
-    !content.includes("registerFrameAction('primary'") ||
-    !content.includes("registerFrameAction('secondary'") ||
+    !content.includes("registerFrameAction('confirm'") ||
+    !content.includes("registerFrameAction('cancel'") ||
+    !content.includes("registerFrameAction('clear-selected'") ||
+    !content.includes("updateFrameActionState('clear-selected'") ||
+    !content.includes('activeIndex = signal<number | null>(null)') ||
     !template.includes('<erp-selection-tile') ||
     !template.includes('<erp-tooltip') ||
     template.includes('data-confirm-action') ||
     template.includes('data-cancel-action') ||
+    template.includes('selection-actions') ||
+    !template.includes('presentation="list"') ||
     /<button\b/.test(template)
   ) {
     errors.push(
@@ -922,6 +1000,9 @@ export function validateSelectionCorrectionContracts(files) {
     '--honesty-selection-picker-tile-bg-selected:',
     '--honesty-selection-picker-tile-border-color-selected:',
     '--honesty-selection-picker-tile-disabled-opacity:',
+    '--honesty-selection-picker-swatch-border-width:',
+    '--honesty-selection-picker-swatch-border-style:',
+    '--honesty-selection-picker-swatch-border-color:',
   ]) {
     if (!tokens.includes(token)) {
       errors.push(`SelectionPicker tokens must declare ${token}`);
@@ -995,7 +1076,9 @@ export abstract class ErpFileSelectionBase extends ErpFieldBase<readonly File[]>
   const validFileTemplate =
     '<input type="file" multiple (drop)="handleDrop($event)"><erp-tooltip><erp-icon-button data-file-picker-remove /></erp-tooltip>';
   const validFileTokens =
-    '--honesty-file-picker-drop-zone-border-style: var(--honesty-border-style-dashed);';
+    '--honesty-file-picker-drop-zone-border-style: var(--honesty-border-style-dashed); --honesty-file-picker-item-bg-hover: var(--honesty-color-action-primary-subtle-bg-hover); --honesty-file-picker-item-border-color-hover: var(--honesty-border-default); --honesty-file-picker-transition-duration: var(--honesty-motion-duration-fast);';
+  const validFileStyles =
+    '.file-picker__item:hover, .file-picker__item:focus-within {} @media (prefers-reduced-motion: reduce) {}';
   const validImageSource = `
 export class ErpImagePicker extends ErpFileSelectionBase {
   accept = input<string | null>('image/*');
@@ -1006,7 +1089,9 @@ export class ErpImagePicker extends ErpFileSelectionBase {
   const validImageTemplate =
     '<input type="file" multiple><erp-icon-button data-image-picker-remove />';
   const validImageTokens =
-    '@mixin preview-size-sm {} @mixin preview-size-md {} @mixin preview-size-lg {}';
+    '@mixin preview-size-sm {} @mixin preview-size-md {} @mixin preview-size-lg {} --honesty-image-picker-item-bg-hover: var(--honesty-color-action-primary-subtle-bg-hover); --honesty-image-picker-item-border-color-hover: var(--honesty-border-default); --honesty-image-picker-transition-duration: var(--honesty-motion-duration-fast);';
+  const validImageStyles =
+    '.image-picker__item:hover, .image-picker__item:focus-within {} @media (prefers-reduced-motion: reduce) {}';
 
   if (
     validateFileSelectionContracts(
@@ -1014,9 +1099,11 @@ export class ErpImagePicker extends ErpFileSelectionBase {
       validFileSource,
       validFileTemplate,
       validFileTokens,
+      validFileStyles,
       validImageSource,
       validImageTemplate,
       validImageTokens,
+      validImageStyles,
     ).length > 0
   ) {
     throw new Error('ErpField checker rejected valid File/Image fixtures');
@@ -1028,9 +1115,11 @@ export class ErpImagePicker extends ErpFileSelectionBase {
       validFileSource,
       validFileTemplate.replace(' multiple', ''),
       validFileTokens,
+      validFileStyles,
       validImageSource,
       validImageTemplate,
       validImageTokens,
+      validImageStyles,
     ).length === 0
   ) {
     throw new Error('ErpField checker accepted invalid File/Image fixtures');
@@ -1082,7 +1171,7 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     ],
     [
       TEMPORAL_CONTENT_SOURCE,
-      "rangeAnchor = signal(null); rangePreviewCandidate = signal<string | null>(null); orderRange(); updateKeyboardPreview(); registerFrameAction('primary'); registerFrameAction('secondary');",
+      "rangeAnchor = signal(null); rangePreviewCandidate = signal<string | null>(null); orderRange(); updateKeyboardPreview(); registerFrameAction('confirm'); registerFrameAction('cancel'); registerFrameAction('today'); registerFrameAction('clear'); updateFrameActionState('clear'); updateFrameActionState('today');",
     ],
     [
       TEMPORAL_CONTENT_TEMPLATE,
@@ -1122,11 +1211,11 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     ],
     [
       SELECTION_CONTENT_SOURCE,
-      "ERP_SYSTEM_COLOR_FAMILIES ERP_SYSTEM_COLOR_STEPS ERP_SYSTEM_COLOR_PALETTES registerFrameAction('primary') registerFrameAction('secondary')",
+      "ERP_SYSTEM_COLOR_FAMILIES ERP_SYSTEM_COLOR_STEPS ERP_SYSTEM_COLOR_PALETTES registerFrameAction('confirm') registerFrameAction('cancel') registerFrameAction('clear-selected') updateFrameActionState('clear-selected') activeIndex = signal<number | null>(null)",
     ],
     [
       SELECTION_CONTENT_TEMPLATE,
-      '<erp-selection-tile><erp-tooltip></erp-tooltip></erp-selection-tile>',
+      '<erp-selection-tile presentation="list"><erp-tooltip></erp-tooltip></erp-selection-tile>',
     ],
     [SELECTION_TILE_TEMPLATE, '<button type="button"></button>'],
     [
@@ -1142,6 +1231,9 @@ export class ErpImagePicker extends ErpFileSelectionBase {
         '--honesty-selection-picker-tile-bg-selected:',
         '--honesty-selection-picker-tile-border-color-selected:',
         '--honesty-selection-picker-tile-disabled-opacity:',
+        '--honesty-selection-picker-swatch-border-width:',
+        '--honesty-selection-picker-swatch-border-style:',
+        '--honesty-selection-picker-swatch-border-color:',
       ].join('\n'),
     ],
   ]);
@@ -1156,7 +1248,7 @@ export class ErpImagePicker extends ErpFileSelectionBase {
   }
   validSelectionFiles.set(
     SELECTION_CONTENT_TEMPLATE,
-    '<erp-selection-tile><erp-tooltip></erp-tooltip></erp-selection-tile><erp-button data-cancel-action />',
+    '<erp-selection-tile presentation="list"><erp-tooltip></erp-tooltip></erp-selection-tile><erp-button data-cancel-action />',
   );
   if (validateSelectionCorrectionContracts(validSelectionFiles).length === 0) {
     throw new Error('ErpField checker accepted duplicate selection footer chrome');
@@ -1419,6 +1511,31 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     }
   }
 
+  const validFeedbackCaretStyle = [
+    '.field-feedback__caret {',
+    '  border-top: 1px solid currentColor;',
+    '  border-left: 1px solid currentColor;',
+    '  transform: rotate(45deg);',
+    '}',
+  ].join('\n');
+
+  if (
+    validateFieldFeedbackCaretContract(validFeedbackCaretStyle).length > 0
+  ) {
+    throw new Error('ErpField checker rejected valid feedback caret fixture');
+  }
+
+  for (const [index, style] of [
+    validFeedbackCaretStyle.replace('border-top:', 'border-bottom:'),
+    validFeedbackCaretStyle.replace('border-left:', 'border-inline-start:'),
+  ].entries()) {
+    if (validateFieldFeedbackCaretContract(style).length === 0) {
+      throw new Error(
+        `ErpField checker accepted invalid feedback caret fixture ${index + 1}`,
+      );
+    }
+  }
+
   for (const [index, fixture] of [
     [
       validTokenSource.replace('72%', '70%'),
@@ -1452,9 +1569,16 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     "enterAnimation = input<ErpOverlayAnimation>('fade-scale')",
     "exitAnimation = input<ErpOverlayAnimation>('fade-scale')",
     'AnchoredOverlayController ErpOverlayAnimation',
+    "surface.style.setProperty('--_honesty-search-box-popup-trigger-inline-size', anchor.getBoundingClientRect().width)",
+    "this.popupPhase.set('leaving')",
+    'setTimeout(() => this.finishClose())',
+    'this.controller?.hide();',
+    'this.removeFromOpenStack();',
+    'this.popupOpen() ? this.nativeInput() : this.anchorElement()',
+    ': this.anchorElement()',
   ].join('\n');
   const validSearchTemplate = [
-    '<erp-field-trigger></erp-field-trigger>',
+    '<erp-field-trigger (blurred)="handleNativeBlur()"></erp-field-trigger>',
     '<div popover="manual">',
     '  <ng-content select="[search-results]"></ng-content>',
     '</div>',
@@ -1500,6 +1624,9 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     "dir='rtl'",
     'prefers-reduced-motion: reduce',
     'var(--honesty-search-box-popup-max-block-size)',
+    'var(--_honesty-search-box-popup-trigger-inline-size)',
+    ".search-box__popup[data-search-popup-phase='leaving']",
+    'pointer-events: none;',
   ].join('\n');
 
   if (
@@ -1531,6 +1658,12 @@ export class ErpImagePicker extends ErpFileSelectionBase {
       validSearchTemplate,
       validSearchTokens.replace('36rem', '40rem'),
       validSearchStyles,
+    ],
+    [
+      validSearchSource,
+      validSearchTemplate,
+      validSearchTokens,
+      validSearchStyles.replace('pointer-events: none;', ''),
     ],
   ].entries()) {
     if (validateSearchBoxPopupContracts(...fixture).length === 0) {
@@ -1628,9 +1761,11 @@ errors.push(
     files.get(FILE_PICKER_SOURCE) ?? '',
     files.get(FILE_PICKER_TEMPLATE) ?? '',
     files.get(FILE_PICKER_TOKENS) ?? '',
+    files.get(FILE_PICKER_STYLES) ?? '',
     files.get(IMAGE_PICKER_SOURCE) ?? '',
     files.get(IMAGE_PICKER_TEMPLATE) ?? '',
     files.get(IMAGE_PICKER_TOKENS) ?? '',
+    files.get(IMAGE_PICKER_STYLES) ?? '',
   ),
 );
 errors.push(
@@ -1686,6 +1821,11 @@ errors.push(
     files.get(FIELD_FRAME_SOURCE) ?? '',
     files.get(FIELD_FRAME_TEMPLATE) ?? '',
     files.get(FIELD_FRAME_STYLE) ?? '',
+  ),
+);
+errors.push(
+  ...validateFieldFeedbackCaretContract(
+    files.get(FIELD_FEEDBACK_STYLE) ?? '',
   ),
 );
 

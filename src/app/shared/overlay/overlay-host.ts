@@ -168,10 +168,18 @@ export class ErpOverlayHost {
     const configured = entry.ref.config.initialFocus
       ? surface.querySelector<HTMLElement>(entry.ref.config.initialFocus)
       : null;
+    const body = surface.querySelector<HTMLElement>('.overlay-frame__body');
+    const bodyTarget =
+      body?.querySelector<HTMLElement>('[autofocus]') ??
+      body?.querySelector<HTMLElement>(FOCUSABLE_SELECTOR) ??
+      null;
+    const primaryAction = surface.querySelector<HTMLElement>(
+      '[data-overlay-frame-action-role="primary"] button:not([disabled])',
+    );
     const target =
       configured ??
-      surface.querySelector<HTMLElement>('[autofocus]') ??
-      surface.querySelector<HTMLElement>(FOCUSABLE_SELECTOR) ??
+      bodyTarget ??
+      primaryAction ??
       surface;
 
     target.focus();

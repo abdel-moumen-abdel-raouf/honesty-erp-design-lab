@@ -26,8 +26,10 @@ function frame(title = 'Proof') {
   return {
     header: {title, subtitle: 'Supporting text', icon: 'info' as const},
     footer: {
-      primary: {label: 'Confirm'},
-      secondary: {label: 'Cancel'},
+      actions: [
+        {id: 'cancel', label: 'Cancel', role: 'secondary' as const, placement: 'end' as const},
+        {id: 'confirm', label: 'Confirm', role: 'primary' as const, placement: 'end' as const},
+      ],
     },
   };
 }
@@ -134,10 +136,11 @@ describe('ErpOverlayHost', () => {
       root.querySelectorAll<HTMLButtonElement>('[role="dialog"] button'),
     );
     const first = focusable[0];
+    const firstBodyControl = root.querySelector('#first') as HTMLButtonElement;
     const last = focusable.at(-1) as HTMLButtonElement;
     const background = root.querySelector('#background') as HTMLElement;
 
-    expect(document.activeElement).toBe(first);
+    expect(document.activeElement).toBe(firstBodyControl);
     last.focus();
     document.dispatchEvent(
       new KeyboardEvent('keydown', {key: 'Tab', bubbles: true}),

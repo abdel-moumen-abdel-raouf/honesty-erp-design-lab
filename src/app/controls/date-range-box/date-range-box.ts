@@ -1,5 +1,7 @@
-import {ChangeDetectionStrategy, Component, ElementRef, computed, effect, forwardRef, inject, input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, effect, forwardRef, inject, input} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {formatDatePreview, resolveContextualPreference} from '../../foundation/preferences/core/ui-settings.formatters';
+import {UiSettingsService} from '../../foundation/preferences/core/ui-settings.service';
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
 import {ErpText} from '../../primitives/text/text';
 import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
@@ -11,7 +13,7 @@ import {ErpInputConfigurationState} from '../input-family/input-contracts';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
 import {ErpFieldTrigger} from '../input-family/internal/field-trigger';
 import {ErpTemporalPickerContent} from '../temporal-family/internal/temporal-picker-content';
-import {ERP_TEMPORAL_DEFAULT_ACTION_LABELS, ErpDateRangeValue, ErpTemporalPickerData, ErpTemporalValue} from '../temporal-family/temporal-contracts';
+import {createTemporalOverlayFooter, ERP_TEMPORAL_DEFAULT_ACTION_LABELS, ErpDateRangeValue, ErpTemporalPickerData, ErpTemporalValue} from '../temporal-family/temporal-contracts';
 import {normalizeDateRange} from '../temporal-family/temporal-utils';
 
 let nextDateRangeBoxId = 0;
@@ -32,6 +34,9 @@ export class ErpDateRangeBox extends ErpFieldBase<ErpDateRangeValue> {
   readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null);
   override readonly trailingIcon = input<ErpIconName | null>('calendar');
   protected readonly controlId = `erp-date-range-box-${++nextDateRangeBoxId}`;
+  private readonly settings = inject(UiSettingsService).store;
+  private readonly digits = this.settings.get('digits').valueSignal;
+  private readonly dateFormat = this.settings.get('dateFormat').valueSignal;
   private readonly effectivePattern = computed(() => resolveDomainPattern(this.pattern(), ERP_DATE_FINAL_PATTERN));
   protected readonly dateRangeConfigurationState = computed<ErpInputConfigurationState>(() => this.fieldConfigurationState() === 'ready' && this.effectivePattern().configurationState === 'ready' ? 'ready' : 'invalid');
   protected readonly dateRangeEffectiveDisabled = computed(() => this.fieldEffectiveDisabled() || this.dateRangeConfigurationState() === 'invalid');
@@ -39,14 +44,18 @@ export class ErpDateRangeBox extends ErpFieldBase<ErpDateRangeValue> {
   protected readonly hasValue = computed(() => this.currentValue().start !== null || this.currentValue().end !== null);
   protected readonly displayValue = computed(() => {
     const value = this.currentValue();
-    return value.start ? `${value.start} — ${value.end ?? '…'}` : 'Select date range';
+    if (!value.start) return 'Select date range';
+    const digits = resolveContextualPreference(this.digits(), 'field');
+    const format = resolveContextualPreference(this.dateFormat(), 'field');
+    const start = formatDatePreview(value.start, format, digits);
+    const end = value.end ? formatDatePreview(value.end, format, digits) : '…';
+    return `${start} — ${end}`;
   });
   private readonly overlays = inject(ErpOverlayManager);
-  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private activeRef: ErpOverlayRef<ErpTemporalValue> | null = null;
   constructor() { super({start: null, end: null}); effect(() => { if (this.dateRangeEffectiveDisabled()) this.clearFocusState(); }); }
   protected override normalizeValue(value: unknown): ErpDateRangeValue { return normalizeDateRange(value, this.effectivePattern().regex); }
-  protected openPicker(): void { if (this.dateRangeEffectiveDisabled() || this.activeRef) return; const ref = this.overlays.open<ErpTemporalPickerContent, ErpTemporalPickerData, ErpTemporalValue>(ErpTemporalPickerContent, {frame: {header: {title: this.trimmedLabel(), subtitle: 'اختر نطاق التاريخ', icon: 'calendar'}, footer: {primary: {label: ERP_TEMPORAL_DEFAULT_ACTION_LABELS.confirm}, secondary: {label: ERP_TEMPORAL_DEFAULT_ACTION_LABELS.cancel}}}, size: 'lg', ...(this.overlayConfig() ?? {}), data: {mode: 'range', value: this.currentValue(), min: null, max: null, weekStartsOn: 0, minuteStep: 5, locale: this.locale(), actionLabels: ERP_TEMPORAL_DEFAULT_ACTION_LABELS, clearable: true, theme: this.theme()}}); this.activeRef = ref; void ref.afterClosed.then((outcome) => { this.activeRef = null; if (outcome.type === 'closed') this.commitPickerResult(outcome.result); }); }
+  protected openPicker(): void { if (this.dateRangeEffectiveDisabled() || this.activeRef) return; const ref = this.overlays.open<ErpTemporalPickerContent, ErpTemporalPickerData, ErpTemporalValue>(ErpTemporalPickerContent, {frame: {header: {title: this.trimmedLabel(), subtitle: 'اختر نطاق التاريخ', icon: 'calendar'}, footer: createTemporalOverlayFooter('range', true, ERP_TEMPORAL_DEFAULT_ACTION_LABELS)}, size: 'lg', ...(this.overlayConfig() ?? {}), data: {mode: 'range', value: this.currentValue(), min: null, max: null, weekStartsOn: 0, minuteStep: 5, locale: this.locale(), actionLabels: ERP_TEMPORAL_DEFAULT_ACTION_LABELS, clearable: true}}); this.activeRef = ref; void ref.afterClosed.then((outcome) => { this.activeRef = null; if (outcome.type === 'closed') this.commitPickerResult(outcome.result); }); }
   protected handleKeydown(event: KeyboardEvent): void { if (event.key === 'ArrowDown') { event.preventDefault(); this.openPicker(); } }
   protected handleClear(): void { this.commitUserValue({start: null, end: null}); }
   protected handleNativeFocus(): void { this.handleFocus(); }
@@ -56,5 +65,4 @@ export class ErpDateRangeBox extends ErpFieldBase<ErpDateRangeValue> {
     const normalized = this.normalizeValue(value);
     if (normalized.start === value.start && normalized.end === value.end) this.commitUserValue(value);
   }
-  private theme(): 'light' | 'dark' { return this.host.nativeElement.closest('[data-theme="dark"]') ? 'dark' : 'light'; }
 }

@@ -43,16 +43,18 @@ describe('Themes Specimen', () => {
     expect(themesRoute).toBeDefined();
   });
 
-  it('should render one Light theme and one Dark theme review context', () => {
+  it('should render both labelled review contexts without overriding the global theme', () => {
     const fixture = TestBed.createComponent(Themes);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
 
-    const lightContext = compiled.querySelector('[data-theme="light"]');
-    const darkContext = compiled.querySelector('[data-theme="dark"]');
+    const lightContext = compiled.querySelector('#theme-context-light');
+    const darkContext = compiled.querySelector('#theme-context-dark');
 
     expect(lightContext).toBeTruthy();
     expect(darkContext).toBeTruthy();
+    expect(lightContext?.hasAttribute('data-theme')).toBe(false);
+    expect(darkContext?.hasAttribute('data-theme')).toBe(false);
   });
 
   it('should render all required semantic review groups in both themes', () => {

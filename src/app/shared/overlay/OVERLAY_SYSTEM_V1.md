@@ -145,8 +145,9 @@ Each opened overlay receives or injects its `ErpOverlayRef`.
 
 - `close(result?)`
 - `dismiss(reason)`
-- `registerFrameAction('primary' | 'secondary', handler)`
-- internal `requestFrameAction('primary' | 'secondary')`
+- `registerFrameAction(actionId, handler)`
+- `updateFrameActionState(actionId, {disabled, loading})`
+- internal `requestFrameAction(actionId)`
 - an `afterClosed` Promise
 - immutable overlay id and config
 
@@ -162,7 +163,10 @@ Reduced motion uses a deterministic completion path.
 A modal surface has dialog role and a blocking surface uses
 `aria-modal='true'`. Every user-facing modal/drawer requires
 `ErpOverlayFrameConfig`: a nonblank title, nonblank subtitle, semantic icon,
-and developer-configured primary/secondary actions. The title is the dialog's
+and an ordered developer-configured footer action collection. Each action has a
+unique nonblank ID, nonblank label, `primary | secondary | utility` role,
+logical `start | end` placement, and optional static disabled/loading state.
+The title is the dialog's
 accessible name and the subtitle its visible description.
 
 The shared frame owns:
@@ -170,13 +174,14 @@ The shared frame owns:
 - a Header with ErpIcon, ErpText title/subtitle, and a Tooltip-wrapped close
   ErpIconButton;
 - a primary scrolling Body for dynamic content;
-- a Footer with primary and secondary ErpButton actions.
+- a single Footer with logically grouped ERP Button actions.
 
 The close action always dismisses with `close-action`. Dynamic content
-registers its business behavior through the frame action channel. A primary
-action without a handler does nothing; a secondary action without a handler
-dismisses with `secondary-action`. Header and Footer remain available while
-only the Body scrolls.
+registers its business behavior by stable action ID through the frame action
+channel. Dynamic disabled/loading state is reactive and manager-owned. A
+primary action without a handler does nothing; a secondary action without a
+handler dismisses with `secondary-action`. Header and Footer remain available
+while only the Body scrolls.
 
 Drawers use the same manager, stack, backdrop, and focus contract. Drawer start
 and end are logical and RTL-aware.
@@ -199,8 +204,10 @@ Overlay-backed selection Composites are:
 - `ErpComboBox`
 
 These controls stage selection inside the overlay and register the shared frame
-primary/secondary actions. They commit the CVA value only on the primary
-confirmation action. Secondary, close, or other dismissal does not mutate the
+ordered shared-footer actions. Temporal Today/Clear and selection Clear
+Selected utilities stage values without closing; their disabled state follows
+the staged value. Pickers commit the CVA value only on the primary confirmation
+action. Secondary, close, or other dismissal does not mutate the
 committed value. Picker bodies do not recreate duplicate confirm/cancel footer
 chrome.
 
@@ -245,7 +252,9 @@ infrastructure and does not recreate blocking backdrops or z-index systems.
   Escape or backdrop dismissal.
 - Blocking entries lock body scrolling and make application-shell siblings
   inert until the blocking stack is empty.
-- Initial focus enters the top surface, Tab remains trapped when configured,
+- Initial focus prefers configured focus, then a meaningful Body control, then
+  the primary end action, then the surface. It never selects the close action
+  merely because it is first in DOM order. Tab remains trapped when configured,
   and closing restores the captured origin when configured.
 - Dynamic content receives `ErpOverlayRef` and optional data through Angular
   dependency injection.

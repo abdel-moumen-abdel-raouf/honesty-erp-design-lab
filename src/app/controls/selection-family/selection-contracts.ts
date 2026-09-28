@@ -1,5 +1,6 @@
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
 import {ErpSystemColorToken} from '../../foundation/colors/system-color-registry';
+import {ErpOverlayFooterConfig} from '../../shared/overlay/overlay-contracts';
 
 export interface ErpItemPickerOption {
   readonly value: string;
@@ -57,5 +58,22 @@ export interface ErpSelectionPickerData {
   readonly searchable: boolean;
   readonly clearable: boolean;
   readonly actionLabels: ErpSelectionActionLabels;
-  readonly theme: 'light' | 'dark';
+}
+
+export function createSelectionOverlayFooter(
+  mode: ErpSelectionPickerMode,
+  clearable: boolean,
+  labels: ErpSelectionActionLabels,
+): ErpOverlayFooterConfig {
+  const includesClear =
+    clearable || mode === 'color' || mode === 'icon' || mode === 'combo';
+  return {
+    actions: [
+      ...(includesClear
+        ? [{id: 'clear-selected', label: labels.clear, role: 'utility' as const, placement: 'start' as const}]
+        : []),
+      {id: 'cancel', label: labels.cancel, role: 'secondary', placement: 'end'},
+      {id: 'confirm', label: labels.confirm, role: 'primary', placement: 'end'},
+    ],
+  };
 }

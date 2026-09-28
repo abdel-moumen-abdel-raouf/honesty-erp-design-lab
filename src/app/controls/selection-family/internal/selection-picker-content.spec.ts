@@ -12,6 +12,7 @@ import {ERP_ICON_NAMES} from '../../../primitives/icon/icon-contracts';
 import {ErpOverlayHost} from '../../../shared/overlay/overlay-host';
 import {ErpOverlayManager} from '../../../shared/overlay/overlay-manager';
 import {
+  createSelectionOverlayFooter,
   ERP_SELECTION_DEFAULT_ACTION_LABELS,
   ErpSelectionPickerData,
   ErpSelectionPickerValue,
@@ -20,10 +21,11 @@ import {ErpSelectionPickerContent} from './selection-picker-content';
 
 @Component({
   imports: [ErpOverlayHost],
-  template: '<div [attr.dir]="direction"><erp-overlay-host /></div>',
+  template: '<div [attr.dir]="direction" [attr.data-theme]="theme"><erp-overlay-host /></div>',
 })
 class TestShell {
   direction: 'ltr' | 'rtl' = 'ltr';
+  theme: 'light' | 'dark' = 'light';
 }
 
 describe('ErpSelectionPickerContent', () => {
@@ -35,9 +37,11 @@ describe('ErpSelectionPickerContent', () => {
   async function open(
     data: ErpSelectionPickerData,
     direction: 'ltr' | 'rtl' = 'ltr',
+    theme: 'light' | 'dark' = 'light',
   ) {
     const fixture = TestBed.createComponent(TestShell);
     fixture.componentInstance.direction = direction;
+    fixture.componentInstance.theme = theme;
     const manager = TestBed.inject(ErpOverlayManager);
     const ref = manager.open<
       ErpSelectionPickerContent,
@@ -46,10 +50,11 @@ describe('ErpSelectionPickerContent', () => {
     >(ErpSelectionPickerContent, {
       frame: {
         header: {title: 'Selection proof', subtitle: 'Supporting text', icon: 'layers'},
-        footer: {
-          primary: {label: data.actionLabels.confirm},
-          secondary: {label: data.actionLabels.cancel},
-        },
+        footer: createSelectionOverlayFooter(
+          data.mode,
+          data.clearable,
+          data.actionLabels,
+        ),
       },
       data,
     });
@@ -68,7 +73,6 @@ describe('ErpSelectionPickerContent', () => {
     searchable: false,
     clearable: true,
     actionLabels: ERP_SELECTION_DEFAULT_ACTION_LABELS,
-    theme: 'light',
   } as const;
 
   it('renders the generated system registry in exact family and step order', async () => {
@@ -90,6 +94,7 @@ describe('ErpSelectionPickerContent', () => {
         ERP_SYSTEM_COLOR_STEPS.map((step) => `${family}-${step}`),
       ),
     );
+    expect(tokens.every((token) => token.querySelector('.color-swatch') !== null)).toBe(true);
   });
 
   it('commits system token identity instead of a copied color value', async () => {
@@ -98,7 +103,7 @@ describe('ErpSelectionPickerContent', () => {
     root
       .querySelector<HTMLButtonElement>('[data-color-token="primary-500"] button')
       ?.click();
-    root.querySelector<HTMLButtonElement>('[data-overlay-frame-primary] button')?.click();
+    root.querySelector<HTMLButtonElement>('[data-overlay-frame-action-id="confirm"] button')?.click();
     manager.completeTransition(ref.id, 'leaving');
 
     await expect(ref.afterClosed).resolves.toEqual({
@@ -128,6 +133,23 @@ describe('ErpSelectionPickerContent', () => {
     });
   });
 
+  it('updates Clear Selected reactively inside the single shared footer', async () => {
+    const {fixture} = await open({...base, mode: 'color'});
+    const root = fixture.nativeElement as HTMLElement;
+    const clear = root.querySelector<HTMLButtonElement>(
+      '[data-overlay-frame-action-id="clear-selected"] button',
+    ) as HTMLButtonElement;
+
+    expect(clear.disabled).toBe(true);
+    root.querySelector<HTMLButtonElement>('[data-color-token="primary-500"] button')?.click();
+    fixture.detectChanges();
+    expect(clear.disabled).toBe(false);
+    clear.click();
+    fixture.detectChanges();
+    expect(clear.disabled).toBe(true);
+    expect(root.querySelector('.selection-actions')).toBeNull();
+  });
+
   it('defaults to system mode and commits a canonical free color', async () => {
     const {fixture, manager, ref} = await open({...base, mode: 'color'});
     const root = fixture.nativeElement as HTMLElement;
@@ -138,7 +160,7 @@ describe('ErpSelectionPickerContent', () => {
     const input = root.querySelector('[data-native-color]') as HTMLInputElement;
     input.value = '#abcdef';
     input.dispatchEvent(new Event('input'));
-    root.querySelector<HTMLButtonElement>('[data-overlay-frame-primary] button')?.click();
+    root.querySelector<HTMLButtonElement>('[data-overlay-frame-action-id="confirm"] button')?.click();
     manager.completeTransition(ref.id, 'leaving');
 
     await expect(ref.afterClosed).resolves.toEqual({
@@ -163,6 +185,14 @@ describe('ErpSelectionPickerContent', () => {
       expect(option.querySelectorAll('erp-icon').length).toBe(1);
       expect(option.closest('erp-tooltip')).not.toBeNull();
     }
+    expect(root.querySelector('[data-selection-tile-active="true"]')).toBeNull();
+    expect((options[0].querySelector('button') as HTMLButtonElement).tabIndex).toBe(0);
+    expect(
+      options.slice(1).every(
+        (option) =>
+          (option.querySelector('button') as HTMLButtonElement).tabIndex === -1,
+      ),
+    ).toBe(true);
   });
 
   it('filters icons without changing the tile primitive', async () => {
@@ -191,13 +221,34 @@ describe('ErpSelectionPickerContent', () => {
     const list = root.querySelector('[data-selection-list]') as HTMLElement;
     list.dispatchEvent(new KeyboardEvent('keydown', {key: 'ArrowDown'}));
     list.dispatchEvent(new KeyboardEvent('keydown', {key: 'Enter'}));
-    root.querySelector<HTMLButtonElement>('[data-overlay-frame-primary] button')?.click();
+    root.querySelector<HTMLButtonElement>('[data-overlay-frame-action-id="confirm"] button')?.click();
     manager.completeTransition(ref.id, 'leaving');
 
     await expect(ref.afterClosed).resolves.toEqual({
       type: 'closed',
-      result: ERP_ICON_NAMES[1],
+      result: ERP_ICON_NAMES[0],
     });
+  });
+
+  it('uses full-width list rows for textual item presentation', async () => {
+    const {fixture} = await open({
+      ...base,
+      mode: 'item',
+      items: [
+        {value: 'customers', label: 'Customers'},
+        {value: 'inventory', label: 'Inventory'},
+      ],
+    });
+    const root = fixture.nativeElement as HTMLElement;
+    const options = Array.from(
+      root.querySelectorAll<HTMLElement>('[data-item-option]'),
+    );
+
+    expect(options).toHaveLength(2);
+    for (const option of options) {
+      expect(option.getAttribute('data-selection-tile-presentation')).toBe('list');
+      expect(getComputedStyle(option).inlineSize).toBe('100%');
+    }
   });
 
   it('filters items and prevents disabled selection', async () => {
@@ -225,11 +276,12 @@ describe('ErpSelectionPickerContent', () => {
     ['light', 'rtl'],
     ['dark', 'rtl'],
   ] as const)('preserves %s theme evidence in %s direction', async (theme, direction) => {
-    const {fixture} = await open({...base, mode: 'icon', theme}, direction);
+    const {fixture} = await open({...base, mode: 'icon'}, direction, theme);
     const root = fixture.nativeElement as HTMLElement;
     const picker = root.querySelector('.selection-picker') as HTMLElement;
 
-    expect(picker.getAttribute('data-theme')).toBe(theme);
+    expect(picker.hasAttribute('data-theme')).toBe(false);
+    expect(picker.closest(`[data-theme="${theme}"]`)).not.toBeNull();
     expect(picker.closest(`[dir="${direction}"]`)).not.toBeNull();
   });
 });

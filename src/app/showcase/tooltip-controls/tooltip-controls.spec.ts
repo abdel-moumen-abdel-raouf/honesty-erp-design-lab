@@ -65,10 +65,10 @@ describe('TooltipControls showcase', () => {
     expect(root.querySelectorAll('[data-motion-replay-action]')).toHaveLength(1);
     expect(
       root.querySelector('[data-selected-enter-preset]')?.textContent?.trim(),
-    ).toContain('fade-scale');
+    ).toContain('slide-up');
     expect(
       root.querySelector('[data-selected-exit-preset]')?.textContent?.trim(),
-    ).toContain('fade');
+    ).toContain('slide-up');
 
     fixture.componentInstance.selectEnterAnimation('bounce');
     fixture.componentInstance.selectExitAnimation('swing');

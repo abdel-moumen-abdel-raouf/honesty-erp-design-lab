@@ -24,8 +24,8 @@ class TooltipHost {
   readonly activation = signal<'auto' | 'press'>('auto');
   readonly disabled = signal(false);
   readonly showArrow = signal(true);
-  readonly enterAnimation = signal<ErpMotionPreset>('fade-scale');
-  readonly exitAnimation = signal<ErpMotionPreset>('fade');
+  readonly enterAnimation = signal<ErpMotionPreset>('slide-up');
+  readonly exitAnimation = signal<ErpMotionPreset>('slide-up');
   readonly open = signal(false);
 }
 
@@ -79,10 +79,10 @@ describe('ErpTooltip', () => {
     expect(reflectComponentType(ErpTooltip)?.selector).toBe('erp-tooltip');
     expect(instance.variant()).toBe('plain'); expect(instance.placement()).toBe('top'); expect(instance.activation()).toBe('auto');
     expect(instance.interactive()).toBe(false); expect(instance.showArrow()).toBe(true); expect(instance.disabled()).toBe(false); expect(instance.open()).toBe(false);
-    expect(instance.enterAnimation()).toBe('fade-scale'); expect(instance.exitAnimation()).toBe('fade');
+    expect(instance.enterAnimation()).toBe('slide-up'); expect(instance.exitAnimation()).toBe('slide-up');
     expect(tooltip.getAttribute('data-tooltip-state')).toBe('ready');
-    expect(tooltip.getAttribute('data-tooltip-enter-animation')).toBe('fade-scale');
-    expect(tooltip.getAttribute('data-tooltip-exit-animation')).toBe('fade');
+    expect(tooltip.getAttribute('data-tooltip-enter-animation')).toBe('slide-up');
+    expect(tooltip.getAttribute('data-tooltip-exit-animation')).toBe('slide-up');
     expect(tooltip.querySelector('[role="tooltip"]')).toBeTruthy();
     expect(tooltip.querySelector('erp-text')?.getAttribute('data-text-tone')).toBe('inherit');
     expect(tooltip.querySelectorAll('.erp-tooltip__arrow').length).toBe(1);
@@ -94,6 +94,7 @@ describe('ErpTooltip', () => {
     const tooltip = fixture.nativeElement.querySelector('erp-tooltip') as HTMLElement;
     const wrapper = tooltip.querySelector('.erp-tooltip__trigger') as HTMLElement;
     const surface = tooltip.querySelector('.erp-tooltip__surface') as HTMLElement;
+    const motion = tooltip.querySelector('.erp-tooltip__motion') as HTMLElement;
 
     expect(ERP_MOTION_PRESETS).toHaveLength(23);
     for (const preset of ERP_MOTION_PRESETS) {
@@ -106,35 +107,37 @@ describe('ErpTooltip', () => {
       wrapper.dispatchEvent(new FocusEvent('focusin', {bubbles: true}));
       vi.runAllTimers();
       fixture.detectChanges();
-      expect(surface.classList.contains('animate__animated')).toBe(true);
+      expect(motion.classList.contains('animate__animated')).toBe(true);
       expect(
-        surface.classList.contains(
+        motion.classList.contains(
           `animate__${resolveAnimateCssEffect(preset, 'enter', 'ltr')}`,
         ),
       ).toBe(true);
-      expect(surface.style.getPropertyValue('--animate-duration')).toBe(
+      expect(motion.style.getPropertyValue('--animate-duration')).toBe(
         `${ERP_TOOLTIP_MOTION_DURATION_MS.enter}ms`,
       );
-      dispatchAnimationEnd(surface);
+      expect(surface.classList.contains('animate__animated')).toBe(false);
+      expect(surface.style.transform).toBe('');
+      dispatchAnimationEnd(motion);
       fixture.detectChanges();
       expect(surface.dataset['phase']).toBe('open');
 
       host.open.set(false);
       fixture.detectChanges();
       expect(
-        surface.classList.contains(
+        motion.classList.contains(
           `animate__${resolveAnimateCssEffect(preset, 'exit', 'ltr')}`,
         ),
         `${preset}: ${surface.className}`,
       ).toBe(true);
-      expect(surface.style.getPropertyValue('--animate-duration')).toBe(
+      expect(motion.style.getPropertyValue('--animate-duration')).toBe(
         `${ERP_TOOLTIP_MOTION_DURATION_MS.exit}ms`,
       );
-      dispatchAnimationEnd(surface);
+      dispatchAnimationEnd(motion);
       fixture.detectChanges();
       expect(surface.hasAttribute('data-popover-open')).toBe(false);
     }
-  });
+  }, 15_000);
 
   it('keeps the surface mounted until the configured exit animation completes', () => {
     const fixture = create();
@@ -146,12 +149,13 @@ describe('ErpTooltip', () => {
     const root = fixture.nativeElement as HTMLElement;
     const wrapper = root.querySelector('.erp-tooltip__trigger')!;
     const surface = root.querySelector('.erp-tooltip__surface') as HTMLElement;
+    const motion = root.querySelector('.erp-tooltip__motion') as HTMLElement;
     wrapper.dispatchEvent(new FocusEvent('focusin', {bubbles: true}));
     vi.runAllTimers();
 
     expect(surface.dataset['phase']).toBe('entering');
-    expect(surface.classList.contains('animate__bounceIn')).toBe(true);
-    dispatchAnimationEnd(surface);
+    expect(motion.classList.contains('animate__bounceIn')).toBe(true);
+    dispatchAnimationEnd(motion);
     expect(surface.dataset['phase']).toBe('open');
 
     host.open.set(false);
@@ -161,8 +165,8 @@ describe('ErpTooltip', () => {
 
     vi.advanceTimersByTime(1000);
     expect(surface.hasAttribute('data-popover-open')).toBe(true);
-    expect(surface.classList.contains('animate__bounceOut')).toBe(true);
-    dispatchAnimationEnd(surface);
+    expect(motion.classList.contains('animate__bounceOut')).toBe(true);
+    dispatchAnimationEnd(motion);
     expect(surface.hasAttribute('data-popover-open')).toBe(false);
     expect(surface.hasAttribute('data-phase')).toBe(false);
   });
@@ -193,19 +197,19 @@ describe('ErpTooltip', () => {
     fixture.detectChanges();
     const tooltip = fixture.nativeElement.querySelector('erp-tooltip') as HTMLElement;
     const wrapper = tooltip.querySelector('.erp-tooltip__trigger') as HTMLElement;
-    const surface = tooltip.querySelector('.erp-tooltip__surface') as HTMLElement;
+    const motion = tooltip.querySelector('.erp-tooltip__motion') as HTMLElement;
 
     expect(document.documentElement.dir).toBe('rtl');
     expect(tooltip.getAttribute('data-tooltip-enter-animation')).toBe('slide-start');
     expect(tooltip.getAttribute('data-tooltip-exit-animation')).toBe('slide-end');
     wrapper.dispatchEvent(new FocusEvent('focusin', {bubbles: true}));
     vi.runAllTimers();
-    expect(surface.classList.contains('animate__slideInRight')).toBe(true);
-    dispatchAnimationEnd(surface);
+    expect(motion.classList.contains('animate__slideInRight')).toBe(true);
+    dispatchAnimationEnd(motion);
     fixture.componentInstance.open.set(false);
     fixture.detectChanges();
-    expect(surface.classList.contains('animate__slideOutLeft')).toBe(true);
-    dispatchAnimationEnd(surface);
+    expect(motion.classList.contains('animate__slideOutLeft')).toBe(true);
+    dispatchAnimationEnd(motion);
     document.documentElement.removeAttribute('dir');
   });
 

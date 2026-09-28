@@ -1,7 +1,9 @@
+import {signal} from '@angular/core';
 import {
   ErpOverlayCloseResult,
   ErpOverlayConfig,
-  ErpOverlayFrameAction,
+  ErpOverlayFrameActionId,
+  ErpOverlayFrameActionState,
 } from './overlay-contracts';
 
 export class ErpOverlayRef<TResult = unknown> {
@@ -11,9 +13,13 @@ export class ErpOverlayRef<TResult = unknown> {
   private settled = false;
   private pendingResult: ErpOverlayCloseResult<TResult> | null = null;
   private readonly frameActions = new Map<
-    ErpOverlayFrameAction,
+    ErpOverlayFrameActionId,
     () => void
   >();
+  private readonly frameActionState = signal<
+    Readonly<Record<string, Partial<ErpOverlayFrameActionState>>>
+  >({});
+  readonly frameActionStates = this.frameActionState.asReadonly();
   private readonly resolveClosed: (
     result: ErpOverlayCloseResult<TResult>,
   ) => void;
@@ -43,7 +49,7 @@ export class ErpOverlayRef<TResult = unknown> {
   }
 
   registerFrameAction(
-    action: ErpOverlayFrameAction,
+    action: ErpOverlayFrameActionId,
     handler: () => void,
   ): () => void {
     this.frameActions.set(action, handler);
@@ -55,7 +61,24 @@ export class ErpOverlayRef<TResult = unknown> {
     };
   }
 
-  requestFrameAction(action: ErpOverlayFrameAction): boolean {
+  updateFrameActionState(
+    action: ErpOverlayFrameActionId,
+    state: Partial<ErpOverlayFrameActionState>,
+  ): void {
+    const configured = this.config.frame?.footer.actions.some(
+      (candidate) => candidate.id === action,
+    );
+    if (!configured) {
+      throw new TypeError(`Unknown Overlay frame action "${action}".`);
+    }
+
+    this.frameActionState.update((current) => ({
+      ...current,
+      [action]: {...current[action], ...state},
+    }));
+  }
+
+  requestFrameAction(action: ErpOverlayFrameActionId): boolean {
     const handler = this.frameActions.get(action);
 
     if (handler) {
@@ -63,7 +86,10 @@ export class ErpOverlayRef<TResult = unknown> {
       return true;
     }
 
-    if (action === 'secondary') {
+    const config = this.config.frame?.footer.actions.find(
+      (candidate) => candidate.id === action,
+    );
+    if (config?.role === 'secondary') {
       this.dismiss('secondary-action');
     }
 
@@ -77,6 +103,7 @@ export class ErpOverlayRef<TResult = unknown> {
 
     this.settled = true;
     this.frameActions.clear();
+    this.frameActionState.set({});
     this.resolveClosed(this.pendingResult);
   }
 

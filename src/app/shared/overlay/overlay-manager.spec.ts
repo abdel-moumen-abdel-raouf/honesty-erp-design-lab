@@ -19,8 +19,10 @@ function frame(title = 'Proof') {
   return {
     header: {title, subtitle: 'Supporting text', icon: 'info' as const},
     footer: {
-      primary: {label: 'Confirm'},
-      secondary: {label: 'Cancel'},
+      actions: [
+        {id: 'cancel', label: 'Cancel', role: 'secondary' as const, placement: 'end' as const},
+        {id: 'confirm', label: 'Confirm', role: 'primary' as const, placement: 'end' as const},
+      ],
     },
   };
 }
@@ -44,8 +46,10 @@ describe('ErpOverlayManager', () => {
           closeLabel: 'إغلاق',
         },
         footer: {
-          primary: {label: 'Confirm', icon: null, disabled: false, loading: false},
-          secondary: {label: 'Cancel', icon: null, disabled: false, loading: false},
+          actions: [
+            {id: 'cancel', label: 'Cancel', icon: null, role: 'secondary', placement: 'end', disabled: false, loading: false},
+            {id: 'confirm', label: 'Confirm', icon: null, role: 'primary', placement: 'end', disabled: false, loading: false},
+          ],
         },
       },
       legacyCompactMenuLabel: null,

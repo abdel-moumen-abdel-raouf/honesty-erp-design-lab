@@ -59,8 +59,8 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
   readonly activation = input<ErpTooltipActivation>('auto');
   readonly showArrow = input(true, {transform: booleanAttribute});
   readonly disabled = input(false, {transform: booleanAttribute});
-  readonly enterAnimation = input<ErpMotionPreset>('fade-scale');
-  readonly exitAnimation = input<ErpMotionPreset>('fade');
+  readonly enterAnimation = input<ErpMotionPreset>('slide-up');
+  readonly exitAnimation = input<ErpMotionPreset>('slide-up');
   readonly open = model(false);
 
   readonly tooltipId = `honesty-tooltip-${++nextTooltipId}`;
@@ -74,6 +74,7 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
 
   private readonly triggerWrapper = viewChild.required<ElementRef<HTMLElement>>('trigger');
   private readonly surface = viewChild.required<ElementRef<HTMLElement>>('surface');
+  private readonly motionLayer = viewChild.required<ElementRef<HTMLElement>>('motionLayer');
   private readonly arrow = viewChild<ElementRef<HTMLElement>>('arrow');
   private readonly richContents = contentChildren(ErpTooltipContent);
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
@@ -300,8 +301,9 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
     requestAnimationFrame(() => {
       if (this.shown) {
         surface.dataset['phase'] = 'entering';
-        this.applyMotionTransformOrigin(surface, this.enterAnimation());
-        this.startMotion(surface, this.enterAnimation(), 'enter');
+        const motionLayer = this.motionLayer().nativeElement;
+        this.applyMotionTransformOrigin(motionLayer, this.enterAnimation());
+        this.startMotion(motionLayer, surface, this.enterAnimation(), 'enter');
       }
     });
     document.addEventListener('pointerdown', this.handleDocumentPointerDown, true);
@@ -317,14 +319,15 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
     this.writeOpen(false);
     const surface = this.surface().nativeElement;
     surface.dataset['phase'] = 'closing';
-    this.applyMotionTransformOrigin(surface, this.exitAnimation());
+    const motionLayer = this.motionLayer().nativeElement;
+    this.applyMotionTransformOrigin(motionLayer, this.exitAnimation());
     document.removeEventListener('pointerdown', this.handleDocumentPointerDown, true);
     document.removeEventListener('keydown', this.handleDocumentKeyDown, true);
     window.removeEventListener('scroll', this.handleTouchScroll, true);
     if (this.interactive() && this.state() === 'ready') this.applyTriggerSemantics(false);
     else this.restoreTriggerSemantics();
     if (returnFocus) this.actualTrigger?.focus();
-    this.startMotion(surface, this.exitAnimation(), 'exit');
+    this.startMotion(motionLayer, surface, this.exitAnimation(), 'exit');
   }
 
   private readonly handleDocumentPointerDown = (event: Event): void => {
@@ -363,6 +366,7 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
   }
 
   private startMotion(
+    motionLayer: HTMLElement,
     surface: HTMLElement,
     preset: ErpMotionPreset,
     phase: ErpMotionPhase,
@@ -370,7 +374,7 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
     const generation = ++this.motionGeneration;
     this.motionCancel?.();
     this.motionCancel = this.motion.start({
-      element: surface,
+      element: motionLayer,
       preset,
       phase,
       direction: this.resolveDirection(surface),
@@ -441,9 +445,15 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
     this.resolvedPlacement.set(result.placement);
     const phase = surface.dataset['phase'];
     if (phase === 'entering') {
-      this.applyMotionTransformOrigin(surface, this.enterAnimation());
+      this.applyMotionTransformOrigin(
+        this.motionLayer().nativeElement,
+        this.enterAnimation(),
+      );
     } else if (phase === 'closing') {
-      this.applyMotionTransformOrigin(surface, this.exitAnimation());
+      this.applyMotionTransformOrigin(
+        this.motionLayer().nativeElement,
+        this.exitAnimation(),
+      );
     }
     const arrow = this.arrow()?.nativeElement;
     if (arrow) this.applyArrowGeometry(arrow, result);

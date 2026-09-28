@@ -24,19 +24,36 @@
   max-inline-size: min(var(--honesty-tooltip-max-width), calc(100vw - (var(--honesty-tooltip-viewport-inset) * 2)));
   min-inline-size: var(--honesty-tooltip-min-width);
   min-block-size: var(--honesty-tooltip-min-height);
-  padding-block: var(--honesty-tooltip-padding-block);
-  padding-inline: var(--honesty-tooltip-padding-inline);
   border: 0;
-  border-radius: var(--honesty-tooltip-radius);
-  background: var(--honesty-tooltip-bg);
-  color: var(--honesty-tooltip-fg);
-  box-shadow: var(--honesty-tooltip-elevation);
+  background: transparent;
   z-index: var(--honesty-tooltip-layer);
   overflow-wrap: anywhere;
   overflow: visible;
   pointer-events: none;
   opacity: 1;
   transform: none;
+}
+
+.erp-tooltip__motion {
+  box-sizing: border-box;
+  display: block;
+  inline-size: 100%;
+  min-block-size: inherit;
+  padding-block: var(--honesty-tooltip-padding-block);
+  padding-inline: var(--honesty-tooltip-padding-inline);
+  border-radius: var(--honesty-tooltip-radius);
+  background: var(--honesty-tooltip-bg);
+  color: var(--honesty-tooltip-fg);
+  box-shadow: var(--honesty-tooltip-elevation);
+  overflow-wrap: anywhere;
+}
+
+:host([data-tooltip-variant='plain']) .erp-tooltip__motion {
+  text-align: center;
+}
+
+:host([data-tooltip-variant='rich']) .erp-tooltip__motion {
+  text-align: start;
 }
 
 :host([data-tooltip-interactive='true']) .erp-tooltip__surface[data-phase='open'] { pointer-events: auto; }

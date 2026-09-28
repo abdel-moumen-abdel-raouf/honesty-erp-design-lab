@@ -1,4 +1,4 @@
-import {booleanAttribute, ChangeDetectionStrategy, Component, ElementRef, computed, forwardRef, inject, input} from '@angular/core';
+import {booleanAttribute, ChangeDetectionStrategy, Component, computed, forwardRef, inject, input} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
 import {ErpText} from '../../primitives/text/text';
@@ -9,7 +9,7 @@ import {ErpFieldBase} from '../input-family/field-base';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
 import {ErpFieldTrigger} from '../input-family/internal/field-trigger';
 import {ErpSelectionPickerContent} from '../selection-family/internal/selection-picker-content';
-import {ERP_SELECTION_DEFAULT_ACTION_LABELS, ErpItemPickerOption, ErpSelectionPickerData} from '../selection-family/selection-contracts';
+import {createSelectionOverlayFooter, ERP_SELECTION_DEFAULT_ACTION_LABELS, ErpItemPickerOption, ErpSelectionPickerData} from '../selection-family/selection-contracts';
 import {normalizeItemValue} from '../selection-family/selection-utils';
 
 let nextItemPickerId = 0;
@@ -36,19 +36,17 @@ export class ErpItemPicker extends ErpFieldBase<string | null> {
     () => this.selectedItem()?.label ?? this.placeholder() ?? 'اختر عنصرًا',
   );
   private readonly overlays = inject(ErpOverlayManager);
-  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private activeRef: ErpOverlayRef<string | null> | null = null;
   constructor() { super(null); }
   protected override normalizeValue(value: unknown): string | null { return normalizeItemValue(value, this.items()); }
   protected openPicker(): void {
     if (this.fieldEffectiveDisabled() || this.activeRef) return;
-    const ref = this.overlays.open<ErpSelectionPickerContent, ErpSelectionPickerData, string | null>(ErpSelectionPickerContent, {frame: {header: {title: this.trimmedLabel(), subtitle: 'اختر عنصرًا', icon: 'menu'}, footer: {primary: {label: ERP_SELECTION_DEFAULT_ACTION_LABELS.confirm}, secondary: {label: ERP_SELECTION_DEFAULT_ACTION_LABELS.cancel}}}, ...(this.overlayConfig() ?? {}), data: this.pickerData()});
+    const ref = this.overlays.open<ErpSelectionPickerContent, ErpSelectionPickerData, string | null>(ErpSelectionPickerContent, {frame: {header: {title: this.trimmedLabel(), subtitle: 'اختر عنصرًا', icon: 'menu'}, footer: createSelectionOverlayFooter('item', this.clearable(), ERP_SELECTION_DEFAULT_ACTION_LABELS)}, ...(this.overlayConfig() ?? {}), data: this.pickerData()});
     this.activeRef = ref;
     void ref.afterClosed.then((outcome) => { this.activeRef = null; if (outcome.type === 'closed') this.commitUserValue(outcome.result); });
   }
   protected handleClear(): void { this.commitUserValue(null); }
   protected handleNativeFocus(): void { this.handleFocus(); }
   protected handleNativeBlur(): void { this.handleBlur(); }
-  private pickerData(): ErpSelectionPickerData { return {mode: 'item', value: this.currentValue(), colorMode: 'system', items: this.items(), query: '', searchable: this.searchable(), clearable: this.clearable(), actionLabels: ERP_SELECTION_DEFAULT_ACTION_LABELS, theme: this.theme()}; }
-  private theme(): 'light' | 'dark' { return this.host.nativeElement.closest('[data-theme="dark"]') ? 'dark' : 'light'; }
+  private pickerData(): ErpSelectionPickerData { return {mode: 'item', value: this.currentValue(), colorMode: 'system', items: this.items(), query: '', searchable: this.searchable(), clearable: this.clearable(), actionLabels: ERP_SELECTION_DEFAULT_ACTION_LABELS}; }
 }

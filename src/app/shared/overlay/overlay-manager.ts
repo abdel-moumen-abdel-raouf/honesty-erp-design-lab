@@ -59,8 +59,11 @@ export class ErpOverlayManager {
     const title = options.frame.header.title.trim();
     const subtitle = options.frame.header.subtitle.trim();
     const closeLabel = options.frame.header.closeLabel?.trim() || 'إغلاق';
-    const primaryLabel = options.frame.footer.primary.label.trim();
-    const secondaryLabel = options.frame.footer.secondary.label.trim();
+    const actions = options.frame.footer.actions.map((action) => ({
+      ...action,
+      id: action.id.trim(),
+      label: action.label.trim(),
+    }));
 
     if (title.length === 0) {
       throw new TypeError('ErpOverlay frame requires a non-empty title.');
@@ -74,7 +77,15 @@ export class ErpOverlayManager {
       throw new TypeError('ErpOverlay frame requires a semantic icon.');
     }
 
-    if (primaryLabel.length === 0 || secondaryLabel.length === 0) {
+    if (actions.some((action) => action.id.length === 0)) {
+      throw new TypeError('ErpOverlay frame actions require non-empty IDs.');
+    }
+
+    if (new Set(actions.map((action) => action.id)).size !== actions.length) {
+      throw new TypeError('ErpOverlay frame action IDs must be unique.');
+    }
+
+    if (actions.some((action) => action.label.length === 0)) {
       throw new TypeError('ErpOverlay frame actions require non-empty labels.');
     }
 
@@ -97,18 +108,19 @@ export class ErpOverlayManager {
           closeLabel,
         }),
         footer: Object.freeze({
-          primary: Object.freeze({
-            label: primaryLabel,
-            icon: options.frame.footer.primary.icon ?? null,
-            disabled: options.frame.footer.primary.disabled ?? false,
-            loading: options.frame.footer.primary.loading ?? false,
-          }),
-          secondary: Object.freeze({
-            label: secondaryLabel,
-            icon: options.frame.footer.secondary.icon ?? null,
-            disabled: options.frame.footer.secondary.disabled ?? false,
-            loading: options.frame.footer.secondary.loading ?? false,
-          }),
+          actions: Object.freeze(
+            actions.map((action) =>
+              Object.freeze({
+                id: action.id,
+                label: action.label,
+                icon: action.icon ?? null,
+                role: action.role,
+                placement: action.placement,
+                disabled: action.disabled ?? false,
+                loading: action.loading ?? false,
+              }),
+            ),
+          ),
         }),
       }),
       legacyCompactMenuLabel: null,

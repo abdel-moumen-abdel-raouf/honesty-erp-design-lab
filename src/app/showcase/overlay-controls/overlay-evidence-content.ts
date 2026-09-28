@@ -32,8 +32,8 @@ export class OverlayEvidenceContent implements OnDestroy {
     (_, index) => `سطر مراجعة المحتوى الطويل ${index + 1}`,
   );
   private readonly frameActionCleanup = [
-    this.ref.registerFrameAction('primary', () => this.ref.close('confirmed')),
-    this.ref.registerFrameAction('secondary', () => this.ref.dismiss('cancel')),
+    this.ref.registerFrameAction('confirm', () => this.ref.close('confirmed')),
+    this.ref.registerFrameAction('cancel', () => this.ref.dismiss('cancel')),
   ];
 
   ngOnDestroy(): void {
@@ -51,8 +51,10 @@ export class OverlayEvidenceContent implements OnDestroy {
           icon: 'layers',
         },
         footer: {
-          primary: {label: 'تأكيد'},
-          secondary: {label: 'إلغاء'},
+          actions: [
+            {id: 'cancel', label: 'إلغاء', role: 'secondary', placement: 'end'},
+            {id: 'confirm', label: 'تأكيد', role: 'primary', placement: 'end'},
+          ],
         },
       },
       size: 'sm',

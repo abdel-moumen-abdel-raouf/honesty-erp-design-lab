@@ -1,4 +1,4 @@
-<erp-container class="showcase-root" width="wide">
+<erp-container class="showcase-root" width="full" gutter="none">
   <header class="showcase-header">
     <p class="showcase-kicker" dir="ltr">Structural Primitives V1</p>
     <h1>البدائيات الهيكلية</h1>
@@ -9,11 +9,11 @@
     <section id="container-specimen" class="specimen-group" data-specimen-group="erp-container">
       <h2 dir="ltr">ErpContainer</h2>
       <erp-stack gap="default">
-        <erp-container class="container-boundary" width="full" gutter="page">full / page</erp-container>
-        <erp-container class="container-boundary" width="narrow" gutter="page">narrow / page</erp-container>
-        <erp-container class="container-boundary" width="content" gutter="page">content / page</erp-container>
-        <erp-container class="container-boundary" width="wide" gutter="page">wide / page</erp-container>
-        <erp-container class="container-boundary" width="full" gutter="none">full / none</erp-container>
+        <erp-container data-container-evidence class="container-boundary" width="full" gutter="page">full</erp-container>
+        <erp-container data-container-evidence class="container-boundary" width="narrow" gutter="page">narrow — 48rem max</erp-container>
+        <erp-container data-container-evidence class="container-boundary" width="content" gutter="page">content — 75rem max</erp-container>
+        <erp-container data-container-evidence class="container-boundary" width="wide" gutter="page">wide — 90rem max</erp-container>
+        <erp-container data-container-evidence class="container-boundary" width="full" gutter="none">full / no gutter</erp-container>
       </erp-stack>
     </section>
 

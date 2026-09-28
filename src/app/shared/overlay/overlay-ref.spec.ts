@@ -8,8 +8,10 @@ const CONFIG: Readonly<ErpOverlayConfig> = Object.freeze({
   frame: {
     header: {title: 'Proof', subtitle: 'Supporting text', icon: 'info' as const},
     footer: {
-      primary: {label: 'Confirm'},
-      secondary: {label: 'Cancel'},
+      actions: [
+        {id: 'cancel', label: 'Cancel', role: 'secondary' as const, placement: 'end' as const},
+        {id: 'confirm', label: 'Confirm', role: 'primary' as const, placement: 'end' as const},
+      ],
     },
   },
   legacyCompactMenuLabel: null,
@@ -74,27 +76,42 @@ describe('ErpOverlayRef', () => {
     const ref = new ErpOverlayRef('overlay-4', CONFIG, () => true);
     const first = vi.fn();
     const second = vi.fn();
-    const cleanupFirst = ref.registerFrameAction('primary', first);
-    const cleanupSecond = ref.registerFrameAction('primary', second);
+    const cleanupFirst = ref.registerFrameAction('confirm', first);
+    const cleanupSecond = ref.registerFrameAction('confirm', second);
 
-    expect(ref.requestFrameAction('primary')).toBe(true);
+    expect(ref.requestFrameAction('confirm')).toBe(true);
     expect(first).not.toHaveBeenCalled();
     expect(second).toHaveBeenCalledOnce();
 
     cleanupFirst();
-    expect(ref.requestFrameAction('primary')).toBe(true);
+    expect(ref.requestFrameAction('confirm')).toBe(true);
     cleanupSecond();
-    expect(ref.requestFrameAction('primary')).toBe(false);
+    expect(ref.requestFrameAction('confirm')).toBe(false);
   });
 
   it('uses secondary-action only when no secondary handler is registered', () => {
     const requestClose = vi.fn(() => true);
     const ref = new ErpOverlayRef('overlay-5', CONFIG, requestClose);
 
-    expect(ref.requestFrameAction('secondary')).toBe(false);
+    expect(ref.requestFrameAction('cancel')).toBe(false);
     expect(requestClose).toHaveBeenCalledWith({
       type: 'dismissed',
       reason: 'secondary-action',
     });
+  });
+
+  it('publishes reactive action state and rejects unknown action IDs', () => {
+    const ref = new ErpOverlayRef('overlay-6', CONFIG, () => true);
+
+    ref.updateFrameActionState('confirm', {disabled: true});
+    ref.updateFrameActionState('confirm', {loading: true});
+
+    expect(ref.frameActionStates()['confirm']).toEqual({
+      disabled: true,
+      loading: true,
+    });
+    expect(() =>
+      ref.updateFrameActionState('missing', {disabled: true}),
+    ).toThrowError('Unknown Overlay frame action "missing".');
   });
 });

@@ -151,13 +151,17 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
       return;
     }
 
-    const inputElement = this.nativeInput()?.nativeElement;
-    if (!inputElement) {
+    const focusTarget = this.popupOpen()
+      ? this.nativeInput()?.nativeElement
+      : this.anchorElement();
+    if (!focusTarget) {
       return;
     }
 
-    inputElement.value = '';
-    inputElement.focus();
+    if (focusTarget instanceof HTMLInputElement) {
+      focusTarget.value = '';
+    }
+    focusTarget.focus();
     this.handleFocus();
   }
 
@@ -174,15 +178,6 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
     if (event.key === 'ArrowDown' || event.key === 'Enter') {
       event.preventDefault();
       this.openPopup();
-    }
-  }
-
-  protected handlePopupTransitionEnd(event: TransitionEvent): void {
-    if (
-      this.popupPhase() === 'leaving' &&
-      event.target === this.popupSurface()?.nativeElement
-    ) {
-      this.finishClose();
     }
   }
 
@@ -271,8 +266,6 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
     if (surface) {
       surface.dataset['searchPopupPhase'] = 'leaving';
     }
-    this.removeFromOpenStack();
-    this.detachDismissalListeners();
     this.clearCloseTimer();
 
     const duration = surface
@@ -291,6 +284,8 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
 
     this.clearCloseTimer();
     this.controller?.hide();
+    this.removeFromOpenStack();
+    this.detachDismissalListeners();
     this.popupPhase.set('closed');
     this.resolvedPlacement.set(null);
     this.handleBlur();

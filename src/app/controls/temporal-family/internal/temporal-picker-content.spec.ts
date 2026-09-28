@@ -7,6 +7,7 @@ import {
 import {ErpOverlayHost} from '../../../shared/overlay/overlay-host';
 import {ErpOverlayManager} from '../../../shared/overlay/overlay-manager';
 import {
+  createTemporalOverlayFooter,
   ERP_TEMPORAL_DEFAULT_ACTION_LABELS,
   ErpTemporalPickerData,
   ErpTemporalValue,
@@ -25,7 +26,6 @@ describe('ErpTemporalPickerContent', () => {
     locale: 'ar-EG',
     actionLabels: ERP_TEMPORAL_DEFAULT_ACTION_LABELS,
     clearable: true,
-    theme: 'light',
   } as const;
 
   beforeEach(() => TestBed.configureTestingModule({
@@ -43,10 +43,11 @@ describe('ErpTemporalPickerContent', () => {
     >(ErpTemporalPickerContent, {
       frame: {
         header: {title: 'Temporal proof', subtitle: 'Supporting text', icon: 'calendar'},
-        footer: {
-          primary: {label: data.actionLabels.confirm},
-          secondary: {label: data.actionLabels.cancel},
-        },
+        footer: createTemporalOverlayFooter(
+          data.mode,
+          data.clearable,
+          data.actionLabels,
+        ),
       },
       data,
     });
@@ -77,7 +78,7 @@ describe('ErpTemporalPickerContent', () => {
     const grid = root.querySelector('[data-calendar-grid]') as HTMLElement;
     grid.dispatchEvent(new KeyboardEvent('keydown', {key: 'ArrowRight'}));
     grid.dispatchEvent(new KeyboardEvent('keydown', {key: 'Enter'}));
-    (root.querySelector('[data-overlay-frame-primary] button') as HTMLButtonElement).click();
+    (root.querySelector('[data-overlay-frame-action-id="confirm"] button') as HTMLButtonElement).click();
     manager.completeTransition(ref.id, 'leaving');
     await expect(ref.afterClosed).resolves.toEqual({
       type: 'closed',
@@ -96,7 +97,7 @@ describe('ErpTemporalPickerContent', () => {
     expect(root.textContent).toContain('تأكيد');
     (root.querySelector('[data-time-hour] button') as HTMLButtonElement).click();
     (root.querySelectorAll('[data-time-minute] button')[1] as HTMLButtonElement).click();
-    (root.querySelector('[data-overlay-frame-primary] button') as HTMLButtonElement).click();
+    (root.querySelector('[data-overlay-frame-action-id="confirm"] button') as HTMLButtonElement).click();
     manager.completeTransition(ref.id, 'leaving');
     await expect(ref.afterClosed).resolves.toEqual({
       type: 'closed',
@@ -114,9 +115,18 @@ describe('ErpTemporalPickerContent', () => {
 
     expect(root.querySelector('[data-confirm-action]')).toBeNull();
     expect(root.querySelector('[data-cancel-action]')).toBeNull();
+    expect(root.querySelector('.picker-actions')).toBeNull();
+    expect(root.querySelector('[data-overlay-frame-action-id="today"]')).not.toBeNull();
+    const clear = root.querySelector<HTMLButtonElement>(
+      '[data-overlay-frame-action-id="clear"] button',
+    ) as HTMLButtonElement;
+    expect(clear.disabled).toBe(false);
+    clear.click();
+    fixture.detectChanges();
+    expect(clear.disabled).toBe(true);
 
     root
-      .querySelector<HTMLButtonElement>('[data-overlay-frame-secondary] button')
+      .querySelector<HTMLButtonElement>('[data-overlay-frame-action-id="cancel"] button')
       ?.click();
     manager.completeTransition(ref.id, 'leaving');
 
@@ -124,6 +134,29 @@ describe('ErpTemporalPickerContent', () => {
       type: 'dismissed',
       reason: 'cancel',
     });
+  });
+
+  it('keeps Today out of Time mode and disables invalid Today dates', async () => {
+    const time = await open({...base, mode: 'time', value: null});
+    expect(
+      (time.fixture.nativeElement as HTMLElement).querySelector(
+        '[data-overlay-frame-action-id="today"]',
+      ),
+    ).toBeNull();
+    time.ref.dismiss('test-cleanup');
+    time.manager.completeTransition(time.ref.id, 'leaving');
+    time.fixture.destroy();
+
+    const constrained = await open({
+      ...base,
+      mode: 'date',
+      value: null,
+      min: '2099-01-01',
+    });
+    const today = (constrained.fixture.nativeElement as HTMLElement).querySelector<HTMLButtonElement>(
+      '[data-overlay-frame-action-id="today"] button',
+    ) as HTMLButtonElement;
+    expect(today.disabled).toBe(true);
   });
 
   it('previews forward and backward ranges, moves the preview, and clears it on leave', async () => {
@@ -169,7 +202,7 @@ describe('ErpTemporalPickerContent', () => {
     expect(day(root, '2026-01-05').dataset['inRange']).toBe('true');
     expect(day(root, '2026-01-10').dataset['inRange']).toBe('true');
 
-    (root.querySelector('[data-overlay-frame-primary] button') as HTMLButtonElement).click();
+    (root.querySelector('[data-overlay-frame-action-id="confirm"] button') as HTMLButtonElement).click();
     manager.completeTransition(ref.id, 'leaving');
     await expect(ref.afterClosed).resolves.toEqual({
       type: 'closed',

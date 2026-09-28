@@ -21,11 +21,11 @@ describe('Elevation Candidate V1 Visual Specimen', () => {
     compiled = fixture.nativeElement as HTMLElement;
   });
 
-  it('should create the elevation specimen component and have data-theme="light" on root', () => {
+  it('should create the elevation specimen component and inherit the global theme', () => {
     expect(component).toBeTruthy();
     const root = compiled.querySelector('#elevation-specimen-root');
     expect(root).toBeTruthy();
-    expect(root?.getAttribute('data-theme')).toBe('light');
+    expect(root?.hasAttribute('data-theme')).toBe(false);
   });
 
   it('should have the /foundation/elevation route defined in routes', () => {
@@ -83,7 +83,7 @@ describe('Elevation Candidate V1 Visual Specimen', () => {
     it('should render Light theme semantic context with None, Raised, and Overlay', () => {
       const lightContext = compiled.querySelector('#semantic-context-light');
       expect(lightContext).toBeTruthy();
-      expect(lightContext?.getAttribute('data-theme')).toBe('light');
+      expect(lightContext?.hasAttribute('data-theme')).toBe(false);
 
       const noneSample = lightContext?.querySelector('#semantic-light-none');
       const raisedSample = lightContext?.querySelector('#semantic-light-raised');
@@ -101,7 +101,7 @@ describe('Elevation Candidate V1 Visual Specimen', () => {
     it('should render Dark theme semantic context with None, Raised, and Overlay', () => {
       const darkContext = compiled.querySelector('#semantic-context-dark');
       expect(darkContext).toBeTruthy();
-      expect(darkContext?.getAttribute('data-theme')).toBe('dark');
+      expect(darkContext?.hasAttribute('data-theme')).toBe(false);
 
       const noneSample = darkContext?.querySelector('#semantic-dark-none');
       const raisedSample = darkContext?.querySelector('#semantic-dark-raised');
@@ -121,7 +121,7 @@ describe('Elevation Candidate V1 Visual Specimen', () => {
     it('should render contextual Light example with base, floating, and raised regions', () => {
       const lightCase = compiled.querySelector('#contextual-case-light');
       expect(lightCase).toBeTruthy();
-      expect(lightCase?.getAttribute('data-theme')).toBe('light');
+      expect(lightCase?.hasAttribute('data-theme')).toBe(false);
 
       const baseRegion = lightCase?.querySelector('#contextual-base-light');
       const floatingRegion = lightCase?.querySelector('#contextual-floating-light');
@@ -139,7 +139,7 @@ describe('Elevation Candidate V1 Visual Specimen', () => {
     it('should render contextual Dark example with base, floating, and raised regions', () => {
       const darkCase = compiled.querySelector('#contextual-case-dark');
       expect(darkCase).toBeTruthy();
-      expect(darkCase?.getAttribute('data-theme')).toBe('dark');
+      expect(darkCase?.hasAttribute('data-theme')).toBe(false);
 
       const baseRegion = darkCase?.querySelector('#contextual-base-dark');
       const floatingRegion = darkCase?.querySelector('#contextual-floating-dark');

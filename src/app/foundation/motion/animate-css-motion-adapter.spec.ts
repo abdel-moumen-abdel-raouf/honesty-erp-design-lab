@@ -47,6 +47,21 @@ describe('AnimateCssMotionAdapter', () => {
     );
   });
 
+  it('keeps vertical slide names aligned with their visible movement direction', () => {
+    expect(resolveAnimateCssEffect('slide-up', 'enter', 'ltr')).toBe(
+      'slideInUp',
+    );
+    expect(resolveAnimateCssEffect('slide-up', 'exit', 'ltr')).toBe(
+      'slideOutUp',
+    );
+    expect(resolveAnimateCssEffect('slide-down', 'enter', 'rtl')).toBe(
+      'slideInDown',
+    );
+    expect(resolveAnimateCssEffect('slide-down', 'exit', 'rtl')).toBe(
+      'slideOutDown',
+    );
+  });
+
   it('applies duration, completes on animationend, and cleans classes', () => {
     const element = document.createElement('div');
     const completed = vi.fn();

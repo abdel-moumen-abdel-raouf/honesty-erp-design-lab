@@ -10,8 +10,11 @@ const FRAME: ErpOverlayFrameConfig = {
     icon: 'info',
   },
   footer: {
-    primary: {label: 'تطبيق', icon: 'check'},
-    secondary: {label: 'إلغاء'},
+    actions: [
+      {id: 'clear', label: 'مسح', role: 'utility', placement: 'start'},
+      {id: 'cancel', label: 'إلغاء', role: 'secondary', placement: 'end'},
+      {id: 'apply', label: 'تطبيق', icon: 'check', role: 'primary', placement: 'end'},
+    ],
   },
 };
 
@@ -77,16 +80,16 @@ describe('ErpOverlayFrame', () => {
     });
   });
 
-  it('routes primary and secondary controls through the frame action channel', () => {
+  it('routes ordered action IDs through the frame action channel', () => {
     const {fixture, ref} = create();
     const primary = vi.fn();
     const secondary = vi.fn();
-    ref.registerFrameAction('primary', primary);
-    ref.registerFrameAction('secondary', secondary);
+    ref.registerFrameAction('apply', primary);
+    ref.registerFrameAction('cancel', secondary);
     const root = fixture.nativeElement as HTMLElement;
 
-    root.querySelector<HTMLButtonElement>('[data-overlay-frame-primary] button')?.click();
-    root.querySelector<HTMLButtonElement>('[data-overlay-frame-secondary] button')?.click();
+    root.querySelector<HTMLButtonElement>('[data-overlay-frame-action-id="apply"] button')?.click();
+    root.querySelector<HTMLButtonElement>('[data-overlay-frame-action-id="cancel"] button')?.click();
 
     expect(primary).toHaveBeenCalledOnce();
     expect(secondary).toHaveBeenCalledOnce();
@@ -96,14 +99,33 @@ describe('ErpOverlayFrame', () => {
     const {fixture} = create({
       header: {...FRAME.header, closeLabel: 'إغلاق النافذة'},
       footer: {
-        primary: {...FRAME.footer.primary, disabled: true},
-        secondary: {...FRAME.footer.secondary, loading: true},
+        actions: FRAME.footer.actions.map((action) =>
+          action.id === 'apply'
+            ? {...action, disabled: true}
+            : action.id === 'cancel'
+              ? {...action, loading: true}
+              : action,
+        ),
       },
     });
     const root = fixture.nativeElement as HTMLElement;
 
     expect(root.querySelector('[data-overlay-frame-close] button')?.getAttribute('aria-label')).toBe('إغلاق النافذة');
-    expect(root.querySelector<HTMLButtonElement>('[data-overlay-frame-primary] button')?.disabled).toBe(true);
-    expect(root.querySelector('[data-overlay-frame-secondary]')?.getAttribute('data-button-state')).toBe('loading');
+    expect(root.querySelector<HTMLButtonElement>('[data-overlay-frame-action-id="apply"] button')?.disabled).toBe(true);
+    expect(root.querySelector('[data-overlay-frame-action-id="cancel"]')?.getAttribute('data-button-state')).toBe('loading');
+  });
+
+  it('reacts to runtime disabled and loading action state under OnPush', () => {
+    const {fixture, ref} = create();
+    const root = fixture.nativeElement as HTMLElement;
+
+    ref.updateFrameActionState('clear', {disabled: true, loading: true});
+    fixture.detectChanges();
+
+    const clear = root.querySelector<HTMLElement>(
+      '[data-overlay-frame-action-id="clear"]',
+    );
+    expect(clear?.getAttribute('data-button-state')).toBe('loading');
+    expect(clear?.querySelector<HTMLButtonElement>('button')?.disabled).toBe(true);
   });
 });

@@ -28,6 +28,7 @@ describe('ErpSearchBox', () => {
   let animationFrames: FrameRequestCallback[];
 
   beforeEach(() => {
+    vi.useFakeTimers();
     animationFrames = [];
     vi.stubGlobal(
       'requestAnimationFrame',
@@ -49,6 +50,7 @@ describe('ErpSearchBox', () => {
   afterEach(() => {
     vi.unstubAllGlobals();
     vi.restoreAllMocks();
+    vi.useRealTimers();
   });
 
   function create() {
@@ -160,7 +162,7 @@ describe('ErpSearchBox', () => {
   it('preserves one continuous query across popup close and reopen', () => {
     const fixture = create();
     const host = fixture.nativeElement as HTMLElement;
-    const surface = openPopup(fixture);
+    openPopup(fixture);
     const input = host.querySelector('input') as HTMLInputElement;
     input.value = 'customer';
     input.dispatchEvent(new Event('input'));
@@ -168,7 +170,7 @@ describe('ErpSearchBox', () => {
 
     document.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape'}));
     fixture.detectChanges();
-    surface.dispatchEvent(new Event('transitionend', {bubbles: true}));
+    vi.runAllTimers();
     fixture.detectChanges();
     (host.querySelector('erp-field-trigger button') as HTMLButtonElement).click();
     fixture.detectChanges();
@@ -183,7 +185,7 @@ describe('ErpSearchBox', () => {
   it('honors outside-pointer dismissal on and off', () => {
     const fixture = create();
     const host = fixture.nativeElement as HTMLElement;
-    const surface = openPopup(fixture);
+    openPopup(fixture);
 
     fixture.componentRef.setInput('dismissOnOutside', false);
     fixture.detectChanges();
@@ -196,13 +198,13 @@ describe('ErpSearchBox', () => {
     document.body.dispatchEvent(new Event('pointerdown', {bubbles: true}));
     fixture.detectChanges();
     expect(host.getAttribute('data-search-box-popup-phase')).toBe('leaving');
-    surface.dispatchEvent(new Event('transitionend', {bubbles: true}));
+    vi.runAllTimers();
   });
 
   it('honors Escape dismissal on and off', () => {
     const fixture = create();
     const host = fixture.nativeElement as HTMLElement;
-    const surface = openPopup(fixture);
+    openPopup(fixture);
 
     fixture.componentRef.setInput('dismissOnEscape', false);
     fixture.detectChanges();
@@ -215,7 +217,7 @@ describe('ErpSearchBox', () => {
     document.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape'}));
     fixture.detectChanges();
     expect(host.getAttribute('data-search-box-popup-phase')).toBe('leaving');
-    surface.dispatchEvent(new Event('transitionend', {bubbles: true}));
+    vi.runAllTimers();
   });
 
   it('allows only the active SearchBox popup to respond to dismissal', () => {
@@ -263,12 +265,12 @@ describe('ErpSearchBox', () => {
 
     fixture.componentRef.setInput('exitAnimation', 'slide-end');
     fixture.detectChanges();
-    const surface = openPopup(fixture);
+    openPopup(fixture);
     document.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape'}));
     fixture.detectChanges();
     expect(host.getAttribute('data-search-box-popup-phase')).toBe('leaving');
     expect(host.getAttribute('data-search-box-animation')).toBe('slide-end');
-    surface.dispatchEvent(new Event('transitionend', {bubbles: true}));
+    vi.runAllTimers();
   });
 
   it('hands focus to the editor and restores it to the trigger on Escape', () => {
@@ -283,9 +285,43 @@ describe('ErpSearchBox', () => {
     expect(document.activeElement).toBe(input);
     document.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape'}));
     fixture.detectChanges();
-    surface.dispatchEvent(new Event('transitionend', {bubbles: true}));
+    expect(getComputedStyle(surface).pointerEvents).toBe('none');
+    vi.runAllTimers();
     fixture.detectChanges();
+    expect(surface.matches(':popover-open')).toBe(false);
     expect(document.activeElement).toBe(trigger);
+  });
+
+  it('sizes the popup from the full trigger width before viewport clamping', () => {
+    const fixture = create();
+    const host = fixture.nativeElement as HTMLElement;
+    const trigger = host.querySelector(
+      'erp-field-trigger button',
+    ) as HTMLButtonElement;
+    const surface = host.querySelector(
+      '.search-box__popup',
+    ) as HTMLElement;
+    vi.spyOn(trigger, 'getBoundingClientRect').mockReturnValue({
+      bottom: 140,
+      height: 40,
+      left: 40,
+      right: 760,
+      top: 100,
+      width: 720,
+      x: 40,
+      y: 100,
+      toJSON: () => undefined,
+    });
+    installPopover(surface);
+
+    trigger.click();
+    fixture.detectChanges();
+
+    expect(
+      surface.style.getPropertyValue(
+        '--_honesty-search-box-popup-trigger-inline-size',
+      ),
+    ).toBe('720px');
   });
 
   it('uses anchored collision placement in an RTL context', () => {

@@ -17,9 +17,8 @@ import {
   replaceContextualOverride,
   resolveContextualPreference,
 } from './core/ui-settings.formatters';
-import {createBrowserUiSettingsLocalStorage} from './core/ui-settings.local-storage';
 import {UI_SETTING_KEYS, UI_SETTINGS_REGISTRY} from './core/ui-settings.registry';
-import {UiSettingsStore} from './core/ui-settings.store';
+import {UiSettingsService} from './core/ui-settings.service';
 import {
   DateContext,
   DateFormat,
@@ -29,17 +28,10 @@ import {
   SettingDefinition,
   UiSettingCategory,
   UiSettingKey,
-  UiSettingsStorageContext,
 } from './core/ui-settings.types';
 
 type ContextualSettingKey = 'digits' | 'numberSeparators' | 'dateFormat';
 type ScalarSettingKey = Exclude<UiSettingKey, ContextualSettingKey>;
-
-const docsStorageContext: UiSettingsStorageContext = Object.freeze({
-  tenantId: 'design-lab-tenant',
-  companyId: 'design-lab-company',
-  userId: 'design-lab-user',
-});
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -50,9 +42,7 @@ const docsStorageContext: UiSettingsStorageContext = Object.freeze({
 export class Preferences {
   private readonly destroyRef = inject(DestroyRef);
   private readonly systemPrefersDark = signal(false);
-  private readonly persistence = createBrowserUiSettingsLocalStorage(docsStorageContext);
-
-  readonly store = new UiSettingsStore(this.persistence);
+  readonly store = inject(UiSettingsService).store;
   readonly registry = UI_SETTINGS_REGISTRY;
   readonly settingKeys = UI_SETTING_KEYS;
   readonly systemTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -75,8 +65,6 @@ export class Preferences {
   });
 
   constructor() {
-    this.store.hydrate();
-
     if (typeof window.matchMedia === 'function') {
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
       this.systemPrefersDark.set(mediaQuery.matches);

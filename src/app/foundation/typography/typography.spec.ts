@@ -168,8 +168,9 @@ describe('Typography Specimen Component', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
 
-    const darkContainer = compiled.querySelector('#dark-context-container[data-theme="dark"]');
+    const darkContainer = compiled.querySelector('#dark-context-container');
     expect(darkContainer).toBeTruthy();
+    expect(darkContainer?.hasAttribute('data-theme')).toBe(false);
 
     expect(darkContainer?.querySelector('#dark-role-page-title')).toBeTruthy();
     expect(darkContainer?.querySelector('#dark-role-body')).toBeTruthy();

@@ -408,11 +408,17 @@ export function validateOverlayFrameContract(files) {
     'readonly subtitle: string;',
     'readonly icon: ErpIconName;',
     'readonly closeLabel?: string;',
+    'readonly id: string;',
+    'readonly label: string;',
+    'readonly role: ErpOverlayActionRole;',
+    'readonly placement: ErpOverlayActionPlacement;',
+    "export type ErpOverlayActionRole = 'primary' | 'secondary' | 'utility';",
+    "export type ErpOverlayActionPlacement = 'start' | 'end';",
+    'export interface ErpOverlayFrameActionState',
     'export interface ErpOverlayFooterConfig',
-    'readonly primary: ErpOverlayActionConfig;',
-    'readonly secondary: ErpOverlayActionConfig;',
+    'readonly actions: readonly ErpOverlayActionConfig[];',
     'readonly frame: ErpOverlayFrameConfig;',
-    "export type ErpOverlayFrameAction =\n  | 'primary'\n  | 'secondary';",
+    'export type ErpOverlayFrameActionId = string;',
   ]) {
     if (!contracts.includes(required)) {
       errors.push(`Overlay frame contracts: missing ${required}`);
@@ -424,8 +430,10 @@ export function validateOverlayFrameContract(files) {
     'options.frame.header.subtitle.trim()',
     "options.frame.header.closeLabel?.trim() || 'إغلاق'",
     'ERP_ICON_NAMES.includes(options.frame.header.icon)',
-    'options.frame.footer.primary.label.trim()',
-    'options.frame.footer.secondary.label.trim()',
+    'options.frame.footer.actions.map((action)',
+    'id: action.id.trim()',
+    'label: action.label.trim()',
+    'new Set(actions.map((action) => action.id)).size !== actions.length',
   ]) {
     if (!manager.includes(required)) {
       errors.push(`OverlayManager: missing frame validation ${required}`);
@@ -434,8 +442,10 @@ export function validateOverlayFrameContract(files) {
 
   for (const required of [
     'registerFrameAction(',
+    'updateFrameActionState(',
+    'frameActionStates',
     'requestFrameAction(',
-    "if (action === 'secondary')",
+    "config?.role === 'secondary'",
     "this.dismiss('secondary-action')",
   ]) {
     if (!ref.includes(required)) {
@@ -461,8 +471,13 @@ export function validateOverlayFrameContract(files) {
     '<erp-tooltip',
     '<erp-icon-button',
     'data-overlay-frame-close',
-    'data-overlay-frame-primary',
-    'data-overlay-frame-secondary',
+    'data-overlay-frame-action',
+    'data-overlay-frame-action-id',
+    'data-overlay-frame-action-role',
+    'data-overlay-frame-action-group="start"',
+    'data-overlay-frame-action-group="end"',
+    '@for (action of startActions(); track action.id)',
+    '@for (action of endActions(); track action.id)',
   ]) {
     if (!frameTemplate.includes(required)) {
       errors.push(`OverlayFrame template: missing ${required}`);
@@ -470,7 +485,7 @@ export function validateOverlayFrameContract(files) {
   }
 
   if ((frameTemplate.match(/<erp-button\b/g) ?? []).length !== 2) {
-    errors.push('OverlayFrame footer must own exactly two ERP buttons');
+    errors.push('OverlayFrame must render its ordered actions through the two logical group templates');
   }
 
   for (const [name, source, template] of [
@@ -478,8 +493,8 @@ export function validateOverlayFrameContract(files) {
     ['Selection picker', selectionSource, selectionTemplate],
   ]) {
     if (
-      !source.includes("registerFrameAction('primary'") ||
-      !source.includes("registerFrameAction('secondary'")
+      !source.includes("registerFrameAction('confirm'") ||
+      !source.includes("registerFrameAction('cancel'")
     ) {
       errors.push(`${name}: shared frame action registration is required`);
     }
@@ -768,15 +783,19 @@ readonly icon: ErpIconName;
 readonly closeLabel?: string;
 }
 export interface ErpOverlayActionConfig {}
+export type ErpOverlayActionRole = 'primary' | 'secondary' | 'utility';
+export type ErpOverlayActionPlacement = 'start' | 'end';
+export interface ErpOverlayFrameActionState {}
 export interface ErpOverlayFooterConfig {
-readonly primary: ErpOverlayActionConfig;
-readonly secondary: ErpOverlayActionConfig;
+readonly actions: readonly ErpOverlayActionConfig[];
 }
 export interface ErpOverlayFrameConfig {}
 export interface ErpOverlayOpenConfig { readonly frame: ErpOverlayFrameConfig; }
-export type ErpOverlayFrameAction =
-  | 'primary'
-  | 'secondary';`,
+export type ErpOverlayFrameActionId = string;
+readonly id: string;
+readonly label: string;
+readonly role: ErpOverlayActionRole;
+readonly placement: ErpOverlayActionPlacement;`,
     ],
     [
       OVERLAY_MANAGER,
@@ -784,15 +803,19 @@ export type ErpOverlayFrameAction =
 options.frame.header.subtitle.trim()
 options.frame.header.closeLabel?.trim() || 'إغلاق'
 ERP_ICON_NAMES.includes(options.frame.header.icon)
-options.frame.footer.primary.label.trim()
-options.frame.footer.secondary.label.trim()
+options.frame.footer.actions.map((action)
+id: action.id.trim()
+label: action.label.trim()
+new Set(actions.map((action) => action.id)).size !== actions.length
 openLegacyCompactMenu`,
     ],
     [
       OVERLAY_REF,
       `registerFrameAction(
+updateFrameActionState(
+frameActionStates
 requestFrameAction(
-if (action === 'secondary')
+config?.role === 'secondary'
 this.dismiss('secondary-action')`,
     ],
     [
@@ -806,17 +829,19 @@ this.ref().dismiss('close-action')`,
 <div class="overlay-frame__body">
 <footer class="overlay-frame__footer">
 <erp-tooltip><erp-icon-button data-overlay-frame-close />
-<erp-button data-overlay-frame-secondary />
-<erp-button data-overlay-frame-primary />`,
+<div data-overlay-frame-action-group="start">@for (action of startActions(); track action.id) {
+<erp-button data-overlay-frame-action data-overlay-frame-action-id data-overlay-frame-action-role />}
+<div data-overlay-frame-action-group="end">@for (action of endActions(); track action.id) {
+<erp-button data-overlay-frame-action data-overlay-frame-action-id data-overlay-frame-action-role />}`,
     ],
     [
       TEMPORAL_PICKER_SOURCE,
-      "registerFrameAction('primary') registerFrameAction('secondary')",
+      "registerFrameAction('confirm') registerFrameAction('cancel')",
     ],
     [TEMPORAL_PICKER_TEMPLATE, '<erp-button data-clear-action />'],
     [
       SELECTION_PICKER_SOURCE,
-      "registerFrameAction('primary') registerFrameAction('secondary')",
+      "registerFrameAction('confirm') registerFrameAction('cancel')",
     ],
     [SELECTION_PICKER_TEMPLATE, '<erp-selection-tile />'],
     [SPLIT_BUTTON_SOURCE, 'openLegacyCompactMenu'],

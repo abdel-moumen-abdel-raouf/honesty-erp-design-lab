@@ -1,9 +1,9 @@
 <main id="foundation-overview-root" class="overview-root">
   <header class="overview-header">
-    <p class="overview-kicker">Design Foundation Closure Review</p>
-    <h1>مراجعة إغلاق أساس نظام التصميم</h1>
+    <p class="overview-kicker">Design Lab Review Inventory</p>
+    <h1>دليل مراجعة مختبر نظام التصميم</h1>
     <p class="overview-scope-note">
-      This page is docs-only closure evidence. It does NOT represent production Shell design.
+      تُعد هذه الصفحة بمثابة إثبات للإغلاق يعتمد على الوثائق فقط، وهي لا تمثل تصميم الغلاف (Shell) المخصص للإنتاج الفعلي.
     </p>
   </header>
 
@@ -15,6 +15,27 @@
     <h2>حالة الأساس</h2>
     <p class="overall-status-en">{{ overallStatus.english }}</p>
     <p class="overall-status-ar">{{ overallStatus.arabic }}</p>
+  </section>
+
+  <section
+    id="production-review-families"
+    class="overview-section domains-section"
+    data-overview-section
+  >
+    <h2>عائلات مراجعة الإنتاج الحالية</h2>
+    <div class="domain-grid" data-current-review-families>
+      @for (family of reviewFamilies; track family.id) {
+        <article class="domain-entry" [attr.data-review-family]="family.id">
+          <header class="domain-header">
+            <h3>{{ family.label }}</h3>
+            <span class="domain-status">{{ family.status }}</span>
+          </header>
+          <a class="domain-link" data-review-family-link [routerLink]="family.route">
+            {{ family.route }}
+          </a>
+        </article>
+      }
+    </div>
   </section>
 
   <section
@@ -36,7 +57,7 @@
           <p>{{ domain.summary }}</p>
           <dl class="domain-details">
             <div>
-              <dt>Reopen trigger</dt>
+              <dt>مُشغِّل إعادة الفتح</dt>
               <dd>{{ domain.reopenTrigger }}</dd>
             </div>
           </dl>
@@ -66,7 +87,7 @@
     <section class="boundary-subsection" data-boundary-subsection="next-layer">
       <h3>قرارات الطبقات الأعلى</h3>
       <p>هذه ليست نواقص في Foundation؛ تُحسم عند بدء الطبقة الأعلى التي تعتمد عليها.</p>
-      <ul class="plain-list" dir="ltr" data-next-layer-list>
+      <ul class="plain-list" data-next-layer-list>
         @for (decision of nextLayerDecisions; track decision) {
           <li data-next-layer-item>{{ decision }}</li>
         }
@@ -75,7 +96,7 @@
     <section class="boundary-subsection" data-boundary-subsection="v1-constraints">
       <h3>قيود Foundation V1 المجمدة</h3>
       <p>هذه قرارات مكتملة في V1 وليست أعمالاً مؤجلة؛ تغييرها يتطلب إعادة فتح Foundation.</p>
-      <ul class="plain-list" dir="ltr" data-v1-constraint-list>
+      <ul class="plain-list" data-v1-constraint-list>
         @for (decision of v1Constraints; track decision) {
           <li data-v1-constraint-item>{{ decision }}</li>
         }
@@ -104,14 +125,13 @@
     class="overview-section"
     data-overview-section
   >
-    <h2>بوابة الإغلاق</h2>
-    <ul class="plain-list closure-list" dir="ltr">
-      <li>Lower-layer Foundation Candidate V1 contracts are assembled for final Product Owner closure review.</li>
-      <li>Next-layer decisions and frozen V1 constraints are documented.</li>
-      <li>No production Component Token or production Component work has started.</li>
-      <li>Final freeze has NOT happened yet.</li>
-      <li>Product Owner explicit approval is required before entering production primitives/components.</li>
+    <h2>حالة المراجعة</h2>
+    <ul class="plain-list closure-list">
+      <li>يتم إبرام عقود التأسيس وتظل متمثلة في مسارات مراجعتها..</li>
+      <li>يتم تنفيذ العناصر الأساسية للإنتاج، وعناصر التحكم، والتراكبات، والبنية التحتية للحركة، باعتبارها مرشحة للمراجعة الفنية.</li>
+      <li>لا تزال الموافقة البصرية من مالك المنتج معلقة بالنسبة لمجموعات مراجعة الإنتاج غير المعتمدة.</li>
+      <li>يسجل هذا السجل حالة التنفيذ فقط؛ ولا يُعد بمثابة إقرار بالموافقة البصرية أو تجميد للوضع.</li>
     </ul>
-    <p class="read-only-note">Read-only closure evidence; no approval action is provided here.</p>
+    <p class="read-only-note">بيانات الإغلاق للقراءة فقط؛ لا يتوفر هنا أي إجراء للموافقة.</p>
   </section>
 </main>

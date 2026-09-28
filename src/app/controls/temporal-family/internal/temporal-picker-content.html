@@ -1,4 +1,4 @@
-<erp-stack class="temporal-picker" gap="default" [attr.data-theme]="data.theme">
+<erp-stack class="temporal-picker" gap="default">
   @if (calendarVisible) {
     <erp-inline justify="between" gap="tight">
       <erp-button data-previous-month [label]="data.actionLabels.previousMonth" variant="ghost" tone="neutral" size="sm" (pressed)="previousMonth()" />
@@ -55,12 +55,4 @@
     </erp-grid>
   }
 
-  <erp-inline class="picker-actions" gap="tight" wrap="wrap" justify="end">
-    @if (calendarVisible) {
-      <erp-button data-today-action [label]="data.actionLabels.today" variant="ghost" tone="neutral" size="sm" (pressed)="selectToday()" />
-    }
-    @if (data.clearable) {
-      <erp-button data-clear-action [label]="data.actionLabels.clear" variant="ghost" tone="neutral" size="sm" (pressed)="clear()" />
-    }
-  </erp-inline>
 </erp-stack>

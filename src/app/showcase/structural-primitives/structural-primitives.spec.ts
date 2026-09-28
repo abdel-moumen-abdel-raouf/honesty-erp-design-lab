@@ -19,12 +19,46 @@ describe('StructuralPrimitives showcase', () => {
     expect(TestBed.createComponent(StructuralPrimitives).componentInstance).toBeTruthy();
   });
 
-  it('applies the Light theme scope to the showcase root', () => {
+  it('uses a full-width, gutter-free review stage that inherits the global theme', () => {
     const fixture = TestBed.createComponent(StructuralPrimitives);
     fixture.detectChanges();
     const root = fixture.nativeElement.querySelector('erp-container.showcase-root') as HTMLElement;
 
-    expect(root.getAttribute('data-theme')).toBe('light');
+    expect(root.getAttribute('data-width')).toBe('full');
+    expect(root.getAttribute('data-gutter')).toBe('none');
+    expect(root.hasAttribute('data-theme')).toBe(false);
+  });
+
+  it('renders the exact Container width and gutter evidence labels', () => {
+    const fixture = TestBed.createComponent(StructuralPrimitives);
+    fixture.detectChanges();
+    const evidence = Array.from(
+      (fixture.nativeElement as HTMLElement).querySelectorAll<HTMLElement>(
+        '[data-container-evidence]',
+      ),
+    );
+
+    expect(evidence.map((item) => item.getAttribute('data-width'))).toEqual([
+      'full',
+      'narrow',
+      'content',
+      'wide',
+      'full',
+    ]);
+    expect(evidence.map((item) => item.getAttribute('data-gutter'))).toEqual([
+      'page',
+      'page',
+      'page',
+      'page',
+      'none',
+    ]);
+    expect(evidence.map((item) => item.textContent?.trim())).toEqual([
+      'full',
+      'narrow — 48rem max',
+      'content — 75rem max',
+      'wide — 90rem max',
+      'full / no gutter',
+    ]);
   });
 
   it('renders exactly one specimen group for each structural primitive', () => {

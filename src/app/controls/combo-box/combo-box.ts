@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, ElementRef, computed, forwardRef, inject, input, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, forwardRef, inject, input, signal} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
 import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
@@ -7,7 +7,7 @@ import {ErpOverlayBehaviorConfig} from '../../shared/overlay/overlay-contracts';
 import {ErpFieldBase} from '../input-family/field-base';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
 import {ErpSelectionPickerContent} from '../selection-family/internal/selection-picker-content';
-import {ERP_SELECTION_DEFAULT_ACTION_LABELS, ErpItemPickerOption, ErpSelectionPickerData} from '../selection-family/selection-contracts';
+import {createSelectionOverlayFooter, ERP_SELECTION_DEFAULT_ACTION_LABELS, ErpItemPickerOption, ErpSelectionPickerData} from '../selection-family/selection-contracts';
 import {normalizeItemValue} from '../selection-family/selection-utils';
 
 let nextComboBoxId = 0;
@@ -34,15 +34,14 @@ export class ErpComboBox extends ErpFieldBase<string | null> {
   protected readonly selectedItem = computed(() => this.items().find((item) => item.value === this.currentValue()) ?? null);
   protected readonly inputValue = computed(() => this.queryEditing() ? this.query() : this.selectedItem()?.label ?? '');
   private readonly overlays = inject(ErpOverlayManager);
-  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private activeRef: ErpOverlayRef<string | null> | null = null;
   constructor() { super(null); }
   override writeValue(value: unknown): void { super.writeValue(value); this.query.set(''); this.queryEditing.set(false); }
   protected override normalizeValue(value: unknown): string | null { return normalizeItemValue(value, this.items()); }
-  protected handleInput(event: Event): void { this.queryEditing.set(true); this.query.set((event.target as HTMLInputElement).value); }
+  protected handleInput(event: Event): void { this.queryEditing.set(true); this.query.set((event.target as HTMLInputElement).value); this.openPicker(); }
   protected openPicker(): void {
     if (this.fieldEffectiveDisabled() || this.activeRef) return;
-    const ref = this.overlays.open<ErpSelectionPickerContent, ErpSelectionPickerData, string | null>(ErpSelectionPickerContent, {frame: {header: {title: this.trimmedLabel(), subtitle: 'ابحث واختر قيمة', icon: 'search'}, footer: {primary: {label: ERP_SELECTION_DEFAULT_ACTION_LABELS.confirm}, secondary: {label: ERP_SELECTION_DEFAULT_ACTION_LABELS.cancel}}}, ...(this.overlayConfig() ?? {}), data: this.pickerData()});
+    const ref = this.overlays.open<ErpSelectionPickerContent, ErpSelectionPickerData, string | null>(ErpSelectionPickerContent, {frame: {header: {title: this.trimmedLabel(), subtitle: 'ابحث واختر قيمة', icon: 'search'}, footer: createSelectionOverlayFooter('combo', true, ERP_SELECTION_DEFAULT_ACTION_LABELS)}, ...(this.overlayConfig() ?? {}), data: this.pickerData()});
     this.activeRef = ref;
     this.activeOverlayId.set(ref.id);
     void ref.afterClosed.then((outcome) => {
@@ -55,6 +54,5 @@ export class ErpComboBox extends ErpFieldBase<string | null> {
   protected handleClear(input: HTMLInputElement): void { if (this.commitUserValue(null)) { this.query.set(''); this.queryEditing.set(false); input.value = ''; } }
   protected handleNativeFocus(): void { this.handleFocus(); }
   protected handleNativeBlur(): void { this.handleBlur(); }
-  private pickerData(): ErpSelectionPickerData { return {mode: 'combo', value: this.currentValue(), colorMode: 'system', items: this.items(), query: this.queryEditing() ? this.query() : '', searchable: true, clearable: true, actionLabels: ERP_SELECTION_DEFAULT_ACTION_LABELS, theme: this.theme()}; }
-  private theme(): 'light' | 'dark' { return this.host.nativeElement.closest('[data-theme="dark"]') ? 'dark' : 'light'; }
+  private pickerData(): ErpSelectionPickerData { return {mode: 'combo', value: this.currentValue(), colorMode: 'system', items: this.items(), query: this.queryEditing() ? this.query() : '', searchable: true, clearable: true, actionLabels: ERP_SELECTION_DEFAULT_ACTION_LABELS}; }
 }

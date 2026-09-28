@@ -19,7 +19,10 @@
   --honesty-file-picker-item-copy-gap: var(--honesty-space-stack-tight);
   --honesty-file-picker-item-padding: var(--honesty-space-inset-tight);
   --honesty-file-picker-item-bg: var(--honesty-color-surface-default);
+  --honesty-file-picker-item-bg-hover:
+    var(--honesty-color-action-primary-subtle-bg-hover);
   --honesty-file-picker-item-border-color: var(--honesty-border-subtle);
+  --honesty-file-picker-item-border-color-hover: var(--honesty-border-default);
   --honesty-file-picker-item-border-width: var(--honesty-border-width-default);
   --honesty-file-picker-item-border-style: var(--honesty-border-style-default);
   --honesty-file-picker-item-radius: var(--honesty-radius-control);

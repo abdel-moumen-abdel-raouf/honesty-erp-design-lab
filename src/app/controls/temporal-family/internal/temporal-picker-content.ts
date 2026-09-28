@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   inject,
   OnDestroy,
   signal,
@@ -35,8 +36,14 @@ export class ErpTemporalPickerContent implements OnDestroy {
   private readonly today = toIsoDate(new Date());
   private readonly initialDate = this.resolveInitialDate();
   private readonly frameActionCleanup = [
-    this.ref.registerFrameAction('primary', () => this.confirm()),
-    this.ref.registerFrameAction('secondary', () => this.cancel()),
+    this.ref.registerFrameAction('confirm', () => this.confirm()),
+    this.ref.registerFrameAction('cancel', () => this.cancel()),
+    ...(this.data.mode === 'time'
+      ? []
+      : [this.ref.registerFrameAction('today', () => this.selectToday())]),
+    ...(this.data.clearable
+      ? [this.ref.registerFrameAction('clear', () => this.clear())]
+      : []),
   ];
 
   protected readonly cursor = signal(this.initialDate);
@@ -64,6 +71,17 @@ export class ErpTemporalPickerContent implements OnDestroy {
   });
   protected readonly calendarVisible = this.data.mode !== 'time';
   protected readonly timeVisible = this.data.mode === 'time' || this.data.mode === 'datetime';
+  private readonly hasStagedValue = computed(() => {
+    if (this.data.mode === 'range') {
+      const range = this.stagedRange();
+      return range.start !== null || range.end !== null;
+    }
+    if (this.data.mode === 'time') return this.timeValue() !== null;
+    if (this.data.mode === 'datetime') {
+      return this.stagedDate() !== null || this.timeValue() !== null;
+    }
+    return this.stagedDate() !== null;
+  });
   protected readonly monthLabel = computed(() =>
     new Intl.DateTimeFormat(this.data.locale ?? undefined, {month: 'long', year: 'numeric'}).format(parseIsoDate(this.monthAnchor()) as Date),
   );
@@ -87,6 +105,21 @@ export class ErpTemporalPickerContent implements OnDestroy {
       return toIsoDate(date);
     });
   });
+
+  constructor() {
+    effect(() => {
+      if (this.data.clearable) {
+        this.ref.updateFrameActionState('clear', {
+          disabled: !this.hasStagedValue(),
+        });
+      }
+      if (this.data.mode !== 'time') {
+        this.ref.updateFrameActionState('today', {
+          disabled: this.dateDisabled(this.today),
+        });
+      }
+    });
+  }
 
   ngOnDestroy(): void {
     for (const cleanup of this.frameActionCleanup) {

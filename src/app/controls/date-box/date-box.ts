@@ -1,5 +1,7 @@
-import {ChangeDetectionStrategy, Component, ElementRef, computed, effect, forwardRef, inject, input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, effect, forwardRef, inject, input} from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {formatDatePreview, resolveContextualPreference} from '../../foundation/preferences/core/ui-settings.formatters';
+import {UiSettingsService} from '../../foundation/preferences/core/ui-settings.service';
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
 import {ErpText} from '../../primitives/text/text';
 import {ErpOverlayRef} from '../../shared/overlay/overlay-ref';
@@ -11,8 +13,8 @@ import {ErpInputConfigurationState} from '../input-family/input-contracts';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
 import {ErpFieldTrigger} from '../input-family/internal/field-trigger';
 import {ErpTemporalPickerContent} from '../temporal-family/internal/temporal-picker-content';
-import {ERP_TEMPORAL_DEFAULT_ACTION_LABELS, ErpTemporalPickerData, ErpTemporalValue} from '../temporal-family/temporal-contracts';
-import {normalizeIsoDate, parseIsoDate} from '../temporal-family/temporal-utils';
+import {createTemporalOverlayFooter, ERP_TEMPORAL_DEFAULT_ACTION_LABELS, ErpTemporalPickerData, ErpTemporalValue} from '../temporal-family/temporal-contracts';
+import {normalizeIsoDate} from '../temporal-family/temporal-utils';
 
 let nextDateBoxId = 0;
 
@@ -39,6 +41,9 @@ export class ErpDateBox extends ErpFieldBase<string | null> {
   override readonly trailingIcon = input<ErpIconName | null>('calendar');
 
   protected readonly controlId = `erp-date-box-${++nextDateBoxId}`;
+  private readonly settings = inject(UiSettingsService).store;
+  private readonly digits = this.settings.get('digits').valueSignal;
+  private readonly dateFormat = this.settings.get('dateFormat').valueSignal;
   private readonly effectivePattern = computed(() =>
     resolveDomainPattern(this.pattern(), ERP_DATE_FINAL_PATTERN),
   );
@@ -56,10 +61,15 @@ export class ErpDateBox extends ErpFieldBase<string | null> {
   );
   protected readonly displayValue = computed(() => {
     const value = this.currentValue();
-    return value ? new Intl.DateTimeFormat(this.locale() ?? undefined).format(parseIsoDate(value) as Date) : 'Select date';
+    return value
+      ? formatDatePreview(
+          value,
+          resolveContextualPreference(this.dateFormat(), 'field'),
+          resolveContextualPreference(this.digits(), 'field'),
+        )
+      : 'Select date';
   });
   private readonly overlays = inject(ErpOverlayManager);
-  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private activeRef: ErpOverlayRef<ErpTemporalValue> | null = null;
 
   constructor() {
@@ -78,10 +88,11 @@ export class ErpDateBox extends ErpFieldBase<string | null> {
     const ref = this.overlays.open<ErpTemporalPickerContent, ErpTemporalPickerData, ErpTemporalValue>(ErpTemporalPickerContent, {
       frame: {
         header: {title: this.trimmedLabel(), subtitle: 'اختر التاريخ', icon: 'calendar'},
-        footer: {
-          primary: {label: ERP_TEMPORAL_DEFAULT_ACTION_LABELS.confirm},
-          secondary: {label: ERP_TEMPORAL_DEFAULT_ACTION_LABELS.cancel},
-        },
+        footer: createTemporalOverlayFooter(
+          'date',
+          this.clearable(),
+          ERP_TEMPORAL_DEFAULT_ACTION_LABELS,
+        ),
       },
       ...(this.overlayConfig() ?? {}),
       data: this.pickerData(),
@@ -102,7 +113,7 @@ export class ErpDateBox extends ErpFieldBase<string | null> {
   protected handleNativeBlur(): void { this.handleBlur(); }
 
   private pickerData(): ErpTemporalPickerData {
-    return {mode: 'date', value: this.currentValue(), min: this.min(), max: this.max(), weekStartsOn: this.weekStartsOn(), minuteStep: 5, locale: this.locale(), actionLabels: ERP_TEMPORAL_DEFAULT_ACTION_LABELS, clearable: this.clearable(), theme: this.theme()};
+    return {mode: 'date', value: this.currentValue(), min: this.min(), max: this.max(), weekStartsOn: this.weekStartsOn(), minuteStep: 5, locale: this.locale(), actionLabels: ERP_TEMPORAL_DEFAULT_ACTION_LABELS, clearable: this.clearable()};
   }
 
   private commitPickerResult(value: ErpTemporalValue | undefined): void {
@@ -113,7 +124,4 @@ export class ErpDateBox extends ErpFieldBase<string | null> {
     }
   }
 
-  private theme(): 'light' | 'dark' {
-    return this.host.nativeElement.closest('[data-theme="dark"]') ? 'dark' : 'light';
-  }
 }

@@ -26,8 +26,9 @@ separate post-Tooltip integration wave.
 `activation`: `auto | press`; `text: string | null`; `interactive`, `showArrow`,
 and `disabled` are booleans; `enterAnimation` and `exitAnimation` use the shared
 `ErpMotionPreset` catalog; `open` is a two-way model. Defaults are plain, top,
-auto, noninteractive, arrow shown, enabled, closed, `fade-scale` enter, and
-`fade` exit.
+auto, noninteractive, arrow shown, enabled, closed, `slide-up` enter, and
+`slide-up` exit. Slide Up enters upward from below and exits upward from the
+anchored position.
 
 The shared motion values are exactly `fade`, `scale`, `fade-scale`, `slide-up`,
 `slide-down`, `slide-start`, `slide-end`, `zoom`, `pop`, `flip-x`, `flip-y`,
@@ -90,9 +91,12 @@ are private implementation contracts and are not consumer styling API.
 ## Motion and ownership
 
 Open measures hidden, positions, then runs the selected enter animation on the
-next animation frame. Close publishes `open=false` immediately and remains
-mounted until the selected exit animation completes. Reopening cancels that
-exit. The Foundation motion adapter is the sole owner of Animate.css class
+next animation frame. The fixed outer surface remains untransformed and owns
+anchored measurement, fixed placement, collision geometry, and arrow
+coordinates. Animate.css classes run only on the inner motion layer so visual
+transforms cannot corrupt `getBoundingClientRect()` positioning. Close
+publishes `open=false` immediately and remains mounted until the selected exit
+animation completes. Reopening cancels that exit. The Foundation motion adapter is the sole owner of Animate.css class
 mapping, duration, cancellation, cleanup, and deterministic reduced-motion
 completion. Tooltip supplies the canonical system preset and its fixed
 320ms/220ms component durations; vendor names never cross its API or showcase.

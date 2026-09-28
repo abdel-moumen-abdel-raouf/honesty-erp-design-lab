@@ -34,7 +34,11 @@ let nextFilePickerId = 0;
     },
   ],
   templateUrl: './file-picker.html',
-  styleUrls: ['./file-picker.scss', './file-picker-facets.scss'],
+  styleUrls: [
+    './file-picker.scss',
+    './file-picker-facets.scss',
+    './file-picker-selection.scss',
+  ],
   host: {
     '[attr.data-field-configuration-state]':
       'selectionConfigurationState()',

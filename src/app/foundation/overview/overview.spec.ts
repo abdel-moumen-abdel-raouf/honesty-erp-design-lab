@@ -3,6 +3,7 @@ import {By} from '@angular/platform-browser';
 import {provideRouter, RouterLink} from '@angular/router';
 import {routes} from '../../app.routes';
 import {
+  FOUNDATION_CURRENT_REVIEW_FAMILIES,
   FOUNDATION_NEXT_LAYER_DECISIONS,
   FOUNDATION_OVERALL_STATUS,
   FOUNDATION_OVERVIEW_DOMAINS,
@@ -27,6 +28,16 @@ const EXPECTED_REVIEW_ROUTES = [
   '/foundation/layers',
 ] as const;
 
+const EXPECTED_PRODUCTION_REVIEW_ROUTES = [
+  '/primitives/structural',
+  '/primitives/typography',
+  '/primitives/icons',
+  '/controls/buttons',
+  '/controls/tooltips',
+  '/controls/inputs',
+  '/controls/overlays',
+] as const;
+
 describe('Foundation Overview', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -48,7 +59,7 @@ describe('Foundation Overview', () => {
     }
   });
 
-  it('renders all domains and the exact flattened 14-route review sequence', () => {
+  it('renders all Foundation domains and the current production review inventory', () => {
     const fixture = TestBed.createComponent(Overview);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
@@ -56,25 +67,29 @@ describe('Foundation Overview', () => {
 
     expect(compiled.querySelectorAll('[data-domain-entry]')).toHaveLength(12);
     expect(compiled.querySelectorAll('[data-domain-link]')).toHaveLength(14);
-    expect(links).toHaveLength(14);
+    expect(compiled.querySelectorAll('[data-review-family]')).toHaveLength(7);
+    expect(compiled.querySelectorAll('[data-review-family-link]')).toHaveLength(7);
+    expect(FOUNDATION_CURRENT_REVIEW_FAMILIES).toHaveLength(7);
+    expect(links).toHaveLength(21);
     expect(links.map((link) => link.injector.get(RouterLink).href)).toEqual([
+      ...EXPECTED_PRODUCTION_REVIEW_ROUTES,
       ...EXPECTED_REVIEW_ROUTES,
     ]);
   });
 
-  it('renders the unchanged overall closure-review status in English and Arabic', () => {
+  it('renders the current factual implementation-review status in English and Arabic', () => {
     const fixture = TestBed.createComponent(Overview);
     fixture.detectChanges();
     const text = (fixture.nativeElement as HTMLElement).textContent ?? '';
 
     expect(FOUNDATION_OVERALL_STATUS.english).toBe(
-      'Ready for Product Owner final closure review'
+      'Foundation established; production review surfaces are implemented and under Product Owner review'
     );
     expect(text).toContain(FOUNDATION_OVERALL_STATUS.english);
     expect(text).toContain(FOUNDATION_OVERALL_STATUS.arabic);
   });
 
-  it('renders exactly five major sections with the reconciled third section', () => {
+  it('renders exactly six major sections including the production review families', () => {
     const fixture = TestBed.createComponent(Overview);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
@@ -82,13 +97,14 @@ describe('Foundation Overview', () => {
       compiled.querySelectorAll<HTMLElement>('[data-overview-section]')
     );
 
-    expect(sections).toHaveLength(5);
+    expect(sections).toHaveLength(6);
     expect(sections.map((section) => section.querySelector('h2')?.textContent?.trim())).toEqual([
       'حالة الأساس',
+      'عائلات مراجعة الإنتاج الحالية',
       'مجالات الأساس',
       'حدود V1 والطبقات التالية',
       'محفزات إعادة الفتح',
-      'بوابة الإغلاق',
+      'حالة المراجعة',
     ]);
   });
 
@@ -97,14 +113,15 @@ describe('Foundation Overview', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     const note = compiled.querySelector('[data-surfaces-consolidation]');
+    const surfaces = FOUNDATION_OVERVIEW_DOMAINS.find(
+      (domain) => domain.id === 'themes-feedback-surfaces',
+    );
 
     expect(note?.textContent).toContain('/foundation/themes');
-    expect(note?.textContent).toContain(
-      'Surface review is consolidated there because the same Light/Dark Surface hierarchy has already been reviewed there'
-    );
+    expect(note?.textContent?.trim()).toBe(surfaces?.note);
   });
 
-  it('renders exactly 10 next-layer decisions and 3 frozen V1 constraints in LTR lists', () => {
+  it('renders exactly 5 next-layer decisions and 3 frozen V1 constraints', () => {
     const fixture = TestBed.createComponent(Overview);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
@@ -117,9 +134,9 @@ describe('Foundation Overview', () => {
       compiled.querySelectorAll<HTMLElement>('[data-v1-constraint-item]')
     );
 
-    expect(nextLayerList?.getAttribute('dir')).toBe('ltr');
-    expect(constraintList?.getAttribute('dir')).toBe('ltr');
-    expect(nextLayerItems).toHaveLength(10);
+    expect(nextLayerList?.hasAttribute('dir')).toBe(false);
+    expect(constraintList?.hasAttribute('dir')).toBe(false);
+    expect(nextLayerItems).toHaveLength(5);
     expect(constraintItems).toHaveLength(3);
     expect(nextLayerItems.map((item) => item.textContent?.trim())).toEqual([
       ...FOUNDATION_NEXT_LAYER_DECISIONS,
@@ -156,22 +173,20 @@ describe('Foundation Overview', () => {
     );
   });
 
-  it('keeps final freeze behind explicit Product Owner approval without an action', () => {
+  it('records technical candidates without declaring visual approval or freeze', () => {
     const fixture = TestBed.createComponent(Overview);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     const gate = compiled.querySelector('#closure-gate');
+    const statements = Array.from(gate?.querySelectorAll('li') ?? []).map(
+      (item) => item.textContent?.trim(),
+    );
 
-    expect(gate?.textContent).toContain(
-      'Lower-layer Foundation Candidate V1 contracts are assembled for final Product Owner closure review.'
-    );
-    expect(gate?.textContent).toContain(
-      'Next-layer decisions and frozen V1 constraints are documented.'
-    );
-    expect(gate?.textContent).toContain('Final freeze has NOT happened yet.');
-    expect(gate?.textContent).toContain(
-      'Product Owner explicit approval is required before entering production primitives/components.'
-    );
+    expect(statements).toHaveLength(4);
+    expect(statements[0]).toContain('عقود التأسيس');
+    expect(statements[1]).toContain('مرشحة للمراجعة الفنية');
+    expect(statements[2]).toContain('الموافقة البصرية من مالك المنتج معلقة');
+    expect(statements[3]).toContain('لا يُعد بمثابة إقرار بالموافقة البصرية أو تجميد');
     expect(gate?.querySelector('button')).toBeNull();
   });
 });

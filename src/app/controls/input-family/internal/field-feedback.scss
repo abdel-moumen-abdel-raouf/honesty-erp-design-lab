@@ -44,10 +44,10 @@
   inset-inline-start: var(--honesty-field-feedback-padding-inline);
   inline-size: var(--honesty-field-feedback-caret-size);
   block-size: var(--honesty-field-feedback-caret-size);
-  border-block-start: var(--honesty-field-feedback-border-width)
+  border-top: var(--honesty-field-feedback-border-width)
     var(--honesty-field-feedback-border-style)
     var(--honesty-field-feedback-border-color);
-  border-inline-start: var(--honesty-field-feedback-border-width)
+  border-left: var(--honesty-field-feedback-border-width)
     var(--honesty-field-feedback-border-style)
     var(--honesty-field-feedback-border-color);
   background: var(--honesty-field-feedback-bg);

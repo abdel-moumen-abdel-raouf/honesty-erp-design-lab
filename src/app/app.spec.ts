@@ -26,8 +26,10 @@ function screenshotFrame(title: string) {
   return {
     header: {title, subtitle: 'Screenshot proof', icon: 'info' as const},
     footer: {
-      primary: {label: 'Confirm'},
-      secondary: {label: 'Cancel'},
+      actions: [
+        {id: 'cancel', label: 'Cancel', role: 'secondary' as const, placement: 'end' as const},
+        {id: 'confirm', label: 'Confirm', role: 'primary' as const, placement: 'end' as const},
+      ],
     },
   };
 }

@@ -5,10 +5,16 @@ import {
   computed,
   effect,
   forwardRef,
+  inject,
   input,
   signal,
 } from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {
+  formatMoneyPreview,
+  resolveContextualPreference,
+} from '../../foundation/preferences/core/ui-settings.formatters';
+import {UiSettingsService} from '../../foundation/preferences/core/ui-settings.service';
 import {
   ERP_MONEY_FINAL_PATTERN,
   isProgressiveNumericDraft,
@@ -54,6 +60,11 @@ export class ErpMoneyBox extends ErpFieldBase<number | null> {
   readonly pattern = input<string | null>(null);
 
   protected readonly controlId = `erp-money-box-${++nextMoneyBoxId}`;
+  private readonly settings = inject(UiSettingsService).store;
+  private readonly digits = this.settings.get('digits').valueSignal;
+  private readonly numberSeparators =
+    this.settings.get('numberSeparators').valueSignal;
+  private readonly moneyDisplay = this.settings.get('moneyDisplay').valueSignal;
   private readonly editingText = signal('');
   private readonly editing = signal(false);
   private readonly effectivePattern = computed(() =>
@@ -190,15 +201,29 @@ export class ErpMoneyBox extends ErpFieldBase<number | null> {
       return '';
     }
 
+    return formatMoneyPreview(
+      value,
+      this.currency(),
+      this.currencySymbol(),
+      resolveContextualPreference(this.digits(), 'money'),
+      resolveContextualPreference(this.numberSeparators(), 'money'),
+      this.moneyDisplay(),
+    );
+  }
+
+  private currencySymbol(): string {
     try {
-      return new Intl.NumberFormat(this.locale() ?? undefined, {
+      const formatter = new Intl.NumberFormat(this.locale() ?? undefined, {
         style: 'currency',
         currency: this.currency(),
-        minimumFractionDigits: this.minimumFractionDigits() ?? undefined,
-        maximumFractionDigits: this.maximumFractionDigits() ?? undefined,
-      }).format(value);
+        currencyDisplay: 'narrowSymbol',
+      });
+      return (
+        formatter.formatToParts(0).find((part) => part.type === 'currency')
+          ?.value ?? this.currency()
+      );
     } catch {
-      return value.toString();
+      return this.currency();
     }
   }
 }

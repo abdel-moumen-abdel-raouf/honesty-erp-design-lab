@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   computed,
   forwardRef,
   inject,
@@ -19,6 +18,7 @@ import {ErpFieldTrigger} from '../input-family/internal/field-trigger';
 import {ErpSelectionPickerContent} from '../selection-family/internal/selection-picker-content';
 import {
   ERP_SELECTION_DEFAULT_ACTION_LABELS,
+  createSelectionOverlayFooter,
   ErpColorPickerValue,
   ErpSelectionPickerData,
 } from '../selection-family/selection-contracts';
@@ -68,7 +68,6 @@ export class ErpColorPicker extends ErpFieldBase<ErpColorPickerValue | null> {
         : value.value;
   });
   private readonly overlays = inject(ErpOverlayManager);
-  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private activeRef: ErpOverlayRef<ErpColorPickerValue | null> | null = null;
 
   constructor() {
@@ -88,10 +87,11 @@ export class ErpColorPicker extends ErpFieldBase<ErpColorPickerValue | null> {
     >(ErpSelectionPickerContent, {
       frame: {
         header: {title: this.trimmedLabel(), subtitle: 'اختر لونًا', icon: 'layers'},
-        footer: {
-          primary: {label: ERP_SELECTION_DEFAULT_ACTION_LABELS.confirm},
-          secondary: {label: ERP_SELECTION_DEFAULT_ACTION_LABELS.cancel},
-        },
+        footer: createSelectionOverlayFooter(
+          'color',
+          true,
+          ERP_SELECTION_DEFAULT_ACTION_LABELS,
+        ),
       },
       ...(this.overlayConfig() ?? {}),
       data: this.pickerData(),
@@ -125,13 +125,6 @@ export class ErpColorPicker extends ErpFieldBase<ErpColorPickerValue | null> {
       searchable: false,
       clearable: true,
       actionLabels: ERP_SELECTION_DEFAULT_ACTION_LABELS,
-      theme: this.theme(),
     };
-  }
-
-  private theme(): 'light' | 'dark' {
-    return this.host.nativeElement.closest('[data-theme="dark"]')
-      ? 'dark'
-      : 'light';
   }
 }

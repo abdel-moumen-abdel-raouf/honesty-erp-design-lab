@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {
+  FOUNDATION_CURRENT_REVIEW_FAMILIES,
   FOUNDATION_NEXT_LAYER_DECISIONS,
   FOUNDATION_OVERALL_STATUS,
   FOUNDATION_OVERVIEW_DOMAINS,
@@ -16,6 +17,7 @@ import {
 })
 export class Overview {
   readonly domains = FOUNDATION_OVERVIEW_DOMAINS;
+  readonly reviewFamilies = FOUNDATION_CURRENT_REVIEW_FAMILIES;
   readonly overallStatus = FOUNDATION_OVERALL_STATUS;
   readonly nextLayerDecisions = FOUNDATION_NEXT_LAYER_DECISIONS;
   readonly v1Constraints = FOUNDATION_V1_CONSTRAINTS;

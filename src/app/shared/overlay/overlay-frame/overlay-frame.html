@@ -10,7 +10,7 @@
       <erp-text [id]="titleId()" type="heading-3">
         {{ config().header.title }}
       </erp-text>
-      <erp-text [id]="subtitleId()" type="paragraph" tone="secondary">
+      <erp-text [id]="subtitleId()" type="caption" tone="secondary">
         {{ config().header.subtitle }}
       </erp-text>
     </div>
@@ -29,24 +29,37 @@
   </div>
 
   <footer class="overlay-frame__footer">
-    <erp-button
-      data-overlay-frame-secondary
-      [label]="config().footer.secondary.label"
-      [icon]="config().footer.secondary.icon ?? null"
-      variant="outline"
-      tone="neutral"
-      [disabled]="config().footer.secondary.disabled ?? false"
-      [loading]="config().footer.secondary.loading ?? false"
-      (pressed)="request('secondary')"
-    />
-    <erp-button
-      data-overlay-frame-primary
-      [label]="config().footer.primary.label"
-      [icon]="config().footer.primary.icon ?? null"
-      tone="primary"
-      [disabled]="config().footer.primary.disabled ?? false"
-      [loading]="config().footer.primary.loading ?? false"
-      (pressed)="request('primary')"
-    />
+    <div class="overlay-frame__action-group" data-overlay-frame-action-group="start">
+      @for (action of startActions(); track action.id) {
+        <erp-button
+          data-overlay-frame-action
+          [attr.data-overlay-frame-action-id]="action.id"
+          [attr.data-overlay-frame-action-role]="action.role"
+          [label]="action.label"
+          [icon]="action.icon ?? null"
+          [variant]="buttonVariant(action.role)"
+          [tone]="buttonTone(action.role)"
+          [disabled]="action.disabled"
+          [loading]="action.loading"
+          (pressed)="request(action.id)"
+        />
+      }
+    </div>
+    <div class="overlay-frame__action-group" data-overlay-frame-action-group="end">
+      @for (action of endActions(); track action.id) {
+        <erp-button
+          data-overlay-frame-action
+          [attr.data-overlay-frame-action-id]="action.id"
+          [attr.data-overlay-frame-action-role]="action.role"
+          [label]="action.label"
+          [icon]="action.icon ?? null"
+          [variant]="buttonVariant(action.role)"
+          [tone]="buttonTone(action.role)"
+          [disabled]="action.disabled"
+          [loading]="action.loading"
+          (pressed)="request(action.id)"
+        />
+      }
+    </div>
   </footer>
 </div>

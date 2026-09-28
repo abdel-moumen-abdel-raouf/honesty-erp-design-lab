@@ -33,15 +33,25 @@ export interface ErpOverlayHeaderConfig {
 }
 
 export interface ErpOverlayActionConfig {
+  readonly id: string;
   readonly label: string;
   readonly icon?: ErpIconName | null;
+  readonly role: ErpOverlayActionRole;
+  readonly placement: ErpOverlayActionPlacement;
   readonly disabled?: boolean;
   readonly loading?: boolean;
 }
 
+export type ErpOverlayActionRole = 'primary' | 'secondary' | 'utility';
+export type ErpOverlayActionPlacement = 'start' | 'end';
+
+export interface ErpOverlayFrameActionState {
+  readonly disabled: boolean;
+  readonly loading: boolean;
+}
+
 export interface ErpOverlayFooterConfig {
-  readonly primary: ErpOverlayActionConfig;
-  readonly secondary: ErpOverlayActionConfig;
+  readonly actions: readonly ErpOverlayActionConfig[];
 }
 
 export interface ErpOverlayFrameConfig {
@@ -49,9 +59,7 @@ export interface ErpOverlayFrameConfig {
   readonly footer: ErpOverlayFooterConfig;
 }
 
-export type ErpOverlayFrameAction =
-  | 'primary'
-  | 'secondary';
+export type ErpOverlayFrameActionId = string;
 
 export interface ErpOverlayBehaviorConfig {
   readonly dismissOnEscape: boolean;

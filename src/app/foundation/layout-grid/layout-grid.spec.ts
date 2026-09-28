@@ -21,11 +21,11 @@ describe('LayoutGrid Candidate V1 Visual Specimen', () => {
     compiled = fixture.nativeElement as HTMLElement;
   });
 
-  it('should create the layout-grid specimen component and have data-theme="light" on root', () => {
+  it('should create the layout-grid specimen component and inherit the global theme', () => {
     expect(component).toBeTruthy();
     const root = compiled.querySelector('#layout-grid-specimen-root');
     expect(root).toBeTruthy();
-    expect(root?.getAttribute('data-theme')).toBe('light');
+    expect(root?.hasAttribute('data-theme')).toBe(false);
   });
 
   it('should have the /foundation/layout-grid route defined in routes', () => {

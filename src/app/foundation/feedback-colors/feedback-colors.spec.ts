@@ -20,16 +20,18 @@ describe('FeedbackColors Specimen Component', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render both Light and Dark theme review contexts', () => {
+  it('should render both labelled review contexts without overriding the global theme', () => {
     const fixture = TestBed.createComponent(FeedbackColors);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
 
-    const lightContext = compiled.querySelector('#feedback-context-light[data-theme="light"]');
-    const darkContext = compiled.querySelector('#feedback-context-dark[data-theme="dark"]');
+    const lightContext = compiled.querySelector('#feedback-context-light');
+    const darkContext = compiled.querySelector('#feedback-context-dark');
 
     expect(lightContext).toBeTruthy();
     expect(darkContext).toBeTruthy();
+    expect(lightContext?.hasAttribute('data-theme')).toBe(false);
+    expect(darkContext?.hasAttribute('data-theme')).toBe(false);
   });
 
   it('should render all four intents (success, warning, danger, info) in Light theme', () => {

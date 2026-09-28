@@ -2,9 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   inject,
   OnDestroy,
   signal,
+  viewChildren,
 } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {
@@ -58,14 +60,23 @@ export class ErpSelectionPickerContent implements OnDestroy {
   readonly data = inject(ERP_OVERLAY_DATA) as ErpSelectionPickerData;
   private readonly ref = inject(ERP_OVERLAY_REF) as ErpOverlayRef<ErpSelectionPickerValue>;
   private readonly frameActionCleanup = [
-    this.ref.registerFrameAction('primary', () => this.confirm()),
-    this.ref.registerFrameAction('secondary', () => this.cancel()),
+    this.ref.registerFrameAction('confirm', () => this.confirm()),
+    this.ref.registerFrameAction('cancel', () => this.cancel()),
+    ...(
+      this.data.clearable ||
+      this.data.mode === 'color' ||
+      this.data.mode === 'icon' ||
+      this.data.mode === 'combo'
+        ? [this.ref.registerFrameAction('clear-selected', () => this.clear())]
+        : []
+    ),
   ];
+  private readonly optionTiles = viewChildren(ErpSelectionTile);
 
   protected readonly query = signal(this.data.query);
   protected readonly staged = signal<ErpSelectionPickerValue>(this.data.value);
   protected readonly colorMode = signal<ErpColorPickerMode>(this.data.colorMode);
-  protected readonly activeIndex = signal(0);
+  protected readonly activeIndex = signal<number | null>(null);
   protected readonly systemColorGroups = ERP_SYSTEM_COLOR_FAMILIES.map(
     (family) => ({
       family,
@@ -100,6 +111,21 @@ export class ErpSelectionPickerContent implements OnDestroy {
     );
   });
 
+  constructor() {
+    effect(() => {
+      if (
+        this.data.clearable ||
+        this.data.mode === 'color' ||
+        this.data.mode === 'icon' ||
+        this.data.mode === 'combo'
+      ) {
+        this.ref.updateFrameActionState('clear-selected', {
+          disabled: this.staged() === null,
+        });
+      }
+    });
+  }
+
   ngOnDestroy(): void {
     for (const cleanup of this.frameActionCleanup) {
       cleanup();
@@ -108,7 +134,7 @@ export class ErpSelectionPickerContent implements OnDestroy {
 
   protected updateQuery(value: string): void {
     this.query.set(value);
-    this.activeIndex.set(0);
+    this.activeIndex.set(null);
   }
 
   protected setColorMode(mode: ErpColorPickerMode): void {
@@ -147,23 +173,32 @@ export class ErpSelectionPickerContent implements OnDestroy {
     const options = this.currentOptions();
     if (options.length === 0) return;
     const last = options.length - 1;
+    const current = this.activeIndex();
     const nextByKey: Record<string, number> = {
-      ArrowDown: Math.min(last, this.activeIndex() + 1),
-      ArrowRight: Math.min(last, this.activeIndex() + 1),
-      ArrowUp: Math.max(0, this.activeIndex() - 1),
-      ArrowLeft: Math.max(0, this.activeIndex() - 1),
+      ArrowDown: current === null ? 0 : Math.min(last, current + 1),
+      ArrowRight: current === null ? 0 : Math.min(last, current + 1),
+      ArrowUp: current === null ? last : Math.max(0, current - 1),
+      ArrowLeft: current === null ? last : Math.max(0, current - 1),
       Home: 0,
       End: last,
     };
     if (event.key in nextByKey) {
       event.preventDefault();
-      this.activeIndex.set(nextByKey[event.key]);
+      const next = nextByKey[event.key];
+      this.activeIndex.set(next);
+      queueMicrotask(() => this.optionTiles()[next]?.focus());
     } else if (event.key === 'Enter') {
       event.preventDefault();
-      const value = options[this.activeIndex()];
+      const index = this.activeIndex();
+      if (index === null) return;
+      const value = options[index];
       if (this.data.mode === 'icon') this.selectIcon(value as ErpIconName);
       else this.selectItem(value as ErpItemPickerOption);
     }
+  }
+
+  protected setActiveIndex(index: number): void {
+    this.activeIndex.set(index);
   }
 
   protected clear(): void {

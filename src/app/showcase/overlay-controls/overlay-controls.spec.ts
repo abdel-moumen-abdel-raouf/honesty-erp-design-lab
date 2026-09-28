@@ -214,18 +214,26 @@ describe('OverlayControls showcase', () => {
         closeLabel: 'إغلاق مراجعة الإطار',
       },
       footer: {
-        primary: {
-          label: 'اعتماد المراجعة',
-          icon: 'check',
-          disabled: false,
-          loading: false,
-        },
-        secondary: {
-          label: 'إلغاء المراجعة',
-          icon: null,
-          disabled: false,
-          loading: false,
-        },
+        actions: [
+          {
+            id: 'cancel',
+            label: 'إلغاء المراجعة',
+            icon: null,
+            role: 'secondary',
+            placement: 'end',
+            disabled: false,
+            loading: false,
+          },
+          {
+            id: 'confirm',
+            label: 'اعتماد المراجعة',
+            icon: 'check',
+            role: 'primary',
+            placement: 'end',
+            disabled: false,
+            loading: false,
+          },
+        ],
       },
     });
   });

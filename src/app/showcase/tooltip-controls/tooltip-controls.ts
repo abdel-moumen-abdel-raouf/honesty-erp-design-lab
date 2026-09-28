@@ -29,8 +29,8 @@ export class TooltipControls {
   readonly controlledOpen = signal(false);
   readonly motionOptions: readonly ErpButtonGroupItem[] =
     ERP_MOTION_PRESETS.map((preset) => ({value: preset, label: preset}));
-  readonly enterAnimation = signal<ErpMotionPreset>('fade-scale');
-  readonly exitAnimation = signal<ErpMotionPreset>('fade');
+  readonly enterAnimation = signal<ErpMotionPreset>('slide-up');
+  readonly exitAnimation = signal<ErpMotionPreset>('slide-up');
   readonly motionPreviewOpen = signal(true);
 
   selectEnterAnimation(value: string): void {

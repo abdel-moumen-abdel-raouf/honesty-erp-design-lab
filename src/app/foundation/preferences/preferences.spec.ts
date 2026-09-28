@@ -30,6 +30,7 @@ import {
   UiSettingsStorageContext,
 } from './core/ui-settings.types';
 import {Preferences} from './preferences';
+import {UiSettingsService} from './core/ui-settings.service';
 
 const storageContext: UiSettingsStorageContext = {
   tenantId: 'design-lab-tenant',
@@ -526,7 +527,17 @@ describe('Preferences specimen route and structure', () => {
     expect(compiled.querySelector('#preferences-live-preview')).toBeTruthy();
   });
 
-  it('keeps theme and density attributes local to the live preview', () => {
+  it('uses the application-level injectable store as the shared runtime source', () => {
+    const service = TestBed.inject(UiSettingsService);
+    const fixture = TestBed.createComponent(Preferences);
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.store).toBe(service.store);
+    service.store.set('moneyDisplay', 'symbol-before');
+    expect(fixture.componentInstance.moneyDisplay()).toBe('symbol-before');
+  });
+
+  it('inherits global theme authority while keeping density local to the live preview', () => {
     const htmlTheme = document.documentElement.getAttribute('data-theme');
     const htmlDensity = document.documentElement.getAttribute('data-density');
     const bodyTheme = document.body.getAttribute('data-theme');
@@ -537,7 +548,7 @@ describe('Preferences specimen route and structure', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const preview = compiled.querySelector('#preferences-live-preview');
 
-    expect(preview?.getAttribute('data-theme')).toMatch(/^(light|dark)$/);
+    expect(preview?.hasAttribute('data-theme')).toBe(false);
     expect(preview?.getAttribute('data-density')).toBe('comfortable');
     expect(document.documentElement.getAttribute('data-theme')).toBe(htmlTheme);
     expect(document.documentElement.getAttribute('data-density')).toBe(htmlDensity);

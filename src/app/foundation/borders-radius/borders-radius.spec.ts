@@ -17,11 +17,11 @@ describe('Borders & Radius Candidate V1 Visual Specimen', () => {
     compiled = fixture.nativeElement as HTMLElement;
   });
 
-  it('should create the borders-radius specimen component and have data-theme="light" on root', () => {
+  it('should create the borders-radius specimen and inherit the global theme', () => {
     expect(component).toBeTruthy();
     const root = compiled.querySelector('#borders-radius-specimen-root');
     expect(root).toBeTruthy();
-    expect(root?.getAttribute('data-theme')).toBe('light');
+    expect(root?.hasAttribute('data-theme')).toBe(false);
   });
 
   describe('Section 1: Reference Border Widths', () => {
@@ -63,7 +63,7 @@ describe('Borders & Radius Candidate V1 Visual Specimen', () => {
     it('should render Light theme border hierarchy with subtle, default, and strong samples', () => {
       const lightContext = compiled.querySelector('#border-theme-context-light');
       expect(lightContext).toBeTruthy();
-      expect(lightContext?.getAttribute('data-theme')).toBe('light');
+      expect(lightContext?.hasAttribute('data-theme')).toBe(false);
 
       const subtle = lightContext?.querySelector('#light-border-subtle');
       const def = lightContext?.querySelector('#light-border-default');
@@ -81,7 +81,7 @@ describe('Borders & Radius Candidate V1 Visual Specimen', () => {
     it('should render Dark theme border hierarchy with subtle, default, and strong samples', () => {
       const darkContext = compiled.querySelector('#border-theme-context-dark');
       expect(darkContext).toBeTruthy();
-      expect(darkContext?.getAttribute('data-theme')).toBe('dark');
+      expect(darkContext?.hasAttribute('data-theme')).toBe(false);
 
       const subtle = darkContext?.querySelector('#dark-border-subtle');
       const def = darkContext?.querySelector('#dark-border-default');

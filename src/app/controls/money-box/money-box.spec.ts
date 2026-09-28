@@ -1,11 +1,13 @@
 import {reflectComponentType} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
+import {UiSettingsService} from '../../foundation/preferences/core/ui-settings.service';
 import {ERP_MONEY_FINAL_PATTERN} from '../input-family/domain-validation';
 import {ErpMoneyBox} from './money-box';
 
 describe('ErpMoneyBox', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({imports: [ErpMoneyBox]});
+    TestBed.inject(UiSettingsService).store.resetAll();
   });
 
   function create() {
@@ -46,7 +48,7 @@ describe('ErpMoneyBox', () => {
     control.registerOnChange(onChange);
     control.writeValue(1234.5);
     fixture.detectChanges();
-    expect(native.value).toBe('$1,234.50');
+    expect(native.value).toBe('1,234.50 USD');
     native.dispatchEvent(new FocusEvent('focus'));
     fixture.detectChanges();
     expect(native.value).toBe('1234.5');
@@ -61,7 +63,30 @@ describe('ErpMoneyBox', () => {
     expect(onChange).toHaveBeenCalledWith(50);
     native.dispatchEvent(new FocusEvent('blur'));
     fixture.detectChanges();
-    expect(native.value).toBe('$50.00');
+    expect(native.value).toBe('50.00 USD');
+  });
+
+  it('formats blurred display from the shared money Preferences context', () => {
+    const settings = TestBed.inject(UiSettingsService).store;
+    settings.set('digits', {
+      base: 'latin',
+      overrides: {money: 'arabic-indic'},
+    });
+    settings.set('numberSeparators', {
+      base: 'comma-dot',
+      overrides: {money: 'arabic'},
+    });
+    settings.set('moneyDisplay', 'code-before');
+
+    const fixture = create();
+    const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
+    fixture.componentInstance.writeValue(1234.5);
+    fixture.detectChanges();
+
+    expect(native.value).toBe('USD ١٬٢٣٤٫٥٠');
+    native.dispatchEvent(new FocusEvent('focus'));
+    fixture.detectChanges();
+    expect(native.value).toBe('1234.5');
   });
 
   it('uses custom patterns and invalid regex is invalid configuration', () => {

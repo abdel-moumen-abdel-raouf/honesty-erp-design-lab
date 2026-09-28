@@ -167,8 +167,8 @@ export function validateTooltipMotionContract(
     'AnimateCssMotionAdapter',
     'ERP_TOOLTIP_MOTION_DURATION_MS',
     "import {ErpMotionPreset} from '../../foundation/motion/motion-contracts';",
-    "readonly enterAnimation = input<ErpMotionPreset>('fade-scale');",
-    "readonly exitAnimation = input<ErpMotionPreset>('fade');",
+    "readonly enterAnimation = input<ErpMotionPreset>('slide-up');",
+    "readonly exitAnimation = input<ErpMotionPreset>('slide-up');",
     "'[attr.data-tooltip-enter-animation]': 'enterAnimation()'",
     "'[attr.data-tooltip-exit-animation]': 'exitAnimation()'",
     'this.motion.start({',
@@ -183,6 +183,10 @@ export function validateTooltipMotionContract(
 
   if (template.includes('(animationend)=')) {
     errors.push('Tooltip motion: vendor lifecycle must remain adapter-owned');
+  }
+
+  if (!template.includes('class="erp-tooltip__motion"')) {
+    errors.push('Tooltip motion: missing stable outer-surface inner motion layer');
   }
 
   for (const required of [
@@ -290,8 +294,8 @@ function selfTest() {
   const validMotionSource = `
 AnimateCssMotionAdapter ERP_TOOLTIP_MOTION_DURATION_MS
 import {ErpMotionPreset} from '../../foundation/motion/motion-contracts';
-readonly enterAnimation = input<ErpMotionPreset>('fade-scale');
-readonly exitAnimation = input<ErpMotionPreset>('fade');
+readonly enterAnimation = input<ErpMotionPreset>('slide-up');
+readonly exitAnimation = input<ErpMotionPreset>('slide-up');
 '[attr.data-tooltip-enter-animation]': 'enterAnimation()'
 '[attr.data-tooltip-exit-animation]': 'exitAnimation()'
 this.motion.start({
@@ -303,7 +307,7 @@ else this.finalizeClose(surface)`;
 export const ERP_TOOLTIP_MOTION_DURATION_MS = {enter: 320, exit: 220};
 window.matchMedia('(prefers-reduced-motion: reduce)');`;
   const validMotionStyle = '.erp-tooltip__surface { opacity: 1; }';
-  const validMotionTemplate = '<div></div>';
+  const validMotionTemplate = '<div class="erp-tooltip__motion"></div>';
 
   if (
     validateTooltipMotionContract(

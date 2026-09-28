@@ -152,8 +152,10 @@ export class OverlayControls {
             closeLabel: 'إغلاق مراجعة الإطار',
           },
           footer: {
-            primary: {label: 'اعتماد المراجعة', icon: 'check'},
-            secondary: {label: 'إلغاء المراجعة'},
+            actions: [
+              {id: 'cancel', label: 'إلغاء المراجعة', role: 'secondary', placement: 'end'},
+              {id: 'confirm', label: 'اعتماد المراجعة', icon: 'check', role: 'primary', placement: 'end'},
+            ],
           },
         },
         data: {
@@ -186,8 +188,10 @@ export class OverlayControls {
         icon: 'layers',
       },
       footer: {
-        primary: {label: 'تأكيد'},
-        secondary: {label: 'إلغاء'},
+        actions: [
+          {id: 'cancel', label: 'إلغاء', role: 'secondary', placement: 'end'},
+          {id: 'confirm', label: 'تأكيد', role: 'primary', placement: 'end'},
+        ],
       },
     };
   }

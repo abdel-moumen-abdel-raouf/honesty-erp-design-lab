@@ -1,0 +1,14 @@
+:host([data-selection-tile-presentation='list']) {
+  inline-size: 100%;
+  block-size: auto;
+}
+
+:host([data-selection-tile-presentation='list']) button {
+  display: flex;
+  justify-content: flex-start;
+  gap: var(--honesty-selection-picker-list-item-gap);
+  block-size: auto;
+  min-block-size: var(--honesty-selection-picker-list-item-min-block-size);
+  padding: var(--honesty-selection-picker-list-item-padding);
+  text-align: start;
+}

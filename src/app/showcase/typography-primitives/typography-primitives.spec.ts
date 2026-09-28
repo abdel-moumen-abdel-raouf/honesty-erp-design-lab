@@ -20,14 +20,12 @@ describe('TypographyPrimitives showcase', () => {
     expect(TestBed.createComponent(TypographyPrimitives).componentInstance).toBeTruthy();
   });
 
-  it('uses a Light theme review root and exactly seven major groups', () => {
+  it('inherits the global theme and uses exactly seven major groups', () => {
     const fixture = TestBed.createComponent(TypographyPrimitives);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
 
-    expect(compiled.querySelector('erp-container.typography-showcase')?.getAttribute('data-theme')).toBe(
-      'light',
-    );
+    expect(compiled.querySelector('erp-container.typography-showcase')?.hasAttribute('data-theme')).toBe(false);
     expect(compiled.querySelectorAll('[data-review-group]').length).toBe(7);
   });
 

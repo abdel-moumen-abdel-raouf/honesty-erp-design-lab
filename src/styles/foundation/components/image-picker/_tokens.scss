@@ -19,7 +19,10 @@
   --honesty-image-picker-item-copy-gap: var(--honesty-space-stack-tight);
   --honesty-image-picker-item-padding: var(--honesty-space-inset-tight);
   --honesty-image-picker-item-bg: var(--honesty-color-surface-default);
+  --honesty-image-picker-item-bg-hover:
+    var(--honesty-color-action-primary-subtle-bg-hover);
   --honesty-image-picker-item-border-color: var(--honesty-border-subtle);
+  --honesty-image-picker-item-border-color-hover: var(--honesty-border-default);
   --honesty-image-picker-item-border-width: var(--honesty-border-width-default);
   --honesty-image-picker-item-border-style: var(--honesty-border-style-default);
   --honesty-image-picker-item-radius: var(--honesty-radius-control);

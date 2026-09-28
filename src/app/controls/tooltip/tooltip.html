@@ -24,11 +24,13 @@
   (focusin)="handleFocusIn()"
   (focusout)="handleFocusOut($event)"
 >
-  @if (variant() === 'plain') {
-    <erp-text type="caption" tone="inherit">{{ trimmedText() }}</erp-text>
-  } @else {
-    <ng-content select="erp-tooltip-content"></ng-content>
-  }
+  <span #motionLayer class="erp-tooltip__motion">
+    @if (variant() === 'plain') {
+      <erp-text type="caption" tone="inherit">{{ trimmedText() }}</erp-text>
+    } @else {
+      <ng-content select="erp-tooltip-content"></ng-content>
+    }
+  </span>
   @if (showArrow()) {
     <span #arrow class="erp-tooltip__arrow" aria-hidden="true"></span>
   }

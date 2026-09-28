@@ -31,10 +31,10 @@ describe('IconPrimitives showcase', () => {
     expect(TestBed.createComponent(IconPrimitives).componentInstance).toBeTruthy();
   });
 
-  it('applies the Light theme scope to the showcase root', () => {
+  it('inherits the application-level theme on the showcase root', () => {
     const root = render().querySelector('erp-container.icon-showcase');
 
-    expect(root?.getAttribute('data-theme')).toBe('light');
+    expect(root?.hasAttribute('data-theme')).toBe(false);
   });
 
   it('renders exactly five review groups', () => {

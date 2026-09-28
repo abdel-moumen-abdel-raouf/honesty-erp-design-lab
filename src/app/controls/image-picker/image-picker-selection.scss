@@ -18,6 +18,16 @@
   border-color: var(--honesty-image-picker-item-border-color);
   border-radius: var(--honesty-image-picker-item-radius);
   background: var(--honesty-image-picker-item-bg);
+  transition: background-color var(--honesty-image-picker-transition-duration)
+      var(--honesty-image-picker-transition-easing),
+    border-color var(--honesty-image-picker-transition-duration)
+      var(--honesty-image-picker-transition-easing);
+}
+
+.image-picker__item:hover,
+.image-picker__item:focus-within {
+  border-color: var(--honesty-image-picker-item-border-color-hover);
+  background: var(--honesty-image-picker-item-bg-hover);
 }
 
 .image-picker__item-copy {
@@ -37,4 +47,10 @@
   border-radius: var(--honesty-image-picker-preview-radius);
   background: var(--honesty-image-picker-preview-bg);
   object-fit: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image-picker__item {
+    transition-duration: var(--honesty-image-picker-reduced-duration);
+  }
 }

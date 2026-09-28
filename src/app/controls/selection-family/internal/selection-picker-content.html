@@ -1,4 +1,4 @@
-<erp-stack class="selection-picker" gap="default" [attr.data-theme]="data.theme">
+<erp-stack class="selection-picker" gap="default">
   @if (data.mode === 'color') {
     <erp-inline class="color-mode-switch" gap="tight" wrap="wrap">
       <erp-button
@@ -71,7 +71,8 @@
     }
     <div
       class="option-list"
-      tabindex="0"
+      role="listbox"
+      tabindex="-1"
       data-selection-list
       (keydown)="handleListKeydown($event)"
     >
@@ -85,6 +86,8 @@
                 [label]="icon"
                 [active]="activeIndex() === index"
                 [selected]="staged() === icon"
+                [tabIndex]="activeIndex() === null ? (index === 0 ? 0 : -1) : (activeIndex() === index ? 0 : -1)"
+                (focused)="setActiveIndex(index)"
                 (activated)="selectIcon(icon)"
               >
                 <erp-icon [name]="icon" size="md" />
@@ -101,6 +104,9 @@
             [active]="activeIndex() === index"
             [selected]="staged() === item.value"
             [disabled]="item.disabled ?? false"
+            presentation="list"
+            [tabIndex]="activeIndex() === null ? (index === 0 ? 0 : -1) : (activeIndex() === index ? 0 : -1)"
+            (focused)="setActiveIndex(index)"
             (activated)="selectItem(item)"
           >
             @if (item.icon) {
@@ -113,21 +119,4 @@
     </div>
   }
 
-  <erp-inline class="selection-actions" gap="tight" wrap="wrap" justify="end">
-    @if (
-      data.clearable ||
-      data.mode === 'color' ||
-      data.mode === 'icon' ||
-      data.mode === 'combo'
-    ) {
-      <erp-button
-        data-clear-action
-        [label]="data.actionLabels.clear"
-        variant="ghost"
-        tone="neutral"
-        size="sm"
-        (pressed)="clear()"
-      />
-    }
-  </erp-inline>
 </erp-stack>

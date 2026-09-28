@@ -44,6 +44,7 @@
       (activated)="togglePopup()"
       (keyPressed)="handlePopupKeydown($event)"
       (focused)="handleNativeFocus()"
+      (blurred)="handleNativeBlur()"
     >
       <erp-text type="text" tone="inherit">
         {{ currentValue() || placeholder() || '' }}
@@ -60,7 +61,6 @@
     [attr.aria-label]="label()"
     [attr.data-search-popup-phase]="popupPhase()"
     [attr.data-search-popup-animation]="activeAnimation()"
-    (transitionend)="handlePopupTransitionEnd($event)"
   >
     <erp-field-frame
       [label]="label()"

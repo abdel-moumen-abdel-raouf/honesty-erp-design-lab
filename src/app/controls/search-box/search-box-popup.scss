@@ -8,16 +8,15 @@
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   gap: var(--honesty-search-box-popup-content-gap);
-  inline-size: clamp(
-    min(
-      var(--honesty-search-box-popup-min-inline-size),
-      calc(100dvw - (2 * var(--honesty-search-box-popup-viewport-inset)))
+  inline-size: min(
+    max(
+      var(--_honesty-search-box-popup-trigger-inline-size),
+      min(
+        var(--honesty-search-box-popup-min-inline-size),
+        var(--honesty-search-box-popup-max-inline-size)
+      )
     ),
-    var(--_honesty-search-box-popup-trigger-inline-size),
-    min(
-      var(--honesty-search-box-popup-max-inline-size),
-      calc(100dvw - (2 * var(--honesty-search-box-popup-viewport-inset)))
-    )
+    calc(100dvw - (2 * var(--honesty-search-box-popup-viewport-inset)))
   );
   max-inline-size: calc(
     100dvw - (2 * var(--honesty-search-box-popup-viewport-inset))
@@ -51,6 +50,10 @@
   transform: none;
   transition-duration: var(--honesty-search-box-popup-enter-duration);
   transition-timing-function: var(--honesty-search-box-popup-enter-easing);
+}
+
+.search-box__popup[data-search-popup-phase='leaving'] {
+  pointer-events: none;
 }
 
 .search-box__results {
