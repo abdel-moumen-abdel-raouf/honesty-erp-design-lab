@@ -366,3 +366,34 @@ correction.
 This revision is not considered fully verified until a fresh local
 `npm run verify:clean` completes through tests, both TypeScript no-emit
 checks, and `build:clean`. It does not declare Product Owner visual approval.
+
+
+## Windows zero-warning runner correction
+
+A local `npm run verify:clean` at
+`ce103d77bd5f7268416f9889d84c684f4d8e565c` produced the following verified
+evidence:
+
+- `theme-authority:check` passed;
+- all custom governance checks passed;
+- Angular lint passed with zero warnings/errors;
+- 87 test files / 618 tests passed;
+- `typecheck:app` passed;
+- `typecheck:spec` passed.
+
+The only remaining failure occurred before Angular production build execution:
+the zero-warning wrapper attempted `spawnSync('npm.cmd', ...)` with
+`shell: false` on Windows and Node returned `EINVAL`.
+
+The wrapper is corrected to execute the npm JavaScript CLI through
+`process.execPath` when `npm_execpath` is available, avoiding direct
+`.cmd` spawning. A Windows `ComSpec` fallback is retained only when
+`npm_execpath` is unavailable.
+
+The warning detector remains mandatory and still fails the gate when Angular
+emits warning markers. A new `build:clean:self-test` verifies warning
+detection, false-positive rejection, npm CLI invocation, and Windows fallback
+resolution.
+
+The repository is not declared fully clean until a fresh local
+`npm run verify:clean` reaches `Zero-warning build gate: PASS`.

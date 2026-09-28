@@ -35,7 +35,8 @@
     "typecheck:spec": "tsc -p tsconfig.spec.json --noEmit",
     "build:clean": "node tools/verification/check-zero-warning-build.mjs",
     "theme-authority:check": "node tools/foundation/check-single-theme-authority.mjs",
-    "theme-authority:check:self-test": "node tools/foundation/check-single-theme-authority.mjs --self-test"
+    "theme-authority:check:self-test": "node tools/foundation/check-single-theme-authority.mjs --self-test",
+    "build:clean:self-test": "node tools/verification/check-zero-warning-build.mjs --self-test"
   },
   "private": true,
   "dependencies": {

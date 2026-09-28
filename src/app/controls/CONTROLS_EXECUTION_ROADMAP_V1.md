@@ -292,3 +292,16 @@ clean lint run at `030a74bb6e6977ecca6d33a373ef806a93c35306`:
 ReviewSelect projected-option selection and ErpText-owned BDI direction.
 
 A fresh local `npm run verify:clean` is the next mandatory gate.
+
+
+### Windows zero-warning runner correction
+
+Local verification at `ce103d77bd5f7268416f9889d84c684f4d8e565c`
+passed lint/governance, 87/87 test files (618/618 tests), and both TypeScript
+no-emit checks. The final wrapper failed before starting Angular build because
+Windows rejected direct `spawnSync('npm.cmd')` with `EINVAL`.
+
+The build gate now invokes npm through its JavaScript CLI using
+`process.execPath + npm_execpath`, with a `ComSpec` fallback. Warning
+detection remains release-blocking. A fresh `npm run verify:clean` is the
+next mandatory gate.

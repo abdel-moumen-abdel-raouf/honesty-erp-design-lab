@@ -669,3 +669,18 @@ component-style thresholds unless the Product Owner explicitly reopens them.
 
 Do not suppress CommonJS warnings with an allow-list when an owned ESM entry is
 available and verified.
+
+
+## Cross-Platform Verification Runner
+
+The zero-warning build wrapper must remain cross-platform.
+
+- Do not spawn `npm.cmd` directly with `shell: false` on Windows.
+- Prefer `process.execPath` + `process.env.npm_execpath` to invoke npm
+  lifecycle commands from Node verification scripts.
+- A Windows `ComSpec` fallback is acceptable only when `npm_execpath` is
+  unavailable.
+- The wrapper must capture stdout/stderr, propagate non-zero build exits, and
+  fail on Angular warning markers.
+- `npm run build:clean:self-test` must keep covering warning detection,
+  false-positive rejection, and invocation resolution.
