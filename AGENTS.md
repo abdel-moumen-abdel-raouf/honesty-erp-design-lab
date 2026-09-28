@@ -684,3 +684,16 @@ The zero-warning build wrapper must remain cross-platform.
   fail on Angular warning markers.
 - `npm run build:clean:self-test` must keep covering warning detection,
   false-positive rejection, and invocation resolution.
+
+
+## Build Warning Detection
+
+Zero-warning verification must inspect normalized build output.
+
+- Strip ANSI SGR escape sequences before warning matching.
+- Angular component-style budget and optimization warnings remain
+  release-blocking even when the CLI colors their output.
+- Do not raise the approved 4 kB warning / 8 kB error component-style budgets
+  merely to make the build green. Split/refactor the owning styles instead.
+- The zero-warning wrapper self-test must include an ANSI-colored Angular
+  warning example so a colored warning can never produce a false PASS.

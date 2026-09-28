@@ -1,11 +1,16 @@
 import {spawnSync} from 'node:child_process';
 import process from 'node:process';
 
+const ANSI_SGR_PATTERN = /\u001B\[[0-?]*[ -/]*[@-~]/g;
 const ANGULAR_WARNING_PATTERN =
-  /(?:▲\s*\[WARNING\]|\[WARNING\]|WARNING\s+in\s+)/i;
+  /(?:▲\s*\[WARNING\]|\[WARNING\]|WARNING\s+in\s+|exceeded maximum budget|optimization bailouts)/i;
+
+export function stripAnsi(output) {
+  return output.replace(ANSI_SGR_PATTERN, '');
+}
 
 export function hasAngularWarning(output) {
-  return ANGULAR_WARNING_PATTERN.test(output);
+  return ANGULAR_WARNING_PATTERN.test(stripAnsi(output));
 }
 
 export function resolveNpmInvocation(env = process.env, platform = process.platform) {
@@ -33,6 +38,16 @@ export function resolveNpmInvocation(env = process.env, platform = process.platf
 function runSelfTest() {
   if (!hasAngularWarning('▲ [WARNING] component exceeded maximum budget')) {
     throw new Error('Zero-warning gate self-test failed to detect Angular warning.');
+  }
+
+  if (
+    !hasAngularWarning(
+      '\u001B[33m▲ [WARNING]\u001B[39m component exceeded maximum budget'
+    )
+  ) {
+    throw new Error(
+      'Zero-warning gate self-test failed to detect ANSI-colored Angular warning.'
+    );
   }
 
   if (!hasAngularWarning('[WARNING] Module is not ESM')) {

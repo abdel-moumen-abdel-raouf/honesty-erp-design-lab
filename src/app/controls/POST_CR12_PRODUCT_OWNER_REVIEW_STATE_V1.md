@@ -397,3 +397,43 @@ resolution.
 
 The repository is not declared fully clean until a fresh local
 `npm run verify:clean` reaches `Zero-warning build gate: PASS`.
+
+
+## Final zero-warning budget and detector correction
+
+Local verification at `e31de1bfcd9aa9fb25ff0a01e6c5fd1448a2a1fb`
+proved the complete governance/lint/test/typecheck chain green:
+
+- `theme-authority:check` passed;
+- every custom governance check passed;
+- Angular lint passed;
+- 87 test files / 618 tests passed;
+- `typecheck:app` passed;
+- `typecheck:spec` passed.
+
+The production build itself completed, but Angular still emitted exactly two
+component-style budget warnings:
+
+- `src/app/foundation/colors/colors.scss` — 4.08 kB, 80 bytes over the
+  approved 4 kB warning threshold;
+- `src/app/foundation/colors/status-hues/status-hues.scss` — 4.99 kB,
+  985 bytes over the approved threshold.
+
+The zero-warning wrapper then incorrectly printed PASS because Angular's
+colored CLI output includes ANSI SGR escape sequences around the warning
+marker. The copied terminal text hides those control characters, but the raw
+child-process output still contains them.
+
+This correction does not raise the 4 kB / 8 kB component-style budgets.
+Generated swatch rules are split into dedicated, smaller style parts and the
+root style files are reduced to root specimen chrome. Status Hues docs chrome
+also moves from fixed Light-looking hex values to semantic theme tokens.
+
+The wrapper now strips ANSI SGR sequences before warning detection and also
+recognizes explicit budget/optimization warning phrases. Its self-test includes
+the ANSI-colored warning form.
+
+A fresh local `npm run build:clean:self-test`, followed by
+`npm run build:clean` and finally `npm run verify:clean`, remains the
+required proof. This checkpoint is not fully green until the build contains no
+Angular warnings and ends with `Zero-warning build gate: PASS`.

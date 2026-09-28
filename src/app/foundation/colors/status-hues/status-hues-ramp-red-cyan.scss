@@ -1,0 +1,39 @@
+@use '../../../../styles/foundation/reference/colors' as ref;
+
+$specimen-red-ramp: (
+  50: ref.$honesty-ref-color-red-50,
+  100: ref.$honesty-ref-color-red-100,
+  200: ref.$honesty-ref-color-red-200,
+  300: ref.$honesty-ref-color-red-300,
+  400: ref.$honesty-ref-color-red-400,
+  500: ref.$honesty-ref-color-red-500,
+  600: ref.$honesty-ref-color-red-600,
+  700: ref.$honesty-ref-color-red-700,
+  800: ref.$honesty-ref-color-red-800,
+  900: ref.$honesty-ref-color-red-900,
+  950: ref.$honesty-ref-color-red-950,
+);
+
+$specimen-cyan-ramp: (
+  50: ref.$honesty-ref-color-cyan-50,
+  100: ref.$honesty-ref-color-cyan-100,
+  200: ref.$honesty-ref-color-cyan-200,
+  300: ref.$honesty-ref-color-cyan-300,
+  400: ref.$honesty-ref-color-cyan-400,
+  500: ref.$honesty-ref-color-cyan-500,
+  600: ref.$honesty-ref-color-cyan-600,
+  700: ref.$honesty-ref-color-cyan-700,
+  800: ref.$honesty-ref-color-cyan-800,
+  900: ref.$honesty-ref-color-cyan-900,
+  950: ref.$honesty-ref-color-cyan-950,
+);
+
+@each $step, $color in $specimen-red-ramp {
+  .swatch-red-#{$step} .swatch-color { background-color: $color; }
+  .swatch-red-#{$step} .swatch-hex::after { content: '#{$color}'; }
+}
+
+@each $step, $color in $specimen-cyan-ramp {
+  .swatch-cyan-#{$step} .swatch-color { background-color: $color; }
+  .swatch-cyan-#{$step} .swatch-hex::after { content: '#{$color}'; }
+}

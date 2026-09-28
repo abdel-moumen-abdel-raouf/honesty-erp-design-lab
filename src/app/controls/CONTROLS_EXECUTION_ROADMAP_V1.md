@@ -305,3 +305,17 @@ The build gate now invokes npm through its JavaScript CLI using
 `process.execPath + npm_execpath`, with a `ComSpec` fallback. Warning
 detection remains release-blocking. A fresh `npm run verify:clean` is the
 next mandatory gate.
+
+
+### Final zero-warning budget and detector correction
+
+At `e31de1bfcd9aa9fb25ff0a01e6c5fd1448a2a1fb`, all governance/lint gates,
+87/87 test files (618/618 tests), and both TypeScript no-emit gates passed.
+Angular production build completed with exactly two remaining style-budget
+warnings: Colors 4.08 kB and Status Hues 4.99 kB.
+
+The approved budgets are unchanged. Generated color-ramp CSS is partitioned
+into smaller style parts, Status Hues docs chrome uses semantic tokens, and the
+zero-warning detector strips ANSI before matching warning output.
+
+A fresh local `npm run verify:clean` is mandatory.

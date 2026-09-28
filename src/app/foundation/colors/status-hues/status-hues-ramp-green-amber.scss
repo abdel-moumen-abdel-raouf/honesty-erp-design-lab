@@ -1,0 +1,39 @@
+@use '../../../../styles/foundation/reference/colors' as ref;
+
+$specimen-green-ramp: (
+  50: ref.$honesty-ref-color-green-50,
+  100: ref.$honesty-ref-color-green-100,
+  200: ref.$honesty-ref-color-green-200,
+  300: ref.$honesty-ref-color-green-300,
+  400: ref.$honesty-ref-color-green-400,
+  500: ref.$honesty-ref-color-green-500,
+  600: ref.$honesty-ref-color-green-600,
+  700: ref.$honesty-ref-color-green-700,
+  800: ref.$honesty-ref-color-green-800,
+  900: ref.$honesty-ref-color-green-900,
+  950: ref.$honesty-ref-color-green-950,
+);
+
+$specimen-amber-ramp: (
+  50: ref.$honesty-ref-color-amber-50,
+  100: ref.$honesty-ref-color-amber-100,
+  200: ref.$honesty-ref-color-amber-200,
+  300: ref.$honesty-ref-color-amber-300,
+  400: ref.$honesty-ref-color-amber-400,
+  500: ref.$honesty-ref-color-amber-500,
+  600: ref.$honesty-ref-color-amber-600,
+  700: ref.$honesty-ref-color-amber-700,
+  800: ref.$honesty-ref-color-amber-800,
+  900: ref.$honesty-ref-color-amber-900,
+  950: ref.$honesty-ref-color-amber-950,
+);
+
+@each $step, $color in $specimen-green-ramp {
+  .swatch-green-#{$step} .swatch-color { background-color: $color; }
+  .swatch-green-#{$step} .swatch-hex::after { content: '#{$color}'; }
+}
+
+@each $step, $color in $specimen-amber-ramp {
+  .swatch-amber-#{$step} .swatch-color { background-color: $color; }
+  .swatch-amber-#{$step} .swatch-hex::after { content: '#{$color}'; }
+}
