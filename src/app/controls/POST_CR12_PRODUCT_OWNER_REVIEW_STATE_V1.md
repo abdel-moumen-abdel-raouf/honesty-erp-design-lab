@@ -255,3 +255,33 @@ The corrected internal now:
 
 The required next verification remains `npm run verify:clean`. This checkpoint
 must not be called clean until that complete command passes locally.
+
+
+### Field governance split-style correction
+
+Local `npm run verify:clean` at
+`b33bf273dfc0cb5b3785d041e87040e5c0041327` progressed through route-page,
+Component Token, system-color, ErpText, ErpIcon, ErpButton, and ErpTooltip
+governance, then stopped at `erp-field:check`.
+
+External review confirmed the reported Glass and hit-area implementation
+contracts still exist in the live FieldFrame style parts:
+
+- Glass surface mix and semantic border/highlight consumption are in
+  `field-frame-part-4.scss`.
+- `.field-frame__value`, `flex: 1 1 auto`, and
+  `inline-size: 100%` are in `field-frame-part-7.scss`.
+- RTL-aware focus variables remain in `field-frame.scss`.
+
+The failure was caused by the governance checker reading only
+`field-frame.scss` after the zero-warning stylesheet partitioning. The
+checker is corrected to derive and concatenate the component's actual
+`styleUrls` from `field-frame.ts`.
+
+The checker-only requirement for `pointer-events: none` on
+`.field-frame__value` is removed because it was not part of the approved
+runtime hit-area repair and applying it to the value wrapper risks disabling
+the projected native editor/trigger subtree.
+
+A fresh complete `npm run verify:clean` remains mandatory; this checkpoint is
+not considered clean until the whole command passes.

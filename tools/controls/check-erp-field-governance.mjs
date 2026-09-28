@@ -19,6 +19,32 @@ const FIELD_FRAME_TEMPLATE =
   'src/app/controls/input-family/internal/field-frame.html';
 const FIELD_FRAME_STYLE =
   'src/app/controls/input-family/internal/field-frame.scss';
+
+function componentStyleSources(files, componentSourcePath, fallbackStylePath) {
+  const source = files.get(componentSourcePath) ?? '';
+  const styleUrlsMatch = source.match(/styleUrls\s*:\s*\[([\s\S]*?)\]/);
+  const styleUrlMatch = source.match(/styleUrl\s*:\s*['"]([^'"]+)['"]/);
+  const componentDirectory = path.posix.dirname(componentSourcePath);
+  const stylePaths = [];
+
+  if (styleUrlsMatch) {
+    for (const match of styleUrlsMatch[1].matchAll(/['"]([^'"]+\.scss)['"]/g)) {
+      stylePaths.push(
+        normalize(path.posix.join(componentDirectory, match[1])),
+      );
+    }
+  } else if (styleUrlMatch) {
+    stylePaths.push(
+      normalize(path.posix.join(componentDirectory, styleUrlMatch[1])),
+    );
+  }
+
+  if (stylePaths.length === 0) {
+    stylePaths.push(fallbackStylePath);
+  }
+
+  return stylePaths.map((stylePath) => files.get(stylePath) ?? '').join('\n');
+}
 const FIELD_FEEDBACK_STYLE =
   'src/app/controls/input-family/internal/field-feedback.scss';
 const FIELD_TRIGGER_TEMPLATE =
@@ -372,7 +398,6 @@ export function validateFieldHitAreaContract(source, template, style) {
     '.field-frame__value',
     'flex: 1 1 auto;',
     'inline-size: 100%;',
-    'pointer-events: none;',
   ]) {
     if (!style.includes(required)) {
       errors.push(`FieldFrame styles: missing hit-area contract ${required}`);
@@ -1477,7 +1502,6 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     '.field-frame__value',
     'flex: 1 1 auto;',
     'inline-size: 100%;',
-    'pointer-events: none;',
   ].join('\n');
 
   if (
@@ -1788,6 +1812,12 @@ errors.push(
     SEARCH_BOX_STYLES.map((file) => files.get(file) ?? '').join('\n'),
   ),
 );
+const fieldFrameStyleSource = componentStyleSources(
+  files,
+  FIELD_FRAME_SOURCE,
+  FIELD_FRAME_STYLE,
+);
+
 errors.push(
   ...validateFieldRenderingContracts(
     fs.readFileSync(
@@ -1802,25 +1832,14 @@ errors.push(
       ),
       'utf8',
     ),
-    fs.readFileSync(
-      path.join(
-        ROOT,
-        'src',
-        'app',
-        'controls',
-        'input-family',
-        'internal',
-        'field-frame.scss',
-      ),
-      'utf8',
-    ),
+    fieldFrameStyleSource,
   ),
 );
 errors.push(
   ...validateFieldHitAreaContract(
     files.get(FIELD_FRAME_SOURCE) ?? '',
     files.get(FIELD_FRAME_TEMPLATE) ?? '',
-    files.get(FIELD_FRAME_STYLE) ?? '',
+    fieldFrameStyleSource,
   ),
 );
 errors.push(

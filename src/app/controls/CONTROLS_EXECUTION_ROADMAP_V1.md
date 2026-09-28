@@ -242,3 +242,16 @@ at `a2e1793faa489702dac4721d9ac1c3ec6c5b7d74`
 Current verification is not considered complete until a fresh local
 `npm run verify:clean` passes from this checkpoint or a later fast-forward
 checkpoint.
+
+
+### Field governance split-style correction
+
+After stylesheet partitioning, `erp-field:check` must validate the complete
+FieldFrame `styleUrls` set rather than only `field-frame.scss`. The
+governance checker now derives those style files from component metadata and
+validates the concatenated runtime contract. It does not require
+`pointer-events: none` on `.field-frame__value`, because that rule is not
+part of the approved full-surface interaction implementation and can interfere
+with projected editor/trigger interaction.
+
+The next gate remains a full local `npm run verify:clean`.
