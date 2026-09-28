@@ -10,7 +10,7 @@
   <select
     class="review-select__native"
     [value]="value()"
-    (change)="change.emit($event)"
+    (change)="selectionChanged.emit($event)"
   >
     @for (choice of choices(); track choice.value()) {
       <option

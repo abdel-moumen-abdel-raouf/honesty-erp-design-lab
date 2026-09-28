@@ -255,3 +255,14 @@ part of the approved full-surface interaction implementation and can interfere
 with projected editor/trigger interaction.
 
 The next gate remains a full local `npm run verify:clean`.
+
+
+### Review-select native-output lint correction
+
+Angular ESLint correctly rejected the Design-Lab `ErpReviewSelect` output name
+`change` because it collides with a standard DOM event. The internal output is
+renamed to `selectionChanged`, all Preferences consumers are migrated, and the
+focused regression test verifies forwarding from the native select's change
+event.
+
+The next gate remains a full local `npm run verify:clean`.

@@ -19,6 +19,6 @@ import {ErpReviewChoice} from '../review-choice/review-choice';
 export class ErpReviewSelect {
   readonly label = input.required<string>();
   readonly value = input.required<string>();
-  readonly change = output<Event>();
+  readonly selectionChanged = output<Event>();
   protected readonly choices = contentChildren(ErpReviewChoice);
 }

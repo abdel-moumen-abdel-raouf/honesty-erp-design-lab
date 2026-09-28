@@ -285,3 +285,21 @@ the projected native editor/trigger subtree.
 
 A fresh complete `npm run verify:clean` remains mandatory; this checkpoint is
 not considered clean until the whole command passes.
+
+
+### Review-select native-output lint correction
+
+Local `npm run verify:clean` at
+`f4c1a103f44a7272f3e5051fe21aeb9cd39b308f` passed all custom governance
+checks, including ErpField and ErpOverlay, then stopped in Angular ESLint because
+the Design-Lab internal `ErpReviewSelect` exposed an output named `change`.
+That name collides with the standard DOM `change` event and violates
+`@angular-eslint/no-output-native`.
+
+The correction renames the component output to `selectionChanged`, keeps the
+internal native `<select>` `change` event as the source event, migrates all
+25 Preferences bindings, and extends the focused review-select regression test
+to verify native-change forwarding through the renamed output.
+
+A fresh complete `npm run verify:clean` remains mandatory before this
+checkpoint can be called clean.

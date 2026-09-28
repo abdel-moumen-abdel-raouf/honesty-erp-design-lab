@@ -14,14 +14,14 @@
         <erp-text type="paragraph" data-review-native-role="p">إعدادات محلية لمعاينة السمة والكثافة داخل منطقة المعاينة فقط.</erp-text>
       </erp-stack>
       <erp-review-box data-review-native-role="div" class="control-grid">
-        <erp-review-select class="control-field" label="Theme" id="preference-theme" [value]="theme()" (change)="setScalar('theme', $event)">
+        <erp-review-select class="control-field" label="Theme" id="preference-theme" [value]="theme()" (selectionChanged)="setScalar('theme', $event)">
             <erp-review-choice value="system" label="System"></erp-review-choice>
             
             <erp-review-choice value="light" label="Light"></erp-review-choice>
             
             <erp-review-choice value="dark" label="Dark"></erp-review-choice>
           </erp-review-select>
-        <erp-review-select class="control-field" label="Density" id="preference-density" [value]="density()" (change)="setScalar('density', $event)">
+        <erp-review-select class="control-field" label="Density" id="preference-density" [value]="density()" (selectionChanged)="setScalar('density', $event)">
             <erp-review-choice value="comfortable" label="Comfortable"></erp-review-choice>
             
             <erp-review-choice value="compact" label="Compact"></erp-review-choice>
@@ -40,7 +40,7 @@
         <erp-review-select class="control-field" label="Form Label Placement"
             id="preference-form-label-placement"
             [value]="formLabelPlacement()"
-            (change)="setScalar('formLabelPlacement', $event)"
+            (selectionChanged)="setScalar('formLabelPlacement', $event)"
           >
             <erp-review-choice value="top" label="Top"></erp-review-choice>
             
@@ -49,7 +49,7 @@
         <erp-review-select class="control-field" label="Form Appearance"
             id="preference-form-appearance"
             [value]="formAppearance()"
-            (change)="setScalar('formAppearance', $event)"
+            (selectionChanged)="setScalar('formAppearance', $event)"
           >
             <erp-review-choice value="outlined" label="Outlined"></erp-review-choice>
             
@@ -73,40 +73,40 @@
       <erp-review-box data-review-native-role="div" class="settings-group">
         <erp-text type="heading-3" data-review-native-role="h3">Digit Set</erp-text>
         <erp-review-box data-review-native-role="div" class="control-grid contextual-controls">
-          <erp-review-select class="control-field" label="Base" id="digits-base" [value]="digits().base" (change)="setDigitBase($event)">
+          <erp-review-select class="control-field" label="Base" id="digits-base" [value]="digits().base" (selectionChanged)="setDigitBase($event)">
             <erp-review-choice value="latin" label="Latin"></erp-review-choice>
               
             <erp-review-choice value="arabic-indic" label="Arabic-Indic"></erp-review-choice>
           </erp-review-select>
-          <erp-review-select class="control-field" label="View" id="digits-view" [value]="contextualOverrideValue('digits', 'view')" (change)="setDigitOverride('view', $event)">
+          <erp-review-select class="control-field" label="View" id="digits-view" [value]="contextualOverrideValue('digits', 'view')" (selectionChanged)="setDigitOverride('view', $event)">
             <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
               
             <erp-review-choice value="latin" label="Latin"></erp-review-choice>
               
             <erp-review-choice value="arabic-indic" label="Arabic-Indic"></erp-review-choice>
           </erp-review-select>
-          <erp-review-select class="control-field" label="Field" id="digits-field" [value]="contextualOverrideValue('digits', 'field')" (change)="setDigitOverride('field', $event)">
+          <erp-review-select class="control-field" label="Field" id="digits-field" [value]="contextualOverrideValue('digits', 'field')" (selectionChanged)="setDigitOverride('field', $event)">
             <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
               
             <erp-review-choice value="latin" label="Latin"></erp-review-choice>
               
             <erp-review-choice value="arabic-indic" label="Arabic-Indic"></erp-review-choice>
           </erp-review-select>
-          <erp-review-select class="control-field" label="Print" id="digits-print" [value]="contextualOverrideValue('digits', 'print')" (change)="setDigitOverride('print', $event)">
+          <erp-review-select class="control-field" label="Print" id="digits-print" [value]="contextualOverrideValue('digits', 'print')" (selectionChanged)="setDigitOverride('print', $event)">
             <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
               
             <erp-review-choice value="latin" label="Latin"></erp-review-choice>
               
             <erp-review-choice value="arabic-indic" label="Arabic-Indic"></erp-review-choice>
           </erp-review-select>
-          <erp-review-select class="control-field" label="Export" id="digits-export" [value]="contextualOverrideValue('digits', 'export')" (change)="setDigitOverride('export', $event)">
+          <erp-review-select class="control-field" label="Export" id="digits-export" [value]="contextualOverrideValue('digits', 'export')" (selectionChanged)="setDigitOverride('export', $event)">
             <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
               
             <erp-review-choice value="latin" label="Latin"></erp-review-choice>
               
             <erp-review-choice value="arabic-indic" label="Arabic-Indic"></erp-review-choice>
           </erp-review-select>
-          <erp-review-select class="control-field" label="Money" id="digits-money" [value]="contextualOverrideValue('digits', 'money')" (change)="setDigitOverride('money', $event)">
+          <erp-review-select class="control-field" label="Money" id="digits-money" [value]="contextualOverrideValue('digits', 'money')" (selectionChanged)="setDigitOverride('money', $event)">
             <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
               
             <erp-review-choice value="latin" label="Latin"></erp-review-choice>
@@ -122,7 +122,7 @@
           <erp-review-select class="control-field" label="Independent identifier digits"
               id="identifier-digits"
               [value]="identifierDigits()"
-              (change)="setScalar('identifierDigits', $event)"
+              (selectionChanged)="setScalar('identifierDigits', $event)"
             >
             <erp-review-choice value="latin" label="Latin"></erp-review-choice>
               
@@ -134,7 +134,7 @@
       <erp-review-box data-review-native-role="div" class="settings-group">
         <erp-text type="heading-3" data-review-native-role="h3">Number Separator Profile</erp-text>
         <erp-review-box data-review-native-role="div" class="control-grid contextual-controls">
-          <erp-review-select class="control-field" label="Base" id="separators-base" [value]="numberSeparators().base" (change)="setSeparatorBase($event)">
+          <erp-review-select class="control-field" label="Base" id="separators-base" [value]="numberSeparators().base" (selectionChanged)="setSeparatorBase($event)">
             <erp-review-choice value="comma-dot" label="Comma / Dot"></erp-review-choice>
               
             <erp-review-choice value="dot-comma" label="Dot / Comma"></erp-review-choice>
@@ -143,7 +143,7 @@
               
             <erp-review-choice value="arabic" label="Arabic separators"></erp-review-choice>
           </erp-review-select>
-          <erp-review-select class="control-field" label="View" id="separators-view" [value]="contextualOverrideValue('numberSeparators', 'view')" (change)="setSeparatorOverride('view', $event)">
+          <erp-review-select class="control-field" label="View" id="separators-view" [value]="contextualOverrideValue('numberSeparators', 'view')" (selectionChanged)="setSeparatorOverride('view', $event)">
             <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
               
             <erp-review-choice value="comma-dot" label="Comma / Dot"></erp-review-choice>
@@ -154,7 +154,7 @@
               
             <erp-review-choice value="arabic" label="Arabic separators"></erp-review-choice>
           </erp-review-select>
-          <erp-review-select class="control-field" label="Field" id="separators-field" [value]="contextualOverrideValue('numberSeparators', 'field')" (change)="setSeparatorOverride('field', $event)">
+          <erp-review-select class="control-field" label="Field" id="separators-field" [value]="contextualOverrideValue('numberSeparators', 'field')" (selectionChanged)="setSeparatorOverride('field', $event)">
             <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
               
             <erp-review-choice value="comma-dot" label="Comma / Dot"></erp-review-choice>
@@ -165,7 +165,7 @@
               
             <erp-review-choice value="arabic" label="Arabic separators"></erp-review-choice>
           </erp-review-select>
-          <erp-review-select class="control-field" label="Print" id="separators-print" [value]="contextualOverrideValue('numberSeparators', 'print')" (change)="setSeparatorOverride('print', $event)">
+          <erp-review-select class="control-field" label="Print" id="separators-print" [value]="contextualOverrideValue('numberSeparators', 'print')" (selectionChanged)="setSeparatorOverride('print', $event)">
             <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
               
             <erp-review-choice value="comma-dot" label="Comma / Dot"></erp-review-choice>
@@ -176,7 +176,7 @@
               
             <erp-review-choice value="arabic" label="Arabic separators"></erp-review-choice>
           </erp-review-select>
-          <erp-review-select class="control-field" label="Export" id="separators-export" [value]="contextualOverrideValue('numberSeparators', 'export')" (change)="setSeparatorOverride('export', $event)">
+          <erp-review-select class="control-field" label="Export" id="separators-export" [value]="contextualOverrideValue('numberSeparators', 'export')" (selectionChanged)="setSeparatorOverride('export', $event)">
             <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
               
             <erp-review-choice value="comma-dot" label="Comma / Dot"></erp-review-choice>
@@ -187,7 +187,7 @@
               
             <erp-review-choice value="arabic" label="Arabic separators"></erp-review-choice>
           </erp-review-select>
-          <erp-review-select class="control-field" label="Money" id="separators-money" [value]="contextualOverrideValue('numberSeparators', 'money')" (change)="setSeparatorOverride('money', $event)">
+          <erp-review-select class="control-field" label="Money" id="separators-money" [value]="contextualOverrideValue('numberSeparators', 'money')" (selectionChanged)="setSeparatorOverride('money', $event)">
             <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
               
             <erp-review-choice value="comma-dot" label="Comma / Dot"></erp-review-choice>
@@ -208,7 +208,7 @@
         <erp-text type="paragraph" data-review-native-role="p">يتحكم في موضع الكود أو الرمز فقط؛ العملة والقيمة بيانات نطاق.</erp-text>
       </erp-stack>
       <erp-review-box data-review-native-role="div" class="control-grid">
-        <erp-review-select class="control-field" label="Money Display Profile" id="money-display" [value]="moneyDisplay()" (change)="setScalar('moneyDisplay', $event)">
+        <erp-review-select class="control-field" label="Money Display Profile" id="money-display" [value]="moneyDisplay()" (selectionChanged)="setScalar('moneyDisplay', $event)">
             <erp-review-choice value="code-after" label="Code after"></erp-review-choice>
             
             <erp-review-choice value="code-before" label="Code before"></erp-review-choice>
@@ -229,33 +229,33 @@
       <erp-review-box data-review-native-role="div" class="settings-group">
         <erp-text type="heading-3" data-review-native-role="h3">Date Format</erp-text>
         <erp-review-box data-review-native-role="div" class="control-grid contextual-controls">
-          <erp-review-select class="control-field" label="Base Date Format" id="date-format-base" [value]="dateFormat().base" (change)="setDateBase($event)">
+          <erp-review-select class="control-field" label="Base Date Format" id="date-format-base" [value]="dateFormat().base" (selectionChanged)="setDateBase($event)">
             <erp-review-choice value="DD/MM/YYYY" label="DD/MM/YYYY"></erp-review-choice>
               
             <erp-review-choice value="YYYY-MM-DD" label="YYYY-MM-DD"></erp-review-choice>
           </erp-review-select>
-          <erp-review-select class="control-field" label="View" id="date-format-view" [value]="contextualOverrideValue('dateFormat', 'view')" (change)="setDateOverride('view', $event)">
+          <erp-review-select class="control-field" label="View" id="date-format-view" [value]="contextualOverrideValue('dateFormat', 'view')" (selectionChanged)="setDateOverride('view', $event)">
             <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
               
             <erp-review-choice value="DD/MM/YYYY" label="DD/MM/YYYY"></erp-review-choice>
               
             <erp-review-choice value="YYYY-MM-DD" label="YYYY-MM-DD"></erp-review-choice>
           </erp-review-select>
-          <erp-review-select class="control-field" label="Field" id="date-format-field" [value]="contextualOverrideValue('dateFormat', 'field')" (change)="setDateOverride('field', $event)">
+          <erp-review-select class="control-field" label="Field" id="date-format-field" [value]="contextualOverrideValue('dateFormat', 'field')" (selectionChanged)="setDateOverride('field', $event)">
             <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
               
             <erp-review-choice value="DD/MM/YYYY" label="DD/MM/YYYY"></erp-review-choice>
               
             <erp-review-choice value="YYYY-MM-DD" label="YYYY-MM-DD"></erp-review-choice>
           </erp-review-select>
-          <erp-review-select class="control-field" label="Print" id="date-format-print" [value]="contextualOverrideValue('dateFormat', 'print')" (change)="setDateOverride('print', $event)">
+          <erp-review-select class="control-field" label="Print" id="date-format-print" [value]="contextualOverrideValue('dateFormat', 'print')" (selectionChanged)="setDateOverride('print', $event)">
             <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
               
             <erp-review-choice value="DD/MM/YYYY" label="DD/MM/YYYY"></erp-review-choice>
               
             <erp-review-choice value="YYYY-MM-DD" label="YYYY-MM-DD"></erp-review-choice>
           </erp-review-select>
-          <erp-review-select class="control-field" label="Export" id="date-format-export" [value]="contextualOverrideValue('dateFormat', 'export')" (change)="setDateOverride('export', $event)">
+          <erp-review-select class="control-field" label="Export" id="date-format-export" [value]="contextualOverrideValue('dateFormat', 'export')" (selectionChanged)="setDateOverride('export', $event)">
             <erp-review-choice value="inherit" label="Inherit base"></erp-review-choice>
               
             <erp-review-choice value="DD/MM/YYYY" label="DD/MM/YYYY"></erp-review-choice>
@@ -266,12 +266,12 @@
       </erp-review-box>
 
       <erp-review-box data-review-native-role="div" class="control-grid">
-        <erp-review-select class="control-field" label="Date View Style" id="date-view-style" [value]="dateViewStyle()" (change)="setScalar('dateViewStyle', $event)">
+        <erp-review-select class="control-field" label="Date View Style" id="date-view-style" [value]="dateViewStyle()" (selectionChanged)="setScalar('dateViewStyle', $event)">
             <erp-review-choice value="numeric" label="Numeric"></erp-review-choice>
             
             <erp-review-choice value="long-arabic" label="Long Arabic"></erp-review-choice>
           </erp-review-select>
-        <erp-review-select class="control-field" label="Time Format" id="time-format" [value]="timeFormat()" (change)="setScalar('timeFormat', $event)">
+        <erp-review-select class="control-field" label="Time Format" id="time-format" [value]="timeFormat()" (selectionChanged)="setScalar('timeFormat', $event)">
             <erp-review-choice value="24h" label="24 hour"></erp-review-choice>
             
             <erp-review-choice value="12h" label="12 hour"></erp-review-choice>

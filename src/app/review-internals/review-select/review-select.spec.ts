@@ -6,13 +6,19 @@ import {ErpReviewSelect} from './review-select';
 @Component({
   imports: [ErpReviewChoice, ErpReviewSelect],
   template: `
-    <erp-review-select label="Theme" value="dark">
+    <erp-review-select
+      label="Theme"
+      value="dark"
+      (selectionChanged)="lastEvent = $event"
+    >
       <erp-review-choice value="light" label="Light"></erp-review-choice>
       <erp-review-choice value="dark" label="Dark"></erp-review-choice>
     </erp-review-select>
   `,
 })
-class ReviewSelectHost {}
+class ReviewSelectHost {
+  lastEvent: Event | null = null;
+}
 
 describe('ErpReviewSelect', () => {
   it('governs visible field text through ErpText and exposes native option labels without raw text nodes', async () => {
@@ -32,5 +38,18 @@ describe('ErpReviewSelect', () => {
     expect(select?.value).toBe('dark');
     expect(options.map((option) => option.label)).toEqual(['Light', 'Dark']);
     expect(options.every((option) => option.textContent === '')).toBe(true);
+
+    if (select === null) {
+      throw new Error('Expected native review select.');
+    }
+
+    select.value = 'light';
+    select.dispatchEvent(new Event('change', {bubbles: true}));
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.lastEvent).toBeInstanceOf(Event);
+    expect((fixture.componentInstance.lastEvent?.target as HTMLSelectElement).value).toBe(
+      'light'
+    );
   });
 });
