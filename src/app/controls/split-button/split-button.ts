@@ -2,7 +2,6 @@ import {
   booleanAttribute,
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   inject,
   input,
   output,
@@ -34,7 +33,6 @@ export class ErpSplitButton {
   readonly itemSelected = output<string>();
 
   private readonly overlays = inject(ErpOverlayManager);
-  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private menuRef: ErpOverlayRef<string> | null = null;
 
   protected openMenu(): void {
@@ -42,9 +40,6 @@ export class ErpSplitButton {
       return;
     }
 
-    const theme = this.host.nativeElement
-      .closest<HTMLElement>('[data-theme]')
-      ?.dataset['theme'];
     const ref = this.overlays.openLegacyCompactMenu<
       ErpActionMenuContent,
       ErpActionMenuData,
@@ -55,7 +50,6 @@ export class ErpSplitButton {
       initialFocus: '[data-action-item] button',
       data: {
         items: this.items(),
-        theme: theme === 'dark' ? 'dark' : 'light',
       } satisfies ErpActionMenuData,
     });
 

@@ -18,12 +18,12 @@
   padding-block: var(--honesty-space-section-gap-large);
   padding-inline: var(--honesty-space-layout-page-gutter-inline);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  color: #11141a;
+  color: var(--honesty-color-text-primary);
 }
 
 .specimen-header {
   margin-bottom: 2.5rem;
-  border-bottom: 1px solid #e1e4ea;
+  border-bottom: 1px solid var(--honesty-border-subtle);
   padding-bottom: 1.5rem;
 
   .specimen-badge {
@@ -31,8 +31,8 @@
     font-size: 0.75rem;
     font-weight: 600;
     padding: 0.25rem 0.6rem;
-    background-color: #eef1f6;
-    color: #444b58;
+    background-color: var(--honesty-color-surface-elevated);
+    color: var(--honesty-color-text-secondary);
     border-radius: 3px;
     margin-bottom: 0.75rem;
     letter-spacing: 0.02em;
@@ -42,14 +42,14 @@
     font-size: 1.6rem;
     font-weight: 600;
     margin: 0 0 0.5rem;
-    color: #11141a;
+    color: var(--honesty-color-text-primary);
   }
 
   p {
     font-size: 0.95rem;
     line-height: 1.6;
     margin: 0;
-    color: #585f6e;
+    color: var(--honesty-color-text-secondary);
     max-width: 80ch;
   }
 }
@@ -68,7 +68,7 @@
 
 // Docs-only context container mapping the theme selector
 .theme-context {
-  border: 1px solid #d8dce4;
+  border: 1px solid var(--honesty-border-default);
   border-radius: 6px;
   overflow: hidden;
   min-width: 0;

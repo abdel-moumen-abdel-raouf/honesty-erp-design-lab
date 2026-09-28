@@ -74,7 +74,7 @@ $specimen-accent-ramp: (
 
 .specimen-header {
   margin-bottom: 2.5rem;
-  border-bottom: 1px solid #e1e4ea;
+  border-bottom: 1px solid var(--honesty-border-subtle);
   padding-bottom: 1.5rem;
 
   .specimen-badge {
@@ -82,8 +82,8 @@ $specimen-accent-ramp: (
     font-size: 0.75rem;
     font-weight: 600;
     padding: 0.25rem 0.6rem;
-    background-color: #eef1f6;
-    color: #444b58;
+    background-color: var(--honesty-color-surface-elevated);
+    color: var(--honesty-color-text-secondary);
     border-radius: 3px;
     margin-bottom: 0.75rem;
     letter-spacing: 0.02em;
@@ -93,14 +93,14 @@ $specimen-accent-ramp: (
     font-size: 1.6rem;
     font-weight: 600;
     margin: 0 0 0.5rem;
-    color: #11141a;
+    color: var(--honesty-color-text-primary);
   }
 
   p {
     font-size: 0.95rem;
     line-height: 1.6;
     margin: 0;
-    color: #585f6e;
+    color: var(--honesty-color-text-secondary);
     max-width: 75ch;
   }
 }
@@ -115,14 +115,14 @@ $specimen-accent-ramp: (
       font-size: 1.15rem;
       font-weight: 600;
       margin: 0 0 0.35rem;
-      color: #181b22;
+      color: var(--honesty-color-text-primary);
     }
 
     p {
       font-size: 0.875rem;
       line-height: 1.5;
       margin: 0;
-      color: #636b7b;
+      color: var(--honesty-color-text-secondary);
     }
   }
 }

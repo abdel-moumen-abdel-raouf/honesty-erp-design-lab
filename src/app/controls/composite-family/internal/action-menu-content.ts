@@ -7,7 +7,6 @@ import {ErpItemPickerOption} from '../../selection-family/selection-contracts';
 
 export interface ErpActionMenuData {
   readonly items: readonly ErpItemPickerOption[];
-  readonly theme: 'light' | 'dark';
 }
 
 @Component({

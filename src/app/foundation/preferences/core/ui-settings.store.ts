@@ -31,7 +31,6 @@ function isPlainObject(value: unknown): value is Record<string, unknown> {
 
 function createSettingInstances(): UiSettingInstances {
   return {
-    theme: new UiSetting(UI_SETTINGS_REGISTRY.theme),
     density: new UiSetting(UI_SETTINGS_REGISTRY.density),
     formLabelPlacement: new UiSetting(UI_SETTINGS_REGISTRY.formLabelPlacement),
     formAppearance: new UiSetting(UI_SETTINGS_REGISTRY.formAppearance),
@@ -79,18 +78,28 @@ export class UiSettingsStore {
       return;
     }
 
-    if (result.status === 'malformed' || !this.isValidLocalDocument(result.value)) {
+    if (result.status === 'malformed') {
       this.resetLocalSettingsToDefaultsWithoutSaving();
       this.persist();
       return;
     }
 
-    const document: UiSettingsLocalDocument = result.value;
+    const normalized = this.normalizeLocalDocument(result.value);
+    if (normalized === null) {
+      this.resetLocalSettingsToDefaultsWithoutSaving();
+      this.persist();
+      return;
+    }
+
     this.withPersistenceSuppressed(() => {
       for (const key of LOCAL_PERSISTENCE_KEYS) {
-        this.applyHydratedValue(key, document);
+        this.applyHydratedValue(key, normalized.document);
       }
     });
+
+    if (normalized.migratedLegacyTheme) {
+      this.persist();
+    }
   }
 
   resetSetting<K extends UiSettingKey>(key: K): void {
@@ -115,7 +124,6 @@ export class UiSettingsStore {
 
   snapshot(): UiSettingsDocument {
     return {
-      theme: this.value('theme'),
       density: this.value('density'),
       formLabelPlacement: this.value('formLabelPlacement'),
       formAppearance: this.value('formAppearance'),
@@ -151,6 +159,32 @@ export class UiSettingsStore {
     }
 
     this.get(key).set(value, 'hydrate');
+  }
+
+  private normalizeLocalDocument(
+    value: unknown
+  ): Readonly<{
+    document: UiSettingsLocalDocument;
+    migratedLegacyTheme: boolean;
+  }> | null {
+    if (!isPlainObject(value)) {
+      return null;
+    }
+
+    const candidate: Record<string, unknown> = {...value};
+    const migratedLegacyTheme = Object.hasOwn(candidate, 'theme');
+    if (migratedLegacyTheme) {
+      delete candidate['theme'];
+    }
+
+    if (!this.isValidLocalDocument(candidate)) {
+      return null;
+    }
+
+    return {
+      document: candidate as UiSettingsLocalDocument,
+      migratedLegacyTheme,
+    };
   }
 
   private isValidLocalDocument(value: unknown): value is UiSettingsLocalDocument {

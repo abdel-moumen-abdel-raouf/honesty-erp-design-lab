@@ -124,67 +124,37 @@
         لا يُستخدم 2px للحدود البارزة (Strong).
       </erp-text>
 
-      <erp-review-box data-review-native-role="div" id="border-theme-comparison" class="dual-theme-container">
-        <!-- LIGHT CONTEXT -->
-        <erp-review-box data-review-native-role="div" id="border-theme-context-light" class="theme-context-box">
+      <erp-review-box data-review-native-role="div" id="border-theme-current" class="dual-theme-container">
+        <!-- CURRENT INHERITED THEME CONTEXT -->
+        <erp-review-box data-review-native-role="div" id="border-theme-context-current" class="theme-context-box">
           <erp-review-box data-review-native-role="div" class="theme-context-header">
-            <erp-text type="span" data-review-native-role="span" class="theme-title">السمة الفاتحة (Light Theme)</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="theme-title">السمة الحالية الموروثة من App</erp-text>
           </erp-review-box>
 
           <erp-review-box data-review-native-role="div" class="theme-specimen-stack">
             <!-- Subtle -->
-            <erp-review-box data-review-native-role="div" id="light-border-subtle" class="semantic-color-box border-subtle-sample">
+            <erp-review-box data-review-native-role="div" id="current-border-subtle" class="semantic-color-box border-subtle-sample">
               <erp-text type="span" data-review-native-role="span" class="sample-role-title">حد خفيف (Subtle Border)</erp-text>
               <erp-text type="code" data-review-native-role="code" class="token-role-code">var(--honesty-border-subtle)</erp-text>
               <erp-text type="span" data-review-native-role="span" class="sample-fixed-note">1px • solid</erp-text>
             </erp-review-box>
 
             <!-- Default -->
-            <erp-review-box data-review-native-role="div" id="light-border-default" class="semantic-color-box border-default-sample">
+            <erp-review-box data-review-native-role="div" id="current-border-default" class="semantic-color-box border-default-sample">
               <erp-text type="span" data-review-native-role="span" class="sample-role-title">حد افتراضي (Default Border)</erp-text>
               <erp-text type="code" data-review-native-role="code" class="token-role-code">var(--honesty-border-default)</erp-text>
               <erp-text type="span" data-review-native-role="span" class="sample-fixed-note">1px • solid</erp-text>
             </erp-review-box>
 
             <!-- Strong -->
-            <erp-review-box data-review-native-role="div" id="light-border-strong" class="semantic-color-box border-strong-sample">
+            <erp-review-box data-review-native-role="div" id="current-border-strong" class="semantic-color-box border-strong-sample">
               <erp-text type="span" data-review-native-role="span" class="sample-role-title">حد بارز (Strong Border)</erp-text>
               <erp-text type="code" data-review-native-role="code" class="token-role-code">var(--honesty-border-strong)</erp-text>
               <erp-text type="span" data-review-native-role="span" class="sample-fixed-note">1px (ثابت) • solid</erp-text>
             </erp-review-box>
           </erp-review-box>
         </erp-review-box>
-
-        <!-- DARK CONTEXT -->
-        <erp-review-box data-review-native-role="div" id="border-theme-context-dark" class="theme-context-box">
-          <erp-review-box data-review-native-role="div" class="theme-context-header">
-            <erp-text type="span" data-review-native-role="span" class="theme-title">السمة الداكنة (Dark Theme)</erp-text>
-          </erp-review-box>
-
-          <erp-review-box data-review-native-role="div" class="theme-specimen-stack">
-            <!-- Subtle -->
-            <erp-review-box data-review-native-role="div" id="dark-border-subtle" class="semantic-color-box border-subtle-sample">
-              <erp-text type="span" data-review-native-role="span" class="sample-role-title">حد خفيف (Subtle Border)</erp-text>
-              <erp-text type="code" data-review-native-role="code" class="token-role-code">var(--honesty-border-subtle)</erp-text>
-              <erp-text type="span" data-review-native-role="span" class="sample-fixed-note">1px • solid</erp-text>
-            </erp-review-box>
-
-            <!-- Default -->
-            <erp-review-box data-review-native-role="div" id="dark-border-default" class="semantic-color-box border-default-sample">
-              <erp-text type="span" data-review-native-role="span" class="sample-role-title">حد افتراضي (Default Border)</erp-text>
-              <erp-text type="code" data-review-native-role="code" class="token-role-code">var(--honesty-border-default)</erp-text>
-              <erp-text type="span" data-review-native-role="span" class="sample-fixed-note">1px • solid</erp-text>
-            </erp-review-box>
-
-            <!-- Strong -->
-            <erp-review-box data-review-native-role="div" id="dark-border-strong" class="semantic-color-box border-strong-sample">
-              <erp-text type="span" data-review-native-role="span" class="sample-role-title">حد بارز (Strong Border)</erp-text>
-              <erp-text type="code" data-review-native-role="code" class="token-role-code">var(--honesty-border-strong)</erp-text>
-              <erp-text type="span" data-review-native-role="span" class="sample-fixed-note">1px (ثابت) • solid</erp-text>
-            </erp-review-box>
-          </erp-review-box>
-        </erp-review-box>
-      </erp-review-box>
+</erp-review-box>
     </erp-section>
 
     <!-- ================================================================= -->
@@ -499,16 +469,13 @@
         <erp-text type="span" data-review-native-role="span">style = solid</erp-text>
       </erp-review-box>
 
-      <erp-review-box data-review-native-role="div" id="focus-theme-comparison" class="dual-theme-container">
-        @for (theme of ['light', 'dark']; track theme) {
-          <erp-review-box data-review-native-role="div"
-            class="theme-context-box focus-theme-context"
-            [attr.data-theme]="theme"
-            [attr.data-focus-context]="theme"
+      <erp-review-box data-review-native-role="div" id="focus-theme-current" class="dual-theme-container">
+        <erp-review-box data-review-native-role="div"
+            class="theme-context-box focus-theme-context" data-focus-context="current"
           >
             <erp-review-box data-review-native-role="div" class="theme-context-header">
-              <erp-text type="span" data-review-native-role="span" class="theme-title">{{ theme === 'light' ? 'السمة الفاتحة (Light Theme)' : 'السمة الداكنة (Dark Theme)' }}</erp-text>
-              <erp-text type="code" data-review-native-role="code" class="theme-code">data-theme="{{ theme }}"</erp-text>
+              <erp-text type="span" data-review-native-role="span" class="theme-title">السمة الحالية الموروثة من App</erp-text>
+              <erp-text type="code" data-review-native-role="code" class="theme-code">Inherited App theme</erp-text>
             </erp-review-box>
 
             <erp-review-box data-review-native-role="div" class="specimen-grid grid-2">
@@ -524,7 +491,6 @@
 
             <erp-button class="focus-keyboard-target" data-focus-keyboard-target label="Native :focus-visible target" />
           </erp-review-box>
-        }
       </erp-review-box>
     </erp-section>
 

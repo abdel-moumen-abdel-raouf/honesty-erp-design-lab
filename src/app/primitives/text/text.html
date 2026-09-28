@@ -152,7 +152,7 @@
     </data>
   }
   @case ('bdi') {
-    <bdi class="erp-text__native">
+    <bdi class="erp-text__native" [attr.dir]="resolvedDirection()">
       <ng-container [ngTemplateOutlet]="projectedContent"></ng-container>
     </bdi>
   }

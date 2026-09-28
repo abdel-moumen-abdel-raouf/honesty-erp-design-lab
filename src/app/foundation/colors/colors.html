@@ -3,7 +3,7 @@
     <erp-text type="span" data-review-native-role="span" id="specimen-badge" class="specimen-badge">مراجعة بصرية توثيقية داخلية — مسوّدة مرجعية V2</erp-text>
     <erp-text type="heading-1" data-review-native-role="h1" id="specimen-title">فحص التدرجات اللونية المرجعية (Reference Color Palettes)</erp-text>
     <erp-text type="paragraph" data-review-native-role="p" id="specimen-subtitle">
-      معاينة تقييمية مباشرة للقيم اللونية المرجعية لمجموعات Neutral وPrimary وSecondary وAccent، مع مراجعة أدوار ألوان الهوية الدلالية في السمتين الفاتحة والداكنة.
+      معاينة تقييمية مباشرة للقيم اللونية المرجعية لمجموعات Neutral وPrimary وSecondary وAccent، مع مراجعة أدوار ألوان الهوية الدلالية تحت السمة الحالية الموروثة من App.
     </erp-text>
   </erp-stack>
 
@@ -117,13 +117,11 @@
     </erp-review-box>
 
     <erp-review-box data-review-native-role="div" class="brand-theme-grid">
-      @for (theme of ['light', 'dark']; track theme) {
         <erp-stack gap="default" data-review-native-role="article"
           class="brand-theme-context"
-          [attr.data-theme]="theme"
-          [attr.data-brand-context]="theme"
+          data-brand-context="current"
         >
-          <erp-text type="heading-3" data-review-native-role="h3">{{ theme === 'light' ? 'Light' : 'Dark' }}</erp-text>
+          <erp-text type="heading-3" data-review-native-role="h3">Current App Theme</erp-text>
           <erp-review-box data-review-native-role="div" class="brand-tone-groups">
             @for (tone of ['primary', 'secondary', 'accent']; track tone) {
               <erp-section data-review-native-role="section" class="brand-tone-group brand-tone-{{ tone }}" [attr.data-brand-tone]="tone">
@@ -137,7 +135,6 @@
             }
           </erp-review-box>
         </erp-stack>
-      }
     </erp-review-box>
   </erp-section>
 </erp-container>

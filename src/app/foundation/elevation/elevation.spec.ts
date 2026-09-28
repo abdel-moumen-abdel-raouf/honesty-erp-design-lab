@@ -79,79 +79,25 @@ describe('Elevation Candidate V1 Visual Specimen', () => {
     });
   });
 
-  describe('Section 3: Semantic Elevation (Light vs Dark Themes)', () => {
-    it('should render Light theme semantic context with None, Raised, and Overlay', () => {
-      const lightContext = compiled.querySelector('#semantic-context-light');
-      expect(lightContext).toBeTruthy();
-      expect(lightContext?.hasAttribute('data-theme')).toBe(false);
-
-      const noneSample = lightContext?.querySelector('#semantic-light-none');
-      const raisedSample = lightContext?.querySelector('#semantic-light-raised');
-      const overlaySample = lightContext?.querySelector('#semantic-light-overlay');
-
-      expect(noneSample).toBeTruthy();
-      expect(raisedSample).toBeTruthy();
-      expect(overlaySample).toBeTruthy();
-
-      expect(noneSample?.textContent).toContain('--honesty-elevation-none');
-      expect(raisedSample?.textContent).toContain('--honesty-elevation-raised');
-      expect(overlaySample?.textContent).toContain('--honesty-elevation-overlay');
-    });
-
-    it('should render Dark theme semantic context with None, Raised, and Overlay', () => {
-      const darkContext = compiled.querySelector('#semantic-context-dark');
-      expect(darkContext).toBeTruthy();
-      expect(darkContext?.hasAttribute('data-theme')).toBe(false);
-
-      const noneSample = darkContext?.querySelector('#semantic-dark-none');
-      const raisedSample = darkContext?.querySelector('#semantic-dark-raised');
-      const overlaySample = darkContext?.querySelector('#semantic-dark-overlay');
-
-      expect(noneSample).toBeTruthy();
-      expect(raisedSample).toBeTruthy();
-      expect(overlaySample).toBeTruthy();
-
-      expect(noneSample?.textContent).toContain('--honesty-elevation-none');
-      expect(raisedSample?.textContent).toContain('--honesty-elevation-raised');
-      expect(overlaySample?.textContent).toContain('--honesty-elevation-overlay');
+  describe('Section 3: Semantic Elevation under inherited App theme', () => {
+    it('should render one semantic elevation context under the inherited App theme', () => {
+      const context = compiled.querySelector('#semantic-context-current');
+      expect(context).toBeTruthy();
+      expect(context?.hasAttribute('data-theme')).toBe(false);
+      expect(context?.querySelector('#semantic-current-none')).toBeTruthy();
+      expect(context?.querySelector('#semantic-current-raised')).toBeTruthy();
+      expect(context?.querySelector('#semantic-current-overlay')).toBeTruthy();
     });
   });
 
   describe('Section 4: Contextual Floating-Layer Review', () => {
-    it('should render contextual Light example with base, floating, and raised regions', () => {
-      const lightCase = compiled.querySelector('#contextual-case-light');
-      expect(lightCase).toBeTruthy();
-      expect(lightCase?.hasAttribute('data-theme')).toBe(false);
-
-      const baseRegion = lightCase?.querySelector('#contextual-base-light');
-      const floatingRegion = lightCase?.querySelector('#contextual-floating-light');
-      const raisedRegion = lightCase?.querySelector('#contextual-raised-light');
-
-      expect(baseRegion).toBeTruthy();
-      expect(floatingRegion).toBeTruthy();
-      expect(raisedRegion).toBeTruthy();
-
-      expect(baseRegion?.textContent).toContain('--honesty-elevation-none');
-      expect(floatingRegion?.textContent).toContain('--honesty-elevation-overlay');
-      expect(raisedRegion?.textContent).toContain('--honesty-elevation-raised');
-    });
-
-    it('should render contextual Dark example with base, floating, and raised regions', () => {
-      const darkCase = compiled.querySelector('#contextual-case-dark');
-      expect(darkCase).toBeTruthy();
-      expect(darkCase?.hasAttribute('data-theme')).toBe(false);
-
-      const baseRegion = darkCase?.querySelector('#contextual-base-dark');
-      const floatingRegion = darkCase?.querySelector('#contextual-floating-dark');
-      const raisedRegion = darkCase?.querySelector('#contextual-raised-dark');
-
-      expect(baseRegion).toBeTruthy();
-      expect(floatingRegion).toBeTruthy();
-      expect(raisedRegion).toBeTruthy();
-
-      expect(baseRegion?.textContent).toContain('--honesty-elevation-none');
-      expect(floatingRegion?.textContent).toContain('--honesty-elevation-overlay');
-      expect(raisedRegion?.textContent).toContain('--honesty-elevation-raised');
+    it('should render one contextual elevation example under the inherited App theme', () => {
+      const currentCase = compiled.querySelector('#contextual-case-current');
+      expect(currentCase).toBeTruthy();
+      expect(currentCase?.hasAttribute('data-theme')).toBe(false);
+      expect(currentCase?.querySelector('#contextual-base-current')).toBeTruthy();
+      expect(currentCase?.querySelector('#contextual-floating-current')).toBeTruthy();
+      expect(currentCase?.querySelector('#contextual-raised-current')).toBeTruthy();
     });
   });
 });

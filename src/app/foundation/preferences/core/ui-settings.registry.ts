@@ -12,12 +12,10 @@ import {
   NumberSeparatorProfile,
   SettingDefinition,
   StoreType,
-  ThemeMode,
   TimeFormat,
   UiSettingKey,
 } from './ui-settings.types';
 
-const themeModes = ['light', 'dark', 'system'] as const;
 const densityModes = ['compact', 'comfortable', 'spacious'] as const;
 const formLabelPlacements = ['top', 'side'] as const;
 const formAppearances = ['outlined', 'filled', 'underline'] as const;
@@ -99,13 +97,6 @@ export type UiSettingsRegistry = {
 };
 
 export const UI_SETTINGS_REGISTRY: UiSettingsRegistry = Object.freeze({
-  theme: Object.freeze({
-    key: 'theme',
-    category: 'appearance',
-    defaultValue: 'system',
-    storeType: StoreType.LOCAL,
-    validate: (value: unknown): value is ThemeMode => isOneOf(value, themeModes),
-  }),
   density: Object.freeze({
     key: 'density',
     category: 'appearance',

@@ -220,7 +220,7 @@ The preceding Product Owner theme-authority preservation checkpoint is:
 
 06ab7d326b6f2b6c5d6d863e2acefcc994b04b53 — fix(lab): inherit review pages from global theme
 
-No additional implementation phase is authorized after that checkpoint until the Product Owner completes runtime/visual re-review and supplies the next page-by-page findings. Checkbox/RadioBox redesign, broad Light/Dark SCSS cleanup, and later unreviewed showcase work remain explicitly deferred.
+No additional product implementation phase is authorized until the Product Owner completes runtime/visual re-review and supplies the next page-by-page findings. Checkbox/RadioBox redesign and later unreviewed showcase work remain deferred. Local Light/Dark theme authority cleanup is explicitly authorized, completed in the current correction, and protected by a lint governance gate.
 
 
 ### Current verification gate
@@ -266,3 +266,26 @@ focused regression test verifies forwarding from the native select's change
 event.
 
 The next gate remains a full local `npm run verify:clean`.
+
+
+### Single App theme authority checkpoint
+
+The Product Owner requires the App root and its top theme button to be the only
+runtime Light/Dark authority.
+
+The current correction removes local theme authority from pages, Preferences,
+components, compact-menu overlay data, and review contexts. All lower UI
+inherits the App root's semantic token resolution. Central Foundation
+`_light.scss` / `_dark.scss` mappings remain the system implementation and
+are not local authorities.
+
+The repository lint gate now begins with `theme-authority:check`, which
+requires exactly one App-root `data-theme` binding and rejects child
+`data-theme` authoring, local Theme state/settings, ancestor theme reads, and
+component SCSS branching on `[data-theme]`.
+
+The same checkpoint fixes the two unit-test root causes reported after the
+clean lint run at `030a74bb6e6977ecca6d33a373ef806a93c35306`:
+ReviewSelect projected-option selection and ErpText-owned BDI direction.
+
+A fresh local `npm run verify:clean` is the next mandatory gate.

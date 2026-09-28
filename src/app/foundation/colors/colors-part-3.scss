@@ -73,10 +73,10 @@ $specimen-accent-ramp: (
 );
 
 .swatch-card {
-  border: 1px solid #d8dce4;
+  border: 1px solid var(--honesty-border-default);
   border-radius: 4px;
   overflow: hidden;
-  background-color: #ffffff;
+  background-color: var(--honesty-color-surface-default);
   display: flex;
   flex-direction: column;
 
@@ -98,13 +98,13 @@ $specimen-accent-ramp: (
   .swatch-step {
     font-size: 0.85rem;
     font-weight: 700;
-    color: #1a1e27;
+    color: var(--honesty-color-text-primary);
   }
 
   .swatch-hex {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.75rem;
-    color: #555d6d;
+    color: var(--honesty-color-text-secondary);
     direction: ltr;
 
     &::after {
@@ -116,7 +116,7 @@ $specimen-accent-ramp: (
 .brand-note {
   max-width: 75ch;
   margin-bottom: 1.25rem;
-  color: #585f6e;
+  color: var(--honesty-color-text-secondary);
 
   p {
     margin: 0.25rem 0;

@@ -59,41 +59,14 @@ describe('Borders & Radius Candidate V1 Visual Specimen', () => {
     });
   });
 
-  describe('Section 3: Border Color vs Geometry Contract (Light & Dark Themes)', () => {
-    it('should render Light theme border hierarchy with subtle, default, and strong samples', () => {
-      const lightContext = compiled.querySelector('#border-theme-context-light');
-      expect(lightContext).toBeTruthy();
-      expect(lightContext?.hasAttribute('data-theme')).toBe(false);
-
-      const subtle = lightContext?.querySelector('#light-border-subtle');
-      const def = lightContext?.querySelector('#light-border-default');
-      const strong = lightContext?.querySelector('#light-border-strong');
-
-      expect(subtle).toBeTruthy();
-      expect(def).toBeTruthy();
-      expect(strong).toBeTruthy();
-
-      expect(subtle?.textContent).toContain('--honesty-border-subtle');
-      expect(def?.textContent).toContain('--honesty-border-default');
-      expect(strong?.textContent).toContain('--honesty-border-strong');
-    });
-
-    it('should render Dark theme border hierarchy with subtle, default, and strong samples', () => {
-      const darkContext = compiled.querySelector('#border-theme-context-dark');
-      expect(darkContext).toBeTruthy();
-      expect(darkContext?.hasAttribute('data-theme')).toBe(false);
-
-      const subtle = darkContext?.querySelector('#dark-border-subtle');
-      const def = darkContext?.querySelector('#dark-border-default');
-      const strong = darkContext?.querySelector('#dark-border-strong');
-
-      expect(subtle).toBeTruthy();
-      expect(def).toBeTruthy();
-      expect(strong).toBeTruthy();
-
-      expect(subtle?.textContent).toContain('--honesty-border-subtle');
-      expect(def?.textContent).toContain('--honesty-border-default');
-      expect(strong?.textContent).toContain('--honesty-border-strong');
+  describe('Section 3: Border Color vs Geometry Contract under inherited App theme', () => {
+    it('should render the border hierarchy once under the inherited App theme', () => {
+      const context = compiled.querySelector('#border-theme-context-current');
+      expect(context).toBeTruthy();
+      expect(context?.hasAttribute('data-theme')).toBe(false);
+      expect(context?.querySelector('#current-border-subtle')).toBeTruthy();
+      expect(context?.querySelector('#current-border-default')).toBeTruthy();
+      expect(context?.querySelector('#current-border-strong')).toBeTruthy();
     });
   });
 
@@ -179,21 +152,12 @@ describe('Borders & Radius Candidate V1 Visual Specimen', () => {
   });
 
   describe('Section 8: Focus Ring Geometry', () => {
-    it('should render Light and Dark Focus contexts with two static proofs and one native target each', () => {
+    it('should render one inherited-theme Focus context with two static proofs and one native target', () => {
       const section = compiled.querySelector('#sec-focus-ring-geometry');
-      const lightContext = section?.querySelector('[data-focus-context="light"]');
-      const darkContext = section?.querySelector('[data-focus-context="dark"]');
-
-      expect(section).toBeTruthy();
-      expect(lightContext).toBeTruthy();
-      expect(darkContext).toBeTruthy();
-
-      for (const context of [lightContext, darkContext]) {
-        expect(context?.querySelectorAll('[data-focus-static-proof]')).toHaveLength(2);
-        expect(context?.querySelector('[data-focus-static-proof="control"]')).toBeTruthy();
-        expect(context?.querySelector('[data-focus-static-proof="surface"]')).toBeTruthy();
-        expect(context?.querySelector('erp-button[data-focus-keyboard-target] button')).toBeTruthy();
-      }
+      const context = section?.querySelector('[data-focus-context="current"]');
+      expect(context).toBeTruthy();
+      expect(context?.querySelectorAll('[data-focus-static-proof]')).toHaveLength(2);
+      expect(context?.querySelector('erp-button[data-focus-keyboard-target]')).toBeTruthy();
     });
 
     it('should render the four runtime token names used by the Focus evidence', () => {

@@ -24,7 +24,6 @@ import {
   DigitSet,
   isLocalPersistenceStoreType,
   StoreType,
-  ThemeMode,
   UiSettingChangeEvent,
   UiSettingsDocument,
   UiSettingsStorageContext,
@@ -60,7 +59,6 @@ class MemoryStorage implements UiSettingsStorageLike {
 
 function defaultDocument(): UiSettingsDocument {
   return {
-    theme: UI_SETTINGS_REGISTRY.theme.defaultValue,
     density: UI_SETTINGS_REGISTRY.density.defaultValue,
     formLabelPlacement: UI_SETTINGS_REGISTRY.formLabelPlacement.defaultValue,
     formAppearance: UI_SETTINGS_REGISTRY.formAppearance.defaultValue,
@@ -76,7 +74,6 @@ function defaultDocument(): UiSettingsDocument {
 
 function customDocument(): UiSettingsDocument {
   return {
-    theme: 'dark',
     density: 'compact',
     formLabelPlacement: 'side',
     formAppearance: 'filled',
@@ -103,61 +100,6 @@ function persistedDocument(memory: MemoryStorage): UiSettingsDocument {
 }
 
 describe('UiSetting', () => {
-  it('starts with its registry default and exposes it through the readonly signal', () => {
-    const setting = new UiSetting(UI_SETTINGS_REGISTRY.theme);
-    expect(setting.value).toBe('system');
-    expect(setting.valueSignal()).toBe('system');
-  });
-
-  it('sets a valid value and publishes an exact change event', () => {
-    const setting = new UiSetting(UI_SETTINGS_REGISTRY.theme);
-    const events: object[] = [];
-    setting.subscribe((event) => events.push(event));
-
-    setting.set('dark', 'user');
-
-    expect(setting.value).toBe('dark');
-    expect(events).toEqual([
-      {
-        key: 'theme',
-        previousValue: 'system',
-        currentValue: 'dark',
-        source: 'user',
-      },
-    ]);
-    expect(Object.keys(events[0]).sort()).toEqual([
-      'currentValue',
-      'key',
-      'previousValue',
-      'source',
-    ]);
-  });
-
-  it('resets to the definition default with reset source', () => {
-    const setting = new UiSetting(UI_SETTINGS_REGISTRY.theme);
-    setting.set('dark');
-    const events: object[] = [];
-    setting.subscribe((event) => events.push(event));
-
-    setting.reset();
-
-    expect(setting.value).toBe('system');
-    expect(events).toEqual([
-      {
-        key: 'theme',
-        previousValue: 'dark',
-        currentValue: 'system',
-        source: 'reset',
-      },
-    ]);
-  });
-
-  it('rejects a value that fails the definition runtime validator', () => {
-    const setting = new UiSetting(UI_SETTINGS_REGISTRY.theme);
-    expect(() => setting.set('automatic' as ThemeMode)).toThrowError(TypeError);
-    expect(setting.value).toBe('system');
-  });
-
   it('owns an immutable copy of an object-valued default', () => {
     const setting = new UiSetting(UI_SETTINGS_REGISTRY.digits);
 
@@ -208,9 +150,8 @@ describe('StoreType local persistence eligibility', () => {
 });
 
 describe('UI settings registry', () => {
-  it('contains exactly the 11 specified definitions and all are LOCAL', () => {
+  it('contains exactly the 10 non-theme definitions and all are LOCAL', () => {
     expect(UI_SETTING_KEYS).toEqual([
-      'theme',
       'density',
       'formLabelPlacement',
       'formAppearance',
@@ -222,7 +163,7 @@ describe('UI settings registry', () => {
       'dateViewStyle',
       'timeFormat',
     ]);
-    expect(UI_SETTING_KEYS).toHaveLength(11);
+    expect(UI_SETTING_KEYS).toHaveLength(10);
     expect(
       UI_SETTING_KEYS.every(
         (key) => UI_SETTINGS_REGISTRY[key].storeType === StoreType.LOCAL
@@ -240,7 +181,7 @@ describe('UiSettingsStore local persistence', () => {
 
     expect(memory.setCalls).toBe(1);
     expect(persistedDocument(memory)).toEqual(defaultDocument());
-    expect(Object.keys(persistedDocument(memory))).toHaveLength(11);
+    expect(Object.keys(persistedDocument(memory))).toHaveLength(10);
   });
 
   it('hydrates all settings from one valid saved document without writes', () => {
@@ -255,20 +196,22 @@ describe('UiSettingsStore local persistence', () => {
     store.hydrate();
 
     expect(store.snapshot()).toEqual(customDocument());
-    expect(hydrateSources).toEqual(Array.from({length: 11}, () => 'hydrate'));
+    expect(hydrateSources).toEqual(Array.from({length: 10}, () => 'hydrate'));
     expect(memory.setCalls).toBe(0);
   });
 
-  it('persists one complete document immediately for one normal set', () => {
+  it('migrates the removed legacy theme key without resetting other preferences', () => {
     const memory = new MemoryStorage();
+    const legacyDocument = {...customDocument(), theme: 'dark'};
+    memory.seed(storageKey, JSON.stringify(legacyDocument));
     const store = createStore(memory);
+
     store.hydrate();
-    memory.setCalls = 0;
 
-    store.set('theme', 'dark');
-
+    expect(store.snapshot()).toEqual(customDocument());
+    expect(persistedDocument(memory)).toEqual(customDocument());
     expect(memory.setCalls).toBe(1);
-    expect(persistedDocument(memory).theme).toBe('dark');
+    expect(Object.hasOwn(persistedDocument(memory), 'theme')).toBe(false);
   });
 
   it('owns contextual values independently from mutable caller references', () => {
@@ -306,26 +249,10 @@ describe('UiSettingsStore local persistence', () => {
     expect(store.value('digits').overrides.view).toBe('arabic-indic');
   });
 
-  it('persists resetSetting once', () => {
-    const memory = new MemoryStorage();
-    const store = createStore(memory);
-    store.hydrate();
-    store.set('theme', 'dark');
-    memory.setCalls = 0;
-
-    store.resetSetting('theme');
-
-    expect(memory.setCalls).toBe(1);
-    expect(persistedDocument(memory).theme).toBe(
-      UI_SETTINGS_REGISTRY.theme.defaultValue
-    );
-  });
-
   it('persists resetCategory once and resets only that category', () => {
     const memory = new MemoryStorage();
     const store = createStore(memory);
     store.hydrate();
-    store.set('theme', 'dark');
     store.set('density', 'compact');
     store.set('formAppearance', 'filled');
     memory.setCalls = 0;
@@ -333,7 +260,6 @@ describe('UiSettingsStore local persistence', () => {
     store.resetCategory('appearance');
 
     expect(memory.setCalls).toBe(1);
-    expect(store.value('theme')).toBe(UI_SETTINGS_REGISTRY.theme.defaultValue);
     expect(store.value('density')).toBe(UI_SETTINGS_REGISTRY.density.defaultValue);
     expect(store.value('formAppearance')).toBe('filled');
   });
@@ -342,7 +268,6 @@ describe('UiSettingsStore local persistence', () => {
     const memory = new MemoryStorage();
     const store = createStore(memory);
     store.hydrate();
-    store.set('theme', 'dark');
     store.set('timeFormat', '12h');
     memory.setCalls = 0;
 
@@ -360,14 +285,14 @@ describe('UiSettingsStore local persistence', () => {
     {
       name: 'missing saved key',
       serialized: () => {
-        const missingTheme: Record<string, unknown> = {...customDocument()};
-        delete missingTheme['theme'];
-        return JSON.stringify(missingTheme);
+        const missingDensity: Record<string, unknown> = {...customDocument()};
+        delete missingDensity['density'];
+        return JSON.stringify(missingDensity);
       },
     },
     {
       name: 'invalid saved value',
-      serialized: () => JSON.stringify({...customDocument(), theme: 'automatic'}),
+      serialized: () => JSON.stringify({...customDocument(), density: 'automatic'}),
     },
     {
       name: 'malformed JSON',
@@ -391,7 +316,7 @@ describe('UiSettingsStore local persistence', () => {
     const store = createStore(memory);
 
     store.hydrate();
-    store.set('theme', 'dark');
+    store.set('density', 'compact');
     store.resetAll();
 
     expect(memory.getItem('unrelated:key')).toBe('preserve-me');

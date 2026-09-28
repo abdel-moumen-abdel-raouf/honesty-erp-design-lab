@@ -9,10 +9,7 @@ import {ErpContainer} from '../../primitives/container/container';
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
-  DestroyRef,
   inject,
-  signal,
 } from '@angular/core';
 import {
   convertDigits,
@@ -49,14 +46,11 @@ type ScalarSettingKey = Exclude<UiSettingKey, ContextualSettingKey>;
   styleUrls: ['./preferences.scss', './preferences-part-2.scss', './preferences-part-3.scss', './preferences-part-4.scss', './preferences-part-5.scss', './preferences-part-6.scss', './preferences-part-7.scss'],
 })
 export class Preferences {
-  private readonly destroyRef = inject(DestroyRef);
-  private readonly systemPrefersDark = signal(false);
   readonly store = inject(UiSettingsService).store;
   readonly registry = UI_SETTINGS_REGISTRY;
   readonly settingKeys = UI_SETTING_KEYS;
   readonly systemTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-  readonly theme = this.store.get('theme').valueSignal;
   readonly density = this.store.get('density').valueSignal;
   readonly formLabelPlacement = this.store.get('formLabelPlacement').valueSignal;
   readonly formAppearance = this.store.get('formAppearance').valueSignal;
@@ -68,24 +62,6 @@ export class Preferences {
   readonly dateViewStyle = this.store.get('dateViewStyle').valueSignal;
   readonly timeFormat = this.store.get('timeFormat').valueSignal;
 
-  readonly resolvedPreviewTheme = computed(() => {
-    const theme = this.theme();
-    return theme === 'system' ? (this.systemPrefersDark() ? 'dark' : 'light') : theme;
-  });
-
-  constructor() {
-    if (typeof window.matchMedia === 'function') {
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      this.systemPrefersDark.set(mediaQuery.matches);
-      const updateSystemTheme = (event: MediaQueryListEvent): void => {
-        this.systemPrefersDark.set(event.matches);
-      };
-      mediaQuery.addEventListener('change', updateSystemTheme);
-      this.destroyRef.onDestroy(() =>
-        mediaQuery.removeEventListener('change', updateSystemTheme)
-      );
-    }
-  }
 
   setScalar<K extends ScalarSettingKey>(key: K, event: Event): void {
     const candidate = this.selectValue(event);

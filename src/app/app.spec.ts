@@ -218,7 +218,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(inputControlsLink?.textContent?.trim()).toBe('حقول الإدخال الإنتاجية');
     expect(overlayControlsLink?.textContent?.trim()).toBe('النوافذ الحاجبة');
     expect(colorsLink?.textContent?.trim()).toBe('الألوان المرجعية');
-    expect(themesLink?.textContent?.trim()).toBe('السمات الفاتحة والداكنة');
+    expect(themesLink?.textContent?.trim()).toBe('السمات الدلالية');
     expect(statusHuesLink?.textContent?.trim()).toBe('صبغات الحالات');
     expect(feedbackColorsLink?.textContent?.trim()).toBe('ألوان الحالات الدلالية');
     expect(typographyLink?.textContent?.trim()).toBe('الطباعة');

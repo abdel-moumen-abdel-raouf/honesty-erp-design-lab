@@ -26,26 +26,14 @@ describe('Colors', () => {
     expect(compiled.querySelectorAll('[data-reference-swatch]')).toHaveLength(44);
   });
 
-  it('should render equivalent Light and Dark Brand evidence with three tones each', () => {
+  it('should render Brand evidence once under the inherited App theme', () => {
     const fixture = TestBed.createComponent(Colors);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    const lightContext = compiled.querySelector('[data-brand-context="light"]');
-    const darkContext = compiled.querySelector('[data-brand-context="dark"]');
+    const context = compiled.querySelector('[data-brand-context="current"]');
 
-    expect(lightContext).toBeTruthy();
-    expect(darkContext).toBeTruthy();
-
-    for (const context of [lightContext, darkContext]) {
-      const toneGroups = context?.querySelectorAll('[data-brand-tone]');
-      expect(toneGroups).toHaveLength(3);
-
-      for (const group of Array.from(toneGroups ?? [])) {
-        expect(group.querySelectorAll('[data-brand-sample]')).toHaveLength(3);
-        expect(group.querySelector('[data-brand-sample="solid"]')).toBeTruthy();
-        expect(group.querySelector('[data-brand-sample="solid-strong"]')).toBeTruthy();
-        expect(group.querySelector('[data-brand-sample="subtle-content"]')).toBeTruthy();
-      }
-    }
+    expect(context).toBeTruthy();
+    expect(context?.hasAttribute('data-theme')).toBe(false);
+    expect(context?.querySelectorAll('[data-brand-tone]')).toHaveLength(3);
   });
 });

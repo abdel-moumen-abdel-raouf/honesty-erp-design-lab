@@ -43,65 +43,53 @@ describe('Themes Specimen', () => {
     expect(themesRoute).toBeDefined();
   });
 
-  it('should render both labelled review contexts without overriding the global theme', () => {
+  it('should render one current review context without overriding the global theme', () => {
     const fixture = TestBed.createComponent(Themes);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
+    const context = compiled.querySelector('#theme-context-current');
 
-    const lightContext = compiled.querySelector('#theme-context-light');
-    const darkContext = compiled.querySelector('#theme-context-dark');
-
-    expect(lightContext).toBeTruthy();
-    expect(darkContext).toBeTruthy();
-    expect(lightContext?.hasAttribute('data-theme')).toBe(false);
-    expect(darkContext?.hasAttribute('data-theme')).toBe(false);
+    expect(context).toBeTruthy();
+    expect(context?.hasAttribute('data-theme')).toBe(false);
+    expect(compiled.querySelector('#theme-context-dark')).toBeNull();
   });
 
-  it('should render all required semantic review groups in both themes', () => {
+  it('should render all required semantic review groups in the inherited theme', () => {
     const fixture = TestBed.createComponent(Themes);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
 
-    // Light context groups
-    expect(compiled.querySelector('#surface-hierarchy-light')).toBeTruthy();
-    expect(compiled.querySelector('#borders-group-light')).toBeTruthy();
-    expect(compiled.querySelector('#actions-group-light')).toBeTruthy();
-    expect(compiled.querySelector('#subtle-actions-group-light')).toBeTruthy();
-    expect(compiled.querySelector('#focus-ring-group-light')).toBeTruthy();
-
-    // Dark context groups
-    expect(compiled.querySelector('#surface-hierarchy-dark')).toBeTruthy();
-    expect(compiled.querySelector('#borders-group-dark')).toBeTruthy();
-    expect(compiled.querySelector('#actions-group-dark')).toBeTruthy();
-    expect(compiled.querySelector('#subtle-actions-group-dark')).toBeTruthy();
-    expect(compiled.querySelector('#focus-ring-group-dark')).toBeTruthy();
+    for (const id of [
+      'surface-hierarchy-current',
+      'borders-group-current',
+      'actions-group-current',
+      'subtle-actions-group-current',
+      'focus-ring-group-current',
+    ]) {
+      expect(compiled.querySelector('#' + id)).toBeTruthy();
+    }
   });
 
-  it('should render the corrected inverse sample container in both theme contexts', () => {
+  it('should render the corrected inverse sample in the inherited theme', () => {
     const fixture = TestBed.createComponent(Themes);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-
-    expect(compiled.querySelector('#inverse-sample-light')).toBeTruthy();
-    expect(compiled.querySelector('#inverse-sample-dark')).toBeTruthy();
+    expect((fixture.nativeElement as HTMLElement).querySelector('#inverse-sample-current')).toBeTruthy();
   });
 
-  it('should render the Light and Dark scrim samples', () => {
+  it('should render one scrim sample in the inherited theme', () => {
     const fixture = TestBed.createComponent(Themes);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-
-    expect(compiled.querySelector('#scrim-sample-light')).toBeTruthy();
-    expect(compiled.querySelector('#scrim-sample-dark')).toBeTruthy();
+    expect((fixture.nativeElement as HTMLElement).querySelector('#scrim-sample-current')).toBeTruthy();
   });
 
-  it('should document the exact Light and Dark focus-ring source steps', () => {
+  it('should document the semantic focus-ring role without a local theme mapping', () => {
     const fixture = TestBed.createComponent(Themes);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
+    const meta = compiled.querySelector('#focus-ring-meta-current');
 
-    expect(compiled.querySelector('#focus-ring-meta-light')?.textContent).toContain('Primary 400');
-    expect(compiled.querySelector('#focus-ring-meta-dark')?.textContent).toContain('Primary 300');
+    expect(meta?.textContent).toContain('--honesty-color-action-focus-ring');
+    expect(meta?.textContent).toContain('resolved by active App theme');
   });
 
   it('emits every overlay backdrop and glass role in both themes with distinct theme resolutions', () => {

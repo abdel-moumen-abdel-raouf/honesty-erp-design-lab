@@ -606,7 +606,22 @@ b7a1030bd64cab8d789b0193e7aa6f0c37c3faf9 — fix(review): resolve first-round sh
 
 Current mandatory decisions:
 
-- App-level data-theme is the single review/runtime theme authority. Do not add page/component-local Light/Dark theme authority.
+- The App root is the sole runtime theme authority. Exactly one application binding,
+  `[attr.data-theme]="theme()"`, belongs in `app.html`; the `App` class owns
+  the corresponding `theme` state and the top-bar `toggleTheme()` action.
+- Every routed page, production component, review internal, popup, and blocking
+  overlay inherits the active App theme. They must not author/bind/document a
+  local `data-theme`, inspect ancestor theme attributes, persist a competing
+  theme setting, or pass Light/Dark through component/overlay data.
+- Preferences intentionally contain no Theme setting. A legacy persisted
+  `theme` key may only be removed during one-time storage migration while
+  preserving all remaining preferences; it is never rehydrated as runtime state.
+- The central Foundation theme mapping files under
+  `src/styles/foundation/themes/_light.scss` and `_dark.scss` remain valid
+  system implementation: they define semantic token resolutions and are not
+  page/component theme authorities.
+- `theme-authority:check` is a mandatory lint gate and prevents local theme
+  authority from being reintroduced below App.
 - Every routed Design Lab page template resolved from `app.routes.ts` authors `erp-*` tags only. Native HTML/SVG/form semantics needed by a page are owned inside approved ERP primitives/controls or Design-Lab-only `erp-review-*` internals; route templates never author native tags directly. `erp-review-*` internals are not public product component families.
 - Tooltip defaults to slide-up entry and visually slide-up exit. Tooltip anchored geometry must remain stable while an inner layer animates.
 - SearchBox popup remains nonblocking/anchored and must not be narrower than its field when viewport space permits or leave invisible pointer-blocking top-layer state after dismissal.
@@ -623,7 +638,7 @@ Current mandatory decisions:
 - ComboBox opens on normal pointer interaction, ArrowDown, and typing while preserving the entered query.
 - ErpContainer production width values remain full, 48rem, 75rem, and 90rem; current correction changed showcase evidence, not those contracts.
 - Do not redesign or delete ErpCheckBox/ErpRadioBox until the Product Owner supplies the dedicated templates/references.
-- Broad Light/Dark-specific SCSS cleanup remains deferred.
+- Unrelated visual/style refactoring remains deferred, but local Light/Dark theme authority cleanup is complete and must not be deferred or reintroduced.
 - No later unreviewed showcase family or new public component family is authorized until the Product Owner supplies the next page-by-page findings.
 
 The first-round correction checkpoint is a technical implementation candidate, not Product Owner visual approval. Do not declare family freeze, Basic Controls closure, or Wave B from it.

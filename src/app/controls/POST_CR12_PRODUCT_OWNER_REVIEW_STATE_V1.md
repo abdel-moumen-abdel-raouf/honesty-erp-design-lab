@@ -36,11 +36,29 @@ GitHub exposes no combined commit-status contexts and no workflow runs for these
 
 ### Global theme authority
 
-- The App-level data-theme is the single review/runtime Light/Dark authority.
-- Review pages and production components inherit that authority.
-- Page/component-local data-theme="light" or data-theme="dark" authority is not accepted.
-- The 15 Product Owner local removals were preserved in the dedicated 06ab7d3 checkpoint before implementation.
-- A broader audit/removal of Light/Dark-specific page/component SCSS is deferred to a later Product Owner review round.
+- The App root/top-bar control is the sole runtime theme authority.
+- Exactly one runtime `data-theme` binding is authorized:
+  `[attr.data-theme]="theme()"` in `app.html`.
+- `app.ts` owns the Lab theme signal, persistence, preview propagation, and
+  `toggleTheme()`; no lower page/component owns a competing state.
+- Routed pages, production controls, review internals, popups, and overlays
+  inherit the active App theme and must not author/bind/document local
+  `data-theme`, read an ancestor `data-theme`, or carry Light/Dark in
+  component/overlay data.
+- Preferences no longer exposes or persists a Theme setting. Existing storage
+  documents that contain the old `theme` key are migrated by removing that
+  key only and preserving the remaining ten preference values.
+- Foundation semantic mapping sources
+  `src/styles/foundation/themes/_light.scss` and `_dark.scss` remain
+  legitimate centralized system definitions. They are not page/component
+  authorities.
+- Theme-sensitive review pages now show one current inherited-theme context;
+  the Product Owner uses the single top App theme button to review the same
+  evidence in Light and Dark.
+- `theme-authority:check` is part of `npm run lint` and statically prevents
+  lower-level theme authority from returning.
+- Historical Product Owner attribute removals remain preserved in
+  `06ab7d326b6f2b6c5d6d863e2acefcc994b04b53`.
 
 ### Overview
 
@@ -188,7 +206,7 @@ This is a technical implementation checkpoint only. Product Owner subjective vis
 
 - Product Owner must re-run the reviewed pages and visually accept/reject the first-round corrections.
 - Checkbox/RadioBox visual redesign remains deferred until the Product Owner supplies the dedicated templates/references.
-- Broader page/component Light/Dark-specific SCSS cleanup remains deferred.
+- Unrelated visual SCSS refactoring remains deferred; local page/component Light/Dark theme authority is no longer deferred and is prohibited by governance.
 - Remaining showcase pages not yet reviewed page-by-page remain outside the current correction authorization.
 - The previously reported component-style budget warnings are resolved by source stylesheet partitioning while retaining the existing 4kB/8kB `anyComponentStyle` warning/error thresholds; the budget was not raised to hide violations.
 - The previous `html2canvas` CommonJS warning is resolved by consuming the package's ESM distribution entry with a local type declaration; no CommonJS allow-list suppression was added.
@@ -303,3 +321,36 @@ to verify native-change forwarding through the renamed output.
 
 A fresh complete `npm run verify:clean` remains mandatory before this
 checkpoint can be called clean.
+
+
+## Single App theme authority correction
+
+The Product Owner explicitly superseded the earlier deferral of local
+Light/Dark authority cleanup.
+
+The commit containing this document performs the following bounded correction:
+
+- fixes `ErpReviewSelect` initial selection by synchronizing projected native
+  option selection with the component value;
+- fixes `ErpText type="bdi"` so its owned native `<bdi>` receives the
+  resolved direction;
+- removes Theme from Preferences types, registry, UI, runtime state, and
+  persisted settings;
+- migrates the legacy persisted `theme` key without resetting the remaining
+  preference values;
+- removes theme capture/propagation from SplitButton's compact menu;
+- removes page-local theme contexts from Charts, Colors brand evidence,
+  Themes, Feedback Colors, Borders/Radius, Typography, Density, and Elevation;
+- replaces affected docs chrome colors with semantic tokens where fixed
+  Light-looking chrome would otherwise defeat inheritance;
+- adds `theme-authority:check` to the lint gate.
+
+Local verification evidence before this correction reached a clean lint and
+governance result at `030a74bb6e6977ecca6d33a373ef806a93c35306`, then
+the unit suite reported exactly two failures: ReviewSelect initial native
+selection and Typography BDI direction. Both root causes are addressed by this
+correction.
+
+This revision is not considered fully verified until a fresh local
+`npm run verify:clean` completes through tests, both TypeScript no-emit
+checks, and `build:clean`. It does not declare Product Owner visual approval.

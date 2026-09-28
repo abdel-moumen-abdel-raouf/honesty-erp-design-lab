@@ -3,20 +3,17 @@
     <erp-text type="span" data-review-native-role="span" class="specimen-badge">مراجعة بصرية توثيقية — Semantic Chart Color Candidate V1</erp-text>
     <erp-text type="heading-1" data-review-native-role="h1">ألوان الرسوم البيانية الدلالية</erp-text>
     <erp-text type="paragraph" data-review-native-role="p">
-      معاينة ثابتة للسلاسل التصنيفية وألوان الحالة والعناصر الهيكلية في السمتين الفاتحة والداكنة، من دون مكتبة رسوم بيانية أو عقود مكوّنات إنتاجية.
+      معاينة ثابتة للسلاسل التصنيفية وألوان الحالة والعناصر الهيكلية تحت السمة الحالية الموروثة من App، من دون أي Theme محلي.
     </erp-text>
   </erp-stack>
 
   <erp-review-box data-review-native-role="div" id="chart-theme-comparison" class="theme-comparison">
-    @for (theme of themes; track theme.id) {
       <erp-section data-review-native-role="section"
-        id="chart-context-{{ theme.id }}"
+        id="chart-context-current"
         class="theme-context"
-        [attr.data-theme]="theme.id"
       >
         <erp-stack gap="tight" data-review-native-role="header" class="theme-context-header">
-          <erp-text type="heading-2" data-review-native-role="h2">{{ theme.label }}</erp-text>
-          <erp-text type="span" data-review-native-role="span" class="theme-tag">data-theme="{{ theme.id }}"</erp-text>
+          <erp-text type="heading-2" data-review-native-role="h2">السمة الحالية الموروثة من App</erp-text>
         </erp-stack>
 
         <erp-review-box data-review-native-role="div" class="theme-content">
@@ -87,6 +84,5 @@
           </erp-section>
         </erp-review-box>
       </erp-section>
-    }
   </erp-review-box>
 </erp-container>

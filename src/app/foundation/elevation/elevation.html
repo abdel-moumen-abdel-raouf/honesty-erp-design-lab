@@ -143,29 +143,28 @@
     </erp-section>
 
     <!-- ================================================================= -->
-    <!-- SECTION 3: SEMANTIC ELEVATION COMPARISON (LIGHT VS DARK)          -->
+    <!-- SECTION 3: SEMANTIC ELEVATION UNDER CURRENT APP THEME          -->
     <!-- ================================================================= -->
     <erp-section data-review-native-role="section" id="sec-semantic-elevation" class="specimen-section">
       <erp-review-box data-review-native-role="div" class="section-heading">
         <erp-text type="heading-2" data-review-native-role="h2" id="title-semantic-elevation" class="section-title">الارتفاع الدلالي وفق السمة</erp-text>
-        <erp-text type="span" data-review-native-role="span" class="section-subtitle">Semantic Elevation by Theme Comparison (--honesty-elevation-*)</erp-text>
+        <erp-text type="span" data-review-native-role="span" class="section-subtitle">Semantic Elevation under Inherited App Theme (--honesty-elevation-*)</erp-text>
       </erp-review-box>
       <erp-text type="paragraph" data-review-native-role="p" class="section-lead">
-        تُحل المتغيرات الدلالية في بيئة تشغيل كل سمة بشكل مستقل لضمان التمايز فوق سطح الخلفية المناسب.
-        تحتفظ العينات بنفس السطح والحدود ونصف القطر داخل كل سمة ليقتصر التقييم على شدة الظل فقط.
+        تُحل المتغيرات الدلالية حصريًا من السمة العامة في App، وتعرض العينات نفس العقود دون أي تعريف Theme محلي.
       </erp-text>
 
       <erp-review-box data-review-native-role="div" id="semantic-comparison-container" class="themes-comparison-grid">
-        <!-- ================= LIGHT CONTEXT ================= -->
-        <erp-review-box data-review-native-role="div" id="semantic-context-light" class="theme-context-box">
+        <!-- ================= CURRENT INHERITED THEME CONTEXT ================= -->
+        <erp-review-box data-review-native-role="div" id="semantic-context-current" class="theme-context-box">
           <erp-review-box data-review-native-role="div" class="theme-context-header">
-            <erp-text type="span" data-review-native-role="span" class="theme-badge">السمة الفاتحة</erp-text>
-            <erp-text type="code" data-review-native-role="code" class="theme-code">data-theme="light"</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="theme-badge">السمة الحالية الموروثة من App</erp-text>
+            <erp-text type="code" data-review-native-role="code" class="theme-code">Inherited App theme</erp-text>
           </erp-review-box>
 
           <erp-review-box data-review-native-role="div" class="semantic-specimen-stack">
-            <!-- Light None -->
-            <erp-review-box data-review-native-role="div" id="semantic-light-none" class="semantic-sample-row">
+            <!-- Current None -->
+            <erp-review-box data-review-native-role="div" id="semantic-current-none" class="semantic-sample-row">
               <erp-review-box data-review-native-role="div" class="semantic-visual-wrapper">
                 <erp-review-box data-review-native-role="div" class="semantic-specimen-box semantic-elevation-none">
                   <erp-text type="span" data-review-native-role="span" class="semantic-box-label">None</erp-text>
@@ -178,8 +177,8 @@
               </erp-review-box>
             </erp-review-box>
 
-            <!-- Light Raised -->
-            <erp-review-box data-review-native-role="div" id="semantic-light-raised" class="semantic-sample-row">
+            <!-- Current Raised -->
+            <erp-review-box data-review-native-role="div" id="semantic-current-raised" class="semantic-sample-row">
               <erp-review-box data-review-native-role="div" class="semantic-visual-wrapper">
                 <erp-review-box data-review-native-role="div" class="semantic-specimen-box semantic-elevation-raised">
                   <erp-text type="span" data-review-native-role="span" class="semantic-box-label">Raised</erp-text>
@@ -188,12 +187,12 @@
               <erp-review-box data-review-native-role="div" class="semantic-meta-col">
                 <erp-text type="code" data-review-native-role="code" class="token-role-code">--honesty-elevation-raised</erp-text>
                 <erp-text type="span" data-review-native-role="span" class="semantic-purpose-label">طبقة مرتفعة • subtle physical separation</erp-text>
-                <erp-text type="span" data-review-native-role="span" class="semantic-rule-hint">مركب من: Geometry 1 + Neutral 950 + Alpha 0.08</erp-text>
+                <erp-text type="span" data-review-native-role="span" class="semantic-rule-hint">Resolved by --honesty-elevation-raised under the active App theme</erp-text>
               </erp-review-box>
             </erp-review-box>
 
-            <!-- Light Overlay -->
-            <erp-review-box data-review-native-role="div" id="semantic-light-overlay" class="semantic-sample-row">
+            <!-- Current Overlay -->
+            <erp-review-box data-review-native-role="div" id="semantic-current-overlay" class="semantic-sample-row">
               <erp-review-box data-review-native-role="div" class="semantic-visual-wrapper">
                 <erp-review-box data-review-native-role="div" class="semantic-specimen-box semantic-elevation-overlay">
                   <erp-text type="span" data-review-native-role="span" class="semantic-box-label">Overlay</erp-text>
@@ -202,64 +201,12 @@
               <erp-review-box data-review-native-role="div" class="semantic-meta-col">
                 <erp-text type="code" data-review-native-role="code" class="token-role-code">--honesty-elevation-overlay</erp-text>
                 <erp-text type="span" data-review-native-role="span" class="semantic-purpose-label">طبقة عائمة • floating layer separation</erp-text>
-                <erp-text type="span" data-review-native-role="span" class="semantic-rule-hint">مركب من: Geometry 2 + Neutral 950 + Alpha 0.14</erp-text>
+                <erp-text type="span" data-review-native-role="span" class="semantic-rule-hint">Resolved by --honesty-elevation-overlay under the active App theme</erp-text>
               </erp-review-box>
             </erp-review-box>
           </erp-review-box>
         </erp-review-box>
-
-        <!-- ================= DARK CONTEXT ================= -->
-        <erp-review-box data-review-native-role="div" id="semantic-context-dark" class="theme-context-box">
-          <erp-review-box data-review-native-role="div" class="theme-context-header">
-            <erp-text type="span" data-review-native-role="span" class="theme-badge">السمة الداكنة</erp-text>
-            <erp-text type="code" data-review-native-role="code" class="theme-code">data-theme="dark"</erp-text>
-          </erp-review-box>
-
-          <erp-review-box data-review-native-role="div" class="semantic-specimen-stack">
-            <!-- Dark None -->
-            <erp-review-box data-review-native-role="div" id="semantic-dark-none" class="semantic-sample-row">
-              <erp-review-box data-review-native-role="div" class="semantic-visual-wrapper">
-                <erp-review-box data-review-native-role="div" class="semantic-specimen-box semantic-elevation-none">
-                  <erp-text type="span" data-review-native-role="span" class="semantic-box-label">None</erp-text>
-                </erp-review-box>
-              </erp-review-box>
-              <erp-review-box data-review-native-role="div" class="semantic-meta-col">
-                <erp-text type="code" data-review-native-role="code" class="token-role-code">--honesty-elevation-none</erp-text>
-                <erp-text type="span" data-review-native-role="span" class="semantic-purpose-label">سطح مستوٍ • flat / flush</erp-text>
-                <erp-text type="span" data-review-native-role="span" class="semantic-rule-hint">انعدام الظل - الحالة الافتراضية للبطاقات والأقسام</erp-text>
-              </erp-review-box>
-            </erp-review-box>
-
-            <!-- Dark Raised -->
-            <erp-review-box data-review-native-role="div" id="semantic-dark-raised" class="semantic-sample-row">
-              <erp-review-box data-review-native-role="div" class="semantic-visual-wrapper">
-                <erp-review-box data-review-native-role="div" class="semantic-specimen-box semantic-elevation-raised">
-                  <erp-text type="span" data-review-native-role="span" class="semantic-box-label">Raised</erp-text>
-                </erp-review-box>
-              </erp-review-box>
-              <erp-review-box data-review-native-role="div" class="semantic-meta-col">
-                <erp-text type="code" data-review-native-role="code" class="token-role-code">--honesty-elevation-raised</erp-text>
-                <erp-text type="span" data-review-native-role="span" class="semantic-purpose-label">طبقة مرتفعة • subtle physical separation</erp-text>
-                <erp-text type="span" data-review-native-role="span" class="semantic-rule-hint">مركب من: Geometry 1 + Black + Alpha 0.28</erp-text>
-              </erp-review-box>
-            </erp-review-box>
-
-            <!-- Dark Overlay -->
-            <erp-review-box data-review-native-role="div" id="semantic-dark-overlay" class="semantic-sample-row">
-              <erp-review-box data-review-native-role="div" class="semantic-visual-wrapper">
-                <erp-review-box data-review-native-role="div" class="semantic-specimen-box semantic-elevation-overlay">
-                  <erp-text type="span" data-review-native-role="span" class="semantic-box-label">Overlay</erp-text>
-                </erp-review-box>
-              </erp-review-box>
-              <erp-review-box data-review-native-role="div" class="semantic-meta-col">
-                <erp-text type="code" data-review-native-role="code" class="token-role-code">--honesty-elevation-overlay</erp-text>
-                <erp-text type="span" data-review-native-role="span" class="semantic-purpose-label">طبقة عائمة • floating layer separation</erp-text>
-                <erp-text type="span" data-review-native-role="span" class="semantic-rule-hint">مركب من: Geometry 2 + Black + Alpha 0.40</erp-text>
-              </erp-review-box>
-            </erp-review-box>
-          </erp-review-box>
-        </erp-review-box>
-      </erp-review-box>
+</erp-review-box>
     </erp-section>
 
     <!-- ================================================================= -->
@@ -275,18 +222,18 @@
       </erp-text>
 
       <erp-review-box data-review-native-role="div" id="contextual-comparison-grid" class="themes-comparison-grid">
-        <!-- Light Contextual Case -->
-        <erp-review-box data-review-native-role="div" id="contextual-case-light" class="theme-context-box">
+        <!-- Current inherited-theme contextual case -->
+        <erp-review-box data-review-native-role="div" id="contextual-case-current" class="theme-context-box">
           <erp-review-box data-review-native-role="div" class="theme-context-header">
-            <erp-text type="span" data-review-native-role="span" class="theme-badge">السمة الفاتحة</erp-text>
+            <erp-text type="span" data-review-native-role="span" class="theme-badge">السمة الحالية الموروثة من App</erp-text>
             <erp-text type="span" data-review-native-role="span" class="contextual-scenario-title">فصل الطبقة العائمة فوق سطح مستوٍ</erp-text>
           </erp-review-box>
 
           <erp-review-box data-review-native-role="div" class="contextual-stage-container">
             <!-- Stage: Overlay above Base -->
-            <erp-review-box data-review-native-role="div" id="contextual-stage-light" class="contextual-stage">
+            <erp-review-box data-review-native-role="div" id="contextual-stage-current" class="contextual-stage">
               <!-- Flat Base Region -->
-              <erp-review-box data-review-native-role="div" id="contextual-base-light" class="contextual-base-region">
+              <erp-review-box data-review-native-role="div" id="contextual-base-current" class="contextual-base-region">
                 <erp-review-box data-review-native-role="div" class="region-info">
                   <erp-text type="span" data-review-native-role="span" class="region-badge">سطح مستوٍ أساسي (Base Region)</erp-text>
                   <erp-text type="code" data-review-native-role="code" class="token-inline">--honesty-elevation-none</erp-text>
@@ -297,7 +244,7 @@
               </erp-review-box>
 
               <!-- Floating Generic Region (Overlapping) -->
-              <erp-review-box data-review-native-role="div" id="contextual-floating-light" class="contextual-floating-region">
+              <erp-review-box data-review-native-role="div" id="contextual-floating-current" class="contextual-floating-region">
                 <erp-review-box data-review-native-role="div" class="region-info">
                   <erp-text type="span" data-review-native-role="span" class="region-badge floating-badge">طبقة عائمة (Floating Layer)</erp-text>
                   <erp-text type="code" data-review-native-role="code" class="token-inline">--honesty-elevation-overlay</erp-text>
@@ -309,7 +256,7 @@
             </erp-review-box>
 
             <!-- Raised Contextual Check -->
-            <erp-review-box data-review-native-role="div" id="contextual-raised-light" class="contextual-raised-region">
+            <erp-review-box data-review-native-role="div" id="contextual-raised-current" class="contextual-raised-region">
               <erp-review-box data-review-native-role="div" class="region-info">
                 <erp-text type="span" data-review-native-role="span" class="region-badge">تحقق الارتفاع الطفيف (Raised)</erp-text>
                 <erp-text type="code" data-review-native-role="code" class="token-inline">--honesty-elevation-raised</erp-text>
@@ -320,53 +267,7 @@
             </erp-review-box>
           </erp-review-box>
         </erp-review-box>
-
-        <!-- Dark Contextual Case -->
-        <erp-review-box data-review-native-role="div" id="contextual-case-dark" class="theme-context-box">
-          <erp-review-box data-review-native-role="div" class="theme-context-header">
-            <erp-text type="span" data-review-native-role="span" class="theme-badge">السمة الداكنة</erp-text>
-            <erp-text type="span" data-review-native-role="span" class="contextual-scenario-title">فصل الطبقة العائمة فوق سطح مستوٍ</erp-text>
-          </erp-review-box>
-
-          <erp-review-box data-review-native-role="div" class="contextual-stage-container">
-            <!-- Stage: Overlay above Base -->
-            <erp-review-box data-review-native-role="div" id="contextual-stage-dark" class="contextual-stage">
-              <!-- Flat Base Region -->
-              <erp-review-box data-review-native-role="div" id="contextual-base-dark" class="contextual-base-region">
-                <erp-review-box data-review-native-role="div" class="region-info">
-                  <erp-text type="span" data-review-native-role="span" class="region-badge">سطح مستوٍ أساسي (Base Region)</erp-text>
-                  <erp-text type="code" data-review-native-role="code" class="token-inline">--honesty-elevation-none</erp-text>
-                </erp-review-box>
-                <erp-text type="paragraph" data-review-native-role="p" class="region-text">
-                  مساحة محتوى اعتيادية تعتمد على السطح والحدود فقط بدون أي ظل.
-                </erp-text>
-              </erp-review-box>
-
-              <!-- Floating Generic Region (Overlapping) -->
-              <erp-review-box data-review-native-role="div" id="contextual-floating-dark" class="contextual-floating-region">
-                <erp-review-box data-review-native-role="div" class="region-info">
-                  <erp-text type="span" data-review-native-role="span" class="region-badge floating-badge">طبقة عائمة (Floating Layer)</erp-text>
-                  <erp-text type="code" data-review-native-role="code" class="token-inline">--honesty-elevation-overlay</erp-text>
-                </erp-review-box>
-                <erp-text type="paragraph" data-review-native-role="p" class="region-text">
-                  فصل فيزيائي مستقل فوق السطح الأساسي الداكن.
-                </erp-text>
-              </erp-review-box>
-            </erp-review-box>
-
-            <!-- Raised Contextual Check -->
-            <erp-review-box data-review-native-role="div" id="contextual-raised-dark" class="contextual-raised-region">
-              <erp-review-box data-review-native-role="div" class="region-info">
-                <erp-text type="span" data-review-native-role="span" class="region-badge">تحقق الارتفاع الطفيف (Raised)</erp-text>
-                <erp-text type="code" data-review-native-role="code" class="token-inline">--honesty-elevation-raised</erp-text>
-              </erp-review-box>
-              <erp-text type="paragraph" data-review-native-role="p" class="region-text">
-                تحقق من أن الارتفاع خافت ومحدد ولا يشبه الظلال التجميلية للبطاقات.
-              </erp-text>
-            </erp-review-box>
-          </erp-review-box>
-        </erp-review-box>
-      </erp-review-box>
+</erp-review-box>
     </erp-section>
 
   </erp-container>

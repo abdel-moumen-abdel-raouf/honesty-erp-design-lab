@@ -14,7 +14,6 @@ export type UiSettingCategory =
 
 export type UiSettingChangeSource = 'user' | 'hydrate' | 'reset';
 
-export type ThemeMode = 'light' | 'dark' | 'system';
 export type DensityMode = 'compact' | 'comfortable' | 'spacious';
 export type FormLabelPlacement = 'top' | 'side';
 export type FormAppearance = 'outlined' | 'filled' | 'underline';
@@ -41,7 +40,6 @@ export interface ContextualPreference<T, C extends PropertyKey> {
 }
 
 export interface UiSettingsValueMap {
-  readonly theme: ThemeMode;
   readonly density: DensityMode;
   readonly formLabelPlacement: FormLabelPlacement;
   readonly formAppearance: FormAppearance;

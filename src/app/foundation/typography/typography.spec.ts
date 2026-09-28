@@ -163,21 +163,21 @@ describe('Typography Specimen Component', () => {
     expect(bdiElements.length).toBeGreaterThanOrEqual(4);
   });
 
-  it('should render the limited Dark-theme typography review context', () => {
+  it('should render the typography review context under the inherited App theme', () => {
     const fixture = TestBed.createComponent(Typography);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
 
-    const darkContainer = compiled.querySelector('#dark-context-container');
-    expect(darkContainer).toBeTruthy();
-    expect(darkContainer?.hasAttribute('data-theme')).toBe(false);
+    const themeContainer = compiled.querySelector('#current-theme-context-container');
+    expect(themeContainer).toBeTruthy();
+    expect(themeContainer?.hasAttribute('data-theme')).toBe(false);
 
-    expect(darkContainer?.querySelector('#dark-role-page-title')).toBeTruthy();
-    expect(darkContainer?.querySelector('#dark-role-body')).toBeTruthy();
-    expect(darkContainer?.querySelector('#dark-role-body-small')).toBeTruthy();
-    expect(darkContainer?.querySelector('#dark-role-label')).toBeTruthy();
-    expect(darkContainer?.querySelector('#dark-role-caption')).toBeTruthy();
-    expect(darkContainer?.querySelector('#dark-mixed-data-line')).toBeTruthy();
+    expect(themeContainer?.querySelector('#current-role-page-title')).toBeTruthy();
+    expect(themeContainer?.querySelector('#current-role-body')).toBeTruthy();
+    expect(themeContainer?.querySelector('#current-role-body-small')).toBeTruthy();
+    expect(themeContainer?.querySelector('#current-role-label')).toBeTruthy();
+    expect(themeContainer?.querySelector('#current-role-caption')).toBeTruthy();
+    expect(themeContainer?.querySelector('#current-mixed-data-line')).toBeTruthy();
   });
 });
 

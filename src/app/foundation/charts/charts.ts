@@ -14,8 +14,4 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   styleUrls: ['./charts.scss', './charts-part-2.scss', './charts-part-3.scss', './charts-part-4.scss', './charts-part-5.scss', './charts-part-6.scss'],
 })
 export class Charts {
-  readonly themes = [
-    {id: 'light', label: 'السمة الفاتحة'},
-    {id: 'dark', label: 'السمة الداكنة'},
-  ] as const;
 }

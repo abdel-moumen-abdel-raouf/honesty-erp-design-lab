@@ -7,12 +7,12 @@ import {ErpReviewSelect} from './review-select';
   imports: [ErpReviewChoice, ErpReviewSelect],
   template: `
     <erp-review-select
-      label="Theme"
-      value="dark"
+      label="Density"
+      value="compact"
       (selectionChanged)="lastEvent = $event"
     >
-      <erp-review-choice value="light" label="Light"></erp-review-choice>
-      <erp-review-choice value="dark" label="Dark"></erp-review-choice>
+      <erp-review-choice value="comfortable" label="Comfortable"></erp-review-choice>
+      <erp-review-choice value="compact" label="Compact"></erp-review-choice>
     </erp-review-select>
   `,
 })
@@ -34,22 +34,22 @@ describe('ErpReviewSelect', () => {
     const select = root.querySelector('select') as HTMLSelectElement | null;
     const options = Array.from(root.querySelectorAll('option'));
 
-    expect(governedLabel?.textContent?.trim()).toBe('Theme');
-    expect(select?.value).toBe('dark');
-    expect(options.map((option) => option.label)).toEqual(['Light', 'Dark']);
+    expect(governedLabel?.textContent?.trim()).toBe('Density');
+    expect(select?.value).toBe('compact');
+    expect(options.map((option) => option.label)).toEqual(['Comfortable', 'Compact']);
     expect(options.every((option) => option.textContent === '')).toBe(true);
 
     if (select === null) {
       throw new Error('Expected native review select.');
     }
 
-    select.value = 'light';
+    select.value = 'comfortable';
     select.dispatchEvent(new Event('change', {bubbles: true}));
     fixture.detectChanges();
 
     expect(fixture.componentInstance.lastEvent).toBeInstanceOf(Event);
     expect((fixture.componentInstance.lastEvent?.target as HTMLSelectElement).value).toBe(
-      'light'
+      'comfortable'
     );
   });
 });

@@ -3,24 +3,24 @@
     <erp-text type="span" data-review-native-role="span" id="feedback-specimen-badge" class="specimen-badge">توثيق ومراجعة بصرية • Docs-Only</erp-text>
     <erp-text type="heading-1" data-review-native-role="h1" id="feedback-specimen-title">ألوان الحالات الدلالية (Semantic Feedback Colors)</erp-text>
     <erp-text type="paragraph" data-review-native-role="p" id="feedback-specimen-description">
-      مراجعة بصرية مقارنة لتعيينات ألوان الحالات الدلالية (Success, Warning, Danger, Info) في السمتين الفاتحة والداكنة.
+      مراجعة بصرية لتعيينات ألوان الحالات الدلالية (Success, Warning, Danger, Info) تحت السمة الحالية الموروثة حصريًا من App.
       تعتمد هذه المعاينة حصراً على المتغيرات الدلالية المعتمدة (CSS Custom Properties) لتقييم التباين والاتساق بين الأسطح والنصوص والحدود والأيقونات.
     </erp-text>
   </erp-stack>
 
   <erp-review-box data-review-native-role="div" id="feedback-comparison-grid" class="feedback-comparison-grid">
     <!-- =================================================================== -->
-    <!-- LIGHT THEME CONTEXT -->
+    <!-- CURRENT INHERITED THEME CONTEXT -->
     <!-- =================================================================== -->
-    <erp-section data-review-native-role="section" id="feedback-context-light" class="theme-context">
+    <erp-section data-review-native-role="section" id="feedback-context-current" class="theme-context">
       <erp-review-box data-review-native-role="div" class="theme-context-header">
-        <erp-text type="heading-2" data-review-native-role="h2" id="title-context-light">السمة الفاتحة (Light Theme)</erp-text>
-        <erp-text type="span" data-review-native-role="span" class="theme-tag">data-theme="light"</erp-text>
+        <erp-text type="heading-2" data-review-native-role="h2" id="title-context-current">السمة الحالية الموروثة من App</erp-text>
+        <erp-text type="span" data-review-native-role="span" class="theme-tag">Inherited App theme</erp-text>
       </erp-review-box>
 
       <erp-review-box data-review-native-role="div" class="theme-canvas">
         <!-- SUCCESS INTENT -->
-        <erp-review-box data-review-native-role="div" id="light-intent-success" class="intent-group">
+        <erp-review-box data-review-native-role="div" id="current-intent-success" class="intent-group">
           <erp-review-box data-review-native-role="div" class="intent-header">
             <erp-text type="span" data-review-native-role="span" class="intent-title">حالة النجاح (Success)</erp-text>
             <erp-text type="span" data-review-native-role="span" class="intent-tokens-label">Green V1 Mapping</erp-text>
@@ -28,7 +28,7 @@
 
           <erp-review-box data-review-native-role="div" class="samples-stack">
             <!-- Subtle Sample -->
-            <erp-review-box data-review-native-role="div" id="light-sample-success-subtle" class="sample-subtle sample-subtle-success">
+            <erp-review-box data-review-native-role="div" id="current-sample-success-subtle" class="sample-subtle sample-subtle-success">
               <erp-review-box data-review-native-role="div" class="sample-content">
                 <erp-text type="span" data-review-native-role="span" class="sample-icon-marker marker-success" aria-hidden="true"></erp-text>
                 <erp-text type="span" data-review-native-role="span" class="sample-text">تم حفظ المستند بنجاح.</erp-text>
@@ -40,7 +40,7 @@
             </erp-review-box>
 
             <!-- Strong Sample -->
-            <erp-review-box data-review-native-role="div" id="light-sample-success-strong" class="sample-strong sample-strong-success">
+            <erp-review-box data-review-native-role="div" id="current-sample-success-strong" class="sample-strong sample-strong-success">
               <erp-review-box data-review-native-role="div" class="sample-content">
                 <erp-text type="span" data-review-native-role="span" class="sample-text">تم حفظ المستند بنجاح.</erp-text>
               </erp-review-box>
@@ -53,7 +53,7 @@
         </erp-review-box>
 
         <!-- WARNING INTENT -->
-        <erp-review-box data-review-native-role="div" id="light-intent-warning" class="intent-group">
+        <erp-review-box data-review-native-role="div" id="current-intent-warning" class="intent-group">
           <erp-review-box data-review-native-role="div" class="intent-header">
             <erp-text type="span" data-review-native-role="span" class="intent-title">حالة التحذير (Warning)</erp-text>
             <erp-text type="span" data-review-native-role="span" class="intent-tokens-label">Amber V1 Mapping</erp-text>
@@ -61,7 +61,7 @@
 
           <erp-review-box data-review-native-role="div" class="samples-stack">
             <!-- Subtle Sample -->
-            <erp-review-box data-review-native-role="div" id="light-sample-warning-subtle" class="sample-subtle sample-subtle-warning">
+            <erp-review-box data-review-native-role="div" id="current-sample-warning-subtle" class="sample-subtle sample-subtle-warning">
               <erp-review-box data-review-native-role="div" class="sample-content">
                 <erp-text type="span" data-review-native-role="span" class="sample-icon-marker marker-warning" aria-hidden="true"></erp-text>
                 <erp-text type="span" data-review-native-role="span" class="sample-text">توجد بيانات تحتاج إلى مراجعة قبل المتابعة.</erp-text>
@@ -73,7 +73,7 @@
             </erp-review-box>
 
             <!-- Strong Sample -->
-            <erp-review-box data-review-native-role="div" id="light-sample-warning-strong" class="sample-strong sample-strong-warning">
+            <erp-review-box data-review-native-role="div" id="current-sample-warning-strong" class="sample-strong sample-strong-warning">
               <erp-review-box data-review-native-role="div" class="sample-content">
                 <erp-text type="span" data-review-native-role="span" class="sample-text">توجد بيانات تحتاج إلى مراجعة قبل المتابعة.</erp-text>
               </erp-review-box>
@@ -86,7 +86,7 @@
         </erp-review-box>
 
         <!-- DANGER INTENT -->
-        <erp-review-box data-review-native-role="div" id="light-intent-danger" class="intent-group">
+        <erp-review-box data-review-native-role="div" id="current-intent-danger" class="intent-group">
           <erp-review-box data-review-native-role="div" class="intent-header">
             <erp-text type="span" data-review-native-role="span" class="intent-title">حالة الخطأ / الخطر (Danger)</erp-text>
             <erp-text type="span" data-review-native-role="span" class="intent-tokens-label">Red V1 Mapping</erp-text>
@@ -94,7 +94,7 @@
 
           <erp-review-box data-review-native-role="div" class="samples-stack">
             <!-- Subtle Sample -->
-            <erp-review-box data-review-native-role="div" id="light-sample-danger-subtle" class="sample-subtle sample-subtle-danger">
+            <erp-review-box data-review-native-role="div" id="current-sample-danger-subtle" class="sample-subtle sample-subtle-danger">
               <erp-review-box data-review-native-role="div" class="sample-content">
                 <erp-text type="span" data-review-native-role="span" class="sample-icon-marker marker-danger" aria-hidden="true"></erp-text>
                 <erp-text type="span" data-review-native-role="span" class="sample-text">تعذر إتمام العملية بسبب خطأ في البيانات.</erp-text>
@@ -106,7 +106,7 @@
             </erp-review-box>
 
             <!-- Strong Sample -->
-            <erp-review-box data-review-native-role="div" id="light-sample-danger-strong" class="sample-strong sample-strong-danger">
+            <erp-review-box data-review-native-role="div" id="current-sample-danger-strong" class="sample-strong sample-strong-danger">
               <erp-review-box data-review-native-role="div" class="sample-content">
                 <erp-text type="span" data-review-native-role="span" class="sample-text">تعذر إتمام العملية بسبب خطأ في البيانات.</erp-text>
               </erp-review-box>
@@ -119,7 +119,7 @@
         </erp-review-box>
 
         <!-- INFO INTENT -->
-        <erp-review-box data-review-native-role="div" id="light-intent-info" class="intent-group">
+        <erp-review-box data-review-native-role="div" id="current-intent-info" class="intent-group">
           <erp-review-box data-review-native-role="div" class="intent-header">
             <erp-text type="span" data-review-native-role="span" class="intent-title">حالة المعلومات (Info)</erp-text>
             <erp-text type="span" data-review-native-role="span" class="intent-tokens-label">Cyan V1 Mapping</erp-text>
@@ -127,7 +127,7 @@
 
           <erp-review-box data-review-native-role="div" class="samples-stack">
             <!-- Subtle Sample -->
-            <erp-review-box data-review-native-role="div" id="light-sample-info-subtle" class="sample-subtle sample-subtle-info">
+            <erp-review-box data-review-native-role="div" id="current-sample-info-subtle" class="sample-subtle sample-subtle-info">
               <erp-review-box data-review-native-role="div" class="sample-content">
                 <erp-text type="span" data-review-native-role="span" class="sample-icon-marker marker-info" aria-hidden="true"></erp-text>
                 <erp-text type="span" data-review-native-role="span" class="sample-text">تم تحديث بيانات النظام ويمكنك المتابعة.</erp-text>
@@ -139,7 +139,7 @@
             </erp-review-box>
 
             <!-- Strong Sample -->
-            <erp-review-box data-review-native-role="div" id="light-sample-info-strong" class="sample-strong sample-strong-info">
+            <erp-review-box data-review-native-role="div" id="current-sample-info-strong" class="sample-strong sample-strong-info">
               <erp-review-box data-review-native-role="div" class="sample-content">
                 <erp-text type="span" data-review-native-role="span" class="sample-text">تم تحديث بيانات النظام ويمكنك المتابعة.</erp-text>
               </erp-review-box>
@@ -153,148 +153,6 @@
       </erp-review-box>
     </erp-section>
 
-    <!-- =================================================================== -->
-    <!-- DARK THEME CONTEXT -->
-    <!-- =================================================================== -->
-    <erp-section data-review-native-role="section" id="feedback-context-dark" class="theme-context">
-      <erp-review-box data-review-native-role="div" class="theme-context-header">
-        <erp-text type="heading-2" data-review-native-role="h2" id="title-context-dark">السمة الداكنة (Dark Theme)</erp-text>
-        <erp-text type="span" data-review-native-role="span" class="theme-tag">data-theme="dark"</erp-text>
-      </erp-review-box>
-
-      <erp-review-box data-review-native-role="div" class="theme-canvas">
-        <!-- SUCCESS INTENT -->
-        <erp-review-box data-review-native-role="div" id="dark-intent-success" class="intent-group">
-          <erp-review-box data-review-native-role="div" class="intent-header">
-            <erp-text type="span" data-review-native-role="span" class="intent-title">حالة النجاح (Success)</erp-text>
-            <erp-text type="span" data-review-native-role="span" class="intent-tokens-label">Green V1 Mapping</erp-text>
-          </erp-review-box>
-
-          <erp-review-box data-review-native-role="div" class="samples-stack">
-            <!-- Subtle Sample -->
-            <erp-review-box data-review-native-role="div" id="dark-sample-success-subtle" class="sample-subtle sample-subtle-success">
-              <erp-review-box data-review-native-role="div" class="sample-content">
-                <erp-text type="span" data-review-native-role="span" class="sample-icon-marker marker-success" aria-hidden="true"></erp-text>
-                <erp-text type="span" data-review-native-role="span" class="sample-text">تم حفظ المستند بنجاح.</erp-text>
-              </erp-review-box>
-              <erp-review-box data-review-native-role="div" class="sample-meta">
-                <erp-text type="span" data-review-native-role="span" class="sample-role-pill">عينة خفيفة (Subtle)</erp-text>
-                <erp-text type="span" data-review-native-role="span" class="sample-tokens">surface • border • text • icon</erp-text>
-              </erp-review-box>
-            </erp-review-box>
-
-            <!-- Strong Sample -->
-            <erp-review-box data-review-native-role="div" id="dark-sample-success-strong" class="sample-strong sample-strong-success">
-              <erp-review-box data-review-native-role="div" class="sample-content">
-                <erp-text type="span" data-review-native-role="span" class="sample-text">تم حفظ المستند بنجاح.</erp-text>
-              </erp-review-box>
-              <erp-review-box data-review-native-role="div" class="sample-meta">
-                <erp-text type="span" data-review-native-role="span" class="sample-role-pill">عينة بارزة (Strong)</erp-text>
-                <erp-text type="span" data-review-native-role="span" class="sample-tokens">surface-strong • on-strong</erp-text>
-              </erp-review-box>
-            </erp-review-box>
-          </erp-review-box>
-        </erp-review-box>
-
-        <!-- WARNING INTENT -->
-        <erp-review-box data-review-native-role="div" id="dark-intent-warning" class="intent-group">
-          <erp-review-box data-review-native-role="div" class="intent-header">
-            <erp-text type="span" data-review-native-role="span" class="intent-title">حالة التحذير (Warning)</erp-text>
-            <erp-text type="span" data-review-native-role="span" class="intent-tokens-label">Amber V1 Mapping</erp-text>
-          </erp-review-box>
-
-          <erp-review-box data-review-native-role="div" class="samples-stack">
-            <!-- Subtle Sample -->
-            <erp-review-box data-review-native-role="div" id="dark-sample-warning-subtle" class="sample-subtle sample-subtle-warning">
-              <erp-review-box data-review-native-role="div" class="sample-content">
-                <erp-text type="span" data-review-native-role="span" class="sample-icon-marker marker-warning" aria-hidden="true"></erp-text>
-                <erp-text type="span" data-review-native-role="span" class="sample-text">توجد بيانات تحتاج إلى مراجعة قبل المتابعة.</erp-text>
-              </erp-review-box>
-              <erp-review-box data-review-native-role="div" class="sample-meta">
-                <erp-text type="span" data-review-native-role="span" class="sample-role-pill">عينة خفيفة (Subtle)</erp-text>
-                <erp-text type="span" data-review-native-role="span" class="sample-tokens">surface • border • text • icon</erp-text>
-              </erp-review-box>
-            </erp-review-box>
-
-            <!-- Strong Sample -->
-            <erp-review-box data-review-native-role="div" id="dark-sample-warning-strong" class="sample-strong sample-strong-warning">
-              <erp-review-box data-review-native-role="div" class="sample-content">
-                <erp-text type="span" data-review-native-role="span" class="sample-text">توجد بيانات تحتاج إلى مراجعة قبل المتابعة.</erp-text>
-              </erp-review-box>
-              <erp-review-box data-review-native-role="div" class="sample-meta">
-                <erp-text type="span" data-review-native-role="span" class="sample-role-pill">عينة بارزة (Strong)</erp-text>
-                <erp-text type="span" data-review-native-role="span" class="sample-tokens">surface-strong • on-strong (Neutral 950)</erp-text>
-              </erp-review-box>
-            </erp-review-box>
-          </erp-review-box>
-        </erp-review-box>
-
-        <!-- DANGER INTENT -->
-        <erp-review-box data-review-native-role="div" id="dark-intent-danger" class="intent-group">
-          <erp-review-box data-review-native-role="div" class="intent-header">
-            <erp-text type="span" data-review-native-role="span" class="intent-title">حالة الخطأ / الخطر (Danger)</erp-text>
-            <erp-text type="span" data-review-native-role="span" class="intent-tokens-label">Red V1 Mapping</erp-text>
-          </erp-review-box>
-
-          <erp-review-box data-review-native-role="div" class="samples-stack">
-            <!-- Subtle Sample -->
-            <erp-review-box data-review-native-role="div" id="dark-sample-danger-subtle" class="sample-subtle sample-subtle-danger">
-              <erp-review-box data-review-native-role="div" class="sample-content">
-                <erp-text type="span" data-review-native-role="span" class="sample-icon-marker marker-danger" aria-hidden="true"></erp-text>
-                <erp-text type="span" data-review-native-role="span" class="sample-text">تعذر إتمام العملية بسبب خطأ في البيانات.</erp-text>
-              </erp-review-box>
-              <erp-review-box data-review-native-role="div" class="sample-meta">
-                <erp-text type="span" data-review-native-role="span" class="sample-role-pill">عينة خفيفة (Subtle)</erp-text>
-                <erp-text type="span" data-review-native-role="span" class="sample-tokens">surface • border • text • icon</erp-text>
-              </erp-review-box>
-            </erp-review-box>
-
-            <!-- Strong Sample -->
-            <erp-review-box data-review-native-role="div" id="dark-sample-danger-strong" class="sample-strong sample-strong-danger">
-              <erp-review-box data-review-native-role="div" class="sample-content">
-                <erp-text type="span" data-review-native-role="span" class="sample-text">تعذر إتمام العملية بسبب خطأ في البيانات.</erp-text>
-              </erp-review-box>
-              <erp-review-box data-review-native-role="div" class="sample-meta">
-                <erp-text type="span" data-review-native-role="span" class="sample-role-pill">عينة بارزة (Strong)</erp-text>
-                <erp-text type="span" data-review-native-role="span" class="sample-tokens">surface-strong • on-strong</erp-text>
-              </erp-review-box>
-            </erp-review-box>
-          </erp-review-box>
-        </erp-review-box>
-
-        <!-- INFO INTENT -->
-        <erp-review-box data-review-native-role="div" id="dark-intent-info" class="intent-group">
-          <erp-review-box data-review-native-role="div" class="intent-header">
-            <erp-text type="span" data-review-native-role="span" class="intent-title">حالة المعلومات (Info)</erp-text>
-            <erp-text type="span" data-review-native-role="span" class="intent-tokens-label">Cyan V1 Mapping</erp-text>
-          </erp-review-box>
-
-          <erp-review-box data-review-native-role="div" class="samples-stack">
-            <!-- Subtle Sample -->
-            <erp-review-box data-review-native-role="div" id="dark-sample-info-subtle" class="sample-subtle sample-subtle-info">
-              <erp-review-box data-review-native-role="div" class="sample-content">
-                <erp-text type="span" data-review-native-role="span" class="sample-icon-marker marker-info" aria-hidden="true"></erp-text>
-                <erp-text type="span" data-review-native-role="span" class="sample-text">تم تحديث بيانات النظام ويمكنك المتابعة.</erp-text>
-              </erp-review-box>
-              <erp-review-box data-review-native-role="div" class="sample-meta">
-                <erp-text type="span" data-review-native-role="span" class="sample-role-pill">عينة خفيفة (Subtle)</erp-text>
-                <erp-text type="span" data-review-native-role="span" class="sample-tokens">surface • border • text • icon</erp-text>
-              </erp-review-box>
-            </erp-review-box>
-
-            <!-- Strong Sample -->
-            <erp-review-box data-review-native-role="div" id="dark-sample-info-strong" class="sample-strong sample-strong-info">
-              <erp-review-box data-review-native-role="div" class="sample-content">
-                <erp-text type="span" data-review-native-role="span" class="sample-text">تم تحديث بيانات النظام ويمكنك المتابعة.</erp-text>
-              </erp-review-box>
-              <erp-review-box data-review-native-role="div" class="sample-meta">
-                <erp-text type="span" data-review-native-role="span" class="sample-role-pill">عينة بارزة (Strong)</erp-text>
-                <erp-text type="span" data-review-native-role="span" class="sample-tokens">surface-strong • on-strong</erp-text>
-              </erp-review-box>
-            </erp-review-box>
-          </erp-review-box>
-        </erp-review-box>
-      </erp-review-box>
-    </erp-section>
+    
   </erp-review-box>
 </erp-review-box>

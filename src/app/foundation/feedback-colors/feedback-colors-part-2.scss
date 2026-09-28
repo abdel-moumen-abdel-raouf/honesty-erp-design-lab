@@ -14,8 +14,8 @@
 
 .theme-context-header {
   padding: 1rem 1.25rem;
-  border-bottom: 1px solid #d8dce4;
-  background-color: #f7f8fa;
+  border-bottom: 1px solid var(--honesty-border-default);
+  background-color: var(--honesty-color-surface-default);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,7 +27,7 @@
     font-size: 1.1rem;
     font-weight: 600;
     margin: 0;
-    color: #1a1e27;
+    color: var(--honesty-color-text-primary);
     min-width: 0;
     max-width: 100%;
     overflow-wrap: anywhere;
@@ -37,8 +37,8 @@
     font-family: ui-monospace, monospace;
     font-size: 0.75rem;
     padding: 0.2rem 0.5rem;
-    background-color: #e8ecf2;
-    color: #3b4252;
+    background-color: var(--honesty-color-surface-elevated);
+    color: var(--honesty-color-text-secondary);
     border-radius: 3px;
     min-width: 0;
     max-width: 100%;
