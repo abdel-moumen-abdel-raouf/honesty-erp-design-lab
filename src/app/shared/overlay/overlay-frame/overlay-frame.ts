@@ -31,12 +31,12 @@ export class ErpOverlayFrame implements AfterViewInit {
   readonly ref = input.required<ErpOverlayRef<unknown>>();
   readonly ready = output<void>();
 
-  protected readonly titleId = computed(() => `${this.ref().id}-title`);
-  protected readonly subtitleId = computed(() => `${this.ref().id}-subtitle`);
-  protected readonly closeLabel = computed(
+  readonly titleId = computed(() => `${this.ref().id}-title`);
+  readonly subtitleId = computed(() => `${this.ref().id}-subtitle`);
+  readonly closeLabel = computed(
     () => this.config().header.closeLabel ?? 'إغلاق',
   );
-  protected readonly actions = computed(() => {
+  readonly actions = computed(() => {
     const states = this.ref().frameActionStates();
     return this.config().footer.actions.map((action) => ({
       ...action,
@@ -44,10 +44,10 @@ export class ErpOverlayFrame implements AfterViewInit {
       loading: states[action.id]?.loading ?? action.loading ?? false,
     }));
   });
-  protected readonly startActions = computed(() =>
+  readonly startActions = computed(() =>
     this.actions().filter((action) => action.placement === 'start'),
   );
-  protected readonly endActions = computed(() =>
+  readonly endActions = computed(() =>
     this.actions().filter((action) => action.placement === 'end'),
   );
 
@@ -55,11 +55,11 @@ export class ErpOverlayFrame implements AfterViewInit {
     queueMicrotask(() => this.ready.emit());
   }
 
-  protected request(action: ErpOverlayFrameActionId): void {
+  request(action: ErpOverlayFrameActionId): void {
     this.ref().requestFrameAction(action);
   }
 
-  protected buttonVariant(role: ErpOverlayActionRole): 'solid' | 'outline' | 'ghost' {
+  buttonVariant(role: ErpOverlayActionRole): 'solid' | 'outline' | 'ghost' {
     return role === 'primary'
       ? 'solid'
       : role === 'secondary'
@@ -67,11 +67,11 @@ export class ErpOverlayFrame implements AfterViewInit {
         : 'ghost';
   }
 
-  protected buttonTone(role: ErpOverlayActionRole): 'primary' | 'neutral' {
+  buttonTone(role: ErpOverlayActionRole): 'primary' | 'neutral' {
     return role === 'primary' ? 'primary' : 'neutral';
   }
 
-  protected close(): void {
+  close(): void {
     this.ref().dismiss('close-action');
   }
 }

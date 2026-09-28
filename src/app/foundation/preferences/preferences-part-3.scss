@@ -1,0 +1,63 @@
+// =============================================================================
+// Docs-Only Interactive Review: Typed UI Preferences Candidate V1
+// =============================================================================
+
+@use '../../../styles/foundation/queries' as query;
+
+.control-field,
+.readonly-field {
+  display: grid;
+  gap: var(--honesty-space-stack-tight);
+  min-width: 0;
+  max-width: 100%;
+
+  > span {
+    color: var(--honesty-color-text-secondary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+  }
+}
+
+.control-field select,
+.readonly-field bdi {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  padding-block: 0.6rem;
+  padding-inline: 0.75rem;
+  border: 1px solid var(--honesty-border-default);
+  border-radius: 4px;
+  background: var(--honesty-color-surface-default);
+  color: var(--honesty-color-text-primary);
+  font: inherit;
+}
+
+.readonly-field bdi {
+  overflow-wrap: anywhere;
+}
+
+.resolved-contract-values {
+  display: grid;
+  gap: var(--honesty-space-stack-tight);
+  padding: var(--honesty-space-inset-default);
+  border: 1px solid var(--honesty-border-subtle);
+  border-radius: 4px;
+
+  p {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+}
+
+.live-preview {
+  display: grid;
+  gap: var(--honesty-space-stack-loose);
+  min-width: 0;
+  max-width: 100%;
+  padding: var(--honesty-space-inset-loose);
+  border: 1px solid var(--honesty-border-strong);
+  border-radius: 6px;
+  background: var(--honesty-color-surface-canvas);
+  color: var(--honesty-color-text-primary);
+}

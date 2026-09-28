@@ -24,7 +24,7 @@ import {PressRippleController} from '../button-family/internal/press-ripple';
   selector: 'erp-extended-fab',
   imports: [ErpIcon, ErpText],
   templateUrl: './extended-fab.html',
-  styleUrl: './extended-fab.scss',
+  styleUrls: ['./extended-fab.scss', './extended-fab-part-2.scss', './extended-fab-part-3.scss', './extended-fab-part-4.scss', './extended-fab-part-5.scss', './extended-fab-part-6.scss', './extended-fab-part-7.scss', './extended-fab-part-8.scss'],
   host: {
     '[attr.data-extended-fab-size]': 'size()',
     '[attr.data-extended-fab-tone]': 'tone()',

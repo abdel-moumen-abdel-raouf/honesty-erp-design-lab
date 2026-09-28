@@ -10,7 +10,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   imports: [ErpContainer, ErpStack, ErpSection, ErpText, ErpReviewBox],
   selector: 'app-colors-specimen',
   templateUrl: './colors.html',
-  styleUrl: './colors.scss',
+  styleUrls: ['./colors.scss', './colors-part-2.scss', './colors-part-3.scss', './colors-part-4.scss', './colors-part-5.scss'],
 })
 export class Colors {
   readonly steps = [

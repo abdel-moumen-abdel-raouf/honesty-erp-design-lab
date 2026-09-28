@@ -1,0 +1,17 @@
+@use '../../../../styles/foundation/components/field-frame' as tokens;
+
+:host([data-field-shape='pill']) { @include tokens.shape-pill; }
+
+:host([data-field-size='sm']) { @include tokens.size-sm; }
+
+:host([data-field-size='md']) { @include tokens.size-md; }
+
+:host([data-field-size='lg']) { @include tokens.size-lg; }
+
+:host([data-field-size='xl']) { @include tokens.size-xl; }
+
+:host([data-field-size='xxl']) { @include tokens.size-xxl; }
+
+:host([data-field-size='xxxl']) { @include tokens.size-xxxl; }
+
+:host([data-field-size='xxxxl']) { @include tokens.size-xxxxl; }

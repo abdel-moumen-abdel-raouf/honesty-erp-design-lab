@@ -1,0 +1,47 @@
+// =============================================================================
+// Docs-Only Interactive Review: Typed UI Preferences Candidate V1
+// =============================================================================
+
+@use '../../../styles/foundation/queries' as query;
+
+.density-evidence {
+  display: grid;
+  gap: var(--honesty-space-stack-default);
+  min-width: 0;
+  padding: var(--honesty-space-inset-default);
+  border: 1px solid var(--honesty-border-default);
+  border-radius: 4px;
+  background: var(--honesty-color-surface-default);
+
+  span {
+    color: var(--honesty-color-text-secondary);
+    overflow-wrap: anywhere;
+  }
+}
+
+.preview-block {
+  display: grid;
+  gap: var(--honesty-space-stack-default);
+  min-width: 0;
+  max-width: 100%;
+  padding: var(--honesty-space-inset-default);
+  border: 1px solid var(--honesty-border-subtle);
+  border-radius: 4px;
+  background: var(--honesty-color-surface-default);
+
+  h3,
+  p,
+  dl,
+  dt,
+  dd {
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  p {
+    overflow-wrap: anywhere;
+  }
+}

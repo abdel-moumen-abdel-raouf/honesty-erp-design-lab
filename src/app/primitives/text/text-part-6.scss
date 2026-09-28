@@ -1,0 +1,39 @@
+@use '../../../styles/foundation/components/text' as tokens;
+
+:host([data-text-wrap='pre-wrap']) {
+  white-space: pre-wrap;
+}
+
+:host([data-text-wrap='break-spaces']) {
+  white-space: break-spaces;
+}
+
+:host([data-text-overflow='visible']) {
+  overflow: visible;
+}
+
+:host([data-text-overflow='clip']) {
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+:host([data-text-overflow='ellipsis']) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:host(erp-text[data-text-overflow='ellipsis']) {
+  display: block;
+  max-inline-size: 100%;
+}
+
+:host([data-text-selectable='false']) {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+:host([data-text-selectable='true']) {
+  user-select: text;
+  -webkit-user-select: text;
+}

@@ -18,7 +18,7 @@ export interface ReferenceSpacingItem {
   imports: [ErpContainer, ErpStack, ErpSection, ErpText, ErpReviewBox],
   selector: 'app-spacing-specimen',
   templateUrl: './spacing.html',
-  styleUrl: './spacing.scss',
+  styleUrls: ['./spacing.scss', './spacing-part-2.scss', './spacing-part-3.scss', './spacing-part-4.scss', './spacing-part-5.scss', './spacing-part-6.scss', './spacing-part-7.scss'],
 })
 export class Spacing {
   readonly referenceSteps: readonly ReferenceSpacingItem[] = [

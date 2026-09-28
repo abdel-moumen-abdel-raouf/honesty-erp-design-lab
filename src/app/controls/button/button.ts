@@ -29,7 +29,7 @@ import {PressRippleController} from '../button-family/internal/press-ripple';
   selector: 'erp-button',
   imports: [ErpIcon, ErpText],
   templateUrl: './button.html',
-  styleUrls: ['./button.scss', './button-facets.scss'],
+  styleUrls: ['./button.scss', './button-part-2.scss', './button-part-3.scss', './button-part-4.scss', './button-part-5.scss', './button-facets.scss', './button-facets-part-2.scss', './button-facets-part-3.scss', './button-facets-part-4.scss'],
   host: {
     '[attr.data-button-variant]': 'variant()',
     '[attr.data-button-tone]': 'tone()',

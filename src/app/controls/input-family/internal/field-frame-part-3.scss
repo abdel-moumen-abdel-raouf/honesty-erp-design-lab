@@ -1,0 +1,16 @@
+@use '../../../../styles/foundation/components/field-frame' as tokens;
+
+:host([data-field-interaction='editor']:not([data-field-disabled='true']):not([data-field-configuration-state='invalid']))
+  .field-frame__control {
+  cursor: text;
+}
+
+:host([data-field-interaction='trigger']:not([data-field-disabled='true']):not([data-field-configuration-state='invalid']))
+  .field-frame__control {
+  cursor: pointer;
+}
+
+:host([data-field-disabled='true']) .field-frame__control,
+:host([data-field-configuration-state='invalid']) .field-frame__control {
+  cursor: default;
+}

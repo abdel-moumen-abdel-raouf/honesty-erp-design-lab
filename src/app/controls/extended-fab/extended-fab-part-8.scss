@@ -1,0 +1,10 @@
+@use '../../../styles/foundation/components/extended-fab' as tokens;
+
+@use '../button-family/internal/press-ripple' as ripple;
+
+@include ripple.styles(
+  var(--honesty-extended-fab-ripple-color),
+  var(--honesty-extended-fab-ripple-opacity),
+  var(--honesty-extended-fab-ripple-duration),
+  var(--honesty-extended-fab-ripple-easing)
+);

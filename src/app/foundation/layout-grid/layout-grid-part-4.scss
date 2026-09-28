@@ -1,0 +1,43 @@
+// =============================================================================
+// Responsive Layout & Grid Visual Review Specimen Styles (Docs-Only)
+// =============================================================================
+
+@use '../../../styles/foundation/queries' as query;
+
+.gap-xs { gap: var(--honesty-space-layout-gap-xs); }
+
+.gap-sm { gap: var(--honesty-space-layout-gap-sm); }
+
+.gap-md { gap: var(--honesty-space-layout-gap-md); }
+
+.gap-lg { gap: var(--honesty-space-layout-gap-lg); }
+
+.gap-xl { gap: var(--honesty-space-layout-gap-xl); }
+
+.gap-xxl { gap: var(--honesty-space-layout-gap-xxl); }
+
+.gap-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--honesty-space-inset-tight);
+  background-color: var(--honesty-color-surface-default);
+  border: 1px solid var(--honesty-border-default);
+  border-radius: var(--honesty-radius-control);
+  font-size: var(--honesty-type-caption-font-size);
+  min-width: 72px;
+  height: 32px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+// 2. Page Gutter
+.page-gutter-frame-specimen {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--honesty-color-surface-canvas);
+  border: 2px dashed var(--honesty-border-default);
+  border-radius: var(--honesty-radius-surface);
+  overflow: hidden;
+  max-width: 100%;
+}

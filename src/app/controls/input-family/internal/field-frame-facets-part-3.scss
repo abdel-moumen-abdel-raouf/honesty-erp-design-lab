@@ -1,0 +1,13 @@
+@use '../../../../styles/foundation/components/field-frame' as tokens;
+
+:host([data-field-status='info']) { @include tokens.status-info; }
+
+:host([data-field-border-mode='solid']) { @include tokens.border-solid; }
+
+:host([data-field-border-mode='dashed']) { @include tokens.border-dashed; }
+
+:host([data-field-border-mode='underline']) { @include tokens.border-underline; }
+
+:host([data-field-shape='default']) { @include tokens.shape-default; }
+
+:host([data-field-shape='rounded']) { @include tokens.shape-rounded; }

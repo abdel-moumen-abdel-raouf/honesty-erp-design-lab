@@ -10,7 +10,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   imports: [ErpContainer, ErpStack, ErpSection, ErpText, ErpReviewBox],
   selector: 'app-status-hues-specimen',
   templateUrl: './status-hues.html',
-  styleUrl: './status-hues.scss',
+  styleUrls: ['./status-hues.scss', './status-hues-part-2.scss', './status-hues-part-3.scss'],
 })
 export class StatusHues {
   readonly steps = [

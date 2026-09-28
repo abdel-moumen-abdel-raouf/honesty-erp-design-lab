@@ -11,7 +11,7 @@ import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
   imports: [ErpContainer, ErpStack, ErpSection, ErpText, ErpReviewBox, ErpButton],
   selector: 'app-motion-specimen',
   templateUrl: './motion.html',
-  styleUrl: './motion.scss',
+  styleUrls: ['./motion.scss', './motion-part-2.scss', './motion-part-3.scss', './motion-part-4.scss', './motion-part-5.scss', './motion-part-6.scss', './motion-part-7.scss'],
 })
 export class Motion {
   // State for Duration tracks

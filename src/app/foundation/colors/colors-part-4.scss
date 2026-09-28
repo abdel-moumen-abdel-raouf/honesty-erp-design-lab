@@ -1,0 +1,133 @@
+// =============================================================================
+// Docs-Only Visual Review Chrome: Color Specimen
+// =============================================================================
+// Note:
+// This file contains temporary, docs-only layout styling specifically for visually
+// evaluating Reference Token Candidate V2 ramps. It is NOT a production component
+// and its layout styles do NOT represent Honesty Foundation design decisions.
+//
+// Single source of truth:
+// Reference tokens are consumed directly from Foundation Reference Sass variables.
+// Hex values are derived via Sass interpolation, preventing duplicated palettes.
+// =============================================================================
+
+@use '../../../styles/foundation/reference/colors' as ref;
+
+@use '../../../styles/foundation/queries' as query;
+
+// Internal specimen maps referencing existing Sass Reference variables
+$specimen-neutral-ramp: (
+  50: ref.$honesty-ref-color-neutral-50,
+  100: ref.$honesty-ref-color-neutral-100,
+  200: ref.$honesty-ref-color-neutral-200,
+  300: ref.$honesty-ref-color-neutral-300,
+  400: ref.$honesty-ref-color-neutral-400,
+  500: ref.$honesty-ref-color-neutral-500,
+  600: ref.$honesty-ref-color-neutral-600,
+  700: ref.$honesty-ref-color-neutral-700,
+  800: ref.$honesty-ref-color-neutral-800,
+  900: ref.$honesty-ref-color-neutral-900,
+  950: ref.$honesty-ref-color-neutral-950,
+);
+
+$specimen-primary-ramp: (
+  50: ref.$honesty-ref-color-primary-50,
+  100: ref.$honesty-ref-color-primary-100,
+  200: ref.$honesty-ref-color-primary-200,
+  300: ref.$honesty-ref-color-primary-300,
+  400: ref.$honesty-ref-color-primary-400,
+  500: ref.$honesty-ref-color-primary-500,
+  600: ref.$honesty-ref-color-primary-600,
+  700: ref.$honesty-ref-color-primary-700,
+  800: ref.$honesty-ref-color-primary-800,
+  900: ref.$honesty-ref-color-primary-900,
+  950: ref.$honesty-ref-color-primary-950,
+);
+
+$specimen-secondary-ramp: (
+  50: ref.$honesty-ref-color-secondary-50,
+  100: ref.$honesty-ref-color-secondary-100,
+  200: ref.$honesty-ref-color-secondary-200,
+  300: ref.$honesty-ref-color-secondary-300,
+  400: ref.$honesty-ref-color-secondary-400,
+  500: ref.$honesty-ref-color-secondary-500,
+  600: ref.$honesty-ref-color-secondary-600,
+  700: ref.$honesty-ref-color-secondary-700,
+  800: ref.$honesty-ref-color-secondary-800,
+  900: ref.$honesty-ref-color-secondary-900,
+  950: ref.$honesty-ref-color-secondary-950,
+);
+
+$specimen-accent-ramp: (
+  50: ref.$honesty-ref-color-accent-50,
+  100: ref.$honesty-ref-color-accent-100,
+  200: ref.$honesty-ref-color-accent-200,
+  300: ref.$honesty-ref-color-accent-300,
+  400: ref.$honesty-ref-color-accent-400,
+  500: ref.$honesty-ref-color-accent-500,
+  600: ref.$honesty-ref-color-accent-600,
+  700: ref.$honesty-ref-color-accent-700,
+  800: ref.$honesty-ref-color-accent-800,
+  900: ref.$honesty-ref-color-accent-900,
+  950: ref.$honesty-ref-color-accent-950,
+);
+
+.brand-theme-context {
+  min-width: 0;
+  padding: 1rem;
+  color: var(--honesty-color-text-primary);
+  background-color: var(--honesty-color-surface-canvas);
+  border: 1px solid var(--honesty-border-default);
+  border-radius: var(--honesty-radius-surface);
+
+  h3,
+  h4 {
+    margin: 0;
+  }
+}
+
+.brand-tone-groups {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.brand-tone-group {
+  min-width: 0;
+}
+
+.brand-samples {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+
+  @include query.viewport-down(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.brand-sample {
+  min-width: 0;
+  padding: 0.75rem;
+  border-radius: var(--honesty-radius-control);
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.brand-tone-primary {
+  .brand-sample-solid {
+    color: var(--honesty-color-brand-primary-on-solid);
+    background-color: var(--honesty-color-brand-primary-solid);
+  }
+
+  .brand-sample-solid-strong {
+    color: var(--honesty-color-brand-primary-on-solid);
+    background-color: var(--honesty-color-brand-primary-solid-strong);
+  }
+
+  .brand-sample-subtle {
+    color: var(--honesty-color-brand-primary-content);
+    background-color: var(--honesty-color-brand-primary-subtle);
+  }
+}

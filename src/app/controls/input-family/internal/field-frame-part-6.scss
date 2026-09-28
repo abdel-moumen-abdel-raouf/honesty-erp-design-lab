@@ -1,0 +1,26 @@
+@use '../../../../styles/foundation/components/field-frame' as tokens;
+
+:host([data-field-focused='true'][data-field-border-mode='underline'])
+  .field-frame__control::after {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  block-size: var(--honesty-field-frame-underline-focus-width);
+  background: linear-gradient(
+    90deg,
+    var(--_honesty-field-frame-focus-inline-start),
+    var(--_honesty-field-frame-focus-inline-end)
+  );
+  content: '';
+}
+
+.field-frame__label--floating {
+  position: absolute;
+  inset-inline-start: var(--honesty-field-frame-padding-inline);
+  max-inline-size: calc(100% - (var(--honesty-field-frame-padding-inline) * 2));
+  padding-inline: var(--honesty-field-frame-label-padding-inline);
+  background: var(--honesty-field-frame-label-bg);
+  color: var(--honesty-field-frame-label-color);
+  transform-origin: inline-start center;
+  pointer-events: none;
+}

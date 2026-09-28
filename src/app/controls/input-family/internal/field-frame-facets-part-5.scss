@@ -1,0 +1,9 @@
+@use '../../../../styles/foundation/components/field-frame' as tokens;
+
+:host([data-field-appearance='standard']) {
+  @include tokens.appearance-standard;
+}
+
+:host([data-field-appearance='glass']) {
+  @include tokens.appearance-glass;
+}

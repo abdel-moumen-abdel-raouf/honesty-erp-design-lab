@@ -1,0 +1,83 @@
+// =============================================================================
+// Docs-Only Visual Review Chrome vs. Product Specimen Typography
+// =============================================================================
+// CONTRACT DISTINCTION:
+// 1. Docs Chrome (explanatory titles, badges, token labels, specimen borders/padding):
+//    Uses local temporary styling to frame and document the specimen.
+// 2. Product Specimen Content (evaluating font families, weights, semantic roles,
+//    reading rhythm, data/digits, bidi, and dark theme):
+//    MUST strictly resolve through existing Semantic Typography CSS custom properties.
+// =============================================================================
+
+@use '../../../styles/foundation/queries' as query;
+
+$roles: (
+  display,
+  page-title,
+  section-title,
+  subsection-title,
+  body,
+  body-strong,
+  body-small,
+  label,
+  caption
+);
+
+.rhythm-meta-bar {
+  // Docs-only chrome meta bar
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dashed #e2e8f0;
+}
+
+.rhythm-role-title {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.rhythm-role-spec {
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: #6b7280;
+  direction: ltr;
+  overflow-wrap: anywhere;
+}
+
+.rhythm-paragraph {
+  max-width: 68ch;
+  margin: 0;
+}
+
+// =============================================================================
+// Product Specimen: 5. Digit & Data Review
+// =============================================================================
+.digit-data-container {
+  border: 1px solid #e1e4ea;
+  border-radius: 6px;
+  padding: 1.25rem;
+  background-color: #fff;
+  max-width: 600px;
+}
+
+.data-review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.data-item-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0.65rem;
+  background-color: #f8fafc;
+  border-radius: 4px;
+}
+
+// Labels strictly resolve through Semantic Label role
+.data-item-label {
+  font-size: var(--honesty-type-label-font-size);
+  font-weight: var(--honesty-type-label-font-weight);
+  line-height: var(--honesty-type-label-line-height);
+  color: #475569;
+}

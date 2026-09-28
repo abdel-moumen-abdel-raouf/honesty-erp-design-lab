@@ -299,7 +299,7 @@ function preset(
   selector: 'erp-text',
   imports: [NgTemplateOutlet],
   templateUrl: './text.html',
-  styleUrl: './text.scss',
+  styleUrls: ['./text.scss', './text-part-2.scss', './text-part-3.scss', './text-part-4.scss', './text-part-5.scss', './text-part-6.scss', './text-part-7.scss', './text-part-8.scss', './text-part-9.scss', './text-part-10.scss'],
   host: {
     '[attr.data-text-type]': 'type()',
     '[attr.data-text-size]': 'resolvedSize()',

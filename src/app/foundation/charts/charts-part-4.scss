@@ -1,0 +1,87 @@
+// =============================================================================
+// Docs-Only Visual Review: Semantic Chart Color Candidate V1
+// =============================================================================
+
+@use '../../../styles/foundation/queries' as query;
+
+.swatch-series-5 {
+  background: var(--honesty-chart-series-5);
+}
+
+.chart-figure {
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+}
+
+.chart-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  direction: ltr;
+}
+
+.chart-gridline {
+  stroke: var(--honesty-chart-gridline);
+  stroke-width: 1;
+}
+
+.chart-axis {
+  stroke: var(--honesty-chart-axis);
+  stroke-width: 2;
+}
+
+.chart-label {
+  fill: var(--honesty-chart-label);
+  font-family: var(--honesty-type-family-latin);
+  font-size: 14px;
+  font-weight: 500;
+  text-anchor: middle;
+}
+
+.bar-series-1 {
+  fill: var(--honesty-chart-series-1);
+}
+
+.bar-series-2 {
+  fill: var(--honesty-chart-series-2);
+}
+
+.bar-series-3 {
+  fill: var(--honesty-chart-series-3);
+}
+
+.bar-series-4 {
+  fill: var(--honesty-chart-series-4);
+}
+
+.bar-series-5 {
+  fill: var(--honesty-chart-series-5);
+}
+
+.line-series {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 4;
+}
+
+.line-series-1 {
+  stroke: var(--honesty-chart-series-1);
+}
+
+.line-series-2 {
+  stroke: var(--honesty-chart-series-2);
+}
+
+.line-series-3 {
+  stroke: var(--honesty-chart-series-3);
+}
+
+.line-series-4 {
+  stroke: var(--honesty-chart-series-4);
+}
+
+.line-series-5 {
+  stroke: var(--honesty-chart-series-5);
+}

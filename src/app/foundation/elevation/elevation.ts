@@ -10,7 +10,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   imports: [ErpContainer, ErpStack, ErpSection, ErpText, ErpReviewBox],
   selector: 'app-elevation-specimen',
   templateUrl: './elevation.html',
-  styleUrl: './elevation.scss',
+  styleUrls: ['./elevation.scss', './elevation-part-2.scss', './elevation-part-3.scss', './elevation-part-4.scss', './elevation-part-5.scss', './elevation-part-6.scss', './elevation-part-7.scss', './elevation-part-8.scss'],
 })
 export class Elevation {
   readonly referenceGeometryLevels = [

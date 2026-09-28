@@ -1,0 +1,51 @@
+// =============================================================================
+// Docs-Only Visual Review Chrome: Semantic Feedback Colors Specimen
+// =============================================================================
+// Note:
+// This stylesheet contains docs-only review infrastructure specifically for visually
+// evaluating Semantic Feedback Light/Dark Mapping Candidate V1 (Success, Warning, Danger, Info).
+//
+// Single source of truth:
+// Consumes ONLY runtime Semantic CSS Custom Properties (var(--honesty-color-feedback-*)).
+// Never imports Reference Sass colors or hardcodes color values.
+// =============================================================================
+
+@use '../../../styles/foundation/queries' as query;
+
+// -----------------------------------------------------------------------------
+// Intent: Warning Tokens Binding
+// -----------------------------------------------------------------------------
+.sample-subtle-warning {
+  background-color: var(--honesty-color-feedback-warning-surface);
+  border: 1px solid var(--honesty-color-feedback-warning-border);
+  color: var(--honesty-color-feedback-warning-text);
+
+  .marker-warning {
+    background-color: var(--honesty-color-feedback-warning-icon);
+  }
+}
+
+.sample-strong-warning {
+  background-color: var(--honesty-color-feedback-warning-surface-strong);
+  color: var(--honesty-color-feedback-warning-on-strong);
+  border: 1px solid transparent;
+}
+
+// -----------------------------------------------------------------------------
+// Intent: Danger Tokens Binding
+// -----------------------------------------------------------------------------
+.sample-subtle-danger {
+  background-color: var(--honesty-color-feedback-danger-surface);
+  border: 1px solid var(--honesty-color-feedback-danger-border);
+  color: var(--honesty-color-feedback-danger-text);
+
+  .marker-danger {
+    background-color: var(--honesty-color-feedback-danger-icon);
+  }
+}
+
+.sample-strong-danger {
+  background-color: var(--honesty-color-feedback-danger-surface-strong);
+  color: var(--honesty-color-feedback-danger-on-strong);
+  border: 1px solid transparent;
+}

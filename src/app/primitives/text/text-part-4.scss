@@ -1,0 +1,41 @@
+@use '../../../styles/foundation/components/text' as tokens;
+
+:host([data-text-line-height='inherit']) {
+  @include tokens.line-height-inherit;
+}
+
+:host([data-text-line-height='tight']) {
+  @include tokens.line-height-tight;
+}
+
+:host([data-text-line-height='snug']) {
+  @include tokens.line-height-snug;
+}
+
+:host([data-text-line-height='compact']) {
+  @include tokens.line-height-compact;
+}
+
+:host([data-text-line-height='normal']) {
+  @include tokens.line-height-normal;
+}
+
+:host([data-text-line-height='comfortable']) {
+  @include tokens.line-height-comfortable;
+}
+
+:host([data-text-line-height='relaxed']) {
+  @include tokens.line-height-relaxed;
+}
+
+:host([data-text-line-height='loose']) {
+  @include tokens.line-height-loose;
+}
+
+:host([data-text-font-style='inherit']) {
+  @include tokens.font-style-inherit;
+}
+
+:host([data-text-font-style='normal']) {
+  @include tokens.font-style-normal;
+}

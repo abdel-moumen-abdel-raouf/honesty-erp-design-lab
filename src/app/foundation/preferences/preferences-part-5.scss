@@ -1,0 +1,67 @@
+// =============================================================================
+// Docs-Only Interactive Review: Typed UI Preferences Candidate V1
+// =============================================================================
+
+@use '../../../styles/foundation/queries' as query;
+
+.preview-values,
+.bidi-examples {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--honesty-space-layout-gap-sm);
+  min-width: 0;
+  max-width: 100%;
+
+  > div {
+    display: grid;
+    gap: var(--honesty-space-stack-tight);
+    min-width: 0;
+    padding: var(--honesty-space-inset-tight);
+    border: 1px solid var(--honesty-border-subtle);
+    border-radius: 3px;
+  }
+
+  dt {
+    color: var(--honesty-color-text-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  dd,
+  bdi {
+    min-width: 0;
+    max-width: 100%;
+    color: var(--honesty-color-text-primary);
+    font-family: var(--honesty-type-family-latin);
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+}
+
+.bidi-examples {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.storage-key-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--honesty-space-layout-gap-md);
+  align-items: center;
+  min-width: 0;
+
+  > span {
+    color: var(--honesty-color-text-secondary);
+    font-weight: 700;
+  }
+
+  code {
+    min-width: 0;
+    max-width: 100%;
+    padding: var(--honesty-space-inset-tight);
+    border: 1px solid var(--honesty-border-subtle);
+    border-radius: 3px;
+    color: var(--honesty-color-text-primary);
+    font-family: ui-monospace, monospace;
+    overflow-wrap: anywhere;
+  }
+}

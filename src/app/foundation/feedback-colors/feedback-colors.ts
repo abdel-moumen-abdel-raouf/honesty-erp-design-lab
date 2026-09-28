@@ -9,6 +9,6 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   imports: [ErpStack, ErpSection, ErpText, ErpReviewBox],
   selector: 'app-feedback-colors-specimen',
   templateUrl: './feedback-colors.html',
-  styleUrl: './feedback-colors.scss',
+  styleUrls: ['./feedback-colors.scss', './feedback-colors-part-2.scss', './feedback-colors-part-3.scss', './feedback-colors-part-4.scss', './feedback-colors-part-5.scss', './feedback-colors-part-6.scss'],
 })
 export class FeedbackColors {}

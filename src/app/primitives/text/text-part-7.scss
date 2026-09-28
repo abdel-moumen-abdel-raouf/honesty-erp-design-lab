@@ -1,0 +1,46 @@
+@use '../../../styles/foundation/components/text' as tokens;
+
+:host(
+  :is(
+    [data-text-line-clamp='1'],
+    [data-text-line-clamp='2'],
+    [data-text-line-clamp='3'],
+    [data-text-line-clamp='4'],
+    [data-text-line-clamp='5'],
+    [data-text-line-clamp='6']
+  )
+) {
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+:host([data-text-line-clamp='1']) {
+  -webkit-line-clamp: 1;
+}
+
+:host([data-text-line-clamp='2']) {
+  -webkit-line-clamp: 2;
+}
+
+:host([data-text-line-clamp='3']) {
+  -webkit-line-clamp: 3;
+}
+
+:host([data-text-line-clamp='4']) {
+  -webkit-line-clamp: 4;
+}
+
+:host([data-text-line-clamp='5']) {
+  -webkit-line-clamp: 5;
+}
+
+:host([data-text-line-clamp='6']) {
+  -webkit-line-clamp: 6;
+}
+
+:host(erp-text) {
+  display: inline;
+}

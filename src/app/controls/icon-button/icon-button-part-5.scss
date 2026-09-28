@@ -1,0 +1,25 @@
+@use '../../../styles/foundation/components/icon-button' as tokens;
+
+@use '../button-family/internal/press-ripple' as ripple;
+
+.erp-pressable__spinner {
+  inline-size: var(--honesty-icon-button-spinner-size);
+  block-size: var(--honesty-icon-button-spinner-size);
+  border-width: var(--honesty-icon-button-spinner-border-width);
+  border-style: solid;
+  border-color: currentColor;
+  border-inline-end-color: transparent;
+  border-radius: 50%;
+  animation: erp-control-spin var(--honesty-icon-button-spinner-duration) linear infinite;
+}
+
+@keyframes erp-control-spin {
+  to { transform: rotate(360deg); }
+}
+
+@include ripple.styles(
+  var(--honesty-icon-button-ripple-color),
+  var(--honesty-icon-button-ripple-opacity),
+  var(--honesty-icon-button-ripple-duration),
+  var(--honesty-icon-button-ripple-easing)
+);

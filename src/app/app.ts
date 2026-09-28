@@ -246,7 +246,7 @@ export function normalizeScreenshotCloneColors(root: HTMLElement): void {
   selector: 'app-root',
   imports: [RouterOutlet, RouterLink, RouterLinkActive, ErpOverlayHost],
   templateUrl: './app.html',
-  styleUrl: './app.scss',
+  styleUrls: ['./app.scss', './app-part-2.scss', './app-part-3.scss', './app-part-4.scss'],
 })
 export class App {
   private readonly router = inject(Router);
@@ -320,7 +320,7 @@ export class App {
     this.statusMessage.set('جاري الالتقاط...');
 
     try {
-      const {default: html2canvas} = await import('html2canvas');
+      const {default: html2canvas} = await import('html2canvas/dist/html2canvas.esm.js');
       const captureElement = (target: HTMLElement) => {
         const width = target.scrollWidth;
         const height = target.scrollHeight;

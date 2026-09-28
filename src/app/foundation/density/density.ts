@@ -9,6 +9,6 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   imports: [ErpStack, ErpSection, ErpText, ErpReviewBox],
   selector: 'app-density-specimen',
   templateUrl: './density.html',
-  styleUrl: './density.scss',
+  styleUrls: ['./density.scss', './density-part-2.scss', './density-part-3.scss', './density-part-4.scss', './density-part-5.scss', './density-part-6.scss'],
 })
 export class Density {}

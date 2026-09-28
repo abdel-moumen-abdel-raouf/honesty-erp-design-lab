@@ -1,0 +1,51 @@
+// =============================================================================
+// Docs-Only Visual Review: Semantic Chart Color Candidate V1
+// =============================================================================
+
+@use '../../../styles/foundation/queries' as query;
+
+.theme-context {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--honesty-border-default);
+  border-radius: 6px;
+  background: var(--honesty-color-surface-default);
+  color: var(--honesty-color-text-primary);
+}
+
+.theme-context-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--honesty-space-inline-loose);
+  padding: var(--honesty-space-inset-default);
+  border-block-end: 1px solid var(--honesty-border-subtle);
+
+  h2 {
+    min-width: 0;
+    max-width: 100%;
+    margin: 0;
+    font-size: 1.125rem;
+    overflow-wrap: anywhere;
+  }
+}
+
+.theme-tag {
+  min-width: 0;
+  max-width: 100%;
+  font-family: ui-monospace, monospace;
+  color: var(--honesty-color-text-muted);
+  font-size: 0.75rem;
+  overflow-wrap: anywhere;
+}
+
+.theme-content {
+  display: grid;
+  gap: var(--honesty-space-stack-loose);
+  min-width: 0;
+  max-width: 100%;
+  padding: var(--honesty-space-inset-loose);
+  background: var(--honesty-color-surface-canvas);
+}

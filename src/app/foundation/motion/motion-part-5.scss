@@ -1,0 +1,43 @@
+.duration-marker {
+  transition-property: transform;
+  transition-timing-function: var(--honesty-motion-easing-standard);
+
+  &.marker-instant {
+    transition-duration: var(--honesty-motion-duration-instant);
+  }
+  &.marker-fast {
+    transition-duration: var(--honesty-motion-duration-fast);
+  }
+  &.marker-default {
+    transition-duration: var(--honesty-motion-duration-default);
+  }
+  &.marker-slow {
+    transition-duration: var(--honesty-motion-duration-slow);
+  }
+  &.marker-deliberate {
+    transition-duration: var(--honesty-motion-duration-deliberate);
+  }
+}
+
+.easing-marker {
+  transition-property: transform;
+  transition-duration: var(--honesty-motion-duration-deliberate);
+
+  &.marker-linear {
+    transition-timing-function: var(--honesty-motion-easing-linear);
+  }
+  &.marker-standard {
+    transition-timing-function: var(--honesty-motion-easing-standard);
+  }
+  &.marker-enter {
+    transition-timing-function: var(--honesty-motion-easing-enter);
+  }
+  &.marker-exit {
+    transition-timing-function: var(--honesty-motion-easing-exit);
+  }
+}
+
+.sample-state-text {
+  font-size: var(--honesty-type-body-small-font-size);
+  color: var(--honesty-color-text-secondary);
+}

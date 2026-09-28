@@ -1,0 +1,55 @@
+// =============================================================================
+// Docs-Only Visual Review Chrome vs. Product Specimen Typography
+// =============================================================================
+// CONTRACT DISTINCTION:
+// 1. Docs Chrome (explanatory titles, badges, token labels, specimen borders/padding):
+//    Uses local temporary styling to frame and document the specimen.
+// 2. Product Specimen Content (evaluating font families, weights, semantic roles,
+//    reading rhythm, data/digits, bidi, and dark theme):
+//    MUST strictly resolve through existing Semantic Typography CSS custom properties.
+// =============================================================================
+
+@use '../../../styles/foundation/queries' as query;
+
+$roles: (
+  display,
+  page-title,
+  section-title,
+  subsection-title,
+  body,
+  body-strong,
+  body-small,
+  label,
+  caption
+);
+
+// Values strictly resolve through Semantic Body and Body Strong weight (500)
+// No unapproved 600 weight is permitted
+.data-item-value {
+  font-size: var(--honesty-type-body-font-size);
+  font-weight: var(--honesty-type-body-strong-font-weight);
+  line-height: var(--honesty-type-body-line-height);
+  color: #0f172a;
+}
+
+// =============================================================================
+// Product Specimen: 6. RTL / Bidi Review
+// =============================================================================
+.bidi-sample-card {
+  border: 1px solid #e1e4ea;
+  border-radius: 6px;
+  padding: 1.25rem;
+  background-color: #fff;
+}
+
+.bidi-sample-content {
+  max-width: 75ch;
+  margin: 0;
+}
+
+.bidi-inline-token {
+  background-color: #f1f5f9;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  unicode-bidi: isolate;
+}

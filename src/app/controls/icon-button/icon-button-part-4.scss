@@ -1,0 +1,29 @@
+@use '../../../styles/foundation/components/icon-button' as tokens;
+
+@use '../button-family/internal/press-ripple' as ripple;
+
+:host(:not([data-icon-button-state='ready'])) .n {
+  cursor: default;
+}
+
+.c {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 100%;
+  block-size: 100%;
+  line-height: 0;
+}
+
+.i {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--honesty-icon-button-icon-size);
+  block-size: var(--honesty-icon-button-icon-size);
+  font-size: var(--honesty-icon-button-icon-size);
+  line-height: 0;
+}

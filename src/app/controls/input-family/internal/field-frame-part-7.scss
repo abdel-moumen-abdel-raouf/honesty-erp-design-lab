@@ -1,0 +1,35 @@
+@use '../../../../styles/foundation/components/field-frame' as tokens;
+
+:host([data-field-floating-position='top'])
+  .field-frame__label--floating {
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+}
+
+:host([data-field-floating-position='bottom'])
+  .field-frame__label--floating {
+  inset-block-end: 50%;
+  transform: translateY(50%);
+}
+
+:host([data-field-floating='true'][data-field-floating-position='top'])
+  .field-frame__label--floating {
+  inset-block-start: 0;
+  transform: translateY(-50%) scale(0.85);
+}
+
+:host([data-field-floating='true'][data-field-floating-position='bottom'])
+  .field-frame__label--floating {
+  inset-block-end: 0;
+  transform: translateY(50%) scale(0.85);
+}
+
+.field-frame__value {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  flex: 1 1 auto;
+  inline-size: 100%;
+  min-width: 0;
+  font-size: var(--honesty-field-frame-value-font-size);
+}

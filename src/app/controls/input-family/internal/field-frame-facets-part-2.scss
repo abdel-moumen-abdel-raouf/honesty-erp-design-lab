@@ -1,0 +1,15 @@
+@use '../../../../styles/foundation/components/field-frame' as tokens;
+
+:host([data-field-tone='primary']) { @include tokens.tone-primary; }
+
+:host([data-field-tone='secondary']) { @include tokens.tone-secondary; }
+
+:host([data-field-tone='accent']) { @include tokens.tone-accent; }
+
+:host([data-field-status='none']) { @include tokens.status-none; }
+
+:host([data-field-status='success']) { @include tokens.status-success; }
+
+:host([data-field-status='warning']) { @include tokens.status-warning; }
+
+:host([data-field-status='danger']) { @include tokens.status-danger; }

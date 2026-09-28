@@ -1,0 +1,64 @@
+// =============================================================================
+// Docs-Only Visual Review Chrome vs. Product Specimen Typography
+// =============================================================================
+// CONTRACT DISTINCTION:
+// 1. Docs Chrome (explanatory titles, badges, token labels, specimen borders/padding):
+//    Uses local temporary styling to frame and document the specimen.
+// 2. Product Specimen Content (evaluating font families, weights, semantic roles,
+//    reading rhythm, data/digits, bidi, and dark theme):
+//    MUST strictly resolve through existing Semantic Typography CSS custom properties.
+// =============================================================================
+
+@use '../../../styles/foundation/queries' as query;
+
+$roles: (
+  display,
+  page-title,
+  section-title,
+  subsection-title,
+  body,
+  body-strong,
+  body-small,
+  label,
+  caption
+);
+
+.sample-note {
+  // Docs-only explanatory note
+  font-size: 0.825rem;
+  color: #606877;
+}
+
+.sample-mixed-hero {
+  // Uses existing Body Strong semantic role instead of literals
+  font-size: var(--honesty-type-body-strong-font-size);
+  font-weight: var(--honesty-type-body-strong-font-weight);
+  line-height: var(--honesty-type-body-strong-line-height);
+}
+
+// =============================================================================
+// Product Specimen: 2. Core Weights Review
+// =============================================================================
+.weight-samples-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.weight-card {
+  border: 1px solid #e1e4ea;
+  border-radius: 6px;
+  padding: 1rem;
+  background-color: #fff;
+
+  // Weight review resolves strictly through existing Semantic role variables
+  &.weight-regular {
+    font-weight: var(--honesty-type-body-font-weight);
+  }
+  &.weight-medium {
+    font-weight: var(--honesty-type-body-strong-font-weight);
+  }
+  &.weight-bold {
+    font-weight: var(--honesty-type-page-title-font-weight);
+  }
+}

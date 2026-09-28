@@ -1,0 +1,50 @@
+.column-banner,
+.specimen-data-row,
+.nested-banner,
+.nested-child-header,
+.nested-data-row {
+  justify-content: space-between;
+}
+
+.column-banner {
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--honesty-radius-control);
+  background-color: var(--honesty-color-surface-default);
+  border: 1px solid var(--honesty-border-subtle);
+}
+
+.specimen-badge,
+.specimen-tag,
+.inline-item-chip,
+.restoration-tag {
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--honesty-radius-control);
+  background-color: var(--honesty-color-surface-default);
+  border: 1px solid var(--honesty-border-subtle);
+  color: var(--honesty-color-text-secondary);
+}
+
+.specimen-tag,
+.restoration-tag,
+.inline-item-chip {
+  background-color: var(--honesty-color-surface-canvas);
+}
+
+.specimen-tag {
+  align-self: flex-start;
+}
+
+// -----------------------------------------------------------------------------
+// Grids (Primary, Invariance, Nested)
+// -----------------------------------------------------------------------------
+.primary-density-grid,
+.invariance-trio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--honesty-space-inline-loose);
+  align-items: flex-start; // Preserves natural height difference
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+  }
+}

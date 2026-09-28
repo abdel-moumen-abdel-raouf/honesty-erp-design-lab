@@ -1,0 +1,33 @@
+@use '../../../styles/foundation/components/text' as tokens;
+
+:host(
+  :is(
+    [data-text-type='heading-1'],
+    [data-text-type='heading-2'],
+    [data-text-type='heading-3'],
+    [data-text-type='heading-4'],
+    [data-text-type='heading-5'],
+    [data-text-type='heading-6'],
+    [data-text-type='paragraph'],
+    [data-text-type='div'],
+    [data-text-type='pre'],
+    [data-text-type='blockquote'],
+    [data-text-type='address'],
+    [data-text-type='hgroup'],
+    [data-text-type='figure'],
+    [data-text-type='figcaption'],
+    [data-text-type='caption'],
+    [data-text-type='summary'],
+    [data-text-type='list-item'],
+    [data-text-type='term'],
+    [data-text-type='description'],
+    [data-text-type='table-header'],
+    [data-text-type='table-cell']
+  )
+) {
+  display: block;
+}
+
+:host([data-text-type='mark']) {
+  background-color: var(--honesty-text-mark-bg);
+}

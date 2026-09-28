@@ -1,0 +1,25 @@
+@use '../../../styles/foundation/components/fab' as tokens;
+
+@use '../button-family/internal/press-ripple' as ripple;
+
+.erp-fab__native {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--honesty-fab-size);
+  block-size: var(--honesty-fab-size);
+  padding: 0;
+  border: 0;
+  border-radius: var(--honesty-fab-radius);
+  background: var(--honesty-fab-bg);
+  color: var(--honesty-fab-fg);
+  box-shadow: var(--honesty-fab-elevation);
+  cursor: var(--honesty-fab-cursor);
+  transition:
+    box-shadow var(--honesty-fab-transition-duration) var(--honesty-fab-transition-easing),
+    background-color var(--honesty-fab-transition-duration) var(--honesty-fab-transition-easing),
+    color var(--honesty-fab-transition-duration) var(--honesty-fab-transition-easing);
+}

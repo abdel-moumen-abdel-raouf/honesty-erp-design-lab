@@ -10,7 +10,7 @@ import {ChangeDetectionStrategy, Component, OnInit, signal} from '@angular/core'
   imports: [ErpContainer, ErpStack, ErpSection, ErpText, ErpReviewBox],
   selector: 'app-typography-specimen',
   templateUrl: './typography.html',
-  styleUrl: './typography.scss',
+  styleUrls: ['./typography.scss', './typography-part-2.scss', './typography-part-3.scss', './typography-part-4.scss', './typography-part-5.scss', './typography-part-6.scss', './typography-part-7.scss', './typography-part-8.scss', './typography-part-9.scss'],
 })
 export class Typography implements OnInit {
   readonly tajawalLoaded = signal<boolean | null>(null);

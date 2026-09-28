@@ -1,0 +1,50 @@
+// =============================================================================
+// Layers / Z-Index Visual Overlap Specimen Styles (Docs-Only Candidate V1)
+// =============================================================================
+
+@use '../../../styles/foundation/queries' as query;
+
+.token-property-label,
+.badge-label,
+.layer-note {
+  font-size: var(--honesty-type-caption-font-size);
+  color: var(--honesty-color-text-muted);
+  margin: 0;
+}
+
+// -----------------------------------------------------------------------------
+// Stacking Roles (Strictly Consuming Runtime Layer Tokens)
+// -----------------------------------------------------------------------------
+.layer-base { z-index: var(--honesty-layer-base); }
+
+.layer-sticky { z-index: var(--honesty-layer-sticky); }
+
+.layer-floating { z-index: var(--honesty-layer-floating); }
+
+.layer-overlay { z-index: var(--honesty-layer-overlay); }
+
+.layer-blocking { z-index: var(--honesty-layer-blocking); }
+
+.layer-notification { z-index: var(--honesty-layer-notification); }
+
+// -----------------------------------------------------------------------------
+// Full Stack & Pairwise Stages (Local Isolation)
+// -----------------------------------------------------------------------------
+.full-stack-stage,
+.pairwise-stage {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--honesty-color-surface-canvas);
+  border: 1px dashed var(--honesty-border-default);
+  border-radius: var(--honesty-radius-control);
+}
+
+.full-stack-stage {
+  min-height: 380px;
+}
+
+.pairwise-stage {
+  min-height: 190px;
+}

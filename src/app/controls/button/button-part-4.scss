@@ -1,0 +1,38 @@
+@use '../../../styles/foundation/components/button' as tokens;
+
+@use '../button-family/internal/press-ripple' as ripple;
+
+:host(:not([data-button-state='ready'])) .n {
+  cursor: default;
+}
+
+.c {
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--honesty-button-gap);
+}
+
+.i {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--honesty-button-icon-size);
+  line-height: 0;
+}
+
+.erp-pressable__spinner {
+  inline-size: var(--honesty-button-spinner-size);
+  block-size: var(--honesty-button-spinner-size);
+  border-width: var(--honesty-button-spinner-border-width);
+  border-style: solid;
+  border-color: currentColor;
+  border-inline-end-color: transparent;
+  border-radius: 50%;
+  animation: erp-control-spin var(--honesty-button-spinner-duration) linear infinite;
+}
+
+@keyframes erp-control-spin {
+  to { transform: rotate(360deg); }
+}

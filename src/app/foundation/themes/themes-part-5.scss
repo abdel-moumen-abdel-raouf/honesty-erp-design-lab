@@ -1,0 +1,67 @@
+// =============================================================================
+// Docs-Only Visual Review Chrome: Semantic Themes Specimen
+// =============================================================================
+// Note:
+// This file contains temporary, docs-only layout styling specifically for visually
+// evaluating Core Light/Dark Semantic Color Mapping Candidate V1.
+//
+// Single source of truth:
+// Consumes ONLY runtime Semantic CSS custom properties (var(--honesty-*)).
+// Never imports Reference Sass color tokens or hard-codes hex values.
+// =============================================================================
+
+@use '../../../styles/foundation/queries' as query;
+
+.actions-specimens-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.action-states-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.75rem;
+  min-width: 0;
+  max-width: 100%;
+}
+
+// Pure color state rectangle (not a button component)
+.action-specimen-rect {
+  padding: 0.65rem 0.75rem;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.825rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+
+  &.primary-default {
+    background-color: var(--honesty-color-action-primary-bg);
+    color: var(--honesty-color-action-primary-fg);
+  }
+
+  &.primary-hover {
+    background-color: var(--honesty-color-action-primary-bg-hover);
+    color: var(--honesty-color-action-primary-fg);
+  }
+
+  &.primary-active {
+    background-color: var(--honesty-color-action-primary-bg-active);
+    color: var(--honesty-color-action-primary-fg);
+  }
+
+  &.subtle-default {
+    background-color: var(--honesty-color-action-primary-subtle-bg);
+    color: var(--honesty-color-action-primary-subtle-fg);
+  }
+
+  &.subtle-hover {
+    background-color: var(--honesty-color-action-primary-subtle-bg-hover);
+    color: var(--honesty-color-action-primary-subtle-fg);
+  }
+}

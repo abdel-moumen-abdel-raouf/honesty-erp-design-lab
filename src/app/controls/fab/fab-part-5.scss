@@ -1,0 +1,27 @@
+@use '../../../styles/foundation/components/fab' as tokens;
+
+@use '../button-family/internal/press-ripple' as ripple;
+
+.erp-fab__native:focus-visible {
+  outline-width: var(--honesty-fab-focus-width);
+  outline-style: var(--honesty-fab-focus-style);
+  outline-color: var(--honesty-fab-focus-color);
+  outline-offset: var(--honesty-fab-focus-offset);
+}
+
+:host([data-fab-state='disabled']) .erp-fab__native,
+:host([data-fab-state='invalid']) .erp-fab__native {
+  opacity: var(--honesty-fab-disabled-opacity);
+}
+
+:host(:not([data-fab-state='ready'])) .erp-fab__native {
+  cursor: default;
+}
+
+.erp-fab__content {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

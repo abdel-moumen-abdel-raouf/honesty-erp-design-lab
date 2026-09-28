@@ -1,0 +1,19 @@
+@use '../../../../styles/foundation/components/field-frame' as tokens;
+
+.field-frame__control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--honesty-field-frame-inline-gap);
+  min-width: 0;
+  min-block-size: var(--honesty-field-frame-height);
+  padding-inline: var(--honesty-field-frame-padding-inline);
+  border-width: var(--honesty-field-frame-border-width);
+  border-style: var(--honesty-field-frame-border-style);
+  border-color: var(--honesty-field-frame-border-color);
+  border-radius: var(--honesty-field-frame-radius);
+  background: var(--honesty-field-frame-bg);
+  color: var(--honesty-field-frame-fg);
+  backdrop-filter: blur(var(--honesty-field-frame-backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--honesty-field-frame-backdrop-blur));
+}

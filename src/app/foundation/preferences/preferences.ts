@@ -46,7 +46,7 @@ type ScalarSettingKey = Exclude<UiSettingKey, ContextualSettingKey>;
   imports: [ErpContainer, ErpStack, ErpSection, ErpText, ErpReviewBox, ErpReviewSelect, ErpReviewChoice, ErpButton],
   selector: 'app-preferences-specimen',
   templateUrl: './preferences.html',
-  styleUrl: './preferences.scss',
+  styleUrls: ['./preferences.scss', './preferences-part-2.scss', './preferences-part-3.scss', './preferences-part-4.scss', './preferences-part-5.scss', './preferences-part-6.scss', './preferences-part-7.scss'],
 })
 export class Preferences {
   private readonly destroyRef = inject(DestroyRef);

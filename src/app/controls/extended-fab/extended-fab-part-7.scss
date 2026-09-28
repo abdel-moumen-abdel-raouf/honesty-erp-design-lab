@@ -1,0 +1,19 @@
+@use '../../../styles/foundation/components/extended-fab' as tokens;
+
+@use '../button-family/internal/press-ripple' as ripple;
+
+.erp-pressable__spinner {
+  flex: 0 0 auto;
+  inline-size: var(--honesty-extended-fab-spinner-size);
+  block-size: var(--honesty-extended-fab-spinner-size);
+  border-width: var(--honesty-extended-fab-spinner-border-width);
+  border-style: solid;
+  border-color: currentColor;
+  border-inline-end-color: transparent;
+  border-radius: 50%;
+  animation: erp-extended-fab-spinner var(--honesty-extended-fab-spinner-duration) linear infinite;
+}
+
+@keyframes erp-extended-fab-spinner {
+  to { transform: rotate(360deg); }
+}

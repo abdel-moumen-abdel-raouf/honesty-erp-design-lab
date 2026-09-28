@@ -1,0 +1,10 @@
+@use '../../../styles/foundation/components/button' as tokens;
+
+@use '../button-family/internal/press-ripple' as ripple;
+
+@include ripple.styles(
+  var(--honesty-button-ripple-color),
+  var(--honesty-button-ripple-opacity),
+  var(--honesty-button-ripple-duration),
+  var(--honesty-button-ripple-easing)
+);

@@ -11,7 +11,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   imports: [ErpContainer, ErpStack, ErpSection, ErpText, ErpReviewBox, ErpReviewChart],
   selector: 'app-charts-specimen',
   templateUrl: './charts.html',
-  styleUrl: './charts.scss',
+  styleUrls: ['./charts.scss', './charts-part-2.scss', './charts-part-3.scss', './charts-part-4.scss', './charts-part-5.scss', './charts-part-6.scss'],
 })
 export class Charts {
   readonly themes = [

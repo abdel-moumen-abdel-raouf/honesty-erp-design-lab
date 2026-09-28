@@ -1,0 +1,29 @@
+@use '../../../styles/foundation/components/button' as tokens;
+
+@use '../button-family/internal/press-ripple' as ripple;
+
+.n {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--honesty-button-height);
+  padding-inline: var(--honesty-button-padding-inline);
+  border-width: var(--honesty-button-border-width);
+  border-style: var(--honesty-button-border-style);
+  border-color: var(--honesty-button-border-color);
+  border-radius: var(--honesty-button-radius);
+  background: var(--honesty-button-bg);
+  color: var(--honesty-button-fg);
+  box-shadow: var(--honesty-button-elevation);
+  font-family: var(--honesty-button-font-family);
+  font-size: var(--honesty-button-font-size);
+  font-weight: var(--honesty-button-font-weight);
+  line-height: var(--honesty-button-line-height);
+  cursor: var(--honesty-button-cursor);
+  transition-property: background-color, color, border-color, box-shadow;
+  transition-duration: var(--honesty-button-transition-duration);
+  transition-timing-function: var(--honesty-button-transition-easing);
+}

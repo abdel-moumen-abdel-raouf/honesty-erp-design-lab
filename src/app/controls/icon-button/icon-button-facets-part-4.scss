@@ -1,0 +1,5 @@
+@use '../../../styles/foundation/components/icon-button' as tokens;
+
+:host([data-icon-button-ripple-speed='fast']) { @include tokens.ripple-speed-fast; }
+
+:host([data-icon-button-ripple-speed='slow']) { @include tokens.ripple-speed-slow; }

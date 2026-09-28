@@ -1,0 +1,59 @@
+// =============================================================================
+// Docs-Only Visual Review Specimen: Borders & Radius Candidate V1
+// =============================================================================
+@use '../../../styles/foundation/reference/borders' as ref-border;
+
+@use '../../../styles/foundation/reference/radius' as ref-radius;
+
+.grid-6 { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+
+// Visual Boxes
+.specimen-visual-box,
+.composition-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 68px;
+  background-color: var(--honesty-color-surface-canvas);
+  border-radius: var(--honesty-radius-control);
+}
+
+.composition-preview {
+  height: 60px;
+  border-radius: inherit;
+}
+
+.specimen-card-meta,
+.theme-context-header,
+.semantic-color-box {
+  justify-content: space-between;
+}
+
+.specimen-notice-box.emphasis-notice {
+  border-color: var(--honesty-border-default);
+}
+
+// Reference Border Primitives (Grey #8c919d for visual isolation)
+.ref-box-width,
+.ref-box-style,
+.ref-box-radius {
+  border: 1px solid #8c919d;
+}
+
+.ref-width-0 .ref-box-width { border-width: ref-border.$honesty-ref-border-width-0; }
+
+.ref-width-1 .ref-box-width { border-width: ref-border.$honesty-ref-border-width-1; }
+
+.ref-width-2 .ref-box-width { border-width: ref-border.$honesty-ref-border-width-2; }
+
+.ref-style-solid .ref-box-style { border-style: ref-border.$honesty-ref-border-style-solid; }
+
+.ref-style-dashed .ref-box-style { border-style: ref-border.$honesty-ref-border-style-dashed; }
+
+.ref-radius-0 .ref-box-radius { border-radius: ref-radius.$honesty-ref-radius-0; }
+
+.ref-radius-2 .ref-box-radius { border-radius: ref-radius.$honesty-ref-radius-2; }
+
+.ref-radius-4 .ref-box-radius { border-radius: ref-radius.$honesty-ref-radius-4; }
+
+.ref-radius-6 .ref-box-radius { border-radius: ref-radius.$honesty-ref-radius-6; }

@@ -1,0 +1,60 @@
+// =============================================================================
+// Responsive Layout & Grid Visual Review Specimen Styles (Docs-Only)
+// =============================================================================
+
+@use '../../../styles/foundation/queries' as query;
+
+.probe-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  background-color: var(--honesty-color-surface-canvas);
+  border: 1px solid var(--honesty-border-subtle);
+  border-radius: var(--honesty-radius-control);
+  font-size: var(--honesty-type-caption-font-size);
+  margin-bottom: var(--honesty-space-stack-tight);
+  white-space: nowrap;
+}
+
+.probe-label {
+  margin-bottom: var(--honesty-space-stack-tight);
+}
+
+.probe-detail {
+  display: block;
+}
+
+@include query.viewport-down(md) {
+  .viewport-band-a { display: block; }
+}
+
+@include query.viewport-between(md, xxl) {
+  .viewport-band-b { display: block; }
+}
+
+@include query.viewport-up(xxl) {
+  .viewport-band-c { display: block; }
+}
+
+// 5. Container Query Review (Named: layout-review)
+.container-fixtures-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--honesty-space-stack-loose);
+  min-width: 0;
+}
+
+.container-test-fixture {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--honesty-space-stack-tight);
+}
+
+.fixture-banner {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: var(--honesty-space-stack-tight);
+  border-bottom: 1px solid var(--honesty-border-subtle);
+  min-width: 0;
+}

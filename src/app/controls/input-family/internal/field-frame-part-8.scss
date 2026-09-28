@@ -1,0 +1,24 @@
+@use '../../../../styles/foundation/components/field-frame' as tokens;
+
+.field-frame__value > :where([field-control]) {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+}
+
+.field-frame__actions {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--honesty-field-frame-inline-gap);
+}
+
+.field-frame__icon {
+  flex: 0 0 auto;
+  font-size: var(--honesty-field-frame-icon-size);
+}
+
+:host([data-field-multiline='true']) .field-frame__control {
+  align-items: flex-start;
+  min-block-size: 0;
+  padding-block: var(--honesty-field-frame-padding-inline);
+}

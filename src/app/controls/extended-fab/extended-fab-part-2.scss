@@ -1,0 +1,9 @@
+@use '../../../styles/foundation/components/extended-fab' as tokens;
+
+@use '../button-family/internal/press-ripple' as ripple;
+
+:host([data-extended-fab-cursor='default']) { @include tokens.cursor-default; }
+
+:host([data-extended-fab-ripple-speed='fast']) { @include tokens.ripple-speed-fast; }
+
+:host([data-extended-fab-ripple-speed='slow']) { @include tokens.ripple-speed-slow; }

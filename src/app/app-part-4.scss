@@ -1,0 +1,63 @@
+// =============================================================================
+// Docs-Only Temporary Design Lab Utility Chrome
+// =============================================================================
+// Note:
+// The utility bar and its elements are INTERNAL DESIGN-LAB REVIEW TOOLING ONLY.
+// They are NOT:
+// - the future ERP Topbar
+// - the future Sidebar
+// - a production navigation component
+// - a visual reference for Shell design
+// All layout/styling values in this file are temporary docs-only chrome and
+// do NOT represent Foundation tokens or production design decisions.
+// =============================================================================
+
+@use '../styles/foundation/queries' as query;
+
+.lab-preview-stage {
+  flex: 1;
+  min-width: 0;
+  overflow: auto;
+  display: block;
+  padding: 1rem;
+  background-color: var(--honesty-color-surface-elevated);
+}
+
+.lab-preview-frame {
+  display: block;
+  margin-inline: auto;
+  box-sizing: border-box;
+  background: var(--honesty-color-surface-canvas);
+}
+
+.lab-preview-frame.is-desktop {
+  width: 100%;
+  height: calc(100vh - 7rem);
+  min-height: 600px;
+  border: 0;
+}
+
+.lab-preview-frame.is-tablet {
+  width: 768px;
+  height: 1024px;
+  border: 1px solid var(--honesty-border-default);
+}
+
+.lab-preview-frame.is-mobile {
+  width: 375px;
+  height: 667px;
+  border: 1px solid var(--honesty-border-default);
+}
+
+@include query.viewport-down(md) {
+  .lab-utility-brand,
+  .lab-actions {
+    min-width: 0;
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .lab-nav {
+    flex: 1 1 100%;
+  }
+}

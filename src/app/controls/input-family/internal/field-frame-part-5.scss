@@ -1,0 +1,24 @@
+@use '../../../../styles/foundation/components/field-frame' as tokens;
+
+:host([data-field-focused='true']:not([data-field-border-mode='underline']))
+  .field-frame__control {
+  border-color: transparent;
+  background:
+    linear-gradient(
+      var(--honesty-field-frame-bg),
+      var(--honesty-field-frame-bg)
+    ) padding-box,
+    linear-gradient(
+      90deg,
+      var(--_honesty-field-frame-focus-inline-start),
+      var(--_honesty-field-frame-focus-inline-end)
+    ) border-box;
+}
+
+:host([data-field-border-mode='underline']) .field-frame__control {
+  border: 0;
+  border-block-end-width: var(--honesty-field-frame-underline-width);
+  border-block-end-style: var(--honesty-field-frame-border-style);
+  border-block-end-color: var(--honesty-field-frame-border-color);
+  border-radius: 0;
+}

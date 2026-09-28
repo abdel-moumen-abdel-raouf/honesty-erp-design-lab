@@ -1,0 +1,30 @@
+@use '../../../styles/foundation/components/extended-fab' as tokens;
+
+@use '../button-family/internal/press-ripple' as ripple;
+
+.erp-extended-fab__native {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  max-width: 100%;
+  height: var(--honesty-extended-fab-height);
+  padding-inline: var(--honesty-extended-fab-padding-inline);
+  border: 0;
+  border-radius: var(--honesty-extended-fab-radius);
+  background: var(--honesty-extended-fab-bg);
+  color: var(--honesty-extended-fab-fg);
+  box-shadow: var(--honesty-extended-fab-elevation);
+  font-family: var(--honesty-extended-fab-font-family);
+  font-size: var(--honesty-extended-fab-font-size);
+  font-weight: var(--honesty-extended-fab-font-weight);
+  line-height: var(--honesty-extended-fab-line-height);
+  cursor: var(--honesty-extended-fab-cursor);
+  transition:
+    box-shadow var(--honesty-extended-fab-transition-duration) var(--honesty-extended-fab-transition-easing),
+    background-color var(--honesty-extended-fab-transition-duration) var(--honesty-extended-fab-transition-easing),
+    color var(--honesty-extended-fab-transition-duration) var(--honesty-extended-fab-transition-easing);
+}

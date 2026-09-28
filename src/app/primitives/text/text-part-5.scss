@@ -1,0 +1,53 @@
+@use '../../../styles/foundation/components/text' as tokens;
+
+:host([data-text-font-style='italic']) {
+  @include tokens.font-style-italic;
+}
+
+:host([data-text-decoration='inherit']) {
+  @include tokens.decoration-inherit;
+}
+
+:host([data-text-decoration='none']) {
+  @include tokens.decoration-none;
+}
+
+:host([data-text-decoration='underline']) {
+  @include tokens.decoration-underline;
+}
+
+:host([data-text-decoration='line-through']) {
+  @include tokens.decoration-line-through;
+}
+
+:host([data-text-align='inherit']) {
+  text-align: inherit;
+}
+
+:host([data-text-align='start']) {
+  text-align: start;
+}
+
+:host([data-text-align='center']) {
+  text-align: center;
+}
+
+:host([data-text-align='end']) {
+  text-align: end;
+}
+
+:host([data-text-align='justify']) {
+  text-align: justify;
+}
+
+:host([data-text-wrap='normal']) {
+  white-space: normal;
+}
+
+:host([data-text-wrap='nowrap']) {
+  white-space: nowrap;
+}
+
+:host([data-text-wrap='pre']) {
+  white-space: pre;
+}

@@ -1,0 +1,46 @@
+name: Quality Gate
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Lint, test, build, zero warnings
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.12.0'
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Lint and governance
+        run: npm run lint
+
+      - name: Unit tests
+        run: npm run test -- --watch=false
+
+      - name: Production build with zero warnings
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run build 2>&1 | tee build.log
+          if grep -E '(^|[^A-Za-z])(WARNING|\[WARNING\])' build.log; then
+            echo 'Build emitted warnings; zero-warning gate failed.'
+            exit 1
+          fi

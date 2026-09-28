@@ -1,0 +1,8 @@
+@use '../../../styles/foundation/components/text' as tokens;
+
+.erp-text__native-link:focus-visible {
+  outline-width: var(--honesty-text-focus-ring-width);
+  outline-style: var(--honesty-text-focus-ring-style);
+  outline-color: var(--honesty-text-focus-ring-color);
+  outline-offset: var(--honesty-text-focus-ring-offset);
+}

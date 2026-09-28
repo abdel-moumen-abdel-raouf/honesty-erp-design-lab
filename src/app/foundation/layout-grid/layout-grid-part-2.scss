@@ -1,0 +1,49 @@
+// =============================================================================
+// Responsive Layout & Grid Visual Review Specimen Styles (Docs-Only)
+// =============================================================================
+
+@use '../../../styles/foundation/queries' as query;
+
+.inner-title,
+.col-heading,
+.fixture-title {
+  font-size: var(--honesty-type-body-strong-font-size);
+  font-weight: var(--honesty-type-body-strong-font-weight);
+  line-height: var(--honesty-type-body-strong-line-height);
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.specimen-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--honesty-space-stack-default);
+  min-width: 0;
+  max-width: 100%;
+}
+
+// 1. Layout Gap Scale
+.gap-scale-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--honesty-space-stack-tight);
+}
+
+.gap-specimen-card,
+.demo-col-card,
+.viewport-probe-container,
+.container-test-fixture {
+  padding: var(--honesty-space-inset-default);
+  background-color: var(--honesty-color-surface-default);
+  border: 1px solid var(--honesty-border-subtle);
+  border-radius: var(--honesty-radius-surface);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.gap-specimen-card {
+  padding: var(--honesty-space-inset-tight);
+  display: flex;
+  flex-direction: column;
+  gap: var(--honesty-space-stack-tight);
+}

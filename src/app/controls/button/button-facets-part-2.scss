@@ -1,0 +1,13 @@
+@use '../../../styles/foundation/components/button' as tokens;
+
+:host([data-button-tone='success']) { @include tokens.tone-success; }
+
+:host([data-button-tone='warning']) { @include tokens.tone-warning; }
+
+:host([data-button-tone='danger']) { @include tokens.tone-danger; }
+
+:host([data-button-tone='info']) { @include tokens.tone-info; }
+
+:host([data-button-tone='neutral']) { @include tokens.tone-neutral; }
+
+:host([data-button-size='sm']) { @include tokens.size-sm; }

@@ -1,0 +1,111 @@
+// =============================================================================
+// Docs-Only Visual Review Specimen: Spacing Candidate V1
+// =============================================================================
+@use '../../../styles/foundation/reference/spacing' as ref;
+
+// 1. Reference Spacing Scale Table & Visual Gaps
+$spacing-reference-specimen: (
+  0: ref.$honesty-ref-space-0,
+  4: ref.$honesty-ref-space-4,
+  8: ref.$honesty-ref-space-8,
+  12: ref.$honesty-ref-space-12,
+  16: ref.$honesty-ref-space-16,
+  20: ref.$honesty-ref-space-20,
+  24: ref.$honesty-ref-space-24,
+  32: ref.$honesty-ref-space-32,
+  40: ref.$honesty-ref-space-40,
+  48: ref.$honesty-ref-space-48,
+  64: ref.$honesty-ref-space-64,
+);
+
+.grid-note-list {
+  margin: 0;
+  padding-inline-start: 1.25rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #475569;
+
+  li {
+    margin-bottom: 0.25rem;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@each $step, $val in $spacing-reference-specimen {
+  .ref-gap-#{$step} {
+    gap: $val;
+  }
+}
+
+.ref-scale-table {
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.ref-scale-row {
+  display: grid;
+  grid-template-columns: 200px 100px 100px 180px 1fr;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.ref-scale-header-row {
+  background-color: #f8fafc;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #475569;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.ref-col {
+  font-size: 0.85rem;
+}
+
+.ref-col-rem,
+.ref-col-px,
+.token-value,
+.token-code {
+  font-family: monospace;
+}
+
+.ref-col-rem,
+.ref-col-px {
+  color: #334155;
+}
+
+.token-code {
+  font-size: 0.8rem;
+  background-color: #f1f5f9;
+  padding: 0.15rem 0.35rem;
+  border-radius: 3px;
+  color: #1e293b;
+}
+
+.status-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+
+  &.is-aliased {
+    background-color: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+  }
+
+  &.is-unaliased {
+    background-color: #f1f5f9;
+    color: #64748b;
+    border: 1px solid #cbd5e1;
+  }
+}

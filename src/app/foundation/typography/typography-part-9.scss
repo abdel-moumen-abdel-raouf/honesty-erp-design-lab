@@ -1,0 +1,71 @@
+// =============================================================================
+// Docs-Only Visual Review Chrome vs. Product Specimen Typography
+// =============================================================================
+// CONTRACT DISTINCTION:
+// 1. Docs Chrome (explanatory titles, badges, token labels, specimen borders/padding):
+//    Uses local temporary styling to frame and document the specimen.
+// 2. Product Specimen Content (evaluating font families, weights, semantic roles,
+//    reading rhythm, data/digits, bidi, and dark theme):
+//    MUST strictly resolve through existing Semantic Typography CSS custom properties.
+// =============================================================================
+
+@use '../../../styles/foundation/queries' as query;
+
+$roles: (
+  display,
+  page-title,
+  section-title,
+  subsection-title,
+  body,
+  body-strong,
+  body-small,
+  label,
+  caption
+);
+
+// =============================================================================
+// Product Specimen: 7. Dark-Theme Typography Check
+// =============================================================================
+.dark-context-container {
+  background-color: var(--honesty-color-surface-canvas);
+  color: var(--honesty-color-text-primary);
+  border: 1px solid var(--honesty-border-default);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dark-theme-badge {
+  // Docs-only metadata badge
+  align-self: flex-start;
+  font-family: monospace;
+  font-size: 0.725rem;
+  font-weight: 600;
+  padding: 0.15rem 0.4rem;
+  background-color: var(--honesty-color-surface-elevated);
+  color: var(--honesty-color-text-secondary);
+  border: 1px solid var(--honesty-border-subtle);
+  border-radius: 3px;
+}
+
+.dark-role-item {
+  color: var(--honesty-color-text-primary);
+
+  &.role-body-small,
+  &.role-label {
+    color: var(--honesty-color-text-secondary);
+  }
+
+  &.role-caption {
+    color: var(--honesty-color-text-muted);
+  }
+}
+
+.dark-data-sample {
+  padding: 0.65rem 0.85rem;
+  background-color: var(--honesty-color-surface-default);
+  border: 1px solid var(--honesty-border-subtle);
+  border-radius: 4px;
+}

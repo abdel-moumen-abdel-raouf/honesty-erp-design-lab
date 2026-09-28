@@ -39,7 +39,7 @@ export interface PairwiseCheck {
   imports: [ErpStack, ErpSection, ErpText, ErpReviewBox],
   selector: 'app-layers-specimen',
   templateUrl: './layers.html',
-  styleUrl: './layers.scss',
+  styleUrls: ['./layers.scss', './layers-part-2.scss', './layers-part-3.scss', './layers-part-4.scss', './layers-part-5.scss', './layers-part-6.scss', './layers-part-7.scss'],
 })
 export class Layers {
   readonly semanticLayers: readonly SemanticLayerDef[] = [

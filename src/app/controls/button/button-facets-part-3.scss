@@ -1,0 +1,13 @@
+@use '../../../styles/foundation/components/button' as tokens;
+
+:host([data-button-size='lg']) { @include tokens.size-lg; }
+
+:host([data-button-shape='rounded']) { @include tokens.shape-rounded; }
+
+:host([data-button-shape='pill']) { @include tokens.shape-pill; }
+
+:host([data-button-border-style='dashed']) { @include tokens.border-style-dashed; }
+
+:host([data-button-cursor='default']) { @include tokens.cursor-default; }
+
+:host([data-button-ripple-speed='fast']) { @include tokens.ripple-speed-fast; }

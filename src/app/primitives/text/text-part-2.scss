@@ -1,0 +1,49 @@
+@use '../../../styles/foundation/components/text' as tokens;
+
+:host([data-text-size='3xl']) {
+  @include tokens.size-3xl;
+}
+
+:host([data-text-size='4xl']) {
+  @include tokens.size-4xl;
+}
+
+:host([data-text-size='5xl']) {
+  @include tokens.size-5xl;
+}
+
+:host([data-text-weight='inherit']) {
+  @include tokens.weight-inherit;
+}
+
+:host([data-text-weight='regular']) {
+  @include tokens.weight-regular;
+}
+
+:host([data-text-weight='medium']) {
+  @include tokens.weight-medium;
+}
+
+:host([data-text-weight='bold']) {
+  @include tokens.weight-bold;
+}
+
+:host([data-text-tone='inherit']) {
+  @include tokens.tone-inherit;
+}
+
+:host([data-text-tone='primary']) {
+  @include tokens.tone-primary;
+}
+
+:host([data-text-tone='secondary']) {
+  @include tokens.tone-secondary;
+}
+
+:host([data-text-tone='muted']) {
+  @include tokens.tone-muted;
+}
+
+:host([data-text-tone='disabled']) {
+  @include tokens.tone-disabled;
+}

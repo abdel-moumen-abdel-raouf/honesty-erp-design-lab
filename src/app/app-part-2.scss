@@ -1,0 +1,77 @@
+// =============================================================================
+// Docs-Only Temporary Design Lab Utility Chrome
+// =============================================================================
+// Note:
+// The utility bar and its elements are INTERNAL DESIGN-LAB REVIEW TOOLING ONLY.
+// They are NOT:
+// - the future ERP Topbar
+// - the future Sidebar
+// - a production navigation component
+// - a visual reference for Shell design
+// All layout/styling values in this file are temporary docs-only chrome and
+// do NOT represent Foundation tokens or production design decisions.
+// =============================================================================
+
+@use '../styles/foundation/queries' as query;
+
+.lab-nav-link {
+  display: inline-block;
+  flex: 0 0 auto;
+  padding: 0.35rem 0.75rem;
+  color: var(--honesty-color-text-secondary);
+  text-decoration: none;
+  border-radius: var(--honesty-radius-control);
+  font-weight: 500;
+  white-space: nowrap;
+  transition:
+    color var(--honesty-motion-duration-fast) ease,
+    background-color var(--honesty-motion-duration-fast) ease;
+
+  &:hover {
+    color: var(--honesty-color-text-primary);
+    background-color: var(--honesty-color-action-primary-subtle-bg-hover);
+  }
+
+  &.active {
+    color: var(--honesty-color-action-primary-subtle-fg);
+    background-color: var(--honesty-color-action-primary-subtle-bg);
+    font-weight: 600;
+  }
+}
+
+.lab-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.lab-viewport-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.btn-preview {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--honesty-color-text-primary);
+  background-color: var(--honesty-color-surface-default);
+  border: 1px solid var(--honesty-border-default);
+  border-radius: var(--honesty-radius-control);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--honesty-color-action-primary-subtle-bg-hover);
+    border-color: var(--honesty-border-strong);
+  }
+
+  &.is-active {
+    color: var(--honesty-color-action-primary-fg);
+    background-color: var(--honesty-color-action-primary-bg);
+    border-color: var(--honesty-color-action-primary-bg);
+  }
+}

@@ -1,0 +1,11 @@
+@use '../../../styles/foundation/components/icon-button' as tokens;
+
+:host([data-icon-button-size='lg']) { @include tokens.size-lg; }
+
+:host([data-icon-button-shape='default']) { @include tokens.shape-default; }
+
+:host([data-icon-button-shape='pill']) { @include tokens.shape-pill; }
+
+:host([data-icon-button-border-style='dashed']) { @include tokens.border-style-dashed; }
+
+:host([data-icon-button-cursor='default']) { @include tokens.cursor-default; }

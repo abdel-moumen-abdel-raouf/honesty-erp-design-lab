@@ -1,0 +1,15 @@
+@use '../../../../styles/foundation/components/field-frame' as tokens;
+
+:host([data-field-appearance='glass']) .field-frame__control {
+  background: color-mix(
+    in srgb,
+    var(--honesty-field-frame-bg)
+      var(--honesty-field-frame-glass-surface-mix),
+    transparent
+  );
+  box-shadow:
+    inset 0 0 0 var(--honesty-field-frame-border-width)
+      var(--honesty-field-frame-glass-border-color),
+    inset 0 var(--honesty-field-frame-border-width) 0
+      var(--honesty-field-frame-glass-highlight-color);
+}

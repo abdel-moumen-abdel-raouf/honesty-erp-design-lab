@@ -1,0 +1,46 @@
+@use '../../../styles/foundation/components/text' as tokens;
+
+:host(
+  [data-text-type='mark'][data-text-tone='brand-accent']
+) {
+  color: var(--honesty-text-mark-fg);
+}
+
+:host([data-text-type='subscript']) {
+  vertical-align: sub;
+}
+
+:host([data-text-type='superscript']) {
+  vertical-align: super;
+}
+
+:host([data-text-type='abbreviation']) {
+  text-decoration-style: dotted;
+}
+
+.erp-text__native {
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  font-style: inherit;
+  color: inherit;
+  text-decoration-line: inherit;
+  white-space: inherit;
+  user-select: inherit;
+  -webkit-user-select: inherit;
+}
+
+mark.erp-text__native {
+  background: transparent;
+}
+
+.erp-text__native-link {
+  font: inherit;
+  color: inherit;
+  line-height: inherit;
+  text-decoration: inherit;
+  cursor: pointer;
+}

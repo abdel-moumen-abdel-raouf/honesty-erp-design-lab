@@ -1,0 +1,25 @@
+@use '../../../styles/foundation/components/fab' as tokens;
+
+@use '../button-family/internal/press-ripple' as ripple;
+
+.erp-fab__native::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--honesty-fab-state-layer-color);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.erp-fab__native:not(:disabled):hover {
+  box-shadow: var(--honesty-fab-elevation-hover);
+}
+
+.erp-fab__native:not(:disabled):hover::before {
+  opacity: var(--honesty-fab-state-hover-opacity);
+}
+
+.erp-fab__native:not(:disabled):active::before {
+  opacity: var(--honesty-fab-state-active-opacity);
+}

@@ -1,0 +1,78 @@
+// =============================================================================
+// Docs-Only Visual Review Specimen: Borders & Radius Candidate V1
+// =============================================================================
+@use '../../../styles/foundation/reference/borders' as ref-border;
+
+@use '../../../styles/foundation/reference/radius' as ref-radius;
+
+.specimen-description,
+.section-lead {
+  font-size: var(--honesty-type-body-small-font-size);
+  font-weight: var(--honesty-type-body-small-font-weight);
+  line-height: var(--honesty-type-body-small-line-height);
+  color: var(--honesty-color-text-secondary);
+  margin: 0;
+}
+
+.section-subtitle,
+.visual-box-label,
+.specimen-card-meta,
+.notice-text,
+.theme-code,
+.sample-role-title,
+.token-role-code,
+.sample-fixed-note,
+.comp-title,
+.comp-inner-text {
+  font-size: var(--honesty-type-caption-font-size);
+  line-height: var(--honesty-type-caption-line-height);
+}
+
+.section-subtitle {
+  color: var(--honesty-color-text-muted);
+  direction: ltr;
+  text-align: right;
+}
+
+.notice-text {
+  color: var(--honesty-color-text-secondary);
+}
+
+// Code & Monospace Elements
+.token-name,
+.token-rendered-val,
+.theme-code,
+.token-role-code,
+.sample-fixed-note,
+.composition-tokens-list code {
+  font-family: monospace;
+  direction: ltr;
+}
+
+.token-rendered-val,
+.sample-role-title {
+  font-weight: var(--honesty-type-page-title-font-weight);
+  color: var(--honesty-color-text-primary);
+}
+
+.token-name,
+.visual-box-label,
+.token-role-code,
+.comp-title,
+.comp-inner-text {
+  color: var(--honesty-color-text-secondary);
+}
+
+.theme-code,
+.sample-fixed-note {
+  color: var(--honesty-color-text-muted);
+}
+
+// Grids
+.specimen-grid { display: grid; gap: var(--honesty-space-stack-default); }
+
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+.grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }

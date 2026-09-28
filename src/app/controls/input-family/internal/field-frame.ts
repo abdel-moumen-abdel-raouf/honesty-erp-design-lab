@@ -41,7 +41,7 @@ import {ErpInputConfigurationState} from '../input-contracts';
     ErpTooltip,
   ],
   templateUrl: './field-frame.html',
-  styleUrls: ['./field-frame.scss', './field-frame-facets.scss'],
+  styleUrls: ['./field-frame.scss', './field-frame-part-2.scss', './field-frame-part-3.scss', './field-frame-part-4.scss', './field-frame-part-5.scss', './field-frame-part-6.scss', './field-frame-part-7.scss', './field-frame-part-8.scss', './field-frame-facets.scss', './field-frame-facets-part-2.scss', './field-frame-facets-part-3.scss', './field-frame-facets-part-4.scss', './field-frame-facets-part-5.scss'],
   host: {
     '(click)': 'handleControlSurfaceClick($event)',
     '[attr.data-field-tone]': 'tone()',

@@ -1,0 +1,34 @@
+// =============================================================================
+// Docs-Only Visual Review Specimen: Elevation Candidate V1
+// =============================================================================
+@use '../../../styles/foundation/reference/elevation' as ref-elev;
+
+$docs-ref-geometry-color-alpha: rgba(16, 17, 21, 0.20);
+
+$docs-ref-alpha-color: #000000;
+
+// Section 1: Reference Geometry Shadows
+.ref-box-geom-none { box-shadow: #{ref-elev.$honesty-ref-elevation-shadow-none}; }
+
+.ref-box-geom-1 { box-shadow: #{ref-elev.$honesty-ref-elevation-shadow-geometry-1} #{$docs-ref-geometry-color-alpha}; }
+
+.ref-box-geom-2 { box-shadow: #{ref-elev.$honesty-ref-elevation-shadow-geometry-2} #{$docs-ref-geometry-color-alpha}; }
+
+// Section 2: Reference Alpha Shadows
+.ref-box-alpha-08 { box-shadow: #{ref-elev.$honesty-ref-elevation-shadow-geometry-2} #{rgba($docs-ref-alpha-color, ref-elev.$honesty-ref-elevation-shadow-alpha-08)}; }
+
+.ref-box-alpha-14 { box-shadow: #{ref-elev.$honesty-ref-elevation-shadow-geometry-2} #{rgba($docs-ref-alpha-color, ref-elev.$honesty-ref-elevation-shadow-alpha-14)}; }
+
+.ref-box-alpha-28 { box-shadow: #{ref-elev.$honesty-ref-elevation-shadow-geometry-2} #{rgba($docs-ref-alpha-color, ref-elev.$honesty-ref-elevation-shadow-alpha-28)}; }
+
+.ref-box-alpha-40 { box-shadow: #{ref-elev.$honesty-ref-elevation-shadow-geometry-2} #{rgba($docs-ref-alpha-color, ref-elev.$honesty-ref-elevation-shadow-alpha-40)}; }
+
+// Section 3: Semantic Elevation Comparison
+.themes-comparison-grid {
+  display: grid;
+  gap: var(--honesty-space-inline-loose);
+  grid-template-columns: 1fr;
+  @media (min-width: 900px) { grid-template-columns: 1fr 1fr; }
+}
+
+.semantic-specimen-stack { gap: var(--honesty-space-stack-loose); }

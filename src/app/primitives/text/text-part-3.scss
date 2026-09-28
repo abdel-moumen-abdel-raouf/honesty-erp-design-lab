@@ -1,0 +1,49 @@
+@use '../../../styles/foundation/components/text' as tokens;
+
+:host([data-text-tone='inverse']) {
+  @include tokens.tone-inverse;
+}
+
+:host([data-text-tone='brand-primary']) {
+  @include tokens.tone-brand-primary;
+}
+
+:host([data-text-tone='brand-secondary']) {
+  @include tokens.tone-brand-secondary;
+}
+
+:host([data-text-tone='brand-accent']) {
+  @include tokens.tone-brand-accent;
+}
+
+:host([data-text-tone='success']) {
+  @include tokens.tone-success;
+}
+
+:host([data-text-tone='warning']) {
+  @include tokens.tone-warning;
+}
+
+:host([data-text-tone='danger']) {
+  @include tokens.tone-danger;
+}
+
+:host([data-text-tone='info']) {
+  @include tokens.tone-info;
+}
+
+:host([data-text-family='inherit']) {
+  @include tokens.family-inherit;
+}
+
+:host([data-text-family='ui']) {
+  @include tokens.family-ui;
+}
+
+:host([data-text-family='arabic']) {
+  @include tokens.family-arabic;
+}
+
+:host([data-text-family='latin']) {
+  @include tokens.family-latin;
+}

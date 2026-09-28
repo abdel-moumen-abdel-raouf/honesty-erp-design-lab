@@ -11,6 +11,6 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   imports: [ErpContainer, ErpStack, ErpSection, ErpText, ErpReviewBox, ErpReviewBreak],
   selector: 'app-themes-specimen',
   templateUrl: './themes.html',
-  styleUrl: './themes.scss',
+  styleUrls: ['./themes.scss', './themes-part-2.scss', './themes-part-3.scss', './themes-part-4.scss', './themes-part-5.scss', './themes-part-6.scss'],
 })
 export class Themes {}

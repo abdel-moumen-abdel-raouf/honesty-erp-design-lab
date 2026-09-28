@@ -9,6 +9,6 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   imports: [ErpStack, ErpSection, ErpText, ErpReviewBox],
   selector: 'app-layout-grid-specimen',
   templateUrl: './layout-grid.html',
-  styleUrl: './layout-grid.scss',
+  styleUrls: ['./layout-grid.scss', './layout-grid-part-2.scss', './layout-grid-part-3.scss', './layout-grid-part-4.scss', './layout-grid-part-5.scss', './layout-grid-part-6.scss', './layout-grid-part-7.scss', './layout-grid-part-8.scss'],
 })
 export class LayoutGrid {}

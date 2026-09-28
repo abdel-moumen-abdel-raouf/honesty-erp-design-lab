@@ -1,0 +1,60 @@
+// =============================================================================
+// Responsive Layout & Grid Visual Review Specimen Styles (Docs-Only)
+// =============================================================================
+
+@use '../../../styles/foundation/queries' as query;
+
+.gap-specimen-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--honesty-space-inline-default);
+  font-size: var(--honesty-type-caption-font-size);
+  line-height: var(--honesty-type-caption-line-height);
+  min-width: 0;
+
+  @include query.viewport-down(xs) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--honesty-space-stack-tight);
+  }
+}
+
+.gap-code {
+  font-weight: var(--honesty-type-body-strong-font-weight);
+  flex-shrink: 0;
+}
+
+.gap-var-name,
+.probe-detail {
+  font-family: monospace;
+  font-size: var(--honesty-type-caption-font-size);
+  line-height: var(--honesty-type-caption-line-height);
+  color: var(--honesty-color-text-secondary);
+  direction: ltr;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.gap-ref-desc {
+  color: var(--honesty-color-text-muted);
+  margin-inline-start: auto;
+
+  @include query.viewport-down(xs) {
+    margin-inline-start: 0;
+  }
+}
+
+.gap-demo-track {
+  display: flex;
+  align-items: center;
+  padding: var(--honesty-space-inset-tight);
+  background-color: var(--honesty-color-surface-canvas);
+  border: 1px solid var(--honesty-border-subtle);
+  border-radius: var(--honesty-radius-control);
+  overflow-x: auto;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.gap-xxs { gap: var(--honesty-space-layout-gap-xxs); }

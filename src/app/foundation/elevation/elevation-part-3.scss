@@ -1,0 +1,47 @@
+// =============================================================================
+// Docs-Only Visual Review Specimen: Elevation Candidate V1
+// =============================================================================
+@use '../../../styles/foundation/reference/elevation' as ref-elev;
+
+$docs-ref-geometry-color-alpha: rgba(16, 17, 21, 0.20);
+
+$docs-ref-alpha-color: #000000;
+
+.specimen-badge {
+  padding: 0.25rem 0.625rem;
+  font-weight: var(--honesty-type-body-strong-font-weight);
+  background-color: var(--honesty-color-surface-default);
+  border: 1px solid var(--honesty-border-subtle);
+  color: var(--honesty-color-text-secondary);
+}
+
+.specimen-tag { padding: 0.25rem 0.5rem; }
+
+.floating-badge {
+  background-color: var(--honesty-color-surface-default);
+  border: 1px solid var(--honesty-border-default);
+}
+
+// Typography Hierarchies
+.specimen-title {
+  font-size: var(--honesty-type-page-title-font-size);
+  font-weight: var(--honesty-type-page-title-font-weight);
+  line-height: var(--honesty-type-page-title-line-height);
+  margin: 0;
+}
+
+.section-title {
+  font-size: var(--honesty-type-section-title-font-size);
+  font-weight: var(--honesty-type-section-title-font-weight);
+  line-height: var(--honesty-type-section-title-line-height);
+  margin: 0;
+}
+
+.specimen-description,
+.section-lead {
+  font-size: var(--honesty-type-body-small-font-size);
+  font-weight: var(--honesty-type-body-small-font-weight);
+  line-height: var(--honesty-type-body-small-line-height);
+  color: var(--honesty-color-text-secondary);
+  margin: 0;
+}

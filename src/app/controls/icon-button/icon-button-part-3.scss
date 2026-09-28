@@ -1,0 +1,33 @@
+@use '../../../styles/foundation/components/icon-button' as tokens;
+
+@use '../button-family/internal/press-ripple' as ripple;
+
+.n::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--honesty-icon-button-state-layer-color);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.n:not(:disabled):hover::before {
+  opacity: var(--honesty-icon-button-state-hover-opacity);
+}
+
+.n:not(:disabled):active::before {
+  opacity: var(--honesty-icon-button-state-active-opacity);
+}
+
+.n:focus-visible {
+  outline-width: var(--honesty-icon-button-focus-width);
+  outline-style: var(--honesty-icon-button-focus-style);
+  outline-color: var(--honesty-icon-button-focus-color);
+  outline-offset: var(--honesty-icon-button-focus-offset);
+}
+
+:host([data-icon-button-state='disabled']) .n,
+:host([data-icon-button-state='invalid']) .n {
+  opacity: var(--honesty-icon-button-disabled-opacity);
+}
