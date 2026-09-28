@@ -1,137 +1,258 @@
-<main id="foundation-overview-root" class="overview-root">
-  <header class="overview-header">
-    <p class="overview-kicker">Design Lab Review Inventory</p>
-    <h1>دليل مراجعة مختبر نظام التصميم</h1>
-    <p class="overview-scope-note">
+<erp-container
+  id="foundation-overview-root"
+  class="overview-root"
+  width="wide"
+>
+  <erp-stack class="overview-header" gap="tight">
+    <erp-text
+      class="overview-kicker"
+      type="label"
+      family="latin"
+      tone="secondary"
+    >
+      Design Lab Review Inventory
+    </erp-text>
+    <erp-text type="heading-1">
+      دليل مراجعة مختبر نظام التصميم
+    </erp-text>
+    <erp-text
+      class="overview-scope-note"
+      type="paragraph"
+      tone="secondary"
+    >
       تُعد هذه الصفحة بمثابة إثبات للإغلاق يعتمد على الوثائق فقط، وهي لا تمثل تصميم الغلاف (Shell) المخصص للإنتاج الفعلي.
-    </p>
-  </header>
+    </erp-text>
+  </erp-stack>
 
-  <section
+  <erp-section
     id="foundation-status"
     class="overview-section status-section"
     data-overview-section
   >
-    <h2>حالة الأساس</h2>
-    <p class="overall-status-en">{{ overallStatus.english }}</p>
-    <p class="overall-status-ar">{{ overallStatus.arabic }}</p>
-  </section>
+    <erp-text type="heading-2">حالة الأساس</erp-text>
+    <erp-text
+      class="overall-status-en"
+      type="heading-4"
+      family="latin"
+    >
+      {{ overallStatus.english }}
+    </erp-text>
+    <erp-text
+      class="overall-status-ar"
+      type="paragraph"
+      tone="secondary"
+    >
+      {{ overallStatus.arabic }}
+    </erp-text>
+  </erp-section>
 
-  <section
+  <erp-section
     id="production-review-families"
     class="overview-section domains-section"
     data-overview-section
   >
-    <h2>عائلات مراجعة الإنتاج الحالية</h2>
-    <div class="domain-grid" data-current-review-families>
+    <erp-text type="heading-2">عائلات مراجعة الإنتاج الحالية</erp-text>
+    <erp-grid
+      class="domain-grid"
+      data-current-review-families
+      [columns]="3"
+      gap="lg"
+    >
       @for (family of reviewFamilies; track family.id) {
-        <article class="domain-entry" [attr.data-review-family]="family.id">
-          <header class="domain-header">
-            <h3>{{ family.label }}</h3>
-            <span class="domain-status">{{ family.status }}</span>
-          </header>
-          <a class="domain-link" data-review-family-link [routerLink]="family.route">
+        <erp-stack
+          class="domain-entry"
+          gap="default"
+          [attr.data-review-family]="family.id"
+        >
+          <erp-inline
+            class="domain-header"
+            align="start"
+            justify="between"
+            wrap="wrap"
+          >
+            <erp-text type="heading-3">{{ family.label }}</erp-text>
+            <erp-text
+              class="domain-status"
+              type="caption"
+              family="latin"
+              tone="secondary"
+            >
+              {{ family.status }}
+            </erp-text>
+          </erp-inline>
+          <erp-text
+            class="domain-link"
+            data-review-family-link
+            type="link"
+            [href]="family.route"
+          >
             {{ family.route }}
-          </a>
-        </article>
+          </erp-text>
+        </erp-stack>
       }
-    </div>
-  </section>
+    </erp-grid>
+  </erp-section>
 
-  <section
+  <erp-section
     id="foundation-domains"
     class="overview-section domains-section"
     data-overview-section
   >
-    <h2>مجالات الأساس</h2>
-    <div class="domain-grid">
+    <erp-text type="heading-2">مجالات الأساس</erp-text>
+    <erp-grid class="domain-grid" [columns]="3" gap="lg">
       @for (domain of domains; track domain.id) {
-        <article
+        <erp-stack
           class="domain-entry"
+          gap="default"
           [attr.data-domain-entry]="domain.id"
         >
-          <header class="domain-header">
-            <h3>{{ domain.arabicLabel }}</h3>
-            <span class="domain-status">{{ domain.status }}</span>
-          </header>
-          <p>{{ domain.summary }}</p>
-          <dl class="domain-details">
-            <div>
-              <dt>مُشغِّل إعادة الفتح</dt>
-              <dd>{{ domain.reopenTrigger }}</dd>
-            </div>
-          </dl>
+          <erp-inline
+            class="domain-header"
+            align="start"
+            justify="between"
+            wrap="wrap"
+          >
+            <erp-text type="heading-3">{{ domain.arabicLabel }}</erp-text>
+            <erp-text
+              class="domain-status"
+              type="caption"
+              family="latin"
+              tone="secondary"
+            >
+              {{ domain.status }}
+            </erp-text>
+          </erp-inline>
+
+          <erp-text type="paragraph" tone="secondary">
+            {{ domain.summary }}
+          </erp-text>
+
+          <erp-stack class="domain-details" gap="tight">
+            <erp-text type="label" family="latin">
+              مُشغِّل إعادة الفتح
+            </erp-text>
+            <erp-text type="description" tone="secondary">
+              {{ domain.reopenTrigger }}
+            </erp-text>
+          </erp-stack>
+
           @if (domain.note) {
-            <p class="domain-note" data-surfaces-consolidation>{{ domain.note }}</p>
+            <erp-stack
+              class="domain-note"
+              gap="tight"
+              data-surfaces-consolidation
+            >
+              <erp-text type="paragraph" tone="secondary">
+                {{ domain.note }}
+              </erp-text>
+            </erp-stack>
           }
+
           @for (link of domain.reviewLinks; track link.route) {
-            <a
+            <erp-text
               class="domain-link"
               data-domain-link
-              [routerLink]="link.route"
+              type="link"
+              [href]="link.route"
             >
               {{ link.label }} — {{ link.route }}
-            </a>
+            </erp-text>
           }
-        </article>
+        </erp-stack>
       }
-    </div>
-  </section>
+    </erp-grid>
+  </erp-section>
 
-  <section
+  <erp-section
     id="v1-boundaries-next-layers"
     class="overview-section"
     data-overview-section
   >
-    <h2>حدود V1 والطبقات التالية</h2>
-    <section class="boundary-subsection" data-boundary-subsection="next-layer">
-      <h3>قرارات الطبقات الأعلى</h3>
-      <p>هذه ليست نواقص في Foundation؛ تُحسم عند بدء الطبقة الأعلى التي تعتمد عليها.</p>
-      <ul class="plain-list" data-next-layer-list>
-        @for (decision of nextLayerDecisions; track decision) {
-          <li data-next-layer-item>{{ decision }}</li>
-        }
-      </ul>
-    </section>
-    <section class="boundary-subsection" data-boundary-subsection="v1-constraints">
-      <h3>قيود Foundation V1 المجمدة</h3>
-      <p>هذه قرارات مكتملة في V1 وليست أعمالاً مؤجلة؛ تغييرها يتطلب إعادة فتح Foundation.</p>
-      <ul class="plain-list" data-v1-constraint-list>
-        @for (decision of v1Constraints; track decision) {
-          <li data-v1-constraint-item>{{ decision }}</li>
-        }
-      </ul>
-    </section>
-  </section>
+    <erp-text type="heading-2">حدود V1 والطبقات التالية</erp-text>
 
-  <section
+    <erp-section
+      class="boundary-subsection"
+      data-boundary-subsection="next-layer"
+    >
+      <erp-text type="heading-3">قرارات الطبقات الأعلى</erp-text>
+      <erp-text type="paragraph" tone="secondary">
+        هذه ليست نواقص في Foundation؛ تُحسم عند بدء الطبقة الأعلى التي تعتمد عليها.
+      </erp-text>
+      <erp-stack
+        class="plain-list"
+        data-next-layer-list
+        gap="tight"
+      >
+        @for (decision of nextLayerDecisions; track decision) {
+          <erp-text data-next-layer-item type="list-item" tone="secondary">
+            • {{ decision }}
+          </erp-text>
+        }
+      </erp-stack>
+    </erp-section>
+
+    <erp-section
+      class="boundary-subsection"
+      data-boundary-subsection="v1-constraints"
+    >
+      <erp-text type="heading-3">قيود Foundation V1 المجمدة</erp-text>
+      <erp-text type="paragraph" tone="secondary">
+        هذه قرارات مكتملة في V1 وليست أعمالاً مؤجلة؛ تغييرها يتطلب إعادة فتح Foundation.
+      </erp-text>
+      <erp-stack
+        class="plain-list"
+        data-v1-constraint-list
+        gap="tight"
+      >
+        @for (decision of v1Constraints; track decision) {
+          <erp-text data-v1-constraint-item type="list-item" tone="secondary">
+            • {{ decision }}
+          </erp-text>
+        }
+      </erp-stack>
+    </erp-section>
+  </erp-section>
+
+  <erp-section
     id="reopen-triggers"
     class="overview-section"
     data-overview-section
   >
-    <h2>محفزات إعادة الفتح</h2>
-    <dl class="trigger-list">
+    <erp-text type="heading-2">محفزات إعادة الفتح</erp-text>
+    <erp-grid class="trigger-list" [columns]="2" gap="lg">
       @for (domain of domains; track domain.id) {
-        <div data-reopen-trigger>
-          <dt>{{ domain.arabicLabel }}</dt>
-          <dd>{{ domain.reopenTrigger }}</dd>
-        </div>
+        <erp-stack data-reopen-trigger gap="tight">
+          <erp-text type="term">{{ domain.arabicLabel }}</erp-text>
+          <erp-text type="description" tone="secondary">
+            {{ domain.reopenTrigger }}
+          </erp-text>
+        </erp-stack>
       }
-    </dl>
-  </section>
+    </erp-grid>
+  </erp-section>
 
-  <section
+  <erp-section
     id="closure-gate"
     class="overview-section"
     data-overview-section
   >
-    <h2>حالة المراجعة</h2>
-    <ul class="plain-list closure-list">
-      <li>يتم إبرام عقود التأسيس وتظل متمثلة في مسارات مراجعتها..</li>
-      <li>يتم تنفيذ العناصر الأساسية للإنتاج، وعناصر التحكم، والتراكبات، والبنية التحتية للحركة، باعتبارها مرشحة للمراجعة الفنية.</li>
-      <li>لا تزال الموافقة البصرية من مالك المنتج معلقة بالنسبة لمجموعات مراجعة الإنتاج غير المعتمدة.</li>
-      <li>يسجل هذا السجل حالة التنفيذ فقط؛ ولا يُعد بمثابة إقرار بالموافقة البصرية أو تجميد للوضع.</li>
-    </ul>
-    <p class="read-only-note">بيانات الإغلاق للقراءة فقط؛ لا يتوفر هنا أي إجراء للموافقة.</p>
-  </section>
-</main>
+    <erp-text type="heading-2">حالة المراجعة</erp-text>
+    <erp-stack class="closure-list" gap="tight">
+      <erp-text data-closure-statement type="list-item">
+        • يتم إبرام عقود التأسيس وتظل متمثلة في مسارات مراجعتها.
+      </erp-text>
+      <erp-text data-closure-statement type="list-item">
+        • يتم تنفيذ العناصر الأساسية للإنتاج، وعناصر التحكم، والتراكبات، والبنية التحتية للحركة، باعتبارها مرشحة للمراجعة الفنية.
+      </erp-text>
+      <erp-text data-closure-statement type="list-item">
+        • لا تزال الموافقة البصرية من مالك المنتج معلقة بالنسبة لمجموعات مراجعة الإنتاج غير المعتمدة.
+      </erp-text>
+      <erp-text data-closure-statement type="list-item">
+        • يسجل هذا السجل حالة التنفيذ فقط؛ ولا يُعد بمثابة إقرار بالموافقة البصرية أو تجميد للوضع.
+      </erp-text>
+    </erp-stack>
+    <erp-text class="read-only-note" type="caption" tone="muted">
+      بيانات الإغلاق للقراءة فقط؛ لا يتوفر هنا أي إجراء للموافقة.
+    </erp-text>
+  </erp-section>
+</erp-container>

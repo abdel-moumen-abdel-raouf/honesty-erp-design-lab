@@ -39,6 +39,13 @@ GitHub exposes no combined commit-status contexts and no workflow runs for these
 - The Overview must represent the current Design Lab review inventory rather than the obsolete pre-production Foundation-closure state.
 - Implemented review surfaces are technical/review candidates only; their presence does not mean Product Owner visual approval.
 
+### Overview ERP-only authoring
+
+- The Foundation Overview page template must author only `erp-*` tags.
+- Native HTML elements such as `main`, `header`, `section`, `div`, `article`, headings, paragraphs, anchors, lists, and description-list elements are not authored directly in `overview.html`.
+- Native semantic elements required by accessibility or HTML semantics are owned internally by approved ERP primitives such as `ErpText`.
+- This rule is enforced by `overview:check`, which is part of the repository lint gate.
+
 ### ErpContainer
 
 The production width contract remains:

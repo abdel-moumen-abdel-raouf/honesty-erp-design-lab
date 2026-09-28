@@ -1,7 +1,4 @@
 import {TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
-import {provideRouter, RouterLink} from '@angular/router';
-import {routes} from '../../app.routes';
 import {
   FOUNDATION_CURRENT_REVIEW_FAMILIES,
   FOUNDATION_NEXT_LAYER_DECISIONS,
@@ -42,7 +39,6 @@ describe('Foundation Overview', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [Overview],
-      providers: [provideRouter(routes)],
     }).compileComponents();
   });
 
@@ -63,16 +59,24 @@ describe('Foundation Overview', () => {
     const fixture = TestBed.createComponent(Overview);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    const links = fixture.debugElement.queryAll(By.directive(RouterLink));
+    const productionLinks = Array.from(
+      compiled.querySelectorAll<HTMLElement>(
+        'erp-text[data-review-family-link] a'
+      )
+    );
+    const foundationLinks = Array.from(
+      compiled.querySelectorAll<HTMLElement>('erp-text[data-domain-link] a')
+    );
 
     expect(compiled.querySelectorAll('[data-domain-entry]')).toHaveLength(12);
-    expect(compiled.querySelectorAll('[data-domain-link]')).toHaveLength(14);
+    expect(foundationLinks).toHaveLength(14);
     expect(compiled.querySelectorAll('[data-review-family]')).toHaveLength(7);
-    expect(compiled.querySelectorAll('[data-review-family-link]')).toHaveLength(7);
+    expect(productionLinks).toHaveLength(7);
     expect(FOUNDATION_CURRENT_REVIEW_FAMILIES).toHaveLength(7);
-    expect(links).toHaveLength(21);
-    expect(links.map((link) => link.injector.get(RouterLink).href)).toEqual([
+    expect(productionLinks.map((link) => link.getAttribute('href'))).toEqual([
       ...EXPECTED_PRODUCTION_REVIEW_ROUTES,
+    ]);
+    expect(foundationLinks.map((link) => link.getAttribute('href'))).toEqual([
       ...EXPECTED_REVIEW_ROUTES,
     ]);
   });
@@ -89,16 +93,24 @@ describe('Foundation Overview', () => {
     expect(text).toContain(FOUNDATION_OVERALL_STATUS.arabic);
   });
 
-  it('renders exactly six major sections including the production review families', () => {
+  it('renders exactly six major ERP sections including the production review families', () => {
     const fixture = TestBed.createComponent(Overview);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     const sections = Array.from(
-      compiled.querySelectorAll<HTMLElement>('[data-overview-section]')
+      compiled.querySelectorAll<HTMLElement>(
+        'erp-section[data-overview-section]'
+      )
     );
 
     expect(sections).toHaveLength(6);
-    expect(sections.map((section) => section.querySelector('h2')?.textContent?.trim())).toEqual([
+    expect(
+      sections.map((section) =>
+        section
+          .querySelector('erp-text[data-text-type="heading-2"]')
+          ?.textContent?.trim()
+      )
+    ).toEqual([
       'حالة الأساس',
       'عائلات مراجعة الإنتاج الحالية',
       'مجالات الأساس',
@@ -138,12 +150,14 @@ describe('Foundation Overview', () => {
     expect(constraintList?.hasAttribute('dir')).toBe(false);
     expect(nextLayerItems).toHaveLength(5);
     expect(constraintItems).toHaveLength(3);
-    expect(nextLayerItems.map((item) => item.textContent?.trim())).toEqual([
-      ...FOUNDATION_NEXT_LAYER_DECISIONS,
-    ]);
-    expect(constraintItems.map((item) => item.textContent?.trim())).toEqual([
-      ...FOUNDATION_V1_CONSTRAINTS,
-    ]);
+    expect(
+      nextLayerItems.map((item) => item.textContent?.trim().replace(/^•\s*/, ''))
+    ).toEqual([...FOUNDATION_NEXT_LAYER_DECISIONS]);
+    expect(
+      constraintItems.map((item) =>
+        item.textContent?.trim().replace(/^•\s*/, '')
+      )
+    ).toEqual([...FOUNDATION_V1_CONSTRAINTS]);
   });
 
   it('removes resolved Brand, Focus, and Chart-after-Brand items from unresolved lists', () => {
@@ -159,12 +173,14 @@ describe('Foundation Overview', () => {
     );
   });
 
-  it('renders every specified domain reopen trigger', () => {
+  it('renders every specified domain reopen trigger through ERP text', () => {
     const fixture = TestBed.createComponent(Overview);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     const triggers = Array.from(
-      compiled.querySelectorAll<HTMLElement>('[data-reopen-trigger] dd')
+      compiled.querySelectorAll<HTMLElement>(
+        '[data-reopen-trigger] erp-text[data-text-type="description"]'
+      )
     );
 
     expect(triggers).toHaveLength(12);
@@ -178,15 +194,17 @@ describe('Foundation Overview', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     const gate = compiled.querySelector('#closure-gate');
-    const statements = Array.from(gate?.querySelectorAll('li') ?? []).map(
-      (item) => item.textContent?.trim(),
-    );
+    const statements = Array.from(
+      gate?.querySelectorAll<HTMLElement>('[data-closure-statement]') ?? []
+    ).map((item) => item.textContent?.trim().replace(/^•\s*/, ''));
 
     expect(statements).toHaveLength(4);
     expect(statements[0]).toContain('عقود التأسيس');
     expect(statements[1]).toContain('مرشحة للمراجعة الفنية');
     expect(statements[2]).toContain('الموافقة البصرية من مالك المنتج معلقة');
-    expect(statements[3]).toContain('لا يُعد بمثابة إقرار بالموافقة البصرية أو تجميد');
-    expect(gate?.querySelector('button')).toBeNull();
+    expect(statements[3]).toContain(
+      'لا يُعد بمثابة إقرار بالموافقة البصرية أو تجميد'
+    );
+    expect(gate?.querySelector('erp-button')).toBeNull();
   });
 });

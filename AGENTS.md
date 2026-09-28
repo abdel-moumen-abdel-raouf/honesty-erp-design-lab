@@ -607,6 +607,7 @@ b7a1030bd64cab8d789b0193e7aa6f0c37c3faf9 — fix(review): resolve first-round sh
 Current mandatory decisions:
 
 - App-level data-theme is the single review/runtime theme authority. Do not add page/component-local Light/Dark theme authority.
+- Foundation Overview template authors ERP tags only; native HTML semantics needed by that page are owned inside approved ERP primitives rather than authored directly in `overview.html`.
 - Tooltip defaults to slide-up entry and visually slide-up exit. Tooltip anchored geometry must remain stable while an inner layer animates.
 - SearchBox popup remains nonblocking/anchored and must not be narrower than its field when viewport space permits or leave invisible pointer-blocking top-layer state after dismissal.
 - FieldFeedback below a field always points its caret physically upward in both RTL and LTR.

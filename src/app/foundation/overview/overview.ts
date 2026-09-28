@@ -1,5 +1,10 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {RouterLink} from '@angular/router';
+import {ErpContainer} from '../../primitives/container/container';
+import {ErpGrid} from '../../primitives/grid/grid';
+import {ErpInline} from '../../primitives/inline/inline';
+import {ErpSection} from '../../primitives/section/section';
+import {ErpStack} from '../../primitives/stack/stack';
+import {ErpText} from '../../primitives/text/text';
 import {
   FOUNDATION_CURRENT_REVIEW_FAMILIES,
   FOUNDATION_NEXT_LAYER_DECISIONS,
@@ -10,7 +15,7 @@ import {
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink],
+  imports: [ErpContainer, ErpGrid, ErpInline, ErpSection, ErpStack, ErpText],
   selector: 'app-foundation-overview',
   templateUrl: './overview.html',
   styleUrl: './overview.scss',
