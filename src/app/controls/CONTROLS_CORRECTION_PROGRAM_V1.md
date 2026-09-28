@@ -110,10 +110,14 @@ drawer entry and exit; `slide-end` for end drawer entry and exit; and
 reverse physically in RTL, the backdrop always fades, and reduced-motion is
 honored.
 
-Tooltip uses the same shared catalog, defaults to `fade-scale` entry and
-`fade` exit, and remains mounted until its configured exit animation actually
-completes. Overlay and Tooltip now execute that catalog through the central
-Animate.css motion adapter; vendor class/effect names remain internal.
+Tooltip uses the same shared catalog. The later Product Owner page-by-page
+review supersedes the original CR12 Tooltip defaults: production Tooltip now
+defaults to `slide-up` entry and visually `slide-up` exit. The motion adapter
+maps `slide-up` exit to `slideOutUp`. Tooltip remains mounted until its
+configured exit animation actually completes. Stable anchored geometry is
+separate from the inner transformed motion layer. Overlay and Tooltip execute
+the catalog through the central Animate.css motion adapter; vendor class/effect
+names remain internal.
 
 ### SearchBox
 
@@ -213,8 +217,11 @@ size. Drawers are not floating cards.
 Every user-facing blocking modal/drawer now uses the shared Overlay
 Header/Body/Footer frame. The frame owns its accessible title/subtitle/icon,
 Tooltip-wrapped close IconButton, scrollable body boundary, and developer-
-configured ERP primary/secondary buttons. Dynamic picker content stages data
-and registers frame actions instead of recreating confirm/cancel footer chrome.
+configured ordered ERP actions. Footer actions have stable IDs, semantic
+`primary | secondary | utility` roles, logical `start | end` placement, and
+reactive disabled/loading state owned through `ErpOverlayRef`. Dynamic picker
+content stages data and registers frame actions instead of recreating
+confirm/cancel, Today/Clear, or Clear Selected body action rows.
 SplitButton remains the one isolated deferred compact-menu exception.
 
 ## Input and field correction
@@ -371,3 +378,23 @@ All checker self-tests contain valid acceptance and invalid rejection fixtures.
 This final technical consolidation does not declare visual approval, freeze any
 control family, close Basic Controls, or execute the deferred Phase 10/11
 review.
+
+## Post-CR12 Product Owner review supersession
+
+CR00 through CR12 remain historical implementation/correction checkpoints. Current Product Owner decisions and execution state are recorded in POST_CR12_PRODUCT_OWNER_REVIEW_STATE_V1.md.
+
+The first page-by-page correction checkpoint b7a1030bd64cab8d789b0193e7aa6f0c37c3faf9 supersedes stale CR-era facts for:
+
+- Tooltip default motion and stable motion/anchor separation;
+- SearchBox popup width and leave/focus lifecycle;
+- shared Preferences-backed Money/temporal display;
+- Overlay initial-focus policy;
+- generic ordered Overlay footer actions and dynamic action state;
+- Temporal/Selection utility actions in the shared footer;
+- ColorPicker swatch border visibility;
+- IconPicker initial/roving focus;
+- ItemPicker/ComboBox list-row presentation;
+- ComboBox normal pointer/typing opening;
+- App-level single theme authority for touched review/picker surfaces.
+
+These updates do not declare Product Owner visual approval or close/freeze any control family.

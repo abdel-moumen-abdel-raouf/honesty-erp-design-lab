@@ -81,8 +81,10 @@ hand-authored effect mechanics with the central Animate.css adapter while
 retaining Honesty ERP system names. Modal/Drawer duration is 360ms/260ms and
 Tooltip duration is 320ms/220ms. Modal defaults remain `fade-scale`; logical
 drawers use their logical slide; bottom drawers use `slide-up` entry and
-`slide-down` exit. Tooltip defaults are `fade-scale` entry and `fade` exit.
-Both lifecycles wait for adapter completion.
+`slide-down` exit. Tooltip defaults were later superseded by the Product Owner first page-by-page
+review: Tooltip now defaults to `slide-up` entry and visually `slide-up` exit,
+with `slide-up` exit mapped to `slideOutUp`. Both lifecycles wait for adapter
+completion.
 
 User-facing blocking surfaces also use the later mandatory shared Overlay
 Header/Body/Footer frame. This inserted program remains correction-only and
@@ -95,9 +97,17 @@ does not authorize Wave B.
   backdrop review above the toolbar.
 - The direct Inputs showcase identifies full FieldFrame surface interaction.
 - The Tooltip showcase exposes one compact Arabic-first enter/exit selector
-  backed by the shared thirteen-preset catalog, with plain and rich evidence.
+  backed by the shared Foundation motion preset catalog, with plain and rich evidence.
 
 ## Wave boundary
 
 Wave A technical checkpoints are regression guards only. They do not establish
 visual approval, freeze any family, close Basic Controls, or authorize Wave B.
+
+## Post-Wave-A current authority
+
+Wave A is a completed historical correction program. It is not the current execution-state document.
+
+The subsequent Product Owner theme-authority checkpoint 06ab7d326b6f2b6c5d6d863e2acefcc994b04b53 and first page-by-page correction checkpoint b7a1030bd64cab8d789b0193e7aa6f0c37c3faf9 are recorded in POST_CR12_PRODUCT_OWNER_REVIEW_STATE_V1.md.
+
+That document governs current Product Owner decisions, deferred scope, and the next authorized action. No Wave B is authorized by this synchronization.

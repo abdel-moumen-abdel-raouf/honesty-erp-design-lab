@@ -583,11 +583,46 @@ Rules:
   ErpIcon name; the title supplies the dialog accessible name.
 - Frame close uses a Tooltip-wrapped ErpIconButton and always dismisses with
   `close-action`.
-- Frame Footer uses ERP Buttons for developer-configured primary and secondary
-  actions; dynamic content responds through `ErpOverlayRef` frame actions.
+- Frame Footer uses ERP Buttons for one developer-configured ordered action
+  collection with stable IDs, `primary | secondary | utility` roles, logical
+  `start | end` placement, and reactive disabled/loading state through
+  `ErpOverlayRef`.
 - Frame Body is the primary scroll region; blocking picker bodies must not
   recreate duplicate confirm/cancel footer chrome.
 - `ErpSplitButton` is the only temporary `openLegacyCompactMenu` exception
   pending its deferred Phase 10/11 migration away from blocking modal
   semantics. No new exception is allowed.
 - These technical rules do not declare visual approval or start Wave B.
+
+## Current Product Owner Page-by-Page Review Governance
+
+Current execution/review state is recorded in:
+
+src/app/controls/POST_CR12_PRODUCT_OWNER_REVIEW_STATE_V1.md
+
+The latest reviewed implementation checkpoint is:
+
+b7a1030bd64cab8d789b0193e7aa6f0c37c3faf9 — fix(review): resolve first-round showcase findings
+
+Current mandatory decisions:
+
+- App-level data-theme is the single review/runtime theme authority. Do not add page/component-local Light/Dark theme authority.
+- Tooltip defaults to slide-up entry and visually slide-up exit. Tooltip anchored geometry must remain stable while an inner layer animates.
+- SearchBox popup remains nonblocking/anchored and must not be narrower than its field when viewport space permits or leave invisible pointer-blocking top-layer state after dismissal.
+- FieldFeedback below a field always points its caret physically upward in both RTL and LTR.
+- Existing Preferences are the source of truth for Latin/Arabic-Indic digits, numeric separators, money display, and applicable temporal display.
+- File/Image selected rows own tokenized hover and focus-within feedback only; no upload/backend authority is added.
+- Blocking Overlay implicit initial focus must not default to the close action.
+- Overlay Frame Header owns the approved title/subtitle/icon hierarchy.
+- Overlay Frame Footer is one ordered typed action surface, not a fixed primary/secondary pair and not duplicate body action rows.
+- Temporal Today/Clear and Selection Clear Selected are footer actions.
+- System color swatches retain a theme-aware semantic border.
+- IconPicker must not create a false active outline on open and uses one roving-focus option model.
+- Fixed equal tiles are for icon/color grids; ItemPicker/ComboBox textual options use vertical list-row presentation.
+- ComboBox opens on normal pointer interaction, ArrowDown, and typing while preserving the entered query.
+- ErpContainer production width values remain full, 48rem, 75rem, and 90rem; current correction changed showcase evidence, not those contracts.
+- Do not redesign or delete ErpCheckBox/ErpRadioBox until the Product Owner supplies the dedicated templates/references.
+- Broad Light/Dark-specific SCSS cleanup remains deferred.
+- No later unreviewed showcase family or new public component family is authorized until the Product Owner supplies the next page-by-page findings.
+
+The first-round correction checkpoint is a technical implementation candidate, not Product Owner visual approval. Do not declare family freeze, Basic Controls closure, or Wave B from it.
