@@ -786,3 +786,25 @@ the iframe architecture is removed, all routes use the same direct
 `router-outlet` rendering model.
 
 This decision is authorized but not yet implemented at the current handoff.
+
+
+## No-Iframe Design Lab Implementation Status — 2026-09-29
+
+The Product Owner-authorized no-iframe correction has been implemented in source:
+- `9471a1d5b05a5f49c767b26e3a36b6b640715e0a` removes the iframe preview architecture;
+- `d703ef0c8f47264902ca55b902c1488f99b56bf9` normalizes the resulting direct shell markup.
+
+Current App-shell contract:
+- one normal single-document Angular App;
+- one direct `router-outlet` for every route;
+- no embedded/direct dual mode;
+- no `labPreview` or iframe `labTheme` query propagation;
+- Inputs/Overlays have no rendering exception;
+- Desktop/Tablet/Mobile preview controls are removed rather than faking real viewport media-query behavior with container resizing;
+- Screenshot remains as direct capture of the App capture root and its filename includes current `light|dark` theme;
+- exactly one App-level OverlayHost remains;
+- App root remains the only runtime Light/Dark authority.
+
+Verification warning:
+- last fully verified source is still `b1b20585adcb272f17835ef8182935353a67d243`;
+- the no-iframe source must not be called fully clean until a fresh `npm run verify:clean` passes.

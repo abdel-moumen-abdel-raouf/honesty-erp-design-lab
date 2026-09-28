@@ -24,17 +24,37 @@ Branch:
 
 ## Current state
 
-The current source checkpoint is technically fully green locally. All
-governance/lint checks, 87/87 test files (618/618 tests), both TypeScript
-no-emit gates, and the zero-warning production build passed.
+Current no-iframe implementation source checkpoint:
 
-The latest Product Owner decision is NOT yet implemented:
+`d703ef0c8f47264902ca55b902c1488f99b56bf9`
+`style(lab): normalize direct shell markup`
 
-**remove the iframe preview architecture and convert the Design Lab to a normal
-single-document Angular app.**
+Implementation chain:
+- `9471a1d5b05a5f49c767b26e3a36b6b640715e0a` — `refactor(lab): remove iframe preview architecture`
+- `d703ef0c8f47264902ca55b902c1488f99b56bf9` — `style(lab): normalize direct shell markup`
 
-Desktop/Tablet/Mobile controls and screenshot may remain only if they can be
-implemented truthfully and cleanly without iframe; otherwise remove them.
+Implemented source state:
+- normal single-document Angular App;
+- one direct `router-outlet` for every route;
+- no iframe / embedded-preview mode;
+- no Inputs/Overlays rendering exception;
+- Desktop/Tablet/Mobile preview controls removed because same-document resizing cannot truthfully simulate viewport media queries;
+- Screenshot retained as direct same-document capture;
+- screenshot filenames include the current `light` / `dark` theme;
+- one App theme authority and one App-level `ErpOverlayHost`.
 
-Read `NEW_CHAT_HANDOFF.md` for the complete state and exact next authorized
-action.
+Verification distinction:
+
+The latest **fully verified** source checkpoint remains:
+
+`b1b20585adcb272f17835ef8182935353a67d243`
+`fix(tooling): close remaining zero-warning gaps`
+
+The new no-iframe source is implemented and independently source-reviewed, but must
+not be called Fully Green until a fresh:
+
+`npm run verify:clean`
+
+passes against the new source.
+
+Read `NEW_CHAT_HANDOFF.md` for the complete state and exact next authorized action.

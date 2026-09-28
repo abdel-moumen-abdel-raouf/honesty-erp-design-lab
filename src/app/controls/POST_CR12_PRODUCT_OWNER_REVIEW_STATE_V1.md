@@ -519,3 +519,28 @@ authorized task is repository review + bounded implementation of the no-iframe
 Design Lab architecture described above.
 
 Product Owner visual review remains pending after that structural correction.
+
+
+## 2026-09-29 — no-iframe App shell implementation checkpoint
+
+Product Owner authorized the previously documented no-iframe correction and ChatGPT implemented it directly on GitHub `main`.
+
+Implementation commits:
+- `9471a1d5b05a5f49c767b26e3a36b6b640715e0a` — `refactor(lab): remove iframe preview architecture`
+- `d703ef0c8f47264902ca55b902c1488f99b56bf9` — `style(lab): normalize direct shell markup`
+
+Implemented result:
+- one direct router outlet for all routes;
+- no iframe, embedded mode, direct-route exception, `labPreview`, or iframe theme propagation;
+- Desktop/Tablet/Mobile controls removed because they cannot truthfully simulate viewport `@media` behavior inside the same document;
+- Screenshot retained as direct same-document capture;
+- screenshot filename now includes current theme (`light` / `dark`);
+- one App theme authority and one OverlayHost retained;
+- related iframe-only tests/styles/helpers removed or replaced.
+
+Independent source review after the follow-up commit found no remaining iframe-specific identifiers in the touched App files, exactly one router outlet, exactly one OverlayHost, and no preview buttons.
+
+Verification status:
+- this is NOT yet a Fully Green checkpoint;
+- last Fully Green source remains `b1b20585adcb272f17835ef8182935353a67d243`;
+- mandatory next action is a fresh `npm run verify:clean`.

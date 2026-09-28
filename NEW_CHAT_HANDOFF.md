@@ -365,3 +365,68 @@ reconstruct this history manually.
 
 Read this file first, verify live repository state, and continue from the exact
 next authorized action.
+
+
+---
+
+# 18. 2026-09-29 — NO-IFRAME IMPLEMENTATION RESULT / VERIFICATION PENDING
+
+**This section supersedes older wording in sections 12–17 that described iframe removal as not yet implemented.**
+
+Product Owner authorized direct implementation on GitHub `main`.
+
+Implementation commits:
+- `9471a1d5b05a5f49c767b26e3a36b6b640715e0a`
+  `refactor(lab): remove iframe preview architecture`
+- `d703ef0c8f47264902ca55b902c1488f99b56bf9`
+  `style(lab): normalize direct shell markup`
+
+Current source result:
+- no preview iframe in `src/app/app.html`;
+- exactly one direct `router-outlet`;
+- no embedded/direct/outer dual rendering mode;
+- no `labPreview` query flag;
+- no iframe-specific `labTheme` query propagation;
+- no `DomSanitizer` / `SafeResourceUrl` iframe path;
+- no special Inputs/Overlays direct-route exception;
+- no Desktop / Tablet / Mobile preview controls;
+- App responsiveness now follows the actual browser viewport only;
+- Screenshot remains and captures `#lab-capture-root` directly in the same document;
+- Screenshot filename includes the current theme, e.g. `foundation-overview-light-view.png` or `controls-overlays-dark-view.png`;
+- one App-owned `[attr.data-theme]="theme()"` remains;
+- exactly one App-level `ErpOverlayHost` remains;
+- iframe-only styles/tests/helpers were removed or rewritten for the single-document model.
+
+Architecture reason for removing Desktop/Tablet/Mobile:
+- Foundation Query API explicitly distinguishes viewport media queries from container queries;
+- resizing a same-document container would not change real `@media` viewport evaluation;
+- Product Owner prohibited misleading viewport simulation.
+
+Independent post-commit source inspection confirmed in the touched App files:
+- iframe count = 0;
+- preview-button count = 0;
+- router-outlet count = 1;
+- OverlayHost count = 1;
+- iframe-specific state/helper identifiers = 0;
+- screenshot filename helper/tests include both `light` and `dark`.
+
+## Verification status
+
+**Do not call this source Fully Green yet.**
+
+Last fully verified source remains:
+`b1b20585adcb272f17835ef8182935353a67d243`
+
+The mandatory next gate is:
+`npm run verify:clean`
+
+The ChatGPT tool environment used for the GitHub write does not have a repository checkout/network path capable of executing the repository's Node/npm verification locally, and the repository has no existing GitHub Actions workflow to run that gate remotely. Therefore the new source checkpoint is implemented and externally source-reviewed, but the canonical local verification remains pending.
+
+## Exact next authorized action
+
+1. Run `npm run verify:clean` against current `main` / the no-iframe source.
+2. If it passes, record the new fully verified source checkpoint and zero-warning evidence.
+3. If it fails, correct only the demonstrated regression within this no-iframe scope.
+4. After technical verification, Product Owner resumes page-by-page visual/runtime review.
+
+No unrelated component redesign or later family work is authorized by this implementation.

@@ -362,3 +362,22 @@ this execution unit.
 
 After implementation, the complete `npm run verify:clean` gate is required,
 followed by Product Owner visual/runtime review.
+
+
+### 2026-09-29 — no-iframe shell correction implemented; verification pending
+
+The bounded Product Owner-authorized structural correction has been implemented:
+- source removal: `9471a1d5b05a5f49c767b26e3a36b6b640715e0a`;
+- markup cleanup: `d703ef0c8f47264902ca55b902c1488f99b56bf9`.
+
+Result:
+- single-document App;
+- one router outlet;
+- one OverlayHost;
+- no iframe or embedded/direct split;
+- no responsive preview controls;
+- screenshot remains direct and names files with current Light/Dark theme.
+
+This does not authorize a new control phase and does not equal visual approval.
+
+The next mandatory gate is `npm run verify:clean`. Until it passes, keep `b1b20585adcb272f17835ef8182935353a67d243` as the latest Fully Green source checkpoint.
