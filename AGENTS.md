@@ -600,9 +600,12 @@ Current execution/review state is recorded in:
 
 src/app/controls/POST_CR12_PRODUCT_OWNER_REVIEW_STATE_V1.md
 
-The latest reviewed implementation checkpoint is:
+The latest technical candidate checkpoint is:
 
-b7a1030bd64cab8d789b0193e7aa6f0c37c3faf9 — fix(review): resolve first-round showcase findings
+320f66879036530dbfc509bd587724f799ba62c6 — fix(theme): enforce single App theme authority
+
+This checkpoint is pending a fresh local `npm run verify:clean`. It does not
+declare Product Owner visual approval or a frozen family.
 
 Current mandatory decisions:
 

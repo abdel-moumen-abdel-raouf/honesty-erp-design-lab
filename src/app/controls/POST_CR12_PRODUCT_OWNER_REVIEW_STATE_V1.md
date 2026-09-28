@@ -20,6 +20,13 @@ First page-by-page correction checkpoint:
 
 b7a1030bd64cab8d789b0193e7aa6f0c37c3faf9 — fix(review): resolve first-round showcase findings
 
+Current single-theme technical candidate:
+
+320f66879036530dbfc509bd587724f799ba62c6 — fix(theme): enforce single App theme authority
+
+The current candidate is pushed to `main` and is awaiting a fresh local
+`npm run verify:clean` before it may be called fully verified.
+
 Overview ERP-only authoring checkpoint:
 
 ce7404252902353ca2f7432ede9aeead2cb84053 — fix(overview): enforce ERP-only authoring
@@ -219,7 +226,12 @@ This is a technical implementation checkpoint only. Product Owner subjective vis
 
 No additional implementation phase is authorized at this checkpoint.
 
-The next authorized action is Product Owner page-by-page runtime/visual re-review of the corrected pages, beginning with the same first-round surfaces and then continuing to later showcase screens only when the Product Owner chooses to proceed.
+The immediate required action is a fresh local `npm run verify:clean` at or after
+`320f66879036530dbfc509bd587724f799ba62c6`. After that gate passes, the next
+authorized action is Product Owner page-by-page runtime/visual re-review of the
+corrected pages, beginning with the same first-round surfaces and then
+continuing to later showcase screens only when the Product Owner chooses to
+proceed.
 
 Until new Product Owner findings are supplied, do not:
 

@@ -208,9 +208,12 @@ declare visual approval, freeze a family, or close the Basic Controls layer.
 
 The current page-by-page Product Owner review/execution state is authoritative in POST_CR12_PRODUCT_OWNER_REVIEW_STATE_V1.md.
 
-Current reviewed implementation/tooling checkpoint:
+Current technical candidate checkpoint:
 
-`ea43868cb98545c62b4173f854a6bec576dee48e` — `fix(tooling): finalize zero-warning verification`
+`320f66879036530dbfc509bd587724f799ba62c6` — `fix(theme): enforce single App theme authority`
+
+This checkpoint is pushed to `main` and is pending a fresh local
+`npm run verify:clean` before it may be considered fully verified.
 
 The preceding tooling correction is `9afec19d133f9414ebd1fedd537f91637bf98db8` — `fix(tooling): eliminate build and editor diagnostics`.
 
