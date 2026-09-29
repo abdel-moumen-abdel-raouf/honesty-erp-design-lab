@@ -270,13 +270,13 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
   protected handlePopupInputKeydown(event: KeyboardEvent): void {
     if (event.key === 'ArrowDown') {
       event.preventDefault();
-      this.focusResult(0);
+      this.focusResult(0, 1);
       return;
     }
 
     if (event.key === 'ArrowUp') {
       event.preventDefault();
-      this.focusResult(this.filteredItems().length - 1);
+      this.focusResult(this.filteredItems().length - 1, -1);
       return;
     }
 
@@ -292,16 +292,19 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
 
   protected handleResultKeydown(event: KeyboardEvent, index: number): void {
     const last = this.filteredItems().length - 1;
-    const nextByKey: Readonly<Record<string, number>> = {
-      ArrowDown: Math.min(last, index + 1),
-      ArrowUp: Math.max(0, index - 1),
-      Home: 0,
-      End: last,
+    const nextByKey: Readonly<
+      Record<string, Readonly<{index: number; direction: 1 | -1}>>
+    > = {
+      ArrowDown: {index: Math.min(last, index + 1), direction: 1},
+      ArrowUp: {index: Math.max(0, index - 1), direction: -1},
+      Home: {index: 0, direction: 1},
+      End: {index: last, direction: -1},
     };
 
     if (event.key in nextByKey) {
       event.preventDefault();
-      this.focusResult(nextByKey[event.key]);
+      const next = nextByKey[event.key];
+      this.focusResult(next.index, next.direction);
       return;
     }
 
@@ -565,14 +568,12 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
     this.closeDropdown(true);
   };
 
-  private focusResult(index: number): void {
+  private focusResult(index: number, direction: 1 | -1): void {
     const items = this.filteredItems();
     if (items.length === 0) {
       return;
     }
 
-    const current = this.activeResultIndex();
-    const direction = current !== null && index < current ? -1 : 1;
     let candidate = Math.min(Math.max(index, 0), items.length - 1);
 
     while (candidate >= 0 && candidate < items.length) {
