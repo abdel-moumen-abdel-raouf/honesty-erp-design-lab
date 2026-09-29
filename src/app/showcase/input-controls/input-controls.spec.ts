@@ -228,6 +228,9 @@ describe('InputControls showcase', () => {
     expect(dropdown?.getAttribute('data-search-box-mode')).toBe('dropdown');
     expect(modal?.getAttribute('data-search-box-mode')).toBe('modal');
     expect(inline?.getAttribute('data-search-box-mode')).toBe('inline');
+    expect(dropdown?.hasAttribute('clearable')).toBe(true);
+    expect(modal?.hasAttribute('clearable')).toBe(true);
+    expect(inline?.hasAttribute('clearable')).toBe(true);
     expect(dropdown?.querySelectorAll('[data-search-result]').length).toBe(3);
   });
 

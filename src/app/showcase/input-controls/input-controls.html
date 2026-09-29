@@ -21,6 +21,7 @@
               data-search-dropdown-evidence
               label="البحث — قائمة منسدلة"
               mode="dropdown"
+              clearable
               placeholder="ابحث في السجلات"
               [items]="searchItems"
             />
@@ -28,6 +29,7 @@
               data-search-modal-evidence
               label="البحث — نافذة منبثقة"
               mode="modal"
+              clearable
               placeholder="ابحث في السجلات"
               [items]="searchItems"
             />
@@ -194,6 +196,7 @@
               label="بحث مضمن"
               placeholder="ابحث داخل الحقل"
               mode="inline"
+              clearable
             />
             <erp-text-box
               data-gradient-direction-evidence="ltr"

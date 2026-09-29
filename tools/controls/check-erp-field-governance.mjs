@@ -559,6 +559,14 @@ export function validateSearchBoxPopupContracts(
     'this.openModal()',
     'this.closeDropdown(true)',
     'surface.inert = true',
+    "surface.style.pointerEvents = 'none';",
+    "surface.setAttribute('aria-hidden', 'true');",
+    'this.controller?.hide();',
+    'this.restoreTriggerFocus();',
+    "surface.style.pointerEvents = 'none';",
+    "surface.setAttribute('aria-hidden', 'true');",
+    'this.controller?.hide();',
+    'this.restoreTriggerFocus();',
   ]) {
     if (!source.includes(requirement)) {
       errors.push(`SearchBox: missing corrected popup lifecycle ${requirement}`);

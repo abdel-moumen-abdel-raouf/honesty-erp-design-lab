@@ -110,6 +110,7 @@ describe('ErpSearchBox', () => {
     expect(control.dismissOnOutside()).toBe(true);
     expect(control.dismissOnEscape()).toBe(true);
     expect(control.showDefaultSearchIcon()).toBe(true);
+    expect(control.clearable()).toBe(false);
     expect(control.enterAnimation()).toBe('fade-scale');
     expect(control.exitAnimation()).toBe('fade-scale');
     expect(host.getAttribute('data-search-box-mode')).toBe('dropdown');
@@ -191,6 +192,21 @@ describe('ErpSearchBox', () => {
 
     expect(onChange).toHaveBeenCalledWith('invoice');
     expect(host.getAttribute('data-search-box-popup-phase')).toBe('leaving');
+    expect(
+      (host.querySelector('.search-box__popup') as HTMLElement).matches(
+        ':popover-open',
+      ),
+    ).toBe(false);
+
+    const nextField = document.createElement('input');
+    host.appendChild(nextField);
+    nextField.focus();
+    vi.runAllTimers();
+    fixture.detectChanges();
+
+    expect(document.activeElement).toBe(nextField);
+    expect(onChange).toHaveBeenCalledTimes(1);
+    expect(host.getAttribute('data-search-box-popup-phase')).toBe('closed');
   });
 
   it('prevents disabled result selection and skips disabled results during keyboard navigation', () => {
@@ -229,6 +245,27 @@ describe('ErpSearchBox', () => {
     expect(onChange).not.toHaveBeenCalled();
   });
 
+  it('exposes the inherited clear action for a committed dropdown selection', () => {
+    const fixture = create();
+    fixture.componentRef.setInput('clearable', true);
+    fixture.componentInstance.writeValue('invoice');
+    fixture.detectChanges();
+
+    const host = fixture.nativeElement as HTMLElement;
+    const onChange = vi.fn();
+    fixture.componentInstance.registerOnChange(onChange);
+    const clear = host.querySelector(
+      'erp-field-frame erp-icon-button button',
+    ) as HTMLButtonElement;
+
+    expect(clear).toBeTruthy();
+    clear.click();
+    fixture.detectChanges();
+
+    expect(onChange).toHaveBeenCalledWith('');
+    expect(fixture.componentInstance['currentValue']()).toBe('');
+  });
+
   it('sizes the dropdown exactly from trigger width before viewport clamping', () => {
     const fixture = create();
     const host = fixture.nativeElement as HTMLElement;
@@ -264,23 +301,34 @@ describe('ErpSearchBox', () => {
     ).toBe('320px');
   });
 
-  it('provides an explicit close action and restores trigger focus without reopening', () => {
+  it('releases the native top layer immediately and never steals focus after close', () => {
     const fixture = create();
     const host = fixture.nativeElement as HTMLElement;
     const trigger = host.querySelector(
       'erp-field-trigger button',
     ) as HTMLButtonElement;
     const surface = openDropdown(fixture);
+    const nextField = document.createElement('input');
+    host.appendChild(nextField);
 
     (host.querySelector('.search-box__close button') as HTMLButtonElement).click();
     fixture.detectChanges();
+
+    expect(surface.matches(':popover-open')).toBe(false);
     expect(surface.inert).toBe(true);
+    expect(surface.style.pointerEvents).toBe('none');
+    expect(document.activeElement).toBe(trigger);
+
+    nextField.focus();
+    expect(document.activeElement).toBe(nextField);
+
     vi.runAllTimers();
     fixture.detectChanges();
 
-    expect(surface.matches(':popover-open')).toBe(false);
-    expect(document.activeElement).toBe(trigger);
+    expect(document.activeElement).toBe(nextField);
     expect(host.getAttribute('data-search-box-popup-phase')).toBe('closed');
+    expect(surface.inert).toBe(false);
+    expect(surface.style.pointerEvents).toBe('');
   });
 
   it('honors outside and Escape dismissal while only the active SearchBox responds', () => {

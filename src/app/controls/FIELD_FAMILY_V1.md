@@ -364,9 +364,16 @@ their concrete ERP controls.
   commit only an enabled result value. Free query text is never committed in
   dropdown mode.
 - Dropdown semantics are combobox/listbox/option. ArrowDown/ArrowUp move between
-  results and native button activation commits the focused result. The popup
+  results and SelectionTile activation commits the focused result. The popup
   also owns an explicit close action; Escape and outside dismissal remain
   additional paths.
+- Dropdown dismissal releases the native Popover top layer immediately. The
+  exit phase may finish bookkeeping after that release, but it must never keep
+  an invisible hit target or perform delayed focus restoration that can steal
+  focus from a subsequently activated field. Selection/Close/Escape focus
+  restoration is immediate; outside dismissal never restores focus.
+- SearchBox uses the inherited `clearable` contract. When enabled and a
+  committed value exists, the Field chrome exposes the standard clear action.
 - The anchored dropdown outer inline size equals the Field trigger inline size
   whenever viewport space permits, and only shrinks for the configured viewport
   inset. It must not grow to a component minimum wider than the trigger.

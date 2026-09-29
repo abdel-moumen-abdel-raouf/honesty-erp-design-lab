@@ -160,7 +160,6 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
   private controller: AnchoredOverlayController | null = null;
   private closeTimer: ReturnType<typeof setTimeout> | null = null;
   private activeModalRef: ErpOverlayRef<string | null> | null = null;
-  private restoreFocusAfterClose = false;
   private suppressNextFocusOpen = false;
 
   constructor() {
@@ -495,14 +494,25 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
     }
 
     const surface = this.popupSurface()?.nativeElement;
-    this.restoreFocusAfterClose = restoreFocus;
     this.popupPhase.set('leaving');
     if (surface) {
       surface.dataset['searchPopupPhase'] = 'leaving';
       surface.inert = true;
+      surface.style.pointerEvents = 'none';
+      surface.setAttribute('aria-hidden', 'true');
     }
-    this.clearCloseTimer();
 
+    // Release the native top layer immediately. Exit-phase bookkeeping must
+    // never retain an invisible hit target above subsequent form controls.
+    this.controller?.hide();
+    this.removeFromOpenStack();
+    this.detachDismissalListeners();
+
+    if (restoreFocus) {
+      this.restoreTriggerFocus();
+    }
+
+    this.clearCloseTimer();
     const duration = surface
       ? this.transitionDurationMs(surface)
       : 0;
@@ -518,9 +528,6 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
     }
 
     this.clearCloseTimer();
-    this.controller?.hide();
-    this.removeFromOpenStack();
-    this.detachDismissalListeners();
     this.popupPhase.set('closed');
     this.resolvedPlacement.set(null);
     this.query.set('');
@@ -529,16 +536,20 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
     const surface = this.popupSurface()?.nativeElement;
     if (surface) {
       surface.inert = false;
+      surface.style.pointerEvents = '';
+      surface.removeAttribute('aria-hidden');
       delete surface.dataset['searchPopupPhase'];
     }
-    if (this.restoreFocusAfterClose) {
-      const anchor = this.anchorElement();
-      if (anchor) {
-        this.suppressNextFocusOpen = true;
-        anchor.focus();
-      }
+  }
+
+  private restoreTriggerFocus(): void {
+    const anchor = this.anchorElement();
+    if (!anchor?.isConnected) {
+      return;
     }
-    this.restoreFocusAfterClose = false;
+
+    this.suppressNextFocusOpen = true;
+    anchor.focus();
   }
 
   private readonly handleDocumentPointerDown = (event: Event): void => {
