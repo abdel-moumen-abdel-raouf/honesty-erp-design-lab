@@ -653,3 +653,29 @@ Browser-native filesystem selection remains the security boundary.
 - `ErpFabMenu` composes frozen ErpFab and ErpExtendedFab controls and owns
   open/close state, action collection, logical block placement, focus
   restoration, Escape, and Arrow-key navigation.
+
+
+---
+
+## Unified Input State & Validation Contract — 2026-09-29
+
+Authoritative detailed contract:
+`src/app/controls/INPUT_VALIDATION_CONTRACT_V1.md`
+
+Every ERP input will expose common semantic entry state, validity, simple string
+errors, and structured validation issues.
+
+Canonical state:
+`null | empty | no-selection | invalid-entry | valid-entry`.
+
+State and validity are intentionally separate. Empty/null/no-selection can be
+valid for optional controls and invalid for required controls.
+
+Constraint configuration remains type-safe:
+- text -> minLength/maxLength;
+- numeric/money/date/time -> min/max;
+- selections -> required / future selection counts;
+- files -> minFiles/maxFiles;
+- ranges -> global min/max + ordering/span rules.
+
+Validation is non-destructive and must evaluate the current user-visible draft.

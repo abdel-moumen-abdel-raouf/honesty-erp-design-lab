@@ -651,3 +651,19 @@ Next implementation unit must cover:
 - Design Lab distinction between ItemPicker and ComboBox.
 
 No source implementation in this documentation turn.
+
+
+### 2026-09-29 — add unified ERP Input validation substrate before remaining Inputs fixes
+
+Before duplicating additional domain-specific corrections, introduce the common
+validation substrate defined in:
+`src/app/controls/INPUT_VALIDATION_CONTRACT_V1.md`.
+
+Implementation sequence:
+1. common InputBase state/validation issue model;
+2. common required + external issue hooks;
+3. typed validation hooks in FieldBase/control families;
+4. migrate text/domain/numeric/selection/temporal/file/range controls;
+5. make UI feedback/aria-invalid derive from the same validity source;
+6. then finish URL/Tel, RangeSlider, temporal, ColorPicker, and picker review
+   corrections against that substrate.

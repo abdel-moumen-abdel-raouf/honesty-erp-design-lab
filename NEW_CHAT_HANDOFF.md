@@ -1396,3 +1396,55 @@ value, while visual fill percentages use global min/max. This creates mismatched
 thumb/fill coordinate systems.
 
 No production implementation was performed in this review turn.
+
+
+---
+
+# 32. 2026-09-29 — UNIFIED ERP INPUT STATE / VALIDATION ARCHITECTURE DECISION
+
+Product Owner requested one common developer-facing validation/state contract
+for every ERP input.
+
+New authoritative design:
+`src/app/controls/INPUT_VALIDATION_CONTRACT_V1.md`
+
+Approved semantic states:
+- `null`;
+- `empty`;
+- `no-selection`;
+- `invalid-entry`;
+- `valid-entry`.
+
+Important distinction:
+`inputState` describes the kind of current entry, while `valid` independently
+reports whether that entry is acceptable for current constraints.
+
+Every input will expose:
+- `inputState`;
+- `valid`;
+- `errors: readonly string[]`;
+- structured `validationIssues`;
+- canonical validation snapshot.
+
+Structured issues contain stable machine-readable code, message, source, and
+optional metadata. String `errors` are derived from those issues.
+
+Required becomes a common input contract.
+
+Typed constraints:
+- text: minLength/maxLength;
+- numeric/money: min/max/step;
+- temporal: min/max;
+- file/image: minFiles/maxFiles + file policies;
+- selection: required/no-selection (future multi-select counts);
+- range: global min/max + ordering/span rules.
+
+Min/max validation on editable inputs is non-destructive. Invalid user drafts
+remain visible and receive issues rather than being silently clamped, erased, or
+reverted.
+
+Validation state is based on the current visible draft where a control has draft
+semantics, not only on the last committed CVA value.
+
+Implementation is pending. This decision expands the active Inputs correction
+scope.

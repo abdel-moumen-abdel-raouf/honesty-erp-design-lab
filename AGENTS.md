@@ -1100,3 +1100,23 @@ Governance enforces both the prohibition and required open-state layout rule.
 - DateRange rolling presets use exact inclusive 7/30-day windows.
 - ColorPicker instance mode is fixed: system or free.
 - ItemPicker is select-like; ComboBox is editable type-to-filter.
+
+
+## ERP Input validation substrate — 2026-09-29
+
+Authoritative contract:
+`src/app/controls/INPUT_VALIDATION_CONTRACT_V1.md`.
+
+Do not implement independent validation-state/error arrays per concrete control.
+
+Common public semantics:
+- state: null / empty / no-selection / invalid-entry / valid-entry;
+- valid boolean;
+- readonly string errors;
+- structured stable-code validation issues.
+
+Validation must use current visible draft where applicable and must not destroy
+invalid editable user input.
+
+Constraint configuration stays typed by domain while feeding one common
+validation engine.

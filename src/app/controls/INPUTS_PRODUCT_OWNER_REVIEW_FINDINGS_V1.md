@@ -353,3 +353,29 @@ Decision:
 - ComboBox evidence must demonstrate type-to-filter from the field itself.
 
 Inputs remains BLOCKED pending implementation and Product Owner re-review.
+
+
+## 2026-09-29 — unified input validation architecture added
+
+Product Owner added a cross-family requirement: every ERP input must expose
+developer-consumable semantic state and validation errors.
+
+Authoritative architecture:
+`INPUT_VALIDATION_CONTRACT_V1.md`.
+
+Common states:
+`null | empty | no-selection | invalid-entry | valid-entry`.
+
+Every input will expose validity plus both:
+- simple `readonly string[]` errors;
+- structured stable-code validation issues.
+
+State and validity are separate so optional empty/null/no-selection can remain
+valid while required ones report errors.
+
+All editable validation is non-destructive.
+
+Typed min/max/length/count constraints participate in one common validation
+engine.
+
+Finding is architecture-approved / implementation-pending.

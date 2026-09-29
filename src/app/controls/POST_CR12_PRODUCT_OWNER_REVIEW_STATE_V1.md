@@ -989,3 +989,14 @@ RangeSlider geometry/tooltips, Now reveal behavior, rolling date ranges,
 ColorPicker instance mode, and explicit ItemPicker/ComboBox distinction.
 
 Inputs remains BLOCKED.
+
+
+## 2026-09-29 — unified ERP input state/validation contract approved
+
+New architecture decision:
+`src/app/controls/INPUT_VALIDATION_CONTRACT_V1.md`.
+
+Every ERP input will expose semantic input state, validity, simple errors, and
+structured issues from one validation source of truth.
+
+Implementation pending; Inputs remains BLOCKED.
