@@ -73,7 +73,7 @@ export function createSelectionOverlayFooter(
         ? [{id: 'clear-selected', label: labels.clear, role: 'utility' as const, placement: 'start' as const}]
         : []),
       {id: 'cancel', label: labels.cancel, role: 'secondary', placement: 'end'},
-      {id: 'confirm', label: labels.confirm, role: 'primary', placement: 'end'},
+      {id: 'confirm', label: labels.confirm, role: 'primary', placement: 'end', disabled: true},
     ],
   };
 }

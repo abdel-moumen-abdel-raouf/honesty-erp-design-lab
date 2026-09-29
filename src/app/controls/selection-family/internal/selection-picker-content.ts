@@ -77,6 +77,27 @@ export class ErpSelectionPickerContent implements OnDestroy {
   protected readonly staged = signal<ErpSelectionPickerValue>(this.data.value);
   protected readonly colorMode = signal<ErpColorPickerMode>(this.data.colorMode);
   protected readonly activeIndex = signal<number | null>(null);
+  protected readonly confirmEnabled = computed(() => {
+    const staged = this.staged();
+
+    if (staged === null) {
+      return false;
+    }
+
+    if (this.data.mode === 'color') {
+      return typeof staged === 'object';
+    }
+
+    if (this.data.mode === 'icon') {
+      return typeof staged === 'string' &&
+        ERP_ICON_NAMES.includes(staged as ErpIconName);
+    }
+
+    return typeof staged === 'string' &&
+      this.data.items.some(
+        (item) => item.value === staged && !item.disabled,
+      );
+  });
   protected readonly systemColorGroups = ERP_SYSTEM_COLOR_FAMILIES.map(
     (family) => ({
       family,
@@ -113,6 +134,10 @@ export class ErpSelectionPickerContent implements OnDestroy {
 
   constructor() {
     effect(() => {
+      this.ref.updateFrameActionState('confirm', {
+        disabled: !this.confirmEnabled(),
+      });
+
       if (
         this.data.clearable ||
         this.data.mode === 'color' ||

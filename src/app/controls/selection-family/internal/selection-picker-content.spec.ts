@@ -284,4 +284,50 @@ describe('ErpSelectionPickerContent', () => {
     expect(picker.closest(`[data-theme="${theme}"]`)).not.toBeNull();
     expect(picker.closest(`[dir="${direction}"]`)).not.toBeNull();
   });
+
+  it('keeps Confirm disabled until a valid staged selection exists while Cancel stays enabled', async () => {
+    const {fixture} = await open({
+      ...base,
+      mode: 'item',
+      items: [
+        {value: 'a', label: 'Alpha'},
+        {value: 'b', label: 'Beta', disabled: true},
+      ],
+    });
+    const root = fixture.nativeElement as HTMLElement;
+    const confirm = root.querySelector<HTMLButtonElement>(
+      '[data-overlay-frame-action-id="confirm"] button',
+    ) as HTMLButtonElement;
+    const cancel = root.querySelector<HTMLButtonElement>(
+      '[data-overlay-frame-action-id="cancel"] button',
+    ) as HTMLButtonElement;
+
+    expect(confirm.disabled).toBe(true);
+    expect(cancel.disabled).toBe(false);
+
+    (
+      root.querySelector(
+        '[data-item-option][data-value="a"] button',
+      ) as HTMLButtonElement
+    ).click();
+    fixture.detectChanges();
+
+    expect(confirm.disabled).toBe(false);
+    expect(cancel.disabled).toBe(false);
+  });
+
+  it('does not enable Confirm for a disabled staged item', async () => {
+    const {fixture} = await open({
+      ...base,
+      mode: 'item',
+      value: 'b',
+      items: [{value: 'b', label: 'Beta', disabled: true}],
+    });
+    const confirm = (fixture.nativeElement as HTMLElement).querySelector<HTMLButtonElement>(
+      '[data-overlay-frame-action-id="confirm"] button',
+    ) as HTMLButtonElement;
+
+    expect(confirm.disabled).toBe(true);
+  });
+
 });
