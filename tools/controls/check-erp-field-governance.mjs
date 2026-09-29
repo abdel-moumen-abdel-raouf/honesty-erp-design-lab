@@ -1691,7 +1691,7 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     "dir='rtl'",
     'prefers-reduced-motion: reduce',
     'var(--honesty-search-box-popup-max-block-size)',
-    'var(--_honesty-search-box-popup-trigger-inline-size)',
+    'inline-size: min( var(--_honesty-search-box-popup-trigger-inline-size)',
     ".search-box__popup[data-search-popup-phase='leaving']",
     'pointer-events: none;',
   ].join('\n');
