@@ -24,10 +24,17 @@ class TooltipHost {
   readonly activation = signal<'auto' | 'press'>('auto');
   readonly disabled = signal(false);
   readonly showArrow = signal(true);
-  readonly enterAnimation = signal<ErpMotionPreset>('slide-up');
-  readonly exitAnimation = signal<ErpMotionPreset>('slide-up');
+  readonly enterAnimation = signal<ErpMotionPreset>('zoom');
+  readonly exitAnimation = signal<ErpMotionPreset>('zoom');
   readonly open = signal(false);
 }
+
+@Component({imports: [ErpTooltip], template: `
+  <erp-tooltip text="Default tooltip">
+    <button id="default-trigger">Default trigger</button>
+  </erp-tooltip>
+`})
+class TooltipDefaultHost {}
 
 @Component({imports: [ErpTooltip, ErpTooltipContent], template: `
   <erp-tooltip [text]="text()" [variant]="variant()" [interactive]="interactive()" [(open)]="open">
@@ -66,11 +73,19 @@ describe('ErpTooltip', () => {
     vi.spyOn(HTMLElement.prototype, 'matches').mockImplementation(function(this: HTMLElement, selector: string) { return selector === ':popover-open' ? this.hasAttribute('data-popover-open') : false; });
     vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) => setTimeout(() => callback(0), 0));
     vi.stubGlobal('cancelAnimationFrame', (id: number) => clearTimeout(id));
-    await TestBed.configureTestingModule({imports: [TooltipHost, TooltipValidationHost]}).compileComponents();
+    await TestBed.configureTestingModule({imports: [TooltipHost, TooltipDefaultHost, TooltipValidationHost]}).compileComponents();
   });
   afterEach(() => { vi.restoreAllMocks(); vi.unstubAllGlobals(); vi.useRealTimers(); });
 
   function create() { const fixture = TestBed.createComponent(TooltipHost); fixture.detectChanges(); return fixture; }
+
+  it('defaults system Tooltip motion to Zoom in and Zoom out when not overridden', () => {
+    const fixture = TestBed.createComponent(TooltipDefaultHost);
+    fixture.detectChanges();
+    const tooltip = fixture.nativeElement.querySelector('erp-tooltip') as HTMLElement;
+    expect(tooltip.getAttribute('data-tooltip-enter-animation')).toBe('zoom');
+    expect(tooltip.getAttribute('data-tooltip-exit-animation')).toBe('zoom');
+  });
 
   it('has the exact selector, defaults, model, evidence attributes, and plain semantics', () => {
     const fixture = create();
@@ -79,13 +94,16 @@ describe('ErpTooltip', () => {
     expect(reflectComponentType(ErpTooltip)?.selector).toBe('erp-tooltip');
     expect(instance.variant()).toBe('plain'); expect(instance.placement()).toBe('top'); expect(instance.activation()).toBe('auto');
     expect(instance.interactive()).toBe(false); expect(instance.showArrow()).toBe(true); expect(instance.disabled()).toBe(false); expect(instance.open()).toBe(false);
-    expect(instance.enterAnimation()).toBe('slide-up'); expect(instance.exitAnimation()).toBe('slide-up');
+    expect(instance.enterAnimation()).toBe('zoom'); expect(instance.exitAnimation()).toBe('zoom');
     expect(tooltip.getAttribute('data-tooltip-state')).toBe('ready');
-    expect(tooltip.getAttribute('data-tooltip-enter-animation')).toBe('slide-up');
-    expect(tooltip.getAttribute('data-tooltip-exit-animation')).toBe('slide-up');
+    expect(tooltip.getAttribute('data-tooltip-enter-animation')).toBe('zoom');
+    expect(tooltip.getAttribute('data-tooltip-exit-animation')).toBe('zoom');
     expect(tooltip.querySelector('[role="tooltip"]')).toBeTruthy();
     expect(tooltip.querySelector('erp-text')?.getAttribute('data-text-tone')).toBe('inherit');
-    expect(tooltip.querySelectorAll('.erp-tooltip__arrow').length).toBe(1);
+    const motion = tooltip.querySelector('.erp-tooltip__motion') as HTMLElement;
+    const arrow = tooltip.querySelector('.erp-tooltip__arrow') as HTMLElement;
+    expect(arrow).toBeTruthy();
+    expect(motion.contains(arrow)).toBe(true);
   });
 
   it('runs every shared motion preset independently for enter and exit', () => {
@@ -432,9 +450,23 @@ describe('ErpTooltip', () => {
       ): void;
     }).applyArrowGeometry(arrow, {x: 0, y: 0, placement: 'top', arrowCrossAxisCenter: 40});
 
+    expect(arrow.style.width).toBe('var(--honesty-tooltip-arrow-width)');
+    expect(arrow.style.height).toBe('var(--honesty-tooltip-arrow-height)');
     expect(arrow.style.left).toContain('40px');
     expect(arrow.style.right).toBe('');
     expect(arrow.style.bottom).toContain('--honesty-tooltip-arrow-height');
+
+    (instance as unknown as {
+      applyArrowGeometry(
+        arrowElement: HTMLElement,
+        result: {x: number; y: number; placement: 'top' | 'bottom' | 'left' | 'right'; arrowCrossAxisCenter: number},
+      ): void;
+    }).applyArrowGeometry(arrow, {x: 0, y: 0, placement: 'right', arrowCrossAxisCenter: 20});
+
+    expect(arrow.style.width).toBe('var(--honesty-tooltip-arrow-height)');
+    expect(arrow.style.height).toBe('var(--honesty-tooltip-arrow-width)');
+    expect(arrow.style.left).toContain('--honesty-tooltip-arrow-height');
+    expect(arrow.style.top).toContain('20px');
   });
 
   it('renders the private nonsemantic arrow only when requested', () => {

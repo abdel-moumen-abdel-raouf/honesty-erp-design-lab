@@ -100,4 +100,57 @@ describe('AnchoredOverlayController', () => {
     expect(viewport.removeEventListener).toHaveBeenCalledWith('scroll', expect.any(Function));
     vi.unstubAllGlobals(); vi.useRealTimers();
   });
+  it('repositions against fresh anchor geometry after scroll', () => {
+    vi.useFakeTimers();
+    vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) =>
+      setTimeout(() => callback(0), 0),
+    );
+    vi.stubGlobal('cancelAnimationFrame', (id: number) => clearTimeout(id));
+
+    const anchor = document.createElement('button');
+    const surface = document.createElement('span');
+    Object.assign(surface, {showPopover: vi.fn(), hidePopover: vi.fn()});
+    vi.spyOn(surface, 'matches').mockReturnValue(true);
+
+    let anchorTop = 40;
+    vi.spyOn(anchor, 'getBoundingClientRect').mockImplementation(() =>
+      ({
+        left: 100, top: anchorTop, right: 140, bottom: anchorTop + 40,
+        width: 40, height: 40, x: 100, y: anchorTop, toJSON: () => ({}),
+      }) as DOMRect,
+    );
+    vi.spyOn(surface, 'getBoundingClientRect').mockReturnValue({
+      left: 0, top: 0, right: 80, bottom: 40, width: 80, height: 40,
+      x: 0, y: 0, toJSON: () => ({}),
+    } as DOMRect);
+
+    const applied: Array<{x: number; y: number}> = [];
+    const controller = new AnchoredOverlayController({
+      anchor,
+      surface,
+      readGeometryInput: () => ({
+        preferredPlacement: 'bottom', direction: 'ltr', anchorGap: 4,
+        viewportInset: 8, showArrow: true, arrowWidth: 16,
+        arrowHeight: 8, arrowSafeInset: 8,
+      }),
+      applyGeometry: (result) => applied.push({x: result.x, y: result.y}),
+    });
+
+    expect(controller.show()).toBe(true);
+    vi.runAllTimers();
+    expect(applied).toHaveLength(1);
+    const firstY = applied[0].y;
+
+    anchorTop = 140;
+    window.dispatchEvent(new Event('scroll'));
+    vi.runAllTimers();
+
+    expect(applied).toHaveLength(2);
+    expect(applied[1].y).not.toBe(firstY);
+
+    controller.destroy();
+    vi.unstubAllGlobals();
+    vi.useRealTimers();
+  });
+
 });

@@ -1,7 +1,5 @@
 import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
 import {ErpButton} from '../../controls/button/button';
-import {ErpButtonGroup} from '../../controls/button-group/button-group';
-import {ErpButtonGroupItem} from '../../controls/composite-family/composite-contracts';
 import {ErpIconButton} from '../../controls/icon-button/icon-button';
 import {ErpTooltip} from '../../controls/tooltip/tooltip';
 import {ErpTooltipContent} from '../../controls/tooltip/tooltip-content';
@@ -20,27 +18,24 @@ import {ErpText} from '../../primitives/text/text';
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-tooltip-controls',
-  imports: [ErpButton, ErpButtonGroup, ErpIconButton, ErpTooltip, ErpTooltipContent, ErpContainer, ErpDivider, ErpInline, ErpSection, ErpStack, ErpSurface, ErpText],
+  imports: [ErpButton, ErpIconButton, ErpTooltip, ErpTooltipContent, ErpContainer, ErpDivider, ErpInline, ErpSection, ErpStack, ErpSurface, ErpText],
   templateUrl: './tooltip-controls.html',
   styleUrl: './tooltip-controls.scss',
 })
 export class TooltipControls {
   readonly placements = ['top', 'bottom', 'start', 'end'] as const;
   readonly controlledOpen = signal(false);
-  readonly motionOptions: readonly ErpButtonGroupItem[] =
-    ERP_MOTION_PRESETS.map((preset) => ({value: preset, label: preset}));
-  readonly enterAnimation = signal<ErpMotionPreset>('slide-up');
-  readonly exitAnimation = signal<ErpMotionPreset>('slide-up');
+  readonly motionOptions = ERP_MOTION_PRESETS.map((preset) => ({value: preset, label: preset}));
+  readonly enterAnimation = signal<ErpMotionPreset>('zoom');
+  readonly exitAnimation = signal<ErpMotionPreset>('zoom');
   readonly motionPreviewOpen = signal(true);
 
-  selectEnterAnimation(value: string): void {
-    const preset = ERP_MOTION_PRESETS.find((candidate) => candidate === value);
-    if (preset !== undefined) this.enterAnimation.set(preset);
+  selectEnterAnimation(value: ErpMotionPreset): void {
+    this.enterAnimation.set(value);
   }
 
-  selectExitAnimation(value: string): void {
-    const preset = ERP_MOTION_PRESETS.find((candidate) => candidate === value);
-    if (preset !== undefined) this.exitAnimation.set(preset);
+  selectExitAnimation(value: ErpMotionPreset): void {
+    this.exitAnimation.set(value);
   }
 
   replayMotion(): void {

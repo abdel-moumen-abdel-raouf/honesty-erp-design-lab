@@ -36,9 +36,9 @@ const EXPECTED_RICH_TOKENS = [
   '--honesty-tooltip-padding-block', '--honesty-tooltip-padding-inline',
   '--honesty-tooltip-radius', '--honesty-tooltip-elevation',
 ];
-const EXPECTED_SIDE_REMAPS = [
-  ['--honesty-tooltip-arrow-width', '#{ref.$honesty-ref-space-8}'],
-  ['--honesty-tooltip-arrow-height', '#{ref.$honesty-ref-space-4}'],
+const EXPECTED_CANONICAL_ARROW = [
+  ['--honesty-tooltip-arrow-width', '#{ref.$honesty-ref-space-16}'],
+  ['--honesty-tooltip-arrow-height', '#{ref.$honesty-ref-space-8}'],
 ];
 const EXPECTED_MOTIONS = [
   'fade',
@@ -127,14 +127,19 @@ function remaps(body) {
     .map((match) => [match[1], match[2].trim()]);
 }
 
-function validateSideCaretContract(tokenSource) {
+function validateCanonicalCaretContract(tokenSource) {
   const errors = [];
-  const side = tokenSource.match(/@mixin\s+placement-side\s*\{([\s\S]*?)\r?\n\s*\}/)?.[1] ?? '';
+  const base = tokenSource.match(/@mixin\s+base\s*\{([\s\S]*?)\r?\n\s*\}/)?.[1] ?? '';
+  const baseRemaps = new Map(remaps(base));
 
-  if (JSON.stringify(remaps(side)) !== JSON.stringify(EXPECTED_SIDE_REMAPS)) {
-    errors.push(
-      'Tooltip side placement caret remap must remain exactly width=Reference space-8 and height=Reference space-4',
-    );
+  for (const [name, expected] of EXPECTED_CANONICAL_ARROW) {
+    if (baseRemaps.get(name) !== expected) {
+      errors.push(`Tooltip canonical arrow token ${name} must remain ${expected}`);
+    }
+  }
+
+  if (/@mixin\s+placement-side\b/.test(tokenSource)) {
+    errors.push('Tooltip side placements must rotate canonical arrow geometry, not remap its size');
   }
 
   return errors;
@@ -167,8 +172,8 @@ export function validateTooltipMotionContract(
     'AnimateCssMotionAdapter',
     'ERP_TOOLTIP_MOTION_DURATION_MS',
     "import {ErpMotionPreset} from '../../foundation/motion/motion-contracts';",
-    "readonly enterAnimation = input<ErpMotionPreset>('slide-up');",
-    "readonly exitAnimation = input<ErpMotionPreset>('slide-up');",
+    "readonly enterAnimation = input<ErpMotionPreset>('zoom');",
+    "readonly exitAnimation = input<ErpMotionPreset>('zoom');",
     "'[attr.data-tooltip-enter-animation]': 'enterAnimation()'",
     "'[attr.data-tooltip-exit-animation]': 'exitAnimation()'",
     'this.motion.start({',
@@ -218,7 +223,7 @@ function validateProductionContracts(files) {
   const rich = tokenSource.match(/@mixin\s+variant-rich\s*\{([\s\S]*?)\n\}/)?.[1] ?? '';
   if (JSON.stringify(declarations(base)) !== JSON.stringify(EXPECTED_BASE_TOKENS)) errors.push('Tooltip base token slots do not match the exact V1 contract');
   if (JSON.stringify(declarations(rich)) !== JSON.stringify(EXPECTED_RICH_TOKENS)) errors.push('Tooltip rich facet remaps do not match the exact V1 contract');
-  errors.push(...validateSideCaretContract(tokenSource));
+  errors.push(...validateCanonicalCaretContract(tokenSource));
   if (!/@use\s+['"]\.\.\/\.\.\/reference\/spacing['"]\s+as\s+ref/.test(tokenSource)) errors.push('Tooltip tokens must import only Reference spacing');
   if (/\$honesty-ref-(?!space-)/.test(tokenSource)) errors.push('Tooltip tokens consume a forbidden Reference category');
 
@@ -236,6 +241,13 @@ function validateProductionContracts(files) {
     if (!match[1].startsWith('--honesty-tooltip-')) errors.push(`Tooltip SCSS consumes foreign token "${match[1]}"`);
   }
   if (!/:host\(\[data-tooltip-interactive='true'\]\)\s+\.erp-tooltip__surface\[data-phase='open'\]\s*\{\s*pointer-events:\s*auto/.test(style)) errors.push('Interactive Tooltip pointer events must be enabled only in the open phase');
+  if (!tokenSource.includes('--honesty-tooltip-layer: var(--honesty-layer-overlay);')) errors.push('Tooltip layer must resolve to the semantic overlay layer');
+  if (!style.includes('z-index: var(--honesty-tooltip-layer);')) errors.push('Tooltip surface must consume the Tooltip layer token');
+  const templateSource = files.get(TOOLTIP_TEMPLATE) ?? '';
+  const motionStart = templateSource.indexOf('<span #motionLayer class="erp-tooltip__motion">');
+  const arrowStart = templateSource.indexOf('<span #arrow class="erp-tooltip__arrow" aria-hidden="true"></span>');
+  if (motionStart < 0) errors.push('Tooltip visual motion assembly is missing');
+  if (arrowStart < motionStart) errors.push('Tooltip arrow must live inside the visual motion assembly');
   if (/transition:\s*all/.test(style)) errors.push('Tooltip must not use transition: all');
   if (/(?:@mixin\s+(?:enter|exit)-|--honesty-tooltip-(?:enter|exit|motion|reduced)-)/.test(tokenSource)) errors.push('Tooltip tokens must not recreate adapter-owned motion');
 
@@ -269,33 +281,35 @@ function selfTest() {
   for (const [index, fixture] of fixtures.entries()) {
     if (validate(fixture).length === 0) throw new Error(`Tooltip checker accepted invalid fixture ${index + 1}`);
   }
-    const validSideCaret = `
-  @mixin placement-side {
-    --honesty-tooltip-arrow-width: #{ref.$honesty-ref-space-8};
-    --honesty-tooltip-arrow-height: #{ref.$honesty-ref-space-4};
-  }
-  `;
-
-  if (validateSideCaretContract(validSideCaret).length !== 0) {
-    throw new Error('Tooltip checker rejected the valid side-caret contract');
-  }
-
-  const invalidSideCaret = `
-  @mixin placement-side {
+  const validCanonicalCaret = `
+  @mixin base {
     --honesty-tooltip-arrow-width: #{ref.$honesty-ref-space-16};
     --honesty-tooltip-arrow-height: #{ref.$honesty-ref-space-8};
   }
   `;
 
-  if (validateSideCaretContract(invalidSideCaret).length === 0) {
-    throw new Error('Tooltip checker accepted an invalid side-caret contract');
+  if (validateCanonicalCaretContract(validCanonicalCaret).length !== 0) {
+    throw new Error('Tooltip checker rejected the valid canonical-caret contract');
   }
 
+  const invalidDirectionalCaret = `
+  @mixin base {
+    --honesty-tooltip-arrow-width: #{ref.$honesty-ref-space-16};
+    --honesty-tooltip-arrow-height: #{ref.$honesty-ref-space-8};
+  }
+  @mixin placement-side {
+    --honesty-tooltip-arrow-width: #{ref.$honesty-ref-space-8};
+  }
+  `;
+
+  if (validateCanonicalCaretContract(invalidDirectionalCaret).length === 0) {
+    throw new Error('Tooltip checker accepted a directional caret-size remap');
+  }
   const validMotionSource = `
 AnimateCssMotionAdapter ERP_TOOLTIP_MOTION_DURATION_MS
 import {ErpMotionPreset} from '../../foundation/motion/motion-contracts';
-readonly enterAnimation = input<ErpMotionPreset>('slide-up');
-readonly exitAnimation = input<ErpMotionPreset>('slide-up');
+readonly enterAnimation = input<ErpMotionPreset>('zoom');
+readonly exitAnimation = input<ErpMotionPreset>('zoom');
 '[attr.data-tooltip-enter-animation]': 'enterAnimation()'
 '[attr.data-tooltip-exit-animation]': 'exitAnimation()'
 this.motion.start({

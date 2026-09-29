@@ -30,8 +30,8 @@
     } @else {
       <ng-content select="erp-tooltip-content"></ng-content>
     }
+    @if (showArrow()) {
+      <span #arrow class="erp-tooltip__arrow" aria-hidden="true"></span>
+    }
   </span>
-  @if (showArrow()) {
-    <span #arrow class="erp-tooltip__arrow" aria-hidden="true"></span>
-  }
 </span>

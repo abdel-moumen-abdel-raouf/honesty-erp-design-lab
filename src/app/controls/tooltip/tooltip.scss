@@ -8,10 +8,6 @@
 
 :host([data-tooltip-variant='rich']) { @include tokens.variant-rich; }
 
-:host([data-tooltip-placement='start']),
-:host([data-tooltip-placement='end']) {
-  @include tokens.placement-side;
-}
 
 .erp-tooltip__trigger { display: contents; }
 
@@ -35,8 +31,10 @@
 }
 
 .erp-tooltip__motion {
+  position: relative;
   box-sizing: border-box;
   display: block;
+  overflow: visible;
   inline-size: 100%;
   min-block-size: inherit;
   padding-block: var(--honesty-tooltip-padding-block);

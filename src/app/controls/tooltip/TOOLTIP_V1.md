@@ -26,9 +26,10 @@ separate post-Tooltip integration wave.
 `activation`: `auto | press`; `text: string | null`; `interactive`, `showArrow`,
 and `disabled` are booleans; `enterAnimation` and `exitAnimation` use the shared
 `ErpMotionPreset` catalog; `open` is a two-way model. Defaults are plain, top,
-auto, noninteractive, arrow shown, enabled, closed, `slide-up` enter, and
-`slide-up` exit. Slide Up enters upward from below and exits upward from the
-anchored position.
+auto, noninteractive, arrow shown, enabled, closed, `zoom` enter, and `zoom`
+exit. Zoom uses the shared system `zoomIn` / `zoomOut` mapping. A developer may
+override enter and exit presets on an individual Tooltip without changing the
+system default.
 
 The shared motion values are exactly `fade`, `scale`, `fade-scale`, `slide-up`,
 `slide-down`, `slide-start`, `slide-end`, `zoom`, `pop`, `flip-x`, `flip-y`,
@@ -77,23 +78,27 @@ invalid state forces `open` false.
 
 The internal shared anchored-overlay controller uses the native manual Popover
 API. Unsupported browsers refuse the open request. Logical start/end resolve by
-direction. The preferred main axis is tried first, then its opposite, then the
-side with more room; the surface and arrow are clamped to the visual viewport.
+direction. Placement is deterministic: preferred first, opposite second, then
+the two perpendicular physical placements ordered by available room. The first
+candidate that fully fits is used. Only when no candidate fully fits may the
+controller choose the roomiest candidate and clamp it to the visual viewport.
 Positioning reacts to window/visual-viewport resize and scroll and anchor/surface
-resize through one animation-frame-coalesced pipeline. The arrow is private,
-optional, nonsemantic evidence and uses the Tooltip Component Token contract.
-V1 caret geometry is orientation-specific while retaining the same canonical
-arrow slots. Top and bottom use Reference spacing `space-16` as the caret base
-and `space-8` as its depth. Logical start and end remap those same slots to
-`space-8` as the caret base and `space-4` as its depth. These geometry values
-are private implementation contracts and are not consumer styling API.
+resize through one animation-frame-coalesced pipeline.
+
+The arrow is private, optional, nonsemantic evidence and uses one canonical
+geometry in every direction: Reference `space-16` is the base and `space-8` is
+the depth. Side placements rotate that same geometry; they do not shrink it.
+The arrow is recomputed from the resolved physical placement and the trigger
+center after every reposition/flip. These geometry values are private
+implementation contracts and are not consumer styling API.
 
 ## Motion and ownership
 
 Open measures hidden, positions, then runs the selected enter animation on the
-next animation frame. The fixed outer surface remains untransformed and owns
-anchored measurement, fixed placement, collision geometry, and arrow
-coordinates. Animate.css classes run only on the inner motion layer so visual
+next animation frame. The fixed outer surface remains untransformed and owns anchored measurement,
+fixed placement, collision geometry, and layer. The inner visual/motion assembly
+contains both Tooltip body and arrow, so the configured animation moves them as
+one unit. Animate.css classes run only on that inner assembly so visual
 transforms cannot corrupt `getBoundingClientRect()` positioning. Close
 publishes `open=false` immediately and remains mounted until the selected exit
 animation completes. Reopening cancels that exit. The Foundation motion adapter is the sole owner of Animate.css class

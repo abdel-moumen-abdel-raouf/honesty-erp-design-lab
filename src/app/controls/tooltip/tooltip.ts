@@ -59,8 +59,8 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
   readonly activation = input<ErpTooltipActivation>('auto');
   readonly showArrow = input(true, {transform: booleanAttribute});
   readonly disabled = input(false, {transform: booleanAttribute});
-  readonly enterAnimation = input<ErpMotionPreset>('slide-up');
-  readonly exitAnimation = input<ErpMotionPreset>('slide-up');
+  readonly enterAnimation = input<ErpMotionPreset>('zoom');
+  readonly exitAnimation = input<ErpMotionPreset>('zoom');
   readonly open = model(false);
 
   readonly tooltipId = `honesty-tooltip-${++nextTooltipId}`;

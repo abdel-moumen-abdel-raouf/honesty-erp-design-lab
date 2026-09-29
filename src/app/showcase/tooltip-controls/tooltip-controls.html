@@ -21,21 +21,33 @@
     >
       <erp-text type="heading-3">اختيار حركة الدخول والخروج</erp-text>
       <erp-text type="caption" tone="secondary">حركة الدخول</erp-text>
-      <erp-button-group
+      <erp-inline
         class="motion-selector"
         data-enter-motion-selector
-        [items]="motionOptions"
-        [attached]="false"
-        (itemPressed)="selectEnterAnimation($event)"
-      />
+        gap="tight"
+        wrap="wrap"
+      >
+        @for (option of motionOptions; track option.value) {
+          <erp-button
+            [label]="option.label"
+            (pressed)="selectEnterAnimation(option.value)"
+          />
+        }
+      </erp-inline>
       <erp-text type="caption" tone="secondary">حركة الخروج</erp-text>
-      <erp-button-group
+      <erp-inline
         class="motion-selector"
         data-exit-motion-selector
-        [items]="motionOptions"
-        [attached]="false"
-        (itemPressed)="selectExitAnimation($event)"
-      />
+        gap="tight"
+        wrap="wrap"
+      >
+        @for (option of motionOptions; track option.value) {
+          <erp-button
+            [label]="option.label"
+            (pressed)="selectExitAnimation(option.value)"
+          />
+        }
+      </erp-inline>
       <erp-inline class="motion-selection" gap="default" wrap="wrap">
         <erp-text data-selected-enter-preset type="label" tone="brand-primary">
           حركة الدخول المحددة: {{ enterAnimation() }}

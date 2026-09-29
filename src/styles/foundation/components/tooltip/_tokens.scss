@@ -19,11 +19,6 @@
   --honesty-tooltip-arrow-safe-inset: #{ref.$honesty-ref-space-8};
 }
 
-@mixin placement-side {
-  --honesty-tooltip-arrow-width: #{ref.$honesty-ref-space-8};
-  --honesty-tooltip-arrow-height: #{ref.$honesty-ref-space-4};
-}
-
 @mixin variant-rich {
   --honesty-tooltip-bg: var(--honesty-color-surface-elevated);
   --honesty-tooltip-fg: var(--honesty-color-text-primary);
