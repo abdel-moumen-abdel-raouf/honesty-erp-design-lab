@@ -6,6 +6,7 @@ import {
   forwardRef,
   input,
   OnInit,
+  signal,
 } from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpText} from '../../primitives/text/text';
@@ -20,13 +21,22 @@ import {
 import {ErpInputBase} from '../input-family/input-base';
 import {ErpInputConfigurationState} from '../input-family/input-contracts';
 import {ErpTooltip} from '../tooltip/tooltip';
+import {ErpTooltipPlacement} from '../tooltip/tooltip-contracts';
 
 export interface ErpRangeSliderValue {
   readonly lower: number;
   readonly upper: number;
 }
 
-type ErpRangeSliderThumb = 'lower' | 'upper';
+export type ErpRangeSliderThumb = 'lower' | 'upper';
+
+export type ErpRangeSliderTooltipFormatter = (
+  value: number,
+  thumb: ErpRangeSliderThumb,
+) => string;
+
+const DEFAULT_RANGE_TOOLTIP_FORMATTER: ErpRangeSliderTooltipFormatter =
+  (value) => String(value);
 
 let nextRangeSliderId = 0;
 
@@ -73,7 +83,13 @@ export class ErpRangeSlider
   readonly appearance = input<ErpFieldAppearance>('standard');
   readonly helperText = input<string | null>(null);
   readonly helperPosition = input<ErpFieldHelperPosition>('below');
-  readonly clearable = input(false, {transform: booleanAttribute});
+  readonly clearable = input(true, {transform: booleanAttribute});
+  readonly showValueTooltip = input(true, {transform: booleanAttribute});
+  readonly valueTooltipPlacement = input<ErpTooltipPlacement>('top');
+  readonly valueTooltipFormatter =
+    input<ErpRangeSliderTooltipFormatter>(
+      DEFAULT_RANGE_TOOLTIP_FORMATTER,
+    );
 
   protected readonly controlId = `erp-range-slider-${++nextRangeSliderId}`;
   protected readonly lowerId = `${this.controlId}-lower`;
@@ -103,6 +119,7 @@ export class ErpRangeSlider
   protected readonly upperPosition = computed(() =>
     this.positionFor(this.currentValue().upper),
   );
+  protected readonly activeThumb = signal<ErpRangeSliderThumb | null>(null);
 
   private externalValueWritten = false;
 
@@ -138,6 +155,7 @@ export class ErpRangeSlider
       return;
     }
 
+    this.activeThumb.set(thumb);
     const numeric = (event.target as HTMLInputElement).valueAsNumber;
     const current = this.currentValue();
     const next =
@@ -155,6 +173,7 @@ export class ErpRangeSlider
       return;
     }
 
+    this.activeThumb.set(thumb);
     const current = this.currentValue();
     let value = thumb === 'lower' ? current.lower : current.upper;
 
@@ -178,14 +197,38 @@ export class ErpRangeSlider
     this.commitUserValue(next);
   }
 
-  protected handleNativeFocus(): void {
+  protected handleNativeFocus(thumb: ErpRangeSliderThumb): void {
     if (!this.rangeEffectiveDisabled()) {
+      this.activeThumb.set(thumb);
       this.handleFocus();
     }
   }
 
-  protected handleNativeBlur(): void {
+  protected handleNativeBlur(thumb: ErpRangeSliderThumb): void {
+    if (this.activeThumb() === thumb) {
+      this.activeThumb.set(null);
+    }
     this.handleBlur();
+  }
+
+  protected handlePointerDown(thumb: ErpRangeSliderThumb): void {
+    if (!this.rangeEffectiveDisabled()) {
+      this.activeThumb.set(thumb);
+    }
+  }
+
+  protected handlePointerEnd(thumb: ErpRangeSliderThumb): void {
+    if (this.activeThumb() === thumb) {
+      this.activeThumb.set(null);
+    }
+  }
+
+  protected tooltipText(thumb: ErpRangeSliderThumb): string {
+    const value =
+      thumb === 'lower'
+        ? this.currentValue().lower
+        : this.currentValue().upper;
+    return this.valueTooltipFormatter()(value, thumb);
   }
 
   protected handleClear(): void {
