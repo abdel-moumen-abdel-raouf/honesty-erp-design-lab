@@ -30,6 +30,7 @@ let nextDateTimeBoxId = 0;
 })
 export class ErpDateTimeBox extends ErpFieldBase<string | null> {
   readonly locale = input('ar-EG');
+  readonly placeholder = input('اختر التاريخ والوقت');
   readonly pattern = input<string | null>(null);
   readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null);
   override readonly trailingIcon = input<ErpIconName | null>('calendar');
@@ -44,7 +45,7 @@ export class ErpDateTimeBox extends ErpFieldBase<string | null> {
   protected readonly dateTimeFocused = computed(() => !this.dateTimeEffectiveDisabled() && this.fieldFocused());
   protected readonly displayValue = computed(() => {
     const value = this.currentValue();
-    if (!value) return 'Select date and time';
+    if (!value) return this.placeholder();
     const [date, time] = value.split('T');
     const digits = resolveContextualPreference(this.digits(), 'field');
     return `${formatDatePreview(date, resolveContextualPreference(this.dateFormat(), 'field'), digits)} ${formatTimePreview(time, this.timeFormat(), digits)}`;
