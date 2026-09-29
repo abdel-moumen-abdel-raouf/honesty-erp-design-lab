@@ -452,7 +452,8 @@ describe('ErpTooltip', () => {
 
     expect(arrow.style.width).toBe('var(--honesty-tooltip-arrow-width)');
     expect(arrow.style.height).toBe('var(--honesty-tooltip-arrow-height)');
-    expect(arrow.style.left).toContain('40px');
+    expect(arrow.style.left).toBe('40px');
+    expect(arrow.style.transform).toBe('translateX(-50%)');
     expect(arrow.style.right).toBe('');
     expect(arrow.style.bottom).toContain('--honesty-tooltip-arrow-height');
 
@@ -466,9 +467,41 @@ describe('ErpTooltip', () => {
     expect(arrow.style.width).toBe('var(--honesty-tooltip-arrow-height)');
     expect(arrow.style.height).toBe('var(--honesty-tooltip-arrow-width)');
     expect(arrow.style.left).toContain('--honesty-tooltip-arrow-height');
-    expect(arrow.style.top).toContain('20px');
+    expect(arrow.style.top).toBe('20px');
+    expect(arrow.style.transform).toBe('translateY(-50%)');
   });
 
+  it('centers arrow coordinates explicitly on the cross-axis for every physical placement', () => {
+    const fixture = create();
+    const instance = fixture.debugElement.children[0].componentInstance as ErpTooltip;
+    const apply = (placement: 'top' | 'bottom' | 'left' | 'right') => {
+      const arrow = document.createElement('span');
+      (instance as unknown as {
+        applyArrowGeometry(
+          arrowElement: HTMLElement,
+          result: {x: number; y: number; placement: 'top' | 'bottom' | 'left' | 'right'; arrowCrossAxisCenter: number},
+        ): void;
+      }).applyArrowGeometry(arrow, {
+        x: 0,
+        y: 0,
+        placement,
+        arrowCrossAxisCenter: 18,
+      });
+      return arrow;
+    };
+
+    for (const placement of ['top', 'bottom'] as const) {
+      const arrow = apply(placement);
+      expect(arrow.style.left).toBe('18px');
+      expect(arrow.style.transform).toBe('translateX(-50%)');
+    }
+
+    for (const placement of ['left', 'right'] as const) {
+      const arrow = apply(placement);
+      expect(arrow.style.top).toBe('18px');
+      expect(arrow.style.transform).toBe('translateY(-50%)');
+    }
+  });
   it('renders the private nonsemantic arrow only when requested', () => {
     const fixture = create();
     const instance = fixture.debugElement.children[0].componentInstance as ErpTooltip;

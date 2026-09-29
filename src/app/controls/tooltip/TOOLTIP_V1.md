@@ -89,7 +89,10 @@ The arrow is private, optional, nonsemantic evidence and uses one canonical
 geometry in every direction: Reference `space-16` is the base and `space-8` is
 the depth. Side placements rotate that same geometry; they do not shrink it.
 The arrow is recomputed from the resolved physical placement and the trigger
-center after every reposition/flip. These geometry values are private
+center after every reposition/flip. Cross-axis safe inset is symmetric: when a
+compact Tooltip cannot afford the full configured inset on both sides, the
+inset contracts symmetrically so the arrow is not biased down/up/left/right.
+These geometry values are private
 implementation contracts and are not consumer styling API.
 
 ## Motion and ownership

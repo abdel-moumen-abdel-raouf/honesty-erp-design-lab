@@ -33,5 +33,6 @@ tests, and the ErpTooltip governance gate must remain consistent with it.
 Deterministic coverage is required for preferred placement, opposite fallback,
 perpendicular fallback, all-sides failure/clamp, LTR/RTL logical placement,
 scroll/resize reposition, trigger/arrow alignment, resolved-placement arrow
-orientation, canonical arrow size, body+arrow motion ownership, semantic layer
+orientation, exact cross-axis centering including compact surfaces, canonical
+arrow size, body+arrow motion ownership, semantic layer
 usage, and preservation of plain/rich/interactive semantics.

@@ -128,11 +128,22 @@ export function calculateAnchoredOverlayGeometry(
   const rawCenter = horizontal
     ? anchorCenterX - left
     : anchorCenterY - top;
-  const arrowCrossAxisCenter = clamp(
-    rawCenter,
-    input.arrowSafeInset + halfArrowBase,
-    crossSize - input.arrowSafeInset - halfArrowBase,
-  );
+  const arrowCrossAxisCenter =
+    crossSize <= input.arrowWidth
+      ? crossSize / 2
+      : (() => {
+          const maximumSymmetricSafeInset =
+            (crossSize - input.arrowWidth) / 2;
+          const effectiveSafeInset = Math.min(
+            input.arrowSafeInset,
+            maximumSymmetricSafeInset,
+          );
+          return clamp(
+            rawCenter,
+            effectiveSafeInset + halfArrowBase,
+            crossSize - effectiveSafeInset - halfArrowBase,
+          );
+        })();
 
   return {x: left, y: top, placement, arrowCrossAxisCenter};
 }

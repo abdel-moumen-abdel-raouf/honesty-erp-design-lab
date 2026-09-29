@@ -80,4 +80,23 @@ describe('calculateAnchoredOverlayGeometry', () => {
     const edge = calculateAnchoredOverlayGeometry({...base, preferredPlacement: 'end', anchor: {left: 100, top: 0, right: 140, bottom: 10, width: 40, height: 10}});
     expect(edge.arrowCrossAxisCenter).toBe(16);
   });
+  it('centers a side arrow when the cross-axis cannot afford the full safe inset', () => {
+    const result = calculateAnchoredOverlayGeometry({
+      ...base,
+      preferredPlacement: 'start',
+      surfaceHeight: 24,
+    });
+    expect(result.placement).toBe('left');
+    expect(result.arrowCrossAxisCenter).toBe(12);
+  });
+
+  it('centers a top arrow when the cross-axis cannot afford the full safe inset', () => {
+    const result = calculateAnchoredOverlayGeometry({
+      ...base,
+      surfaceWidth: 24,
+    });
+    expect(result.placement).toBe('top');
+    expect(result.arrowCrossAxisCenter).toBe(12);
+  });
+
 });

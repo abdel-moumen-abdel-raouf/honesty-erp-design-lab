@@ -464,16 +464,19 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
     arrow.style.right = '';
     arrow.style.top = '';
     arrow.style.bottom = '';
+    arrow.style.transform = '';
 
     const horizontal = result.placement === 'top' || result.placement === 'bottom';
     if (horizontal) {
       arrow.style.width = 'var(--honesty-tooltip-arrow-width)';
       arrow.style.height = 'var(--honesty-tooltip-arrow-height)';
-      arrow.style.left = `calc(${result.arrowCrossAxisCenter}px - (var(--honesty-tooltip-arrow-width) / 2))`;
+      arrow.style.left = `${result.arrowCrossAxisCenter}px`;
+      arrow.style.transform = 'translateX(-50%)';
     } else {
       arrow.style.width = 'var(--honesty-tooltip-arrow-height)';
       arrow.style.height = 'var(--honesty-tooltip-arrow-width)';
-      arrow.style.top = `calc(${result.arrowCrossAxisCenter}px - (var(--honesty-tooltip-arrow-width) / 2))`;
+      arrow.style.top = `${result.arrowCrossAxisCenter}px`;
+      arrow.style.transform = 'translateY(-50%)';
     }
 
     if (result.placement === 'top') {
