@@ -15,7 +15,10 @@ import {
   resolveDomainPattern,
 } from '../input-family/domain-validation';
 import {ErpFieldBase} from '../input-family/field-base';
-import {ErpInputConfigurationState} from '../input-family/input-contracts';
+import {
+  ErpInputConfigurationState,
+  ErpInputValidationIssue,
+} from '../input-family/input-contracts';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
 
 let nextUrlBoxId = 0;
@@ -43,6 +46,8 @@ export class ErpUrlBox extends ErpFieldBase<string> {
   readonly readonly = input(false, {transform: booleanAttribute});
   readonly autocomplete = input('url');
   readonly pattern = input<string | null>(null);
+  readonly minLength = input<number | null>(null);
+  readonly maxLength = input<number | null>(null);
 
   protected readonly controlId = `erp-url-box-${++nextUrlBoxId}`;
   private readonly draftText = signal('');
@@ -92,14 +97,58 @@ export class ErpUrlBox extends ErpFieldBase<string> {
   }
 
   protected override normalizeValue(value: unknown): string {
-    if (value === null || value === undefined || value === '') {
-      return '';
+    return value === null || value === undefined ? '' : String(value);
+  }
+
+  protected override validateCandidate(
+    value: unknown,
+  ): readonly ErpInputValidationIssue[] {
+    const source = String(value ?? '');
+    if (source.length === 0) {
+      return [];
     }
 
-    const source = String(value);
-    return isHttpUrlDomainValue(source, this.effectivePattern().regex)
-      ? source
-      : '';
+    const issues: ErpInputValidationIssue[] = [];
+
+    if (
+      this.minLength() !== null &&
+      source.length < (this.minLength() as number)
+    ) {
+      issues.push(
+        this.validationIssue(
+          'url.min-length',
+          `يجب ألا يقل طول عنوان الرابط عن ${this.minLength()} حرفًا.`,
+          'constraint',
+          {minLength: this.minLength(), actualLength: source.length},
+        ),
+      );
+    }
+
+    if (
+      this.maxLength() !== null &&
+      source.length > (this.maxLength() as number)
+    ) {
+      issues.push(
+        this.validationIssue(
+          'url.max-length',
+          `يجب ألا يزيد طول عنوان الرابط عن ${this.maxLength()} حرفًا.`,
+          'constraint',
+          {maxLength: this.maxLength(), actualLength: source.length},
+        ),
+      );
+    }
+
+    if (!isHttpUrlDomainValue(source, this.effectivePattern().regex)) {
+      issues.push(
+        this.validationIssue(
+          'url.format',
+          'النص المُدخل ليس عنوان رابط إلكتروني صالحًا.',
+          'domain',
+        ),
+      );
+    }
+
+    return issues;
   }
 
   protected handleInput(event: Event): void {
@@ -110,12 +159,7 @@ export class ErpUrlBox extends ErpFieldBase<string> {
     const value = (event.target as HTMLInputElement).value;
     this.draftText.set(value);
 
-    if (
-      value === '' ||
-      isHttpUrlDomainValue(value, this.effectivePattern().regex)
-    ) {
-      this.commitUserValue(value);
-    }
+    this.commitUserValue(value);
   }
 
   protected handleNativeFocus(): void {
