@@ -1,25 +1,6 @@
 <erp-stack class="selection-picker" gap="default">
   @if (data.mode === 'color') {
-    <erp-inline class="color-mode-switch" gap="tight" wrap="wrap">
-      <erp-button
-        data-system-colors-mode
-        [label]="data.actionLabels.systemColors"
-        [variant]="colorMode() === 'system' ? 'solid' : 'outline'"
-        tone="neutral"
-        size="sm"
-        (pressed)="setColorMode('system')"
-      />
-      <erp-button
-        data-free-color-mode
-        [label]="data.actionLabels.freeColor"
-        [variant]="colorMode() === 'free' ? 'solid' : 'outline'"
-        tone="neutral"
-        size="sm"
-        (pressed)="setColorMode('free')"
-      />
-    </erp-inline>
-
-    @if (colorMode() === 'system') {
+    @if (data.colorMode === 'system') {
       <div class="system-colors" data-system-colors>
         @for (group of systemColorGroups; track group.family) {
           <erp-stack
