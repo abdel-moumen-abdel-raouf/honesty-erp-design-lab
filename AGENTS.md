@@ -1047,3 +1047,23 @@ Current test-only correction:
 
 Assertions are unchanged; timeout limits remain unchanged; production source is
 unchanged.
+
+
+## SearchBox close/top-layer invariant — 2026-09-29
+
+SearchBox dropdown visual closure is not sufficient.
+
+Mandatory close invariant:
+- native Popover/top layer must be released immediately when close begins;
+- invisible leaving surfaces must be inert + pointer-noninteractive;
+- open-stack/dismissal listeners release immediately;
+- no delayed timer may restore trigger focus;
+- Selection/Close/Escape focus restoration, when requested, occurs immediately;
+- outside dismissal does not restore focus;
+- close timer may perform bookkeeping only.
+
+Current source:
+`4ad7e14c3578d8e0973b1e25f1aa4fc6c4846212`.
+
+Inputs SearchBox review instances use inherited `clearable`.
+Fresh full verification is required.

@@ -208,3 +208,30 @@ Test-only correction:
 
 Fresh full verification remains required before Inputs may enter Product Owner
 runtime re-review.
+
+
+## 2026-09-29 — runtime re-test reopened SearchBox close lifecycle
+
+Product Owner proved the prior implementation did not fully solve SearchBox
+interaction teardown.
+
+Observed:
+- select result;
+- dropdown appears closed;
+- click lower field;
+- focus can be rejected/stolen;
+- SearchBox can select a different result as if dropdown were still active;
+- no standard clear action visible.
+
+Implemented correction:
+- immediate native Popover/top-layer release on close;
+- immediate hit-area release;
+- no delayed focus restoration;
+- hardened AnchoredOverlayController native hide;
+- clearable review instances.
+
+Source checkpoints:
+- `d274bdd2697d4d808f029bb1892ac0ee7591b589`;
+- `4ad7e14c3578d8e0973b1e25f1aa4fc6c4846212`.
+
+Finding remains open until Product Owner runtime re-test confirms resolution.

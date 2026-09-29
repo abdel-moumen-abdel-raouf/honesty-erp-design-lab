@@ -588,3 +588,26 @@ No timeout was raised and no production behavior changed.
 
 Next action:
 rerun complete `npm run verify:clean`.
+
+
+### 2026-09-29 — SearchBox closed-dropdown hit/focus blocker corrected
+
+Runtime re-test demonstrated that visible closure was not sufficient: native
+Popover lifetime and delayed focus restoration could survive until exit timer
+completion.
+
+Fixed by:
+- `d274bdd2697d4d808f029bb1892ac0ee7591b589`;
+- `4ad7e14c3578d8e0973b1e25f1aa4fc6c4846212`.
+
+New law:
+**SearchBox close releases native top layer and hit area immediately; timers may
+only finalize bookkeeping and may never restore focus later.**
+
+SearchBox review evidence now enables Clear.
+
+Next:
+1. fresh `npm run verify:clean`;
+2. Product Owner reproduces the exact select-then-click-lower-field scenario;
+3. verify Clear;
+4. continue Inputs review only after acceptance.

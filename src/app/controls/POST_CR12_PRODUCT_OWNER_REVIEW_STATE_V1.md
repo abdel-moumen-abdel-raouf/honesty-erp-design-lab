@@ -938,3 +938,24 @@ The test was split by route while preserving identical assertions.
 No runtime source changed.
 
 Fresh full verify remains mandatory.
+
+
+## 2026-09-29 — SearchBox invisible/top-layer runtime blocker corrected
+
+Product Owner confirmed a real runtime defect after apparent SearchBox closure:
+lower fields could fail to retain focus and another result could be selected as
+though the dropdown remained active.
+
+Corrections:
+- `d274bdd2697d4d808f029bb1892ac0ee7591b589`
+- `4ad7e14c3578d8e0973b1e25f1aa4fc6c4846212`
+
+Native Popover top-layer teardown is now immediate at close start. Delayed focus
+restoration was removed; close timers cannot steal later field focus.
+
+Inputs showcase SearchBoxes now enable inherited clearable behavior.
+
+Status:
+- runtime correction implemented;
+- full verification pending;
+- Inputs remains Product Owner BLOCKED until re-test accepts the behavior.

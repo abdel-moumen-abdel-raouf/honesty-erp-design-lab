@@ -24,48 +24,50 @@ Branch:
 
 ## Current state
 
-Latest verification-follow-up source checkpoint:
+Latest source-affecting runtime correction:
 
-`72fa7821030e2ced6ec44f6d8eaf0d2b3b2939d2`
-`fix(test): isolate direct-route app integration cases`
+`4ad7e14c3578d8e0973b1e25f1aa4fc6c4846212`
+`fix(inputs): harden SearchBox popover teardown`
 
-Product Owner local verification at:
-`f8ab6433636f6adefdd43d7613545aa87041560f`
+Product Owner runtime re-test found the SearchBox dropdown still retained an
+effective interaction/focus footprint after selection and apparent closure:
+- clicking a later field below the SearchBox could fail to focus it;
+- a different SearchBox result could be selected as if the closed dropdown were
+  still active;
+- the review SearchBox instances did not expose the standard clear action.
 
-confirmed:
-- every governance gate PASS;
-- Angular lint PASS;
-- SearchBox suite 11/11 PASS;
-- Temporal picker suite 14/14 PASS;
-- Selection picker suite 16/16 PASS;
-- Inputs showcase suite 14/14 PASS;
-- 86 / 87 test files PASS;
-- 625 / 626 tests PASS.
-
-The only remaining failure was:
-`src/app/app.spec.ts`
-`renders Foundation, Inputs, and Overlays through the same direct document model`
-
-The test timed out at approximately 5.2 seconds because one Vitest test executed
-three lazy-route navigations and complete route renders sequentially.
-
-No runtime/production failure was demonstrated.
+Root cause in the close lifecycle:
+- SearchBox entered a `leaving` phase but delayed native
+  `hidePopover()` until the exit-duration timer completed;
+- focus restoration was also delayed until that timer completed;
+- therefore a visually closing/closed control could still own native top-layer
+  lifetime and could later steal focus from a field the user activated next.
 
 Correction:
-- the same direct single-document assertions are now preserved as three isolated
-  route integration tests;
-- no timeout limit was increased;
-- no production source changed.
+- native Popover teardown now occurs immediately when dropdown close begins;
+- open-stack/dismissal listeners are released immediately;
+- surface becomes inert, pointer-noninteractive, and aria-hidden immediately;
+- Selection/Close/Escape focus restoration happens synchronously in the close
+  event, never from a later timer;
+- the later timer only finalizes internal phase/bookkeeping;
+- `AnchoredOverlayController.hide()` now attempts `hidePopover()` directly
+  inside try/catch instead of depending on `:popover-open` matching first;
+- tests prove the Popover leaves the top layer immediately and that a field
+  focused afterward retains focus even when close timers complete;
+- SearchBox review instances now enable inherited `clearable`, so a committed
+  search value exposes the standard clear action.
 
 Verification distinction:
 
-Latest prior **Fully Green** checkout remains:
-`50ae8e5f9f9cc537435217a644548c10bd097ecb`
+The latest previously verified technical baseline remains
+`50ae8e5f9f9cc537435217a644548c10bd097ecb`.
+The current source has not yet completed a fresh full `npm run verify:clean`
+after this runtime correction.
 
-Current source is still **verification pending** until a fresh full
-`npm run verify:clean` completes end-to-end.
+Inputs remains Product Owner BLOCKED until:
+1. fresh technical verification;
+2. Product Owner runtime re-test confirms the stale/invisible dropdown behavior
+   is gone;
+3. Light/Dark Inputs review is accepted.
 
-Inputs remains Product Owner BLOCKED pending technical green + runtime/Light/Dark
-re-review. Tooltip runtime re-review also remains pending.
-
-Read `NEW_CHAT_HANDOFF.md` for complete state.
+Read `NEW_CHAT_HANDOFF.md` for the complete state.

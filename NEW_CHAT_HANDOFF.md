@@ -1203,3 +1203,90 @@ now its own test case. This avoids an accumulated timing failure without:
 
 Verification status:
 - source remains NOT Fully Green until fresh full `npm run verify:clean` passes.
+
+
+---
+
+# 29. 2026-09-29 — SEARCHBOX CLOSED-POPOVER HIT/FOCUS RUNTIME BLOCKER CORRECTED
+
+Product Owner runtime re-test showed that the SearchBox dropdown still behaved as
+if interactive after it visually closed.
+
+Observed Product Owner evidence:
+- choose a dropdown result;
+- dropdown appears closed;
+- click a lower input field;
+- lower field may not retain focus;
+- SearchBox selection may change again as though a result row were still hit;
+- selected SearchBox had no clear action visible.
+
+This is a real runtime blocker, not a test-only issue.
+
+## Root cause
+
+The dropdown close lifecycle previously:
+1. set phase to `leaving`;
+2. marked surface inert;
+3. waited for exit transition duration;
+4. only then called `controller.hide()` / native `hidePopover()`;
+5. only then restored trigger focus.
+
+That design allowed native top-layer lifetime and delayed focus restoration to
+outlive the visible close transition.
+
+## Source corrections
+
+Primary runtime correction:
+- `d274bdd2697d4d808f029bb1892ac0ee7591b589`
+  `fix(inputs): release SearchBox top layer on close`
+
+Hardening follow-up:
+- `4ad7e14c3578d8e0973b1e25f1aa4fc6c4846212`
+  `fix(inputs): harden SearchBox popover teardown`
+
+Implemented invariants:
+- close begins -> surface immediately inert;
+- close begins -> `pointer-events:none` immediately;
+- close begins -> `aria-hidden=true` immediately;
+- close begins -> native Popover is hidden immediately;
+- close begins -> SearchBox removed from open stack immediately;
+- close begins -> dismissal listeners detached immediately;
+- Selection/Close/Escape may restore trigger focus immediately, within the same
+  close event;
+- outside dismissal does not restore focus;
+- no timer is allowed to restore focus later;
+- exit timer is bookkeeping only;
+- final cleanup clears inert/pointer/aria state for the next opening;
+- AnchoredOverlayController teardown attempts native `hidePopover()`
+  unconditionally when available, protected by try/catch.
+
+## Regression evidence added
+
+SearchBox tests now prove:
+- selected result closes the native Popover immediately;
+- a subsequently focused input remains focused after all close timers run;
+- no second result commit occurs after closure;
+- explicit Close releases top layer immediately;
+- clearable dropdown exposes and commits the standard clear action.
+
+AnchoredOverlayController test now proves:
+- native hide is attempted even if `:popover-open` pseudo-state matching is
+  unavailable/throws.
+
+## Clear action
+
+Inputs showcase SearchBox instances now enable inherited `clearable` for:
+- dropdown mode;
+- modal mode;
+- inline mode.
+
+The clear action remains standard Field Family behavior and is visible when a
+committed value exists.
+
+## Verification status
+
+Current source checkpoint:
+`4ad7e14c3578d8e0973b1e25f1aa4fc6c4846212`
+
+Fresh full `npm run verify:clean` is mandatory.
+Inputs remains Product Owner BLOCKED pending runtime re-test and visual review.
