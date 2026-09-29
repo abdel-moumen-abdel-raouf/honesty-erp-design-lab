@@ -38,9 +38,20 @@ export class ErpTemporalPickerContent implements OnDestroy {
   private readonly frameActionCleanup = [
     this.ref.registerFrameAction('confirm', () => this.confirm()),
     this.ref.registerFrameAction('cancel', () => this.cancel()),
+    ...(this.data.mode === 'time' || this.data.mode === 'datetime'
+      ? [this.ref.registerFrameAction('now', () => this.selectNow())]
+      : []),
     ...(this.data.mode === 'time'
       ? []
       : [this.ref.registerFrameAction('today', () => this.selectToday())]),
+    ...(this.data.mode === 'range'
+      ? [
+          this.ref.registerFrameAction('previous-week', () => this.selectRangePreset('previous-week')),
+          this.ref.registerFrameAction('next-week', () => this.selectRangePreset('next-week')),
+          this.ref.registerFrameAction('previous-month-range', () => this.selectRangePreset('previous-month')),
+          this.ref.registerFrameAction('next-month-range', () => this.selectRangePreset('next-month')),
+        ]
+      : []),
     ...(this.data.clearable
       ? [this.ref.registerFrameAction('clear', () => this.clear())]
       : []),
@@ -82,6 +93,33 @@ export class ErpTemporalPickerContent implements OnDestroy {
     }
     return this.stagedDate() !== null;
   });
+  private readonly hasValidConfirmation = computed(() => {
+    if (this.data.mode === 'range') {
+      const range = this.stagedRange();
+      return Boolean(
+        range.start &&
+        range.end &&
+        !this.dateDisabled(range.start) &&
+        !this.dateDisabled(range.end),
+      );
+    }
+
+    if (this.data.mode === 'time') {
+      return this.timeValue() !== null;
+    }
+
+    if (this.data.mode === 'datetime') {
+      const date = this.stagedDate();
+      return Boolean(
+        date &&
+        !this.dateDisabled(date) &&
+        this.timeValue() !== null,
+      );
+    }
+
+    const date = this.stagedDate();
+    return Boolean(date && !this.dateDisabled(date));
+  });
   protected readonly monthLabel = computed(() =>
     new Intl.DateTimeFormat(this.data.locale ?? undefined, {month: 'long', year: 'numeric'}).format(parseIsoDate(this.monthAnchor()) as Date),
   );
@@ -108,15 +146,36 @@ export class ErpTemporalPickerContent implements OnDestroy {
 
   constructor() {
     effect(() => {
+      this.ref.updateFrameActionState('confirm', {
+        disabled: !this.hasValidConfirmation(),
+      });
+
       if (this.data.clearable) {
         this.ref.updateFrameActionState('clear', {
           disabled: !this.hasStagedValue(),
         });
       }
+
       if (this.data.mode !== 'time') {
         this.ref.updateFrameActionState('today', {
           disabled: this.dateDisabled(this.today),
         });
+      }
+
+      if (this.data.mode === 'range') {
+        for (const [action, preset] of [
+          ['previous-week', 'previous-week'],
+          ['next-week', 'next-week'],
+          ['previous-month-range', 'previous-month'],
+          ['next-month-range', 'next-month'],
+        ] as const) {
+          const range = this.rangePreset(preset);
+          this.ref.updateFrameActionState(action, {
+            disabled:
+              this.dateDisabled(range.start as string) ||
+              this.dateDisabled(range.end as string),
+          });
+        }
       }
     });
   }
@@ -139,6 +198,47 @@ export class ErpTemporalPickerContent implements OnDestroy {
     this.cursor.set(this.today);
     this.monthAnchor.set(this.today.slice(0, 7) + '-01');
     this.selectDate(this.today);
+  }
+
+  protected selectNow(): void {
+    const now = new Date();
+    const step = Math.max(
+      1,
+      Math.min(60, Math.trunc(this.data.minuteStep)),
+    );
+    const minute = Math.floor(now.getMinutes() / step) * step;
+    const hour = padTemporal(now.getHours());
+    const minuteValue = padTemporal(minute);
+
+    this.stagedHour.set(hour);
+    this.stagedMinute.set(minuteValue);
+
+    if (this.data.mode === 'datetime') {
+      const today = toIsoDate(now);
+      this.stagedDate.set(today);
+      this.cursor.set(today);
+      this.monthAnchor.set(today.slice(0, 7) + '-01');
+    }
+  }
+
+  protected selectRangePreset(
+    preset: 'previous-week' | 'next-week' | 'previous-month' | 'next-month',
+  ): void {
+    const range = this.rangePreset(preset);
+    if (
+      range.start === null ||
+      range.end === null ||
+      this.dateDisabled(range.start) ||
+      this.dateDisabled(range.end)
+    ) {
+      return;
+    }
+
+    this.stagedRange.set(range);
+    this.rangeAnchor.set(null);
+    this.rangePreviewCandidate.set(null);
+    this.cursor.set(range.start);
+    this.monthAnchor.set(range.start.slice(0, 7) + '-01');
   }
 
   protected selectDate(value: string): void {
@@ -314,6 +414,33 @@ export class ErpTemporalPickerContent implements OnDestroy {
     const hour = this.stagedHour();
     const minute = this.stagedMinute();
     return hour && minute ? `${hour}:${minute}` : null;
+  }
+
+  private rangePreset(
+    preset: 'previous-week' | 'next-week' | 'previous-month' | 'next-month',
+  ): ErpDateRangeValue {
+    const currentMonthStart = `${this.today.slice(0, 7)}-01`;
+
+    if (preset === 'previous-month') {
+      const start = addMonths(currentMonthStart, -1);
+      return {start, end: addDays(currentMonthStart, -1)};
+    }
+
+    if (preset === 'next-month') {
+      const start = addMonths(currentMonthStart, 1);
+      const followingMonth = addMonths(currentMonthStart, 2);
+      return {start, end: addDays(followingMonth, -1)};
+    }
+
+    const todayDate = parseIsoDate(this.today) as Date;
+    const offset =
+      (todayDate.getDay() - this.data.weekStartsOn + 7) % 7;
+    const currentWeekStart = addDays(this.today, -offset);
+    const start = addDays(
+      currentWeekStart,
+      preset === 'previous-week' ? -7 : 7,
+    );
+    return {start, end: addDays(start, 6)};
   }
 
   private moveMonth(amount: number): void {

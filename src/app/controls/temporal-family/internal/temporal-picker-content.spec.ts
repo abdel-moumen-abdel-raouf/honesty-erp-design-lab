@@ -248,4 +248,147 @@ describe('ErpTemporalPickerContent', () => {
     expect(day(root, '2026-01-15').dataset['selected']).toBe('true');
     expect(day(root, '2026-01-16').dataset['selected']).toBe('true');
   });
+
+  it('keeps Confirm disabled until Time has both hour and minute while Cancel remains enabled', async () => {
+    const {fixture} = await open({...base, mode: 'time', value: null});
+    const root = fixture.nativeElement as HTMLElement;
+    const confirm = root.querySelector<HTMLButtonElement>(
+      '[data-overlay-frame-action-id="confirm"] button',
+    ) as HTMLButtonElement;
+    const cancel = root.querySelector<HTMLButtonElement>(
+      '[data-overlay-frame-action-id="cancel"] button',
+    ) as HTMLButtonElement;
+
+    expect(confirm.disabled).toBe(true);
+    expect(cancel.disabled).toBe(false);
+
+    (root.querySelector('[data-time-hour] button') as HTMLButtonElement).click();
+    fixture.detectChanges();
+    expect(confirm.disabled).toBe(true);
+
+    (root.querySelector('[data-time-minute] button') as HTMLButtonElement).click();
+    fixture.detectChanges();
+    expect(confirm.disabled).toBe(false);
+  });
+
+  it('keeps Confirm disabled until a DateRange has both endpoints', async () => {
+    const {fixture} = await open({
+      ...base,
+      mode: 'range',
+      value: {start: null, end: null},
+    });
+    const root = fixture.nativeElement as HTMLElement;
+    const confirm = root.querySelector<HTMLButtonElement>(
+      '[data-overlay-frame-action-id="confirm"] button',
+    ) as HTMLButtonElement;
+
+    expect(confirm.disabled).toBe(true);
+    clickDay(root, '2026-09-10');
+    fixture.detectChanges();
+    expect(confirm.disabled).toBe(true);
+    clickDay(root, '2026-09-12');
+    fixture.detectChanges();
+    expect(confirm.disabled).toBe(false);
+  });
+
+  it('provides Now for Time and DateTime and respects minuteStep by flooring minutes', async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2026, 8, 29, 13, 32));
+
+    const time = await open({
+      ...base,
+      mode: 'time',
+      value: null,
+      minuteStep: 5,
+    });
+    const timeRoot = time.fixture.nativeElement as HTMLElement;
+    const now = timeRoot.querySelector<HTMLButtonElement>(
+      '[data-overlay-frame-action-id="now"] button',
+    ) as HTMLButtonElement;
+    expect(now).toBeTruthy();
+    now.click();
+    time.fixture.detectChanges();
+    const confirm = timeRoot.querySelector<HTMLButtonElement>(
+      '[data-overlay-frame-action-id="confirm"] button',
+    ) as HTMLButtonElement;
+    expect(confirm.disabled).toBe(false);
+    confirm.click();
+    time.manager.completeTransition(time.ref.id, 'leaving');
+    await expect(time.ref.afterClosed).resolves.toEqual({
+      type: 'closed',
+      result: '13:30',
+    });
+
+    const dateTime = await open({
+      ...base,
+      mode: 'datetime',
+      value: null,
+      minuteStep: 5,
+    });
+    const dateTimeRoot = dateTime.fixture.nativeElement as HTMLElement;
+    (
+      dateTimeRoot.querySelector(
+        '[data-overlay-frame-action-id="now"] button',
+      ) as HTMLButtonElement
+    ).click();
+    dateTime.fixture.detectChanges();
+    (
+      dateTimeRoot.querySelector(
+        '[data-overlay-frame-action-id="confirm"] button',
+      ) as HTMLButtonElement
+    ).click();
+    dateTime.manager.completeTransition(dateTime.ref.id, 'leaving');
+    await expect(dateTime.ref.afterClosed).resolves.toEqual({
+      type: 'closed',
+      result: '2026-09-29T13:30',
+    });
+
+    vi.useRealTimers();
+  });
+
+  it('provides complete previous/next week and month DateRange presets', async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2026, 8, 29, 12, 0));
+    const {fixture, manager, ref} = await open({
+      ...base,
+      mode: 'range',
+      value: {start: null, end: null},
+      weekStartsOn: 0,
+    });
+    const root = fixture.nativeElement as HTMLElement;
+
+    for (const action of [
+      'previous-week',
+      'next-week',
+      'previous-month-range',
+      'next-month-range',
+    ]) {
+      expect(
+        root.querySelector(
+          `[data-overlay-frame-action-id="${action}"]`,
+        ),
+      ).not.toBeNull();
+    }
+
+    (
+      root.querySelector(
+        '[data-overlay-frame-action-id="previous-week"] button',
+      ) as HTMLButtonElement
+    ).click();
+    fixture.detectChanges();
+
+    const confirm = root.querySelector<HTMLButtonElement>(
+      '[data-overlay-frame-action-id="confirm"] button',
+    ) as HTMLButtonElement;
+    expect(confirm.disabled).toBe(false);
+    confirm.click();
+    manager.completeTransition(ref.id, 'leaving');
+    await expect(ref.afterClosed).resolves.toEqual({
+      type: 'closed',
+      result: {start: '2026-09-20', end: '2026-09-26'},
+    });
+
+    vi.useRealTimers();
+  });
+
 });
