@@ -549,6 +549,7 @@ export function validateSearchBoxPopupContracts(
 
   for (const requirement of [
     "'--_honesty-search-box-popup-trigger-inline-size'",
+    "trigger.closest<HTMLElement>('.field-frame__control')",
     'anchor.getBoundingClientRect().width',
     "this.popupPhase.set('leaving')",
     'setTimeout(',
@@ -1662,6 +1663,7 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     "filteredItems = computed(",
     "query = signal('')",
     'this.commitUserValue(item.value)',
+    "trigger.closest<HTMLElement>('.field-frame__control')",
     "surface.style.setProperty('--_honesty-search-box-popup-trigger-inline-size', anchor.getBoundingClientRect().width)",
     "this.popupPhase.set('leaving')",
     'setTimeout(() => this.finishClose())',
