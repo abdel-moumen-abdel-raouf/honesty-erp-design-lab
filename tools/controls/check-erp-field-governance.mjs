@@ -622,6 +622,25 @@ export function validateSearchBoxPopupContracts(
     }
   }
 
+  const basePopupStyle =
+    styleSource.match(/\.search-box__popup\s*\{([\s\S]*?)\n\}/)?.[1] ?? '';
+
+  if (/\bdisplay\s*:/.test(basePopupStyle)) {
+    errors.push(
+      'SearchBox: closed native Popover rule must not override browser display:none',
+    );
+  }
+
+  if (
+    !/\.search-box__popup:popover-open\s*\{[\s\S]*?\bdisplay\s*:\s*grid\s*;/.test(
+      styleSource,
+    )
+  ) {
+    errors.push(
+      'SearchBox: grid layout must be enabled only in :popover-open state',
+    );
+  }
+
   if (
     !styleSource.includes("dir='rtl'") ||
     !styleSource.includes('prefers-reduced-motion: reduce') ||
@@ -1734,7 +1753,8 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     "dir='rtl'",
     'prefers-reduced-motion: reduce',
     'var(--honesty-search-box-popup-max-block-size)',
-    'inline-size: min( var(--_honesty-search-box-popup-trigger-inline-size)',
+    '.search-box__popup { inline-size: min( var(--_honesty-search-box-popup-trigger-inline-size) }',
+    '.search-box__popup:popover-open { display: grid; }',
     ".search-box__popup[data-search-popup-phase='leaving']",
     'pointer-events: none;',
   ].join('\n');
@@ -1774,6 +1794,24 @@ export class ErpImagePicker extends ErpFileSelectionBase {
       validSearchTemplate,
       validSearchTokens,
       validSearchStyles.replace('pointer-events: none;', ''),
+    ],
+    [
+      validSearchSource,
+      validSearchTemplate,
+      validSearchTokens,
+      validSearchStyles.replace(
+        '.search-box__popup {',
+        '.search-box__popup { display: grid;',
+      ),
+    ],
+    [
+      validSearchSource,
+      validSearchTemplate,
+      validSearchTokens,
+      validSearchStyles.replace(
+        '.search-box__popup:popover-open { display: grid; }',
+        '',
+      ),
     ],
   ].entries()) {
     if (validateSearchBoxPopupContracts(...fixture).length === 0) {

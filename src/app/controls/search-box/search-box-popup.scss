@@ -5,7 +5,6 @@
   position: fixed;
   inset: auto;
   box-sizing: border-box;
-  display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   gap: var(--honesty-search-box-popup-content-gap);
   inline-size: min(
@@ -38,6 +37,12 @@
       var(--honesty-search-box-popup-exit-easing),
     transform var(--honesty-search-box-popup-exit-duration)
       var(--honesty-search-box-popup-exit-easing);
+}
+
+// Native Popover hidden state owns display:none. Never set display on the
+// closed [popover] rule or the invisible surface can remain hit-testable.
+.search-box__popup:popover-open {
+  display: grid;
 }
 
 .search-box__popup[data-search-popup-phase='open'] {

@@ -372,6 +372,10 @@ their concrete ERP controls.
   an invisible hit target or perform delayed focus restoration that can steal
   focus from a subsequently activated field. Selection/Close/Escape focus
   restoration is immediate; outside dismissal never restores focus.
+- Native Popover visibility owns the closed `display: none` state. The base
+  `.search-box__popup` rule must never set `display`; grid layout is applied
+  only while `:popover-open`. This prevents an opacity-hidden closed popup
+  from remaining as a fixed hit-test surface.
 - SearchBox uses the inherited `clearable` contract. When enabled and a
   committed value exists, the Field chrome exposes the standard clear action.
 - The anchored dropdown outer inline size equals the complete visible Field
