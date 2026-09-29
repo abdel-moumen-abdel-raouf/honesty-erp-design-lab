@@ -312,8 +312,36 @@ describe('ErpTemporalPickerContent', () => {
       '[data-overlay-frame-action-id="now"] button',
     ) as HTMLButtonElement;
     expect(now).toBeTruthy();
+
+    let revealFrame: FrameRequestCallback | null = null;
+    vi.stubGlobal(
+      'requestAnimationFrame',
+      vi.fn((callback: FrameRequestCallback) => {
+        revealFrame = callback;
+        return 1;
+      }),
+    );
+    const scrollIntoView = vi.fn();
+    Object.defineProperty(HTMLElement.prototype, 'scrollIntoView', {
+      configurable: true,
+      value: scrollIntoView,
+    });
+
     now.click();
     time.fixture.detectChanges();
+
+    expect(
+      timeRoot.querySelector('[data-time-hour][data-selected="true"]')
+        ?.textContent?.trim(),
+    ).toBe('13');
+    expect(
+      timeRoot.querySelector('[data-time-minute][data-selected="true"]')
+        ?.textContent?.trim(),
+    ).toBe('30');
+
+    revealFrame?.(0);
+    expect(scrollIntoView).toHaveBeenCalledTimes(2);
+
     const confirm = timeRoot.querySelector<HTMLButtonElement>(
       '[data-overlay-frame-action-id="confirm"] button',
     ) as HTMLButtonElement;
@@ -352,7 +380,7 @@ describe('ErpTemporalPickerContent', () => {
     vi.useRealTimers();
   });
 
-  it('provides complete previous/next week and month DateRange presets', async () => {
+  it('provides inclusive rolling 7/30-day DateRange presets', async () => {
     vi.useFakeTimers();
     vi.setSystemTime(new Date(2026, 8, 29, 12, 0));
     const {fixture, manager, ref} = await open({
@@ -364,10 +392,10 @@ describe('ErpTemporalPickerContent', () => {
     const root = fixture.nativeElement as HTMLElement;
 
     for (const action of [
-      'previous-week',
-      'next-week',
-      'previous-month-range',
-      'next-month-range',
+      'past-7-days',
+      'next-7-days',
+      'past-30-days',
+      'next-30-days',
     ]) {
       expect(
         root.querySelector(
@@ -376,9 +404,14 @@ describe('ErpTemporalPickerContent', () => {
       ).not.toBeNull();
     }
 
+    expect(root.textContent).toContain('آخر 7 أيام');
+    expect(root.textContent).toContain('7 أيام بدءًا من اليوم');
+    expect(root.textContent).toContain('آخر 30 يومًا');
+    expect(root.textContent).toContain('30 يومًا بدءًا من اليوم');
+
     (
       root.querySelector(
-        '[data-overlay-frame-action-id="previous-week"] button',
+        '[data-overlay-frame-action-id="past-7-days"] button',
       ) as HTMLButtonElement
     ).click();
     fixture.detectChanges();
@@ -391,7 +424,7 @@ describe('ErpTemporalPickerContent', () => {
     manager.completeTransition(ref.id, 'leaving');
     await expect(ref.afterClosed).resolves.toEqual({
       type: 'closed',
-      result: {start: '2026-09-20', end: '2026-09-26'},
+      result: {start: '2026-09-23', end: '2026-09-29'},
     });
 
     vi.useRealTimers();
