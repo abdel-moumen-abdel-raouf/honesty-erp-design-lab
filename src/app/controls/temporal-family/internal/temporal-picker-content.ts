@@ -163,6 +163,18 @@ export class ErpTemporalPickerContent implements OnDestroy {
         });
       }
 
+      if (this.data.mode === 'time' || this.data.mode === 'datetime') {
+        const now = new Date();
+        const nowDate = toIsoDate(now);
+        const nowTime = this.currentSteppedTime(now);
+        this.ref.updateFrameActionState('now', {
+          disabled:
+            this.data.mode === 'time'
+              ? this.timeDisabled(nowTime)
+              : this.dateDisabled(nowDate),
+        });
+      }
+
       if (this.data.mode === 'range') {
         for (const [action, preset] of [
           ['previous-week', 'previous-week'],
@@ -203,16 +215,18 @@ export class ErpTemporalPickerContent implements OnDestroy {
 
   protected selectNow(): void {
     const now = new Date();
-    const step = Math.max(
-      1,
-      Math.min(60, Math.trunc(this.data.minuteStep)),
-    );
-    const minute = Math.floor(now.getMinutes() / step) * step;
-    const hour = padTemporal(now.getHours());
-    const minuteValue = padTemporal(minute);
+    const time = this.currentSteppedTime(now);
 
+    if (
+      (this.data.mode === 'time' && this.timeDisabled(time)) ||
+      (this.data.mode === 'datetime' && this.dateDisabled(toIsoDate(now)))
+    ) {
+      return;
+    }
+
+    const [hour, minute] = time.split(':');
     this.stagedHour.set(hour);
-    this.stagedMinute.set(minuteValue);
+    this.stagedMinute.set(minute);
 
     if (this.data.mode === 'datetime') {
       const today = toIsoDate(now);
@@ -427,6 +441,15 @@ export class ErpTemporalPickerContent implements OnDestroy {
     const hour = this.stagedHour();
     const minute = this.stagedMinute();
     return hour && minute ? `${hour}:${minute}` : null;
+  }
+
+  private currentSteppedTime(now: Date): string {
+    const step = Math.max(
+      1,
+      Math.min(60, Math.trunc(this.data.minuteStep)),
+    );
+    const minute = Math.floor(now.getMinutes() / step) * step;
+    return `${padTemporal(now.getHours())}:${padTemporal(minute)}`;
   }
 
   private rangePreset(

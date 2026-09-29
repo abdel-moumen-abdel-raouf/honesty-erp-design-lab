@@ -421,4 +421,26 @@ describe('ErpTemporalPickerContent', () => {
     expect(confirm.disabled).toBe(true);
   });
 
+
+  it('disables Now when the current Time is outside configured bounds', async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2026, 8, 29, 13, 32));
+
+    const {fixture} = await open({
+      ...base,
+      mode: 'time',
+      value: null,
+      min: '14:00',
+      max: '17:00',
+      minuteStep: 5,
+    });
+    const now = (fixture.nativeElement as HTMLElement).querySelector<HTMLButtonElement>(
+      '[data-overlay-frame-action-id="now"] button',
+    ) as HTMLButtonElement;
+
+    expect(now.disabled).toBe(true);
+
+    vi.useRealTimers();
+  });
+
 });
