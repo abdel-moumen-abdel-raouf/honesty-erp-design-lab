@@ -1086,3 +1086,17 @@ Root-cause checkpoint:
 `5c0562a58eb7c28a21ced50bbfe8964779ad9cc6`.
 
 Governance enforces both the prohibition and required open-state layout rule.
+
+
+## Additional Inputs laws — 2026-09-29
+
+- Never erase/revert invalid domain-text drafts merely because validation fails.
+- Field-family clearable default is intended to be on; developer may opt out.
+- Ghost/Text/Underline require token-owned hover discoverability.
+- RangeSlider native thumb and visual fill coordinates must use the same global
+  min/max domain; crossing is enforced by logic, not by changing native min/max.
+- Active RangeSlider thumb value Tooltip follows the real thumb position.
+- Temporal Now must reveal selected time.
+- DateRange rolling presets use exact inclusive 7/30-day windows.
+- ColorPicker instance mode is fixed: system or free.
+- ItemPicker is select-like; ComboBox is editable type-to-filter.

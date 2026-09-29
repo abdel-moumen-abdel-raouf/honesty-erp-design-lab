@@ -636,3 +636,18 @@ Next:
 1. full `npm run verify:clean`;
 2. exact Product Owner runtime reproduction;
 3. only after acceptance continue Inputs review.
+
+
+### 2026-09-29 — next Inputs correction scope
+
+Next implementation unit must cover:
+- URL/Tel non-destructive validation + automatic feedback;
+- Field clearable default on with opt-out;
+- Ghost/Text/Underline hover state;
+- RangeSlider shared-coordinate geometry + active thumb Tooltips;
+- Time/DateTime Now scroll/reveal;
+- rolling 7/30-day DateRange presets;
+- ColorPicker per-instance system/free mode;
+- Design Lab distinction between ItemPicker and ComboBox.
+
+No source implementation in this documentation turn.

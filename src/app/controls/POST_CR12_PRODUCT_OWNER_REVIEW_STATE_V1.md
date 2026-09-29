@@ -978,3 +978,14 @@ invariant.
 
 Inputs remains BLOCKED until technical verification and Product Owner runtime
 re-test confirm the ghost hit area is gone.
+
+
+## 2026-09-29 — Inputs review expanded
+
+Additional Product Owner decisions are documented in
+`INPUTS_PRODUCT_OWNER_REVIEW_FINDINGS_V1.md`:
+non-destructive domain validation, default clearability, hover visibility,
+RangeSlider geometry/tooltips, Now reveal behavior, rolling date ranges,
+ColorPicker instance mode, and explicit ItemPicker/ComboBox distinction.
+
+Inputs remains BLOCKED.

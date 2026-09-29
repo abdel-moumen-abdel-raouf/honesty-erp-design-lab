@@ -1368,3 +1368,31 @@ Product Owner must reproduce exactly:
 7. verify the standard Clear action is present after committed selection.
 
 Inputs remains BLOCKED until that exact runtime test is accepted.
+
+
+---
+
+# 31. 2026-09-29 — ADDITIONAL INPUTS REVIEW / PRODUCT DECISIONS
+
+Product Owner supplied new visual/runtime findings after the SearchBox work.
+
+Decisions recorded:
+- URL/Tel-like domain validation becomes non-destructive;
+- invalid user text remains visible and receives automatic feedback;
+- Field-family controls become clearable by default with per-instance opt-out;
+- Ghost/Text/Underline gain token-owned hover discoverability;
+- RangeSlider thumb and rail geometry must use one global coordinate system;
+- RangeSlider active thumbs receive moving customizable value Tooltips;
+- Time/DateTime Now must reveal the selected time in scrollable lists;
+- DateRange calendar presets are replaced by rolling:
+  آخر 7 أيام / 7 أيام بدءًا من اليوم / آخر 30 يومًا / 30 يومًا بدءًا من اليوم;
+- ColorPicker mode becomes per-instance `system | free`, with no internal mode switch;
+- ItemPicker and ComboBox both remain, but review evidence must make their
+  select-like vs editable-query interaction distinction obvious.
+
+Exact RangeSlider geometry defect confirmed:
+native lower/upper ranges currently change their own max/min to the counterpart
+value, while visual fill percentages use global min/max. This creates mismatched
+thumb/fill coordinate systems.
+
+No production implementation was performed in this review turn.

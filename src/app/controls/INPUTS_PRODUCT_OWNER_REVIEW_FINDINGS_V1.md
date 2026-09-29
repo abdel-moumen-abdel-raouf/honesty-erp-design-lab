@@ -256,3 +256,100 @@ The base rule no longer declares display. Grid layout is enabled only while
 `:popover-open`.
 
 Finding remains open until Product Owner re-tests the exact scenario.
+
+
+## 2026-09-29 — additional Inputs Product Owner findings and decisions
+
+No production source change is made by this documentation update.
+
+### Domain text fields
+Source confirms UrlBox keeps an invalid draft only while editing and falls back
+to the last committed valid value on blur. TelBox can actively revert invalid
+alphabetic input. FieldBase currently defaults `clearable` to false.
+
+Decision:
+- domain validation must be non-destructive;
+- invalid URL/Tel-like text remains visible for correction;
+- the control surfaces automatic validation feedback rather than deleting or
+  reverting the user's text;
+- Field-family controls become clearable by default, with per-instance opt-out.
+
+### Ghost / Text / Underline discoverability
+Ghost and Text variants currently map to transparent backgrounds/borders and the
+reviewed FieldFrame token contract has no hover-discoverability state.
+
+Decision:
+- add token-owned hover surface/background feedback for Ghost/Text/Underline;
+- keep them lightweight at rest but discoverable on hover/focus.
+
+### RangeSlider
+Exact source-level geometry mismatch:
+- visual selected rail positions use global min/max percentages;
+- lower native range currently uses `max=currentValue().upper`;
+- upper native range currently uses `min=currentValue().lower`;
+- therefore each native thumb is positioned in a changing local range while the
+  visual rail is positioned in the global range. Their coordinate systems do
+  not match, explaining selected fill extending beyond/between incorrect thumb
+  centers.
+
+Decision:
+- native thumb geometry and visual rail use one global coordinate system;
+- crossing prevention remains logic, not changing the native min/max coordinate
+  domain;
+- active lower/upper thumb exposes a moving value Tooltip;
+- Tooltip follows the real thumb position for pointer and keyboard changes;
+- value formatting/content is customizable per instance.
+
+### Time / DateTime Now
+Source confirms Now updates staged hour/minute and selected button variants, but
+time columns are scrollable and no code scrolls the newly selected time into
+view.
+
+Decision:
+- Now must update state and reveal/scroll the selected hour/minute;
+- DateTime must also make selected date/time visibly apparent after Now.
+
+### DateRange preset semantics
+Current implementation is calendar previous/next week/month.
+Product Owner requires rolling periods including today.
+
+Decision:
+remove ambiguous calendar wording and keep useful rolling presets with exact
+labels:
+- `آخر 7 أيام` = today plus previous 6 days;
+- `7 أيام بدءًا من اليوم` = today plus next 6 days;
+- `آخر 30 يومًا` = today plus previous 29 days;
+- `30 يومًا بدءًا من اليوم` = today plus next 29 days.
+
+These rolling presets do not depend on weekStartsOn or month boundaries.
+
+### ColorPicker
+Current ColorPicker has no public mode input. Its overlay includes an internal
+System/Free mode switch.
+
+Decision:
+- add per-instance ColorPicker mode: `system | free`;
+- one instance exposes exactly one mode;
+- remove the internal System/Free switch from production picker content;
+- each configured instance only accepts/commits values of its configured mode.
+
+### ItemPicker vs ComboBox
+Source confirms the two controls are not duplicates at contract level.
+
+ItemPicker:
+- non-editable select-like FieldTrigger;
+- opens picker on activation;
+- optional search occurs inside picker overlay.
+
+ComboBox:
+- editable text field with combobox semantics;
+- typing creates query text in the field and opens searchable picker;
+- only an existing item value is ultimately committed.
+
+Decision:
+- keep both;
+- Design Lab must demonstrate the distinction clearly;
+- ItemPicker evidence should be non-searchable by default and read like a Select;
+- ComboBox evidence must demonstrate type-to-filter from the field itself.
+
+Inputs remains BLOCKED pending implementation and Product Owner re-review.
