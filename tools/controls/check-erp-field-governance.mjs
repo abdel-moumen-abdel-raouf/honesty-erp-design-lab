@@ -563,10 +563,6 @@ export function validateSearchBoxPopupContracts(
     "surface.setAttribute('aria-hidden', 'true');",
     'this.controller?.hide();',
     'this.restoreTriggerFocus();',
-    "surface.style.pointerEvents = 'none';",
-    "surface.setAttribute('aria-hidden', 'true');",
-    'this.controller?.hide();',
-    'this.restoreTriggerFocus();',
   ]) {
     if (!source.includes(requirement)) {
       errors.push(`SearchBox: missing corrected popup lifecycle ${requirement}`);
@@ -1683,6 +1679,9 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     'this.openModal()',
     'this.closeDropdown(true)',
     'surface.inert = true',
+    "surface.style.pointerEvents = 'none';",
+    "surface.setAttribute('aria-hidden', 'true');",
+    'this.restoreTriggerFocus();',
   ].join('\n');
   const validSearchTemplate = [
     '<erp-field-trigger></erp-field-trigger>',

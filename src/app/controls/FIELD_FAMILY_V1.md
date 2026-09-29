@@ -374,8 +374,8 @@ their concrete ERP controls.
   restoration is immediate; outside dismissal never restores focus.
 - SearchBox uses the inherited `clearable` contract. When enabled and a
   committed value exists, the Field chrome exposes the standard clear action.
-- The anchored dropdown outer inline size equals the Field trigger inline size
-  whenever viewport space permits, and only shrinks for the configured viewport
+- The anchored dropdown outer inline size equals the complete visible Field
+  control inline size whenever viewport space permits, and only shrinks for the configured viewport
   inset. It must not grow to a component minimum wider than the trigger.
 - Modal mode opens `ErpSelectionPickerContent` through the shared
   `ErpOverlayManager` and uses dialog/frame semantics. The modal reuses the

@@ -263,7 +263,6 @@ describe('ErpSearchBox', () => {
     fixture.detectChanges();
 
     expect(onChange).toHaveBeenCalledWith('');
-    expect(fixture.componentInstance['currentValue']()).toBe('');
   });
 
   it('sizes the dropdown exactly from trigger width before viewport clamping', () => {

@@ -31,7 +31,7 @@ export class AnchoredOverlayController {
     this.detach();
     if (typeof this.options.surface.hidePopover !== 'function') return;
     try {
-      if (this.options.surface.matches(':popover-open')) this.options.surface.hidePopover();
+      this.options.surface.hidePopover();
     } catch {
       // Native Popover teardown is best-effort after active state/listeners are cleared.
     }

@@ -153,4 +153,39 @@ describe('AnchoredOverlayController', () => {
     vi.useRealTimers();
   });
 
+
+  it('attempts native Popover teardown even when pseudo-state matching is unavailable', () => {
+    const anchor = document.createElement('button');
+    const surface = document.createElement('span');
+    const hidePopover = vi.fn();
+    Object.assign(surface, {
+      showPopover: vi.fn(),
+      hidePopover,
+    });
+    vi.spyOn(surface, 'matches').mockImplementation(() => {
+      throw new DOMException('unsupported pseudo-state');
+    });
+
+    const controller = new AnchoredOverlayController({
+      anchor,
+      surface,
+      readGeometryInput: () => ({
+        preferredPlacement: 'bottom',
+        direction: 'ltr',
+        anchorGap: 0,
+        viewportInset: 0,
+        showArrow: false,
+        arrowWidth: 0,
+        arrowHeight: 0,
+        arrowSafeInset: 0,
+      }),
+      applyGeometry: () => undefined,
+    });
+
+    expect(controller.show()).toBe(true);
+    controller.hide();
+
+    expect(hidePopover).toHaveBeenCalledOnce();
+  });
+
 });
