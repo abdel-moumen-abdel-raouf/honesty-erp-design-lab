@@ -115,8 +115,7 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
   protected readonly triggerDisplayValue = computed(
     () =>
       this.selectedItem()?.label ??
-      (this.mode() === 'inline' ? this.currentValue() : '') ??
-      '',
+      (this.mode() === 'inline' ? this.currentValue() : ''),
   );
   protected readonly clearActionVisible = computed(
     () =>
@@ -322,7 +321,11 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
   }
 
   protected selectResult(item: ErpSearchBoxOption): void {
-    if (item.disabled || !this.commitUserValue(item.value)) {
+    if (
+      this.readonly() ||
+      item.disabled ||
+      !this.commitUserValue(item.value)
+    ) {
       return;
     }
 
@@ -460,6 +463,7 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
       this.activeModalRef = null;
       this.modalOpen.set(false);
       if (
+        !this.readonly() &&
         outcome.type === 'closed' &&
         typeof outcome.result === 'string'
       ) {
