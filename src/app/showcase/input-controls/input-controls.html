@@ -368,11 +368,11 @@
     <erp-grid [columns]="2" gap="md" responsive="auto">
         <erp-surface border="subtle">
           <erp-stack>
-            <erp-color-picker data-color-picker-evidence="system" label="لون النظام — ألوان النظام افتراضيًا" clearable [ngModel]="colorValue()" (ngModelChange)="colorValue.set($event)" />
-            <erp-color-picker data-color-picker-evidence="free" label="لون حر" clearable [ngModel]="freeColorValue()" (ngModelChange)="freeColorValue.set($event)" />
+            <erp-color-picker data-color-picker-evidence="system" label="لون النظام" mode="system" clearable [ngModel]="colorValue()" (ngModelChange)="colorValue.set($event)" />
+            <erp-color-picker data-color-picker-evidence="free" label="لون حر" mode="free" clearable [ngModel]="freeColorValue()" (ngModelChange)="freeColorValue.set($event)" />
             <erp-icon-picker data-icon-picker-evidence label="الأيقونة — افتح شبكة الأيقونات الثابتة" clearable [ngModel]="iconValue()" (ngModelChange)="iconValue.set($event)" />
-            <erp-item-picker data-item-picker-evidence label="العنصر" placeholder="اختر عنصرًا" searchable clearable [items]="pickerItems" [ngModel]="itemValue()" (ngModelChange)="itemValue.set($event)" />
-            <erp-combo-box data-combo-box-evidence label="قائمة البحث والاختيار" placeholder="ابحث في العناصر" [items]="pickerItems" [ngModel]="comboValue()" (ngModelChange)="comboValue.set($event)" />
+            <erp-item-picker data-item-picker-evidence label="اختيار عنصر — Select" placeholder="اختر عنصرًا" clearable [items]="pickerItems" [ngModel]="itemValue()" (ngModelChange)="itemValue.set($event)" />
+            <erp-combo-box data-combo-box-evidence label="بحث واختيار — ComboBox" placeholder="اكتب للبحث في العناصر" [items]="pickerItems" [ngModel]="comboValue()" (ngModelChange)="comboValue.set($event)" />
           </erp-stack>
         </erp-surface>
     </erp-grid>
