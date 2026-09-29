@@ -430,3 +430,25 @@ The ChatGPT tool environment used for the GitHub write does not have a repositor
 4. After technical verification, Product Owner resumes page-by-page visual/runtime review.
 
 No unrelated component redesign or later family work is authorized by this implementation.
+
+## 2026-09-29 — Structural Primitives visual review and screenshot-tool finding
+
+Product Owner supplied full-page `/primitives/structural` screenshots in Dark and Light themes.
+
+External visual review result:
+- no blocking Structural Primitives page-specific defect is evident;
+- ErpContainer, ErpStack, ErpInline, ErpGrid, ErpSurface, ErpSection, and ErpDivider evidence is coherent in both themes;
+- no visible clipping, overlap, broken RTL flow, or page-layout instability was found;
+- no Structural Primitives implementation correction is authorized from this evidence.
+
+Global screenshot-tool finding:
+- generated screenshots include transient capture-progress UI in the Design Lab utility bar;
+- `جاري الالتقاط...` appears in the captured output and the screenshot button is captured in its in-progress state;
+- current `captureScreenshot()` sets `isCapturing=true` and `statusMessage='جاري الالتقاط...'` before `html2canvas()` captures the full App capture root;
+- this is a review-tool cleanliness defect, not a Structural Primitives component defect.
+
+Recommended next action:
+- correct screenshot capture so transient capture-progress UI is omitted from the generated PNG while normal on-screen feedback remains available;
+- then resume page-by-page visual screenshot review.
+
+This finding does not change technical verification state: the no-iframe source still requires a fresh `npm run verify:clean`; last Fully Green source remains `b1b20585adcb272f17835ef8182935353a67d243`.
