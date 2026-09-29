@@ -98,8 +98,11 @@ implementation contracts and are not consumer styling API.
 ## Motion and ownership
 
 Open measures hidden, positions, then runs the selected enter animation on the
-next animation frame. The fixed outer surface remains untransformed and owns anchored measurement,
-fixed placement, collision geometry, and layer. The inner visual/motion assembly
+next animation frame. The fixed outer surface remains untransformed, has explicit zero padding, and
+owns anchored measurement, fixed placement, collision geometry, and layer. The
+zero-padding rule is required because arrow coordinates are calculated in the
+outer surface coordinate space but applied inside the motion assembly; both
+layers must therefore share the same physical origin. The inner visual/motion assembly
 contains both Tooltip body and arrow, so the configured animation moves them as
 one unit. Animate.css classes run only on that inner assembly so visual
 transforms cannot corrupt `getBoundingClientRect()` positioning. Close

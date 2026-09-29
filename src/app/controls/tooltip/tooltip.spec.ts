@@ -415,6 +415,17 @@ describe('ErpTooltip', () => {
     expect(host.open()).toBe(false);
   });
 
+  it('keeps the native popover geometry surface origin identical to the motion assembly origin', () => {
+    const fixture = create();
+    const root = fixture.nativeElement as HTMLElement;
+    const surface = root.querySelector('.erp-tooltip__surface') as HTMLElement;
+    const style = getComputedStyle(surface);
+
+    expect(style.paddingTop).toBe('0px');
+    expect(style.paddingRight).toBe('0px');
+    expect(style.paddingBottom).toBe('0px');
+    expect(style.paddingLeft).toBe('0px');
+  });
   it('converts rem geometry tokens to pixels and uses physical arrow offsets', () => {
     const fixture = create();
     const instance = fixture.debugElement.children[0].componentInstance as ErpTooltip;

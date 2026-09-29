@@ -17,7 +17,8 @@ tests, and the ErpTooltip governance gate must remain consistent with it.
    viewport inset.
 6. Window scroll/resize, visualViewport scroll/resize, anchor resize, and surface
    resize all request one animation-frame-coalesced reposition.
-7. The fixed geometry surface is never animation-transformed.
+7. The fixed geometry surface is never animation-transformed and has zero padding,
+   so geometry coordinates and the inner motion assembly use the same origin.
 8. Tooltip body and arrow live in one visual/motion assembly and enter/exit together.
 9. Arrow orientation comes from the resolved physical placement.
 10. Arrow cross-axis position targets the trigger center and is safe-clamped.
@@ -33,6 +34,7 @@ tests, and the ErpTooltip governance gate must remain consistent with it.
 Deterministic coverage is required for preferred placement, opposite fallback,
 perpendicular fallback, all-sides failure/clamp, LTR/RTL logical placement,
 scroll/resize reposition, trigger/arrow alignment, resolved-placement arrow
-orientation, exact cross-axis centering including compact surfaces, canonical
+orientation, exact cross-axis centering including compact surfaces, zero-padding
+geometry-origin alignment, canonical
 arrow size, body+arrow motion ownership, semantic layer
 usage, and preservation of plain/rich/interactive semantics.

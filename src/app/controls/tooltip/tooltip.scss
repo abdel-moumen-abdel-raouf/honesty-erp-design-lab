@@ -16,6 +16,7 @@
   inset: auto;
   box-sizing: border-box;
   margin: 0;
+  padding: 0;
   inline-size: max-content;
   max-inline-size: min(var(--honesty-tooltip-max-width), calc(100vw - (var(--honesty-tooltip-viewport-inset) * 2)));
   min-inline-size: var(--honesty-tooltip-min-width);

@@ -243,6 +243,9 @@ function validateProductionContracts(files) {
   if (!/:host\(\[data-tooltip-interactive='true'\]\)\s+\.erp-tooltip__surface\[data-phase='open'\]\s*\{\s*pointer-events:\s*auto/.test(style)) errors.push('Interactive Tooltip pointer events must be enabled only in the open phase');
   if (!tokenSource.includes('--honesty-tooltip-layer: var(--honesty-layer-overlay);')) errors.push('Tooltip layer must resolve to the semantic overlay layer');
   if (!style.includes('z-index: var(--honesty-tooltip-layer);')) errors.push('Tooltip surface must consume the Tooltip layer token');
+  if (!/\.erp-tooltip__surface\s*\{[\s\S]*?\bpadding\s*:\s*0\s*;/.test(style)) {
+    errors.push('Tooltip geometry surface must have zero padding so arrow coordinates and the motion assembly share one origin');
+  }
   const templateSource = files.get(TOOLTIP_TEMPLATE) ?? '';
   const motionStart = templateSource.indexOf('<span #motionLayer class="erp-tooltip__motion">');
   const arrowStart = templateSource.indexOf('<span #arrow class="erp-tooltip__arrow" aria-hidden="true"></span>');
