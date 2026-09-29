@@ -980,6 +980,7 @@ export function validateTemporalCorrectionContracts(files) {
     !content.includes("registerFrameAction('next-month-range'") ||
     !content.includes("registerFrameAction('clear'") ||
     !content.includes("updateFrameActionState('confirm'") ||
+    !content.includes('if (!this.hasValidConfirmation())') ||
     !content.includes("updateFrameActionState('clear'") ||
     !content.includes("updateFrameActionState('today'") ||
     !contracts.includes("now: 'الآن'") ||
@@ -1033,6 +1034,7 @@ export function validateSelectionCorrectionContracts(files) {
     !content.includes("updateFrameActionState('clear-selected'") ||
     !content.includes("updateFrameActionState('confirm'") ||
     !content.includes('confirmEnabled = computed(') ||
+    !content.includes('if (!this.confirmEnabled())') ||
     !content.includes('activeIndex = signal<number | null>(null)') ||
     !template.includes('<erp-selection-tile') ||
     !template.includes('<erp-tooltip') ||
@@ -1252,7 +1254,7 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     ],
     [
       TEMPORAL_CONTENT_SOURCE,
-      "rangeAnchor = signal(null); rangePreviewCandidate = signal<string | null>(null); orderRange(); updateKeyboardPreview(); registerFrameAction('confirm'); registerFrameAction('cancel'); registerFrameAction('today'); registerFrameAction('now'); registerFrameAction('previous-week'); registerFrameAction('next-week'); registerFrameAction('previous-month-range'); registerFrameAction('next-month-range'); registerFrameAction('clear'); updateFrameActionState('confirm'); updateFrameActionState('clear'); updateFrameActionState('today');",
+      "rangeAnchor = signal(null); rangePreviewCandidate = signal<string | null>(null); orderRange(); updateKeyboardPreview(); registerFrameAction('confirm'); registerFrameAction('cancel'); registerFrameAction('today'); registerFrameAction('now'); registerFrameAction('previous-week'); registerFrameAction('next-week'); registerFrameAction('previous-month-range'); registerFrameAction('next-month-range'); registerFrameAction('clear'); updateFrameActionState('confirm'); if (!this.hasValidConfirmation()) updateFrameActionState('clear'); updateFrameActionState('today');",
     ],
     [
       TEMPORAL_CONTENT_TEMPLATE,
@@ -1293,7 +1295,7 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     ],
     [
       SELECTION_CONTENT_SOURCE,
-      "ERP_SYSTEM_COLOR_FAMILIES ERP_SYSTEM_COLOR_STEPS ERP_SYSTEM_COLOR_PALETTES registerFrameAction('confirm') registerFrameAction('cancel') registerFrameAction('clear-selected') updateFrameActionState('clear-selected') updateFrameActionState('confirm') confirmEnabled = computed( activeIndex = signal<number | null>(null)",
+      "ERP_SYSTEM_COLOR_FAMILIES ERP_SYSTEM_COLOR_STEPS ERP_SYSTEM_COLOR_PALETTES registerFrameAction('confirm') registerFrameAction('cancel') registerFrameAction('clear-selected') updateFrameActionState('clear-selected') updateFrameActionState('confirm') confirmEnabled = computed( if (!this.confirmEnabled()) activeIndex = signal<number | null>(null)",
     ],
     [
       SELECTION_CONTENT_TEMPLATE,
