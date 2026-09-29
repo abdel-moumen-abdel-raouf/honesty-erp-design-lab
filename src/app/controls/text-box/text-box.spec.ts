@@ -61,7 +61,6 @@ describe('ErpTextBox', () => {
     const native = host.querySelector('input') as HTMLInputElement;
     const onChange = vi.fn();
     control.registerOnChange(onChange);
-    fixture.componentRef.setInput('clearable', true);
     control.writeValue('value');
     fixture.detectChanges();
 
@@ -117,4 +116,28 @@ describe('ErpTextBox', () => {
     host.querySelector<HTMLElement>('.field-frame__control')?.click();
     expect(document.activeElement).toBe(native);
   });
+
+  it('publishes min/max/pattern validation through state, errors, and automatic feedback', () => {
+    const fixture = create();
+    const control = fixture.componentInstance;
+    const host = fixture.nativeElement as HTMLElement;
+    const native = host.querySelector('input') as HTMLInputElement;
+
+    fixture.componentRef.setInput('minLength', 4);
+    fixture.componentRef.setInput('maxLength', 6);
+    fixture.componentRef.setInput('pattern', '^[A-Z]+$');
+    native.value = 'ab';
+    native.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    expect(control.inputState()).toBe('invalid-entry');
+    expect(control.valid()).toBe(false);
+    expect(control.validationIssues().map((issue) => issue.code)).toEqual([
+      'text.min-length',
+      'text.pattern',
+    ]);
+    expect(native.getAttribute('aria-invalid')).toBe('true');
+    expect(host.textContent).toContain('يجب ألا يقل طول القيمة عن 4 حرفًا.');
+  });
+
 });
