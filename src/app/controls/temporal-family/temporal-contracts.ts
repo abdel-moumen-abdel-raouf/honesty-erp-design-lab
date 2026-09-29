@@ -16,10 +16,10 @@ export interface ErpTemporalActionLabels {
   readonly nextMonth: string;
   readonly today: string;
   readonly now: string;
-  readonly previousWeek: string;
-  readonly nextWeek: string;
-  readonly previousMonthRange: string;
-  readonly nextMonthRange: string;
+  readonly past7Days: string;
+  readonly next7Days: string;
+  readonly past30Days: string;
+  readonly next30Days: string;
   readonly clear: string;
   readonly cancel: string;
   readonly confirm: string;
@@ -33,10 +33,10 @@ export const ERP_TEMPORAL_DEFAULT_ACTION_LABELS =
     nextMonth: 'الشهر التالي',
     today: 'اليوم',
     now: 'الآن',
-    previousWeek: 'الأسبوع الماضي',
-    nextWeek: 'الأسبوع القادم',
-    previousMonthRange: 'الشهر الماضي',
-    nextMonthRange: 'الشهر القادم',
+    past7Days: 'آخر 7 أيام',
+    next7Days: '7 أيام بدءًا من اليوم',
+    past30Days: 'آخر 30 يومًا',
+    next30Days: '30 يومًا بدءًا من اليوم',
     clear: 'مسح',
     cancel: 'إلغاء',
     confirm: 'تأكيد',
@@ -71,10 +71,10 @@ export function createTemporalOverlayFooter(
         : [{id: 'today', label: labels.today, role: 'utility' as const, placement: 'start' as const}]),
       ...(mode === 'range'
         ? [
-            {id: 'previous-week', label: labels.previousWeek, role: 'utility' as const, placement: 'start' as const},
-            {id: 'next-week', label: labels.nextWeek, role: 'utility' as const, placement: 'start' as const},
-            {id: 'previous-month-range', label: labels.previousMonthRange, role: 'utility' as const, placement: 'start' as const},
-            {id: 'next-month-range', label: labels.nextMonthRange, role: 'utility' as const, placement: 'start' as const},
+            {id: 'past-7-days', label: labels.past7Days, role: 'utility' as const, placement: 'start' as const},
+            {id: 'next-7-days', label: labels.next7Days, role: 'utility' as const, placement: 'start' as const},
+            {id: 'past-30-days', label: labels.past30Days, role: 'utility' as const, placement: 'start' as const},
+            {id: 'next-30-days', label: labels.next30Days, role: 'utility' as const, placement: 'start' as const},
           ]
         : []),
       ...(clearable
