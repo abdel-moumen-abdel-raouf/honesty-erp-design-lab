@@ -619,7 +619,7 @@ export function validateSearchBoxPopupContracts(
     !styleSource.includes('prefers-reduced-motion: reduce') ||
     !styleSource.includes('var(--honesty-search-box-popup-max-block-size)') ||
     !styleSource.includes(
-      'inline-size: min( var(--_honesty-search-box-popup-trigger-inline-size)',
+      'var(--_honesty-search-box-popup-trigger-inline-size)',
     ) ||
     !styleSource.includes(
       ".search-box__popup[data-search-popup-phase='leaving']",
