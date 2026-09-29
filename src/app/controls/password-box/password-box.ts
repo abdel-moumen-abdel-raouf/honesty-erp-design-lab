@@ -37,7 +37,6 @@ let nextPasswordBoxId = 0;
 export class ErpPasswordBox extends ErpFieldBase<string> {
   readonly placeholder = input<string | null>(null);
   readonly readonly = input(false, {transform: booleanAttribute});
-  readonly required = input(false, {transform: booleanAttribute});
   readonly autocomplete = input('current-password');
   readonly revealToggle = input(true, {transform: booleanAttribute});
 
