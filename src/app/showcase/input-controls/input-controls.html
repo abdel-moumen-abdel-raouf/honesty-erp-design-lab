@@ -18,16 +18,19 @@
             <erp-text-area-box label="النص متعدد الأسطر" placeholder="أدخل الملاحظات" />
             <erp-password-box label="كلمة المرور" placeholder="أدخل كلمة المرور" />
             <erp-search-box
-              data-search-popup-evidence
-              label="البحث"
+              data-search-dropdown-evidence
+              label="البحث — قائمة منسدلة"
+              mode="dropdown"
               placeholder="ابحث في السجلات"
-            >
-              <erp-stack search-results data-search-results-presentation="list" gap="tight">
-                <erp-text type="caption" tone="secondary">عرض نتائج قائم</erp-text>
-                <erp-text type="paragraph">فاتورة INV-2026-001</erp-text>
-                <erp-text type="paragraph">طلب شراء PO-2026-014</erp-text>
-              </erp-stack>
-            </erp-search-box>
+              [items]="searchItems"
+            />
+            <erp-search-box
+              data-search-modal-evidence
+              label="البحث — نافذة منبثقة"
+              mode="modal"
+              placeholder="ابحث في السجلات"
+              [items]="searchItems"
+            />
             <erp-url-box label="الرابط" placeholder="https://example.com" />
             <erp-tel-box label="الهاتف" placeholder="+20" />
           </erp-stack>
@@ -190,7 +193,7 @@
               data-search-inline-evidence
               label="بحث مضمن"
               placeholder="ابحث داخل الحقل"
-              [popupMode]="false"
+              mode="inline"
             />
             <erp-text-box
               data-gradient-direction-evidence="ltr"
@@ -265,6 +268,15 @@
               label="قيمة مالية"
               currency="EGP"
               locale="ar-EG"
+              [ngModel]="moneyValue()"
+              (ngModelChange)="moneyValue.set($event)"
+            />
+            <erp-money-box
+              data-money-box-arabic-digits-evidence
+              label="قيمة مالية — أرقام عربية"
+              currency="EGP"
+              locale="ar-EG"
+              digitSet="arabic-indic"
               [ngModel]="moneyValue()"
               (ngModelChange)="moneyValue.set($event)"
             />
