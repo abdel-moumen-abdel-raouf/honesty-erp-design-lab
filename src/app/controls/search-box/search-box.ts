@@ -191,6 +191,14 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
     return value === null || value === undefined ? '' : String(value);
   }
 
+  protected override classifyPresence(value: unknown) {
+    if (this.mode() !== 'inline' && value === '') {
+      return 'no-selection' as const;
+    }
+
+    return super.classifyPresence(value);
+  }
+
   protected handleInlineInput(event: Event): void {
     if (!this.readonly()) {
       this.commitUserValue((event.target as HTMLInputElement).value);
