@@ -103,6 +103,7 @@ describe('ErpSelectionPickerContent', () => {
     root
       .querySelector<HTMLButtonElement>('[data-color-token="primary-500"] button')
       ?.click();
+    fixture.detectChanges();
     root.querySelector<HTMLButtonElement>('[data-overlay-frame-action-id="confirm"] button')?.click();
     manager.completeTransition(ref.id, 'leaving');
 
@@ -160,6 +161,7 @@ describe('ErpSelectionPickerContent', () => {
     const input = root.querySelector('[data-native-color]') as HTMLInputElement;
     input.value = '#abcdef';
     input.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
     root.querySelector<HTMLButtonElement>('[data-overlay-frame-action-id="confirm"] button')?.click();
     manager.completeTransition(ref.id, 'leaving');
 
@@ -221,6 +223,7 @@ describe('ErpSelectionPickerContent', () => {
     const list = root.querySelector('[data-selection-list]') as HTMLElement;
     list.dispatchEvent(new KeyboardEvent('keydown', {key: 'ArrowDown'}));
     list.dispatchEvent(new KeyboardEvent('keydown', {key: 'Enter'}));
+    fixture.detectChanges();
     root.querySelector<HTMLButtonElement>('[data-overlay-frame-action-id="confirm"] button')?.click();
     manager.completeTransition(ref.id, 'leaving');
 

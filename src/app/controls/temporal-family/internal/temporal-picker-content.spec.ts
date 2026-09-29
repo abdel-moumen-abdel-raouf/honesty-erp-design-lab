@@ -97,6 +97,7 @@ describe('ErpTemporalPickerContent', () => {
     expect(root.textContent).toContain('تأكيد');
     (root.querySelector('[data-time-hour] button') as HTMLButtonElement).click();
     (root.querySelectorAll('[data-time-minute] button')[1] as HTMLButtonElement).click();
+    fixture.detectChanges();
     (root.querySelector('[data-overlay-frame-action-id="confirm"] button') as HTMLButtonElement).click();
     manager.completeTransition(ref.id, 'leaving');
     await expect(ref.afterClosed).resolves.toEqual({

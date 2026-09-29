@@ -187,6 +187,7 @@ describe('ErpSearchBox', () => {
         '[data-search-result] button',
       ) as HTMLButtonElement
     ).click();
+    fixture.detectChanges();
 
     expect(onChange).toHaveBeenCalledWith('invoice');
     expect(host.getAttribute('data-search-box-popup-phase')).toBe('leaving');
@@ -210,7 +211,7 @@ describe('ErpSearchBox', () => {
     ).toBe('invoice');
 
     (document.activeElement as HTMLElement).dispatchEvent(
-      new KeyboardEvent('keydown', {key: 'End'}),
+      new KeyboardEvent('keydown', {key: 'End', bubbles: true}),
     );
     fixture.detectChanges();
 
