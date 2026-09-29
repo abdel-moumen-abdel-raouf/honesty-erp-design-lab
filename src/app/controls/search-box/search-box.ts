@@ -11,6 +11,7 @@ import {
   OnDestroy,
   signal,
   viewChild,
+  viewChildren,
 } from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpIcon} from '../../primitives/icon/icon';
@@ -29,6 +30,7 @@ import {ErpFieldBase} from '../input-family/field-base';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
 import {ErpFieldTrigger} from '../input-family/internal/field-trigger';
 import {ErpSelectionPickerContent} from '../selection-family/internal/selection-picker-content';
+import {ErpSelectionTile} from '../selection-family/internal/selection-tile';
 import {
   createSelectionOverlayFooter,
   ERP_SELECTION_DEFAULT_ACTION_LABELS,
@@ -54,6 +56,7 @@ const openSearchBoxes: ErpSearchBox[] = [];
     ErpFieldTrigger,
     ErpIcon,
     ErpIconButton,
+    ErpSelectionTile,
     ErpText,
   ],
   providers: [
@@ -152,6 +155,7 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
     viewChild<ElementRef<HTMLInputElement>>('nativeInput');
   private readonly popupSurface =
     viewChild<ElementRef<HTMLElement>>('popupSurface');
+  private readonly resultTiles = viewChildren(ErpSelectionTile);
   private readonly overlays = inject(ErpOverlayManager);
   private controller: AnchoredOverlayController | null = null;
   private closeTimer: ReturnType<typeof setTimeout> | null = null;
@@ -579,10 +583,7 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
     while (candidate >= 0 && candidate < items.length) {
       if (!items[candidate].disabled) {
         this.activeResultIndex.set(candidate);
-        const buttons = this.popupSurface()?.nativeElement.querySelectorAll<
-          HTMLButtonElement
-        >('[data-search-result]');
-        buttons?.[candidate]?.focus();
+        this.resultTiles()[candidate]?.focus();
         return;
       }
 

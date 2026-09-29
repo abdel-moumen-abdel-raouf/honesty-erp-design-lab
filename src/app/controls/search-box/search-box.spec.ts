@@ -182,7 +182,11 @@ describe('ErpSearchBox', () => {
     input.value = 'فاتورة';
     input.dispatchEvent(new Event('input'));
     fixture.detectChanges();
-    (host.querySelector('[data-search-result]') as HTMLButtonElement).click();
+    (
+      host.querySelector(
+        '[data-search-result] button',
+      ) as HTMLButtonElement
+    ).click();
 
     expect(onChange).toHaveBeenCalledWith('invoice');
     expect(host.getAttribute('data-search-box-popup-phase')).toBe('leaving');
@@ -200,7 +204,9 @@ describe('ErpSearchBox', () => {
     fixture.detectChanges();
 
     expect(
-      (document.activeElement as HTMLElement | null)?.dataset['value'],
+      (document.activeElement as HTMLElement | null)
+        ?.closest<HTMLElement>('[data-search-result]')
+        ?.dataset['value'],
     ).toBe('invoice');
 
     (document.activeElement as HTMLElement).dispatchEvent(
@@ -209,12 +215,16 @@ describe('ErpSearchBox', () => {
     fixture.detectChanges();
 
     expect(
-      (document.activeElement as HTMLElement | null)?.dataset['value'],
+      (document.activeElement as HTMLElement | null)
+        ?.closest<HTMLElement>('[data-search-result]')
+        ?.dataset['value'],
     ).toBe('purchase');
 
-    const disabled = [...host.querySelectorAll<HTMLButtonElement>('[data-search-result]')]
-      .find((button) => button.dataset['value'] === 'disabled') as HTMLButtonElement;
-    disabled.click();
+    const disabled = [...host.querySelectorAll<HTMLElement>('[data-search-result]')]
+      .find((tile) => tile.dataset['value'] === 'disabled') as HTMLElement;
+    (
+      disabled.querySelector('button') as HTMLButtonElement
+    ).click();
     expect(onChange).not.toHaveBeenCalled();
   });
 

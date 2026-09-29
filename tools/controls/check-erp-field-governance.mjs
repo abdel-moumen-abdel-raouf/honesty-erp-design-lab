@@ -535,7 +535,8 @@ export function validateSearchBoxPopupContracts(
     !/popover="manual"/.test(template) ||
     !template.includes('role="combobox"') ||
     !template.includes('role="listbox"') ||
-    !template.includes('role="option"') ||
+    !template.includes('<erp-selection-tile') ||
+    !template.includes('presentation="list"') ||
     !template.includes('data-search-result') ||
     !template.includes('class="search-box__close"') ||
     !template.includes("mode() === 'inline'") ||
@@ -543,7 +544,7 @@ export function validateSearchBoxPopupContracts(
     /<ng-content\s+select="\[search-results\]"/.test(template)
   ) {
     errors.push(
-      'SearchBox: three-mode contract must use FieldTrigger, manual listbox popup, explicit close, and selectable/filterable results',
+      'SearchBox: three-mode contract must use FieldTrigger, manual listbox popup, SelectionTile results, explicit close, and selectable/filterable results',
     );
   }
 
@@ -1679,7 +1680,7 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     '<erp-field-trigger></erp-field-trigger>',
     '<div popover="manual">',
     '  <input role="combobox">',
-    '  <div role="listbox"><button role="option" data-search-result></button></div>',
+    '  <div role="listbox"><erp-selection-tile presentation="list" data-search-result></erp-selection-tile></div>',
     '  <erp-icon-button class="search-box__close" />',
     '</div>',
     "@if (mode() === 'inline') {}",

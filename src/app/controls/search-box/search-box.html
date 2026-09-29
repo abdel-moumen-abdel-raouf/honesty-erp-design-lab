@@ -170,17 +170,19 @@
         [attr.aria-label]="label()"
       >
         @for (item of filteredItems(); track item.value; let index = $index) {
-          <button
-            type="button"
+          <erp-selection-tile
             class="search-box__result"
-            role="option"
             data-search-result
+            presentation="list"
             [attr.data-value]="item.value"
-            [attr.aria-selected]="currentValue() === item.value"
+            [label]="item.label"
+            [selected]="currentValue() === item.value"
+            [active]="activeResultIndex() === index"
             [disabled]="item.disabled ?? false"
-            (focus)="setActiveResultIndex(index)"
+            [tabIndex]="activeResultIndex() === index ? 0 : -1"
+            (focused)="setActiveResultIndex(index)"
             (keydown)="handleResultKeydown($event, index)"
-            (click)="selectResult(item)"
+            (activated)="selectResult(item)"
           >
             @if (item.icon) {
               <erp-icon [name]="item.icon" size="sm" />
@@ -188,7 +190,7 @@
             <erp-text type="paragraph" tone="inherit">
               {{ item.label }}
             </erp-text>
-          </button>
+          </erp-selection-tile>
         } @empty {
           <erp-text
             class="search-box__empty"
