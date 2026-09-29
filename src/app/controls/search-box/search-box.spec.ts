@@ -1,6 +1,7 @@
 import {Component, reflectComponentType} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
+import {ErpSelectionPickerData} from '../selection-family/selection-contracts';
 import {ErpSearchBox} from './search-box';
 
 @Component({

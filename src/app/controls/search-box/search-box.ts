@@ -569,12 +569,10 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
     }
 
     this.activeResultIndex.set(index);
-    queueMicrotask(() => {
-      const buttons = this.popupSurface()?.nativeElement.querySelectorAll<
-        HTMLButtonElement
-      >('[data-search-result]');
-      buttons?.[index]?.focus();
-    });
+    const buttons = this.popupSurface()?.nativeElement.querySelectorAll<
+      HTMLButtonElement
+    >('[data-search-result]');
+    buttons?.[index]?.focus();
   }
 
   private addToOpenStack(): void {
