@@ -15,6 +15,7 @@ import {
   resolveContextualPreference,
 } from '../../foundation/preferences/core/ui-settings.formatters';
 import {UiSettingsService} from '../../foundation/preferences/core/ui-settings.service';
+import {DigitSet} from '../../foundation/preferences/core/ui-settings.types';
 import {
   ERP_MONEY_FINAL_PATTERN,
   isProgressiveNumericDraft,
@@ -58,10 +59,12 @@ export class ErpMoneyBox extends ErpFieldBase<number | null> {
   readonly readonly = input(false, {transform: booleanAttribute});
   readonly allowEmpty = input(true, {transform: booleanAttribute});
   readonly pattern = input<string | null>(null);
+  readonly digitSet = input<DigitSet | null>(null);
 
   protected readonly controlId = `erp-money-box-${++nextMoneyBoxId}`;
   private readonly settings = inject(UiSettingsService).store;
-  private readonly digits = this.settings.get('digits').valueSignal;
+  private readonly digitPreference =
+    this.settings.get('digits').valueSignal;
   private readonly numberSeparators =
     this.settings.get('numberSeparators').valueSignal;
   private readonly moneyDisplay = this.settings.get('moneyDisplay').valueSignal;
@@ -205,7 +208,8 @@ export class ErpMoneyBox extends ErpFieldBase<number | null> {
       value,
       this.currency(),
       this.currencySymbol(),
-      resolveContextualPreference(this.digits(), 'money'),
+      this.digitSet() ??
+        resolveContextualPreference(this.digitPreference(), 'money'),
       resolveContextualPreference(this.numberSeparators(), 'money'),
       this.moneyDisplay(),
     );
