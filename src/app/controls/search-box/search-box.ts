@@ -352,11 +352,14 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
       return true;
     }
 
-    const anchor = this.anchorElement();
+    const trigger = this.anchorElement();
     const surface = this.popupSurface()?.nativeElement;
-    if (!anchor || !surface) {
+    if (!trigger || !surface) {
       return false;
     }
+
+    const anchor =
+      trigger.closest<HTMLElement>('.field-frame__control') ?? trigger;
 
     this.query.set('');
     this.activeResultIndex.set(null);
