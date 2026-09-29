@@ -35,6 +35,7 @@ describe('ErpMoneyBox', () => {
     expect(control.readonly()).toBe(false);
     expect(control.allowEmpty()).toBe(true);
     expect(control.pattern()).toBeNull();
+    expect(control.digitSet()).toBeNull();
     expect(native.type).toBe('text');
     expect(native.inputMode).toBe('decimal');
     expect(native.pattern).toBe(ERP_MONEY_FINAL_PATTERN);
@@ -120,4 +121,18 @@ describe('ErpMoneyBox', () => {
     expect(host.getAttribute('data-field-configuration-state')).toBe('invalid');
     expect(native.disabled).toBe(true);
   });
+
+  it('allows a per-instance Arabic-Indic digit override without mutating shared Preferences', () => {
+    const settings = TestBed.inject(UiSettingsService).store;
+    const fixture = create();
+    const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
+
+    fixture.componentRef.setInput('digitSet', 'arabic-indic');
+    fixture.componentInstance.writeValue(1234.5);
+    fixture.detectChanges();
+
+    expect(native.value).toBe('١,٢٣٤.٥٠ USD');
+    expect(settings.get('digits').valueSignal().base).toBe('latin');
+  });
+
 });
