@@ -30,6 +30,7 @@ let nextDateRangeBoxId = 0;
 })
 export class ErpDateRangeBox extends ErpFieldBase<ErpDateRangeValue> {
   readonly locale = input('ar-EG');
+  readonly placeholder = input('اختر نطاق التاريخ');
   readonly pattern = input<string | null>(null);
   readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null);
   override readonly trailingIcon = input<ErpIconName | null>('calendar');
@@ -44,7 +45,7 @@ export class ErpDateRangeBox extends ErpFieldBase<ErpDateRangeValue> {
   protected readonly hasValue = computed(() => this.currentValue().start !== null || this.currentValue().end !== null);
   protected readonly displayValue = computed(() => {
     const value = this.currentValue();
-    if (!value.start) return 'Select date range';
+    if (!value.start) return this.placeholder();
     const digits = resolveContextualPreference(this.digits(), 'field');
     const format = resolveContextualPreference(this.dateFormat(), 'field');
     const start = formatDatePreview(value.start, format, digits);
