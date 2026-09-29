@@ -235,3 +235,24 @@ Source checkpoints:
 - `4ad7e14c3578d8e0973b1e25f1aa4fc6c4846212`.
 
 Finding remains open until Product Owner runtime re-test confirms resolution.
+
+
+## 2026-09-29 — exact root cause of invisible closed dropdown found
+
+The previously persisted "closed but still selectable" SearchBox behavior is now
+explained by one exact CSS error.
+
+The native Popover surface had unconditional:
+`display:grid`
+
+on its base rule. Closed Popovers rely on native `display:none`, so the author
+display declaration kept the closed popup rendered. Hidden opacity made it look
+closed while it still covered lower controls and could receive result clicks.
+
+Root-cause fix:
+`5c0562a58eb7c28a21ced50bbfe8964779ad9cc6`.
+
+The base rule no longer declares display. Grid layout is enabled only while
+`:popover-open`.
+
+Finding remains open until Product Owner re-tests the exact scenario.

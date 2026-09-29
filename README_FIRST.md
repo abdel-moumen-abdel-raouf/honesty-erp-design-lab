@@ -24,50 +24,43 @@ Branch:
 
 ## Current state
 
-Latest source-affecting runtime correction:
+Latest source-affecting SearchBox correction:
 
-`4ad7e14c3578d8e0973b1e25f1aa4fc6c4846212`
-`fix(inputs): harden SearchBox popover teardown`
+`5c0562a58eb7c28a21ced50bbfe8964779ad9cc6`
+`fix(inputs): preserve native closed-popover display state`
 
-Product Owner runtime re-test found the SearchBox dropdown still retained an
-effective interaction/focus footprint after selection and apparent closure:
-- clicking a later field below the SearchBox could fail to focus it;
-- a different SearchBox result could be selected as if the closed dropdown were
-  still active;
-- the review SearchBox instances did not expose the standard clear action.
+This is the first correction that addresses the literal CSS root cause of the
+Product Owner's "closed but still clickable" SearchBox dropdown defect.
 
-Root cause in the close lifecycle:
-- SearchBox entered a `leaving` phase but delayed native
-  `hidePopover()` until the exit-duration timer completed;
-- focus restoration was also delayed until that timer completed;
-- therefore a visually closing/closed control could still own native top-layer
-  lifetime and could later steal focus from a field the user activated next.
+Exact root cause:
+- `.search-box__popup` is a native `popover="manual"` element;
+- native closed Popover visibility depends on the browser-owned
+  `display: none` state;
+- production CSS incorrectly declared `display: grid` on the base
+  `.search-box__popup` rule;
+- that author declaration overrides the hidden display behavior when the Popover
+  is closed;
+- the base rule simultaneously uses opacity/transform as the hidden visual
+  state, so the closed surface can be invisible while still existing as a fixed
+  interactive hit-test box;
+- this exactly explains why lower inputs could not receive the click and why an
+  invisible result row could be activated after the dropdown appeared closed.
 
 Correction:
-- native Popover teardown now occurs immediately when dropdown close begins;
-- open-stack/dismissal listeners are released immediately;
-- surface becomes inert, pointer-noninteractive, and aria-hidden immediately;
-- Selection/Close/Escape focus restoration happens synchronously in the close
-  event, never from a later timer;
-- the later timer only finalizes internal phase/bookkeeping;
-- `AnchoredOverlayController.hide()` now attempts `hidePopover()` directly
-  inside try/catch instead of depending on `:popover-open` matching first;
-- tests prove the Popover leaves the top layer immediately and that a field
-  focused afterward retains focus even when close timers complete;
-- SearchBox review instances now enable inherited `clearable`, so a committed
-  search value exposes the standard clear action.
+- base `.search-box__popup` no longer declares `display`;
+- `display: grid` is applied only in
+  `.search-box__popup:popover-open`;
+- native Popover closed `display:none` is therefore preserved;
+- field governance rejects any future base-rule display override and requires
+  the `:popover-open` grid rule.
 
-Verification distinction:
+Previous close-lifecycle hardening remains useful defense in depth, but it was
+not the literal root cause of the persisted invisible hit box.
 
-The latest previously verified technical baseline remains
-`50ae8e5f9f9cc537435217a644548c10bd097ecb`.
-The current source has not yet completed a fresh full `npm run verify:clean`
-after this runtime correction.
+Verification status:
+- current source is NOT yet Fully Green;
+- fresh full `npm run verify:clean` is mandatory;
+- Inputs remains Product Owner BLOCKED until the exact runtime reproduction is
+  re-tested and accepted.
 
-Inputs remains Product Owner BLOCKED until:
-1. fresh technical verification;
-2. Product Owner runtime re-test confirms the stale/invisible dropdown behavior
-   is gone;
-3. Light/Dark Inputs review is accepted.
-
-Read `NEW_CHAT_HANDOFF.md` for the complete state.
+Read `NEW_CHAT_HANDOFF.md` for complete state.

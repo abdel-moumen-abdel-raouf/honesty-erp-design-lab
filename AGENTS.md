@@ -1067,3 +1067,22 @@ Current source:
 
 Inputs SearchBox review instances use inherited `clearable`.
 Fresh full verification is required.
+
+
+## Native Popover display invariant — 2026-09-29
+
+Never set `display` on the base rule of a native Popover surface.
+
+SearchBox rule:
+- forbidden: `.search-box__popup { display:grid; }`
+- required:
+  `.search-box__popup:popover-open { display:grid; }`
+
+Reason:
+closed native Popover visibility depends on browser-owned `display:none`.
+Overriding it can create an invisible but hit-testable fixed surface.
+
+Root-cause checkpoint:
+`5c0562a58eb7c28a21ced50bbfe8964779ad9cc6`.
+
+Governance enforces both the prohibition and required open-state layout rule.

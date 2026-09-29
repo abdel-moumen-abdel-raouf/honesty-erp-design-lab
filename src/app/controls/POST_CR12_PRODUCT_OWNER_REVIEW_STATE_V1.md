@@ -959,3 +959,22 @@ Status:
 - runtime correction implemented;
 - full verification pending;
 - Inputs remains Product Owner BLOCKED until re-test accepts the behavior.
+
+
+## 2026-09-29 — exact closed-Popover root cause identified
+
+The persisted SearchBox ghost interaction was traced to an exact CSS defect:
+base `.search-box__popup` forced `display:grid` on a native Popover whose
+closed state depends on browser-owned `display:none`.
+
+Because hidden opacity was separate, the closed popup could be invisible while
+remaining an interactive fixed box.
+
+Root-cause correction:
+`5c0562a58eb7c28a21ced50bbfe8964779ad9cc6`.
+
+Grid display is now restricted to `:popover-open`. Governance protects this
+invariant.
+
+Inputs remains BLOCKED until technical verification and Product Owner runtime
+re-test confirm the ghost hit area is gone.

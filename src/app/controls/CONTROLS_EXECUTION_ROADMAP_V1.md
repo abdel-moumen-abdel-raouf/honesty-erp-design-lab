@@ -611,3 +611,28 @@ Next:
 2. Product Owner reproduces the exact select-then-click-lower-field scenario;
 3. verify Clear;
 4. continue Inputs review only after acceptance.
+
+
+### 2026-09-29 — exact SearchBox ghost-hit root cause corrected
+
+The literal defect was not delayed teardown. It was the base CSS declaration:
+
+`.search-box__popup { display:grid; }`
+
+on a native Popover.
+
+Closed Popover visibility depends on native `display:none`; author
+`display:grid` kept the closed surface rendered while opacity made it appear
+gone.
+
+Fixed in:
+`5c0562a58eb7c28a21ced50bbfe8964779ad9cc6`.
+
+New mandatory law:
+- base SearchBox Popover rule must not set display;
+- `display:grid` only under `:popover-open`.
+
+Next:
+1. full `npm run verify:clean`;
+2. exact Product Owner runtime reproduction;
+3. only after acceptance continue Inputs review.

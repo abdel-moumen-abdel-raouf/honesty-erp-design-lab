@@ -1290,3 +1290,81 @@ Current source checkpoint:
 
 Fresh full `npm run verify:clean` is mandatory.
 Inputs remains Product Owner BLOCKED pending runtime re-test and visual review.
+
+
+---
+
+# 30. 2026-09-29 — EXACT SEARCHBOX ROOT CAUSE FOUND: CLOSED POPOVER DISPLAY OVERRIDDEN
+
+Product Owner explicitly requested that no further speculative changes be made:
+either identify the exact literal cause or stop and report failure.
+
+The exact cause was found.
+
+## Exact defect
+
+SearchBox popup is authored as:
+`popover="manual"`
+
+but production stylesheet had:
+
+`.search-box__popup { display: grid; ... }`
+
+Native Popover uses browser-owned `display: none` while closed. An author
+`display:grid` declaration on the base Popover rule overrides that hidden
+display state.
+
+At the same time SearchBox base styles set hidden opacity/transform values.
+Therefore, after close:
+- the popup can look visually gone because opacity is at its hidden value;
+- the element can still exist as a fixed layout/hit-test box because author CSS
+  forces `display:grid`;
+- lower fields can fail to receive pointer interaction;
+- an invisible SearchBox result can receive the click, changing selection while
+  the dropdown appears closed.
+
+This matches the Product Owner runtime reproduction exactly.
+
+## Source correction
+
+`5c0562a58eb7c28a21ced50bbfe8964779ad9cc6`
+`fix(inputs): preserve native closed-popover display state`
+
+Implemented:
+- remove `display:grid` from base `.search-box__popup`;
+- add:
+  `.search-box__popup:popover-open { display:grid; }`;
+- preserve native browser closed `display:none`;
+- governance rejects `display` declarations inside the base popup rule;
+- governance requires grid display only under `:popover-open`;
+- invalid governance fixtures cover both regressions;
+- Field Family contract records this native-Popover visibility invariant.
+
+## Status of previous attempted fixes
+
+Previous changes to:
+- immediate `hidePopover()`;
+- inert;
+- pointer-events;
+- aria-hidden;
+- focus restoration timing;
+
+remain valid defensive lifecycle hardening, but they were not the root cause of
+the persistent invisible selectable rectangle.
+
+This new CSS correction is the root-cause fix.
+
+## Verification / review
+
+Fresh `npm run verify:clean` is required.
+
+Product Owner must reproduce exactly:
+1. open SearchBox dropdown;
+2. select a result;
+3. confirm dropdown visually closes;
+4. click an input that was geometrically underneath the former popup;
+5. verify that input receives/keeps focus;
+6. verify SearchBox value does not change again;
+7. verify the standard Clear action is present after committed selection.
+
+Inputs remains BLOCKED until that exact runtime test is accepted.
