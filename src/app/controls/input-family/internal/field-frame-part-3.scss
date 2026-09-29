@@ -16,11 +16,12 @@
 }
 
 
-:host(:is([data-field-variant='ghost'], [data-field-variant='text'], [data-field-border-mode='underline'])
-  :not([data-field-disabled='true'])
-  :not([data-field-configuration-state='invalid'])
-  :not([data-field-focused='true']))
-  .field-frame__control:hover {
+:host([data-field-variant='ghost']:not([data-field-disabled='true']):not([data-field-configuration-state='invalid']):not([data-field-focused='true']))
+    .field-frame__control:hover,
+:host([data-field-variant='text']:not([data-field-disabled='true']):not([data-field-configuration-state='invalid']):not([data-field-focused='true']))
+    .field-frame__control:hover,
+:host([data-field-border-mode='underline']:not([data-field-disabled='true']):not([data-field-configuration-state='invalid']):not([data-field-focused='true']))
+    .field-frame__control:hover {
   background: color-mix(
     in srgb,
     var(--honesty-field-frame-hover-bg) 35%,
