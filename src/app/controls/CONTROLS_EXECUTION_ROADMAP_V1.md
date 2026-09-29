@@ -381,3 +381,15 @@ Result:
 This does not authorize a new control phase and does not equal visual approval.
 
 The next mandatory gate is `npm run verify:clean`. Until it passes, keep `b1b20585adcb272f17835ef8182935353a67d243` as the latest Fully Green source checkpoint.
+
+
+### 2026-09-29 — Tooltip V1 correction is the next blocking execution unit
+
+Page-by-page review is paused at Tooltip V1.
+
+The next authorized planning scope is limited to Tooltip anchored geometry,
+arrow/motion assembly, deterministic collision fallback, scroll/resize tracking,
+semantic layer proof, Tooltip tests, and the motion-selector review evidence.
+
+Do not advance to another Design Lab page before Product Owner runtime re-review
+of the corrected Tooltip.

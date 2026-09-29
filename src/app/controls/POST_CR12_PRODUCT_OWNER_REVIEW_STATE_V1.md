@@ -582,3 +582,37 @@ Result:
 Next visual-review action: continue to the next page selected by Product Owner.
 
 This does not declare visual freeze or alter technical verification state.
+
+
+## 2026-09-29 — Tooltip V1 blocking Product Owner finding
+
+Product Owner has blocked further page-by-page review until Tooltip V1 positioning,
+arrow, motion, fallback, scroll tracking, and layer behavior are corrected and
+runtime re-reviewed.
+
+Source review at `404b6393245707a922ca8da69c2cbc0e7a9708dd` confirmed:
+- Tooltip arrow is rendered outside `.erp-tooltip__motion`, while Animate.css
+  transforms only the motion layer; body and arrow can visually separate during motion.
+- shared anchored-overlay geometry currently considers only preferred and opposite
+  placements; perpendicular fallback is missing.
+- Tooltip tokens currently use 16x8 arrow geometry for top/bottom and 8x4 for
+  side placements; Product Owner now requires one canonical arrow size in every direction.
+- scroll/resize/visualViewport/ResizeObserver reposition infrastructure exists,
+  but acceptance coverage must prove actual trigger tracking and arrow alignment.
+- Tooltip consumes the semantic overlay layer token; explicit layer/z-index
+  acceptance coverage is required.
+- the Design Lab motion selector horizontally overflows/clips, reducing reviewability.
+
+Required correction contract:
+1. fixed, untransformed geometry surface owns anchor/collision/layer;
+2. one animated visual assembly contains BOTH tooltip body and arrow;
+3. authored placement is preferred and is used whenever it fits;
+4. fallback order is preferred -> opposite -> perpendicular candidates by room;
+5. if none fully fits, select deterministically and clamp to visual viewport;
+6. arrow stays attached, points to the trigger, follows resolved placement, and
+   uses one canonical base/depth size for all directions;
+7. reposition remains correct during scroll/resize and RTL/LTR;
+8. no unrelated component redesign.
+
+Tooltip V1 status: BLOCKED. Do not continue to another review page until the
+bounded correction is implemented, verified, and Product Owner re-reviews it.
