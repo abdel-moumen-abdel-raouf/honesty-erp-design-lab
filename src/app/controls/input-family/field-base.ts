@@ -61,6 +61,19 @@ export abstract class ErpFieldBase<TValue> extends ErpInputBase<TValue> {
       this.trimmedFeedbackText().length > 0 &&
       !this.feedbackDismissed(),
   );
+  protected readonly effectiveFieldStatus = computed<ErpFieldStatus>(() =>
+    this.valid() ? this.status() : 'danger',
+  );
+  protected readonly effectiveFeedbackText = computed(() =>
+    this.errors().length > 0
+      ? this.errors().join(' ')
+      : this.trimmedFeedbackText(),
+  );
+  protected readonly effectiveFeedbackVisible = computed(
+    () =>
+      (!this.valid() && this.errors().length > 0) ||
+      this.feedbackVisible(),
+  );
   protected readonly fieldCompatibility = computed(() =>
     resolveFieldCompatibility({
       appearance: this.appearance(),
@@ -149,14 +162,15 @@ export abstract class ErpFieldBase<TValue> extends ErpInputBase<TValue> {
       this.trimmedHelperText().length > 0
         ? this.helperIdFor(controlId)
         : null,
-      this.feedbackVisible() ? this.feedbackIdFor(controlId) : null,
+      this.effectiveFeedbackVisible() ? this.feedbackIdFor(controlId) : null,
     ].filter((value): value is string => value !== null);
 
     return relationships.length > 0 ? relationships.join(' ') : null;
   }
 
   protected fieldAriaErrorMessage(controlId: string): string | null {
-    return this.status() === 'danger' && this.feedbackVisible()
+    return this.effectiveFieldStatus() === 'danger' &&
+      this.effectiveFeedbackVisible()
       ? this.feedbackIdFor(controlId)
       : null;
   }
