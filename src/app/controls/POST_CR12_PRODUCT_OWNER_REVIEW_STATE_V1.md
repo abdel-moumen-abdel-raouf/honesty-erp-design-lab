@@ -768,3 +768,62 @@ Technical status:
 
 Product review status remains BLOCKED on Tooltip until re-review accepts the
 corrected runtime evidence.
+
+
+---
+
+# 23. 2026-09-29 — TOOLTIP ARROW OFFSET ROOT CAUSE CORRECTED: POPOVER PADDING ORIGIN
+
+Product Owner re-tested the previous cross-axis centering correction and reported
+that the visible arrow offset was unchanged.
+
+This invalidated the prior assumption that symmetric safe-inset clamping was the
+main visible cause.
+
+New source review identified the actual coordinate-space mismatch:
+
+- arrow coordinates are calculated against `.erp-tooltip__surface`, the fixed
+  native Popover geometry surface;
+- the arrow now lives inside `.erp-tooltip__motion` so it can animate with the
+  Tooltip body;
+- the native Popover surface did not explicitly set `padding: 0`;
+- native Popover user-agent padding can therefore offset the inner motion
+  assembly from the outer geometry origin;
+- a coordinate that is mathematically centered in the outer surface becomes
+  visually shifted when applied inside the padded inner coordinate system.
+
+This matches the Product Owner evidence:
+- left/right arrows remain vertically biased;
+- top/bottom arrows remain horizontally biased;
+- prior center arithmetic changes did not materially alter the visible offset.
+
+Source correction:
+- `84d5fd91daf3fb3085cde422c186dfcf3e1ff8d0`
+  `fix(tooltip): align popover and arrow coordinate origins`
+
+Implemented:
+- explicit `padding: 0` on `.erp-tooltip__surface`;
+- geometry surface and motion assembly now share one physical coordinate origin;
+- Tooltip governance requires zero surface padding;
+- Tooltip unit coverage verifies top/right/bottom/left computed padding = 0;
+- positioning policy and Tooltip V1 docs record the coordinate-origin invariant.
+
+Important distinction:
+- the prior symmetric safe-inset correction remains valid defensive geometry for
+  compact Tooltips;
+- it was not sufficient to fix the Product Owner's visible offset because the
+  remaining offset came from mismatched coordinate origins.
+
+Verification baseline:
+- Product Owner supplied a complete successful local `npm run verify:clean`
+  at checkout `50ae8e5f9f9cc537435217a644548c10bd097ecb`;
+- that run passed 87/87 test files, 618/618 tests, both TypeScript no-emit gates,
+  all governance/lint gates, and final zero-warning build;
+- therefore `50ae8e5...` is the latest Fully Green verified checkout before
+  the new `84d5fd9...` source correction.
+
+Current status:
+- `84d5fd9...` is implemented and source-reviewed but not yet Fully Green;
+- fresh `npm run verify:clean` is mandatory;
+- Tooltip remains Product Owner BLOCKED until runtime Light/Dark re-review
+  confirms actual visual centering.

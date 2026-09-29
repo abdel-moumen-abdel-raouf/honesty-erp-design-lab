@@ -940,3 +940,26 @@ Mandatory invariants:
 
 Do not call this correction Fully Green until a new `npm run verify:clean`
 passes. Tooltip remains the Product Owner page-review blocker.
+
+
+## Tooltip coordinate-origin invariant — 2026-09-29
+
+After moving the arrow inside the animated motion assembly, Tooltip geometry and
+visual coordinates must still share one origin.
+
+Mandatory rule:
+- `.erp-tooltip__surface` is the fixed geometry coordinate space and must have
+  explicit `padding: 0`;
+- arrow coordinates calculated against that surface are applied inside the
+  motion assembly, so any outer padding would create a systematic cross-axis
+  offset.
+
+Source checkpoint:
+`84d5fd91daf3fb3085cde422c186dfcf3e1ff8d0`.
+
+Governance and unit tests enforce this invariant.
+
+Latest Fully Green verified checkout before this correction:
+`50ae8e5f9f9cc537435217a644548c10bd097ecb`.
+
+Fresh `npm run verify:clean` is required for the new source.

@@ -26,36 +26,46 @@ Branch:
 
 Latest source-affecting Tooltip correction:
 
-`632f45a5fb7b42eefa09da0d2c8a20c0f520244b`
-`fix(tooltip): center arrow on trigger cross-axis`
+`84d5fd91daf3fb3085cde422c186dfcf3e1ff8d0`
+`fix(tooltip): align popover and arrow coordinate origins`
 
-This source corrects the Product Owner runtime finding that Tooltip arrows were
-visibly biased on the cross-axis:
-- left/right arrows appeared vertically low;
-- top/bottom arrows appeared horizontally biased.
+This supersedes the previous centering hypothesis as the primary visible root
+cause for the Product Owner screenshots.
 
-Correction contract:
-- arrow coordinate is the exact cross-axis center and CSS uses `translate(-50%)`;
-- configured arrow safe inset shrinks symmetrically when a compact Tooltip
-  cannot afford the full inset;
-- the safe-inset fallback must never bias the arrow away from the trigger center.
+Confirmed coordinate-space issue:
+- arrow geometry is calculated in the outer native Popover surface coordinate
+  space;
+- after moving arrow inside the animated motion assembly, the arrow coordinates
+  were applied in the inner motion-layer coordinate space;
+- the outer Popover surface did not explicitly reset native Popover padding;
+- therefore the two coordinate origins could differ by the user-agent Popover
+  padding, shifting side arrows downward and top/bottom arrows horizontally.
+
+Correction:
+- outer geometry surface now has explicit `padding: 0`;
+- geometry and animated visual assembly now share the same physical origin;
+- governance rejects removal of the zero-padding invariant;
+- Tooltip unit coverage verifies zero physical padding on all four sides.
 
 Verification distinction:
 
-The latest **Fully Green** verified repository checkout remains:
+The latest **Fully Green** verified checkout before this correction is:
 
-`310b5afe8e6f018bb4d52f68be2986bbe2d31365`
+`50ae8e5f9f9cc537435217a644548c10bd097ecb`
 
-with 87/87 test files, 615/615 tests, both TypeScript no-emit gates, and the
-zero-warning production build passing.
+Product Owner local evidence at that checkout:
+- all governance/lint PASS;
+- 87 / 87 test files PASS;
+- 618 / 618 tests PASS;
+- `typecheck:app` PASS;
+- `typecheck:spec` PASS;
+- final zero-warning production build PASS.
 
-The new `632f45a...` Tooltip centering correction is implemented and source-reviewed
-but requires a fresh `npm run verify:clean` before it can become the new Fully
-Green baseline.
+The new `84d5fd9...` source requires a fresh `npm run verify:clean` before it
+can become the new Fully Green baseline.
 
 Product status:
 - Tooltip V1 remains the active Product Owner blocker;
-- no later page review is authorized until this centering correction is
-  technically verified and Product Owner runtime Light/Dark re-review accepts it.
+- no later page review until technical re-verification and runtime acceptance.
 
 Read `NEW_CHAT_HANDOFF.md` for the complete state and exact next action.

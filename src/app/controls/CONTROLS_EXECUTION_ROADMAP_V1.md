@@ -483,3 +483,20 @@ Next gates:
 1. full `npm run verify:clean`;
 2. Product Owner Tooltip runtime Light/Dark re-review;
 3. only then may page-by-page review continue.
+
+
+### 2026-09-29 — Tooltip Popover padding origin correction
+
+Product Owner confirmed the prior centering change did not alter the visible
+offset. Source review identified native Popover padding as the remaining
+coordinate-origin mismatch between the fixed geometry surface and the inner
+motion/arrow assembly.
+
+Correction:
+`84d5fd91daf3fb3085cde422c186dfcf3e1ff8d0` —
+`fix(tooltip): align popover and arrow coordinate origins`.
+
+Next gates:
+1. full `npm run verify:clean`;
+2. Product Owner runtime re-test of top/bottom/start/end;
+3. only after visual acceptance may later page review resume.
