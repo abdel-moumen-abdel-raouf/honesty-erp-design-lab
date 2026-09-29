@@ -36,6 +36,7 @@ export class ErpDateBox extends ErpFieldBase<string | null> {
   readonly max = input<string | null>(null);
   readonly weekStartsOn = input(0);
   readonly locale = input('ar-EG');
+  readonly placeholder = input('اختر التاريخ');
   readonly pattern = input<string | null>(null);
   readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null);
   override readonly trailingIcon = input<ErpIconName | null>('calendar');
@@ -67,7 +68,7 @@ export class ErpDateBox extends ErpFieldBase<string | null> {
           resolveContextualPreference(this.dateFormat(), 'field'),
           resolveContextualPreference(this.digits(), 'field'),
         )
-      : 'Select date';
+      : this.placeholder();
   });
   private readonly overlays = inject(ErpOverlayManager);
   private activeRef: ErpOverlayRef<ErpTemporalValue> | null = null;
