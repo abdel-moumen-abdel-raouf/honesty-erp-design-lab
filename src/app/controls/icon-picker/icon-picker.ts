@@ -41,12 +41,12 @@ export class ErpIconPicker extends ErpFieldBase<ErpIconName | null> {
   protected override normalizeValue(value: unknown): ErpIconName | null { return normalizeIconName(value); }
   protected openPicker(): void {
     if (this.fieldEffectiveDisabled() || this.activeRef) return;
-    const ref = this.overlays.open<ErpSelectionPickerContent, ErpSelectionPickerData, string | null>(ErpSelectionPickerContent, {frame: {header: {title: this.trimmedLabel(), subtitle: 'اختر أيقونة دلالية', icon: 'layers'}, footer: createSelectionOverlayFooter('icon', true, ERP_SELECTION_DEFAULT_ACTION_LABELS)}, size: 'lg', ...(this.overlayConfig() ?? {}), data: this.pickerData()});
+    const ref = this.overlays.open<ErpSelectionPickerContent, ErpSelectionPickerData, string | null>(ErpSelectionPickerContent, {frame: {header: {title: this.trimmedLabel(), subtitle: 'اختر أيقونة دلالية', icon: 'layers'}, footer: createSelectionOverlayFooter('icon', this.clearable(), ERP_SELECTION_DEFAULT_ACTION_LABELS)}, size: 'lg', ...(this.overlayConfig() ?? {}), data: this.pickerData()});
     this.activeRef = ref;
     void ref.afterClosed.then((outcome) => { this.activeRef = null; if (outcome.type === 'closed') this.commitUserValue(outcome.result); });
   }
   protected handleClear(): void { this.commitUserValue(null); }
   protected handleNativeFocus(): void { this.handleFocus(); }
   protected handleNativeBlur(): void { this.handleBlur(); }
-  private pickerData(): ErpSelectionPickerData { return {mode: 'icon', value: this.currentValue(), colorMode: 'system', items: [], query: '', searchable: true, clearable: true, actionLabels: ERP_SELECTION_DEFAULT_ACTION_LABELS}; }
+  private pickerData(): ErpSelectionPickerData { return {mode: 'icon', value: this.currentValue(), colorMode: 'system', items: [], query: '', searchable: true, clearable: this.clearable(), actionLabels: ERP_SELECTION_DEFAULT_ACTION_LABELS}; }
 }
