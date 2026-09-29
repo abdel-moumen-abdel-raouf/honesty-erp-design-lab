@@ -114,4 +114,26 @@ describe('ErpOverlayRef', () => {
       ref.updateFrameActionState('missing', {disabled: true}),
     ).toThrowError('Unknown Overlay frame action "missing".');
   });
+
+  it('does not dispatch dynamically disabled or loading frame actions', () => {
+    const ref = new ErpOverlayRef('overlay-7', CONFIG, () => true);
+    const confirm = vi.fn();
+    ref.registerFrameAction('confirm', confirm);
+
+    ref.updateFrameActionState('confirm', {disabled: true});
+    expect(ref.requestFrameAction('confirm')).toBe(false);
+    expect(confirm).not.toHaveBeenCalled();
+
+    ref.updateFrameActionState('confirm', {
+      disabled: false,
+      loading: true,
+    });
+    expect(ref.requestFrameAction('confirm')).toBe(false);
+    expect(confirm).not.toHaveBeenCalled();
+
+    ref.updateFrameActionState('confirm', {loading: false});
+    expect(ref.requestFrameAction('confirm')).toBe(true);
+    expect(confirm).toHaveBeenCalledOnce();
+  });
+
 });
