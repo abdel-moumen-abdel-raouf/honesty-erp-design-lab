@@ -16,7 +16,10 @@ import {
   resolveDomainPattern,
 } from '../input-family/domain-validation';
 import {ErpFieldBase} from '../input-family/field-base';
-import {ErpInputConfigurationState} from '../input-family/input-contracts';
+import {
+  ErpInputConfigurationState,
+  ErpInputValidationIssue,
+} from '../input-family/input-contracts';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
 
 let nextTelBoxId = 0;
@@ -44,6 +47,8 @@ export class ErpTelBox extends ErpFieldBase<string> {
   readonly readonly = input(false, {transform: booleanAttribute});
   readonly autocomplete = input('tel');
   readonly pattern = input<string | null>(null);
+  readonly minLength = input<number | null>(null);
+  readonly maxLength = input<number | null>(null);
 
   protected readonly controlId = `erp-tel-box-${++nextTelBoxId}`;
   private readonly draftText = signal('');
@@ -93,39 +98,126 @@ export class ErpTelBox extends ErpFieldBase<string> {
   }
 
   protected override normalizeValue(value: unknown): string {
-    if (value === null || value === undefined || value === '') {
-      return '';
+    return value === null || value === undefined ? '' : String(value);
+  }
+
+  protected override validateCandidate(
+    value: unknown,
+  ): readonly ErpInputValidationIssue[] {
+    const source = String(value ?? '');
+    if (source.length === 0) {
+      return [];
     }
 
-    const source = String(value);
-    return matchesDomainPattern(source, this.effectivePattern().regex)
-      ? source
-      : '';
+    const issues: ErpInputValidationIssue[] = [];
+    const plusCount = [...source].filter((character) => character === '+').length;
+    const digitCount = [...source].filter((character) => /\d/.test(character)).length;
+
+    if (containsAlphabeticCharacter(source)) {
+      issues.push(
+        this.validationIssue(
+          'tel.alphabetic',
+          'رقم الهاتف لا يسمح بحروف أبجدية.',
+          'domain',
+        ),
+      );
+    }
+
+    if (plusCount > 1) {
+      issues.push(
+        this.validationIssue(
+          'tel.plus-count',
+          'يسمح بعلامة + واحدة فقط في رقم الهاتف.',
+          'domain',
+          {plusCount},
+        ),
+      );
+    }
+
+    if (source.includes('+') && !source.startsWith('+')) {
+      issues.push(
+        this.validationIssue(
+          'tel.plus-position',
+          'علامة + مسموحة فقط في بداية رقم الهاتف.',
+          'domain',
+        ),
+      );
+    }
+
+    if (digitCount < 6) {
+      issues.push(
+        this.validationIssue(
+          'tel.too-short',
+          'رقم الهاتف أقصر من الحد الأدنى المطلوب.',
+          'domain',
+          {digitCount, minimumDigits: 6},
+        ),
+      );
+    }
+
+    if (digitCount > 20) {
+      issues.push(
+        this.validationIssue(
+          'tel.too-long',
+          'رقم الهاتف أطول من الحد الأقصى المسموح.',
+          'domain',
+          {digitCount, maximumDigits: 20},
+        ),
+      );
+    }
+
+    if (
+      this.minLength() !== null &&
+      source.length < (this.minLength() as number)
+    ) {
+      issues.push(
+        this.validationIssue(
+          'tel.min-length',
+          `يجب ألا يقل طول القيمة عن ${this.minLength()} حرفًا.`,
+          'constraint',
+        ),
+      );
+    }
+
+    if (
+      this.maxLength() !== null &&
+      source.length > (this.maxLength() as number)
+    ) {
+      issues.push(
+        this.validationIssue(
+          'tel.max-length',
+          `يجب ألا يزيد طول القيمة عن ${this.maxLength()} حرفًا.`,
+          'constraint',
+        ),
+      );
+    }
+
+    if (
+      issues.length === 0 &&
+      !matchesDomainPattern(source, this.effectivePattern().regex)
+    ) {
+      issues.push(
+        this.validationIssue(
+          'tel.format',
+          'رقم الهاتف المُدخل غير صالح.',
+          'domain',
+        ),
+      );
+    }
+
+    return issues;
   }
 
   protected handleInput(event: Event): void {
     const native = event.target as HTMLInputElement;
 
     if (this.readonly() || this.telEffectiveDisabled()) {
-      native.value = this.draftText();
       return;
     }
 
     const value = native.value;
-
-    if (containsAlphabeticCharacter(value)) {
-      native.value = this.draftText();
-      return;
-    }
-
     this.draftText.set(value);
-
-    if (
-      value === '' ||
-      matchesDomainPattern(value, this.effectivePattern().regex)
-    ) {
-      this.commitUserValue(value);
-    }
+    this.commitUserValue(value);
   }
 
   protected handleNativeFocus(): void {
