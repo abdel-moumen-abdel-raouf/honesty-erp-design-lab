@@ -1,5 +1,6 @@
 @mixin base {
   --honesty-field-frame-bg: var(--honesty-color-surface-default);
+  --honesty-field-frame-hover-bg: var(--honesty-color-surface-elevated);
   --honesty-field-frame-fg: var(--honesty-color-text-primary);
   --honesty-field-frame-placeholder-color: var(--honesty-color-text-muted);
   --honesty-field-frame-border-color: var(--honesty-border-default);
