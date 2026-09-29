@@ -10,6 +10,8 @@ import {NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpText} from '../../primitives/text/text';
 import {ErpFieldBase} from '../input-family/field-base';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
+import {ErpInputValidationIssue} from '../input-family/input-contracts';
+import {validateTextEntry} from '../input-family/text-validation';
 
 export type ErpTextAreaResize = 'vertical' | 'both' | 'none';
 
@@ -63,6 +65,17 @@ export class ErpTextAreaBox extends ErpFieldBase<string> {
 
   protected override normalizeValue(value: unknown): string {
     return value === null || value === undefined ? '' : String(value);
+  }
+
+  protected override validateCandidate(
+    value: unknown,
+  ): readonly ErpInputValidationIssue[] {
+    return validateTextEntry(String(value ?? ''), {
+      minLength: this.minLength(),
+      maxLength: this.maxLength(),
+      pattern: null,
+      codePrefix: 'text-area',
+    });
   }
 
   protected override isMultilineField(): boolean {
