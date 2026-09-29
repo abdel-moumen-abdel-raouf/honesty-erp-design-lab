@@ -21,9 +21,10 @@ describe('ErpColorPicker', () => {
     expect(reflectComponentType(ErpColorPicker)?.selector).toBe(
       'erp-color-picker',
     );
+    expect(control.mode()).toBe('system');
     expect(control.overlayConfig()).toBeNull();
     expect(host.hasAttribute('data-color-picker-value')).toBe(false);
-    expect(host.hasAttribute('data-color-picker-mode')).toBe(false);
+    expect(host.getAttribute('data-color-picker-mode')).toBe('system');
     expect(host.querySelector('erp-field-trigger')).not.toBeNull();
     expect(host.querySelector(':scope > button')).toBeNull();
   });
@@ -45,25 +46,24 @@ describe('ErpColorPicker', () => {
     ).toBe('rgb(91, 97, 213)');
   });
 
-  it('normalizes free colors to uppercase and rejects invalid values', () => {
+  it('accepts only values that match the configured ColorPicker mode', () => {
     const fixture = create();
     const control = fixture.componentInstance;
+    const host = fixture.nativeElement as HTMLElement;
 
     control.writeValue({mode: 'free', value: '#a1b2c3'});
     fixture.detectChanges();
-    expect(
-      (fixture.nativeElement as HTMLElement).getAttribute(
-        'data-color-picker-value',
-      ),
-    ).toBe('#A1B2C3');
+    expect(host.hasAttribute('data-color-picker-value')).toBe(false);
 
-    control.writeValue({mode: 'system', token: 'primary-75'});
+    fixture.componentRef.setInput('mode', 'free');
+    control.writeValue({mode: 'free', value: '#a1b2c3'});
     fixture.detectChanges();
-    expect(
-      (fixture.nativeElement as HTMLElement).hasAttribute(
-        'data-color-picker-value',
-      ),
-    ).toBe(false);
+    expect(host.getAttribute('data-color-picker-mode')).toBe('free');
+    expect(host.getAttribute('data-color-picker-value')).toBe('#A1B2C3');
+
+    control.writeValue({mode: 'system', token: 'primary-500'});
+    fixture.detectChanges();
+    expect(host.hasAttribute('data-color-picker-value')).toBe(false);
   });
 
   it('commits only a confirmed overlay union value', async () => {
@@ -117,4 +117,35 @@ describe('ErpColorPicker', () => {
     expect(config.enterAnimation).toBe('slide-up');
     expect(config.exitAnimation).toBe('fade');
   });
+
+  it('opens only the configured color mode with no internal mode switch', async () => {
+    const system = create();
+    const manager = TestBed.inject(ErpOverlayManager);
+    (
+      (system.nativeElement as HTMLElement).querySelector(
+        'erp-field-trigger button',
+      ) as HTMLButtonElement
+    ).click();
+    system.detectChanges();
+
+    const systemEntry = manager.entries()[0];
+    expect(systemEntry.ref.config.data?.colorMode).toBe('system');
+    systemEntry.ref.dismiss('test');
+    manager.completeTransition(systemEntry.ref.id, 'leaving');
+    await Promise.resolve();
+
+    const free = create();
+    free.componentRef.setInput('mode', 'free');
+    free.detectChanges();
+    (
+      (free.nativeElement as HTMLElement).querySelector(
+        'erp-field-trigger button',
+      ) as HTMLButtonElement
+    ).click();
+    free.detectChanges();
+
+    const freeEntry = manager.entries()[0];
+    expect(freeEntry.ref.config.data?.colorMode).toBe('free');
+  });
+
 });
