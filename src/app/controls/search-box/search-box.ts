@@ -28,6 +28,7 @@ import {ErpOverlayRef} from '../../shared/overlay/overlay-ref';
 import {ErpIconButton} from '../icon-button/icon-button';
 import {ErpFieldBase} from '../input-family/field-base';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
+import {ErpInputValidationIssue} from '../input-family/input-contracts';
 import {ErpFieldTrigger} from '../input-family/internal/field-trigger';
 import {ErpSelectionPickerContent} from '../selection-family/internal/selection-picker-content';
 import {ErpSelectionTile} from '../selection-family/internal/selection-tile';
@@ -88,6 +89,8 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
   readonly placeholder = input<string | null>(null);
   readonly readonly = input(false, {transform: booleanAttribute});
   readonly autocomplete = input('off');
+  readonly minLength = input<number | null>(null);
+  readonly maxLength = input<number | null>(null);
   readonly dismissOnOutside = input(true, {transform: booleanAttribute});
   readonly dismissOnEscape = input(true, {transform: booleanAttribute});
   readonly showDefaultSearchIcon = input(true, {
@@ -197,6 +200,35 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
     }
 
     return super.classifyPresence(value);
+  }
+
+  protected override validateCandidate(
+    value: unknown,
+  ): readonly ErpInputValidationIssue[] {
+    if (this.mode() !== 'inline') {
+      return [];
+    }
+
+    const source = String(value ?? '');
+    const issues: ErpInputValidationIssue[] = [];
+
+    if (this.minLength() !== null && source.length < (this.minLength() as number) && source.length > 0) {
+      issues.push(this.validationIssue(
+        'search.min-length',
+        `يجب ألا يقل طول نص البحث عن ${this.minLength()} حرفًا.`,
+        'constraint',
+      ));
+    }
+
+    if (this.maxLength() !== null && source.length > (this.maxLength() as number)) {
+      issues.push(this.validationIssue(
+        'search.max-length',
+        `يجب ألا يزيد طول نص البحث عن ${this.maxLength()} حرفًا.`,
+        'constraint',
+      ));
+    }
+
+    return issues;
   }
 
   protected handleInlineInput(event: Event): void {
