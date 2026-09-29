@@ -1,114 +1,4 @@
-@if (popupMode()) {
-  <erp-field-frame
-    [label]="label()"
-    [controlId]="controlId"
-    [tone]="tone()"
-    [status]="status()"
-    [variant]="variant()"
-    [borderMode]="effectiveBorderMode()"
-    [shape]="shape()"
-    [size]="size()"
-    [appearance]="appearance()"
-    [labelMode]="labelMode()"
-    [floatingPosition]="floatingPosition()"
-    [helperText]="helperText()"
-    [helperPosition]="helperPosition()"
-    [leadingIcon]="effectiveLeadingIcon()"
-    [trailingIcon]="trailingIcon()"
-    [clearable]="clearActionVisible()"
-    [feedbackText]="feedbackText()"
-    [feedbackDismissible]="feedbackDismissible()"
-    [feedbackVisible]="feedbackVisible()"
-    [focused]="fieldFocused()"
-    [hasDisplayValue]="currentValue().length > 0"
-    [placeholder]="placeholder()"
-    [disabled]="fieldEffectiveDisabled()"
-    [configurationState]="fieldConfigurationState()"
-    (clearRequested)="handleClear()"
-    (feedbackDismissed)="dismissFeedback()"
-  >
-    <erp-field-trigger
-      #popupAnchor
-      field-control
-      class="search-box__trigger"
-      [id]="controlId"
-      [name]="name()"
-      [form]="form()"
-      [disabled]="fieldEffectiveDisabled()"
-      [ariaDescribedBy]="fieldAriaDescribedBy(controlId)"
-      [ariaErrorMessage]="fieldAriaErrorMessage(controlId)"
-      [ariaInvalid]="status() === 'danger'"
-      ariaHasPopup="dialog"
-      [ariaControls]="popupId"
-      [ariaExpanded]="popupOpen()"
-      (activated)="togglePopup()"
-      (keyPressed)="handlePopupKeydown($event)"
-      (focused)="handleNativeFocus()"
-      (blurred)="handleNativeBlur()"
-    >
-      <erp-text type="text" tone="inherit">
-        {{ currentValue() || placeholder() || '' }}
-      </erp-text>
-    </erp-field-trigger>
-  </erp-field-frame>
-
-  <div
-    #popupSurface
-    class="search-box__popup"
-    popover="manual"
-    role="dialog"
-    [id]="popupId"
-    [attr.aria-label]="label()"
-    [attr.data-search-popup-phase]="popupPhase()"
-    [attr.data-search-popup-animation]="activeAnimation()"
-  >
-    <erp-field-frame
-      [label]="label()"
-      [controlId]="popupInputId"
-      [tone]="tone()"
-      [status]="status()"
-      [variant]="variant()"
-      [borderMode]="effectiveBorderMode()"
-      [shape]="shape()"
-      [size]="size()"
-      [appearance]="appearance()"
-      [labelMode]="labelMode()"
-      [floatingPosition]="floatingPosition()"
-      [leadingIcon]="effectiveLeadingIcon()"
-      [trailingIcon]="trailingIcon()"
-      [focused]="fieldFocused()"
-      [hasDisplayValue]="currentValue().length > 0"
-      [placeholder]="placeholder()"
-      [disabled]="fieldEffectiveDisabled()"
-      [configurationState]="fieldConfigurationState()"
-    >
-      <input
-        #nativeInput
-        field-control
-        class="search-box__native"
-        type="search"
-        [id]="popupInputId"
-        [attr.name]="name()"
-        [attr.form]="form()"
-        [value]="currentValue()"
-        [placeholder]="placeholder() ?? ''"
-        [disabled]="fieldEffectiveDisabled()"
-        [readOnly]="readonly()"
-        [attr.autocomplete]="autocomplete()"
-        [attr.aria-invalid]="status() === 'danger' ? 'true' : null"
-        [attr.aria-describedby]="fieldAriaDescribedBy(controlId)"
-        [attr.aria-errormessage]="fieldAriaErrorMessage(controlId)"
-        (input)="handleInput($event)"
-        (focus)="handleNativeFocus()"
-        (blur)="handleNativeBlur()"
-      />
-    </erp-field-frame>
-
-    <div class="search-box__results">
-      <ng-content select="[search-results]"></ng-content>
-    </div>
-  </div>
-} @else {
+@if (mode() === 'inline') {
   <erp-field-frame
     [label]="label()"
     [controlId]="controlId"
@@ -153,9 +43,162 @@
       [attr.aria-invalid]="status() === 'danger' ? 'true' : null"
       [attr.aria-describedby]="fieldAriaDescribedBy(controlId)"
       [attr.aria-errormessage]="fieldAriaErrorMessage(controlId)"
-      (input)="handleInput($event)"
-      (focus)="handleNativeFocus()"
-      (blur)="handleNativeBlur()"
+      (input)="handleInlineInput($event)"
+      (focus)="handleTriggerFocus()"
+      (blur)="handleTriggerBlur()"
     />
   </erp-field-frame>
+} @else {
+  <erp-field-frame
+    [label]="label()"
+    [controlId]="controlId"
+    [tone]="tone()"
+    [status]="status()"
+    [variant]="variant()"
+    [borderMode]="effectiveBorderMode()"
+    [shape]="shape()"
+    [size]="size()"
+    [appearance]="appearance()"
+    [labelMode]="labelMode()"
+    [floatingPosition]="floatingPosition()"
+    [helperText]="helperText()"
+    [helperPosition]="helperPosition()"
+    [leadingIcon]="effectiveLeadingIcon()"
+    [trailingIcon]="trailingIcon()"
+    [clearable]="clearActionVisible()"
+    [feedbackText]="feedbackText()"
+    [feedbackDismissible]="feedbackDismissible()"
+    [feedbackVisible]="feedbackVisible()"
+    [focused]="fieldFocused()"
+    [hasDisplayValue]="currentValue().length > 0"
+    [placeholder]="placeholder()"
+    [disabled]="fieldEffectiveDisabled()"
+    [configurationState]="fieldConfigurationState()"
+    (clearRequested)="handleClear()"
+    (feedbackDismissed)="dismissFeedback()"
+  >
+    <erp-field-trigger
+      #popupAnchor
+      field-control
+      class="search-box__trigger"
+      [id]="controlId"
+      [name]="name()"
+      [form]="form()"
+      [disabled]="fieldEffectiveDisabled()"
+      [ariaDescribedBy]="fieldAriaDescribedBy(controlId)"
+      [ariaErrorMessage]="fieldAriaErrorMessage(controlId)"
+      [ariaInvalid]="status() === 'danger'"
+      [ariaHasPopup]="mode() === 'modal' ? 'dialog' : 'listbox'"
+      [ariaControls]="mode() === 'dropdown' ? popupId : null"
+      [ariaExpanded]="mode() === 'dropdown' ? popupOpen() : modalOpen()"
+      (activated)="handleTriggerActivation()"
+      (keyPressed)="handleTriggerKeydown($event)"
+      (focused)="handleTriggerFocus()"
+      (blurred)="handleTriggerBlur()"
+    >
+      <erp-text type="text" tone="inherit">
+        {{ triggerDisplayValue() || placeholder() || '' }}
+      </erp-text>
+    </erp-field-trigger>
+  </erp-field-frame>
+
+  @if (mode() === 'dropdown') {
+    <div
+      #popupSurface
+      class="search-box__popup"
+      popover="manual"
+      [id]="popupId"
+      [attr.data-search-popup-phase]="popupPhase()"
+      [attr.data-search-popup-animation]="activeAnimation()"
+    >
+      <div class="search-box__popup-header">
+        <erp-field-frame
+          [label]="label()"
+          [controlId]="popupInputId"
+          [tone]="tone()"
+          [status]="status()"
+          [variant]="variant()"
+          [borderMode]="effectiveBorderMode()"
+          [shape]="shape()"
+          [size]="size()"
+          [appearance]="appearance()"
+          [labelMode]="labelMode()"
+          [floatingPosition]="floatingPosition()"
+          [leadingIcon]="effectiveLeadingIcon()"
+          [focused]="fieldFocused()"
+          [hasDisplayValue]="query().length > 0"
+          [placeholder]="placeholder()"
+          [disabled]="fieldEffectiveDisabled()"
+          [configurationState]="fieldConfigurationState()"
+        >
+          <input
+            #nativeInput
+            field-control
+            class="search-box__native"
+            type="search"
+            role="combobox"
+            aria-autocomplete="list"
+            aria-haspopup="listbox"
+            aria-expanded="true"
+            [attr.aria-controls]="resultsId"
+            [id]="popupInputId"
+            [value]="query()"
+            [placeholder]="placeholder() ?? ''"
+            [disabled]="fieldEffectiveDisabled()"
+            [readOnly]="readonly()"
+            [attr.autocomplete]="autocomplete()"
+            [attr.aria-invalid]="status() === 'danger' ? 'true' : null"
+            (input)="handleQueryInput($event)"
+            (keydown)="handlePopupInputKeydown($event)"
+            (focus)="handlePopupInputFocus()"
+            (blur)="handlePopupInputBlur()"
+          />
+        </erp-field-frame>
+
+        <erp-icon-button
+          class="search-box__close"
+          icon="close"
+          label="إغلاق البحث"
+          (pressed)="closeDropdownFromAction()"
+        />
+      </div>
+
+      <div
+        class="search-box__results"
+        [id]="resultsId"
+        role="listbox"
+        [attr.aria-label]="label()"
+      >
+        @for (item of filteredItems(); track item.value; let index = $index) {
+          <button
+            type="button"
+            class="search-box__result"
+            role="option"
+            data-search-result
+            [attr.data-value]="item.value"
+            [attr.aria-selected]="currentValue() === item.value"
+            [disabled]="item.disabled ?? false"
+            (focus)="setActiveResultIndex(index)"
+            (keydown)="handleResultKeydown($event, index)"
+            (click)="selectResult(item)"
+          >
+            @if (item.icon) {
+              <erp-icon [name]="item.icon" size="sm" />
+            }
+            <erp-text type="paragraph" tone="inherit">
+              {{ item.label }}
+            </erp-text>
+          </button>
+        } @empty {
+          <erp-text
+            class="search-box__empty"
+            type="caption"
+            tone="secondary"
+          >
+            لا توجد نتائج مطابقة
+          </erp-text>
+        }
+      </div>
+    </div>
+  }
 }

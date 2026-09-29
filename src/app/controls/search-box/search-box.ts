@@ -6,12 +6,14 @@ import {
   effect,
   ElementRef,
   forwardRef,
+  inject,
   input,
   OnDestroy,
   signal,
   viewChild,
 } from '@angular/core';
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ErpIcon} from '../../primitives/icon/icon';
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
 import {ErpText} from '../../primitives/text/text';
 import {AnchoredOverlayController} from '../../shared/anchored-overlay/anchored-overlay-controller';
@@ -19,20 +21,46 @@ import {
   AnchoredOverlayGeometryResult,
   AnchoredOverlayPhysicalPlacement,
 } from '../../shared/anchored-overlay/anchored-overlay-contracts';
-import {ErpOverlayAnimation} from '../../shared/overlay/overlay-contracts';
+import {ErpOverlayAnimation, ErpOverlayBehaviorConfig} from '../../shared/overlay/overlay-contracts';
+import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
+import {ErpOverlayRef} from '../../shared/overlay/overlay-ref';
+import {ErpIconButton} from '../icon-button/icon-button';
 import {ErpFieldBase} from '../input-family/field-base';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
 import {ErpFieldTrigger} from '../input-family/internal/field-trigger';
+import {ErpSelectionPickerContent} from '../selection-family/internal/selection-picker-content';
+import {
+  createSelectionOverlayFooter,
+  ERP_SELECTION_DEFAULT_ACTION_LABELS,
+  ErpItemPickerOption,
+  ErpSelectionPickerData,
+} from '../selection-family/selection-contracts';
 
 let nextSearchBoxId = 0;
 type ErpSearchBoxPopupPhase = 'closed' | 'entering' | 'open' | 'leaving';
+
+export type ErpSearchBoxMode = 'modal' | 'dropdown' | 'inline';
+
+export interface ErpSearchBoxOption {
+  readonly value: string;
+  readonly label: string;
+  readonly disabled?: boolean;
+  readonly icon?: ErpIconName;
+}
+
 const openSearchBoxes: ErpSearchBox[] = [];
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-search-box',
-  imports: [ErpFieldFrame, ErpFieldTrigger, ErpText],
+  imports: [
+    ErpFieldFrame,
+    ErpFieldTrigger,
+    ErpIcon,
+    ErpIconButton,
+    ErpText,
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -48,18 +76,20 @@ const openSearchBoxes: ErpSearchBox[] = [];
   ],
   host: {
     '[attr.data-field-configuration-state]': 'fieldConfigurationState()',
-    '[attr.data-search-box-popup-mode]': 'popupMode()',
+    '[attr.data-search-box-mode]': 'mode()',
     '[attr.data-search-box-popup-open]': 'popupOpen()',
+    '[attr.data-search-box-modal-open]': 'modalOpen()',
     '[attr.data-search-box-popup-phase]': 'popupPhase()',
     '[attr.data-search-box-animation]': 'activeAnimation()',
     '[attr.data-search-box-resolved-placement]': 'resolvedPlacement()',
   },
 })
 export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
+  readonly mode = input<ErpSearchBoxMode>('dropdown');
+  readonly items = input<readonly ErpSearchBoxOption[]>([]);
   readonly placeholder = input<string | null>(null);
   readonly readonly = input(false, {transform: booleanAttribute});
   readonly autocomplete = input('off');
-  readonly popupMode = input(true, {transform: booleanAttribute});
   readonly dismissOnOutside = input(true, {transform: booleanAttribute});
   readonly dismissOnEscape = input(true, {transform: booleanAttribute});
   readonly showDefaultSearchIcon = input(true, {
@@ -67,15 +97,26 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
   });
   readonly enterAnimation = input<ErpOverlayAnimation>('fade-scale');
   readonly exitAnimation = input<ErpOverlayAnimation>('fade-scale');
+  readonly modalOverlayConfig =
+    input<Partial<ErpOverlayBehaviorConfig> | null>(null);
 
-  protected readonly controlId =
-    `erp-search-box-${++nextSearchBoxId}`;
+  protected readonly controlId = `erp-search-box-${++nextSearchBoxId}`;
   protected readonly popupId = `${this.controlId}-popup`;
   protected readonly popupInputId = `${this.controlId}-popup-input`;
+  protected readonly resultsId = `${this.controlId}-results`;
   protected readonly effectiveLeadingIcon = computed<ErpIconName | null>(
     () =>
       this.leadingIcon() ??
       (this.showDefaultSearchIcon() ? 'search' : null),
+  );
+  protected readonly selectedItem = computed(() =>
+    this.items().find((item) => item.value === this.currentValue()) ?? null,
+  );
+  protected readonly triggerDisplayValue = computed(
+    () =>
+      this.selectedItem()?.label ??
+      (this.mode() === 'inline' ? this.currentValue() : '') ??
+      '',
   );
   protected readonly clearActionVisible = computed(
     () =>
@@ -91,6 +132,7 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
       this.popupPhase() === 'entering' ||
       this.popupPhase() === 'open',
   );
+  protected readonly modalOpen = signal(false);
   protected readonly activeAnimation = computed(() =>
     this.popupPhase() === 'leaving'
       ? this.exitAnimation()
@@ -98,6 +140,17 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
   );
   protected readonly resolvedPlacement =
     signal<AnchoredOverlayPhysicalPlacement | null>(null);
+  protected readonly query = signal('');
+  protected readonly activeResultIndex = signal<number | null>(null);
+  protected readonly filteredItems = computed(() => {
+    const query = this.query().trim().toLocaleLowerCase();
+    return this.items().filter(
+      (item) =>
+        !query ||
+        item.label.toLocaleLowerCase().includes(query) ||
+        item.value.toLocaleLowerCase().includes(query),
+    );
+  });
 
   private readonly popupAnchor =
     viewChild('popupAnchor', {read: ElementRef<HTMLElement>});
@@ -105,16 +158,26 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
     viewChild<ElementRef<HTMLInputElement>>('nativeInput');
   private readonly popupSurface =
     viewChild<ElementRef<HTMLElement>>('popupSurface');
+  private readonly overlays = inject(ErpOverlayManager);
   private controller: AnchoredOverlayController | null = null;
   private closeTimer: ReturnType<typeof setTimeout> | null = null;
+  private activeModalRef: ErpOverlayRef<string | null> | null = null;
   private restoreFocusAfterClose = false;
+  private suppressNextFocusOpen = false;
 
   constructor() {
     super('');
 
     effect(() => {
-      if (!this.popupMode() || this.fieldEffectiveDisabled()) {
-        this.closePopup(false);
+      const mode = this.mode();
+      const disabled = this.fieldEffectiveDisabled();
+
+      if (mode !== 'dropdown' || disabled) {
+        this.closeDropdown(false);
+      }
+
+      if ((mode !== 'modal' || disabled) && this.activeModalRef) {
+        this.activeModalRef.dismiss('mode-change');
       }
     });
   }
@@ -124,26 +187,55 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
     this.removeFromOpenStack();
     this.detachDismissalListeners();
     this.controller?.destroy();
+    this.activeModalRef?.dismiss('destroyed');
   }
 
   protected override normalizeValue(value: unknown): string {
     return value === null || value === undefined ? '' : String(value);
   }
 
-  protected handleInput(event: Event): void {
+  protected handleInlineInput(event: Event): void {
     if (!this.readonly()) {
       this.commitUserValue((event.target as HTMLInputElement).value);
     }
   }
 
-  protected handleNativeFocus(): void {
+  protected handleQueryInput(event: Event): void {
+    if (this.readonly()) {
+      return;
+    }
+
+    this.query.set((event.target as HTMLInputElement).value);
+    this.activeResultIndex.set(null);
+  }
+
+  protected handleTriggerFocus(): void {
+    this.handleFocus();
+
+    if (this.suppressNextFocusOpen) {
+      this.suppressNextFocusOpen = false;
+      return;
+    }
+
+    if (this.mode() === 'dropdown') {
+      this.openDropdown();
+    } else if (this.mode() === 'modal') {
+      this.openModal();
+    }
+  }
+
+  protected handleTriggerBlur(): void {
+    if (this.mode() === 'inline') {
+      this.handleBlur();
+    }
+  }
+
+  protected handlePopupInputFocus(): void {
     this.handleFocus();
   }
 
-  protected handleNativeBlur(): void {
-    if (!this.popupMode()) {
-      this.handleBlur();
-    }
+  protected handlePopupInputBlur(): void {
+    // Dropdown focus remains owned by the SearchBox until the popup closes.
   }
 
   protected handleClear(): void {
@@ -151,39 +243,101 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
       return;
     }
 
-    const focusTarget = this.popupOpen()
-      ? this.nativeInput()?.nativeElement
-      : this.anchorElement();
-    if (!focusTarget) {
+    this.query.set('');
+    const popupInput = this.nativeInput()?.nativeElement;
+    if (this.popupOpen() && popupInput) {
+      popupInput.value = '';
+      popupInput.focus();
+      this.handleFocus();
       return;
     }
 
-    if (focusTarget instanceof HTMLInputElement) {
-      focusTarget.value = '';
-    }
-    focusTarget.focus();
-    this.handleFocus();
+    this.anchorElement()?.focus();
   }
 
-  protected togglePopup(): void {
-    if (this.popupOpen()) {
-      this.closePopup(true);
-      return;
-    }
-
-    this.openPopup();
-  }
-
-  protected handlePopupKeydown(event: KeyboardEvent): void {
-    if (event.key === 'ArrowDown' || event.key === 'Enter') {
-      event.preventDefault();
-      this.openPopup();
+  protected handleTriggerActivation(): void {
+    if (this.mode() === 'dropdown') {
+      this.openDropdown();
+    } else if (this.mode() === 'modal') {
+      this.openModal();
     }
   }
 
-  private openPopup(): boolean {
+  protected handleTriggerKeydown(event: KeyboardEvent): void {
     if (
-      !this.popupMode() ||
+      event.key === 'ArrowDown' ||
+      event.key === 'Enter'
+    ) {
+      event.preventDefault();
+      this.handleTriggerActivation();
+    }
+  }
+
+  protected handlePopupInputKeydown(event: KeyboardEvent): void {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      this.focusResult(0);
+      return;
+    }
+
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      this.focusResult(this.filteredItems().length - 1);
+      return;
+    }
+
+    if (event.key === 'Enter') {
+      const index = this.activeResultIndex();
+      const item = index === null ? null : this.filteredItems()[index];
+      if (item && !item.disabled) {
+        event.preventDefault();
+        this.selectResult(item);
+      }
+    }
+  }
+
+  protected handleResultKeydown(event: KeyboardEvent, index: number): void {
+    const last = this.filteredItems().length - 1;
+    const nextByKey: Readonly<Record<string, number>> = {
+      ArrowDown: Math.min(last, index + 1),
+      ArrowUp: Math.max(0, index - 1),
+      Home: 0,
+      End: last,
+    };
+
+    if (event.key in nextByKey) {
+      event.preventDefault();
+      this.focusResult(nextByKey[event.key]);
+      return;
+    }
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      this.closeDropdown(true);
+    }
+  }
+
+  protected setActiveResultIndex(index: number): void {
+    this.activeResultIndex.set(index);
+  }
+
+  protected selectResult(item: ErpSearchBoxOption): void {
+    if (item.disabled || !this.commitUserValue(item.value)) {
+      return;
+    }
+
+    this.query.set('');
+    this.activeResultIndex.set(null);
+    this.closeDropdown(true);
+  }
+
+  protected closeDropdownFromAction(): void {
+    this.closeDropdown(true);
+  }
+
+  private openDropdown(): boolean {
+    if (
+      this.mode() !== 'dropdown' ||
       this.fieldEffectiveDisabled() ||
       this.popupPhase() === 'leaving'
     ) {
@@ -201,6 +355,8 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
       return false;
     }
 
+    this.query.set('');
+    this.activeResultIndex.set(null);
     this.updateTriggerInlineSize(anchor, surface);
     this.controller?.destroy();
     this.controller = new AnchoredOverlayController({
@@ -252,7 +408,76 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
     return true;
   }
 
-  private closePopup(restoreFocus: boolean): void {
+  private openModal(): boolean {
+    if (
+      this.mode() !== 'modal' ||
+      this.fieldEffectiveDisabled() ||
+      this.activeModalRef
+    ) {
+      return false;
+    }
+
+    const options: readonly ErpItemPickerOption[] = this.items();
+    const ref = this.overlays.open<
+      ErpSelectionPickerContent,
+      ErpSelectionPickerData,
+      string | null
+    >(ErpSelectionPickerContent, {
+      frame: {
+        header: {
+          title: this.trimmedLabel(),
+          subtitle: 'ابحث واختر سجلًا',
+          icon: 'search',
+        },
+        footer: createSelectionOverlayFooter(
+          'combo',
+          true,
+          ERP_SELECTION_DEFAULT_ACTION_LABELS,
+        ),
+      },
+      dismissOnEscape: true,
+      dismissOnBackdrop: true,
+      ...(this.modalOverlayConfig() ?? {}),
+      restoreFocus: false,
+      initialFocus: '[data-selection-search] input',
+      data: {
+        mode: 'combo',
+        value: this.currentValue() || null,
+        colorMode: 'system',
+        items: options,
+        query: '',
+        searchable: true,
+        clearable: true,
+        actionLabels: ERP_SELECTION_DEFAULT_ACTION_LABELS,
+      },
+    });
+
+    this.activeModalRef = ref;
+    this.modalOpen.set(true);
+    this.handleFocus();
+
+    void ref.afterClosed.then((outcome) => {
+      this.activeModalRef = null;
+      this.modalOpen.set(false);
+      if (
+        outcome.type === 'closed' &&
+        typeof outcome.result === 'string'
+      ) {
+        this.commitUserValue(outcome.result);
+      }
+
+      this.handleBlur();
+      const anchor = this.anchorElement();
+      if (anchor?.isConnected) {
+        this.suppressNextFocusOpen = true;
+        queueMicrotask(() => anchor.focus());
+      }
+    });
+
+    return true;
+  }
+
+  private closeDropdown(restoreFocus: boolean): void {
     if (
       this.popupPhase() === 'closed' ||
       this.popupPhase() === 'leaving'
@@ -265,6 +490,7 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
     this.popupPhase.set('leaving');
     if (surface) {
       surface.dataset['searchPopupPhase'] = 'leaving';
+      surface.inert = true;
     }
     this.clearCloseTimer();
 
@@ -288,13 +514,20 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
     this.detachDismissalListeners();
     this.popupPhase.set('closed');
     this.resolvedPlacement.set(null);
+    this.query.set('');
+    this.activeResultIndex.set(null);
     this.handleBlur();
     const surface = this.popupSurface()?.nativeElement;
     if (surface) {
+      surface.inert = false;
       delete surface.dataset['searchPopupPhase'];
     }
     if (this.restoreFocusAfterClose) {
-      this.anchorElement()?.focus();
+      const anchor = this.anchorElement();
+      if (anchor) {
+        this.suppressNextFocusOpen = true;
+        anchor.focus();
+      }
     }
     this.restoreFocusAfterClose = false;
   }
@@ -312,7 +545,7 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
       !this.popupAnchor()?.nativeElement.contains(target) &&
       !this.popupSurface()?.nativeElement.contains(target)
     ) {
-      this.closePopup(false);
+      this.closeDropdown(false);
     }
   };
 
@@ -327,8 +560,22 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
 
     event.preventDefault();
     event.stopPropagation();
-    this.closePopup(true);
+    this.closeDropdown(true);
   };
+
+  private focusResult(index: number): void {
+    if (index < 0 || index >= this.filteredItems().length) {
+      return;
+    }
+
+    this.activeResultIndex.set(index);
+    queueMicrotask(() => {
+      const buttons = this.popupSurface()?.nativeElement.querySelectorAll<
+        HTMLButtonElement
+      >('[data-search-result]');
+      buttons?.[index]?.focus();
+    });
+  }
 
   private addToOpenStack(): void {
     this.removeFromOpenStack();
