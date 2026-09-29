@@ -79,6 +79,17 @@ export class ErpOverlayRef<TResult = unknown> {
   }
 
   requestFrameAction(action: ErpOverlayFrameActionId): boolean {
+    const config = this.config.frame?.footer.actions.find(
+      (candidate) => candidate.id === action,
+    );
+    const state = this.frameActionState()[action];
+    const disabled = state?.disabled ?? config?.disabled ?? false;
+    const loading = state?.loading ?? config?.loading ?? false;
+
+    if (disabled || loading) {
+      return false;
+    }
+
     const handler = this.frameActions.get(action);
 
     if (handler) {
@@ -86,9 +97,6 @@ export class ErpOverlayRef<TResult = unknown> {
       return true;
     }
 
-    const config = this.config.frame?.footer.actions.find(
-      (candidate) => candidate.id === action,
-    );
     if (config?.role === 'secondary') {
       this.dismiss('secondary-action');
     }
