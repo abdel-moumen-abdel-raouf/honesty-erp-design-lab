@@ -235,6 +235,10 @@ export class ErpSelectionPickerContent implements OnDestroy {
   }
 
   protected confirm(): void {
+    if (!this.confirmEnabled()) {
+      return;
+    }
+
     this.ref.close(this.staged());
   }
 
