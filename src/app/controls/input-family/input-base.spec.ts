@@ -75,6 +75,12 @@ describe('ErpInputBase', () => {
     expect(control.name()).toBeNull();
     expect(control.form()).toBeNull();
     expect(control.disabled()).toBe(false);
+    expect(control.required()).toBe(false);
+    expect(control.externalValidationIssues()).toEqual([]);
+    expect(control.inputState()).toBe('empty');
+    expect(control.valid()).toBe(true);
+    expect(control.errors()).toEqual([]);
+    expect(control.validationIssues()).toEqual([]);
     expect(control.configurationStateForTest).toBe('ready');
     expect(control.effectiveDisabledForTest).toBe(false);
     expect(control.focusedForTest).toBe(false);
@@ -215,4 +221,60 @@ describe('ErpInputBase', () => {
     fixture.detectChanges();
     expect(control.focusedForTest).toBe(false);
   });
+
+  it('separates semantic state from validity for optional and required empty values', () => {
+    const fixture = createFixture();
+    const control = fixture.componentInstance;
+
+    expect(control.inputState()).toBe('empty');
+    expect(control.valid()).toBe(true);
+
+    fixture.componentRef.setInput('required', true);
+    fixture.detectChanges();
+
+    expect(control.inputState()).toBe('empty');
+    expect(control.valid()).toBe(false);
+    expect(control.errors()).toEqual(['القيمة مطلوبة.']);
+    expect(control.validationIssues()).toEqual([
+      {
+        code: 'required',
+        message: 'القيمة مطلوبة.',
+        source: 'presence',
+      },
+    ]);
+  });
+
+  it('merges external validation issues into one deterministic validation snapshot', () => {
+    const fixture = createFixture();
+    const control = fixture.componentInstance;
+
+    control.writeValue('accepted');
+    fixture.componentRef.setInput('externalValidationIssues', [
+      {
+        code: 'server.conflict',
+        message: 'القيمة مستخدمة بالفعل.',
+        source: 'external',
+        meta: {status: 409},
+      },
+    ]);
+    fixture.detectChanges();
+
+    expect(control.inputState()).toBe('invalid-entry');
+    expect(control.valid()).toBe(false);
+    expect(control.errors()).toEqual(['القيمة مستخدمة بالفعل.']);
+    expect(control.validation()).toEqual({
+      state: 'invalid-entry',
+      valid: false,
+      errors: ['القيمة مستخدمة بالفعل.'],
+      issues: [
+        {
+          code: 'server.conflict',
+          message: 'القيمة مستخدمة بالفعل.',
+          source: 'external',
+          meta: {status: 409},
+        },
+      ],
+    });
+  });
+
 });
