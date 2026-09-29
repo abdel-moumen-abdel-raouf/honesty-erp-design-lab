@@ -30,8 +30,8 @@ export function normalizeIsoDate(
     !matchesDomainPattern(value, pattern) ||
     parseIsoDate(value) === null
   ) return null;
-  if (min && value < min) return min;
-  if (max && value > max) return max;
+  void min;
+  void max;
   return value;
 }
 
@@ -49,33 +49,43 @@ export function normalizeIsoTime(
     Number(match[1]) > 23 ||
     Number(match[2]) > 59
   ) return null;
-  if (min && value < min) return min;
-  if (max && value > max) return max;
+  void min;
+  void max;
   return value;
 }
 
 export function normalizeIsoDateTime(
   value: unknown,
+  min: string | null = null,
+  max: string | null = null,
   pattern: RegExp | null = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/,
 ): string | null {
   if (typeof value !== 'string') return null;
   if (!matchesDomainPattern(value, pattern)) return null;
   const [date, time, remainder] = value.split('T');
-  return remainder === undefined &&
+  const normalized =
+    remainder === undefined &&
     normalizeIsoDate(date) === date &&
     normalizeIsoTime(time) === time
-    ? value
-    : null;
+      ? value
+      : null;
+  void min;
+  void max;
+  return normalized;
 }
 
 export function normalizeDateRange(
   value: unknown,
+  min: string | null = null,
+  max: string | null = null,
   pattern: RegExp | null = DATE_PATTERN,
 ): ErpDateRangeValue {
   if (!value || typeof value !== 'object') return {start: null, end: null};
   const candidate = value as {start?: unknown; end?: unknown};
   const start = normalizeIsoDate(candidate.start, null, null, pattern);
   const end = normalizeIsoDate(candidate.end, null, null, pattern);
+  void min;
+  void max;
   return start && end && start > end ? {start, end: null} : {start, end};
 }
 
