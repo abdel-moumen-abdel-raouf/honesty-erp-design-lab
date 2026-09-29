@@ -96,7 +96,7 @@ export class ErpColorPicker extends ErpFieldBase<ErpColorPickerValue | null> {
         header: {title: this.trimmedLabel(), subtitle: 'اختر لونًا', icon: 'layers'},
         footer: createSelectionOverlayFooter(
           'color',
-          true,
+          this.clearable(),
           ERP_SELECTION_DEFAULT_ACTION_LABELS,
         ),
       },
@@ -130,7 +130,7 @@ export class ErpColorPicker extends ErpFieldBase<ErpColorPickerValue | null> {
       items: [],
       query: '',
       searchable: false,
-      clearable: true,
+      clearable: this.clearable(),
       actionLabels: ERP_SELECTION_DEFAULT_ACTION_LABELS,
     };
   }
