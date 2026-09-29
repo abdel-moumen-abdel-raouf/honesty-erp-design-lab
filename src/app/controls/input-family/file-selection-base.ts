@@ -6,7 +6,10 @@ import {
   input,
   signal,
 } from '@angular/core';
-import {ErpInputConfigurationState} from './input-contracts';
+import {
+  ErpInputConfigurationState,
+  ErpInputValidationIssue,
+} from './input-contracts';
 import {ErpFieldBase} from './field-base';
 
 type FileRejectionReason = 'accept' | 'count' | 'size';
@@ -17,6 +20,7 @@ export abstract class ErpFileSelectionBase extends ErpFieldBase<
 > {
   readonly accept = input<string | null>(null);
   readonly maxFileSize = input<number | null>(null);
+  readonly minFiles = input<number | null>(null);
   readonly maxFiles = input<number | null>(null);
   override readonly clearable = input(true, {transform: booleanAttribute});
 
@@ -29,17 +33,27 @@ export abstract class ErpFileSelectionBase extends ErpFieldBase<
   protected readonly selectionConfigurationState =
     computed<ErpInputConfigurationState>(() => {
       const maxFileSize = this.maxFileSize();
+      const minFiles = this.minFiles();
       const maxFiles = this.maxFiles();
       const validMaxFileSize =
         maxFileSize === null ||
         (Number.isFinite(maxFileSize) && maxFileSize > 0);
+      const validMinFiles =
+        minFiles === null ||
+        (Number.isInteger(minFiles) && minFiles >= 0);
       const validMaxFiles =
         maxFiles === null ||
         (Number.isInteger(maxFiles) && maxFiles > 0);
+      const validRange =
+        minFiles === null ||
+        maxFiles === null ||
+        minFiles <= maxFiles;
 
       return this.fieldConfigurationState() === 'ready' &&
         validMaxFileSize &&
-        validMaxFiles
+        validMinFiles &&
+        validMaxFiles &&
+        validRange
         ? 'ready'
         : 'invalid';
     });
@@ -90,6 +104,77 @@ export abstract class ErpFileSelectionBase extends ErpFieldBase<
     super.writeValue(value);
     this.policyFeedbackState.set(null);
     this.selectionChanged(this.selectedFiles());
+  }
+
+  protected override classifyPresence(value: unknown) {
+    return Array.isArray(value) && value.length === 0
+      ? 'no-selection' as const
+      : null;
+  }
+
+  protected override validateCandidate(
+    value: unknown,
+  ): readonly ErpInputValidationIssue[] {
+    const files = Array.isArray(value)
+      ? value.filter((candidate): candidate is File => candidate instanceof File)
+      : [];
+    const issues: ErpInputValidationIssue[] = [];
+    const minFiles = this.minFiles();
+    const maxFiles = this.maxFiles();
+
+    if (minFiles !== null && files.length < minFiles) {
+      issues.push(
+        this.validationIssue(
+          'files.min-count',
+          `يجب اختيار ${minFiles} ملفًا على الأقل.`,
+          'constraint',
+          {minFiles, actualCount: files.length},
+        ),
+      );
+    }
+
+    if (maxFiles !== null && files.length > maxFiles) {
+      issues.push(
+        this.validationIssue(
+          'files.max-count',
+          `لا يمكن اختيار أكثر من ${maxFiles} ملفًا.`,
+          'constraint',
+          {maxFiles, actualCount: files.length},
+        ),
+      );
+    }
+
+    const invalidTypes = files.filter((file) => !this.acceptsFile(file));
+    if (invalidTypes.length > 0) {
+      issues.push(
+        this.validationIssue(
+          'files.type',
+          'يوجد ملف واحد أو أكثر من نوع غير مسموح.',
+          'domain',
+          {invalidCount: invalidTypes.length},
+        ),
+      );
+    }
+
+    const maxFileSize = this.maxFileSize();
+    if (maxFileSize !== null) {
+      const oversized = files.filter((file) => file.size > maxFileSize);
+      if (oversized.length > 0) {
+        issues.push(
+          this.validationIssue(
+            'files.max-size',
+            'يوجد ملف واحد أو أكثر يتجاوز الحد الأقصى للحجم.',
+            'constraint',
+            {
+              maxFileSize,
+              invalidCount: oversized.length,
+            },
+          ),
+        );
+      }
+    }
+
+    return issues;
   }
 
   protected override normalizeValue(value: unknown): readonly File[] {
