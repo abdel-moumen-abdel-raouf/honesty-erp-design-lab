@@ -352,24 +352,37 @@ their concrete ERP controls.
   showCounter=true.
 - ErpPasswordBox is hidden by default. Its Tooltip-wrapped eye/eye-off domain
   action changes only native input type and never the stored value.
-- ErpSearchBox defaults to a nonblocking anchored popup with no backdrop. The
-  trigger uses Field chrome and the popup contains the native search editor
-  followed by one generic projected `search-results` container.
-- SearchBox popup mode uses `AnchoredOverlayController` geometry directly. It
-  does not use `ErpOverlayManager`, Tooltip, or Overlay Component Tokens.
-- `popupMode = true`, `dismissOnOutside = true`, `dismissOnEscape = true`,
-  `showDefaultSearchIcon = true`, and both animation inputs default to
-  `fade-scale`. `popupMode = false` preserves the direct inline editor.
-- SearchBox animation inputs consume the shared `ErpOverlayAnimation` type while
-  owning motion values in the SearchBox Component Token namespace. It exposes
-  no arbitrary CSS-class motion API. Logical slide start/end motion reverses in
-  RTL and reduced motion uses the SearchBox reduced-duration slot.
-- Popup width starts from the trigger inline size, clamps between 20rem and
-  36rem when viewport space permits, and always remains inside the configured
-  viewport inset. Its maximum block size is 28rem and remains viewport-capped.
-- The query is one continuous CVA string between trigger, inline editor, and
-  popup editor. Results projection has no forced list, table, card, or item
-  schema, and there is no search-submit output in V1.
+- `ErpSearchBox` exposes exactly three developer-selected modes:
+  `dropdown | modal | inline`, defaulting to `dropdown`.
+- Dropdown mode uses the shared `AnchoredOverlayController` with a manual
+  nonblocking Popover. Focusing the Field trigger opens the dropdown, whose
+  native search editor owns a transient query separate from the committed CVA
+  value.
+- Dropdown results use readonly `ErpSearchBoxOption[]` data with stable
+  `value`, visible `label`, optional `disabled`, and optional semantic
+  `icon`. Filtering matches label or value; pointer and keyboard activation
+  commit only an enabled result value. Free query text is never committed in
+  dropdown mode.
+- Dropdown semantics are combobox/listbox/option. ArrowDown/ArrowUp move between
+  results and native button activation commits the focused result. The popup
+  also owns an explicit close action; Escape and outside dismissal remain
+  additional paths.
+- The anchored dropdown outer inline size equals the Field trigger inline size
+  whenever viewport space permits, and only shrinks for the configured viewport
+  inset. It must not grow to a component minimum wider than the trigger.
+- Modal mode opens `ErpSelectionPickerContent` through the shared
+  `ErpOverlayManager` and uses dialog/frame semantics. The modal reuses the
+  same result option identity and filtering behavior rather than creating a
+  second search engine.
+- Inline mode owns a direct native search editor and opens nothing on focus.
+  Inline typing is the CVA string value.
+- `dismissOnOutside = true`, `dismissOnEscape = true`,
+  `showDefaultSearchIcon = true`, and anchored dropdown enter/exit animation
+  inputs default to `fade-scale`.
+- SearchBox anchored motion consumes `ErpOverlayAnimation` values while owning
+  its own SearchBox Component Tokens. It consumes no Overlay Component Tokens
+  for dropdown styling. Logical slide start/end motion reverses in RTL and
+  reduced motion uses the SearchBox reduced-duration slot.
 - SearchBox icon priority is custom `leadingIcon`, then the semantic search icon
   when enabled, then no icon.
 - ErpUrlBox uses native url semantics with url autocomplete and input mode. A
@@ -479,8 +492,11 @@ Its invariant is `min <= lower <= upper <= max`; thumbs do not cross in V1.
   true, accepts nullable min/max, and clamps normalized commits to configured
   bounds.
 - `ErpMoneyBox` stores `number | null`; required currency and optional locale
-  are formatting metadata. Focused editing uses normalized numeric text, while
-  the unfocused display uses `Intl.NumberFormat`. It has no currency picker.
+  are formatting metadata. `digitSet: 'latin' | 'arabic-indic' | null` is an
+  optional per-instance display override; null inherits the shared Preferences
+  money digit context. Focused editing remains normalized numeric text, while
+  the unfocused display uses the shared money formatter. It has no currency
+  picker.
 - `ErpNumberStepper` stores one `number | null` scalar. It combines a text-like
   decimal editor without browser-native number spinners with labeled ERP
   decrement/increment actions, nullable bounds, a default step of 1,
@@ -551,22 +567,32 @@ Its invariant is `min <= lower <= upper <= max`; thumbs do not cross in V1.
 - All four use Field Family trigger chrome and never use browser-native
   date/time picker popups as the main selection UX.
 - Calendar selection provides month navigation, weekday headers, a Gregorian
-  month grid, today, clear when available, cancel, and confirm.
+  month grid, Today, Clear when available, Cancel, and Confirm.
+- Time and DateTime overlays provide `الآن`. Now floors the current minute to
+  the configured `minuteStep`; DateTime also stages the current local date.
+- DateRange provides full-calendar-period presets for previous week, next week,
+  previous month, and next month. Week presets honor `weekStartsOn`.
 - Default visible action labels are Arabic: الشهر السابق, الشهر التالي, اليوم,
-  مسح, إلغاء, تأكيد, الساعة, and الدقيقة. They are owned by one shared
-  localizable action-label contract rather than scattered strings.
+  الآن, الأسبوع الماضي, الأسبوع القادم, الشهر الماضي, الشهر القادم, مسح,
+  إلغاء, تأكيد, الساعة, and الدقيقة. They are owned by one shared localizable
+  action-label contract rather than scattered strings.
 - Calendar keyboard behavior supports Arrow movement, Home/End week edges,
   PageUp/PageDown month movement, Enter selection, and OverlayManager Escape.
 - Time selection exposes hours `00` through `23` and minutes derived from the
   configured step.
-- Every temporal selection remains staged in `ErpOverlayManager`; confirm is
-  the only action that commits through CVA, while cancel or dismissal leaves
-  the committed value unchanged.
+- Every temporal selection remains staged in `ErpOverlayManager`. Confirm is
+  disabled until a valid staged value exists: Time requires hour+minute,
+  DateTime requires date+time, Date requires a valid date, and DateRange
+  requires both valid endpoints. Cancel and header Close remain enabled.
+- Confirm is the only action that commits through CVA; cancel or dismissal
+  leaves the committed value unchanged.
 - The date-range overlay owns a staged anchor, pointer/keyboard preview
   candidate, and final staged range. Forward or backward selection always
   produces one chronological interval; preview leave clears preview only,
   Enter selects the keyboard endpoint, disabled dates are ignored, and the
   semantic interval remains continuous across week rows in LTR and RTL.
+- Date/Time/DateTime/DateRange empty display text is Arabic-first and exposed as
+  a per-control placeholder input instead of hard-coded English copy.
 
 ## Selection Overlay Picker Family
 
@@ -586,8 +612,10 @@ Its invariant is `min <= lower <= upper <= max`; thumbs do not cross in V1.
   commits only a matched enabled option value, and never commits free-form text
   in V1.
 - All four use Field Family chrome and `ErpOverlayManager`; overlay selection is
-  staged so cancel or dismissal does not mutate the CVA value. Their default
-  actions are Arabic-first and they expose the typed Overlay behavior subset.
+  staged so cancel or dismissal does not mutate the CVA value. Confirm starts
+  disabled and becomes enabled only when the staged value is valid for the
+  current picker; Cancel and header Close remain enabled. Their default actions
+  are Arabic-first and they expose the typed Overlay behavior subset.
 
 Boolean/choice Basic Controls are `ErpCheckBox` and `ErpRadioBox`.
 `ErpRadioGroup` remains Composite.
