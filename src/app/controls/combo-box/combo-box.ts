@@ -6,6 +6,7 @@ import {ErpOverlayRef} from '../../shared/overlay/overlay-ref';
 import {ErpOverlayBehaviorConfig} from '../../shared/overlay/overlay-contracts';
 import {ErpFieldBase} from '../input-family/field-base';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
+import {ErpInputValidationIssue} from '../input-family/input-contracts';
 import {ErpSelectionPickerContent} from '../selection-family/internal/selection-picker-content';
 import {createSelectionOverlayFooter, ERP_SELECTION_DEFAULT_ACTION_LABELS, ErpItemPickerOption, ErpSelectionPickerData} from '../selection-family/selection-contracts';
 import {normalizeItemValue} from '../selection-family/selection-utils';
@@ -38,6 +39,22 @@ export class ErpComboBox extends ErpFieldBase<string | null> {
   constructor() { super(null); }
   override writeValue(value: unknown): void { super.writeValue(value); this.query.set(''); this.queryEditing.set(false); }
   protected override normalizeValue(value: unknown): string | null { return normalizeItemValue(value, this.items()); }
+  protected override validationCandidate(): unknown {
+    return this.queryEditing() ? this.query() : this.currentValue();
+  }
+  protected override classifyPresence(value: unknown) {
+    return value === null || value === '' ? 'no-selection' as const : null;
+  }
+  protected override validateCandidate(value: unknown): readonly ErpInputValidationIssue[] {
+    if (!this.queryEditing() || value === null || value === '') return [];
+    return [
+      this.validationIssue(
+        'selection.no-match',
+        'اختر قيمة من النتائج المتاحة.',
+        'domain',
+      ),
+    ];
+  }
   protected handleInput(event: Event): void { this.queryEditing.set(true); this.query.set((event.target as HTMLInputElement).value); this.openPicker(); }
   protected openPicker(): void {
     if (this.fieldEffectiveDisabled() || this.activeRef) return;
