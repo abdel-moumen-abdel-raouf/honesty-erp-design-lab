@@ -25,35 +25,47 @@ describe('ErpUrlBox', () => {
     expect(control.readonly()).toBe(false);
     expect(control.autocomplete()).toBe('url');
     expect(control.pattern()).toBeNull();
+    expect(control.minLength()).toBeNull();
+    expect(control.maxLength()).toBeNull();
+    expect(control.clearable()).toBe(true);
     expect(native.type).toBe('url');
     expect(native.autocomplete).toBe('url');
     expect(native.inputMode).toBe('url');
     expect(native.pattern).toBe(ERP_URL_FINAL_PATTERN);
   });
 
-  it('keeps invalid URL drafts visible while retaining the committed CVA value', () => {
+  it('keeps invalid URL text visible and publishes validation instead of deleting it', () => {
     const fixture = create();
     const control = fixture.componentInstance;
-    const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
+    const host = fixture.nativeElement as HTMLElement;
+    const native = host.querySelector('input') as HTMLInputElement;
     const onChange = vi.fn();
     control.registerOnChange(onChange);
-    control.writeValue('https://example.com');
-    fixture.detectChanges();
-    native.dispatchEvent(new FocusEvent('focus'));
-
-    native.value = 'https://';
-    native.dispatchEvent(new Event('input'));
-    expect(native.value).toBe('https://');
-    expect(onChange).not.toHaveBeenCalled();
 
     native.value = 'ftp://example.com';
     native.dispatchEvent(new Event('input'));
-    expect(onChange).not.toHaveBeenCalled();
+    fixture.detectChanges();
+
+    expect(onChange).toHaveBeenCalledWith('ftp://example.com');
+    expect(native.value).toBe('ftp://example.com');
+    expect(control.inputState()).toBe('invalid-entry');
+    expect(control.errors()).toContain(
+      'النص المُدخل ليس عنوان رابط إلكتروني صالحًا.',
+    );
+    expect(native.getAttribute('aria-invalid')).toBe('true');
+    expect(host.textContent).toContain(
+      'النص المُدخل ليس عنوان رابط إلكتروني صالحًا.',
+    );
+
+    native.dispatchEvent(new FocusEvent('blur'));
+    fixture.detectChanges();
+    expect(native.value).toBe('ftp://example.com');
 
     native.value = 'https://openai.com/path';
     native.dispatchEvent(new Event('input'));
-    expect(onChange).toHaveBeenCalledOnce();
-    expect(onChange).toHaveBeenCalledWith('https://openai.com/path');
+    fixture.detectChanges();
+    expect(control.inputState()).toBe('valid-entry');
+    expect(control.errors()).toEqual([]);
   });
 
   it('uses a developer override and rejects an invalid regex configuration', () => {
