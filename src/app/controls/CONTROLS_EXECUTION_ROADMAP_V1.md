@@ -393,3 +393,23 @@ semantic layer proof, Tooltip tests, and the motion-selector review evidence.
 
 Do not advance to another Design Lab page before Product Owner runtime re-review
 of the corrected Tooltip.
+
+
+### 2026-09-29 — Tooltip positioning correction implemented; verification/re-review pending
+
+Implementation checkpoint:
+`7a0a14f090ee38df3ea4adc02255856d89b6c71a`
+
+The authorized correction now enforces:
+- Zoom enter / Zoom exit as system Tooltip defaults;
+- body+arrow shared motion ownership;
+- preferred/opposite/perpendicular collision fallback;
+- canonical arrow geometry across all directions;
+- scroll/resize anchoring;
+- semantic overlay layer governance;
+- fully visible wrapped motion-preset Design Lab evidence.
+
+Next gates, in order:
+1. fresh `npm run verify:clean`;
+2. Product Owner Tooltip Light/Dark runtime re-review;
+3. only after Tooltip acceptance may page-by-page review continue.

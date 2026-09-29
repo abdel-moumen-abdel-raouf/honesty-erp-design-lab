@@ -842,3 +842,29 @@ Required correction contract:
 
 Tooltip V1 status: BLOCKED. Do not continue to another review page until the
 bounded correction is implemented, verified, and Product Owner re-reviews it.
+
+
+## Tooltip Positioning Contract — implemented 2026-09-29
+
+Product Owner Tooltip law is now implemented and recorded in:
+`src/app/controls/tooltip/TOOLTIP_POSITIONING_POLICY_V1.md`.
+
+System defaults:
+- Tooltip enter animation: `zoom`;
+- Tooltip exit animation: `zoom`;
+- explicit per-instance developer overrides remain allowed.
+
+Mandatory Tooltip invariants:
+- fixed outer geometry surface is never animation-transformed;
+- body + arrow animate together in one visual assembly;
+- preferred placement is preserved while it fits;
+- fallback order covers opposite and perpendicular physical placements before final clamp;
+- arrow uses one canonical geometry across all directions and follows resolved placement/trigger center;
+- reposition reacts to viewport/window scroll/resize and anchor/surface resize;
+- Tooltip consumes the semantic overlay layer.
+
+Implementation checkpoint:
+`7a0a14f090ee38df3ea4adc02255856d89b6c71a`
+
+Do not declare this Tooltip correction Fully Green until a fresh `npm run verify:clean` passes.
+Do not proceed to later page review until Product Owner re-reviews Tooltip runtime evidence.

@@ -616,3 +616,28 @@ Required correction contract:
 
 Tooltip V1 status: BLOCKED. Do not continue to another review page until the
 bounded correction is implemented, verified, and Product Owner re-reviews it.
+
+
+## 2026-09-29 — Tooltip blocking correction implemented
+
+Product Owner authorized implementation of the Tooltip anchoring/collision/motion correction and set global defaults to `zoom` enter + `zoom` exit unless explicitly overridden per Tooltip.
+
+Implementation:
+`7a0a14f090ee38df3ea4adc02255856d89b6c71a` — `fix(tooltip): enforce anchored positioning contract`
+
+Implemented:
+- dedicated Tooltip positioning policy;
+- arrow moved into the same animated visual assembly as Tooltip body;
+- four-side deterministic collision/fallback law;
+- perpendicular fallback before final clamp;
+- canonical equal arrow geometry in all directions;
+- strengthened scroll reposition coverage;
+- explicit layer-token governance;
+- global Zoom/Zoom defaults;
+- wrapped motion-preset review evidence.
+
+Current status:
+- implementation source-reviewed on GitHub main;
+- fresh `npm run verify:clean` is still required;
+- Tooltip remains page-review BLOCKED until Product Owner runtime re-review;
+- no later page review is authorized before Tooltip acceptance.

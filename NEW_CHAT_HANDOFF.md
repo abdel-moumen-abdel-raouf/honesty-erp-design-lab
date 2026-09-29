@@ -512,3 +512,49 @@ Required correction contract:
 
 Tooltip V1 status: BLOCKED. Do not continue to another review page until the
 bounded correction is implemented, verified, and Product Owner re-reviews it.
+
+
+---
+
+# 19. 2026-09-29 — TOOLTIP POSITIONING CORRECTION IMPLEMENTED / RE-REVIEW PENDING
+
+Product Owner authorized the blocking Tooltip correction and added a system-wide motion decision:
+
+- default Tooltip enter animation = `zoom`;
+- default Tooltip exit animation = `zoom`;
+- developers may explicitly override either animation on an individual Tooltip.
+
+Implementation commit:
+- `7a0a14f090ee38df3ea4adc02255856d89b6c71a`
+  `fix(tooltip): enforce anchored positioning contract`
+
+Implemented architecture:
+- added `src/app/controls/tooltip/TOOLTIP_POSITIONING_POLICY_V1.md` as the explicit Product Owner positioning law;
+- Tooltip body and arrow now live inside one animated visual assembly;
+- the fixed outer surface remains untransformed and owns anchor/collision geometry;
+- shared anchored-overlay geometry now evaluates preferred -> opposite -> perpendicular candidates ordered by available room;
+- if no candidate fully fits, it deterministically chooses the roomiest candidate and clamps to the visual viewport;
+- logical start/end still resolve through LTR/RTL;
+- arrow geometry is canonical across every direction: one base/depth contract rotated for side placements rather than shrunk;
+- scroll/resize reposition acceptance coverage was strengthened;
+- Tooltip semantic overlay layer usage is now explicitly governance-checked;
+- Tooltip motion governance now enforces `zoom` / `zoom` defaults;
+- Design Lab motion selectors now wrap all system presets instead of hiding evidence behind horizontal overflow.
+
+Source-level post-commit inspection on current main confirmed:
+- no legacy Tooltip `slide-up` default remains;
+- `zoom` enter/exit defaults are present;
+- production side-arrow size remapping is removed;
+- four-side perpendicular fallback is present;
+- arrow is inside the motion assembly;
+- Tooltip surface still consumes the approved semantic layer token;
+- showcase motion evidence wraps.
+
+Verification status:
+- source correction is implemented but **not yet declared Fully Green**;
+- a fresh `npm run verify:clean` is mandatory;
+- last Fully Green source remains `b1b20585adcb272f17835ef8182935353a67d243`.
+
+Review status:
+- Tooltip V1 remains BLOCKED for page progression until Product Owner runtime re-review confirms the corrected arrow attachment, placement/fallback, scroll anchoring, motion, and Light/Dark behavior.
+- no later Design Lab page is authorized before that Tooltip re-review.
