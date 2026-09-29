@@ -900,3 +900,24 @@ post-fix verify has not yet completed.
 
 Inputs remains BLOCKED pending full technical pass and Product Owner runtime
 re-review.
+
+
+## 2026-09-29 — Inputs verification reached tests; stale test harness corrected
+
+At checkout `a85c13899613b239ea28c848b61af3454b3fe5f0`,
+all governance and Angular lint passed.
+
+Test result:
+- 84/87 files passed;
+- 620/626 tests passed;
+- six failures remained.
+
+Review showed the failures were stale synchronous test assumptions introduced by
+the new staged Confirm and SelectionTile contracts, not evidence requiring a
+production behavior change.
+
+Test-only correction:
+`92840de9c670edd32b05c1485f50c2e61e68fead`.
+
+Fresh full `npm run verify:clean` remains mandatory.
+Inputs is still Product Owner BLOCKED pending technical green and runtime review.

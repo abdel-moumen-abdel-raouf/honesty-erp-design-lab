@@ -1087,3 +1087,71 @@ Current verification status:
 - rerun complete `npm run verify:clean` from current `main`;
 - do not skip directly to later stages because the prior command stopped at
   Button governance.
+
+
+---
+
+# 27. 2026-09-29 — VERIFY:CLEAN REACHED TESTS; SIX TEST-HARNESS FAILURES CORRECTED
+
+Product Owner ran the full canonical verification at:
+
+`a85c13899613b239ea28c848b61af3454b3fe5f0`
+
+The run passed all governance and lint gates:
+- Single App theme authority;
+- route-page ERP-only authoring;
+- Component Token framework;
+- System color registry;
+- ErpText;
+- ErpIcon registry/governance;
+- ErpButton governance;
+- ErpTooltip governance;
+- ErpField governance;
+- ErpOverlay governance;
+- Angular lint.
+
+It then ran the full test suite.
+
+Observed result:
+- 87 total test files;
+- 84 passed / 3 failed;
+- 626 total tests;
+- 620 passed / 6 failed.
+
+The six failures were:
+1. SearchBox filtered selection committed `invoice` correctly, but the test read
+   `data-search-box-popup-phase` before a fixture change-detection pass.
+2. SearchBox End-key test created a non-bubbling synthetic KeyboardEvent after
+   result interaction moved inside `ErpSelectionTile`; the event therefore did
+   not reach the host keydown listener.
+3. Selection system-color confirm test timed out.
+4. Selection free-color confirm test timed out.
+5. Selection keyboard-icon confirm test timed out.
+6. Temporal staged-time confirm test timed out.
+
+The four Confirm timeouts shared one test-harness cause:
+- the new product contract disables Confirm until staged state is valid;
+- the tests changed staged state and immediately clicked the still-rendered
+  disabled native Confirm button without `fixture.detectChanges()`;
+- runtime Angular event/change-detection cycles do not perform those two user
+  interactions in one undetected synchronous test step.
+
+Bounded test-only correction:
+- `92840de9c670edd32b05c1485f50c2e61e68fead`
+  `fix(test): flush staged picker state before confirmation`
+
+Changes:
+- SearchBox selection test now renders the leaving phase before asserting host
+  evidence;
+- SearchBox End key uses `bubbles: true`;
+- selection color/free-color/icon tests flush staged action-state rendering
+  before Confirm;
+- temporal staged-time test flushes staged action-state rendering before Confirm.
+
+No production/runtime source changed in this commit.
+
+Current status:
+- source remains NOT Fully Green until a fresh complete
+  `npm run verify:clean` passes;
+- do not skip directly to test/typecheck commands because the canonical gate
+  must be proven end-to-end.

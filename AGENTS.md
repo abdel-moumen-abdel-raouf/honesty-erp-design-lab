@@ -1020,3 +1020,18 @@ Correction checkpoint:
 `cf91967291961037dd7f35d0e825fc4fb2da8312`.
 
 Fresh full `npm run verify:clean` required.
+
+
+## Inputs staged-action test discipline — 2026-09-29
+
+Tests that perform two separate user interactions across a staged Overlay state
+change must run fixture change detection between them before reading/clicking the
+updated frame action DOM.
+
+Native keyboard events intended to exercise listeners on a component host must
+use browser-equivalent bubbling.
+
+Verification follow-up checkpoint:
+`92840de9c670edd32b05c1485f50c2e61e68fead`.
+
+No runtime behavior changed in that commit.

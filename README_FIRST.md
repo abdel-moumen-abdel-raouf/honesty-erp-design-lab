@@ -24,40 +24,39 @@ Branch:
 
 ## Current state
 
-Latest source-affecting Inputs correction:
+Latest source-affecting verification follow-up:
 
-`cf91967291961037dd7f35d0e825fc4fb2da8312`
-`fix(inputs): govern SearchBox results through SelectionTile`
+`92840de9c670edd32b05c1485f50c2e61e68fead`
+`fix(test): flush staged picker state before confirmation`
 
-This follows the Product Owner-authorized Inputs correction unit and fixes the
-first demonstrated verification regression.
+The Product Owner ran `npm run verify:clean` at:
 
-Local verification evidence at checkout
-`a8b33f1fecbd8c468bd68add4281fe925c7845b5`:
-- Overlay governance self-test PASS;
-- `erp-overlay:check` PASS;
-- zero-warning build self-test PASS;
-- standalone `build:clean` PASS;
-- production Angular build PASS;
-- `Zero-warning build gate: PASS`;
-- full `verify:clean` passed theme, route, token, color, text, and icon gates;
-- full `verify:clean` stopped at `erp-button:check`.
+`a85c13899613b239ea28c848b61af3454b3fe5f0`
 
-Observed failure:
-`src/app/controls/search-box/search-box.html:173:11`
-used a raw native result `<button>` inside a concrete Control.
+That run confirmed:
+- all governance gates PASS, including Button, Tooltip, Field, and Overlay;
+- Angular lint PASS;
+- the test runner reached 87 test files;
+- 84 / 87 test files passed;
+- 620 / 626 tests passed;
+- exactly six tests failed.
 
-Correction:
-- SearchBox dropdown results now use approved internal
-  `ErpSelectionTile presentation="list"`;
-- SelectionTile owns the native button, `role="option"`,
-  `aria-selected`, disabled state, and focus API;
-- SearchBox keyboard navigation focuses results through
-  `viewChildren(ErpSelectionTile)`;
-- SearchBox result visual state remains token-owned by the shared SelectionTile
-  primitive;
-- Field governance self-tests now require SelectionTile results instead of raw
-  buttons.
+Failure diagnosis:
+- two SearchBox tests were stale test-harness assumptions after moving result
+  activation into `ErpSelectionTile`;
+- one assertion read host signal evidence before a fixture change-detection pass;
+- one keydown event was created without `bubbles: true`, so it never reached the
+  SelectionTile host listener although real browser key events bubble;
+- three Selection picker tests and one Temporal picker test pressed Confirm
+  immediately after changing staged state without allowing the overlay footer
+  disabled state to render; Confirm therefore remained disabled in the test DOM
+  and the close promise timed out.
+
+The production runtime contract did not require alteration for these six failures.
+
+Test-only correction:
+- add the required `fixture.detectChanges()` after staged selection changes;
+- dispatch the SearchBox End key as a bubbling browser-like KeyboardEvent.
 
 Verification distinction:
 
@@ -65,10 +64,10 @@ Latest prior **Fully Green** checkout remains:
 
 `50ae8e5f9f9cc537435217a644548c10bd097ecb`
 
-The current source is **implemented / verification pending**.
+Current source is **verification pending**.
 A fresh full `npm run verify:clean` is mandatory from current `main`.
 
-Inputs remains Product Owner BLOCKED until technical green plus runtime/Light/Dark
-re-review. Tooltip runtime re-review also remains pending.
+Inputs remains Product Owner BLOCKED until full technical green plus runtime/Light/Dark re-review.
+Tooltip runtime re-review also remains pending.
 
-Read `NEW_CHAT_HANDOFF.md` for complete state.
+Read `NEW_CHAT_HANDOFF.md` for the complete state.

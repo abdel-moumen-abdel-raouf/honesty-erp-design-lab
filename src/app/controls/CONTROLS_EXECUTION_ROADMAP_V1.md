@@ -552,3 +552,23 @@ Search results now use approved `ErpSelectionTile` list presentation.
 Next mandatory action:
 rerun the complete `npm run verify:clean`.
 Only demonstrated follow-up failures may reopen implementation.
+
+
+### 2026-09-29 — Inputs verify reached tests; six harness failures corrected
+
+The full verify run passed all governance/lint and reached tests.
+
+Result:
+- 84/87 test files;
+- 620/626 tests;
+- six failures caused by missing test change-detection/bubbling after the new
+  staged-confirm and SelectionTile contracts.
+
+Correction:
+`92840de9c670edd32b05c1485f50c2e61e68fead` —
+`fix(test): flush staged picker state before confirmation`.
+
+No production source changed.
+
+Next action:
+rerun complete `npm run verify:clean`.

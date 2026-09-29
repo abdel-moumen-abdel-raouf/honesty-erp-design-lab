@@ -172,3 +172,21 @@ SearchBox result options now use approved internal `ErpSelectionTile` list
 presentation. Functional result selection/filtering contract is unchanged.
 
 Fresh full verification remains required.
+
+
+## 2026-09-29 — second verification follow-up
+
+The canonical verify run at `a85c138...` passed all governance and lint, then
+reached tests with six failures.
+
+The failures did not demonstrate a new Product Owner runtime defect:
+- SearchBox value selection itself succeeded;
+- host evidence required a fixture render before assertion;
+- the synthetic End key needed normal browser bubbling;
+- staged picker tests had to render updated Confirm disabled/enabled state before
+  clicking Confirm.
+
+Test-only correction:
+`92840de9c670edd32b05c1485f50c2e61e68fead`.
+
+Fresh full verification remains required.
