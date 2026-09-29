@@ -429,3 +429,16 @@ Correction:
 `fix(governance): align overlay gate with no-iframe lab`.
 
 Next mandatory gate: rerun the complete `npm run verify:clean`.
+
+
+### 2026-09-29 — verify:clean advanced to lint; one test lint correction applied
+
+All governance gates shown in the Product Owner log passed, including Tooltip and Overlay.
+The gate stopped at one ESLint `@typescript-eslint/array-type` violation in
+`anchored-overlay-controller.spec.ts`.
+
+Fixed by:
+`3eb993e64616362bf920284e37b5005d412fd531`.
+
+Next mandatory gate remains the complete `npm run verify:clean`.
+Do not reopen implementation scope unless the rerun demonstrates another concrete failure.

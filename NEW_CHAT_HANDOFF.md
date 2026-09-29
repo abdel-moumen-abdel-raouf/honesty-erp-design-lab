@@ -610,3 +610,52 @@ Verification status:
   correction;
 - a fresh rerun from `a40ea250...` or later is mandatory;
 - do not declare a new Fully Green checkpoint until that rerun completes.
+
+
+---
+
+# 20. 2026-09-29 — VERIFY:CLEAN REACHED NG LINT; SINGLE TEST LINT FIX APPLIED
+
+Product Owner reran local verification after the no-iframe Overlay governance correction.
+
+Local evidence at `ea6a452f7fe37a8b12efde0515144202233d88ea`:
+- `node tools/controls/check-erp-overlay-governance.mjs --self-test` — PASS.
+- `npm run erp-overlay:check` — PASS.
+- `npm run build:clean:self-test` — PASS.
+- `npm run build:clean` — PASS.
+- production Angular build completed successfully.
+- `Zero-warning build gate: PASS`.
+
+The subsequent full `npm run verify:clean` passed all governance checks shown in the supplied log:
+- Single App theme authority;
+- route-page ERP-only authoring;
+- Component Token framework;
+- System color registry;
+- ErpText governance;
+- ErpIcon registry + governance;
+- ErpButton governance;
+- **ErpTooltip governance**;
+- ErpField governance;
+- **ErpOverlay governance**.
+
+It then reached Angular ESLint and stopped on exactly one lint error:
+
+`src/app/shared/anchored-overlay/anchored-overlay-controller.spec.ts:127:20`
+`@typescript-eslint/array-type`
+
+Cause:
+- test code used `Array<{x: number; y: number}>`;
+- repository lint contract requires `{x: number; y: number}[]`.
+
+Bounded source correction:
+- `3eb993e64616362bf920284e37b5005d412fd531`
+  `fix(test): satisfy array-type lint rule`
+
+No runtime, production Tooltip, Overlay, geometry, or App behavior changed in this fix.
+
+Verification status:
+- do NOT declare Fully Green yet;
+- rerun the complete `npm run verify:clean` from the latest `main`;
+- if the full gate passes through lint, tests, both typechecks, and zero-warning build, the latest source can become the new Fully Green checkpoint.
+
+Tooltip page remains the active blocking visual-review page until technical verification completes and Product Owner runtime Light/Dark re-review is performed.

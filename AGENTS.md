@@ -882,3 +882,17 @@ The App-shell Overlay gate now requires one direct router-outlet and rejects
 iframe-era query/state/rendering/screenshot contracts. A fresh
 `npm run verify:clean` is mandatory before the current source is called Fully
 Green.
+
+
+## Verify:clean lint follow-up — 2026-09-29
+
+The post-Tooltip/no-iframe verification reached `ng lint` after all governance checks passed.
+One test-only lint violation was found and corrected:
+
+`3eb993e64616362bf920284e37b5005d412fd531`
+`fix(test): satisfy array-type lint rule`
+
+The change only converts an `Array<T>` annotation to `T[]` in
+`anchored-overlay-controller.spec.ts`. No runtime behavior changed.
+
+A fresh full `npm run verify:clean` is still mandatory before declaring a new Fully Green source checkpoint.

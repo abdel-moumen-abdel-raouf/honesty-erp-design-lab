@@ -693,3 +693,23 @@ Verification status:
   correction;
 - a fresh rerun from `a40ea250...` or later is mandatory;
 - do not declare a new Fully Green checkpoint until that rerun completes.
+
+
+## 2026-09-29 — verification advanced through Overlay governance; lint-only blocker corrected
+
+At `ea6a452f7fe37a8b12efde0515144202233d88ea`, Product Owner local evidence confirmed:
+- Overlay governance self-test PASS;
+- Overlay governance PASS;
+- zero-warning build self-test PASS;
+- zero-warning production build PASS;
+- full `verify:clean` passed every governance check shown, including Tooltip and Overlay.
+
+The full gate then stopped at Angular ESLint on one test-only `array-type` rule violation.
+
+Correction:
+`3eb993e64616362bf920284e37b5005d412fd531` —
+`fix(test): satisfy array-type lint rule`
+
+No production source behavior changed.
+
+Next mandatory action: rerun the full `npm run verify:clean`.
