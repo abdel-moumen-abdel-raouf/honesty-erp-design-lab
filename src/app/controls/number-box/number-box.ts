@@ -43,7 +43,6 @@ let nextNumberBoxId = 0;
 export class ErpNumberBox extends ErpFieldBase<number | null> {
   readonly placeholder = input<string | null>(null);
   readonly readonly = input(false, {transform: booleanAttribute});
-  readonly required = input(false, {transform: booleanAttribute});
   readonly min = input<number | null>(null);
   readonly max = input<number | null>(null);
   readonly step = input(1);
