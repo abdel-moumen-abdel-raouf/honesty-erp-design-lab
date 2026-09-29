@@ -17,7 +17,6 @@ import {
 } from '../../../foundation/colors/system-color-registry';
 import {ERP_ICON_NAMES, ErpIconName} from '../../../primitives/icon/icon-contracts';
 import {ErpIcon} from '../../../primitives/icon/icon';
-import {ErpInline} from '../../../primitives/inline/inline';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpText} from '../../../primitives/text/text';
 import {ErpOverlayRef} from '../../../shared/overlay/overlay-ref';
@@ -29,7 +28,6 @@ import {ErpButton} from '../../button/button';
 import {ErpTextBox} from '../../text-box/text-box';
 import {ErpTooltip} from '../../tooltip/tooltip';
 import {
-  ErpColorPickerMode,
   ErpItemPickerOption,
   ErpSelectionPickerData,
   ErpSelectionPickerValue,
@@ -44,7 +42,6 @@ import {ErpSelectionTile} from './selection-tile';
   imports: [
     ErpButton,
     ErpIcon,
-    ErpInline,
     ErpSelectionTile,
     ErpStack,
     ErpText,
@@ -75,7 +72,6 @@ export class ErpSelectionPickerContent implements OnDestroy {
 
   protected readonly query = signal(this.data.query);
   protected readonly staged = signal<ErpSelectionPickerValue>(this.data.value);
-  protected readonly colorMode = signal<ErpColorPickerMode>(this.data.colorMode);
   protected readonly activeIndex = signal<number | null>(null);
   protected readonly confirmEnabled = computed(() => {
     const staged = this.staged();
@@ -85,7 +81,11 @@ export class ErpSelectionPickerContent implements OnDestroy {
     }
 
     if (this.data.mode === 'color') {
-      return typeof staged === 'object';
+      return (
+        typeof staged === 'object' &&
+        staged !== null &&
+        staged.mode === this.data.colorMode
+      );
     }
 
     if (this.data.mode === 'icon') {
@@ -162,15 +162,17 @@ export class ErpSelectionPickerContent implements OnDestroy {
     this.activeIndex.set(null);
   }
 
-  protected setColorMode(mode: ErpColorPickerMode): void {
-    this.colorMode.set(mode);
-  }
-
   protected selectSystemColor(token: ErpSystemColorToken): void {
-    this.staged.set({mode: 'system', token});
+    if (this.data.colorMode === 'system') {
+      this.staged.set({mode: 'system', token});
+    }
   }
 
   protected selectFreeColor(value: string): void {
+    if (this.data.colorMode !== 'free') {
+      return;
+    }
+
     const normalized = normalizeHexColor(value);
     if (normalized !== null) {
       this.staged.set({mode: 'free', value: normalized});
