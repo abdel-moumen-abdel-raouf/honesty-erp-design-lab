@@ -24,48 +24,56 @@ Branch:
 
 ## Current state
 
-Latest source-affecting Tooltip correction:
+Latest source-affecting Inputs correction checkpoint:
 
-`84d5fd91daf3fb3085cde422c186dfcf3e1ff8d0`
-`fix(tooltip): align popover and arrow coordinate origins`
+`6daf7af7f023ad758198ce6d5eacbb5f22dd9277`
+`fix(inputs): guard Now against Time bounds`
 
-This supersedes the previous centering hypothesis as the primary visible root
-cause for the Product Owner screenshots.
+This checkpoint contains the Product Owner-authorized Inputs correction unit,
+including:
 
-Confirmed coordinate-space issue:
-- arrow geometry is calculated in the outer native Popover surface coordinate
-  space;
-- after moving arrow inside the animated motion assembly, the arrow coordinates
-  were applied in the inner motion-layer coordinate space;
-- the outer Popover surface did not explicitly reset native Popover padding;
-- therefore the two coordinate origins could differ by the user-agent Popover
-  padding, shifting side arrows downward and top/bottom arrows horizontally.
-
-Correction:
-- outer geometry surface now has explicit `padding: 0`;
-- geometry and animated visual assembly now share the same physical origin;
-- governance rejects removal of the zero-padding invariant;
-- Tooltip unit coverage verifies zero physical padding on all four sides.
+- SearchBox three-mode contract: `dropdown | modal | inline`;
+- dropdown query/result separation;
+- functional result filtering and selection;
+- combobox/listbox/option semantics for dropdown mode;
+- modal search through shared `ErpOverlayManager`;
+- explicit dropdown Close action;
+- anchored dropdown width tied to the complete visual Field control width,
+  viewport permitting;
+- noninteractive/inert leaving phase;
+- deterministic keyboard navigation that skips disabled results;
+- inline clear restores editor focus;
+- selection-family Confirm disabled until a valid staged selection exists;
+- temporal Confirm disabled until a valid staged selection exists;
+- OverlayRef refuses disabled/loading frame actions even if requested directly;
+- Time and DateTime `الآن`;
+- Now respects `minuteStep`, and Time Now is disabled when current stepped time
+  violates min/max;
+- DateRange previous/next week and previous/next month calendar-period presets;
+- MoneyBox optional per-instance `digitSet` override with Preferences fallback;
+- Inputs review evidence includes Latin and Arabic-Indic MoneyBox instances;
+- temporal empty-state placeholders are Arabic-first;
+- single-surface review groups span the full review grid width;
+- Field/Overlay governance was updated to enforce the corrected contracts.
 
 Verification distinction:
 
-The latest **Fully Green** verified checkout before this correction is:
+The latest **Fully Green** verified checkout remains:
 
 `50ae8e5f9f9cc537435217a644548c10bd097ecb`
 
-Product Owner local evidence at that checkout:
-- all governance/lint PASS;
-- 87 / 87 test files PASS;
-- 618 / 618 tests PASS;
-- `typecheck:app` PASS;
-- `typecheck:spec` PASS;
-- final zero-warning production build PASS.
+The current source also contains the later Tooltip Popover-origin correction plus
+the Inputs correction above. Those newer source changes have not yet been
+verified together by a fresh full:
 
-The new `84d5fd9...` source requires a fresh `npm run verify:clean` before it
-can become the new Fully Green baseline.
+`npm run verify:clean`
 
-Product status:
-- Tooltip V1 remains the active Product Owner blocker;
-- no later page review until technical re-verification and runtime acceptance.
+Therefore current source status is **implemented / verification pending**, not
+Fully Green.
+
+Product review status:
+- Inputs remains BLOCKED pending technical verification and Product Owner
+  Light/Dark/runtime re-review.
+- Tooltip Popover-origin correction also remains pending runtime re-review.
 
 Read `NEW_CHAT_HANDOFF.md` for the complete state and exact next action.

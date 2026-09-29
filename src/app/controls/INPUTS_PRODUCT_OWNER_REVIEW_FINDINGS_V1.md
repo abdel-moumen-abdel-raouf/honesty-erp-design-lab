@@ -130,3 +130,30 @@ Before implementation:
 - add deterministic tests for all new behavior.
 
 Inputs page status: BLOCKED pending Product Owner-authorized correction.
+
+
+## 2026-09-29 — implementation status
+
+The authorized correction has now been implemented in source.
+
+Latest source checkpoint:
+`6daf7af7f023ad758198ce6d5eacbb5f22dd9277`
+
+Implemented against the findings in this document:
+- SearchBox modal/dropdown/inline modes;
+- selectable/filterable dropdown results;
+- transient query vs committed value separation;
+- exact full-field anchored width with viewport clamp;
+- explicit close + inert leaving behavior;
+- dropdown vs modal semantics;
+- per-instance MoneyBox Arabic-Indic digit override with Preferences fallback;
+- Time/DateTime Now;
+- DateRange week/month presets;
+- disabled Confirm until valid staged selection;
+- guarded Confirm handlers and disabled/loading Overlay frame action dispatch;
+- full-width Design-Lab review surfaces;
+- Arabic-first temporal empty-state placeholders.
+
+Verification is still pending. This page remains BLOCKED until a fresh full
+`npm run verify:clean` passes and Product Owner runtime/visual re-review accepts
+the corrected behavior.

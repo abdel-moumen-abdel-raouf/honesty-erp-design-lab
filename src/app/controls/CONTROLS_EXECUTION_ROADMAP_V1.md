@@ -521,3 +521,19 @@ Before Inputs can pass, correction must cover:
 
 After implementation: run full `npm run verify:clean`, then Product Owner
 Light/Dark/runtime re-review.
+
+
+### 2026-09-29 — Inputs correction implemented; verification pending
+
+Latest source checkpoint:
+`6daf7af7f023ad758198ce6d5eacbb5f22dd9277`.
+
+The blocking Inputs correction unit is implemented across SearchBox,
+selection/temporal picker confirmation state, temporal quick actions, MoneyBox
+digit evidence, review layout, localization, tests, and governance.
+
+Next gates, in order:
+1. `npm run verify:clean`;
+2. correct only demonstrated failures if any;
+3. Product Owner runtime/Light/Dark Inputs re-review;
+4. do not mark Inputs PASS until Product Owner acceptance.

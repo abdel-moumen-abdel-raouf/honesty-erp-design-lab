@@ -905,3 +905,126 @@ Page status:
 Tooltip status remains separately pending after the latest coordinate-origin fix;
 the latest Tooltip source correction is still subject to fresh technical
 verification/runtime acceptance.
+
+
+---
+
+# 25. 2026-09-29 — INPUTS CORRECTION UNIT IMPLEMENTED / VERIFICATION PENDING
+
+Product Owner authorized implementation of the blocking Inputs findings.
+
+Latest source checkpoint:
+`6daf7af7f023ad758198ce6d5eacbb5f22dd9277`
+`fix(inputs): guard Now against Time bounds`
+
+## SearchBox
+
+Implemented:
+- public `mode: 'dropdown' | 'modal' | 'inline'`, default `dropdown`;
+- focus opens the configured search experience for dropdown/modal;
+- inline mode remains a normal native search editor and opens nothing;
+- readonly `items` result contract with stable value/label/disabled/icon;
+- dropdown query is transient and separate from committed CVA value;
+- filtering matches item label or value;
+- pointer result selection commits only enabled item values;
+- keyboard result navigation uses Arrow/Home/End and skips disabled results;
+- dropdown uses combobox/listbox/option semantics;
+- modal mode reuses `ErpSelectionPickerContent` through `ErpOverlayManager`;
+- explicit dropdown Close action;
+- Escape and outside dismissal retained;
+- leaving popup becomes inert/noninteractive before native Popover teardown;
+- dropdown geometry anchors to the complete visual `.field-frame__control`
+  rather than only the inner trigger button;
+- popup inline size equals full field-control width unless viewport clamping is
+  unavoidable;
+- inline Clear restores focus to the inline editor.
+
+The obsolete boolean `popupMode`, static `[search-results]` projection, and
+`data-search-box-popup-mode` contract are removed.
+
+## Selection confirmation law
+
+Implemented for Color/Icon/Item/Combo picker content:
+- Confirm starts disabled;
+- Confirm enables only for a valid staged selectable value;
+- disabled item values cannot enable confirmation;
+- Confirm handler itself is guarded against invalid staged state;
+- Cancel and header Close remain available.
+
+Shared OverlayRef was also hardened:
+- dynamically disabled/loading frame actions cannot dispatch their handlers even
+  if requested programmatically.
+
+## Temporal quick actions and confirmation law
+
+Implemented:
+- Time: `الآن`;
+- DateTime: `الآن`;
+- Now floors minutes to configured `minuteStep`;
+- Time Now is disabled when the stepped current time violates min/max;
+- DateRange:
+  - previous calendar week;
+  - next calendar week;
+  - previous calendar month;
+  - next calendar month;
+- week presets honor `weekStartsOn`;
+- Date / Time / DateTime / DateRange Confirm starts disabled until staged state
+  is valid;
+- Time requires valid hour+minute within bounds;
+- DateTime requires date+time;
+- Date requires valid date;
+- DateRange requires both valid endpoints;
+- Confirm handler is independently guarded.
+
+## MoneyBox
+
+Implemented optional per-instance:
+`digitSet: 'latin' | 'arabic-indic' | null`
+
+Rules:
+- null continues to inherit the shared Preferences money digit context;
+- no formatter logic is duplicated;
+- Arabic-Indic review evidence can coexist with Latin evidence in the same page.
+
+## Inputs review surface
+
+Implemented:
+- SearchBox dropdown/modal evidence uses real selectable data;
+- Arabic-Indic MoneyBox evidence added;
+- temporal empty display placeholders converted from stale English strings to
+  Arabic-first per-control placeholder inputs;
+- single review surfaces span the full two-column review grid, removing the
+  large unused half-column.
+
+## Governance / tests
+
+Field governance now enforces:
+- SearchBox three-mode/selectable/filterable contract;
+- modal reuse through OverlayManager;
+- exact field-width dropdown behavior;
+- no static projected search-results contract;
+- temporal Now/range-preset contracts;
+- staged Confirm state/handler guards;
+- MoneyBox digit override fallback to Preferences;
+- expanded Arabic-first labels.
+
+Overlay governance now enforces disabled/loading frame-action dispatch blocking.
+
+Tests were expanded across SearchBox, MoneyBox, selection picker content,
+temporal picker content, OverlayRef, and Inputs showcase.
+
+## Verification status
+
+**Do not declare this source Fully Green yet.**
+
+Latest fully verified checkout remains:
+`50ae8e5f9f9cc537435217a644548c10bd097ecb`
+
+Mandatory next gate:
+`npm run verify:clean`
+
+After technical green:
+1. Product Owner re-tests SearchBox dropdown/modal/inline runtime behavior;
+2. Product Owner checks MoneyBox Arabic digits;
+3. Product Owner checks temporal quick actions and Confirm disabled behavior;
+4. Product Owner re-reviews the full Inputs page in Light/Dark.

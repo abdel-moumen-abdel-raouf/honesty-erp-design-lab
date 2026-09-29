@@ -856,3 +856,28 @@ Additional external-review findings:
 - temporal empty placeholders remain hard-coded English.
 
 Inputs page: BLOCKED pending bounded correction and Product Owner re-review.
+
+
+## 2026-09-29 — Inputs blocking correction implemented
+
+Source checkpoint:
+`6daf7af7f023ad758198ce6d5eacbb5f22dd9277`.
+
+The Product Owner findings are implemented in source:
+- three-mode functional SearchBox;
+- full-field-width anchored dropdown;
+- result filtering/selection;
+- explicit close and noninteractive leaving state;
+- correct dropdown/modal semantics;
+- Arabic-Indic MoneyBox instance support;
+- temporal Now and DateRange presets;
+- staged Confirm gating with Cancel/Close preserved;
+- OverlayRef action-state enforcement;
+- Arabic temporal placeholders;
+- full-width Inputs review surfaces.
+
+Status:
+- implementation complete for this bounded correction unit;
+- technical verification pending;
+- Inputs remains Product Owner BLOCKED until full verify + runtime/visual
+  re-review.

@@ -979,3 +979,26 @@ Selection/temporal Confirm must be disabled until valid staged selection while
 Cancel/Close remain enabled.
 
 No Inputs source correction has been implemented by this documentation update.
+
+
+## Inputs correction implementation state — 2026-09-29
+
+The Product Owner-authorized Inputs correction is implemented at source
+checkpoint:
+
+`6daf7af7f023ad758198ce6d5eacbb5f22dd9277`.
+
+Key contracts:
+- SearchBox modes are `dropdown | modal | inline`;
+- dropdown search owns transient query + selectable stable-value results;
+- modal search reuses OverlayManager/SelectionPicker;
+- dropdown width follows the complete Field control width;
+- Confirm in selection/temporal overlays is disabled and handler-guarded until
+  staged state is valid;
+- disabled/loading Overlay frame actions cannot dispatch;
+- Time/DateTime own Now; DateRange owns previous/next week/month presets;
+- MoneyBox per-instance digitSet override falls back to shared Preferences.
+
+Current source is NOT Fully Green until a new full `npm run verify:clean` passes.
+Latest prior Fully Green checkout remains
+`50ae8e5f9f9cc537435217a644548c10bd097ecb`.
