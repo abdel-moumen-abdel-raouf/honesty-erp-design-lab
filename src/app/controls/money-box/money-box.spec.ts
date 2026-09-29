@@ -56,8 +56,13 @@ describe('ErpMoneyBox', () => {
 
     native.value = 'arbitrary';
     native.dispatchEvent(new Event('input'));
-    expect(native.value).toBe('1234.5');
+    fixture.detectChanges();
+    expect(native.value).toBe('arbitrary');
     expect(onChange).not.toHaveBeenCalled();
+    expect(control.inputState()).toBe('invalid-entry');
+    expect(control.validationIssues().map((issue) => issue.code)).toContain(
+      'money.format',
+    );
 
     native.value = '50.';
     native.dispatchEvent(new Event('input'));
@@ -133,6 +138,34 @@ describe('ErpMoneyBox', () => {
 
     expect(native.value).toBe('١,٢٣٤.٥٠ USD');
     expect(settings.get('digits').valueSignal().base).toBe('latin');
+  });
+
+
+  it('preserves out-of-range amounts and reports validation without clamping', () => {
+    const fixture = create();
+    const control = fixture.componentInstance;
+    const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
+    const onChange = vi.fn();
+    control.registerOnChange(onChange);
+    fixture.componentRef.setInput('min', 0);
+    fixture.componentRef.setInput('max', 100);
+    fixture.detectChanges();
+
+    native.dispatchEvent(new FocusEvent('focus'));
+    native.value = '150';
+    native.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    expect(onChange).toHaveBeenCalledWith(150);
+    expect(native.value).toBe('150');
+    expect(control.inputState()).toBe('invalid-entry');
+    expect(control.validationIssues().map((issue) => issue.code)).toContain(
+      'money.max',
+    );
+
+    native.dispatchEvent(new FocusEvent('blur'));
+    fixture.detectChanges();
+    expect(native.value).toBe('150');
   });
 
 });
