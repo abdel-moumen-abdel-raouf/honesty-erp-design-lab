@@ -12,6 +12,8 @@ import {ErpIconButton} from '../icon-button/icon-button';
 import {ErpFieldBase} from '../input-family/field-base';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
 import {ErpTooltip} from '../tooltip/tooltip';
+import {ErpInputValidationIssue} from '../input-family/input-contracts';
+import {validateTextEntry} from '../input-family/text-validation';
 
 let nextPasswordBoxId = 0;
 
@@ -39,6 +41,9 @@ export class ErpPasswordBox extends ErpFieldBase<string> {
   readonly readonly = input(false, {transform: booleanAttribute});
   readonly autocomplete = input('current-password');
   readonly revealToggle = input(true, {transform: booleanAttribute});
+  readonly minLength = input<number | null>(null);
+  readonly maxLength = input<number | null>(null);
+  readonly pattern = input<string | null>(null);
 
   protected readonly controlId =
     `erp-password-box-${++nextPasswordBoxId}`;
@@ -67,6 +72,17 @@ export class ErpPasswordBox extends ErpFieldBase<string> {
 
   protected override normalizeValue(value: unknown): string {
     return value === null || value === undefined ? '' : String(value);
+  }
+
+  protected override validateCandidate(
+    value: unknown,
+  ): readonly ErpInputValidationIssue[] {
+    return validateTextEntry(String(value ?? ''), {
+      minLength: this.minLength(),
+      maxLength: this.maxLength(),
+      pattern: this.pattern(),
+      codePrefix: 'password',
+    });
   }
 
   protected handleInput(event: Event): void {
