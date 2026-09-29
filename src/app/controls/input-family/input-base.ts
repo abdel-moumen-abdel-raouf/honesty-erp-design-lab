@@ -9,7 +9,13 @@ import {
   WritableSignal,
 } from '@angular/core';
 import {ControlValueAccessor} from '@angular/forms';
-import {ErpInputConfigurationState} from './input-contracts';
+import {
+  ErpInputConfigurationState,
+  ErpInputState,
+  ErpInputValidationIssue,
+  ErpInputValidationSnapshot,
+  ErpInputValidationSource,
+} from './input-contracts';
 
 @Directive()
 export abstract class ErpInputBase<TValue> implements ControlValueAccessor {
@@ -17,6 +23,9 @@ export abstract class ErpInputBase<TValue> implements ControlValueAccessor {
   readonly name = input<string | null>(null);
   readonly form = input<string | null>(null);
   readonly disabled = input(false, {transform: booleanAttribute});
+  readonly required = input(false, {transform: booleanAttribute});
+  readonly externalValidationIssues =
+    input<readonly ErpInputValidationIssue[]>([]);
 
   private readonly formDisabled = signal(false);
   private readonly focusedState = signal(false);
@@ -36,6 +45,61 @@ export abstract class ErpInputBase<TValue> implements ControlValueAccessor {
     () => !this.effectiveDisabled() && this.focusedState(),
   );
   protected readonly currentValue: Signal<TValue>;
+
+  private readonly presenceState = computed<ErpInputState | null>(() =>
+    this.classifyPresence(this.validationCandidate()),
+  );
+
+  readonly validationIssues = computed<readonly ErpInputValidationIssue[]>(
+    () => {
+      const candidate = this.validationCandidate();
+      const presence = this.presenceState();
+      const issues: ErpInputValidationIssue[] = [];
+
+      if (
+        this.required() &&
+        (presence === 'null' ||
+          presence === 'empty' ||
+          presence === 'no-selection')
+      ) {
+        issues.push(
+          this.validationIssue(
+            'required',
+            'القيمة مطلوبة.',
+            'presence',
+          ),
+        );
+      }
+
+      issues.push(...this.validateCandidate(candidate));
+      issues.push(...this.externalValidationIssues());
+
+      return issues;
+    },
+  );
+
+  readonly valid = computed(() => this.validationIssues().length === 0);
+
+  readonly inputState = computed<ErpInputState>(() => {
+    const presence = this.presenceState();
+
+    if (presence !== null) {
+      return presence;
+    }
+
+    return this.valid() ? 'valid-entry' : 'invalid-entry';
+  });
+
+  readonly errors = computed<readonly string[]>(() =>
+    this.validationIssues().map((issue) => issue.message),
+  );
+
+  readonly validation = computed<ErpInputValidationSnapshot>(() => ({
+    state: this.inputState(),
+    valid: this.valid(),
+    errors: this.errors(),
+    issues: this.validationIssues(),
+  }));
 
   private onChange: (value: TValue) => void = () => undefined;
   private onTouched: () => void = () => undefined;
@@ -96,6 +160,41 @@ export abstract class ErpInputBase<TValue> implements ControlValueAccessor {
   protected handleBlur(): void {
     this.clearFocusState();
     this.onTouched();
+  }
+
+  protected validationCandidate(): unknown {
+    return this.currentValue();
+  }
+
+  protected classifyPresence(value: unknown): ErpInputState | null {
+    if (value === null || value === undefined) {
+      return 'null';
+    }
+
+    if (typeof value === 'string' && value.length === 0) {
+      return 'empty';
+    }
+
+    return null;
+  }
+
+  protected validateCandidate(
+    _value: unknown,
+  ): readonly ErpInputValidationIssue[] {
+    return [];
+  }
+
+  protected validationIssue(
+    code: string,
+    message: string,
+    source: ErpInputValidationSource = 'constraint',
+    meta?: Readonly<
+      Record<string, string | number | boolean | null>
+    >,
+  ): ErpInputValidationIssue {
+    return meta === undefined
+      ? {code, message, source}
+      : {code, message, source, meta};
   }
 
   protected abstract normalizeValue(value: unknown): TValue;
