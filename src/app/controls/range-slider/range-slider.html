@@ -33,6 +33,42 @@
 
     <div class="range-slider__inputs">
       <span class="range-slider__rail" aria-hidden="true"></span>
+
+      <div class="range-slider__tooltip-track" aria-hidden="true">
+        <erp-tooltip
+          [text]="tooltipText('lower')"
+          [placement]="valueTooltipPlacement()"
+          [disabled]="!showValueTooltip()"
+          [open]="showValueTooltip() && activeThumb() === 'lower'"
+        >
+          <input
+            data-range-tooltip-anchor="lower"
+            class="range-slider__tooltip-anchor"
+            type="text"
+            tabindex="-1"
+            readonly
+            aria-hidden="true"
+            [style.inset-inline-start]="lowerPosition() + '%'"
+          />
+        </erp-tooltip>
+
+        <erp-tooltip
+          [text]="tooltipText('upper')"
+          [placement]="valueTooltipPlacement()"
+          [disabled]="!showValueTooltip()"
+          [open]="showValueTooltip() && activeThumb() === 'upper'"
+        >
+          <input
+            data-range-tooltip-anchor="upper"
+            class="range-slider__tooltip-anchor"
+            type="text"
+            tabindex="-1"
+            readonly
+            aria-hidden="true"
+            [style.inset-inline-start]="upperPosition() + '%'"
+          />
+        </erp-tooltip>
+      </div>
       <input
         data-range-thumb="lower"
         class="range-slider__native"
@@ -41,15 +77,18 @@
         [attr.name]="name()"
         [attr.form]="form()"
         [min]="min()"
-        [max]="currentValue().upper"
+        [max]="max()"
         [step]="step()"
         [value]="currentValue().lower"
         [disabled]="rangeEffectiveDisabled()"
         [attr.aria-label]="label() + ' lower'"
+        (pointerdown)="handlePointerDown('lower')"
+        (pointerup)="handlePointerEnd('lower')"
+        (pointercancel)="handlePointerEnd('lower')"
         (input)="handleInput('lower', $event)"
         (keydown)="handleKeyDown('lower', $event)"
-        (focus)="handleNativeFocus()"
-        (blur)="handleNativeBlur()"
+        (focus)="handleNativeFocus('lower')"
+        (blur)="handleNativeBlur('lower')"
       />
       <input
         data-range-thumb="upper"
@@ -58,16 +97,19 @@
         [id]="upperId"
         [attr.name]="name()"
         [attr.form]="form()"
-        [min]="currentValue().lower"
+        [min]="min()"
         [max]="max()"
         [step]="step()"
         [value]="currentValue().upper"
         [disabled]="rangeEffectiveDisabled()"
         [attr.aria-label]="label() + ' upper'"
+        (pointerdown)="handlePointerDown('upper')"
+        (pointerup)="handlePointerEnd('upper')"
+        (pointercancel)="handlePointerEnd('upper')"
         (input)="handleInput('upper', $event)"
         (keydown)="handleKeyDown('upper', $event)"
-        (focus)="handleNativeFocus()"
-        (blur)="handleNativeBlur()"
+        (focus)="handleNativeFocus('upper')"
+        (blur)="handleNativeBlur('upper')"
       />
     </div>
 
