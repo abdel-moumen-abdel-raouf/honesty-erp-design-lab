@@ -39,7 +39,7 @@ export abstract class ErpFieldBase<TValue> extends ErpInputBase<TValue> {
   readonly helperPosition = input<ErpFieldHelperPosition>('below');
   readonly leadingIcon = input<ErpIconName | null>(null);
   readonly trailingIcon = input<ErpIconName | null>(null);
-  readonly clearable = input(false, {transform: booleanAttribute});
+  readonly clearable = input(true, {transform: booleanAttribute});
   readonly feedbackText = input<string | null>(null);
   readonly feedbackDismissible = input(false, {
     transform: booleanAttribute,
