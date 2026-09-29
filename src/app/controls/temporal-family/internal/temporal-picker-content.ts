@@ -105,7 +105,8 @@ export class ErpTemporalPickerContent implements OnDestroy {
     }
 
     if (this.data.mode === 'time') {
-      return this.timeValue() !== null;
+      const time = this.timeValue();
+      return time !== null && !this.timeDisabled(time);
     }
 
     if (this.data.mode === 'datetime') {
@@ -334,6 +335,14 @@ export class ErpTemporalPickerContent implements OnDestroy {
   protected dateDisabled(value: string): boolean {
     const min = this.data.min?.split('T')[0] ?? null;
     const max = this.data.max?.split('T')[0] ?? null;
+    return (min !== null && value < min) || (max !== null && value > max);
+  }
+
+  private timeDisabled(value: string): boolean {
+    const min =
+      this.data.mode === 'time' ? this.data.min : null;
+    const max =
+      this.data.mode === 'time' ? this.data.max : null;
     return (min !== null && value < min) || (max !== null && value > max);
   }
 
