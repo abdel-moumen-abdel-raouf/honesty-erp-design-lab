@@ -406,9 +406,8 @@ describe('ErpTemporalPickerContent', () => {
       max: '17:00',
     });
     const root = fixture.nativeElement as HTMLElement;
-    const hour = [...root.querySelectorAll<HTMLElement>('[data-time-hour]')]
-      .find((item) => item.getAttribute('data-selected') === 'false') as HTMLElement;
-    (hour.querySelector('button') as HTMLButtonElement).click();
+
+    (root.querySelector('[data-time-hour] button') as HTMLButtonElement).click();
     (root.querySelector('[data-time-minute] button') as HTMLButtonElement).click();
     fixture.detectChanges();
 
@@ -416,12 +415,10 @@ describe('ErpTemporalPickerContent', () => {
       '[data-overlay-frame-action-id="confirm"] button',
     ) as HTMLButtonElement;
 
-    const selectedHour = root.querySelector<HTMLElement>(
-      '[data-time-hour][data-selected="true"]',
-    );
-    if (selectedHour?.textContent?.trim() === '00') {
-      expect(confirm.disabled).toBe(true);
-    }
+    expect(
+      root.querySelector('[data-time-hour][data-selected="true"]')?.textContent?.trim(),
+    ).toBe('00');
+    expect(confirm.disabled).toBe(true);
   });
 
 });
