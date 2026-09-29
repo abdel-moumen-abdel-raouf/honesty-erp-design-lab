@@ -500,3 +500,24 @@ Next gates:
 1. full `npm run verify:clean`;
 2. Product Owner runtime re-test of top/bottom/start/end;
 3. only after visual acceptance may later page review resume.
+
+
+### 2026-09-29 — Inputs page blocking review opened
+
+Product Owner opened a blocking `/controls/inputs` review.
+
+Authoritative findings:
+`src/app/controls/INPUTS_PRODUCT_OWNER_REVIEW_FINDINGS_V1.md`.
+
+No implementation is authorized merely by documenting this review.
+
+Before Inputs can pass, correction must cover:
+- SearchBox three-mode architecture, functional filtering/selection, width,
+  explicit close, focus/hit behavior, and correct semantics;
+- Arabic-digit MoneyBox evidence without duplicating formatter logic;
+- temporal quick actions;
+- staged-selection Confirm disable law across selection and temporal pickers;
+- Inputs review-layout cleanup and Arabic/localized temporal empty-state copy.
+
+After implementation: run full `npm run verify:clean`, then Product Owner
+Light/Dark/runtime re-review.

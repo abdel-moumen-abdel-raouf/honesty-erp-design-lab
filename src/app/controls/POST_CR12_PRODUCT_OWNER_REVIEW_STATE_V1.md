@@ -827,3 +827,32 @@ Current status:
 - fresh `npm run verify:clean` is mandatory;
 - Tooltip remains Product Owner BLOCKED until runtime Light/Dark re-review
   confirms actual visual centering.
+
+
+## 2026-09-29 — Inputs page Product Owner blocking review
+
+Product Owner supplied full Inputs page Light/Dark evidence plus SearchBox runtime
+evidence and declared multiple functional/product gaps.
+
+Dedicated state:
+`src/app/controls/INPUTS_PRODUCT_OWNER_REVIEW_FINDINGS_V1.md`.
+
+Blocking requirements include:
+- functional SearchBox result filtering + selection;
+- explicit three-mode SearchBox focus behavior (modal / dropdown / inline);
+- exact field-width anchored dropdown, viewport permitting;
+- explicit SearchBox close action;
+- no post/open-popup hit blocking of other fields;
+- separate SearchBox query vs committed selection/value;
+- correct dropdown vs modal semantics;
+- Arabic-Indic MoneyBox evidence;
+- Now actions for Time and DateTime;
+- previous/next week/month presets for DateRange;
+- Confirm disabled until valid staged selection, with Cancel/Close always available.
+
+Additional external-review findings:
+- SearchBox current popup results are static projected content;
+- Inputs showcase wastes half-width through 2-column grids with one surface;
+- temporal empty placeholders remain hard-coded English.
+
+Inputs page: BLOCKED pending bounded correction and Product Owner re-review.

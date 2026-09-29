@@ -963,3 +963,19 @@ Latest Fully Green verified checkout before this correction:
 `50ae8e5f9f9cc537435217a644548c10bd097ecb`.
 
 Fresh `npm run verify:clean` is required for the new source.
+
+
+## Inputs Product Owner review state — 2026-09-29
+
+Inputs page has a blocking Product Owner review documented in:
+`src/app/controls/INPUTS_PRODUCT_OWNER_REVIEW_FINDINGS_V1.md`.
+
+Do not treat current SearchBox showcase evidence as a complete production search
+contract. Required future correction includes three search modes, functional
+filter/selection, query/selection separation, exact anchored width, explicit
+close, non-blocking focus behavior, and correct modal/dropdown semantics.
+
+Selection/temporal Confirm must be disabled until valid staged selection while
+Cancel/Close remain enabled.
+
+No Inputs source correction has been implemented by this documentation update.

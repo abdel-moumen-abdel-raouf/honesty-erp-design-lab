@@ -853,3 +853,55 @@ Current status:
 - fresh `npm run verify:clean` is mandatory;
 - Tooltip remains Product Owner BLOCKED until runtime Light/Dark re-review
   confirms actual visual centering.
+
+
+---
+
+# 24. 2026-09-29 — INPUTS PAGE PRODUCT OWNER REVIEW / BLOCKING FINDINGS
+
+Product Owner supplied Light/Dark full-page Inputs evidence plus focused SearchBox
+runtime evidence and opened a blocking review of `/controls/inputs`.
+
+A dedicated findings document was added:
+`src/app/controls/INPUTS_PRODUCT_OWNER_REVIEW_FINDINGS_V1.md`
+
+Confirmed Product Owner findings:
+- SearchBox dropdown results are not selectable;
+- typing does not filter the projected results;
+- SearchBox is effectively static review evidence in this scenario;
+- dropdown width does not equal field width;
+- no explicit dropdown close action exists;
+- interaction with fields geometrically below/behind the open dropdown is broken;
+- previously agreed SearchBox focus modes must be restored as a three-state
+  contract: modal search / anchored dropdown / plain inline input;
+- second MoneyBox evidence must show Arabic-Indic digits;
+- Time picker adds Now;
+- DateTime picker adds Now;
+- DateRange adds previous/next week and previous/next month presets;
+- all selection/picker Confirm actions are disabled until a valid staged selection
+  exists, while Cancel and Close remain enabled.
+
+External source review confirmed additional gaps:
+1. SearchBox currently has only `popupMode: boolean`; no modal/dropdown/inline
+   mode contract and focus itself does not drive the agreed behavior.
+2. SearchBox uses static projected result content and commits popup query text
+   directly to its value; query and selected result are not distinct.
+3. Anchored popup semantics are always dialog semantics; dropdown/listbox semantics
+   are not represented.
+4. Inputs review page repeatedly uses 2-column grids with only one surface,
+   leaving a large unused half-column in the supplied full-page evidence.
+5. Temporal empty-state copy remains hard-coded in English.
+
+Current SearchBox width source explicitly uses
+`max(trigger width, popup min width)`, confirming the width mismatch is structural
+rather than screenshot scaling.
+
+Current selection/temporal picker code updates Clear action state but does not
+disable Confirm based on staged selection validity.
+
+Page status:
+**Inputs is BLOCKED. Do not pass this page until correction + re-review.**
+
+Tooltip status remains separately pending after the latest coordinate-origin fix;
+the latest Tooltip source correction is still subject to fresh technical
+verification/runtime acceptance.
