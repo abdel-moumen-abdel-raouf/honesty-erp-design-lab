@@ -317,6 +317,10 @@ export class ErpTemporalPickerContent implements OnDestroy {
   }
 
   protected confirm(): void {
+    if (!this.hasValidConfirmation()) {
+      return;
+    }
+
     let value: ErpTemporalValue;
     if (this.data.mode === 'range') {
       value = this.stagedRange();
