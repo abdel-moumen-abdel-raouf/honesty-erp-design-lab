@@ -105,12 +105,15 @@ describe('InputControls showcase', () => {
 
     for (const selector of [
       'erp-number-box',
-      'erp-money-box',
       'erp-number-stepper',
       'erp-range-slider',
     ]) {
       expect(group?.querySelectorAll(selector).length).toBe(1);
     }
+    expect(group?.querySelectorAll('erp-money-box').length).toBe(2);
+    expect(
+      group?.querySelectorAll('[data-money-box-arabic-digits-evidence]').length,
+    ).toBe(1);
     expect(group?.querySelectorAll('[data-range-thumb]').length).toBe(2);
   });
 
@@ -142,7 +145,6 @@ describe('InputControls showcase', () => {
       'erp-text-box',
       'erp-text-area-box',
       'erp-password-box',
-      'erp-search-box',
       'erp-url-box',
       'erp-tel-box',
     ]) {
@@ -152,6 +154,9 @@ describe('InputControls showcase', () => {
         ).length,
       ).toBe(1);
     }
+    expect(
+      root.querySelectorAll('[data-review-group="family"] erp-search-box').length,
+    ).toBe(2);
     expect(root.querySelectorAll('[data-variant-evidence]').length).toBe(5);
     expect(root.querySelectorAll('[data-size-evidence]').length).toBe(7);
     expect(root.querySelectorAll('[data-glass-substrate]').length).toBe(1);
@@ -208,42 +213,22 @@ describe('InputControls showcase', () => {
     ).toBe(1);
   });
 
-  it('provides SearchBox popup and inline-mode evidence', () => {
+  it('provides SearchBox modal, dropdown, and inline mode evidence', () => {
     const root = create().nativeElement as HTMLElement;
-    const popup = [
-      ...root.querySelectorAll<HTMLElement>(
-        '[data-search-popup-evidence]',
-      ),
-    ];
-    const inline = [
-      ...root.querySelectorAll<HTMLElement>(
-        '[data-search-inline-evidence]',
-      ),
-    ];
+    const dropdown = root.querySelector<HTMLElement>(
+      '[data-search-dropdown-evidence]',
+    );
+    const modal = root.querySelector<HTMLElement>(
+      '[data-search-modal-evidence]',
+    );
+    const inline = root.querySelector<HTMLElement>(
+      '[data-search-inline-evidence]',
+    );
 
-    expect(popup.length).toBe(1);
-    expect(
-      popup.map((control) =>
-        control.getAttribute('data-search-box-popup-mode'),
-      ),
-    ).toEqual(['true']);
-    expect(
-      popup.map((control) =>
-        control.querySelectorAll('[search-results]').length,
-      ),
-    ).toEqual([1]);
-    expect(
-      popup.map((control) =>
-        control.querySelector<HTMLElement>('[search-results]')
-          ?.dataset['searchResultsPresentation'],
-      ),
-    ).toEqual(['list']);
-    expect(inline.length).toBe(1);
-    expect(
-      inline.map((control) =>
-        control.getAttribute('data-search-box-popup-mode'),
-      ),
-    ).toEqual(['false']);
+    expect(dropdown?.getAttribute('data-search-box-mode')).toBe('dropdown');
+    expect(modal?.getAttribute('data-search-box-mode')).toBe('modal');
+    expect(inline?.getAttribute('data-search-box-mode')).toBe('inline');
+    expect(dropdown?.querySelectorAll('[data-search-result]').length).toBe(3);
   });
 
   it('provides selected DateRange evidence in an RTL context', async () => {
