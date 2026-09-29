@@ -37,7 +37,6 @@ let nextTextAreaBoxId = 0;
 export class ErpTextAreaBox extends ErpFieldBase<string> {
   readonly placeholder = input<string | null>(null);
   readonly readonly = input(false, {transform: booleanAttribute});
-  readonly required = input(false, {transform: booleanAttribute});
   readonly minLength = input<number | null>(null);
   readonly maxLength = input<number | null>(null);
   readonly rows = input(4);
