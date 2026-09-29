@@ -9,7 +9,10 @@ import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
 import {ErpOverlayBehaviorConfig} from '../../shared/overlay/overlay-contracts';
 import {ERP_DATE_FINAL_PATTERN, resolveDomainPattern} from '../input-family/domain-validation';
 import {ErpFieldBase} from '../input-family/field-base';
-import {ErpInputConfigurationState} from '../input-family/input-contracts';
+import {
+  ErpInputConfigurationState,
+  ErpInputValidationIssue,
+} from '../input-family/input-contracts';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
 import {ErpFieldTrigger} from '../input-family/internal/field-trigger';
 import {ErpTemporalPickerContent} from '../temporal-family/internal/temporal-picker-content';
@@ -82,6 +85,20 @@ export class ErpDateBox extends ErpFieldBase<string | null> {
 
   protected override normalizeValue(value: unknown): string | null {
     return normalizeIsoDate(value, this.min(), this.max(), this.effectivePattern().regex);
+  }
+  protected override classifyPresence(value: unknown) {
+    return value === null ? 'no-selection' as const : null;
+  }
+  protected override validateCandidate(value: unknown): readonly ErpInputValidationIssue[] {
+    if (typeof value !== 'string') return [];
+    const issues: ErpInputValidationIssue[] = [];
+    if (this.min() !== null && value < (this.min() as string)) {
+      issues.push(this.validationIssue('date.min', `التاريخ يجب ألا يسبق ${this.min()}.`, 'constraint'));
+    }
+    if (this.max() !== null && value > (this.max() as string)) {
+      issues.push(this.validationIssue('date.max', `التاريخ يجب ألا يتجاوز ${this.max()}.`, 'constraint'));
+    }
+    return issues;
   }
 
   protected openPicker(): void {
