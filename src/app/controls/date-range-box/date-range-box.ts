@@ -9,7 +9,10 @@ import {ErpOverlayRef} from '../../shared/overlay/overlay-ref';
 import {ErpOverlayBehaviorConfig} from '../../shared/overlay/overlay-contracts';
 import {ERP_DATE_FINAL_PATTERN, resolveDomainPattern} from '../input-family/domain-validation';
 import {ErpFieldBase} from '../input-family/field-base';
-import {ErpInputConfigurationState} from '../input-family/input-contracts';
+import {
+  ErpInputConfigurationState,
+  ErpInputValidationIssue,
+} from '../input-family/input-contracts';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
 import {ErpFieldTrigger} from '../input-family/internal/field-trigger';
 import {ErpTemporalPickerContent} from '../temporal-family/internal/temporal-picker-content';
@@ -29,6 +32,8 @@ let nextDateRangeBoxId = 0;
   host: {'[attr.data-field-configuration-state]': 'dateRangeConfigurationState()', '[attr.data-date-range-start]': 'currentValue().start', '[attr.data-date-range-end]': 'currentValue().end'},
 })
 export class ErpDateRangeBox extends ErpFieldBase<ErpDateRangeValue> {
+  readonly min = input<string | null>(null);
+  readonly max = input<string | null>(null);
   readonly locale = input('ar-EG');
   readonly placeholder = input('اختر نطاق التاريخ');
   readonly pattern = input<string | null>(null);
@@ -55,8 +60,40 @@ export class ErpDateRangeBox extends ErpFieldBase<ErpDateRangeValue> {
   private readonly overlays = inject(ErpOverlayManager);
   private activeRef: ErpOverlayRef<ErpTemporalValue> | null = null;
   constructor() { super({start: null, end: null}); effect(() => { if (this.dateRangeEffectiveDisabled()) this.clearFocusState(); }); }
-  protected override normalizeValue(value: unknown): ErpDateRangeValue { return normalizeDateRange(value, this.effectivePattern().regex); }
-  protected openPicker(): void { if (this.dateRangeEffectiveDisabled() || this.activeRef) return; const ref = this.overlays.open<ErpTemporalPickerContent, ErpTemporalPickerData, ErpTemporalValue>(ErpTemporalPickerContent, {frame: {header: {title: this.trimmedLabel(), subtitle: 'اختر نطاق التاريخ', icon: 'calendar'}, footer: createTemporalOverlayFooter('range', this.clearable(), ERP_TEMPORAL_DEFAULT_ACTION_LABELS)}, size: 'lg', ...(this.overlayConfig() ?? {}), data: {mode: 'range', value: this.currentValue(), min: null, max: null, weekStartsOn: 0, minuteStep: 5, locale: this.locale(), actionLabels: ERP_TEMPORAL_DEFAULT_ACTION_LABELS, clearable: this.clearable()}}); this.activeRef = ref; void ref.afterClosed.then((outcome) => { this.activeRef = null; if (outcome.type === 'closed') this.commitPickerResult(outcome.result); }); }
+  protected override normalizeValue(value: unknown): ErpDateRangeValue { return normalizeDateRange(value, this.min(), this.max(), this.effectivePattern().regex); }
+  protected override classifyPresence(value: unknown) {
+    if (
+      typeof value === 'object' &&
+      value !== null &&
+      'start' in value &&
+      'end' in value &&
+      value.start === null &&
+      value.end === null
+    ) {
+      return 'no-selection' as const;
+    }
+    return null;
+  }
+  protected override validateCandidate(value: unknown): readonly ErpInputValidationIssue[] {
+    if (!value || typeof value !== 'object') return [];
+    const range = value as ErpDateRangeValue;
+    const issues: ErpInputValidationIssue[] = [];
+    if ((range.start === null) !== (range.end === null)) {
+      issues.push(this.validationIssue('range.incomplete', 'يجب تحديد بداية ونهاية النطاق.', 'domain'));
+      return issues;
+    }
+    if (range.start !== null && this.min() !== null && range.start < (this.min() as string)) {
+      issues.push(this.validationIssue('range.min', `بداية النطاق يجب ألا تسبق ${this.min()}.`, 'constraint'));
+    }
+    if (range.end !== null && this.max() !== null && range.end > (this.max() as string)) {
+      issues.push(this.validationIssue('range.max', `نهاية النطاق يجب ألا تتجاوز ${this.max()}.`, 'constraint'));
+    }
+    if (range.start !== null && range.end !== null && range.start > range.end) {
+      issues.push(this.validationIssue('range.order', 'بداية النطاق يجب ألا تأتي بعد نهايته.', 'domain'));
+    }
+    return issues;
+  }
+  protected openPicker(): void { if (this.dateRangeEffectiveDisabled() || this.activeRef) return; const ref = this.overlays.open<ErpTemporalPickerContent, ErpTemporalPickerData, ErpTemporalValue>(ErpTemporalPickerContent, {frame: {header: {title: this.trimmedLabel(), subtitle: 'اختر نطاق التاريخ', icon: 'calendar'}, footer: createTemporalOverlayFooter('range', this.clearable(), ERP_TEMPORAL_DEFAULT_ACTION_LABELS)}, size: 'lg', ...(this.overlayConfig() ?? {}), data: {mode: 'range', value: this.currentValue(), min: this.min(), max: this.max(), weekStartsOn: 0, minuteStep: 5, locale: this.locale(), actionLabels: ERP_TEMPORAL_DEFAULT_ACTION_LABELS, clearable: this.clearable()}}); this.activeRef = ref; void ref.afterClosed.then((outcome) => { this.activeRef = null; if (outcome.type === 'closed') this.commitPickerResult(outcome.result); }); }
   protected handleKeydown(event: KeyboardEvent): void { if (event.key === 'ArrowDown') { event.preventDefault(); this.openPicker(); } }
   protected handleClear(): void { this.commitUserValue({start: null, end: null}); }
   protected handleNativeFocus(): void { this.handleFocus(); }
