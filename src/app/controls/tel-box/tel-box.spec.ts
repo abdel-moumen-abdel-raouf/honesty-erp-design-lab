@@ -25,31 +25,46 @@ describe('ErpTelBox', () => {
     expect(control.readonly()).toBe(false);
     expect(control.autocomplete()).toBe('tel');
     expect(control.pattern()).toBeNull();
+    expect(control.minLength()).toBeNull();
+    expect(control.maxLength()).toBeNull();
+    expect(control.clearable()).toBe(true);
     expect(native.type).toBe('tel');
     expect(native.autocomplete).toBe('tel');
     expect(native.inputMode).toBe('tel');
     expect(native.pattern).toBe(ERP_TEL_FINAL_PATTERN);
   });
 
-  it('rejects alphabetic input and publishes valid telephone values only', () => {
+  it('preserves invalid telephone drafts and reports multiple domain errors', () => {
     const fixture = create();
     const control = fixture.componentInstance;
-    const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
+    const host = fixture.nativeElement as HTMLElement;
+    const native = host.querySelector('input') as HTMLInputElement;
     const onChange = vi.fn();
     control.registerOnChange(onChange);
-    control.writeValue('+20 100 123 4567');
-    fixture.detectChanges();
-    native.dispatchEvent(new FocusEvent('focus'));
 
-    native.value = '+20 ABC';
+    native.value = '++20A';
     native.dispatchEvent(new Event('input'));
-    expect(native.value).toBe('+20 100 123 4567');
-    expect(onChange).not.toHaveBeenCalled();
+    fixture.detectChanges();
+
+    expect(onChange).toHaveBeenCalledWith('++20A');
+    expect(native.value).toBe('++20A');
+    expect(control.inputState()).toBe('invalid-entry');
+    expect(control.validationIssues().map((issue) => issue.code)).toEqual([
+      'tel.alphabetic',
+      'tel.plus-count',
+      'tel.too-short',
+    ]);
+    expect(native.getAttribute('aria-invalid')).toBe('true');
+
+    native.dispatchEvent(new FocusEvent('blur'));
+    fixture.detectChanges();
+    expect(native.value).toBe('++20A');
 
     native.value = '+20 111 222 3333';
     native.dispatchEvent(new Event('input'));
-    expect(onChange).toHaveBeenCalledOnce();
-    expect(onChange).toHaveBeenCalledWith('+20 111 222 3333');
+    fixture.detectChanges();
+    expect(control.inputState()).toBe('valid-entry');
+    expect(control.errors()).toEqual([]);
   });
 
   it('uses developer override patterns and invalid regex disables configuration', () => {
