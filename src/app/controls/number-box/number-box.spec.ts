@@ -58,8 +58,13 @@ describe('ErpNumberBox', () => {
 
     native.value = '12.5x';
     native.dispatchEvent(new Event('input'));
-    expect(native.value).toBe('12.5');
+    fixture.detectChanges();
+    expect(native.value).toBe('12.5x');
     expect(onChange).toHaveBeenCalledOnce();
+    expect(control.inputState()).toBe('invalid-entry');
+    expect(control.validationIssues().map((issue) => issue.code)).toContain(
+      'number.format',
+    );
   });
 
   it('uses developer override patterns and invalid regex disables configuration', () => {
@@ -86,7 +91,7 @@ describe('ErpNumberBox', () => {
     expect(native.disabled).toBe(true);
   });
 
-  it('normalizes writes without publishing and clamps committed values', () => {
+  it('preserves out-of-range numeric values and reports min/max issues without clamping', () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
@@ -94,15 +99,23 @@ describe('ErpNumberBox', () => {
     control.registerOnChange(onChange);
     fixture.componentRef.setInput('min', 2);
     fixture.componentRef.setInput('max', 10);
-    control.writeValue('6');
     fixture.detectChanges();
-    expect(native.value).toBe('6');
-    expect(onChange).not.toHaveBeenCalled();
+
     native.dispatchEvent(new FocusEvent('focus'));
     native.value = '20';
     native.dispatchEvent(new Event('input'));
     fixture.detectChanges();
-    expect(onChange).toHaveBeenCalledWith(10);
+
+    expect(onChange).toHaveBeenCalledWith(20);
+    expect(native.value).toBe('20');
+    expect(control.inputState()).toBe('invalid-entry');
+    expect(control.validationIssues().map((issue) => issue.code)).toContain(
+      'number.max',
+    );
+
+    native.dispatchEvent(new FocusEvent('blur'));
+    fixture.detectChanges();
+    expect(native.value).toBe('20');
   });
 
   it('preserves disabled and readonly commits while clear publishes empty', () => {
