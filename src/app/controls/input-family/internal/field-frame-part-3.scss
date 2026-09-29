@@ -14,3 +14,16 @@
 :host([data-field-configuration-state='invalid']) .field-frame__control {
   cursor: default;
 }
+
+
+:host(:is([data-field-variant='ghost'], [data-field-variant='text'], [data-field-border-mode='underline'])
+  :not([data-field-disabled='true'])
+  :not([data-field-configuration-state='invalid'])
+  :not([data-field-focused='true']))
+  .field-frame__control:hover {
+  background: color-mix(
+    in srgb,
+    var(--honesty-field-frame-hover-bg) 35%,
+    transparent
+  );
+}
