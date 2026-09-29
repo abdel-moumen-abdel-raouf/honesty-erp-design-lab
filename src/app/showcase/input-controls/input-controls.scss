@@ -27,6 +27,7 @@
 }
 
 .review-group > erp-grid > erp-surface {
+  grid-column: 1 / -1;
   padding: var(--honesty-space-inset-default);
 }
 
