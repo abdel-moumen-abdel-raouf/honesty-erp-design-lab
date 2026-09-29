@@ -299,17 +299,15 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(root.querySelectorAll('erp-overlay-host')).toHaveLength(1);
   });
 
-  it('renders Foundation, Inputs, and Overlays through the same direct document model', async () => {
-    const fixture = TestBed.createComponent(App);
-    const router = TestBed.inject(Router);
+  for (const [url, selector] of [
+    ['/foundation/overview', 'app-foundation-overview'],
+    ['/controls/inputs', 'app-input-controls'],
+    ['/controls/overlays', 'app-overlay-controls'],
+  ] as const) {
+    it(`renders ${url} through the direct single-document model`, async () => {
+      const fixture = TestBed.createComponent(App);
+      const router = TestBed.inject(Router);
 
-    const cases = [
-      ['/foundation/overview', 'app-foundation-overview'],
-      ['/controls/inputs', 'app-input-controls'],
-      ['/controls/overlays', 'app-overlay-controls'],
-    ] as const;
-
-    for (const [url, selector] of cases) {
       await router.navigateByUrl(url);
       fixture.detectChanges();
       await fixture.whenStable();
@@ -324,8 +322,8 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
       expect(root.querySelector('[id^="btn-preview-"]')).toBeNull();
       expect(root.querySelectorAll('erp-overlay-host')).toHaveLength(1);
       expect(resolveLabScreenshotTarget(document)).toBe(captureRoot);
-    }
-  });
+    });
+  }
 
   it('keeps modal and logical drawers inside the direct screenshot target', async () => {
     const fixture = TestBed.createComponent(App);
