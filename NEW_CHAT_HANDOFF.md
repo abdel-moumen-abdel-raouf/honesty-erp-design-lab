@@ -452,3 +452,29 @@ Recommended next action:
 - then resume page-by-page visual screenshot review.
 
 This finding does not change technical verification state: the no-iframe source still requires a fresh `npm run verify:clean`; last Fully Green source remains `b1b20585adcb272f17835ef8182935353a67d243`.
+
+
+---
+
+## 2026-09-29 — Typography Primitives visual review / screenshot-tool deferral
+
+Product Owner decision:
+- the screenshot capture-progress artifact is a non-critical Design-Lab-only tooling issue;
+- cleanup is deferred;
+- it does not block page-by-page visual review.
+
+Product Owner supplied Light and Dark full-page evidence for `/primitives/typography`.
+
+External review result:
+- no blocking page-specific visual defect identified;
+- Type Defaults, Sizes / Weights / Line Heights, Tones / Families / Alignment, Headings / Blocks / Containers, Inline Semantic Types, Data / Lists / Table / Form Text, and Direction / Ruby / Wrapping / Overflow / Link evidence are visually coherent in both themes;
+- no visible clipping, overlap, RTL/LTR break, theme leakage, or hierarchy failure was identified from the supplied screenshots.
+
+Review decision:
+- no Typography correction is opened from this evidence;
+- proceed to the next page;
+- this is not a Product Owner visual freeze unless explicitly declared.
+
+Technical verification boundary remains unchanged:
+- no-iframe `npm run verify:clean` is still pending;
+- last Fully Green source remains `b1b20585adcb272f17835ef8182935353a67d243`.

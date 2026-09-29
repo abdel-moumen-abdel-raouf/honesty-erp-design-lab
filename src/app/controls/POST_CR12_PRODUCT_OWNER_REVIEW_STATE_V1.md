@@ -566,3 +566,19 @@ Recommended next action:
 - then resume page-by-page visual screenshot review.
 
 This finding does not change technical verification state: the no-iframe source still requires a fresh `npm run verify:clean`; last Fully Green source remains `b1b20585adcb272f17835ef8182935353a67d243`.
+
+
+## 2026-09-29 — Typography Primitives page review
+
+Product Owner explicitly deferred the screenshot capture-progress artifact as non-critical Design-Lab-only tooling; it must not block review progression.
+
+Light/Dark full-page evidence for `/primitives/typography` was externally reviewed.
+
+Result:
+- no blocking typography-page defect found;
+- semantic type defaults, size/weight/line-height evidence, tones/families/alignment, headings/blocks, inline semantics, data/list/table/form text, and direction/ruby/wrapping/overflow/link evidence are coherent across both themes;
+- no correction task is opened from the supplied evidence.
+
+Next visual-review action: continue to the next page selected by Product Owner.
+
+This does not declare visual freeze or alter technical verification state.
