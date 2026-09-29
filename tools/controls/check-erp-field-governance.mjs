@@ -132,6 +132,8 @@ const NUMBER_BOX_TEMPLATE =
   'src/app/controls/number-box/number-box.html';
 const NUMBER_STEPPER_TEMPLATE =
   'src/app/controls/number-stepper/number-stepper.html';
+const MONEY_BOX_SOURCE =
+  'src/app/controls/money-box/money-box.ts';
 const SELECTION_CONTENT_STYLES =
   'src/app/controls/selection-family/internal/selection-picker-content.scss';
 const TEMPORAL_CONTRACTS =
@@ -655,6 +657,21 @@ export function validateNumericEditorContracts(files) {
     }
   }
 
+  const moneySource = files.get(MONEY_BOX_SOURCE) ?? '';
+  if (
+    !moneySource.includes("readonly digitSet = input<DigitSet | null>(null)") ||
+    !moneySource.includes(
+      "this.digitSet() ??",
+    ) ||
+    !moneySource.includes(
+      "resolveContextualPreference(this.digitPreference(), 'money')",
+    )
+  ) {
+    errors.push(
+      'MoneyBox: per-instance digit override must fall back to shared Preferences',
+    );
+  }
+
   return errors;
 }
 
@@ -667,6 +684,11 @@ export function validateArabicFirstDefaults(files) {
     'الشهر السابق',
     'الشهر التالي',
     'اليوم',
+    'الآن',
+    'الأسبوع الماضي',
+    'الأسبوع القادم',
+    'الشهر الماضي',
+    'الشهر القادم',
     'مسح',
     'إلغاء',
     'تأكيد',
@@ -1334,6 +1356,10 @@ export class ErpImagePicker extends ErpFileSelectionBase {
   const validNumericEditors = new Map([
     [NUMBER_BOX_TEMPLATE, '<input type="text" inputmode="decimal">'],
     [NUMBER_STEPPER_TEMPLATE, '<input type="text" inputmode="decimal">'],
+    [
+      MONEY_BOX_SOURCE,
+      "readonly digitSet = input<DigitSet | null>(null); this.digitSet() ?? resolveContextualPreference(this.digitPreference(), 'money')",
+    ],
   ]);
   if (validateNumericEditorContracts(validNumericEditors).length > 0) {
     throw new Error('ErpField checker rejected valid numeric editors');
@@ -1353,6 +1379,11 @@ export class ErpImagePicker extends ErpFileSelectionBase {
         'الشهر السابق',
         'الشهر التالي',
         'اليوم',
+        'الآن',
+        'الأسبوع الماضي',
+        'الأسبوع القادم',
+        'الشهر الماضي',
+        'الشهر القادم',
         'مسح',
         'إلغاء',
         'تأكيد',
