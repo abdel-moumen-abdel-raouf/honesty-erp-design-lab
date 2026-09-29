@@ -25,9 +25,16 @@ describe('ErpRangeSlider', () => {
     expect(control.max()).toBe(100);
     expect(control.step()).toBe(1);
     expect(control.defaultRange()).toBeNull();
-    expect(control.clearable()).toBe(false);
+    expect(control.clearable()).toBe(true);
     expect(thumbs.length).toBe(2);
     expect([...thumbs].map((thumb) => thumb.dataset['rangeThumb'])).toEqual(['lower', 'upper']);
+    expect([...thumbs].map((thumb) => [thumb.min, thumb.max])).toEqual([
+      ['0', '100'],
+      ['0', '100'],
+    ]);
+    expect(
+      host.querySelectorAll('[data-range-tooltip-anchor]').length,
+    ).toBe(2);
     expect(host.getAttribute('data-range-slider-lower')).toBe('0');
     expect(host.getAttribute('data-range-slider-upper')).toBe('100');
   });
@@ -101,4 +108,38 @@ describe('ErpRangeSlider', () => {
     fixture.detectChanges();
     expect(host.getAttribute('data-range-slider-lower')).toBe('20');
   });
+
+  it('keeps tooltip anchors on the same global percentages and formats active values per thumb', () => {
+    const fixture = create();
+    const control = fixture.componentInstance;
+    const host = fixture.nativeElement as HTMLElement;
+    fixture.componentRef.setInput(
+      'valueTooltipFormatter',
+      (value: number, thumb: 'lower' | 'upper') =>
+        `${thumb}:${value}`,
+    );
+    control.writeValue({lower: 20, upper: 80});
+    fixture.detectChanges();
+
+    const anchors = host.querySelectorAll<HTMLElement>(
+      '[data-range-tooltip-anchor]',
+    );
+    expect(anchors[0].style.insetInlineStart).toBe('20%');
+    expect(anchors[1].style.insetInlineStart).toBe('80%');
+
+    const lower = host.querySelector(
+      '[data-range-thumb="lower"]',
+    ) as HTMLInputElement;
+    lower.dispatchEvent(new PointerEvent('pointerdown', {bubbles: true}));
+    fixture.detectChanges();
+
+    const tooltips = host.querySelectorAll('erp-tooltip');
+    expect(tooltips[0].getAttribute('data-tooltip-open')).toBe('true');
+    expect(tooltips[0].textContent).toContain('lower:20');
+
+    lower.dispatchEvent(new PointerEvent('pointerup', {bubbles: true}));
+    fixture.detectChanges();
+    expect(tooltips[0].getAttribute('data-tooltip-open')).toBe('false');
+  });
+
 });
