@@ -442,3 +442,26 @@ Fixed by:
 
 Next mandatory gate remains the complete `npm run verify:clean`.
 Do not reopen implementation scope unless the rerun demonstrates another concrete failure.
+
+
+### 2026-09-29 — Tooltip/no-iframe branch is Fully Green
+
+The Product Owner completed `npm run verify:clean` successfully at:
+
+`310b5afe8e6f018bb4d52f68be2986bbe2d31365`
+
+Latest source-affecting checkpoint:
+`3eb993e64616362bf920284e37b5005d412fd531`.
+
+Evidence:
+- all lint/governance PASS;
+- 87/87 test files PASS;
+- 615/615 tests PASS;
+- app/spec TypeScript no-emit gates PASS;
+- final zero-warning production build PASS.
+
+Technical correction program is green again.
+
+Next authorized action is not another implementation family:
+**Product Owner runtime re-review of Tooltip V1.**
+Do not continue page-by-page review past Tooltip until Product Owner accepts it.

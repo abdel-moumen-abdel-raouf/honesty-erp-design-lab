@@ -713,3 +713,32 @@ Correction:
 No production source behavior changed.
 
 Next mandatory action: rerun the full `npm run verify:clean`.
+
+
+## 2026-09-29 — new Fully Green technical checkpoint
+
+Product Owner local verification completed successfully from repository HEAD:
+
+`310b5afe8e6f018bb4d52f68be2986bbe2d31365`
+
+Latest source-affecting checkpoint in that checkout:
+
+`3eb993e64616362bf920284e37b5005d412fd531`
+
+Canonical `npm run verify:clean` completed through every stage:
+- all governance checks PASS, including Tooltip and Overlay;
+- Angular lint PASS;
+- 87/87 test files PASS;
+- 615/615 tests PASS;
+- `typecheck:app` PASS;
+- `typecheck:spec` PASS;
+- final `build:clean` PASS;
+- final Zero-warning build gate PASS.
+
+This replaces `b1b20585adcb272f17835ef8182935353a67d243` as the latest Fully Green technical baseline.
+
+Technical blocker: NONE.
+
+Product Owner review blocker:
+- Tooltip V1 runtime Light/Dark acceptance remains mandatory before continuing
+  to any later Design Lab page.

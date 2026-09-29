@@ -659,3 +659,80 @@ Verification status:
 - if the full gate passes through lint, tests, both typechecks, and zero-warning build, the latest source can become the new Fully Green checkpoint.
 
 Tooltip page remains the active blocking visual-review page until technical verification completes and Product Owner runtime Light/Dark re-review is performed.
+
+
+---
+
+# 21. 2026-09-29 — FULL VERIFY:CLEAN PASS / NEW FULLY GREEN CHECKPOINT
+
+Product Owner completed the canonical local verification from repository HEAD:
+
+`310b5afe8e6f018bb4d52f68be2986bbe2d31365`
+
+Latest source-affecting commit contained in that checkout:
+
+`3eb993e64616362bf920284e37b5005d412fd531`
+`fix(test): satisfy array-type lint rule`
+
+The full command:
+
+`npm run verify:clean`
+
+completed successfully end-to-end.
+
+Verified results:
+- all governance/lint stages PASS, including:
+  - Single App theme authority;
+  - route-page ERP-only authoring;
+  - Component Token framework;
+  - System color registry;
+  - ErpText;
+  - ErpIcon registry/governance;
+  - ErpButton;
+  - ErpTooltip;
+  - ErpField;
+  - ErpOverlay;
+  - Angular ESLint;
+- `All files pass linting.`
+- 87 / 87 test files PASS;
+- 615 / 615 tests PASS;
+- Tooltip suite: 24 tests PASS, including Zoom/Zoom default evidence;
+- anchored-overlay geometry suite: 10 tests PASS;
+- anchored-overlay controller suite: 4 tests PASS;
+- `typecheck:app` PASS;
+- `typecheck:spec` PASS;
+- final production Angular build PASS;
+- final `Zero-warning build gate: PASS`.
+
+This supersedes all earlier wording that kept
+`b1b20585adcb272f17835ef8182935353a67d243` as the latest Fully Green source.
+
+## Current technical checkpoint
+
+Fully verified repository checkout:
+`310b5afe8e6f018bb4d52f68be2986bbe2d31365`
+
+Latest source-affecting checkpoint:
+`3eb993e64616362bf920284e37b5005d412fd531`
+
+Technical state: **Fully Green**.
+
+## Current Product Owner review state
+
+Technical verification is no longer blocking.
+
+Tooltip V1 remains the active page-review blocker by Product Owner decision.
+No later page review is authorized until runtime Light/Dark Tooltip evidence is
+re-reviewed and accepted, including:
+- default Zoom enter/exit;
+- body + arrow moving together;
+- top/bottom/start/end placement;
+- preferred placement preservation;
+- opposite/perpendicular collision fallback;
+- edge behavior;
+- scroll anchoring;
+- resolved arrow direction and attachment;
+- z-index/layer behavior.
+
+The previously deferred Design-Lab screenshot progress artifact remains
+non-blocking and unchanged.

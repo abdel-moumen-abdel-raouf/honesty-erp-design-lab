@@ -896,3 +896,27 @@ The change only converts an `Array<T>` annotation to `T[]` in
 `anchored-overlay-controller.spec.ts`. No runtime behavior changed.
 
 A fresh full `npm run verify:clean` is still mandatory before declaring a new Fully Green source checkpoint.
+
+
+## Fully Green checkpoint after Tooltip correction — 2026-09-29
+
+Canonical Product Owner local verification completed successfully from:
+
+`310b5afe8e6f018bb4d52f68be2986bbe2d31365`
+
+Latest source-affecting commit in that checkout:
+`3eb993e64616362bf920284e37b5005d412fd531`.
+
+`npm run verify:clean` passed end-to-end:
+- all governance + Angular lint;
+- 87/87 test files;
+- 615/615 tests;
+- app TypeScript no-emit gate;
+- spec TypeScript no-emit gate;
+- zero-warning production build.
+
+This is the current Fully Green technical checkpoint.
+
+Do not confuse technical green with Product Owner visual approval.
+Tooltip V1 remains the active visual-review blocker until Product Owner runtime
+re-review accepts the corrected anchored behavior.
