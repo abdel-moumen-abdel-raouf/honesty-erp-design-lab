@@ -17,7 +17,10 @@ import {ErpNumberStepper} from '../../controls/number-stepper/number-stepper';
 import {ErpPasswordBox} from '../../controls/password-box/password-box';
 import {ErpRadioBox} from '../../controls/radio-box/radio-box';
 import {ErpRangeSlider} from '../../controls/range-slider/range-slider';
-import {ErpSearchBox} from '../../controls/search-box/search-box';
+import {
+  ErpSearchBox,
+  ErpSearchBoxOption,
+} from '../../controls/search-box/search-box';
 import {
   ErpColorPickerValue,
   ErpItemPickerOption,
@@ -92,6 +95,11 @@ export class InputControls {
     {value: 'customer', label: 'العملاء', icon: 'customer'},
     {value: 'inventory', label: 'المخزون', icon: 'inventory'},
     {value: 'maintenance', label: 'الصيانة', icon: 'maintenance'},
+  ];
+  readonly searchItems: readonly ErpSearchBoxOption[] = [
+    {value: 'INV-2026-001', label: 'فاتورة INV-2026-001', icon: 'info'},
+    {value: 'PO-2026-014', label: 'طلب شراء PO-2026-014', icon: 'info'},
+    {value: 'CUS-2026-007', label: 'العميل CUS-2026-007', icon: 'customer'},
   ];
   readonly colorValue = signal<ErpColorPickerValue | null>({
     mode: 'system',
