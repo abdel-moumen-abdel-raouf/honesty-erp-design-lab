@@ -572,3 +572,19 @@ No production source changed.
 
 Next action:
 rerun complete `npm run verify:clean`.
+
+
+### 2026-09-29 — verify reduced to one app integration timing case
+
+At `f8ab643...`, the gate reached 86/87 test files and 625/626 tests.
+
+The last failure was a 5.2-second App integration test containing three lazy
+route renders.
+
+Fixed by:
+`72fa7821030e2ced6ec44f6d8eaf0d2b3b2939d2`.
+
+No timeout was raised and no production behavior changed.
+
+Next action:
+rerun complete `npm run verify:clean`.

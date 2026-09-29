@@ -190,3 +190,21 @@ Test-only correction:
 `92840de9c670edd32b05c1485f50c2e61e68fead`.
 
 Fresh full verification remains required.
+
+
+## 2026-09-29 — third verification follow-up
+
+Inputs-targeted tests are now green:
+- SearchBox 11/11;
+- Temporal picker 14/14;
+- Selection picker 16/16;
+- Inputs showcase 14/14.
+
+The only remaining test failure in the full run was an App-shell integration
+timeout caused by three lazy-route renders sharing one 5-second test body.
+
+Test-only correction:
+`72fa7821030e2ced6ec44f6d8eaf0d2b3b2939d2`.
+
+Fresh full verification remains required before Inputs may enter Product Owner
+runtime re-review.

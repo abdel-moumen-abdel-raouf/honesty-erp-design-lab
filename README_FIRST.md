@@ -24,50 +24,48 @@ Branch:
 
 ## Current state
 
-Latest source-affecting verification follow-up:
+Latest verification-follow-up source checkpoint:
 
-`92840de9c670edd32b05c1485f50c2e61e68fead`
-`fix(test): flush staged picker state before confirmation`
+`72fa7821030e2ced6ec44f6d8eaf0d2b3b2939d2`
+`fix(test): isolate direct-route app integration cases`
 
-The Product Owner ran `npm run verify:clean` at:
+Product Owner local verification at:
+`f8ab6433636f6adefdd43d7613545aa87041560f`
 
-`a85c13899613b239ea28c848b61af3454b3fe5f0`
-
-That run confirmed:
-- all governance gates PASS, including Button, Tooltip, Field, and Overlay;
+confirmed:
+- every governance gate PASS;
 - Angular lint PASS;
-- the test runner reached 87 test files;
-- 84 / 87 test files passed;
-- 620 / 626 tests passed;
-- exactly six tests failed.
+- SearchBox suite 11/11 PASS;
+- Temporal picker suite 14/14 PASS;
+- Selection picker suite 16/16 PASS;
+- Inputs showcase suite 14/14 PASS;
+- 86 / 87 test files PASS;
+- 625 / 626 tests PASS.
 
-Failure diagnosis:
-- two SearchBox tests were stale test-harness assumptions after moving result
-  activation into `ErpSelectionTile`;
-- one assertion read host signal evidence before a fixture change-detection pass;
-- one keydown event was created without `bubbles: true`, so it never reached the
-  SelectionTile host listener although real browser key events bubble;
-- three Selection picker tests and one Temporal picker test pressed Confirm
-  immediately after changing staged state without allowing the overlay footer
-  disabled state to render; Confirm therefore remained disabled in the test DOM
-  and the close promise timed out.
+The only remaining failure was:
+`src/app/app.spec.ts`
+`renders Foundation, Inputs, and Overlays through the same direct document model`
 
-The production runtime contract did not require alteration for these six failures.
+The test timed out at approximately 5.2 seconds because one Vitest test executed
+three lazy-route navigations and complete route renders sequentially.
 
-Test-only correction:
-- add the required `fixture.detectChanges()` after staged selection changes;
-- dispatch the SearchBox End key as a bubbling browser-like KeyboardEvent.
+No runtime/production failure was demonstrated.
+
+Correction:
+- the same direct single-document assertions are now preserved as three isolated
+  route integration tests;
+- no timeout limit was increased;
+- no production source changed.
 
 Verification distinction:
 
 Latest prior **Fully Green** checkout remains:
-
 `50ae8e5f9f9cc537435217a644548c10bd097ecb`
 
-Current source is **verification pending**.
-A fresh full `npm run verify:clean` is mandatory from current `main`.
+Current source is still **verification pending** until a fresh full
+`npm run verify:clean` completes end-to-end.
 
-Inputs remains Product Owner BLOCKED until full technical green plus runtime/Light/Dark re-review.
-Tooltip runtime re-review also remains pending.
+Inputs remains Product Owner BLOCKED pending technical green + runtime/Light/Dark
+re-review. Tooltip runtime re-review also remains pending.
 
-Read `NEW_CHAT_HANDOFF.md` for the complete state.
+Read `NEW_CHAT_HANDOFF.md` for complete state.

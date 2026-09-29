@@ -1035,3 +1035,15 @@ Verification follow-up checkpoint:
 `92840de9c670edd32b05c1485f50c2e61e68fead`.
 
 No runtime behavior changed in that commit.
+
+
+## Direct-route App test isolation — 2026-09-29
+
+Do not aggregate multiple lazy-route full renders into one default-timeout test
+when the same contract can be proven independently per route.
+
+Current test-only correction:
+`72fa7821030e2ced6ec44f6d8eaf0d2b3b2939d2`.
+
+Assertions are unchanged; timeout limits remain unchanged; production source is
+unchanged.

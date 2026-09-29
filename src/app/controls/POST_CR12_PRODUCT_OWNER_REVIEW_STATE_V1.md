@@ -921,3 +921,20 @@ Test-only correction:
 
 Fresh full `npm run verify:clean` remains mandatory.
 Inputs is still Product Owner BLOCKED pending technical green and runtime review.
+
+
+## 2026-09-29 — Inputs verify reduced to one unrelated App integration timeout
+
+At `f8ab643...`, every Inputs-targeted suite passed.
+
+Only one test remained red:
+the App direct-document integration test combining Overview, Inputs, and Overlays
+in one 5-second test body.
+
+Test-only correction:
+`72fa7821030e2ced6ec44f6d8eaf0d2b3b2939d2`.
+
+The test was split by route while preserving identical assertions.
+No runtime source changed.
+
+Fresh full verify remains mandatory.

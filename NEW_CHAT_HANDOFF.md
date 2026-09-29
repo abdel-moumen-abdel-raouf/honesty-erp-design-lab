@@ -1155,3 +1155,51 @@ Current status:
   `npm run verify:clean` passes;
 - do not skip directly to test/typecheck commands because the canonical gate
   must be proven end-to-end.
+
+
+---
+
+# 28. 2026-09-29 — VERIFY:CLEAN DOWN TO ONE APP INTEGRATION TIMEOUT; TEST ISOLATED
+
+Product Owner reran the canonical gate at:
+
+`f8ab6433636f6adefdd43d7613545aa87041560f`
+
+The run passed:
+- all governance;
+- Angular lint;
+- SearchBox 11/11;
+- Temporal picker 14/14;
+- Selection picker 16/16;
+- Inputs showcase 14/14.
+
+Overall test result:
+- 86 / 87 test files PASS;
+- 625 / 626 tests PASS.
+
+Only failure:
+`src/app/app.spec.ts`
+`renders Foundation, Inputs, and Overlays through the same direct document model`
+
+Observed duration:
+approximately 5239 ms, slightly beyond the Vitest 5000 ms default.
+
+The test itself performs three lazy route navigations/render cycles in one
+`it()`:
+1. `/foundation/overview`;
+2. `/controls/inputs`;
+3. `/controls/overlays`.
+
+Correction:
+- `72fa7821030e2ced6ec44f6d8eaf0d2b3b2939d2`
+  `fix(test): isolate direct-route app integration cases`
+
+The exact same single-document assertions are preserved, but each lazy route is
+now its own test case. This avoids an accumulated timing failure without:
+- increasing test timeout;
+- weakening assertions;
+- changing runtime source;
+- changing route architecture.
+
+Verification status:
+- source remains NOT Fully Green until fresh full `npm run verify:clean` passes.
