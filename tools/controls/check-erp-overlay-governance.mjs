@@ -485,6 +485,8 @@ export function validateOverlayFrameContract(files) {
     'updateFrameActionState(',
     'frameActionStates',
     'requestFrameAction(',
+    'const state = this.frameActionState()[action];',
+    'if (disabled || loading)',
     "config?.role === 'secondary'",
     "this.dismiss('secondary-action')",
   ]) {
@@ -878,6 +880,8 @@ openLegacyCompactMenu`,
 updateFrameActionState(
 frameActionStates
 requestFrameAction(
+const state = this.frameActionState()[action];
+if (disabled || loading)
 config?.role === 'secondary'
 this.dismiss('secondary-action')`,
     ],
