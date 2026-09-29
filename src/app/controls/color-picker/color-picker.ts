@@ -19,6 +19,7 @@ import {ErpSelectionPickerContent} from '../selection-family/internal/selection-
 import {
   ERP_SELECTION_DEFAULT_ACTION_LABELS,
   createSelectionOverlayFooter,
+  ErpColorPickerMode,
   ErpColorPickerValue,
   ErpSelectionPickerData,
 } from '../selection-family/selection-contracts';
@@ -45,11 +46,12 @@ let nextColorPickerId = 0;
   styleUrl: './color-picker.scss',
   host: {
     '[attr.data-field-configuration-state]': 'fieldConfigurationState()',
-    '[attr.data-color-picker-mode]': 'currentValue()?.mode ?? null',
+    '[attr.data-color-picker-mode]': 'mode()',
     '[attr.data-color-picker-value]': 'valueIdentity()',
   },
 })
 export class ErpColorPicker extends ErpFieldBase<ErpColorPickerValue | null> {
+  readonly mode = input<ErpColorPickerMode>('system');
   readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null);
   override readonly trailingIcon = input<ErpIconName | null>('chevron-down');
   protected readonly controlId = `erp-color-picker-${++nextColorPickerId}`;
@@ -75,7 +77,12 @@ export class ErpColorPicker extends ErpFieldBase<ErpColorPickerValue | null> {
   }
 
   protected override normalizeValue(value: unknown): ErpColorPickerValue | null {
-    return normalizeColorPickerValue(value);
+    const normalized = normalizeColorPickerValue(value);
+    return normalized?.mode === this.mode() ? normalized : null;
+  }
+
+  protected override classifyPresence(value: unknown) {
+    return value === null ? 'no-selection' as const : null;
   }
 
   protected openPicker(): void {
@@ -119,7 +126,7 @@ export class ErpColorPicker extends ErpFieldBase<ErpColorPickerValue | null> {
     return {
       mode: 'color',
       value: this.currentValue(),
-      colorMode: this.currentValue()?.mode ?? 'system',
+      colorMode: this.mode(),
       items: [],
       query: '',
       searchable: false,
