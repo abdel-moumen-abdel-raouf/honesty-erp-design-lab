@@ -33,6 +33,7 @@ export class ErpTimeBox extends ErpFieldBase<string | null> {
   readonly min = input<string | null>(null);
   readonly max = input<string | null>(null);
   readonly locale = input('ar-EG');
+  readonly placeholder = input('اختر الوقت');
   readonly pattern = input<string | null>(null);
   readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null);
   override readonly trailingIcon = input<ErpIconName | null>('clock');
@@ -52,7 +53,7 @@ export class ErpTimeBox extends ErpFieldBase<string | null> {
           this.timeFormat(),
           resolveContextualPreference(this.digits(), 'field'),
         )
-      : 'Select time';
+      : this.placeholder();
   });
   private readonly overlays = inject(ErpOverlayManager);
   private activeRef: ErpOverlayRef<ErpTemporalValue> | null = null;
