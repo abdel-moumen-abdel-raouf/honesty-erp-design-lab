@@ -91,7 +91,7 @@ describe('ErpFieldBase', () => {
     expect(control.helperPosition()).toBe('below');
     expect(control.leadingIcon()).toBeNull();
     expect(control.trailingIcon()).toBeNull();
-    expect(control.clearable()).toBe(false);
+    expect(control.clearable()).toBe(true);
     expect(control.feedbackText()).toBeNull();
     expect(control.feedbackDismissible()).toBe(false);
   });
