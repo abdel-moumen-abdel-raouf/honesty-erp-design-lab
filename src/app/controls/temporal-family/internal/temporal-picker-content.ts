@@ -3,6 +3,7 @@ import {
   Component,
   computed,
   effect,
+  ElementRef,
   inject,
   OnDestroy,
   signal,
@@ -33,6 +34,7 @@ import {addDays, addMonths, padTemporal, parseIsoDate, toIsoDate} from '../tempo
 export class ErpTemporalPickerContent implements OnDestroy {
   readonly data = inject(ERP_OVERLAY_DATA) as ErpTemporalPickerData;
   private readonly ref = inject(ERP_OVERLAY_REF) as ErpOverlayRef<ErpTemporalValue>;
+  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly today = toIsoDate(new Date());
   private readonly initialDate = this.resolveInitialDate();
   private readonly frameActionCleanup = [
@@ -46,10 +48,10 @@ export class ErpTemporalPickerContent implements OnDestroy {
       : [this.ref.registerFrameAction('today', () => this.selectToday())]),
     ...(this.data.mode === 'range'
       ? [
-          this.ref.registerFrameAction('previous-week', () => this.selectRangePreset('previous-week')),
-          this.ref.registerFrameAction('next-week', () => this.selectRangePreset('next-week')),
-          this.ref.registerFrameAction('previous-month-range', () => this.selectRangePreset('previous-month')),
-          this.ref.registerFrameAction('next-month-range', () => this.selectRangePreset('next-month')),
+          this.ref.registerFrameAction('past-7-days', () => this.selectRangePreset('past-7')),
+          this.ref.registerFrameAction('next-7-days', () => this.selectRangePreset('next-7')),
+          this.ref.registerFrameAction('past-30-days', () => this.selectRangePreset('past-30')),
+          this.ref.registerFrameAction('next-30-days', () => this.selectRangePreset('next-30')),
         ]
       : []),
     ...(this.data.clearable
@@ -177,10 +179,10 @@ export class ErpTemporalPickerContent implements OnDestroy {
 
       if (this.data.mode === 'range') {
         for (const [action, preset] of [
-          ['previous-week', 'previous-week'],
-          ['next-week', 'next-week'],
-          ['previous-month-range', 'previous-month'],
-          ['next-month-range', 'next-month'],
+          ['past-7-days', 'past-7'],
+          ['next-7-days', 'next-7'],
+          ['past-30-days', 'past-30'],
+          ['next-30-days', 'next-30'],
         ] as const) {
           const range = this.rangePreset(preset);
           this.ref.updateFrameActionState(action, {
@@ -234,10 +236,12 @@ export class ErpTemporalPickerContent implements OnDestroy {
       this.cursor.set(today);
       this.monthAnchor.set(today.slice(0, 7) + '-01');
     }
+
+    this.revealSelectedTime();
   }
 
   protected selectRangePreset(
-    preset: 'previous-week' | 'next-week' | 'previous-month' | 'next-month',
+    preset: 'past-7' | 'next-7' | 'past-30' | 'next-30',
   ): void {
     const range = this.rangePreset(preset);
     if (
@@ -453,30 +457,39 @@ export class ErpTemporalPickerContent implements OnDestroy {
   }
 
   private rangePreset(
-    preset: 'previous-week' | 'next-week' | 'previous-month' | 'next-month',
+    preset: 'past-7' | 'next-7' | 'past-30' | 'next-30',
   ): ErpDateRangeValue {
-    const currentMonthStart = `${this.today.slice(0, 7)}-01`;
-
-    if (preset === 'previous-month') {
-      const start = addMonths(currentMonthStart, -1);
-      return {start, end: addDays(currentMonthStart, -1)};
+    if (preset === 'past-7') {
+      return {start: addDays(this.today, -6), end: this.today};
     }
 
-    if (preset === 'next-month') {
-      const start = addMonths(currentMonthStart, 1);
-      const followingMonth = addMonths(currentMonthStart, 2);
-      return {start, end: addDays(followingMonth, -1)};
+    if (preset === 'next-7') {
+      return {start: this.today, end: addDays(this.today, 6)};
     }
 
-    const todayDate = parseIsoDate(this.today) as Date;
-    const offset =
-      (todayDate.getDay() - this.data.weekStartsOn + 7) % 7;
-    const currentWeekStart = addDays(this.today, -offset);
-    const start = addDays(
-      currentWeekStart,
-      preset === 'previous-week' ? -7 : 7,
-    );
-    return {start, end: addDays(start, 6)};
+    if (preset === 'past-30') {
+      return {start: addDays(this.today, -29), end: this.today};
+    }
+
+    return {start: this.today, end: addDays(this.today, 29)};
+  }
+
+  private revealSelectedTime(): void {
+    requestAnimationFrame(() => {
+      const root = this.host.nativeElement;
+      const selected = [
+        root.querySelector<HTMLElement>(
+          '[data-time-hour][data-selected="true"] button',
+        ),
+        root.querySelector<HTMLElement>(
+          '[data-time-minute][data-selected="true"] button',
+        ),
+      ];
+
+      for (const element of selected) {
+        element?.scrollIntoView?.({block: 'nearest', inline: 'nearest'});
+      }
+    });
   }
 
   private moveMonth(amount: number): void {
