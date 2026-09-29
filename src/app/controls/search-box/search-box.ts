@@ -238,10 +238,10 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
     }
 
     this.query.set('');
-    const popupInput = this.nativeInput()?.nativeElement;
-    if (this.popupOpen() && popupInput) {
-      popupInput.value = '';
-      popupInput.focus();
+    const editor = this.nativeInput()?.nativeElement;
+    if ((this.mode() === 'inline' || this.popupOpen()) && editor) {
+      editor.value = '';
+      editor.focus();
       this.handleFocus();
       return;
     }
@@ -566,15 +566,27 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
   };
 
   private focusResult(index: number): void {
-    if (index < 0 || index >= this.filteredItems().length) {
+    const items = this.filteredItems();
+    if (items.length === 0) {
       return;
     }
 
-    this.activeResultIndex.set(index);
-    const buttons = this.popupSurface()?.nativeElement.querySelectorAll<
-      HTMLButtonElement
-    >('[data-search-result]');
-    buttons?.[index]?.focus();
+    const current = this.activeResultIndex();
+    const direction = current !== null && index < current ? -1 : 1;
+    let candidate = Math.min(Math.max(index, 0), items.length - 1);
+
+    while (candidate >= 0 && candidate < items.length) {
+      if (!items[candidate].disabled) {
+        this.activeResultIndex.set(candidate);
+        const buttons = this.popupSurface()?.nativeElement.querySelectorAll<
+          HTMLButtonElement
+        >('[data-search-result]');
+        buttons?.[candidate]?.focus();
+        return;
+      }
+
+      candidate += direction;
+    }
   }
 
   private addToOpenStack(): void {

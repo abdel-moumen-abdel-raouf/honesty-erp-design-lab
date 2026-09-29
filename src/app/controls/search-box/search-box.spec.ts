@@ -116,9 +116,11 @@ describe('ErpSearchBox', () => {
     expect(host.querySelector('[role="listbox"]')).not.toBeNull();
   });
 
-  it('supports inline mode as an ordinary native search input', () => {
+  it('supports inline mode as an ordinary native search input and restores focus after clear', () => {
     const fixture = create();
     fixture.componentRef.setInput('mode', 'inline');
+    fixture.componentRef.setInput('clearable', true);
+    fixture.componentInstance.writeValue('invoice');
     fixture.detectChanges();
     const host = fixture.nativeElement as HTMLElement;
     const input = host.querySelector('input') as HTMLInputElement;
@@ -127,9 +129,20 @@ describe('ErpSearchBox', () => {
 
     expect(host.querySelector('erp-field-trigger')).toBeNull();
     expect(host.querySelector('.search-box__popup')).toBeNull();
-    input.value = 'invoice';
+
+    input.value = 'purchase';
     input.dispatchEvent(new Event('input'));
-    expect(onChange).toHaveBeenCalledWith('invoice');
+    expect(onChange).toHaveBeenCalledWith('purchase');
+
+    (
+      host.querySelector(
+        'erp-field-frame erp-icon-button button',
+      ) as HTMLButtonElement
+    ).click();
+    fixture.detectChanges();
+
+    expect(onChange).toHaveBeenCalledWith('');
+    expect(document.activeElement).toBe(input);
   });
 
   it('opens dropdown on focus and filters without committing the transient query', () => {
@@ -175,7 +188,7 @@ describe('ErpSearchBox', () => {
     expect(host.getAttribute('data-search-box-popup-phase')).toBe('leaving');
   });
 
-  it('prevents disabled result selection and supports keyboard result focus', () => {
+  it('prevents disabled result selection and skips disabled results during keyboard navigation', () => {
     const fixture = create();
     const host = fixture.nativeElement as HTMLElement;
     const onChange = vi.fn();
@@ -186,7 +199,19 @@ describe('ErpSearchBox', () => {
     input.dispatchEvent(new KeyboardEvent('keydown', {key: 'ArrowDown'}));
     fixture.detectChanges();
 
-    expect(document.activeElement?.hasAttribute('data-search-result')).toBe(true);
+    expect(
+      (document.activeElement as HTMLElement | null)?.dataset['value'],
+    ).toBe('invoice');
+
+    (document.activeElement as HTMLElement).dispatchEvent(
+      new KeyboardEvent('keydown', {key: 'End'}),
+    );
+    fixture.detectChanges();
+
+    expect(
+      (document.activeElement as HTMLElement | null)?.dataset['value'],
+    ).toBe('purchase');
+
     const disabled = [...host.querySelectorAll<HTMLButtonElement>('[data-search-result]')]
       .find((button) => button.dataset['value'] === 'disabled') as HTMLButtonElement;
     disabled.click();
