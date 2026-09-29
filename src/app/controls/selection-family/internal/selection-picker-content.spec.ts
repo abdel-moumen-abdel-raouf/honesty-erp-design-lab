@@ -151,13 +151,18 @@ describe('ErpSelectionPickerContent', () => {
     expect(root.querySelector('.selection-actions')).toBeNull();
   });
 
-  it('defaults to system mode and commits a canonical free color', async () => {
-    const {fixture, manager, ref} = await open({...base, mode: 'color'});
+  it('renders only the configured free-color mode and commits a canonical free color', async () => {
+    const {fixture, manager, ref} = await open({
+      ...base,
+      mode: 'color',
+      colorMode: 'free',
+    });
     const root = fixture.nativeElement as HTMLElement;
 
-    expect(root.querySelector('[data-system-colors]')).not.toBeNull();
-    root.querySelector<HTMLButtonElement>('[data-free-color-mode] button')?.click();
-    fixture.detectChanges();
+    expect(root.querySelector('[data-system-colors]')).toBeNull();
+    expect(root.querySelector('[data-system-colors-mode]')).toBeNull();
+    expect(root.querySelector('[data-free-color-mode]')).toBeNull();
+
     const input = root.querySelector('[data-native-color]') as HTMLInputElement;
     input.value = '#abcdef';
     input.dispatchEvent(new Event('input'));
