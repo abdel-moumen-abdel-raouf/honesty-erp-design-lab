@@ -199,10 +199,13 @@ describe('ErpSearchBox', () => {
     const trigger = host.querySelector(
       'erp-field-trigger button',
     ) as HTMLButtonElement;
+    const geometryAnchor = trigger.closest(
+      '.field-frame__control',
+    ) as HTMLElement;
     const surface = host.querySelector(
       '.search-box__popup',
     ) as HTMLElement;
-    vi.spyOn(trigger, 'getBoundingClientRect').mockReturnValue({
+    vi.spyOn(geometryAnchor, 'getBoundingClientRect').mockReturnValue({
       bottom: 140,
       height: 40,
       left: 40,
@@ -306,11 +309,14 @@ describe('ErpSearchBox', () => {
     const trigger = host.querySelector(
       'erp-field-trigger button',
     ) as HTMLButtonElement;
+    const geometryAnchor = trigger.closest(
+      '.field-frame__control',
+    ) as HTMLElement;
     const surface = host.querySelector(
       '.search-box__popup',
     ) as HTMLElement;
-    trigger.style.direction = 'rtl';
-    vi.spyOn(trigger, 'getBoundingClientRect').mockReturnValue({
+    geometryAnchor.style.direction = 'rtl';
+    vi.spyOn(geometryAnchor, 'getBoundingClientRect').mockReturnValue({
       bottom: 760,
       height: 40,
       left: 100,
