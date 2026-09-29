@@ -413,3 +413,19 @@ Next gates, in order:
 1. fresh `npm run verify:clean`;
 2. Product Owner Tooltip Light/Dark runtime re-review;
 3. only after Tooltip acceptance may page-by-page review continue.
+
+  
+### 2026-09-29 — verification stopped on stale Overlay governance; checker corrected
+
+Local `build:clean:self-test` and `build:clean` passed after the Tooltip
+correction, including `Zero-warning build gate: PASS`.
+
+The first full `verify:clean` attempt passed Tooltip governance and stopped in
+Overlay governance because that checker still required removed iframe-era App
+contracts. This was tooling drift.
+
+Correction:
+`a40ea25011cd19b8e6db9945ef80f6796a9c6c0c` —
+`fix(governance): align overlay gate with no-iframe lab`.
+
+Next mandatory gate: rerun the complete `npm run verify:clean`.

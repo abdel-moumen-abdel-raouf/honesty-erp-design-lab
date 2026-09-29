@@ -868,3 +868,17 @@ Implementation checkpoint:
 
 Do not declare this Tooltip correction Fully Green until a fresh `npm run verify:clean` passes.
 Do not proceed to later page review until Product Owner re-reviews Tooltip runtime evidence.
+
+  
+## No-Iframe Overlay Governance Alignment — 2026-09-29
+
+The Overlay governance checker must enforce the current single-document Lab
+architecture and must never require the superseded iframe architecture.
+
+Tooling correction:
+`a40ea25011cd19b8e6db9945ef80f6796a9c6c0c`
+
+The App-shell Overlay gate now requires one direct router-outlet and rejects
+iframe-era query/state/rendering/screenshot contracts. A fresh
+`npm run verify:clean` is mandatory before the current source is called Fully
+Green.

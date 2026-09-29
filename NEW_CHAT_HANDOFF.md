@@ -558,3 +558,55 @@ Verification status:
 Review status:
 - Tooltip V1 remains BLOCKED for page progression until Product Owner runtime re-review confirms the corrected arrow attachment, placement/fallback, scroll anchoring, motion, and Light/Dark behavior.
 - no later Design Lab page is authorized before that Tooltip re-review.
+
+
+## 2026-09-29 — local verification attempt after Tooltip correction
+
+Product Owner fast-forwarded local `main` to
+`6a71c23e4ff001a9c8e51bd685ca233cc2fe83a4`.
+
+Observed local evidence:
+- `npm run build:clean:self-test` — PASS.
+- `npm run build:clean` — PASS, ending in `Zero-warning build gate: PASS`.
+- `npm run verify:clean` progressed successfully through:
+  - single App theme authority;
+  - route-page ERP-only authoring;
+  - Component Token framework;
+  - system-color registry;
+  - ErpText;
+  - ErpIcon;
+  - ErpButton;
+  - **ErpTooltip governance**;
+  - ErpField.
+- `verify:clean` then stopped in `erp-overlay:check`.
+
+The failure was governance-tool drift, not an Overlay runtime regression and not
+a Tooltip failure. The Overlay checker still required five iframe-era App-shell
+strings that were intentionally removed by the Product Owner-authorized
+single-document correction:
+- `parameters.set('labTheme', theme);`
+- special Inputs/Overlays direct-route branching;
+- iframe toolbar/embedded screenshot composition.
+
+Bounded tooling correction:
+- `a40ea25011cd19b8e6db9945ef80f6796a9c6c0c`
+  `fix(governance): align overlay gate with no-iframe lab`
+
+The corrected Overlay governance now enforces the current App-shell contract:
+- one direct router outlet;
+- one App capture root;
+- App-owned theme and screenshot controls/evidence;
+- direct single-document screenshot target;
+- no iframe, `labPreview`, `labTheme` propagation, embedded/direct dual mode,
+  viewport-preview controls, cross-document traversal, or iframe sanitizer types.
+
+Its self-test fixtures now reject:
+- reintroduced iframe markup;
+- reintroduced iframe-era source state;
+- missing direct router-outlet.
+
+Verification status:
+- the full `npm run verify:clean` has **not yet passed** after this tooling
+  correction;
+- a fresh rerun from `a40ea250...` or later is mandatory;
+- do not declare a new Fully Green checkpoint until that rerun completes.
