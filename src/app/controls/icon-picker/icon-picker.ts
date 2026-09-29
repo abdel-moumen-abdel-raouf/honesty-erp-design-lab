@@ -35,6 +35,9 @@ export class ErpIconPicker extends ErpFieldBase<ErpIconName | null> {
   private readonly overlays = inject(ErpOverlayManager);
   private activeRef: ErpOverlayRef<string | null> | null = null;
   constructor() { super(null); }
+  protected override classifyPresence(value: unknown) {
+    return value === null ? 'no-selection' as const : null;
+  }
   protected override normalizeValue(value: unknown): ErpIconName | null { return normalizeIconName(value); }
   protected openPicker(): void {
     if (this.fieldEffectiveDisabled() || this.activeRef) return;
