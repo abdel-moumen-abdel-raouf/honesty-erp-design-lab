@@ -465,3 +465,21 @@ Technical correction program is green again.
 Next authorized action is not another implementation family:
 **Product Owner runtime re-review of Tooltip V1.**
 Do not continue page-by-page review past Tooltip until Product Owner accepts it.
+
+
+### 2026-09-29 — Tooltip cross-axis arrow centering correction pending verification
+
+New Product Owner runtime finding:
+- side arrows were vertically biased;
+- top/bottom arrows were horizontally biased.
+
+Implemented by:
+`632f45a5fb7b42eefa09da0d2c8a20c0f520244b`.
+
+The correction makes safe-inset fallback symmetric and positions the arrow from
+an exact cross-axis center with a 50% translation.
+
+Next gates:
+1. full `npm run verify:clean`;
+2. Product Owner Tooltip runtime Light/Dark re-review;
+3. only then may page-by-page review continue.

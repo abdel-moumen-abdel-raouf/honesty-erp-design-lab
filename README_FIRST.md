@@ -24,46 +24,38 @@ Branch:
 
 ## Current state
 
-Current fully verified repository checkout:
+Latest source-affecting Tooltip correction:
+
+`632f45a5fb7b42eefa09da0d2c8a20c0f520244b`
+`fix(tooltip): center arrow on trigger cross-axis`
+
+This source corrects the Product Owner runtime finding that Tooltip arrows were
+visibly biased on the cross-axis:
+- left/right arrows appeared vertically low;
+- top/bottom arrows appeared horizontally biased.
+
+Correction contract:
+- arrow coordinate is the exact cross-axis center and CSS uses `translate(-50%)`;
+- configured arrow safe inset shrinks symmetrically when a compact Tooltip
+  cannot afford the full inset;
+- the safe-inset fallback must never bias the arrow away from the trigger center.
+
+Verification distinction:
+
+The latest **Fully Green** verified repository checkout remains:
 
 `310b5afe8e6f018bb4d52f68be2986bbe2d31365`
-`docs(verification): record lint follow-up`
 
-Latest source-affecting checkpoint contained in that verified checkout:
+with 87/87 test files, 615/615 tests, both TypeScript no-emit gates, and the
+zero-warning production build passing.
 
-`3eb993e64616362bf920284e37b5005d412fd531`
-`fix(test): satisfy array-type lint rule`
+The new `632f45a...` Tooltip centering correction is implemented and source-reviewed
+but requires a fresh `npm run verify:clean` before it can become the new Fully
+Green baseline.
 
-The Product Owner ran the canonical local gate:
-
-`npm run verify:clean`
-
-and it completed successfully end-to-end on 2026-09-29.
-
-Verified evidence:
-- all lint/governance gates passed, including ErpTooltip and ErpOverlay;
-- Angular lint passed with zero errors;
-- 87/87 test files passed;
-- 615/615 tests passed;
-- `typecheck:app` passed;
-- `typecheck:spec` passed;
-- final production `build:clean` passed;
-- final `Zero-warning build gate: PASS`.
-
-The verified source includes:
-- normal single-document Angular App with no iframe preview architecture;
-- one direct `router-outlet`;
-- one App-level `ErpOverlayHost`;
-- direct same-document Screenshot capture with Light/Dark filename suffix;
-- Tooltip deterministic anchored positioning/collision contract;
-- Tooltip body + arrow shared motion assembly;
-- canonical arrow geometry across directions;
-- system Tooltip default motion = `zoom` enter + `zoom` exit, with explicit per-instance override support.
-
-Technical status is therefore **Fully Green**.
-
-Visual/product status remains separate:
-- Tooltip V1 is still the active Product Owner review blocker;
-- page-by-page review must not continue until Product Owner runtime re-review accepts Tooltip behavior.
+Product status:
+- Tooltip V1 remains the active Product Owner blocker;
+- no later page review is authorized until this centering correction is
+  technically verified and Product Owner runtime Light/Dark re-review accepts it.
 
 Read `NEW_CHAT_HANDOFF.md` for the complete state and exact next action.

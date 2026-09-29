@@ -742,3 +742,29 @@ Technical blocker: NONE.
 Product Owner review blocker:
 - Tooltip V1 runtime Light/Dark acceptance remains mandatory before continuing
   to any later Design Lab page.
+
+
+## 2026-09-29 — Tooltip arrow centering runtime defect corrected
+
+Product Owner runtime evidence found the arrow cross-axis visibly off-center for
+both side and vertical placements.
+
+Root cause:
+the canonical 16px arrow base plus 8px safe inset could produce an impossible
+allowed center range on compact 24px Tooltip cross-axes. The previous generic
+clamp selected the lower bound and introduced directional bias.
+
+Correction:
+`632f45a5fb7b42eefa09da0d2c8a20c0f520244b` —
+`fix(tooltip): center arrow on trigger cross-axis`.
+
+The implementation now uses symmetric effective-safe-inset reduction plus
+center-coordinate + 50% CSS translation for all four physical placements.
+
+Technical status:
+- previous Fully Green checkout: `310b5afe8e6f018bb4d52f68be2986bbe2d31365`;
+- latest source correction: `632f45a5fb7b42eefa09da0d2c8a20c0f520244b`;
+- fresh full verification required.
+
+Product review status remains BLOCKED on Tooltip until re-review accepts the
+corrected runtime evidence.

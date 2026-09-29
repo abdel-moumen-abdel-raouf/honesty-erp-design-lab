@@ -920,3 +920,23 @@ This is the current Fully Green technical checkpoint.
 Do not confuse technical green with Product Owner visual approval.
 Tooltip V1 remains the active visual-review blocker until Product Owner runtime
 re-review accepts the corrected anchored behavior.
+
+
+## Tooltip cross-axis centering law — 2026-09-29
+
+Product Owner requires exact Tooltip arrow centering on the trigger cross-axis.
+
+Implementation checkpoint:
+`632f45a5fb7b42eefa09da0d2c8a20c0f520244b`
+
+Mandatory invariants:
+- top/bottom: arrow uses the geometry center as physical `left` and
+  `translateX(-50%)`;
+- left/right: arrow uses the geometry center as physical `top` and
+  `translateY(-50%)`;
+- safe inset remains symmetric;
+- when the full configured inset cannot fit, reduce it symmetrically instead of
+  shifting the arrow away from trigger center.
+
+Do not call this correction Fully Green until a new `npm run verify:clean`
+passes. Tooltip remains the Product Owner page-review blocker.

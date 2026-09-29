@@ -736,3 +736,61 @@ re-reviewed and accepted, including:
 
 The previously deferred Design-Lab screenshot progress artifact remains
 non-blocking and unchanged.
+
+
+---
+
+# 22. 2026-09-29 — TOOLTIP CROSS-AXIS ARROW CENTERING CORRECTION
+
+After the prior Fully Green checkpoint, Product Owner runtime review identified a
+new visual defect in Tooltip arrow centering:
+
+- left/right placement arrows were visibly biased downward instead of being
+  vertically centered;
+- top/bottom placement arrows were visibly biased horizontally instead of being
+  centered on the trigger cross-axis.
+
+Root-cause review found a concrete geometry defect:
+- canonical arrow base = 16px;
+- plain Tooltip minimum block size = 24px;
+- configured arrow safe inset = 8px;
+- the old clamp requested a minimum center of 16px and a maximum center of 8px
+  on a 24px side-placement cross-axis;
+- that impossible interval was resolved toward the minimum bound, biasing the
+  side arrow downward.
+
+Product Owner centering law:
+- arrow cross-axis center must target the trigger center;
+- safe inset is symmetric and must never bias the arrow up/down/left/right;
+- if the Tooltip is too compact to afford the configured safe inset on both
+  sides of the canonical arrow, the effective inset shrinks symmetrically;
+- CSS positioning must express centering directly rather than manually
+  subtracting half-size.
+
+Implementation:
+- `632f45a5fb7b42eefa09da0d2c8a20c0f520244b`
+  `fix(tooltip): center arrow on trigger cross-axis`
+
+Implemented changes:
+- anchored geometry now derives a maximum symmetric safe inset from the actual
+  cross-axis size;
+- effective safe inset is capped symmetrically;
+- when the cross-axis is no larger than the canonical arrow base, the arrow
+  center collapses to the geometric cross-axis midpoint;
+- top/bottom arrows use `left = center` + `translateX(-50%)`;
+- left/right arrows use `top = center` + `translateY(-50%)`;
+- deterministic tests cover compact 24px side and top surfaces;
+- Tooltip unit tests cover explicit cross-axis centering for all four physical
+  placements;
+- Tooltip positioning policy and Tooltip V1 documentation were updated.
+
+Verification status:
+- the previous Fully Green checkout remains
+  `310b5afe8e6f018bb4d52f68be2986bbe2d31365`;
+- the new source commit `632f45a...` is NOT yet Fully Green;
+- fresh `npm run verify:clean` is mandatory.
+
+Review status:
+- Tooltip V1 remains BLOCKED;
+- no later Design Lab page review until this correction passes technical
+  verification and Product Owner runtime Light/Dark re-review.
