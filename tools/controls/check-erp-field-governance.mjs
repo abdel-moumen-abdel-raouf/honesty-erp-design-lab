@@ -468,8 +468,12 @@ export function validateSearchBoxPopupContracts(
   const errors = [];
   const requiredInputs = [
     [
-      'popupMode',
-      /popupMode\s*=\s*input\(true,\s*\{transform:\s*booleanAttribute\}\)/,
+      'mode',
+      /mode\s*=\s*input<ErpSearchBoxMode>\('dropdown'\)/,
+    ],
+    [
+      'items',
+      /items\s*=\s*input<readonly ErpSearchBoxOption\[]>\(\[]\)/,
     ],
     [
       'dismissOnOutside',
@@ -501,33 +505,43 @@ export function validateSearchBoxPopupContracts(
 
   if (
     !source.includes('AnchoredOverlayController') ||
-    !source.includes('ErpOverlayAnimation')
+    !source.includes('ErpOverlayManager') ||
+    !source.includes('ErpSelectionPickerContent') ||
+    !source.includes('ErpOverlayAnimation') ||
+    !source.includes('filteredItems = computed(') ||
+    !source.includes("query = signal('')") ||
+    !source.includes('this.commitUserValue(item.value)')
   ) {
     errors.push(
-      'SearchBox: popup must use anchored geometry and the shared animation type',
+      'SearchBox: dropdown/modal modes must use anchored geometry, OverlayManager modal search, and selectable filtered results',
     );
   }
 
   if (
-    source.includes('ErpOverlayManager') ||
     source.includes('ErpTooltip') ||
     source.includes('--honesty-overlay-') ||
     styleSource.includes('--honesty-overlay-') ||
     tokenSource.includes('--honesty-overlay-')
   ) {
     errors.push(
-      'SearchBox: popup must not consume OverlayManager, Tooltip, or Overlay Component Tokens',
+      'SearchBox: dropdown must not consume Tooltip or Overlay Component Tokens',
     );
   }
 
   if (
     !/<erp-field-trigger\b/.test(template) ||
     !/popover="manual"/.test(template) ||
-    !template.includes('(blurred)="handleNativeBlur()"') ||
-    !/<ng-content\s+select="\[search-results\]"/.test(template)
+    !template.includes('role="combobox"') ||
+    !template.includes('role="listbox"') ||
+    !template.includes('role="option"') ||
+    !template.includes('data-search-result') ||
+    !template.includes('class="search-box__close"') ||
+    !template.includes("mode() === 'inline'") ||
+    !template.includes("mode() === 'dropdown'") ||
+    /<ng-content\s+select="\[search-results\]"/.test(template)
   ) {
     errors.push(
-      'SearchBox: popup must use FieldTrigger focus/blur, manual popover, and generic search-results projection',
+      'SearchBox: three-mode contract must use FieldTrigger, manual listbox popup, explicit close, and selectable/filterable results',
     );
   }
 
@@ -538,8 +552,9 @@ export function validateSearchBoxPopupContracts(
     'setTimeout(',
     'this.controller?.hide();',
     'this.removeFromOpenStack();',
-    'this.popupOpen()',
-    ': this.anchorElement()',
+    'this.openModal()',
+    'this.closeDropdown(true)',
+    'surface.inert = true',
   ]) {
     if (!source.includes(requirement)) {
       errors.push(`SearchBox: missing corrected popup lifecycle ${requirement}`);
@@ -604,15 +619,18 @@ export function validateSearchBoxPopupContracts(
     !styleSource.includes('prefers-reduced-motion: reduce') ||
     !styleSource.includes('var(--honesty-search-box-popup-max-block-size)') ||
     !styleSource.includes(
-      'var(--_honesty-search-box-popup-trigger-inline-size)',
+      'inline-size: min( var(--_honesty-search-box-popup-trigger-inline-size)',
     ) ||
     !styleSource.includes(
       ".search-box__popup[data-search-popup-phase='leaving']",
     ) ||
-    !styleSource.includes('pointer-events: none;')
+    !styleSource.includes('pointer-events: none;') ||
+    !/inline-size:\s*min\(\s*var\(--_honesty-search-box-popup-trigger-inline-size\)/.test(
+      styleSource,
+    )
   ) {
     errors.push(
-      'SearchBox: popup styles must retain trigger sizing, noninteractive leaving, RTL motion, reduced motion, and viewport capping',
+      'SearchBox: popup styles must retain exact trigger-width sizing, noninteractive leaving, RTL motion, reduced motion, and viewport capping',
     );
   }
 
@@ -894,6 +912,7 @@ export function validateTemporalCorrectionContracts(files) {
 
     if (
       !source.includes("readonly locale = input('ar-EG')") ||
+      !source.includes('readonly placeholder = input(') ||
       !source.includes('readonly pattern = input<string | null>(null)') ||
       !source.includes(
         'readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null)',
@@ -919,6 +938,7 @@ export function validateTemporalCorrectionContracts(files) {
     errors.push('Temporal built-in final-value patterns are incomplete');
   }
 
+  const contracts = files.get(TEMPORAL_CONTRACTS) ?? '';
   const content = files.get(TEMPORAL_CONTENT_SOURCE) ?? '';
   const template = files.get(TEMPORAL_CONTENT_TEMPLATE) ?? '';
   const tokens = files.get(TEMPORAL_TOKENS) ?? '';
@@ -930,9 +950,20 @@ export function validateTemporalCorrectionContracts(files) {
     !content.includes("registerFrameAction('confirm'") ||
     !content.includes("registerFrameAction('cancel'") ||
     !content.includes("registerFrameAction('today'") ||
+    !content.includes("registerFrameAction('now'") ||
+    !content.includes("registerFrameAction('previous-week'") ||
+    !content.includes("registerFrameAction('next-week'") ||
+    !content.includes("registerFrameAction('previous-month-range'") ||
+    !content.includes("registerFrameAction('next-month-range'") ||
     !content.includes("registerFrameAction('clear'") ||
+    !content.includes("updateFrameActionState('confirm'") ||
     !content.includes("updateFrameActionState('clear'") ||
     !content.includes("updateFrameActionState('today'") ||
+    !contracts.includes("now: 'الآن'") ||
+    !contracts.includes("previousWeek: 'الأسبوع الماضي'") ||
+    !contracts.includes("nextWeek: 'الأسبوع القادم'") ||
+    !contracts.includes("previousMonthRange: 'الشهر الماضي'") ||
+    !contracts.includes("nextMonthRange: 'الشهر القادم'") ||
     !template.includes('(pointerenter)="previewDate(date)"') ||
     !template.includes('(pointerleave)="clearRangePreview()"') ||
     !template.includes('data.actionLabels.previousMonth') ||
@@ -977,6 +1008,8 @@ export function validateSelectionCorrectionContracts(files) {
     !content.includes("registerFrameAction('cancel'") ||
     !content.includes("registerFrameAction('clear-selected'") ||
     !content.includes("updateFrameActionState('clear-selected'") ||
+    !content.includes("updateFrameActionState('confirm'") ||
+    !content.includes('confirmEnabled = computed(') ||
     !content.includes('activeIndex = signal<number | null>(null)') ||
     !template.includes('<erp-selection-tile') ||
     !template.includes('<erp-tooltip') ||
@@ -1196,18 +1229,19 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     ],
     [
       TEMPORAL_CONTENT_SOURCE,
-      "rangeAnchor = signal(null); rangePreviewCandidate = signal<string | null>(null); orderRange(); updateKeyboardPreview(); registerFrameAction('confirm'); registerFrameAction('cancel'); registerFrameAction('today'); registerFrameAction('clear'); updateFrameActionState('clear'); updateFrameActionState('today');",
+      "rangeAnchor = signal(null); rangePreviewCandidate = signal<string | null>(null); orderRange(); updateKeyboardPreview(); registerFrameAction('confirm'); registerFrameAction('cancel'); registerFrameAction('today'); registerFrameAction('now'); registerFrameAction('previous-week'); registerFrameAction('next-week'); registerFrameAction('previous-month-range'); registerFrameAction('next-month-range'); registerFrameAction('clear'); updateFrameActionState('confirm'); updateFrameActionState('clear'); updateFrameActionState('today');",
     ],
     [
       TEMPORAL_CONTENT_TEMPLATE,
       '<div (pointerleave)="clearRangePreview()"><span (pointerenter)="previewDate(date)">{{ data.actionLabels.previousMonth }}</span></div>',
     ],
     [TEMPORAL_TOKENS, TEMPORAL_REQUIRED_TOKENS.join('\n')],
+    [TEMPORAL_CONTRACTS, "now: 'الآن'; previousWeek: 'الأسبوع الماضي'; nextWeek: 'الأسبوع القادم'; previousMonthRange: 'الشهر الماضي'; nextMonthRange: 'الشهر القادم';"],
   ]);
   for (const slug of TEMPORAL_CONTROL_SLUGS) {
     validTemporalFiles.set(
       `src/app/controls/${slug}/${slug}.ts`,
-      "readonly locale = input('ar-EG'); readonly pattern = input<string | null>(null); readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null); resolveDomainPattern(); commitPickerResult();",
+      "readonly locale = input('ar-EG'); readonly placeholder = input('اختر'); readonly pattern = input<string | null>(null); readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null); resolveDomainPattern(); commitPickerResult();",
     );
     validTemporalFiles.set(
       `src/app/controls/${slug}/${slug}.html`,
@@ -1236,7 +1270,7 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     ],
     [
       SELECTION_CONTENT_SOURCE,
-      "ERP_SYSTEM_COLOR_FAMILIES ERP_SYSTEM_COLOR_STEPS ERP_SYSTEM_COLOR_PALETTES registerFrameAction('confirm') registerFrameAction('cancel') registerFrameAction('clear-selected') updateFrameActionState('clear-selected') activeIndex = signal<number | null>(null)",
+      "ERP_SYSTEM_COLOR_FAMILIES ERP_SYSTEM_COLOR_STEPS ERP_SYSTEM_COLOR_PALETTES registerFrameAction('confirm') registerFrameAction('cancel') registerFrameAction('clear-selected') updateFrameActionState('clear-selected') updateFrameActionState('confirm') confirmEnabled = computed( activeIndex = signal<number | null>(null)",
     ],
     [
       SELECTION_CONTENT_TEMPLATE,
@@ -1586,26 +1620,35 @@ export class ErpImagePicker extends ErpFileSelectionBase {
   }
 
   const validSearchSource = [
-    'popupMode = input(true, {transform: booleanAttribute})',
+    "mode = input<ErpSearchBoxMode>('dropdown')",
+    'items = input<readonly ErpSearchBoxOption[]>([])',
     'dismissOnOutside = input(true, {transform: booleanAttribute})',
     'dismissOnEscape = input(true, {transform: booleanAttribute})',
     'showDefaultSearchIcon = input(true, {transform: booleanAttribute})',
     "enterAnimation = input<ErpOverlayAnimation>('fade-scale')",
     "exitAnimation = input<ErpOverlayAnimation>('fade-scale')",
-    'AnchoredOverlayController ErpOverlayAnimation',
+    'AnchoredOverlayController ErpOverlayManager ErpSelectionPickerContent ErpOverlayAnimation',
+    "filteredItems = computed(",
+    "query = signal('')",
+    'this.commitUserValue(item.value)',
     "surface.style.setProperty('--_honesty-search-box-popup-trigger-inline-size', anchor.getBoundingClientRect().width)",
     "this.popupPhase.set('leaving')",
     'setTimeout(() => this.finishClose())',
     'this.controller?.hide();',
     'this.removeFromOpenStack();',
-    'this.popupOpen() ? this.nativeInput() : this.anchorElement()',
-    ': this.anchorElement()',
+    'this.openModal()',
+    'this.closeDropdown(true)',
+    'surface.inert = true',
   ].join('\n');
   const validSearchTemplate = [
-    '<erp-field-trigger (blurred)="handleNativeBlur()"></erp-field-trigger>',
+    '<erp-field-trigger></erp-field-trigger>',
     '<div popover="manual">',
-    '  <ng-content select="[search-results]"></ng-content>',
+    '  <input role="combobox">',
+    '  <div role="listbox"><button role="option" data-search-result></button></div>',
+    '  <erp-icon-button class="search-box__close" />',
     '</div>',
+    "@if (mode() === 'inline') {}",
+    "@if (mode() === 'dropdown') {}",
   ].join('\n');
   const validSearchTokens = `@mixin base {\n${[...new Map([
     ['bg', 'var(--honesty-color-surface-elevated)'],
@@ -1666,7 +1709,7 @@ export class ErpImagePicker extends ErpFileSelectionBase {
 
   for (const [index, fixture] of [
     [
-      validSearchSource.replace('AnchoredOverlayController', 'ErpOverlayManager'),
+      validSearchSource.replace('ErpOverlayManager', ''),
       validSearchTemplate,
       validSearchTokens,
       validSearchStyles,
