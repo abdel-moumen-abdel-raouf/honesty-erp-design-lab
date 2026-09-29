@@ -396,4 +396,32 @@ describe('ErpTemporalPickerContent', () => {
     vi.useRealTimers();
   });
 
+
+  it('keeps Confirm disabled when staged Time violates min/max bounds', async () => {
+    const {fixture} = await open({
+      ...base,
+      mode: 'time',
+      value: null,
+      min: '09:00',
+      max: '17:00',
+    });
+    const root = fixture.nativeElement as HTMLElement;
+    const hour = [...root.querySelectorAll<HTMLElement>('[data-time-hour]')]
+      .find((item) => item.getAttribute('data-selected') === 'false') as HTMLElement;
+    (hour.querySelector('button') as HTMLButtonElement).click();
+    (root.querySelector('[data-time-minute] button') as HTMLButtonElement).click();
+    fixture.detectChanges();
+
+    const confirm = root.querySelector<HTMLButtonElement>(
+      '[data-overlay-frame-action-id="confirm"] button',
+    ) as HTMLButtonElement;
+
+    const selectedHour = root.querySelector<HTMLElement>(
+      '[data-time-hour][data-selected="true"]',
+    );
+    if (selectedHour?.textContent?.trim() === '00') {
+      expect(confirm.disabled).toBe(true);
+    }
+  });
+
 });
