@@ -58,7 +58,7 @@ export class ErpComboBox extends ErpFieldBase<string | null> {
   protected handleInput(event: Event): void { this.queryEditing.set(true); this.query.set((event.target as HTMLInputElement).value); this.openPicker(); }
   protected openPicker(): void {
     if (this.fieldEffectiveDisabled() || this.activeRef) return;
-    const ref = this.overlays.open<ErpSelectionPickerContent, ErpSelectionPickerData, string | null>(ErpSelectionPickerContent, {frame: {header: {title: this.trimmedLabel(), subtitle: 'ابحث واختر قيمة', icon: 'search'}, footer: createSelectionOverlayFooter('combo', true, ERP_SELECTION_DEFAULT_ACTION_LABELS)}, ...(this.overlayConfig() ?? {}), data: this.pickerData()});
+    const ref = this.overlays.open<ErpSelectionPickerContent, ErpSelectionPickerData, string | null>(ErpSelectionPickerContent, {frame: {header: {title: this.trimmedLabel(), subtitle: 'ابحث واختر قيمة', icon: 'search'}, footer: createSelectionOverlayFooter('combo', this.clearable(), ERP_SELECTION_DEFAULT_ACTION_LABELS)}, ...(this.overlayConfig() ?? {}), data: this.pickerData()});
     this.activeRef = ref;
     this.activeOverlayId.set(ref.id);
     void ref.afterClosed.then((outcome) => {
@@ -68,8 +68,8 @@ export class ErpComboBox extends ErpFieldBase<string | null> {
     });
   }
   protected handleKeydown(event: KeyboardEvent): void { if (event.key === 'ArrowDown') { event.preventDefault(); this.openPicker(); } }
-  protected handleClear(input: HTMLInputElement): void { if (this.commitUserValue(null)) { this.query.set(''); this.queryEditing.set(false); input.value = ''; } }
+  protected handleClear(input: HTMLInputElement): void { if (this.clearable() && this.commitUserValue(null)) { this.query.set(''); this.queryEditing.set(false); input.value = ''; } }
   protected handleNativeFocus(): void { this.handleFocus(); }
   protected handleNativeBlur(): void { this.handleBlur(); }
-  private pickerData(): ErpSelectionPickerData { return {mode: 'combo', value: this.currentValue(), colorMode: 'system', items: this.items(), query: this.queryEditing() ? this.query() : '', searchable: true, clearable: true, actionLabels: ERP_SELECTION_DEFAULT_ACTION_LABELS}; }
+  private pickerData(): ErpSelectionPickerData { return {mode: 'combo', value: this.currentValue(), colorMode: 'system', items: this.items(), query: this.queryEditing() ? this.query() : '', searchable: true, clearable: this.clearable(), actionLabels: ERP_SELECTION_DEFAULT_ACTION_LABELS}; }
 }
