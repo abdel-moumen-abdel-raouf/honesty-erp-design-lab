@@ -195,7 +195,7 @@ export function validate(files) {
   return errors;
 }
 
-export function validateWaveALabContract(files) {
+export function validateSingleDocumentLabContract(files) {
   const errors = [];
   const source = files.get(APP_SOURCE) ?? '';
   const template = files.get(APP_TEMPLATE) ?? '';
@@ -203,26 +203,66 @@ export function validateWaveALabContract(files) {
   for (const required of [
     "export type LabTheme = 'light' | 'dark';",
     "const LAB_THEME_STORAGE_KEY = 'honesty-lab-theme';",
-    "parameters.set('labTheme', theme);",
-    "return route === '/controls/inputs' || route === '/controls/overlays';",
-    'const [toolbarCanvas, embeddedCanvas] = await Promise.all([',
-    'context.drawImage(toolbarCanvas, 0, 0);',
-    'context.drawImage(embeddedCanvas, 0, toolbarCanvas.height);',
+    "return rootDocument.getElementById('lab-capture-root');",
+    'const target = resolveLabScreenshotTarget(document);',
+    'link.download = buildScreenshotFilename(this.router.url, this.theme());',
   ]) {
     if (!source.includes(required)) {
-      errors.push(`App shell: missing Wave A Lab contract ${required}`);
+      errors.push(`App shell: missing single-document Lab contract ${required}`);
     }
   }
 
   for (const required of [
+    'id="lab-capture-root"',
     '[attr.data-theme]="theme()"',
     'id="btn-lab-theme"',
     'id="btn-full-page-screenshot"',
     'data-wave-a-theme-evidence',
     'data-wave-a-screenshot-evidence',
+    'id="routed-review-content"',
+    'id="app-router-outlet"',
   ]) {
     if (!template.includes(required)) {
-      errors.push(`App template: missing Wave A Lab contract ${required}`);
+      errors.push(`App template: missing single-document Lab contract ${required}`);
+    }
+  }
+
+  if (occurrences(template, /<router-outlet\b/g) !== 1) {
+    errors.push('App template: single-document Lab must render exactly one router-outlet');
+  }
+
+  const forbiddenSource = [
+    'labPreview',
+    'labTheme',
+    'isEmbeddedPreview',
+    'isDirectReview',
+    'isDirectLabReviewRoute',
+    'currentPreviewMode',
+    'setPreviewMode',
+    'previewSafeUrl',
+    'contentDocument',
+    'HTMLIFrameElement',
+    'DomSanitizer',
+    'SafeResourceUrl',
+  ];
+
+  for (const forbidden of forbiddenSource) {
+    if (source.includes(forbidden)) {
+      errors.push(`App shell: iframe-era Lab contract must remain removed: ${forbidden}`);
+    }
+  }
+
+  for (const forbidden of [
+    '<iframe',
+    'lab-preview-frame',
+    'lab-preview-stage',
+    'lab-viewport-controls',
+    'btn-preview-desktop',
+    'btn-preview-tablet',
+    'btn-preview-mobile',
+  ]) {
+    if (template.includes(forbidden)) {
+      errors.push(`App template: iframe-era Lab contract must remain removed: ${forbidden}`);
     }
   }
 
@@ -703,36 +743,59 @@ this.manager.completeTransition(entry.ref.id, entry.phase)`,
       APP_SOURCE,
       `export type LabTheme = 'light' | 'dark';
 const LAB_THEME_STORAGE_KEY = 'honesty-lab-theme';
-parameters.set('labTheme', theme);
-return route === '/controls/inputs' || route === '/controls/overlays';
-const [toolbarCanvas, embeddedCanvas] = await Promise.all([
-context.drawImage(toolbarCanvas, 0, 0);
-context.drawImage(embeddedCanvas, 0, toolbarCanvas.height);`,
+return rootDocument.getElementById('lab-capture-root');
+const target = resolveLabScreenshotTarget(document);
+link.download = buildScreenshotFilename(this.router.url, this.theme());`,
     ],
     [
       APP_TEMPLATE,
-      `<div [attr.data-theme]="theme()">
+      `<div id="lab-capture-root" [attr.data-theme]="theme()">
 <button id="btn-lab-theme" data-wave-a-theme-evidence></button>
 <button id="btn-full-page-screenshot" data-wave-a-screenshot-evidence></button>
+<main id="routed-review-content">
+<router-outlet id="app-router-outlet"></router-outlet>
+</main>
 <erp-overlay-host />
 </div>`,
     ],
   ]);
 
-  if (validateWaveALabContract(validLab).length > 0) {
-    throw new Error('Overlay governance rejected valid Wave A Lab fixtures');
+  if (validateSingleDocumentLabContract(validLab).length > 0) {
+    throw new Error(
+      'Overlay governance rejected valid single-document Lab fixtures',
+    );
   }
 
-  const invalidLab = new Map(validLab);
-  invalidLab.set(
+  const invalidIframeLab = new Map(validLab);
+  invalidIframeLab.set(
+    APP_TEMPLATE,
+    `${invalidIframeLab.get(APP_TEMPLATE) ?? ''}<iframe id="lab-preview-frame"></iframe>`,
+  );
+  if (validateSingleDocumentLabContract(invalidIframeLab).length === 0) {
+    throw new Error('Overlay governance accepted an iframe-era Lab template');
+  }
+
+  const invalidDualModeLab = new Map(validLab);
+  invalidDualModeLab.set(
     APP_SOURCE,
-    (invalidLab.get(APP_SOURCE) ?? '').replace(
-      " || route === '/controls/overlays'",
+    `${invalidDualModeLab.get(APP_SOURCE) ?? ''}
+const labTheme = 'dark';
+const currentPreviewMode = 'mobile';`,
+  );
+  if (validateSingleDocumentLabContract(invalidDualModeLab).length === 0) {
+    throw new Error('Overlay governance accepted iframe-era Lab source state');
+  }
+
+  const invalidRouterLab = new Map(validLab);
+  invalidRouterLab.set(
+    APP_TEMPLATE,
+    (invalidRouterLab.get(APP_TEMPLATE) ?? '').replace(
+      '<router-outlet id="app-router-outlet"></router-outlet>',
       '',
     ),
   );
-  if (validateWaveALabContract(invalidLab).length === 0) {
-    throw new Error('Overlay governance accepted an iframe Overlay route');
+  if (validateSingleDocumentLabContract(invalidRouterLab).length === 0) {
+    throw new Error('Overlay governance accepted a Lab without one direct router-outlet');
   }
 
   const validTemporal = new Map(
@@ -981,7 +1044,7 @@ files.set(
 );
 
 const errors = validate(files);
-errors.push(...validateWaveALabContract(files));
+errors.push(...validateSingleDocumentLabContract(files));
 errors.push(...validateOverlayContractDrift(files));
 errors.push(...validateOverlayFrameContract(files));
 errors.push(...validateTemporalPickers(files));
