@@ -272,6 +272,9 @@ describe('ErpTemporalPickerContent', () => {
   });
 
   it('keeps Confirm disabled until a DateRange has both endpoints', async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2026, 8, 29, 12, 0));
+
     const {fixture} = await open({
       ...base,
       mode: 'range',
@@ -289,6 +292,8 @@ describe('ErpTemporalPickerContent', () => {
     clickDay(root, '2026-09-12');
     fixture.detectChanges();
     expect(confirm.disabled).toBe(false);
+
+    vi.useRealTimers();
   });
 
   it('provides Now for Time and DateTime and respects minuteStep by flooring minutes', async () => {
