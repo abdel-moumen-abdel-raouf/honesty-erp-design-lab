@@ -1002,3 +1002,21 @@ Key contracts:
 Current source is NOT Fully Green until a new full `npm run verify:clean` passes.
 Latest prior Fully Green checkout remains
 `50ae8e5f9f9cc537435217a644548c10bd097ecb`.
+
+
+## SearchBox result primitive governance — 2026-09-29
+
+Concrete SearchBox must not render native result buttons directly.
+
+Current required implementation:
+- SearchBox result host = `ErpSelectionTile`;
+- `presentation="list"`;
+- SelectionTile owns native option button, aria-selected, disabled state, and
+  focus method;
+- SearchBox may own filtering, active index, and result activation, but must not
+  reimplement native button roots.
+
+Correction checkpoint:
+`cf91967291961037dd7f35d0e825fc4fb2da8312`.
+
+Fresh full `npm run verify:clean` required.

@@ -1028,3 +1028,62 @@ After technical green:
 2. Product Owner checks MoneyBox Arabic digits;
 3. Product Owner checks temporal quick actions and Confirm disabled behavior;
 4. Product Owner re-reviews the full Inputs page in Light/Dark.
+
+
+---
+
+# 26. 2026-09-29 — VERIFY:CLEAN STOPPED AT BUTTON GOVERNANCE; SEARCHBOX RESULT PRIMITIVE FIXED
+
+Product Owner locally updated to:
+`a8b33f1fecbd8c468bd68add4281fe925c7845b5`
+
+Local preflight evidence:
+- clean working tree;
+- Overlay governance checker self-test PASS;
+- `npm run erp-overlay:check` PASS;
+- `npm run build:clean:self-test` PASS;
+- `npm run build:clean` PASS;
+- `Zero-warning build gate: PASS`.
+
+The full `npm run verify:clean` then passed:
+- Single App theme authority;
+- route-page ERP-only authoring;
+- Component Token framework;
+- system colors;
+- ErpText;
+- ErpIcon registry/governance.
+
+It stopped at:
+`npm run erp-button:check`
+
+Exact finding:
+`src/app/controls/search-box/search-box.html:173:11`
+`concrete Controls and Composites must use an approved internal button primitive`
+
+Root cause:
+SearchBox dropdown results used a raw native `<button>`.
+
+Bounded source correction:
+- `cf91967291961037dd7f35d0e825fc4fb2da8312`
+  `fix(inputs): govern SearchBox results through SelectionTile`
+
+Correction details:
+- raw result button replaced by approved internal `ErpSelectionTile`;
+- `presentation="list"` preserves list-result presentation;
+- SelectionTile owns native button semantics, role=option, aria-selected,
+  disabled behavior, and focus API;
+- SearchBox uses `viewChildren(ErpSelectionTile)` for keyboard focus;
+- SearchBox result CSS no longer reimplements internal button state visuals;
+- SearchBox unit tests target the SelectionTile inner button where activation is
+  required;
+- Field governance valid fixtures now require SelectionTile-based search
+  results.
+
+This is a governance-alignment correction only; the Product Owner SearchBox
+functional contract remains unchanged.
+
+Current verification status:
+- current source is NOT yet Fully Green;
+- rerun complete `npm run verify:clean` from current `main`;
+- do not skip directly to later stages because the prior command stopped at
+  Button governance.

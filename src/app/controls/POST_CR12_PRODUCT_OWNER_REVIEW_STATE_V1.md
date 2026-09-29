@@ -881,3 +881,22 @@ Status:
 - technical verification pending;
 - Inputs remains Product Owner BLOCKED until full verify + runtime/visual
   re-review.
+
+
+## 2026-09-29 — SearchBox raw-button verification blocker corrected
+
+The first full verify run for the Inputs correction stopped at ErpButton
+governance because SearchBox rendered result options with a raw native button.
+
+Correction:
+`cf91967291961037dd7f35d0e825fc4fb2da8312` —
+`fix(inputs): govern SearchBox results through SelectionTile`.
+
+SearchBox result interaction now uses approved `ErpSelectionTile` list
+presentation while preserving listbox/option semantics and keyboard focus.
+
+Standalone zero-warning build at the previous checkout passed, but the full
+post-fix verify has not yet completed.
+
+Inputs remains BLOCKED pending full technical pass and Product Owner runtime
+re-review.

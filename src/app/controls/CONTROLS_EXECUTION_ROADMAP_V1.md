@@ -537,3 +537,18 @@ Next gates, in order:
 2. correct only demonstrated failures if any;
 3. Product Owner runtime/Light/Dark Inputs re-review;
 4. do not mark Inputs PASS until Product Owner acceptance.
+
+
+### 2026-09-29 — Inputs verify follow-up: raw result button removed
+
+The first `verify:clean` attempt for the Inputs correction stopped at
+`erp-button:check` on a raw SearchBox result button.
+
+Fixed by:
+`cf91967291961037dd7f35d0e825fc4fb2da8312`.
+
+Search results now use approved `ErpSelectionTile` list presentation.
+
+Next mandatory action:
+rerun the complete `npm run verify:clean`.
+Only demonstrated follow-up failures may reopen implementation.

@@ -24,56 +24,51 @@ Branch:
 
 ## Current state
 
-Latest source-affecting Inputs correction checkpoint:
+Latest source-affecting Inputs correction:
 
-`6daf7af7f023ad758198ce6d5eacbb5f22dd9277`
-`fix(inputs): guard Now against Time bounds`
+`cf91967291961037dd7f35d0e825fc4fb2da8312`
+`fix(inputs): govern SearchBox results through SelectionTile`
 
-This checkpoint contains the Product Owner-authorized Inputs correction unit,
-including:
+This follows the Product Owner-authorized Inputs correction unit and fixes the
+first demonstrated verification regression.
 
-- SearchBox three-mode contract: `dropdown | modal | inline`;
-- dropdown query/result separation;
-- functional result filtering and selection;
-- combobox/listbox/option semantics for dropdown mode;
-- modal search through shared `ErpOverlayManager`;
-- explicit dropdown Close action;
-- anchored dropdown width tied to the complete visual Field control width,
-  viewport permitting;
-- noninteractive/inert leaving phase;
-- deterministic keyboard navigation that skips disabled results;
-- inline clear restores editor focus;
-- selection-family Confirm disabled until a valid staged selection exists;
-- temporal Confirm disabled until a valid staged selection exists;
-- OverlayRef refuses disabled/loading frame actions even if requested directly;
-- Time and DateTime `الآن`;
-- Now respects `minuteStep`, and Time Now is disabled when current stepped time
-  violates min/max;
-- DateRange previous/next week and previous/next month calendar-period presets;
-- MoneyBox optional per-instance `digitSet` override with Preferences fallback;
-- Inputs review evidence includes Latin and Arabic-Indic MoneyBox instances;
-- temporal empty-state placeholders are Arabic-first;
-- single-surface review groups span the full review grid width;
-- Field/Overlay governance was updated to enforce the corrected contracts.
+Local verification evidence at checkout
+`a8b33f1fecbd8c468bd68add4281fe925c7845b5`:
+- Overlay governance self-test PASS;
+- `erp-overlay:check` PASS;
+- zero-warning build self-test PASS;
+- standalone `build:clean` PASS;
+- production Angular build PASS;
+- `Zero-warning build gate: PASS`;
+- full `verify:clean` passed theme, route, token, color, text, and icon gates;
+- full `verify:clean` stopped at `erp-button:check`.
+
+Observed failure:
+`src/app/controls/search-box/search-box.html:173:11`
+used a raw native result `<button>` inside a concrete Control.
+
+Correction:
+- SearchBox dropdown results now use approved internal
+  `ErpSelectionTile presentation="list"`;
+- SelectionTile owns the native button, `role="option"`,
+  `aria-selected`, disabled state, and focus API;
+- SearchBox keyboard navigation focuses results through
+  `viewChildren(ErpSelectionTile)`;
+- SearchBox result visual state remains token-owned by the shared SelectionTile
+  primitive;
+- Field governance self-tests now require SelectionTile results instead of raw
+  buttons.
 
 Verification distinction:
 
-The latest **Fully Green** verified checkout remains:
+Latest prior **Fully Green** checkout remains:
 
 `50ae8e5f9f9cc537435217a644548c10bd097ecb`
 
-The current source also contains the later Tooltip Popover-origin correction plus
-the Inputs correction above. Those newer source changes have not yet been
-verified together by a fresh full:
+The current source is **implemented / verification pending**.
+A fresh full `npm run verify:clean` is mandatory from current `main`.
 
-`npm run verify:clean`
+Inputs remains Product Owner BLOCKED until technical green plus runtime/Light/Dark
+re-review. Tooltip runtime re-review also remains pending.
 
-Therefore current source status is **implemented / verification pending**, not
-Fully Green.
-
-Product review status:
-- Inputs remains BLOCKED pending technical verification and Product Owner
-  Light/Dark/runtime re-review.
-- Tooltip Popover-origin correction also remains pending runtime re-review.
-
-Read `NEW_CHAT_HANDOFF.md` for the complete state and exact next action.
+Read `NEW_CHAT_HANDOFF.md` for complete state.

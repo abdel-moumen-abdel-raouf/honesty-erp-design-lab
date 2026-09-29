@@ -157,3 +157,18 @@ Implemented against the findings in this document:
 Verification is still pending. This page remains BLOCKED until a fresh full
 `npm run verify:clean` passes and Product Owner runtime/visual re-review accepts
 the corrected behavior.
+
+
+## 2026-09-29 — first verification follow-up
+
+The first full verification attempt after implementation reached
+`erp-button:check` and found one governance regression: SearchBox result options
+used a native button directly.
+
+Corrected at:
+`cf91967291961037dd7f35d0e825fc4fb2da8312`
+
+SearchBox result options now use approved internal `ErpSelectionTile` list
+presentation. Functional result selection/filtering contract is unchanged.
+
+Fresh full verification remains required.
