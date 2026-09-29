@@ -41,12 +41,7 @@ type ErpSearchBoxPopupPhase = 'closed' | 'entering' | 'open' | 'leaving';
 
 export type ErpSearchBoxMode = 'modal' | 'dropdown' | 'inline';
 
-export interface ErpSearchBoxOption {
-  readonly value: string;
-  readonly label: string;
-  readonly disabled?: boolean;
-  readonly icon?: ErpIconName;
-}
+export type ErpSearchBoxOption = ErpItemPickerOption;
 
 const openSearchBoxes: ErpSearchBox[] = [];
 
