@@ -124,7 +124,7 @@ describe('AnchoredOverlayController', () => {
       x: 0, y: 0, toJSON: () => ({}),
     } as DOMRect);
 
-    const applied: Array<{x: number; y: number}> = [];
+    const applied: {x: number; y: number}[] = [];
     const controller = new AnchoredOverlayController({
       anchor,
       surface,
