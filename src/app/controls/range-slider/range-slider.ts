@@ -68,7 +68,7 @@ let nextRangeSliderId = 0;
   ],
   host: {
     '[attr.data-range-slider-tone]': 'tone()',
-    '[attr.data-range-slider-status]': 'status()',
+    '[attr.data-range-slider-status]': "valid() ? status() : 'danger'",
     '[attr.data-range-slider-size]': 'size()',
     '[attr.data-range-slider-appearance]': 'appearance()',
     '[attr.data-range-slider-configuration-state]': 'rangeConfigurationState()',
@@ -103,9 +103,20 @@ export class ErpRangeSlider
   protected readonly lowerId = `${this.controlId}-lower`;
   protected readonly upperId = `${this.controlId}-upper`;
   protected readonly helperId = `${this.controlId}-helper`;
+  protected readonly validationId = `${this.controlId}-validation`;
   protected readonly trimmedHelperText = computed(
     () => this.helperText()?.trim() ?? '',
   );
+  protected readonly rangeAriaDescribedBy = computed(() => {
+    const ids = [
+      this.trimmedHelperText().length > 0 ? this.helperId : null,
+      !this.valid() && this.errors().length > 0
+        ? this.validationId
+        : null,
+    ].filter((value): value is string => value !== null);
+
+    return ids.length > 0 ? ids.join(' ') : null;
+  });
   protected readonly rangeConfigurationState =
     computed<ErpInputConfigurationState>(() =>
       this.configurationState() === 'ready' &&
