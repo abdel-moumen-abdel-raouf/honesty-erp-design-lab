@@ -937,6 +937,8 @@ export function validateRangeSliderCorrectionContracts(files) {
     'tooltipText(thumb: ErpRangeSliderThumb)',
     'handlePointerDown(thumb: ErpRangeSliderThumb)',
     'this.valueTooltips()[index]?.requestPosition()',
+    "'[attr.data-range-slider-status]': \"valid() ? status() : 'danger'\"",
+    'rangeAriaDescribedBy = computed',
   ]) {
     if (!source.includes(requirement)) {
       errors.push(`RangeSlider tooltip contract: missing ${requirement}`);
@@ -957,6 +959,9 @@ export function validateRangeSliderCorrectionContracts(files) {
   for (const requirement of [
     'data-range-tooltip-anchor="lower"',
     'data-range-tooltip-anchor="upper"',
+    'data-range-slider-validation',
+    '[attr.aria-describedby]="rangeAriaDescribedBy()"',
+    '[attr.aria-invalid]="!valid() || status() === \'danger\' ? \'true\' : null"',
     '[style.left]="lowerPosition() + \'%\'"',
     '[style.left]="upperPosition() + \'%\'"',
     '[open]="showValueTooltip() && activeThumb() === \'lower\'"',
@@ -1656,6 +1661,8 @@ function runSelfTest() {
         'tooltipText(thumb: ErpRangeSliderThumb)',
         'handlePointerDown(thumb: ErpRangeSliderThumb)',
         'this.valueTooltips()[index]?.requestPosition()',
+        "'[attr.data-range-slider-status]': \"valid() ? status() : 'danger'\"",
+        'rangeAriaDescribedBy = computed',
       ].join('\n'),
     ],
     [
@@ -1665,6 +1672,9 @@ function runSelfTest() {
         '[min]="min()" [max]="max()"',
         'data-range-tooltip-anchor="lower"',
         'data-range-tooltip-anchor="upper"',
+        'data-range-slider-validation',
+        '[attr.aria-describedby]="rangeAriaDescribedBy()"',
+        '[attr.aria-invalid]="!valid() || status() === \'danger\' ? \'true\' : null"',
         '[style.left]="lowerPosition() + \'%\'"',
         '[style.left]="upperPosition() + \'%\'"',
         '[open]="showValueTooltip() && activeThumb() === \'lower\'"',
