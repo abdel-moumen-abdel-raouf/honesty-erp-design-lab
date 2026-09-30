@@ -12,8 +12,6 @@ export interface ErpFieldCompatibilityInput {
   readonly shape: ErpFieldShape;
   readonly variant: ErpFieldVariant;
   readonly multiline: boolean;
-  readonly clearable: boolean;
-  readonly canRepresentEmpty: boolean;
 }
 
 export interface ErpFieldCompatibilityResult {
@@ -36,14 +34,12 @@ export function resolveFieldCompatibility(
     input.variant === 'outline' ||
     input.variant === 'subtle';
   const shapeCompatible = !(input.multiline && input.shape === 'pill');
-  const clearCompatible = !input.clearable || input.canRepresentEmpty;
 
   return {
     configurationState:
       glassCompatible &&
       dashedCompatible &&
-      shapeCompatible &&
-      clearCompatible
+      shapeCompatible
         ? 'ready'
         : 'invalid',
     effectiveBorderMode,
