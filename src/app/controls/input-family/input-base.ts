@@ -128,6 +128,7 @@ export abstract class ErpInputBase<TValue>
 
   writeValue(value: unknown): void {
     this.valueState.set(this.normalizeValue(value));
+    this.onValidatorChange();
   }
 
   registerOnChange(fn: (value: TValue) => void): void {
@@ -167,6 +168,10 @@ export abstract class ErpInputBase<TValue>
 
   protected clearFocusState(): void {
     this.focusedState.set(false);
+  }
+
+  protected notifyValidationChange(): void {
+    this.onValidatorChange();
   }
 
   protected commitUserValue(value: unknown): boolean {
