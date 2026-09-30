@@ -1,5 +1,6 @@
 import {reflectComponentType} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
+import {FormControl} from '@angular/forms';
 import {ERP_NUMBER_FINAL_PATTERN} from '../input-family/domain-validation';
 import {ErpNumberBox} from './number-box';
 
@@ -145,4 +146,28 @@ describe('ErpNumberBox', () => {
     native.dispatchEvent(new Event('input'));
     expect(onChange).toHaveBeenCalledOnce();
   });
+
+  it('notifies Angular validation when a non-committed numeric draft becomes invalid', () => {
+    const fixture = create();
+    const control = fixture.componentInstance;
+    const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
+    const validatorChanged = vi.fn();
+
+    control.registerOnValidatorChange(validatorChanged);
+    native.dispatchEvent(new FocusEvent('focus'));
+    native.value = '12x';
+    native.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    expect(control.inputState()).toBe('invalid-entry');
+    expect(validatorChanged).toHaveBeenCalled();
+    expect(control.validate(new FormControl(null))).toEqual({
+      'number.format': {
+        code: 'number.format',
+        message: 'القيمة المُدخلة ليست رقمًا صالحًا.',
+        source: 'format',
+      },
+    });
+  });
+
 });
