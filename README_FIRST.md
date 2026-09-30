@@ -76,3 +76,31 @@ Latest prior Fully Green baseline remains:
 `50ae8e5f9f9cc537435217a644548c10bd097ecb`
 
 Read `NEW_CHAT_HANDOFF.md` for the exact continuation state.
+
+
+<!-- CHATGPT_CONTINUITY_SYNC_START -->
+## 2026-09-30 — ChatGPT continuity sync
+
+Live GitHub `main` was re-read and externally synchronized from:
+`a28a0fffa01ea1035d0dce47910922b30d8f06c0`
+(`docs(inputs): record expanded implementation checkpoint`).
+
+Latest bounded Inputs implementation checkpoint under that head:
+`c3971739198e61adff98d821a6b8f6775faa4e6c`.
+
+Current continuation state:
+- expanded Inputs corrections + unified validation are implemented in source/tests/governance;
+- current source is still **verification pending**;
+- Inputs remains Product Owner **BLOCKED** until technical verification and runtime/Light/Dark re-review;
+- exact next technical gate is a fresh full `npm run verify:clean` from current `main`;
+- only demonstrated verification failures may reopen implementation;
+- after technical green, Product Owner runtime/Light/Dark Inputs review is the next product gate;
+- the no-iframe single-document App shell is already implemented and must not regress.
+
+This synchronization is documentation/state only; it makes no runtime or visual
+approval claim.
+
+Continuity rule for subsequent project turns: update the applicable persistent
+handoff/review/roadmap documents whenever the turn changes a decision, scope,
+implementation state, blocker, verification result, or Product Owner finding.
+<!-- CHATGPT_CONTINUITY_SYNC_END -->
