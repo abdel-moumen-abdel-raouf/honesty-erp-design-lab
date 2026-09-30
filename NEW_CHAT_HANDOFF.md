@@ -1617,19 +1617,40 @@ implementation state, blocker, verification result, or Product Owner finding.
 
 
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_START -->
-## 2026-09-30 — local verification handoff
+## 2026-09-30 — local verification follow-up: SearchBox maxlength regression corrected
 
-Product Owner is now expected to fast-forward/pull local `main` and run the
-canonical full technical gate:
+Product Owner pulled current `main` and ran the canonical full gate:
+`npm run verify:clean`.
 
-`npm run verify:clean`
+Observed result:
+- theme authority PASS;
+- routed-page ERP-only authoring PASS;
+- Component Token framework PASS;
+- system-color registry PASS;
+- ErpText PASS;
+- ErpIcon PASS;
+- ErpButton PASS;
+- ErpTooltip PASS;
+- verification stopped at ErpField governance.
 
-Current rule:
-- do not make speculative source changes before this run;
-- if the gate fails, correct only the concrete demonstrated failure;
-- if the gate passes, record the new Fully Green checkpoint;
-- after technical green, resume Product Owner runtime + Light/Dark Inputs re-review;
-- Inputs remains BLOCKED until Product Owner acceptance.
+Concrete failure:
+`src/app/controls/search-box/search-box.html: maxlength must remain validation-only and non-destructive`.
 
-This is execution-state documentation only.
+Root cause:
+- SearchBox inline mode already validates `maxLength` through its common validation path;
+- the inline native input still carried `[attr.maxlength]="maxLength()"`;
+- native maxlength blocks/truncates further editable input semantics instead of preserving the visible invalid draft for `search.max-length`.
+
+Bounded correction:
+- remove only the native SearchBox maxlength attribute binding;
+- retain `minLength`/ `maxLength` typed validation in the control;
+- no SearchBox interaction, popup, visual, or public API redesign.
+
+Next mandatory action:
+1. pull the bounded correction;
+2. rerun complete `npm run verify:clean`;
+3. fix only a newly demonstrated failure if the gate stops again;
+4. if Fully Green, record the new verified checkpoint and proceed to Product Owner runtime + Light/Dark Inputs re-review.
+
+Inputs remains Product Owner BLOCKED.
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_END -->
