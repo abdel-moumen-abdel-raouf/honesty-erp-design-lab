@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, computed, effect, forwardRef, inject, input} from '@angular/core';
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {formatDatePreview, resolveContextualPreference} from '../../foundation/preferences/core/ui-settings.formatters';
 import {UiSettingsService} from '../../foundation/preferences/core/ui-settings.service';
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
@@ -26,7 +26,18 @@ let nextDateRangeBoxId = 0;
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-date-range-box',
   imports: [ErpFieldFrame, ErpFieldTrigger, ErpText],
-  providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => ErpDateRangeBox), multi: true}],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ErpDateRangeBox),
+      multi: true,
+    },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => ErpDateRangeBox),
+      multi: true,
+    },
+  ],
   templateUrl: './date-range-box.html',
   styleUrl: './date-range-box.scss',
   host: {'[attr.data-field-configuration-state]': 'dateRangeConfigurationState()', '[attr.data-date-range-start]': 'currentValue().start', '[attr.data-date-range-end]': 'currentValue().end'},
