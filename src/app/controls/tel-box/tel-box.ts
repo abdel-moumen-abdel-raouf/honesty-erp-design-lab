@@ -8,7 +8,7 @@ import {
   input,
   signal,
 } from '@angular/core';
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {
   containsAlphabeticCharacter,
   ERP_TEL_FINAL_PATTERN,
@@ -32,6 +32,11 @@ let nextTelBoxId = 0;
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ErpTelBox),
+      multi: true,
+    },
+    {
+      provide: NG_VALIDATORS,
       useExisting: forwardRef(() => ErpTelBox),
       multi: true,
     },
