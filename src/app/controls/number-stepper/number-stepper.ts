@@ -8,7 +8,7 @@ import {
   input,
   signal,
 } from '@angular/core';
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpIconButton} from '../icon-button/icon-button';
 import {
   ERP_NUMBER_FINAL_PATTERN,
@@ -35,6 +35,11 @@ let nextNumberStepperId = 0;
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ErpNumberStepper),
+      multi: true,
+    },
+    {
+      provide: NG_VALIDATORS,
       useExisting: forwardRef(() => ErpNumberStepper),
       multi: true,
     },
