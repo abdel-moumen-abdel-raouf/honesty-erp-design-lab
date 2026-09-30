@@ -80,6 +80,9 @@ describe('ErpSelectionPickerContent', () => {
     const root = fixture.nativeElement as HTMLElement;
     const families = Array.from(root.querySelectorAll('[data-color-family]'));
     const tokens = Array.from(root.querySelectorAll('[data-color-token]'));
+    expect(root.querySelector('[data-native-color]')).toBeNull();
+    expect(root.querySelector('[data-system-colors-mode]')).toBeNull();
+    expect(root.querySelector('[data-free-color-mode]')).toBeNull();
 
     expect(
       families.map((element) => element.getAttribute('data-color-family')),
@@ -336,6 +339,26 @@ describe('ErpSelectionPickerContent', () => {
     ) as HTMLButtonElement;
 
     expect(confirm.disabled).toBe(true);
+  });
+
+
+  it('omits Clear Selected completely when clearable is disabled', async () => {
+    const {fixture} = await open({
+      ...base,
+      mode: 'item',
+      clearable: false,
+      items: [{value: 'a', label: 'Alpha'}],
+    });
+    const root = fixture.nativeElement as HTMLElement;
+
+    expect(
+      root.querySelector('[data-overlay-frame-action-id="clear-selected"]'),
+    ).toBeNull();
+    expect(
+      root.querySelector(
+        '[data-overlay-frame-action-id="cancel"] button',
+      ),
+    ).not.toBeNull();
   });
 
 });
