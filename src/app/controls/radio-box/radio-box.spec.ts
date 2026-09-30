@@ -128,6 +128,29 @@ describe('ErpRadioBox', () => {
       ).toBe(1);
     }
   });
+
+  it('reports no-selection and required validation until selected', () => {
+    const fixture = create();
+    const control = fixture.componentInstance;
+    const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
+
+    expect(control.inputState()).toBe('no-selection');
+    expect(control.valid()).toBe(true);
+
+    fixture.componentRef.setInput('required', true);
+    fixture.detectChanges();
+
+    expect(control.valid()).toBe(false);
+    expect(native.getAttribute('aria-invalid')).toBe('true');
+
+    native.checked = true;
+    native.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+
+    expect(control.inputState()).toBe('valid-entry');
+    expect(control.valid()).toBe(true);
+  });
+
 });
 
 function hostAttribute(
