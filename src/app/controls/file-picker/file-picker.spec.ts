@@ -110,6 +110,17 @@ describe('ErpFilePicker', () => {
     expect(host.querySelector('erp-field-feedback')?.textContent).toContain(
       'الحد الأقصى لعدد الملفات',
     );
+    expect(control.inputState()).toBe('invalid-entry');
+    expect(control.validationIssues().map((issue) => issue.code)).toEqual([
+      'files.type',
+      'files.max-size',
+      'files.max-count',
+    ]);
+    expect(control.errors()).toEqual([
+      'تعذر إضافة ملفات من نوع غير مسموح.',
+      'تعذر إضافة ملفات تتجاوز الحد الأقصى للحجم.',
+      'تم الوصول إلى الحد الأقصى لعدد الملفات.',
+    ]);
   });
 
   it('removes one file and clears the complete immutable CVA queue', () => {
