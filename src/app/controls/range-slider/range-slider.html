@@ -2,7 +2,7 @@
   class="range-slider"
   [disabled]="rangeEffectiveDisabled()"
   [attr.aria-invalid]="!valid() || status() === 'danger' ? 'true' : null"
-  [attr.aria-describedby]="trimmedHelperText() ? helperId : null"
+  [attr.aria-describedby]="rangeAriaDescribedBy()"
 >
   <legend class="range-slider__legend">
     <erp-text type="label">{{ label() }}</erp-text>
@@ -134,5 +134,14 @@
       tone="muted"
       [id]="helperId"
     >{{ trimmedHelperText() }}</erp-text>
+  }
+
+  @if (!valid() && errors().length > 0) {
+    <erp-text
+      data-range-slider-validation
+      type="caption"
+      tone="danger"
+      [id]="validationId"
+    >{{ errors().join(' ') }}</erp-text>
   }
 </fieldset>
