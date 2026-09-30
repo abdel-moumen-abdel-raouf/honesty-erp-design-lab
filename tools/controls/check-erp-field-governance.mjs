@@ -146,6 +146,8 @@ const NUMBER_BOX_TEMPLATE =
   'src/app/controls/number-box/number-box.html';
 const NUMBER_STEPPER_TEMPLATE =
   'src/app/controls/number-stepper/number-stepper.html';
+const NUMBER_STEPPER_SOURCE =
+  'src/app/controls/number-stepper/number-stepper.ts';
 const MONEY_BOX_SOURCE =
   'src/app/controls/money-box/money-box.ts';
 const SELECTION_CONTENT_STYLES =
@@ -758,6 +760,57 @@ export function validateUnifiedInputValidationContracts(files) {
     }
   }
 
+  for (const [file, source] of files) {
+    if (
+      file !== INPUT_BASE_SOURCE &&
+      file.startsWith('src/app/controls/') &&
+      !file.endsWith('.spec.ts') &&
+      /readonly\s+required\s*=\s*input\(/.test(source)
+    ) {
+      errors.push(
+        `${file}: required must be inherited from the common InputBase contract`,
+      );
+    }
+  }
+
+  const checkSource = files.get('src/app/controls/check-box/check-box.ts') ?? '';
+  const checkTemplate = files.get('src/app/controls/check-box/check-box.html') ?? '';
+  const radioSource = files.get('src/app/controls/radio-box/radio-box.ts') ?? '';
+  const radioTemplate = files.get('src/app/controls/radio-box/radio-box.html') ?? '';
+  const radioGroupSource = files.get('src/app/controls/radio-group/radio-group.ts') ?? '';
+  const radioGroupTemplate = files.get('src/app/controls/radio-group/radio-group.html') ?? '';
+  const stepperSource = files.get(NUMBER_STEPPER_SOURCE) ?? '';
+
+  for (const [name, source, template] of [
+    ['CheckBox', checkSource, checkTemplate],
+    ['RadioBox', radioSource, radioTemplate],
+    ['RadioGroup', radioGroupSource, radioGroupTemplate],
+  ]) {
+    if (
+      !source.includes('classifyPresence(value: unknown)') ||
+      !template.includes('required()') ||
+      !template.includes('aria-invalid')
+    ) {
+      errors.push(
+        `${name}: required/no-selection validation contract is incomplete`,
+      );
+    }
+  }
+
+  for (const requirement of [
+    "'number-stepper.min'",
+    "'number-stepper.max'",
+    "'number-stepper.step'",
+    "'number-stepper.format'",
+    'draftActive',
+  ]) {
+    if (!stepperSource.includes(requirement)) {
+      errors.push(
+        `NumberStepper: missing unified validation behavior ${requirement}`,
+      );
+    }
+  }
+
   const urlSource = files.get('src/app/controls/url-box/url-box.ts') ?? '';
   const telSource = files.get('src/app/controls/tel-box/tel-box.ts') ?? '';
   const numberSource = files.get('src/app/controls/number-box/number-box.ts') ?? '';
@@ -1293,6 +1346,8 @@ export function validateSelectionCorrectionContracts(files) {
   const styles = files.get(SELECTION_CONTENT_STYLES) ?? '';
 
   if (
+    !contracts.includes('const includesClear = clearable;') ||
+    !content.includes('if (this.data.clearable)') ||
     !contracts.includes("readonly mode: 'system';") ||
     !contracts.includes('readonly token: ErpSystemColorToken;') ||
     !contracts.includes("readonly mode: 'free';") ||
