@@ -8,6 +8,7 @@ import {
   Signal,
   SimpleChanges,
   signal,
+  untracked,
   WritableSignal,
 } from '@angular/core';
 import {
@@ -123,6 +124,11 @@ export abstract class ErpInputBase<TValue>
       if (this.effectiveDisabled()) {
         this.clearFocusState();
       }
+    });
+
+    effect(() => {
+      this.validationIssues();
+      untracked(() => this.onValidatorChange());
     });
   }
 
