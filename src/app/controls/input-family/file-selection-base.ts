@@ -26,6 +26,8 @@ export abstract class ErpFileSelectionBase extends ErpFieldBase<
 
   private readonly dragDepth = signal(0);
   private readonly policyFeedbackState = signal<string | null>(null);
+  private readonly rejectionIssuesState =
+    signal<readonly ErpInputValidationIssue[]>([]);
 
   protected readonly selectedFiles = this.currentValue;
   protected readonly dragActive = computed(() => this.dragDepth() > 0);
@@ -103,6 +105,7 @@ export abstract class ErpFileSelectionBase extends ErpFieldBase<
   override writeValue(value: unknown): void {
     super.writeValue(value);
     this.policyFeedbackState.set(null);
+    this.rejectionIssuesState.set([]);
     this.selectionChanged(this.selectedFiles());
   }
 
@@ -118,7 +121,9 @@ export abstract class ErpFileSelectionBase extends ErpFieldBase<
     const files = Array.isArray(value)
       ? value.filter((candidate): candidate is File => candidate instanceof File)
       : [];
-    const issues: ErpInputValidationIssue[] = [];
+    const issues: ErpInputValidationIssue[] = [
+      ...this.rejectionIssuesState(),
+    ];
     const minFiles = this.minFiles();
     const maxFiles = this.maxFiles();
 
@@ -254,6 +259,7 @@ export abstract class ErpFileSelectionBase extends ErpFieldBase<
     );
     if (this.commitUserValue(next)) {
       this.policyFeedbackState.set(null);
+      this.rejectionIssuesState.set([]);
     }
   }
 
@@ -264,6 +270,7 @@ export abstract class ErpFileSelectionBase extends ErpFieldBase<
 
     inputElement.value = '';
     this.policyFeedbackState.set(null);
+    this.rejectionIssuesState.set([]);
   }
 
   protected fileIdentity(file: File): string {
@@ -336,6 +343,7 @@ export abstract class ErpFileSelectionBase extends ErpFieldBase<
       this.commitUserValue([...current, ...accepted]);
     }
     this.policyFeedbackState.set(this.rejectionMessage(rejected));
+    this.rejectionIssuesState.set(this.rejectionIssues(rejected));
   }
 
   private acceptsFile(file: File): boolean {
@@ -359,6 +367,46 @@ export abstract class ErpFileSelectionBase extends ErpFieldBase<
         }
         return fileType === entry;
       });
+  }
+
+  private rejectionIssues(
+    rejected: ReadonlySet<FileRejectionReason>,
+  ): readonly ErpInputValidationIssue[] {
+    const issues: ErpInputValidationIssue[] = [];
+
+    if (rejected.has('accept')) {
+      issues.push(
+        this.validationIssue(
+          'files.type',
+          'تعذر إضافة ملفات من نوع غير مسموح.',
+          'domain',
+        ),
+      );
+    }
+
+    if (rejected.has('size')) {
+      issues.push(
+        this.validationIssue(
+          'files.max-size',
+          'تعذر إضافة ملفات تتجاوز الحد الأقصى للحجم.',
+          'constraint',
+          {maxFileSize: this.maxFileSize()},
+        ),
+      );
+    }
+
+    if (rejected.has('count')) {
+      issues.push(
+        this.validationIssue(
+          'files.max-count',
+          'تم الوصول إلى الحد الأقصى لعدد الملفات.',
+          'constraint',
+          {maxFiles: this.maxFiles()},
+        ),
+      );
+    }
+
+    return issues;
   }
 
   private rejectionMessage(
