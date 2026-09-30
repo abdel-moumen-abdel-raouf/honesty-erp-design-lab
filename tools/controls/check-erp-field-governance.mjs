@@ -1028,8 +1028,6 @@ export function validateArabicFirstDefaults(files) {
   }
 
   for (const value of [
-    'ألوان النظام',
-    'لون حر',
     'لم يتم اختيار قيمة',
     'بحث',
     'مسح',
@@ -1935,8 +1933,6 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     [
       SELECTION_CONTRACTS,
       [
-        'ألوان النظام',
-        'لون حر',
         'لم يتم اختيار قيمة',
         'بحث',
         'مسح',
