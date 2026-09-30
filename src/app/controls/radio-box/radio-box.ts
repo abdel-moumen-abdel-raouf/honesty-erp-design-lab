@@ -5,7 +5,7 @@ import {
   forwardRef,
   input,
 } from '@angular/core';
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {
   ErpFieldSize,
   ErpFieldStatus,
@@ -24,6 +24,11 @@ let nextRadioBoxId = 0;
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ErpRadioBox),
+      multi: true,
+    },
+    {
+      provide: NG_VALIDATORS,
       useExisting: forwardRef(() => ErpRadioBox),
       multi: true,
     },
