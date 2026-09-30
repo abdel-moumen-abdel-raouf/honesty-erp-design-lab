@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, ElementRef, computed, forwardRef, inject, input} from '@angular/core';
-import {FormsModule, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {NG_VALIDATORS, FormsModule, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpText} from '../../primitives/text/text';
 import {ErpInputBase} from '../input-family/input-base';
 import {ErpRadioBox} from '../radio-box/radio-box';
@@ -12,7 +12,18 @@ let nextRadioGroupId = 0;
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-radio-group',
   imports: [ErpRadioBox, ErpText, FormsModule],
-  providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => ErpRadioGroup), multi: true}],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ErpRadioGroup),
+      multi: true,
+    },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => ErpRadioGroup),
+      multi: true,
+    },
+  ],
   templateUrl: './radio-group.html',
   styleUrl: './radio-group.scss',
   host: {'[attr.data-radio-group-value]': 'currentValue()', '[attr.data-radio-group-state]': 'groupState()'},
