@@ -1973,6 +1973,7 @@ export class ErpImagePicker extends ErpFileSelectionBase {
       [
         'لم يتم اختيار قيمة',
         'بحث',
+        'لون حر',
         'مسح',
         'إلغاء',
         'تأكيد',

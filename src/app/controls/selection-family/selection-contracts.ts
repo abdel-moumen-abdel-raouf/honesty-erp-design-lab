@@ -26,6 +26,7 @@ export type ErpColorPickerValue =
 export interface ErpSelectionActionLabels {
   readonly noSelection: string;
   readonly search: string;
+  readonly freeColor: string;
   readonly clear: string;
   readonly cancel: string;
   readonly confirm: string;
@@ -35,6 +36,7 @@ export const ERP_SELECTION_DEFAULT_ACTION_LABELS =
   Object.freeze<ErpSelectionActionLabels>({
     noSelection: 'لم يتم اختيار قيمة',
     search: 'بحث',
+    freeColor: 'لون حر',
     clear: 'مسح',
     cancel: 'إلغاء',
     confirm: 'تأكيد',

@@ -342,12 +342,12 @@ describe('ErpTemporalPickerContent', () => {
     ) as HTMLButtonElement;
     expect(now).toBeTruthy();
 
-    let revealFrame: FrameRequestCallback | null = null;
+    const revealFrames: FrameRequestCallback[] = [];
     vi.stubGlobal(
       'requestAnimationFrame',
       vi.fn((callback: FrameRequestCallback) => {
-        revealFrame = callback;
-        return 1;
+        revealFrames.push(callback);
+        return revealFrames.length;
       }),
     );
     const scrollIntoView = vi.fn();
@@ -368,7 +368,8 @@ describe('ErpTemporalPickerContent', () => {
         ?.textContent?.trim(),
     ).toBe('30');
 
-    revealFrame?.(0);
+    expect(revealFrames).toHaveLength(1);
+    revealFrames[0]?.(0);
     expect(scrollIntoView).toHaveBeenCalledTimes(2);
 
     const confirm = timeRoot.querySelector<HTMLButtonElement>(

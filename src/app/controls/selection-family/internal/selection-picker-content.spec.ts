@@ -166,6 +166,9 @@ describe('ErpSelectionPickerContent', () => {
     expect(root.querySelector('[data-system-colors-mode]')).toBeNull();
     expect(root.querySelector('[data-free-color-mode]')).toBeNull();
 
+    expect(root.querySelector('.native-color erp-text')?.textContent?.trim()).toBe(
+      ERP_SELECTION_DEFAULT_ACTION_LABELS.freeColor,
+    );
     const input = root.querySelector('[data-native-color]') as HTMLInputElement;
     input.value = '#abcdef';
     input.dispatchEvent(new Event('input'));
