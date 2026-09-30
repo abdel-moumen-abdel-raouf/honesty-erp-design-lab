@@ -13,7 +13,7 @@ import {
   viewChild,
   viewChildren,
 } from '@angular/core';
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpIcon} from '../../primitives/icon/icon';
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
 import {ErpText} from '../../primitives/text/text';
@@ -63,6 +63,11 @@ const openSearchBoxes: ErpSearchBox[] = [];
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ErpSearchBox),
+      multi: true,
+    },
+    {
+      provide: NG_VALIDATORS,
       useExisting: forwardRef(() => ErpSearchBox),
       multi: true,
     },
