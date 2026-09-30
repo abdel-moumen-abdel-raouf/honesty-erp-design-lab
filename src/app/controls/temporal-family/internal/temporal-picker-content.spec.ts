@@ -18,6 +18,8 @@ import {ErpTemporalPickerContent} from './temporal-picker-content';
 class TestShell {}
 
 describe('ErpTemporalPickerContent', () => {
+  let originalScrollIntoViewDescriptor: PropertyDescriptor | undefined;
+
   const base = {
     min: null,
     max: null,
@@ -28,10 +30,37 @@ describe('ErpTemporalPickerContent', () => {
     clearable: true,
   } as const;
 
-  beforeEach(() => TestBed.configureTestingModule({
-    imports: [TestShell],
-    deferBlockBehavior: DeferBlockBehavior.Manual,
-  }));
+  beforeEach(() => {
+    originalScrollIntoViewDescriptor =
+      Object.getOwnPropertyDescriptor(
+        HTMLElement.prototype,
+        'scrollIntoView',
+      );
+
+    TestBed.configureTestingModule({
+      imports: [TestShell],
+      deferBlockBehavior: DeferBlockBehavior.Manual,
+    });
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.unstubAllGlobals();
+    vi.restoreAllMocks();
+
+    if (originalScrollIntoViewDescriptor) {
+      Object.defineProperty(
+        HTMLElement.prototype,
+        'scrollIntoView',
+        originalScrollIntoViewDescriptor,
+      );
+    } else {
+      Reflect.deleteProperty(
+        HTMLElement.prototype,
+        'scrollIntoView',
+      );
+    }
+  });
 
   async function open(data: ErpTemporalPickerData) {
     const fixture = TestBed.createComponent(TestShell);
