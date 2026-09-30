@@ -6,7 +6,7 @@ import {
   forwardRef,
   input,
 } from '@angular/core';
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpIcon} from '../../primitives/icon/icon';
 import {ErpText} from '../../primitives/text/text';
 import {
@@ -26,6 +26,11 @@ let nextCheckBoxId = 0;
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ErpCheckBox),
+      multi: true,
+    },
+    {
+      provide: NG_VALIDATORS,
       useExisting: forwardRef(() => ErpCheckBox),
       multi: true,
     },
