@@ -66,7 +66,12 @@ export class ErpComboBox extends ErpFieldBase<string | null> {
       ),
     ];
   }
-  protected handleInput(event: Event): void { this.queryEditing.set(true); this.query.set((event.target as HTMLInputElement).value); this.openPicker(); }
+  protected handleInput(event: Event): void {
+    this.queryEditing.set(true);
+    this.query.set((event.target as HTMLInputElement).value);
+    this.notifyValidationChange();
+    this.openPicker();
+  }
   protected openPicker(): void {
     if (this.fieldEffectiveDisabled() || this.activeRef) return;
     const ref = this.overlays.open<ErpSelectionPickerContent, ErpSelectionPickerData, string | null>(ErpSelectionPickerContent, {frame: {header: {title: this.trimmedLabel(), subtitle: 'ابحث واختر قيمة', icon: 'search'}, footer: createSelectionOverlayFooter('combo', this.clearable(), ERP_SELECTION_DEFAULT_ACTION_LABELS)}, ...(this.overlayConfig() ?? {}), data: this.pickerData()});
