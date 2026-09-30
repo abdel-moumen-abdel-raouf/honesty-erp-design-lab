@@ -24,7 +24,8 @@
     .field-frame__control:hover {
   background: color-mix(
     in srgb,
-    var(--honesty-field-frame-hover-bg) 35%,
+    var(--honesty-field-frame-hover-bg)
+      var(--honesty-field-frame-hover-surface-mix),
     transparent
   );
 }
