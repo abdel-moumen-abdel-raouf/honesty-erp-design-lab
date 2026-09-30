@@ -1,6 +1,7 @@
 import {reflectComponentType} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
+import {ErpSelectionPickerData} from '../selection-family/selection-contracts';
 import {ErpColorPicker} from './color-picker';
 
 describe('ErpColorPicker', () => {
@@ -129,7 +130,9 @@ describe('ErpColorPicker', () => {
     system.detectChanges();
 
     const systemEntry = manager.entries()[0];
-    expect(systemEntry.ref.config.data?.colorMode).toBe('system');
+    expect(
+      (systemEntry.ref.config.data as ErpSelectionPickerData).colorMode,
+    ).toBe('system');
     systemEntry.ref.dismiss('test');
     manager.completeTransition(systemEntry.ref.id, 'leaving');
     await Promise.resolve();
@@ -145,7 +148,9 @@ describe('ErpColorPicker', () => {
     free.detectChanges();
 
     const freeEntry = manager.entries()[0];
-    expect(freeEntry.ref.config.data?.colorMode).toBe('free');
+    expect(
+      (freeEntry.ref.config.data as ErpSelectionPickerData).colorMode,
+    ).toBe('free');
   });
 
 });
