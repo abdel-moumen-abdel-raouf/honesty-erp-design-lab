@@ -154,10 +154,12 @@ export abstract class ErpInputBase<TValue>
   }
 
   ngOnChanges(_changes: SimpleChanges): void {
+    void _changes;
     this.onValidatorChange();
   }
 
   validate(_control: AbstractControl): ValidationErrors | null {
+    void _control;
     const issues = this.validationIssues();
     if (issues.length === 0) {
       return null;
@@ -221,6 +223,7 @@ export abstract class ErpInputBase<TValue>
   protected validateCandidate(
     _value: unknown,
   ): readonly ErpInputValidationIssue[] {
+    void _value;
     return [];
   }
 
