@@ -18,7 +18,10 @@ import {
   resolveDomainPattern,
 } from '../input-family/domain-validation';
 import {ErpFieldBase} from '../input-family/field-base';
-import {ErpInputConfigurationState} from '../input-family/input-contracts';
+import {
+  ErpInputConfigurationState,
+  ErpInputValidationIssue,
+} from '../input-family/input-contracts';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
 import {ErpTooltip} from '../tooltip/tooltip';
 
@@ -55,6 +58,7 @@ export class ErpNumberStepper extends ErpFieldBase<number | null> {
     `erp-number-stepper-${++nextNumberStepperId}`;
   private readonly draftText = signal('');
   private readonly editing = signal(false);
+  private readonly draftActive = signal(false);
   private readonly effectivePattern = computed(() =>
     resolveDomainPattern(this.pattern(), ERP_NUMBER_FINAL_PATTERN),
   );
@@ -74,7 +78,7 @@ export class ErpNumberStepper extends ErpFieldBase<number | null> {
     () => !this.numberEffectiveDisabled() && this.fieldFocused(),
   );
   protected readonly displayValue = computed(() =>
-    this.editing()
+    this.editing() || this.draftActive()
       ? this.draftText()
       : (this.currentValue()?.toString() ?? ''),
   );
@@ -118,21 +122,95 @@ export class ErpNumberStepper extends ErpFieldBase<number | null> {
     });
   }
 
+  override writeValue(value: unknown): void {
+    this.draftActive.set(false);
+    super.writeValue(value);
+  }
+
   protected override normalizeValue(value: unknown): number | null {
     if (value === null || value === undefined || value === '') {
-      return this.allowEmpty() ? null : this.clamp(0);
+      return this.allowEmpty() ? null : 0;
     }
 
+    const numeric = Number(value);
+    return Number.isFinite(numeric)
+      ? numeric
+      : this.allowEmpty()
+        ? null
+        : 0;
+  }
+
+  protected override validationCandidate(): unknown {
+    return this.draftActive()
+      ? this.draftText()
+      : this.currentValue();
+  }
+
+  protected override validateCandidate(
+    value: unknown,
+  ): readonly ErpInputValidationIssue[] {
+    if (value === null || value === undefined || value === '') {
+      return [];
+    }
+
+    const source = String(value);
     const numeric = parseFiniteDomainNumber(
-      value,
+      source,
       this.effectivePattern().regex,
     );
 
-    return numeric === null
-      ? this.allowEmpty()
-        ? null
-        : this.clamp(0)
-      : this.clamp(numeric);
+    if (numeric === null) {
+      return [
+        this.validationIssue(
+          'number-stepper.format',
+          'القيمة المُدخلة ليست رقمًا صالحًا.',
+          'format',
+        ),
+      ];
+    }
+
+    const issues: ErpInputValidationIssue[] = [];
+
+    if (this.min() !== null && numeric < (this.min() as number)) {
+      issues.push(
+        this.validationIssue(
+          'number-stepper.min',
+          `القيمة يجب ألا تقل عن ${this.min()}.`,
+          'constraint',
+          {min: this.min(), actual: numeric},
+        ),
+      );
+    }
+
+    if (this.max() !== null && numeric > (this.max() as number)) {
+      issues.push(
+        this.validationIssue(
+          'number-stepper.max',
+          `القيمة يجب ألا تتجاوز ${this.max()}.`,
+          'constraint',
+          {max: this.max(), actual: numeric},
+        ),
+      );
+    }
+
+    const step = this.step();
+    if (Number.isFinite(step) && step > 0) {
+      const origin = this.min() ?? 0;
+      const offset = Math.abs((numeric - origin) / step);
+      const nearest = Math.round(offset);
+      if (Math.abs(offset - nearest) > 1e-9) {
+        issues.push(
+          this.validationIssue(
+            'number-stepper.step',
+            `القيمة يجب أن تتوافق مع الخطوة ${step}.`,
+            'constraint',
+            {step, origin, actual: numeric},
+          ),
+        );
+      }
+    }
+
+    return issues;
   }
 
   protected override canRepresentEmptyValue(): boolean {
@@ -148,21 +226,22 @@ export class ErpNumberStepper extends ErpFieldBase<number | null> {
     }
 
     const value = native.value;
-
-    if (!isProgressiveNumericDraft(value)) {
-      native.value = this.draftText();
-      return;
-    }
-
     this.draftText.set(value);
+    this.draftActive.set(true);
 
     if (value === '') {
       this.commitUserValue(null);
       return;
     }
 
-    if (matchesDomainPattern(value, this.effectivePattern().regex)) {
-      this.commitUserValue(value);
+    if (
+      isProgressiveNumericDraft(value) &&
+      matchesDomainPattern(value, this.effectivePattern().regex)
+    ) {
+      const numeric = Number(value);
+      if (Number.isFinite(numeric)) {
+        this.commitUserValue(numeric);
+      }
     }
   }
 
@@ -218,13 +297,18 @@ export class ErpNumberStepper extends ErpFieldBase<number | null> {
       return;
     }
 
-    this.draftText.set(this.currentValue()?.toString() ?? '');
+    if (!this.draftActive()) {
+      this.draftText.set(this.currentValue()?.toString() ?? '');
+    }
     this.editing.set(true);
     this.handleFocus();
   }
 
   protected handleNativeBlur(): void {
     this.editing.set(false);
+    if (this.valid()) {
+      this.draftActive.set(false);
+    }
     this.handleBlur();
   }
 
@@ -234,6 +318,7 @@ export class ErpNumberStepper extends ErpFieldBase<number | null> {
     }
 
     this.draftText.set('');
+    this.draftActive.set(false);
     inputElement.value = '';
     inputElement.focus();
     this.handleFocus();
