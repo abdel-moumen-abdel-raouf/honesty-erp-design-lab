@@ -49,12 +49,14 @@
     </erp-text>
   </div>
 
-  @if (!effectiveFeedbackVisible() && policyFeedback(); as message) {
-    <erp-field-feedback
-      [messageId]="policyFeedbackId"
-      [text]="message"
-      status="warning"
-    />
+  @if (!effectiveFeedbackVisible()) {
+    @if (policyFeedback(); as message) {
+      <erp-field-feedback
+        [messageId]="policyFeedbackId"
+        [text]="message"
+        status="warning"
+      />
+    }
   }
 
   @if (selectedFiles().length > 0) {
