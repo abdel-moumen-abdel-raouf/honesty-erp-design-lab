@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, computed, forwardRef, inject, input, signal} from '@angular/core';
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
 import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
 import {ErpOverlayRef} from '../../shared/overlay/overlay-ref';
@@ -18,7 +18,18 @@ let nextComboBoxId = 0;
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-combo-box',
   imports: [ErpFieldFrame],
-  providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => ErpComboBox), multi: true}],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ErpComboBox),
+      multi: true,
+    },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => ErpComboBox),
+      multi: true,
+    },
+  ],
   templateUrl: './combo-box.html',
   styleUrl: './combo-box.scss',
   host: {'[attr.data-field-configuration-state]': 'fieldConfigurationState()', '[attr.data-combo-box-value]': 'currentValue()'},
