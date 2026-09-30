@@ -6,7 +6,7 @@ import {
   forwardRef,
   input,
 } from '@angular/core';
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpText} from '../../primitives/text/text';
 import {ErpFieldBase} from '../input-family/field-base';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
@@ -25,6 +25,11 @@ let nextTextAreaBoxId = 0;
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ErpTextAreaBox),
+      multi: true,
+    },
+    {
+      provide: NG_VALIDATORS,
       useExisting: forwardRef(() => ErpTextAreaBox),
       multi: true,
     },
