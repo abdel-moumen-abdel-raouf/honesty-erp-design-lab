@@ -1,7 +1,7 @@
 <fieldset
   class="range-slider"
   [disabled]="rangeEffectiveDisabled()"
-  [attr.aria-invalid]="status() === 'danger' ? 'true' : null"
+  [attr.aria-invalid]="!valid() || status() === 'danger' ? 'true' : null"
   [attr.aria-describedby]="trimmedHelperText() ? helperId : null"
 >
   <legend class="range-slider__legend">
