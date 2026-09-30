@@ -1570,6 +1570,34 @@ function runSelfTest() {
       FILE_SELECTION_BASE,
       "minFiles = input<number | null>(null) 'files.min-count' 'files.max-count' 'files.type' 'files.max-size'",
     ],
+    [
+      'src/app/controls/check-box/check-box.ts',
+      'classifyPresence(value: unknown)',
+    ],
+    [
+      'src/app/controls/check-box/check-box.html',
+      '[required]="required()" [attr.aria-invalid]="valid() ? null : \'true\'"',
+    ],
+    [
+      'src/app/controls/radio-box/radio-box.ts',
+      'classifyPresence(value: unknown)',
+    ],
+    [
+      'src/app/controls/radio-box/radio-box.html',
+      '[required]="required()" [attr.aria-invalid]="valid() ? null : \'true\'"',
+    ],
+    [
+      'src/app/controls/radio-group/radio-group.ts',
+      'classifyPresence(value: unknown)',
+    ],
+    [
+      'src/app/controls/radio-group/radio-group.html',
+      '[attr.aria-required]="required()" [attr.aria-invalid]="valid() ? null : \'true\'"',
+    ],
+    [
+      NUMBER_STEPPER_SOURCE,
+      "'number-stepper.min' 'number-stepper.max' 'number-stepper.step' 'number-stepper.format' draftActive",
+    ],
   ]);
 
   if (validateUnifiedInputValidationContracts(validValidationFiles).length > 0) {
@@ -1797,11 +1825,11 @@ export class ErpImagePicker extends ErpFileSelectionBase {
   const validSelectionFiles = new Map([
     [
       SELECTION_CONTRACTS,
-      "readonly mode: 'system'; readonly token: ErpSystemColorToken; readonly mode: 'free'; readonly value: string;",
+      "const includesClear = clearable; readonly mode: 'system'; readonly token: ErpSystemColorToken; readonly mode: 'free'; readonly value: string;",
     ],
     [
       SELECTION_CONTENT_SOURCE,
-      "ERP_SYSTEM_COLOR_FAMILIES ERP_SYSTEM_COLOR_STEPS ERP_SYSTEM_COLOR_PALETTES registerFrameAction('confirm') registerFrameAction('cancel') registerFrameAction('clear-selected') updateFrameActionState('clear-selected') updateFrameActionState('confirm') confirmEnabled = computed( if (!this.confirmEnabled()) activeIndex = signal<number | null>(null)",
+      "ERP_SYSTEM_COLOR_FAMILIES ERP_SYSTEM_COLOR_STEPS ERP_SYSTEM_COLOR_PALETTES registerFrameAction('confirm') registerFrameAction('cancel') registerFrameAction('clear-selected') updateFrameActionState('clear-selected') updateFrameActionState('confirm') confirmEnabled = computed( if (!this.confirmEnabled()) activeIndex = signal<number | null>(null) if (this.data.clearable)",
     ],
     [
       SELECTION_CONTENT_TEMPLATE,
