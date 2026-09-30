@@ -101,6 +101,10 @@ export class ErpDateRangeBox extends ErpFieldBase<ErpDateRangeValue> {
   private commitPickerResult(value: ErpTemporalValue | undefined): void {
     if (!value || typeof value !== 'object') return;
     const normalized = this.normalizeValue(value);
-    if (normalized.start === value.start && normalized.end === value.end) this.commitUserValue(value);
+    if (
+      normalized.start === value.start &&
+      normalized.end === value.end &&
+      this.validateCandidate(value).length === 0
+    ) this.commitUserValue(value);
   }
 }
