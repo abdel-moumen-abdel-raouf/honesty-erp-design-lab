@@ -1443,7 +1443,9 @@ function runSelfTest() {
 export abstract class ErpFileSelectionBase extends ErpFieldBase<readonly File[]> {
   accept = input<string | null>(null);
   maxFileSize = input<number | null>(null);
+  minFiles = input<number | null>(null);
   maxFiles = input<number | null>(null);
+  issues = ["files.min-count", "files.max-count"];
   clearable = input(true, {transform: booleanAttribute});
   handleNativeSelection() { inputElement.value = ''; }
   handleDrop() {}
@@ -1551,19 +1553,23 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     ],
     [
       TEMPORAL_CONTENT_SOURCE,
-      "rangeAnchor = signal(null); rangePreviewCandidate = signal<string | null>(null); orderRange(); updateKeyboardPreview(); registerFrameAction('confirm'); registerFrameAction('cancel'); registerFrameAction('today'); registerFrameAction('now'); registerFrameAction('previous-week'); registerFrameAction('next-week'); registerFrameAction('previous-month-range'); registerFrameAction('next-month-range'); registerFrameAction('clear'); updateFrameActionState('confirm'); if (!this.hasValidConfirmation()) updateFrameActionState('clear'); updateFrameActionState('today');",
+      "rangeAnchor = signal(null); rangePreviewCandidate = signal<string | null>(null); orderRange(); updateKeyboardPreview(); registerFrameAction('confirm'); registerFrameAction('cancel'); registerFrameAction('today'); registerFrameAction('now'); registerFrameAction('past-7-days'); registerFrameAction('next-7-days'); registerFrameAction('past-30-days'); registerFrameAction('next-30-days'); registerFrameAction('clear'); updateFrameActionState('confirm'); if (!this.hasValidConfirmation()) updateFrameActionState('clear'); updateFrameActionState('today'); revealSelectedTime(); scrollIntoView?.();",
     ],
     [
       TEMPORAL_CONTENT_TEMPLATE,
       '<div (pointerleave)="clearRangePreview()"><span (pointerenter)="previewDate(date)">{{ data.actionLabels.previousMonth }}</span></div>',
     ],
     [TEMPORAL_TOKENS, TEMPORAL_REQUIRED_TOKENS.join('\n')],
-    [TEMPORAL_CONTRACTS, "now: 'الآن'; previousWeek: 'الأسبوع الماضي'; nextWeek: 'الأسبوع القادم'; previousMonthRange: 'الشهر الماضي'; nextMonthRange: 'الشهر القادم';"],
+    [TEMPORAL_CONTRACTS, "now: 'الآن'; past7Days: 'آخر 7 أيام'; next7Days: '7 أيام بدءًا من اليوم'; past30Days: 'آخر 30 يومًا'; next30Days: '30 يومًا بدءًا من اليوم';"],
   ]);
   for (const slug of TEMPORAL_CONTROL_SLUGS) {
+    const bounded =
+      slug === 'date-time-box' || slug === 'date-range-box'
+        ? 'readonly min = input<string | null>(null); readonly max = input<string | null>(null); '
+        : '';
     validTemporalFiles.set(
       `src/app/controls/${slug}/${slug}.ts`,
-      "readonly locale = input('ar-EG'); readonly placeholder = input('اختر'); readonly pattern = input<string | null>(null); readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null); resolveDomainPattern(); commitPickerResult();",
+      `${bounded}readonly locale = input('ar-EG'); readonly placeholder = input('اختر'); readonly pattern = input<string | null>(null); readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null); resolveDomainPattern(); commitPickerResult();`,
     );
     validTemporalFiles.set(
       `src/app/controls/${slug}/${slug}.html`,
@@ -1619,9 +1625,13 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     ],
   ]);
   for (const slug of SELECTION_CONTROL_SLUGS) {
+    const colorModeContract =
+      slug === 'color-picker'
+        ? "readonly mode = input<ErpColorPickerMode>('system'); colorMode: this.mode(); normalized?.mode === this.mode(); "
+        : '';
     validSelectionFiles.set(
       `src/app/controls/${slug}/${slug}.ts`,
-      'readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null); ...(this.overlayConfig() ?? {})',
+      `${colorModeContract}readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null); ...(this.overlayConfig() ?? {})`,
     );
   }
   if (validateSelectionCorrectionContracts(validSelectionFiles).length > 0) {
@@ -1680,10 +1690,10 @@ export class ErpImagePicker extends ErpFileSelectionBase {
         'الشهر التالي',
         'اليوم',
         'الآن',
-        'الأسبوع الماضي',
-        'الأسبوع القادم',
-        'الشهر الماضي',
-        'الشهر القادم',
+        'آخر 7 أيام',
+        '7 أيام بدءًا من اليوم',
+        'آخر 30 يومًا',
+        '30 يومًا بدءًا من اليوم',
         'مسح',
         'إلغاء',
         'تأكيد',
