@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, computed, effect, forwardRef, inject, input} from '@angular/core';
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {formatDatePreview, formatTimePreview, resolveContextualPreference} from '../../foundation/preferences/core/ui-settings.formatters';
 import {UiSettingsService} from '../../foundation/preferences/core/ui-settings.service';
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
@@ -26,7 +26,18 @@ let nextDateTimeBoxId = 0;
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-date-time-box',
   imports: [ErpFieldFrame, ErpFieldTrigger, ErpText],
-  providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => ErpDateTimeBox), multi: true}],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ErpDateTimeBox),
+      multi: true,
+    },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => ErpDateTimeBox),
+      multi: true,
+    },
+  ],
   templateUrl: './date-time-box.html',
   styleUrl: './date-time-box.scss',
   host: {'[attr.data-field-configuration-state]': 'dateTimeConfigurationState()', '[attr.data-date-time-box-value]': 'currentValue()'},
