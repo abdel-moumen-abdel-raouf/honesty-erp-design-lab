@@ -8,6 +8,8 @@
       [attr.form]="form()"
       [checked]="currentValue()"
       [indeterminate]="indeterminate()"
+      [required]="required()"
+      [attr.aria-invalid]="valid() ? null : 'true'"
       [disabled]="effectiveDisabled()"
       (change)="handleChange($event)"
       (focus)="handleNativeFocus()"
