@@ -23,6 +23,7 @@ describe('ErpFilePicker', () => {
     expect(reflectComponentType(ErpFilePicker)?.selector).toBe('erp-file-picker');
     expect(control.accept()).toBeNull();
     expect(control.maxFileSize()).toBeNull();
+    expect(control.minFiles()).toBeNull();
     expect(control.maxFiles()).toBeNull();
     expect(control.clearable()).toBe(true);
     expect(native.multiple).toBe(true);
@@ -154,6 +155,26 @@ describe('ErpFilePicker', () => {
     expect(native.files?.length).toBe(0);
     expect(onChange).not.toHaveBeenCalled();
   });
+
+  it('reports no-selection and minFiles validation through the common error contract', () => {
+    const fixture = create();
+    const control = fixture.componentInstance;
+    const host = fixture.nativeElement as HTMLElement;
+    fixture.componentRef.setInput('minFiles', 2);
+    fixture.detectChanges();
+
+    expect(control.inputState()).toBe('no-selection');
+    expect(control.valid()).toBe(false);
+    expect(control.validationIssues().map((issue) => issue.code)).toContain(
+      'files.min-count',
+    );
+    expect(
+      (host.querySelector('input[type="file"]') as HTMLInputElement)
+        .getAttribute('aria-invalid'),
+    ).toBe('true');
+    expect(host.textContent).toContain('يجب اختيار 2 ملفًا على الأقل');
+  });
+
 });
 
 function file(
