@@ -81,5 +81,5 @@ export class ErpTimeBox extends ErpFieldBase<string | null> {
   protected handleClear(): void { this.commitUserValue(null); }
   protected handleNativeFocus(): void { this.handleFocus(); }
   protected handleNativeBlur(): void { this.handleBlur(); }
-  private commitPickerResult(value: ErpTemporalValue | undefined): void { if (value === null) this.commitUserValue(null); else if (typeof value === 'string' && this.normalizeValue(value) === value) this.commitUserValue(value); }
+  private commitPickerResult(value: ErpTemporalValue | undefined): void { if (value === null) this.commitUserValue(null); else if (typeof value === 'string' && this.normalizeValue(value) === value && this.validateCandidate(value).length === 0) this.commitUserValue(value); }
 }
