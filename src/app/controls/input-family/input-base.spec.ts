@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
+import {FormControl} from '@angular/forms';
 import {ErpInputBase} from './input-base';
 
 @Component({
@@ -275,6 +276,33 @@ describe('ErpInputBase', () => {
         },
       ],
     });
+  });
+
+
+  it('projects the same validation issues into the Angular Validator contract', () => {
+    const fixture = createFixture();
+    const control = fixture.componentInstance;
+    const validatorChanged = vi.fn();
+    const formControl = new FormControl('');
+
+    control.registerOnValidatorChange(validatorChanged);
+    expect(control.validate(formControl)).toBeNull();
+
+    fixture.componentRef.setInput('required', true);
+    fixture.detectChanges();
+
+    expect(validatorChanged).toHaveBeenCalled();
+    expect(control.validate(formControl)).toEqual({
+      required: {
+        code: 'required',
+        message: 'القيمة مطلوبة.',
+        source: 'presence',
+      },
+    });
+
+    control.writeValue('ready');
+    fixture.detectChanges();
+    expect(control.validate(formControl)).toBeNull();
   });
 
 });
