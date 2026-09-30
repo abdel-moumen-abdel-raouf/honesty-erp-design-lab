@@ -957,10 +957,10 @@ export function validateArabicFirstDefaults(files) {
     'الشهر التالي',
     'اليوم',
     'الآن',
-    'الأسبوع الماضي',
-    'الأسبوع القادم',
-    'الشهر الماضي',
-    'الشهر القادم',
+    'آخر 7 أيام',
+    '7 أيام بدءًا من اليوم',
+    'آخر 30 يومًا',
+    '30 يومًا بدءًا من اليوم',
     'مسح',
     'إلغاء',
     'تأكيد',
@@ -1074,7 +1074,10 @@ export function validateFileSelectionContracts(
     'readonly File[]',
     'accept = input<string | null>(null)',
     'maxFileSize = input<number | null>(null)',
+    'minFiles = input<number | null>(null)',
     'maxFiles = input<number | null>(null)',
+    "'files.min-count'",
+    "'files.max-count'",
     'clearable = input(true, {transform: booleanAttribute})',
     'handleNativeSelection',
     'handleDrop',
@@ -1206,6 +1209,9 @@ export function validateTemporalCorrectionContracts(files) {
 
     if (
       !source.includes("readonly locale = input('ar-EG')") ||
+      ((slug === 'date-time-box' || slug === 'date-range-box') &&
+        (!source.includes('readonly min = input<string | null>(null)') ||
+         !source.includes('readonly max = input<string | null>(null)'))) ||
       !source.includes('readonly placeholder = input(') ||
       !source.includes('readonly pattern = input<string | null>(null)') ||
       !source.includes(
@@ -1245,20 +1251,22 @@ export function validateTemporalCorrectionContracts(files) {
     !content.includes("registerFrameAction('cancel'") ||
     !content.includes("registerFrameAction('today'") ||
     !content.includes("registerFrameAction('now'") ||
-    !content.includes("registerFrameAction('previous-week'") ||
-    !content.includes("registerFrameAction('next-week'") ||
-    !content.includes("registerFrameAction('previous-month-range'") ||
-    !content.includes("registerFrameAction('next-month-range'") ||
+    !content.includes("registerFrameAction('past-7-days'") ||
+    !content.includes("registerFrameAction('next-7-days'") ||
+    !content.includes("registerFrameAction('past-30-days'") ||
+    !content.includes("registerFrameAction('next-30-days'") ||
     !content.includes("registerFrameAction('clear'") ||
     !content.includes("updateFrameActionState('confirm'") ||
     !content.includes('if (!this.hasValidConfirmation())') ||
     !content.includes("updateFrameActionState('clear'") ||
     !content.includes("updateFrameActionState('today'") ||
+    !content.includes('revealSelectedTime()') ||
+    !content.includes('scrollIntoView?.') ||
     !contracts.includes("now: 'الآن'") ||
-    !contracts.includes("previousWeek: 'الأسبوع الماضي'") ||
-    !contracts.includes("nextWeek: 'الأسبوع القادم'") ||
-    !contracts.includes("previousMonthRange: 'الشهر الماضي'") ||
-    !contracts.includes("nextMonthRange: 'الشهر القادم'") ||
+    !contracts.includes("past7Days: 'آخر 7 أيام'") ||
+    !contracts.includes("next7Days: '7 أيام بدءًا من اليوم'") ||
+    !contracts.includes("past30Days: 'آخر 30 يومًا'") ||
+    !contracts.includes("next30Days: '30 يومًا بدءًا من اليوم'") ||
     !template.includes('(pointerenter)="previewDate(date)"') ||
     !template.includes('(pointerleave)="clearRangePreview()"') ||
     !template.includes('data.actionLabels.previousMonth') ||
@@ -1307,6 +1315,10 @@ export function validateSelectionCorrectionContracts(files) {
     !content.includes('confirmEnabled = computed(') ||
     !content.includes('if (!this.confirmEnabled())') ||
     !content.includes('activeIndex = signal<number | null>(null)') ||
+    content.includes('setColorMode(') ||
+    content.includes('colorMode = signal<') ||
+    template.includes('data-system-colors-mode') ||
+    template.includes('data-free-color-mode') ||
     !template.includes('<erp-selection-tile') ||
     !template.includes('<erp-tooltip') ||
     template.includes('data-confirm-action') ||
@@ -1337,6 +1349,20 @@ export function validateSelectionCorrectionContracts(files) {
 
   for (const slug of SELECTION_CONTROL_SLUGS) {
     const source = files.get(`src/app/controls/${slug}/${slug}.ts`) ?? '';
+
+    if (
+      slug === 'color-picker' &&
+      (
+        !source.includes("readonly mode = input<ErpColorPickerMode>('system')") ||
+        !source.includes('colorMode: this.mode()') ||
+        !source.includes('normalized?.mode === this.mode()')
+      )
+    ) {
+      errors.push(
+        'color-picker: instance-owned system/free mode contract is required',
+      );
+    }
+
     if (
       !source.includes(
         'readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null)',
