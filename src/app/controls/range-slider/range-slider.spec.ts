@@ -165,4 +165,36 @@ describe('ErpRangeSlider', () => {
     expect(tooltips[0].getAttribute('data-tooltip-open')).toBe('false');
   });
 
+
+  it('projects validation issues into danger status, aria-invalid, and visible feedback', () => {
+    const fixture = create();
+    const control = fixture.componentInstance;
+    const host = fixture.nativeElement as HTMLElement;
+
+    fixture.componentRef.setInput('externalValidationIssues', [
+      {
+        code: 'range.business-rule',
+        message: 'النطاق لا يطابق قاعدة العمل.',
+        source: 'external',
+      },
+    ]);
+    fixture.detectChanges();
+
+    const fieldset = host.querySelector('fieldset') as HTMLFieldSetElement;
+    const feedback = host.querySelector(
+      '[data-range-slider-validation]',
+    ) as HTMLElement;
+
+    expect(control.valid()).toBe(false);
+    expect(control.inputState()).toBe('invalid-entry');
+    expect(host.getAttribute('data-range-slider-status')).toBe('danger');
+    expect(fieldset.getAttribute('aria-invalid')).toBe('true');
+    expect(fieldset.getAttribute('aria-describedby')).toContain(
+      feedback.id,
+    );
+    expect(feedback.textContent).toContain(
+      'النطاق لا يطابق قاعدة العمل.',
+    );
+  });
+
 });
