@@ -124,8 +124,8 @@ describe('ErpRangeSlider', () => {
     const anchors = host.querySelectorAll<HTMLElement>(
       '[data-range-tooltip-anchor]',
     );
-    expect(anchors[0].style.insetInlineStart).toBe('20%');
-    expect(anchors[1].style.insetInlineStart).toBe('80%');
+    expect(anchors[0].style.left).toBe('20%');
+    expect(anchors[1].style.left).toBe('80%');
 
     const surfaces = host.querySelectorAll<HTMLElement>(
       '.erp-tooltip__surface',
