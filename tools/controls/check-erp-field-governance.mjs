@@ -678,6 +678,239 @@ export function validateSearchBoxPopupContracts(
   return errors;
 }
 
+export function validateUnifiedInputValidationContracts(files) {
+  const errors = [];
+  const contracts = files.get(INPUT_CONTRACTS) ?? '';
+  const base = files.get(INPUT_BASE_SOURCE) ?? '';
+  const fieldBase = files.get(FIELD_BASE_SOURCE) ?? '';
+  const hoverStyle = files.get(FIELD_HOVER_STYLE) ?? '';
+
+  for (const state of [
+    "'null'",
+    "'empty'",
+    "'no-selection'",
+    "'invalid-entry'",
+    "'valid-entry'",
+  ]) {
+    if (!contracts.includes(state)) {
+      errors.push(`Input validation: missing semantic state ${state}`);
+    }
+  }
+
+  for (const requirement of [
+    'export interface ErpInputValidationIssue',
+    'readonly code: string;',
+    'readonly message: string;',
+    'readonly source: ErpInputValidationSource;',
+    'export interface ErpInputValidationSnapshot',
+    'readonly errors: readonly string[];',
+    'readonly issues: readonly ErpInputValidationIssue[];',
+  ]) {
+    if (!contracts.includes(requirement)) {
+      errors.push(`Input validation contracts: missing ${requirement}`);
+    }
+  }
+
+  for (const requirement of [
+    'readonly required = input(false, {transform: booleanAttribute});',
+    'externalValidationIssues',
+    'readonly validationIssues = computed',
+    'readonly valid = computed',
+    'readonly inputState = computed',
+    'readonly errors = computed',
+    'readonly validation = computed',
+    'protected validationCandidate()',
+    'protected classifyPresence',
+    'protected validateCandidate',
+    'protected validationIssue',
+  ]) {
+    if (!base.includes(requirement)) {
+      errors.push(`InputBase validation substrate: missing ${requirement}`);
+    }
+  }
+
+  for (const requirement of [
+    'readonly clearable = input(true, {transform: booleanAttribute});',
+    'effectiveFieldStatus = computed<ErpFieldStatus>',
+    'effectiveFeedbackText = computed',
+    'effectiveFeedbackVisible = computed',
+  ]) {
+    if (!fieldBase.includes(requirement)) {
+      errors.push(`FieldBase validation projection: missing ${requirement}`);
+    }
+  }
+
+  const textLikeTemplates = [
+    'src/app/controls/text-box/text-box.html',
+    'src/app/controls/text-area-box/text-area-box.html',
+    'src/app/controls/password-box/password-box.html',
+    'src/app/controls/url-box/url-box.html',
+    'src/app/controls/tel-box/tel-box.html',
+    SEARCH_BOX_TEMPLATE,
+  ];
+
+  for (const template of textLikeTemplates) {
+    const source = files.get(template) ?? '';
+    if (source.includes('[attr.maxlength]="maxLength()"')) {
+      errors.push(
+        `${template}: maxlength must remain validation-only and non-destructive`,
+      );
+    }
+  }
+
+  const urlSource = files.get('src/app/controls/url-box/url-box.ts') ?? '';
+  const telSource = files.get('src/app/controls/tel-box/tel-box.ts') ?? '';
+  const numberSource = files.get('src/app/controls/number-box/number-box.ts') ?? '';
+  const moneySource = files.get(MONEY_BOX_SOURCE) ?? '';
+  const fileBase = files.get(FILE_SELECTION_BASE) ?? '';
+
+  for (const [name, source, requirements] of [
+    [
+      'UrlBox',
+      urlSource,
+      [
+        "'url.format'",
+        'this.commitUserValue(value);',
+        'النص المُدخل ليس عنوان رابط إلكتروني صالحًا.',
+      ],
+    ],
+    [
+      'TelBox',
+      telSource,
+      [
+        "'tel.plus-count'",
+        "'tel.plus-position'",
+        "'tel.too-short'",
+        'this.commitUserValue(value);',
+      ],
+    ],
+    [
+      'NumberBox',
+      numberSource,
+      [
+        "'number.min'",
+        "'number.max'",
+        "'number.step'",
+        "'number.format'",
+        'draftActive',
+      ],
+    ],
+    [
+      'MoneyBox',
+      moneySource,
+      [
+        "'money.min'",
+        "'money.max'",
+        "'money.step'",
+        "'money.format'",
+        'draftActive',
+      ],
+    ],
+    [
+      'FileSelectionBase',
+      fileBase,
+      [
+        'minFiles = input<number | null>(null)',
+        "'files.min-count'",
+        "'files.max-count'",
+        "'files.type'",
+        "'files.max-size'",
+      ],
+    ],
+  ]) {
+    for (const requirement of requirements) {
+      if (!source.includes(requirement)) {
+        errors.push(`${name}: missing unified validation behavior ${requirement}`);
+      }
+    }
+  }
+
+  for (const requirement of [
+    '--honesty-field-frame-hover-bg:',
+  ]) {
+    const tokens =
+      files.get('src/styles/foundation/components/field-frame/_tokens.scss') ?? '';
+    if (!tokens.includes(requirement)) {
+      errors.push(`FieldFrame hover contract: missing ${requirement}`);
+    }
+  }
+
+  for (const requirement of [
+    "[data-field-variant='ghost']",
+    "[data-field-variant='text']",
+    "[data-field-border-mode='underline']",
+    'var(--honesty-field-frame-hover-bg)',
+  ]) {
+    if (!hoverStyle.includes(requirement)) {
+      errors.push(`FieldFrame lightweight hover: missing ${requirement}`);
+    }
+  }
+
+  return errors;
+}
+
+export function validateRangeSliderCorrectionContracts(files) {
+  const errors = [];
+  const source = files.get(RANGE_SLIDER_SOURCE) ?? '';
+  const template = files.get(RANGE_SLIDER_TEMPLATE) ?? '';
+  const styles = files.get(RANGE_SLIDER_STYLE) ?? '';
+
+  for (const requirement of [
+    'showValueTooltip = input(true',
+    'valueTooltipPlacement = input<ErpTooltipPlacement>',
+    'valueTooltipFormatter',
+    'activeThumb = signal<ErpRangeSliderThumb | null>(null)',
+    'tooltipText(thumb: ErpRangeSliderThumb)',
+    'handlePointerDown(thumb: ErpRangeSliderThumb)',
+  ]) {
+    if (!source.includes(requirement)) {
+      errors.push(`RangeSlider tooltip contract: missing ${requirement}`);
+    }
+  }
+
+  if (
+    (template.match(/\[min\]="min\(\)"/g) ?? []).length < 2 ||
+    (template.match(/\[max\]="max\(\)"/g) ?? []).length < 2 ||
+    template.includes('[max]="currentValue().upper"') ||
+    template.includes('[min]="currentValue().lower"')
+  ) {
+    errors.push(
+      'RangeSlider: both native thumbs must use the same global min/max coordinate domain',
+    );
+  }
+
+  for (const requirement of [
+    'data-range-tooltip-anchor="lower"',
+    'data-range-tooltip-anchor="upper"',
+    '[style.inset-inline-start]="lowerPosition() + \'%\'"',
+    '[style.inset-inline-start]="upperPosition() + \'%\'"',
+    '[open]="showValueTooltip() && activeThumb() === \'lower\'"',
+    '[open]="showValueTooltip() && activeThumb() === \'upper\'"',
+  ]) {
+    if (!template.includes(requirement)) {
+      errors.push(`RangeSlider: missing moving Tooltip binding ${requirement}`);
+    }
+  }
+
+  const thumbInset =
+    'inset-inline: calc(var(--honesty-range-slider-thumb-size) / 2);';
+  if (
+    (styles.match(
+      /inset-inline:\s*calc\(var\(--honesty-range-slider-thumb-size\) \/ 2\);/g,
+    ) ?? []).length < 2
+  ) {
+    errors.push(
+      'RangeSlider: rail and Tooltip track must share the thumb-center inset geometry',
+    );
+  }
+
+  if (!styles.includes('.range-slider__tooltip-track')) {
+    errors.push('RangeSlider: missing tooltip track geometry');
+  }
+
+  return errors;
+}
+
 export function validateNumericEditorContracts(files) {
   const errors = [];
 
