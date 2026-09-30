@@ -10,4 +10,24 @@ describe('ErpTimeBox', () => {
   it('normalizes valid times and rejects invalid times', () => { const fixture = create(); fixture.componentInstance.writeValue('23:59'); fixture.detectChanges(); expect((fixture.nativeElement as HTMLElement).getAttribute('data-time-box-value')).toBe('23:59'); fixture.componentInstance.writeValue('24:00'); fixture.detectChanges(); expect((fixture.nativeElement as HTMLElement).hasAttribute('data-time-box-value')).toBe(false); });
   it('commits only confirmed overlay time', async () => { const fixture = create(); const manager = TestBed.inject(ErpOverlayManager); const onChange = vi.fn(); fixture.componentInstance.registerOnChange(onChange); (fixture.nativeElement as HTMLElement).querySelector('button')?.click(); const ref = manager.entries()[0].ref; ref.close('09:35'); manager.completeTransition(ref.id, 'leaving'); await Promise.resolve(); expect(onChange).toHaveBeenCalledWith('09:35'); });
   it('rejects invalid pattern configuration and invalid confirmed time', async () => { const fixture = create(); const onChange = vi.fn(); fixture.componentInstance.registerOnChange(onChange); fixture.componentRef.setInput('pattern', '['); fixture.detectChanges(); expect((fixture.nativeElement as HTMLElement).getAttribute('data-field-configuration-state')).toBe('invalid'); fixture.componentRef.setInput('pattern', '^09:\\d{2}$'); fixture.detectChanges(); (fixture.nativeElement as HTMLElement).querySelector('button')?.click(); const manager = TestBed.inject(ErpOverlayManager); const ref = manager.entries()[0].ref; ref.close('25:00'); manager.completeTransition(ref.id, 'leaving'); await Promise.resolve(); expect(onChange).not.toHaveBeenCalled(); });
+
+  it('reports out-of-range time as invalid-entry without clamping the value', () => {
+    const fixture = create();
+    const control = fixture.componentInstance;
+    fixture.componentRef.setInput('min', '09:00');
+    fixture.componentRef.setInput('max', '17:00');
+    fixture.detectChanges();
+
+    control.writeValue('08:30');
+    fixture.detectChanges();
+
+    expect(
+      (fixture.nativeElement as HTMLElement).getAttribute('data-time-box-value'),
+    ).toBe('08:30');
+    expect(control.inputState()).toBe('invalid-entry');
+    expect(control.validationIssues().map((issue) => issue.code)).toContain(
+      'time.min',
+    );
+  });
+
 });
