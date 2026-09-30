@@ -46,6 +46,11 @@ let nextColorPickerId = 0;
       useExisting: forwardRef(() => ErpColorPicker),
       multi: true,
     },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => ErpColorPicker),
+      multi: true,
+    },
   ],
   templateUrl: './color-picker.html',
   styleUrl: './color-picker.scss',
