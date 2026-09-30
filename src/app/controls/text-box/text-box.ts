@@ -6,7 +6,7 @@ import {
   forwardRef,
   input,
 } from '@angular/core';
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpFieldBase} from '../input-family/field-base';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
 import {ErpInputValidationIssue} from '../input-family/input-contracts';
@@ -22,6 +22,11 @@ let nextTextBoxId = 0;
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ErpTextBox),
+      multi: true,
+    },
+    {
+      provide: NG_VALIDATORS,
       useExisting: forwardRef(() => ErpTextBox),
       multi: true,
     },
