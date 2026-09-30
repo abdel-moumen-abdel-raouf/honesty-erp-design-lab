@@ -65,8 +65,8 @@ export function createSelectionOverlayFooter(
   clearable: boolean,
   labels: ErpSelectionActionLabels,
 ): ErpOverlayFooterConfig {
-  const includesClear =
-    clearable || mode === 'color' || mode === 'icon' || mode === 'combo';
+  const includesClear = clearable;
+  void mode;
   return {
     actions: [
       ...(includesClear
