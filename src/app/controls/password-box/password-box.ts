@@ -7,7 +7,7 @@ import {
   input,
   signal,
 } from '@angular/core';
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpIconButton} from '../icon-button/icon-button';
 import {ErpFieldBase} from '../input-family/field-base';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
@@ -25,6 +25,11 @@ let nextPasswordBoxId = 0;
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ErpPasswordBox),
+      multi: true,
+    },
+    {
+      provide: NG_VALIDATORS,
       useExisting: forwardRef(() => ErpPasswordBox),
       multi: true,
     },
