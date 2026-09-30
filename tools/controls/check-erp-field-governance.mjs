@@ -290,12 +290,15 @@ export function validate(files) {
       control &&
       normalized.endsWith('.ts') &&
       !isSpec(normalized) &&
-      source.includes('NG_VALUE_ACCESSOR') &&
-      !source.includes('NG_VALIDATORS')
+      source.includes('NG_VALUE_ACCESSOR')
     ) {
-      errors.push(
-        `${normalized}: every CVA ERP input must register the common NG_VALIDATORS bridge`,
-      );
+      const validatorProviderCount =
+        (source.match(/provide:\s*NG_VALIDATORS/g) ?? []).length;
+      if (validatorProviderCount !== 1) {
+        errors.push(
+          `${normalized}: every CVA ERP input must register exactly one common NG_VALIDATORS bridge`,
+        );
+      }
     }
 
     const featurePage =
