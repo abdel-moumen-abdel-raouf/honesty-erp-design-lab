@@ -7,8 +7,6 @@ describe('Field Family compatibility matrix', () => {
     shape: 'default',
     variant: 'outline',
     multiline: false,
-    clearable: false,
-    canRepresentEmpty: true,
   } as const;
 
   it('forces text variant to the effective underline border mode', () => {
@@ -97,19 +95,10 @@ describe('Field Family compatibility matrix', () => {
     ).toBe('invalid');
   });
 
-  it('rejects clear when a concrete control cannot represent an empty value', () => {
+  it('keeps empty-value capability out of visual compatibility', () => {
     expect(
       resolveFieldCompatibility({
         ...defaults,
-        clearable: true,
-        canRepresentEmpty: false,
-      }).configurationState,
-    ).toBe('invalid');
-    expect(
-      resolveFieldCompatibility({
-        ...defaults,
-        clearable: true,
-        canRepresentEmpty: true,
       }).configurationState,
     ).toBe('ready');
   });
