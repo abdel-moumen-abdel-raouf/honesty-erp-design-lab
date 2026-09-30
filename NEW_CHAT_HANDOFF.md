@@ -1617,40 +1617,30 @@ implementation state, blocker, verification result, or Product Owner finding.
 
 
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_START -->
-## 2026-09-30 — local verification follow-up: SearchBox maxlength regression corrected
+## 2026-09-30 — local verification follow-up: InputBase lint-only correction
 
-Product Owner pulled current `main` and ran the canonical full gate:
-`npm run verify:clean`.
+Product Owner reran the canonical `npm run verify:clean` after the SearchBox
+maxlength correction.
 
-Observed result:
-- theme authority PASS;
-- routed-page ERP-only authoring PASS;
-- Component Token framework PASS;
-- system-color registry PASS;
-- ErpText PASS;
-- ErpIcon PASS;
-- ErpButton PASS;
-- ErpTooltip PASS;
-- verification stopped at ErpField governance.
-
-Concrete failure:
-`src/app/controls/search-box/search-box.html: maxlength must remain validation-only and non-destructive`.
-
-Root cause:
-- SearchBox inline mode already validates `maxLength` through its common validation path;
-- the inline native input still carried `[attr.maxlength]="maxLength()"`;
-- native maxlength blocks/truncates further editable input semantics instead of preserving the visible invalid draft for `search.max-length`.
+Observed progress:
+- all governance checks PASS, including ErpField and ErpOverlay;
+- Angular ESLint then stopped on exactly three unused formal parameters in
+  `src/app/controls/input-family/input-base.ts`:
+  `_changes`, `_control`, and `_value`.
 
 Bounded correction:
-- remove only the native SearchBox maxlength attribute binding;
-- retain `minLength`/ `maxLength` typed validation in the control;
-- no SearchBox interaction, popup, visual, or public API redesign.
+- commit `e933a4b598c32cea949d61aaf31cb207c54e4b10`;
+- retain Angular/common validation method signatures unchanged;
+- explicitly consume the intentionally unused parameters with no-op `void`
+  expressions;
+- no validation logic, public API, runtime behavior, or visual behavior changed.
 
 Next mandatory action:
-1. pull the bounded correction;
+1. pull current `main`;
 2. rerun complete `npm run verify:clean`;
-3. fix only a newly demonstrated failure if the gate stops again;
-4. if Fully Green, record the new verified checkpoint and proceed to Product Owner runtime + Light/Dark Inputs re-review.
+3. correct only a newly demonstrated failure if the gate stops again;
+4. if Fully Green, record the new verified checkpoint and resume Product Owner
+   runtime + Light/Dark Inputs re-review.
 
-Inputs remains Product Owner BLOCKED.
+Inputs remains Product Owner BLOCKED until acceptance.
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_END -->
