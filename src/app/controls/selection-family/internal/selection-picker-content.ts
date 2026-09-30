@@ -59,14 +59,9 @@ export class ErpSelectionPickerContent implements OnDestroy {
   private readonly frameActionCleanup = [
     this.ref.registerFrameAction('confirm', () => this.confirm()),
     this.ref.registerFrameAction('cancel', () => this.cancel()),
-    ...(
-      this.data.clearable ||
-      this.data.mode === 'color' ||
-      this.data.mode === 'icon' ||
-      this.data.mode === 'combo'
-        ? [this.ref.registerFrameAction('clear-selected', () => this.clear())]
-        : []
-    ),
+    ...(this.data.clearable
+      ? [this.ref.registerFrameAction('clear-selected', () => this.clear())]
+      : []),
   ];
   private readonly optionTiles = viewChildren(ErpSelectionTile);
 
@@ -138,12 +133,7 @@ export class ErpSelectionPickerContent implements OnDestroy {
         disabled: !this.confirmEnabled(),
       });
 
-      if (
-        this.data.clearable ||
-        this.data.mode === 'color' ||
-        this.data.mode === 'icon' ||
-        this.data.mode === 'combo'
-      ) {
+      if (this.data.clearable) {
         this.ref.updateFrameActionState('clear-selected', {
           disabled: this.staged() === null,
         });
