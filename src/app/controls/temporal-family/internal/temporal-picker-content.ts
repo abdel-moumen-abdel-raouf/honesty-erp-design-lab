@@ -113,10 +113,11 @@ export class ErpTemporalPickerContent implements OnDestroy {
 
     if (this.data.mode === 'datetime') {
       const date = this.stagedDate();
+      const time = this.timeValue();
       return Boolean(
         date &&
-        !this.dateDisabled(date) &&
-        this.timeValue() !== null,
+        time &&
+        !this.dateTimeDisabled(date, time),
       );
     }
 
@@ -173,7 +174,7 @@ export class ErpTemporalPickerContent implements OnDestroy {
           disabled:
             this.data.mode === 'time'
               ? this.timeDisabled(nowTime)
-              : this.dateDisabled(nowDate),
+              : this.dateTimeDisabled(nowDate, nowTime),
         });
       }
 
@@ -221,7 +222,8 @@ export class ErpTemporalPickerContent implements OnDestroy {
 
     if (
       (this.data.mode === 'time' && this.timeDisabled(time)) ||
-      (this.data.mode === 'datetime' && this.dateDisabled(toIsoDate(now)))
+      (this.data.mode === 'datetime' &&
+        this.dateTimeDisabled(toIsoDate(now), time))
     ) {
       return;
     }
@@ -365,6 +367,13 @@ export class ErpTemporalPickerContent implements OnDestroy {
       this.data.mode === 'time' ? this.data.min : null;
     const max =
       this.data.mode === 'time' ? this.data.max : null;
+    return (min !== null && value < min) || (max !== null && value > max);
+  }
+
+  private dateTimeDisabled(date: string, time: string): boolean {
+    const value = `${date}T${time}`;
+    const min = this.data.mode === 'datetime' ? this.data.min : null;
+    const max = this.data.mode === 'datetime' ? this.data.max : null;
     return (min !== null && value < min) || (max !== null && value > max);
   }
 
