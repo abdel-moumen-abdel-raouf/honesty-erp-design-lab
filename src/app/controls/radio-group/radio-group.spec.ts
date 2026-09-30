@@ -74,4 +74,21 @@ describe('ErpRadioGroup', () => {
         .querySelectorAll<HTMLInputElement>('input')[1],
     );
   });
+
+  it('uses no-selection state and required validation before any option is selected', () => {
+    const fixture = create();
+    const control = fixture.componentInstance;
+    const fieldset = fixture.nativeElement.querySelector('fieldset') as HTMLElement;
+
+    expect(control.inputState()).toBe('no-selection');
+    expect(control.valid()).toBe(true);
+
+    fixture.componentRef.setInput('required', true);
+    fixture.detectChanges();
+
+    expect(control.valid()).toBe(false);
+    expect(control.errors()).toEqual(['القيمة مطلوبة.']);
+    expect(fieldset.getAttribute('aria-invalid')).toBe('true');
+  });
+
 });
