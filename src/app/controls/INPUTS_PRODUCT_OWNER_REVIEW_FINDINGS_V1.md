@@ -379,3 +379,27 @@ Typed min/max/length/count constraints participate in one common validation
 engine.
 
 Finding is architecture-approved / implementation-pending.
+
+
+## 2026-09-30 — expanded findings implementation status
+
+All findings recorded in the 2026-09-29 expanded review are now implemented in
+source/tests/governance on current main:
+`c3971739198e61adff98d821a6b8f6775faa4e6c`.
+
+Implemented:
+- non-destructive URL/Tel/domain text validation;
+- common developer-facing input state/errors/issues contract;
+- typed constraints and Angular Forms validity bridge;
+- default Field clearability + opt-out;
+- lightweight variant hover discoverability;
+- RangeSlider unified geometry + moving customizable value Tooltips;
+- Time/DateTime Now reveal;
+- rolling inclusive 7/30-day DateRange presets;
+- ColorPicker per-instance system/free mode;
+- explicit ItemPicker vs ComboBox Design Lab distinction.
+
+Finding status changes from implementation-pending to
+**implemented / verification pending**.
+
+Inputs remains BLOCKED until technical verification and Product Owner re-review.

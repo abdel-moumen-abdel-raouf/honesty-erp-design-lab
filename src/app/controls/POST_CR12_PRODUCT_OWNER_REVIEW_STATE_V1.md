@@ -1000,3 +1000,18 @@ Every ERP input will expose semantic input state, validity, simple errors, and
 structured issues from one validation source of truth.
 
 Implementation pending; Inputs remains BLOCKED.
+
+
+## 2026-09-30 — expanded Inputs implementation complete / verification pending
+
+The Product Owner-approved additional Inputs corrections plus unified input
+validation substrate are implemented on current main:
+`c3971739198e61adff98d821a6b8f6775faa4e6c`.
+
+Implemented families include text/domain/numeric/choice/file/temporal/selection
+and RangeSlider, with Angular Forms integration and governance enforcement.
+
+Status remains BLOCKED for Product Owner acceptance until:
+1. fresh full `npm run verify:clean`;
+2. runtime re-test;
+3. Light/Dark visual re-review.

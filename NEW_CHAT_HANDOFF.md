@@ -1448,3 +1448,141 @@ semantics, not only on the last committed CVA value.
 
 Implementation is pending. This decision expands the active Inputs correction
 scope.
+
+
+---
+
+# 33. 2026-09-30 — EXPANDED INPUTS + UNIFIED VALIDATION IMPLEMENTED / VERIFY PENDING
+
+Current implementation checkpoint:
+`c3971739198e61adff98d821a6b8f6775faa4e6c`
+
+The Product Owner-approved Inputs corrections and common validation architecture
+are now implemented in source, tests, and governance.
+
+## Unified validation substrate
+
+Every ERP input participates in the common contract:
+- `inputState`: null / empty / no-selection / invalid-entry / valid-entry;
+- `valid`;
+- `errors: readonly string[]`;
+- structured `validationIssues`;
+- canonical validation snapshot;
+- common `required`;
+- external/server issue input.
+
+Angular Forms integration:
+- ErpInputBase implements Validator;
+- CVA controls register exactly one NG_VALIDATORS bridge;
+- governance enforces exactly one bridge;
+- validator change notifications also fire when non-committed visible drafts
+  change validation state.
+
+## Non-destructive editable validation
+
+URL/Tel:
+- invalid text stays visible;
+- invalid text is not reverted/deleted on blur;
+- URL publishes url.format;
+- Tel publishes multiple simultaneous domain issues such as alphabetic input,
+  plus-count/position, and length.
+
+Text/Password/TextArea/Search-inline:
+- typed min/max length validation;
+- maxLength is not used as native destructive input blocking.
+
+Number/Money/NumberStepper:
+- visible invalid drafts are preserved;
+- format/min/max/step issues publish through common contract;
+- editable out-of-range values are not silently clamped;
+- intrinsic stepper button interaction may still mechanically respect bounds.
+
+## Clear behavior
+
+Field-family clearable default is now enabled.
+Per-instance `clearable=false` remains authoritative.
+Selection/temporal/file controls were corrected so footer/remove/clear actions
+honor the opt-out instead of forcing Clear.
+
+## Lightweight visual variants
+
+Ghost/Text/Underline now expose token-owned hover discoverability.
+The hover surface color and mix percentage are Foundation Component Tokens.
+
+## RangeSlider
+
+Corrected:
+- lower and upper native ranges both use global min/max;
+- crossing prevention is logic, not changing the native coordinate domain;
+- rail is inset by half thumb size;
+- Tooltip anchors use the same thumb-center track;
+- physical left positioning avoids RTL double reversal;
+- active thumb Tooltip text is developer-formattable;
+- Tooltip explicitly requests anchored reposition while active thumb position
+  changes;
+- validation projects to danger host state, aria-invalid, described-by, and
+  visible error copy.
+
+## Temporal
+
+- min/max no longer silently clamp programmatic temporal values;
+- Date/Time/DateTime/DateRange publish typed validation issues;
+- empty selection states are represented as no-selection where appropriate;
+- Now selects current stepped time and scrolls/reveals selected hour/minute;
+- DateRange quick actions are rolling inclusive windows:
+  - آخر 7 أيام = today - 6 through today;
+  - 7 أيام بدءًا من اليوم = today through today + 6;
+  - آخر 30 يومًا = today - 29 through today;
+  - 30 يومًا بدءًا من اليوم = today through today + 29.
+
+## Selection
+
+ColorPicker:
+- public fixed mode: system | free;
+- one instance renders one mode only;
+- internal mode switch removed;
+- mode-mismatched values do not commit.
+
+ItemPicker vs ComboBox:
+- ItemPicker remains non-editable/select-like;
+- ComboBox remains editable type-to-filter;
+- Design Lab evidence makes the distinction explicit.
+
+## File/Image
+
+- no-selection state for empty queues;
+- minFiles/maxFiles/type/max-size issues participate in common validation;
+- rejected selection attempts also publish developer-visible issues/errors even
+  though rejected files are not committed.
+
+## Governance / tests
+
+Field governance now enforces:
+- common validation state/issue contract;
+- non-destructive maxlength law;
+- exactly one Angular validator bridge per CVA control;
+- lightweight hover tokens;
+- RangeSlider global geometry + moving Tooltip contract;
+- temporal rolling actions + Now reveal;
+- fixed ColorPicker mode;
+- file validation contract;
+- prior SearchBox native Popover and three-mode laws.
+
+Source audit found no remaining references to:
+- old calendar preset IDs/labels;
+- ColorPicker internal mode-switch evidence;
+- clearable=false default;
+- duplicated concrete required inputs;
+- native maxlength binding;
+- RangeSlider local min/max coordinate bindings.
+
+## Status
+
+Implementation is complete for this bounded correction program.
+Verification is pending.
+
+Mandatory next technical gate:
+`npm run verify:clean`
+
+After technical green, Product Owner runtime/Light/Dark re-review remains
+mandatory before Inputs can be marked PASS.

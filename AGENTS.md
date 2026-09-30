@@ -1120,3 +1120,24 @@ invalid editable user input.
 
 Constraint configuration stays typed by domain while feeding one common
 validation engine.
+
+
+## Expanded Inputs implementation state — 2026-09-30
+
+The unified validation architecture and the Product Owner's expanded Inputs
+correction set are implemented on current main:
+`c3971739198e61adff98d821a6b8f6775faa4e6c`.
+
+Mandatory laws now enforced:
+- one validation source of truth for component + Angular Forms;
+- exactly one NG_VALIDATORS bridge per CVA ERP input;
+- invalid editable drafts are non-destructive;
+- clearable defaults on for Field-family controls, opt-out remains authoritative;
+- lightweight variants have token-owned hover discoverability;
+- RangeSlider thumbs/rail/tooltips share one global thumb-center coordinate system;
+- active RangeSlider Tooltip must request reposition as its anchor moves;
+- temporal presets are rolling inclusive 7/30-day windows;
+- ColorPicker mode is fixed per instance;
+- ItemPicker and ComboBox remain distinct interaction contracts.
+
+Do not claim Fully Green until a fresh full `npm run verify:clean` passes.

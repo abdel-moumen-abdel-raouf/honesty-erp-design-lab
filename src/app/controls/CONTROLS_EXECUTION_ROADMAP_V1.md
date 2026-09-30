@@ -667,3 +667,24 @@ Implementation sequence:
 5. make UI feedback/aria-invalid derive from the same validity source;
 6. then finish URL/Tel, RangeSlider, temporal, ColorPicker, and picker review
    corrections against that substrate.
+
+
+### 2026-09-30 — expanded Inputs correction program implemented
+
+Implementation scope from the prior roadmap is complete in source/tests/governance:
+- unified validation substrate;
+- non-destructive URL/Tel/numeric validation;
+- default clearability with opt-out;
+- Ghost/Text/Underline hover;
+- RangeSlider geometry + moving Tooltips;
+- Now reveal;
+- rolling DateRange presets;
+- ColorPicker fixed mode;
+- ItemPicker/ComboBox evidence distinction;
+- Angular Forms validator integration.
+
+Next gates:
+1. run full `npm run verify:clean`;
+2. fix only demonstrated failures;
+3. Product Owner runtime/Light/Dark re-review;
+4. mark Inputs PASS only after Product Owner acceptance.

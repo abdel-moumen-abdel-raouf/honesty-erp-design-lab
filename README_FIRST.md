@@ -24,43 +24,55 @@ Branch:
 
 ## Current state
 
-Latest source-affecting SearchBox correction:
+The expanded Inputs correction and unified validation program is now implemented
+in source/tests/governance on current `main`.
 
-`5c0562a58eb7c28a21ced50bbfe8964779ad9cc6`
-`fix(inputs): preserve native closed-popover display state`
+Current implementation checkpoint:
+`c3971739198e61adff98d821a6b8f6775faa4e6c`
 
-This is the first correction that addresses the literal CSS root cause of the
-Product Owner's "closed but still clickable" SearchBox dropdown defect.
+Implemented in this program:
+- common ERP input semantic state:
+  `null | empty | no-selection | invalid-entry | valid-entry`;
+- common `valid`, `errors`, `validationIssues`, and validation snapshot;
+- common `required` and external/server validation issue hook;
+- Angular Forms Validator bridge from the same validation source of truth;
+- exactly one `NG_VALIDATORS` provider required for every CVA ERP input;
+- validation changes from non-committed drafts notify Angular Forms;
+- Field-family `clearable` defaults on with per-instance opt-out;
+- text/domain validation is non-destructive;
+- URL/Tel keep invalid user text visible and publish domain errors;
+- Number/Money/NumberStepper keep invalid drafts visible and publish
+  format/min/max/step errors rather than silently clamping editable input;
+- text-like max length is validation-only and does not truncate/block typing;
+- File/Image expose min/max count, type, size, and rejected-attempt issues through
+  the common errors contract;
+- Ghost/Text/Underline have token-owned hover discoverability;
+- RangeSlider uses one global coordinate domain for both native thumbs and rail;
+- RangeSlider rail and Tooltip anchors share thumb-center geometry;
+- active thumb Tooltip value is customizable and requests repositioning while
+  the thumb moves;
+- RangeSlider validation projects to danger state, aria-invalid, and visible
+  feedback;
+- Time/DateTime Now updates staged value and reveals selected hour/minute;
+- DateRange uses rolling inclusive presets:
+  آخر 7 أيام / 7 أيام بدءًا من اليوم / آخر 30 يومًا /
+  30 يومًا بدءًا من اليوم;
+- Date/Time/DateTime/DateRange expose common bounds/state validation;
+- ColorPicker is instance-fixed to `system | free` and no longer has an
+  internal mode switch;
+- ItemPicker remains select-like while ComboBox remains editable type-to-filter;
+- Design Lab evidence differentiates those contracts;
+- governance self-tests protect the new validation, hover, RangeSlider,
+  temporal, selection, SearchBox, and Angular-validator contracts.
 
-Exact root cause:
-- `.search-box__popup` is a native `popover="manual"` element;
-- native closed Popover visibility depends on the browser-owned
-  `display: none` state;
-- production CSS incorrectly declared `display: grid` on the base
-  `.search-box__popup` rule;
-- that author declaration overrides the hidden display behavior when the Popover
-  is closed;
-- the base rule simultaneously uses opacity/transform as the hidden visual
-  state, so the closed surface can be invisible while still existing as a fixed
-  interactive hit-test box;
-- this exactly explains why lower inputs could not receive the click and why an
-  invisible result row could be activated after the dropdown appeared closed.
+Important verification distinction:
+- current source is **implemented / verification pending**;
+- do not call it Fully Green until a fresh complete `npm run verify:clean`
+  passes from current `main`;
+- Product Owner runtime/Light/Dark re-review is still required after technical
+  green.
 
-Correction:
-- base `.search-box__popup` no longer declares `display`;
-- `display: grid` is applied only in
-  `.search-box__popup:popover-open`;
-- native Popover closed `display:none` is therefore preserved;
-- field governance rejects any future base-rule display override and requires
-  the `:popover-open` grid rule.
+Latest prior Fully Green baseline remains:
+`50ae8e5f9f9cc537435217a644548c10bd097ecb`
 
-Previous close-lifecycle hardening remains useful defense in depth, but it was
-not the literal root cause of the persisted invisible hit box.
-
-Verification status:
-- current source is NOT yet Fully Green;
-- fresh full `npm run verify:clean` is mandatory;
-- Inputs remains Product Owner BLOCKED until the exact runtime reproduction is
-  re-tested and accepted.
-
-Read `NEW_CHAT_HANDOFF.md` for complete state.
+Read `NEW_CHAT_HANDOFF.md` for the exact continuation state.
