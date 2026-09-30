@@ -127,18 +127,30 @@ describe('ErpRangeSlider', () => {
     expect(anchors[0].style.insetInlineStart).toBe('20%');
     expect(anchors[1].style.insetInlineStart).toBe('80%');
 
+    const surfaces = host.querySelectorAll<HTMLElement>(
+      '.erp-tooltip__surface',
+    );
+    for (const surface of surfaces) {
+      Object.assign(surface, {
+        showPopover: vi.fn(),
+        hidePopover: vi.fn(),
+      });
+    }
+
     const lower = host.querySelector(
       '[data-range-thumb="lower"]',
     ) as HTMLInputElement;
-    lower.dispatchEvent(new PointerEvent('pointerdown', {bubbles: true}));
+    lower.dispatchEvent(new Event('pointerdown', {bubbles: true}));
     fixture.detectChanges();
 
     const tooltips = host.querySelectorAll('erp-tooltip');
+    expect(host.getAttribute('data-range-slider-active-thumb')).toBe('lower');
     expect(tooltips[0].getAttribute('data-tooltip-open')).toBe('true');
     expect(tooltips[0].textContent).toContain('lower:20');
 
-    lower.dispatchEvent(new PointerEvent('pointerup', {bubbles: true}));
+    lower.dispatchEvent(new Event('pointerup', {bubbles: true}));
     fixture.detectChanges();
+    expect(host.hasAttribute('data-range-slider-active-thumb')).toBe(false);
     expect(tooltips[0].getAttribute('data-tooltip-open')).toBe('false');
   });
 
