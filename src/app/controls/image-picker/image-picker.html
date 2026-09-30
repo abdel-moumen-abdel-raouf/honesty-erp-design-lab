@@ -26,8 +26,8 @@
       [attr.accept]="accept()"
       [disabled]="selectionEffectiveDisabled()"
       [attr.aria-labelledby]="labelId"
-      [attr.aria-describedby]="guidanceId"
-      [attr.aria-invalid]="selectionConfigurationState() === 'invalid' || status() === 'danger' ? 'true' : null"
+      [attr.aria-describedby]="effectiveFeedbackVisible() ? guidanceId + ' ' + feedbackIdFor(controlId) : guidanceId"
+      [attr.aria-invalid]="selectionConfigurationState() === 'invalid' || effectiveFieldStatus() === 'danger' ? 'true' : null"
       (change)="handleNativeSelection($event)"
     />
 
@@ -116,11 +116,11 @@
     </erp-text>
   }
 
-  @if (feedbackVisible()) {
+  @if (effectiveFeedbackVisible()) {
     <erp-field-feedback
       [messageId]="feedbackIdFor(controlId)"
-      [text]="trimmedFeedbackText()"
-      [status]="status()"
+      [text]="effectiveFeedbackText()"
+      [status]="effectiveFieldStatus()"
       [dismissible]="feedbackDismissible()"
       (dismissed)="dismissFeedback()"
     />
