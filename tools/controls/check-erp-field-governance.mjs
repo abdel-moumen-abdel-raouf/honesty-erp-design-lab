@@ -896,6 +896,7 @@ export function validateUnifiedInputValidationContracts(files) {
 
   for (const requirement of [
     '--honesty-field-frame-hover-bg:',
+    '--honesty-field-frame-hover-surface-mix:',
   ]) {
     const tokens =
       files.get('src/styles/foundation/components/field-frame/_tokens.scss') ?? '';
@@ -909,6 +910,7 @@ export function validateUnifiedInputValidationContracts(files) {
     "[data-field-variant='text']",
     "[data-field-border-mode='underline']",
     'var(--honesty-field-frame-hover-bg)',
+    'var(--honesty-field-frame-hover-surface-mix)',
   ]) {
     if (!hoverStyle.includes(requirement)) {
       errors.push(`FieldFrame lightweight hover: missing ${requirement}`);
@@ -1557,7 +1559,7 @@ function runSelfTest() {
     ],
     [
       'src/styles/foundation/components/field-frame/_tokens.scss',
-      '--honesty-field-frame-hover-bg:',
+      '--honesty-field-frame-hover-bg: --honesty-field-frame-hover-surface-mix:',
     ],
     [
       FIELD_HOVER_STYLE,
@@ -1566,6 +1568,7 @@ function runSelfTest() {
         "[data-field-variant='text']",
         "[data-field-border-mode='underline']",
         'var(--honesty-field-frame-hover-bg)',
+        'var(--honesty-field-frame-hover-surface-mix)',
       ].join('\n'),
     ],
     [
