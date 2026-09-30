@@ -4,11 +4,18 @@ import {
   Directive,
   effect,
   input,
+  OnChanges,
   Signal,
+  SimpleChanges,
   signal,
   WritableSignal,
 } from '@angular/core';
-import {ControlValueAccessor} from '@angular/forms';
+import {
+  AbstractControl,
+  ControlValueAccessor,
+  ValidationErrors,
+  Validator,
+} from '@angular/forms';
 import {
   ErpInputConfigurationState,
   ErpInputState,
@@ -18,7 +25,9 @@ import {
 } from './input-contracts';
 
 @Directive()
-export abstract class ErpInputBase<TValue> implements ControlValueAccessor {
+export abstract class ErpInputBase<TValue>
+  implements ControlValueAccessor, Validator, OnChanges
+{
   readonly label = input.required<string>();
   readonly name = input<string | null>(null);
   readonly form = input<string | null>(null);
@@ -103,6 +112,7 @@ export abstract class ErpInputBase<TValue> implements ControlValueAccessor {
 
   private onChange: (value: TValue) => void = () => undefined;
   private onTouched: () => void = () => undefined;
+  private onValidatorChange: () => void = () => undefined;
 
   // eslint-disable-next-line @angular-eslint/prefer-inject -- The constructor receives a generic initial value, not an Angular dependency.
   protected constructor(initialValue: TValue) {
@@ -134,6 +144,25 @@ export abstract class ErpInputBase<TValue> implements ControlValueAccessor {
     if (isDisabled) {
       this.clearFocusState();
     }
+  }
+
+  ngOnChanges(_changes: SimpleChanges): void {
+    this.onValidatorChange();
+  }
+
+  validate(_control: AbstractControl): ValidationErrors | null {
+    const issues = this.validationIssues();
+    if (issues.length === 0) {
+      return null;
+    }
+
+    return Object.fromEntries(
+      issues.map((issue) => [issue.code, issue]),
+    ) as ValidationErrors;
+  }
+
+  registerOnValidatorChange(fn: () => void): void {
+    this.onValidatorChange = fn;
   }
 
   protected clearFocusState(): void {
