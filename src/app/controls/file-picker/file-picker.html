@@ -49,7 +49,7 @@
     </erp-text>
   </div>
 
-  @if (policyFeedback(); as message) {
+  @if (!effectiveFeedbackVisible() && policyFeedback(); as message) {
     <erp-field-feedback
       [messageId]="policyFeedbackId"
       [text]="message"
