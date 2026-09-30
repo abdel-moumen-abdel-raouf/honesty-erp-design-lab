@@ -37,7 +37,7 @@ let nextRadioBoxId = 0;
   ],
   host: {
     '[attr.data-radio-box-tone]': 'tone()',
-    '[attr.data-radio-box-status]': 'status()',
+    '[attr.data-radio-box-status]': "valid() ? status() : 'danger'",
     '[attr.data-radio-box-size]': 'size()',
     '[attr.data-radio-box-state]': 'controlState()',
     '[attr.data-radio-box-checked]': 'currentValue()',
@@ -63,6 +63,10 @@ export class ErpRadioBox extends ErpInputBase<boolean> {
 
   protected override normalizeValue(value: unknown): boolean {
     return value === true;
+  }
+
+  protected override classifyPresence(value: unknown) {
+    return value === false ? 'no-selection' as const : null;
   }
 
   protected handleChange(event: Event): void {
