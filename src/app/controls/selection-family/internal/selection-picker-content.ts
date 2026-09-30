@@ -24,7 +24,6 @@ import {
   ERP_OVERLAY_DATA,
   ERP_OVERLAY_REF,
 } from '../../../shared/overlay/overlay-tokens';
-import {ErpButton} from '../../button/button';
 import {ErpTextBox} from '../../text-box/text-box';
 import {ErpTooltip} from '../../tooltip/tooltip';
 import {
@@ -40,7 +39,6 @@ import {ErpSelectionTile} from './selection-tile';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-selection-picker-content',
   imports: [
-    ErpButton,
     ErpIcon,
     ErpSelectionTile,
     ErpStack,
