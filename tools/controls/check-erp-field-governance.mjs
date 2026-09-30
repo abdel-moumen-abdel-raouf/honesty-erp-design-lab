@@ -951,8 +951,8 @@ export function validateRangeSliderCorrectionContracts(files) {
   for (const requirement of [
     'data-range-tooltip-anchor="lower"',
     'data-range-tooltip-anchor="upper"',
-    '[style.inset-inline-start]="lowerPosition() + \'%\'"',
-    '[style.inset-inline-start]="upperPosition() + \'%\'"',
+    '[style.left]="lowerPosition() + \'%\'"',
+    '[style.left]="upperPosition() + \'%\'"',
     '[open]="showValueTooltip() && activeThumb() === \'lower\'"',
     '[open]="showValueTooltip() && activeThumb() === \'upper\'"',
   ]) {
@@ -1657,8 +1657,8 @@ function runSelfTest() {
         '[min]="min()" [max]="max()"',
         'data-range-tooltip-anchor="lower"',
         'data-range-tooltip-anchor="upper"',
-        '[style.inset-inline-start]="lowerPosition() + \'%\'"',
-        '[style.inset-inline-start]="upperPosition() + \'%\'"',
+        '[style.left]="lowerPosition() + \'%\'"',
+        '[style.left]="upperPosition() + \'%\'"',
         '[open]="showValueTooltip() && activeThumb() === \'lower\'"',
         '[open]="showValueTooltip() && activeThumb() === \'upper\'"',
       ].join('\n'),
