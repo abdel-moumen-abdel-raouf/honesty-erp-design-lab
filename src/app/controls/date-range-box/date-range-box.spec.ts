@@ -6,8 +6,26 @@ import {ErpDateRangeBox} from './date-range-box';
 describe('ErpDateRangeBox', () => {
   beforeEach(() => TestBed.configureTestingModule({imports: [ErpDateRangeBox]}));
   function create() { const fixture = TestBed.createComponent(ErpDateRangeBox); fixture.componentRef.setInput('label', 'Range'); fixture.detectChanges(); return fixture; }
-  it('creates with an empty ordered range and no native date picker', () => { const fixture = create(); const control = fixture.componentInstance; expect(reflectComponentType(ErpDateRangeBox)?.selector).toBe('erp-date-range-box'); expect(control.locale()).toBe('ar-EG'); expect(control.pattern()).toBeNull(); expect(control.overlayConfig()).toBeNull(); expect((fixture.nativeElement as HTMLElement).querySelector('input[type="date"]')).toBeNull(); expect((fixture.nativeElement as HTMLElement).hasAttribute('data-date-range-start')).toBe(false); });
-  it('preserves start <= end and drops a reversed end deterministically', () => { const fixture = create(); fixture.componentInstance.writeValue({start: '2026-05-10', end: '2026-05-01'}); fixture.detectChanges(); const host = fixture.nativeElement as HTMLElement; expect(host.getAttribute('data-date-range-start')).toBe('2026-05-10'); expect(host.hasAttribute('data-date-range-end')).toBe(false); });
+  it('creates with an empty ordered range and no native date picker', () => { const fixture = create(); const control = fixture.componentInstance; expect(reflectComponentType(ErpDateRangeBox)?.selector).toBe('erp-date-range-box'); expect(control.min()).toBeNull(); expect(control.max()).toBeNull(); expect(control.locale()).toBe('ar-EG'); expect(control.pattern()).toBeNull(); expect(control.overlayConfig()).toBeNull(); expect((fixture.nativeElement as HTMLElement).querySelector('input[type="date"]')).toBeNull(); expect((fixture.nativeElement as HTMLElement).hasAttribute('data-date-range-start')).toBe(false); });
+  it('preserves the start, drops a reversed end, and exposes incomplete-range validation', () => { const fixture = create(); const control = fixture.componentInstance; fixture.componentInstance.writeValue({start: '2026-05-10', end: '2026-05-01'}); fixture.detectChanges(); const host = fixture.nativeElement as HTMLElement; expect(host.getAttribute('data-date-range-start')).toBe('2026-05-10'); expect(host.hasAttribute('data-date-range-end')).toBe(false); expect(control.inputState()).toBe('invalid-entry'); expect(control.validationIssues().map((issue) => issue.code)).toContain('range.incomplete'); });
   it('commits an ordered range only after confirm', async () => { const fixture = create(); const manager = TestBed.inject(ErpOverlayManager); const onChange = vi.fn(); fixture.componentInstance.registerOnChange(onChange); (fixture.nativeElement as HTMLElement).querySelector('button')?.click(); const ref = manager.entries()[0].ref; ref.close({start: '2026-05-01', end: '2026-05-10'}); manager.completeTransition(ref.id, 'leaving'); await Promise.resolve(); expect(onChange).toHaveBeenCalledWith({start: '2026-05-01', end: '2026-05-10'}); });
   it('applies one date pattern to both endpoints and does not publish an invalid range', async () => { const fixture = create(); const onChange = vi.fn(); fixture.componentInstance.registerOnChange(onChange); fixture.componentRef.setInput('pattern', '^2026-05-\\d{2}$'); fixture.detectChanges(); (fixture.nativeElement as HTMLElement).querySelector('button')?.click(); const manager = TestBed.inject(ErpOverlayManager); const ref = manager.entries()[0].ref; ref.close({start: '2026-05-01', end: '2026-06-10'}); manager.completeTransition(ref.id, 'leaving'); await Promise.resolve(); expect(onChange).not.toHaveBeenCalled(); });
+
+  it('uses no-selection for an empty range and validates configured bounds', () => {
+    const fixture = create();
+    const control = fixture.componentInstance;
+
+    expect(control.inputState()).toBe('no-selection');
+
+    fixture.componentRef.setInput('min', '2026-05-01');
+    fixture.componentRef.setInput('max', '2026-05-31');
+    control.writeValue({start: '2026-04-30', end: '2026-05-10'});
+    fixture.detectChanges();
+
+    expect(control.inputState()).toBe('invalid-entry');
+    expect(control.validationIssues().map((issue) => issue.code)).toContain(
+      'range.min',
+    );
+  });
+
 });
