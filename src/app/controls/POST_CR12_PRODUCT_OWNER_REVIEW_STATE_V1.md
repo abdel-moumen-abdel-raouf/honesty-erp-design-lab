@@ -1046,29 +1046,43 @@ implementation state, blocker, verification result, or Product Owner finding.
 
 
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_START -->
-## 2026-09-30 — local verification follow-up: InputBase lint-only correction
+## 2026-09-30 — verify reached test compilation; two bounded compile gaps corrected
 
-Product Owner reran the canonical `npm run verify:clean` after the SearchBox
-maxlength correction.
+Product Owner reran `npm run verify:clean` from
+`c9bd7204cb85ac4509c35cd3ea7015fb78ca1fe8`.
 
 Observed progress:
-- all governance checks PASS, including ErpField and ErpOverlay;
-- Angular ESLint then stopped on exactly three unused formal parameters in
-  `src/app/controls/input-family/input-base.ts`:
-  `_changes`, `_control`, and `_value`.
+- all governance checks PASS;
+- Angular lint PASS with zero warnings;
+- test bundle generation then stopped before executing tests on exactly two
+  TypeScript/template compilation errors.
 
-Bounded correction:
-- commit `e933a4b598c32cea949d61aaf31cb207c54e4b10`;
-- retain Angular/common validation method signatures unchanged;
-- explicitly consume the intentionally unused parameters with no-op `void`
-  expressions;
-- no validation logic, public API, runtime behavior, or visual behavior changed.
+Bounded correction checkpoint:
+`9b499753bb06d350513a2f0bbad0a5de84a2817d`
+(`fix(inputs): close selection and temporal test compile gaps`).
+
+Corrections:
+1. Selection/ColorPicker label contract:
+   - free-color template uses `data.actionLabels.freeColor`;
+   - `ErpSelectionActionLabels` and its default object lacked that key;
+   - add typed `freeColor` with Arabic-first default `لون حر`;
+   - add direct selection-content test evidence and Arabic-default governance.
+
+2. Temporal Now reveal test typing:
+   - production `revealSelectedTime()` remains unchanged;
+   - the spec's nullable closure-captured animation-frame callback was narrowed
+     incorrectly by TypeScript at the call site;
+   - replace the harness-only capture with a typed
+     `FrameRequestCallback[]` queue and assert exactly one queued reveal frame.
+
+No temporal runtime behavior, picker interaction contract, ColorPicker mode law,
+or visual redesign is introduced by this correction.
 
 Next mandatory action:
 1. pull current `main`;
 2. rerun complete `npm run verify:clean`;
 3. correct only a newly demonstrated failure if the gate stops again;
-4. if Fully Green, record the new verified checkpoint and resume Product Owner
+4. if Fully Green, record the verified checkpoint and resume Product Owner
    runtime + Light/Dark Inputs re-review.
 
 Inputs remains Product Owner BLOCKED until acceptance.
