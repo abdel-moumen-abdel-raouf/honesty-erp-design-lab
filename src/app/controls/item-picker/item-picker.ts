@@ -1,5 +1,5 @@
 import {booleanAttribute, ChangeDetectionStrategy, Component, computed, forwardRef, inject, input} from '@angular/core';
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
 import {ErpText} from '../../primitives/text/text';
 import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
@@ -19,7 +19,18 @@ let nextItemPickerId = 0;
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-item-picker',
   imports: [ErpFieldFrame, ErpFieldTrigger, ErpText],
-  providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => ErpItemPicker), multi: true}],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ErpItemPicker),
+      multi: true,
+    },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => ErpItemPicker),
+      multi: true,
+    },
+  ],
   templateUrl: './item-picker.html',
   styleUrl: './item-picker.scss',
   host: {'[attr.data-field-configuration-state]': 'fieldConfigurationState()', '[attr.data-item-picker-value]': 'currentValue()'},
