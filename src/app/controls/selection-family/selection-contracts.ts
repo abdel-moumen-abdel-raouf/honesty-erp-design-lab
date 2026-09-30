@@ -24,8 +24,6 @@ export type ErpColorPickerValue =
     };
 
 export interface ErpSelectionActionLabels {
-  readonly systemColors: string;
-  readonly freeColor: string;
   readonly noSelection: string;
   readonly search: string;
   readonly clear: string;
@@ -35,8 +33,6 @@ export interface ErpSelectionActionLabels {
 
 export const ERP_SELECTION_DEFAULT_ACTION_LABELS =
   Object.freeze<ErpSelectionActionLabels>({
-    systemColors: 'ألوان النظام',
-    freeColor: 'لون حر',
     noSelection: 'لم يتم اختيار قيمة',
     search: 'بحث',
     clear: 'مسح',
