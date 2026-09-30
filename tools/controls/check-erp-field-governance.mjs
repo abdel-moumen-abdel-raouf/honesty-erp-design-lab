@@ -1439,6 +1439,154 @@ function runSelfTest() {
     throw new Error('ErpField checker rejected valid trigger fixtures');
   }
 
+  const validValidationFiles = new Map([
+    [
+      INPUT_CONTRACTS,
+      [
+        "'null'",
+        "'empty'",
+        "'no-selection'",
+        "'invalid-entry'",
+        "'valid-entry'",
+        'export interface ErpInputValidationIssue',
+        'readonly code: string;',
+        'readonly message: string;',
+        'readonly source: ErpInputValidationSource;',
+        'export interface ErpInputValidationSnapshot',
+        'readonly errors: readonly string[];',
+        'readonly issues: readonly ErpInputValidationIssue[];',
+      ].join('\n'),
+    ],
+    [
+      INPUT_BASE_SOURCE,
+      [
+        'readonly required = input(false, {transform: booleanAttribute});',
+        'externalValidationIssues',
+        'readonly validationIssues = computed',
+        'readonly valid = computed',
+        'readonly inputState = computed',
+        'readonly errors = computed',
+        'readonly validation = computed',
+        'protected validationCandidate()',
+        'protected classifyPresence',
+        'protected validateCandidate',
+        'protected validationIssue',
+      ].join('\n'),
+    ],
+    [
+      FIELD_BASE_SOURCE,
+      [
+        'readonly clearable = input(true, {transform: booleanAttribute});',
+        'effectiveFieldStatus = computed<ErpFieldStatus>',
+        'effectiveFeedbackText = computed',
+        'effectiveFeedbackVisible = computed',
+      ].join('\n'),
+    ],
+    [
+      'src/styles/foundation/components/field-frame/_tokens.scss',
+      '--honesty-field-frame-hover-bg:',
+    ],
+    [
+      FIELD_HOVER_STYLE,
+      [
+        "[data-field-variant='ghost']",
+        "[data-field-variant='text']",
+        "[data-field-border-mode='underline']",
+        'var(--honesty-field-frame-hover-bg)',
+      ].join('\n'),
+    ],
+    [
+      'src/app/controls/url-box/url-box.ts',
+      "'url.format' this.commitUserValue(value); النص المُدخل ليس عنوان رابط إلكتروني صالحًا.",
+    ],
+    [
+      'src/app/controls/tel-box/tel-box.ts',
+      "'tel.plus-count' 'tel.plus-position' 'tel.too-short' this.commitUserValue(value);",
+    ],
+    [
+      'src/app/controls/number-box/number-box.ts',
+      "'number.min' 'number.max' 'number.step' 'number.format' draftActive",
+    ],
+    [
+      MONEY_BOX_SOURCE,
+      "'money.min' 'money.max' 'money.step' 'money.format' draftActive",
+    ],
+    [
+      FILE_SELECTION_BASE,
+      "minFiles = input<number | null>(null) 'files.min-count' 'files.max-count' 'files.type' 'files.max-size'",
+    ],
+  ]);
+
+  if (validateUnifiedInputValidationContracts(validValidationFiles).length > 0) {
+    throw new Error('ErpField checker rejected valid unified validation fixtures');
+  }
+
+  const invalidValidationFiles = new Map(validValidationFiles);
+  invalidValidationFiles.set(
+    INPUT_BASE_SOURCE,
+    (invalidValidationFiles.get(INPUT_BASE_SOURCE) ?? '').replace(
+      'readonly validationIssues = computed',
+      '',
+    ),
+  );
+  if (
+    validateUnifiedInputValidationContracts(invalidValidationFiles).length === 0
+  ) {
+    throw new Error(
+      'ErpField checker accepted missing unified validation substrate',
+    );
+  }
+
+  const validRangeFiles = new Map([
+    [
+      RANGE_SLIDER_SOURCE,
+      [
+        'showValueTooltip = input(true',
+        'valueTooltipPlacement = input<ErpTooltipPlacement>',
+        'valueTooltipFormatter',
+        'activeThumb = signal<ErpRangeSliderThumb | null>(null)',
+        'tooltipText(thumb: ErpRangeSliderThumb)',
+        'handlePointerDown(thumb: ErpRangeSliderThumb)',
+      ].join('\n'),
+    ],
+    [
+      RANGE_SLIDER_TEMPLATE,
+      [
+        '[min]="min()" [max]="max()"',
+        '[min]="min()" [max]="max()"',
+        'data-range-tooltip-anchor="lower"',
+        'data-range-tooltip-anchor="upper"',
+        "[style.inset-inline-start]="lowerPosition() + '%'" + '"',
+        "[style.inset-inline-start]="upperPosition() + '%'" + '"',
+        "[open]="showValueTooltip() && activeThumb() === 'lower'"",
+        "[open]="showValueTooltip() && activeThumb() === 'upper'"",
+      ].join('\n'),
+    ],
+    [
+      RANGE_SLIDER_STYLE,
+      [
+        '.range-slider__rail { inset-inline: calc(var(--honesty-range-slider-thumb-size) / 2); }',
+        '.range-slider__tooltip-track { inset-inline: calc(var(--honesty-range-slider-thumb-size) / 2); }',
+      ].join('\n'),
+    ],
+  ]);
+
+  if (validateRangeSliderCorrectionContracts(validRangeFiles).length > 0) {
+    throw new Error('ErpField checker rejected valid RangeSlider fixtures');
+  }
+
+  const invalidRangeFiles = new Map(validRangeFiles);
+  invalidRangeFiles.set(
+    RANGE_SLIDER_TEMPLATE,
+    (invalidRangeFiles.get(RANGE_SLIDER_TEMPLATE) ?? '').replace(
+      '[max]="max()"',
+      '[max]="currentValue().upper"',
+    ),
+  );
+  if (validateRangeSliderCorrectionContracts(invalidRangeFiles).length === 0) {
+    throw new Error('ErpField checker accepted mismatched RangeSlider geometry');
+  }
+
   const validFileBase = `
 export abstract class ErpFileSelectionBase extends ErpFieldBase<readonly File[]> {
   accept = input<string | null>(null);
@@ -2176,6 +2324,8 @@ const files = new Map(
 );
 
 const errors = validate(files);
+errors.push(...validateUnifiedInputValidationContracts(files));
+errors.push(...validateRangeSliderCorrectionContracts(files));
 errors.push(...validateFieldTriggerContracts(files));
 errors.push(...validateNumericEditorContracts(files));
 errors.push(...validateArabicFirstDefaults(files));
