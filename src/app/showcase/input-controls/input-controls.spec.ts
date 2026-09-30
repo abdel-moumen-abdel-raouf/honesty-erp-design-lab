@@ -64,6 +64,18 @@ describe('InputControls showcase', () => {
       [...(group?.querySelectorAll<HTMLElement>('[data-color-picker-evidence]') ?? [])]
         .map((control) => control.dataset['colorPickerEvidence']),
     ).toEqual(['system', 'free']);
+
+    expect(
+      [...(group?.querySelectorAll<HTMLElement>('[data-color-picker-evidence]') ?? [])]
+        .map((control) => control.getAttribute('data-color-picker-mode')),
+    ).toEqual(['system', 'free']);
+
+    const item = group?.querySelector<HTMLElement>('[data-item-picker-evidence]');
+    const combo = group?.querySelector<HTMLElement>('[data-combo-box-evidence]');
+
+    expect(item?.hasAttribute('searchable')).toBe(false);
+    expect(item?.querySelector('erp-field-trigger')).not.toBeNull();
+    expect(combo?.querySelector('input[role="combobox"]')).not.toBeNull();
   });
 
   it('contains all four temporal overlay triggers', () => {
@@ -115,6 +127,7 @@ describe('InputControls showcase', () => {
       group?.querySelectorAll('[data-money-box-arabic-digits-evidence]').length,
     ).toBe(1);
     expect(group?.querySelectorAll('[data-range-thumb]').length).toBe(2);
+    expect(group?.querySelectorAll('[data-range-tooltip-anchor]').length).toBe(2);
   });
 
   it('contains multi-file and multi-image RTL evidence', async () => {
