@@ -79,10 +79,18 @@ describe('ErpUrlBox', () => {
     native.dispatchEvent(new FocusEvent('focus'));
     native.value = 'https://other.example/path';
     native.dispatchEvent(new Event('input'));
-    expect(onChange).not.toHaveBeenCalled();
+    expect(onChange).toHaveBeenCalledWith('https://other.example/path');
+    expect(fixture.componentInstance.inputState()).toBe('invalid-entry');
+    expect(
+      fixture.componentInstance.validationIssues().map((issue) => issue.code),
+    ).toContain('url.format');
+
     native.value = 'https://approved.example/path';
     native.dispatchEvent(new Event('input'));
-    expect(onChange).toHaveBeenCalledWith('https://approved.example/path');
+    expect(onChange).toHaveBeenLastCalledWith(
+      'https://approved.example/path',
+    );
+    expect(fixture.componentInstance.inputState()).toBe('valid-entry');
 
     fixture.componentRef.setInput('pattern', '[');
     fixture.detectChanges();

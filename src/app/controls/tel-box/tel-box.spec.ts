@@ -78,10 +78,16 @@ describe('ErpTelBox', () => {
     native.dispatchEvent(new FocusEvent('focus'));
     native.value = '+1 555 123 4567';
     native.dispatchEvent(new Event('input'));
-    expect(onChange).not.toHaveBeenCalled();
+    expect(onChange).toHaveBeenCalledWith('+1 555 123 4567');
+    expect(fixture.componentInstance.inputState()).toBe('invalid-entry');
+    expect(
+      fixture.componentInstance.validationIssues().map((issue) => issue.code),
+    ).toContain('tel.format');
+
     native.value = '+20 100 123 4567';
     native.dispatchEvent(new Event('input'));
-    expect(onChange).toHaveBeenCalledWith('+20 100 123 4567');
+    expect(onChange).toHaveBeenLastCalledWith('+20 100 123 4567');
+    expect(fixture.componentInstance.inputState()).toBe('valid-entry');
 
     fixture.componentRef.setInput('pattern', '[');
     fixture.detectChanges();

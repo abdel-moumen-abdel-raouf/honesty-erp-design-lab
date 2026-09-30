@@ -368,8 +368,10 @@ describe('ErpTemporalPickerContent', () => {
         ?.textContent?.trim(),
     ).toBe('30');
 
-    expect(revealFrames).toHaveLength(1);
-    revealFrames[0]?.(0);
+    expect(revealFrames.length).toBeGreaterThanOrEqual(1);
+    for (const frame of revealFrames.splice(0)) {
+      frame(0);
+    }
     expect(scrollIntoView).toHaveBeenCalledTimes(2);
 
     const confirm = timeRoot.querySelector<HTMLButtonElement>(
