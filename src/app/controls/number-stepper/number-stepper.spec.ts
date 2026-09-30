@@ -93,11 +93,47 @@ describe('ErpNumberStepper', () => {
     expect(onChange).not.toHaveBeenCalled();
     native.value = '4x';
     native.dispatchEvent(new Event('input'));
-    expect(native.value).toBe('4.');
+    fixture.detectChanges();
+    expect(native.value).toBe('4x');
+    expect(control.inputState()).toBe('invalid-entry');
+    expect(control.validationIssues().map((issue) => issue.code)).toContain(
+      'number-stepper.format',
+    );
 
     fixture.componentRef.setInput('pattern', '[');
     fixture.detectChanges();
     expect(host.getAttribute('data-field-configuration-state')).toBe('invalid');
     expect(native.disabled).toBe(true);
   });
+
+  it('preserves typed out-of-range values while step actions remain bounded', () => {
+    const fixture = create();
+    const control = fixture.componentInstance;
+    const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
+    const onChange = vi.fn();
+    control.registerOnChange(onChange);
+
+    native.dispatchEvent(new FocusEvent('focus'));
+    native.value = '14';
+    native.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    expect(onChange).toHaveBeenCalledWith(14);
+    expect(native.value).toBe('14');
+    expect(control.inputState()).toBe('invalid-entry');
+    expect(control.validationIssues().map((issue) => issue.code)).toContain(
+      'number-stepper.max',
+    );
+
+    (
+      fixture.nativeElement.querySelector(
+        '[data-stepper-decrement] button',
+      ) as HTMLButtonElement
+    ).click();
+    fixture.detectChanges();
+
+    expect(native.value).toBe('10');
+    expect(control.inputState()).toBe('valid-entry');
+  });
+
 });
