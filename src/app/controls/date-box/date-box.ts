@@ -137,7 +137,11 @@ export class ErpDateBox extends ErpFieldBase<string | null> {
   private commitPickerResult(value: ErpTemporalValue | undefined): void {
     if (value === null) {
       this.commitUserValue(null);
-    } else if (typeof value === 'string' && this.normalizeValue(value) === value) {
+    } else if (
+      typeof value === 'string' &&
+      this.normalizeValue(value) === value &&
+      this.validateCandidate(value).length === 0
+    ) {
       this.commitUserValue(value);
     }
   }
