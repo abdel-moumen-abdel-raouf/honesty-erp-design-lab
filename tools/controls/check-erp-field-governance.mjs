@@ -286,6 +286,18 @@ export function validate(files) {
       );
     }
 
+    if (
+      control &&
+      normalized.endsWith('.ts') &&
+      !isSpec(normalized) &&
+      source.includes('NG_VALUE_ACCESSOR') &&
+      !source.includes('NG_VALIDATORS')
+    ) {
+      errors.push(
+        `${normalized}: every CVA ERP input must register the common NG_VALIDATORS bridge`,
+      );
+    }
+
     const featurePage =
       normalized.startsWith('src/app/showcase/') ||
       normalized.startsWith('src/app/features/') ||
@@ -716,6 +728,10 @@ export function validateUnifiedInputValidationContracts(files) {
   for (const requirement of [
     'readonly required = input(false, {transform: booleanAttribute});',
     'externalValidationIssues',
+    'implements ControlValueAccessor, Validator, OnChanges',
+    'validate(_control: AbstractControl): ValidationErrors | null',
+    'registerOnValidatorChange(fn: () => void)',
+    'protected notifyValidationChange()',
     'readonly validationIssues = computed',
     'readonly valid = computed',
     'readonly inputState = computed',
@@ -1515,6 +1531,10 @@ function runSelfTest() {
       [
         'readonly required = input(false, {transform: booleanAttribute});',
         'externalValidationIssues',
+        'implements ControlValueAccessor, Validator, OnChanges',
+        'validate(_control: AbstractControl): ValidationErrors | null',
+        'registerOnValidatorChange(fn: () => void)',
+        'protected notifyValidationChange()',
         'readonly validationIssues = computed',
         'readonly valid = computed',
         'readonly inputState = computed',
