@@ -67,6 +67,7 @@ let nextRangeSliderId = 0;
     '[attr.data-range-slider-configuration-state]': 'rangeConfigurationState()',
     '[attr.data-range-slider-lower]': 'currentValue().lower',
     '[attr.data-range-slider-upper]': 'currentValue().upper',
+    '[attr.data-range-slider-active-thumb]': 'activeThumb()',
   },
 })
 export class ErpRangeSlider
