@@ -933,6 +933,7 @@ export function validateRangeSliderCorrectionContracts(files) {
     'activeThumb = signal<ErpRangeSliderThumb | null>(null)',
     'tooltipText(thumb: ErpRangeSliderThumb)',
     'handlePointerDown(thumb: ErpRangeSliderThumb)',
+    'this.valueTooltips()[index]?.requestPosition()',
   ]) {
     if (!source.includes(requirement)) {
       errors.push(`RangeSlider tooltip contract: missing ${requirement}`);
@@ -1651,6 +1652,7 @@ function runSelfTest() {
         'activeThumb = signal<ErpRangeSliderThumb | null>(null)',
         'tooltipText(thumb: ErpRangeSliderThumb)',
         'handlePointerDown(thumb: ErpRangeSliderThumb)',
+        'this.valueTooltips()[index]?.requestPosition()',
       ].join('\n'),
     ],
     [
