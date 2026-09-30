@@ -1614,3 +1614,22 @@ Continuity rule for subsequent project turns: update the applicable persistent
 handoff/review/roadmap documents whenever the turn changes a decision, scope,
 implementation state, blocker, verification result, or Product Owner finding.
 <!-- CHATGPT_CONTINUITY_SYNC_END -->
+
+
+<!-- CHATGPT_LOCAL_VERIFY_SYNC_START -->
+## 2026-09-30 — local verification handoff
+
+Product Owner is now expected to fast-forward/pull local `main` and run the
+canonical full technical gate:
+
+`npm run verify:clean`
+
+Current rule:
+- do not make speculative source changes before this run;
+- if the gate fails, correct only the concrete demonstrated failure;
+- if the gate passes, record the new Fully Green checkpoint;
+- after technical green, resume Product Owner runtime + Light/Dark Inputs re-review;
+- Inputs remains BLOCKED until Product Owner acceptance.
+
+This is execution-state documentation only.
+<!-- CHATGPT_LOCAL_VERIFY_SYNC_END -->
