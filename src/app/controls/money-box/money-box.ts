@@ -233,6 +233,7 @@ export class ErpMoneyBox extends ErpFieldBase<number | null> {
     const value = native.value;
     this.editingText.set(value);
     this.draftActive.set(true);
+    this.notifyValidationChange();
 
     if (value === '') {
       this.commitUserValue(null);
