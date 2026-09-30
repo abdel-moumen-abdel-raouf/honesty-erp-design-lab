@@ -140,6 +140,12 @@ export class ErpTooltip implements AfterViewInit, AfterViewChecked, DoCheck, OnD
     this.restoreTriggerSemantics();
   }
 
+  requestPosition(): void {
+    if (this.viewReady && this.shown) {
+      this.controller?.requestPosition();
+    }
+  }
+
   handleTriggerPointerEnter(event: PointerEvent): void {
     if (this.state() !== 'ready' || this.activation() !== 'auto' || event.pointerType === 'touch') return;
     this.clearTimer();
