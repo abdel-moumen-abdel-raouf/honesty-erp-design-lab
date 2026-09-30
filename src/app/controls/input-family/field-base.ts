@@ -81,8 +81,6 @@ export abstract class ErpFieldBase<TValue> extends ErpInputBase<TValue> {
       shape: this.shape(),
       variant: this.variant(),
       multiline: this.isMultilineField(),
-      clearable: this.clearable(),
-      canRepresentEmpty: this.canRepresentEmptyValue(),
     }),
   );
   protected readonly fieldConfigurationState =
