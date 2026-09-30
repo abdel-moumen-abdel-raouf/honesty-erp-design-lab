@@ -3,10 +3,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   forwardRef,
   input,
   OnInit,
   signal,
+  viewChildren,
 } from '@angular/core';
 import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpText} from '../../primitives/text/text';
@@ -126,11 +128,27 @@ export class ErpRangeSlider
     this.positionFor(this.currentValue().upper),
   );
   protected readonly activeThumb = signal<ErpRangeSliderThumb | null>(null);
+  private readonly valueTooltips = viewChildren(ErpTooltip);
 
   private externalValueWritten = false;
 
   constructor() {
     super({lower: 0, upper: 100});
+
+    effect(() => {
+      const active = this.activeThumb();
+      this.lowerPosition();
+      this.upperPosition();
+
+      if (active === null) {
+        return;
+      }
+
+      queueMicrotask(() => {
+        const index = active === 'lower' ? 0 : 1;
+        this.valueTooltips()[index]?.requestPosition();
+      });
+    });
   }
 
   ngOnInit(): void {
