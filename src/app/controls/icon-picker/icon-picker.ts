@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, computed, forwardRef, inject, input} from '@angular/core';
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpIcon} from '../../primitives/icon/icon';
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
 import {ErpText} from '../../primitives/text/text';
@@ -20,7 +20,18 @@ let nextIconPickerId = 0;
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-icon-picker',
   imports: [ErpFieldFrame, ErpFieldTrigger, ErpIcon, ErpText],
-  providers: [{provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => ErpIconPicker), multi: true}],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ErpIconPicker),
+      multi: true,
+    },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => ErpIconPicker),
+      multi: true,
+    },
+  ],
   templateUrl: './icon-picker.html',
   styleUrl: './icon-picker.scss',
   host: {'[attr.data-field-configuration-state]': 'fieldConfigurationState()', '[attr.data-icon-picker-value]': 'currentValue()'},
