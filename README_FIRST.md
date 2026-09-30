@@ -107,56 +107,48 @@ implementation state, blocker, verification result, or Product Owner finding.
 
 
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_START -->
-## 2026-09-30 — verify reached 648 tests; four stale-spec failures corrected
+## 2026-09-30 — Inputs technical gate Fully Green / runtime review next
 
-Product Owner reran `npm run verify:clean` from
-`6ce541e5bcda43db181057b2e689c4dbf72f8746`.
+Product Owner pulled and verified current `main` at:
+`a7ff2c25a3130491a75af9c11ba5ba52c570ff48`
+(`docs(handoff): record stale-spec verification follow-up`).
 
-Observed progress:
-- all governance checks PASS;
-- Angular lint PASS;
-- test bundle generation PASS;
-- 87 test files executed;
-- result before correction: 83/87 test files PASS, 644/648 tests PASS;
-- exactly four tests failed.
-
-External source review determined all four were stale test expectations rather
-than production regressions.
-
-Bounded test correction checkpoint:
+Latest source-affecting checkpoint under that verified head:
 `1a6b29c1aa5dca36474c10eb40ef64492a65e595`
 (`fix(test): align Inputs specs with validation contracts`).
 
-Corrections:
-1. ItemPicker:
-   - update the old expectation `clearable() === false` to the approved
-     Field-family default `true`.
+Canonical local command:
+`npm run verify:clean`
 
-2. UrlBox developer-pattern test:
-   - unified validation governance requires `commitUserValue(value)`;
-   - invalid editable drafts are committed as the current CVA value while
-     validation marks them `invalid-entry`;
-   - update the stale test to assert invalid `url.format`, then valid recovery.
+Result: **FULLY GREEN**.
 
-3. TelBox developer-pattern test:
-   - same non-destructive committed-draft law;
-   - update the stale test to assert invalid `tel.format`, then valid recovery.
+Verified evidence:
+- Single App theme authority PASS;
+- routed-page ERP-only authoring PASS for 22 routed templates;
+- Component Token framework PASS;
+- system-color registry PASS;
+- ErpText PASS;
+- ErpIcon PASS;
+- ErpButton PASS;
+- ErpTooltip PASS;
+- ErpField PASS;
+- ErpOverlay PASS;
+- Angular lint PASS;
+- 87/87 test files PASS;
+- 648/648 tests PASS;
+- `typecheck:app` PASS;
+- `typecheck:spec` PASS;
+- production build PASS;
+- zero Angular warnings;
+- `Zero-warning build gate: PASS`.
 
-4. Temporal Now reveal test:
-   - production `revealSelectedTime()` is unchanged;
-   - clicking/rendering may schedule other UI animation frames;
-   - test now drains the queued RAF callbacks and asserts the actual contract:
-     selected hour/minute are revealed with exactly two `scrollIntoView` calls,
-     rather than asserting global RAF exclusivity.
+Status transition:
+- technical verification is complete;
+- no speculative implementation is authorized;
+- exact next gate is Product Owner runtime + Light/Dark re-review of Inputs;
+- Inputs remains Product Owner BLOCKED until visual/runtime acceptance;
+- any new correction must be driven by a concrete Product Owner finding from
+  that re-review.
 
-No production component code or product behavior changed in this correction.
-
-Next mandatory action:
-1. pull current `main`;
-2. rerun complete `npm run verify:clean`;
-3. correct only a newly demonstrated failure if the gate stops again;
-4. if Fully Green, record the new verified checkpoint and resume Product Owner
-   runtime + Light/Dark Inputs re-review.
-
-Inputs remains Product Owner BLOCKED until acceptance.
+This technical green state does not itself declare visual approval.
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_END -->
