@@ -19,6 +19,20 @@ const FIELD_FRAME_TEMPLATE =
   'src/app/controls/input-family/internal/field-frame.html';
 const FIELD_FRAME_STYLE =
   'src/app/controls/input-family/internal/field-frame.scss';
+const INPUT_BASE_SOURCE =
+  'src/app/controls/input-family/input-base.ts';
+const INPUT_CONTRACTS =
+  'src/app/controls/input-family/input-contracts.ts';
+const FIELD_BASE_SOURCE =
+  'src/app/controls/input-family/field-base.ts';
+const FIELD_HOVER_STYLE =
+  'src/app/controls/input-family/internal/field-frame-part-3.scss';
+const RANGE_SLIDER_SOURCE =
+  'src/app/controls/range-slider/range-slider.ts';
+const RANGE_SLIDER_TEMPLATE =
+  'src/app/controls/range-slider/range-slider.html';
+const RANGE_SLIDER_STYLE =
+  'src/app/controls/range-slider/range-slider.scss';
 
 function componentStyleSources(files, componentSourcePath, fallbackStylePath) {
   const source = files.get(componentSourcePath) ?? '';
