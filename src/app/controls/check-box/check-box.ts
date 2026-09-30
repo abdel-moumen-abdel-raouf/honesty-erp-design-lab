@@ -39,7 +39,7 @@ let nextCheckBoxId = 0;
   ],
   host: {
     '[attr.data-check-box-tone]': 'tone()',
-    '[attr.data-check-box-status]': 'status()',
+    '[attr.data-check-box-status]': "valid() ? status() : 'danger'",
     '[attr.data-check-box-size]': 'size()',
     '[attr.data-check-box-state]': 'controlState()',
     '[attr.data-check-box-checked]': 'currentValue()',
@@ -67,6 +67,10 @@ export class ErpCheckBox extends ErpInputBase<boolean> {
 
   protected override normalizeValue(value: unknown): boolean {
     return value === true;
+  }
+
+  protected override classifyPresence(value: unknown) {
+    return value === false ? 'no-selection' as const : null;
   }
 
   protected handleChange(event: Event): void {
