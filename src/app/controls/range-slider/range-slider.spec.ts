@@ -1,5 +1,6 @@
 import {reflectComponentType} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
+import {ErpTooltip} from '../tooltip/tooltip';
 import {ErpRangeSlider} from './range-slider';
 
 describe('ErpRangeSlider', () => {
@@ -109,7 +110,7 @@ describe('ErpRangeSlider', () => {
     expect(host.getAttribute('data-range-slider-lower')).toBe('20');
   });
 
-  it('keeps tooltip anchors on the same global percentages and formats active values per thumb', () => {
+  it('keeps tooltip anchors on the same global percentages and repositions with the active thumb', async () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const host = fixture.nativeElement as HTMLElement;
@@ -137,16 +138,26 @@ describe('ErpRangeSlider', () => {
       });
     }
 
+    const reposition = vi.spyOn(ErpTooltip.prototype, 'requestPosition');
     const lower = host.querySelector(
       '[data-range-thumb="lower"]',
     ) as HTMLInputElement;
     lower.dispatchEvent(new Event('pointerdown', {bubbles: true}));
     fixture.detectChanges();
+    await Promise.resolve();
 
     const tooltips = host.querySelectorAll('erp-tooltip');
     expect(host.getAttribute('data-range-slider-active-thumb')).toBe('lower');
     expect(tooltips[0].getAttribute('data-tooltip-open')).toBe('true');
     expect(tooltips[0].textContent).toContain('lower:20');
+
+    lower.value = '30';
+    lower.dispatchEvent(new Event('input', {bubbles: true}));
+    fixture.detectChanges();
+    await Promise.resolve();
+
+    expect(anchors[0].style.left).toBe('30%');
+    expect(reposition).toHaveBeenCalled();
 
     lower.dispatchEvent(new Event('pointerup', {bubbles: true}));
     fixture.detectChanges();
