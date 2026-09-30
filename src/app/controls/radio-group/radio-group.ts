@@ -1,4 +1,4 @@
-import {booleanAttribute, ChangeDetectionStrategy, Component, ElementRef, computed, forwardRef, inject, input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ElementRef, computed, forwardRef, inject, input} from '@angular/core';
 import {FormsModule, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpText} from '../../primitives/text/text';
 import {ErpInputBase} from '../input-family/input-base';
@@ -19,13 +19,15 @@ let nextRadioGroupId = 0;
 })
 export class ErpRadioGroup extends ErpInputBase<string | null> {
   readonly options = input.required<readonly ErpRadioGroupOption[]>();
-  readonly required = input(false, {transform: booleanAttribute});
   protected readonly groupId = `erp-radio-group-${++nextRadioGroupId}`;
   protected readonly coordinatedName = computed(() => this.name() ?? this.groupId);
   protected readonly groupState = computed(() => this.configurationState() === 'invalid' ? 'invalid' : this.effectiveDisabled() ? 'disabled' : 'ready');
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   constructor() { super(null); }
   protected override normalizeValue(value: unknown): string | null { return typeof value === 'string' && this.options().some((option) => option.value === value && !option.disabled) ? value : null; }
+  protected override classifyPresence(value: unknown) {
+    return value === null ? 'no-selection' as const : null;
+  }
   protected select(option: ErpRadioGroupOption, checked: boolean): void { if (checked && !option.disabled) this.commitUserValue(option.value); }
   protected handleKeydown(event: KeyboardEvent): void {
     if (!['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft'].includes(event.key)) return;
