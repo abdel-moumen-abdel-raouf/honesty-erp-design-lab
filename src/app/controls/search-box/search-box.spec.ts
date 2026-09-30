@@ -110,7 +110,7 @@ describe('ErpSearchBox', () => {
     expect(control.dismissOnOutside()).toBe(true);
     expect(control.dismissOnEscape()).toBe(true);
     expect(control.showDefaultSearchIcon()).toBe(true);
-    expect(control.clearable()).toBe(false);
+    expect(control.clearable()).toBe(true);
     expect(control.enterAnimation()).toBe('fade-scale');
     expect(control.exitAnimation()).toBe('fade-scale');
     expect(host.getAttribute('data-search-box-mode')).toBe('dropdown');
