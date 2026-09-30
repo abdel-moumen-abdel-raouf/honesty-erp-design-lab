@@ -8,7 +8,7 @@ import {
   input,
   signal,
 } from '@angular/core';
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {
   ERP_URL_FINAL_PATTERN,
   isHttpUrlDomainValue,
@@ -31,6 +31,11 @@ let nextUrlBoxId = 0;
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ErpUrlBox),
+      multi: true,
+    },
+    {
+      provide: NG_VALIDATORS,
       useExisting: forwardRef(() => ErpUrlBox),
       multi: true,
     },
