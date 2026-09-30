@@ -214,6 +214,7 @@ export class ErpNumberBox extends ErpFieldBase<number | null> {
     const value = native.value;
     this.draftText.set(value);
     this.draftActive.set(true);
+    this.notifyValidationChange();
 
     if (value === '') {
       this.commitUserValue(null);
