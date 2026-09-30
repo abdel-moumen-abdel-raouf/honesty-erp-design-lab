@@ -36,11 +36,24 @@ describe('ErpDateBox', () => {
     expect(config.dismissOnBackdrop).toBe(false); expect(config.dismissOnEscape).toBe(false); expect(config.blur).toBe('high'); expect(config.backdropTone).toBe('accent'); expect(config.enterAnimation).toBe('slide-up'); expect(config.exitAnimation).toBe('fade');
   });
 
-  it('normalizes ISO dates and clamps them to configured bounds', () => {
+  it('preserves out-of-range ISO dates and reports bound validation without clamping', () => {
     const fixture = create(); const control = fixture.componentInstance;
-    fixture.componentRef.setInput('min', '2026-01-10'); fixture.componentRef.setInput('max', '2026-01-20'); fixture.detectChanges();
-    control.writeValue('2026-01-01'); fixture.detectChanges(); expect((fixture.nativeElement as HTMLElement).getAttribute('data-date-box-value')).toBe('2026-01-10');
-    control.writeValue('invalid'); fixture.detectChanges(); expect((fixture.nativeElement as HTMLElement).hasAttribute('data-date-box-value')).toBe(false);
+    fixture.componentRef.setInput('min', '2026-01-10');
+    fixture.componentRef.setInput('max', '2026-01-20');
+    fixture.detectChanges();
+
+    control.writeValue('2026-01-01');
+    fixture.detectChanges();
+
+    const host = fixture.nativeElement as HTMLElement;
+    expect(host.getAttribute('data-date-box-value')).toBe('2026-01-01');
+    expect(control.inputState()).toBe('invalid-entry');
+    expect(control.validationIssues().map((issue) => issue.code)).toContain('date.min');
+
+    control.writeValue('invalid');
+    fixture.detectChanges();
+    expect(host.hasAttribute('data-date-box-value')).toBe(false);
+    expect(control.inputState()).toBe('no-selection');
   });
 
   it('opens on ArrowDown and commits only a confirmed staged result', async () => {
