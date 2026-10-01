@@ -174,7 +174,7 @@ The shared frame owns:
 - a Header with ErpIcon, ErpText title/subtitle, and a Tooltip-wrapped close
   ErpIconButton;
 - a primary scrolling Body for dynamic content;
-- a single Footer with logically grouped ERP Button actions.
+- a single Footer with logically grouped ERP actions. Ordinary actions use ErpButton; Clear/Clear Selected use ErpIconButton with a semantic delete icon and ErpTooltip label.
 
 The close action always dismisses with `close-action`. Dynamic content
 registers its business behavior by stable action ID through the frame action
@@ -204,7 +204,7 @@ Overlay-backed selection Composites are:
 - `ErpComboBox`
 
 These controls stage selection inside the overlay and register the shared frame
-ordered shared-footer actions. Temporal Today/Clear and selection Clear
+ordered shared-footer actions. Temporal Today remains a normal utility action; Temporal Clear and Selection Clear
 Selected utilities stage values without closing; their disabled state follows
 the staged value. Pickers commit the CVA value only on the primary confirmation
 action. Secondary, close, or other dismissal does not mutate the

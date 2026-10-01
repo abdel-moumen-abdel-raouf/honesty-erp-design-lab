@@ -29,6 +29,10 @@ const SELECTION_PICKER_SOURCE =
   'src/app/controls/selection-family/internal/selection-picker-content.ts';
 const SELECTION_PICKER_TEMPLATE =
   'src/app/controls/selection-family/internal/selection-picker-content.html';
+const TEMPORAL_CONTRACTS =
+  'src/app/controls/temporal-family/temporal-contracts.ts';
+const SELECTION_CONTRACTS =
+  'src/app/controls/selection-family/selection-contracts.ts';
 const SPLIT_BUTTON_SOURCE =
   'src/app/controls/split-button/split-button.ts';
 const MOTION_CONTRACTS =
@@ -441,6 +445,8 @@ export function validateOverlayFrameContract(files) {
   const temporalTemplate = files.get(TEMPORAL_PICKER_TEMPLATE) ?? '';
   const selectionSource = files.get(SELECTION_PICKER_SOURCE) ?? '';
   const selectionTemplate = files.get(SELECTION_PICKER_TEMPLATE) ?? '';
+  const temporalContracts = files.get(TEMPORAL_CONTRACTS) ?? '';
+  const selectionContracts = files.get(SELECTION_CONTRACTS) ?? '';
 
   for (const required of [
     'export interface ErpOverlayHeaderConfig',
@@ -553,6 +559,23 @@ export function validateOverlayFrameContract(files) {
       template.includes('data-cancel-action')
     ) {
       errors.push(`${name}: duplicate body confirm/cancel footer is forbidden`);
+    }
+  }
+
+  for (const [name, source, id] of [
+    ['Temporal picker', temporalContracts, 'clear'],
+    ['Selection picker', selectionContracts, 'clear-selected'],
+  ]) {
+    for (const requirement of [
+      `id: '${id}'`,
+      "icon: 'delete' as const",
+      "presentation: 'icon-button' as const",
+    ]) {
+      if (!source.includes(requirement)) {
+        errors.push(
+          `${name}: Clear must be a delete IconButton action with Tooltip presentation; missing ${requirement}`,
+        );
+      }
     }
   }
 
@@ -922,6 +945,14 @@ this.ref().dismiss('close-action')`,
       "registerFrameAction('confirm') registerFrameAction('cancel')",
     ],
     [SELECTION_PICKER_TEMPLATE, '<erp-selection-tile />'],
+    [
+      TEMPORAL_CONTRACTS,
+      "id: 'clear' icon: 'delete' as const presentation: 'icon-button' as const",
+    ],
+    [
+      SELECTION_CONTRACTS,
+      "id: 'clear-selected' icon: 'delete' as const presentation: 'icon-button' as const",
+    ],
     [SPLIT_BUTTON_SOURCE, 'openLegacyCompactMenu'],
   ]);
 
@@ -940,6 +971,10 @@ this.ref().dismiss('close-action')`,
     new Map(validFrame).set(
       TEMPORAL_PICKER_TEMPLATE,
       '<erp-button data-confirm-action />',
+    ),
+    new Map(validFrame).set(
+      TEMPORAL_CONTRACTS,
+      "id: 'clear' icon: 'delete' as const",
     ),
     new Map(validFrame).set(
       'src/app/controls/another-control/another-control.ts',
