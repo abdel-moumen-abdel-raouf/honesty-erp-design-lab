@@ -89,7 +89,42 @@ export class OverlayControls {
           ? 'لا يمكن التراجع عن الحذف بعد التأكيد.'
           : null,
       intent,
+      headerTone: intent,
       confirmLabel: intent === 'danger' ? 'حذف' : 'تأكيد',
+    });
+  }
+
+  openMultiActionConfirm(): void {
+    void this.confirmDialog.confirm({
+      title: 'اختيارات متعددة',
+      message: 'اختر الإجراء الذي تريد تنفيذه.',
+      headerTone: 'info',
+      auxiliaryActions: [
+        {
+          id: 'save-draft',
+          label: 'حفظ كمسودة',
+          icon: 'save',
+          tone: 'secondary',
+          placement: 'start',
+        },
+        {
+          id: 'details',
+          label: 'التفاصيل',
+          icon: 'info',
+          presentation: 'icon-button',
+          tone: 'info',
+          placement: 'start',
+        },
+      ],
+    });
+  }
+
+  openLockedConfirm(): void {
+    void this.confirmDialog.confirm({
+      title: 'تأكيد إلزامي',
+      message: 'لا يمكن إغلاق هذه النافذة بدون اختيار إجراء.',
+      headerTone: 'primary',
+      userDismissible: false,
     });
   }
 

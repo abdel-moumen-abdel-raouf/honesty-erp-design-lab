@@ -17,6 +17,7 @@ import {
   ErpOverlayActionRole,
   ErpOverlayFrameActionId,
   ErpOverlayFrameConfig,
+  ErpOverlayHeaderTone,
 } from '../overlay-contracts';
 import {ErpOverlayRef} from '../overlay-ref';
 
@@ -37,6 +38,14 @@ export class ErpOverlayFrame implements AfterViewInit {
   readonly subtitleId = computed(() => `${this.ref().id}-subtitle`);
   readonly showHeader = computed(() => this.config().showHeader !== false);
   readonly showFooter = computed(() => this.config().showFooter !== false);
+  readonly showCloseButton = computed(
+    () =>
+      this.showHeader() &&
+      this.config().header.showCloseButton !== false,
+  );
+  readonly headerTone = computed<ErpOverlayHeaderTone>(
+    () => this.config().header.tone ?? 'default',
+  );
   readonly closeLabel = computed(
     () => this.config().header.closeLabel ?? 'إغلاق',
   );

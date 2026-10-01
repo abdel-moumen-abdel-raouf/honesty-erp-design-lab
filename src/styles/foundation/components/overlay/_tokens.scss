@@ -21,6 +21,7 @@
   --honesty-overlay-surface-max-block-size: calc(100dvh - 2 * var(--honesty-overlay-viewport-inset));
   --honesty-overlay-frame-header-padding: var(--honesty-space-inset-default);
   --honesty-overlay-frame-header-gap: var(--honesty-space-inline-default);
+  --honesty-overlay-frame-header-bg: transparent;
   --honesty-overlay-frame-separator-color: var(--honesty-border-default);
   --honesty-overlay-frame-header-border-color:
     var(--honesty-overlay-frame-separator-color);
@@ -103,4 +104,41 @@
   --honesty-overlay-surface-inline-size: 100%;
   --honesty-overlay-surface-max-block-size: 100%;
   --honesty-overlay-surface-radius: var(--honesty-radius-none);
+}
+
+
+@mixin frame-header-tone-default {
+  --honesty-overlay-frame-header-bg: transparent;
+}
+
+@mixin frame-header-tone-primary {
+  --honesty-overlay-frame-header-bg: var(--honesty-color-brand-primary-subtle);
+}
+
+@mixin frame-header-tone-secondary {
+  --honesty-overlay-frame-header-bg: var(--honesty-color-brand-secondary-subtle);
+}
+
+@mixin frame-header-tone-accent {
+  --honesty-overlay-frame-header-bg: var(--honesty-color-brand-accent-subtle);
+}
+
+@mixin frame-header-tone-success {
+  --honesty-overlay-frame-header-bg: var(--honesty-color-feedback-success-surface);
+}
+
+@mixin frame-header-tone-warning {
+  --honesty-overlay-frame-header-bg: var(--honesty-color-feedback-warning-surface);
+}
+
+@mixin frame-header-tone-danger {
+  --honesty-overlay-frame-header-bg: var(--honesty-color-feedback-danger-surface);
+}
+
+@mixin frame-header-tone-info {
+  --honesty-overlay-frame-header-bg: var(--honesty-color-feedback-info-surface);
+}
+
+@mixin frame-header-tone-neutral {
+  --honesty-overlay-frame-header-bg: var(--honesty-color-surface-elevated);
 }

@@ -14,6 +14,8 @@ export type ErpOverlayPosition =
 
 export type ErpOverlaySize = 'sm' | 'md' | 'lg' | 'xl' | 'full';
 
+export type ErpOverlayHeaderTone = 'default' | ErpButtonTone;
+
 export type ErpOverlayBlur = 'low' | 'medium' | 'high';
 
 export type ErpOverlayBackdropTone =
@@ -31,6 +33,8 @@ export interface ErpOverlayHeaderConfig {
   readonly title: string;
   readonly subtitle: string;
   readonly icon: ErpIconName;
+  readonly tone?: ErpOverlayHeaderTone;
+  readonly showCloseButton?: boolean;
   readonly closeLabel?: string;
 }
 

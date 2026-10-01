@@ -4,7 +4,10 @@
   [attr.data-overlay-frame-footer-visible]="showFooter()"
 >
   @if (showHeader()) {
-  <header class="overlay-frame__header">
+  <header
+    class="overlay-frame__header"
+    [attr.data-overlay-frame-header-tone]="headerTone()"
+  >
     <erp-icon
       class="overlay-frame__icon"
       [name]="config().header.icon"
@@ -19,14 +22,16 @@
         {{ config().header.subtitle }}
       </erp-text>
     </div>
-    <erp-tooltip [text]="closeLabel()">
-      <erp-icon-button
-        data-overlay-frame-close
-        icon="close"
-        [label]="closeLabel()"
-        (pressed)="close()"
-      />
-    </erp-tooltip>
+    @if (showCloseButton()) {
+      <erp-tooltip [text]="closeLabel()">
+        <erp-icon-button
+          data-overlay-frame-close
+          icon="close"
+          [label]="closeLabel()"
+          (pressed)="close()"
+        />
+      </erp-tooltip>
+    }
   </header>
   }
 

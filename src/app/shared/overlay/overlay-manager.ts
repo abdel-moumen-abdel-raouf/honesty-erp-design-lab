@@ -125,6 +125,8 @@ export class ErpOverlayManager {
           title,
           subtitle,
           icon: options.frame.header.icon,
+          tone: options.frame.header.tone ?? 'default',
+          showCloseButton: options.frame.header.showCloseButton ?? true,
           closeLabel,
         }),
         footer: Object.freeze({

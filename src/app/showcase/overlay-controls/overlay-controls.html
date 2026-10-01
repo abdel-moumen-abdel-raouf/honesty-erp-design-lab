@@ -95,6 +95,16 @@
             label="فتح تأكيد حذف"
             (pressed)="openConfirm('danger')"
           />
+          <erp-button
+            data-confirm-dialog-evidence="multi-action"
+            label="فتح تأكيد متعدد الإجراءات"
+            (pressed)="openMultiActionConfirm()"
+          />
+          <erp-button
+            data-confirm-dialog-evidence="locked"
+            label="فتح تأكيد غير قابل للإلغاء"
+            (pressed)="openLockedConfirm()"
+          />
         </erp-stack>
       </erp-surface>
     </erp-grid>
