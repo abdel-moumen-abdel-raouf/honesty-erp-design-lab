@@ -532,7 +532,7 @@ export function validateOverlayFrameContract(files) {
     '@for (action of endActions(); track action.id)',
     "action.presentation === 'icon-button'",
     '[text]="action.label"',
-    "[icon]="action.icon ?? 'delete'"",
+    `[icon]="action.icon ?? 'delete'"`,
   ]) {
     if (!frameTemplate.includes(required)) {
       errors.push(`OverlayFrame template: missing ${required}`);
