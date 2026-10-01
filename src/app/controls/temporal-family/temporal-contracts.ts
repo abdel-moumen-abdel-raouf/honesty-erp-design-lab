@@ -78,7 +78,14 @@ export function createTemporalOverlayFooter(
           ]
         : []),
       ...(clearable
-        ? [{id: 'clear', label: labels.clear, role: 'utility' as const, placement: 'start' as const}]
+        ? [{
+            id: 'clear',
+            label: labels.clear,
+            icon: 'delete' as const,
+            presentation: 'icon-button' as const,
+            role: 'utility' as const,
+            placement: 'start' as const,
+          }]
         : []),
       {id: 'cancel', label: labels.cancel, role: 'secondary', placement: 'end'},
       {id: 'confirm', label: labels.confirm, role: 'primary', placement: 'end', disabled: true},

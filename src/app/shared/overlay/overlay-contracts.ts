@@ -36,6 +36,7 @@ export interface ErpOverlayActionConfig {
   readonly id: string;
   readonly label: string;
   readonly icon?: ErpIconName | null;
+  readonly presentation?: ErpOverlayActionPresentation;
   readonly role: ErpOverlayActionRole;
   readonly placement: ErpOverlayActionPlacement;
   readonly disabled?: boolean;
@@ -44,6 +45,7 @@ export interface ErpOverlayActionConfig {
 
 export type ErpOverlayActionRole = 'primary' | 'secondary' | 'utility';
 export type ErpOverlayActionPlacement = 'start' | 'end';
+export type ErpOverlayActionPresentation = 'button' | 'icon-button';
 
 export interface ErpOverlayFrameActionState {
   readonly disabled: boolean;

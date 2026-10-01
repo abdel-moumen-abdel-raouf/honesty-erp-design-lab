@@ -31,34 +31,68 @@
   <footer class="overlay-frame__footer">
     <div class="overlay-frame__action-group" data-overlay-frame-action-group="start">
       @for (action of startActions(); track action.id) {
-        <erp-button
-          data-overlay-frame-action
-          [attr.data-overlay-frame-action-id]="action.id"
-          [attr.data-overlay-frame-action-role]="action.role"
-          [label]="action.label"
-          [icon]="action.icon ?? null"
-          [variant]="buttonVariant(action.role)"
-          [tone]="buttonTone(action.role)"
-          [disabled]="action.disabled"
-          [loading]="action.loading"
-          (pressed)="request(action.id)"
-        />
+        @if (action.presentation === 'icon-button') {
+          <erp-tooltip [text]="action.label">
+            <erp-icon-button
+              data-overlay-frame-action
+              [attr.data-overlay-frame-action-id]="action.id"
+              [attr.data-overlay-frame-action-role]="action.role"
+              [icon]="action.icon ?? 'delete'"
+              [label]="action.label"
+              variant="ghost"
+              [tone]="buttonTone(action.role)"
+              [disabled]="action.disabled"
+              [loading]="action.loading"
+              (pressed)="request(action.id)"
+            />
+          </erp-tooltip>
+        } @else {
+          <erp-button
+            data-overlay-frame-action
+            [attr.data-overlay-frame-action-id]="action.id"
+            [attr.data-overlay-frame-action-role]="action.role"
+            [label]="action.label"
+            [icon]="action.icon ?? null"
+            [variant]="buttonVariant(action.role)"
+            [tone]="buttonTone(action.role)"
+            [disabled]="action.disabled"
+            [loading]="action.loading"
+            (pressed)="request(action.id)"
+          />
+        }
       }
     </div>
     <div class="overlay-frame__action-group" data-overlay-frame-action-group="end">
       @for (action of endActions(); track action.id) {
-        <erp-button
-          data-overlay-frame-action
-          [attr.data-overlay-frame-action-id]="action.id"
-          [attr.data-overlay-frame-action-role]="action.role"
-          [label]="action.label"
-          [icon]="action.icon ?? null"
-          [variant]="buttonVariant(action.role)"
-          [tone]="buttonTone(action.role)"
-          [disabled]="action.disabled"
-          [loading]="action.loading"
-          (pressed)="request(action.id)"
-        />
+        @if (action.presentation === 'icon-button') {
+          <erp-tooltip [text]="action.label">
+            <erp-icon-button
+              data-overlay-frame-action
+              [attr.data-overlay-frame-action-id]="action.id"
+              [attr.data-overlay-frame-action-role]="action.role"
+              [icon]="action.icon ?? 'delete'"
+              [label]="action.label"
+              variant="ghost"
+              [tone]="buttonTone(action.role)"
+              [disabled]="action.disabled"
+              [loading]="action.loading"
+              (pressed)="request(action.id)"
+            />
+          </erp-tooltip>
+        } @else {
+          <erp-button
+            data-overlay-frame-action
+            [attr.data-overlay-frame-action-id]="action.id"
+            [attr.data-overlay-frame-action-role]="action.role"
+            [label]="action.label"
+            [icon]="action.icon ?? null"
+            [variant]="buttonVariant(action.role)"
+            [tone]="buttonTone(action.role)"
+            [disabled]="action.disabled"
+            [loading]="action.loading"
+            (pressed)="request(action.id)"
+          />
+        }
       }
     </div>
   </footer>
