@@ -1399,3 +1399,174 @@ Mandatory next technical gate:
 
 Technical green will not imply Product Owner visual approval.
 <!-- CHATGPT_SYSTEM_CONFIRM_DIALOG_2026_10_02_END -->
+
+
+<!-- CHATGPT_SYSTEM_CONFIRM_RICH_ACTIONS_2026_10_02_START -->
+## 2026-10-02 — System Confirm expanded: auxiliary actions, action results, Header tone, dismissibility
+
+Product Owner expanded the system-wide Confirm Dialog contract.
+
+### New Product Owner requirements
+
+A system Confirm may contain:
+- the primary Confirm action;
+- optional auxiliary action 1;
+- optional auxiliary action 2;
+- Cancel when user dismissal is enabled.
+
+The two optional actions must be developer-configurable as normal Buttons with
+or without icons, or as IconButtons. The caller must receive a result that
+identifies which button/action was pressed.
+
+The Confirm Header background must accept system semantic tones such as
+`info`, `danger`, `warning`, `primary`, etc.
+
+The caller must also control whether the user is allowed to dismiss the Confirm.
+When dismissal is disabled:
+- Header Close is hidden;
+- Cancel is not rendered;
+- Escape dismissal is disabled;
+- backdrop dismissal remains disabled.
+
+### Public Confirm API
+
+`ErpConfirmDialogConfig` now includes:
+- `headerTone?: ErpOverlayHeaderTone`;
+- `userDismissible?: boolean` (default `true`);
+- `auxiliaryActions?: readonly ErpConfirmDialogAuxiliaryAction[]`.
+
+`ErpConfirmDialogAuxiliaryAction` exposes:
+- stable `id`;
+- `label`;
+- optional semantic `icon`;
+- `presentation?: 'button' | 'icon-button'`;
+- optional semantic Button `tone`;
+- optional logical `placement?: 'start' | 'end'`.
+
+Auxiliary action law:
+- zero, one, or two actions only;
+- IDs must be nonblank and unique;
+- `confirm` and `cancel` are reserved;
+- ordinary Button may omit an icon;
+- IconButton requires an icon;
+- defaults: Button presentation, neutral tone, logical-start placement.
+
+### Result contract
+
+The service no longer returns `Promise<boolean>`.
+
+It returns:
+
+```ts
+ErpConfirmDialogResult =
+  | {type: 'action'; actionId: string}
+  | {type: 'dismissed'; reason: 'close' | 'escape'}
+```
+
+Button results:
+- Confirm -> `actionId: 'confirm'`;
+- Cancel -> `actionId: 'cancel'`;
+- auxiliary action -> its configured ID.
+
+Header Close and Escape return `dismissed` instead of pretending to be button
+actions.
+
+### User-dismissal law
+
+`userDismissible=true`:
+- Header Close visible;
+- Cancel visible;
+- Escape enabled;
+- initial focus targets Cancel;
+- backdrop remains non-dismissible.
+
+`userDismissible=false`:
+- Header stays visible;
+- Header Close hidden;
+- Cancel removed;
+- Escape disabled;
+- backdrop disabled;
+- initialFocus is null so the shared Overlay focus fallback reaches the primary
+  Confirm action when no body focus target exists.
+
+### Overlay dependencies added correctly
+
+The generic Overlay Header API now includes:
+- `ErpOverlayHeaderTone = 'default' | ErpButtonTone`;
+- `header.tone?: ErpOverlayHeaderTone`;
+- `header.showCloseButton?: boolean`.
+
+Both default without breaking existing overlays:
+- tone -> `default`;
+- showCloseButton -> `true`.
+
+Header tones are Component-Token-driven:
+- primary/secondary/accent -> theme-sensitive Brand subtle surfaces;
+- success/warning/danger/info -> theme-sensitive Feedback surfaces;
+- neutral -> elevated neutral surface;
+- default -> existing transparent/default Header.
+
+No raw palette colors or local theme selectors are introduced.
+
+### Implementation checkpoints
+
+- `6b311965d8c0ddfcd3c20c004e06a17b4eaa86df`
+  `feat(confirm): add auxiliary actions and dismissibility controls`;
+- `f8c5868bd844796260684d347afd4fda8ceae9fe`
+  `fix(confirm): normalize actionless close result`;
+- `a250c28204513400a0607a39d9d86b45a134185a`
+  `test(confirm): cover rich actions header tone and dismissal policy`;
+- `d88613ff826fb4aa4b948995736d14f63f237459`
+  `chore(confirm): govern rich confirmation API`.
+
+### Test coverage added/updated
+
+Coverage now includes:
+- default Confirm action result;
+- Cancel action result;
+- Header Close dismissed result;
+- Escape dismissed result;
+- warning/danger intent mapping;
+- Header tone independent from intent;
+- two auxiliary actions;
+- normal Button with optional icon;
+- IconButton auxiliary action;
+- semantic tone + logical placement;
+- pressed auxiliary action ID result;
+- max-two enforcement;
+- reserved/duplicate/blank ID rejection;
+- IconButton-without-icon rejection;
+- non-dismissible Confirm configuration;
+- absence of Cancel;
+- hidden Header Close;
+- Escape no-op while locked;
+- Confirm remains functional while locked;
+- nested Confirm above both Modal and Drawer parents.
+
+OverlayManager/OverlayFrame tests were updated for normalized Header tone and
+close-button visibility, and the Overlay showcase now contains five Confirm
+review examples: default, warning, danger, multi-action, and locked.
+
+### Governance / pre-verification
+
+Current pre-rerun evidence:
+- ErpConfirmDialog governance JavaScript syntax PASS;
+- ErpConfirmDialog complete internal self-test PASS;
+- ErpOverlay governance JavaScript syntax PASS;
+- ErpOverlay complete internal self-test PASS;
+- ErpField governance JavaScript syntax PASS;
+- ErpField complete internal self-test PASS;
+- actual current Confirm source contract validation: zero errors.
+
+The canonical gate is still authoritative for Angular compilation, unit tests,
+typechecks, SCSS compilation, build budgets, and zero-warning production build.
+
+### Current state
+
+**Implemented / canonical verification pending.**
+
+Mandatory next gate:
+`npm run verify:clean`.
+
+Technical green will not imply Product Owner visual approval.
+<!-- CHATGPT_SYSTEM_CONFIRM_RICH_ACTIONS_2026_10_02_END -->
