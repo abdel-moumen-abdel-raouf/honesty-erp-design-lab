@@ -1815,7 +1815,7 @@ export abstract class ErpFileSelectionBase extends ErpFieldBase<readonly File[]>
   maxFileSize = input<number | null>(null);
   minFiles = input<number | null>(null);
   maxFiles = input<number | null>(null);
-  issues = ["files.min-count", "files.max-count"];
+  issues = ['files.min-count', 'files.max-count'];
   clearable = input(true, {transform: booleanAttribute});
   handleNativeSelection() { inputElement.value = ''; }
   handleDrop() {}
