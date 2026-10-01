@@ -657,7 +657,7 @@ export function validateSearchBoxPopupContracts(
   }
 
   const basePopupStyle =
-    styleSource.match(/\.search-box__popup\s*\{([\s\S]*?)\n\}/)?.[1] ?? '';
+    styleSource.match(/\.search-box__popup\s*\{([^}]*)\}/)?.[1] ?? '';
 
   if (/\bdisplay\s*:/.test(basePopupStyle)) {
     errors.push(
