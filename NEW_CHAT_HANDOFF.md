@@ -1617,60 +1617,54 @@ implementation state, blocker, verification result, or Product Owner finding.
 
 
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_START -->
-## 2026-10-01 — latest Inputs Product Owner runtime findings implemented / canonical verification pending
+## 2026-10-01 — latest Inputs verification rerun: one URL-regex lint escape corrected
 
-Previous technical checkpoint:
-- `707129dc8b0987eb270d0dc8350c3e5794d7303f` was Fully Green;
-- 87/87 test files and 649/649 tests PASS;
-- app/spec typecheck PASS;
-- zero-warning production build PASS.
+Product Owner pulled and verified source at:
+`dc63c08ea88e29c5fb4d78743761325b9c4a9c63`
+and ran the complete canonical gate:
+`npm run verify:clean`.
 
-That green result predates the latest Product Owner findings and does not apply
-to the new source until a fresh complete verification passes.
+Observed progress:
+- Single App theme authority PASS;
+- routed-page ERP-only authoring PASS;
+- Component Token framework PASS;
+- system-color registry PASS;
+- ErpText PASS;
+- ErpIcon PASS;
+- ErpButton PASS;
+- ErpTooltip PASS;
+- ErpField PASS;
+- ErpOverlay PASS;
+- Angular lint then stopped on exactly one ESLint error.
 
-Latest Product Owner findings:
-1. UrlBox must accept real web domains with optional HTTP(S) scheme and reject
-   incomplete hosts such as `http://www.s`.
-2. Solid must have the same Light/Dark hover discoverability guarantee as
-   Ghost/Text/Underline.
-3. NumberBox interactive editing must admit digits only while min/max/step remain
-   validation concerns.
-4. selected File/Image rows need a subtle hover/focus scale transition with
-   reduced-motion cancellation.
-5. SearchBox, ItemPicker, and ComboBox items/results must be runtime-dynamic and
-   production-portable rather than Design-Lab-bound snapshots.
+Exact failure:
+`src/app/controls/input-family/domain-validation.ts:72:37`
+`no-useless-escape`
 
-Implemented source/test/governance checkpoints:
-- `9b13eab3c00046a3ed6258d981d33663355b26e0`
-- `2912b97cb62ea159430bdca3f386814fa914698c`
-- `98c3c8ccddc8812af57d8b6a429b9510e0151465`
-- `5ec8124cb8ad483309d525bf558d41abb4252669`
-- `b6974154a916ebb751eda5290c7bbc2a9bce704b`
-- `eb3db0130db1786488b91e050f9d54168b28bbd3`
-- `64edf72fe8c7655a98e52d98e910bf675629129b`
-- `9ffa59e348b6246f1c8a210c01d437763b3a1f65`
-- detailed Product Owner findings recorded at
-  `4318b4898c3ef157627c58598507f76e83c9e758`.
+The progressive URL character-class regex escaped a terminal hyphen even though
+that position does not require escaping.
 
-Pre-rerun consistency work completed:
-- combined source + dependent tests + governance + authoritative contracts
-  reviewed as one correction unit;
-- File/Image style-governance paths verified to target the actual selected-item
-  style files;
+Bounded correction:
+- `9315691c9579a324990a56d928e4e22d504111a4`
+  `fix(inputs): remove redundant URL regex escape`;
+- only the redundant escape was removed;
+- runtime URL admission semantics are unchanged.
+
+Pre-rerun checks after correction:
+- zero remaining escaped-hyphen occurrences in the domain-validation source;
 - ErpField governance JavaScript syntax compilation PASS;
-- complete internal ErpField governance self-test PASS;
-- two self-test/governance weaknesses discovered during the pre-rerun review
-  were corrected before asking Product Owner to run the canonical gate.
+- complete ErpField governance internal self-test PASS;
+- direct URL semantic smoke check confirms required forms such as
+  `example.com`, `www.example.com`, HTTP/HTTPS variants, `.org`, `.net`,
+  and `.ai` are valid while `http://www.s`, `example.c`, and `localhost`
+  remain invalid.
 
 Current status:
 **implemented / canonical verification pending**.
 
-Exact next technical gate:
+Mandatory next gate:
 `npm run verify:clean`
 
-If the gate stops, reopen only the first concrete demonstrated failure. If Fully
-Green, the next product gate is Product Owner runtime re-test of the five
-findings above.
-
-Inputs remains Product Owner BLOCKED until runtime/visual acceptance.
+Inputs remains Product Owner BLOCKED pending a fresh technical green result and
+runtime/visual acceptance.
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_END -->
