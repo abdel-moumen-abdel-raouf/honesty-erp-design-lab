@@ -244,6 +244,11 @@
             <erp-radio-box label="اختيار مفرد محدد" [ngModel]="true" tone="primary" />
             <erp-radio-box label="اختيار مفرد معطل" disabled />
             <erp-radio-box label="اختيار مفرد بتحذير" status="warning" />
+            <erp-radio-group
+              data-radio-group-evidence
+              label="مجموعة اختيار مفرد"
+              [options]="radioGroupItems"
+            />
           </erp-stack>
         </erp-surface>
     </erp-grid>

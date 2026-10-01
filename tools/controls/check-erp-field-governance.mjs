@@ -11,6 +11,8 @@ const INPUT_SHOWCASE =
   'src/app/showcase/input-controls/input-controls.html';
 const OVERLAY_SHOWCASE =
   'src/app/showcase/overlay-controls/overlay-controls.html';
+const BUTTON_SHOWCASE =
+  'src/app/showcase/button-controls/button-controls.html';
 const FIELD_CONTRACT = 'src/app/controls/FIELD_FAMILY_V1.md';
 const BUTTON_CONTRACT = 'src/app/controls/BUTTON_FAMILY_V1.md';
 const FIELD_FRAME_SOURCE =
@@ -189,18 +191,18 @@ const PROGRAM_PUBLIC_CONTROLS = [
   ['ErpRangeSlider', 'range-slider', INPUT_SHOWCASE],
   ['ErpFilePicker', 'file-picker', INPUT_SHOWCASE],
   ['ErpImagePicker', 'image-picker', INPUT_SHOWCASE],
-  ['ErpDateBox', 'date-box', OVERLAY_SHOWCASE],
-  ['ErpTimeBox', 'time-box', OVERLAY_SHOWCASE],
-  ['ErpDateTimeBox', 'date-time-box', OVERLAY_SHOWCASE],
-  ['ErpDateRangeBox', 'date-range-box', OVERLAY_SHOWCASE],
-  ['ErpColorPicker', 'color-picker', OVERLAY_SHOWCASE],
-  ['ErpIconPicker', 'icon-picker', OVERLAY_SHOWCASE],
-  ['ErpItemPicker', 'item-picker', OVERLAY_SHOWCASE],
-  ['ErpComboBox', 'combo-box', OVERLAY_SHOWCASE],
-  ['ErpRadioGroup', 'radio-group', OVERLAY_SHOWCASE],
-  ['ErpButtonGroup', 'button-group', OVERLAY_SHOWCASE],
-  ['ErpSplitButton', 'split-button', OVERLAY_SHOWCASE],
-  ['ErpFabMenu', 'fab-menu', OVERLAY_SHOWCASE],
+  ['ErpDateBox', 'date-box', INPUT_SHOWCASE],
+  ['ErpTimeBox', 'time-box', INPUT_SHOWCASE],
+  ['ErpDateTimeBox', 'date-time-box', INPUT_SHOWCASE],
+  ['ErpDateRangeBox', 'date-range-box', INPUT_SHOWCASE],
+  ['ErpColorPicker', 'color-picker', INPUT_SHOWCASE],
+  ['ErpIconPicker', 'icon-picker', INPUT_SHOWCASE],
+  ['ErpItemPicker', 'item-picker', INPUT_SHOWCASE],
+  ['ErpComboBox', 'combo-box', INPUT_SHOWCASE],
+  ['ErpRadioGroup', 'radio-group', INPUT_SHOWCASE],
+  ['ErpButtonGroup', 'button-group', BUTTON_SHOWCASE],
+  ['ErpSplitButton', 'split-button', BUTTON_SHOWCASE],
+  ['ErpFabMenu', 'fab-menu', BUTTON_SHOWCASE],
 ];
 
 function walk(directory) {
@@ -1160,6 +1162,34 @@ export function validateArabicFirstDefaults(files) {
 
 export function validateProgramControlInventory(files, documentation) {
   const errors = [];
+
+  const ownership = new Map(
+    PROGRAM_PUBLIC_CONTROLS.map(([className, slug, showcase]) => [
+      slug,
+      {className, showcase},
+    ]),
+  );
+  for (const slug of [
+    'date-box',
+    'time-box',
+    'date-time-box',
+    'date-range-box',
+    'color-picker',
+    'icon-picker',
+    'item-picker',
+    'combo-box',
+    'radio-group',
+  ]) {
+    if (ownership.get(slug)?.showcase !== INPUT_SHOWCASE) {
+      errors.push(`${slug}: production input/selection evidence must live on the Inputs showcase`);
+    }
+  }
+  for (const slug of ['button-group', 'split-button', 'fab-menu']) {
+    if (ownership.get(slug)?.showcase !== BUTTON_SHOWCASE) {
+      errors.push(`${slug}: button composite evidence must live on the Buttons showcase`);
+    }
+  }
+
 
   for (const [className, slug, showcase] of PROGRAM_PUBLIC_CONTROLS) {
     const componentRoot = `src/app/controls/${slug}/${slug}`;
@@ -2487,6 +2517,7 @@ export class ErpImagePicker extends ErpFileSelectionBase {
   const validInventory = new Map([
     [INPUT_SHOWCASE, ''],
     [OVERLAY_SHOWCASE, ''],
+    [BUTTON_SHOWCASE, ''],
     [FIELD_CONTRACT, ''],
     [BUTTON_CONTRACT, ''],
   ]);

@@ -103,6 +103,8 @@ describe('InputControls showcase', () => {
 
     expect(group?.querySelectorAll('erp-check-box').length).toBe(5);
     expect(group?.querySelectorAll('erp-radio-box').length).toBe(4);
+    expect(group?.querySelectorAll('erp-radio-group').length).toBe(1);
+    expect(group?.querySelectorAll('[data-radio-group-evidence]').length).toBe(1);
     expect(group?.querySelectorAll('[data-check-box-evidence]').length).toBe(1);
     expect(group?.querySelectorAll('[data-radio-box-evidence]').length).toBe(1);
     expect(group?.querySelectorAll('[data-boolean-choice-rtl-evidence]').length).toBe(1);

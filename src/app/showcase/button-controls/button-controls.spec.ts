@@ -25,11 +25,11 @@ describe('ButtonControls showcase', () => {
     expect(createFixture().componentInstance).toBeTruthy();
   });
 
-  it('renders exactly seven review groups under the inherited global theme', () => {
+  it('renders exactly eight review groups under the inherited global theme', () => {
     const compiled = createFixture().nativeElement as HTMLElement;
 
     const groups = [...compiled.querySelectorAll<HTMLElement>('[data-review-group]')];
-    expect(groups.length).toBe(7);
+    expect(groups.length).toBe(8);
     expect(compiled.querySelectorAll('[data-theme-context]').length).toBe(0);
     expect(compiled.querySelector('erp-container.button-showcase')?.hasAttribute('data-theme')).toBe(false);
   });
@@ -89,6 +89,18 @@ describe('ButtonControls showcase', () => {
     expect(compiled.querySelectorAll('[data-extended-fab-size-evidence]').length).toBe(3);
     expect(compiled.querySelectorAll('[data-extended-fab-tone-evidence]').length).toBe(4);
     expect(compiled.querySelectorAll('[data-extended-fab-no-icon]').length).toBe(1);
+  });
+
+  it('relocates ButtonGroup, SplitButton, and FabMenu review evidence from the Overlay page', () => {
+    const compiled = createFixture().nativeElement as HTMLElement;
+    const group = compiled.querySelector(
+      '[data-review-group="button-composites"]',
+    );
+
+    expect(group).not.toBeNull();
+    expect(group?.querySelectorAll('[data-button-group-evidence]').length).toBe(1);
+    expect(group?.querySelectorAll('[data-split-button-evidence]').length).toBe(1);
+    expect(group?.querySelectorAll('[data-fab-menu-evidence]').length).toBe(1);
   });
 
   it('evidences ready, disabled, loading, cursor, and ripple speed', () => {

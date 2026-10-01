@@ -1,5 +1,8 @@
 import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
 import {ErpButton} from '../../controls/button/button';
+import {ErpButtonGroup} from '../../controls/button-group/button-group';
+import {ErpSplitButton} from '../../controls/split-button/split-button';
+import {ErpFabMenu} from '../../controls/fab-menu/fab-menu';
 import {
   ErpButtonShape,
   ErpButtonSize,
@@ -14,6 +17,8 @@ import {ErpExtendedFab} from '../../controls/extended-fab/extended-fab';
 import {ErpFab} from '../../controls/fab/fab';
 import {ErpIconButton} from '../../controls/icon-button/icon-button';
 import {ErpTooltip} from '../../controls/tooltip/tooltip';
+import {ErpButtonGroupItem} from '../../controls/composite-family/composite-contracts';
+import {ErpItemPickerOption} from '../../controls/selection-family/selection-contracts';
 import {ErpContainer} from '../../primitives/container/container';
 import {ErpDivider} from '../../primitives/divider/divider';
 import {ErpGrid} from '../../primitives/grid/grid';
@@ -29,16 +34,19 @@ import {ErpText} from '../../primitives/text/text';
   selector: 'app-button-controls',
   imports: [
     ErpButton,
+    ErpButtonGroup,
     ErpContainer,
     ErpDivider,
     ErpExtendedFab,
     ErpFab,
+    ErpFabMenu,
     ErpGrid,
     ErpIcon,
     ErpIconButton,
     ErpInline,
     ErpSection,
     ErpStack,
+    ErpSplitButton,
     ErpSurface,
     ErpText,
     ErpTooltip,
@@ -79,6 +87,16 @@ export class ButtonControls {
     'secondary',
     'accent',
     'surface',
+  ];
+  readonly buttonGroupItems: readonly ErpButtonGroupItem[] = [
+    {value: 'day', label: 'يوم'},
+    {value: 'week', label: 'أسبوع'},
+    {value: 'month', label: 'شهر'},
+  ];
+  readonly actionItems: readonly ErpItemPickerOption[] = [
+    {value: 'export-pdf', label: 'تصدير PDF', icon: 'file'},
+    {value: 'export-sheet', label: 'تصدير جدول', icon: 'table'},
+    {value: 'create', label: 'إنشاء عنصر', icon: 'plus'},
   ];
   readonly pressedCount = signal(0);
 

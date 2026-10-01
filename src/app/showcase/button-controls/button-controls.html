@@ -286,6 +286,40 @@
     </erp-grid>
   </erp-section>
 
+  <erp-section class="review-group" data-review-group="button-composites">
+    <erp-text type="heading-2">Button Composites</erp-text>
+    <erp-divider />
+    <erp-grid
+      class="theme-contexts"
+      [columns]="1"
+      gap="grid"
+      responsive="auto"
+    >
+      <erp-surface
+        class="theme-review-context"
+        tone="default"
+        border="subtle"
+      >
+        <erp-stack gap="default">
+          <erp-button-group
+            data-button-group-evidence
+            [items]="buttonGroupItems"
+          />
+          <erp-split-button
+            data-split-button-evidence
+            label="تصدير"
+            [items]="actionItems"
+          />
+          <erp-fab-menu
+            data-fab-menu-evidence
+            label="إنشاء عنصر"
+            [items]="actionItems"
+          />
+        </erp-stack>
+      </erp-surface>
+    </erp-grid>
+  </erp-section>
+
   <erp-section class="review-group" data-review-group="states-ripple-theme">
     <erp-text type="heading-2">States / Ripple / Theme</erp-text>
     <erp-divider />

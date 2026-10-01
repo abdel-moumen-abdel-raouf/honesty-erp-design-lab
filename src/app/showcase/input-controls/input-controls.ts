@@ -16,6 +16,7 @@ import {ErpNumberBox} from '../../controls/number-box/number-box';
 import {ErpNumberStepper} from '../../controls/number-stepper/number-stepper';
 import {ErpPasswordBox} from '../../controls/password-box/password-box';
 import {ErpRadioBox} from '../../controls/radio-box/radio-box';
+import {ErpRadioGroup} from '../../controls/radio-group/radio-group';
 import {ErpRangeSlider} from '../../controls/range-slider/range-slider';
 import {
   ErpSearchBox,
@@ -25,6 +26,7 @@ import {
   ErpColorPickerValue,
   ErpItemPickerOption,
 } from '../../controls/selection-family/selection-contracts';
+import {ErpRadioGroupOption} from '../../controls/composite-family/composite-contracts';
 import {ErpTelBox} from '../../controls/tel-box/tel-box';
 import {ErpTimeBox} from '../../controls/time-box/time-box';
 import {ErpTextAreaBox} from '../../controls/text-area-box/text-area-box';
@@ -61,6 +63,7 @@ import {ErpText} from '../../primitives/text/text';
     ErpNumberStepper,
     ErpPasswordBox,
     ErpRadioBox,
+    ErpRadioGroup,
     ErpRangeSlider,
     ErpSearchBox,
     ErpSection,
@@ -83,6 +86,11 @@ export class InputControls {
   readonly clearValue = signal('قيمة قابلة للمسح');
   readonly checkValue = signal(false);
   readonly radioValue = signal(false);
+  readonly radioGroupItems: readonly ErpRadioGroupOption[] = [
+    {value: 'draft', label: 'مسودة'},
+    {value: 'review', label: 'مراجعة'},
+    {value: 'approved', label: 'معتمد'},
+  ];
   readonly numberValue = signal<number | null>(12);
   readonly moneyValue = signal<number | null>(1250);
   readonly stepperValue = signal<number | null>(4);
