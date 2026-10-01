@@ -206,8 +206,13 @@ export class ErpConfirmDialogService {
     );
 
     return ref.afterClosed.then((result) => {
-      if (result.type === 'closed' && result.result !== undefined) {
-        return result.result;
+      if (result.type === 'closed') {
+        return (
+          result.result ?? {
+            type: 'dismissed',
+            reason: 'close',
+          }
+        );
       }
 
       return {
