@@ -94,7 +94,7 @@ describe('ErpNumberStepper', () => {
     native.value = '4x';
     native.dispatchEvent(new Event('input'));
     fixture.detectChanges();
-    expect(native.value).toBe('4x');
+    expect(native.value).toBe('4.');
     expect(control.inputState()).toBe('invalid-entry');
     expect(control.validationIssues().map((issue) => issue.code)).toContain(
       'number-stepper.format',

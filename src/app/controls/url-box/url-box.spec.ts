@@ -34,7 +34,7 @@ describe('ErpUrlBox', () => {
     expect(native.pattern).toBe(ERP_URL_FINAL_PATTERN);
   });
 
-  it('keeps invalid URL text visible and publishes validation instead of deleting it', () => {
+  it('rejects non-URL text while preserving progressive invalid HTTP drafts', () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const host = fixture.nativeElement as HTMLElement;
@@ -42,28 +42,36 @@ describe('ErpUrlBox', () => {
     const onChange = vi.fn();
     control.registerOnChange(onChange);
 
-    native.value = 'ftp://example.com';
+    native.dispatchEvent(new FocusEvent('focus'));
+    native.value = 'plain text';
     native.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
-    expect(onChange).toHaveBeenCalledWith('ftp://example.com');
-    expect(native.value).toBe('ftp://example.com');
+    expect(native.value).toBe('');
+    expect(onChange).not.toHaveBeenCalled();
+
+    native.value = 'https://';
+    native.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    expect(native.value).toBe('https://');
+    expect(onChange).not.toHaveBeenCalled();
     expect(control.inputState()).toBe('invalid-entry');
     expect(control.errors()).toContain(
       'النص المُدخل ليس عنوان رابط إلكتروني صالحًا.',
     );
     expect(native.getAttribute('aria-invalid')).toBe('true');
-    expect(host.textContent).toContain(
-      'النص المُدخل ليس عنوان رابط إلكتروني صالحًا.',
-    );
 
     native.dispatchEvent(new FocusEvent('blur'));
     fixture.detectChanges();
-    expect(native.value).toBe('ftp://example.com');
+    expect(native.value).toBe('https://');
 
+    native.dispatchEvent(new FocusEvent('focus'));
     native.value = 'https://openai.com/path';
     native.dispatchEvent(new Event('input'));
     fixture.detectChanges();
+
+    expect(onChange).toHaveBeenCalledWith('https://openai.com/path');
     expect(control.inputState()).toBe('valid-entry');
     expect(control.errors()).toEqual([]);
   });
@@ -79,7 +87,8 @@ describe('ErpUrlBox', () => {
     native.dispatchEvent(new FocusEvent('focus'));
     native.value = 'https://other.example/path';
     native.dispatchEvent(new Event('input'));
-    expect(onChange).toHaveBeenCalledWith('https://other.example/path');
+    expect(onChange).not.toHaveBeenCalled();
+    expect(native.value).toBe('https://other.example/path');
     expect(fixture.componentInstance.inputState()).toBe('invalid-entry');
     expect(
       fixture.componentInstance.validationIssues().map((issue) => issue.code),
@@ -87,7 +96,8 @@ describe('ErpUrlBox', () => {
 
     native.value = 'https://approved.example/path';
     native.dispatchEvent(new Event('input'));
-    expect(onChange).toHaveBeenLastCalledWith(
+    expect(onChange).toHaveBeenCalledOnce();
+    expect(onChange).toHaveBeenCalledWith(
       'https://approved.example/path',
     );
     expect(fixture.componentInstance.inputState()).toBe('valid-entry');

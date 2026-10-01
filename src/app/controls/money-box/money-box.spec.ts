@@ -57,12 +57,10 @@ describe('ErpMoneyBox', () => {
     native.value = 'arbitrary';
     native.dispatchEvent(new Event('input'));
     fixture.detectChanges();
-    expect(native.value).toBe('arbitrary');
+    expect(native.value).toBe('1234.5');
     expect(onChange).not.toHaveBeenCalled();
-    expect(control.inputState()).toBe('invalid-entry');
-    expect(control.validationIssues().map((issue) => issue.code)).toContain(
-      'money.format',
-    );
+    expect(control.inputState()).toBe('valid-entry');
+    expect(control.validationIssues()).toEqual([]);
 
     native.value = '50.';
     native.dispatchEvent(new Event('input'));

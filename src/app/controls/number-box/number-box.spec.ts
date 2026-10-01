@@ -60,12 +60,10 @@ describe('ErpNumberBox', () => {
     native.value = '12.5x';
     native.dispatchEvent(new Event('input'));
     fixture.detectChanges();
-    expect(native.value).toBe('12.5x');
+    expect(native.value).toBe('12.5');
     expect(onChange).toHaveBeenCalledOnce();
-    expect(control.inputState()).toBe('invalid-entry');
-    expect(control.validationIssues().map((issue) => issue.code)).toContain(
-      'number.format',
-    );
+    expect(control.inputState()).toBe('valid-entry');
+    expect(control.validationIssues()).toEqual([]);
   });
 
   it('uses developer override patterns and invalid regex disables configuration', () => {
@@ -155,7 +153,7 @@ describe('ErpNumberBox', () => {
 
     control.registerOnValidatorChange(validatorChanged);
     native.dispatchEvent(new FocusEvent('focus'));
-    native.value = '12x';
+    native.value = '12.';
     native.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 

@@ -8,10 +8,12 @@ import {
   ERP_TIME_FINAL_PATTERN,
   ERP_URL_FINAL_PATTERN,
   isHttpUrlDomainValue,
+  isProgressiveHttpUrlDraft,
   isProgressiveNumericDraft,
   matchesDomainPattern,
   parseFiniteDomainNumber,
   resolveDomainPattern,
+  sanitizeTelephoneDraft,
 } from './domain-validation';
 
 describe('domain validation', () => {
@@ -44,6 +46,11 @@ describe('domain validation', () => {
   it('requires URL pattern admission plus real HTTP or HTTPS parsing', () => {
     const pattern = resolveDomainPattern(null, ERP_URL_FINAL_PATTERN).regex;
 
+    expect(isProgressiveHttpUrlDraft('h')).toBe(true);
+    expect(isProgressiveHttpUrlDraft('https://')).toBe(true);
+    expect(isProgressiveHttpUrlDraft('https://example.com/path')).toBe(true);
+    expect(isProgressiveHttpUrlDraft('plain text')).toBe(false);
+    expect(isProgressiveHttpUrlDraft('ftp://example.com')).toBe(false);
     expect(isHttpUrlDomainValue('https://example.com/path', pattern)).toBe(true);
     expect(isHttpUrlDomainValue('ftp://example.com', pattern)).toBe(false);
     expect(isHttpUrlDomainValue('https://', pattern)).toBe(false);
@@ -52,10 +59,12 @@ describe('domain validation', () => {
   it('enforces telephone shape and detects alphabetic draft characters', () => {
     const pattern = resolveDomainPattern(null, ERP_TEL_FINAL_PATTERN).regex;
 
-    expect(matchesDomainPattern('+20 100 123 4567', pattern)).toBe(true);
-    expect(matchesDomainPattern('+20 ABC', pattern)).toBe(false);
+    expect(matchesDomainPattern('+201001234567', pattern)).toBe(true);
+    expect(matchesDomainPattern('+20 100 123 4567', pattern)).toBe(false);
+    expect(sanitizeTelephoneDraft('++20 A 100-123')).toBe('+20100123');
+    expect(sanitizeTelephoneDraft('20 (100) 123')).toBe('20100123');
     expect(containsAlphabeticCharacter('+20 ABC')).toBe(true);
-    expect(containsAlphabeticCharacter('+20 100')).toBe(false);
+    expect(containsAlphabeticCharacter('+20100')).toBe(false);
   });
 
   it('provides the exact temporal final-value admission patterns', () => {

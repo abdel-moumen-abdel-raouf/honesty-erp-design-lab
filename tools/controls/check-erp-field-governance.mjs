@@ -822,6 +822,7 @@ export function validateUnifiedInputValidationContracts(files) {
     "'number-stepper.step'",
     "'number-stepper.format'",
     'draftActive',
+    'if (!isProgressiveNumericDraft(value))',
   ]) {
     if (!stepperSource.includes(requirement)) {
       errors.push(
@@ -842,6 +843,7 @@ export function validateUnifiedInputValidationContracts(files) {
       urlSource,
       [
         "'url.format'",
+        'isProgressiveHttpUrlDraft',
         'this.commitUserValue(value);',
         'النص المُدخل ليس عنوان رابط إلكتروني صالحًا.',
       ],
@@ -853,6 +855,7 @@ export function validateUnifiedInputValidationContracts(files) {
         "'tel.plus-count'",
         "'tel.plus-position'",
         "'tel.too-short'",
+        'sanitizeTelephoneDraft',
         'this.commitUserValue(value);',
       ],
     ],
@@ -865,6 +868,7 @@ export function validateUnifiedInputValidationContracts(files) {
         "'number.step'",
         "'number.format'",
         'draftActive',
+        'if (!isProgressiveNumericDraft(value))',
       ],
     ],
     [
@@ -876,6 +880,7 @@ export function validateUnifiedInputValidationContracts(files) {
         "'money.step'",
         "'money.format'",
         'draftActive',
+        'if (!isProgressiveNumericDraft(value))',
       ],
     ],
     [
@@ -905,6 +910,19 @@ export function validateUnifiedInputValidationContracts(files) {
       files.get('src/styles/foundation/components/field-frame/_tokens.scss') ?? '';
     if (!tokens.includes(requirement)) {
       errors.push(`FieldFrame hover contract: missing ${requirement}`);
+    }
+  }
+
+  const hoverTokens =
+    files.get('src/styles/foundation/components/field-frame/_tokens.scss') ?? '';
+  for (const requirement of [
+    '--honesty-field-frame-hover-bg: var(--honesty-color-text-primary);',
+    '--honesty-field-frame-hover-surface-mix: 8%;',
+  ]) {
+    if (!hoverTokens.includes(requirement)) {
+      errors.push(
+        `FieldFrame lightweight hover must resolve visibly in Light and Dark: missing ${requirement}`,
+      );
     }
   }
 
@@ -1568,7 +1586,7 @@ function runSelfTest() {
     ],
     [
       'src/styles/foundation/components/field-frame/_tokens.scss',
-      '--honesty-field-frame-hover-bg: --honesty-field-frame-hover-surface-mix:',
+      '--honesty-field-frame-hover-bg: var(--honesty-color-text-primary); --honesty-field-frame-hover-surface-mix: 8%;',
     ],
     [
       FIELD_HOVER_STYLE,
@@ -1582,19 +1600,19 @@ function runSelfTest() {
     ],
     [
       'src/app/controls/url-box/url-box.ts',
-      "'url.format' this.commitUserValue(value); النص المُدخل ليس عنوان رابط إلكتروني صالحًا.",
+      "'url.format' isProgressiveHttpUrlDraft this.commitUserValue(value); النص المُدخل ليس عنوان رابط إلكتروني صالحًا.",
     ],
     [
       'src/app/controls/tel-box/tel-box.ts',
-      "'tel.plus-count' 'tel.plus-position' 'tel.too-short' this.commitUserValue(value);",
+      "'tel.plus-count' 'tel.plus-position' 'tel.too-short' sanitizeTelephoneDraft this.commitUserValue(value);",
     ],
     [
       'src/app/controls/number-box/number-box.ts',
-      "'number.min' 'number.max' 'number.step' 'number.format' draftActive",
+      "'number.min' 'number.max' 'number.step' 'number.format' draftActive if (!isProgressiveNumericDraft(value))",
     ],
     [
       MONEY_BOX_SOURCE,
-      "'money.min' 'money.max' 'money.step' 'money.format' draftActive",
+      "'money.min' 'money.max' 'money.step' 'money.format' draftActive if (!isProgressiveNumericDraft(value))",
     ],
     [
       FILE_SELECTION_BASE,
@@ -1626,7 +1644,7 @@ function runSelfTest() {
     ],
     [
       NUMBER_STEPPER_SOURCE,
-      "'number-stepper.min' 'number-stepper.max' 'number-stepper.step' 'number-stepper.format' draftActive",
+      "'number-stepper.min' 'number-stepper.max' 'number-stepper.step' 'number-stepper.format' draftActive if (!isProgressiveNumericDraft(value))",
     ],
   ]);
 

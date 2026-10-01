@@ -240,6 +240,38 @@ This law applies especially to:
 Normalization may occur only where it is semantics-preserving and explicitly
 part of the control contract.
 
+## 8.1 Typed character admission and canonicalization
+
+Non-destructive validation does **not** mean that every specialized input must
+accept arbitrary characters.
+
+The editor boundary and the validation boundary are separate:
+
+- generic text fields may admit ordinary text;
+- URL admits progressive HTTP/HTTPS URL syntax only. Arbitrary prose and raw
+  whitespace are rejected by the editor. An incomplete but structurally
+  progressive URL draft (for example `https://`) remains visible and invalid
+  until corrected. The CVA value is published only when the URL is empty or
+  fully accepted by the URL/domain pattern;
+- Tel canonicalizes user editing to an optional single leading `+` followed
+  by ASCII digits only. Spaces and other characters are removed. A canonical
+  draft may remain visible while too short/long or while failing an approved
+  developer pattern; it is published only when admitted by that final pattern;
+- Number, Money, and NumberStepper admit only progressive numeric syntax
+  (optional leading sign, digits, and one decimal point). Letters and unrelated
+  punctuation never become the editor draft;
+- numeric values that are syntactically numeric but violate min/max/step or an
+  approved domain constraint remain visible and invalid. They are not clamped
+  merely to make validation pass.
+
+Therefore the invariant is:
+
+**reject characters that do not belong to the control domain; preserve admitted
+typed drafts when their value is invalid.**
+
+This distinction is mandatory for both component-level validation and Angular
+Forms integration.
+
 ## 9. Automatic visual/accessibility projection
 
 Validation is not dependent on the developer manually setting
