@@ -102,7 +102,21 @@ describe('InputControls showcase', () => {
     const group = root.querySelector('[data-review-group="boolean-choice"]');
 
     expect(group?.querySelectorAll('erp-check-box').length).toBe(5);
-    expect(group?.querySelectorAll('erp-radio-box').length).toBe(4);
+
+    const radioBoxes = [
+      ...(group?.querySelectorAll<HTMLElement>('erp-radio-box') ?? []),
+    ];
+    const standaloneRadioBoxes = radioBoxes.filter(
+      (radioBox) => radioBox.closest('erp-radio-group') === null,
+    );
+    const groupedRadioBoxes = [
+      ...(group?.querySelectorAll<HTMLElement>(
+        'erp-radio-group erp-radio-box',
+      ) ?? []),
+    ];
+
+    expect(standaloneRadioBoxes).toHaveLength(4);
+    expect(groupedRadioBoxes).toHaveLength(3);
     expect(group?.querySelectorAll('erp-radio-group').length).toBe(1);
     expect(group?.querySelectorAll('[data-radio-group-evidence]').length).toBe(1);
     expect(group?.querySelectorAll('[data-check-box-evidence]').length).toBe(1);
