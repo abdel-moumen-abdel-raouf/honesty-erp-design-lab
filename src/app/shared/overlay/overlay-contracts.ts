@@ -1,6 +1,7 @@
 import {Type} from '@angular/core';
 import {ErpMotionPreset} from '../../foundation/motion/motion-contracts';
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
+import {ErpButtonTone} from '../../controls/button-family/button-contracts';
 
 export type ErpOverlayKind = 'modal' | 'drawer';
 
@@ -38,6 +39,7 @@ export interface ErpOverlayActionConfig {
   readonly label: string;
   readonly icon?: ErpIconName | null;
   readonly presentation?: ErpOverlayActionPresentation;
+  readonly tone?: ErpButtonTone;
   readonly role: ErpOverlayActionRole;
   readonly placement: ErpOverlayActionPlacement;
   readonly disabled?: boolean;

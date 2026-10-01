@@ -74,6 +74,32 @@
     </erp-grid>
   </erp-section>
 
+  <erp-section class="review-group" data-review-group="confirm-dialog">
+    <erp-text type="heading-2">نافذة التأكيد النظامية</erp-text>
+    <erp-divider />
+    <erp-grid [columns]="2" gap="sm" responsive="auto">
+      <erp-surface border="subtle">
+        <erp-stack gap="tight">
+          <erp-button
+            data-confirm-dialog-evidence="default"
+            label="فتح تأكيد افتراضي"
+            (pressed)="openConfirm('default')"
+          />
+          <erp-button
+            data-confirm-dialog-evidence="warning"
+            label="فتح تأكيد تحذيري"
+            (pressed)="openConfirm('warning')"
+          />
+          <erp-button
+            data-confirm-dialog-evidence="danger"
+            label="فتح تأكيد حذف"
+            (pressed)="openConfirm('danger')"
+          />
+        </erp-stack>
+      </erp-surface>
+    </erp-grid>
+  </erp-section>
+
   <erp-section class="review-group" data-review-group="nested-stack">
     <erp-text type="heading-2">التراكب المتداخل</erp-text>
     <erp-divider />

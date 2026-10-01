@@ -1,0 +1,10 @@
+<erp-stack
+  gap="default"
+  [attr.data-confirm-dialog-intent]="data.intent"
+  data-system-confirm-dialog-content
+>
+  <erp-text type="paragraph">{{ data.message }}</erp-text>
+  @if (data.details) {
+    <erp-text type="caption" tone="secondary">{{ data.details }}</erp-text>
+  }
+</erp-stack>

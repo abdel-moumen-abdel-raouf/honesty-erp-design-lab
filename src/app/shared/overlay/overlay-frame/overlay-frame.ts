@@ -11,7 +11,9 @@ import {ErpIconButton} from '../../../controls/icon-button/icon-button';
 import {ErpTooltip} from '../../../controls/tooltip/tooltip';
 import {ErpIcon} from '../../../primitives/icon/icon';
 import {ErpText} from '../../../primitives/text/text';
+import {ErpButtonTone} from '../../../controls/button-family/button-contracts';
 import {
+  ErpOverlayActionConfig,
   ErpOverlayActionRole,
   ErpOverlayFrameActionId,
   ErpOverlayFrameConfig,
@@ -69,8 +71,11 @@ export class ErpOverlayFrame implements AfterViewInit {
         : 'ghost';
   }
 
-  buttonTone(role: ErpOverlayActionRole): 'primary' | 'neutral' {
-    return role === 'primary' ? 'primary' : 'neutral';
+  buttonTone(action: ErpOverlayActionConfig): ErpButtonTone {
+    return (
+      action.tone ??
+      (action.role === 'primary' ? 'primary' : 'neutral')
+    );
   }
 
   close(): void {

@@ -135,6 +135,9 @@ export class ErpOverlayManager {
                 label: action.label,
                 icon: action.icon ?? null,
                 presentation: action.presentation ?? 'button',
+                tone:
+                  action.tone ??
+                  (action.role === 'primary' ? 'primary' : 'neutral'),
                 role: action.role,
                 placement: action.placement,
                 disabled: action.disabled ?? false,

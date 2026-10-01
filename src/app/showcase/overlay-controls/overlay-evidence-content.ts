@@ -8,6 +8,7 @@ import {ErpButton} from '../../controls/button/button';
 import {ErpStack} from '../../primitives/stack/stack';
 import {ErpText} from '../../primitives/text/text';
 import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
+import {ErpConfirmDialogService} from '../../shared/confirm-dialog/confirm-dialog.service';
 import {ErpOverlayRef} from '../../shared/overlay/overlay-ref';
 import {ERP_OVERLAY_DATA, ERP_OVERLAY_REF} from '../../shared/overlay/overlay-tokens';
 
@@ -27,6 +28,7 @@ export class OverlayEvidenceContent implements OnDestroy {
   readonly ref = inject(ERP_OVERLAY_REF) as ErpOverlayRef<string>;
   readonly data = inject(ERP_OVERLAY_DATA) as OverlayEvidenceData;
   private readonly overlays = inject(ErpOverlayManager);
+  private readonly confirmDialog = inject(ErpConfirmDialogService);
   protected readonly longBodyLines = Array.from(
     {length: 24},
     (_, index) => `سطر مراجعة المحتوى الطويل ${index + 1}`,
@@ -40,6 +42,14 @@ export class OverlayEvidenceContent implements OnDestroy {
     for (const cleanup of this.frameActionCleanup) {
       cleanup();
     }
+  }
+
+  openConfirm(): void {
+    void this.confirmDialog.confirm({
+      title: 'تأكيد من داخل نافذة حاجبة',
+      message: 'يُفتح هذا التأكيد فوق التراكب الحالي في نفس المكدس.',
+      intent: 'warning',
+    });
   }
 
   openNested(): void {

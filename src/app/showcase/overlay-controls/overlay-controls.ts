@@ -18,6 +18,7 @@ import {
   ErpOverlayPosition,
 } from '../../shared/overlay/overlay-contracts';
 import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
+import {ErpConfirmDialogService} from '../../shared/confirm-dialog/confirm-dialog.service';
 import {
   OverlayEvidenceContent,
   OverlayEvidenceData,
@@ -50,6 +51,7 @@ export class OverlayControls {
   ];
   readonly animations: readonly ErpOverlayAnimation[] = ERP_MOTION_PRESETS;
   private readonly overlays = inject(ErpOverlayManager);
+  private readonly confirmDialog = inject(ErpConfirmDialogService);
 
   openModal(nested = false): void {
     this.open(
@@ -64,6 +66,31 @@ export class OverlayControls {
     position: Exclude<ErpOverlayPosition, 'center'>,
   ): void {
     this.open('drawer', position, `درج ${position}`);
+  }
+
+  openConfirm(
+    intent: 'default' | 'warning' | 'danger',
+  ): void {
+    void this.confirmDialog.confirm({
+      title:
+        intent === 'danger'
+          ? 'تأكيد الحذف'
+          : intent === 'warning'
+            ? 'تأكيد الإجراء'
+            : 'تأكيد المتابعة',
+      message:
+        intent === 'danger'
+          ? 'هل تريد حذف هذا السجل نهائيًا؟'
+          : intent === 'warning'
+            ? 'سيؤثر هذا الإجراء على البيانات الحالية.'
+            : 'هل تريد المتابعة؟',
+      details:
+        intent === 'danger'
+          ? 'لا يمكن التراجع عن الحذف بعد التأكيد.'
+          : null,
+      intent,
+      confirmLabel: intent === 'danger' ? 'حذف' : 'تأكيد',
+    });
   }
 
   openPolicy(): void {
