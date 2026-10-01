@@ -1046,54 +1046,28 @@ implementation state, blocker, verification result, or Product Owner finding.
 
 
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_START -->
-## 2026-10-01 — bounded Inputs runtime corrections: first verification rerun stopped at Overlay governance parser / corrected
+## 2026-10-01 — verification follow-up: final two stale test expectations corrected
 
-Product Owner pulled:
-`9342f0faa997b1cc6d99ecdf5ef2c6d6477e6dca`
-(`docs(handoff): record bounded Inputs runtime corrections`)
-and ran the mandatory complete:
-`npm run verify:clean`.
+Product Owner reran the full verification gate from the previous correction state.
 
-Observed progress:
-- Single App theme authority PASS;
-- routed-page ERP-only authoring PASS;
-- Component Token framework PASS;
-- system-color registry PASS;
-- ErpText PASS;
-- ErpIcon PASS;
-- ErpButton PASS;
-- ErpTooltip PASS;
-- ErpField PASS;
-- verification then stopped before Overlay governance execution because Node
-  could not parse one governance string literal.
+Observed result before this correction:
+- all governance checks PASS;
+- Angular lint PASS;
+- test bundle generation PASS;
+- 87 test files executed;
+- 85/87 test files PASS;
+- 647/649 tests PASS;
+- exactly two tests failed.
 
-Exact failure:
-`tools/controls/check-erp-overlay-governance.mjs:535`
+Both failures were stale expectations, not runtime regressions:
+- NumberBox default step is 1, therefore 12.5 is admitted numeric input but remains invalid through number.step; rejecting a later non-numeric character must not make the 12.5 draft valid.
+- OverlayManager now normalizes ordinary footer actions with presentation='button'; the long-body showcase expected object omitted that normalized field.
 
-Malformed literal:
-`"[icon]="action.icon ?? 'delete'""`
+Test-only correction:
+c096afc3cda1d076cfc702c721427c8468e4c61b
+fix(test): align final Inputs verification expectations
 
-Root cause:
-- quote escaping in the newly added governance evidence literal was malformed;
-- this was a governance-source syntax defect only;
-- no runtime component, Overlay behavior, input behavior, or visual contract
-  failed at this point because the checker itself had not executed.
-
-Bounded correction:
-- `0dfea6b1eb71441267165da3149a0148ea6c4ade`
-  `fix(governance): repair Overlay icon action literal`
-- replace only that malformed JavaScript string with a valid template literal;
-- scan of the same governance file found no second occurrence of that malformed
-  quoting pattern.
-
-Current status:
-**implemented / verification pending**.
-
-Mandatory next gate:
-`npm run verify:clean`
-
-Do not declare the 2026-10-01 bounded corrections Fully Green until that complete
-gate passes. If it stops again, reopen only the concrete demonstrated failure.
-Inputs remains Product Owner BLOCKED pending technical green and runtime re-test
-of the three authorized findings.
+No runtime source changed in this correction.
+Current status: implemented / verification pending.
+Mandatory next gate: npm run verify:clean.
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_END -->
