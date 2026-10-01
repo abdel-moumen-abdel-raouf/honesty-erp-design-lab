@@ -15,6 +15,14 @@ const CONFIRM_TEMPLATE =
   'src/app/shared/confirm-dialog/internal/confirm-dialog-content.html';
 const OVERLAY_CONTRACTS =
   'src/app/shared/overlay/overlay-contracts.ts';
+const OVERLAY_SHOWCASE_SOURCE =
+  'src/app/showcase/overlay-controls/overlay-controls.ts';
+const OVERLAY_SHOWCASE_TEMPLATE =
+  'src/app/showcase/overlay-controls/overlay-controls.html';
+const OVERLAY_EVIDENCE_SOURCE =
+  'src/app/showcase/overlay-controls/overlay-evidence-content.ts';
+const OVERLAY_EVIDENCE_TEMPLATE =
+  'src/app/showcase/overlay-controls/overlay-evidence-content.html';
 
 function walk(directory) {
   if (!fs.existsSync(directory)) {
@@ -46,6 +54,10 @@ export function validateConfirmDialogContract(files) {
   const content = files.get(CONFIRM_CONTENT) ?? '';
   const template = files.get(CONFIRM_TEMPLATE) ?? '';
   const overlayContracts = files.get(OVERLAY_CONTRACTS) ?? '';
+  const showcaseSource = files.get(OVERLAY_SHOWCASE_SOURCE) ?? '';
+  const showcaseTemplate = files.get(OVERLAY_SHOWCASE_TEMPLATE) ?? '';
+  const evidenceSource = files.get(OVERLAY_EVIDENCE_SOURCE) ?? '';
+  const evidenceTemplate = files.get(OVERLAY_EVIDENCE_TEMPLATE) ?? '';
 
   if (
     JSON.stringify(stringUnion(contracts, 'ErpConfirmDialogIntent')) !==
@@ -148,6 +160,41 @@ export function validateConfirmDialogContract(files) {
     if (!overlayContracts.includes(required)) {
       errors.push(`Overlay action contract required by Confirm: missing ${required}`);
     }
+  }
+
+  for (const required of [
+    'ErpConfirmDialogService',
+    "openConfirm(",
+  ]) {
+    if (!showcaseSource.includes(required)) {
+      errors.push(`Confirm showcase source: missing ${required}`);
+    }
+  }
+
+  for (const required of [
+    'data-review-group="confirm-dialog"',
+    'data-confirm-dialog-evidence="default"',
+    'data-confirm-dialog-evidence="warning"',
+    'data-confirm-dialog-evidence="danger"',
+  ]) {
+    if (!showcaseTemplate.includes(required)) {
+      errors.push(`Confirm showcase template: missing ${required}`);
+    }
+  }
+
+  if (
+    !evidenceSource.includes('ErpConfirmDialogService') ||
+    !evidenceSource.includes('openConfirm()')
+  ) {
+    errors.push(
+      'Blocking Overlay evidence must invoke Confirm through ErpConfirmDialogService',
+    );
+  }
+
+  if (!evidenceTemplate.includes('data-confirm-from-overlay-evidence')) {
+    errors.push(
+      'Blocking Overlay evidence must expose nested system Confirm review evidence',
+    );
   }
 
   return errors;
@@ -264,6 +311,22 @@ return 'error';
     [
       OVERLAY_CONTRACTS,
       'readonly tone?: ErpButtonTone; readonly actions: readonly ErpOverlayActionConfig[];',
+    ],
+    [
+      OVERLAY_SHOWCASE_SOURCE,
+      'ErpConfirmDialogService openConfirm(',
+    ],
+    [
+      OVERLAY_SHOWCASE_TEMPLATE,
+      '<erp-section data-review-group="confirm-dialog"><erp-button data-confirm-dialog-evidence="default" /><erp-button data-confirm-dialog-evidence="warning" /><erp-button data-confirm-dialog-evidence="danger" /></erp-section>',
+    ],
+    [
+      OVERLAY_EVIDENCE_SOURCE,
+      'ErpConfirmDialogService openConfirm()',
+    ],
+    [
+      OVERLAY_EVIDENCE_TEMPLATE,
+      '<erp-button data-confirm-from-overlay-evidence />',
     ],
     [
       'src/app/features/example/example.ts',

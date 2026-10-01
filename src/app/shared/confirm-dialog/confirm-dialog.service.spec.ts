@@ -150,38 +150,48 @@ describe('ErpConfirmDialogService', () => {
     });
   });
 
-  it('stacks above an existing blocking Modal or Drawer without replacing the parent', async () => {
+  it('stacks above existing blocking Modal and Drawer parents without replacing them', async () => {
     const service = TestBed.inject(ErpConfirmDialogService);
     const manager = TestBed.inject(ErpOverlayManager);
-    const parent = manager.open(ParentOverlayContent, {
-      kind: 'drawer',
-      position: 'start',
-      frame: parentFrame('Parent drawer'),
-    });
-    manager.completeTransition(parent.id, 'entering');
 
-    const result = service.confirm({
-      title: 'تأكيد داخلي',
-      message: 'هذا التأكيد مفتوح من داخل درج.',
-      intent: 'warning',
-    });
+    for (const [kind, position] of [
+      ['modal', 'center'],
+      ['drawer', 'start'],
+    ] as const) {
+      const parent = manager.open(ParentOverlayContent, {
+        kind,
+        position,
+        frame: parentFrame(`Parent ${kind}`),
+      });
+      manager.completeTransition(parent.id, 'entering');
 
-    expect(manager.entries()).toHaveLength(2);
-    expect(manager.entries()[0]).toMatchObject({
-      ref: parent,
-      phase: 'open',
-    });
-    const confirmEntry = manager.entries()[1];
-    expect(confirmEntry.ref.config.kind).toBe('modal');
-    expect(confirmEntry.ref.config.blocking).toBe(true);
+      const result = service.confirm({
+        title: 'تأكيد داخلي',
+        message: 'هذا التأكيد مفتوح من داخل نافذة حاجبة.',
+        intent: 'warning',
+      });
 
-    manager.completeTransition(confirmEntry.ref.id, 'entering');
-    confirmEntry.ref.dismiss('test-dismiss');
-    manager.completeTransition(confirmEntry.ref.id, 'leaving');
+      expect(manager.entries()).toHaveLength(2);
+      expect(manager.entries()[0]).toMatchObject({
+        ref: parent,
+        phase: 'open',
+      });
+      const confirmEntry = manager.entries()[1];
+      expect(confirmEntry.ref.config.kind).toBe('modal');
+      expect(confirmEntry.ref.config.blocking).toBe(true);
 
-    await expect(result).resolves.toBe(false);
-    expect(manager.entries()).toHaveLength(1);
-    expect(manager.entries()[0].ref).toBe(parent);
+      manager.completeTransition(confirmEntry.ref.id, 'entering');
+      confirmEntry.ref.dismiss('test-dismiss');
+      manager.completeTransition(confirmEntry.ref.id, 'leaving');
+
+      await expect(result).resolves.toBe(false);
+      expect(manager.entries()).toHaveLength(1);
+      expect(manager.entries()[0].ref).toBe(parent);
+
+      parent.dismiss('parent-cleanup');
+      manager.completeTransition(parent.id, 'leaving');
+      expect(manager.entries()).toEqual([]);
+    }
   });
 
   it('rejects blank required copy before opening an Overlay', () => {

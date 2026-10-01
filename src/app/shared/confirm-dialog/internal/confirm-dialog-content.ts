@@ -12,6 +12,7 @@ export interface ErpConfirmDialogData {
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-confirm-dialog-content',
   imports: [ErpStack, ErpText],
   templateUrl: './confirm-dialog-content.html',
