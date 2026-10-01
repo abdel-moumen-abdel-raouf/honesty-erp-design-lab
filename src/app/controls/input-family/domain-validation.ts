@@ -69,7 +69,7 @@ export function isProgressiveHttpUrlDraft(value: string): boolean {
 
   return (
     value.length === 0 ||
-    /^[A-Za-z0-9:/?#@!$&'()*+,;=._~%\-]*$/.test(value)
+    /^[A-Za-z0-9:/?#@!$&'()*+,;=._~%-]*$/.test(value)
   );
 }
 
