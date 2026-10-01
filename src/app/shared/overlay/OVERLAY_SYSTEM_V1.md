@@ -35,6 +35,7 @@ export type ErpOverlayPosition =
   | 'center'
   | 'start'
   | 'end'
+  | 'top'
   | 'bottom';
 
 export type ErpOverlaySize =
@@ -90,9 +91,10 @@ Exact defaults:
 - dismissOnBackdrop: false
 - blur: low
 - backdropTone: default
-- modal enter/exit: fade-scale
+- modal enter/exit: flip-x
 - start drawer enter/exit: slide-start
 - end drawer enter/exit: slide-end
+- top drawer enter/exit: slide-down / slide-up
 - bottom drawer enter/exit: slide-up / slide-down
 - restoreFocus: true
 - trapFocus: true
@@ -175,6 +177,9 @@ The shared frame owns:
   ErpIconButton;
 - a primary scrolling Body for dynamic content;
 - a single Footer with logically grouped ERP actions. Ordinary actions use ErpButton; Clear/Clear Selected use ErpIconButton with a semantic delete icon and ErpTooltip label.
+- one theme-sensitive separator token shared by the Header bottom edge and
+  Footer top edge. It resolves through the semantic default border role so the
+  separator remains visible in both Light and Dark.
 
 The close action always dismisses with `close-action`. Dynamic content
 registers its business behavior by stable action ID through the frame action
@@ -187,8 +192,10 @@ Drawers use the same manager, stack, backdrop, and focus contract. Drawer start
 and end are logical and RTL-aware.
 
 Start/end drawers attach to the logical viewport edge at full viewport block
-size. Bottom drawers attach to the bottom at full inline size. Modal viewport
-inset does not turn drawers into floating cards.
+size. Top/bottom drawers attach to their physical viewport edge at full inline
+size. The shared frame fills the available drawer surface so Header stays at
+the start, Footer stays at the bottom/end, and only Body consumes the flexible
+scrolling track. Modal viewport inset does not turn drawers into floating cards.
 
 ## Picker Transaction Contract
 
@@ -281,3 +288,24 @@ infrastructure and does not recreate blocking backdrops or z-index systems.
 
 This is a technical correction checkpoint only. It does not declare visual
 approval, freeze an Overlay-backed control family, or close Basic Controls.
+
+
+## 2026-10-01 — Product Owner Overlay review correction
+
+The dedicated `/controls/overlays` review route is Overlay-only. It must not
+duplicate production Date/Time/DateRange inputs, selection pickers, or deferred
+control composites already reviewed on their own control pages.
+
+Current Overlay review evidence is limited to:
+- modal behavior and long-body Header/Body/Footer framing;
+- four drawer edges: logical start/end plus physical top/bottom;
+- nested overlay stack behavior;
+- dismissal, backdrop, blur, tone, motion, and reduced-motion policies.
+
+Product Owner runtime corrections in this checkpoint:
+- default modal motion is `flip-x`;
+- top drawer support is public;
+- Header/Footer separators are visible in Light and Dark through the Overlay
+  separator Component Token;
+- full-height side drawers keep Footer at the bottom while Body owns the flexible
+  scrolling region.

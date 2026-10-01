@@ -21,6 +21,12 @@ const OVERLAY_FRAME_SOURCE =
   'src/app/shared/overlay/overlay-frame/overlay-frame.ts';
 const OVERLAY_FRAME_TEMPLATE =
   'src/app/shared/overlay/overlay-frame/overlay-frame.html';
+const OVERLAY_FRAME_STYLE =
+  'src/app/shared/overlay/overlay-frame/overlay-frame.scss';
+const OVERLAY_SHOWCASE_SOURCE =
+  'src/app/showcase/overlay-controls/overlay-controls.ts';
+const OVERLAY_SHOWCASE_TEMPLATE =
+  'src/app/showcase/overlay-controls/overlay-controls.html';
 const TEMPORAL_PICKER_SOURCE =
   'src/app/controls/temporal-family/internal/temporal-picker-content.ts';
 const TEMPORAL_PICKER_TEMPLATE =
@@ -300,6 +306,7 @@ export function validateOverlayContractDrift(files) {
   const tokens = files.get(OVERLAY_TOKENS) ?? '';
 
   const exactUnions = new Map([
+    ['ErpOverlayPosition', ['center', 'start', 'end', 'top', 'bottom']],
     ['ErpOverlayBlur', ['low', 'medium', 'high']],
     [
       'ErpOverlayBackdropTone',
@@ -352,9 +359,10 @@ export function validateOverlayContractDrift(files) {
   }
 
   for (const required of [
-    "return ['fade-scale', 'fade-scale']",
+    "return ['flip-x', 'flip-x']",
     "return ['slide-start', 'slide-start']",
     "return ['slide-end', 'slide-end']",
+    "return ['slide-down', 'slide-up']",
     "return ['slide-up', 'slide-down']",
     "dismissOnEscape: options.dismissOnEscape ?? false",
     "dismissOnBackdrop: options.dismissOnBackdrop ?? false",
@@ -375,6 +383,7 @@ export function validateOverlayContractDrift(files) {
     "data-overlay-phase='leaving'",
     "data-overlay-kind='drawer'][data-overlay-position='start']",
     "data-overlay-kind='drawer'][data-overlay-position='end']",
+    "data-overlay-kind='drawer'][data-overlay-position='top']",
     "data-overlay-kind='drawer'][data-overlay-position='bottom']",
     'block-size: 100dvh',
     'inline-size: 100%',
@@ -412,6 +421,9 @@ export function validateOverlayContractDrift(files) {
     '--honesty-overlay-backdrop-bg:',
     '--honesty-overlay-backdrop-blur:',
     '--honesty-overlay-layer:',
+    '--honesty-overlay-frame-separator-color: var(--honesty-border-default);',
+    '--honesty-overlay-frame-header-border-color:',
+    '--honesty-overlay-frame-footer-border-color:',
     '--honesty-overlay-enter-duration: 360ms;',
     '--honesty-overlay-exit-duration: 260ms;',
   ]) {
@@ -441,6 +453,7 @@ export function validateOverlayFrameContract(files) {
   const ref = files.get(OVERLAY_REF) ?? '';
   const frameSource = files.get(OVERLAY_FRAME_SOURCE) ?? '';
   const frameTemplate = files.get(OVERLAY_FRAME_TEMPLATE) ?? '';
+  const frameStyle = files.get(OVERLAY_FRAME_STYLE) ?? '';
   const temporalSource = files.get(TEMPORAL_PICKER_SOURCE) ?? '';
   const temporalTemplate = files.get(TEMPORAL_PICKER_TEMPLATE) ?? '';
   const selectionSource = files.get(SELECTION_PICKER_SOURCE) ?? '';
@@ -502,6 +515,20 @@ export function validateOverlayFrameContract(files) {
   ]) {
     if (!ref.includes(required)) {
       errors.push(`OverlayRef: missing frame action contract ${required}`);
+    }
+  }
+
+  for (const required of [
+    ':host {',
+    'block-size: 100%;',
+    '.overlay-frame {',
+    'grid-template-rows: auto minmax(',
+    '.overlay-frame__body',
+    'overflow: auto;',
+    '.overlay-frame__footer',
+  ]) {
+    if (!frameStyle.includes(required)) {
+      errors.push(`OverlayFrame styles: missing full-height Header/Body/Footer contract ${required}`);
     }
   }
 
@@ -594,6 +621,73 @@ export function validateOverlayFrameContract(files) {
   return errors;
 }
 
+export function validateOverlayShowcase(files) {
+  const errors = [];
+  const source = files.get(OVERLAY_SHOWCASE_SOURCE) ?? '';
+  const template = files.get(OVERLAY_SHOWCASE_TEMPLATE) ?? '';
+
+  for (const group of [
+    'modal',
+    'drawers',
+    'nested-stack',
+    'dismissal-focus',
+  ]) {
+    if (!template.includes(`data-review-group="${group}"`)) {
+      errors.push(`Overlay showcase: missing Overlay-only review group ${group}`);
+    }
+  }
+
+  for (const forbidden of [
+    'data-review-group="temporal-pickers"',
+    'data-review-group="selection-pickers"',
+    'data-review-group="deferred-composites"',
+    '<erp-date-box',
+    '<erp-time-box',
+    '<erp-date-time-box',
+    '<erp-date-range-box',
+    '<erp-color-picker',
+    '<erp-icon-picker',
+    '<erp-item-picker',
+    '<erp-combo-box',
+    '<erp-radio-group',
+    '<erp-button-group',
+    '<erp-split-button',
+    '<erp-fab-menu',
+  ]) {
+    if (template.includes(forbidden)) {
+      errors.push(`Overlay showcase: repeated non-Overlay control evidence is forbidden: ${forbidden}`);
+    }
+  }
+
+  for (const position of ['start', 'end', 'top', 'bottom']) {
+    if (!template.includes(`data-drawer-evidence="${position}"`)) {
+      errors.push(`Overlay showcase: missing drawer edge evidence ${position}`);
+    }
+  }
+
+  for (const forbiddenImport of [
+    'ErpDateBox',
+    'ErpTimeBox',
+    'ErpDateTimeBox',
+    'ErpDateRangeBox',
+    'ErpColorPicker',
+    'ErpIconPicker',
+    'ErpItemPicker',
+    'ErpComboBox',
+    'ErpRadioGroup',
+    'ErpButtonGroup',
+    'ErpSplitButton',
+    'ErpFabMenu',
+    'FormsModule',
+  ]) {
+    if (source.includes(forbiddenImport)) {
+      errors.push(`Overlay showcase: repeated control import is forbidden: ${forbiddenImport}`);
+    }
+  }
+
+  return errors;
+}
+
 export function validateTemporalPickers(files) {
   const errors = [];
   for (const control of ['date-box', 'time-box', 'date-time-box', 'date-range-box']) {
@@ -676,7 +770,8 @@ function runSelfTest() {
   const validDriftFiles = new Map([
     [
       OVERLAY_CONTRACTS,
-      `export type ErpOverlayBlur = 'low' | 'medium' | 'high';
+      `export type ErpOverlayPosition = 'center' | 'start' | 'end' | 'top' | 'bottom';
+export type ErpOverlayBlur = 'low' | 'medium' | 'high';
 export type ErpOverlayBackdropTone = 'default' | 'neutral' | 'primary' | 'secondary' | 'accent';
 export type ErpOverlayAnimation = ErpMotionPreset;
 export type ErpOverlayPhase = 'entering' | 'open' | 'leaving';`,
@@ -692,9 +787,10 @@ window.matchMedia('(prefers-reduced-motion: reduce)');`,
     ],
     [
       OVERLAY_MANAGER,
-      `return ['fade-scale', 'fade-scale'];
+      `return ['flip-x', 'flip-x'];
 return ['slide-start', 'slide-start'];
 return ['slide-end', 'slide-end'];
+return ['slide-down', 'slide-up'];
 return ['slide-up', 'slide-down'];
 dismissOnEscape: options.dismissOnEscape ?? false;
 dismissOnBackdrop: options.dismissOnBackdrop ?? false;
@@ -704,7 +800,7 @@ phase: 'entering'; phase: 'open'; phase: 'leaving'; top?.ref.id === id;`,
     ],
     [
       OVERLAY_STYLE,
-      "data-overlay-kind='drawer'][data-overlay-position='start'] data-overlay-kind='drawer'][data-overlay-position='end'] data-overlay-kind='drawer'][data-overlay-position='bottom'] block-size: 100dvh; inline-size: 100%;",
+      "data-overlay-kind='drawer'][data-overlay-position='start'] data-overlay-kind='drawer'][data-overlay-position='end'] data-overlay-kind='drawer'][data-overlay-position='top'] data-overlay-kind='drawer'][data-overlay-position='bottom'] block-size: 100dvh; inline-size: 100%;",
     ],
     [OVERLAY_FACETS, 'data-overlay-blur data-overlay-backdrop-tone'],
     [
@@ -720,7 +816,7 @@ this.manager.completeTransition(entry.ref.id, entry.phase)`,
     ],
     [
       OVERLAY_TOKENS,
-      '--honesty-overlay-backdrop-bg: x; --honesty-overlay-backdrop-blur: x; --honesty-overlay-layer: x; --honesty-overlay-enter-duration: 360ms; --honesty-overlay-exit-duration: 260ms;',
+      '--honesty-overlay-backdrop-bg: x; --honesty-overlay-backdrop-blur: x; --honesty-overlay-layer: x; --honesty-overlay-frame-separator-color: var(--honesty-border-default); --honesty-overlay-frame-header-border-color: x; --honesty-overlay-frame-footer-border-color: x; --honesty-overlay-enter-duration: 360ms; --honesty-overlay-exit-duration: 260ms;',
     ],
   ]);
 
@@ -868,6 +964,27 @@ const currentPreviewMode = 'mobile';`,
     throw new Error('Overlay governance rejected valid SplitButton fixture');
   }
 
+  const validOverlayShowcase = new Map([
+    [
+      OVERLAY_SHOWCASE_SOURCE,
+      'ErpButton ErpOverlayManager',
+    ],
+    [
+      OVERLAY_SHOWCASE_TEMPLATE,
+      '<section data-review-group="modal"></section><section data-review-group="drawers"><erp-button data-drawer-evidence="start" /><erp-button data-drawer-evidence="end" /><erp-button data-drawer-evidence="top" /><erp-button data-drawer-evidence="bottom" /></section><section data-review-group="nested-stack"></section><section data-review-group="dismissal-focus"></section>',
+    ],
+  ]);
+  if (validateOverlayShowcase(validOverlayShowcase).length > 0) {
+    throw new Error('Overlay governance rejected valid Overlay-only showcase fixture');
+  }
+  validOverlayShowcase.set(
+    OVERLAY_SHOWCASE_TEMPLATE,
+    `${validOverlayShowcase.get(OVERLAY_SHOWCASE_TEMPLATE)}<erp-date-box />`,
+  );
+  if (validateOverlayShowcase(validOverlayShowcase).length === 0) {
+    throw new Error('Overlay governance accepted repeated Input evidence in Overlay showcase');
+  }
+
   const validFrame = new Map([
     [
       OVERLAY_CONTRACTS,
@@ -922,6 +1039,13 @@ this.dismiss('secondary-action')`,
       OVERLAY_FRAME_SOURCE,
       `ErpButton ErpIconButton ErpTooltip
 this.ref().dismiss('close-action')`,
+    ],
+    [
+      OVERLAY_FRAME_STYLE,
+      `:host { block-size: 100%; }
+.overlay-frame { display: grid; block-size: 100%; grid-template-rows: auto minmax(0, 1fr) auto; }
+.overlay-frame__body { overflow: auto; }
+.overlay-frame__footer {}`,
     ],
     [
       OVERLAY_FRAME_TEMPLATE,
@@ -1097,6 +1221,7 @@ const errors = validate(files);
 errors.push(...validateSingleDocumentLabContract(files));
 errors.push(...validateOverlayContractDrift(files));
 errors.push(...validateOverlayFrameContract(files));
+errors.push(...validateOverlayShowcase(files));
 errors.push(...validateTemporalPickers(files));
 errors.push(...validateSelectionPickers(files));
 errors.push(...validateDeferredCompositeOverlay(files));
