@@ -75,8 +75,9 @@ describe('ErpTelBox', () => {
     const native = host.querySelector('input') as HTMLInputElement;
     const onChange = vi.fn();
     fixture.componentInstance.registerOnChange(onChange);
-    fixture.componentRef.setInput('pattern', '^\\+20[0-9]+
+    fixture.componentRef.setInput('pattern', '^\\+20[0-9]+$');
     fixture.detectChanges();
+
     native.dispatchEvent(new FocusEvent('focus'));
     native.value = '+1 555 123 4567';
     native.dispatchEvent(new Event('input'));
@@ -92,38 +93,6 @@ describe('ErpTelBox', () => {
     expect(native.value).toBe('+201001234567');
     expect(onChange).toHaveBeenCalledOnce();
     expect(onChange).toHaveBeenCalledWith('+201001234567');
-    expect(fixture.componentInstance.inputState()).toBe('valid-entry');
-
-    fixture.componentRef.setInput('pattern', '[');
-    fixture.detectChanges();
-    expect(host.getAttribute('data-field-configuration-state')).toBe('invalid');
-    expect(native.disabled).toBe(true);
-  });
-
-  it('forwards placeholder and readonly to the native control', () => {
-    const fixture = create();
-    fixture.componentRef.setInput('placeholder', 'Example');
-    fixture.componentRef.setInput('readonly', true);
-    fixture.detectChanges();
-    const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
-    expect(native.placeholder).toBe('Example');
-    expect(native.readOnly).toBe(true);
-  });
-});
-);
-    fixture.detectChanges();
-    native.dispatchEvent(new FocusEvent('focus'));
-    native.value = '+1 555 123 4567';
-    native.dispatchEvent(new Event('input'));
-    expect(onChange).toHaveBeenCalledWith('+1 555 123 4567');
-    expect(fixture.componentInstance.inputState()).toBe('invalid-entry');
-    expect(
-      fixture.componentInstance.validationIssues().map((issue) => issue.code),
-    ).toContain('tel.format');
-
-    native.value = '+20 100 123 4567';
-    native.dispatchEvent(new Event('input'));
-    expect(onChange).toHaveBeenLastCalledWith('+20 100 123 4567');
     expect(fixture.componentInstance.inputState()).toBe('valid-entry');
 
     fixture.componentRef.setInput('pattern', '[');
