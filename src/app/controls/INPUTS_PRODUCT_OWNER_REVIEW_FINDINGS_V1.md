@@ -1061,3 +1061,46 @@ Do not restore duplicated controls to the Overlay page to satisfy inventory.
 Review ownership must remain aligned to the control's actual production-review
 page.
 <!-- CHATGPT_OVERLAY_SHOWCASE_OWNERSHIP_FOLLOWUP_END -->
+
+
+<!-- CHATGPT_BUTTON_SHOWCASE_ICON_FOLLOWUP_2026_10_02_START -->
+## 2026-10-02 — verification follow-up: invalid Button showcase icon corrected
+
+Product Owner pulled:
+`c02dd33d32dfdcb2ec3029a11f578584b1b2dca8`
+and reran:
+`npm run verify:clean`.
+
+Observed progress:
+- all foundation/governance checks PASS;
+- ErpField governance PASS;
+- ErpOverlay governance PASS;
+- Angular lint PASS;
+- test bundle generation then stopped before test execution on one TypeScript
+  template/compiler error.
+
+Exact demonstrated failure:
+`src/app/showcase/button-controls/button-controls.ts:98`
+
+The newly relocated SplitButton/FabMenu showcase data used
+`icon: 'table'`, but `table` is not an `ErpIconName` in the current
+semantic registry.
+
+Bounded correction:
+- `619c5b3c3f0850567524d9c386a469fb18ac31de`
+  `fix(showcase): use registered export icon`;
+- replace only the invalid showcase icon `table` with registered semantic
+  `download`;
+- no production Button, SplitButton, FabMenu, Overlay, or Input runtime behavior
+  changed.
+
+Current status:
+**implemented / canonical verification pending**.
+
+Mandatory next gate:
+`npm run verify:clean`.
+
+Do not reopen the Overlay page ownership decision. Inputs/selection evidence
+remains on Inputs, button composites remain on Buttons, and Overlays remains
+Overlay-only.
+<!-- CHATGPT_BUTTON_SHOWCASE_ICON_FOLLOWUP_2026_10_02_END -->
