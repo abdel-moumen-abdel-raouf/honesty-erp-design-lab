@@ -248,26 +248,37 @@ accept arbitrary characters.
 The editor boundary and the validation boundary are separate:
 
 - generic text fields may admit ordinary text;
-- URL admits progressive HTTP/HTTPS URL syntax only. Arbitrary prose and raw
-  whitespace are rejected by the editor. An incomplete but structurally
-  progressive URL draft (for example `https://`) remains visible and invalid
-  until corrected. The CVA value is published only when the URL is empty or
-  fully accepted by the URL/domain pattern;
+- URL admits progressive web-address syntax with optional
+  `http://`/`https://` scheme. Scheme-less domains such as `example.com`
+  and `www.example.com` are first-class accepted values; explicit non-HTTP(S)
+  schemes are rejected. Arbitrary prose and raw whitespace are rejected by the
+  editor. Final validation requires a real parseable HTTP(S) candidate and a
+  hostname with at least two valid labels plus an alphabetic or punycode TLD.
+  Incomplete values such as `http://www.s` remain visible as invalid drafts
+  with `url.format`; the CVA value is published only when empty or fully
+  accepted by the effective URL/domain pattern;
 - Tel canonicalizes user editing to an optional single leading `+` followed
   by ASCII digits only. Spaces and other characters are removed. A canonical
   draft may remain visible while too short/long or while failing an approved
   developer pattern; it is published only when admitted by that final pattern;
-- Number, Money, and NumberStepper admit only progressive numeric syntax
-  (optional leading sign, digits, and one decimal point). Letters and unrelated
-  punctuation never become the editor draft;
-- numeric values that are syntactically numeric but violate min/max/step or an
-  approved domain constraint remain visible and invalid. They are not clamped
-  merely to make validation pass.
+- NumberBox admits ASCII digits only. Sign characters, decimal separators,
+  letters, and unrelated punctuation never become its editor draft.
+- MoneyBox and NumberStepper retain progressive numeric syntax appropriate to
+  decimal editing (optional leading sign, digits, and one decimal point);
+  letters and unrelated punctuation never become their editor draft.
+- admitted numeric values that violate min/max/step or an approved domain
+  constraint remain visible and invalid. They are not clamped merely to make
+  validation pass.
 
 Therefore the invariant is:
 
 **reject characters that do not belong to the control domain; preserve admitted
 typed drafts when their value is invalid.**
+
+For selection/search controls, developer-provided item collections are runtime
+data rather than Design Lab fixtures. SearchBox, ItemPicker, and ComboBox must
+consume current bound items while an open result/picker surface is active; a
+stale open-time snapshot is not the production contract.
 
 This distinction is mandatory for both component-level validation and Angular
 Forms integration.

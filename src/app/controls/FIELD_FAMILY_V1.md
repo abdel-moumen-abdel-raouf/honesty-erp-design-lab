@@ -240,6 +240,10 @@ contracts feed Component Tokens.
 - Text uses a transparent surface, no perimeter, and an effective underline
   border mode. Configured `borderMode` does not create a perimeter for the text
   variant.
+- Solid, Ghost, Text, and explicit Underline all have token-owned hover
+  discoverability in both Light and Dark themes. Hover mixes the current field
+  base surface with the theme-sensitive Field hover tint; no local theme
+  selector or per-theme component override is allowed.
 
 ### Focus Gradient
 
@@ -358,11 +362,12 @@ their concrete ERP controls.
   nonblocking Popover. Focusing the Field trigger opens the dropdown, whose
   native search editor owns a transient query separate from the committed CVA
   value.
-- Dropdown results use readonly `ErpSearchBoxOption[]` data with stable
-  `value`, visible `label`, optional `disabled`, and optional semantic
-  `icon`. Filtering matches label or value; pointer and keyboard activation
-  commit only an enabled result value. Free query text is never committed in
-  dropdown mode.
+- Dropdown results use developer-owned readonly `ErpSearchBoxOption[]` data with
+  stable `value`, visible `label`, optional `disabled`, and optional
+  semantic `icon`. The `items` input is runtime-dynamic: changing it while
+  an anchored dropdown is open immediately updates the visible result set.
+  Filtering matches label or value; pointer and keyboard activation commit only
+  an enabled result value. Free query text is never committed in dropdown mode.
 - Dropdown semantics are combobox/listbox/option. ArrowDown/ArrowUp move between
   results and SelectionTile activation commits the focused result. The popup
   also owns an explicit close action; Escape and outside dismissal remain
@@ -384,7 +389,9 @@ their concrete ERP controls.
 - Modal mode opens `ErpSelectionPickerContent` through the shared
   `ErpOverlayManager` and uses dialog/frame semantics. The modal reuses the
   same result option identity and filtering behavior rather than creating a
-  second search engine.
+  second search engine. Its picker consumes a live items provider, so runtime
+  changes to the SearchBox `items` input are visible without closing and
+  reopening the modal.
 - Inline mode owns a direct native search editor and opens nothing on focus.
   Inline typing is the CVA string value.
 - `dismissOnOutside = true`, `dismissOnEscape = true`,
@@ -396,11 +403,19 @@ their concrete ERP controls.
   reduced motion uses the SearchBox reduced-duration slot.
 - SearchBox icon priority is custom `leadingIcon`, then the semantic search icon
   when enabled, then no icon.
-- ErpUrlBox uses native url semantics with url autocomplete and input mode. A
-  committed value must pass its effective final pattern, real URL parsing, and
-  the HTTP/HTTPS protocol rule.
-- ErpTelBox uses native tel semantics with tel autocomplete and input mode. It
-  rejects alphabetic draft input and performs no formatting or masking.
+- ErpUrlBox owns web-address validation through ERP logic rather than native
+  `type=url` validity. Its editor is text-like with `inputmode=url` and URL
+  autocomplete. It accepts real domain addresses with an optional
+  `http://`/`https://` scheme and optional `www` label, including
+  ordinary valid TLDs such as `.com`, `.org`, `.net`, `.ai`, and other
+  alphabetic/punycode TLDs. A hostname must contain at least two valid labels;
+  incomplete hosts such as `http://www.s` remain visible as invalid drafts
+  and publish `url.format`, but do not replace the last accepted CVA value.
+- ErpTelBox uses native tel semantics with tel autocomplete and input mode. User
+  editing is canonicalized to an optional single leading `+` followed by
+  ASCII digits only; spaces, letters, and unrelated punctuation are removed.
+  Canonical drafts can remain visible while failing length or developer-pattern
+  validation.
 
 All six controls register themselves as stable ControlValueAccessor providers.
 They keep labels semantic, compose helper and visible feedback relationships,
@@ -498,10 +513,14 @@ Its invariant is `min <= lower <= upper <= max`; thumbs do not cross in V1.
 
 ## Numeric Family
 
-- `ErpNumberBox` stores `number | null`, uses a text-like decimal editor without
-  browser-native number spinners, defaults `step` to 1 and `allowEmpty` to
-  true, accepts nullable min/max, and clamps normalized commits to configured
-  bounds.
+- `ErpNumberBox` stores `number | null` and uses a text-like **digits-only**
+  editor with `inputmode=numeric` and no browser-native number spinners.
+  Interactive editing admits ASCII digits `0-9` only; sign characters,
+  decimal separators, letters, and unrelated punctuation do not become the
+  draft. It defaults `step` to 1 and `allowEmpty` to true. Syntactically
+  admitted integer values remain visible when they violate min/max/step and are
+  reported through validation; editable input is not clamped merely to pass a
+  constraint.
 - `ErpMoneyBox` stores `number | null`; required currency and optional locale
   are formatting metadata. `digitSet: 'latin' | 'arabic-indic' | null` is an
   optional per-instance display override; null inherits the shared Preferences
@@ -516,8 +535,11 @@ Its invariant is `min <= lower <= upper <= max`; thumbs do not cross in V1.
   `pattern`. Null selects the built-in final expression; a supplied expression
   replaces it; an invalid regular expression is configuration-invalid.
 - Pattern matching is shape/admission only. Numeric, URL, and telephone domain
-  parsing remains authoritative. Progressive editing text is separate from
-  committed CVA value, and invalid final-domain drafts never publish.
+  parsing remains authoritative. NumberBox applies its developer pattern after
+  digits-only editor admission. MoneyBox and NumberStepper retain their own
+  progressive decimal grammar. URL/Tel domain-invalid drafts remain visible
+  without publishing a replacement CVA value; numeric values that are valid
+  syntax but fail min/max/step may publish while the control remains invalid.
 - MoneyBox accepts monetary numeric draft syntax only. Its built-in final
   pattern permits a trailing decimal separator while focused; blur returns to
   `Intl.NumberFormat` output.
@@ -551,9 +573,14 @@ Its invariant is `min <= lower <= upper <= max`; thumbs do not cross in V1.
   queue state but never attempt to populate that native input.
 - FilePicker presents a dashed browse/drop zone plus a selected-file list with
   semantic file identity, formatted size, and Tooltip-labelled remove actions.
+  Selected rows use tokenized hover/focus background/border feedback plus a
+  subtle `scale(1.01)` transform with Foundation Motion transition; reduced
+  motion removes the transform.
 - ImagePicker presents the same selection boundary plus stable Object URL
-  thumbnails and `sm | md | lg` preview sizing. URLs are reused while a file
-  remains selected and revoked on remove, clear, and destruction.
+  thumbnails and `sm | md | lg` preview sizing. Selected image rows use the
+  same token-owned `scale(1.01)` hover/focus motion and reduced-motion
+  cancellation. URLs are reused while a file remains selected and revoked on
+  remove, clear, and destruction.
 - Neither control owns HTTP upload, progress, retry, server response, or
   backend policy behavior.
 
@@ -615,13 +642,19 @@ Its invariant is `min <= lower <= upper <= max`; thumbs do not cross in V1.
 - `ErpIconPicker` stores `ErpIconName | null`, searches the complete semantic
   icon registry, uses fixed tokenized equal tiles, supports keyboard selection,
   and never exposes vendor names.
-- `ErpItemPicker` stores `string | null` and consumes readonly options with
-  `value`, `label`, optional `disabled`, and optional semantic `icon`; its
-  defaults are nullable placeholder, `searchable = false`, and
-  `clearable = false`.
+- `ErpItemPicker` stores `string | null` and consumes developer-owned readonly
+  options with `value`, `label`, optional `disabled`, and optional semantic
+  `icon`; its defaults are nullable placeholder, `searchable = false`, and
+  inherited `clearable = true`. It remains non-editable/select-like.
 - `ErpComboBox` uses the same option contract, keeps an editable search query,
   commits only a matched enabled option value, and never commits free-form text
   in V1.
+- ItemPicker and ComboBox expose required `items` inputs as production
+  component API. Their open selection Overlay consumes a live provider over the
+  current input signal, so changing the bound items while the picker is open
+  updates filtering/valid-selection logic without recreating the control.
+  SearchBox dropdown and modal follow the same live-data principle. None of
+  these production controls imports Design Lab/showcase/review-internal code.
 - All four use Field Family chrome and `ErpOverlayManager`; overlay selection is
   staged so cancel or dismissal does not mutate the CVA value. Confirm starts
   disabled and becomes enabled only when the staged value is valid for the
