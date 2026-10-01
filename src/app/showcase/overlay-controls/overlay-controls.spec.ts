@@ -35,12 +35,13 @@ describe('OverlayControls showcase', () => {
     expect(create().componentInstance).toBeTruthy();
   });
 
-  it('renders exactly four Overlay-only technical groups under the inherited global theme', () => {
+  it('renders exactly five Overlay-only technical groups under the inherited global theme', () => {
     const root = create().nativeElement as HTMLElement;
     const groups = [...root.querySelectorAll('[data-review-group]')];
     expect(groups.map((group) => group.getAttribute('data-review-group'))).toEqual([
       'modal',
       'drawers',
+      'confirm-dialog',
       'nested-stack',
       'dismissal-focus',
     ]);
@@ -69,6 +70,7 @@ describe('OverlayControls showcase', () => {
   it('contains modal, logical drawer, nested, and policy evidence', () => {
     const root = create().nativeElement as HTMLElement;
     expect(root.querySelectorAll('[data-modal-evidence]').length).toBe(1);
+    expect(root.querySelectorAll('[data-confirm-dialog-evidence]').length).toBe(3);
     expect(root.querySelectorAll('[data-frame-header-hidden-evidence]').length).toBe(1);
     expect(root.querySelectorAll('[data-frame-footer-hidden-evidence]').length).toBe(1);
     expect(root.querySelectorAll('[data-frame-both-hidden-evidence]').length).toBe(1);
@@ -220,6 +222,7 @@ describe('OverlayControls showcase', () => {
             label: 'إلغاء المراجعة',
             icon: null,
             presentation: 'button',
+            tone: 'neutral',
             role: 'secondary',
             placement: 'end',
             disabled: false,
@@ -230,12 +233,40 @@ describe('OverlayControls showcase', () => {
             label: 'اعتماد المراجعة',
             icon: 'check',
             presentation: 'button',
+            tone: 'primary',
             role: 'primary',
             placement: 'end',
             disabled: false,
             loading: false,
           },
         ],
+      },
+    });
+  });
+
+  it('opens the system Confirm service with semantic danger configuration', () => {
+    const fixture = create();
+    const manager = TestBed.inject(ErpOverlayManager);
+
+    fixture.componentInstance.openConfirm('danger');
+
+    const entry = manager.entries().at(-1);
+    expect(entry?.ref.config).toMatchObject({
+      kind: 'modal',
+      position: 'center',
+      size: 'sm',
+      dismissOnEscape: true,
+      dismissOnBackdrop: false,
+      initialFocus: '[data-overlay-frame-action-id="cancel"] button',
+      frame: {
+        showHeader: true,
+        showFooter: true,
+        footer: {
+          actions: [
+            expect.objectContaining({id: 'cancel', tone: 'neutral'}),
+            expect.objectContaining({id: 'confirm', tone: 'danger'}),
+          ],
+        },
       },
     });
   });

@@ -49,8 +49,8 @@ describe('ErpOverlayManager', () => {
         },
         footer: {
           actions: [
-            {id: 'cancel', label: 'Cancel', icon: null, presentation: 'button', role: 'secondary', placement: 'end', disabled: false, loading: false},
-            {id: 'confirm', label: 'Confirm', icon: null, presentation: 'button', role: 'primary', placement: 'end', disabled: false, loading: false},
+            {id: 'cancel', label: 'Cancel', icon: null, presentation: 'button', tone: 'neutral', role: 'secondary', placement: 'end', disabled: false, loading: false},
+            {id: 'confirm', label: 'Confirm', icon: null, presentation: 'button', tone: 'primary', role: 'primary', placement: 'end', disabled: false, loading: false},
           ],
         },
       },
@@ -131,10 +131,39 @@ describe('ErpOverlayManager', () => {
       label: 'مسح',
       icon: 'delete',
       presentation: 'icon-button',
+      tone: 'neutral',
       role: 'utility',
       placement: 'start',
       disabled: false,
       loading: false,
+    });
+  });
+
+  it('preserves an explicit semantic action tone through normalization', () => {
+    const manager = TestBed.inject(ErpOverlayManager);
+    const base = frame('Danger action');
+    const ref = manager.open(TestOverlayContent, {
+      frame: {
+        ...base,
+        footer: {
+          actions: [
+            {
+              id: 'delete',
+              label: 'Delete',
+              icon: 'delete',
+              tone: 'danger',
+              role: 'primary',
+              placement: 'end',
+            },
+          ],
+        },
+      },
+    });
+
+    expect(ref.config.frame?.footer.actions[0]).toMatchObject({
+      id: 'delete',
+      tone: 'danger',
+      role: 'primary',
     });
   });
 

@@ -145,6 +145,24 @@ describe('ErpOverlayFrame', () => {
     expect(secondary).toHaveBeenCalledOnce();
   });
 
+  it('renders an explicitly configured semantic action tone', () => {
+    const {fixture} = create({
+      ...FRAME,
+      footer: {
+        actions: FRAME.footer.actions.map((action) =>
+          action.id === 'apply'
+            ? {...action, tone: 'danger' as const}
+            : action,
+        ),
+      },
+    });
+    const apply = (fixture.nativeElement as HTMLElement).querySelector(
+      '[data-overlay-frame-action-id="apply"]',
+    );
+
+    expect(apply?.getAttribute('data-button-tone')).toBe('danger');
+  });
+
   it('honors configured close and footer action presentation', () => {
     const {fixture} = create({
       header: {...FRAME.header, closeLabel: 'إغلاق النافذة'},
