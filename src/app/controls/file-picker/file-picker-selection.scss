@@ -18,9 +18,13 @@
   border-color: var(--honesty-file-picker-item-border-color);
   border-radius: var(--honesty-file-picker-item-radius);
   background: var(--honesty-file-picker-item-bg);
+  transform: scale(1);
+  transform-origin: center;
   transition: background-color var(--honesty-file-picker-transition-duration)
       var(--honesty-file-picker-transition-easing),
     border-color var(--honesty-file-picker-transition-duration)
+      var(--honesty-file-picker-transition-easing),
+    transform var(--honesty-file-picker-transition-duration)
       var(--honesty-file-picker-transition-easing);
 }
 
@@ -28,6 +32,7 @@
 .file-picker__item:focus-within {
   border-color: var(--honesty-file-picker-item-border-color-hover);
   background: var(--honesty-file-picker-item-bg-hover);
+  transform: scale(var(--honesty-file-picker-item-hover-scale));
 }
 
 .file-picker__item-copy {
@@ -39,6 +44,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .file-picker__item {
+    transform: none;
     transition-duration: var(--honesty-file-picker-reduced-duration);
   }
 }

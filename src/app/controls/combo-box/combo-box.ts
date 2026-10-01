@@ -87,5 +87,5 @@ export class ErpComboBox extends ErpFieldBase<string | null> {
   protected handleClear(input: HTMLInputElement): void { if (this.clearable() && this.commitUserValue(null)) { this.query.set(''); this.queryEditing.set(false); input.value = ''; } }
   protected handleNativeFocus(): void { this.handleFocus(); }
   protected handleNativeBlur(): void { this.handleBlur(); }
-  private pickerData(): ErpSelectionPickerData { return {mode: 'combo', value: this.currentValue(), colorMode: 'system', items: this.items(), query: this.queryEditing() ? this.query() : '', searchable: true, clearable: this.clearable(), actionLabels: ERP_SELECTION_DEFAULT_ACTION_LABELS}; }
+  private pickerData(): ErpSelectionPickerData { return {mode: 'combo', value: this.currentValue(), colorMode: 'system', items: this.items(), itemsProvider: () => this.items(), query: this.queryEditing() ? this.query() : '', searchable: true, clearable: this.clearable(), actionLabels: ERP_SELECTION_DEFAULT_ACTION_LABELS}; }
 }

@@ -18,9 +18,13 @@
   border-color: var(--honesty-image-picker-item-border-color);
   border-radius: var(--honesty-image-picker-item-radius);
   background: var(--honesty-image-picker-item-bg);
+  transform: scale(1);
+  transform-origin: center;
   transition: background-color var(--honesty-image-picker-transition-duration)
       var(--honesty-image-picker-transition-easing),
     border-color var(--honesty-image-picker-transition-duration)
+      var(--honesty-image-picker-transition-easing),
+    transform var(--honesty-image-picker-transition-duration)
       var(--honesty-image-picker-transition-easing);
 }
 
@@ -28,6 +32,7 @@
 .image-picker__item:focus-within {
   border-color: var(--honesty-image-picker-item-border-color-hover);
   background: var(--honesty-image-picker-item-bg-hover);
+  transform: scale(var(--honesty-image-picker-item-hover-scale));
 }
 
 .image-picker__item-copy {
@@ -51,6 +56,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .image-picker__item {
+    transform: none;
     transition-duration: var(--honesty-image-picker-reduced-duration);
   }
 }

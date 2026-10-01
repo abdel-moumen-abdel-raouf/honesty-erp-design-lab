@@ -497,6 +497,7 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
         value: this.currentValue() || null,
         colorMode: 'system',
         items: options,
+        itemsProvider: () => this.items(),
         query: '',
         searchable: true,
         clearable: true,

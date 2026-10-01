@@ -52,6 +52,7 @@ export interface ErpSelectionPickerData {
   readonly value: ErpSelectionPickerValue;
   readonly colorMode: ErpColorPickerMode;
   readonly items: readonly ErpItemPickerOption[];
+  readonly itemsProvider?: () => readonly ErpItemPickerOption[];
   readonly query: string;
   readonly searchable: boolean;
   readonly clearable: boolean;

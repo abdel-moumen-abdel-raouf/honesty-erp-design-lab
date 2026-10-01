@@ -66,6 +66,9 @@ export class ErpSelectionPickerContent implements OnDestroy {
   protected readonly query = signal(this.data.query);
   protected readonly staged = signal<ErpSelectionPickerValue>(this.data.value);
   protected readonly activeIndex = signal<number | null>(null);
+  protected readonly currentItems = computed(
+    () => this.data.itemsProvider?.() ?? this.data.items,
+  );
   protected readonly confirmEnabled = computed(() => {
     const staged = this.staged();
 
@@ -87,7 +90,7 @@ export class ErpSelectionPickerContent implements OnDestroy {
     }
 
     return typeof staged === 'string' &&
-      this.data.items.some(
+      this.currentItems().some(
         (item) => item.value === staged && !item.disabled,
       );
   });
@@ -118,7 +121,7 @@ export class ErpSelectionPickerContent implements OnDestroy {
   });
   protected readonly filteredItems = computed(() => {
     const query = this.query().trim().toLocaleLowerCase();
-    return this.data.items.filter((item) =>
+    return this.currentItems().filter((item) =>
       !query ||
       item.label.toLocaleLowerCase().includes(query) ||
       item.value.toLocaleLowerCase().includes(query),

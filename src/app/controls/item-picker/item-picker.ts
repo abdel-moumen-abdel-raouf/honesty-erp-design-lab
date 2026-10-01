@@ -62,5 +62,5 @@ export class ErpItemPicker extends ErpFieldBase<string | null> {
   protected handleClear(): void { this.commitUserValue(null); }
   protected handleNativeFocus(): void { this.handleFocus(); }
   protected handleNativeBlur(): void { this.handleBlur(); }
-  private pickerData(): ErpSelectionPickerData { return {mode: 'item', value: this.currentValue(), colorMode: 'system', items: this.items(), query: '', searchable: this.searchable(), clearable: this.clearable(), actionLabels: ERP_SELECTION_DEFAULT_ACTION_LABELS}; }
+  private pickerData(): ErpSelectionPickerData { return {mode: 'item', value: this.currentValue(), colorMode: 'system', items: this.items(), itemsProvider: () => this.items(), query: '', searchable: this.searchable(), clearable: this.clearable(), actionLabels: ERP_SELECTION_DEFAULT_ACTION_LABELS}; }
 }
