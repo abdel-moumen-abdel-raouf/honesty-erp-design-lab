@@ -231,6 +231,11 @@ export class ErpNumberStepper extends ErpFieldBase<number | null> {
     }
 
     const value = native.value;
+    if (!isProgressiveNumericDraft(value)) {
+      native.value = this.draftText();
+      return;
+    }
+
     this.draftText.set(value);
     this.draftActive.set(true);
     this.notifyValidationChange();

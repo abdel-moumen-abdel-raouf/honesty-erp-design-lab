@@ -14,6 +14,7 @@ import {
   ERP_TEL_FINAL_PATTERN,
   matchesDomainPattern,
   resolveDomainPattern,
+  sanitizeTelephoneDraft,
 } from '../input-family/domain-validation';
 import {ErpFieldBase} from '../input-family/field-base';
 import {
@@ -58,6 +59,7 @@ export class ErpTelBox extends ErpFieldBase<string> {
   protected readonly controlId = `erp-tel-box-${++nextTelBoxId}`;
   private readonly draftText = signal('');
   private readonly editing = signal(false);
+  private readonly draftActive = signal(false);
   private readonly effectivePattern = computed(() =>
     resolveDomainPattern(this.pattern(), ERP_TEL_FINAL_PATTERN),
   );
@@ -77,7 +79,9 @@ export class ErpTelBox extends ErpFieldBase<string> {
     () => !this.telEffectiveDisabled() && this.fieldFocused(),
   );
   protected readonly displayValue = computed(() =>
-    this.editing() ? this.draftText() : this.currentValue(),
+    this.editing() || this.draftActive()
+      ? this.draftText()
+      : this.currentValue(),
   );
   protected readonly effectivePatternExpression = computed(
     () => this.effectivePattern().expression,
@@ -102,8 +106,19 @@ export class ErpTelBox extends ErpFieldBase<string> {
     });
   }
 
+  override writeValue(value: unknown): void {
+    this.draftActive.set(false);
+    super.writeValue(value);
+  }
+
   protected override normalizeValue(value: unknown): string {
     return value === null || value === undefined ? '' : String(value);
+  }
+
+  protected override validationCandidate(): unknown {
+    return this.draftActive()
+      ? this.draftText()
+      : this.currentValue();
   }
 
   protected override validateCandidate(
@@ -217,12 +232,22 @@ export class ErpTelBox extends ErpFieldBase<string> {
     const native = event.target as HTMLInputElement;
 
     if (this.readonly() || this.telEffectiveDisabled()) {
+      native.value = this.draftText();
       return;
     }
 
-    const value = native.value;
+    const value = sanitizeTelephoneDraft(native.value);
+    native.value = value;
     this.draftText.set(value);
-    this.commitUserValue(value);
+    this.draftActive.set(true);
+    this.notifyValidationChange();
+
+    if (
+      value === '' ||
+      matchesDomainPattern(value, this.effectivePattern().regex)
+    ) {
+      this.commitUserValue(value);
+    }
   }
 
   protected handleNativeFocus(): void {
@@ -230,13 +255,18 @@ export class ErpTelBox extends ErpFieldBase<string> {
       return;
     }
 
-    this.draftText.set(this.currentValue());
+    if (!this.draftActive()) {
+      this.draftText.set(this.currentValue());
+    }
     this.editing.set(true);
     this.handleFocus();
   }
 
   protected handleNativeBlur(): void {
     this.editing.set(false);
+    if (this.valid()) {
+      this.draftActive.set(false);
+    }
     this.handleBlur();
   }
 
@@ -246,6 +276,7 @@ export class ErpTelBox extends ErpFieldBase<string> {
     }
 
     this.draftText.set('');
+    this.draftActive.set(false);
     inputElement.value = '';
     inputElement.focus();
     this.handleFocus();

@@ -231,6 +231,11 @@ export class ErpMoneyBox extends ErpFieldBase<number | null> {
     }
 
     const value = native.value;
+    if (!isProgressiveNumericDraft(value)) {
+      native.value = this.editingText();
+      return;
+    }
+
     this.editingText.set(value);
     this.draftActive.set(true);
     this.notifyValidationChange();

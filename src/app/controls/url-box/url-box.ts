@@ -12,6 +12,7 @@ import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {
   ERP_URL_FINAL_PATTERN,
   isHttpUrlDomainValue,
+  isProgressiveHttpUrlDraft,
   resolveDomainPattern,
 } from '../input-family/domain-validation';
 import {ErpFieldBase} from '../input-family/field-base';
@@ -57,6 +58,7 @@ export class ErpUrlBox extends ErpFieldBase<string> {
   protected readonly controlId = `erp-url-box-${++nextUrlBoxId}`;
   private readonly draftText = signal('');
   private readonly editing = signal(false);
+  private readonly draftActive = signal(false);
   private readonly effectivePattern = computed(() =>
     resolveDomainPattern(this.pattern(), ERP_URL_FINAL_PATTERN),
   );
@@ -76,7 +78,9 @@ export class ErpUrlBox extends ErpFieldBase<string> {
     () => !this.urlEffectiveDisabled() && this.fieldFocused(),
   );
   protected readonly displayValue = computed(() =>
-    this.editing() ? this.draftText() : this.currentValue(),
+    this.editing() || this.draftActive()
+      ? this.draftText()
+      : this.currentValue(),
   );
   protected readonly effectivePatternExpression = computed(
     () => this.effectivePattern().expression,
@@ -101,8 +105,19 @@ export class ErpUrlBox extends ErpFieldBase<string> {
     });
   }
 
+  override writeValue(value: unknown): void {
+    this.draftActive.set(false);
+    super.writeValue(value);
+  }
+
   protected override normalizeValue(value: unknown): string {
     return value === null || value === undefined ? '' : String(value);
+  }
+
+  protected override validationCandidate(): unknown {
+    return this.draftActive()
+      ? this.draftText()
+      : this.currentValue();
   }
 
   protected override validateCandidate(
@@ -157,14 +172,29 @@ export class ErpUrlBox extends ErpFieldBase<string> {
   }
 
   protected handleInput(event: Event): void {
+    const native = event.target as HTMLInputElement;
+
     if (this.readonly() || this.urlEffectiveDisabled()) {
+      native.value = this.draftText();
       return;
     }
 
-    const value = (event.target as HTMLInputElement).value;
-    this.draftText.set(value);
+    const value = native.value;
+    if (!isProgressiveHttpUrlDraft(value)) {
+      native.value = this.draftText();
+      return;
+    }
 
-    this.commitUserValue(value);
+    this.draftText.set(value);
+    this.draftActive.set(true);
+    this.notifyValidationChange();
+
+    if (
+      value === '' ||
+      isHttpUrlDomainValue(value, this.effectivePattern().regex)
+    ) {
+      this.commitUserValue(value);
+    }
   }
 
   protected handleNativeFocus(): void {
@@ -172,13 +202,18 @@ export class ErpUrlBox extends ErpFieldBase<string> {
       return;
     }
 
-    this.draftText.set(this.currentValue());
+    if (!this.draftActive()) {
+      this.draftText.set(this.currentValue());
+    }
     this.editing.set(true);
     this.handleFocus();
   }
 
   protected handleNativeBlur(): void {
     this.editing.set(false);
+    if (this.valid()) {
+      this.draftActive.set(false);
+    }
     this.handleBlur();
   }
 
@@ -188,6 +223,7 @@ export class ErpUrlBox extends ErpFieldBase<string> {
     }
 
     this.draftText.set('');
+    this.draftActive.set(false);
     inputElement.value = '';
     inputElement.focus();
     this.handleFocus();
