@@ -1,7 +1,7 @@
 import {reflectComponentType} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
-import {ErpItemPickerOption} from '../selection-family/selection-contracts';
+import {ErpItemPickerOption, ErpSelectionPickerData} from '../selection-family/selection-contracts';
 import {ErpItemPicker} from './item-picker';
 
 describe('ErpItemPicker', () => {
@@ -12,4 +12,27 @@ describe('ErpItemPicker', () => {
   it('commits a staged enabled option', async () => { const fixture = create(); const control = fixture.componentInstance; const manager = TestBed.inject(ErpOverlayManager); const onChange = vi.fn(); control.registerOnChange(onChange); (fixture.nativeElement as HTMLElement).querySelector<HTMLButtonElement>('button')?.click(); const ref = manager.entries()[0].ref; ref.close('one'); manager.completeTransition(ref.id, 'leaving'); await Promise.resolve(); expect(onChange).toHaveBeenCalledWith('one'); });
   it('passes the typed overlay behavior subset', () => { const fixture = create(); fixture.componentRef.setInput('overlayConfig', {dismissOnEscape: false, backdropTone: 'secondary', exitAnimation: 'scale'}); fixture.detectChanges(); (fixture.nativeElement as HTMLElement).querySelector<HTMLButtonElement>('button')?.click(); const config = TestBed.inject(ErpOverlayManager).entries()[0].ref.config; expect(config.dismissOnEscape).toBe(false); expect(config.backdropTone).toBe('secondary'); expect(config.exitAnimation).toBe('scale'); });
   it('activates through the shared field surface', () => { const fixture = create(); const host = fixture.nativeElement as HTMLElement; host.querySelector<HTMLElement>('.field-frame__control')?.click(); expect(TestBed.inject(ErpOverlayManager).entries()).toHaveLength(1); });
+  it('keeps picker items live after the overlay opens', () => {
+    const fixture = create();
+    const manager = TestBed.inject(ErpOverlayManager);
+    (fixture.nativeElement as HTMLElement)
+      .querySelector<HTMLButtonElement>('button')
+      ?.click();
+
+    const data = manager.entries()[0].ref.config.data as ErpSelectionPickerData;
+    expect(data.itemsProvider?.().map((item) => item.value)).toEqual([
+      'one',
+      'two',
+    ]);
+
+    fixture.componentRef.setInput('items', [
+      {value: 'three', label: 'Three'},
+    ]);
+    fixture.detectChanges();
+
+    expect(data.itemsProvider?.().map((item) => item.value)).toEqual([
+      'three',
+    ]);
+  });
 });
+

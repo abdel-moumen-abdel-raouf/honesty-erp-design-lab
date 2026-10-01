@@ -1,7 +1,7 @@
 import {reflectComponentType} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
 import {FormControl} from '@angular/forms';
-import {ERP_NUMBER_FINAL_PATTERN} from '../input-family/domain-validation';
+import {ERP_INTEGER_FINAL_PATTERN} from '../input-family/domain-validation';
 import {ErpNumberBox} from './number-box';
 
 describe('ErpNumberBox', () => {
@@ -16,7 +16,7 @@ describe('ErpNumberBox', () => {
     return fixture;
   }
 
-  it('creates with a text-like decimal editor and exact numeric defaults', () => {
+  it('creates with a digits-only text editor and exact numeric defaults', () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
@@ -31,46 +31,41 @@ describe('ErpNumberBox', () => {
     expect(control.allowEmpty()).toBe(true);
     expect(control.pattern()).toBeNull();
     expect(native.type).toBe('text');
-    expect(native.inputMode).toBe('decimal');
-    expect(native.pattern).toBe(ERP_NUMBER_FINAL_PATTERN);
+    expect(native.inputMode).toBe('numeric');
+    expect(native.pattern).toBe(ERP_INTEGER_FINAL_PATTERN);
     expect(native.value).toBe('');
   });
 
-  it('keeps progressive numeric drafts and rejects non-numeric characters without hiding step validation', () => {
+  it('admits digits only while min/max/step remain validation concerns', () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
     const onChange = vi.fn();
     control.registerOnChange(onChange);
-    control.writeValue(6);
+    control.writeValue(10);
+    fixture.componentRef.setInput('step', 5);
     fixture.detectChanges();
     native.dispatchEvent(new FocusEvent('focus'));
+
+    native.value = '12';
+    native.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
-    native.value = '12.';
-    native.dispatchEvent(new Event('input'));
-    expect(native.value).toBe('12.');
-    expect(onChange).not.toHaveBeenCalled();
-
-    native.value = '12.5';
-    native.dispatchEvent(new Event('input'));
+    expect(native.value).toBe('12');
     expect(onChange).toHaveBeenCalledOnce();
-    expect(onChange).toHaveBeenCalledWith(12.5);
-
+    expect(onChange).toHaveBeenCalledWith(12);
     expect(control.inputState()).toBe('invalid-entry');
     expect(control.validationIssues().map((issue) => issue.code)).toContain(
       'number.step',
     );
 
-    native.value = '12.5x';
-    native.dispatchEvent(new Event('input'));
-    fixture.detectChanges();
-    expect(native.value).toBe('12.5');
-    expect(onChange).toHaveBeenCalledOnce();
-    expect(control.inputState()).toBe('invalid-entry');
-    expect(control.validationIssues().map((issue) => issue.code)).toContain(
-      'number.step',
-    );
+    for (const rejected of ['12.5', '12x', '-12', '+12']) {
+      native.value = rejected;
+      native.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+      expect(native.value).toBe('12');
+      expect(onChange).toHaveBeenCalledOnce();
+    }
   });
 
   it('uses developer override patterns and invalid regex disables configuration', () => {
@@ -152,18 +147,21 @@ describe('ErpNumberBox', () => {
     expect(onChange).toHaveBeenCalledOnce();
   });
 
-  it('notifies Angular validation when a non-committed numeric draft becomes invalid', () => {
+  it('notifies Angular validation for admitted digits that fail a developer pattern', () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
     const validatorChanged = vi.fn();
 
     control.registerOnValidatorChange(validatorChanged);
+    fixture.componentRef.setInput('pattern', '^\\d{2}$');
+    fixture.detectChanges();
     native.dispatchEvent(new FocusEvent('focus'));
-    native.value = '12.';
+    native.value = '123';
     native.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
+    expect(native.value).toBe('123');
     expect(control.inputState()).toBe('invalid-entry');
     expect(validatorChanged).toHaveBeenCalled();
     expect(control.validate(new FormControl(null))).toEqual({

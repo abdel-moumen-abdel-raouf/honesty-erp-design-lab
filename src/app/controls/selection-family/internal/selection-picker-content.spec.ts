@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, signal} from '@angular/core';
 import {
   DeferBlockBehavior,
   DeferBlockState,
@@ -282,6 +282,36 @@ describe('ErpSelectionPickerContent', () => {
       (root.querySelector('[data-item-option] button') as HTMLButtonElement)
         .disabled,
     ).toBe(true);
+  });
+
+  it('reacts to live item-provider updates while the picker remains open', async () => {
+    const liveItems = signal([
+      {value: 'alpha', label: 'Alpha'},
+    ]);
+    const {fixture} = await open({
+      ...base,
+      mode: 'item',
+      searchable: true,
+      items: liveItems(),
+      itemsProvider: () => liveItems(),
+    });
+    const root = fixture.nativeElement as HTMLElement;
+
+    expect(
+      [...root.querySelectorAll<HTMLElement>('[data-item-option]')]
+        .map((item) => item.dataset['value']),
+    ).toEqual(['alpha']);
+
+    liveItems.set([
+      {value: 'beta', label: 'Beta'},
+      {value: 'gamma', label: 'Gamma'},
+    ]);
+    fixture.detectChanges();
+
+    expect(
+      [...root.querySelectorAll<HTMLElement>('[data-item-option]')]
+        .map((item) => item.dataset['value']),
+    ).toEqual(['beta', 'gamma']);
   });
 
   it.each([

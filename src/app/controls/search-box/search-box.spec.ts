@@ -172,6 +172,23 @@ describe('ErpSearchBox', () => {
     expect(onChange).not.toHaveBeenCalled();
   });
 
+  it('updates open dropdown results from live items input changes', () => {
+    const fixture = create();
+    const host = fixture.nativeElement as HTMLElement;
+    openDropdown(fixture);
+
+    fixture.componentRef.setInput('items', [
+      {value: 'live-one', label: 'Live one'},
+      {value: 'live-two', label: 'Live two'},
+    ]);
+    fixture.detectChanges();
+
+    expect(
+      [...host.querySelectorAll<HTMLElement>('[data-search-result]')]
+        .map((item) => item.dataset['value']),
+    ).toEqual(['live-one', 'live-two']);
+  });
+
   it('selects a filtered result and commits its stable value', () => {
     const fixture = create();
     const host = fixture.nativeElement as HTMLElement;
@@ -368,7 +385,18 @@ describe('ErpSearchBox', () => {
     const entry = manager.entries()[0];
     expect(entry.ref.config.frame?.header.title).toBe('Search');
     expect((entry.ref.config.data as ErpSelectionPickerData).mode).toBe('combo');
-    expect((entry.ref.config.data as ErpSelectionPickerData).items).toHaveLength(3);
+    const data = entry.ref.config.data as ErpSelectionPickerData;
+    expect(data.items).toHaveLength(3);
+    expect(data.itemsProvider?.()).toHaveLength(3);
+
+    fixture.componentRef.setInput('items', [
+      {value: 'live-modal', label: 'Live modal'},
+    ]);
+    fixture.detectChanges();
+
+    expect(data.itemsProvider?.().map((item) => item.value)).toEqual([
+      'live-modal',
+    ]);
     expect(trigger.getAttribute('aria-haspopup')).toBe('dialog');
   });
 

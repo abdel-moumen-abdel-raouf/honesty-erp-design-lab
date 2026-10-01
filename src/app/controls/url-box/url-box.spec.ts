@@ -15,7 +15,7 @@ describe('ErpUrlBox', () => {
     return fixture;
   }
 
-  it('creates with exact native URL semantics and built-in pattern', () => {
+  it('creates with ERP-owned web-address semantics and built-in pattern', () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
@@ -28,13 +28,13 @@ describe('ErpUrlBox', () => {
     expect(control.minLength()).toBeNull();
     expect(control.maxLength()).toBeNull();
     expect(control.clearable()).toBe(true);
-    expect(native.type).toBe('url');
+    expect(native.type).toBe('text');
     expect(native.autocomplete).toBe('url');
     expect(native.inputMode).toBe('url');
     expect(native.pattern).toBe(ERP_URL_FINAL_PATTERN);
   });
 
-  it('rejects non-URL text while preserving progressive invalid HTTP drafts', () => {
+  it('accepts supported web-address forms and visibly rejects an incomplete domain', () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const host = fixture.nativeElement as HTMLElement;
@@ -50,30 +50,45 @@ describe('ErpUrlBox', () => {
     expect(native.value).toBe('');
     expect(onChange).not.toHaveBeenCalled();
 
-    native.value = 'https://';
+    const accepted = [
+      'http://www.example.com',
+      'https://www.example.com',
+      'www.example.com',
+      'example.com',
+      'http://example.com',
+      'https://example.com',
+      'example.org',
+      'example.net',
+      'example.ai',
+    ];
+
+    for (const value of accepted) {
+      native.value = value;
+      native.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+      expect(onChange).toHaveBeenLastCalledWith(value);
+      expect(control.inputState()).toBe('valid-entry');
+      expect(control.errors()).toEqual([]);
+    }
+
+    const committedCalls = onChange.mock.calls.length;
+    native.value = 'http://www.s';
     native.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
-    expect(native.value).toBe('https://');
-    expect(onChange).not.toHaveBeenCalled();
+    expect(native.value).toBe('http://www.s');
+    expect(onChange).toHaveBeenCalledTimes(committedCalls);
     expect(control.inputState()).toBe('invalid-entry');
-    expect(control.errors()).toContain(
+    expect(control.validationIssues().map((issue) => issue.code)).toContain(
+      'url.format',
+    );
+    expect(host.textContent).toContain(
       'النص المُدخل ليس عنوان رابط إلكتروني صالحًا.',
     );
-    expect(native.getAttribute('aria-invalid')).toBe('true');
 
     native.dispatchEvent(new FocusEvent('blur'));
     fixture.detectChanges();
-    expect(native.value).toBe('https://');
-
-    native.dispatchEvent(new FocusEvent('focus'));
-    native.value = 'https://openai.com/path';
-    native.dispatchEvent(new Event('input'));
-    fixture.detectChanges();
-
-    expect(onChange).toHaveBeenCalledWith('https://openai.com/path');
-    expect(control.inputState()).toBe('valid-entry');
-    expect(control.errors()).toEqual([]);
+    expect(native.value).toBe('http://www.s');
   });
 
   it('uses a developer override and rejects an invalid regex configuration', () => {

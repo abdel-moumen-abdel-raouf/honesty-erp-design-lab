@@ -2,11 +2,13 @@ import {
   containsAlphabeticCharacter,
   ERP_DATE_FINAL_PATTERN,
   ERP_DATE_TIME_FINAL_PATTERN,
+  ERP_INTEGER_FINAL_PATTERN,
   ERP_MONEY_FINAL_PATTERN,
   ERP_NUMBER_FINAL_PATTERN,
   ERP_TEL_FINAL_PATTERN,
   ERP_TIME_FINAL_PATTERN,
   ERP_URL_FINAL_PATTERN,
+  isDigitsOnlyDraft,
   isHttpUrlDomainValue,
   isProgressiveHttpUrlDraft,
   isProgressiveNumericDraft,
@@ -32,26 +34,51 @@ describe('domain validation', () => {
     expect(invalid.regex).toBeNull();
   });
 
-  it('keeps progressive numeric drafts distinct from final numeric values', () => {
+  it('keeps integer admission distinct from decimal NumberStepper/Money syntax', () => {
+    const integer = resolveDomainPattern(null, ERP_INTEGER_FINAL_PATTERN).regex;
     const number = resolveDomainPattern(null, ERP_NUMBER_FINAL_PATTERN).regex;
     const money = resolveDomainPattern(null, ERP_MONEY_FINAL_PATTERN).regex;
 
+    expect(isDigitsOnlyDraft('')).toBe(true);
+    expect(isDigitsOnlyDraft('125')).toBe(true);
+    expect(isDigitsOnlyDraft('12.5')).toBe(false);
+    expect(isDigitsOnlyDraft('-12')).toBe(false);
     expect(isProgressiveNumericDraft('-')).toBe(true);
     expect(isProgressiveNumericDraft('12.')).toBe(true);
     expect(isProgressiveNumericDraft('12a')).toBe(false);
+    expect(parseFiniteDomainNumber('125', integer)).toBe(125);
+    expect(parseFiniteDomainNumber('12.5', integer)).toBeNull();
     expect(parseFiniteDomainNumber('12.', number)).toBeNull();
     expect(parseFiniteDomainNumber('12.', money)).toBe(12);
   });
 
-  it('requires URL pattern admission plus real HTTP or HTTPS parsing', () => {
+  it('accepts real domain URLs with optional HTTP(S) scheme and rejects incomplete hosts', () => {
     const pattern = resolveDomainPattern(null, ERP_URL_FINAL_PATTERN).regex;
 
     expect(isProgressiveHttpUrlDraft('h')).toBe(true);
-    expect(isProgressiveHttpUrlDraft('https://')).toBe(true);
+    expect(isProgressiveHttpUrlDraft('example.com')).toBe(true);
     expect(isProgressiveHttpUrlDraft('https://example.com/path')).toBe(true);
     expect(isProgressiveHttpUrlDraft('plain text')).toBe(false);
     expect(isProgressiveHttpUrlDraft('ftp://example.com')).toBe(false);
-    expect(isHttpUrlDomainValue('https://example.com/path', pattern)).toBe(true);
+
+    for (const value of [
+      'http://www.example.com',
+      'https://www.example.com',
+      'www.example.com',
+      'example.com',
+      'http://example.com',
+      'https://example.com',
+      'example.org',
+      'example.net',
+      'example.ai',
+      'https://sub.example.dev/path?x=1',
+    ]) {
+      expect(isHttpUrlDomainValue(value, pattern)).toBe(true);
+    }
+
+    expect(isHttpUrlDomainValue('http://www.s', pattern)).toBe(false);
+    expect(isHttpUrlDomainValue('example.c', pattern)).toBe(false);
+    expect(isHttpUrlDomainValue('localhost', pattern)).toBe(false);
     expect(isHttpUrlDomainValue('ftp://example.com', pattern)).toBe(false);
     expect(isHttpUrlDomainValue('https://', pattern)).toBe(false);
   });

@@ -92,6 +92,30 @@ describe('ErpComboBox', () => {
     expect((entry.ref.config.data as ErpSelectionPickerData).query).toBe('be');
   });
 
+  it('keeps overlay items live when the bound items input changes', () => {
+    const fixture = create();
+    const input = (fixture.nativeElement as HTMLElement).querySelector(
+      'input',
+    ) as HTMLInputElement;
+    input.click();
+
+    const data = TestBed.inject(ErpOverlayManager)
+      .entries()[0].ref.config.data as ErpSelectionPickerData;
+    expect(data.itemsProvider?.().map((item) => item.value)).toEqual([
+      'alpha',
+      'beta',
+    ]);
+
+    fixture.componentRef.setInput('items', [
+      {value: 'gamma', label: 'Gamma'},
+    ]);
+    fixture.detectChanges();
+
+    expect(data.itemsProvider?.().map((item) => item.value)).toEqual([
+      'gamma',
+    ]);
+  });
+
   it('dismisses without committing and clears a committed selection explicitly', async () => {
     const fixture = create();
     const control = fixture.componentInstance;
