@@ -1172,48 +1172,60 @@ implementation state, blocker, verification result, or Product Owner finding.
 
 
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_START -->
-## 2026-10-01 — bounded Inputs runtime corrections Fully Green / Product Owner runtime re-test next
+## 2026-10-01 — latest Inputs Product Owner runtime findings implemented / canonical verification pending
 
-Product Owner pulled and verified current `main` at:
-`707129dc8b0987eb270d0dc8350c3e5794d7303f`
-(`docs(review): synchronize final verification follow-up`).
+Previous technical checkpoint:
+- `707129dc8b0987eb270d0dc8350c3e5794d7303f` was Fully Green;
+- 87/87 test files and 649/649 tests PASS;
+- app/spec typecheck PASS;
+- zero-warning production build PASS.
 
-Latest source/test-affecting checkpoint under that verified head:
-`c096afc3cda1d076cfc702c721427c8468e4c61b`
-(`fix(test): align final Inputs verification expectations`).
+That green result predates the latest Product Owner findings and does not apply
+to the new source until a fresh complete verification passes.
 
-Canonical local command:
+Latest Product Owner findings:
+1. UrlBox must accept real web domains with optional HTTP(S) scheme and reject
+   incomplete hosts such as `http://www.s`.
+2. Solid must have the same Light/Dark hover discoverability guarantee as
+   Ghost/Text/Underline.
+3. NumberBox interactive editing must admit digits only while min/max/step remain
+   validation concerns.
+4. selected File/Image rows need a subtle hover/focus scale transition with
+   reduced-motion cancellation.
+5. SearchBox, ItemPicker, and ComboBox items/results must be runtime-dynamic and
+   production-portable rather than Design-Lab-bound snapshots.
+
+Implemented source/test/governance checkpoints:
+- `9b13eab3c00046a3ed6258d981d33663355b26e0`
+- `2912b97cb62ea159430bdca3f386814fa914698c`
+- `98c3c8ccddc8812af57d8b6a429b9510e0151465`
+- `5ec8124cb8ad483309d525bf558d41abb4252669`
+- `b6974154a916ebb751eda5290c7bbc2a9bce704b`
+- `eb3db0130db1786488b91e050f9d54168b28bbd3`
+- `64edf72fe8c7655a98e52d98e910bf675629129b`
+- `9ffa59e348b6246f1c8a210c01d437763b3a1f65`
+- detailed Product Owner findings recorded at
+  `4318b4898c3ef157627c58598507f76e83c9e758`.
+
+Pre-rerun consistency work completed:
+- combined source + dependent tests + governance + authoritative contracts
+  reviewed as one correction unit;
+- File/Image style-governance paths verified to target the actual selected-item
+  style files;
+- ErpField governance JavaScript syntax compilation PASS;
+- complete internal ErpField governance self-test PASS;
+- two self-test/governance weaknesses discovered during the pre-rerun review
+  were corrected before asking Product Owner to run the canonical gate.
+
+Current status:
+**implemented / canonical verification pending**.
+
+Exact next technical gate:
 `npm run verify:clean`
 
-Result: **FULLY GREEN**.
+If the gate stops, reopen only the first concrete demonstrated failure. If Fully
+Green, the next product gate is Product Owner runtime re-test of the five
+findings above.
 
-Verified evidence:
-- Single App theme authority PASS;
-- routed-page ERP-only authoring PASS for 22 routed templates;
-- Component Token framework PASS;
-- system-color registry PASS;
-- ErpText PASS;
-- ErpIcon PASS;
-- ErpButton PASS;
-- ErpTooltip PASS;
-- ErpField PASS;
-- ErpOverlay PASS;
-- Angular lint PASS;
-- 87/87 test files PASS;
-- 649/649 tests PASS;
-- `typecheck:app` PASS;
-- `typecheck:spec` PASS;
-- production build PASS;
-- `Zero-warning build gate: PASS`.
-
-Status transition:
-- the 2026-10-01 bounded runtime corrections are technically verified;
-- no further speculative implementation is authorized;
-- exact next gate is Product Owner runtime re-test of only:
-  1. Ghost/Text/Underline hover in Light and Dark;
-  2. typed character admission + validation behavior for URL/Tel/Number/Money/NumberStepper;
-  3. Clear/Clear Selected as IconButton + Tooltip in shared picker overlays;
-- Inputs remains Product Owner BLOCKED until those runtime findings are accepted.
-
-Technical green does not itself declare visual/runtime approval.
+Inputs remains Product Owner BLOCKED until runtime/visual acceptance.
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_END -->
