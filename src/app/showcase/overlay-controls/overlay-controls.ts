@@ -1,24 +1,6 @@
-import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {ERP_MOTION_PRESETS} from '../../foundation/motion/motion-contracts';
 import {ErpButton} from '../../controls/button/button';
-import {ErpButtonGroup} from '../../controls/button-group/button-group';
-import {ErpColorPicker} from '../../controls/color-picker/color-picker';
-import {ErpComboBox} from '../../controls/combo-box/combo-box';
-import {ErpButtonGroupItem, ErpRadioGroupOption} from '../../controls/composite-family/composite-contracts';
-import {ErpDateBox} from '../../controls/date-box/date-box';
-import {ErpDateRangeBox} from '../../controls/date-range-box/date-range-box';
-import {ErpDateTimeBox} from '../../controls/date-time-box/date-time-box';
-import {ErpIconPicker} from '../../controls/icon-picker/icon-picker';
-import {ErpItemPicker} from '../../controls/item-picker/item-picker';
-import {ErpFabMenu} from '../../controls/fab-menu/fab-menu';
-import {ErpRadioGroup} from '../../controls/radio-group/radio-group';
-import {
-  ErpColorPickerValue,
-  ErpItemPickerOption,
-} from '../../controls/selection-family/selection-contracts';
-import {ErpTimeBox} from '../../controls/time-box/time-box';
-import {ErpSplitButton} from '../../controls/split-button/split-button';
 import {ErpContainer} from '../../primitives/container/container';
 import {ErpDivider} from '../../primitives/divider/divider';
 import {ErpGrid} from '../../primitives/grid/grid';
@@ -46,17 +28,7 @@ import {
   selector: 'app-overlay-controls',
   imports: [
     ErpButton,
-    ErpButtonGroup,
-    ErpColorPicker,
-    ErpComboBox,
     ErpContainer,
-    ErpDateBox,
-    ErpDateRangeBox,
-    ErpDateTimeBox,
-    ErpFabMenu,
-    ErpIconPicker,
-    ErpItemPicker,
-    ErpRadioGroup,
     ErpDivider,
     ErpGrid,
     ErpInline,
@@ -64,9 +36,6 @@ import {
     ErpStack,
     ErpSurface,
     ErpText,
-    ErpTimeBox,
-    ErpSplitButton,
-    FormsModule,
   ],
   templateUrl: './overlay-controls.html',
   styleUrl: './overlay-controls.scss',
@@ -80,24 +49,6 @@ export class OverlayControls {
     'accent',
   ];
   readonly animations: readonly ErpOverlayAnimation[] = ERP_MOTION_PRESETS;
-  readonly pickerItems: readonly ErpItemPickerOption[] = [
-    {value: 'customer', label: 'العملاء', icon: 'customer'},
-    {value: 'inventory', label: 'المخزون', icon: 'inventory'},
-    {value: 'maintenance', label: 'الصيانة', icon: 'maintenance'},
-  ];
-  readonly radioItems: readonly ErpRadioGroupOption[] = [
-    {value: 'draft', label: 'مسودة'},
-    {value: 'review', label: 'مراجعة'},
-    {value: 'approved', label: 'معتمد'},
-  ];
-  readonly buttonItems: readonly ErpButtonGroupItem[] = [
-    {value: 'day', label: 'يوم'},
-    {value: 'week', label: 'أسبوع'},
-    {value: 'month', label: 'شهر'},
-  ];
-  readonly dateRangeValue = signal({start: '2026-09-24', end: '2026-09-30'});
-  readonly systemColorValue = signal<ErpColorPickerValue | null>({mode: 'system', token: 'primary-500'});
-  readonly freeColorValue = signal<ErpColorPickerValue | null>({mode: 'free', value: '#2563EB'});
   private readonly overlays = inject(ErpOverlayManager);
 
   openModal(nested = false): void {

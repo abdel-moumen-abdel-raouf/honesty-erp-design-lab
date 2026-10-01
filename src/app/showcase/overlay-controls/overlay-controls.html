@@ -47,6 +47,7 @@
           <erp-stack gap="tight">
             <erp-button data-drawer-evidence="start" label="فتح درج البداية" (pressed)="openDrawer('start')" />
             <erp-button data-drawer-evidence="end" label="فتح درج النهاية" (pressed)="openDrawer('end')" />
+            <erp-button data-drawer-evidence="top" label="فتح الدرج العلوي" (pressed)="openDrawer('top')" />
             <erp-button data-drawer-evidence="bottom" label="فتح الدرج السفلي" (pressed)="openDrawer('bottom')" />
           </erp-stack>
         </erp-surface>
@@ -111,49 +112,4 @@
     </erp-surface>
   </erp-section>
 
-  <erp-section class="review-group" data-review-group="temporal-pickers">
-    <erp-text type="heading-2">منتقيات التاريخ والوقت</erp-text>
-    <erp-divider />
-    <erp-grid [columns]="2" gap="sm" responsive="auto">
-        <erp-surface border="subtle" dir="rtl">
-          <erp-stack gap="tight">
-            <erp-date-box data-temporal-overlay-evidence="date" label="فتح منتقي التاريخ" />
-            <erp-time-box data-temporal-overlay-evidence="time" label="فتح منتقي الوقت" />
-            <erp-date-time-box data-temporal-overlay-evidence="datetime" label="فتح منتقي التاريخ والوقت" />
-            <erp-date-range-box data-temporal-overlay-evidence="range" data-date-range-selected-evidence label="نطاق محدد — افتح لمعاينة المرور" [ngModel]="dateRangeValue()" (ngModelChange)="dateRangeValue.set($event)" />
-          </erp-stack>
-        </erp-surface>
-    </erp-grid>
-  </erp-section>
-
-  <erp-section class="review-group" data-review-group="selection-pickers">
-    <erp-text type="heading-2">منتقيات الاختيار</erp-text>
-    <erp-divider />
-    <erp-grid [columns]="2" gap="sm" responsive="auto">
-        <erp-surface border="subtle">
-          <erp-stack gap="tight">
-            <erp-color-picker data-selection-overlay-evidence="color-system" label="ألوان النظام — المجموعات الكاملة" [ngModel]="systemColorValue()" (ngModelChange)="systemColorValue.set($event)" />
-            <erp-color-picker data-selection-overlay-evidence="color-free" label="اللون الحر" [ngModel]="freeColorValue()" (ngModelChange)="freeColorValue.set($event)" />
-            <erp-icon-picker data-selection-overlay-evidence="icon" label="شبكة الأيقونات الثابتة" />
-            <erp-item-picker data-selection-overlay-evidence="item" label="منتقي العناصر" [items]="pickerItems" searchable />
-            <erp-combo-box data-selection-overlay-evidence="combo" label="قائمة البحث والاختيار" [items]="pickerItems" />
-          </erp-stack>
-        </erp-surface>
-    </erp-grid>
-  </erp-section>
-
-  <erp-section class="review-group" data-review-group="deferred-composites">
-    <erp-text type="heading-2">المركبات المؤجلة</erp-text>
-    <erp-divider />
-    <erp-grid [columns]="2" gap="sm" responsive="auto">
-        <erp-surface border="subtle">
-          <erp-stack gap="tight">
-            <erp-radio-group data-composite-evidence="radio-group" label="حالة الاعتماد" [options]="radioItems" required />
-            <erp-button-group data-composite-evidence="button-group" [items]="buttonItems" />
-            <erp-split-button data-composite-evidence="split-button" label="تصدير" [items]="pickerItems" />
-            <erp-fab-menu data-composite-evidence="fab-menu" label="إنشاء عنصر" [items]="pickerItems" />
-          </erp-stack>
-        </erp-surface>
-    </erp-grid>
-  </erp-section>
 </erp-container>

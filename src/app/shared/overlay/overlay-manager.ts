@@ -26,7 +26,7 @@ function defaultAnimations(
   position: ErpOverlayConfig['position'],
 ): readonly [ErpOverlayAnimation, ErpOverlayAnimation] {
   if (kind !== 'drawer') {
-    return ['fade-scale', 'fade-scale'];
+    return ['flip-x', 'flip-x'];
   }
 
   if (position === 'start') {
@@ -37,11 +37,15 @@ function defaultAnimations(
     return ['slide-end', 'slide-end'];
   }
 
+  if (position === 'top') {
+    return ['slide-down', 'slide-up'];
+  }
+
   if (position === 'bottom') {
     return ['slide-up', 'slide-down'];
   }
 
-  return ['fade-scale', 'fade-scale'];
+  return ['flip-x', 'flip-x'];
 }
 
 @Injectable({providedIn: 'root'})

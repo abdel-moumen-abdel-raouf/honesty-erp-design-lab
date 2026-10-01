@@ -8,6 +8,7 @@ export type ErpOverlayPosition =
   | 'center'
   | 'start'
   | 'end'
+  | 'top'
   | 'bottom';
 
 export type ErpOverlaySize = 'sm' | 'md' | 'lg' | 'xl' | 'full';

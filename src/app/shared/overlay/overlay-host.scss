@@ -85,6 +85,10 @@ erp-overlay-host {
   justify-items: end;
 }
 
+.erp-ol[data-overlay-position='top'] {
+  align-items: start;
+}
+
 .erp-ol[data-overlay-position='bottom'] {
   align-items: end;
 }
@@ -96,6 +100,7 @@ erp-overlay-host {
   border-radius: var(--honesty-overlay-drawer-surface-radius);
 }
 
+.erp-ol[data-overlay-kind='drawer'][data-overlay-position='top'] .erp-os,
 .erp-ol[data-overlay-kind='drawer'][data-overlay-position='bottom'] .erp-os {
   inline-size: 100%;
   border-radius: var(--honesty-overlay-drawer-surface-radius);
