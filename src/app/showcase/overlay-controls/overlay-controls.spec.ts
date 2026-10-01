@@ -70,7 +70,7 @@ describe('OverlayControls showcase', () => {
   it('contains modal, logical drawer, nested, and policy evidence', () => {
     const root = create().nativeElement as HTMLElement;
     expect(root.querySelectorAll('[data-modal-evidence]').length).toBe(1);
-    expect(root.querySelectorAll('[data-confirm-dialog-evidence]').length).toBe(3);
+    expect(root.querySelectorAll('[data-confirm-dialog-evidence]').length).toBe(5);
     expect(root.querySelectorAll('[data-frame-header-hidden-evidence]').length).toBe(1);
     expect(root.querySelectorAll('[data-frame-footer-hidden-evidence]').length).toBe(1);
     expect(root.querySelectorAll('[data-frame-both-hidden-evidence]').length).toBe(1);
@@ -213,6 +213,8 @@ describe('OverlayControls showcase', () => {
         title: 'مراجعة الإطار ذي المحتوى الطويل',
         subtitle: 'يبقى الرأس والتذييل ظاهرين بينما يمرر الجسم فقط',
         icon: 'layers',
+        tone: 'default',
+        showCloseButton: true,
         closeLabel: 'إغلاق مراجعة الإطار',
       },
       footer: {
@@ -261,6 +263,10 @@ describe('OverlayControls showcase', () => {
       frame: {
         showHeader: true,
         showFooter: true,
+        header: expect.objectContaining({
+          tone: 'danger',
+          showCloseButton: true,
+        }),
         footer: {
           actions: [
             expect.objectContaining({id: 'cancel', tone: 'neutral'}),
@@ -269,6 +275,64 @@ describe('OverlayControls showcase', () => {
         },
       },
     });
+  });
+
+  it('opens multi-action Confirm evidence with two configurable auxiliary actions', () => {
+    const fixture = create();
+    const manager = TestBed.inject(ErpOverlayManager);
+
+    fixture.componentInstance.openMultiActionConfirm();
+
+    expect(manager.entries().at(-1)?.ref.config).toMatchObject({
+      frame: {
+        header: {
+          tone: 'info',
+        },
+        footer: {
+          actions: [
+            expect.objectContaining({
+              id: 'save-draft',
+              presentation: 'button',
+              icon: 'save',
+              tone: 'secondary',
+              placement: 'start',
+            }),
+            expect.objectContaining({
+              id: 'details',
+              presentation: 'icon-button',
+              icon: 'info',
+              tone: 'info',
+              placement: 'start',
+            }),
+            expect.objectContaining({id: 'cancel'}),
+            expect.objectContaining({id: 'confirm'}),
+          ],
+        },
+      },
+    });
+  });
+
+  it('opens non-dismissible Confirm evidence without Close, Cancel, or Escape dismissal', () => {
+    const fixture = create();
+    const manager = TestBed.inject(ErpOverlayManager);
+
+    fixture.componentInstance.openLockedConfirm();
+
+    const entry = manager.entries().at(-1);
+    expect(entry?.ref.config).toMatchObject({
+      dismissOnEscape: false,
+      dismissOnBackdrop: false,
+      initialFocus: null,
+      frame: {
+        header: {
+          tone: 'primary',
+          showCloseButton: false,
+        },
+      },
+    });
+    expect(
+      entry?.ref.config.frame?.footer.actions.map((action) => action.id),
+    ).toEqual(['confirm']);
   });
 
   it('opens the explicit dismissal and visual configuration through the shared manager', () => {

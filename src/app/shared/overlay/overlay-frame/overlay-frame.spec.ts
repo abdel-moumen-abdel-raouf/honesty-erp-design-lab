@@ -61,6 +61,11 @@ describe('ErpOverlayFrame', () => {
       'وصف داعم للنافذة',
     );
     expect(root.querySelector('.overlay-frame__header erp-icon')?.getAttribute('data-icon-name')).toBe('info');
+    expect(
+      root.querySelector('.overlay-frame__header')?.getAttribute(
+        'data-overlay-frame-header-tone',
+      ),
+    ).toBe('default');
     expect(root.querySelector('[data-overlay-frame-close]')?.getAttribute('data-icon-button-state')).toBe('ready');
     expect(root.querySelector('[data-overlay-frame-close] button')?.getAttribute('aria-label')).toBe('إغلاق');
 
@@ -116,6 +121,27 @@ describe('ErpOverlayFrame', () => {
       );
       expect(root.querySelector('.overlay-frame__body')).not.toBeNull();
     }
+  });
+
+  it('renders semantic Header tone and can hide only the Header close button through API', () => {
+    const {fixture} = create({
+      ...FRAME,
+      header: {
+        ...FRAME.header,
+        tone: 'warning',
+        showCloseButton: false,
+      },
+    });
+    const root = fixture.nativeElement as HTMLElement;
+    const header = root.querySelector('.overlay-frame__header');
+
+    expect(header).not.toBeNull();
+    expect(header?.getAttribute('data-overlay-frame-header-tone')).toBe(
+      'warning',
+    );
+    expect(root.querySelector('[data-overlay-frame-close]')).toBeNull();
+    expect(root.querySelector('.overlay-frame__body')).not.toBeNull();
+    expect(root.querySelector('.overlay-frame__footer')).not.toBeNull();
   });
 
   it('dismisses close with the fixed close-action reason', () => {

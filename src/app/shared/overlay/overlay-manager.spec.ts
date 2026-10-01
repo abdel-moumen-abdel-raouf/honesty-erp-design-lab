@@ -45,6 +45,8 @@ describe('ErpOverlayManager', () => {
           title: 'Account',
           subtitle: 'Supporting text',
           icon: 'info',
+          tone: 'default',
+          showCloseButton: true,
           closeLabel: 'إغلاق',
         },
         footer: {
@@ -101,6 +103,26 @@ describe('ErpOverlayManager', () => {
     expect(drawer.config.frame).toMatchObject({
       showHeader: true,
       showFooter: false,
+    });
+  });
+
+  it('normalizes Header tone and close-button visibility through the frame API', () => {
+    const manager = TestBed.inject(ErpOverlayManager);
+    const base = frame('Header visuals');
+    const ref = manager.open(TestOverlayContent, {
+      frame: {
+        ...base,
+        header: {
+          ...base.header,
+          tone: 'danger',
+          showCloseButton: false,
+        },
+      },
+    });
+
+    expect(ref.config.frame?.header).toMatchObject({
+      tone: 'danger',
+      showCloseButton: false,
     });
   });
 

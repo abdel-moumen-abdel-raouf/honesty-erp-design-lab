@@ -22,7 +22,7 @@ function parentFrame(title: string) {
 describe('ErpConfirmDialogService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('opens the exact system modal defaults and resolves true on Confirm', async () => {
+  it('opens the exact system defaults and returns the pressed Confirm action ID', async () => {
     const service = TestBed.inject(ErpConfirmDialogService);
     const manager = TestBed.inject(ErpOverlayManager);
 
@@ -46,6 +46,8 @@ describe('ErpConfirmDialogService', () => {
           title: 'متابعة العملية',
           subtitle: 'يرجى تأكيد هذا الإجراء.',
           icon: 'help',
+          tone: 'default',
+          showCloseButton: true,
           closeLabel: 'إلغاء',
         },
         footer: {
@@ -77,13 +79,15 @@ describe('ErpConfirmDialogService', () => {
     expect(ref).toBeDefined();
     manager.completeTransition(ref!.id, 'entering');
     expect(ref!.requestFrameAction('confirm')).toBe(true);
-    expect(manager.entries().at(-1)?.phase).toBe('leaving');
     manager.completeTransition(ref!.id, 'leaving');
 
-    await expect(result).resolves.toBe(true);
+    await expect(result).resolves.toEqual({
+      type: 'action',
+      actionId: 'confirm',
+    });
   });
 
-  it('maps every dismissal path to false and keeps Cancel as the safe initial focus', async () => {
+  it('returns Cancel as a button action when user dismissal is enabled', async () => {
     const service = TestBed.inject(ErpConfirmDialogService);
     const manager = TestBed.inject(ErpOverlayManager);
 
@@ -94,14 +98,47 @@ describe('ErpConfirmDialogService', () => {
     const ref = manager.entries().at(-1)!.ref;
     manager.completeTransition(ref.id, 'entering');
 
-    expect(ref.requestFrameAction('cancel')).toBe(false);
-    expect(manager.entries().at(-1)?.phase).toBe('leaving');
+    expect(ref.requestFrameAction('cancel')).toBe(true);
     manager.completeTransition(ref.id, 'leaving');
 
-    await expect(result).resolves.toBe(false);
+    await expect(result).resolves.toEqual({
+      type: 'action',
+      actionId: 'cancel',
+    });
   });
 
-  it('maps warning and danger intents to registered semantic icons and button tones', () => {
+  it('maps Header close and Escape to explicit dismissed results', async () => {
+    const service = TestBed.inject(ErpConfirmDialogService);
+    const manager = TestBed.inject(ErpOverlayManager);
+
+    const closeResult = service.confirm({
+      title: 'Close proof',
+      message: 'Close through Header.',
+    });
+    const closeRef = manager.entries().at(-1)!.ref;
+    manager.completeTransition(closeRef.id, 'entering');
+    closeRef.dismiss('close-action');
+    manager.completeTransition(closeRef.id, 'leaving');
+    await expect(closeResult).resolves.toEqual({
+      type: 'dismissed',
+      reason: 'close',
+    });
+
+    const escapeResult = service.confirm({
+      title: 'Escape proof',
+      message: 'Close through Escape.',
+    });
+    const escapeRef = manager.entries().at(-1)!.ref;
+    manager.completeTransition(escapeRef.id, 'entering');
+    manager.dismissTopFromEscape();
+    manager.completeTransition(escapeRef.id, 'leaving');
+    await expect(escapeResult).resolves.toEqual({
+      type: 'dismissed',
+      reason: 'escape',
+    });
+  });
+
+  it('maps warning/danger intent and an explicit Header tone independently', () => {
     const service = TestBed.inject(ErpConfirmDialogService);
     const manager = TestBed.inject(ErpOverlayManager);
 
@@ -109,18 +146,20 @@ describe('ErpConfirmDialogService', () => {
       title: 'تحذير',
       message: 'راجع العملية.',
       intent: 'warning',
+      headerTone: 'info',
     });
     void service.confirm({
       title: 'حذف',
       message: 'سيتم حذف السجل.',
       intent: 'danger',
+      headerTone: 'danger',
       confirmLabel: 'حذف',
       details: 'لا يمكن التراجع عن الحذف.',
     });
 
     const [warning, danger] = manager.entries().slice(-2);
     expect(warning.ref.config.frame).toMatchObject({
-      header: {icon: 'warning'},
+      header: {icon: 'warning', tone: 'info'},
       footer: {
         actions: [
           expect.objectContaining({id: 'cancel', tone: 'neutral'}),
@@ -130,7 +169,7 @@ describe('ErpConfirmDialogService', () => {
     });
     expect(danger.ref.config).toMatchObject({
       frame: {
-        header: {icon: 'error'},
+        header: {icon: 'error', tone: 'danger'},
         footer: {
           actions: [
             expect.objectContaining({id: 'cancel', tone: 'neutral'}),
@@ -148,6 +187,152 @@ describe('ErpConfirmDialogService', () => {
         intent: 'danger',
       },
     });
+  });
+
+  it('supports at most two configurable auxiliary Button/IconButton actions and returns the pressed ID', async () => {
+    const service = TestBed.inject(ErpConfirmDialogService);
+    const manager = TestBed.inject(ErpOverlayManager);
+
+    const result = service.confirm({
+      title: 'اختيارات إضافية',
+      message: 'اختر أحد الإجراءات.',
+      auxiliaryActions: [
+        {
+          id: 'save-draft',
+          label: 'حفظ كمسودة',
+          icon: 'save',
+          tone: 'secondary',
+        },
+        {
+          id: 'details',
+          label: 'التفاصيل',
+          icon: 'info',
+          presentation: 'icon-button',
+          tone: 'info',
+          placement: 'end',
+        },
+      ],
+    });
+
+    const entry = manager.entries().at(-1)!;
+    expect(entry.ref.config.frame?.footer.actions).toEqual([
+      expect.objectContaining({
+        id: 'save-draft',
+        icon: 'save',
+        presentation: 'button',
+        tone: 'secondary',
+        role: 'secondary',
+        placement: 'start',
+      }),
+      expect.objectContaining({
+        id: 'details',
+        icon: 'info',
+        presentation: 'icon-button',
+        tone: 'info',
+        role: 'secondary',
+        placement: 'end',
+      }),
+      expect.objectContaining({id: 'cancel'}),
+      expect.objectContaining({id: 'confirm'}),
+    ]);
+
+    manager.completeTransition(entry.ref.id, 'entering');
+    expect(entry.ref.requestFrameAction('details')).toBe(true);
+    manager.completeTransition(entry.ref.id, 'leaving');
+
+    await expect(result).resolves.toEqual({
+      type: 'action',
+      actionId: 'details',
+    });
+  });
+
+  it('makes userDismissible=false remove Close/Cancel/Escape and keeps Confirm as the focus fallback', async () => {
+    const service = TestBed.inject(ErpConfirmDialogService);
+    const manager = TestBed.inject(ErpOverlayManager);
+
+    const result = service.confirm({
+      title: 'تأكيد إلزامي',
+      message: 'لا يمكن الإغلاق بدون إجراء.',
+      userDismissible: false,
+    });
+
+    const entry = manager.entries().at(-1)!;
+    expect(entry.ref.config).toMatchObject({
+      dismissOnEscape: false,
+      dismissOnBackdrop: false,
+      initialFocus: null,
+      frame: {
+        header: {
+          showCloseButton: false,
+        },
+      },
+    });
+    expect(
+      entry.ref.config.frame?.footer.actions.map((action) => action.id),
+    ).toEqual(['confirm']);
+
+    manager.completeTransition(entry.ref.id, 'entering');
+    manager.dismissTopFromEscape();
+    expect(manager.entries().at(-1)?.phase).toBe('open');
+
+    expect(entry.ref.requestFrameAction('confirm')).toBe(true);
+    manager.completeTransition(entry.ref.id, 'leaving');
+    await expect(result).resolves.toEqual({
+      type: 'action',
+      actionId: 'confirm',
+    });
+  });
+
+  it('rejects invalid auxiliary action contracts before opening an Overlay', () => {
+    const service = TestBed.inject(ErpConfirmDialogService);
+    const manager = TestBed.inject(ErpOverlayManager);
+    const base = {
+      title: 'Auxiliary validation',
+      message: 'Validate actions.',
+    };
+
+    expect(() =>
+      service.confirm({
+        ...base,
+        auxiliaryActions: [
+          {id: 'one', label: 'One'},
+          {id: 'two', label: 'Two'},
+          {id: 'three', label: 'Three'},
+        ],
+      }),
+    ).toThrowError(TypeError);
+
+    expect(() =>
+      service.confirm({
+        ...base,
+        auxiliaryActions: [{id: 'confirm', label: 'Reserved'}],
+      }),
+    ).toThrowError(TypeError);
+
+    expect(() =>
+      service.confirm({
+        ...base,
+        auxiliaryActions: [
+          {id: 'same', label: 'One'},
+          {id: 'same', label: 'Two'},
+        ],
+      }),
+    ).toThrowError(TypeError);
+
+    expect(() =>
+      service.confirm({
+        ...base,
+        auxiliaryActions: [
+          {
+            id: 'icon-only',
+            label: 'Icon only',
+            presentation: 'icon-button',
+          },
+        ],
+      }),
+    ).toThrowError(TypeError);
+
+    expect(manager.entries()).toEqual([]);
   });
 
   it('stacks above existing blocking Modal and Drawer parents without replacing them', async () => {
@@ -181,10 +366,13 @@ describe('ErpConfirmDialogService', () => {
       expect(confirmEntry.ref.config.blocking).toBe(true);
 
       manager.completeTransition(confirmEntry.ref.id, 'entering');
-      confirmEntry.ref.dismiss('test-dismiss');
+      confirmEntry.ref.dismiss('close-action');
       manager.completeTransition(confirmEntry.ref.id, 'leaving');
 
-      await expect(result).resolves.toBe(false);
+      await expect(result).resolves.toEqual({
+        type: 'dismissed',
+        reason: 'close',
+      });
       expect(manager.entries()).toHaveLength(1);
       expect(manager.entries()[0].ref).toBe(parent);
 
