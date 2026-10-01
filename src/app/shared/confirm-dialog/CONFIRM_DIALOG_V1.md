@@ -2,29 +2,27 @@
 
 ## Status
 
-This is the implemented system-wide confirmation contract built on the shared
-blocking Overlay system. It is a specialized consumer of
-`ErpOverlayManager`; it is not a second modal subsystem.
+System-wide confirmation is implemented as a specialized consumer of the shared
+blocking Overlay system. Application confirmation flows must use
+`ErpConfirmDialogService`; this is not a second modal subsystem.
 
-Technical verification remains pending until the canonical
-`npm run verify:clean` gate passes on this checkpoint.
+Canonical end-to-end verification remains pending for the current checkpoint.
 
 ## Public API
 
-Application code uses only:
+Application code uses:
 
 - `ErpConfirmDialogService`
 - `ErpConfirmDialogConfig`
+- `ErpConfirmDialogAuxiliaryAction`
+- `ErpConfirmDialogResult`
 - `ErpConfirmDialogIntent`
 
-The internal content component is not public application API.
+The internal content component is not application API.
+
+### Configuration
 
 ```ts
-export type ErpConfirmDialogIntent =
-  | 'default'
-  | 'warning'
-  | 'danger';
-
 export interface ErpConfirmDialogConfig {
   readonly title: string;
   readonly message: string;
@@ -32,106 +30,198 @@ export interface ErpConfirmDialogConfig {
   readonly details?: string | null;
   readonly confirmLabel?: string;
   readonly cancelLabel?: string;
-  readonly intent?: ErpConfirmDialogIntent;
+  readonly intent?: 'default' | 'warning' | 'danger';
   readonly icon?: ErpIconName;
+  readonly headerTone?: ErpOverlayHeaderTone;
+  readonly userDismissible?: boolean;
+  readonly auxiliaryActions?: readonly ErpConfirmDialogAuxiliaryAction[];
 }
 ```
 
-The service returns:
+`headerTone` accepts the Overlay semantic Header tones:
+`default | primary | secondary | accent | success | warning | danger | info | neutral`.
+
+The default Header tone preserves the ordinary Overlay Header appearance.
+Colored Header tones use theme-sensitive subtle Semantic/Foundation surfaces;
+they do not use raw colors.
+
+### Auxiliary actions
+
+A Confirm may define zero, one, or two auxiliary actions.
 
 ```ts
-confirm(config: ErpConfirmDialogConfig): Promise<boolean>
+export interface ErpConfirmDialogAuxiliaryAction {
+  readonly id: string;
+  readonly label: string;
+  readonly icon?: ErpIconName | null;
+  readonly presentation?: 'button' | 'icon-button';
+  readonly tone?: ErpButtonTone;
+  readonly placement?: 'start' | 'end';
+}
 ```
 
-`true` means the primary Confirm action completed. Cancel, close, Escape, or
-any other dismissal resolves `false`.
+Rules:
 
-## System-owned policy
+- maximum two auxiliary actions;
+- IDs are nonblank and unique;
+- `confirm` and `cancel` are reserved IDs;
+- ordinary Button presentation may omit an icon;
+- IconButton presentation requires an icon;
+- default presentation = `button`;
+- default tone = `neutral`;
+- default placement = logical `start`;
+- auxiliary actions resolve with their own action ID.
 
-Every system confirmation uses the same fixed Overlay policy:
+This supports a footer such as:
+`auxiliary 1 + auxiliary 2 + cancel + confirm` without exposing raw Overlay
+frame composition to the caller.
+
+## Result contract
+
+The service returns a typed result rather than a Boolean:
+
+```ts
+export type ErpConfirmDialogResult =
+  | {readonly type: 'action'; readonly actionId: string}
+  | {readonly type: 'dismissed'; readonly reason: 'close' | 'escape'};
+```
+
+Button results:
+
+- Confirm button -> `{type: 'action', actionId: 'confirm'}`;
+- Cancel button -> `{type: 'action', actionId: 'cancel'}`;
+- auxiliary action -> its configured ID.
+
+Header close and Escape are not button actions; they return `dismissed`.
+
+## User dismissibility
+
+`userDismissible` defaults to `true`.
+
+When true:
+
+- Header Close is visible;
+- Cancel action is rendered;
+- Escape dismissal is enabled;
+- initial focus targets Cancel;
+- backdrop dismissal remains disabled to avoid accidental confirmation loss.
+
+When false:
+
+- Header remains visible but Header Close is removed through the Overlay frame API;
+- Cancel is not rendered;
+- Escape dismissal is disabled;
+- backdrop dismissal remains disabled;
+- initial focus is left to the shared Overlay focus algorithm, which falls back
+  to the primary Confirm action when the body has no focusable control.
+
+This means a non-dismissible Confirm cannot be abandoned through normal user
+dismissal controls; an application action must complete it.
+
+## Header color
+
+The Confirm caller may set `headerTone` using system semantic tones such as
+`info`, `danger`, `warning`, `primary`, etc.
+
+The implementation extends the shared Overlay Header contract with:
+
+- `tone?: ErpOverlayHeaderTone`;
+- `showCloseButton?: boolean`.
+
+These remain API-driven. Consumer CSS is not the configuration mechanism.
+
+Header backgrounds map to existing theme-sensitive semantic roles:
+
+- primary/secondary/accent -> Brand subtle surfaces;
+- success/warning/danger/info -> Feedback surfaces;
+- neutral -> elevated neutral surface;
+- default -> existing transparent/default Overlay Header.
+
+## System-owned Modal policy
+
+Every Confirm remains:
 
 - kind: `modal`;
 - position: `center`;
 - size: `sm`;
-- blocking: inherited Overlay default `true`;
-- trapFocus: inherited Overlay default `true`;
-- restoreFocus: inherited Overlay default `true`;
-- dismissOnEscape: `true`;
-- dismissOnBackdrop: `false`;
-- Header visible;
-- Footer visible;
-- safe initial focus targets the Cancel action;
-- modal motion remains the Overlay default `flip-x`.
+- blocking: shared Overlay default;
+- Header and Footer visible;
+- backdrop dismissal disabled;
+- motion: current Modal default `flip-x`;
+- focus trap and restoration: shared Overlay defaults.
 
-Callers do not configure modal geometry, motion, backdrop, Header/Footer
-visibility, or focus policy through the Confirm API.
+The caller does not configure geometry, motion, backdrop, or frame visibility.
 
 ## Intent semantics
 
-- `default`: help icon + primary Confirm button;
-- `warning`: warning icon + warning Confirm button;
-- `danger`: error icon + danger Confirm button; the default primary icon is
-  delete.
+Intent continues to own the default Confirm action semantics:
 
-Callers may override the semantic Header icon, but the system owns the Confirm
-button tone derived from intent.
+- default -> help Header icon + primary Confirm tone;
+- warning -> warning Header icon + warning Confirm tone;
+- danger -> error Header icon + danger Confirm tone + delete Confirm icon.
 
-## Overlay stack behavior
+`headerTone` is independent from intent, so an application can deliberately
+choose a different semantic Header background without changing the meaning of
+the Confirm action.
 
-The service always opens through the existing `ErpOverlayManager`. Therefore
-a confirmation requested from inside an already-open Modal or Drawer becomes a
-new top blocking Modal in the same ordered stack.
-
-The parent blocking surface remains mounted beneath it and becomes inactive
-under the normal Overlay stack contract. When confirmation closes, the parent
-surface remains and focus restoration follows the shared Overlay policy.
-
-No nested backdrop, local portal, second OverlayHost, or DOM-owned dialog is
-created.
-
-## Usage
+## Example
 
 ```ts
-private readonly confirmDialog = inject(ErpConfirmDialogService);
+const result = await confirmDialog.confirm({
+  title: 'حذف العميل',
+  message: 'هل تريد تنفيذ العملية؟',
+  details: 'لا يمكن التراجع عن الحذف.',
+  intent: 'danger',
+  headerTone: 'danger',
+  auxiliaryActions: [
+    {
+      id: 'archive',
+      label: 'أرشفة',
+      icon: 'inventory',
+      tone: 'secondary',
+    },
+    {
+      id: 'details',
+      label: 'التفاصيل',
+      icon: 'info',
+      presentation: 'icon-button',
+      tone: 'info',
+    },
+  ],
+});
 
-async deleteCustomer(customer: Customer): Promise<void> {
-  const confirmed = await this.confirmDialog.confirm({
-    title: 'حذف العميل',
-    message: `هل تريد حذف العميل ${customer.name}؟`,
-    details: 'لا يمكن التراجع عن الحذف بعد التأكيد.',
-    intent: 'danger',
-    confirmLabel: 'حذف',
-  });
-
-  if (!confirmed) {
-    return;
+if (result.type === 'action') {
+  switch (result.actionId) {
+    case 'confirm':
+      // delete
+      break;
+    case 'archive':
+      // archive instead
+      break;
+    case 'details':
+      // show details
+      break;
+    case 'cancel':
+      // explicit cancel button
+      break;
   }
-
-  await this.customers.delete(customer.id);
 }
 ```
 
-The same API is used from pages, forms, tables, Modals, Drawers, or any
-application feature.
+## Overlay stack behavior
+
+A Confirm requested from a Page, Modal, or Drawer always opens through the
+single `ErpOverlayManager`. If another blocking surface is already open, the
+Confirm becomes the new top blocking Modal while the parent remains mounted and
+inactive beneath it.
 
 ## Exclusivity
 
-System confirmation must not be implemented through:
+Application confirmation must not use:
 
-- `window.confirm` or global browser `confirm`;
+- `window.confirm` / `globalThis.confirm`;
+- native `<dialog>` as a parallel confirmation system;
 - direct application imports of `ErpConfirmDialogContent`;
-- native `<dialog>` authored as an alternative confirmation surface;
-- feature-local blocking backdrops or confirmation modal implementations.
+- feature-local blocking backdrops or Confirm modal implementations.
 
-The dedicated governance checker enforces the mechanically detectable parts of
-this contract and runs in the canonical lint chain.
-
-## Internal composition
-
-The internal Confirm content owns body copy only and uses ERP primitives.
-Header, Footer, focus, stacking, dismissal, motion, and action presentation
-remain owned by the shared Overlay system.
-
-The Confirm primary action is registered through `ErpOverlayRef` using stable
-action ID `confirm`. Cancel remains the shared secondary Overlay action and
-all dismissal outcomes map to `false`.
+The dedicated governance checker runs in the canonical lint chain.

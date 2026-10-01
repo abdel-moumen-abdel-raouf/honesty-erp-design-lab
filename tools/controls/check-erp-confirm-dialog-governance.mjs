@@ -78,6 +78,9 @@ export function validateConfirmDialogContract(files) {
     'readonly cancelLabel?: string;',
     'readonly intent?: ErpConfirmDialogIntent;',
     'readonly icon?: ErpIconName;',
+    'readonly headerTone?: ErpOverlayHeaderTone;',
+    'readonly userDismissible?: boolean;',
+    'readonly auxiliaryActions?: readonly ErpConfirmDialogAuxiliaryAction[];',
   ]) {
     if (!contracts.includes(required)) {
       errors.push(`Confirm contracts: missing ${required}`);
@@ -87,24 +90,31 @@ export function validateConfirmDialogContract(files) {
   for (const required of [
     '@Injectable({providedIn: \'root\'})',
     'export class ErpConfirmDialogService',
-    'confirm(config: ErpConfirmDialogConfig): Promise<boolean>',
+    'confirm(',
+    'config: ErpConfirmDialogConfig',
+    'Promise<ErpConfirmDialogResult>',
     'ErpOverlayManager',
     'ErpConfirmDialogContent',
     "kind: 'modal'",
     "position: 'center'",
     "size: 'sm'",
-    'dismissOnEscape: true',
+    'dismissOnEscape: userDismissible',
     'dismissOnBackdrop: false',
-    "initialFocus: '[data-overlay-frame-action-id=\"cancel\"] button'",
+    'userDismissible ?',
+    "showCloseButton: userDismissible",
     'showHeader: true',
     'showFooter: true',
     "id: 'cancel'",
-    "role: 'secondary'",
     "id: 'confirm'",
-    "role: 'primary'",
     'tone: toneForIntent(intent)',
     "ref.registerFrameAction('confirm'",
-    "result.type === 'closed' && result.result === true",
+    "ref.registerFrameAction('cancel'",
+    'normalizeAuxiliaryActions(',
+    'actions.length > 2',
+    "RESERVED_ACTION_IDS.has(action.id)",
+    "action.presentation === 'icon-button' && action.icon === null",
+    "ref.close({type: 'action', actionId: action.id})",
+    "reason: result.reason === 'escape' ? 'escape' : 'close'",
   ]) {
     if (!service.includes(required)) {
       errors.push(`Confirm service: missing system policy ${required}`);
@@ -119,6 +129,8 @@ export function validateConfirmDialogContract(files) {
     "return 'primary';",
     "return 'help';",
     "return 'error';",
+    "const headerTone = config.headerTone ?? 'default';",
+    "const userDismissible = config.userDismissible ?? true;",
   ]) {
     if (!service.includes(required)) {
       errors.push(`Confirm intent mapping: missing ${required}`);
@@ -156,6 +168,9 @@ export function validateConfirmDialogContract(files) {
   for (const required of [
     'readonly tone?: ErpButtonTone;',
     'readonly actions: readonly ErpOverlayActionConfig[];',
+    "export type ErpOverlayHeaderTone = 'default' | ErpButtonTone;",
+    'readonly tone?: ErpOverlayHeaderTone;',
+    'readonly showCloseButton?: boolean;',
   ]) {
     if (!overlayContracts.includes(required)) {
       errors.push(`Overlay action contract required by Confirm: missing ${required}`);
@@ -176,6 +191,8 @@ export function validateConfirmDialogContract(files) {
     'data-confirm-dialog-evidence="default"',
     'data-confirm-dialog-evidence="warning"',
     'data-confirm-dialog-evidence="danger"',
+    'data-confirm-dialog-evidence="multi-action"',
+    'data-confirm-dialog-evidence="locked"',
   ]) {
     if (!showcaseTemplate.includes(required)) {
       errors.push(`Confirm showcase template: missing ${required}`);
@@ -252,6 +269,7 @@ function runSelfTest() {
     [
       CONFIRM_CONTRACTS,
       `export type ErpConfirmDialogIntent = 'default' | 'warning' | 'danger';
+export interface ErpConfirmDialogAuxiliaryAction {}
 export interface ErpConfirmDialogConfig {
 readonly title: string;
 readonly message: string;
@@ -261,29 +279,39 @@ readonly confirmLabel?: string;
 readonly cancelLabel?: string;
 readonly intent?: ErpConfirmDialogIntent;
 readonly icon?: ErpIconName;
+readonly headerTone?: ErpOverlayHeaderTone;
+readonly userDismissible?: boolean;
+readonly auxiliaryActions?: readonly ErpConfirmDialogAuxiliaryAction[];
 }`,
     ],
     [
       CONFIRM_SERVICE,
       `@Injectable({providedIn: 'root'})
 export class ErpConfirmDialogService {
-confirm(config: ErpConfirmDialogConfig): Promise<boolean> {
+confirm(
+config: ErpConfirmDialogConfig
+): Promise<ErpConfirmDialogResult> {
 ErpOverlayManager ErpConfirmDialogContent
 kind: 'modal'
 position: 'center'
 size: 'sm'
-dismissOnEscape: true
+dismissOnEscape: userDismissible
 dismissOnBackdrop: false
-initialFocus: '[data-overlay-frame-action-id="cancel"] button'
+userDismissible ?
+showCloseButton: userDismissible
 showHeader: true
 showFooter: true
 id: 'cancel'
-role: 'secondary'
 id: 'confirm'
-role: 'primary'
 tone: toneForIntent(intent)
 ref.registerFrameAction('confirm'
-result.type === 'closed' && result.result === true
+ref.registerFrameAction('cancel'
+normalizeAuxiliaryActions(
+actions.length > 2
+RESERVED_ACTION_IDS.has(action.id)
+action.presentation === 'icon-button' && action.icon === null
+ref.close({type: 'action', actionId: action.id})
+reason: result.reason === 'escape' ? 'escape' : 'close'
 case 'warning':
 return 'warning';
 case 'danger':
@@ -291,6 +319,8 @@ return 'danger';
 return 'primary';
 return 'help';
 return 'error';
+const headerTone = config.headerTone ?? 'default';
+const userDismissible = config.userDismissible ?? true;
 }
 }`,
     ],
@@ -307,7 +337,7 @@ return 'error';
     ],
     [
       OVERLAY_CONTRACTS,
-      'readonly tone?: ErpButtonTone; readonly actions: readonly ErpOverlayActionConfig[];',
+      "readonly tone?: ErpButtonTone; readonly actions: readonly ErpOverlayActionConfig[]; export type ErpOverlayHeaderTone = 'default' | ErpButtonTone; readonly tone?: ErpOverlayHeaderTone; readonly showCloseButton?: boolean;",
     ],
     [
       OVERLAY_SHOWCASE_SOURCE,
@@ -315,7 +345,7 @@ return 'error';
     ],
     [
       OVERLAY_SHOWCASE_TEMPLATE,
-      '<erp-section data-review-group="confirm-dialog"><erp-button data-confirm-dialog-evidence="default" /><erp-button data-confirm-dialog-evidence="warning" /><erp-button data-confirm-dialog-evidence="danger" /></erp-section>',
+      '<erp-section data-review-group="confirm-dialog"><erp-button data-confirm-dialog-evidence="default" /><erp-button data-confirm-dialog-evidence="warning" /><erp-button data-confirm-dialog-evidence="danger" /><erp-button data-confirm-dialog-evidence="multi-action" /><erp-button data-confirm-dialog-evidence="locked" /></erp-section>',
     ],
     [
       OVERLAY_EVIDENCE_SOURCE,
@@ -357,8 +387,8 @@ return 'error';
   const invalidPolicy = new Map(valid).set(
     CONFIRM_SERVICE,
     (valid.get(CONFIRM_SERVICE) ?? '').replace(
-      "dismissOnBackdrop: false",
-      "dismissOnBackdrop: true",
+      "dismissOnEscape: userDismissible",
+      "dismissOnEscape: true",
     ),
   );
   if (validateConfirmDialogContract(invalidPolicy).length === 0) {

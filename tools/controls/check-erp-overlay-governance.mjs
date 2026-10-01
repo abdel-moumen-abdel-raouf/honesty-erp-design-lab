@@ -423,6 +423,15 @@ export function validateOverlayContractDrift(files) {
     '--honesty-overlay-backdrop-blur:',
     '--honesty-overlay-layer:',
     '--honesty-overlay-frame-separator-color: var(--honesty-border-default);',
+    '--honesty-overlay-frame-header-bg: transparent;',
+    '@mixin frame-header-tone-primary',
+    '@mixin frame-header-tone-secondary',
+    '@mixin frame-header-tone-accent',
+    '@mixin frame-header-tone-success',
+    '@mixin frame-header-tone-warning',
+    '@mixin frame-header-tone-danger',
+    '@mixin frame-header-tone-info',
+    '@mixin frame-header-tone-neutral',
     '--honesty-overlay-frame-header-border-color:',
     '--honesty-overlay-frame-footer-border-color:',
     '--honesty-overlay-enter-duration: 360ms;',
@@ -468,6 +477,9 @@ export function validateOverlayFrameContract(files) {
     'readonly title: string;',
     'readonly subtitle: string;',
     'readonly icon: ErpIconName;',
+    "export type ErpOverlayHeaderTone = 'default' | ErpButtonTone;",
+    'readonly tone?: ErpOverlayHeaderTone;',
+    'readonly showCloseButton?: boolean;',
     'readonly closeLabel?: string;',
     'readonly id: string;',
     'readonly label: string;',
@@ -496,6 +508,8 @@ export function validateOverlayFrameContract(files) {
     'options.frame.header.subtitle.trim()',
     "options.frame.header.closeLabel?.trim() || 'إغلاق'",
     'ERP_ICON_NAMES.includes(options.frame.header.icon)',
+    "tone: options.frame.header.tone ?? 'default'",
+    'showCloseButton: options.frame.header.showCloseButton ?? true',
     'options.frame.footer.actions.map((action)',
     'id: action.id.trim()',
     'label: action.label.trim()',
@@ -548,6 +562,8 @@ export function validateOverlayFrameContract(files) {
     'ErpTooltip',
     'this.config().showHeader !== false',
     'this.config().showFooter !== false',
+    'this.config().header.showCloseButton !== false',
+    "this.config().header.tone ?? 'default'",
     'buttonTone(action: ErpOverlayActionConfig)',
     'action.tone ??',
     "this.ref().dismiss('close-action')",
@@ -561,7 +577,9 @@ export function validateOverlayFrameContract(files) {
     '[attr.data-overlay-frame-header-visible]="showHeader()"',
     '[attr.data-overlay-frame-footer-visible]="showFooter()"',
     '@if (showHeader())',
-    '<header class="overlay-frame__header">',
+    '<header',
+    '[attr.data-overlay-frame-header-tone]="headerTone()"',
+    '@if (showCloseButton())',
     '<div class="overlay-frame__body">',
     '@if (showFooter())',
     '<footer class="overlay-frame__footer">',
@@ -661,6 +679,7 @@ export function validateOverlayShowcase(files) {
   for (const group of [
     'modal',
     'drawers',
+    'confirm-dialog',
     'nested-stack',
     'dismissal-focus',
   ]) {
@@ -859,7 +878,7 @@ this.manager.completeTransition(entry.ref.id, entry.phase)`,
     ],
     [
       OVERLAY_TOKENS,
-      '--honesty-overlay-backdrop-bg: x; --honesty-overlay-backdrop-blur: x; --honesty-overlay-layer: x; --honesty-overlay-frame-separator-color: var(--honesty-border-default); --honesty-overlay-frame-header-border-color: x; --honesty-overlay-frame-footer-border-color: x; --honesty-overlay-enter-duration: 360ms; --honesty-overlay-exit-duration: 260ms;',
+      '--honesty-overlay-backdrop-bg: x; --honesty-overlay-backdrop-blur: x; --honesty-overlay-layer: x; --honesty-overlay-frame-separator-color: var(--honesty-border-default); --honesty-overlay-frame-header-bg: transparent; @mixin frame-header-tone-primary {} @mixin frame-header-tone-secondary {} @mixin frame-header-tone-accent {} @mixin frame-header-tone-success {} @mixin frame-header-tone-warning {} @mixin frame-header-tone-danger {} @mixin frame-header-tone-info {} @mixin frame-header-tone-neutral {} --honesty-overlay-frame-header-border-color: x; --honesty-overlay-frame-footer-border-color: x; --honesty-overlay-enter-duration: 360ms; --honesty-overlay-exit-duration: 260ms;',
     ],
   ]);
 
@@ -1014,7 +1033,7 @@ const currentPreviewMode = 'mobile';`,
     ],
     [
       OVERLAY_SHOWCASE_TEMPLATE,
-      '<section data-review-group="modal"><erp-button data-frame-header-hidden-evidence /><erp-button data-frame-footer-hidden-evidence /><erp-button data-frame-both-hidden-evidence /></section><section data-review-group="drawers"><erp-button data-drawer-evidence="start" /><erp-button data-drawer-evidence="end" /><erp-button data-drawer-evidence="top" /><erp-button data-drawer-evidence="bottom" /><erp-button data-drawer-frame-hidden-evidence /></section><section data-review-group="nested-stack"></section><section data-review-group="dismissal-focus"></section>',
+      '<section data-review-group="modal"><erp-button data-frame-header-hidden-evidence /><erp-button data-frame-footer-hidden-evidence /><erp-button data-frame-both-hidden-evidence /></section><section data-review-group="drawers"><erp-button data-drawer-evidence="start" /><erp-button data-drawer-evidence="end" /><erp-button data-drawer-evidence="top" /><erp-button data-drawer-evidence="bottom" /><erp-button data-drawer-frame-hidden-evidence /></section><section data-review-group="confirm-dialog"></section><section data-review-group="nested-stack"></section><section data-review-group="dismissal-focus"></section>',
     ],
   ]);
   if (validateOverlayShowcase(validOverlayShowcase).length > 0) {
@@ -1035,6 +1054,9 @@ const currentPreviewMode = 'mobile';`,
 readonly title: string;
 readonly subtitle: string;
 readonly icon: ErpIconName;
+export type ErpOverlayHeaderTone = 'default' | ErpButtonTone;
+readonly tone?: ErpOverlayHeaderTone;
+readonly showCloseButton?: boolean;
 readonly closeLabel?: string;
 }
 export interface ErpOverlayActionConfig { readonly presentation?: ErpOverlayActionPresentation; readonly tone?: ErpButtonTone; }
@@ -1062,6 +1084,8 @@ readonly placement: ErpOverlayActionPlacement;`,
 options.frame.header.subtitle.trim()
 options.frame.header.closeLabel?.trim() || 'إغلاق'
 ERP_ICON_NAMES.includes(options.frame.header.icon)
+tone: options.frame.header.tone ?? 'default'
+showCloseButton: options.frame.header.showCloseButton ?? true
 options.frame.footer.actions.map((action)
 id: action.id.trim()
 label: action.label.trim()
@@ -1089,6 +1113,8 @@ this.dismiss('secondary-action')`,
       `ErpButton ErpIconButton ErpTooltip
 this.config().showHeader !== false
 this.config().showFooter !== false
+this.config().header.showCloseButton !== false
+this.config().header.tone ?? 'default'
 buttonTone(action: ErpOverlayActionConfig)
 action.tone ??
 this.ref().dismiss('close-action')`,
@@ -1106,7 +1132,7 @@ this.ref().dismiss('close-action')`,
     [
       OVERLAY_FRAME_TEMPLATE,
       `<div [attr.data-overlay-frame-header-visible]="showHeader()" [attr.data-overlay-frame-footer-visible]="showFooter()">
-@if (showHeader()) { <header class="overlay-frame__header"> }
+@if (showHeader()) { <header [attr.data-overlay-frame-header-tone]="headerTone()"> @if (showCloseButton()) { <erp-icon-button data-overlay-frame-close /> } }
 <div class="overlay-frame__body">
 @if (showFooter()) { <footer class="overlay-frame__footer"> }
 <erp-tooltip><erp-icon-button data-overlay-frame-close />

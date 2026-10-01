@@ -395,3 +395,34 @@ internal content component directly or use browser-native confirmation APIs.
 
 See:
 `src/app/shared/confirm-dialog/CONFIRM_DIALOG_V1.md`.
+
+
+## 2026-10-02 — Confirm-driven Header tone and Close-button API
+
+The shared Overlay Header contract now includes:
+
+```ts
+export type ErpOverlayHeaderTone = 'default' | ErpButtonTone;
+
+export interface ErpOverlayHeaderConfig {
+  // existing title/subtitle/icon
+  readonly tone?: ErpOverlayHeaderTone;
+  readonly showCloseButton?: boolean;
+}
+```
+
+Defaults:
+- Header tone = `default`;
+- Header close button = visible.
+
+Header tone is implemented through Overlay Component Tokens mapped to existing
+semantic Brand/Feedback/Surface roles. No raw palette colors or theme-specific
+selectors are authored by consumers.
+
+`showCloseButton` is independent from `showHeader`: a surface can keep its
+title/subtitle Header while suppressing only the Close affordance. This is
+required by non-dismissible System Confirm dialogs.
+
+The System Confirm contract now also supports up to two typed auxiliary actions
+and returns action IDs rather than a Boolean result. See
+`src/app/shared/confirm-dialog/CONFIRM_DIALOG_V1.md`.
