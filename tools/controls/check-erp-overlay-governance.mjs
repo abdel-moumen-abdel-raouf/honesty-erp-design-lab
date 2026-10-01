@@ -450,10 +450,12 @@ export function validateOverlayFrameContract(files) {
     'readonly closeLabel?: string;',
     'readonly id: string;',
     'readonly label: string;',
+    'readonly presentation?: ErpOverlayActionPresentation;',
     'readonly role: ErpOverlayActionRole;',
     'readonly placement: ErpOverlayActionPlacement;',
     "export type ErpOverlayActionRole = 'primary' | 'secondary' | 'utility';",
     "export type ErpOverlayActionPlacement = 'start' | 'end';",
+    "export type ErpOverlayActionPresentation = 'button' | 'icon-button';",
     'export interface ErpOverlayFrameActionState',
     'export interface ErpOverlayFooterConfig',
     'readonly actions: readonly ErpOverlayActionConfig[];',
@@ -473,6 +475,8 @@ export function validateOverlayFrameContract(files) {
     'options.frame.footer.actions.map((action)',
     'id: action.id.trim()',
     'label: action.label.trim()',
+    "action.presentation === 'icon-button'",
+    "presentation: action.presentation ?? 'button'",
     'new Set(actions.map((action) => action.id)).size !== actions.length',
   ]) {
     if (!manager.includes(required)) {
@@ -520,6 +524,9 @@ export function validateOverlayFrameContract(files) {
     'data-overlay-frame-action-group="end"',
     '@for (action of startActions(); track action.id)',
     '@for (action of endActions(); track action.id)',
+    "action.presentation === 'icon-button'",
+    '[text]="action.label"',
+    "[icon]="action.icon ?? 'delete'"",
   ]) {
     if (!frameTemplate.includes(required)) {
       errors.push(`OverlayFrame template: missing ${required}`);
@@ -847,9 +854,10 @@ readonly subtitle: string;
 readonly icon: ErpIconName;
 readonly closeLabel?: string;
 }
-export interface ErpOverlayActionConfig {}
+export interface ErpOverlayActionConfig { readonly presentation?: ErpOverlayActionPresentation; }
 export type ErpOverlayActionRole = 'primary' | 'secondary' | 'utility';
 export type ErpOverlayActionPlacement = 'start' | 'end';
+export type ErpOverlayActionPresentation = 'button' | 'icon-button';
 export interface ErpOverlayFrameActionState {}
 export interface ErpOverlayFooterConfig {
 readonly actions: readonly ErpOverlayActionConfig[];
@@ -871,6 +879,8 @@ ERP_ICON_NAMES.includes(options.frame.header.icon)
 options.frame.footer.actions.map((action)
 id: action.id.trim()
 label: action.label.trim()
+action.presentation === 'icon-button'
+presentation: action.presentation ?? 'button'
 new Set(actions.map((action) => action.id)).size !== actions.length
 openLegacyCompactMenu`,
     ],
@@ -897,7 +907,8 @@ this.ref().dismiss('close-action')`,
 <footer class="overlay-frame__footer">
 <erp-tooltip><erp-icon-button data-overlay-frame-close />
 <div data-overlay-frame-action-group="start">@for (action of startActions(); track action.id) {
-<erp-button data-overlay-frame-action data-overlay-frame-action-id data-overlay-frame-action-role />}
+@if (action.presentation === 'icon-button') { <erp-tooltip [text]="action.label"><erp-icon-button data-overlay-frame-action data-overlay-frame-action-id data-overlay-frame-action-role [icon]="action.icon ?? 'delete'" /></erp-tooltip> } @else {
+<erp-button data-overlay-frame-action data-overlay-frame-action-id data-overlay-frame-action-role />}}
 <div data-overlay-frame-action-group="end">@for (action of endActions(); track action.id) {
 <erp-button data-overlay-frame-action data-overlay-frame-action-id data-overlay-frame-action-role />}`,
     ],

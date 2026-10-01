@@ -47,8 +47,8 @@ describe('ErpOverlayManager', () => {
         },
         footer: {
           actions: [
-            {id: 'cancel', label: 'Cancel', icon: null, role: 'secondary', placement: 'end', disabled: false, loading: false},
-            {id: 'confirm', label: 'Confirm', icon: null, role: 'primary', placement: 'end', disabled: false, loading: false},
+            {id: 'cancel', label: 'Cancel', icon: null, presentation: 'button', role: 'secondary', placement: 'end', disabled: false, loading: false},
+            {id: 'confirm', label: 'Confirm', icon: null, presentation: 'button', role: 'primary', placement: 'end', disabled: false, loading: false},
           ],
         },
       },
@@ -69,6 +69,40 @@ describe('ErpOverlayManager', () => {
     expect(manager.entries()[0]).toMatchObject({
       phase: 'entering',
       animation: 'fade-scale',
+    });
+  });
+
+  it('preserves semantic icon-button action presentation through normalization', () => {
+    const manager = TestBed.inject(ErpOverlayManager);
+    const base = frame('Clear presentation');
+    const ref = manager.open(TestOverlayContent, {
+      frame: {
+        ...base,
+        footer: {
+          actions: [
+            {
+              id: 'clear',
+              label: 'مسح',
+              icon: 'delete',
+              presentation: 'icon-button',
+              role: 'utility',
+              placement: 'start',
+            },
+            ...base.footer.actions,
+          ],
+        },
+      },
+    });
+
+    expect(ref.config.frame?.footer.actions[0]).toEqual({
+      id: 'clear',
+      label: 'مسح',
+      icon: 'delete',
+      presentation: 'icon-button',
+      role: 'utility',
+      placement: 'start',
+      disabled: false,
+      loading: false,
     });
   });
 

@@ -11,7 +11,7 @@ const FRAME: ErpOverlayFrameConfig = {
   },
   footer: {
     actions: [
-      {id: 'clear', label: 'مسح', role: 'utility', placement: 'start'},
+      {id: 'clear', label: 'مسح', icon: 'delete', presentation: 'icon-button', role: 'utility', placement: 'start'},
       {id: 'cancel', label: 'إلغاء', role: 'secondary', placement: 'end'},
       {id: 'apply', label: 'تطبيق', icon: 'check', role: 'primary', placement: 'end'},
     ],
@@ -63,6 +63,15 @@ describe('ErpOverlayFrame', () => {
     expect(root.querySelector('.overlay-frame__header erp-icon')?.getAttribute('data-icon-name')).toBe('info');
     expect(root.querySelector('[data-overlay-frame-close]')?.getAttribute('data-icon-button-state')).toBe('ready');
     expect(root.querySelector('[data-overlay-frame-close] button')?.getAttribute('aria-label')).toBe('إغلاق');
+
+    const clear = root.querySelector<HTMLElement>(
+      '[data-overlay-frame-action-id="clear"]',
+    );
+    expect(clear?.tagName).toBe('ERP-ICON-BUTTON');
+    expect(clear?.getAttribute('data-icon-button-state')).toBe('ready');
+    expect(clear?.querySelector('button')?.getAttribute('aria-label')).toBe('مسح');
+    expect(clear?.closest('erp-tooltip')).not.toBeNull();
+
     expect(root.querySelector('.overlay-frame__body')).not.toBeNull();
     expect(root.querySelector('.overlay-frame__footer')).not.toBeNull();
     expect(getComputedStyle(root.querySelector('.overlay-frame__body') as HTMLElement).overflow).toBe('auto');
@@ -125,7 +134,7 @@ describe('ErpOverlayFrame', () => {
     const clear = root.querySelector<HTMLElement>(
       '[data-overlay-frame-action-id="clear"]',
     );
-    expect(clear?.getAttribute('data-button-state')).toBe('loading');
+    expect(clear?.getAttribute('data-icon-button-state')).toBe('loading');
     expect(clear?.querySelector<HTMLButtonElement>('button')?.disabled).toBe(true);
   });
 });

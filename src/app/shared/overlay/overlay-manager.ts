@@ -89,6 +89,20 @@ export class ErpOverlayManager {
       throw new TypeError('ErpOverlay frame actions require non-empty labels.');
     }
 
+    if (
+      actions.some(
+        (action) =>
+          action.presentation === 'icon-button' &&
+          (action.icon === null ||
+            action.icon === undefined ||
+            !ERP_ICON_NAMES.includes(action.icon)),
+      )
+    ) {
+      throw new TypeError(
+        'ErpOverlay icon-button actions require a semantic icon.',
+      );
+    }
+
     const kind = options.kind ?? 'modal';
     const position = options.position ?? 'center';
     const [defaultEnterAnimation, defaultExitAnimation] = defaultAnimations(
@@ -114,6 +128,7 @@ export class ErpOverlayManager {
                 id: action.id,
                 label: action.label,
                 icon: action.icon ?? null,
+                presentation: action.presentation ?? 'button',
                 role: action.role,
                 placement: action.placement,
                 disabled: action.disabled ?? false,
