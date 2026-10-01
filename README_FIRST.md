@@ -793,3 +793,162 @@ Mandatory next technical gate:
 This requirement does not reopen the Overlay-only showcase ownership decision or
 the current modal/drawer geometry contracts.
 <!-- CHATGPT_OVERLAY_FRAME_VISIBILITY_API_2026_10_02_END -->
+
+
+<!-- CHATGPT_SYSTEM_CONFIRM_DIALOG_2026_10_02_START -->
+## 2026-10-02 — System Confirm Dialog service implemented on the blocking Overlay stack
+
+Product Owner authorized one system-wide confirmation service built on the
+existing blocking Overlay/Modal system.
+
+### Product law
+
+Every application confirmation dialog must use the shared
+`ErpConfirmDialogService`.
+
+Application code must not create a second Confirm modal subsystem, browser
+`window.confirm`, direct Confirm internal content, or feature-local blocking
+backdrops.
+
+Confirmations invoked from inside an already-open Modal or Drawer must open as
+a new top blocking Modal in the same `ErpOverlayManager` stack. The parent
+surface remains mounted beneath it and resumes after the Confirm closes.
+
+### Public API
+
+`src/app/shared/confirm-dialog/confirm-dialog-contracts.ts`:
+
+- `ErpConfirmDialogIntent = 'default' | 'warning' | 'danger'`;
+- `ErpConfirmDialogConfig` exposes semantic confirmation inputs only:
+  title, message, optional subtitle/details, labels, intent, and semantic icon.
+
+`ErpConfirmDialogService.confirm(config)` returns `Promise<boolean>`:
+- Confirm primary action -> `true`;
+- Cancel / close / Escape / dismissal -> `false`.
+
+Callers do not configure Overlay geometry, motion, Header/Footer visibility,
+backdrop, or focus policy through the Confirm API.
+
+### Fixed system policy
+
+Every Confirm:
+- kind = `modal`;
+- position = `center`;
+- size = `sm`;
+- blocking = shared Overlay default `true`;
+- Header = visible;
+- Footer = visible;
+- dismissOnEscape = `true`;
+- dismissOnBackdrop = `false`;
+- initial focus = Cancel action;
+- restoreFocus/trapFocus = shared Overlay defaults;
+- motion = current Modal default `flip-x`.
+
+Intent mapping:
+- default -> help icon + primary Confirm tone;
+- warning -> warning icon + warning Confirm tone;
+- danger -> error icon + danger Confirm tone + delete primary icon.
+
+### Overlay action dependency
+
+To support semantic Confirm intent without CSS workarounds,
+`ErpOverlayActionConfig` now supports optional
+`tone?: ErpButtonTone`.
+
+OverlayManager normalizes action tone:
+- Primary default -> `primary`;
+- Secondary/Utility default -> `neutral`;
+- explicit semantic tones such as `warning` / `danger` are preserved.
+
+OverlayFrame passes that tone through the existing ErpButton / ErpIconButton
+API.
+
+### Implementation checkpoints
+
+- `8f7cf03392eefb11e8c83e3fc2cbfd0afad21a3f`
+  `feat(confirm): add system confirmation service`
+- `aa90f0c7ede5018c80cedd5544528d7160ed5299`
+  `test(confirm): cover system confirmation contract`
+- `7d4affb3a61eee3b89fea490ae7454da17cd3e86`
+  `chore(confirm): govern system confirmation usage`
+- `a5118b5768c84896cb71e11a1ec94afe7502612f`
+  `test(confirm): harden nested blocking confirmation evidence`
+- `3eb04b160d3c9d5929300c896cc0eeb66e192ebe`
+  `fix(governance): avoid Confirm method false positives`
+
+### Review evidence
+
+`/controls/overlays` remains Overlay-system-only, but now contains five
+technical groups because System Confirm is itself an Overlay capability:
+
+1. Modal;
+2. Drawers;
+3. System Confirm Dialog;
+4. Nested stack;
+5. dismissal/backdrop/blur/motion policy.
+
+The Confirm review group exposes default, warning, and danger examples.
+
+The existing nested blocking Overlay evidence also exposes a button that invokes
+`ErpConfirmDialogService` from inside an already-open blocking surface.
+
+No Date/Time/Input/Selection or unrelated Button composite demos were restored
+to the Overlay page.
+
+### Governance
+
+New canonical lint stage:
+`npm run erp-confirm:check`.
+
+The checker protects:
+- exact Confirm intent union;
+- service-only system policy;
+- fixed Modal/size/focus/dismissal behavior;
+- semantic intent mapping;
+- Confirm body ERP-primitives composition;
+- required Overlay action tone support;
+- Overlay showcase Confirm evidence;
+- nested Confirm-from-blocking-Overlay evidence;
+- no direct application import/use of `ErpConfirmDialogContent`;
+- no browser `window.confirm` / `globalThis.confirm`;
+- no native `<dialog>` alternative in application templates.
+
+The browser-confirm rule was deliberately narrowed after dependency review:
+Temporal and Selection picker internals legitimately own methods named
+`confirm()`; governance must not confuse those business methods with browser
+confirmation APIs.
+
+### Pre-verification evidence
+
+Current source audits:
+- ErpConfirmDialog governance syntax PASS;
+- ErpConfirmDialog complete internal self-test PASS;
+- ErpOverlay governance syntax PASS;
+- ErpOverlay complete internal self-test PASS;
+- ErpField governance syntax PASS;
+- ErpField complete internal self-test PASS;
+- actual Confirm source contract validation: zero errors;
+- actual Overlay frame source contract validation: zero errors;
+- repository search found no existing `<dialog>`, `window.confirm`, or
+  `globalThis.confirm` usage.
+
+The ErpButton checker syntax is valid; its self-test cannot be executed in the
+minimal connector isolate because that checker depends on the imported Angular
+template parser. The canonical local gate remains authoritative for it.
+
+### Current technical state
+
+**Implemented / canonical verification pending.**
+
+The previous local run from `a1fe384...` reached all governance + Angular lint
+PASS and then 86/87 test files / 650/651 tests before one stale nested RadioBox
+count failed. That stale test was corrected in
+`9c56954e62231a29966ed78abb1662c8ef3c8124`, but no later source — including
+the configurable Overlay frame API and this System Confirm service — has yet
+completed a fresh end-to-end `npm run verify:clean`.
+
+Mandatory next technical gate:
+`npm run verify:clean`.
+
+Technical green will not imply Product Owner visual approval.
+<!-- CHATGPT_SYSTEM_CONFIRM_DIALOG_2026_10_02_END -->
