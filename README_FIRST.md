@@ -107,107 +107,54 @@ implementation state, blocker, verification result, or Product Owner finding.
 
 
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_START -->
-## 2026-10-01 — Product Owner Inputs runtime re-review: three bounded corrections implemented / verification pending
+## 2026-10-01 — bounded Inputs runtime corrections: first verification rerun stopped at Overlay governance parser / corrected
 
-The previous Inputs technical gate was Fully Green before this runtime review:
-- verified source/head: `a7ff2c25a3130491a75af9c11ba5ba52c570ff48`;
-- verification record: `85ba7069fe45dbbdc03909c34cdad5b1f1d23ffc`;
-- 87/87 test files and 648/648 tests PASS;
-- app/spec typecheck PASS;
-- zero-warning production build PASS.
+Product Owner pulled:
+`9342f0faa997b1cc6d99ecdf5ef2c6d6477e6dca`
+(`docs(handoff): record bounded Inputs runtime corrections`)
+and ran the mandatory complete:
+`npm run verify:clean`.
 
-That prior green state does **not** apply to the new corrections below until a
-fresh complete `npm run verify:clean` passes.
+Observed progress:
+- Single App theme authority PASS;
+- routed-page ERP-only authoring PASS;
+- Component Token framework PASS;
+- system-color registry PASS;
+- ErpText PASS;
+- ErpIcon PASS;
+- ErpButton PASS;
+- ErpTooltip PASS;
+- ErpField PASS;
+- verification then stopped before Overlay governance execution because Node
+  could not parse one governance string literal.
 
-### Product Owner runtime findings
+Exact failure:
+`tools/controls/check-erp-overlay-governance.mjs:535`
 
-1. Ghost/Text/Underline hover was visually discoverable in Dark but effectively
-   invisible in Light.
-2. Unified non-destructive validation had over-expanded character admission:
-   URL, Tel, Number, Money, and NumberStepper editors could retain characters
-   outside their intended domain.
-3. Clear/Clear Selected actions inside shared modal/popup Overlay footers were
-   text buttons; Product Owner requires IconButton + Tooltip.
+Malformed literal:
+`"[icon]="action.icon ?? 'delete'""`
 
-### Root causes and bounded decisions
+Root cause:
+- quote escaping in the newly added governance evidence literal was malformed;
+- this was a governance-source syntax defect only;
+- no runtime component, Overlay behavior, input behavior, or visual contract
+  failed at this point because the checker itself had not executed.
 
-#### Lightweight Field hover
-The Component Token used
-`--honesty-color-surface-elevated` as hover tint. In Light,
-`surface-default` and `surface-elevated` both resolve to white, so the hover
-effect had essentially no visible contrast.
+Bounded correction:
+- `0dfea6b1eb71441267165da3149a0148ea6c4ade`
+  `fix(governance): repair Overlay icon action literal`
+- replace only that malformed JavaScript string with a valid template literal;
+- scan of the same governance file found no second occurrence of that malformed
+  quoting pattern.
 
-Correction:
-- hover tint now uses theme-sensitive semantic
-  `--honesty-color-text-primary`;
-- mix is 8%;
-- the same Component Token path works in both Light and Dark;
-- no local theme branching was introduced.
-
-#### Typed character admission vs validation
-Non-destructive validation is clarified:
-- reject characters that do not belong to the control domain;
-- preserve admitted typed drafts when their value violates validation
-  constraints.
-
-Implemented:
-- URL admits only progressive HTTP/HTTPS syntax; arbitrary prose/whitespace is
-  rejected. Progressive incomplete drafts remain visible and invalid; CVA value
-  is published only when empty or fully admitted by URL/domain pattern.
-- Tel canonicalizes editing to optional one leading `+` plus ASCII digits
-  only; spaces/letters/punctuation are removed. Canonical invalid-length or
-  developer-pattern drafts remain visible and invalid until corrected.
-- Number, Money, NumberStepper reject characters outside progressive numeric
-  syntax.
-- syntactically numeric values that violate min/max/step remain visible and
-  invalid; no destructive clamp was reintroduced.
-
-#### Overlay Clear presentation
-Shared Overlay action contract now supports
-`presentation: 'button' | 'icon-button'`.
-
-Temporal `clear` and Selection `clear-selected` now:
-- use semantic `delete` icon;
-- render through `ErpIconButton`;
-- are wrapped by `ErpTooltip` using the action label;
-- preserve existing action IDs, ordering, disabled/loading state, and handlers.
-
-OverlayManager normalization preserves and validates the presentation contract.
-Overlay governance locks the Temporal and Selection Clear producers to this law.
-
-### Implementation checkpoints
-
-- `e7068b64df5b64b789dbc4d2b5f81648ad11d2e9`
-  `fix(inputs): restore typed character admission`
-- `b54c89c621dab914dda3555a5f8cf7ac0a48fd37`
-  `fix(overlays): render clear actions as icon tooltips`
-- `fead82d36c30533e575ab34ff41463f19ffa6848`
-  `test(inputs): lock typed admission and theme-aware hover`
-- `cade8015624c804d0be83bad5d2c49f126f5b906`
-  `test(overlays): govern icon-only clear actions`
-- `488741922c365a605acc9a70141f600278c46087`
-  `fix(inputs): repair regex patch integrity`
-- `65c097d224bb31f282ec5737ebc8381ed9f73b14`
-  `chore(overlays): lock icon-only clear contract`
-
-The regex/spec patch-integrity issue was detected during ChatGPT source review
-before Product Owner was instructed to pull the new source; the affected files
-were replaced with clean complete versions at `4887419...`.
-
-### Current status
-
-**Implemented / verification pending.**
+Current status:
+**implemented / verification pending**.
 
 Mandatory next gate:
 `npm run verify:clean`
 
-Do not declare this new source Fully Green until that complete gate passes.
-
-After technical green, Product Owner re-tests only these three runtime findings:
-- Ghost/Text/Underline hover in Light and Dark;
-- typed admission + validation behavior for URL/Tel/Number/Money/NumberStepper;
-- Clear/Clear Selected IconButton + Tooltip in shared picker overlays.
-
-No unrelated redesign or later family work is authorized.
-Inputs remains Product Owner BLOCKED until runtime acceptance.
+Do not declare the 2026-10-01 bounded corrections Fully Green until that complete
+gate passes. If it stops again, reopen only the concrete demonstrated failure.
+Inputs remains Product Owner BLOCKED pending technical green and runtime re-test
+of the three authorized findings.
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_END -->
