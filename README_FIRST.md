@@ -212,3 +212,251 @@ Current Inputs state:
 - Inputs remains Product Owner BLOCKED until explicit runtime/visual acceptance;
 - no unrelated implementation is authorized.
 <!-- CHATGPT_MANDATORY_CONTINUITY_QUARTET_END -->
+
+
+<!-- CHATGPT_PROJECT_HISTORY_DIGEST_START -->
+## Consolidated project-history digest — through 2026-10-01
+
+This section is the compact continuity timeline for the substantive stages that
+must survive chat boundaries. It complements detailed local sections elsewhere
+in this repository.
+
+### 1. No-iframe single-document Lab shell — completed
+
+Key implementation checkpoints:
+- `9471a1d5b05a5f49c767b26e3a36b6b640715e0`
+  `refactor(lab): remove iframe preview architecture`
+- `d703ef0c8f47264902ca55b902c1488f99b56bf9`
+  `style(lab): normalize direct shell markup`
+
+Frozen current law:
+- one direct `router-outlet`;
+- no preview iframe;
+- no embedded/direct dual rendering;
+- no `labPreview` query;
+- no iframe theme propagation;
+- browser viewport is the real responsive authority;
+- screenshot capture remains same-document from `#lab-capture-root`;
+- exactly one App-level `[attr.data-theme]="theme()"`;
+- exactly one App-level `ErpOverlayHost`.
+
+The old Desktop/Tablet/Mobile preview controls were removed because a resized
+same-document container cannot honestly simulate viewport media queries.
+
+### 2. Tooltip system — completed before active Inputs work
+
+Important checkpoints:
+- positioning contract: `7a0a14f090ee38df3ea4adc02255856d89b6c71a`;
+- stale iframe-era overlay governance correction:
+  `a40ea25011cd19b8e6db9945ef80f6796a9c6c0c`;
+- lint correction: `3eb993e64616362bf920284e37b5005d412fd531`;
+- cross-axis correction:
+  `632f45a5fb7b42eefa09da0d2c8a20c0f520244b`;
+- popover-padding coordinate-origin correction:
+  `84d5fd91daf3fb3085cde422c186dfcf3e1ff8d0`.
+
+Product Owner changed the default Tooltip motion to Zoom enter + Zoom exit.
+Tooltip is not the active workstream.
+
+### 3. Inputs Product Owner review — initial implementation stage
+
+Authoritative findings:
+`src/app/controls/INPUTS_PRODUCT_OWNER_REVIEW_FINDINGS_V1.md`.
+
+Initial implementation checkpoint:
+- `6daf7af7f023ad758198ce6d5eacbb5f22dd9277`.
+
+The review established, among other points:
+- SearchBox developer-selectable `modal | dropdown | inline` modes;
+- functional selectable/filterable results;
+- transient query distinct from committed selection;
+- anchored dropdown width equal to field subject to viewport clamp;
+- explicit close and no invisible/ghost hit target;
+- modal vs listbox semantics;
+- Time/DateTime Now;
+- rolling DateRange actions;
+- Confirm disabled until staged selection is valid;
+- full-width Inputs Lab review;
+- Arabic-first temporal empty-state copy.
+
+Follow-up SearchBox/selection checkpoints:
+- `cf91967291961037dd7f35d0e825fc4fb2da8312`;
+- `92840de9c670edd32b05c1485f50c2e61e68fead`;
+- `72fa7821030e2ced6ec44f6d8eaf0d2b3b2939d2`.
+
+### 4. SearchBox invisible-hit root cause — fixed
+
+Defensive lifecycle checkpoints:
+- `d274bdd2697d4d808f029bb1892ac0ee7591b589`;
+- `4ad7e14c3578d8e0973b1e25f1aa4fc6c4846212`.
+
+Literal root cause:
+`.search-box__popup { display:grid; }` overrode the browser's closed Popover
+`display:none`, leaving a transparent fixed hit box after visual closure.
+
+Root-cause fix:
+- `5c0562a58eb7c28a21ced50bbfe8964779ad9cc6`.
+
+Current law:
+- base popup rule does not set `display`;
+- `display:grid` exists only in `:popover-open`;
+- leaving popup is inert/noninteractive and releases the native top layer
+  immediately.
+
+### 5. Unified Input validation architecture — implemented
+
+Authoritative contract:
+`src/app/controls/INPUT_VALIDATION_CONTRACT_V1.md`.
+
+Major implementation checkpoint:
+- `c3971739198e61adff98d821a6b8f6775faa4e6c`.
+
+Common semantic states:
+`null | empty | no-selection | invalid-entry | valid-entry`.
+
+Every CVA input participates in:
+- `inputState`;
+- `valid`;
+- string `errors`;
+- structured `validationIssues`;
+- canonical validation snapshot;
+- common `required`;
+- Angular `NG_VALIDATORS` bridge;
+- external/business validation hook.
+
+Core law:
+- character/domain admission is separate from value validation;
+- invalid admitted drafts remain visible;
+- validation does not silently clamp/erase a draft merely to pass;
+- typed domain restrictions remain control-specific.
+
+Expanded implementation also covered:
+- default Field clearability with opt-out;
+- URL/Tel domain handling;
+- numeric/money/stepper validation;
+- RangeSlider shared coordinate domain + moving value Tooltip;
+- Time/DateTime Now reveal;
+- inclusive rolling DateRange 7/30-day presets;
+- fixed per-instance ColorPicker mode;
+- ItemPicker vs ComboBox product distinction;
+- File/Image selection validation.
+
+### 6. Verification-hardening stage after expanded Inputs implementation
+
+The canonical gate is always:
+`npm run verify:clean`.
+
+Substantive corrections encountered during the verification loop included:
+- SearchBox native maxlength made validation-only:
+  `28829cb6b581d741170a7dd24c677f5a8dac11f7`;
+- InputBase intentional-unused-parameter lint correction:
+  `e933a4b598c32cea949d61aaf31cb207c54e4b10`;
+- Selection free-color contract + Temporal test compile gaps:
+  `9b499753bb06d350513a2f0bbad0a5de84a2817d`;
+- stale Inputs spec expectations aligned with approved contracts:
+  `1a6b29c1aa5dca36474c10eb40ef64492a65e595`;
+- final stale NumberBox/Overlay expected values:
+  `c096afc3cda1d076cfc702c721427c8468e4c61b`.
+
+This stage produced the earlier Fully Green checkpoint:
+- 87/87 test files;
+- 649/649 tests;
+- app/spec typecheck PASS;
+- zero-warning production build PASS.
+
+### 7. Product Owner runtime findings after that green checkpoint
+
+The Product Owner then found three concrete runtime issues:
+- Ghost/Text/Underline hover visible in Dark but effectively absent in Light;
+- typed character admission had become too permissive for specialized controls;
+- shared picker Clear actions needed IconButton + Tooltip presentation.
+
+Bounded implementation checkpoints included:
+- `e7068b64df5b64b789dbc4d2b5f81648ad11d2e9`
+  typed character admission restoration;
+- `b54c89c621dab914dda3555a5f8cf7ac0a48fd37`
+  Overlay Clear as icon + Tooltip;
+- `fead82d36c30533e575ab34ff41463f19ffa6848`
+  regression tests/governance;
+- `cade8015624c804d0be83bad5d2c49f126f5b906`
+  Overlay Clear governance;
+- `488741922c365a605acc9a70141f600278c46087`
+  patch-integrity repair;
+- `65c097d224bb31f282ec5737ebc8381ed9f73b14`
+  icon-only Clear contract lock.
+
+Follow-up governance/parser and stale-test corrections:
+- `0dfea6b1eb71441267165da3149a0148ea6c4ade`;
+- `c096afc3cda1d076cfc702c721427c8468e4c61b`.
+
+### 8. Latest Product Owner runtime findings — URL, Solid, NumberBox, motion, live data
+
+Latest authorized findings:
+1. UrlBox must accept real web domains with optional HTTP(S) scheme and reject
+   incomplete hosts such as `http://www.s`.
+2. Solid needs the same Light/Dark hover discoverability guarantee as
+   Ghost/Text/Underline.
+3. NumberBox editing must admit ASCII digits only; min/max/step remain
+   validation concerns.
+4. selected File/Image rows need subtle hover/focus scale motion.
+5. SearchBox, ItemPicker, and ComboBox result/item collections must be
+   runtime-dynamic production data, including while an overlay is already open.
+
+Implementation/test/governance checkpoints:
+- `9b13eab3c00046a3ed6258d981d33663355b26e0`;
+- `2912b97cb62ea159430bdca3f386814fa914698c`;
+- `98c3c8ccddc8812af57d8b6a429b9510e0151465`;
+- `5ec8124cb8ad483309d525bf558d41abb4252669`;
+- `b6974154a916ebb751eda5290c7bbc2a9bce704b`;
+- `eb3db0130db1786488b91e050f9d54168b28bbd3`;
+- `64edf72fe8c7655a98e52d98e910bf675629129b`;
+- `9ffa59e348b6246f1c8a210c01d437763b3a1f65`;
+- URL-regex lint-only correction:
+  `9315691c9579a324990a56d928e4e22d504111a4`.
+
+Current detailed laws:
+- UrlBox accepts scheme-less or HTTP(S) real domains with valid multi-label
+  hostnames/TLDs and reports `url.format` for incomplete domains;
+- Solid/Ghost/Text/Underline use the same theme-sensitive hover-token law;
+- NumberBox editor is digits-only while admitted values may still be invalid
+  through min/max/step;
+- File/Image selected rows use tokenized `scale(1.01)` hover/focus motion and
+  reduced-motion cancellation;
+- SearchBox dropdown is signal-live; SearchBox modal, ItemPicker, and ComboBox
+  use a live items provider while open;
+- production controls are governed against Design-Lab/review-internal
+  dependencies.
+
+### 9. Current canonical technical checkpoint
+
+Product Owner verified current source with:
+`npm run verify:clean`.
+
+Latest verified result:
+- all governance checks PASS;
+- Angular lint PASS;
+- 87/87 test files PASS;
+- **653/653 tests PASS**;
+- `typecheck:app` PASS;
+- `typecheck:spec` PASS;
+- production build PASS;
+- `Zero-warning build gate: PASS`.
+
+Inputs status:
+**Technical PASS / Product Owner runtime review still authoritative**.
+Technical green never substitutes for Product Owner visual/runtime acceptance.
+
+### 10. Mandatory continuity discipline
+
+The following four files form the mandatory continuity quartet and must all be
+updated in the same work cycle whenever a substantive decision, finding,
+implementation state, blocker, verification result, or next gate changes:
+
+- `src/app/controls/CONTROLS_EXECUTION_ROADMAP_V1.md`;
+- `src/app/controls/INPUTS_PRODUCT_OWNER_REVIEW_FINDINGS_V1.md`;
+- `README_FIRST.md`;
+- `NEW_CHAT_HANDOFF.md`.
+
+Do not treat an update to only one or two of these as a complete continuity
+sync.
+<!-- CHATGPT_PROJECT_HISTORY_DIGEST_END -->
