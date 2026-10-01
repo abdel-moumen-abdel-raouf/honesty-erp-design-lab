@@ -28,8 +28,8 @@ const CONFIG: Readonly<ErpOverlayConfig> = Object.freeze({
   dismissOnBackdrop: false,
   blur: 'low',
   backdropTone: 'default',
-  enterAnimation: 'fade-scale',
-  exitAnimation: 'fade-scale',
+  enterAnimation: 'flip-x',
+  exitAnimation: 'flip-x',
   restoreFocus: true,
   trapFocus: true,
   blocking: true,
@@ -72,9 +72,20 @@ describe('ErpOverlayFrame', () => {
     expect(clear?.querySelector('button')?.getAttribute('aria-label')).toBe('مسح');
     expect(clear?.closest('erp-tooltip')).not.toBeNull();
 
-    expect(root.querySelector('.overlay-frame__body')).not.toBeNull();
-    expect(root.querySelector('.overlay-frame__footer')).not.toBeNull();
-    expect(getComputedStyle(root.querySelector('.overlay-frame__body') as HTMLElement).overflow).toBe('auto');
+    const frame = root.querySelector('.overlay-frame') as HTMLElement;
+    const header = root.querySelector('.overlay-frame__header') as HTMLElement;
+    const body = root.querySelector('.overlay-frame__body') as HTMLElement;
+    const footer = root.querySelector('.overlay-frame__footer') as HTMLElement;
+
+    expect(frame).not.toBeNull();
+    expect(body).not.toBeNull();
+    expect(footer).not.toBeNull();
+    expect(getComputedStyle(root).display).toBe('block');
+    expect(getComputedStyle(root).blockSize).toBe('100%');
+    expect(getComputedStyle(frame).blockSize).toBe('100%');
+    expect(getComputedStyle(body).overflow).toBe('auto');
+    expect(getComputedStyle(header).borderBlockEndWidth).not.toBe('0px');
+    expect(getComputedStyle(footer).borderBlockStartWidth).not.toBe('0px');
   });
 
   it('dismisses close with the fixed close-action reason', () => {

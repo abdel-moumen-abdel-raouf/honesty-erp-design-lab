@@ -57,6 +57,11 @@ describe('ErpOverlayHost', () => {
     });
     manager.open(TestOverlayContent, {
       kind: 'drawer',
+      position: 'top',
+      frame: frame('Top drawer'),
+    });
+    manager.open(TestOverlayContent, {
+      kind: 'drawer',
       position: 'bottom',
       frame: frame('Bottom drawer'),
     });
@@ -70,6 +75,9 @@ describe('ErpOverlayHost', () => {
     ) as HTMLElement;
     const endSurface = root.querySelector(
       '[data-overlay-position="end"] .erp-os',
+    ) as HTMLElement;
+    const topSurface = root.querySelector(
+      '[data-overlay-position="top"] .erp-os',
     ) as HTMLElement;
     const bottomSurface = root.querySelector(
       '[data-overlay-position="bottom"] .erp-os',
@@ -88,6 +96,7 @@ describe('ErpOverlayHost', () => {
     expect(layerStyle.blockSize).toBe('100dvh');
     expect(getComputedStyle(startSurface).blockSize).toBe('100dvh');
     expect(getComputedStyle(endSurface).blockSize).toBe('100dvh');
+    expect(getComputedStyle(topSurface).inlineSize).toBe('100%');
     expect(getComputedStyle(bottomSurface).inlineSize).toBe('100%');
   });
 
@@ -117,7 +126,7 @@ describe('ErpOverlayHost', () => {
       root.querySelector('[data-overlay-backdrop-tone="default"]'),
     ).toBeTruthy();
     expect(
-      root.querySelector('[data-overlay-animation="fade-scale"]'),
+      root.querySelector('[data-overlay-animation="flip-x"]'),
     ).toBeTruthy();
   });
 

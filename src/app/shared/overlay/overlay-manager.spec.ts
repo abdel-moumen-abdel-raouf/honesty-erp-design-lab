@@ -57,8 +57,8 @@ describe('ErpOverlayManager', () => {
       dismissOnBackdrop: false,
       blur: 'low',
       backdropTone: 'default',
-      enterAnimation: 'fade-scale',
-      exitAnimation: 'fade-scale',
+      enterAnimation: 'flip-x',
+      exitAnimation: 'flip-x',
       restoreFocus: true,
       trapFocus: true,
       blocking: true,
@@ -68,7 +68,7 @@ describe('ErpOverlayManager', () => {
     expect(Object.isFrozen(ref.config)).toBe(true);
     expect(manager.entries()[0]).toMatchObject({
       phase: 'entering',
-      animation: 'fade-scale',
+      animation: 'flip-x',
     });
   });
 
@@ -111,6 +111,7 @@ describe('ErpOverlayManager', () => {
     const cases = [
       ['start', 'slide-start', 'slide-start'],
       ['end', 'slide-end', 'slide-end'],
+      ['top', 'slide-down', 'slide-up'],
       ['bottom', 'slide-up', 'slide-down'],
     ] as const;
 
@@ -169,7 +170,7 @@ describe('ErpOverlayManager', () => {
     expect(manager.entries()).toHaveLength(1);
     expect(manager.entries()[0]).toMatchObject({
       phase: 'leaving',
-      animation: 'fade-scale',
+      animation: 'flip-x',
     });
     await Promise.resolve();
     expect(settled).toBe(false);
@@ -207,7 +208,7 @@ describe('ErpOverlayManager', () => {
     expect(manager.entries()).toHaveLength(1);
     expect(manager.entries()[0]).toMatchObject({
       phase: 'open',
-      animation: 'fade-scale',
+      animation: 'flip-x',
     });
     await expect(second.afterClosed).resolves.toEqual({
       type: 'dismissed',
