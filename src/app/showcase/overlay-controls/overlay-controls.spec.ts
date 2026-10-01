@@ -69,6 +69,10 @@ describe('OverlayControls showcase', () => {
   it('contains modal, logical drawer, nested, and policy evidence', () => {
     const root = create().nativeElement as HTMLElement;
     expect(root.querySelectorAll('[data-modal-evidence]').length).toBe(1);
+    expect(root.querySelectorAll('[data-frame-header-hidden-evidence]').length).toBe(1);
+    expect(root.querySelectorAll('[data-frame-footer-hidden-evidence]').length).toBe(1);
+    expect(root.querySelectorAll('[data-frame-both-hidden-evidence]').length).toBe(1);
+    expect(root.querySelectorAll('[data-drawer-frame-hidden-evidence]').length).toBe(1);
     expect(root.querySelectorAll('[data-drawer-evidence="start"]').length).toBe(1);
     expect(root.querySelectorAll('[data-drawer-evidence="end"]').length).toBe(1);
     expect(root.querySelectorAll('[data-drawer-evidence="top"]').length).toBe(1);
@@ -157,6 +161,37 @@ describe('OverlayControls showcase', () => {
     ]);
   });
 
+  it('configures Header/Footer visibility through the API for modal and drawer', () => {
+    const fixture = create();
+    const manager = TestBed.inject(ErpOverlayManager);
+
+    fixture.componentInstance.openFrameVisibility(
+      'modal',
+      'center',
+      false,
+      true,
+      'Modal API proof',
+    );
+    fixture.componentInstance.openFrameVisibility(
+      'drawer',
+      'start',
+      true,
+      false,
+      'Drawer API proof',
+    );
+
+    expect(
+      manager.entries().map((entry) => ({
+        kind: entry.ref.config.kind,
+        showHeader: entry.ref.config.frame?.showHeader,
+        showFooter: entry.ref.config.frame?.showFooter,
+      })),
+    ).toEqual([
+      {kind: 'modal', showHeader: false, showFooter: true},
+      {kind: 'drawer', showHeader: true, showFooter: false},
+    ]);
+  });
+
   it('opens custom long-body Header Body Footer review evidence', () => {
     const fixture = create();
     const manager = TestBed.inject(ErpOverlayManager);
@@ -170,6 +205,8 @@ describe('OverlayControls showcase', () => {
     fixture.componentInstance.openLongBody();
 
     expect(manager.entries().at(-1)?.ref.config.frame).toEqual({
+      showHeader: true,
+      showFooter: true,
       header: {
         title: 'مراجعة الإطار ذي المحتوى الطويل',
         subtitle: 'يبقى الرأس والتذييل ظاهرين بينما يمرر الجسم فقط',

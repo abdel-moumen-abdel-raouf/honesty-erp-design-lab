@@ -39,6 +39,8 @@ describe('ErpOverlayManager', () => {
       position: 'center',
       size: 'md',
       frame: {
+        showHeader: true,
+        showFooter: true,
         header: {
           title: 'Account',
           subtitle: 'Supporting text',
@@ -69,6 +71,36 @@ describe('ErpOverlayManager', () => {
     expect(manager.entries()[0]).toMatchObject({
       phase: 'entering',
       animation: 'flip-x',
+    });
+  });
+
+  it('normalizes Header/Footer visibility flags for both modal and drawer APIs', () => {
+    const manager = TestBed.inject(ErpOverlayManager);
+
+    const modal = manager.open(TestOverlayContent, {
+      frame: {
+        ...frame('Modal regions'),
+        showHeader: false,
+        showFooter: true,
+      },
+    });
+    const drawer = manager.open(TestOverlayContent, {
+      kind: 'drawer',
+      position: 'start',
+      frame: {
+        ...frame('Drawer regions'),
+        showHeader: true,
+        showFooter: false,
+      },
+    });
+
+    expect(modal.config.frame).toMatchObject({
+      showHeader: false,
+      showFooter: true,
+    });
+    expect(drawer.config.frame).toMatchObject({
+      showHeader: true,
+      showFooter: false,
     });
   });
 

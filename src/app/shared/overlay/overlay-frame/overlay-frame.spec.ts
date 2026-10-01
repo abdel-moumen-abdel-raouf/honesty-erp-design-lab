@@ -88,6 +88,36 @@ describe('ErpOverlayFrame', () => {
     expect(getComputedStyle(footer).borderBlockStartWidth).not.toBe('0px');
   });
 
+  it('renders Header and Footer visibility exclusively from the frame API', () => {
+    for (const [showHeader, showFooter] of [
+      [false, true],
+      [true, false],
+      [false, false],
+    ] as const) {
+      const {fixture} = create({
+        ...FRAME,
+        showHeader,
+        showFooter,
+      });
+      const root = fixture.nativeElement as HTMLElement;
+      const frame = root.querySelector('.overlay-frame') as HTMLElement;
+
+      expect(frame.dataset['overlayFrameHeaderVisible']).toBe(
+        String(showHeader),
+      );
+      expect(frame.dataset['overlayFrameFooterVisible']).toBe(
+        String(showFooter),
+      );
+      expect(root.querySelector('.overlay-frame__header') !== null).toBe(
+        showHeader,
+      );
+      expect(root.querySelector('.overlay-frame__footer') !== null).toBe(
+        showFooter,
+      );
+      expect(root.querySelector('.overlay-frame__body')).not.toBeNull();
+    }
+  });
+
   it('dismisses close with the fixed close-action reason', () => {
     const {fixture, requestClose} = create();
     (fixture.nativeElement as HTMLElement)

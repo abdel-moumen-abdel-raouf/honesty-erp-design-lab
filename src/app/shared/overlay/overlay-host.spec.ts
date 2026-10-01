@@ -130,6 +130,28 @@ describe('ErpOverlayHost', () => {
     ).toBeTruthy();
   });
 
+  it('keeps an accessible dialog name when the visual Header is disabled by API', () => {
+    const fixture = TestBed.createComponent(TestOverlayShell);
+    const manager = TestBed.inject(ErpOverlayManager);
+    manager.open(TestOverlayContent, {
+      frame: {
+        ...frame('Hidden header proof'),
+        showHeader: false,
+        showFooter: false,
+      },
+    });
+    fixture.detectChanges();
+
+    const surface = (fixture.nativeElement as HTMLElement).querySelector(
+      '[role="dialog"]',
+    );
+
+    expect(surface?.getAttribute('aria-labelledby')).toBeNull();
+    expect(surface?.getAttribute('aria-describedby')).toBeNull();
+    expect(surface?.getAttribute('aria-label')).toBe('Hidden header proof');
+    expect(surface?.getAttribute('aria-description')).toBe('Supporting text');
+  });
+
   it('traps focus and restores document state after closing', async () => {
     const fixture = TestBed.createComponent(TestOverlayShell);
     const manager = TestBed.inject(ErpOverlayManager);
