@@ -472,6 +472,7 @@ export function validateOverlayFrameContract(files) {
     'readonly id: string;',
     'readonly label: string;',
     'readonly presentation?: ErpOverlayActionPresentation;',
+    'readonly tone?: ErpButtonTone;',
     'readonly role: ErpOverlayActionRole;',
     'readonly placement: ErpOverlayActionPlacement;',
     "export type ErpOverlayActionRole = 'primary' | 'secondary' | 'utility';",
@@ -500,6 +501,7 @@ export function validateOverlayFrameContract(files) {
     'label: action.label.trim()',
     "action.presentation === 'icon-button'",
     "presentation: action.presentation ?? 'button'",
+    "action.role === 'primary' ? 'primary' : 'neutral'",
     'showHeader: options.frame.showHeader ?? true',
     'showFooter: options.frame.showFooter ?? true',
     'new Set(actions.map((action) => action.id)).size !== actions.length',
@@ -546,6 +548,8 @@ export function validateOverlayFrameContract(files) {
     'ErpTooltip',
     'this.config().showHeader !== false',
     'this.config().showFooter !== false',
+    'buttonTone(action: ErpOverlayActionConfig)',
+    'action.tone ??',
     "this.ref().dismiss('close-action')",
   ]) {
     if (!frameSource.includes(required)) {
@@ -1033,7 +1037,7 @@ readonly subtitle: string;
 readonly icon: ErpIconName;
 readonly closeLabel?: string;
 }
-export interface ErpOverlayActionConfig { readonly presentation?: ErpOverlayActionPresentation; }
+export interface ErpOverlayActionConfig { readonly presentation?: ErpOverlayActionPresentation; readonly tone?: ErpButtonTone; }
 export type ErpOverlayActionRole = 'primary' | 'secondary' | 'utility';
 export type ErpOverlayActionPlacement = 'start' | 'end';
 export type ErpOverlayActionPresentation = 'button' | 'icon-button';
@@ -1063,6 +1067,7 @@ id: action.id.trim()
 label: action.label.trim()
 action.presentation === 'icon-button'
 presentation: action.presentation ?? 'button'
+action.role === 'primary' ? 'primary' : 'neutral'
 showHeader: options.frame.showHeader ?? true
 showFooter: options.frame.showFooter ?? true
 new Set(actions.map((action) => action.id)).size !== actions.length
@@ -1084,6 +1089,8 @@ this.dismiss('secondary-action')`,
       `ErpButton ErpIconButton ErpTooltip
 this.config().showHeader !== false
 this.config().showFooter !== false
+buttonTone(action: ErpOverlayActionConfig)
+action.tone ??
 this.ref().dismiss('close-action')`,
     ],
     [

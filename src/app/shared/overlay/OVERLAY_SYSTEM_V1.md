@@ -378,3 +378,20 @@ Implemented contract:
 - hiding Footer removes footer actions from the rendered surface;
 - the Overlay review route includes explicit modal and drawer evidence for the
   API states.
+
+
+## 2026-10-02 — System Confirm Dialog consumer
+
+The shared Overlay action contract now supports optional
+`tone?: ErpButtonTone`. OverlayManager normalizes action tone to explicit
+semantic runtime state: Primary actions default to `primary`; Secondary and
+Utility actions default to `neutral`. Explicit tones such as `warning` and
+`danger` flow through the shared OverlayFrame to ErpButton/ErpIconButton.
+
+The system-wide `ErpConfirmDialogService` is an approved blocking Overlay
+consumer. It opens a small centered Modal in the same Overlay stack and owns
+the system confirmation policy. Application code must not instantiate its
+internal content component directly or use browser-native confirmation APIs.
+
+See:
+`src/app/shared/confirm-dialog/CONFIRM_DIALOG_V1.md`.

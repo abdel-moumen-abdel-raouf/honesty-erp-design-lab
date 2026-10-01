@@ -27,7 +27,7 @@
     "erp-field:check:self-test": "node tools/controls/check-erp-field-governance.mjs --self-test",
     "erp-overlay:check": "node tools/controls/check-erp-overlay-governance.mjs",
     "erp-overlay:check:self-test": "node tools/controls/check-erp-overlay-governance.mjs --self-test",
-    "lint": "npm run theme-authority:check && npm run route-pages:check && npm run component-tokens:check && npm run system-colors:check && npm run erp-text:check && npm run erp-icon:check && npm run erp-button:check && npm run erp-tooltip:check && npm run erp-field:check && npm run erp-overlay:check && ng lint",
+    "lint": "npm run theme-authority:check && npm run route-pages:check && npm run component-tokens:check && npm run system-colors:check && npm run erp-text:check && npm run erp-icon:check && npm run erp-button:check && npm run erp-tooltip:check && npm run erp-field:check && npm run erp-overlay:check && npm run erp-confirm:check && ng lint",
     "route-pages:check": "node tools/foundation/check-route-page-erp-authoring.mjs",
     "route-pages:check:self-test": "node tools/foundation/check-route-page-erp-authoring.mjs --self-test",
     "verify:clean": "npm run lint && npm run test -- --watch=false && npm run typecheck:app && npm run typecheck:spec && npm run build:clean",
@@ -36,7 +36,9 @@
     "build:clean": "node tools/verification/check-zero-warning-build.mjs",
     "theme-authority:check": "node tools/foundation/check-single-theme-authority.mjs",
     "theme-authority:check:self-test": "node tools/foundation/check-single-theme-authority.mjs --self-test",
-    "build:clean:self-test": "node tools/verification/check-zero-warning-build.mjs --self-test"
+    "build:clean:self-test": "node tools/verification/check-zero-warning-build.mjs --self-test",
+    "erp-confirm:check": "node tools/controls/check-erp-confirm-dialog-governance.mjs",
+    "erp-confirm:check:self-test": "node tools/controls/check-erp-confirm-dialog-governance.mjs --self-test"
   },
   "private": true,
   "dependencies": {
