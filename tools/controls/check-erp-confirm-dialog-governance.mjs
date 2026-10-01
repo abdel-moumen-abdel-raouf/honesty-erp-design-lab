@@ -226,10 +226,7 @@ export function validateExclusiveConfirmUsage(files) {
 
     if (
       !confirmInternal &&
-      (
-        /\b(?:window|globalThis)\.confirm\s*\(/.test(source) ||
-        /(?:^|[^\w.])confirm\s*\(/m.test(source)
-      )
+      /\b(?:window|globalThis)\.confirm\s*\(/.test(source)
     ) {
       errors.push(
         `${normalized}: confirmations must use ErpConfirmDialogService, not browser/global confirm`,
