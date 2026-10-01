@@ -543,7 +543,8 @@ export function validateSearchBoxPopupContracts(
     !source.includes('ErpOverlayAnimation') ||
     !source.includes('filteredItems = computed(') ||
     !source.includes("query = signal('')") ||
-    !source.includes('this.commitUserValue(item.value)')
+    !source.includes('this.commitUserValue(item.value)') ||
+    !source.includes('itemsProvider: () => this.items()')
   ) {
     errors.push(
       'SearchBox: dropdown/modal modes must use anchored geometry, OverlayManager modal search, and selectable filtered results',
@@ -553,6 +554,8 @@ export function validateSearchBoxPopupContracts(
   if (
     source.includes('ErpTooltip') ||
     source.includes('--honesty-overlay-') ||
+    source.includes('/showcase/') ||
+    source.includes('/review-internals/') ||
     styleSource.includes('--honesty-overlay-') ||
     tokenSource.includes('--honesty-overlay-')
   ) {
@@ -701,6 +704,8 @@ export function validateUnifiedInputValidationContracts(files) {
   const base = files.get(INPUT_BASE_SOURCE) ?? '';
   const fieldBase = files.get(FIELD_BASE_SOURCE) ?? '';
   const hoverStyle = files.get(FIELD_HOVER_STYLE) ?? '';
+  const domainSource = files.get(DOMAIN_VALIDATION) ?? '';
+  const urlTemplate = files.get('src/app/controls/url-box/url-box.html') ?? '';
 
   for (const state of [
     "'null'",
@@ -817,6 +822,32 @@ export function validateUnifiedInputValidationContracts(files) {
   }
 
   for (const requirement of [
+    "ERP_INTEGER_FINAL_PATTERN = '^\\\\d+$'",
+    "ERP_URL_FINAL_PATTERN = '^(?:https?:\\\\/\\\\/)?[^\\\\s]+$'",
+    'isDigitsOnlyDraft',
+    'isValidDomainHostname',
+    'labels.length < 2',
+    'new URL(candidate)',
+  ]) {
+    if (!domainSource.includes(requirement)) {
+      errors.push(
+        `Domain validation: missing typed admission contract ${requirement}`,
+      );
+    }
+  }
+
+  if (
+    !/<input\b[\s\S]*?type="text"[\s\S]*?inputmode="url"/.test(
+      urlTemplate,
+    ) ||
+    /type="url"/.test(urlTemplate)
+  ) {
+    errors.push(
+      'UrlBox: ERP validation must own scheme-less web-address semantics without native type=url mismatch',
+    );
+  }
+
+  for (const requirement of [
     "'number-stepper.min'",
     "'number-stepper.max'",
     "'number-stepper.step'",
@@ -867,8 +898,10 @@ export function validateUnifiedInputValidationContracts(files) {
         "'number.max'",
         "'number.step'",
         "'number.format'",
+        'ERP_INTEGER_FINAL_PATTERN',
+        'isDigitsOnlyDraft',
         'draftActive',
-        'if (!isProgressiveNumericDraft(value))',
+        'if (!isDigitsOnlyDraft(value))',
       ],
     ],
     [
@@ -927,9 +960,11 @@ export function validateUnifiedInputValidationContracts(files) {
   }
 
   for (const requirement of [
+    "[data-field-variant='solid']",
     "[data-field-variant='ghost']",
     "[data-field-variant='text']",
     "[data-field-border-mode='underline']",
+    'var(--honesty-field-frame-bg)',
     'var(--honesty-field-frame-hover-bg)',
     'var(--honesty-field-frame-hover-surface-mix)',
   ]) {
@@ -1011,20 +1046,29 @@ export function validateRangeSliderCorrectionContracts(files) {
 
 export function validateNumericEditorContracts(files) {
   const errors = [];
+  const numberBox = files.get(NUMBER_BOX_TEMPLATE) ?? '';
+  const numberStepper = files.get(NUMBER_STEPPER_TEMPLATE) ?? '';
 
-  for (const file of [NUMBER_BOX_TEMPLATE, NUMBER_STEPPER_TEMPLATE]) {
-    const source = files.get(file) ?? '';
+  if (
+    !/<input\b[\s\S]*?type="text"[\s\S]*?inputmode="numeric"/.test(
+      numberBox,
+    ) ||
+    /type="number"/.test(numberBox)
+  ) {
+    errors.push(
+      `${NUMBER_BOX_TEMPLATE}: NumberBox must remain a text-like digits-only editor with numeric keypad semantics`,
+    );
+  }
 
-    if (
-      !/<input\b[\s\S]*?type="text"[\s\S]*?inputmode="decimal"/.test(
-        source,
-      ) ||
-      /type="number"/.test(source)
-    ) {
-      errors.push(
-        `${file}: numeric editors must remain text-like decimal inputs without browser spinners`,
-      );
-    }
+  if (
+    !/<input\b[\s\S]*?type="text"[\s\S]*?inputmode="decimal"/.test(
+      numberStepper,
+    ) ||
+    /type="number"/.test(numberStepper)
+  ) {
+    errors.push(
+      `${NUMBER_STEPPER_TEMPLATE}: NumberStepper must remain a text-like decimal editor without browser spinners`,
+    );
   }
 
   const moneySource = files.get(MONEY_BOX_SOURCE) ?? '';
@@ -1211,9 +1255,13 @@ export function validateFileSelectionContracts(
     !fileTokens.includes('var(--honesty-border-style-dashed)') ||
     !fileTokens.includes('--honesty-file-picker-item-bg-hover:') ||
     !fileTokens.includes('--honesty-file-picker-item-border-color-hover:') ||
+    !fileTokens.includes('--honesty-file-picker-item-hover-scale: 1.01;') ||
     !fileTokens.includes('--honesty-file-picker-transition-duration:') ||
     !fileStyles.includes('.file-picker__item:hover,') ||
     !fileStyles.includes('.file-picker__item:focus-within') ||
+    !fileStyles.includes('transform: scale(var(--honesty-file-picker-item-hover-scale));') ||
+    !fileStyles.includes('transform var(--honesty-file-picker-transition-duration)') ||
+    !fileStyles.includes('transform: none;') ||
     !fileStyles.includes('prefers-reduced-motion: reduce')
   ) {
     errors.push(
@@ -1234,9 +1282,13 @@ export function validateFileSelectionContracts(
     !imageTokens.includes('@mixin preview-size-lg') ||
     !imageTokens.includes('--honesty-image-picker-item-bg-hover:') ||
     !imageTokens.includes('--honesty-image-picker-item-border-color-hover:') ||
+    !imageTokens.includes('--honesty-image-picker-item-hover-scale: 1.01;') ||
     !imageTokens.includes('--honesty-image-picker-transition-duration:') ||
     !imageStyles.includes('.image-picker__item:hover,') ||
     !imageStyles.includes('.image-picker__item:focus-within') ||
+    !imageStyles.includes('transform: scale(var(--honesty-image-picker-item-hover-scale));') ||
+    !imageStyles.includes('transform var(--honesty-image-picker-transition-duration)') ||
+    !imageStyles.includes('transform: none;') ||
     !imageStyles.includes('prefers-reduced-motion: reduce')
   ) {
     errors.push(
@@ -1390,7 +1442,12 @@ export function validateSelectionCorrectionContracts(files) {
 
   if (
     !contracts.includes('const includesClear = clearable;') ||
+    !contracts.includes('readonly itemsProvider?: () => readonly ErpItemPickerOption[];') ||
     !content.includes('if (this.data.clearable)') ||
+    !content.includes('currentItems = computed(') ||
+    !content.includes('this.data.itemsProvider?.() ?? this.data.items') ||
+    !content.includes('this.currentItems().filter') ||
+    !content.includes('this.currentItems().some') ||
     !contracts.includes("readonly mode: 'system';") ||
     !contracts.includes('readonly token: ErpSystemColorToken;') ||
     !contracts.includes("readonly mode: 'free';") ||
@@ -1447,6 +1504,24 @@ export function validateSelectionCorrectionContracts(files) {
 
   for (const slug of SELECTION_CONTROL_SLUGS) {
     const source = files.get(`src/app/controls/${slug}/${slug}.ts`) ?? '';
+
+    if (source.includes('/showcase/') || source.includes('/review-internals/')) {
+      errors.push(
+        `${slug}: production selection controls must not depend on Design Lab or review internals`,
+      );
+    }
+
+    if (
+      (slug === 'item-picker' || slug === 'combo-box') &&
+      (
+        !source.includes('readonly items = input.required<readonly ErpItemPickerOption[]>()') ||
+        !source.includes('itemsProvider: () => this.items()')
+      )
+    ) {
+      errors.push(
+        `${slug}: items must remain runtime-dynamic while its picker Overlay is open`,
+      );
+    }
 
     if (
       slug === 'color-picker' &&
@@ -1539,6 +1614,14 @@ function runSelfTest() {
 
   const validValidationFiles = new Map([
     [
+      DOMAIN_VALIDATION,
+      "ERP_INTEGER_FINAL_PATTERN = '^\\\\d+$'; ERP_URL_FINAL_PATTERN = '^(?:https?:\\\\/\\\\/)?[^\\\\s]+$'; isDigitsOnlyDraft isValidDomainHostname labels.length < 2 new URL(candidate)",
+    ],
+    [
+      'src/app/controls/url-box/url-box.html',
+      '<input type="text" inputmode="url">',
+    ],
+    [
       INPUT_CONTRACTS,
       [
         "'null'",
@@ -1591,9 +1674,11 @@ function runSelfTest() {
     [
       FIELD_HOVER_STYLE,
       [
+        "[data-field-variant='solid']",
         "[data-field-variant='ghost']",
         "[data-field-variant='text']",
         "[data-field-border-mode='underline']",
+        'var(--honesty-field-frame-bg)',
         'var(--honesty-field-frame-hover-bg)',
         'var(--honesty-field-frame-hover-surface-mix)',
       ].join('\n'),
@@ -1608,7 +1693,7 @@ function runSelfTest() {
     ],
     [
       'src/app/controls/number-box/number-box.ts',
-      "'number.min' 'number.max' 'number.step' 'number.format' draftActive if (!isProgressiveNumericDraft(value))",
+      "'number.min' 'number.max' 'number.step' 'number.format' ERP_INTEGER_FINAL_PATTERN isDigitsOnlyDraft draftActive if (!isDigitsOnlyDraft(value))",
     ],
     [
       MONEY_BOX_SOURCE,
@@ -1743,9 +1828,9 @@ export abstract class ErpFileSelectionBase extends ErpFieldBase<readonly File[]>
   const validFileTemplate =
     '<input type="file" multiple (drop)="handleDrop($event)"><erp-tooltip><erp-icon-button data-file-picker-remove /></erp-tooltip>';
   const validFileTokens =
-    '--honesty-file-picker-drop-zone-border-style: var(--honesty-border-style-dashed); --honesty-file-picker-item-bg-hover: var(--honesty-color-action-primary-subtle-bg-hover); --honesty-file-picker-item-border-color-hover: var(--honesty-border-default); --honesty-file-picker-transition-duration: var(--honesty-motion-duration-fast);';
+    '--honesty-file-picker-drop-zone-border-style: var(--honesty-border-style-dashed); --honesty-file-picker-item-bg-hover: var(--honesty-color-action-primary-subtle-bg-hover); --honesty-file-picker-item-border-color-hover: var(--honesty-border-default); --honesty-file-picker-item-hover-scale: 1.01; --honesty-file-picker-transition-duration: var(--honesty-motion-duration-fast);';
   const validFileStyles =
-    '.file-picker__item:hover, .file-picker__item:focus-within {} @media (prefers-reduced-motion: reduce) {}';
+    '.file-picker__item { transform: scale(1); transition: transform var(--honesty-file-picker-transition-duration); } .file-picker__item:hover, .file-picker__item:focus-within { transform: scale(var(--honesty-file-picker-item-hover-scale)); } @media (prefers-reduced-motion: reduce) { .file-picker__item { transform: none; } }';
   const validImageSource = `
 export class ErpImagePicker extends ErpFileSelectionBase {
   accept = input<string | null>('image/*');
@@ -1756,9 +1841,9 @@ export class ErpImagePicker extends ErpFileSelectionBase {
   const validImageTemplate =
     '<input type="file" multiple><erp-icon-button data-image-picker-remove />';
   const validImageTokens =
-    '@mixin preview-size-sm {} @mixin preview-size-md {} @mixin preview-size-lg {} --honesty-image-picker-item-bg-hover: var(--honesty-color-action-primary-subtle-bg-hover); --honesty-image-picker-item-border-color-hover: var(--honesty-border-default); --honesty-image-picker-transition-duration: var(--honesty-motion-duration-fast);';
+    '@mixin preview-size-sm {} @mixin preview-size-md {} @mixin preview-size-lg {} --honesty-image-picker-item-bg-hover: var(--honesty-color-action-primary-subtle-bg-hover); --honesty-image-picker-item-border-color-hover: var(--honesty-border-default); --honesty-image-picker-item-hover-scale: 1.01; --honesty-image-picker-transition-duration: var(--honesty-motion-duration-fast);';
   const validImageStyles =
-    '.image-picker__item:hover, .image-picker__item:focus-within {} @media (prefers-reduced-motion: reduce) {}';
+    '.image-picker__item { transform: scale(1); transition: transform var(--honesty-image-picker-transition-duration); } .image-picker__item:hover, .image-picker__item:focus-within { transform: scale(var(--honesty-image-picker-item-hover-scale)); } @media (prefers-reduced-motion: reduce) { .image-picker__item { transform: none; } }';
 
   if (
     validateFileSelectionContracts(
@@ -1879,11 +1964,11 @@ export class ErpImagePicker extends ErpFileSelectionBase {
   const validSelectionFiles = new Map([
     [
       SELECTION_CONTRACTS,
-      "const includesClear = clearable; readonly mode: 'system'; readonly token: ErpSystemColorToken; readonly mode: 'free'; readonly value: string;",
+      "const includesClear = clearable; readonly itemsProvider?: () => readonly ErpItemPickerOption[]; readonly mode: 'system'; readonly token: ErpSystemColorToken; readonly mode: 'free'; readonly value: string;",
     ],
     [
       SELECTION_CONTENT_SOURCE,
-      "ERP_SYSTEM_COLOR_FAMILIES ERP_SYSTEM_COLOR_STEPS ERP_SYSTEM_COLOR_PALETTES registerFrameAction('confirm') registerFrameAction('cancel') registerFrameAction('clear-selected') updateFrameActionState('clear-selected') updateFrameActionState('confirm') confirmEnabled = computed( if (!this.confirmEnabled()) activeIndex = signal<number | null>(null) if (this.data.clearable)",
+      "ERP_SYSTEM_COLOR_FAMILIES ERP_SYSTEM_COLOR_STEPS ERP_SYSTEM_COLOR_PALETTES registerFrameAction('confirm') registerFrameAction('cancel') registerFrameAction('clear-selected') updateFrameActionState('clear-selected') updateFrameActionState('confirm') confirmEnabled = computed( if (!this.confirmEnabled()) activeIndex = signal<number | null>(null) currentItems = computed( this.data.itemsProvider?.() ?? this.data.items this.currentItems().filter this.currentItems().some if (this.data.clearable)",
     ],
     [
       SELECTION_CONTENT_TEMPLATE,
@@ -1914,9 +1999,13 @@ export class ErpImagePicker extends ErpFileSelectionBase {
       slug === 'color-picker'
         ? "readonly mode = input<ErpColorPickerMode>('system'); colorMode: this.mode(); normalized?.mode === this.mode(); "
         : '';
+    const dynamicItemsContract =
+      slug === 'item-picker' || slug === 'combo-box'
+        ? 'readonly items = input.required<readonly ErpItemPickerOption[]>(); itemsProvider: () => this.items(); '
+        : '';
     validSelectionFiles.set(
       `src/app/controls/${slug}/${slug}.ts`,
-      `${colorModeContract}readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null); ...(this.overlayConfig() ?? {})`,
+      `${colorModeContract}${dynamicItemsContract}readonly overlayConfig = input<Partial<ErpOverlayBehaviorConfig> | null>(null); ...(this.overlayConfig() ?? {})`,
     );
   }
   if (validateSelectionCorrectionContracts(validSelectionFiles).length > 0) {
@@ -1949,7 +2038,7 @@ export class ErpImagePicker extends ErpFileSelectionBase {
   }
 
   const validNumericEditors = new Map([
-    [NUMBER_BOX_TEMPLATE, '<input type="text" inputmode="decimal">'],
+    [NUMBER_BOX_TEMPLATE, '<input type="text" inputmode="numeric">'],
     [NUMBER_STEPPER_TEMPLATE, '<input type="text" inputmode="decimal">'],
     [
       MONEY_BOX_SOURCE,
@@ -2256,6 +2345,7 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     "filteredItems = computed(",
     "query = signal('')",
     'this.commitUserValue(item.value)',
+    'itemsProvider: () => this.items()',
     "trigger.closest<HTMLElement>('.field-frame__control')",
     "surface.style.setProperty('--_honesty-search-box-popup-trigger-inline-size', anchor.getBoundingClientRect().width)",
     "this.popupPhase.set('leaving')",
@@ -2347,6 +2437,12 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     [
       validSearchSource,
       validSearchTemplate.replace('popover="manual"', ''),
+      validSearchTokens,
+      validSearchStyles,
+    ],
+    [
+      validSearchSource.replace('itemsProvider: () => this.items()', ''),
+      validSearchTemplate,
       validSearchTokens,
       validSearchStyles,
     ],
