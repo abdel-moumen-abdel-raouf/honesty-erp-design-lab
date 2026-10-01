@@ -460,3 +460,90 @@ implementation state, blocker, verification result, or next gate changes:
 Do not treat an update to only one or two of these as a complete continuity
 sync.
 <!-- CHATGPT_PROJECT_HISTORY_DIGEST_END -->
+
+
+<!-- CHATGPT_OVERLAY_RUNTIME_REVIEW_2026_10_01_START -->
+## 2026-10-01 — Product Owner Overlay runtime review: bounded correction implemented / verification pending
+
+Product Owner reviewed `/controls/overlays` in Light/Dark and identified five
+Overlay-specific corrections.
+
+### Authorized findings
+
+1. The dedicated Overlay review page must contain Overlay-system evidence only.
+   Temporal Inputs, selection pickers, and deferred control composites were
+   duplicated there despite already having their production review locations.
+
+2. The separator below the shared Overlay Header and above the Footer was
+   visible in Light but too weak in Dark.
+
+3. Default modal enter/exit motion must be `flip-x`.
+
+4. Drawer positions must support all four edges:
+   - logical start;
+   - logical end;
+   - physical top;
+   - physical bottom.
+
+5. Full-height side drawers must keep the shared Footer at the bottom/end of the
+   surface while Body owns the flexible scrolling region.
+
+### Bounded implementation
+
+Source checkpoint:
+`2a1d33ca9461de00ceec74f0d7ad5b69f0b38ae7`
+(`fix(overlays): clean showcase and complete drawer geometry`).
+
+Implemented:
+- `ErpOverlayPosition` now includes `top`;
+- default modal motion is `flip-x / flip-x`;
+- top drawer defaults to `slide-down / slide-up`;
+- existing start/end and bottom drawer defaults remain intact;
+- OverlayHost positions top drawers at the top and gives top/bottom drawers full
+  inline size;
+- `ErpOverlayFrame` host + frame fill available full-height drawer surfaces;
+- Header stays at start, Footer stays at bottom/end, Body uses the flexible
+  scrolling grid row;
+- new `--honesty-overlay-frame-separator-color` maps to
+  `--honesty-border-default` and feeds both Header-bottom and Footer-top
+  separator borders for Light/Dark visibility;
+- `/controls/overlays` now has only four review groups:
+  Modal, Drawers, Nested stack, and dismissal/backdrop/blur/motion policies;
+- repeated Date/Time/DateRange, selection picker, RadioGroup/ButtonGroup,
+  SplitButton, and FabMenu showcase evidence was removed from this route;
+- top-drawer review evidence was added.
+
+Test checkpoint:
+`11532bd6d1589eaab43a012ce687f7be923cae61`
+(`test(overlays): cover overlay-only page and four drawer edges`).
+
+Governance/documentation checkpoint:
+`f5e1d7ebcb79c4f76e98b918380843d877f6edec`
+(`chore(overlays): govern top drawer and overlay-only review`).
+
+Governance now protects:
+- exact Overlay position union including top;
+- `flip-x` modal default;
+- top drawer geometry/motion;
+- Overlay separator token;
+- full-height Header/Body/Footer frame law;
+- Overlay-only review-page scope with no duplicated Input/control demos.
+
+Pre-rerun checks:
+- Overlay governance JavaScript syntax compilation PASS;
+- complete Overlay governance internal self-test PASS.
+
+### Current status
+
+**Implemented / canonical verification pending.**
+
+Mandatory next gate:
+`npm run verify:clean`.
+
+The previous 87/87 files / 653/653 tests Fully Green checkpoint predates this
+Overlay correction and must not be applied to the new source until the full
+canonical gate passes.
+
+After technical green, Product Owner runtime review must confirm the five
+findings above in Light and Dark.
+<!-- CHATGPT_OVERLAY_RUNTIME_REVIEW_2026_10_01_END -->
