@@ -479,3 +479,123 @@ Status transition:
 
 Technical green does not itself declare visual/runtime approval.
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_END -->
+
+
+<!-- CHATGPT_RUNTIME_REVIEW_2026_10_01_START -->
+## 2026-10-01 — Product Owner runtime re-review: URL, Solid hover, NumberBox admission, selection-row motion, and live data
+
+Product Owner supplied runtime screenshots and five concrete findings after the
+previous Fully Green checkpoint.
+
+### 1. UrlBox web-address semantics
+
+Observed:
+- an incomplete address such as `http://www.s` did not provide the required
+  ERP validation evidence.
+
+Product Owner-required accepted forms include:
+- `http://www.example.com`;
+- `https://www.example.com`;
+- `www.example.com`;
+- `example.com`;
+- `http://example.com`;
+- `https://example.com`;
+- valid non-com TLDs such as `.org`, `.net`, `.ai`, and equivalent valid
+  alphabetic/punycode TLDs.
+
+Bounded implementation:
+- UrlBox is a text-like editor with `inputmode=url`; native `type=url`
+  no longer conflicts with scheme-less domains;
+- `http://` / `https://` are optional;
+- explicit non-HTTP(S) schemes are rejected;
+- final validation parses through `URL` and requires a hostname with at least
+  two valid labels;
+- TLD must be alphabetic length 2–63 or valid punycode form;
+- `http://www.s`, one-label hosts, and incomplete schemes remain visible as
+  invalid drafts with `url.format` and do not replace the last accepted CVA
+  value.
+
+### 2. Solid hover parity
+
+Ghost/Text/Underline hover had been corrected, but Product Owner observed the
+same Light-mode discoverability problem on Solid.
+
+Bounded implementation:
+- Solid joins the same token-owned hover law;
+- hover mixes the current Field base surface with the theme-sensitive hover tint;
+- no local Light/Dark selector or component theme branch was added.
+
+### 3. NumberBox digits-only editing
+
+Product Owner clarified that NumberBox must admit digits only.
+
+Bounded implementation:
+- NumberBox editor admits ASCII `0-9` only;
+- native editor remains `type=text` with `inputmode=numeric`;
+- sign characters, decimal separators, letters, and unrelated punctuation are
+  rejected before becoming the draft;
+- min/max/step remain validation concerns: an admitted integer may remain
+  visible and invalid rather than being clamped or erased.
+
+MoneyBox and NumberStepper keep their separate decimal-editing grammar.
+
+### 4. File/Image selected-item hover motion
+
+Product Owner accepted the existing hover background change and requested a
+small motion cue for the currently hovered selected file/image row.
+
+Bounded implementation:
+- FilePicker and ImagePicker selected rows use token-owned
+  `--*-item-hover-scale: 1.01`;
+- transform participates in the existing Foundation Motion transition;
+- hover/focus-within scales in, pointer/focus exit transitions back to scale 1;
+- reduced-motion cancels the transform.
+
+### 5. Production dynamic Search / ItemPicker / ComboBox data
+
+Product Owner required SearchBox modes, select-like ItemPicker, and ComboBox to
+use dynamic application data and remain usable anywhere in the production app,
+not only with Design Lab fixtures.
+
+Bounded implementation:
+- SearchBox anchored dropdown already reads the current `items` input signal
+  directly and now has explicit regression coverage for live changes while open;
+- SearchBox modal passes a live `itemsProvider`;
+- ItemPicker and ComboBox pass a live provider over their required `items`
+  input to the shared selection picker;
+- shared `ErpSelectionPickerContent` derives filtering and staged-selection
+  validity from current provider data rather than an open-time snapshot;
+- production SearchBox / ItemPicker / ComboBox are governed against
+  Design-Lab/showcase/review-internal dependencies.
+
+### Implementation checkpoints
+
+- `9b13eab3c00046a3ed6258d981d33663355b26e0`
+  `fix(inputs): tighten URL number and solid hover contracts`
+- `2912b97cb62ea159430bdca3f386814fa914698c`
+  `fix(inputs): add picker motion and live item providers`
+- `98c3c8ccddc8812af57d8b6a429b9510e0151465`
+  `fix(inputs): align URL scheme and NumberBox keypad admission`
+- `5ec8124cb8ad483309d525bf558d41abb4252669`
+  `test(inputs): cover URL integer motion and live picker data`
+- `b6974154a916ebb751eda5290c7bbc2a9bce704b`
+  `chore(inputs): govern current runtime review contracts`
+- `eb3db0130db1786488b91e050f9d54168b28bbd3`
+  `docs(inputs): align field contracts with runtime review`
+- `64edf72fe8c7655a98e52d98e910bf675629129b`
+  `fix(governance): align File selection self-test literals`
+- `9ffa59e348b6246f1c8a210c01d437763b3a1f65`
+  `fix(governance): make SearchBox base-rule check formatting independent`
+
+Pre-rerun review performed:
+- combined source/test/governance diff reviewed;
+- ErpField governance JavaScript syntax compilation PASS;
+- complete internal ErpField governance self-test PASS after correcting two
+  self-test/governance weaknesses discovered during this review.
+
+Status:
+**implemented / canonical verification pending**.
+
+Inputs remains Product Owner BLOCKED. A fresh complete `npm run verify:clean`
+is mandatory before runtime re-review of these five findings.
+<!-- CHATGPT_RUNTIME_REVIEW_2026_10_01_END -->
