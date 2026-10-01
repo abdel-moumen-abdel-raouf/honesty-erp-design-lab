@@ -1046,28 +1046,48 @@ implementation state, blocker, verification result, or Product Owner finding.
 
 
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_START -->
-## 2026-10-01 — verification follow-up: final two stale test expectations corrected
+## 2026-10-01 — bounded Inputs runtime corrections Fully Green / Product Owner runtime re-test next
 
-Product Owner reran the full verification gate from the previous correction state.
+Product Owner pulled and verified current `main` at:
+`707129dc8b0987eb270d0dc8350c3e5794d7303f`
+(`docs(review): synchronize final verification follow-up`).
 
-Observed result before this correction:
-- all governance checks PASS;
+Latest source/test-affecting checkpoint under that verified head:
+`c096afc3cda1d076cfc702c721427c8468e4c61b`
+(`fix(test): align final Inputs verification expectations`).
+
+Canonical local command:
+`npm run verify:clean`
+
+Result: **FULLY GREEN**.
+
+Verified evidence:
+- Single App theme authority PASS;
+- routed-page ERP-only authoring PASS for 22 routed templates;
+- Component Token framework PASS;
+- system-color registry PASS;
+- ErpText PASS;
+- ErpIcon PASS;
+- ErpButton PASS;
+- ErpTooltip PASS;
+- ErpField PASS;
+- ErpOverlay PASS;
 - Angular lint PASS;
-- test bundle generation PASS;
-- 87 test files executed;
-- 85/87 test files PASS;
-- 647/649 tests PASS;
-- exactly two tests failed.
+- 87/87 test files PASS;
+- 649/649 tests PASS;
+- `typecheck:app` PASS;
+- `typecheck:spec` PASS;
+- production build PASS;
+- `Zero-warning build gate: PASS`.
 
-Both failures were stale expectations, not runtime regressions:
-- NumberBox default step is 1, therefore 12.5 is admitted numeric input but remains invalid through number.step; rejecting a later non-numeric character must not make the 12.5 draft valid.
-- OverlayManager now normalizes ordinary footer actions with presentation='button'; the long-body showcase expected object omitted that normalized field.
+Status transition:
+- the 2026-10-01 bounded runtime corrections are technically verified;
+- no further speculative implementation is authorized;
+- exact next gate is Product Owner runtime re-test of only:
+  1. Ghost/Text/Underline hover in Light and Dark;
+  2. typed character admission + validation behavior for URL/Tel/Number/Money/NumberStepper;
+  3. Clear/Clear Selected as IconButton + Tooltip in shared picker overlays;
+- Inputs remains Product Owner BLOCKED until those runtime findings are accepted.
 
-Test-only correction:
-c096afc3cda1d076cfc702c721427c8468e4c61b
-fix(test): align final Inputs verification expectations
-
-No runtime source changed in this correction.
-Current status: implemented / verification pending.
-Mandatory next gate: npm run verify:clean.
+Technical green does not itself declare visual/runtime approval.
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_END -->
