@@ -1617,48 +1617,107 @@ implementation state, blocker, verification result, or Product Owner finding.
 
 
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_START -->
-## 2026-09-30 — Inputs technical gate Fully Green / runtime review next
+## 2026-10-01 — Product Owner Inputs runtime re-review: three bounded corrections implemented / verification pending
 
-Product Owner pulled and verified current `main` at:
-`a7ff2c25a3130491a75af9c11ba5ba52c570ff48`
-(`docs(handoff): record stale-spec verification follow-up`).
+The previous Inputs technical gate was Fully Green before this runtime review:
+- verified source/head: `a7ff2c25a3130491a75af9c11ba5ba52c570ff48`;
+- verification record: `85ba7069fe45dbbdc03909c34cdad5b1f1d23ffc`;
+- 87/87 test files and 648/648 tests PASS;
+- app/spec typecheck PASS;
+- zero-warning production build PASS.
 
-Latest source-affecting checkpoint under that verified head:
-`1a6b29c1aa5dca36474c10eb40ef64492a65e595`
-(`fix(test): align Inputs specs with validation contracts`).
+That prior green state does **not** apply to the new corrections below until a
+fresh complete `npm run verify:clean` passes.
 
-Canonical local command:
+### Product Owner runtime findings
+
+1. Ghost/Text/Underline hover was visually discoverable in Dark but effectively
+   invisible in Light.
+2. Unified non-destructive validation had over-expanded character admission:
+   URL, Tel, Number, Money, and NumberStepper editors could retain characters
+   outside their intended domain.
+3. Clear/Clear Selected actions inside shared modal/popup Overlay footers were
+   text buttons; Product Owner requires IconButton + Tooltip.
+
+### Root causes and bounded decisions
+
+#### Lightweight Field hover
+The Component Token used
+`--honesty-color-surface-elevated` as hover tint. In Light,
+`surface-default` and `surface-elevated` both resolve to white, so the hover
+effect had essentially no visible contrast.
+
+Correction:
+- hover tint now uses theme-sensitive semantic
+  `--honesty-color-text-primary`;
+- mix is 8%;
+- the same Component Token path works in both Light and Dark;
+- no local theme branching was introduced.
+
+#### Typed character admission vs validation
+Non-destructive validation is clarified:
+- reject characters that do not belong to the control domain;
+- preserve admitted typed drafts when their value violates validation
+  constraints.
+
+Implemented:
+- URL admits only progressive HTTP/HTTPS syntax; arbitrary prose/whitespace is
+  rejected. Progressive incomplete drafts remain visible and invalid; CVA value
+  is published only when empty or fully admitted by URL/domain pattern.
+- Tel canonicalizes editing to optional one leading `+` plus ASCII digits
+  only; spaces/letters/punctuation are removed. Canonical invalid-length or
+  developer-pattern drafts remain visible and invalid until corrected.
+- Number, Money, NumberStepper reject characters outside progressive numeric
+  syntax.
+- syntactically numeric values that violate min/max/step remain visible and
+  invalid; no destructive clamp was reintroduced.
+
+#### Overlay Clear presentation
+Shared Overlay action contract now supports
+`presentation: 'button' | 'icon-button'`.
+
+Temporal `clear` and Selection `clear-selected` now:
+- use semantic `delete` icon;
+- render through `ErpIconButton`;
+- are wrapped by `ErpTooltip` using the action label;
+- preserve existing action IDs, ordering, disabled/loading state, and handlers.
+
+OverlayManager normalization preserves and validates the presentation contract.
+Overlay governance locks the Temporal and Selection Clear producers to this law.
+
+### Implementation checkpoints
+
+- `e7068b64df5b64b789dbc4d2b5f81648ad11d2e9`
+  `fix(inputs): restore typed character admission`
+- `b54c89c621dab914dda3555a5f8cf7ac0a48fd37`
+  `fix(overlays): render clear actions as icon tooltips`
+- `fead82d36c30533e575ab34ff41463f19ffa6848`
+  `test(inputs): lock typed admission and theme-aware hover`
+- `cade8015624c804d0be83bad5d2c49f126f5b906`
+  `test(overlays): govern icon-only clear actions`
+- `488741922c365a605acc9a70141f600278c46087`
+  `fix(inputs): repair regex patch integrity`
+- `65c097d224bb31f282ec5737ebc8381ed9f73b14`
+  `chore(overlays): lock icon-only clear contract`
+
+The regex/spec patch-integrity issue was detected during ChatGPT source review
+before Product Owner was instructed to pull the new source; the affected files
+were replaced with clean complete versions at `4887419...`.
+
+### Current status
+
+**Implemented / verification pending.**
+
+Mandatory next gate:
 `npm run verify:clean`
 
-Result: **FULLY GREEN**.
+Do not declare this new source Fully Green until that complete gate passes.
 
-Verified evidence:
-- Single App theme authority PASS;
-- routed-page ERP-only authoring PASS for 22 routed templates;
-- Component Token framework PASS;
-- system-color registry PASS;
-- ErpText PASS;
-- ErpIcon PASS;
-- ErpButton PASS;
-- ErpTooltip PASS;
-- ErpField PASS;
-- ErpOverlay PASS;
-- Angular lint PASS;
-- 87/87 test files PASS;
-- 648/648 tests PASS;
-- `typecheck:app` PASS;
-- `typecheck:spec` PASS;
-- production build PASS;
-- zero Angular warnings;
-- `Zero-warning build gate: PASS`.
+After technical green, Product Owner re-tests only these three runtime findings:
+- Ghost/Text/Underline hover in Light and Dark;
+- typed admission + validation behavior for URL/Tel/Number/Money/NumberStepper;
+- Clear/Clear Selected IconButton + Tooltip in shared picker overlays.
 
-Status transition:
-- technical verification is complete;
-- no speculative implementation is authorized;
-- exact next gate is Product Owner runtime + Light/Dark re-review of Inputs;
-- Inputs remains Product Owner BLOCKED until visual/runtime acceptance;
-- any new correction must be driven by a concrete Product Owner finding from
-  that re-review.
-
-This technical green state does not itself declare visual approval.
+No unrelated redesign or later family work is authorized.
+Inputs remains Product Owner BLOCKED until runtime acceptance.
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_END -->
