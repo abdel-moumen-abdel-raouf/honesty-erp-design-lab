@@ -1159,3 +1159,70 @@ canonical gate passes.
 After technical green, Product Owner runtime review must confirm the five
 findings above in Light and Dark.
 <!-- CHATGPT_OVERLAY_RUNTIME_REVIEW_2026_10_01_END -->
+
+
+<!-- CHATGPT_OVERLAY_SHOWCASE_OWNERSHIP_FOLLOWUP_START -->
+## 2026-10-01 — Overlay-only page verification follow-up: public review ownership relocated
+
+Product Owner pulled:
+`bfbdc9d3d2d7cf70cc82511d0a075ea8ea0c03f2`
+and ran the full canonical gate:
+`npm run verify:clean`.
+
+Observed progress:
+- theme authority PASS;
+- route-page ERP-only authoring PASS;
+- Component Token framework PASS;
+- system-color registry PASS;
+- ErpText PASS;
+- ErpIcon PASS;
+- ErpButton PASS;
+- ErpTooltip PASS;
+- ErpField governance then stopped before ErpOverlay/ng lint.
+
+Exact demonstrated cause:
+`PROGRAM_PUBLIC_CONTROLS` in
+`tools/controls/check-erp-field-governance.mjs` still mapped twelve public
+controls to the old Overlay showcase even though Product Owner had explicitly
+made `/controls/overlays` Overlay-only.
+
+The stale ownership affected:
+- DateBox / TimeBox / DateTimeBox / DateRangeBox;
+- ColorPicker / IconPicker / ItemPicker / ComboBox;
+- RadioGroup;
+- ButtonGroup / SplitButton / FabMenu.
+
+Bounded correction:
+- temporal + selection picker review ownership maps to
+  `src/app/showcase/input-controls/input-controls.html`;
+- RadioGroup review evidence was relocated into the existing Inputs
+  Boolean/Choice group;
+- ButtonGroup / SplitButton / FabMenu review evidence was relocated into the
+  Buttons showcase in one dedicated Button Composites group;
+- ErpField inventory now maps those three button composites to the Buttons
+  showcase;
+- Overlay showcase remains free of all twelve controls and is not weakened by
+  the governance correction.
+
+Correction checkpoint:
+`ae1d33d07bbb340690ba670a46553fc557f02d77`
+(`fix(governance): relocate public control review ownership`).
+
+Pre-rerun checks:
+- ErpField governance JavaScript syntax PASS;
+- complete ErpField governance internal self-test PASS;
+- live HTML ownership audit:
+  - all nine Input/selection controls present on Inputs;
+  - all three button composites present on Buttons;
+  - none of the twelve present on Overlays.
+
+Current status:
+**implemented / canonical verification pending**.
+
+Mandatory next gate:
+`npm run verify:clean`.
+
+Do not restore duplicated controls to the Overlay page to satisfy inventory.
+Review ownership must remain aligned to the control's actual production-review
+page.
+<!-- CHATGPT_OVERLAY_SHOWCASE_OWNERSHIP_FOLLOWUP_END -->
