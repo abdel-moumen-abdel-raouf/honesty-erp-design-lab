@@ -16,6 +16,8 @@
 }
 
 
+:host([data-field-variant='solid']:not([data-field-disabled='true']):not([data-field-configuration-state='invalid']):not([data-field-focused='true']))
+    .field-frame__control:hover,
 :host([data-field-variant='ghost']:not([data-field-disabled='true']):not([data-field-configuration-state='invalid']):not([data-field-focused='true']))
     .field-frame__control:hover,
 :host([data-field-variant='text']:not([data-field-disabled='true']):not([data-field-configuration-state='invalid']):not([data-field-focused='true']))
@@ -24,8 +26,8 @@
     .field-frame__control:hover {
   background: color-mix(
     in srgb,
+    var(--honesty-field-frame-bg),
     var(--honesty-field-frame-hover-bg)
-      var(--honesty-field-frame-hover-surface-mix),
-    transparent
+      var(--honesty-field-frame-hover-surface-mix)
   );
 }

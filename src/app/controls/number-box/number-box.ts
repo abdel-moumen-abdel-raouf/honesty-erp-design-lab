@@ -10,8 +10,8 @@ import {
 } from '@angular/core';
 import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {
-  ERP_NUMBER_FINAL_PATTERN,
-  isProgressiveNumericDraft,
+  ERP_INTEGER_FINAL_PATTERN,
+  isDigitsOnlyDraft,
   matchesDomainPattern,
   parseFiniteDomainNumber,
   resolveDomainPattern,
@@ -62,7 +62,7 @@ export class ErpNumberBox extends ErpFieldBase<number | null> {
   private readonly editing = signal(false);
   private readonly draftActive = signal(false);
   private readonly effectivePattern = computed(() =>
-    resolveDomainPattern(this.pattern(), ERP_NUMBER_FINAL_PATTERN),
+    resolveDomainPattern(this.pattern(), ERP_INTEGER_FINAL_PATTERN),
   );
   protected readonly numberConfigurationState =
     computed<ErpInputConfigurationState>(() =>
@@ -212,7 +212,7 @@ export class ErpNumberBox extends ErpFieldBase<number | null> {
     }
 
     const value = native.value;
-    if (!isProgressiveNumericDraft(value)) {
+    if (!isDigitsOnlyDraft(value)) {
       native.value = this.draftText();
       return;
     }
@@ -227,7 +227,7 @@ export class ErpNumberBox extends ErpFieldBase<number | null> {
     }
 
     if (
-      isProgressiveNumericDraft(value) &&
+      isDigitsOnlyDraft(value) &&
       matchesDomainPattern(value, this.effectivePattern().regex)
     ) {
       const numeric = Number(value);
