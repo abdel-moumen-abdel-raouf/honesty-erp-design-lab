@@ -158,3 +158,57 @@ Mandatory next gate:
 Inputs remains Product Owner BLOCKED pending a fresh technical green result and
 runtime/visual acceptance.
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_END -->
+
+
+<!-- CHATGPT_MANDATORY_CONTINUITY_QUARTET_START -->
+## 2026-10-01 — Mandatory continuity quartet + latest Fully Green checkpoint
+
+### Mandatory synchronization rule
+
+For every substantive project turn that changes any of the following:
+- Product Owner finding or decision;
+- implementation scope or completed correction;
+- blocker / unblocked state;
+- verification result;
+- next execution gate;
+- review status or acceptance status;
+
+ChatGPT must update **all four** of these files in the same work cycle before
+declaring the turn complete:
+
+1. `src/app/controls/CONTROLS_EXECUTION_ROADMAP_V1.md`
+2. `src/app/controls/INPUTS_PRODUCT_OWNER_REVIEW_FINDINGS_V1.md`
+3. `README_FIRST.md`
+4. `NEW_CHAT_HANDOFF.md`
+
+Updating only a subset is not sufficient. These four documents are the required
+continuity quartet for preserving current execution state and new-chat context.
+
+### Latest canonical technical verification
+
+Product Owner pulled and verified:
+`ff4f721f600490414085e49d9c1975d640fdbbbc`
+(`docs(review): synchronize URL regex lint follow-up`).
+
+Canonical command:
+`npm run verify:clean`
+
+Result: **FULLY GREEN**.
+
+Verified evidence:
+- all repository governance checks PASS;
+- Angular lint PASS;
+- 87/87 test files PASS;
+- 653/653 tests PASS;
+- `typecheck:app` PASS;
+- `typecheck:spec` PASS;
+- production build PASS;
+- `Zero-warning build gate: PASS`.
+
+Current Inputs state:
+- technical verification is green for the latest URL/Solid/NumberBox/File-Image
+  motion/live-data correction set;
+- exact next gate is Product Owner runtime re-test of those findings;
+- Inputs remains Product Owner BLOCKED until explicit runtime/visual acceptance;
+- no unrelated implementation is authorized.
+<!-- CHATGPT_MANDATORY_CONTINUITY_QUARTET_END -->
