@@ -60,6 +60,13 @@ export function isDigitsOnlyDraft(value: string): boolean {
 }
 
 export function isProgressiveHttpUrlDraft(value: string): boolean {
+  if (
+    /^[A-Za-z][A-Za-z0-9+.-]*:\/\//.test(value) &&
+    !/^https?:\/\//i.test(value)
+  ) {
+    return false;
+  }
+
   return (
     value.length === 0 ||
     /^[A-Za-z0-9:/?#@!$&'()*+,;=._~%\-]*$/.test(value)
