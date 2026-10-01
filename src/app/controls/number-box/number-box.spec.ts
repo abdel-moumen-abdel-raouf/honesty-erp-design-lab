@@ -36,7 +36,7 @@ describe('ErpNumberBox', () => {
     expect(native.value).toBe('');
   });
 
-  it('keeps progressive drafts separate and publishes only valid final values', () => {
+  it('keeps progressive numeric drafts and rejects non-numeric characters without hiding step validation', () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
@@ -57,13 +57,20 @@ describe('ErpNumberBox', () => {
     expect(onChange).toHaveBeenCalledOnce();
     expect(onChange).toHaveBeenCalledWith(12.5);
 
+    expect(control.inputState()).toBe('invalid-entry');
+    expect(control.validationIssues().map((issue) => issue.code)).toContain(
+      'number.step',
+    );
+
     native.value = '12.5x';
     native.dispatchEvent(new Event('input'));
     fixture.detectChanges();
     expect(native.value).toBe('12.5');
     expect(onChange).toHaveBeenCalledOnce();
-    expect(control.inputState()).toBe('valid-entry');
-    expect(control.validationIssues()).toEqual([]);
+    expect(control.inputState()).toBe('invalid-entry');
+    expect(control.validationIssues().map((issue) => issue.code)).toContain(
+      'number.step',
+    );
   });
 
   it('uses developer override patterns and invalid regex disables configuration', () => {
