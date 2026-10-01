@@ -1104,3 +1104,52 @@ Do not reopen the Overlay page ownership decision. Inputs/selection evidence
 remains on Inputs, button composites remain on Buttons, and Overlays remains
 Overlay-only.
 <!-- CHATGPT_BUTTON_SHOWCASE_ICON_FOLLOWUP_2026_10_02_END -->
+
+
+<!-- CHATGPT_RADIOGROUP_SHOWCASE_TEST_FOLLOWUP_2026_10_02_START -->
+## 2026-10-02 — verification follow-up: nested RadioGroup showcase count corrected
+
+Product Owner reran the complete canonical gate after relocating public control
+review ownership to Inputs / Buttons while keeping Overlays Overlay-only.
+
+Observed result:
+- all governance checks PASS;
+- Angular lint PASS;
+- test bundle generation PASS;
+- Overlay showcase PASS;
+- Button showcase PASS;
+- Overlay host/frame/manager tests PASS;
+- 86/87 test files PASS;
+- 650/651 tests PASS;
+- exactly one test failed in
+  `src/app/showcase/input-controls/input-controls.spec.ts`.
+
+Demonstrated cause:
+- the Boolean/Choice showcase now contains four standalone `ErpRadioBox`
+  controls plus one `ErpRadioGroup`;
+- `ErpRadioGroup` correctly renders three internal `ErpRadioBox` children;
+- the stale showcase test used
+  `querySelectorAll('erp-radio-box').length === 4`, which counted both
+  standalone and grouped RadioBoxes and therefore received 7.
+
+Bounded correction:
+- `9c56954e62231a29966ed78abb1662c8ef3c8124`
+  `fix(test): distinguish standalone and grouped radios`;
+- no production source changed;
+- the test now explicitly asserts:
+  - four standalone RadioBoxes outside any RadioGroup;
+  - three RadioBoxes owned by the RadioGroup;
+  - one RadioGroup review instance.
+
+This keeps the relocated review ownership intact and tests the component
+composition instead of flattening nested DOM ownership.
+
+Current status:
+**implemented / canonical verification pending**.
+
+Mandatory next gate:
+`npm run verify:clean`.
+
+Do not move RadioGroup back to the Overlay page and do not weaken public-control
+inventory governance.
+<!-- CHATGPT_RADIOGROUP_SHOWCASE_TEST_FOLLOWUP_2026_10_02_END -->
