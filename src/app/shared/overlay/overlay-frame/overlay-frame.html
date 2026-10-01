@@ -12,13 +12,21 @@
       class="overlay-frame__icon"
       [name]="config().header.icon"
       size="inherit"
-      tone="primary"
+      [tone]="headerPrimaryContentTone()"
     />
     <div class="overlay-frame__heading">
-      <erp-text [id]="titleId()" type="heading-3">
+      <erp-text
+        [id]="titleId()"
+        type="heading-3"
+        [tone]="headerPrimaryContentTone()"
+      >
         {{ config().header.title }}
       </erp-text>
-      <erp-text [id]="subtitleId()" type="caption" tone="secondary">
+      <erp-text
+        [id]="subtitleId()"
+        type="caption"
+        [tone]="headerSecondaryContentTone()"
+      >
         {{ config().header.subtitle }}
       </erp-text>
     </div>
@@ -28,6 +36,8 @@
           data-overlay-frame-close
           icon="close"
           [label]="closeLabel()"
+          [variant]="headerCloseVariant()"
+          [tone]="headerCloseTone()"
           (pressed)="close()"
         />
       </erp-tooltip>

@@ -89,7 +89,6 @@ export class OverlayControls {
           ? 'لا يمكن التراجع عن الحذف بعد التأكيد.'
           : null,
       intent,
-      headerTone: intent,
       confirmLabel: intent === 'danger' ? 'حذف' : 'تأكيد',
     });
   }

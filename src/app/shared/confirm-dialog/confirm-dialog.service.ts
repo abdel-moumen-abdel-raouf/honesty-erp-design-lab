@@ -117,7 +117,8 @@ export class ErpConfirmDialogService {
       config.cancelLabel?.trim() || DEFAULT_CANCEL_LABEL;
     const intent = config.intent ?? 'default';
     const icon = config.icon ?? iconForIntent(intent);
-    const headerTone = config.headerTone ?? 'default';
+    const headerTone =
+      config.headerTone ?? toneForIntent(intent);
     const userDismissible = config.userDismissible ?? true;
     const auxiliaryActions = normalizeAuxiliaryActions(
       config.auxiliaryActions ?? [],

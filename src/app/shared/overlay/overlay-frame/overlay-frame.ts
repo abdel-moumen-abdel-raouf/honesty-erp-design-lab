@@ -46,6 +46,20 @@ export class ErpOverlayFrame implements AfterViewInit {
   readonly headerTone = computed<ErpOverlayHeaderTone>(
     () => this.config().header.tone ?? 'default',
   );
+  readonly coloredHeader = computed(() => this.headerTone() !== 'default');
+  readonly headerPrimaryContentTone = computed<'primary' | 'inherit'>(
+    () => (this.coloredHeader() ? 'inherit' : 'primary'),
+  );
+  readonly headerSecondaryContentTone = computed<'secondary' | 'inherit'>(
+    () => (this.coloredHeader() ? 'inherit' : 'secondary'),
+  );
+  readonly headerCloseVariant = computed<'ghost' | 'solid'>(
+    () => (this.coloredHeader() ? 'solid' : 'ghost'),
+  );
+  readonly headerCloseTone = computed<ErpButtonTone>(() => {
+    const tone = this.headerTone();
+    return tone === 'default' ? 'neutral' : tone;
+  });
   readonly closeLabel = computed(
     () => this.config().header.closeLabel ?? 'إغلاق',
   );

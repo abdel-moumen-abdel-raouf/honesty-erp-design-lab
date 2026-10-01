@@ -45,6 +45,7 @@
 .overlay-frame__header {
   display: grid;
   background: var(--honesty-overlay-frame-header-bg);
+  color: var(--honesty-overlay-frame-header-fg);
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: var(--honesty-overlay-frame-header-gap);
