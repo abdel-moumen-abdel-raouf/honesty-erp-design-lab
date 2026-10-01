@@ -80,6 +80,13 @@ export type ErpMotionPreset =
   | 'roll';
 
 export type ErpOverlayAnimation = ErpMotionPreset;
+
+export interface ErpOverlayFrameConfig {
+  readonly showHeader?: boolean;
+  readonly showFooter?: boolean;
+  readonly header: ErpOverlayHeaderConfig;
+  readonly footer: ErpOverlayFooterConfig;
+}
 ```
 
 Exact defaults:
@@ -176,7 +183,51 @@ The shared frame owns:
 - a Header with ErpIcon, ErpText title/subtitle, and a Tooltip-wrapped close
   ErpIconButton;
 - a primary scrolling Body for dynamic content;
-- a single Footer with logically grouped ERP actions. Ordinary actions use ErpButton; Clear/Clear Selected use ErpIconButton with a semantic delete icon and ErpTooltip label.
+- a single Footer with logically grouped ERP actions.
+
+Header/Footer visual presence is developer-configurable **only through the
+Overlay frame API**:
+
+- `showHeader` defaults to `true`;
+- `showFooter` defaults to `true`;
+- the same flags apply to both modal and drawer surfaces;
+- consumer CSS is not the visibility API;
+- Header/Footer configuration objects remain required even when a region is
+  visually hidden, preserving stable metadata and action contracts;
+- when Header is hidden, the dialog uses the configured Header title/subtitle
+  directly as accessible ARIA metadata rather than referencing absent DOM IDs;
+- when Footer is hidden, its configured actions are not rendered; the developer
+  must provide any required commit/dismiss path through body behavior,
+  backdrop/Escape policy, or programmatic OverlayRef actions.
+
+Example:
+
+```ts
+overlays.open(ContentComponent, {
+  kind: 'drawer',
+  position: 'start',
+  frame: {
+    showHeader: false,
+    showFooter: true,
+    header: {
+      title: 'Customer details',
+      subtitle: 'Supporting description',
+      icon: 'customer',
+    },
+    footer: {
+      actions: [
+        {id: 'confirm', label: 'Confirm', role: 'primary', placement: 'end'},
+      ],
+    },
+  },
+});
+```
+
+The same `frame.showHeader` / `frame.showFooter` API applies unchanged when
+`kind: 'modal'`.
+
+Ordinary Footer actions use ErpButton; Clear/Clear Selected use ErpIconButton
+with a semantic delete icon and ErpTooltip label.
 - one theme-sensitive separator token shared by the Header bottom edge and
   Footer top edge. It resolves through the semantic default border role so the
   separator remains visible in both Light and Dark.
@@ -309,3 +360,21 @@ Product Owner runtime corrections in this checkpoint:
   separator Component Token;
 - full-height side drawers keep Footer at the bottom while Body owns the flexible
   scrolling region.
+
+
+## 2026-10-02 — API-configurable Header/Footer visibility
+
+Product Owner requires Header and Footer visibility to be configurable by
+developer API for both modals and drawers.
+
+Implemented contract:
+- `frame.showHeader?: boolean` — default `true`;
+- `frame.showFooter?: boolean` — default `true`;
+- OverlayManager normalizes both flags into the immutable runtime config;
+- ErpOverlayFrame conditionally renders only the requested visual regions and
+  adapts its grid rows so Body remains the flexible content track;
+- hiding Header preserves accessible dialog naming through direct
+  `aria-label` / `aria-description`;
+- hiding Footer removes footer actions from the rendered surface;
+- the Overlay review route includes explicit modal and drawer evidence for the
+  API states.

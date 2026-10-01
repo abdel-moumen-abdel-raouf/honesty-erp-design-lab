@@ -8,6 +8,7 @@ const APP_TEMPLATE = 'src/app/app.html';
 const APP_SOURCE = 'src/app/app.ts';
 const OVERLAY_ROOT = 'src/app/shared/overlay/';
 const OVERLAY_HOST = 'src/app/shared/overlay/overlay-host.ts';
+const OVERLAY_HOST_TEMPLATE = 'src/app/shared/overlay/overlay-host.html';
 const OVERLAY_STYLE = 'src/app/shared/overlay/overlay-host.scss';
 const OVERLAY_FACETS =
   'src/app/shared/overlay/overlay-host-facets.scss';
@@ -454,6 +455,7 @@ export function validateOverlayFrameContract(files) {
   const frameSource = files.get(OVERLAY_FRAME_SOURCE) ?? '';
   const frameTemplate = files.get(OVERLAY_FRAME_TEMPLATE) ?? '';
   const frameStyle = files.get(OVERLAY_FRAME_STYLE) ?? '';
+  const hostTemplate = files.get(OVERLAY_HOST_TEMPLATE) ?? '';
   const temporalSource = files.get(TEMPORAL_PICKER_SOURCE) ?? '';
   const temporalTemplate = files.get(TEMPORAL_PICKER_TEMPLATE) ?? '';
   const selectionSource = files.get(SELECTION_PICKER_SOURCE) ?? '';
@@ -478,6 +480,8 @@ export function validateOverlayFrameContract(files) {
     'export interface ErpOverlayFrameActionState',
     'export interface ErpOverlayFooterConfig',
     'readonly actions: readonly ErpOverlayActionConfig[];',
+    'readonly showHeader?: boolean;',
+    'readonly showFooter?: boolean;',
     'readonly frame: ErpOverlayFrameConfig;',
     'export type ErpOverlayFrameActionId = string;',
   ]) {
@@ -496,6 +500,8 @@ export function validateOverlayFrameContract(files) {
     'label: action.label.trim()',
     "action.presentation === 'icon-button'",
     "presentation: action.presentation ?? 'button'",
+    'showHeader: options.frame.showHeader ?? true',
+    'showFooter: options.frame.showFooter ?? true',
     'new Set(actions.map((action) => action.id)).size !== actions.length',
   ]) {
     if (!manager.includes(required)) {
@@ -523,6 +529,8 @@ export function validateOverlayFrameContract(files) {
     'block-size: 100%;',
     '.overlay-frame {',
     'grid-template-rows: auto minmax(',
+    "data-overlay-frame-header-visible='false'",
+    "data-overlay-frame-footer-visible='false'",
     '.overlay-frame__body',
     'overflow: auto;',
     '.overlay-frame__footer',
@@ -536,6 +544,8 @@ export function validateOverlayFrameContract(files) {
     'ErpButton',
     'ErpIconButton',
     'ErpTooltip',
+    'this.config().showHeader !== false',
+    'this.config().showFooter !== false',
     "this.ref().dismiss('close-action')",
   ]) {
     if (!frameSource.includes(required)) {
@@ -544,8 +554,12 @@ export function validateOverlayFrameContract(files) {
   }
 
   for (const required of [
+    '[attr.data-overlay-frame-header-visible]="showHeader()"',
+    '[attr.data-overlay-frame-footer-visible]="showFooter()"',
+    '@if (showHeader())',
     '<header class="overlay-frame__header">',
     '<div class="overlay-frame__body">',
+    '@if (showFooter())',
     '<footer class="overlay-frame__footer">',
     '<erp-tooltip',
     '<erp-icon-button',
@@ -606,6 +620,20 @@ export function validateOverlayFrameContract(files) {
     }
   }
 
+  for (const required of [
+    "entry.ref.config.frame?.showHeader ? entry.ref.id + '-title' : null",
+    "entry.ref.config.frame?.showHeader ? entry.ref.id + '-subtitle' : null",
+    "entry.ref.config.frame.header.title",
+    "entry.ref.config.frame.header.subtitle",
+    '[attr.aria-description]',
+  ]) {
+    if (!hostTemplate.includes(required)) {
+      errors.push(
+        `OverlayHost template: hidden Header must preserve accessible dialog metadata via API; missing ${required}`,
+      );
+    }
+  }
+
   const legacyUsers = [...files]
     .filter(([, source]) => source.includes('openLegacyCompactMenu'))
     .map(([file]) => file)
@@ -656,6 +684,17 @@ export function validateOverlayShowcase(files) {
   ]) {
     if (template.includes(forbidden)) {
       errors.push(`Overlay showcase: repeated non-Overlay control evidence is forbidden: ${forbidden}`);
+    }
+  }
+
+  for (const marker of [
+    'data-frame-header-hidden-evidence',
+    'data-frame-footer-hidden-evidence',
+    'data-frame-both-hidden-evidence',
+    'data-drawer-frame-hidden-evidence',
+  ]) {
+    if (!template.includes(marker)) {
+      errors.push(`Overlay showcase: missing API-only frame visibility evidence ${marker}`);
     }
   }
 
@@ -971,7 +1010,7 @@ const currentPreviewMode = 'mobile';`,
     ],
     [
       OVERLAY_SHOWCASE_TEMPLATE,
-      '<section data-review-group="modal"></section><section data-review-group="drawers"><erp-button data-drawer-evidence="start" /><erp-button data-drawer-evidence="end" /><erp-button data-drawer-evidence="top" /><erp-button data-drawer-evidence="bottom" /></section><section data-review-group="nested-stack"></section><section data-review-group="dismissal-focus"></section>',
+      '<section data-review-group="modal"><erp-button data-frame-header-hidden-evidence /><erp-button data-frame-footer-hidden-evidence /><erp-button data-frame-both-hidden-evidence /></section><section data-review-group="drawers"><erp-button data-drawer-evidence="start" /><erp-button data-drawer-evidence="end" /><erp-button data-drawer-evidence="top" /><erp-button data-drawer-evidence="bottom" /><erp-button data-drawer-frame-hidden-evidence /></section><section data-review-group="nested-stack"></section><section data-review-group="dismissal-focus"></section>',
     ],
   ]);
   if (validateOverlayShowcase(validOverlayShowcase).length > 0) {
@@ -1002,7 +1041,10 @@ export interface ErpOverlayFrameActionState {}
 export interface ErpOverlayFooterConfig {
 readonly actions: readonly ErpOverlayActionConfig[];
 }
-export interface ErpOverlayFrameConfig {}
+export interface ErpOverlayFrameConfig {
+readonly showHeader?: boolean;
+readonly showFooter?: boolean;
+}
 export interface ErpOverlayOpenConfig { readonly frame: ErpOverlayFrameConfig; }
 export type ErpOverlayFrameActionId = string;
 readonly id: string;
@@ -1021,6 +1063,8 @@ id: action.id.trim()
 label: action.label.trim()
 action.presentation === 'icon-button'
 presentation: action.presentation ?? 'button'
+showHeader: options.frame.showHeader ?? true
+showFooter: options.frame.showFooter ?? true
 new Set(actions.map((action) => action.id)).size !== actions.length
 openLegacyCompactMenu`,
     ],
@@ -1038,20 +1082,26 @@ this.dismiss('secondary-action')`,
     [
       OVERLAY_FRAME_SOURCE,
       `ErpButton ErpIconButton ErpTooltip
+this.config().showHeader !== false
+this.config().showFooter !== false
 this.ref().dismiss('close-action')`,
     ],
     [
       OVERLAY_FRAME_STYLE,
       `:host { block-size: 100%; }
 .overlay-frame { display: grid; block-size: 100%; grid-template-rows: auto minmax(0, 1fr) auto; }
+.overlay-frame[data-overlay-frame-header-visible='false'][data-overlay-frame-footer-visible='true'] {}
+.overlay-frame[data-overlay-frame-header-visible='true'][data-overlay-frame-footer-visible='false'] {}
+.overlay-frame[data-overlay-frame-header-visible='false'][data-overlay-frame-footer-visible='false'] {}
 .overlay-frame__body { overflow: auto; }
 .overlay-frame__footer {}`,
     ],
     [
       OVERLAY_FRAME_TEMPLATE,
-      `<header class="overlay-frame__header">
+      `<div [attr.data-overlay-frame-header-visible]="showHeader()" [attr.data-overlay-frame-footer-visible]="showFooter()">
+@if (showHeader()) { <header class="overlay-frame__header"> }
 <div class="overlay-frame__body">
-<footer class="overlay-frame__footer">
+@if (showFooter()) { <footer class="overlay-frame__footer"> }
 <erp-tooltip><erp-icon-button data-overlay-frame-close />
 <div data-overlay-frame-action-group="start">@for (action of startActions(); track action.id) {
 @if (action.presentation === 'icon-button') { <erp-tooltip [text]="action.label"><erp-icon-button data-overlay-frame-action data-overlay-frame-action-id data-overlay-frame-action-role [icon]="action.icon ?? 'delete'" /></erp-tooltip> } @else {
@@ -1076,6 +1126,13 @@ this.ref().dismiss('close-action')`,
     [
       SELECTION_CONTRACTS,
       "id: 'clear-selected' icon: 'delete' as const presentation: 'icon-button' as const",
+    ],
+    [
+      OVERLAY_HOST_TEMPLATE,
+      `[attr.aria-labelledby]="entry.ref.config.frame?.showHeader ? entry.ref.id + '-title' : null"
+[attr.aria-describedby]="entry.ref.config.frame?.showHeader ? entry.ref.id + '-subtitle' : null"
+[attr.aria-label]="entry.ref.config.frame && !entry.ref.config.frame.showHeader ? entry.ref.config.frame.header.title : entry.ref.config.legacyCompactMenuLabel"
+[attr.aria-description]="entry.ref.config.frame && !entry.ref.config.frame.showHeader ? entry.ref.config.frame.header.subtitle : null"`,
     ],
     [SPLIT_BUTTON_SOURCE, 'openLegacyCompactMenu'],
   ]);
