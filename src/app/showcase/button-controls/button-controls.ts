@@ -95,7 +95,7 @@ export class ButtonControls {
   ];
   readonly actionItems: readonly ErpItemPickerOption[] = [
     {value: 'export-pdf', label: 'تصدير PDF', icon: 'file'},
-    {value: 'export-sheet', label: 'تصدير جدول', icon: 'table'},
+    {value: 'export-sheet', label: 'تصدير جدول', icon: 'download'},
     {value: 'create', label: 'إنشاء عنصر', icon: 'plus'},
   ];
   readonly pressedCount = signal(0);
