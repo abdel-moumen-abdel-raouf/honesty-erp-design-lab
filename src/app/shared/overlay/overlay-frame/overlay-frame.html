@@ -1,4 +1,9 @@
-<div class="overlay-frame">
+<div
+  class="overlay-frame"
+  [attr.data-overlay-frame-header-visible]="showHeader()"
+  [attr.data-overlay-frame-footer-visible]="showFooter()"
+>
+  @if (showHeader()) {
   <header class="overlay-frame__header">
     <erp-icon
       class="overlay-frame__icon"
@@ -23,11 +28,13 @@
       />
     </erp-tooltip>
   </header>
+  }
 
   <div class="overlay-frame__body">
     <ng-content></ng-content>
   </div>
 
+  @if (showFooter()) {
   <footer class="overlay-frame__footer">
     <div class="overlay-frame__action-group" data-overlay-frame-action-group="start">
       @for (action of startActions(); track action.id) {
@@ -96,4 +103,5 @@
       }
     </div>
   </footer>
+  }
 </div>

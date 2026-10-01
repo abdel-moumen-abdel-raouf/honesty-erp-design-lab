@@ -58,6 +58,8 @@ export interface ErpOverlayFooterConfig {
 }
 
 export interface ErpOverlayFrameConfig {
+  readonly showHeader?: boolean;
+  readonly showFooter?: boolean;
   readonly header: ErpOverlayHeaderConfig;
   readonly footer: ErpOverlayFooterConfig;
 }

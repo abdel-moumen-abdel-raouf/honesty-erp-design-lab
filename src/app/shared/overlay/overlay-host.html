@@ -19,9 +19,10 @@
       role="dialog"
       tabindex="-1"
       [attr.data-overlay-id]="entry.ref.id"
-      [attr.aria-labelledby]="entry.ref.config.frame ? entry.ref.id + '-title' : null"
-      [attr.aria-describedby]="entry.ref.config.frame ? entry.ref.id + '-subtitle' : null"
-      [attr.aria-label]="entry.ref.config.legacyCompactMenuLabel"
+      [attr.aria-labelledby]="entry.ref.config.frame?.showHeader ? entry.ref.id + '-title' : null"
+      [attr.aria-describedby]="entry.ref.config.frame?.showHeader ? entry.ref.id + '-subtitle' : null"
+      [attr.aria-label]="entry.ref.config.frame && !entry.ref.config.frame.showHeader ? entry.ref.config.frame.header.title : entry.ref.config.legacyCompactMenuLabel"
+      [attr.aria-description]="entry.ref.config.frame && !entry.ref.config.frame.showHeader ? entry.ref.config.frame.header.subtitle : null"
       [attr.aria-modal]="entry.ref.config.blocking ? 'true' : null"
       [attr.aria-hidden]="manager.isTop(entry.ref.id) ? null : 'true'"
     >

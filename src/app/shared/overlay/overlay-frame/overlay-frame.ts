@@ -33,6 +33,8 @@ export class ErpOverlayFrame implements AfterViewInit {
 
   readonly titleId = computed(() => `${this.ref().id}-title`);
   readonly subtitleId = computed(() => `${this.ref().id}-subtitle`);
+  readonly showHeader = computed(() => this.config().showHeader !== false);
+  readonly showFooter = computed(() => this.config().showFooter !== false);
   readonly closeLabel = computed(
     () => this.config().header.closeLabel ?? 'إغلاق',
   );

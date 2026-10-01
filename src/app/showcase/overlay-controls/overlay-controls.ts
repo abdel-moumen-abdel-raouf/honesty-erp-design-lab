@@ -77,6 +77,31 @@ export class OverlayControls {
     });
   }
 
+  openFrameVisibility(
+    kind: 'modal' | 'drawer',
+    position: ErpOverlayPosition,
+    showHeader: boolean,
+    showFooter: boolean,
+    label: string,
+  ): void {
+    const frame = this.frame(label);
+    this.overlays.open<OverlayEvidenceContent, OverlayEvidenceData>(
+      OverlayEvidenceContent,
+      {
+        kind,
+        position,
+        frame: {
+          ...frame,
+          showHeader,
+          showFooter,
+        },
+        data: {
+          allowNested: false,
+        } satisfies OverlayEvidenceData,
+      },
+    );
+  }
+
   openConfigured(
     label: string,
     config: Partial<ErpOverlayBehaviorConfig>,

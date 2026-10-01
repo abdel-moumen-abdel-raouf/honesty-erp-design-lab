@@ -119,6 +119,8 @@ export class ErpOverlayManager {
       position,
       size: options.size ?? 'md',
       frame: Object.freeze({
+        showHeader: options.frame.showHeader ?? true,
+        showFooter: options.frame.showFooter ?? true,
         header: Object.freeze({
           title,
           subtitle,

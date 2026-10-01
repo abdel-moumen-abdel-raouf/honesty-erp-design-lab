@@ -35,6 +35,21 @@
             label="فتح إطار بمحتوى طويل"
             (pressed)="openLongBody()"
           />
+          <erp-button
+            data-frame-header-hidden-evidence
+            label="نافذة بدون هيدر"
+            (pressed)="openFrameVisibility('modal', 'center', false, true, 'نافذة بدون هيدر')"
+          />
+          <erp-button
+            data-frame-footer-hidden-evidence
+            label="نافذة بدون فووتر"
+            (pressed)="openFrameVisibility('modal', 'center', true, false, 'نافذة بدون فووتر')"
+          />
+          <erp-button
+            data-frame-both-hidden-evidence
+            label="نافذة بدون هيدر أو فووتر"
+            (pressed)="openFrameVisibility('modal', 'center', false, false, 'نافذة بدون هيدر أو فووتر')"
+          />
         </erp-surface>
     </erp-grid>
   </erp-section>
@@ -49,6 +64,11 @@
             <erp-button data-drawer-evidence="end" label="فتح درج النهاية" (pressed)="openDrawer('end')" />
             <erp-button data-drawer-evidence="top" label="فتح الدرج العلوي" (pressed)="openDrawer('top')" />
             <erp-button data-drawer-evidence="bottom" label="فتح الدرج السفلي" (pressed)="openDrawer('bottom')" />
+            <erp-button
+              data-drawer-frame-hidden-evidence
+              label="فتح درج بدون هيدر أو فووتر"
+              (pressed)="openFrameVisibility('drawer', 'start', false, false, 'درج بدون هيدر أو فووتر')"
+            />
           </erp-stack>
         </erp-surface>
     </erp-grid>
