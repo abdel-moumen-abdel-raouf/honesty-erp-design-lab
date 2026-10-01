@@ -706,3 +706,90 @@ Mandatory next gate:
 Do not move RadioGroup back to the Overlay page and do not weaken public-control
 inventory governance.
 <!-- CHATGPT_RADIOGROUP_SHOWCASE_TEST_FOLLOWUP_2026_10_02_END -->
+
+
+<!-- CHATGPT_OVERLAY_FRAME_VISIBILITY_API_2026_10_02_START -->
+## 2026-10-02 — Overlay Header/Footer visibility is developer-configurable by API
+
+Product Owner required developers to control whether the shared Header and
+Footer are visually present for both modal and drawer surfaces through API
+configuration only.
+
+### Public API
+
+`ErpOverlayFrameConfig` now exposes:
+
+```ts
+readonly showHeader?: boolean;
+readonly showFooter?: boolean;
+```
+
+Defaults:
+- `showHeader = true`;
+- `showFooter = true`.
+
+The flags are shared by both `kind: 'modal'` and `kind: 'drawer'`.
+
+Header/Footer config objects remain required. Visibility is not configured by
+consumer CSS, route-specific selectors, or content-side conditionals.
+
+### Runtime behavior
+
+Implementation checkpoint:
+`e0cdb290355fe0b59f6560d960aea422445884b2`
+(`feat(overlays): configure frame region visibility by API`).
+
+Implemented behavior:
+- OverlayManager normalizes both flags into the immutable runtime frame config;
+- ErpOverlayFrame defaults missing flags to visible when instantiated directly;
+- Header and Footer are conditionally rendered from the frame API only;
+- frame grid rows adapt to Header-only, Footer-only, Body-only, and full
+  Header/Body/Footer states;
+- Body remains the persistent flexible content region;
+- when Header is hidden, OverlayHost removes stale
+  `aria-labelledby`/`aria-describedby` references and uses the configured
+  Header title/subtitle directly through `aria-label` and
+  `aria-description`;
+- when Footer is hidden, configured Footer actions are not rendered.
+
+The Overlay review route includes explicit API evidence for:
+- modal without Header;
+- modal without Footer;
+- modal without Header or Footer;
+- drawer without Header or Footer.
+
+### Tests and governance
+
+Test checkpoint:
+`b8fe64407454a69f9353eee22b950c7d041065aa`
+(`test(overlays): cover configurable frame regions`).
+
+Governance/documentation checkpoint:
+`d008cc17e56149edf37c1c810672b8ca7e2b480d`
+(`chore(overlays): govern configurable frame regions`).
+
+Coverage protects:
+- default normalized flags are both true;
+- explicit modal and drawer flag configurations;
+- conditional Header/Footer rendering;
+- adaptive grid state;
+- hidden-Header accessibility fallback;
+- Overlay showcase API evidence;
+- API ownership through frame config rather than CSS.
+
+Pre-verification checks:
+- Overlay governance JavaScript syntax PASS;
+- complete Overlay governance internal self-test PASS;
+- ErpField governance JavaScript syntax PASS;
+- complete ErpField governance internal self-test PASS;
+- final template/CSS/ARIA source audit PASS.
+
+Current status:
+**implemented / canonical verification pending**.
+
+Mandatory next technical gate:
+`npm run verify:clean`.
+
+This requirement does not reopen the Overlay-only showcase ownership decision or
+the current modal/drawer geometry contracts.
+<!-- CHATGPT_OVERLAY_FRAME_VISIBILITY_API_2026_10_02_END -->
