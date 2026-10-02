@@ -61,8 +61,8 @@
 }
 
 @mixin tone-neutral {
-  --honesty-check-box-fill-color: var(--honesty-color-action-focus-ring);
-  --honesty-check-box-mark-color: var(--honesty-color-brand-primary-on-solid);
+  --honesty-check-box-fill-color: var(--honesty-color-surface-inverse);
+  --honesty-check-box-mark-color: var(--honesty-color-text-inverse);
 }
 @mixin tone-primary {
   --honesty-check-box-fill-color: var(--honesty-color-brand-primary-solid);
