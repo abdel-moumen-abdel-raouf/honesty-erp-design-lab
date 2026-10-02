@@ -155,3 +155,19 @@ V4 covers:
 Pre-handoff static source/governance audit for V4: **85/85 PASS**.
 
 RadioBox remains unopened until V4 is canonically green and visually accepted.
+
+
+## CheckBox V4 merged checkpoint
+
+The video-derived CheckBox V4 correction was squash-merged to `main` as:
+
+`9aa72e456b902530aab61e6c5a3286d2180b9e07`.
+
+Final post-split pre-merge static audit:
+
+- 139 predicates checked;
+- 139 PASS;
+- 0 mismatches.
+
+Fresh local executable verification and Product Owner Light/Dark visual
+re-review remain pending. RadioBox remains closed.
