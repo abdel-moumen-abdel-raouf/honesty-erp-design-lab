@@ -482,6 +482,25 @@ function runSelfTest() {
 `,
     `
 @mixin base {
+  --honesty-button-bg:
+    color-mix(
+      in srgb,
+      var(--honesty-color-action-primary-bg) 60%,
+      transparent
+    );
+}
+`,
+    `
+@mixin base {
+  --honesty-button-bg: var(--honesty-color-action-primary-bg);
+}
+
+@mixin tone-primary {
+  @include base;
+}
+`,
+    `
+@mixin base {
   --honesty-button-bg: var(--honesty-color-action-primary-bg, red);
 }
 `,
