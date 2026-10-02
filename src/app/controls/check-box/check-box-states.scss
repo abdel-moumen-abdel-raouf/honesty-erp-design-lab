@@ -1,27 +1,23 @@
 :host([data-check-box-state='ready']) .check-box:hover .check-box__visual {
-  border-color:
-    color-mix(
-      in srgb,
-      var(--honesty-check-box-fill-color) 65%,
-      var(--honesty-check-box-border-color)
-    );
+  border-color: color-mix(in srgb, var(--honesty-check-box-fill-color) 65%,
+      var(--honesty-check-box-border-color));
 }
 
 :host([data-check-box-state='ready']) .check-box:active .check-box__visual {
-  transform: scale(var(--_active-scale));
+  transform: scale(var(--honesty-check-box-pressed-scale));
+}
+
+:host([data-check-box-state='ready'])
+  .check-box[data-variant='switch']:active .check-box__visual {
+  transform: scale(0.95);
 }
 
 :host([data-check-box-checked='true']) .check-box__visual,
 :host([data-check-box-indeterminate='true']) .check-box__visual {
   border-color: transparent;
-  box-shadow:
-    0 0 0 var(--honesty-check-box-selected-ring-width)
-    color-mix(
-      in srgb,
-      var(--honesty-check-box-fill-color)
-        var(--honesty-check-box-selected-ring-opacity),
-      transparent
-    );
+  box-shadow: 0 0 0 var(--honesty-check-box-selected-ring-width)
+    color-mix(in srgb, var(--honesty-check-box-fill-color)
+      var(--honesty-check-box-selected-ring-opacity), transparent);
 }
 
 :host([data-check-box-checked='true']) .check-box__visual::before,
@@ -31,27 +27,35 @@
 }
 
 :host([data-check-box-checked='true']) .check-box__visual::after {
-  inset: var(--_mark-on-inset);
-  border-radius: var(--_mark-on-radius);
-  background: var(--_mark-on-color);
-  clip-path: var(--_mark-on-clip);
-  box-shadow: var(--_mark-on-shadow);
-  transform: var(--_mark-on-transform);
+  transform: scale(1);
 }
 
-:host([data-check-box-indeterminate='true']) .check-box__visual::after {
-  inset: var(--_mark-mixed-inset);
-  border-radius: var(--_mark-mixed-radius);
-  background: var(--_mark-mixed-color);
-  clip-path: var(--_mark-mixed-clip);
-  box-shadow: var(--_mark-mixed-shadow);
-  transform: var(--_mark-mixed-transform);
+:host([data-check-box-indeterminate='true'])
+  .check-box:not([data-variant='switch']) .check-box__visual::after {
+  inset: 42% 24%;
+  border-radius: var(--honesty-radius-full);
+  clip-path: none;
+  transform: scale(1);
+}
+
+:host([data-check-box-checked='true'])
+  .check-box[data-variant='switch'] .check-box__visual::after {
+  background: var(--honesty-check-box-switch-knob-on-color);
+  box-shadow: var(--honesty-check-box-switch-knob-elevation);
+  transform: translateX(
+    calc(var(--honesty-check-box-control-size) * 0.42 * var(--_switch-on))
+  );
+}
+
+:host([data-check-box-indeterminate='true'])
+  .check-box[data-variant='switch'] .check-box__visual::after {
+  background: var(--honesty-check-box-switch-knob-on-color);
+  transform: scale(0.7);
 }
 
 .check-box__native:focus-visible + .check-box__visual {
-  outline-width: var(--honesty-check-box-focus-width);
-  outline-style: var(--honesty-check-box-focus-style);
-  outline-color: var(--honesty-check-box-focus-color);
+  outline: var(--honesty-check-box-focus-width)
+    var(--honesty-check-box-focus-style) var(--honesty-check-box-focus-color);
   outline-offset: var(--honesty-check-box-focus-offset);
 }
 
@@ -62,11 +66,6 @@
 
 :host([data-check-box-state='disabled']) .check-box {
   opacity: var(--honesty-check-box-disabled-opacity);
-}
-
-:host([data-check-box-state='disabled']) .check-box:active .check-box__visual,
-:host([data-check-box-state='invalid']) .check-box:active .check-box__visual {
-  transform: none;
 }
 
 :host([data-check-box-state='invalid']) .check-box__title {
@@ -81,45 +80,25 @@
   .check-box__visual,
 :host([data-check-box-variant='neon'][data-check-box-indeterminate='true'])
   .check-box__visual {
-  box-shadow:
-    0 0 calc(var(--honesty-check-box-control-size) * 0.42)
-      color-mix(
-        in srgb,
-        var(--honesty-check-box-fill-color)
-          var(--honesty-check-box-neon-glow-near-opacity),
-        transparent
-      ),
+  box-shadow: 0 0 calc(var(--honesty-check-box-control-size) * 0.42)
+      color-mix(in srgb, var(--honesty-check-box-fill-color)
+        var(--honesty-check-box-neon-glow-near-opacity), transparent),
     0 0 calc(var(--honesty-check-box-control-size) * 1.08)
-      color-mix(
-        in srgb,
-        var(--honesty-check-box-fill-color)
-          var(--honesty-check-box-neon-glow-mid-opacity),
-        transparent
-      ),
+      color-mix(in srgb, var(--honesty-check-box-fill-color)
+        var(--honesty-check-box-neon-glow-mid-opacity), transparent),
     0 0 calc(var(--honesty-check-box-control-size) * 2)
-      color-mix(
-        in srgb,
-        var(--honesty-check-box-fill-color)
-          var(--honesty-check-box-neon-glow-far-opacity),
-        transparent
-      );
-  animation:
-    honesty-check-box-neon-pulse
+      color-mix(in srgb, var(--honesty-check-box-fill-color)
+        var(--honesty-check-box-neon-glow-far-opacity), transparent),
+    inset 0 0 calc(var(--honesty-check-box-control-size) * 0.5)
+      color-mix(in srgb, var(--honesty-check-box-mark-color)
+        var(--honesty-check-box-neon-inner-opacity), transparent);
+  animation: honesty-check-box-neon-pulse
     var(--honesty-check-box-neon-pulse-duration)
-    var(--honesty-check-box-transition-easing)
-    infinite;
-}
-
-:host([data-check-box-variant='neon'])
-  .check-box__native:focus-visible
-  + .check-box__visual {
-  outline-color: var(--honesty-check-box-fill-color);
+    var(--honesty-check-box-transition-easing) infinite;
 }
 
 @keyframes honesty-check-box-neon-pulse {
-  50% {
-    filter: brightness(1.2);
-  }
+  50% { filter: brightness(1.2); }
 }
 
 @media (prefers-reduced-motion: reduce) {
