@@ -1376,7 +1376,7 @@ export function validateChoiceVisualContracts(
     checkStyles.includes('linear-gradient(') ||
     !checkStyles.includes('clip-path:') ||
     !checkStyles.includes('polygon(') ||
-    !checkStyles.includes("data-check-box-variant='switch'") ||
+    !checkStyles.includes("data-variant='switch'") ||
     !checkStyles.includes("data-check-box-variant='neon'") ||
     !checkStyles.includes('--_honesty-check-box-switch-off') ||
     !checkStyles.includes('--_honesty-check-box-switch-on') ||
@@ -1952,7 +1952,7 @@ export class ErpImagePicker extends ErpFileSelectionBase {
   const validCheckTokens =
     '--honesty-check-box-control-size: 1.125rem; --honesty-check-box-control-size: 1.5rem; --honesty-check-box-control-size: 1.875rem; --honesty-check-box-control-size: 2.375rem; --honesty-check-box-title-size: 0.93rem; --honesty-check-box-description-size: 0.76rem; --honesty-check-box-fill-color: var(--honesty-color-brand-primary-solid); --honesty-check-box-selected-ring-width: 0.25rem; --honesty-check-box-pressed-scale: 0.86; --honesty-check-box-switch-knob-off-color: var(--honesty-color-text-muted); --honesty-check-box-switch-knob-on-color: var(--honesty-check-box-mark-color); --honesty-check-box-neon-pulse-duration: 2.4s; --honesty-check-box-transition-duration: var(--honesty-motion-duration-deliberate);';
   const validCheckStyles =
-    ":host-context([dir='rtl']) { --_honesty-check-box-switch-off: 1; --_honesty-check-box-switch-on: -1; } .check-box__visual::before { background: var(--honesty-check-box-fill-color); } .check-box__visual::after { clip-path: polygon(0 0, 1px 1px); } :host([data-check-box-variant='switch']) {} :host([data-check-box-variant='neon']) {} --_honesty-check-box-switch-off --_honesty-check-box-switch-on @keyframes honesty-check-box-neon-pulse {} .check-box:active {} color-mix(in srgb, red 65%, transparent) .check-box__native:focus-visible {} :host([data-check-box-checked='true']) {} :host([data-check-box-indeterminate='true']) {} @media (prefers-reduced-motion: reduce) {}";
+    ":host-context([dir='rtl']) { --_honesty-check-box-switch-off: 1; --_honesty-check-box-switch-on: -1; } .check-box[data-variant='switch'] {} .check-box__visual::before { background: var(--honesty-check-box-fill-color); } .check-box__visual::after { clip-path: polygon(0 0, 1px 1px); } :host([data-check-box-variant='neon']) {} --_honesty-check-box-switch-off --_honesty-check-box-switch-on @keyframes honesty-check-box-neon-pulse {} .check-box:active {} color-mix(in srgb, red 65%, transparent) .check-box__native:focus-visible {} :host([data-check-box-checked='true']) {} :host([data-check-box-indeterminate='true']) {} @media (prefers-reduced-motion: reduce) {}";
   const validRadioTemplate =
     '<input type="radio"><span class="radio-box__visual"><span class="radio-box__dot"></span></span>';
   const validRadioTokens =
