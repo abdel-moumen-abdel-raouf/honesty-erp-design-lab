@@ -429,11 +429,11 @@ feedback is dismissed.
   checked state from the current CVA value, inherited disabled behavior, and
   `indeterminate = false`.
 - Its current visual contract is reference-led by the Product Owner supplied
-  `erp-checkbox.html`: one fixed rounded-square control centered against the
-  complete title/description block, semantic check/minus marks, selected halo,
-  pressed scale, focus-visible, disabled, indeterminate, and reduced-motion
-  behavior. Reference colors are not adopted; all runtime colors remain
-  Component/Semantic Token driven.
+  `erp-checkbox.html`: one control centered against the complete
+  title/description block, CSS check/indeterminate mark geometry, selected halo,
+  pressed scale, focus-visible, disabled, user-exitable indeterminate, and
+  reduced-motion behavior. Reference colors are not adopted; all runtime colors
+  remain Component/Semantic Token driven.
 - The supplied reference's own Live Config defines the CheckBox visual variants
   as `classic | switch | neon`; `ErpCheckBox` therefore exposes those three
   variants directly. Switch keeps the same boolean/CVA value contract while
@@ -462,6 +462,14 @@ feedback is dismissed.
 - RadioBox renders one fixed circular visual around the authoritative native
   radio. Its selected dot remains centered and present in the same outer
   geometry for selected and unselected states.
+- CheckBox disabled presentation follows the reference's single whole-control
+  opacity treatment; it must not also apply disabled text colors and therefore
+  double-dim content. Required validation derives `danger` from the common
+  validation contract and returns to `none` immediately after a valid user
+  selection.
+- CheckBox preserves the shared `ErpFieldSize` input type for compatibility,
+  but its visual geometry is template-led: sm=18px, md=24px, lg=30px, and
+  xl/xxl/xxxl/xxxxl all resolve to the template's 38px X-Large geometry.
 - Both visual contracts include deterministic hover, focus-visible, disabled,
   invalid, tone, and status treatment. State transitions use Foundation Motion
   and honor reduced motion. No raw SVG mark is authored.

@@ -1,5 +1,10 @@
 import {ErpReviewBox} from '../../review-internals/review-box/review-box';
-import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  signal,
+} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {ErpCheckBox} from '../../controls/check-box/check-box';
 import {ErpColorPicker} from '../../controls/color-picker/color-picker';
@@ -85,6 +90,31 @@ export class InputControls {
   readonly variants = ['solid', 'outline', 'subtle', 'ghost', 'text'] as const;
   readonly clearValue = signal('قيمة قابلة للمسح');
   readonly checkValue = signal(false);
+  readonly mixedCheckValue = signal(false);
+  readonly requiredCheckValue = signal(false);
+  readonly switchEnabled = signal(true);
+  readonly switchAutoUpdate = signal(false);
+  readonly neonEnabled = signal(true);
+  readonly starterTile = signal(true);
+  readonly proTile = signal(false);
+  readonly taskValues = signal<readonly boolean[]>([
+    true,
+    false,
+    false,
+    false,
+  ]);
+  readonly taskDoneCount = computed(
+    () => this.taskValues().filter(Boolean).length,
+  );
+  readonly allTasksChecked = computed(
+    () => this.taskDoneCount() === this.taskValues().length,
+  );
+  readonly someTasksChecked = computed(
+    () =>
+      this.taskDoneCount() > 0 &&
+      this.taskDoneCount() < this.taskValues().length,
+  );
+
   readonly radioValue = signal(false);
   readonly radioGroupItems: readonly ErpRadioGroupOption[] = [
     {value: 'draft', label: 'مسودة'},
@@ -120,6 +150,29 @@ export class InputControls {
   readonly iconValue = signal<'settings' | null>('settings');
   readonly itemValue = signal<string | null>('customer');
   readonly comboValue = signal<string | null>('inventory');
+  protected toggleTile(
+    event: MouseEvent,
+    target: 'starter' | 'pro',
+  ): void {
+    const element = event.target as Element;
+    if (element.closest('erp-check-box')) {
+      return;
+    }
+
+    const state = target === 'starter' ? this.starterTile : this.proTile;
+    state.update((value) => !value);
+  }
+
+  protected setTask(index: number, checked: boolean): void {
+    this.taskValues.update((values) =>
+      values.map((value, current) => (current === index ? checked : value)),
+    );
+  }
+
+  protected setAllTasks(checked: boolean): void {
+    this.taskValues.update((values) => values.map(() => checked));
+  }
+
   readonly fileEvidence = Object.freeze([
     new File(['invoice'], 'invoice-2026.pdf', {type: 'application/pdf'}),
     new File(['notes'], 'notes.txt', {type: 'text/plain'}),

@@ -216,57 +216,99 @@
   </erp-section>
 
   <erp-section class="review-group" data-review-group="boolean-choice">
-    <erp-text type="heading-2">الاختيار المنطقي والمفرد</erp-text>
+    <erp-text type="heading-2">CheckBox و RadioBox</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="md" responsive="auto">
       <erp-surface
-        class="choice-review-card"
-        data-check-box-reference-card
+        class="choice-review-card choice-review-card--wide"
+        data-check-box-size-card
         data-boolean-choice-rtl-evidence
         dir="rtl"
         border="subtle"
       >
         <erp-stack gap="default">
           <erp-stack gap="tight">
-            <erp-text type="heading-3">CheckBox — مرجع Product Owner</erp-text>
+            <erp-text type="heading-3">CheckBox — الأحجام والمحاذاة الرأسية</erp-text>
             <erp-text type="paragraph" tone="secondary">
-              الأحجام والحالات والهندسة مستمدة من القالب المعتمد، مع ألوان النظام.
+              نفس بنية القالب: sm وmd وlg وxl مع عنوان ووصف متعدد الأسطر.
             </erp-text>
           </erp-stack>
 
           <erp-check-box
             data-check-box-evidence
-            label="إشعارات البريد"
-            description="استلام تنبيه عند ورود نشاط جديد."
+            label="صغير — إشعارات البريد"
+            description="استلام تنبيه عند ورود إشارة جديدة في محادثة."
             size="sm"
+            tone="primary"
+            [ngModel]="true"
+          />
+          <erp-check-box
+            label="متوسط — الملخص الأسبوعي"
+            description="رسالة واحدة كل أسبوع تتضمن ملخصًا للنشاط الذي ربما فاتك."
+            size="md"
+            tone="primary"
+            [ngModel]="true"
+          />
+          <erp-check-box
+            label="كبير — تحديثات المنتج"
+            description="ملاحظات الإصدارات والإعلانات عن الخصائص الجديدة."
+            size="lg"
+          />
+          <erp-check-box
+            label="كبير جدًا — البرنامج التجريبي"
+            description="وصول مبكر إلى الخصائص التجريبية قبل الإطلاق العام."
+            size="xl"
+          />
+        </erp-stack>
+      </erp-surface>
+
+      <erp-surface
+        class="choice-review-card"
+        data-check-box-states-card
+        dir="rtl"
+        border="subtle"
+      >
+        <erp-stack gap="default">
+          <erp-stack gap="tight">
+            <erp-text type="heading-3">CheckBox — الحالات</erp-text>
+            <erp-text type="paragraph" tone="secondary">
+              unchecked وchecked وindeterminate وdisabled والتحقق المطلوب.
+            </erp-text>
+          </erp-stack>
+
+          <erp-check-box
+            label="خيار غير محدد"
+            description="الحالة الافتراضية قبل الاختيار."
             [ngModel]="checkValue()"
             (ngModelChange)="checkValue.set($event)"
           />
           <erp-check-box
-            label="الملخص الأسبوعي"
-            description="إرسال ملخص واحد في بداية كل أسبوع مع ملخص شامل للنشاط."
-            size="md"
+            label="خيار محدد"
+            description="اللون المحدد يأتي من tone واحد من Tokens النظام."
+            tone="secondary"
             [ngModel]="true"
-            tone="primary"
           />
           <erp-check-box
-            label="تحديد مجموعة جزئيًا"
-            description="بعض العناصر الفرعية محددة حاليًا، لذلك تظهر الحالة غير المحسومة."
-            size="lg"
-            indeterminate
+            data-check-box-mixed-evidence
+            label="تحديد جزئي"
+            description="اضغط عليه للخروج من الحالة غير المحسومة إلى اختيار عادي."
             tone="secondary"
+            indeterminate
+            [ngModel]="mixedCheckValue()"
+            (ngModelChange)="mixedCheckValue.set($event)"
           />
           <erp-check-box
             label="ميزة غير متاحة"
-            description="هذا الخيار غير متاح في السياق الحالي."
-            size="xl"
+            description="تعطيل واحد فقط بدون مضاعفة خفوت النص."
             disabled
           />
           <erp-check-box
+            data-check-box-required-evidence
             label="موافقة مطلوبة"
-            description="يجب تحديد هذا الخيار قبل المتابعة."
-            status="danger"
+            description="تظهر حالة الخطر فقط أثناء فشل required وتختفي بعد التحديد."
             required
+            [ngModel]="requiredCheckValue()"
+            (ngModelChange)="requiredCheckValue.set($event)"
           />
         </erp-stack>
       </erp-surface>
@@ -281,7 +323,7 @@
           <erp-stack gap="tight">
             <erp-text type="heading-3">CheckBox — Switch</erp-text>
             <erp-text type="paragraph" tone="secondary">
-              نفس عقد الـCheckBox والقيم، لكن بهندسة Switch كما في القالب.
+              Track واضح في Light وDark وحركة knob منطقية ومعكوسة في RTL فقط.
             </erp-text>
           </erp-stack>
 
@@ -291,17 +333,20 @@
             variant="switch"
             size="md"
             tone="primary"
-            [ngModel]="true"
+            [ngModel]="switchEnabled()"
+            (ngModelChange)="switchEnabled.set($event)"
           />
           <erp-check-box
             label="التحديث التلقائي"
             description="تثبيت التحديثات تلقائيًا في الخلفية."
             variant="switch"
             size="md"
+            [ngModel]="switchAutoUpdate()"
+            (ngModelChange)="switchAutoUpdate.set($event)"
           />
           <erp-check-box
             label="Switch كبير"
-            description="نفس السلوك مع مساحة تفاعل أكبر."
+            description="نفس المنطق مع مساحة تفاعل أكبر."
             variant="switch"
             size="lg"
             tone="secondary"
@@ -320,21 +365,22 @@
           <erp-stack gap="tight">
             <erp-text type="heading-3">CheckBox — Neon</erp-text>
             <erp-text type="paragraph" tone="secondary">
-              وهج مستمد من الـtone الحالي للنظام، بدون ألوان ثابتة من القالب.
+              الوهج مشتق من tone النظام نفسه ولا يحمل Palette مستقلة.
             </erp-text>
           </erp-stack>
 
           <erp-check-box
             label="وضع التوهج"
-            description="إظهار الحالة المحددة بوهج بصري واضح."
+            description="إظهار الحالة المحددة بوهج بصري مشتق من Accent."
             variant="neon"
             size="lg"
             tone="accent"
-            [ngModel]="true"
+            [ngModel]="neonEnabled()"
+            (ngModelChange)="neonEnabled.set($event)"
           />
           <erp-check-box
             label="الاستعداد"
-            description="مثال غير محدد لنفس نمط Neon."
+            description="الحالة غير المحددة لنفس نمط Neon."
             variant="neon"
             size="lg"
             tone="primary"
@@ -344,6 +390,115 @@
 
       <erp-surface
         class="choice-review-card"
+        data-check-box-tiles-card
+        dir="rtl"
+        border="subtle"
+      >
+        <erp-stack gap="default">
+          <erp-stack gap="tight">
+            <erp-text type="heading-3">Selectable Tiles</erp-text>
+            <erp-text type="paragraph" tone="secondary">
+              تركيب من القالب مبني فوق CheckBox بدون تحويله إلى variant جديد.
+            </erp-text>
+          </erp-stack>
+
+          <erp-stack gap="tight">
+            <erp-review-box
+              class="check-tile"
+              [attr.data-selected]="starterTile()"
+              (click)="toggleTile($event, 'starter')"
+            >
+              <erp-check-box
+                label="Starter"
+                description="للمشروعات الصغيرة والنماذج الأولية."
+                tone="primary"
+                [ngModel]="starterTile()"
+                (ngModelChange)="starterTile.set($event)"
+              />
+            </erp-review-box>
+
+            <erp-review-box
+              class="check-tile"
+              [attr.data-selected]="proTile()"
+              (click)="toggleTile($event, 'pro')"
+            >
+              <erp-check-box
+                label="Pro"
+                description="تحليلات ودعم أولوية فوق مزايا Starter."
+                tone="primary"
+                [ngModel]="proTile()"
+                (ngModelChange)="proTile.set($event)"
+              />
+            </erp-review-box>
+          </erp-stack>
+        </erp-stack>
+      </erp-surface>
+
+      <erp-surface
+        class="choice-review-card choice-review-card--wide"
+        data-check-box-task-card
+        dir="rtl"
+        border="subtle"
+      >
+        <erp-stack gap="default">
+          <erp-stack gap="tight">
+            <erp-text type="heading-3">Select All و Indeterminate</erp-text>
+            <erp-text type="caption" tone="secondary">
+              {{ taskDoneCount() }} من {{ taskValues().length }} مكتملة
+            </erp-text>
+          </erp-stack>
+
+          <erp-check-box
+            data-check-box-task-master
+            label="تحديد كل المهام"
+            size="lg"
+            tone="primary"
+            [indeterminate]="someTasksChecked()"
+            [ngModel]="allTasksChecked()"
+            (ngModelChange)="setAllTasks($event)"
+          />
+
+          <erp-divider />
+
+          <erp-stack class="check-task-list" gap="default">
+            <erp-review-box class="check-task" [attr.data-completed]="taskValues()[0]">
+              <erp-check-box
+                label="تصميم القسم الرئيسي"
+                description="مراعاة تخطيطات سطح المكتب والشاشات الصغيرة."
+                [ngModel]="taskValues()[0]"
+                (ngModelChange)="setTask(0, $event)"
+              />
+            </erp-review-box>
+            <erp-review-box class="check-task" [attr.data-completed]="taskValues()[1]">
+              <erp-check-box
+                label="ربط تدفق الدفع"
+                description="إكمال مسارات الدفع والتحقق من الحالات."
+                [ngModel]="taskValues()[1]"
+                (ngModelChange)="setTask(1, $event)"
+              />
+            </erp-review-box>
+            <erp-review-box class="check-task" [attr.data-completed]="taskValues()[2]">
+              <erp-check-box
+                label="كتابة توثيق المكوّن"
+                description="تغطية API والـvariants وملاحظات الوصول."
+                [ngModel]="taskValues()[2]"
+                (ngModelChange)="setTask(2, $event)"
+              />
+            </erp-review-box>
+            <erp-review-box class="check-task" [attr.data-completed]="taskValues()[3]">
+              <erp-check-box
+                label="إطلاق نسخة المراجعة"
+                description="تجهيز النسخة وإبلاغ فريق الاختبار."
+                [ngModel]="taskValues()[3]"
+                (ngModelChange)="setTask(3, $event)"
+              />
+            </erp-review-box>
+          </erp-stack>
+        </erp-stack>
+      </erp-surface>
+
+      <erp-surface
+        class="choice-review-card choice-review-card--wide"
         data-radio-current-card
         dir="rtl"
         border="subtle"
@@ -352,7 +507,7 @@
           <erp-stack gap="tight">
             <erp-text type="heading-3">RadioBox — الحالي</erp-text>
             <erp-text type="paragraph" tone="secondary">
-              هذا الجزء لم يبدأ تصحيحه بالمرجع بعد.
+              هذا الجزء لم يبدأ تصحيحه بمرجعه بعد، لذلك هو معزول عن مراجعة CheckBox.
             </erp-text>
           </erp-stack>
 

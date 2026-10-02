@@ -102,7 +102,7 @@ describe('ErpCheckBox', () => {
     expect(host.querySelector('erp-icon')).toBeNull();
   });
 
-  it('forwards indeterminate and blocks invalid or disabled user changes', () => {
+  it('leaves indeterminate on user activation and re-arms it only when the input changes', () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
@@ -111,7 +111,33 @@ describe('ErpCheckBox', () => {
 
     fixture.componentRef.setInput('indeterminate', true);
     fixture.detectChanges();
+
     expect(native.indeterminate).toBe(true);
+    expect(hostAttribute(fixture, 'data-check-box-indeterminate')).toBe('true');
+
+    native.checked = true;
+    native.dispatchEvent(new Event('change'));
+    fixture.detectChanges();
+
+    expect(onChange).toHaveBeenCalledWith(true);
+    expect(native.indeterminate).toBe(false);
+    expect(hostAttribute(fixture, 'data-check-box-indeterminate')).toBe('false');
+
+    fixture.componentRef.setInput('indeterminate', false);
+    fixture.detectChanges();
+    fixture.componentRef.setInput('indeterminate', true);
+    fixture.detectChanges();
+
+    expect(native.indeterminate).toBe(true);
+    expect(hostAttribute(fixture, 'data-check-box-indeterminate')).toBe('true');
+  });
+
+  it('blocks invalid or disabled user changes', () => {
+    const fixture = create();
+    const control = fixture.componentInstance;
+    const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
+    const onChange = vi.fn();
+    control.registerOnChange(onChange);
 
     fixture.componentRef.setInput('disabled', true);
     fixture.detectChanges();
@@ -176,6 +202,7 @@ describe('ErpCheckBox', () => {
     expect(control.valid()).toBe(false);
     expect(control.errors()).toEqual(['القيمة مطلوبة.']);
     expect(native.getAttribute('aria-invalid')).toBe('true');
+    expect(hostAttribute(fixture, 'data-check-box-status')).toBe('danger');
 
     native.checked = true;
     native.dispatchEvent(new Event('change'));
@@ -183,6 +210,7 @@ describe('ErpCheckBox', () => {
 
     expect(control.inputState()).toBe('valid-entry');
     expect(control.valid()).toBe(true);
+    expect(hostAttribute(fixture, 'data-check-box-status')).toBe('none');
   });
 });
 

@@ -133,3 +133,25 @@ execution:
 - the full diff must remain bounded to the current component wave.
 
 Local `npm run verify:clean` remains the canonical executable gate.
+
+
+## CheckBox V4 — video-derived closure candidate
+
+Product Owner video review reopened CheckBox after V3 and produced a bounded V4
+correction before RadioBox may begin.
+
+V4 covers:
+
+- ordinary system selected tone instead of inverse neutral;
+- visible Switch OFF track in Light and Dark;
+- user activation exits indeterminate state;
+- required danger derives from validation and recovers after selection;
+- one disabled attenuation path;
+- exact four reference size geometries;
+- dedicated Size / States / Switch / Neon / Selectable Tiles /
+  Select All & Task List review evidence;
+- removal of forced equal-height review-card whitespace.
+
+Pre-handoff static source/governance audit for V4: **85/85 PASS**.
+
+RadioBox remains unopened until V4 is canonically green and visually accepted.

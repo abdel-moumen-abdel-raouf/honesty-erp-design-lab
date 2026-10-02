@@ -1,0 +1,30 @@
+:host([data-check-box-variant='neon'][data-check-box-checked='true'])
+  .check-box__visual,
+:host([data-check-box-variant='neon'][data-check-box-indeterminate='true'])
+  .check-box__visual {
+  box-shadow: 0 0 calc(var(--honesty-check-box-control-size) * 0.42)
+      color-mix(in srgb, var(--honesty-check-box-fill-color)
+        var(--honesty-check-box-neon-glow-near-opacity), transparent),
+    0 0 calc(var(--honesty-check-box-control-size) * 1.08)
+      color-mix(in srgb, var(--honesty-check-box-fill-color)
+        var(--honesty-check-box-neon-glow-mid-opacity), transparent),
+    0 0 calc(var(--honesty-check-box-control-size) * 2)
+      color-mix(in srgb, var(--honesty-check-box-fill-color)
+        var(--honesty-check-box-neon-glow-far-opacity), transparent),
+    inset 0 0 calc(var(--honesty-check-box-control-size) * 0.5)
+      color-mix(in srgb, var(--honesty-check-box-mark-color)
+        var(--honesty-check-box-neon-inner-opacity), transparent);
+  animation: honesty-check-box-neon-pulse
+    var(--honesty-check-box-neon-pulse-duration)
+    var(--honesty-check-box-transition-easing) infinite;
+}
+
+@keyframes honesty-check-box-neon-pulse {
+  50% { filter: brightness(1.2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host([data-check-box-variant='neon']) .check-box__visual {
+    animation: none;
+  }
+}
