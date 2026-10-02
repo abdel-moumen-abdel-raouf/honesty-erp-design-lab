@@ -2232,3 +2232,156 @@ Overlay/Confirm state. Existing pending review/correction work must be completed
 before any new family is opened.
 
 <!-- CHATGPT_BOTTOM_UP_REFERENCE_FIRST_LAW_2026_10_02_END -->
+
+
+<!-- CHATGPT_BUTTON_COMPOSITES_PO_CORRECTION_2026_10_02_START -->
+## 2026-10-02 — Product Owner Button Composites correction implemented
+
+### Product Owner findings and references
+
+The Product Owner reviewed the existing `/controls/buttons` Button Composites
+evidence and supplied explicit visual/behavior authority.
+
+`ErpButtonGroup`:
+
+- reference:
+  `https://getbootstrap.com/docs/4.0/components/button-group/`;
+- finding: attached buttons were visually separated and did not complete one
+  connected group;
+- required law: independent actions, but one connected visual entity when
+  `attached=true`, with logical outer radii and controlled internal seams.
+
+`ErpSplitButton`:
+
+- reference:
+  `https://cdn.dribbble.com/userupload/20508363/file/original-bc0de18cc434c597141bc6d3544e84c5.png?resize=1024x682&vertical=center`;
+- finding: primary action and menu trigger looked like separate controls;
+- required law: two independent interaction segments inside one unified visual
+  surface.
+
+`ErpFabMenu`:
+
+- references:
+  - `https://firebasestorage.googleapis.com/v0/b/design-spec/o/projects%2Fgoogle-material-3%2Fimages%2Fm0aj42vs-Diff%20GM3%20Expressive.png?alt=media&token=b0d9f87d-66c0-48f4-9a11-e312b5b207ef`;
+  - `https://firebasestorage.googleapis.com/v0/b/design-spec/o/projects%2Fgoogle-material-3%2Fimages%2Fm0aj3w24-Diff%20GM2.png?alt=media&token=e358569f-0a63-4ead-a844-ad98804cee2d`;
+- finding: opening the action list changed normal layout and pushed the FAB
+  trigger;
+- required law: trigger position is stable; actions float in a top-layer
+  anchored surface above normal document content.
+
+These references satisfy the Product Owner reference-first law for this
+correction wave.
+
+### Implemented correction
+
+Button / IconButton internal attached-segment geometry:
+
+- dedicated logical attached-segment styles now support
+  `inline|block` axes and `first|middle|last` positions;
+- this is an internal composite geometry hook, not a new Page/Product authoring
+  API.
+
+ButtonGroup:
+
+- attached children now receive logical attached axis/position metadata;
+- inner radii are removed by logical position;
+- horizontal and vertical groups own controlled internal separators;
+- detached mode removes attached geometry;
+- showcase evidence now uses Save / Copy / Delete actions so the action-group
+  contract is not confused with segmented selection.
+
+SplitButton:
+
+- primary Button and menu IconButton now share solid/primary/md/default visual
+  treatment and attached logical geometry;
+- a controlled separator remains between the two interaction segments;
+- the action menu now uses `AnchoredOverlayController` plus native
+  `popover="manual"`;
+- opening SplitButton creates no blocking `ErpOverlayManager` entry;
+- the prior production `openLegacyCompactMenu` exception is superseded;
+- the legacy API remains owner-only inside OverlayManager until a separate
+  cleanup removes it;
+- action-menu content is now input/output driven rather than dependent on
+  blocking Overlay injection.
+
+FabMenu:
+
+- FAB trigger remains in normal layout and keeps its position;
+- Extended FAB actions live in a fixed native manual-Popover surface;
+- the shared Anchored Overlay geometry positions the action collection at
+  logical `block-start` / `block-end`;
+- ArrowUp/ArrowDown, Escape, focus restoration, disabled action behavior, and
+  outside-pointer dismissal remain deterministic.
+
+Showcase:
+
+- SplitButton alternatives are export-related only;
+- FabMenu actions are create-related only;
+- the two composites no longer share one semantically unrelated action list.
+
+### Regression protection
+
+Updated tests cover:
+
+- ButtonGroup inline/block attached geometry and detached reset;
+- SplitButton unified segment facets, primary output, anchored top-layer menu,
+  zero blocking Overlay entries, selection, Escape, and focus restoration;
+- FabMenu stable trigger identity, anchored positioning, selection, logical
+  placement, Escape, and focus restoration;
+- Buttons showcase evidence for all three corrected composite contracts.
+
+Button governance now requires:
+
+- attached-segment geometry in ErpButton / ErpIconButton;
+- ButtonGroup attached seams;
+- SplitButton unified authoring + manual top-layer menu;
+- FabMenu fixed manual top-layer action surface.
+
+Overlay governance now requires:
+
+- SplitButton and FabMenu anchored-overlay ownership;
+- no SplitButton `ErpOverlayManager` / `openLegacyCompactMenu` dependency;
+- Tooltip is not accepted as a SplitButton menu subsystem;
+- legacy compact Overlay production consumption is forbidden; any remaining API
+  is owner-only in OverlayManager.
+
+Formal current contract:
+
+`src/app/controls/composite-family/BUTTON_COMPOSITES_CORRECTION_V1.md`
+
+Overlay supersession record:
+
+`src/app/shared/overlay/OVERLAY_SYSTEM_V1.md`
+
+### Verification state
+
+The previously verified `0814833dc9ad53fbb27109b4b434caaaf7507de9`
+checkpoint remains the latest **Fully Green** historical technical checkpoint.
+
+This Button Composites correction changes runtime source/tests/governance after
+that checkpoint, therefore the current main must **not** be called Fully Green
+until a fresh canonical rerun passes.
+
+Recommended focused preflight:
+
+```text
+npm run component-tokens:check
+npm run erp-button:check
+npm run erp-button:check:self-test
+npm run erp-overlay:check
+npm run erp-overlay:check:self-test
+```
+
+Mandatory final gate:
+
+`npm run verify:clean`
+
+Current state:
+
+**Implemented / fresh focused verification pending / fresh canonical
+verification pending / Product Owner Button Composites Light/Dark runtime and
+visual re-review pending.**
+
+No new component family was opened. This wave corrects already implemented
+Button Composites before any future bottom-up component work.
+<!-- CHATGPT_BUTTON_COMPOSITES_PO_CORRECTION_2026_10_02_END -->
