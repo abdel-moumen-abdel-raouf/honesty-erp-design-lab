@@ -25,11 +25,25 @@
   </span>
 
   <span class="check-box__text">
-    <erp-text class="check-box__title" type="label" tone="inherit">
+    <erp-text
+      class="check-box__title"
+      type="span"
+      size="sm"
+      weight="medium"
+      lineHeight="normal"
+      tone="inherit"
+    >
       {{ trimmedLabel() }}
     </erp-text>
     @if (trimmedDescription()) {
-      <erp-text class="check-box__description" type="caption" tone="inherit">
+      <erp-text
+        class="check-box__description"
+        type="span"
+        size="2xs"
+        weight="regular"
+        lineHeight="comfortable"
+        tone="inherit"
+      >
         {{ trimmedDescription() }}
       </erp-text>
     }
