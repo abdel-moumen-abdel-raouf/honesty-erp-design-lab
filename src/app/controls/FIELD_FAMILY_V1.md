@@ -434,9 +434,14 @@ feedback is dismissed.
   pressed scale, focus-visible, disabled, indeterminate, and reduced-motion
   behavior. Reference colors are not adopted; all runtime colors remain
   Component/Semantic Token driven.
-- The supplied reference's Switch, Neon, selectable-tile, task-list, and demo
-  configurator examples are explicitly outside `ErpCheckBox`; they must not
-  be absorbed as CheckBox variants.
+- The supplied reference's own Live Config defines the CheckBox visual variants
+  as `classic | switch | neon`; `ErpCheckBox` therefore exposes those three
+  variants directly. Switch keeps the same boolean/CVA value contract while
+  changing the visual box into an RTL-aware track/knob. Neon keeps Classic
+  geometry and adds tone-derived glow/pulse treatment.
+- Selectable Tile and Task List remain composition examples because the supplied
+  file presents them as separate sections/classes rather than entries in its
+  Variant selector; they are not silently promoted to CheckBox variants.
 - `ErpRadioBox` is a Basic boolean ControlValueAccessor leaf with a required
   label, authoritative native radio semantics, checked state from the current
   CVA value, and inherited disabled behavior.
@@ -446,12 +451,14 @@ feedback is dismissed.
   writes may still clear its boolean value.
 - Both controls expose the existing Field tone, status, and size vocabularies
   where visually applicable. They own no FieldFrame chrome.
-- CheckBox renders one fixed-size custom visual box around the authoritative
-  native checkbox. The Product Owner supplied template owns the Classic
-  CheckBox visual assembly: token-driven gradient fill enters through the
-  visual box, the large check silhouette is CSS clip-path geometry, and the
-  indeterminate mark reuses the same CSS mark layer as a centered bar. No
-  ErpIcon/raw SVG mark is nested inside the CheckBox visual box.
+- CheckBox renders one custom visual assembly around the authoritative native
+  checkbox. The Product Owner supplied template owns the Classic/Switch/Neon
+  geometry. Selected Classic/Neon fill uses one current ERP system tone
+  (no gradient); the large check silhouette is CSS clip-path geometry and the
+  indeterminate mark reuses the same CSS mark layer as a centered bar. Switch
+  uses the supplied proportional track/knob geometry and reverses knob travel
+  in RTL without mirroring the track. No ErpIcon/raw SVG mark is nested inside
+  the CheckBox visual box.
 - RadioBox renders one fixed circular visual around the authoritative native
   radio. Its selected dot remains centered and present in the same outer
   geometry for selected and unselected states.
