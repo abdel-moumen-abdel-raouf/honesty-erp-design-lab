@@ -439,8 +439,8 @@ export function validateOverlayContractDrift(files) {
     '--honesty-overlay-frame-header-fg: var(--honesty-color-text-primary);',
     '--honesty-overlay-frame-header-outline-width:',
     '--honesty-overlay-frame-header-outline-color: transparent;',
-    '@mixin frame-header-colored-outline',
-    'color-mix(',
+    '--honesty-overlay-frame-header-outline-color:',
+    'var(--honesty-overlay-frame-header-fg);',
     '--honesty-overlay-frame-header-bg: var(--honesty-color-brand-primary-solid);',
     '--honesty-overlay-frame-header-fg: var(--honesty-color-brand-primary-on-solid);',
     '--honesty-overlay-frame-header-bg: var(--honesty-color-brand-secondary-solid);',
@@ -464,6 +464,28 @@ export function validateOverlayContractDrift(files) {
   ]) {
     if (!tokens.includes(required)) {
       errors.push(`Overlay tokens: missing corrected contract ${required}`);
+    }
+  }
+
+  if (
+    occurrences(
+      tokens,
+      /--honesty-overlay-frame-header-outline-color:\s*var\(--honesty-overlay-frame-header-fg\);/g,
+    ) !== 8
+  ) {
+    errors.push(
+      'Overlay tokens: every colored Header tone must map outline color from the Header foreground token',
+    );
+  }
+
+  for (const forbidden of [
+    '@mixin frame-header-colored-outline',
+    'color-mix(',
+  ]) {
+    if (tokens.includes(forbidden)) {
+      errors.push(
+        `Overlay tokens: Header outline color assembly must not live in Component Tokens: ${forbidden}`,
+      );
     }
   }
 
@@ -574,7 +596,10 @@ export function validateOverlayFrameContract(files) {
     '.overlay-frame {',
     'grid-template-rows: auto minmax(',
     'color: var(--honesty-overlay-frame-header-fg);',
-    'box-shadow: inset 0 0 0 var(--honesty-overlay-frame-header-outline-width)',
+    'box-shadow:',
+    'inset 0 0 0 var(--honesty-overlay-frame-header-outline-width)',
+    'color-mix(',
+    'var(--honesty-overlay-frame-header-outline-color) 60%',
     "data-overlay-frame-header-visible='false'",
     "data-overlay-frame-footer-visible='false'",
     '.overlay-frame__body',
@@ -930,7 +955,7 @@ this.manager.completeTransition(entry.ref.id, entry.phase)`,
     ],
     [
       OVERLAY_TOKENS,
-      '--honesty-overlay-backdrop-bg: var(--honesty-color-overlay-backdrop-primary); --honesty-overlay-backdrop-blur: var(--honesty-effect-backdrop-blur-medium); --honesty-overlay-layer: x; --honesty-overlay-frame-separator-color: var(--honesty-border-default); --honesty-overlay-frame-header-bg: transparent; --honesty-overlay-frame-header-fg: var(--honesty-color-text-primary); --honesty-overlay-frame-header-outline-width: x; --honesty-overlay-frame-header-outline-color: transparent; @mixin frame-header-colored-outline { color-mix( x ); } --honesty-overlay-frame-header-bg: var(--honesty-color-brand-primary-solid); --honesty-overlay-frame-header-fg: var(--honesty-color-brand-primary-on-solid); --honesty-overlay-frame-header-bg: var(--honesty-color-brand-secondary-solid); --honesty-overlay-frame-header-fg: var(--honesty-color-brand-secondary-on-solid); --honesty-overlay-frame-header-bg: var(--honesty-color-brand-accent-solid); --honesty-overlay-frame-header-fg: var(--honesty-color-brand-accent-on-solid); --honesty-overlay-frame-header-bg: var(--honesty-color-feedback-success-surface-strong); --honesty-overlay-frame-header-fg: var(--honesty-color-feedback-success-on-strong); --honesty-overlay-frame-header-bg: var(--honesty-color-feedback-warning-surface-strong); --honesty-overlay-frame-header-fg: var(--honesty-color-action-primary-fg); --honesty-overlay-frame-header-bg: var(--honesty-color-feedback-danger-surface-strong); --honesty-overlay-frame-header-fg: var(--honesty-color-feedback-danger-on-strong); --honesty-overlay-frame-header-bg: var(--honesty-color-feedback-info-surface-strong); --honesty-overlay-frame-header-fg: var(--honesty-color-feedback-info-on-strong); --honesty-overlay-frame-header-bg: var(--honesty-color-surface-inverse); --honesty-overlay-frame-header-fg: var(--honesty-color-text-inverse); --honesty-overlay-frame-header-border-color: x; --honesty-overlay-frame-footer-border-color: x; --honesty-overlay-enter-duration: 360ms; --honesty-overlay-exit-duration: 260ms;',
+      '--honesty-overlay-backdrop-bg: var(--honesty-color-overlay-backdrop-primary); --honesty-overlay-backdrop-blur: var(--honesty-effect-backdrop-blur-medium); --honesty-overlay-layer: x; --honesty-overlay-frame-separator-color: var(--honesty-border-default); --honesty-overlay-frame-header-bg: transparent; --honesty-overlay-frame-header-fg: var(--honesty-color-text-primary); --honesty-overlay-frame-header-outline-width: x; --honesty-overlay-frame-header-outline-color: transparent; --honesty-overlay-frame-header-outline-color: var(--honesty-overlay-frame-header-fg); --honesty-overlay-frame-header-outline-color: var(--honesty-overlay-frame-header-fg); --honesty-overlay-frame-header-outline-color: var(--honesty-overlay-frame-header-fg); --honesty-overlay-frame-header-outline-color: var(--honesty-overlay-frame-header-fg); --honesty-overlay-frame-header-outline-color: var(--honesty-overlay-frame-header-fg); --honesty-overlay-frame-header-outline-color: var(--honesty-overlay-frame-header-fg); --honesty-overlay-frame-header-outline-color: var(--honesty-overlay-frame-header-fg); --honesty-overlay-frame-header-outline-color: var(--honesty-overlay-frame-header-fg); --honesty-overlay-frame-header-bg: var(--honesty-color-brand-primary-solid); --honesty-overlay-frame-header-fg: var(--honesty-color-brand-primary-on-solid); --honesty-overlay-frame-header-bg: var(--honesty-color-brand-secondary-solid); --honesty-overlay-frame-header-fg: var(--honesty-color-brand-secondary-on-solid); --honesty-overlay-frame-header-bg: var(--honesty-color-brand-accent-solid); --honesty-overlay-frame-header-fg: var(--honesty-color-brand-accent-on-solid); --honesty-overlay-frame-header-bg: var(--honesty-color-feedback-success-surface-strong); --honesty-overlay-frame-header-fg: var(--honesty-color-feedback-success-on-strong); --honesty-overlay-frame-header-bg: var(--honesty-color-feedback-warning-surface-strong); --honesty-overlay-frame-header-fg: var(--honesty-color-action-primary-fg); --honesty-overlay-frame-header-bg: var(--honesty-color-feedback-danger-surface-strong); --honesty-overlay-frame-header-fg: var(--honesty-color-feedback-danger-on-strong); --honesty-overlay-frame-header-bg: var(--honesty-color-feedback-info-surface-strong); --honesty-overlay-frame-header-fg: var(--honesty-color-feedback-info-on-strong); --honesty-overlay-frame-header-bg: var(--honesty-color-surface-inverse); --honesty-overlay-frame-header-fg: var(--honesty-color-text-inverse); --honesty-overlay-frame-header-border-color: x; --honesty-overlay-frame-footer-border-color: x; --honesty-overlay-enter-duration: 360ms; --honesty-overlay-exit-duration: 260ms;',
     ],
   ]);
 
@@ -1181,7 +1206,7 @@ this.ref().dismiss('close-action')`,
       OVERLAY_FRAME_STYLE,
       `:host { block-size: 100%; }
 .overlay-frame { display: grid; block-size: 100%; grid-template-rows: auto minmax(0, 1fr) auto; }
-.overlay-frame__header { color: var(--honesty-overlay-frame-header-fg); box-shadow: inset 0 0 0 var(--honesty-overlay-frame-header-outline-width) x; }
+.overlay-frame__header { color: var(--honesty-overlay-frame-header-fg); box-shadow: inset 0 0 0 var(--honesty-overlay-frame-header-outline-width) color-mix(in srgb, var(--honesty-overlay-frame-header-outline-color) 60%, transparent); }
 .overlay-frame[data-overlay-frame-header-visible='false'][data-overlay-frame-footer-visible='true'] {}
 .overlay-frame[data-overlay-frame-header-visible='true'][data-overlay-frame-footer-visible='false'] {}
 .overlay-frame[data-overlay-frame-header-visible='false'][data-overlay-frame-footer-visible='false'] {}
