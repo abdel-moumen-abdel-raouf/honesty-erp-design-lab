@@ -107,6 +107,8 @@ const CHECK_BOX_TOKENS =
 const CHECK_BOX_STYLES = [
   'src/app/controls/check-box/check-box.scss',
   'src/app/controls/check-box/check-box-states.scss',
+  'src/app/controls/check-box/check-box-switch.scss',
+  'src/app/controls/check-box/check-box-neon.scss',
   'src/app/controls/check-box/check-box-facets.scss',
   'src/app/controls/check-box/check-box-sizes.scss',
 ];
