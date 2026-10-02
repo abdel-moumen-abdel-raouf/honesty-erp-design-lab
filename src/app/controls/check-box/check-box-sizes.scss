@@ -3,7 +3,9 @@
 :host([data-check-box-size='sm']) { @include tokens.size-sm; }
 :host([data-check-box-size='md']) { @include tokens.size-md; }
 :host([data-check-box-size='lg']) { @include tokens.size-lg; }
-:host([data-check-box-size='xl']) { @include tokens.size-xl; }
-:host([data-check-box-size='xxl']) { @include tokens.size-xxl; }
-:host([data-check-box-size='xxxl']) { @include tokens.size-xxxl; }
-:host([data-check-box-size='xxxxl']) { @include tokens.size-xxxxl; }
+:host([data-check-box-size='xl']),
+:host([data-check-box-size='xxl']),
+:host([data-check-box-size='xxxl']),
+:host([data-check-box-size='xxxxl']) {
+  @include tokens.size-xl;
+}
