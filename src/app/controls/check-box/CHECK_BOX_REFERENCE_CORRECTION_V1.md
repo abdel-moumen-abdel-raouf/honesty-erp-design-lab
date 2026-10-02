@@ -102,3 +102,45 @@ Mandatory canonical gate:
 `npm run verify:clean`
 
 Technical PASS does not imply Product Owner visual approval.
+
+
+## 2026-10-02 — Product Owner visual rejection and V2 supersession
+
+The Product Owner reviewed the first reference-led implementation in the live
+Design Lab and rejected it as visually far from the supplied template.
+
+The first correction had retained too much of the previous CheckBox visual
+skeleton. That interpretation is superseded.
+
+Current V2 law:
+
+- `erp-checkbox.html` is a template-level visual authority for the Classic
+  CheckBox, not merely a source of general principles;
+- preserve Honesty ERP colors/tokens, but reproduce the supplied component's
+  geometry and visual assembly much more closely;
+- the selected fill is a token-driven two-stop gradient layer that scales into
+  the box;
+- the checkmark uses the supplied large clip-path silhouette rather than a
+  small nested ErpIcon;
+- indeterminate uses the same mark layer as a centered rounded bar;
+- border thickness and corner radius are proportional to control size;
+- checked/indeterminate states remove the outer border and show the proportional
+  halo;
+- focus offset is proportional to control size;
+- title/description font size and gap scale with sm/md/lg/xl as in the
+  supplied template;
+- RTL reverses only the gradient direction through a private assembly variable;
+  the checkmark silhouette is never mirrored;
+- disabled opacity and pressed scale follow the supplied Classic CheckBox
+  behavior while resolving values through the ERP token/foundation system.
+
+The Design Lab evidence must also stop presenting CheckBox/RadioBox as one
+compressed flat list. CheckBox gets its own reference-review card; RadioBox
+remains visibly marked as the current pre-reference implementation until its
+own wave opens.
+
+The previous statement that CheckBox checked/indeterminate marks must be
+semantic ErpIcon `check`/`minus` is superseded by this V2 template match.
+
+Technical verification remains necessary but does not override Product Owner
+visual rejection.
