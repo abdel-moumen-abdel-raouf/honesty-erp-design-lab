@@ -2451,3 +2451,53 @@ npm run verify:clean
 
 Do not reopen unrelated controls or start any new component family.
 <!-- CHATGPT_BUTTON_COMPOSITES_TOOLTIP_GOVERNANCE_FOLLOWUP_2026_10_02_END -->
+
+
+<!-- CHATGPT_BUTTON_COMPOSITES_ICON_FOLLOWUP_2026_10_02_START -->
+## 2026-10-02 — Button Composites verification advanced; invalid showcase icon corrected
+
+Product Owner verification on the current Button Composites correction advanced
+through:
+
+- `erp-tooltip:check` PASS;
+- `erp-tooltip:check:self-test` PASS;
+- complete lint/governance PASS.
+
+The full `npm run verify:clean` then stopped during Angular test bundle
+generation before tests executed.
+
+Exact compile failure:
+
+`src/app/showcase/button-controls/button-controls.ts:101`
+
+The create-document FabMenu showcase item used:
+
+`icon: 'document'`
+
+but `document` is not a current `ErpIconName`. The semantic icon registry
+contains `file` for this file/document concept.
+
+Bounded correction:
+
+- `eb8ea1816914d62b47363aaeb0139a2edb85b3b3` —
+  `fix(showcase): use registered file icon for create action`;
+- `4c9494b920171a58968fe9f39567b49923e5c43c` —
+  `test(fab-menu): use registered semantic file icon`;
+- `8156de8d018e4744aa389f46bfe7945c53eeab7b` —
+  `docs(buttons): record semantic icon verification follow-up`.
+
+No runtime component behavior, public API, attached geometry, anchored-overlay
+ownership, Component Token mapping, theme authority, or style budget changed.
+
+Current state:
+
+**Button Composites correction implemented / lint-governance verified /
+canonical test-typecheck-build rerun pending / Product Owner Light/Dark runtime
+and visual re-review pending.**
+
+Mandatory next gate:
+
+`npm run verify:clean`
+
+Do not open any new component family.
+<!-- CHATGPT_BUTTON_COMPOSITES_ICON_FOLLOWUP_2026_10_02_END -->
