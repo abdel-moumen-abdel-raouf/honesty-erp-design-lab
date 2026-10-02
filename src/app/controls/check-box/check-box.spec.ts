@@ -78,30 +78,26 @@ describe('ErpCheckBox', () => {
     ).toBe('A longer supporting description that may wrap onto multiple lines.');
   });
 
-  it('keeps one fixed visual box while switching centered semantic marks', () => {
+  it('keeps one fixed visual box while native state drives CSS check and indeterminate marks', () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const host = fixture.nativeElement as HTMLElement;
     const visual = host.querySelector('.check-box__visual');
 
-    expect(host.querySelectorAll('.check-box__control').length).toBe(1);
-    expect(host.querySelectorAll('.check-box__visual').length).toBe(1);
+    expect(host.querySelectorAll('.check-box__control')).toHaveLength(1);
+    expect(host.querySelectorAll('.check-box__visual')).toHaveLength(1);
     expect(host.querySelector('erp-icon')).toBeNull();
 
     control.writeValue(true);
     fixture.detectChanges();
     expect(host.querySelector('.check-box__visual')).toBe(visual);
-    expect(host.querySelector('erp-icon')?.getAttribute('data-icon-name')).toBe(
-      'check',
-    );
+    expect(host.getAttribute('data-check-box-checked')).toBe('true');
 
     fixture.componentRef.setInput('indeterminate', true);
     fixture.detectChanges();
     expect(host.querySelector('.check-box__visual')).toBe(visual);
-    expect(host.querySelector('erp-icon')?.getAttribute('data-icon-name')).toBe(
-      'minus',
-    );
-    expect(host.querySelectorAll('erp-icon').length).toBe(1);
+    expect(host.getAttribute('data-check-box-indeterminate')).toBe('true');
+    expect(host.querySelector('erp-icon')).toBeNull();
   });
 
   it('forwards indeterminate and blocks invalid or disabled user changes', () => {
