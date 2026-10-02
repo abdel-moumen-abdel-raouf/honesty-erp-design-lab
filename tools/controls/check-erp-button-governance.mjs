@@ -120,6 +120,19 @@ const APPROVED_NATIVE_BUTTON_ROOTS = new Set([
   'src/app/controls/selection-family/internal/selection-tile.html',
 ]);
 
+const BUTTON_COMPOSITE_FILES = [
+  'src/app/controls/button/button-attached-segment.scss',
+  'src/app/controls/icon-button/icon-button-attached-segment.scss',
+  'src/app/controls/button-group/button-group.html',
+  'src/app/controls/button-group/button-group.scss',
+  'src/app/controls/split-button/split-button.ts',
+  'src/app/controls/split-button/split-button.html',
+  'src/app/controls/split-button/split-button.scss',
+  'src/app/controls/fab-menu/fab-menu.ts',
+  'src/app/controls/fab-menu/fab-menu.html',
+  'src/app/controls/fab-menu/fab-menu.scss',
+];
+
 function walk(directory) {
   if (!fs.existsSync(directory)) {
     return [];
@@ -353,6 +366,135 @@ function validateControlNativeButtonSource(source, label) {
   }
 
   visit(parsed.nodes);
+  return errors;
+}
+
+function validateButtonCompositeArchitecture(files) {
+  const errors = [];
+  const buttonAttached =
+    files.get('src/app/controls/button/button-attached-segment.scss') ?? '';
+  const iconAttached =
+    files.get('src/app/controls/icon-button/icon-button-attached-segment.scss') ?? '';
+  const groupTemplate =
+    files.get('src/app/controls/button-group/button-group.html') ?? '';
+  const groupStyle =
+    files.get('src/app/controls/button-group/button-group.scss') ?? '';
+  const splitSource =
+    files.get('src/app/controls/split-button/split-button.ts') ?? '';
+  const splitTemplate =
+    files.get('src/app/controls/split-button/split-button.html') ?? '';
+  const splitStyle =
+    files.get('src/app/controls/split-button/split-button.scss') ?? '';
+  const fabSource =
+    files.get('src/app/controls/fab-menu/fab-menu.ts') ?? '';
+  const fabTemplate =
+    files.get('src/app/controls/fab-menu/fab-menu.html') ?? '';
+  const fabStyle =
+    files.get('src/app/controls/fab-menu/fab-menu.scss') ?? '';
+
+  for (const [label, source] of [
+    ['ErpButton', buttonAttached],
+    ['ErpIconButton', iconAttached],
+  ]) {
+    for (const required of [
+      "[data-attached-axis='inline'][data-attached-position='first']",
+      "[data-attached-axis='inline'][data-attached-position='middle']",
+      "[data-attached-axis='inline'][data-attached-position='last']",
+      "[data-attached-axis='block'][data-attached-position='first']",
+      "[data-attached-axis='block'][data-attached-position='middle']",
+      "[data-attached-axis='block'][data-attached-position='last']",
+    ]) {
+      if (!source.includes(required)) {
+        errors.push(`${label}: attached-segment geometry is missing ${required}`);
+      }
+    }
+  }
+
+  for (const required of [
+    'data-attached-axis',
+    'data-attached-position',
+    'attached() ? position(index) : null',
+  ]) {
+    if (!groupTemplate.includes(required)) {
+      errors.push(`ErpButtonGroup: attached template contract is missing ${required}`);
+    }
+  }
+
+  for (const required of [
+    "data-button-group-orientation='horizontal'",
+    "data-button-group-orientation='vertical'",
+    'separator-inset',
+    'separator-width',
+  ]) {
+    if (!groupStyle.includes(required)) {
+      errors.push(`ErpButtonGroup: attached visual seam is missing ${required}`);
+    }
+  }
+
+  for (const required of [
+    'AnchoredOverlayController',
+    'AnchoredOverlayGeometryResult',
+  ]) {
+    if (!splitSource.includes(required)) {
+      errors.push(`ErpSplitButton: anchored menu source is missing ${required}`);
+    }
+  }
+
+  for (const forbidden of ['ErpOverlayManager', 'openLegacyCompactMenu']) {
+    if (splitSource.includes(forbidden)) {
+      errors.push(`ErpSplitButton: legacy blocking menu dependency remains ${forbidden}`);
+    }
+  }
+
+  for (const required of [
+    'data-attached-position="first"',
+    'data-attached-position="last"',
+    'popover="manual"',
+    'variant="solid"',
+    'tone="primary"',
+    'shape="default"',
+    '<erp-action-menu-content',
+  ]) {
+    if (!splitTemplate.includes(required)) {
+      errors.push(`ErpSplitButton: unified composite template is missing ${required}`);
+    }
+  }
+
+  for (const required of [
+    '.split-button__menu',
+    'position: fixed',
+    ':popover-open',
+    'separator-inset',
+  ]) {
+    if (!splitStyle.includes(required)) {
+      errors.push(`ErpSplitButton: unified/top-layer style is missing ${required}`);
+    }
+  }
+
+  if (!fabSource.includes('AnchoredOverlayController')) {
+    errors.push('ErpFabMenu: actions must use AnchoredOverlayController');
+  }
+
+  for (const required of [
+    'popover="manual"',
+    'data-fab-menu-action',
+    'data-fab-menu-trigger',
+  ]) {
+    if (!fabTemplate.includes(required)) {
+      errors.push(`ErpFabMenu: top-layer template is missing ${required}`);
+    }
+  }
+
+  for (const required of [
+    '.fab-menu__actions',
+    'position: fixed',
+    ':popover-open',
+  ]) {
+    if (!fabStyle.includes(required)) {
+      errors.push(`ErpFabMenu: top-layer style is missing ${required}`);
+    }
+  }
+
   return errors;
 }
 
@@ -660,6 +802,74 @@ ${validRippleDefaultFixture}`,
     }
   }
 
+  const validCompositeFiles = new Map([
+    [
+      'src/app/controls/button/button-attached-segment.scss',
+      "[data-attached-axis='inline'][data-attached-position='first'] [data-attached-axis='inline'][data-attached-position='middle'] [data-attached-axis='inline'][data-attached-position='last'] [data-attached-axis='block'][data-attached-position='first'] [data-attached-axis='block'][data-attached-position='middle'] [data-attached-axis='block'][data-attached-position='last']",
+    ],
+    [
+      'src/app/controls/icon-button/icon-button-attached-segment.scss',
+      "[data-attached-axis='inline'][data-attached-position='first'] [data-attached-axis='inline'][data-attached-position='middle'] [data-attached-axis='inline'][data-attached-position='last'] [data-attached-axis='block'][data-attached-position='first'] [data-attached-axis='block'][data-attached-position='middle'] [data-attached-axis='block'][data-attached-position='last']",
+    ],
+    [
+      'src/app/controls/button-group/button-group.html',
+      'data-attached-axis data-attached-position attached() ? position(index) : null',
+    ],
+    [
+      'src/app/controls/button-group/button-group.scss',
+      "data-button-group-orientation='horizontal' data-button-group-orientation='vertical' separator-inset separator-width",
+    ],
+    [
+      'src/app/controls/split-button/split-button.ts',
+      'AnchoredOverlayController AnchoredOverlayGeometryResult',
+    ],
+    [
+      'src/app/controls/split-button/split-button.html',
+      'data-attached-position="first" data-attached-position="last" popover="manual" variant="solid" tone="primary" shape="default" <erp-action-menu-content',
+    ],
+    [
+      'src/app/controls/split-button/split-button.scss',
+      '.split-button__menu position: fixed :popover-open separator-inset',
+    ],
+    [
+      'src/app/controls/fab-menu/fab-menu.ts',
+      'AnchoredOverlayController',
+    ],
+    [
+      'src/app/controls/fab-menu/fab-menu.html',
+      'popover="manual" data-fab-menu-action data-fab-menu-trigger',
+    ],
+    [
+      'src/app/controls/fab-menu/fab-menu.scss',
+      '.fab-menu__actions position: fixed :popover-open',
+    ],
+  ]);
+
+  if (validateButtonCompositeArchitecture(validCompositeFiles).length > 0) {
+    throw new Error('ErpButton governance rejected valid Button composite architecture fixtures');
+  }
+
+  for (const [index, invalid] of [
+    new Map(validCompositeFiles).set(
+      'src/app/controls/button-group/button-group.html',
+      'data-attached-axis data-attached-position',
+    ),
+    new Map(validCompositeFiles).set(
+      'src/app/controls/split-button/split-button.ts',
+      'ErpOverlayManager openLegacyCompactMenu',
+    ),
+    new Map(validCompositeFiles).set(
+      'src/app/controls/fab-menu/fab-menu.scss',
+      '.fab-menu__actions display: flex',
+    ),
+  ].entries()) {
+    if (validateButtonCompositeArchitecture(invalid).length === 0) {
+      throw new Error(
+        `ErpButton governance accepted invalid Button composite architecture fixture ${index + 1}`,
+      );
+    }
+  }
+
   console.log('ErpButton governance checker self-test passed.');
 }
 
@@ -715,6 +925,14 @@ for (const {file, control} of RIPPLE_DEFAULT_SOURCES) {
     ),
   );
 }
+
+const buttonCompositeFiles = new Map(
+  BUTTON_COMPOSITE_FILES.map((file) => [
+    file,
+    fs.readFileSync(path.join(ROOT, file), 'utf8'),
+  ]),
+);
+errors.push(...validateButtonCompositeArchitecture(buttonCompositeFiles));
 
 if (errors.length > 0) {
   console.error('ErpButton production governance check failed:\n');
