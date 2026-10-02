@@ -7,7 +7,7 @@
       [attr.name]="name()"
       [attr.form]="form()"
       [checked]="currentValue()"
-      [indeterminate]="indeterminate()"
+      [indeterminate]="effectiveIndeterminate()"
       [required]="required()"
       [attr.aria-invalid]="valid() ? null : 'true'"
       [disabled]="effectiveDisabled()"
