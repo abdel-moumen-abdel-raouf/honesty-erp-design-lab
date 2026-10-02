@@ -117,59 +117,59 @@
   --honesty-overlay-frame-header-outline-color: transparent;
 }
 
-@mixin frame-header-colored-outline {
-  --honesty-overlay-frame-header-outline-color:
-    color-mix(
-      in srgb,
-      var(--honesty-overlay-frame-header-fg) 60%,
-      transparent
-    );
-}
 
 @mixin frame-header-tone-primary {
-  @include frame-header-colored-outline;
   --honesty-overlay-frame-header-bg: var(--honesty-color-brand-primary-solid);
   --honesty-overlay-frame-header-fg: var(--honesty-color-brand-primary-on-solid);
+  --honesty-overlay-frame-header-outline-color:
+    var(--honesty-overlay-frame-header-fg);
 }
 
 @mixin frame-header-tone-secondary {
-  @include frame-header-colored-outline;
   --honesty-overlay-frame-header-bg: var(--honesty-color-brand-secondary-solid);
   --honesty-overlay-frame-header-fg: var(--honesty-color-brand-secondary-on-solid);
+  --honesty-overlay-frame-header-outline-color:
+    var(--honesty-overlay-frame-header-fg);
 }
 
 @mixin frame-header-tone-accent {
-  @include frame-header-colored-outline;
   --honesty-overlay-frame-header-bg: var(--honesty-color-brand-accent-solid);
   --honesty-overlay-frame-header-fg: var(--honesty-color-brand-accent-on-solid);
+  --honesty-overlay-frame-header-outline-color:
+    var(--honesty-overlay-frame-header-fg);
 }
 
 @mixin frame-header-tone-success {
-  @include frame-header-colored-outline;
   --honesty-overlay-frame-header-bg: var(--honesty-color-feedback-success-surface-strong);
   --honesty-overlay-frame-header-fg: var(--honesty-color-feedback-success-on-strong);
+  --honesty-overlay-frame-header-outline-color:
+    var(--honesty-overlay-frame-header-fg);
 }
 
 @mixin frame-header-tone-warning {
-  @include frame-header-colored-outline;
   --honesty-overlay-frame-header-bg: var(--honesty-color-feedback-warning-surface-strong);
   --honesty-overlay-frame-header-fg: var(--honesty-color-action-primary-fg);
+  --honesty-overlay-frame-header-outline-color:
+    var(--honesty-overlay-frame-header-fg);
 }
 
 @mixin frame-header-tone-danger {
-  @include frame-header-colored-outline;
   --honesty-overlay-frame-header-bg: var(--honesty-color-feedback-danger-surface-strong);
   --honesty-overlay-frame-header-fg: var(--honesty-color-feedback-danger-on-strong);
+  --honesty-overlay-frame-header-outline-color:
+    var(--honesty-overlay-frame-header-fg);
 }
 
 @mixin frame-header-tone-info {
-  @include frame-header-colored-outline;
   --honesty-overlay-frame-header-bg: var(--honesty-color-feedback-info-surface-strong);
   --honesty-overlay-frame-header-fg: var(--honesty-color-feedback-info-on-strong);
+  --honesty-overlay-frame-header-outline-color:
+    var(--honesty-overlay-frame-header-fg);
 }
 
 @mixin frame-header-tone-neutral {
-  @include frame-header-colored-outline;
   --honesty-overlay-frame-header-bg: var(--honesty-color-surface-inverse);
   --honesty-overlay-frame-header-fg: var(--honesty-color-text-inverse);
+  --honesty-overlay-frame-header-outline-color:
+    var(--honesty-overlay-frame-header-fg);
 }
