@@ -8,6 +8,8 @@
 
   --honesty-check-box-fill-color: var(--honesty-color-brand-primary-solid);
   --honesty-check-box-mark-color: var(--honesty-color-brand-primary-on-solid);
+  --honesty-check-box-switch-track-bg: var(--honesty-color-surface-canvas);
+  --honesty-check-box-switch-border-color: var(--honesty-border-strong);
   --honesty-check-box-switch-knob-off-color: var(--honesty-color-text-muted);
   --honesty-check-box-switch-knob-on-color: var(--honesty-check-box-mark-color);
   --honesty-check-box-switch-knob-elevation: var(--honesty-elevation-raised);
@@ -61,8 +63,8 @@
 }
 
 @mixin tone-neutral {
-  --honesty-check-box-fill-color: var(--honesty-color-surface-inverse);
-  --honesty-check-box-mark-color: var(--honesty-color-text-inverse);
+  --honesty-check-box-fill-color: var(--honesty-color-action-primary-bg);
+  --honesty-check-box-mark-color: var(--honesty-color-action-primary-fg);
 }
 @mixin tone-primary {
   --honesty-check-box-fill-color: var(--honesty-color-brand-primary-solid);
