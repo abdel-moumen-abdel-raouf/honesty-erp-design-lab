@@ -3110,3 +3110,60 @@ npm run verify:clean
 Do not begin RadioBox until CheckBox V3 is technically green and visually
 accepted by Product Owner.
 <!-- CHATGPT_CHECKBOX_V3_VARIANTS_SOLID_TONES_2026_10_02_END -->
+
+
+<!-- CHATGPT_CHECKBOX_V3_GOVERNANCE_MISMATCH_FOLLOWUP_2026_10_02_START -->
+## 2026-10-02 — CheckBox V3 governance false-positive corrected; pre-handoff static audit added
+
+Product Owner local verification on
+`1ce479b53bb440bb80c0cd1519db83ca285ccd21` produced:
+
+- standalone test suite PASS;
+- **89/89 test files PASS**;
+- **683/683 tests PASS**;
+- `npm run verify:clean` then stopped at exactly one
+  `erp-field:check` CheckBox governance finding.
+
+Root cause:
+
+- production Switch styles use private variables
+  `--_switch-off` and `--_switch-on`;
+- the governance checker still required stale pre-compaction private names
+  `--_honesty-check-box-switch-off` and
+  `--_honesty-check-box-switch-on`.
+
+Bounded correction:
+
+- `aac51a5fcdfecb3eeb9ee148e07799a38e5519ed` —
+  `fix(governance): align checkbox switch private variables`;
+- no CheckBox runtime source, template, Component Tokens, public API, visual
+  behavior, or showcase implementation changed.
+
+Post-correction static source-to-governance audit:
+
+- 47 CheckBox governance predicates checked against current production source;
+- 47 PASS;
+- 0 mismatches.
+
+### New execution rule
+
+For every remaining component in the Product Owner reference batch, before a
+checkpoint is handed to Product Owner for local verification:
+
+1. inspect runtime/template/tokens/tests/governance together as one bounded diff;
+2. evaluate every changed governance predicate against current production source;
+3. require zero static source/governance mismatches;
+4. inspect changed dependent tests for stale selectors/literals;
+5. only then request Product Owner local execution.
+
+This is a pre-handoff static consistency gate. It reduces avoidable false
+positives but does not replace `npm run verify:clean`.
+
+Current state:
+
+**CheckBox V3 runtime/tests visually unchanged from the prior checkpoint /
+governance mismatch corrected / fresh erp-field and canonical verification
+pending / Product Owner visual re-review pending.**
+
+RadioBox remains unopened.
+<!-- CHATGPT_CHECKBOX_V3_GOVERNANCE_MISMATCH_FOLLOWUP_2026_10_02_END -->
