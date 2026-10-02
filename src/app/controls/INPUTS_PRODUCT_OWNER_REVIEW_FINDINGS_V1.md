@@ -1570,3 +1570,107 @@ Mandatory next gate:
 
 Technical green will not imply Product Owner visual approval.
 <!-- CHATGPT_SYSTEM_CONFIRM_RICH_ACTIONS_2026_10_02_END -->
+
+
+<!-- CHATGPT_CONFIRM_SOLID_HEADER_CONTRAST_2026_10_02_START -->
+## 2026-10-02 — Product Owner Confirm Header contrast correction
+
+Product Owner runtime screenshots showed that the current colored Confirm Header
+used pale/subtle semantic surfaces. The result was visually weak and the
+semantic Header icon/title treatment lacked sufficient contrast and emphasis.
+
+Product Owner proposed that the Confirm Header use the same semantic color as
+the primary Confirm button.
+
+### Corrected law
+
+For System Confirm, when `headerTone` is not explicitly supplied, Header tone
+now follows the primary Confirm action tone:
+
+- default Confirm intent -> `primary`;
+- warning Confirm intent -> `warning`;
+- danger Confirm intent -> `danger`.
+
+The caller may still explicitly override `headerTone`, including
+`headerTone: 'default'` to request the ordinary Overlay Header appearance.
+
+### Solid Header mapping
+
+Non-default Overlay Header tones now use the same **solid semantic background**
+roles as solid system Buttons:
+
+- primary -> Brand Primary solid;
+- secondary -> Brand Secondary solid;
+- accent -> Brand Accent solid;
+- success -> Feedback Success surface-strong;
+- warning -> Feedback Warning surface-strong;
+- danger -> Feedback Danger surface-strong;
+- info -> Feedback Info surface-strong;
+- neutral -> inverse surface.
+
+Foreground uses the corresponding on-solid/inverse role. Warning intentionally
+uses the same foreground role as the system Warning Button.
+
+### Complete contrast correction
+
+Changing background alone is forbidden because that would leave child controls
+on stale tones.
+
+For every non-default colored Header:
+- semantic Header icon uses inherited on-solid foreground;
+- title uses inherited on-solid foreground;
+- subtitle uses inherited on-solid foreground;
+- Header Close IconButton switches from neutral Ghost to **Solid with the same
+  semantic Header tone**, preserving on-solid icon contrast.
+
+For the default Overlay Header, existing behavior remains unchanged:
+- transparent/default background;
+- primary title/icon;
+- secondary subtitle;
+- neutral Ghost Close button.
+
+No raw palette values, consumer CSS overrides, or theme-specific local hacks
+were introduced.
+
+### Implementation checkpoints
+
+- `f10191242d3572b6fa03bbec1f87c4079ce41e90`
+  `fix(confirm): match Header contrast to solid action tone`;
+- `865ff5f1dcabf78a2f02538e5ab8990d5297b092`
+  `test(confirm): cover solid Header contrast contract`;
+- `31ee219c15ae949752f59a426811ce79704675fb`
+  `chore(confirm): govern solid Header contrast`.
+
+### Tests / governance
+
+Coverage now protects:
+- System Confirm default Header tone equals its Confirm action tone;
+- default / warning / danger mapping;
+- colored Header semantic icon uses inherited foreground;
+- title/subtitle use inherited foreground;
+- Close uses solid presentation and matching semantic tone;
+- default non-colored Header preserves previous primary/secondary/Ghost
+  presentation;
+- Overlay Header Component Tokens must use solid + on-solid semantic mappings,
+  preventing regression back to pastel/subtle surfaces.
+
+Pre-rerun evidence:
+- ErpConfirmDialog governance syntax PASS;
+- ErpConfirmDialog internal self-test PASS;
+- ErpOverlay governance syntax PASS;
+- ErpOverlay internal self-test PASS;
+- ErpField governance syntax PASS;
+- ErpField internal self-test PASS;
+- actual current Confirm source contract validation: zero errors.
+
+### Current state
+
+**Implemented / canonical verification pending / Product Owner runtime
+re-review pending.**
+
+Mandatory next technical gate:
+`npm run verify:clean`.
+
+After technical green, Product Owner must visually confirm the corrected solid
+Headers and icon/text/Close contrast in Light and Dark.
+<!-- CHATGPT_CONFIRM_SOLID_HEADER_CONTRAST_2026_10_02_END -->
