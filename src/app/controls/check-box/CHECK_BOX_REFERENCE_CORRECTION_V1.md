@@ -34,15 +34,10 @@ Reference size geometry:
 - `xl = 38px`.
 
 The existing ERP public `ErpFieldSize` union also contains
-`xxl/xxxl/xxxxl`. Those are retained for compatibility as explicit ERP
-extensions beyond the supplied reference:
-
-- `xxl = 44px`;
-- `xxxl = 50px`;
-- `xxxxl = 56px`.
-
-These upper three sizes are an ERP adaptation, not a claim about the supplied
-reference.
+`xxl/xxxl/xxxxl`. CheckBox keeps accepting those values for compatibility,
+but this component now clamps all three to the supplied template's X-Large
+38px geometry. The CheckBox visual scale therefore has exactly the four
+reference geometries rather than inventing unsupported larger designs.
 
 ## Variant and composition boundary
 
@@ -320,3 +315,70 @@ Product Owner to pull and run verification:
 
 This does not replace `npm run verify:clean`; it prevents avoidable stale
 checker/source mismatches from being handed to the Product Owner.
+
+
+## 2026-10-03 — Product Owner video review / V4 correction
+
+The Product Owner supplied a runtime screen recording covering Dark and Light,
+Classic, Switch, and the Boolean/Choice review area. The video exposed
+behavioral and review-layout defects that static tests did not cover.
+
+Binding findings and corrections:
+
+1. **Neutral selected color**
+   - inverse black/white selection is rejected;
+   - default/neutral selection now resolves through the ordinary primary action
+     tone so it remains a normal system control color in both themes.
+
+2. **Switch OFF visibility**
+   - the unchecked Light switch track was too close to its white review surface;
+   - Switch now has a dedicated off-track token resolving to
+     `surface-canvas` plus `border-strong`.
+
+3. **Indeterminate activation**
+   - a literal `indeterminate` input previously re-applied the mixed visual
+     after user activation;
+   - CheckBox now owns a user-cleared indeterminate latch;
+   - user activation exits mixed state;
+   - an external change of the `indeterminate` input re-arms it.
+
+4. **Required validation**
+   - the showcase no longer hard-codes `status="danger"`;
+   - danger is derived exclusively from required validation while unchecked;
+   - selecting the required checkbox returns host status to `none`.
+
+5. **Disabled presentation**
+   - disabled no longer combines disabled text colors with whole-control opacity;
+   - the supplied template's single whole-control opacity treatment is used.
+
+6. **Size review**
+   - the review now presents the same component structure across
+     sm/md/lg/xl in one dedicated wide size card;
+   - legacy upper ERP size names remain accepted but alias to xl geometry.
+
+7. **Template compositions**
+   - Switch and Neon remain real CheckBox variants;
+   - Selectable Tiles and Select All / Task List are now represented in the
+     Design Lab as template-derived compositions built on ErpCheckBox;
+   - they are not promoted to new CheckBox variant names.
+
+8. **Task / Select All behavior**
+   - the review starts with a partial task selection;
+   - the master CheckBox displays true indeterminate state;
+   - activating the master selects all tasks and exits indeterminate;
+   - task count and completion evidence update reactively.
+
+9. **Review layout**
+   - equal-height forced cards were removed;
+   - size and task evidence use deliberate wide cards;
+   - Switch, Neon, Tiles, and current Radio evidence remain independently
+     reviewable without large artificial empty areas.
+
+10. **Pre-handoff consistency**
+    - current runtime/template/token/showcase/governance source was evaluated
+      against 85 static CheckBox predicates;
+    - 85 PASS;
+    - 0 mismatches before merge preparation.
+
+This V4 remains subject to fresh focused checks, full `npm run verify:clean`,
+and Product Owner Light/Dark visual approval.
