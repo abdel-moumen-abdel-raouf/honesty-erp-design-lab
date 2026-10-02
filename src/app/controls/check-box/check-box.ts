@@ -42,7 +42,6 @@ let nextCheckBoxId = 0;
     './check-box-states.scss',
     './check-box-facets.scss',
     './check-box-sizes.scss',
-    './check-box-variants.scss',
   ],
   host: {
     '[attr.data-check-box-tone]': 'tone()',
