@@ -1,7 +1,4 @@
-@use '../../../styles/foundation/components/check-box' as tokens;
-
 :host {
-  @include tokens.base;
   display: inline-block;
   min-width: 0;
 }
