@@ -21,6 +21,7 @@ describe('ErpCheckBox', () => {
     const native = host.querySelector('input') as HTMLInputElement;
 
     expect(reflectComponentType(ErpCheckBox)?.selector).toBe('erp-check-box');
+    expect(control.description()).toBeNull();
     expect(control.indeterminate()).toBe(false);
     expect(control.tone()).toBe('neutral');
     expect(control.status()).toBe('none');
@@ -30,6 +31,7 @@ describe('ErpCheckBox', () => {
     expect(native.disabled).toBe(false);
     expect(host.getAttribute('data-check-box-state')).toBe('ready');
     expect(host.getAttribute('data-check-box-checked')).toBe('false');
+    expect(host.getAttribute('data-check-box-has-description')).toBe('false');
     expect(host.querySelector('label')?.getAttribute('for')).toBe(native.id);
   });
 
@@ -51,6 +53,29 @@ describe('ErpCheckBox', () => {
     expect(onChange).toHaveBeenCalledOnce();
     expect(onChange).toHaveBeenCalledWith(false);
     expect(hostAttribute(fixture, 'data-check-box-checked')).toBe('false');
+  });
+
+  it('centers one control against a title and optional multiline description block', () => {
+    const fixture = create();
+    const host = fixture.nativeElement as HTMLElement;
+
+    expect(host.querySelectorAll('.check-box__control')).toHaveLength(1);
+    expect(host.querySelectorAll('.check-box__text')).toHaveLength(1);
+    expect(host.querySelector('.check-box__title')?.textContent?.trim()).toBe(
+      'Active',
+    );
+    expect(host.querySelector('.check-box__description')).toBeNull();
+
+    fixture.componentRef.setInput(
+      'description',
+      '  A longer supporting description that may wrap onto multiple lines.  ',
+    );
+    fixture.detectChanges();
+
+    expect(host.getAttribute('data-check-box-has-description')).toBe('true');
+    expect(
+      host.querySelector('.check-box__description')?.textContent?.trim(),
+    ).toBe('A longer supporting description that may wrap onto multiple lines.');
   });
 
   it('keeps one fixed visual box while switching centered semantic marks', () => {
@@ -103,7 +128,7 @@ describe('ErpCheckBox', () => {
     expect(onChange).not.toHaveBeenCalled();
   });
 
-  it('updates each public visual facet evidence attribute', () => {
+  it('updates every public visual facet without changing the one-control contract', () => {
     const fixture = create();
     fixture.componentRef.setInput('tone', 'accent');
     fixture.componentRef.setInput('status', 'warning');
@@ -145,7 +170,6 @@ describe('ErpCheckBox', () => {
     expect(control.inputState()).toBe('valid-entry');
     expect(control.valid()).toBe(true);
   });
-
 });
 
 function hostAttribute(
