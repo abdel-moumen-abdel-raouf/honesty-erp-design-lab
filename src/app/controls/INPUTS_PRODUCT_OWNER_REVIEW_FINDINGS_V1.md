@@ -2501,3 +2501,54 @@ Mandatory next gate:
 
 Do not open any new component family.
 <!-- CHATGPT_BUTTON_COMPOSITES_ICON_FOLLOWUP_2026_10_02_END -->
+
+
+<!-- CHATGPT_BUTTON_COMPOSITES_FULLY_GREEN_2026_10_02_START -->
+## 2026-10-02 — Button Composites correction reached full technical green
+
+Product Owner locally verified repository checkpoint:
+
+`e920c9377f245128d863ce15916d63c17d1321af` —
+`docs(review): record button composite icon follow-up`.
+
+Complete canonical result:
+
+- all governance checks PASS;
+- Angular lint PASS;
+- **89/89 test files PASS**;
+- **681/681 tests PASS**;
+- `typecheck:app` PASS;
+- `typecheck:spec` PASS;
+- production build PASS;
+- **Zero-warning build gate PASS**.
+
+The corrected `ErpButtonGroup`, `ErpSplitButton`, and `ErpFabMenu`
+implementation is therefore technically **Fully Green**.
+
+Important boundary:
+
+- technical green does **not** equal Product Owner visual approval or freeze;
+- the Product Owner must still complete Light/Dark runtime/visual re-review of
+  the three Button Composites;
+- no new component/family is authorized solely by this technical result;
+- bottom-up dependency ordering and Product Owner reference-first law remain
+  unchanged.
+
+Immediate product gate:
+
+1. Product Owner runtime/visual re-review of ButtonGroup;
+2. Product Owner runtime/visual re-review of SplitButton;
+3. Product Owner runtime/visual re-review of FabMenu;
+4. only after the current implemented scope is accepted may the next lowest
+   unresolved dependency be opened.
+
+The next candidate after closing current review issues remains the deferred
+Boolean/Choice visual correction layer:
+
+- `ErpCheckBox`;
+- `ErpRadioBox`;
+- then `ErpRadioGroup` re-review because it depends on RadioBox.
+
+CheckBox/RadioBox visual implementation still requires Product Owner-supplied
+references or an explicit Product Owner waiver to work without a reference.
+<!-- CHATGPT_BUTTON_COMPOSITES_FULLY_GREEN_2026_10_02_END -->
