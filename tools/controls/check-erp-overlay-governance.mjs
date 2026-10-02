@@ -731,14 +731,18 @@ export function validateOverlayFrameContract(files) {
   }
 
   const legacyUsers = [...files]
-    .filter(([, source]) => source.includes('openLegacyCompactMenu'))
+    .filter(
+      ([file, source]) =>
+        !file.endsWith('.spec.ts') &&
+        source.includes('openLegacyCompactMenu'),
+    )
     .map(([file]) => file)
     .sort();
   const expectedLegacyUsers = [OVERLAY_MANAGER, SPLIT_BUTTON_SOURCE].sort();
 
   if (JSON.stringify(legacyUsers) !== JSON.stringify(expectedLegacyUsers)) {
     errors.push(
-      'Legacy compact Overlay menu exception must remain isolated to SplitButton and OverlayManager',
+      'Legacy compact Overlay menu exception must remain isolated to SplitButton and OverlayManager production source',
     );
   }
 
@@ -1264,6 +1268,10 @@ this.ref().dismiss('close-action')`,
 [attr.aria-description]="entry.ref.config.frame && !entry.ref.config.frame.showHeader ? entry.ref.config.frame.header.subtitle : null"`,
     ],
     [SPLIT_BUTTON_SOURCE, 'openLegacyCompactMenu'],
+    [
+      'src/app/shared/overlay/overlay-manager.spec.ts',
+      'openLegacyCompactMenu',
+    ],
   ]);
 
   if (validateOverlayFrameContract(validFrame).length > 0) {
