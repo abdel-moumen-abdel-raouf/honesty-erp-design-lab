@@ -7,7 +7,6 @@ import {
   input,
 } from '@angular/core';
 import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {ErpIcon} from '../../primitives/icon/icon';
 import {ErpText} from '../../primitives/text/text';
 import {
   ErpFieldSize,
@@ -22,7 +21,7 @@ let nextCheckBoxId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-check-box',
-  imports: [ErpIcon, ErpText],
+  imports: [ErpText],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
