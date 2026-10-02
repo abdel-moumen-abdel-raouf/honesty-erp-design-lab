@@ -3,8 +3,26 @@ import {ErpOverlayManager} from '../../shared/overlay/overlay-manager';
 import {ErpSplitButton} from './split-button';
 
 describe('ErpSplitButton', () => {
+  let animationFrames: FrameRequestCallback[];
+
   beforeEach(() => {
+    vi.useFakeTimers();
+    animationFrames = [];
+    vi.stubGlobal(
+      'requestAnimationFrame',
+      vi.fn((callback: FrameRequestCallback) => {
+        animationFrames.push(callback);
+        return animationFrames.length;
+      }),
+    );
+    vi.stubGlobal('cancelAnimationFrame', vi.fn());
     TestBed.configureTestingModule({imports: [ErpSplitButton]});
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    vi.restoreAllMocks();
+    vi.useRealTimers();
   });
 
   function create() {
@@ -16,6 +34,23 @@ describe('ErpSplitButton', () => {
     ]);
     fixture.detectChanges();
     return fixture;
+  }
+
+  function flushAnimationFrames(): void {
+    while (animationFrames.length > 0) {
+      animationFrames.shift()?.(performance.now());
+    }
+  }
+
+  function installPopover(surface: HTMLElement): void {
+    Object.assign(surface, {
+      showPopover: vi.fn(() =>
+        surface.setAttribute('data-popover-open', ''),
+      ),
+      hidePopover: vi.fn(() =>
+        surface.removeAttribute('data-popover-open'),
+      ),
+    });
   }
 
   it('renders one visual entity from two logical attached segments', () => {
@@ -45,6 +80,8 @@ describe('ErpSplitButton', () => {
     fixture.componentInstance.primaryPressed.subscribe(primaryPressed);
     fixture.componentInstance.itemSelected.subscribe(selected);
     const host = fixture.nativeElement as HTMLElement;
+    const surface = host.querySelector<HTMLElement>('.split-button__menu')!;
+    installPopover(surface);
     const buttons = host.querySelectorAll<HTMLButtonElement>(
       '.split-button > erp-button button, .split-button > erp-icon-button button',
     );
@@ -52,19 +89,19 @@ describe('ErpSplitButton', () => {
     buttons[0].click();
     buttons[1].click();
     fixture.detectChanges();
+    flushAnimationFrames();
+    fixture.detectChanges();
     await Promise.resolve();
 
     expect(primaryPressed).toHaveBeenCalledOnce();
     expect(manager.entries()).toHaveLength(0);
     expect(host.getAttribute('data-split-button-open')).toBe('true');
-
-    const surface = host.querySelector<HTMLElement>('.split-button__menu');
-    expect(surface?.getAttribute('popover')).toBe('manual');
-    expect(surface?.style.left).not.toBe('');
-    expect(surface?.style.top).not.toBe('');
+    expect(surface.getAttribute('popover')).toBe('manual');
+    expect(surface.style.left).not.toBe('');
+    expect(surface.style.top).not.toBe('');
 
     surface
-      ?.querySelector<HTMLButtonElement>('[data-action-item] button')
+      .querySelector<HTMLButtonElement>('[data-action-item] button')
       ?.click();
     fixture.detectChanges();
     await Promise.resolve();
@@ -77,12 +114,17 @@ describe('ErpSplitButton', () => {
   it('dismisses the anchored menu on Escape and restores the menu trigger', async () => {
     const fixture = create();
     const host = fixture.nativeElement as HTMLElement;
+    const surface = host.querySelector<HTMLElement>('.split-button__menu')!;
+    installPopover(surface);
     const trigger = host.querySelector<HTMLButtonElement>(
       '.split-button > erp-icon-button button',
     );
 
     trigger?.click();
     fixture.detectChanges();
+    flushAnimationFrames();
+    fixture.detectChanges();
+
     document.dispatchEvent(
       new KeyboardEvent('keydown', {key: 'Escape', bubbles: true}),
     );
