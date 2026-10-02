@@ -1938,3 +1938,69 @@ visual re-review pending.**
 No new component family was opened. This wave corrects already implemented
 Button Composites before any future bottom-up component work.
 <!-- CHATGPT_BUTTON_COMPOSITES_PO_CORRECTION_2026_10_02_END -->
+
+
+<!-- CHATGPT_BUTTON_COMPOSITES_TOOLTIP_GOVERNANCE_FOLLOWUP_2026_10_02_START -->
+## 2026-10-02 — Button Composites verification advanced; Tooltip governance false-positive corrected
+
+Product Owner locally verified
+`e3de8b4d7643b812139fbab8a8a9a28c866fae5c`.
+
+Focused results:
+
+- `component-tokens:check` PASS;
+- `erp-button:check` PASS;
+- `erp-button:check:self-test` PASS;
+- `erp-overlay:check` PASS;
+- `erp-overlay:check:self-test` PASS.
+
+The full `npm run verify:clean` advanced through those gates and stopped at
+`erp-tooltip:check` with exactly two findings:
+
+- `src/app/controls/fab-menu/fab-menu.html`: manual Popover owner not yet
+  allowlisted by Tooltip governance;
+- `src/app/controls/split-button/split-button.html`: same stale allowlist.
+
+Root cause:
+
+Tooltip governance still recognized only the earlier approved anchored owners
+(Tooltip internals and SearchBox). The current Button Composites correction had
+already migrated SplitButton and FabMenu to the shared
+`AnchoredOverlayController` + native manual Popover architecture, and both
+Button and Overlay governance accepted that architecture.
+
+Bounded correction:
+
+- `26b7f29c0819ccc855e6f787f6996b99238816d6` —
+  `fix(governance): approve button composite anchored popovers`;
+- Tooltip governance now explicitly allows manual Popover markup only for:
+  - SearchBox;
+  - SplitButton;
+  - FabMenu;
+  - Tooltip-owned templates remain covered by their existing root rule;
+- checker self-test now proves SplitButton and FabMenu are valid owners;
+- arbitrary manual Popover markup elsewhere remains rejected;
+- no runtime source, public API, visual behavior, Component Token mapping,
+  theme authority, or style budget changed.
+
+Documentation follow-up:
+
+- `21744ea74e1bc4bc62bed0054c8bc238ea1ae4b8` —
+  `docs(buttons): record anchored popover governance follow-up`.
+
+Current state:
+
+**Button Composites correction implemented / focused Tooltip governance rerun
+pending / full canonical verification pending / Product Owner Light/Dark runtime
+and visual re-review pending.**
+
+Next checks:
+
+```text
+npm run erp-tooltip:check
+npm run erp-tooltip:check:self-test
+npm run verify:clean
+```
+
+Do not reopen unrelated controls or start any new component family.
+<!-- CHATGPT_BUTTON_COMPOSITES_TOOLTIP_GOVERNANCE_FOLLOWUP_2026_10_02_END -->
