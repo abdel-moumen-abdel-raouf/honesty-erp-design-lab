@@ -1,0 +1,27 @@
+:host([data-attached-axis='inline'][data-attached-position='first']) .n {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+
+:host([data-attached-axis='inline'][data-attached-position='middle']) .n {
+  border-radius: 0;
+}
+
+:host([data-attached-axis='inline'][data-attached-position='last']) .n {
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+}
+
+:host([data-attached-axis='block'][data-attached-position='first']) .n {
+  border-end-start-radius: 0;
+  border-end-end-radius: 0;
+}
+
+:host([data-attached-axis='block'][data-attached-position='middle']) .n {
+  border-radius: 0;
+}
+
+:host([data-attached-axis='block'][data-attached-position='last']) .n {
+  border-start-start-radius: 0;
+  border-start-end-radius: 0;
+}
