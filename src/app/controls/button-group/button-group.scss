@@ -12,6 +12,15 @@
   min-width: 0;
 }
 
+erp-button {
+  position: relative;
+  min-width: 0;
+}
+
+erp-button:focus-within {
+  z-index: 1;
+}
+
 :host([data-button-group-orientation='horizontal']) .button-group {
   flex-direction: row;
 }
@@ -29,11 +38,27 @@
 }
 
 :host([data-button-group-attached='true'][data-button-group-orientation='horizontal'])
-  erp-button:not(:first-child) {
-  margin-inline-start: var(--honesty-button-group-overlap);
+  erp-button:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  inset-block: var(--honesty-button-group-separator-inset);
+  inset-inline-start: 0;
+  inline-size: var(--honesty-button-group-separator-width);
+  background: var(--honesty-button-group-separator-color);
+  opacity: var(--honesty-button-group-separator-opacity);
+  pointer-events: none;
 }
 
 :host([data-button-group-attached='true'][data-button-group-orientation='vertical'])
-  erp-button:not(:first-child) {
-  margin-block-start: var(--honesty-button-group-overlap);
+  erp-button:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  inset-block-start: 0;
+  inset-inline: var(--honesty-button-group-separator-inset);
+  block-size: var(--honesty-button-group-separator-width);
+  background: var(--honesty-button-group-separator-color);
+  opacity: var(--honesty-button-group-separator-opacity);
+  pointer-events: none;
 }
