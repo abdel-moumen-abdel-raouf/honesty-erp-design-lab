@@ -5,6 +5,8 @@ import {
   computed,
   forwardRef,
   input,
+  signal,
+  SimpleChanges,
 } from '@angular/core';
 import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpText} from '../../primitives/text/text';
@@ -50,7 +52,7 @@ let nextCheckBoxId = 0;
     '[attr.data-check-box-variant]': 'variant()',
     '[attr.data-check-box-state]': 'controlState()',
     '[attr.data-check-box-checked]': 'currentValue()',
-    '[attr.data-check-box-indeterminate]': 'indeterminate()',
+    '[attr.data-check-box-indeterminate]': 'effectiveIndeterminate()',
     '[attr.data-check-box-has-description]': 'trimmedDescription().length > 0',
   },
 })
@@ -62,7 +64,12 @@ export class ErpCheckBox extends ErpInputBase<boolean> {
   readonly size = input<ErpFieldSize>('md');
   readonly variant = input<ErpCheckBoxVariant>('classic');
 
+  private readonly userClearedIndeterminate = signal(false);
+
   protected readonly controlId = `erp-check-box-${++nextCheckBoxId}`;
+  protected readonly effectiveIndeterminate = computed(
+    () => this.indeterminate() && !this.userClearedIndeterminate(),
+  );
   protected readonly trimmedDescription = computed(
     () => this.description()?.trim() ?? '',
   );
@@ -78,6 +85,14 @@ export class ErpCheckBox extends ErpInputBase<boolean> {
     super(false);
   }
 
+  override ngOnChanges(changes: SimpleChanges): void {
+    super.ngOnChanges(changes);
+
+    if (changes['indeterminate'] !== undefined) {
+      this.userClearedIndeterminate.set(false);
+    }
+  }
+
   protected override normalizeValue(value: unknown): boolean {
     return value === true;
   }
@@ -87,6 +102,10 @@ export class ErpCheckBox extends ErpInputBase<boolean> {
   }
 
   protected handleChange(event: Event): void {
+    if (this.effectiveIndeterminate()) {
+      this.userClearedIndeterminate.set(true);
+    }
+
     this.commitUserValue((event.target as HTMLInputElement).checked);
   }
 
