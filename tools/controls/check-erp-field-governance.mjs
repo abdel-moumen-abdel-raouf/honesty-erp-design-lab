@@ -1342,19 +1342,33 @@ export function validateChoiceVisualContracts(
   if (
     !checkTemplate.includes('type="checkbox"') ||
     !checkTemplate.includes('class="check-box__visual"') ||
+    !checkTemplate.includes('class="check-box__text"') ||
+    !checkTemplate.includes('class="check-box__title"') ||
+    !checkTemplate.includes('class="check-box__description"') ||
     !checkTemplate.includes('name="check"') ||
     !checkTemplate.includes('name="minus"') ||
     /<svg\b/.test(checkTemplate) ||
     !checkTokens.includes('--honesty-check-box-control-size:') ||
     !checkTokens.includes('--honesty-check-box-mark-size:') ||
+    !checkTokens.includes('--honesty-check-box-description-color:') ||
+    !checkTokens.includes('--honesty-check-box-selected-ring-width:') ||
+    !checkTokens.includes('--honesty-check-box-pressed-scale:') ||
+    !checkTokens.includes('--honesty-check-box-control-size: 1.125rem;') ||
+    !checkTokens.includes('--honesty-check-box-control-size: 1.5rem;') ||
+    !checkTokens.includes('--honesty-check-box-control-size: 1.875rem;') ||
+    !checkTokens.includes('--honesty-check-box-control-size: 2.375rem;') ||
     !checkTokens.includes('var(--honesty-motion-duration-fast)') ||
     !checkStyles.includes("data-check-box-checked='true'") ||
     !checkStyles.includes("data-check-box-indeterminate='true'") ||
+    !checkStyles.includes('.check-box__text') ||
+    !checkStyles.includes('.check-box__description') ||
+    !checkStyles.includes('.check-box:active') ||
+    !checkStyles.includes('color-mix(') ||
     !checkStyles.includes('.check-box__native:focus-visible') ||
     !checkStyles.includes('prefers-reduced-motion: reduce')
   ) {
     errors.push(
-      'CheckBox: native semantics, fixed geometry, semantic marks, state visuals, and Foundation Motion are required',
+      'CheckBox: native semantics, reference-led title/description geometry, semantic marks, selected/pressed states, and Foundation Motion are required',
     );
   }
 
@@ -1908,11 +1922,11 @@ export class ErpImagePicker extends ErpFileSelectionBase {
   }
 
   const validCheckTemplate =
-    '<input type="checkbox"><span class="check-box__visual"><erp-icon name="check" /><erp-icon name="minus" /></span>';
+    '<input type="checkbox"><span class="check-box__visual"><erp-icon name="check" /><erp-icon name="minus" /></span><span class="check-box__text"><span class="check-box__title"></span><span class="check-box__description"></span></span>';
   const validCheckTokens =
-    '--honesty-check-box-control-size: 1rem; --honesty-check-box-mark-size: 0.75rem; --honesty-check-box-transition-duration: var(--honesty-motion-duration-fast);';
+    '--honesty-check-box-control-size: 1.125rem; --honesty-check-box-control-size: 1.5rem; --honesty-check-box-control-size: 1.875rem; --honesty-check-box-control-size: 2.375rem; --honesty-check-box-mark-size: 1rem; --honesty-check-box-description-color: var(--honesty-color-text-muted); --honesty-check-box-selected-ring-width: 0.25rem; --honesty-check-box-pressed-scale: 0.86; --honesty-check-box-transition-duration: var(--honesty-motion-duration-fast);';
   const validCheckStyles =
-    ".check-box__native:focus-visible {} :host([data-check-box-checked='true']) {} :host([data-check-box-indeterminate='true']) {} @media (prefers-reduced-motion: reduce) {}";
+    ".check-box__text {} .check-box__description {} .check-box:active {} color-mix(in srgb, red 16%, transparent) .check-box__native:focus-visible {} :host([data-check-box-checked='true']) {} :host([data-check-box-indeterminate='true']) {} @media (prefers-reduced-motion: reduce) {}";
   const validRadioTemplate =
     '<input type="radio"><span class="radio-box__visual"><span class="radio-box__dot"></span></span>';
   const validRadioTokens =
