@@ -2982,3 +2982,131 @@ npm run verify:clean
 
 Do not begin RadioBox yet.
 <!-- CHATGPT_CHECKBOX_V2_STACK_GAP_FOLLOWUP_2026_10_02_END -->
+
+
+<!-- CHATGPT_CHECKBOX_V3_VARIANTS_SOLID_TONES_2026_10_02_START -->
+## 2026-10-02 — Product Owner CheckBox V3: remove gradient and implement template variants
+
+### Product Owner runtime/visual findings
+
+Product Owner reviewed CheckBox V2 in both Dark and Light.
+
+Findings:
+
+- Dark selected colors were broadly acceptable;
+- Light selected gradient treatment was not acceptable;
+- selected CheckBox color should use one ordinary ERP system tone, not a
+  gradient;
+- the prior implementation still underused the supplied template because it
+  omitted the template's Switch and Neon variants.
+
+The Product Owner clarified that the supplied template was provided to be
+implemented, not selectively reduced to only the Classic example.
+
+### Source-grounded template scope
+
+Full review of `erp-checkbox.html` confirms:
+
+- exact size classes:
+  - sm 18px;
+  - md 24px;
+  - lg 30px;
+  - xl 38px;
+- its Live Config Variant selector contains:
+  - Classic;
+  - Switch;
+  - Neon;
+- its JavaScript declares:
+  `VARIANT_CLASSES = ['cb--switch', 'cb--neon']`;
+- Selectable Tiles and Task List are separate demo/composition sections, not
+  entries in that Variant selector.
+
+Therefore current public CheckBox visual variant API is:
+
+`classic | switch | neon`
+
+with `classic` default.
+
+### Implemented V3 correction
+
+Color:
+
+- selected gradient removed completely;
+- one `--honesty-check-box-fill-color` now owns selected fill;
+- neutral maps to system inverse neutral;
+- primary / secondary / accent map to their matching solid system tones;
+- feedback statuses continue to map to matching strong feedback surfaces;
+- all mark/focus/glow colors derive from current ERP semantic/component tokens;
+- no raw template palette is adopted.
+
+Switch:
+
+- proportional track width = 1.95 × current control size;
+- knob = 0.72 × current control size;
+- travel = 0.42 × current control size;
+- full-radius track;
+- checked knob moves to on side;
+- RTL reverses travel direction only;
+- indeterminate centers/scales knob;
+- active scale = 0.95;
+- native checkbox/CVA semantics remain unchanged.
+
+Neon:
+
+- keeps Classic geometry and check/indeterminate assembly;
+- tone-derived multi-layer glow;
+- tone-derived focus outline;
+- pulse animation;
+- reduced motion disables pulse;
+- no hardcoded Neon cyan/purple reference colors.
+
+Showcase:
+
+- Classic reference card retains sm/md/lg/xl + state evidence;
+- dedicated Switch review card added;
+- dedicated Neon review card added;
+- RadioBox remains separately labelled as the current pre-reference control.
+
+Tests/governance:
+
+- CheckBox public API test now covers Classic/Switch/Neon;
+- showcase tests require all three variant evidence groups;
+- ErpField governance now rejects:
+  - missing variant API;
+  - missing Switch/Neon style ownership;
+  - gradient regression;
+  - raw hex reference colors;
+  - missing solid fill token;
+  - missing RTL-aware Switch travel;
+  - missing Neon pulse/reduced-motion;
+  - missing supplied size geometry.
+
+### Superseded assumptions
+
+The earlier ChatGPT assumption that Switch and Neon should be excluded to avoid
+a God component is superseded. The supplied template itself defines them as
+CheckBox variants, so excluding them contradicted the Product Owner reference.
+
+Selectable Tile and Task List remain composition examples only because the
+template itself classifies them separately from its Variant selector; this is a
+source-derived boundary, not an assistant-invented visual rejection.
+
+### Current state
+
+**CheckBox V3 implemented / fresh focused verification pending / fresh
+canonical verification pending / Product Owner Light/Dark visual re-review
+pending.**
+
+Required next gates:
+
+```text
+npm run component-tokens:check
+npm run erp-field:check
+npm run erp-field:check:self-test
+npm run test -- --watch=false
+npm run verify:clean
+```
+
+Do not begin RadioBox until CheckBox V3 is technically green and visually
+accepted by Product Owner.
+<!-- CHATGPT_CHECKBOX_V3_VARIANTS_SOLID_TONES_2026_10_02_END -->
