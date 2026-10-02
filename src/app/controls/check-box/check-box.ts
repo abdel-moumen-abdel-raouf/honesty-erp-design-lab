@@ -42,6 +42,8 @@ let nextCheckBoxId = 0;
   styleUrls: [
     './check-box.scss',
     './check-box-states.scss',
+    './check-box-switch.scss',
+    './check-box-neon.scss',
     './check-box-facets.scss',
     './check-box-sizes.scss',
   ],
