@@ -3280,3 +3280,60 @@ npm run verify:clean
 Do not open RadioBox until CheckBox V4 is technically green and visually
 accepted by the Product Owner.
 <!-- CHATGPT_CHECKBOX_V4_VIDEO_REVIEW_2026_10_03_END -->
+
+
+<!-- CHATGPT_CHECKBOX_V4_MERGED_CHECKPOINT_2026_10_03_START -->
+## 2026-10-03 — CheckBox V4 merged to main after final static preflight
+
+The bounded Product Owner video-derived CheckBox V4 correction was
+squash-merged to `main` at:
+
+`9aa72e456b902530aab61e6c5a3286d2180b9e07` —
+`fix(check-box): close Product Owner video findings`.
+
+The work branch used incremental commits for implementation/review, but main
+received one squash commit only.
+
+Final pre-merge audit after all source/test/governance/style-budget
+restructuring:
+
+- **139/139 static predicates PASS**;
+- **0 source/governance mismatches**;
+- CheckBox style ownership split across token-frame/base/states/Switch/Neon/
+  facets/sizes to reduce component-style budget risk;
+- InputControls review stylesheet remained below the project warning threshold
+  at source-preflight level;
+- RadioBox source remained untouched.
+
+V4 includes the Product Owner video findings:
+
+- ordinary system selected tone;
+- visible Switch OFF track in Light/Dark;
+- user activation exits indeterminate;
+- external indeterminate changes can re-arm mixed state;
+- required danger is validation-derived and recovers after checking;
+- one disabled attenuation path;
+- exact template sm/md/lg/xl visual geometries, with higher shared Field size
+  names aliasing xl for CheckBox compatibility;
+- Classic / Switch / Neon;
+- Selectable Tiles composition;
+- Select All / Task List composition;
+- removal of forced equal-height review-card whitespace.
+
+Current state:
+
+**CheckBox V4 merged / fresh executable verification pending / Product Owner
+Light-Dark visual re-review pending / RadioBox not opened.**
+
+Required executable gate:
+
+```text
+npm run component-tokens:check
+npm run erp-field:check
+npm run erp-field:check:self-test
+npm run test -- --watch=false
+npm run verify:clean
+```
+
+Do not begin RadioBox until this gate is green and CheckBox is visually accepted.
+<!-- CHATGPT_CHECKBOX_V4_MERGED_CHECKPOINT_2026_10_03_END -->
