@@ -44,6 +44,8 @@ const SELECTION_CONTRACTS =
   'src/app/controls/selection-family/selection-contracts.ts';
 const SPLIT_BUTTON_SOURCE =
   'src/app/controls/split-button/split-button.ts';
+const FAB_MENU_SOURCE =
+  'src/app/controls/fab-menu/fab-menu.ts';
 const MOTION_CONTRACTS =
   'src/app/foundation/motion/motion-contracts.ts';
 const MOTION_ADAPTER =
@@ -738,11 +740,11 @@ export function validateOverlayFrameContract(files) {
     )
     .map(([file]) => file)
     .sort();
-  const expectedLegacyUsers = [OVERLAY_MANAGER, SPLIT_BUTTON_SOURCE].sort();
+  const expectedLegacyUsers = [OVERLAY_MANAGER];
 
   if (JSON.stringify(legacyUsers) !== JSON.stringify(expectedLegacyUsers)) {
     errors.push(
-      'Legacy compact Overlay menu exception must remain isolated to SplitButton and OverlayManager production source',
+      'Legacy compact Overlay menu API must remain owner-only in OverlayManager; production controls must use the appropriate anchored or framed overlay foundation',
     );
   }
 
@@ -852,23 +854,44 @@ export function validateSelectionPickers(files) {
   return errors;
 }
 
-export function validateDeferredCompositeOverlay(files) {
+export function validateButtonCompositeOverlay(files) {
   const errors = [];
-  const file = 'src/app/controls/split-button/split-button.ts';
-  const source = files.get(file) ?? '';
+  const splitSource = files.get(SPLIT_BUTTON_SOURCE) ?? '';
+  const fabMenuSource = files.get(FAB_MENU_SOURCE) ?? '';
 
-  if (
-    !source.includes('ErpOverlayManager') ||
-    !source.includes('ErpActionMenuContent') ||
-    !source.includes('openLegacyCompactMenu')
-  ) {
+  for (const required of [
+    'AnchoredOverlayController',
+    'AnchoredOverlayGeometryResult',
+  ]) {
+    if (!splitSource.includes(required)) {
+      errors.push(
+        `${SPLIT_BUTTON_SOURCE}: SplitButton anchored menu is missing ${required}`,
+      );
+    }
+  }
+
+  for (const forbidden of [
+    'ErpOverlayManager',
+    'openLegacyCompactMenu',
+    'ErpTooltip',
+  ]) {
+    if (splitSource.includes(forbidden)) {
+      errors.push(
+        `${SPLIT_BUTTON_SOURCE}: SplitButton anchored action menu must not depend on ${forbidden}`,
+      );
+    }
+  }
+
+  if (!fabMenuSource.includes('AnchoredOverlayController')) {
     errors.push(
-      `${file}: SplitButton must use OverlayManager and its compact action menu`,
+      `${FAB_MENU_SOURCE}: FabMenu actions must use AnchoredOverlayController`,
     );
   }
 
-  if (/ErpTooltip|anchored-overlay/.test(source)) {
-    errors.push(`${file}: SplitButton action menu must not use Tooltip`);
+  if (/ErpOverlayManager|openLegacyCompactMenu/.test(fabMenuSource)) {
+    errors.push(
+      `${FAB_MENU_SOURCE}: FabMenu must remain a nonblocking anchored top-layer menu`,
+    );
   }
 
   return errors;
@@ -1099,12 +1122,16 @@ const currentPreviewMode = 'mobile';`,
 
   const validComposite = new Map([
     [
-      'src/app/controls/split-button/split-button.ts',
-      'ErpOverlayManager ErpActionMenuContent openLegacyCompactMenu',
+      SPLIT_BUTTON_SOURCE,
+      'AnchoredOverlayController AnchoredOverlayGeometryResult ErpActionMenuContent',
+    ],
+    [
+      FAB_MENU_SOURCE,
+      'AnchoredOverlayController AnchoredOverlayGeometryResult',
     ],
   ]);
-  if (validateDeferredCompositeOverlay(validComposite).length > 0) {
-    throw new Error('Overlay governance rejected valid SplitButton fixture');
+  if (validateButtonCompositeOverlay(validComposite).length > 0) {
+    throw new Error('Overlay governance rejected valid anchored Button composite fixtures');
   }
 
   const validOverlayShowcase = new Map([
@@ -1267,7 +1294,6 @@ this.ref().dismiss('close-action')`,
 [attr.aria-label]="entry.ref.config.frame && !entry.ref.config.frame.showHeader ? entry.ref.config.frame.header.title : entry.ref.config.legacyCompactMenuLabel"
 [attr.aria-description]="entry.ref.config.frame && !entry.ref.config.frame.showHeader ? entry.ref.config.frame.header.subtitle : null"`,
     ],
-    [SPLIT_BUTTON_SOURCE, 'openLegacyCompactMenu'],
     [
       'src/app/shared/overlay/overlay-manager.spec.ts',
       'openLegacyCompactMenu',
@@ -1305,12 +1331,22 @@ this.ref().dismiss('close-action')`,
       );
     }
   }
-  validComposite.set(
-    'src/app/controls/split-button/split-button.ts',
-    'ErpTooltip anchored-overlay',
+  const invalidLegacyComposite = new Map(validComposite);
+  invalidLegacyComposite.set(
+    SPLIT_BUTTON_SOURCE,
+    'ErpOverlayManager ErpActionMenuContent openLegacyCompactMenu',
   );
-  if (validateDeferredCompositeOverlay(validComposite).length === 0) {
-    throw new Error('Overlay governance accepted a SplitButton Tooltip menu');
+  if (validateButtonCompositeOverlay(invalidLegacyComposite).length === 0) {
+    throw new Error('Overlay governance accepted a legacy blocking SplitButton menu');
+  }
+
+  const invalidTooltipComposite = new Map(validComposite);
+  invalidTooltipComposite.set(
+    SPLIT_BUTTON_SOURCE,
+    'AnchoredOverlayController AnchoredOverlayGeometryResult ErpTooltip',
+  );
+  if (validateButtonCompositeOverlay(invalidTooltipComposite).length === 0) {
+    throw new Error('Overlay governance accepted Tooltip as a SplitButton menu');
   }
 
   const invalidFixtures = [
@@ -1418,7 +1454,7 @@ errors.push(...validateOverlayFrameContract(files));
 errors.push(...validateOverlayShowcase(files));
 errors.push(...validateTemporalPickers(files));
 errors.push(...validateSelectionPickers(files));
-errors.push(...validateDeferredCompositeOverlay(files));
+errors.push(...validateButtonCompositeOverlay(files));
 
 if (errors.length > 0) {
   console.error('ErpOverlay governance check failed:\n');
