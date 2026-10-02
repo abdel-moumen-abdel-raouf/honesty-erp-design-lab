@@ -382,3 +382,42 @@ Binding findings and corrections:
 
 This V4 remains subject to fresh focused checks, full `npm run verify:clean`,
 and Product Owner Light/Dark visual approval.
+
+
+## 2026-10-03 — V4 merged checkpoint and final pre-execution audit
+
+The bounded CheckBox V4 correction was squash-merged to `main` at:
+
+`9aa72e456b902530aab61e6c5a3286d2180b9e07` —
+`fix(check-box): close Product Owner video findings`.
+
+The work branch contained 33 incremental implementation commits, but `main`
+received one squash commit only.
+
+Final pre-merge static audit was rerun after the final stylesheet split and
+token-frame isolation:
+
+- 139 CheckBox runtime/template/token/test/showcase/governance predicates;
+- 139 PASS;
+- 0 static mismatches.
+
+Physical source partition was also checked before merge to reduce
+`anyComponentStyle` budget risk. The CheckBox styling is split into:
+
+- token frame;
+- base geometry;
+- generic states;
+- Switch;
+- Neon;
+- facets;
+- sizes.
+
+No RadioBox implementation was changed.
+
+Current state:
+
+**V4 merged to main / fresh local executable verification pending / Product
+Owner Light/Dark runtime and visual re-review pending.**
+
+Only after the executable gate and Product Owner visual acceptance may
+`ErpRadioBox` be opened.
