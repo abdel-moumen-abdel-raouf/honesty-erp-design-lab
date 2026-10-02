@@ -425,8 +425,18 @@ feedback is dismissed.
 ## Boolean / Choice Basics
 
 - `ErpCheckBox` is a Basic boolean ControlValueAccessor with a required label,
-  authoritative native checkbox semantics, checked state from the current CVA
-  value, inherited disabled behavior, and `indeterminate = false`.
+  optional supporting `description`, authoritative native checkbox semantics,
+  checked state from the current CVA value, inherited disabled behavior, and
+  `indeterminate = false`.
+- Its current visual contract is reference-led by the Product Owner supplied
+  `erp-checkbox.html`: one fixed rounded-square control centered against the
+  complete title/description block, semantic check/minus marks, selected halo,
+  pressed scale, focus-visible, disabled, indeterminate, and reduced-motion
+  behavior. Reference colors are not adopted; all runtime colors remain
+  Component/Semantic Token driven.
+- The supplied reference's Switch, Neon, selectable-tile, task-list, and demo
+  configurator examples are explicitly outside `ErpCheckBox`; they must not
+  be absorbed as CheckBox variants.
 - `ErpRadioBox` is a Basic boolean ControlValueAccessor leaf with a required
   label, authoritative native radio semantics, checked state from the current
   CVA value, and inherited disabled behavior.
