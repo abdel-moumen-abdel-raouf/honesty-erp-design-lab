@@ -2680,3 +2680,93 @@ Technical PASS will not equal Product Owner CheckBox visual approval.
 
 Do not begin RadioBox until this CheckBox gate is closed.
 <!-- CHATGPT_NEXT_REFERENCE_BATCH_CHECKBOX_2026_10_02_END -->
+
+
+<!-- CHATGPT_CHECKBOX_V2_VISUAL_REJECTION_2026_10_02_START -->
+## 2026-10-02 — Product Owner rejected CheckBox V1 visual result; template-match V2 implemented
+
+### Product Owner visual finding
+
+The Product Owner reviewed the live `ErpCheckBox` result and explicitly
+rejected it as far from the supplied `erp-checkbox.html` design.
+
+The rejection is authoritative even though the local canonical verification for
+that V1 correction was technically green.
+
+Observed technical result before visual rejection:
+
+- 89/89 test files PASS;
+- 682/682 tests PASS;
+- all governance/lint PASS;
+- app/spec typechecks PASS;
+- production build PASS;
+- Zero-warning build gate PASS.
+
+This is a concrete enforcement of the project law:
+
+**technical PASS != Product Owner visual approval.**
+
+### Root cause
+
+The first correction misinterpreted the supplied CheckBox file as a general
+design reference and retained too much of the previous CheckBox visual skeleton.
+
+That was incorrect.
+
+The Product Owner supplied template must be treated as template-level design
+authority for the Classic CheckBox assembly, except that its literal colors are
+replaced by Honesty ERP Component/Semantic Tokens.
+
+### V2 correction
+
+Only `ErpCheckBox` remains open.
+
+V2 now adopts the supplied Classic CheckBox much more directly:
+
+- selected fill is a two-stop gradient assembled entirely from ERP Component
+  Tokens / Semantic color roles;
+- the fill scales from 0.55 to 1 inside the visual box;
+- the checkmark uses the supplied large CSS clip-path silhouette instead of a
+  nested ErpIcon;
+- indeterminate reuses the CSS mark layer as the centered rounded bar;
+- border thickness is proportional to control size;
+- radius is proportional to control size;
+- selected halo and focus offset are proportional to control size;
+- pressed visual scale is 0.86;
+- title/description typography and gap now scale per sm/md/lg/xl reference
+  geometry;
+- RTL reverses only the gradient direction with a private
+  `--_honesty-check-box-gradient-angle`; the mark is not mirrored;
+- disabled opacity follows the reference behavior through Foundation opacity;
+- reference literal palette values remain forbidden.
+
+The Design Lab Boolean/Choice evidence was also corrected:
+
+- CheckBox now owns a dedicated reference-review card;
+- RadioBox is shown separately and clearly remains the current pre-reference
+  implementation;
+- the former compressed flat combined list is superseded.
+
+### Governance
+
+ErpField governance now rejects:
+
+- nested ErpIcon marks inside CheckBox;
+- raw SVG marks;
+- raw hex reference colors;
+- missing CSS fill/mark pseudo-element assembly;
+- missing clip-path mark;
+- missing sm/md/lg/xl supplied geometry;
+- missing RTL private gradient assembly;
+- missing checked/indeterminate/pressed/focus/reduced-motion states;
+- nested native label semantics.
+
+### Current state
+
+**CheckBox V2 implemented / fresh focused verification pending / fresh
+`npm run verify:clean` pending / Product Owner Light/Dark visual re-review
+pending.**
+
+Do not begin RadioBox until CheckBox V2 is technically green and visually
+accepted by the Product Owner.
+<!-- CHATGPT_CHECKBOX_V2_VISUAL_REJECTION_2026_10_02_END -->
