@@ -49,15 +49,20 @@ let nextCheckBoxId = 0;
     '[attr.data-check-box-state]': 'controlState()',
     '[attr.data-check-box-checked]': 'currentValue()',
     '[attr.data-check-box-indeterminate]': 'indeterminate()',
+    '[attr.data-check-box-has-description]': 'trimmedDescription().length > 0',
   },
 })
 export class ErpCheckBox extends ErpInputBase<boolean> {
+  readonly description = input<string | null>(null);
   readonly indeterminate = input(false, {transform: booleanAttribute});
   readonly tone = input<ErpFieldTone>('neutral');
   readonly status = input<ErpFieldStatus>('none');
   readonly size = input<ErpFieldSize>('md');
 
   protected readonly controlId = `erp-check-box-${++nextCheckBoxId}`;
+  protected readonly trimmedDescription = computed(
+    () => this.description()?.trim() ?? '',
+  );
   protected readonly controlState = computed(() => {
     if (this.configurationState() === 'invalid') {
       return 'invalid';
