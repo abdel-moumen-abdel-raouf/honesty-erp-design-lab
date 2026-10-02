@@ -3002,3 +3002,116 @@ pending / Product Owner visual re-review pending.**
 
 RadioBox remains unopened.
 <!-- CHATGPT_CHECKBOX_V3_GOVERNANCE_MISMATCH_FOLLOWUP_2026_10_02_END -->
+
+
+<!-- CHATGPT_CHECKBOX_V4_VIDEO_REVIEW_2026_10_03_START -->
+## 2026-10-03 — Product Owner video review opened CheckBox V4 closure candidate
+
+### Product Owner evidence
+
+The Product Owner supplied a live screen recording covering the CheckBox review
+in Dark and Light and interacting with Classic/Switch states.
+
+The video is authoritative for the runtime/visual findings below.
+
+### Findings closed in V4
+
+- neutral/default selected CheckBox must not become inverse white in Dark or
+  inverse black in Light;
+- default/neutral selection now resolves through the ordinary primary action
+  system tone;
+- unchecked Switch track must remain visibly distinct from the review surface
+  in both themes;
+- Switch OFF now uses a dedicated `surface-canvas` track and strong semantic
+  border;
+- user activation must leave indeterminate state instead of the literal input
+  immediately reasserting mixed visuals;
+- an external change to the `indeterminate` input may re-arm mixed state;
+- required danger must be validation-derived, not a permanent hard-coded
+  `status="danger"`;
+- required status returns to `none` immediately after a valid selection;
+- disabled must use one attenuation path only; whole-control reference opacity
+  remains, duplicate disabled text-color dimming was removed;
+- CheckBox review sizes are now one comparable sm/md/lg/xl scale;
+- the public shared Field size vocabulary is still accepted, but CheckBox
+  xxl/xxxl/xxxxl alias to the supplied template's 38px xl geometry instead of
+  inventing unsupported CheckBox sizes;
+- Switch and Neon remain the template-defined public CheckBox variants;
+- Selectable Tiles and Select All / Task List are now represented as
+  template-derived Design Lab compositions built on CheckBox rather than being
+  ignored;
+- the Select All evidence starts partially selected and proves true
+  indeterminate -> select-all behavior;
+- forced equal-height review cards were removed to eliminate the large empty
+  review areas visible in the earlier page.
+
+### Runtime / source correction
+
+Current V4 changes are bounded to CheckBox, its InputControls review evidence,
+dependent tests, ErpField governance, and CheckBox/Field/batch documentation.
+
+RadioBox source remains unopened.
+
+### Regression protection
+
+CheckBox unit tests now pin:
+
+- native/CVA semantics;
+- Classic/Switch/Neon variant API;
+- user-exitable indeterminate state;
+- external re-arm of indeterminate;
+- required invalid -> danger and checked -> none recovery;
+- size/facet compatibility.
+
+InputControls tests now pin:
+
+- full CheckBox reference sections;
+- exact sm/md/lg/xl evidence;
+- Switch and Neon evidence;
+- Selectable Tiles evidence;
+- Select All / Task List evidence;
+- mixed-state exit;
+- required-status recovery;
+- tile interaction;
+- task-master indeterminate -> all-selected behavior.
+
+ErpField governance now also requires:
+
+- user-exitable indeterminate implementation;
+- visible Switch OFF track token roles;
+- ordinary system selected tone;
+- no selected gradient;
+- no duplicate disabled text dimming;
+- full CheckBox reference showcase evidence;
+- validation-derived required danger;
+- task/tile interactive review model.
+
+### Pre-handoff audit
+
+Before merge preparation, current V4 source was evaluated against **85 static
+CheckBox runtime/showcase/governance predicates**:
+
+- 85 PASS;
+- 0 mismatches.
+
+This static gate does not replace executable verification.
+
+### Current state
+
+**CheckBox V4 implemented on bounded work branch / static pre-handoff audit
+PASS / fresh local executable verification pending / Product Owner Light/Dark
+visual re-review pending.**
+
+Required executable gates after merge:
+
+```text
+npm run component-tokens:check
+npm run erp-field:check
+npm run erp-field:check:self-test
+npm run test -- --watch=false
+npm run verify:clean
+```
+
+Do not open RadioBox until CheckBox V4 is technically green and visually
+accepted by the Product Owner.
+<!-- CHATGPT_CHECKBOX_V4_VIDEO_REVIEW_2026_10_03_END -->
