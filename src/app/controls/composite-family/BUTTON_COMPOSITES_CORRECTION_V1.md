@@ -155,3 +155,46 @@ Technical PASS does not equal Product Owner visual approval. After a green
 canonical gate, the Product Owner must re-review Button Composites in Light and
 Dark and confirm the attached geometry, SplitButton surface/menu behavior, and
 FabMenu no-layout-shift behavior.
+
+
+## 2026-10-02 — Tooltip governance anchored-owner follow-up
+
+Product Owner local verification at
+`e3de8b4d7643b812139fbab8a8a9a28c866fae5c` produced:
+
+- `component-tokens:check` PASS;
+- `erp-button:check` PASS;
+- `erp-button:check:self-test` PASS;
+- `erp-overlay:check` PASS;
+- `erp-overlay:check:self-test` PASS.
+
+The full `npm run verify:clean` then advanced through the Button governance
+gate and stopped at `erp-tooltip:check` with exactly two findings:
+
+- `src/app/controls/fab-menu/fab-menu.html`: manual popover markup was not in
+  the Tooltip checker's approved anchored-owner allowlist;
+- `src/app/controls/split-button/split-button.html`: same stale allowlist.
+
+This was a governance false-positive. Both controls had already been explicitly
+migrated to the shared `AnchoredOverlayController` architecture and were
+accepted by the Button and Overlay governance checks.
+
+Bounded correction:
+
+- Tooltip governance now explicitly recognizes only these non-Tooltip manual
+  Popover owners:
+  - SearchBox;
+  - SplitButton;
+  - FabMenu;
+- the checker self-test covers all three as valid anchored owners;
+- arbitrary manual Popover markup elsewhere remains invalid;
+- no runtime source, visual contract, public API, Component Token, or style
+  budget changed.
+
+Correction checkpoint:
+
+`26b7f29c0819ccc855e6f787f6996b99238816d6` —
+`fix(governance): approve button composite anchored popovers`.
+
+Fresh `erp-tooltip:check`, `erp-tooltip:check:self-test`, and complete
+`npm run verify:clean` remain mandatory.
