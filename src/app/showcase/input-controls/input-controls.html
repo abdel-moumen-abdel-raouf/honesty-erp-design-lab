@@ -273,6 +273,77 @@
 
       <erp-surface
         class="choice-review-card"
+        data-check-box-switch-card
+        dir="rtl"
+        border="subtle"
+      >
+        <erp-stack gap="default">
+          <erp-stack gap="tight">
+            <erp-text type="heading-3">CheckBox — Switch</erp-text>
+            <erp-text type="paragraph" tone="secondary">
+              نفس عقد الـCheckBox والقيم، لكن بهندسة Switch كما في القالب.
+            </erp-text>
+          </erp-stack>
+
+          <erp-check-box
+            label="الإشعارات"
+            description="تنبيهات سطح المكتب والبريد."
+            variant="switch"
+            size="md"
+            tone="primary"
+            [ngModel]="true"
+          />
+          <erp-check-box
+            label="التحديث التلقائي"
+            description="تثبيت التحديثات تلقائيًا في الخلفية."
+            variant="switch"
+            size="md"
+          />
+          <erp-check-box
+            label="Switch كبير"
+            description="نفس السلوك مع مساحة تفاعل أكبر."
+            variant="switch"
+            size="lg"
+            tone="secondary"
+            [ngModel]="true"
+          />
+        </erp-stack>
+      </erp-surface>
+
+      <erp-surface
+        class="choice-review-card"
+        data-check-box-neon-card
+        dir="rtl"
+        border="subtle"
+      >
+        <erp-stack gap="default">
+          <erp-stack gap="tight">
+            <erp-text type="heading-3">CheckBox — Neon</erp-text>
+            <erp-text type="paragraph" tone="secondary">
+              وهج مستمد من الـtone الحالي للنظام، بدون ألوان ثابتة من القالب.
+            </erp-text>
+          </erp-stack>
+
+          <erp-check-box
+            label="وضع التوهج"
+            description="إظهار الحالة المحددة بوهج بصري واضح."
+            variant="neon"
+            size="lg"
+            tone="accent"
+            [ngModel]="true"
+          />
+          <erp-check-box
+            label="الاستعداد"
+            description="مثال غير محدد لنفس نمط Neon."
+            variant="neon"
+            size="lg"
+            tone="primary"
+          />
+        </erp-stack>
+      </erp-surface>
+
+      <erp-surface
+        class="choice-review-card"
         data-radio-current-card
         dir="rtl"
         border="subtle"
