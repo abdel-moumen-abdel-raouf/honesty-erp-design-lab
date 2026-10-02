@@ -1918,3 +1918,77 @@ Mandatory next technical gate:
 
 Do not weaken the existing 4 kB / 8 kB component-style budgets.
 <!-- CHATGPT_OVERLAY_DEFAULT_POLICY_AND_HEADER_OUTLINE_2026_10_02_END -->
+
+
+<!-- CHATGPT_OVERLAY_HEADER_OUTLINE_TOKEN_GOVERNANCE_2026_10_02_START -->
+## 2026-10-02 — canonical verification exposed Header outline Component Token governance violation; correction implemented
+
+Product Owner pulled and verified
+`40b03ddc824a189bdefe16037f6687c4bc5a0430`.
+
+Observed canonical result:
+
+- `theme-authority:check` PASS;
+- `route-pages:check` PASS — 22 routed templates;
+- `component-tokens:check` FAILED before later lint/test/typecheck/build stages ran.
+
+Root cause:
+
+- Overlay `_tokens.scss` contained raw `color-mix(...)`;
+- colored Header tone facets used a nested `@include`;
+- both conflict with the repository-wide Component Token law that token mixins
+  emit Component Token custom-property declarations only and contain no raw
+  color functions.
+
+Bounded correction:
+
+- colored Header facets now map
+  `--honesty-overlay-frame-header-outline-color` from the existing
+  `--honesty-overlay-frame-header-fg` Component Token;
+- default Header keeps the outline source transparent;
+- the approved 60% `color-mix` moved to
+  `overlay-frame.scss`, where Frame presentation is assembled;
+- Component Token checker self-tests now explicitly reject raw
+  `color-mix(...)` and nested facet `@include`;
+- Overlay governance now requires eight colored outline mappings, forbids the
+  obsolete helper/color function from Overlay Component Tokens, and requires
+  the 60% mix in the Frame presentation layer;
+- no public Overlay/Confirm API, Header tone mapping, dismissal policy, blur,
+  backdrop tone, theme authority, component-style budget, or visual redesign
+  was changed.
+
+Implementation checkpoints:
+
+- `948570c918f58326146388a1febfffec34b5a95b` —
+  `fix(overlays): restore component token purity`;
+- `50768e0919897404c30b3aec8ab8423f9204e62f` —
+  `fix(overlays): assemble header outline in frame layer`;
+- `355ac02cc6d6b797eba85292f6708833b15965af` —
+  `test(governance): pin component token purity regressions`;
+- `b102d37e5e7d389758ea49cd225cbbacbbe13205` —
+  `fix(governance): align overlay outline with token framework`;
+- `c622fbfa22e8afe4c1190f46291e8676990f515c` —
+  `docs(overlays): document header outline token correction`.
+
+Current state:
+
+**Implemented / fresh canonical verification pending / Product Owner runtime
+re-review pending.**
+
+Recommended focused preflight:
+
+```text
+npm run component-tokens:check
+npm run component-tokens:check:self-test
+npm run erp-overlay:check
+npm run erp-overlay:check:self-test
+```
+
+Mandatory technical gate remains:
+
+`npm run verify:clean`.
+
+A technical PASS will not imply Product Owner visual approval. After green,
+Product Owner must runtime re-review the Overlay/Confirm Header outline and
+contrast in Light and Dark before the review state advances.
+<!-- CHATGPT_OVERLAY_HEADER_OUTLINE_TOKEN_GOVERNANCE_2026_10_02_END -->
