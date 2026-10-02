@@ -950,7 +950,7 @@ this.manager.completeTransition(entry.ref.id, entry.phase)`,
       OVERLAY_MANAGER,
       (validDriftFiles.get(OVERLAY_MANAGER) ?? '').replace(
         "blur: options.blur ?? 'medium'",
-        "blur: options.blur ?? 'medium'",
+        "blur: options.blur ?? 'low'",
       ),
     ),
     new Map(validDriftFiles).set(
