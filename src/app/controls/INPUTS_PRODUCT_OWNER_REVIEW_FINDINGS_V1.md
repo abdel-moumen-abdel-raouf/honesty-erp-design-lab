@@ -1992,3 +1992,68 @@ A technical PASS will not imply Product Owner visual approval. After green,
 Product Owner must runtime re-review the Overlay/Confirm Header outline and
 contrast in Light and Dark before the review state advances.
 <!-- CHATGPT_OVERLAY_HEADER_OUTLINE_TOKEN_GOVERNANCE_2026_10_02_END -->
+
+
+<!-- CHATGPT_OVERLAY_LEGACY_SPEC_SCAN_2026_10_02_START -->
+## 2026-10-02 — canonical verification advanced; Overlay governance false-positive corrected
+
+Product Owner pulled and verified
+`c9c43f271e43e60e44aef9a9804ea91ba464f45b`.
+
+Verified focused results:
+
+- `component-tokens:check` PASS — 46 concrete token modules;
+- `component-tokens:check:self-test` PASS;
+- `erp-confirm:check` PASS;
+- `erp-confirm:check:self-test` PASS.
+
+The focused `erp-overlay:check` and the full `npm run verify:clean` both
+stopped at:
+
+`Legacy compact Overlay menu exception must remain isolated to SplitButton and OverlayManager`.
+
+The Overlay governance self-test itself passed.
+
+Source review established that runtime isolation was still correct. The only
+literal `openLegacyCompactMenu` occurrences were:
+
+- `src/app/shared/overlay/overlay-manager.ts` — owning implementation;
+- `src/app/controls/split-button/split-button.ts` — authorized production
+  consumer;
+- `src/app/shared/overlay/overlay-manager.spec.ts` — unit-test coverage.
+
+Root cause was a governance false-positive: the production-consumer inventory
+included `*.spec.ts` files.
+
+Correction:
+
+- `0a60acff75dcbe773c7e1592c1a2707b11ce6754` —
+  `fix(governance): exclude overlay specs from legacy consumer scan`;
+- `fd41eb033e202ca9fe0e1f8dffbf44cf1fca8637` —
+  `docs(overlays): record legacy spec scan correction`.
+
+The checker now excludes specs only from this production-consumer inventory.
+The runtime rule remains exactly the same: production use is restricted to
+OverlayManager ownership and SplitButton. The self-test now includes a spec
+occurrence as valid evidence while the existing third-production-consumer
+fixture remains invalid.
+
+No runtime source, public API, visual behavior, Component Token mapping, theme
+authority, Overlay dismissal/default policy, or component-style budget changed.
+
+Current state:
+
+**Governance checker correction implemented / fresh Overlay governance rerun
+pending / full canonical verification pending / Product Owner runtime re-review
+pending.**
+
+Next checks:
+
+```text
+npm run erp-overlay:check
+npm run erp-overlay:check:self-test
+npm run verify:clean
+```
+
+Technical PASS still does not imply Product Owner visual approval.
+<!-- CHATGPT_OVERLAY_LEGACY_SPEC_SCAN_2026_10_02_END -->
