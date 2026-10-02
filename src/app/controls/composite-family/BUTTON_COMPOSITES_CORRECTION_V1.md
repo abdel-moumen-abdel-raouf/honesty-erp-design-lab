@@ -198,3 +198,40 @@ Correction checkpoint:
 
 Fresh `erp-tooltip:check`, `erp-tooltip:check:self-test`, and complete
 `npm run verify:clean` remain mandatory.
+
+
+## 2026-10-02 — registered semantic icon follow-up
+
+Fresh Product Owner verification advanced past:
+
+- Tooltip governance PASS;
+- complete lint/governance PASS.
+
+Angular test compilation then stopped before executing tests because the Button
+Composites showcase used:
+
+`icon: 'document'`
+
+for the create-document FabMenu evidence, but `document` is not a current
+`ErpIconName`.
+
+The current semantic icon registry includes `file`, which is the intended
+registered file/document concept for this specimen.
+
+Bounded correction:
+
+- showcase create-document action:
+  `document -> file`;
+- FabMenu unit-test fixture:
+  `document -> file`;
+- no runtime component behavior, public API, visual geometry, overlay ownership,
+  Component Token, or style budget changed.
+
+Correction checkpoints:
+
+- `eb8ea1816914d62b47363aaeb0139a2edb85b3b3` —
+  `fix(showcase): use registered file icon for create action`;
+- `4c9494b920171a58968fe9f39567b49923e5c43c` —
+  `test(fab-menu): use registered semantic file icon`.
+
+A fresh complete `npm run verify:clean` remains mandatory.
