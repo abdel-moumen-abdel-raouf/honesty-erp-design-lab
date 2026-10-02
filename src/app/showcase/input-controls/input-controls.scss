@@ -36,7 +36,91 @@
 }
 
 .choice-review-card {
-  min-block-size: 100%;
+  align-self: start;
+}
+
+.review-group[data-review-group='boolean-choice']
+  > erp-grid
+  > .choice-review-card--wide {
+  grid-column: 1 / -1;
+}
+
+.check-tile {
+  display: block;
+  padding: var(--honesty-space-inset-default);
+  border: var(--honesty-border-width-default)
+    var(--honesty-border-style-default) var(--honesty-border-subtle);
+  border-radius: var(--honesty-radius-surface);
+  background: var(--honesty-color-surface-default);
+  cursor: pointer;
+  transition:
+    border-color var(--honesty-motion-duration-slow)
+      var(--honesty-motion-easing-standard),
+    background var(--honesty-motion-duration-slow)
+      var(--honesty-motion-easing-standard),
+    box-shadow var(--honesty-motion-duration-slow)
+      var(--honesty-motion-easing-standard),
+    transform var(--honesty-motion-duration-slow)
+      var(--honesty-motion-easing-standard);
+}
+
+.check-tile:hover {
+  border-color:
+    color-mix(
+      in srgb,
+      var(--honesty-color-brand-primary-solid) 45%,
+      var(--honesty-border-subtle)
+    );
+  transform: translateY(-1px);
+}
+
+.check-tile[data-selected='true'] {
+  border-color:
+    color-mix(
+      in srgb,
+      var(--honesty-color-brand-primary-solid) 75%,
+      transparent
+    );
+  background:
+    color-mix(
+      in srgb,
+      var(--honesty-color-brand-primary-subtle) 72%,
+      var(--honesty-color-surface-default)
+    );
+  box-shadow:
+    var(--honesty-elevation-raised),
+    inset 0 0 0 var(--honesty-border-width-default)
+      color-mix(
+        in srgb,
+        var(--honesty-color-brand-primary-solid) 28%,
+        transparent
+      );
+  transform: translateY(-2px);
+}
+
+.check-tile:active {
+  transform: scale(0.985);
+}
+
+.check-task-list {
+  padding-inline-start: var(--honesty-space-inline-default);
+  border-inline-start: var(--honesty-border-width-emphasis)
+    var(--honesty-border-style-default) var(--honesty-border-subtle);
+}
+
+.check-task {
+  padding-block: var(--honesty-space-stack-tight);
+}
+
+.check-task[data-completed='true'] erp-check-box {
+  opacity: 0.45;
+  text-decoration-line: line-through;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .check-tile {
+    transition-duration: var(--honesty-motion-duration-instant);
+  }
 }
 
 .glass-evidence-substrate {
