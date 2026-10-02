@@ -89,14 +89,17 @@ export class ButtonControls {
     'surface',
   ];
   readonly buttonGroupItems: readonly ErpButtonGroupItem[] = [
-    {value: 'day', label: 'يوم'},
-    {value: 'week', label: 'أسبوع'},
-    {value: 'month', label: 'شهر'},
+    {value: 'save', label: 'حفظ'},
+    {value: 'copy', label: 'نسخ'},
+    {value: 'delete', label: 'حذف'},
   ];
-  readonly actionItems: readonly ErpItemPickerOption[] = [
+  readonly exportActionItems: readonly ErpItemPickerOption[] = [
     {value: 'export-pdf', label: 'تصدير PDF', icon: 'file'},
     {value: 'export-sheet', label: 'تصدير جدول', icon: 'download'},
-    {value: 'create', label: 'إنشاء عنصر', icon: 'plus'},
+  ];
+  readonly createActionItems: readonly ErpItemPickerOption[] = [
+    {value: 'create-document', label: 'إنشاء مستند', icon: 'document'},
+    {value: 'create-customer', label: 'إنشاء عميل', icon: 'customer'},
   ];
   readonly pressedCount = signal(0);
 
