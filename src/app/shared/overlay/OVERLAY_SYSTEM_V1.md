@@ -551,3 +551,45 @@ Implementation checkpoints:
 This correction is implemented but has not yet completed a fresh canonical
 `npm run verify:clean`. Technical green and Product Owner runtime re-review
 remain pending.
+
+
+## 2026-10-02 — Legacy compact-menu governance spec-scan correction
+
+Canonical verification after the Header outline Component Token correction
+advanced past the previously failing Component Token gate:
+
+- `component-tokens:check` PASS;
+- `component-tokens:check:self-test` PASS;
+- `erp-confirm:check` PASS;
+- `erp-confirm:check:self-test` PASS.
+
+The focused and full Overlay governance gate then reported:
+
+`Legacy compact Overlay menu exception must remain isolated to SplitButton and OverlayManager`.
+
+Source review found no new production consumer. The three literal occurrences
+were:
+
+- `src/app/shared/overlay/overlay-manager.ts` — the owning API;
+- `src/app/controls/split-button/split-button.ts` — the one authorized
+  production consumer;
+- `src/app/shared/overlay/overlay-manager.spec.ts` — a unit test exercising
+  the authorized API.
+
+The isolation scan incorrectly counted `*.spec.ts` files as production
+consumers. The checker now excludes spec files from this production-consumer
+inventory while keeping the exact runtime isolation law unchanged. Its
+self-test includes an OverlayManager spec occurrence as valid evidence and
+retains the existing invalid third-production-consumer fixture.
+
+Checkpoint:
+
+- `0a60acff75dcbe773c7e1592c1a2707b11ce6754` —
+  `fix(governance): exclude overlay specs from legacy consumer scan`.
+
+No Overlay runtime source, public API, visual contract, token mapping, dismissal
+policy, or component-style budget changed in this correction.
+
+A fresh local `npm run erp-overlay:check`,
+`npm run erp-overlay:check:self-test`, and complete
+`npm run verify:clean` remain mandatory.
