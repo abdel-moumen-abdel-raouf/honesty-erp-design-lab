@@ -426,3 +426,27 @@ required by non-dismissible System Confirm dialogs.
 The System Confirm contract now also supports up to two typed auxiliary actions
 and returns action IDs rather than a Boolean result. See
 `src/app/shared/confirm-dialog/CONFIRM_DIALOG_V1.md`.
+
+
+## 2026-10-02 — Solid Header contrast correction
+
+Product Owner runtime review showed that subtle/pastel Confirm Header surfaces
+did not provide the desired emphasis and the semantic Header icon lacked
+sufficient visual contrast.
+
+Corrected law:
+- a non-default Overlay Header tone uses the **same solid semantic background**
+  contract as the corresponding solid ErpButton tone;
+- Header foreground uses the corresponding on-solid semantic role;
+- Header title, subtitle, and semantic icon inherit that on-solid foreground;
+- Header Close uses a solid IconButton of the same semantic tone while the
+  Header is colored;
+- the default Overlay Header remains unchanged: transparent/default background,
+  primary title/icon, secondary subtitle, neutral ghost Close button.
+
+System Confirm defaults its Header tone to the primary Confirm action tone:
+primary for default intent, warning for warning intent, danger for danger
+intent. Explicit `headerTone` remains an override.
+
+This mapping is Component-Token-driven and theme-sensitive; no raw palette
+colors or consumer CSS overrides are permitted.

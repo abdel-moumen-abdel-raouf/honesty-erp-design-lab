@@ -41,9 +41,18 @@ export interface ErpConfirmDialogConfig {
 `headerTone` accepts the Overlay semantic Header tones:
 `default | primary | secondary | accent | success | warning | danger | info | neutral`.
 
-The default Header tone preserves the ordinary Overlay Header appearance.
-Colored Header tones use theme-sensitive subtle Semantic/Foundation surfaces;
-they do not use raw colors.
+When `headerTone` is omitted, System Confirm automatically uses the same
+semantic tone as its primary Confirm action:
+
+- default intent -> `primary` Header;
+- warning intent -> `warning` Header;
+- danger intent -> `danger` Header.
+
+A caller may still explicitly set any supported Header tone, including
+`headerTone: 'default'` to request the ordinary Overlay Header appearance.
+
+Colored Header tones use theme-sensitive **solid** Semantic/Foundation surfaces
+with their matching on-solid foreground tokens; they do not use raw colors.
 
 ### Auxiliary actions
 
@@ -130,12 +139,18 @@ The implementation extends the shared Overlay Header contract with:
 
 These remain API-driven. Consumer CSS is not the configuration mechanism.
 
-Header backgrounds map to existing theme-sensitive semantic roles:
+Header backgrounds deliberately match the solid Button color contract:
 
-- primary/secondary/accent -> Brand subtle surfaces;
-- success/warning/danger/info -> Feedback surfaces;
-- neutral -> elevated neutral surface;
+- primary/secondary/accent -> Brand solid + Brand on-solid;
+- success/warning/danger/info -> Feedback surface-strong + matching on-strong;
+- warning uses the same solid foreground role as the Warning Button;
+- neutral -> inverse surface + inverse text;
 - default -> existing transparent/default Overlay Header.
+
+For colored Headers, title, subtitle, and semantic Header icon inherit the
+Header on-solid foreground. The Header Close IconButton switches to a solid
+button of the same semantic tone, so its icon keeps the same contrast contract
+as a normal solid system button.
 
 ## System-owned Modal policy
 
@@ -160,9 +175,9 @@ Intent continues to own the default Confirm action semantics:
 - warning -> warning Header icon + warning Confirm tone;
 - danger -> error Header icon + danger Confirm tone + delete Confirm icon.
 
-`headerTone` is independent from intent, so an application can deliberately
-choose a different semantic Header background without changing the meaning of
-the Confirm action.
+By default, `headerTone` follows intent so the Header and primary Confirm
+button use the same semantic color. The caller may deliberately override
+`headerTone` without changing the meaning/tone of the Confirm action.
 
 ## Example
 

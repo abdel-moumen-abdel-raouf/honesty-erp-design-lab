@@ -424,14 +424,23 @@ export function validateOverlayContractDrift(files) {
     '--honesty-overlay-layer:',
     '--honesty-overlay-frame-separator-color: var(--honesty-border-default);',
     '--honesty-overlay-frame-header-bg: transparent;',
-    '@mixin frame-header-tone-primary',
-    '@mixin frame-header-tone-secondary',
-    '@mixin frame-header-tone-accent',
-    '@mixin frame-header-tone-success',
-    '@mixin frame-header-tone-warning',
-    '@mixin frame-header-tone-danger',
-    '@mixin frame-header-tone-info',
-    '@mixin frame-header-tone-neutral',
+    '--honesty-overlay-frame-header-fg: var(--honesty-color-text-primary);',
+    '--honesty-overlay-frame-header-bg: var(--honesty-color-brand-primary-solid);',
+    '--honesty-overlay-frame-header-fg: var(--honesty-color-brand-primary-on-solid);',
+    '--honesty-overlay-frame-header-bg: var(--honesty-color-brand-secondary-solid);',
+    '--honesty-overlay-frame-header-fg: var(--honesty-color-brand-secondary-on-solid);',
+    '--honesty-overlay-frame-header-bg: var(--honesty-color-brand-accent-solid);',
+    '--honesty-overlay-frame-header-fg: var(--honesty-color-brand-accent-on-solid);',
+    '--honesty-overlay-frame-header-bg: var(--honesty-color-feedback-success-surface-strong);',
+    '--honesty-overlay-frame-header-fg: var(--honesty-color-feedback-success-on-strong);',
+    '--honesty-overlay-frame-header-bg: var(--honesty-color-feedback-warning-surface-strong);',
+    '--honesty-overlay-frame-header-fg: var(--honesty-color-action-primary-fg);',
+    '--honesty-overlay-frame-header-bg: var(--honesty-color-feedback-danger-surface-strong);',
+    '--honesty-overlay-frame-header-fg: var(--honesty-color-feedback-danger-on-strong);',
+    '--honesty-overlay-frame-header-bg: var(--honesty-color-feedback-info-surface-strong);',
+    '--honesty-overlay-frame-header-fg: var(--honesty-color-feedback-info-on-strong);',
+    '--honesty-overlay-frame-header-bg: var(--honesty-color-surface-inverse);',
+    '--honesty-overlay-frame-header-fg: var(--honesty-color-text-inverse);',
     '--honesty-overlay-frame-header-border-color:',
     '--honesty-overlay-frame-footer-border-color:',
     '--honesty-overlay-enter-duration: 360ms;',
@@ -545,6 +554,7 @@ export function validateOverlayFrameContract(files) {
     'block-size: 100%;',
     '.overlay-frame {',
     'grid-template-rows: auto minmax(',
+    'color: var(--honesty-overlay-frame-header-fg);',
     "data-overlay-frame-header-visible='false'",
     "data-overlay-frame-footer-visible='false'",
     '.overlay-frame__body',
@@ -564,6 +574,11 @@ export function validateOverlayFrameContract(files) {
     'this.config().showFooter !== false',
     'this.config().header.showCloseButton !== false',
     "this.config().header.tone ?? 'default'",
+    "this.headerTone() !== 'default'",
+    'headerPrimaryContentTone',
+    'headerSecondaryContentTone',
+    'headerCloseVariant',
+    'headerCloseTone',
     'buttonTone(action: ErpOverlayActionConfig)',
     'action.tone ??',
     "this.ref().dismiss('close-action')",
@@ -579,7 +594,11 @@ export function validateOverlayFrameContract(files) {
     '@if (showHeader())',
     '<header',
     '[attr.data-overlay-frame-header-tone]="headerTone()"',
+    '[tone]="headerPrimaryContentTone()"',
+    '[tone]="headerSecondaryContentTone()"',
     '@if (showCloseButton())',
+    '[variant]="headerCloseVariant()"',
+    '[tone]="headerCloseTone()"',
     '<div class="overlay-frame__body">',
     '@if (showFooter())',
     '<footer class="overlay-frame__footer">',
@@ -878,7 +897,7 @@ this.manager.completeTransition(entry.ref.id, entry.phase)`,
     ],
     [
       OVERLAY_TOKENS,
-      '--honesty-overlay-backdrop-bg: x; --honesty-overlay-backdrop-blur: x; --honesty-overlay-layer: x; --honesty-overlay-frame-separator-color: var(--honesty-border-default); --honesty-overlay-frame-header-bg: transparent; @mixin frame-header-tone-primary {} @mixin frame-header-tone-secondary {} @mixin frame-header-tone-accent {} @mixin frame-header-tone-success {} @mixin frame-header-tone-warning {} @mixin frame-header-tone-danger {} @mixin frame-header-tone-info {} @mixin frame-header-tone-neutral {} --honesty-overlay-frame-header-border-color: x; --honesty-overlay-frame-footer-border-color: x; --honesty-overlay-enter-duration: 360ms; --honesty-overlay-exit-duration: 260ms;',
+      '--honesty-overlay-backdrop-bg: x; --honesty-overlay-backdrop-blur: x; --honesty-overlay-layer: x; --honesty-overlay-frame-separator-color: var(--honesty-border-default); --honesty-overlay-frame-header-bg: transparent; --honesty-overlay-frame-header-fg: var(--honesty-color-text-primary); --honesty-overlay-frame-header-bg: var(--honesty-color-brand-primary-solid); --honesty-overlay-frame-header-fg: var(--honesty-color-brand-primary-on-solid); --honesty-overlay-frame-header-bg: var(--honesty-color-brand-secondary-solid); --honesty-overlay-frame-header-fg: var(--honesty-color-brand-secondary-on-solid); --honesty-overlay-frame-header-bg: var(--honesty-color-brand-accent-solid); --honesty-overlay-frame-header-fg: var(--honesty-color-brand-accent-on-solid); --honesty-overlay-frame-header-bg: var(--honesty-color-feedback-success-surface-strong); --honesty-overlay-frame-header-fg: var(--honesty-color-feedback-success-on-strong); --honesty-overlay-frame-header-bg: var(--honesty-color-feedback-warning-surface-strong); --honesty-overlay-frame-header-fg: var(--honesty-color-action-primary-fg); --honesty-overlay-frame-header-bg: var(--honesty-color-feedback-danger-surface-strong); --honesty-overlay-frame-header-fg: var(--honesty-color-feedback-danger-on-strong); --honesty-overlay-frame-header-bg: var(--honesty-color-feedback-info-surface-strong); --honesty-overlay-frame-header-fg: var(--honesty-color-feedback-info-on-strong); --honesty-overlay-frame-header-bg: var(--honesty-color-surface-inverse); --honesty-overlay-frame-header-fg: var(--honesty-color-text-inverse); --honesty-overlay-frame-header-border-color: x; --honesty-overlay-frame-footer-border-color: x; --honesty-overlay-enter-duration: 360ms; --honesty-overlay-exit-duration: 260ms;',
     ],
   ]);
 
@@ -1115,6 +1134,11 @@ this.config().showHeader !== false
 this.config().showFooter !== false
 this.config().header.showCloseButton !== false
 this.config().header.tone ?? 'default'
+this.headerTone() !== 'default'
+headerPrimaryContentTone
+headerSecondaryContentTone
+headerCloseVariant
+headerCloseTone
 buttonTone(action: ErpOverlayActionConfig)
 action.tone ??
 this.ref().dismiss('close-action')`,
@@ -1123,6 +1147,7 @@ this.ref().dismiss('close-action')`,
       OVERLAY_FRAME_STYLE,
       `:host { block-size: 100%; }
 .overlay-frame { display: grid; block-size: 100%; grid-template-rows: auto minmax(0, 1fr) auto; }
+.overlay-frame__header { color: var(--honesty-overlay-frame-header-fg); }
 .overlay-frame[data-overlay-frame-header-visible='false'][data-overlay-frame-footer-visible='true'] {}
 .overlay-frame[data-overlay-frame-header-visible='true'][data-overlay-frame-footer-visible='false'] {}
 .overlay-frame[data-overlay-frame-header-visible='false'][data-overlay-frame-footer-visible='false'] {}
@@ -1132,7 +1157,7 @@ this.ref().dismiss('close-action')`,
     [
       OVERLAY_FRAME_TEMPLATE,
       `<div [attr.data-overlay-frame-header-visible]="showHeader()" [attr.data-overlay-frame-footer-visible]="showFooter()">
-@if (showHeader()) { <header [attr.data-overlay-frame-header-tone]="headerTone()"> @if (showCloseButton()) { <erp-icon-button data-overlay-frame-close /> } }
+@if (showHeader()) { <header [attr.data-overlay-frame-header-tone]="headerTone()"><erp-icon [tone]="headerPrimaryContentTone()" /><erp-text [tone]="headerPrimaryContentTone()" /><erp-text [tone]="headerSecondaryContentTone()" /> @if (showCloseButton()) { <erp-icon-button data-overlay-frame-close [variant]="headerCloseVariant()" [tone]="headerCloseTone()" /> } }
 <div class="overlay-frame__body">
 @if (showFooter()) { <footer class="overlay-frame__footer"> }
 <erp-tooltip><erp-icon-button data-overlay-frame-close />

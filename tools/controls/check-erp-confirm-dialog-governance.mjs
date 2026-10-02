@@ -129,7 +129,7 @@ export function validateConfirmDialogContract(files) {
     "return 'primary';",
     "return 'help';",
     "return 'error';",
-    "const headerTone = config.headerTone ?? 'default';",
+    'config.headerTone ?? toneForIntent(intent)',
     "const userDismissible = config.userDismissible ?? true;",
   ]) {
     if (!service.includes(required)) {
@@ -319,7 +319,8 @@ return 'danger';
 return 'primary';
 return 'help';
 return 'error';
-const headerTone = config.headerTone ?? 'default';
+const headerTone =
+config.headerTone ?? toneForIntent(intent);
 const userDismissible = config.userDismissible ?? true;
 }
 }`,
