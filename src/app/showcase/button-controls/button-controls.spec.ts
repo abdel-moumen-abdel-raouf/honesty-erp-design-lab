@@ -91,7 +91,7 @@ describe('ButtonControls showcase', () => {
     expect(compiled.querySelectorAll('[data-extended-fab-no-icon]').length).toBe(1);
   });
 
-  it('relocates ButtonGroup, SplitButton, and FabMenu review evidence from the Overlay page', () => {
+  it('evidences the corrected ButtonGroup, SplitButton, and FabMenu composite contracts', () => {
     const compiled = createFixture().nativeElement as HTMLElement;
     const group = compiled.querySelector(
       '[data-review-group="button-composites"]',
@@ -101,6 +101,21 @@ describe('ButtonControls showcase', () => {
     expect(group?.querySelectorAll('[data-button-group-evidence]').length).toBe(1);
     expect(group?.querySelectorAll('[data-split-button-evidence]').length).toBe(1);
     expect(group?.querySelectorAll('[data-fab-menu-evidence]').length).toBe(1);
+    expect(
+      group?.querySelectorAll(
+        '[data-button-group-evidence] [data-attached-position]',
+      ).length,
+    ).toBe(3);
+    expect(
+      group
+        ?.querySelector('[data-split-button-evidence] .split-button__menu')
+        ?.getAttribute('popover'),
+    ).toBe('manual');
+    expect(
+      group
+        ?.querySelector('[data-fab-menu-evidence] .fab-menu__actions')
+        ?.getAttribute('popover'),
+    ).toBe('manual');
   });
 
   it('evidences ready, disabled, loading, cursor, and ripple speed', () => {
