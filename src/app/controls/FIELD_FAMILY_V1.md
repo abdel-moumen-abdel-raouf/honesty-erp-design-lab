@@ -447,8 +447,11 @@ feedback is dismissed.
 - Both controls expose the existing Field tone, status, and size vocabularies
   where visually applicable. They own no FieldFrame chrome.
 - CheckBox renders one fixed-size custom visual box around the authoritative
-  native checkbox. Checked and indeterminate marks use semantic `ErpIcon`
-  `check` and `minus` names, remain centered, and do not change outer geometry.
+  native checkbox. The Product Owner supplied template owns the Classic
+  CheckBox visual assembly: token-driven gradient fill enters through the
+  visual box, the large check silhouette is CSS clip-path geometry, and the
+  indeterminate mark reuses the same CSS mark layer as a centered bar. No
+  ErpIcon/raw SVG mark is nested inside the CheckBox visual box.
 - RadioBox renders one fixed circular visual around the authoritative native
   radio. Its selected dot remains centered and present in the same outer
   geometry for selected and unselected states.
