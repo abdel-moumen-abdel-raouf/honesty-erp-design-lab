@@ -28,7 +28,7 @@ describe('ErpFabMenu', () => {
     const fixture = TestBed.createComponent(ErpFabMenu);
     fixture.componentRef.setInput('label', 'Create');
     fixture.componentRef.setInput('items', [
-      {value: 'invoice', label: 'Invoice', icon: 'document'},
+      {value: 'invoice', label: 'Invoice', icon: 'file'},
       {value: 'customer', label: 'Customer', icon: 'customer'},
     ]);
     fixture.detectChanges();
