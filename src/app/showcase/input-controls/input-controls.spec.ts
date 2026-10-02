@@ -123,6 +123,12 @@ describe('InputControls showcase', () => {
     expect(group?.querySelectorAll('[data-radio-box-evidence]').length).toBe(1);
     expect(group?.querySelectorAll('[data-boolean-choice-rtl-evidence]').length).toBe(1);
     expect(group?.querySelector<HTMLElement>('[data-boolean-choice-rtl-evidence]')?.dir).toBe('rtl');
+    expect(group?.querySelectorAll('erp-check-box .check-box__description')).toHaveLength(5);
+    expect(
+      [...(group?.querySelectorAll<HTMLElement>('erp-check-box') ?? [])]
+        .slice(0, 4)
+        .map((control) => control.getAttribute('data-check-box-size')),
+    ).toEqual(['sm', 'md', 'lg', 'xl']);
     expect(group?.querySelectorAll('erp-icon[data-icon-name="check"]').length).toBe(1);
     expect(group?.querySelectorAll('erp-icon[data-icon-name="minus"]').length).toBe(1);
   });
