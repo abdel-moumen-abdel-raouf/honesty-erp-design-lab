@@ -27,7 +27,7 @@ import {PressRippleController} from '../button-family/internal/press-ripple';
   selector: 'erp-icon-button',
   imports: [ErpIcon],
   templateUrl: './icon-button.html',
-  styleUrls: ['./icon-button.scss', './icon-button-part-2.scss', './icon-button-part-3.scss', './icon-button-part-4.scss', './icon-button-part-5.scss', './icon-button-facets.scss', './icon-button-facets-part-2.scss', './icon-button-facets-part-3.scss', './icon-button-facets-part-4.scss'],
+  styleUrls: ['./icon-button.scss', './icon-button-part-2.scss', './icon-button-part-3.scss', './icon-button-part-4.scss', './icon-button-part-5.scss', './icon-button-facets.scss', './icon-button-facets-part-2.scss', './icon-button-facets-part-3.scss', './icon-button-facets-part-4.scss', './icon-button-attached-segment.scss'],
   host: {
     '[attr.data-icon-button-variant]': 'variant()',
     '[attr.data-icon-button-tone]': 'tone()',
