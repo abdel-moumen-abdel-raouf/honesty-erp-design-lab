@@ -34,6 +34,8 @@ export interface ErpConfirmDialogConfig {
   readonly icon?: ErpIconName;
   readonly headerTone?: ErpOverlayHeaderTone;
   readonly userDismissible?: boolean;
+  readonly dismissOnEscape?: boolean;
+  readonly dismissOnBackdrop?: boolean;
   readonly auxiliaryActions?: readonly ErpConfirmDialogAuxiliaryAction[];
 }
 ```
@@ -92,7 +94,10 @@ The service returns a typed result rather than a Boolean:
 ```ts
 export type ErpConfirmDialogResult =
   | {readonly type: 'action'; readonly actionId: string}
-  | {readonly type: 'dismissed'; readonly reason: 'close' | 'escape'};
+  | {
+      readonly type: 'dismissed';
+      readonly reason: 'close' | 'escape' | 'backdrop';
+    };
 ```
 
 Button results:
@@ -101,7 +106,8 @@ Button results:
 - Cancel button -> `{type: 'action', actionId: 'cancel'}`;
 - auxiliary action -> its configured ID.
 
-Header close and Escape are not button actions; they return `dismissed`.
+Header Close, Escape, and backdrop dismissal are not button actions; they
+return `dismissed` with their corresponding reason.
 
 ## User dismissibility
 
@@ -111,16 +117,16 @@ When true:
 
 - Header Close is visible;
 - Cancel action is rendered;
-- Escape dismissal is enabled;
 - initial focus targets Cancel;
-- backdrop dismissal remains disabled to avoid accidental confirmation loss.
+- `dismissOnEscape` defaults to `false` and may be explicitly enabled;
+- `dismissOnBackdrop` defaults to `false` and may be explicitly enabled.
 
 When false:
 
 - Header remains visible but Header Close is removed through the Overlay frame API;
 - Cancel is not rendered;
-- Escape dismissal is disabled;
-- backdrop dismissal remains disabled;
+- Escape dismissal is forced off even if requested;
+- backdrop dismissal is forced off even if requested;
 - initial focus is left to the shared Overlay focus algorithm, which falls back
   to the primary Confirm action when the body has no focusable control.
 
@@ -161,7 +167,7 @@ Every Confirm remains:
 - size: `sm`;
 - blocking: shared Overlay default;
 - Header and Footer visible;
-- backdrop dismissal disabled;
+- backdrop dismissal defaults to disabled;
 - motion: current Modal default `flip-x`;
 - focus trap and restoration: shared Overlay defaults.
 
@@ -240,3 +246,23 @@ Application confirmation must not use:
 - feature-local blocking backdrops or Confirm modal implementations.
 
 The dedicated governance checker runs in the canonical lint chain.
+
+
+## 2026-10-02 — Plain Header evidence and explicit dismissal APIs
+
+The Overlay review page now includes a dedicated System Confirm example with:
+
+```ts
+headerTone: 'default'
+```
+
+This proves that callers can opt out of the intent-colored Header while keeping
+the same System Confirm service.
+
+Confirm dismissal is now independently configurable through:
+- `dismissOnEscape?: boolean` — default `false`;
+- `dismissOnBackdrop?: boolean` — default `false`.
+
+These options only take effect while `userDismissible !== false`.
+`userDismissible: false` remains the stronger policy and forces both dismissal
+paths off while hiding Header Close and Cancel.

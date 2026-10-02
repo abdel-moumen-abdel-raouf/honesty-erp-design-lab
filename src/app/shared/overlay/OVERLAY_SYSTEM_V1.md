@@ -96,8 +96,8 @@ Exact defaults:
 - size: md
 - dismissOnEscape: false
 - dismissOnBackdrop: false
-- blur: low
-- backdropTone: default
+- blur: medium
+- backdropTone: primary
 - modal enter/exit: flip-x
 - start drawer enter/exit: slide-start
 - end drawer enter/exit: slide-end
@@ -137,11 +137,19 @@ by an iframe or content rectangle.
 ## Backdrop
 
 The blocking backdrop combines the configured Foundation blur with a
-theme-sensitive Semantic scrim. The default Light mapping uses Neutral 950 at
-44%, and the default Dark mapping uses Neutral 950 at 48%. Light alternate
-tones use their approved 900 palette roles at 38%; Dark alternate tones use
-their approved 950 palette roles at 42%. Overlay Component Tokens consume
-those Semantic roles; they contain no raw palette colors.
+theme-sensitive Semantic scrim.
+
+Runtime defaults are now:
+- blur = `medium`;
+- backdropTone = `primary`.
+
+The named API value `backdropTone: 'default'` remains available as an
+explicit developer override and continues to resolve to the neutral default
+scrim. The default-tone Light mapping uses Neutral 950 at 44%, and the
+default-tone Dark mapping uses Neutral 950 at 48%. Light alternate tones use
+their approved 900 palette roles at 38%; Dark alternate tones use their
+approved 950 palette roles at 42%. Overlay Component Tokens consume those
+Semantic roles; they contain no raw palette colors.
 
 ## Dynamic Content
 
@@ -471,3 +479,32 @@ governance reads both style parts as one semantic contract and also requires
 the component to load both files. This follows the established split-style
 pattern already used by larger production controls while keeping each emitted
 component stylesheet below the per-style warning budget.
+
+
+## 2026-10-02 — Overlay default backdrop/dismissal policy correction
+
+Product Owner set the system defaults for every shared Overlay entry:
+
+- `blur = 'medium'`;
+- `backdropTone = 'primary'`;
+- `dismissOnBackdrop = false`;
+- `dismissOnEscape = false`.
+
+All four remain developer-configurable through `ErpOverlayOpenConfig`.
+Explicit `blur: 'low'`, `blur: 'high'`, `backdropTone: 'default'`, and
+other supported values remain valid API overrides.
+
+The same medium/primary and false/false defaults apply to the legacy compact
+Overlay menu exception, so there is no second default policy.
+
+Overlay Host facets now explicitly cover every blur value and every backdrop
+tone, including `medium` and the named `default` tone, instead of relying on
+an omitted selector to imply one API value.
+
+### Colored Header outline
+
+Colored Overlay Headers now receive a tokenized inset outline whose color is
+derived from the current Header on-solid foreground using `color-mix`. This
+keeps the thin light outline visible in both Light and Dark without raw white
+or theme-specific selectors. The ordinary `headerTone: 'default'` Header
+keeps the outline transparent.

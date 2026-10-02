@@ -80,6 +80,8 @@ export function validateConfirmDialogContract(files) {
     'readonly icon?: ErpIconName;',
     'readonly headerTone?: ErpOverlayHeaderTone;',
     'readonly userDismissible?: boolean;',
+    'readonly dismissOnEscape?: boolean;',
+    'readonly dismissOnBackdrop?: boolean;',
     'readonly auxiliaryActions?: readonly ErpConfirmDialogAuxiliaryAction[];',
   ]) {
     if (!contracts.includes(required)) {
@@ -98,8 +100,12 @@ export function validateConfirmDialogContract(files) {
     "kind: 'modal'",
     "position: 'center'",
     "size: 'sm'",
-    'dismissOnEscape: userDismissible',
-    'dismissOnBackdrop: false',
+    'const dismissOnEscape =',
+    'userDismissible && (config.dismissOnEscape ?? false)',
+    'const dismissOnBackdrop =',
+    'userDismissible && (config.dismissOnBackdrop ?? false)',
+    'dismissOnEscape,',
+    'dismissOnBackdrop,',
     'userDismissible ?',
     "showCloseButton: userDismissible",
     'showHeader: true',
@@ -114,7 +120,10 @@ export function validateConfirmDialogContract(files) {
     "RESERVED_ACTION_IDS.has(action.id)",
     "action.presentation === 'icon-button' && action.icon === null",
     "ref.close({type: 'action', actionId: action.id})",
-    "reason: result.reason === 'escape' ? 'escape' : 'close'",
+    "result.reason === 'escape'",
+    "result.reason === 'backdrop'",
+    "? 'backdrop'",
+    ": 'close'",
   ]) {
     if (!service.includes(required)) {
       errors.push(`Confirm service: missing system policy ${required}`);
@@ -189,6 +198,7 @@ export function validateConfirmDialogContract(files) {
   for (const required of [
     'data-review-group="confirm-dialog"',
     'data-confirm-dialog-evidence="default"',
+    'data-confirm-dialog-evidence="plain-header"',
     'data-confirm-dialog-evidence="warning"',
     'data-confirm-dialog-evidence="danger"',
     'data-confirm-dialog-evidence="multi-action"',
@@ -281,6 +291,8 @@ readonly intent?: ErpConfirmDialogIntent;
 readonly icon?: ErpIconName;
 readonly headerTone?: ErpOverlayHeaderTone;
 readonly userDismissible?: boolean;
+readonly dismissOnEscape?: boolean;
+readonly dismissOnBackdrop?: boolean;
 readonly auxiliaryActions?: readonly ErpConfirmDialogAuxiliaryAction[];
 }`,
     ],
@@ -295,8 +307,12 @@ ErpOverlayManager ErpConfirmDialogContent
 kind: 'modal'
 position: 'center'
 size: 'sm'
-dismissOnEscape: userDismissible
-dismissOnBackdrop: false
+const dismissOnEscape =
+userDismissible && (config.dismissOnEscape ?? false)
+const dismissOnBackdrop =
+userDismissible && (config.dismissOnBackdrop ?? false)
+dismissOnEscape,
+dismissOnBackdrop,
 userDismissible ?
 showCloseButton: userDismissible
 showHeader: true
@@ -311,7 +327,10 @@ actions.length > 2
 RESERVED_ACTION_IDS.has(action.id)
 action.presentation === 'icon-button' && action.icon === null
 ref.close({type: 'action', actionId: action.id})
-reason: result.reason === 'escape' ? 'escape' : 'close'
+result.reason === 'escape'
+result.reason === 'backdrop'
+? 'backdrop'
+: 'close'
 case 'warning':
 return 'warning';
 case 'danger':
@@ -346,7 +365,7 @@ const userDismissible = config.userDismissible ?? true;
     ],
     [
       OVERLAY_SHOWCASE_TEMPLATE,
-      '<erp-section data-review-group="confirm-dialog"><erp-button data-confirm-dialog-evidence="default" /><erp-button data-confirm-dialog-evidence="warning" /><erp-button data-confirm-dialog-evidence="danger" /><erp-button data-confirm-dialog-evidence="multi-action" /><erp-button data-confirm-dialog-evidence="locked" /></erp-section>',
+      '<erp-section data-review-group="confirm-dialog"><erp-button data-confirm-dialog-evidence="default" /><erp-button data-confirm-dialog-evidence="plain-header" /><erp-button data-confirm-dialog-evidence="warning" /><erp-button data-confirm-dialog-evidence="danger" /><erp-button data-confirm-dialog-evidence="multi-action" /><erp-button data-confirm-dialog-evidence="locked" /></erp-section>',
     ],
     [
       OVERLAY_EVIDENCE_SOURCE,
@@ -388,8 +407,8 @@ const userDismissible = config.userDismissible ?? true;
   const invalidPolicy = new Map(valid).set(
     CONFIRM_SERVICE,
     (valid.get(CONFIRM_SERVICE) ?? '').replace(
-      "dismissOnEscape: userDismissible",
-      "dismissOnEscape: true",
+      "config.dismissOnEscape ?? false",
+      "config.dismissOnEscape ?? true",
     ),
   );
   if (validateConfirmDialogContract(invalidPolicy).length === 0) {
