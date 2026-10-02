@@ -121,6 +121,8 @@ describe('InputControls showcase', () => {
     expect(group?.querySelectorAll('[data-radio-group-evidence]').length).toBe(1);
     expect(group?.querySelectorAll('[data-check-box-evidence]').length).toBe(1);
     expect(group?.querySelectorAll('[data-radio-box-evidence]').length).toBe(1);
+    expect(group?.querySelectorAll('[data-check-box-reference-card]')).toHaveLength(1);
+    expect(group?.querySelectorAll('[data-radio-current-card]')).toHaveLength(1);
     expect(group?.querySelectorAll('[data-boolean-choice-rtl-evidence]').length).toBe(1);
     expect(group?.querySelector<HTMLElement>('[data-boolean-choice-rtl-evidence]')?.dir).toBe('rtl');
     expect(group?.querySelectorAll('erp-check-box .check-box__description')).toHaveLength(5);
@@ -129,8 +131,8 @@ describe('InputControls showcase', () => {
         .slice(0, 4)
         .map((control) => control.getAttribute('data-check-box-size')),
     ).toEqual(['sm', 'md', 'lg', 'xl']);
-    expect(group?.querySelectorAll('erp-icon[data-icon-name="check"]').length).toBe(1);
-    expect(group?.querySelectorAll('erp-icon[data-icon-name="minus"]').length).toBe(1);
+    expect(group?.querySelectorAll('erp-check-box erp-icon')).toHaveLength(0);
+    expect(group?.querySelectorAll('erp-check-box .check-box__visual')).toHaveLength(5);
   });
 
   it('contains all four numeric controls', () => {
