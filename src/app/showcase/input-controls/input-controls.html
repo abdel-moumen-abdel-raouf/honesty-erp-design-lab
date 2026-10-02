@@ -227,14 +227,38 @@
           <erp-stack>
             <erp-check-box
               data-check-box-evidence
-              label="خيار غير محدد"
+              label="إشعارات البريد"
+              description="استلام تنبيه عند ورود نشاط جديد."
+              size="sm"
               [ngModel]="checkValue()"
               (ngModelChange)="checkValue.set($event)"
             />
-            <erp-check-box label="خيار محدد" [ngModel]="true" tone="primary" />
-            <erp-check-box label="خيار غير محسوم" indeterminate tone="secondary" />
-            <erp-check-box label="خيار معطل" disabled />
-            <erp-check-box label="خيار بحالة خطأ" status="danger" />
+            <erp-check-box
+              label="الملخص الأسبوعي"
+              description="إرسال ملخص واحد في بداية كل أسبوع."
+              size="md"
+              [ngModel]="true"
+              tone="primary"
+            />
+            <erp-check-box
+              label="تحديد مجموعة جزئيًا"
+              description="بعض العناصر الفرعية محددة حاليًا."
+              size="lg"
+              indeterminate
+              tone="secondary"
+            />
+            <erp-check-box
+              label="ميزة غير متاحة"
+              description="هذا الخيار غير متاح في السياق الحالي."
+              size="xl"
+              disabled
+            />
+            <erp-check-box
+              label="موافقة مطلوبة"
+              description="يجب تحديد هذا الخيار قبل المتابعة."
+              status="danger"
+              required
+            />
             <erp-radio-box
               data-radio-box-evidence
               label="اختيار مفرد غير محدد"
