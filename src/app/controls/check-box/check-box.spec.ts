@@ -26,11 +26,13 @@ describe('ErpCheckBox', () => {
     expect(control.tone()).toBe('neutral');
     expect(control.status()).toBe('none');
     expect(control.size()).toBe('md');
+    expect(control.variant()).toBe('classic');
     expect(native.type).toBe('checkbox');
     expect(native.checked).toBe(false);
     expect(native.disabled).toBe(false);
     expect(host.getAttribute('data-check-box-state')).toBe('ready');
     expect(host.getAttribute('data-check-box-checked')).toBe('false');
+    expect(host.getAttribute('data-check-box-variant')).toBe('classic');
     expect(host.getAttribute('data-check-box-has-description')).toBe('false');
     expect(host.querySelector('label')?.getAttribute('for')).toBe(native.id);
   });
@@ -140,6 +142,22 @@ describe('ErpCheckBox', () => {
       expect(
         fixture.nativeElement.querySelectorAll('.check-box__visual').length,
       ).toBe(1);
+    }
+  });
+
+  it('exposes the template classic, switch, and neon variants without changing native checkbox semantics', () => {
+    const fixture = create();
+    const host = fixture.nativeElement as HTMLElement;
+    const native = host.querySelector('input') as HTMLInputElement;
+
+    for (const variant of ['classic', 'switch', 'neon'] as const) {
+      fixture.componentRef.setInput('variant', variant);
+      fixture.detectChanges();
+
+      expect(host.getAttribute('data-check-box-variant')).toBe(variant);
+      expect(host.querySelectorAll('input[type="checkbox"]')).toHaveLength(1);
+      expect(host.querySelectorAll('.check-box__visual')).toHaveLength(1);
+      expect(native.type).toBe('checkbox');
     }
   });
 
