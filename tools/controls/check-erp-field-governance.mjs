@@ -105,6 +105,7 @@ const CHECK_BOX_TEMPLATE =
 const CHECK_BOX_TOKENS =
   'src/styles/foundation/components/check-box/_tokens.scss';
 const CHECK_BOX_STYLES = [
+  'src/app/controls/check-box/check-box-token-frame.scss',
   'src/app/controls/check-box/check-box.scss',
   'src/app/controls/check-box/check-box-states.scss',
   'src/app/controls/check-box/check-box-switch.scss',
