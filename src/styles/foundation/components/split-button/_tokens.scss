@@ -1,4 +1,32 @@
 @mixin base {
   --honesty-split-button-gap: 0;
-  --honesty-split-button-overlap: calc(var(--honesty-border-width-default) * -1);
+  --honesty-split-button-separator-width:
+    var(--honesty-border-width-default);
+  --honesty-split-button-separator-color:
+    var(--honesty-color-brand-primary-on-solid);
+  --honesty-split-button-separator-opacity: 0.22;
+  --honesty-split-button-separator-inset:
+    var(--honesty-space-inset-tight);
+  --honesty-split-button-menu-bg:
+    var(--honesty-color-surface-elevated);
+  --honesty-split-button-menu-fg:
+    var(--honesty-color-text-primary);
+  --honesty-split-button-menu-border-color:
+    var(--honesty-border-subtle);
+  --honesty-split-button-menu-border-width:
+    var(--honesty-border-width-default);
+  --honesty-split-button-menu-border-style:
+    var(--honesty-border-style-default);
+  --honesty-split-button-menu-radius:
+    var(--honesty-radius-overlay);
+  --honesty-split-button-menu-elevation:
+    var(--honesty-elevation-overlay);
+  --honesty-split-button-menu-layer:
+    var(--honesty-layer-overlay);
+  --honesty-split-button-menu-anchor-gap:
+    var(--honesty-space-inline-tight);
+  --honesty-split-button-menu-viewport-inset:
+    var(--honesty-space-inset-tight);
+  --honesty-split-button-menu-padding:
+    var(--honesty-space-inset-tight);
 }
