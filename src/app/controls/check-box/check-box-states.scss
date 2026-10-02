@@ -69,12 +69,10 @@
   transform: none;
 }
 
-:host([data-check-box-state='disabled']) .check-box__title,
 :host([data-check-box-state='invalid']) .check-box__title {
   color: var(--honesty-check-box-label-color-disabled);
 }
 
-:host([data-check-box-state='disabled']) .check-box__description,
 :host([data-check-box-state='invalid']) .check-box__description {
   color: var(--honesty-check-box-description-color-disabled);
 }
