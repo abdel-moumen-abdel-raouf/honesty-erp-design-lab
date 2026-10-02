@@ -44,32 +44,36 @@ extensions beyond the supplied reference:
 These upper three sizes are an ERP adaptation, not a claim about the supplied
 reference.
 
-## Explicit non-goals
+## Variant and composition boundary
 
-The reference also contains separate demonstrations for Switch, Neon,
-Selectable Tile, Task List, live configurator, and demo-only RTL controls.
+The supplied template's own Live Config defines three CheckBox variants:
 
-Those are **not** absorbed into `ErpCheckBox`.
+- `classic`;
+- `switch`;
+- `neon`.
 
-In particular:
+Those three are production `ErpCheckBox` variants.
 
-- CheckBox does not become Switch;
-- CheckBox does not expose a Neon visual variant;
-- selectable-card/tile behavior remains composition/pattern territory;
-- task strike-through behavior remains consumer/domain composition;
-- reference JavaScript configurator/demo tooling is not production API;
-- literal reference colors, gradients, shadows, and theme variables are not
-  copied.
+The same template presents Selectable Tile and Task List in separate sections
+and classes, not in its Variant selector. Those remain composition/pattern
+examples rather than CheckBox variants.
 
-This prevents `ErpCheckBox` from becoming a God component.
+Reference-only demo infrastructure is not production API:
+
+- live configurator controls;
+- demo-only RTL toggle;
+- direct DOM hydration helpers.
+
+Literal reference colors, gradients, shadows, and theme variables are not copied.
 
 ## Public/API correction
 
 Existing API remains compatible.
 
-New optional input:
+New inputs:
 
-`description: string | null`
+- `description: string | null`;
+- `variant: 'classic' | 'switch' | 'neon'` with `classic` default.
 
 The existing required `label` remains the title/accessible label.
 
