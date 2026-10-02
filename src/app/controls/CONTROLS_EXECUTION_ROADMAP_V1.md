@@ -2717,3 +2717,131 @@ Boolean/Choice visual correction layer:
 CheckBox/RadioBox visual implementation still requires Product Owner-supplied
 references or an explicit Product Owner waiver to work without a reference.
 <!-- CHATGPT_BUTTON_COMPOSITES_FULLY_GREEN_2026_10_02_END -->
+
+
+<!-- CHATGPT_NEXT_REFERENCE_BATCH_CHECKBOX_2026_10_02_START -->
+## 2026-10-02 — next Product Owner reference batch opened; ErpCheckBox correction implemented
+
+### Product Owner batch decision
+
+The Product Owner supplied `erp-component-templates.zip` as the visual-reference
+package for the next component phase and selected option A.
+
+Fixed execution order:
+
+1. `ErpCheckBox` — `erp-checkbox.html`;
+2. `ErpRadioBox` — `erp-radiobox.html`;
+3. `ErpEmptyState` — `erp-empty-state.html`;
+4. `ErpSelect` — `erp-select.html`.
+
+Reference scope is visual/design only. Literal reference colors are not authority.
+Honesty ERP Semantic/Component Tokens remain authoritative for all runtime
+Light/Dark, tone, status, focus, disabled, and theme-dependent colors.
+
+Formal batch contract:
+
+`src/app/controls/NEXT_COMPONENT_REFERENCE_BATCH_V1.md`
+
+### Bottom-up / one-at-a-time boundary
+
+Only `ErpCheckBox` is opened in this wave.
+
+Do not modify `ErpRadioBox`, `ErpEmptyState`, or `ErpSelect` until:
+
+- CheckBox focused/canonical verification passes;
+- Product Owner completes CheckBox runtime/visual review;
+- unresolved CheckBox findings are closed.
+
+This preserves the Product Owner bottom-up law and prevents parallel speculative
+component work.
+
+### ErpCheckBox Product Owner reference adoption
+
+Formal CheckBox contract:
+
+`src/app/controls/check-box/CHECK_BOX_REFERENCE_CORRECTION_V1.md`
+
+Adopted from the Product Owner supplied `erp-checkbox.html`:
+
+- native checkbox remains the semantic/CVA owner;
+- one fixed rounded-square visual control;
+- vertical centering against a complete title + optional description text block;
+- checked / unchecked / indeterminate / hover / focus / pressed / disabled
+  presentation;
+- semantic ErpIcon check/minus marks without RTL mirroring;
+- selected-state halo and pressed scale;
+- reduced-motion behavior;
+- supplied size geometry:
+  - sm 18px;
+  - md 24px;
+  - lg 30px;
+  - xl 38px.
+
+Existing public upper ERP sizes remain as explicit compatibility extensions:
+
+- xxl 44px;
+- xxxl 50px;
+- xxxxl 56px.
+
+Explicitly rejected as CheckBox responsibilities:
+
+- Switch;
+- Neon variant;
+- Selectable Tile;
+- Task List strike-through behavior;
+- reference demo configurator;
+- reference literal palette/gradients/shadows.
+
+Those examples must not turn CheckBox into a God component.
+
+### Implemented source correction
+
+- added optional `description: string | null`;
+- retained required `label` as the title/label contract;
+- title and description use ErpText span rendering inside the one native outer
+  label, avoiding nested native label semantics;
+- CheckBox text block is vertically centered against the visual control;
+- Component Tokens now map reference-led geometry while keeping all colors on
+  Honesty ERP Semantic Tokens;
+- checked/indeterminate states add a token-derived selected halo;
+- ready press interaction scales only the visual control;
+- disabled/invalid state removes press transform and uses disabled token roles;
+- showcase Boolean/Choice evidence now demonstrates descriptions plus
+  sm/md/lg/xl reference sizes;
+- CheckBox tests now cover optional description, one-control geometry, marks,
+  facets, validation, and native semantics;
+- ErpField governance now pins title/description geometry, supplied size
+  geometry, selected/pressed behavior, reduced motion, and forbids nested
+  CheckBox label semantics.
+
+Current detailed field contract was synchronized in:
+
+`src/app/controls/FIELD_FAMILY_V1.md`
+
+### Verification state
+
+The previous Button Composites checkpoint is technically Fully Green, but this
+new CheckBox runtime/test/governance wave changes source after that checkpoint.
+
+Current CheckBox state:
+
+**implemented / focused verification pending / full canonical verification
+pending / Product Owner Light/Dark runtime and visual review pending.**
+
+Required focused preflight:
+
+```text
+npm run component-tokens:check
+npm run erp-field:check
+npm run erp-field:check:self-test
+npm run test -- --watch=false
+```
+
+Mandatory final gate:
+
+`npm run verify:clean`
+
+Technical PASS will not equal Product Owner CheckBox visual approval.
+
+Do not begin RadioBox until this CheckBox gate is closed.
+<!-- CHATGPT_NEXT_REFERENCE_BATCH_CHECKBOX_2026_10_02_END -->
