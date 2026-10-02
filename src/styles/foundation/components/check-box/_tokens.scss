@@ -6,9 +6,11 @@
   --honesty-check-box-border-color-hover: var(--honesty-color-action-focus-ring);
   --honesty-check-box-border-color-disabled: var(--honesty-border-subtle);
 
-  --honesty-check-box-fill-start: var(--honesty-color-brand-primary-solid);
-  --honesty-check-box-fill-end: var(--honesty-color-brand-accent-solid);
+  --honesty-check-box-fill-color: var(--honesty-color-brand-primary-solid);
   --honesty-check-box-mark-color: var(--honesty-color-brand-primary-on-solid);
+  --honesty-check-box-switch-knob-off-color: var(--honesty-color-text-muted);
+  --honesty-check-box-switch-knob-on-color: var(--honesty-check-box-mark-color);
+  --honesty-check-box-switch-knob-elevation: var(--honesty-elevation-raised);
 
   --honesty-check-box-label-color: var(--honesty-color-text-primary);
   --honesty-check-box-label-color-disabled: var(--honesty-color-text-disabled);
@@ -40,6 +42,11 @@
   --honesty-check-box-pressed-scale: 0.86;
   --honesty-check-box-disabled-opacity: #{opacity.$honesty-ref-opacity-40};
   --honesty-check-box-selected-ring-opacity: 16%;
+  --honesty-check-box-neon-glow-near-opacity: 72%;
+  --honesty-check-box-neon-glow-mid-opacity: 42%;
+  --honesty-check-box-neon-glow-far-opacity: 24%;
+  --honesty-check-box-neon-inner-opacity: 32%;
+  --honesty-check-box-neon-pulse-duration: 2.4s;
 
   --honesty-check-box-transition-duration:
     var(--honesty-motion-duration-deliberate);
@@ -54,23 +61,19 @@
 }
 
 @mixin tone-neutral {
-  --honesty-check-box-fill-start: var(--honesty-color-action-focus-ring);
-  --honesty-check-box-fill-end: var(--honesty-color-brand-primary-solid);
+  --honesty-check-box-fill-color: var(--honesty-color-action-focus-ring);
   --honesty-check-box-mark-color: var(--honesty-color-brand-primary-on-solid);
 }
 @mixin tone-primary {
-  --honesty-check-box-fill-start: var(--honesty-color-brand-primary-solid);
-  --honesty-check-box-fill-end: var(--honesty-color-brand-accent-solid);
+  --honesty-check-box-fill-color: var(--honesty-color-brand-primary-solid);
   --honesty-check-box-mark-color: var(--honesty-color-brand-primary-on-solid);
 }
 @mixin tone-secondary {
-  --honesty-check-box-fill-start: var(--honesty-color-brand-secondary-solid);
-  --honesty-check-box-fill-end: var(--honesty-color-brand-primary-solid);
+  --honesty-check-box-fill-color: var(--honesty-color-brand-secondary-solid);
   --honesty-check-box-mark-color: var(--honesty-color-brand-secondary-on-solid);
 }
 @mixin tone-accent {
-  --honesty-check-box-fill-start: var(--honesty-color-brand-accent-solid);
-  --honesty-check-box-fill-end: var(--honesty-color-brand-secondary-solid);
+  --honesty-check-box-fill-color: var(--honesty-color-brand-accent-solid);
   --honesty-check-box-mark-color: var(--honesty-color-brand-accent-on-solid);
 }
 
@@ -78,26 +81,22 @@
   --honesty-check-box-label-color: var(--honesty-color-text-primary);
 }
 @mixin status-success {
-  --honesty-check-box-fill-start: var(--honesty-color-feedback-success-surface-strong);
-  --honesty-check-box-fill-end: var(--honesty-color-feedback-success-surface-strong);
+  --honesty-check-box-fill-color: var(--honesty-color-feedback-success-surface-strong);
   --honesty-check-box-border-color: var(--honesty-color-feedback-success-border);
   --honesty-check-box-mark-color: var(--honesty-color-feedback-success-on-strong);
 }
 @mixin status-warning {
-  --honesty-check-box-fill-start: var(--honesty-color-feedback-warning-surface-strong);
-  --honesty-check-box-fill-end: var(--honesty-color-feedback-warning-surface-strong);
+  --honesty-check-box-fill-color: var(--honesty-color-feedback-warning-surface-strong);
   --honesty-check-box-border-color: var(--honesty-color-feedback-warning-border);
   --honesty-check-box-mark-color: var(--honesty-color-feedback-warning-on-strong);
 }
 @mixin status-danger {
-  --honesty-check-box-fill-start: var(--honesty-color-feedback-danger-surface-strong);
-  --honesty-check-box-fill-end: var(--honesty-color-feedback-danger-surface-strong);
+  --honesty-check-box-fill-color: var(--honesty-color-feedback-danger-surface-strong);
   --honesty-check-box-border-color: var(--honesty-color-feedback-danger-border);
   --honesty-check-box-mark-color: var(--honesty-color-feedback-danger-on-strong);
 }
 @mixin status-info {
-  --honesty-check-box-fill-start: var(--honesty-color-feedback-info-surface-strong);
-  --honesty-check-box-fill-end: var(--honesty-color-feedback-info-surface-strong);
+  --honesty-check-box-fill-color: var(--honesty-color-feedback-info-surface-strong);
   --honesty-check-box-border-color: var(--honesty-color-feedback-info-border);
   --honesty-check-box-mark-color: var(--honesty-color-feedback-info-on-strong);
 }
