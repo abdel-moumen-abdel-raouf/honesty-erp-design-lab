@@ -1,3 +1,6 @@
 @mixin base {
   --honesty-fab-menu-gap: var(--honesty-space-stack-tight);
+  --honesty-fab-menu-anchor-gap: var(--honesty-space-stack-tight);
+  --honesty-fab-menu-viewport-inset: var(--honesty-space-inset-tight);
+  --honesty-fab-menu-layer: var(--honesty-layer-overlay);
 }
