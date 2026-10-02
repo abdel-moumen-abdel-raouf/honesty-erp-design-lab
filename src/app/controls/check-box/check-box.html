@@ -15,22 +15,16 @@
       (focus)="handleNativeFocus()"
       (blur)="handleNativeBlur()"
     />
-    <span class="check-box__visual" aria-hidden="true">
-      @if (indeterminate()) {
-        <erp-icon class="check-box__mark" name="minus" size="inherit" />
-      } @else if (currentValue()) {
-        <erp-icon class="check-box__mark" name="check" size="inherit" />
-      }
-    </span>
+    <span class="check-box__visual" aria-hidden="true"></span>
   </span>
 
   <span class="check-box__text">
     <erp-text
       class="check-box__title"
       type="span"
-      size="sm"
-      weight="medium"
-      lineHeight="normal"
+      size="inherit"
+      weight="inherit"
+      lineHeight="inherit"
       tone="inherit"
     >
       {{ trimmedLabel() }}
@@ -39,9 +33,9 @@
       <erp-text
         class="check-box__description"
         type="span"
-        size="2xs"
-        weight="regular"
-        lineHeight="comfortable"
+        size="inherit"
+        weight="inherit"
+        lineHeight="inherit"
         tone="inherit"
       >
         {{ trimmedDescription() }}
