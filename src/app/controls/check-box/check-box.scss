@@ -9,6 +9,8 @@
 .check-box {
   --_visual-inline: var(--honesty-check-box-control-size);
   --_visual-radius: var(--honesty-check-box-radius);
+  --_visual-bg: var(--honesty-check-box-bg);
+  --_visual-border-color: var(--honesty-check-box-border-color);
   --_active-scale: var(--honesty-check-box-pressed-scale);
   --_switch-off: -1;
   --_switch-on: 1;
@@ -48,6 +50,8 @@
 .check-box[data-variant='switch'] {
   --_visual-inline: calc(var(--honesty-check-box-control-size) * 1.95);
   --_visual-radius: var(--honesty-radius-full);
+  --_visual-bg: var(--honesty-check-box-switch-track-bg);
+  --_visual-border-color: var(--honesty-check-box-switch-border-color);
   --_active-scale: 0.95;
   --_knob: calc(var(--honesty-check-box-control-size) * 0.72);
   --_travel: calc(var(--honesty-check-box-control-size) * 0.42);
@@ -108,9 +112,9 @@
   border:
     var(--honesty-check-box-border-width)
     var(--honesty-border-style-default)
-    var(--honesty-check-box-border-color);
+    var(--_visual-border-color);
   border-radius: var(--_visual-radius);
-  background: var(--honesty-check-box-bg);
+  background: var(--_visual-bg);
   box-shadow: none;
   transform: scale(1);
   transition:
