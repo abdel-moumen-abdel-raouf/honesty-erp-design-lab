@@ -7,21 +7,29 @@
   --honesty-check-box-border-color-hover: var(--honesty-color-action-focus-ring);
   --honesty-check-box-border-color-selected: var(--honesty-color-brand-primary-solid);
   --honesty-check-box-border-color-disabled: var(--honesty-border-subtle);
-  --honesty-check-box-border-width: var(--honesty-border-width-default);
+  --honesty-check-box-border-width: var(--honesty-border-width-emphasis);
   --honesty-check-box-border-style: var(--honesty-border-style-default);
-  --honesty-check-box-radius: var(--honesty-radius-control);
+  --honesty-check-box-radius: 0.5rem;
   --honesty-check-box-mark-color: var(--honesty-color-brand-primary-on-solid);
   --honesty-check-box-mark-color-disabled: var(--honesty-color-text-disabled);
   --honesty-check-box-label-color: var(--honesty-color-text-primary);
   --honesty-check-box-label-color-disabled: var(--honesty-color-text-disabled);
+  --honesty-check-box-description-color: var(--honesty-color-text-muted);
+  --honesty-check-box-description-color-disabled: var(--honesty-color-text-disabled);
   --honesty-check-box-focus-color: var(--honesty-color-action-focus-ring);
   --honesty-check-box-focus-width: var(--honesty-focus-ring-width);
   --honesty-check-box-focus-style: var(--honesty-focus-ring-style);
   --honesty-check-box-focus-offset: var(--honesty-focus-ring-offset);
-  --honesty-check-box-gap: var(--honesty-space-inline-tight);
-  --honesty-check-box-control-size: 1rem;
-  --honesty-check-box-mark-size: 0.75rem;
+  --honesty-check-box-gap: 0.75rem;
+  --honesty-check-box-text-gap: 0.18em;
+  --honesty-check-box-control-size: 1.5rem;
+  --honesty-check-box-mark-size: 1rem;
+  --honesty-check-box-selected-ring-width:
+    calc(var(--honesty-check-box-control-size) * 0.16);
+  --honesty-check-box-selected-ring-opacity: 16%;
+  --honesty-check-box-pressed-scale: 0.86;
   --honesty-check-box-transition-duration: var(--honesty-motion-duration-fast);
+  --honesty-check-box-press-duration: var(--honesty-motion-duration-fast);
   --honesty-check-box-transition-easing: var(--honesty-motion-easing-standard);
   --honesty-check-box-reduced-duration: var(--honesty-motion-duration-instant);
 }
@@ -44,7 +52,9 @@
   --honesty-check-box-border-color-selected: var(--honesty-color-brand-accent-solid);
   --honesty-check-box-mark-color: var(--honesty-color-brand-accent-on-solid);
 }
-@mixin status-none { --honesty-check-box-label-color: var(--honesty-color-text-primary); }
+@mixin status-none {
+  --honesty-check-box-label-color: var(--honesty-color-text-primary);
+}
 @mixin status-success {
   --honesty-check-box-bg-selected: var(--honesty-color-feedback-success-surface-strong);
   --honesty-check-box-border-color: var(--honesty-color-feedback-success-border);
@@ -70,30 +80,51 @@
   --honesty-check-box-mark-color: var(--honesty-color-feedback-info-on-strong);
 }
 @mixin size-sm {
-  --honesty-check-box-control-size: 1rem;
+  --honesty-check-box-control-size: 1.125rem;
   --honesty-check-box-mark-size: 0.75rem;
+  --honesty-check-box-gap: 0.625rem;
+  --honesty-check-box-radius: 0.375rem;
+  --honesty-check-box-border-width: var(--honesty-border-width-default);
 }
 @mixin size-md {
-  --honesty-check-box-control-size: 1rem;
-  --honesty-check-box-mark-size: 0.75rem;
-}
-@mixin size-lg {
-  --honesty-check-box-control-size: 1.25rem;
-  --honesty-check-box-mark-size: 0.875rem;
-}
-@mixin size-xl {
-  --honesty-check-box-control-size: 1.25rem;
-  --honesty-check-box-mark-size: 0.875rem;
-}
-@mixin size-xxl {
   --honesty-check-box-control-size: 1.5rem;
   --honesty-check-box-mark-size: 1rem;
+  --honesty-check-box-gap: 0.75rem;
+  --honesty-check-box-radius: 0.5rem;
+  --honesty-check-box-border-width: var(--honesty-border-width-emphasis);
+}
+@mixin size-lg {
+  --honesty-check-box-control-size: 1.875rem;
+  --honesty-check-box-mark-size: 1.25rem;
+  --honesty-check-box-gap: 0.875rem;
+  --honesty-check-box-radius: 0.625rem;
+  --honesty-check-box-border-width: var(--honesty-border-width-emphasis);
+}
+@mixin size-xl {
+  --honesty-check-box-control-size: 2.375rem;
+  --honesty-check-box-mark-size: 1.5rem;
+  --honesty-check-box-gap: 1rem;
+  --honesty-check-box-radius: 0.75rem;
+  --honesty-check-box-border-width: var(--honesty-border-width-emphasis);
+}
+@mixin size-xxl {
+  --honesty-check-box-control-size: 2.75rem;
+  --honesty-check-box-mark-size: 1.75rem;
+  --honesty-check-box-gap: 1.125rem;
+  --honesty-check-box-radius: 0.875rem;
+  --honesty-check-box-border-width: var(--honesty-border-width-emphasis);
 }
 @mixin size-xxxl {
-  --honesty-check-box-control-size: 1.75rem;
-  --honesty-check-box-mark-size: 1.25rem;
+  --honesty-check-box-control-size: 3.125rem;
+  --honesty-check-box-mark-size: 2rem;
+  --honesty-check-box-gap: 1.25rem;
+  --honesty-check-box-radius: 1rem;
+  --honesty-check-box-border-width: var(--honesty-border-width-emphasis);
 }
 @mixin size-xxxxl {
-  --honesty-check-box-control-size: 2rem;
-  --honesty-check-box-mark-size: 1.5rem;
+  --honesty-check-box-control-size: 3.5rem;
+  --honesty-check-box-mark-size: 2.25rem;
+  --honesty-check-box-gap: 1.375rem;
+  --honesty-check-box-radius: 1.125rem;
+  --honesty-check-box-border-width: var(--honesty-border-width-emphasis);
 }
