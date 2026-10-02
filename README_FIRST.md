@@ -1227,3 +1227,86 @@ Mandatory next technical gate:
 After technical green, Product Owner must visually confirm the corrected solid
 Headers and icon/text/Close contrast in Light and Dark.
 <!-- CHATGPT_CONFIRM_SOLID_HEADER_CONTRAST_2026_10_02_END -->
+
+
+<!-- CHATGPT_OVERLAY_FRAME_STYLE_BUDGET_2026_10_02_START -->
+## 2026-10-02 — canonical verification reached final build; OverlayFrame style-budget split implemented
+
+Product Owner pulled repository HEAD:
+`c848151fa84fab723bcac851bcfa9e0550cc82a9`
+and ran the canonical:
+`npm run verify:clean`.
+
+Observed verified results before the final build warning:
+- all foundation and production governance checks PASS;
+- ErpConfirmDialog governance PASS;
+- Angular lint PASS;
+- 89/89 test files PASS;
+- 675/675 tests PASS;
+- `typecheck:app` PASS;
+- `typecheck:spec` PASS;
+- production build compilation completed.
+
+The only failing condition was the zero-warning gate:
+`src/app/shared/overlay/overlay-frame/overlay-frame.scss`
+compiled to 4.17 kB, exceeding the unchanged 4.00 kB component-style warning
+budget by 168 bytes.
+
+This is a style-budget packaging issue, not a runtime/test/typecheck failure.
+
+### Bounded correction
+
+Checkpoint:
+`272c0be2f8cb5cac5b8e37fd29aeaa3eaa98cc58`
+(`fix(overlays): split frame tone facets for style budget`).
+
+No visual, API, token, selector, or behavior contract was removed or changed.
+
+`ErpOverlayFrame` now loads:
+- `overlay-frame.scss` — structural/layout Header/Body/Footer rules;
+- `overlay-frame-facets.scss` — the nine Header tone facet selectors.
+
+The nine tone selectors were moved verbatim from the base stylesheet into the
+facet stylesheet. The base stylesheet no longer imports the Overlay token mixins
+because only the facet stylesheet consumes those mixins.
+
+Current source sizes after the split:
+- `overlay-frame.scss`: approximately 2534 source characters;
+- `overlay-frame-facets.scss`: approximately 1096 source characters.
+
+The canonical 4 kB / 8 kB style budgets remain unchanged.
+
+### Governance correction
+
+Overlay governance now:
+- requires `ErpOverlayFrame` to load both style files through `styleUrls`;
+- reads both files together as one semantic frame-style contract;
+- requires every Header tone facet
+  (`default/primary/secondary/accent/success/warning/danger/info/neutral`);
+- preserves all existing solid Header contrast, on-solid foreground,
+  Header/Footer geometry, and frame behavior checks.
+
+Pre-rerun checks on the corrected source:
+- Overlay governance JavaScript syntax PASS;
+- complete Overlay governance internal self-test PASS;
+- actual current OverlayFrame contract validation: zero errors;
+- diff review confirms the correction is a style-file split plus corresponding
+  governance/documentation only.
+
+### Current state
+
+The verification evidence on `c848151...` proves:
+- governance/lint green;
+- 89/89 files and 675/675 tests green;
+- both typechecks green;
+- build compiled, but zero-warning status did **not** pass because of the single
+  style-budget warning.
+
+The new source at `272c0be...` therefore remains:
+**implemented / fresh canonical verification pending**.
+
+Mandatory next gate:
+`npm run verify:clean`.
+
+Do not weaken the global component-style budgets to resolve this checkpoint.
+<!-- CHATGPT_OVERLAY_FRAME_STYLE_BUDGET_2026_10_02_END -->
