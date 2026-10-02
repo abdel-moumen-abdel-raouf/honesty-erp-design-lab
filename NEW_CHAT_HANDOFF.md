@@ -2820,3 +2820,164 @@ Mandatory next gate:
 
 Do not weaken the global component-style budgets to resolve this checkpoint.
 <!-- CHATGPT_OVERLAY_FRAME_STYLE_BUDGET_2026_10_02_END -->
+
+
+<!-- CHATGPT_OVERLAY_DEFAULT_POLICY_AND_HEADER_OUTLINE_2026_10_02_START -->
+## 2026-10-02 — Product Owner Overlay defaults + Confirm plain Header + dark Header outline
+
+Product Owner runtime review added five connected Overlay/Confirm requirements.
+
+### 1. System Confirm must demonstrate an uncolored Header
+
+The Confirm service continues to derive a colored Header from intent by default,
+but the Overlay review route now includes an explicit example using:
+
+```ts
+headerTone: 'default'
+```
+
+This proves that a developer can keep the ordinary Overlay Header without
+changing Confirm service architecture.
+
+### 2. Colored Header outline must remain visible in Light and Dark
+
+Product Owner reported that the thin light outline around the colored Confirm
+Header was visible in Light but disappeared in Dark.
+
+Correction:
+- added tokenized Header outline width/color;
+- default/uncolored Header keeps outline transparent;
+- colored Headers derive the outline from the current on-solid Header
+  foreground using `color-mix(... 60%, transparent)`;
+- Header renders this as an inset box-shadow, so the outline follows the clipped
+  Overlay Header boundary in both themes;
+- no raw white, raw palette value, or local theme selector was introduced.
+
+### 3. Default Overlay blur = medium
+
+All shared Overlay entries now normalize:
+
+```ts
+blur: options.blur ?? 'medium'
+```
+
+This applies to regular modal/drawer opens and the legacy compact-menu exception.
+
+Developer API overrides remain fully supported:
+`low | medium | high`.
+
+The Overlay Component Token fallback also uses medium blur, and Host facets now
+explicitly cover all three blur API values.
+
+### 4. Default Overlay backdrop tone = primary
+
+All shared Overlay entries now normalize:
+
+```ts
+backdropTone: options.backdropTone ?? 'primary'
+```
+
+This applies to normal overlays and the legacy compact-menu exception.
+
+Developer API overrides remain supported:
+`default | neutral | primary | secondary | accent`.
+
+The named `default` tone remains a real selectable value; Host facets now
+explicitly map it instead of relying on the previous base-token omission.
+
+### 5. Default dismissal policy = false / false
+
+System Overlay defaults remain and are explicitly governed as:
+
+- `dismissOnBackdrop = false`;
+- `dismissOnEscape = false`.
+
+Both are still independently configurable through `ErpOverlayOpenConfig`.
+
+System Confirm now follows the same default policy instead of implicitly enabling
+Escape whenever `userDismissible=true`.
+
+Confirm public API now also exposes:
+- `dismissOnEscape?: boolean` — default false;
+- `dismissOnBackdrop?: boolean` — default false.
+
+`userDismissible` retains its stronger structural meaning:
+- true -> Header Close + Cancel are available; Escape/Backdrop still default off
+  unless explicitly enabled;
+- false -> Header Close + Cancel are removed and Escape/Backdrop are forced off
+  even if the caller requests true.
+
+Confirm dismissal results now include `backdrop` as an explicit reason when
+backdrop dismissal is intentionally enabled.
+
+### Showcase evidence
+
+The Overlay review route now:
+- includes six System Confirm examples, including `plain-header`;
+- labels medium blur as the default;
+- labels primary backdrop tone as the default;
+- explicitly states that Backdrop and Escape dismissal are both disabled by
+  default;
+- retains API evidence for enabling/disabling each dismissal policy.
+
+### Implementation checkpoints
+
+- `4049d0011cbeeba3808a5e1ea9e171f5228bcb0a`
+  `feat(overlays): align default backdrop and dismissal policies`;
+- `df69a9b60d3e6b3e86b79124e0b3d6d5d58608ac`
+  `test(overlays): cover new defaults and Header outline`;
+- `ca3f8281043feafbf411707bd709c4adcd67ba05`
+  `chore(overlays): govern new default backdrop policies`;
+- `4ceb3191b03ecc7c627159e3b05139a071f06a6d`
+  `fix(governance): restore Overlay default drift self-test`.
+
+The last commit corrected only an internal invalid-drift fixture that still
+replaced the old blur default with the new value and therefore did not create an
+invalid case. No runtime source changed in that follow-up.
+
+### Tests / governance coverage
+
+Coverage now protects:
+- modal defaults medium/primary/false/false;
+- legacy compact overlay defaults medium/primary/false/false;
+- explicit low/default visual overrides;
+- Host DOM evidence for medium/primary defaults;
+- Confirm Escape/Backdrop defaults off;
+- explicit Confirm Escape opt-in;
+- explicit Confirm Backdrop opt-in;
+- backdrop dismissal result reason;
+- `userDismissible=false` forcing both dismissal routes off;
+- explicit uncolored Confirm Header example;
+- colored Header outline rendering;
+- all blur/backdrop API facet selectors;
+- runtime default token fallbacks.
+
+Pre-rerun evidence:
+- ErpConfirmDialog governance syntax PASS;
+- ErpConfirmDialog internal self-test PASS;
+- ErpOverlay governance syntax PASS;
+- ErpOverlay internal self-test PASS;
+- ErpField governance syntax PASS;
+- ErpField internal self-test PASS;
+- actual current Confirm contract validation: zero errors;
+- actual current OverlayFrame contract validation: zero errors;
+- actual current Overlay default/facet drift validation: zero errors;
+- diff review found no budget weakening, raw color addition, or browser-confirm
+  bypass.
+
+### Current state
+
+**Implemented / fresh canonical verification pending / Product Owner runtime
+re-review pending.**
+
+The earlier canonical run on `c848151...` proved all governance/lint,
+89/89 test files, 675/675 tests, and both typechecks before stopping only on the
+OverlayFrame style-budget warning. That warning was addressed by the later
+style split, but the current defaults/outline changes are newer source and
+therefore require a fresh complete gate.
+
+Mandatory next technical gate:
+`npm run verify:clean`.
+
+Do not weaken the existing 4 kB / 8 kB component-style budgets.
+<!-- CHATGPT_OVERLAY_DEFAULT_POLICY_AND_HEADER_OUTLINE_2026_10_02_END -->
