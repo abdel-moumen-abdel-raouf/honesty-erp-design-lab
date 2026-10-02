@@ -15,6 +15,15 @@ const MOTION_ADAPTER =
   'src/app/foundation/motion/animate-css-motion-adapter.ts';
 const SEARCH_BOX_TEMPLATE =
   'src/app/controls/search-box/search-box.html';
+const SPLIT_BUTTON_TEMPLATE =
+  'src/app/controls/split-button/split-button.html';
+const FAB_MENU_TEMPLATE =
+  'src/app/controls/fab-menu/fab-menu.html';
+const APPROVED_MANUAL_POPOVER_TEMPLATES = new Set([
+  SEARCH_BOX_TEMPLATE,
+  SPLIT_BUTTON_TEMPLATE,
+  FAB_MENU_TEMPLATE,
+]);
 const SHOWCASE = 'src/app/showcase/tooltip-controls/tooltip-controls.html';
 const TOKEN_FILE = path.join(ROOT, 'src', 'styles', 'foundation', 'components', 'tooltip', '_tokens.scss');
 const TOOLTIP_STYLE_FILES = [
@@ -85,7 +94,7 @@ export function validate(files) {
     if (
       /\bpopover\s*=/.test(source) &&
       !normalized.startsWith(TOOLTIP_ROOT) &&
-      normalized !== SEARCH_BOX_TEMPLATE
+      !APPROVED_MANUAL_POPOVER_TEMPLATES.has(normalized)
     ) {
       errors.push(
         `${normalized}: manual popover markup is limited to approved anchored-overlay owners`,
@@ -261,14 +270,20 @@ function validateProductionContracts(files) {
 }
 
 function selfTest() {
-  if (
-    validate(
-      new Map([[SEARCH_BOX_TEMPLATE, '<div popover="manual"></div>']]),
-    ).length !== 0
-  ) {
-    throw new Error(
-      'Tooltip checker rejected the approved SearchBox anchored popover',
-    );
+  for (const [template, label] of [
+    [SEARCH_BOX_TEMPLATE, 'SearchBox'],
+    [SPLIT_BUTTON_TEMPLATE, 'SplitButton'],
+    [FAB_MENU_TEMPLATE, 'FabMenu'],
+  ]) {
+    if (
+      validate(
+        new Map([[template, '<div popover="manual"></div>']]),
+      ).length !== 0
+    ) {
+      throw new Error(
+        `Tooltip checker rejected the approved ${label} anchored popover`,
+      );
+    }
   }
 
   const fixtures = [
