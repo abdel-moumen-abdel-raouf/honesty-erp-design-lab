@@ -50,8 +50,13 @@
   padding: var(--honesty-overlay-frame-header-padding);
   border-block-end: var(--honesty-overlay-frame-header-border-width) solid
     var(--honesty-overlay-frame-header-border-color);
-  box-shadow: inset 0 0 0 var(--honesty-overlay-frame-header-outline-width)
-    var(--honesty-overlay-frame-header-outline-color);
+  box-shadow:
+    inset 0 0 0 var(--honesty-overlay-frame-header-outline-width)
+    color-mix(
+      in srgb,
+      var(--honesty-overlay-frame-header-outline-color) 60%,
+      transparent
+    );
 }
 
 .overlay-frame__icon {
