@@ -265,3 +265,58 @@ the previous green checkpoint.
 
 Fresh focused checks and full `npm run verify:clean` are mandatory before
 Product Owner visual re-review.
+
+
+## 2026-10-02 — governance false-positive and pre-handoff consistency rule
+
+Product Owner local verification at
+`1ce479b53bb440bb80c0cd1519db83ca285ccd21` showed:
+
+- the standalone test suite completed successfully;
+- **89/89 test files PASS**;
+- **683/683 tests PASS**;
+- canonical verification then stopped at one CheckBox ErpField governance
+  finding.
+
+Root cause was not runtime behavior.
+
+During the V3 style compaction, the actual Switch implementation renamed its
+private direction variables to:
+
+- `--_switch-off`;
+- `--_switch-on`.
+
+The ErpField governance checker still required the superseded private names:
+
+- `--_honesty-check-box-switch-off`;
+- `--_honesty-check-box-switch-on`.
+
+Bounded correction:
+
+- `aac51a5fcdfecb3eeb9ee148e07799a38e5519ed` —
+  `fix(governance): align checkbox switch private variables`;
+- no CheckBox runtime, template, token, public API, visual behavior, or
+  showcase source changed.
+
+Post-correction static source-to-governance audit:
+
+- 47 CheckBox contract predicates evaluated against current production source;
+- 47 PASS;
+- 0 mismatches.
+
+### Pre-handoff rule for this batch
+
+For every future component wave in this reference batch, before asking the
+Product Owner to pull and run verification:
+
+1. inspect every changed runtime/template/token/test/governance file as one
+   diff unit;
+2. evaluate every newly added or changed governance predicate against the
+   actual current source;
+3. require zero static source/governance mismatches;
+4. inspect dependent test expectations for stale literals/selectors;
+5. only then hand the checkpoint to the Product Owner for local canonical
+   execution.
+
+This does not replace `npm run verify:clean`; it prevents avoidable stale
+checker/source mismatches from being handed to the Product Owner.
