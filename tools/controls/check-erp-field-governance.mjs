@@ -9,6 +9,10 @@ const CONTROLS_ROOT = 'src/app/controls/';
 const TOKEN_ROOT = 'src/styles/foundation/components/';
 const INPUT_SHOWCASE =
   'src/app/showcase/input-controls/input-controls.html';
+const INPUT_SHOWCASE_SOURCE =
+  'src/app/showcase/input-controls/input-controls.ts';
+const INPUT_SHOWCASE_STYLE =
+  'src/app/showcase/input-controls/input-controls.scss';
 const OVERLAY_SHOWCASE =
   'src/app/showcase/overlay-controls/overlay-controls.html';
 const BUTTON_SHOWCASE =
@@ -1346,7 +1350,12 @@ export function validateChoiceVisualContracts(
     !checkSource.includes("export type ErpCheckBoxVariant = 'classic' | 'switch' | 'neon'") ||
     !checkSource.includes("readonly variant = input<ErpCheckBoxVariant>('classic')") ||
     !checkSource.includes("'[attr.data-check-box-variant]': 'variant()'") ||
+    !checkSource.includes('userClearedIndeterminate = signal(false)') ||
+    !checkSource.includes('effectiveIndeterminate = computed(') ||
+    !checkSource.includes("changes['indeterminate'] !== undefined") ||
+    !checkSource.includes('this.userClearedIndeterminate.set(true)') ||
     !checkTemplate.includes('type="checkbox"') ||
+    !checkTemplate.includes('[indeterminate]="effectiveIndeterminate()"') ||
     !checkTemplate.includes('class="check-box__visual"') ||
     !checkTemplate.includes('class="check-box__text"') ||
     !checkTemplate.includes('class="check-box__title"') ||
@@ -1362,6 +1371,8 @@ export function validateChoiceVisualContracts(
     checkTokens.includes('--honesty-check-box-fill-end:') ||
     !checkTokens.includes('--honesty-check-box-selected-ring-width:') ||
     !checkTokens.includes('--honesty-check-box-pressed-scale:') ||
+    !checkTokens.includes('--honesty-check-box-switch-track-bg:') ||
+    !checkTokens.includes('--honesty-check-box-switch-border-color:') ||
     !checkTokens.includes('--honesty-check-box-switch-knob-off-color:') ||
     !checkTokens.includes('--honesty-check-box-switch-knob-on-color:') ||
     !checkTokens.includes('--honesty-check-box-neon-pulse-duration:') ||
@@ -1370,6 +1381,7 @@ export function validateChoiceVisualContracts(
     !checkTokens.includes('--honesty-check-box-control-size: 1.875rem;') ||
     !checkTokens.includes('--honesty-check-box-control-size: 2.375rem;') ||
     !checkTokens.includes('var(--honesty-motion-duration-deliberate)') ||
+    !checkTokens.includes('--honesty-check-box-fill-color: var(--honesty-color-action-primary-bg);') ||
     !checkStyles.includes('.check-box__visual::before') ||
     !checkStyles.includes('.check-box__visual::after') ||
     !checkStyles.includes('background: var(--honesty-check-box-fill-color);') ||
@@ -1388,11 +1400,13 @@ export function validateChoiceVisualContracts(
     !checkStyles.includes('color-mix(') ||
     !checkStyles.includes('.check-box__native:focus-visible') ||
     !checkStyles.includes('prefers-reduced-motion: reduce') ||
+    checkStyles.includes("data-check-box-state='disabled']) .check-box__title") ||
+    checkStyles.includes("data-check-box-state='disabled']) .check-box__description") ||
     /#[0-9a-fA-F]{3,8}\b/.test(checkTokens) ||
     /#[0-9a-fA-F]{3,8}\b/.test(checkStyles)
   ) {
     errors.push(
-      'CheckBox: Product Owner template requires classic/switch/neon variants, solid system-tone selection color, exact sm/md/lg/xl geometry, CSS mark assembly, RTL-aware switch travel, states, and Foundation Motion',
+      'CheckBox: Product Owner template requires classic/switch/neon variants, user-exitable indeterminate state, single-tone selection, visible switch off-track, non-duplicated disabled dimming, exact sm/md/lg/xl geometry, CSS mark assembly, RTL-aware switch travel, states, and Foundation Motion',
     );
   }
 
@@ -1410,6 +1424,88 @@ export function validateChoiceVisualContracts(
   ) {
     errors.push(
       'RadioBox: native semantics, fixed circular geometry, centered dot, state visuals, and Foundation Motion are required',
+    );
+  }
+
+  return errors;
+}
+
+
+export function validateCheckBoxShowcaseContracts(files) {
+  const errors = [];
+  const source = files.get(INPUT_SHOWCASE_SOURCE) ?? '';
+  const template = files.get(INPUT_SHOWCASE) ?? '';
+  const styles = files.get(INPUT_SHOWCASE_STYLE) ?? '';
+
+  for (const required of [
+    'data-check-box-size-card',
+    'data-check-box-states-card',
+    'data-check-box-switch-card',
+    'data-check-box-neon-card',
+    'data-check-box-tiles-card',
+    'data-check-box-task-card',
+    'data-check-box-mixed-evidence',
+    'data-check-box-required-evidence',
+    'data-check-box-task-master',
+    'variant="switch"',
+    'variant="neon"',
+    '[indeterminate]="someTasksChecked()"',
+    '(ngModelChange)="setAllTasks($event)"',
+  ]) {
+    if (!template.includes(required)) {
+      errors.push(
+        `CheckBox showcase: full Product Owner reference evidence is missing ${required}`,
+      );
+    }
+  }
+
+  const requiredControl = template.match(
+    /<erp-check-box[\s\S]*?data-check-box-required-evidence[\s\S]*?\/>/,
+  )?.[0] ?? '';
+  if (
+    requiredControl.length === 0 ||
+    !requiredControl.includes('required') ||
+    requiredControl.includes('status="danger"')
+  ) {
+    errors.push(
+      'CheckBox showcase: required danger must come from validation and recover after selection, not from a hard-coded danger status',
+    );
+  }
+
+  for (const required of [
+    'mixedCheckValue = signal(false)',
+    'requiredCheckValue = signal(false)',
+    'taskValues = signal<readonly boolean[]>',
+    'taskDoneCount = computed(',
+    'allTasksChecked = computed(',
+    'someTasksChecked = computed(',
+    'toggleTile(',
+    'setTask(',
+    'setAllTasks(',
+  ]) {
+    if (!source.includes(required)) {
+      errors.push(
+        `CheckBox showcase: interactive reference model is missing ${required}`,
+      );
+    }
+  }
+
+  for (const required of [
+    '.check-tile',
+    "[data-selected='true']",
+    '.check-task-list',
+    "[data-completed='true']",
+  ]) {
+    if (!styles.includes(required)) {
+      errors.push(
+        `CheckBox showcase: template composition styling is missing ${required}`,
+      );
+    }
+  }
+
+  if (styles.includes('min-block-size: 100%')) {
+    errors.push(
+      'CheckBox showcase: review cards must not be forced to equal-height empty-space layouts',
     );
   }
 
@@ -1946,11 +2042,11 @@ export class ErpImagePicker extends ErpFileSelectionBase {
   }
 
   const validCheckSource =
-    "export type ErpCheckBoxVariant = 'classic' | 'switch' | 'neon'; readonly variant = input<ErpCheckBoxVariant>('classic'); '[attr.data-check-box-variant]': 'variant()';";
+    "export type ErpCheckBoxVariant = 'classic' | 'switch' | 'neon'; readonly variant = input<ErpCheckBoxVariant>('classic'); '[attr.data-check-box-variant]': 'variant()'; userClearedIndeterminate = signal(false); effectiveIndeterminate = computed( changes['indeterminate'] !== undefined this.userClearedIndeterminate.set(true);";
   const validCheckTemplate =
-    '<input type="checkbox"><span class="check-box__visual"></span><span class="check-box__text"><erp-text class="check-box__title" type="span"></erp-text><erp-text class="check-box__description" type="span"></erp-text></span>';
+    '<input type="checkbox" [indeterminate]="effectiveIndeterminate()"><span class="check-box__visual"></span><span class="check-box__text"><erp-text class="check-box__title" type="span"></erp-text><erp-text class="check-box__description" type="span"></erp-text></span>';
   const validCheckTokens =
-    '--honesty-check-box-control-size: 1.125rem; --honesty-check-box-control-size: 1.5rem; --honesty-check-box-control-size: 1.875rem; --honesty-check-box-control-size: 2.375rem; --honesty-check-box-title-size: 0.93rem; --honesty-check-box-description-size: 0.76rem; --honesty-check-box-fill-color: var(--honesty-color-brand-primary-solid); --honesty-check-box-selected-ring-width: 0.25rem; --honesty-check-box-pressed-scale: 0.86; --honesty-check-box-switch-knob-off-color: var(--honesty-color-text-muted); --honesty-check-box-switch-knob-on-color: var(--honesty-check-box-mark-color); --honesty-check-box-neon-pulse-duration: 2.4s; --honesty-check-box-transition-duration: var(--honesty-motion-duration-deliberate);';
+    '--honesty-check-box-control-size: 1.125rem; --honesty-check-box-control-size: 1.5rem; --honesty-check-box-control-size: 1.875rem; --honesty-check-box-control-size: 2.375rem; --honesty-check-box-title-size: 0.93rem; --honesty-check-box-description-size: 0.76rem; --honesty-check-box-fill-color: var(--honesty-color-brand-primary-solid); --honesty-check-box-fill-color: var(--honesty-color-action-primary-bg); --honesty-check-box-selected-ring-width: 0.25rem; --honesty-check-box-pressed-scale: 0.86; --honesty-check-box-switch-track-bg: var(--honesty-color-surface-canvas); --honesty-check-box-switch-border-color: var(--honesty-border-strong); --honesty-check-box-switch-knob-off-color: var(--honesty-color-text-muted); --honesty-check-box-switch-knob-on-color: var(--honesty-check-box-mark-color); --honesty-check-box-neon-pulse-duration: 2.4s; --honesty-check-box-transition-duration: var(--honesty-motion-duration-deliberate);';
   const validCheckStyles =
     ":host-context([dir='rtl']) { --_switch-off: 1; --_switch-on: -1; } .check-box[data-variant='switch'] {} .check-box__visual::before { background: var(--honesty-check-box-fill-color); } .check-box__visual::after { clip-path: polygon(0 0, 1px 1px); } :host([data-check-box-variant='neon']) {} --_switch-off --_switch-on @keyframes honesty-check-box-neon-pulse {} .check-box:active {} color-mix(in srgb, red 65%, transparent) .check-box__native:focus-visible {} :host([data-check-box-checked='true']) {} :host([data-check-box-indeterminate='true']) {} @media (prefers-reduced-motion: reduce) {}";
   const validRadioTemplate =
@@ -2042,6 +2138,34 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     ).length === 0
   ) {
     throw new Error('ErpField checker accepted incomplete CheckBox variant API');
+  }
+
+  const validCheckShowcase = new Map([
+    [
+      INPUT_SHOWCASE_SOURCE,
+      'mixedCheckValue = signal(false); requiredCheckValue = signal(false); taskValues = signal<readonly boolean[]> taskDoneCount = computed( allTasksChecked = computed( someTasksChecked = computed( toggleTile( setTask( setAllTasks(',
+    ],
+    [
+      INPUT_SHOWCASE,
+      'data-check-box-size-card data-check-box-states-card data-check-box-switch-card data-check-box-neon-card data-check-box-tiles-card data-check-box-task-card data-check-box-mixed-evidence <erp-check-box data-check-box-required-evidence required /> data-check-box-task-master variant="switch" variant="neon" [indeterminate]="someTasksChecked()" (ngModelChange)="setAllTasks($event)"',
+    ],
+    [
+      INPUT_SHOWCASE_STYLE,
+      ".check-tile [data-selected='true'] .check-task-list [data-completed='true']",
+    ],
+  ]);
+
+  if (validateCheckBoxShowcaseContracts(validCheckShowcase).length > 0) {
+    throw new Error('ErpField checker rejected valid CheckBox showcase fixtures');
+  }
+
+  const invalidCheckShowcase = new Map(validCheckShowcase);
+  invalidCheckShowcase.set(
+    INPUT_SHOWCASE,
+    '<erp-check-box data-check-box-required-evidence required status="danger" />',
+  );
+  if (validateCheckBoxShowcaseContracts(invalidCheckShowcase).length === 0) {
+    throw new Error('ErpField checker accepted hard-coded CheckBox required danger');
   }
 
   const validTemporalFiles = new Map([
@@ -2721,6 +2845,7 @@ errors.push(
     RADIO_BOX_STYLES.map((file) => files.get(file) ?? '').join('\n'),
   ),
 );
+errors.push(...validateCheckBoxShowcaseContracts(files));
 errors.push(...validateTemporalCorrectionContracts(files));
 errors.push(...validateSelectionCorrectionContracts(files));
 errors.push(
