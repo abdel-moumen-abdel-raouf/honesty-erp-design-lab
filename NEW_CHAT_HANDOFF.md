@@ -3833,3 +3833,50 @@ pending.**
 Do not begin RadioBox until CheckBox V2 is technically green and visually
 accepted by the Product Owner.
 <!-- CHATGPT_CHECKBOX_V2_VISUAL_REJECTION_2026_10_02_END -->
+
+
+<!-- CHATGPT_CHECKBOX_V2_STACK_GAP_FOLLOWUP_2026_10_02_START -->
+## 2026-10-02 — CheckBox V2 verification follow-up: invalid review Stack gap corrected
+
+Product Owner locally verified
+`42ad7f12e952bffe5f8bb0d4c6dc27fde540d59f`.
+
+Focused results:
+
+- `component-tokens:check` PASS;
+- `erp-field:check` PASS;
+- `erp-field:check:self-test` PASS.
+
+Angular test bundle generation then stopped before tests executed because the
+new Boolean/Choice review cards used `<erp-stack gap="md">`, while the
+authoritative `ErpStackGap` contract is:
+
+`none | tight | default | loose`.
+
+Bounded correction:
+
+- `7c1a08d24c30c0c63dbd55333e41064fbd4d9c5a` —
+  `fix(showcase): use valid stack gap in choice review cards`;
+- both invalid `gap="md"` values were replaced with `gap="default"`;
+- no CheckBox runtime implementation, visual design, tokens, public API,
+  governance contract, or style budget changed.
+
+Documentation checkpoint:
+
+- `0fab5787a6dd62cfa5c9e4f43d456732517d1f1d` —
+  `docs(check-box): record showcase stack-gap follow-up`.
+
+Current state:
+
+**CheckBox V2 implemented / focused governance PASS / fresh tests pending /
+fresh canonical verification pending / Product Owner visual re-review pending.**
+
+Next gates:
+
+```text
+npm run test -- --watch=false
+npm run verify:clean
+```
+
+Do not begin RadioBox yet.
+<!-- CHATGPT_CHECKBOX_V2_STACK_GAP_FOLLOWUP_2026_10_02_END -->
