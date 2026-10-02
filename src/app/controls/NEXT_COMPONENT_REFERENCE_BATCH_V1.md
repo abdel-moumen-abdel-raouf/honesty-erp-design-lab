@@ -100,3 +100,19 @@ color/token authority.
 
 RadioBox remains unopened and unchanged until CheckBox V2 receives technical
 and Product Owner visual acceptance.
+
+
+## CheckBox V3 current state
+
+Product Owner review of V2 added two corrections:
+
+- remove selected gradients and use one resolved system tone;
+- implement the template's own Classic / Switch / Neon variant vocabulary.
+
+This is now implemented in the current CheckBox wave.
+
+The template's Selectable Tiles and Task List remain separately classified
+composition examples because the template itself does not expose them in its
+Variant selector.
+
+RadioBox remains unopened.
