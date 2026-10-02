@@ -163,6 +163,7 @@ describe('ErpOverlayFrame', () => {
     expect(subtitle?.getAttribute('data-text-tone')).toBe('inherit');
     expect(close?.getAttribute('data-icon-button-variant')).toBe('solid');
     expect(close?.getAttribute('data-icon-button-tone')).toBe('warning');
+    expect(getComputedStyle(header as HTMLElement).boxShadow).not.toBe('none');
   });
 
   it('can hide only the Header close button through API while preserving the colored Header', () => {

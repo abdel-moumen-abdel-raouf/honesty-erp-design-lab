@@ -36,7 +36,7 @@ describe('ErpConfirmDialogService', () => {
       kind: 'modal',
       position: 'center',
       size: 'sm',
-      dismissOnEscape: true,
+      dismissOnEscape: false,
       dismissOnBackdrop: false,
       initialFocus: '[data-overlay-frame-action-id="cancel"] button',
       frame: {
@@ -107,26 +107,30 @@ describe('ErpConfirmDialogService', () => {
     });
   });
 
-  it('maps Header close and Escape to explicit dismissed results', async () => {
+  it('defaults Escape/Backdrop dismissal off and supports explicit API opt-in', async () => {
     const service = TestBed.inject(ErpConfirmDialogService);
     const manager = TestBed.inject(ErpOverlayManager);
 
-    const closeResult = service.confirm({
-      title: 'Close proof',
-      message: 'Close through Header.',
+    const defaultResult = service.confirm({
+      title: 'Default dismissal proof',
+      message: 'Escape and backdrop are off by default.',
     });
-    const closeRef = manager.entries().at(-1)!.ref;
-    manager.completeTransition(closeRef.id, 'entering');
-    closeRef.dismiss('close-action');
-    manager.completeTransition(closeRef.id, 'leaving');
-    await expect(closeResult).resolves.toEqual({
+    const defaultRef = manager.entries().at(-1)!.ref;
+    manager.completeTransition(defaultRef.id, 'entering');
+    manager.dismissTopFromEscape();
+    manager.dismissFromBackdrop(defaultRef.id);
+    expect(manager.entries().at(-1)?.phase).toBe('open');
+    defaultRef.dismiss('close-action');
+    manager.completeTransition(defaultRef.id, 'leaving');
+    await expect(defaultResult).resolves.toEqual({
       type: 'dismissed',
       reason: 'close',
     });
 
     const escapeResult = service.confirm({
       title: 'Escape proof',
-      message: 'Close through Escape.',
+      message: 'Escape explicitly enabled.',
+      dismissOnEscape: true,
     });
     const escapeRef = manager.entries().at(-1)!.ref;
     manager.completeTransition(escapeRef.id, 'entering');
@@ -135,6 +139,20 @@ describe('ErpConfirmDialogService', () => {
     await expect(escapeResult).resolves.toEqual({
       type: 'dismissed',
       reason: 'escape',
+    });
+
+    const backdropResult = service.confirm({
+      title: 'Backdrop proof',
+      message: 'Backdrop explicitly enabled.',
+      dismissOnBackdrop: true,
+    });
+    const backdropRef = manager.entries().at(-1)!.ref;
+    manager.completeTransition(backdropRef.id, 'entering');
+    manager.dismissFromBackdrop(backdropRef.id);
+    manager.completeTransition(backdropRef.id, 'leaving');
+    await expect(backdropResult).resolves.toEqual({
+      type: 'dismissed',
+      reason: 'backdrop',
     });
   });
 
@@ -287,6 +305,8 @@ describe('ErpConfirmDialogService', () => {
       title: 'تأكيد إلزامي',
       message: 'لا يمكن الإغلاق بدون إجراء.',
       userDismissible: false,
+      dismissOnEscape: true,
+      dismissOnBackdrop: true,
     });
 
     const entry = manager.entries().at(-1)!;
@@ -306,6 +326,7 @@ describe('ErpConfirmDialogService', () => {
 
     manager.completeTransition(entry.ref.id, 'entering');
     manager.dismissTopFromEscape();
+    manager.dismissFromBackdrop(entry.ref.id);
     expect(manager.entries().at(-1)?.phase).toBe('open');
 
     expect(entry.ref.requestFrameAction('confirm')).toBe(true);

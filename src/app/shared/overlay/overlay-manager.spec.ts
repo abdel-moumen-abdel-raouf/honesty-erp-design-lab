@@ -59,8 +59,8 @@ describe('ErpOverlayManager', () => {
       legacyCompactMenuLabel: null,
       dismissOnEscape: false,
       dismissOnBackdrop: false,
-      blur: 'low',
-      backdropTone: 'default',
+      blur: 'medium',
+      backdropTone: 'primary',
       enterAnimation: 'flip-x',
       exitAnimation: 'flip-x',
       restoreFocus: true,
@@ -186,6 +186,20 @@ describe('ErpOverlayManager', () => {
       id: 'delete',
       tone: 'danger',
       role: 'primary',
+    });
+  });
+
+  it('applies the same medium/primary non-dismissible defaults to legacy compact overlays', () => {
+    const manager = TestBed.inject(ErpOverlayManager);
+    const ref = manager.openLegacyCompactMenu(TestOverlayContent, {
+      label: 'Legacy menu',
+    });
+
+    expect(ref.config).toMatchObject({
+      dismissOnEscape: false,
+      dismissOnBackdrop: false,
+      blur: 'medium',
+      backdropTone: 'primary',
     });
   });
 
@@ -338,6 +352,20 @@ describe('ErpOverlayManager', () => {
     manager.dismissTopFromEscape();
     expect(manager.entries().at(-1)?.phase).toBe('leaving');
     manager.completeTransition(escape.id, 'leaving');
+  });
+
+  it('preserves explicit low/default API overrides despite the new medium/primary defaults', () => {
+    const manager = TestBed.inject(ErpOverlayManager);
+    const ref = manager.open(TestOverlayContent, {
+      frame: frame('Explicit visual override'),
+      blur: 'low',
+      backdropTone: 'default',
+    });
+
+    expect(ref.config).toMatchObject({
+      blur: 'low',
+      backdropTone: 'default',
+    });
   });
 
   it('retains every configured blur, tone, and animation preset per entry', () => {

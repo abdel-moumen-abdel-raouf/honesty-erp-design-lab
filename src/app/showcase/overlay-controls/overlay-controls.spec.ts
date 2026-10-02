@@ -70,7 +70,7 @@ describe('OverlayControls showcase', () => {
   it('contains modal, logical drawer, nested, and policy evidence', () => {
     const root = create().nativeElement as HTMLElement;
     expect(root.querySelectorAll('[data-modal-evidence]').length).toBe(1);
-    expect(root.querySelectorAll('[data-confirm-dialog-evidence]').length).toBe(5);
+    expect(root.querySelectorAll('[data-confirm-dialog-evidence]').length).toBe(6);
     expect(root.querySelectorAll('[data-frame-header-hidden-evidence]').length).toBe(1);
     expect(root.querySelectorAll('[data-frame-footer-hidden-evidence]').length).toBe(1);
     expect(root.querySelectorAll('[data-frame-both-hidden-evidence]').length).toBe(1);
@@ -91,6 +91,9 @@ describe('OverlayControls showcase', () => {
     const root = create().nativeElement as HTMLElement;
 
     expect(root.querySelectorAll('[data-default-backdrop-evidence]')).toHaveLength(1);
+    expect(
+      root.querySelectorAll('[data-default-dismissal-policy-evidence]'),
+    ).toHaveLength(1);
     expect(
       [...root.querySelectorAll<HTMLElement>('[data-backdrop-dismiss-evidence]')]
         .map((item) => item.dataset['backdropDismissEvidence']),
@@ -153,13 +156,17 @@ describe('OverlayControls showcase', () => {
       manager.entries().map((entry) => ({
         kind: entry.ref.config.kind,
         position: entry.ref.config.position,
+        blur: entry.ref.config.blur,
+        backdropTone: entry.ref.config.backdropTone,
+        dismissOnBackdrop: entry.ref.config.dismissOnBackdrop,
+        dismissOnEscape: entry.ref.config.dismissOnEscape,
       })),
     ).toEqual([
-      {kind: 'modal', position: 'center'},
-      {kind: 'drawer', position: 'start'},
-      {kind: 'drawer', position: 'end'},
-      {kind: 'drawer', position: 'top'},
-      {kind: 'drawer', position: 'bottom'},
+      {kind: 'modal', position: 'center', blur: 'medium', backdropTone: 'primary', dismissOnBackdrop: false, dismissOnEscape: false},
+      {kind: 'drawer', position: 'start', blur: 'medium', backdropTone: 'primary', dismissOnBackdrop: false, dismissOnEscape: false},
+      {kind: 'drawer', position: 'end', blur: 'medium', backdropTone: 'primary', dismissOnBackdrop: false, dismissOnEscape: false},
+      {kind: 'drawer', position: 'top', blur: 'medium', backdropTone: 'primary', dismissOnBackdrop: false, dismissOnEscape: false},
+      {kind: 'drawer', position: 'bottom', blur: 'medium', backdropTone: 'primary', dismissOnBackdrop: false, dismissOnEscape: false},
     ]);
   });
 
@@ -268,6 +275,17 @@ describe('OverlayControls showcase', () => {
     ]);
   });
 
+  it('provides an explicit System Confirm example with the ordinary uncolored Header', () => {
+    const fixture = create();
+    const manager = TestBed.inject(ErpOverlayManager);
+
+    fixture.componentInstance.openPlainHeaderConfirm();
+
+    expect(manager.entries().at(-1)?.ref.config.frame?.header.tone).toBe(
+      'default',
+    );
+  });
+
   it('opens the system Confirm service with semantic danger configuration', () => {
     const fixture = create();
     const manager = TestBed.inject(ErpOverlayManager);
@@ -279,7 +297,7 @@ describe('OverlayControls showcase', () => {
       kind: 'modal',
       position: 'center',
       size: 'sm',
-      dismissOnEscape: true,
+      dismissOnEscape: false,
       dismissOnBackdrop: false,
       initialFocus: '[data-overlay-frame-action-id="cancel"] button',
       frame: {

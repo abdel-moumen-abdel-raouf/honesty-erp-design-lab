@@ -120,13 +120,30 @@ describe('ErpOverlayHost', () => {
       root.querySelector('[data-overlay-phase="entering"]'),
     ).toBeTruthy();
     expect(
-      root.querySelector('[data-overlay-blur="low"]'),
+      root.querySelector('[data-overlay-blur="medium"]'),
     ).toBeTruthy();
     expect(
-      root.querySelector('[data-overlay-backdrop-tone="default"]'),
+      root.querySelector('[data-overlay-backdrop-tone="primary"]'),
     ).toBeTruthy();
     expect(
       root.querySelector('[data-overlay-animation="flip-x"]'),
+    ).toBeTruthy();
+  });
+
+  it('renders explicit low blur and default backdrop-tone API overrides', () => {
+    const fixture = TestBed.createComponent(TestOverlayShell);
+    const manager = TestBed.inject(ErpOverlayManager);
+    manager.open(TestOverlayContent, {
+      frame: frame('Explicit backdrop override'),
+      blur: 'low',
+      backdropTone: 'default',
+    });
+    fixture.detectChanges();
+    const root = fixture.nativeElement as HTMLElement;
+
+    expect(root.querySelector('[data-overlay-blur="low"]')).toBeTruthy();
+    expect(
+      root.querySelector('[data-overlay-backdrop-tone="default"]'),
     ).toBeTruthy();
   });
 
