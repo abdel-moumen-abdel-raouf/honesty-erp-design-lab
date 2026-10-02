@@ -219,62 +219,88 @@
     <erp-text type="heading-2">الاختيار المنطقي والمفرد</erp-text>
     <erp-divider />
     <erp-grid [columns]="2" gap="md" responsive="auto">
-        <erp-surface
-          data-boolean-choice-rtl-evidence
-          dir="rtl"
-          border="subtle"
-        >
-          <erp-stack>
-            <erp-check-box
-              data-check-box-evidence
-              label="إشعارات البريد"
-              description="استلام تنبيه عند ورود نشاط جديد."
-              size="sm"
-              [ngModel]="checkValue()"
-              (ngModelChange)="checkValue.set($event)"
-            />
-            <erp-check-box
-              label="الملخص الأسبوعي"
-              description="إرسال ملخص واحد في بداية كل أسبوع."
-              size="md"
-              [ngModel]="true"
-              tone="primary"
-            />
-            <erp-check-box
-              label="تحديد مجموعة جزئيًا"
-              description="بعض العناصر الفرعية محددة حاليًا."
-              size="lg"
-              indeterminate
-              tone="secondary"
-            />
-            <erp-check-box
-              label="ميزة غير متاحة"
-              description="هذا الخيار غير متاح في السياق الحالي."
-              size="xl"
-              disabled
-            />
-            <erp-check-box
-              label="موافقة مطلوبة"
-              description="يجب تحديد هذا الخيار قبل المتابعة."
-              status="danger"
-              required
-            />
-            <erp-radio-box
-              data-radio-box-evidence
-              label="اختيار مفرد غير محدد"
-              [ngModel]="radioValue()"
-              (ngModelChange)="radioValue.set($event)"
-            />
-            <erp-radio-box label="اختيار مفرد محدد" [ngModel]="true" tone="primary" />
-            <erp-radio-box label="اختيار مفرد معطل" disabled />
-            <erp-radio-box label="اختيار مفرد بتحذير" status="warning" />
-            <erp-radio-group
-              data-radio-group-evidence
-              label="مجموعة اختيار مفرد"
-              [options]="radioGroupItems"
-            />
+      <erp-surface
+        class="choice-review-card"
+        data-check-box-reference-card
+        data-boolean-choice-rtl-evidence
+        dir="rtl"
+        border="subtle"
+      >
+        <erp-stack gap="md">
+          <erp-stack gap="tight">
+            <erp-text type="heading-3">CheckBox — مرجع Product Owner</erp-text>
+            <erp-text type="paragraph" tone="secondary">
+              الأحجام والحالات والهندسة مستمدة من القالب المعتمد، مع ألوان النظام.
+            </erp-text>
           </erp-stack>
-        </erp-surface>
+
+          <erp-check-box
+            data-check-box-evidence
+            label="إشعارات البريد"
+            description="استلام تنبيه عند ورود نشاط جديد."
+            size="sm"
+            [ngModel]="checkValue()"
+            (ngModelChange)="checkValue.set($event)"
+          />
+          <erp-check-box
+            label="الملخص الأسبوعي"
+            description="إرسال ملخص واحد في بداية كل أسبوع مع ملخص شامل للنشاط."
+            size="md"
+            [ngModel]="true"
+            tone="primary"
+          />
+          <erp-check-box
+            label="تحديد مجموعة جزئيًا"
+            description="بعض العناصر الفرعية محددة حاليًا، لذلك تظهر الحالة غير المحسومة."
+            size="lg"
+            indeterminate
+            tone="secondary"
+          />
+          <erp-check-box
+            label="ميزة غير متاحة"
+            description="هذا الخيار غير متاح في السياق الحالي."
+            size="xl"
+            disabled
+          />
+          <erp-check-box
+            label="موافقة مطلوبة"
+            description="يجب تحديد هذا الخيار قبل المتابعة."
+            status="danger"
+            required
+          />
+        </erp-stack>
+      </erp-surface>
+
+      <erp-surface
+        class="choice-review-card"
+        data-radio-current-card
+        dir="rtl"
+        border="subtle"
+      >
+        <erp-stack gap="md">
+          <erp-stack gap="tight">
+            <erp-text type="heading-3">RadioBox — الحالي</erp-text>
+            <erp-text type="paragraph" tone="secondary">
+              هذا الجزء لم يبدأ تصحيحه بالمرجع بعد.
+            </erp-text>
+          </erp-stack>
+
+          <erp-radio-box
+            data-radio-box-evidence
+            label="اختيار مفرد غير محدد"
+            [ngModel]="radioValue()"
+            (ngModelChange)="radioValue.set($event)"
+          />
+          <erp-radio-box label="اختيار مفرد محدد" [ngModel]="true" tone="primary" />
+          <erp-radio-box label="اختيار مفرد معطل" disabled />
+          <erp-radio-box label="اختيار مفرد بتحذير" status="warning" />
+          <erp-radio-group
+            data-radio-group-evidence
+            label="مجموعة اختيار مفرد"
+            [options]="radioGroupItems"
+          />
+        </erp-stack>
+      </erp-surface>
     </erp-grid>
   </erp-section>
 
