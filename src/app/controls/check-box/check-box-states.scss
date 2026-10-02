@@ -2,7 +2,7 @@
   border-color:
     color-mix(
       in srgb,
-      var(--honesty-check-box-fill-start) 65%,
+      var(--honesty-check-box-fill-color) 65%,
       var(--honesty-check-box-border-color)
     );
 }
@@ -18,7 +18,7 @@
     0 0 0 var(--honesty-check-box-selected-ring-width)
     color-mix(
       in srgb,
-      var(--honesty-check-box-fill-start)
+      var(--honesty-check-box-fill-color)
         var(--honesty-check-box-selected-ring-opacity),
       transparent
     );
