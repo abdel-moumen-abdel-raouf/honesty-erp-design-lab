@@ -1,18 +1,24 @@
 <div class="fab-menu">
-  @if (open()) {
-    <div class="fab-menu__actions">
-      @for (item of items(); track item.value) {
-        <erp-extended-fab
-          data-fab-menu-action
-          [label]="item.label"
-          [icon]="item.icon ?? null"
-          [disabled]="item.disabled ?? false"
-          (pressed)="select(item)"
-        />
-      }
-    </div>
-  }
+  <div
+    #actionsSurface
+    class="fab-menu__actions"
+    popover="manual"
+    role="menu"
+    [attr.aria-label]="label()"
+  >
+    @for (item of items(); track item.value) {
+      <erp-extended-fab
+        data-fab-menu-action
+        [label]="item.label"
+        [icon]="item.icon ?? null"
+        [disabled]="item.disabled ?? false"
+        (pressed)="select(item)"
+      />
+    }
+  </div>
+
   <erp-fab
+    #trigger
     data-fab-menu-trigger
     [icon]="open() ? 'close' : icon()"
     [label]="label()"
