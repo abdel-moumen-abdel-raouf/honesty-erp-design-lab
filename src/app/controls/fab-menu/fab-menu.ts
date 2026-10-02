@@ -5,9 +5,16 @@ import {
   ElementRef,
   inject,
   input,
+  OnDestroy,
   output,
   signal,
+  viewChild,
 } from '@angular/core';
+import {AnchoredOverlayController} from '../../shared/anchored-overlay/anchored-overlay-controller';
+import {
+  AnchoredOverlayGeometryResult,
+  AnchoredOverlayPhysicalPlacement,
+} from '../../shared/anchored-overlay/anchored-overlay-contracts';
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
 import {ErpExtendedFab} from '../extended-fab/extended-fab';
 import {ErpFab} from '../fab/fab';
@@ -24,10 +31,11 @@ import {ErpFabMenuPlacement} from '../composite-family/composite-contracts';
   host: {
     '[attr.data-fab-menu-open]': 'open()',
     '[attr.data-fab-menu-placement]': 'placement()',
+    '[attr.data-fab-menu-resolved-placement]': 'resolvedPlacement()',
     '(keydown)': 'handleKeydown($event)',
   },
 })
-export class ErpFabMenu {
+export class ErpFabMenu implements OnDestroy {
   readonly label = input.required<string>();
   readonly icon = input<ErpIconName>('add');
   readonly items = input.required<readonly ErpItemPickerOption[]>();
@@ -35,18 +43,33 @@ export class ErpFabMenu {
   readonly disabled = input(false, {transform: booleanAttribute});
   readonly itemSelected = output<string>();
   readonly open = signal(false);
+  protected readonly resolvedPlacement =
+    signal<AnchoredOverlayPhysicalPlacement | null>(null);
 
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly triggerHost = viewChild('trigger', {
+    read: ElementRef<HTMLElement>,
+  });
+  private readonly actionsSurface =
+    viewChild<ElementRef<HTMLElement>>('actionsSurface');
+  private controller: AnchoredOverlayController | null = null;
+
+  ngOnDestroy(): void {
+    this.detachDismissalListeners();
+    this.controller?.destroy();
+  }
 
   protected toggle(): void {
     if (this.disabled()) {
       return;
     }
 
-    this.open.update((value) => !value);
     if (this.open()) {
-      queueMicrotask(() => this.actionButtons()[0]?.focus());
+      this.closeMenu(true);
+      return;
     }
+
+    this.openMenu();
   }
 
   protected select(item: ErpItemPickerOption): void {
@@ -55,15 +78,14 @@ export class ErpFabMenu {
     }
 
     this.itemSelected.emit(item.value);
-    this.open.set(false);
-    queueMicrotask(() => this.triggerButton()?.focus());
+    this.closeMenu(true);
   }
 
   protected handleKeydown(event: KeyboardEvent): void {
     if (event.key === 'Escape' && this.open()) {
       event.preventDefault();
-      this.open.set(false);
-      queueMicrotask(() => this.triggerButton()?.focus());
+      event.stopPropagation();
+      this.closeMenu(true);
       return;
     }
 
@@ -85,11 +107,130 @@ export class ErpFabMenu {
     buttons[(current + delta + buttons.length) % buttons.length].focus();
   }
 
+  private openMenu(): void {
+    const trigger = this.triggerButton();
+    const surface = this.actionsSurface()?.nativeElement;
+
+    if (!trigger || !surface) {
+      return;
+    }
+
+    this.controller?.destroy();
+    this.controller = new AnchoredOverlayController({
+      anchor: trigger,
+      surface,
+      readGeometryInput: () => ({
+        preferredPlacement:
+          this.placement() === 'block-start' ? 'top' : 'bottom',
+        direction:
+          getComputedStyle(trigger).direction === 'rtl' ? 'rtl' : 'ltr',
+        anchorGap: this.cssLengthPx(
+          surface,
+          '--honesty-fab-menu-anchor-gap',
+        ),
+        viewportInset: this.cssLengthPx(
+          surface,
+          '--honesty-fab-menu-viewport-inset',
+        ),
+        showArrow: false,
+        arrowWidth: 0,
+        arrowHeight: 0,
+        arrowSafeInset: 0,
+      }),
+      applyGeometry: (result) => this.applyGeometry(result),
+    });
+
+    if (!this.controller.show()) {
+      return;
+    }
+
+    this.open.set(true);
+    this.attachDismissalListeners();
+    queueMicrotask(() => this.actionButtons()[0]?.focus());
+  }
+
+  private closeMenu(returnFocus: boolean): void {
+    if (!this.open()) {
+      return;
+    }
+
+    this.open.set(false);
+    this.resolvedPlacement.set(null);
+    this.controller?.hide();
+    this.detachDismissalListeners();
+
+    if (returnFocus) {
+      queueMicrotask(() => this.triggerButton()?.focus());
+    }
+  }
+
+  private readonly handleDocumentPointerDown = (event: Event): void => {
+    if (!this.open()) {
+      return;
+    }
+
+    const target = event.target as Node;
+    if (!this.host.nativeElement.contains(target)) {
+      this.closeMenu(false);
+    }
+  };
+
+  private attachDismissalListeners(): void {
+    document.addEventListener(
+      'pointerdown',
+      this.handleDocumentPointerDown,
+      true,
+    );
+  }
+
+  private detachDismissalListeners(): void {
+    document.removeEventListener(
+      'pointerdown',
+      this.handleDocumentPointerDown,
+      true,
+    );
+  }
+
   private actionButtons(): HTMLButtonElement[] {
-    return [...this.host.nativeElement.querySelectorAll<HTMLButtonElement>('[data-fab-menu-action] button:not([disabled])')];
+    return [
+      ...this.host.nativeElement.querySelectorAll<HTMLButtonElement>(
+        '[data-fab-menu-action] button:not([disabled])',
+      ),
+    ];
   }
 
   private triggerButton(): HTMLButtonElement | null {
-    return this.host.nativeElement.querySelector('[data-fab-menu-trigger] button');
+    return (
+      this.triggerHost()?.nativeElement.querySelector('button') ?? null
+    );
+  }
+
+  private cssLengthPx(surface: HTMLElement, name: string): number {
+    const raw = getComputedStyle(surface).getPropertyValue(name).trim();
+    const numeric = Number.parseFloat(raw);
+
+    if (!Number.isFinite(numeric)) {
+      return 0;
+    }
+
+    if (raw.endsWith('rem')) {
+      const rootSize = Number.parseFloat(
+        getComputedStyle(document.documentElement).fontSize,
+      );
+      return numeric * (Number.isFinite(rootSize) ? rootSize : 16);
+    }
+
+    return numeric;
+  }
+
+  private applyGeometry(result: AnchoredOverlayGeometryResult): void {
+    const surface = this.actionsSurface()?.nativeElement;
+    if (!surface) {
+      return;
+    }
+
+    surface.style.left = `${result.x}px`;
+    surface.style.top = `${result.y}px`;
+    this.resolvedPlacement.set(result.placement);
   }
 }
