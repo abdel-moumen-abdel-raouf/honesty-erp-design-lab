@@ -2,12 +2,13 @@
 
 :host {
   @include tokens.base;
+  --_honesty-check-box-gradient-angle: 135deg;
   display: inline-block;
   min-width: 0;
 }
 
 :host-context([dir='rtl']) {
-  --honesty-check-box-gradient-angle: -135deg;
+  --_honesty-check-box-gradient-angle: -135deg;
 }
 
 .check-box {
@@ -73,7 +74,7 @@
   inset: 0;
   background:
     linear-gradient(
-      var(--honesty-check-box-gradient-angle),
+      var(--_honesty-check-box-gradient-angle),
       var(--honesty-check-box-fill-start),
       var(--honesty-check-box-fill-end)
     );
