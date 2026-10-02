@@ -2170,21 +2170,32 @@ authoritative for future component work:
    start a higher composite, pattern, shell, form, table/data system, or
    ERP-specific feature.
 
-The intended dependency direction is:
+The intended dependency model is a bottom-up dependency DAG:
 
 ```text
 Foundation / Reference / Semantic / resolution contracts
 → Component Tokens
-→ structural / text / icon primitives and shared low-level foundations
-→ basic controls
-→ shared Field / Anchored Overlay / Blocking Overlay foundations as required
-→ dependent concrete controls
+  ├─→ Structural / Text / Icon primitives
+  │     └─→ Button / Action basics
+  ├─→ InputBase / CVA
+  │     └─→ Field Foundation
+  │           └─→ concrete Field controls
+  ├─→ Anchored Overlay foundation
+  │     └─→ Tooltip / nonblocking anchored consumers
+  └─→ Blocking Overlay foundation
+        └─→ OverlayFrame
+              └─→ blocking overlay-backed controls/composites
+
+Approved lower-level controls/foundations
 → composites
 → reusable patterns
-→ table/data/forms/shell composition
+→ table/data/forms/shell composition when their own prerequisites are complete
 → ERP-specific composites
 → feature/page migration
 ```
+
+At every future opening, the next candidate is the **lowest unresolved
+dependency**, not merely the next item in a historical list or roadmap table.
 
 This is a dependency law, not a claim that every historical candidate must be
 built.
