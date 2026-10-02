@@ -1346,30 +1346,37 @@ export function validateChoiceVisualContracts(
     !checkTemplate.includes('class="check-box__title"') ||
     !checkTemplate.includes('class="check-box__description"') ||
     checkTemplate.includes('type="label"') ||
-    !checkTemplate.includes('name="check"') ||
-    !checkTemplate.includes('name="minus"') ||
+    checkTemplate.includes('<erp-icon') ||
     /<svg\b/.test(checkTemplate) ||
     !checkTokens.includes('--honesty-check-box-control-size:') ||
-    !checkTokens.includes('--honesty-check-box-mark-size:') ||
-    !checkTokens.includes('--honesty-check-box-description-color:') ||
+    !checkTokens.includes('--honesty-check-box-title-size:') ||
+    !checkTokens.includes('--honesty-check-box-description-size:') ||
+    !checkTokens.includes('--honesty-check-box-fill-start:') ||
+    !checkTokens.includes('--honesty-check-box-fill-end:') ||
+    !checkTokens.includes('--honesty-check-box-gradient-angle:') ||
     !checkTokens.includes('--honesty-check-box-selected-ring-width:') ||
     !checkTokens.includes('--honesty-check-box-pressed-scale:') ||
     !checkTokens.includes('--honesty-check-box-control-size: 1.125rem;') ||
     !checkTokens.includes('--honesty-check-box-control-size: 1.5rem;') ||
     !checkTokens.includes('--honesty-check-box-control-size: 1.875rem;') ||
     !checkTokens.includes('--honesty-check-box-control-size: 2.375rem;') ||
-    !checkTokens.includes('var(--honesty-motion-duration-fast)') ||
+    !checkTokens.includes('var(--honesty-motion-duration-deliberate)') ||
+    !checkStyles.includes('.check-box__visual::before') ||
+    !checkStyles.includes('.check-box__visual::after') ||
+    !checkStyles.includes('clip-path:') ||
+    !checkStyles.includes('polygon(') ||
+    !checkStyles.includes(":host-context([dir='rtl'])") ||
     !checkStyles.includes("data-check-box-checked='true'") ||
     !checkStyles.includes("data-check-box-indeterminate='true'") ||
-    !checkStyles.includes('.check-box__text') ||
-    !checkStyles.includes('.check-box__description') ||
     !checkStyles.includes('.check-box:active') ||
     !checkStyles.includes('color-mix(') ||
     !checkStyles.includes('.check-box__native:focus-visible') ||
-    !checkStyles.includes('prefers-reduced-motion: reduce')
+    !checkStyles.includes('prefers-reduced-motion: reduce') ||
+    /#[0-9a-fA-F]{3,8}\b/.test(checkTokens) ||
+    /#[0-9a-fA-F]{3,8}\b/.test(checkStyles)
   ) {
     errors.push(
-      'CheckBox: native semantics, reference-led title/description geometry, semantic marks, selected/pressed states, and Foundation Motion are required',
+      'CheckBox: Product Owner template structure, token-owned palette, CSS fill/mark assembly, exact sm/md/lg/xl geometry, RTL gradient, states, and Foundation Motion are required',
     );
   }
 
@@ -1923,11 +1930,11 @@ export class ErpImagePicker extends ErpFileSelectionBase {
   }
 
   const validCheckTemplate =
-    '<input type="checkbox"><span class="check-box__visual"><erp-icon name="check" /><erp-icon name="minus" /></span><span class="check-box__text"><span class="check-box__title"></span><span class="check-box__description"></span></span>';
+    '<input type="checkbox"><span class="check-box__visual"></span><span class="check-box__text"><erp-text class="check-box__title" type="span"></erp-text><erp-text class="check-box__description" type="span"></erp-text></span>';
   const validCheckTokens =
-    '--honesty-check-box-control-size: 1.125rem; --honesty-check-box-control-size: 1.5rem; --honesty-check-box-control-size: 1.875rem; --honesty-check-box-control-size: 2.375rem; --honesty-check-box-mark-size: 1rem; --honesty-check-box-description-color: var(--honesty-color-text-muted); --honesty-check-box-selected-ring-width: 0.25rem; --honesty-check-box-pressed-scale: 0.86; --honesty-check-box-transition-duration: var(--honesty-motion-duration-fast);';
+    '--honesty-check-box-control-size: 1.125rem; --honesty-check-box-control-size: 1.5rem; --honesty-check-box-control-size: 1.875rem; --honesty-check-box-control-size: 2.375rem; --honesty-check-box-title-size: 0.93rem; --honesty-check-box-description-size: 0.76rem; --honesty-check-box-fill-start: var(--honesty-color-brand-primary-solid); --honesty-check-box-fill-end: var(--honesty-color-brand-accent-solid); --honesty-check-box-gradient-angle: 135deg; --honesty-check-box-selected-ring-width: 0.25rem; --honesty-check-box-pressed-scale: 0.86; --honesty-check-box-transition-duration: var(--honesty-motion-duration-deliberate);';
   const validCheckStyles =
-    ".check-box__text {} .check-box__description {} .check-box:active {} color-mix(in srgb, red 16%, transparent) .check-box__native:focus-visible {} :host([data-check-box-checked='true']) {} :host([data-check-box-indeterminate='true']) {} @media (prefers-reduced-motion: reduce) {}";
+    ":host-context([dir='rtl']) {} .check-box__visual::before {} .check-box__visual::after { clip-path: polygon(0 0, 1px 1px); } .check-box:active {} color-mix(in srgb, red 65%, transparent) .check-box__native:focus-visible {} :host([data-check-box-checked='true']) {} :host([data-check-box-indeterminate='true']) {} @media (prefers-reduced-motion: reduce) {}";
   const validRadioTemplate =
     '<input type="radio"><span class="radio-box__visual"><span class="radio-box__dot"></span></span>';
   const validRadioTokens =
@@ -1959,6 +1966,42 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     ).length === 0
   ) {
     throw new Error('ErpField checker accepted invalid choice visual fixtures');
+  }
+
+  for (const [index, fixture] of [
+    [
+      validCheckTemplate.replace(
+        '<span class="check-box__visual"></span>',
+        '<span class="check-box__visual"><erp-icon name="check"></erp-icon></span>',
+      ),
+      validCheckTokens,
+      validCheckStyles,
+    ],
+    [
+      validCheckTemplate,
+      `${validCheckTokens} --bad-reference-color: #7c5cff;`,
+      validCheckStyles,
+    ],
+    [
+      validCheckTemplate,
+      validCheckTokens,
+      validCheckStyles.replace('clip-path:', 'mask:'),
+    ],
+  ].entries()) {
+    if (
+      validateChoiceVisualContracts(
+        fixture[0],
+        fixture[1],
+        fixture[2],
+        validRadioTemplate,
+        validRadioTokens,
+        validRadioStyles,
+      ).length === 0
+    ) {
+      throw new Error(
+        `ErpField checker accepted invalid Product Owner CheckBox fixture ${index + 1}`,
+      );
+    }
   }
 
   const validTemporalFiles = new Map([
