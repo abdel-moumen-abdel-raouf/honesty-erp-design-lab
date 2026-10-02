@@ -1345,6 +1345,7 @@ export function validateChoiceVisualContracts(
     !checkTemplate.includes('class="check-box__text"') ||
     !checkTemplate.includes('class="check-box__title"') ||
     !checkTemplate.includes('class="check-box__description"') ||
+    checkTemplate.includes('type="label"') ||
     !checkTemplate.includes('name="check"') ||
     !checkTemplate.includes('name="minus"') ||
     /<svg\b/.test(checkTemplate) ||
