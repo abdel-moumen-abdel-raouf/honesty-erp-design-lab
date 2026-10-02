@@ -2273,3 +2273,116 @@ Only after canonical technical green does the current Product Owner
 Overlay/Confirm runtime/visual re-review proceed. The historical blueprint must
 not be used to jump ahead to Table, Shell, Forms, or any other unopened family.
 <!-- CHATGPT_DERIVED_BLUEPRINT_REFERENCE_2026_10_02_END -->
+
+
+<!-- CHATGPT_BOTTOM_UP_REFERENCE_FIRST_LAW_2026_10_02_START -->
+## 2026-10-02 — Fully Green technical gate + Product Owner bottom-up/reference-first execution law
+
+### Canonical verification result
+
+Product Owner pulled and verified repository HEAD:
+
+`0814833dc9ad53fbb27109b4b434caaaf7507de9` —
+`docs(review): register derived blueprint reference`.
+
+Focused Overlay verification:
+
+- `npm run erp-overlay:check` PASS;
+- `npm run erp-overlay:check:self-test` PASS.
+
+Complete canonical `npm run verify:clean` result:
+
+- Single App theme authority PASS;
+- routed-page ERP-only authoring PASS — 22 routed templates;
+- Component Token framework PASS — 46 concrete token modules;
+- system-color registry PASS;
+- ErpText governance PASS;
+- ErpIcon registry/governance PASS;
+- ErpButton governance PASS;
+- ErpTooltip governance PASS;
+- ErpField governance PASS;
+- ErpOverlay governance PASS;
+- ErpConfirmDialog governance PASS;
+- Angular lint PASS;
+- **89/89 test files PASS**;
+- **679/679 tests PASS**;
+- `typecheck:app` PASS;
+- `typecheck:spec` PASS;
+- production build PASS;
+- **Zero-warning build gate PASS**.
+
+Therefore `0814833dc9ad53fbb27109b4b434caaaf7507de9`
+is the latest fully verified technical checkpoint.
+
+Technical green still does not imply Product Owner visual approval.
+
+### Product Owner execution-order law
+
+The Product Owner has now made the following ordering rule explicit and
+authoritative for future component work:
+
+1. **Do not start any new component/family while currently implemented
+   components still have active technical, runtime, visual, or Product Owner
+   review issues that must be resolved.**
+2. After the current implemented scope is brought to the required accepted
+   state, future work proceeds **bottom-up by dependency**, never by convenience
+   or by historical list order.
+3. Lower-level prerequisites must be completed/reviewed before dependent
+   higher-level components are opened.
+4. The accepted derived blueprint may be used to understand the dependency DAG
+   and candidate inventory, but it does not itself authorize any candidate.
+5. No implementation agent may skip an unfinished lower dependency in order to
+   start a higher composite, pattern, shell, form, table/data system, or
+   ERP-specific feature.
+
+The intended dependency direction is:
+
+```text
+Foundation / Reference / Semantic / resolution contracts
+→ Component Tokens
+→ structural / text / icon primitives and shared low-level foundations
+→ basic controls
+→ shared Field / Anchored Overlay / Blocking Overlay foundations as required
+→ dependent concrete controls
+→ composites
+→ reusable patterns
+→ table/data/forms/shell composition
+→ ERP-specific composites
+→ feature/page migration
+```
+
+This is a dependency law, not a claim that every historical candidate must be
+built.
+
+### Product Owner visual-reference law
+
+For **every newly opened component with visual output**, implementation requires
+one of these two Product Owner decisions **before visual design/implementation
+begins**:
+
+- the Product Owner supplies or explicitly identifies the visual reference to
+  use; or
+- the Product Owner explicitly authorizes that component to be designed and
+  implemented **without a visual reference**.
+
+No implementation agent, ChatGPT, Codex, historical archive, or derived
+blueprint may choose a visual reference on the Product Owner's behalf or infer a
+reference waiver from silence.
+
+When a reference is supplied, the execution scope must first analyze what is to
+be adopted, adapted, or rejected from that reference before implementation.
+
+This rule applies to future new visual components/families. It does not
+retroactively grant visual approval to currently implemented components.
+
+### Immediate next product state
+
+The technical gate is now green.
+
+No new component/family is authorized by this result.
+
+The next action remains Product Owner runtime/visual review of the current
+Overlay/Confirm state. Existing pending review/correction work must be completed
+before any new family is opened.
+
+<!-- CHATGPT_BOTTOM_UP_REFERENCE_FIRST_LAW_2026_10_02_END -->
