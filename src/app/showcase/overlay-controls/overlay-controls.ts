@@ -93,6 +93,14 @@ export class OverlayControls {
     });
   }
 
+  openPlainHeaderConfirm(): void {
+    void this.confirmDialog.confirm({
+      title: 'تأكيد بهيدر افتراضي',
+      message: 'هذا المثال لا يغيّر لون خلفية الهيدر.',
+      headerTone: 'default',
+    });
+  }
+
   openMultiActionConfirm(): void {
     void this.confirmDialog.confirm({
       title: 'اختيارات متعددة',

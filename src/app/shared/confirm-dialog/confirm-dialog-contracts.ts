@@ -22,7 +22,8 @@ export interface ErpConfirmDialogAuxiliaryAction {
 
 export type ErpConfirmDialogDismissReason =
   | 'close'
-  | 'escape';
+  | 'escape'
+  | 'backdrop';
 
 export type ErpConfirmDialogResult =
   | {
@@ -45,5 +46,7 @@ export interface ErpConfirmDialogConfig {
   readonly icon?: ErpIconName;
   readonly headerTone?: ErpOverlayHeaderTone;
   readonly userDismissible?: boolean;
+  readonly dismissOnEscape?: boolean;
+  readonly dismissOnBackdrop?: boolean;
   readonly auxiliaryActions?: readonly ErpConfirmDialogAuxiliaryAction[];
 }

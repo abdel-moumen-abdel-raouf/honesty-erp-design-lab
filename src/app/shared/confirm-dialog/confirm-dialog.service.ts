@@ -120,6 +120,10 @@ export class ErpConfirmDialogService {
     const headerTone =
       config.headerTone ?? toneForIntent(intent);
     const userDismissible = config.userDismissible ?? true;
+    const dismissOnEscape =
+      userDismissible && (config.dismissOnEscape ?? false);
+    const dismissOnBackdrop =
+      userDismissible && (config.dismissOnBackdrop ?? false);
     const auxiliaryActions = normalizeAuxiliaryActions(
       config.auxiliaryActions ?? [],
     );
@@ -152,8 +156,8 @@ export class ErpConfirmDialogService {
       kind: 'modal',
       position: 'center',
       size: 'sm',
-      dismissOnEscape: userDismissible,
-      dismissOnBackdrop: false,
+      dismissOnEscape,
+      dismissOnBackdrop,
       initialFocus: userDismissible
         ? '[data-overlay-frame-action-id="cancel"] button'
         : null,
@@ -218,7 +222,12 @@ export class ErpConfirmDialogService {
 
       return {
         type: 'dismissed',
-        reason: result.reason === 'escape' ? 'escape' : 'close',
+        reason:
+          result.reason === 'escape'
+            ? 'escape'
+            : result.reason === 'backdrop'
+              ? 'backdrop'
+              : 'close',
       } satisfies ErpConfirmDialogResult;
     });
   }

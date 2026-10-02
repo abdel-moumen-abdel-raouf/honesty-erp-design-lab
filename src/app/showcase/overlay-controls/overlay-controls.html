@@ -86,6 +86,11 @@
             (pressed)="openConfirm('default')"
           />
           <erp-button
+            data-confirm-dialog-evidence="plain-header"
+            label="فتح تأكيد بهيدر بدون لون"
+            (pressed)="openPlainHeaderConfirm()"
+          />
+          <erp-button
             data-confirm-dialog-evidence="warning"
             label="فتح تأكيد تحذيري"
             (pressed)="openConfirm('warning')"
@@ -134,6 +139,13 @@
     <erp-surface class="configuration-evidence" border="subtle" padding="tight">
       <erp-stack gap="default">
         <erp-text type="heading-3">سياسات الإغلاق</erp-text>
+        <erp-text
+          data-default-dismissal-policy-evidence
+          type="caption"
+          tone="secondary"
+        >
+          الافتراضي: الإغلاق الخارجي متوقف، وEscape متوقف.
+        </erp-text>
         <erp-inline gap="tight" wrap="wrap">
           <erp-button data-backdrop-dismiss-evidence="true" label="الإغلاق الخارجي: مفعّل" size="sm" (pressed)="openConfigured('الإغلاق الخارجي مفعّل', {dismissOnBackdrop: true})" />
           <erp-button data-backdrop-dismiss-evidence="false" label="الإغلاق الخارجي: متوقف" size="sm" (pressed)="openConfigured('الإغلاق الخارجي متوقف', {dismissOnBackdrop: false})" />
@@ -144,14 +156,14 @@
         <erp-text type="heading-3">مستويات الضبابية</erp-text>
         <erp-inline gap="tight" wrap="wrap">
           @for (blur of blurLevels; track blur) {
-            <erp-button data-blur-evidence [attr.data-blur-value]="blur" [label]="'ضبابية ' + blur" size="sm" (pressed)="openConfigured('ضبابية ' + blur, {blur})" />
+            <erp-button data-blur-evidence [attr.data-blur-value]="blur" [label]="'ضبابية ' + blur + (blur === 'medium' ? ' — افتراضي' : '')" size="sm" (pressed)="openConfigured('ضبابية ' + blur, {blur})" />
           }
         </erp-inline>
 
         <erp-text type="heading-3">نبرات الخلفية البديلة</erp-text>
         <erp-inline gap="tight" wrap="wrap">
           @for (tone of backdropTones; track tone) {
-            <erp-button data-backdrop-tone-evidence [attr.data-backdrop-tone-value]="tone" [label]="'نبرة ' + tone" size="sm" (pressed)="openConfigured('نبرة ' + tone, {backdropTone: tone})" />
+            <erp-button data-backdrop-tone-evidence [attr.data-backdrop-tone-value]="tone" [label]="'نبرة ' + tone + (tone === 'primary' ? ' — افتراضي' : '')" size="sm" (pressed)="openConfigured('نبرة ' + tone, {backdropTone: tone})" />
           }
         </erp-inline>
 

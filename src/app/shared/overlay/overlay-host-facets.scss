@@ -4,8 +4,16 @@
   @include tokens.blur-low;
 }
 
+.erp-ol[data-overlay-blur='medium'] {
+  @include tokens.blur-medium;
+}
+
 .erp-ol[data-overlay-blur='high'] {
   @include tokens.blur-high;
+}
+
+.erp-ol[data-overlay-backdrop-tone='default'] {
+  @include tokens.backdrop-tone-default;
 }
 
 .erp-ol[data-overlay-backdrop-tone='neutral'] {
