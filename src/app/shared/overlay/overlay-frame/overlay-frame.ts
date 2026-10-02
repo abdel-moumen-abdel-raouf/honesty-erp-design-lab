@@ -27,7 +27,7 @@ import {ErpOverlayRef} from '../overlay-ref';
   selector: 'erp-overlay-frame',
   imports: [ErpButton, ErpIcon, ErpIconButton, ErpText, ErpTooltip],
   templateUrl: './overlay-frame.html',
-  styleUrl: './overlay-frame.scss',
+  styleUrls: ['./overlay-frame.scss', './overlay-frame-facets.scss'],
 })
 export class ErpOverlayFrame implements AfterViewInit {
   readonly config = input.required<ErpOverlayFrameConfig>();

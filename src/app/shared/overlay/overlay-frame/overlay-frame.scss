@@ -1,5 +1,3 @@
-@use '../../../../styles/foundation/components/overlay' as tokens;
-
 :host {
   display: block;
   block-size: 100%;
@@ -52,42 +50,6 @@
   padding: var(--honesty-overlay-frame-header-padding);
   border-block-end: var(--honesty-overlay-frame-header-border-width) solid
     var(--honesty-overlay-frame-header-border-color);
-}
-
-.overlay-frame__header[data-overlay-frame-header-tone='default'] {
-  @include tokens.frame-header-tone-default;
-}
-
-.overlay-frame__header[data-overlay-frame-header-tone='primary'] {
-  @include tokens.frame-header-tone-primary;
-}
-
-.overlay-frame__header[data-overlay-frame-header-tone='secondary'] {
-  @include tokens.frame-header-tone-secondary;
-}
-
-.overlay-frame__header[data-overlay-frame-header-tone='accent'] {
-  @include tokens.frame-header-tone-accent;
-}
-
-.overlay-frame__header[data-overlay-frame-header-tone='success'] {
-  @include tokens.frame-header-tone-success;
-}
-
-.overlay-frame__header[data-overlay-frame-header-tone='warning'] {
-  @include tokens.frame-header-tone-warning;
-}
-
-.overlay-frame__header[data-overlay-frame-header-tone='danger'] {
-  @include tokens.frame-header-tone-danger;
-}
-
-.overlay-frame__header[data-overlay-frame-header-tone='info'] {
-  @include tokens.frame-header-tone-info;
-}
-
-.overlay-frame__header[data-overlay-frame-header-tone='neutral'] {
-  @include tokens.frame-header-tone-neutral;
 }
 
 .overlay-frame__icon {

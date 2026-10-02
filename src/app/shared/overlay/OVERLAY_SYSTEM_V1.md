@@ -450,3 +450,24 @@ intent. Explicit `headerTone` remains an override.
 
 This mapping is Component-Token-driven and theme-sensitive; no raw palette
 colors or consumer CSS overrides are permitted.
+
+
+## 2026-10-02 — OverlayFrame style-budget split
+
+Canonical verification at source `c848151...` passed all governance, Angular
+lint, 89/89 test files, 675/675 tests, and both TypeScript typechecks. The final
+production build emitted one warning only: `overlay-frame.scss` compiled to
+4.17 kB, 168 bytes above the unchanged 4 kB component-style warning budget.
+
+The correction does not weaken the budget and does not remove any Header
+contrast behavior. `ErpOverlayFrame` now loads two bounded style parts:
+
+- `overlay-frame.scss` — host/layout/Header-Body-Footer structural rules;
+- `overlay-frame-facets.scss` — the nine API-driven Header tone facet
+  selectors.
+
+The tone selectors and Component Token mappings are unchanged. Overlay
+governance reads both style parts as one semantic contract and also requires
+the component to load both files. This follows the established split-style
+pattern already used by larger production controls while keeping each emitted
+component stylesheet below the per-style warning budget.

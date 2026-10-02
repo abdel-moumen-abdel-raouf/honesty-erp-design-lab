@@ -24,6 +24,8 @@ const OVERLAY_FRAME_TEMPLATE =
   'src/app/shared/overlay/overlay-frame/overlay-frame.html';
 const OVERLAY_FRAME_STYLE =
   'src/app/shared/overlay/overlay-frame/overlay-frame.scss';
+const OVERLAY_FRAME_FACETS =
+  'src/app/shared/overlay/overlay-frame/overlay-frame-facets.scss';
 const OVERLAY_SHOWCASE_SOURCE =
   'src/app/showcase/overlay-controls/overlay-controls.ts';
 const OVERLAY_SHOWCASE_TEMPLATE =
@@ -472,7 +474,10 @@ export function validateOverlayFrameContract(files) {
   const ref = files.get(OVERLAY_REF) ?? '';
   const frameSource = files.get(OVERLAY_FRAME_SOURCE) ?? '';
   const frameTemplate = files.get(OVERLAY_FRAME_TEMPLATE) ?? '';
-  const frameStyle = files.get(OVERLAY_FRAME_STYLE) ?? '';
+  const frameStyle = [
+    files.get(OVERLAY_FRAME_STYLE) ?? '',
+    files.get(OVERLAY_FRAME_FACETS) ?? '',
+  ].join('\n');
   const hostTemplate = files.get(OVERLAY_HOST_TEMPLATE) ?? '';
   const temporalSource = files.get(TEMPORAL_PICKER_SOURCE) ?? '';
   const temporalTemplate = files.get(TEMPORAL_PICKER_TEMPLATE) ?? '';
@@ -560,6 +565,15 @@ export function validateOverlayFrameContract(files) {
     '.overlay-frame__body',
     'overflow: auto;',
     '.overlay-frame__footer',
+    "data-overlay-frame-header-tone='default'",
+    "data-overlay-frame-header-tone='primary'",
+    "data-overlay-frame-header-tone='secondary'",
+    "data-overlay-frame-header-tone='accent'",
+    "data-overlay-frame-header-tone='success'",
+    "data-overlay-frame-header-tone='warning'",
+    "data-overlay-frame-header-tone='danger'",
+    "data-overlay-frame-header-tone='info'",
+    "data-overlay-frame-header-tone='neutral'",
   ]) {
     if (!frameStyle.includes(required)) {
       errors.push(`OverlayFrame styles: missing full-height Header/Body/Footer contract ${required}`);
@@ -570,6 +584,7 @@ export function validateOverlayFrameContract(files) {
     'ErpButton',
     'ErpIconButton',
     'ErpTooltip',
+    "styleUrls: ['./overlay-frame.scss', './overlay-frame-facets.scss']",
     'this.config().showHeader !== false',
     'this.config().showFooter !== false',
     'this.config().header.showCloseButton !== false',
@@ -1130,6 +1145,7 @@ this.dismiss('secondary-action')`,
     [
       OVERLAY_FRAME_SOURCE,
       `ErpButton ErpIconButton ErpTooltip
+styleUrls: ['./overlay-frame.scss', './overlay-frame-facets.scss']
 this.config().showHeader !== false
 this.config().showFooter !== false
 this.config().header.showCloseButton !== false
@@ -1153,6 +1169,18 @@ this.ref().dismiss('close-action')`,
 .overlay-frame[data-overlay-frame-header-visible='false'][data-overlay-frame-footer-visible='false'] {}
 .overlay-frame__body { overflow: auto; }
 .overlay-frame__footer {}`,
+    ],
+    [
+      OVERLAY_FRAME_FACETS,
+      `.overlay-frame__header[data-overlay-frame-header-tone='default'] {}
+.overlay-frame__header[data-overlay-frame-header-tone='primary'] {}
+.overlay-frame__header[data-overlay-frame-header-tone='secondary'] {}
+.overlay-frame__header[data-overlay-frame-header-tone='accent'] {}
+.overlay-frame__header[data-overlay-frame-header-tone='success'] {}
+.overlay-frame__header[data-overlay-frame-header-tone='warning'] {}
+.overlay-frame__header[data-overlay-frame-header-tone='danger'] {}
+.overlay-frame__header[data-overlay-frame-header-tone='info'] {}
+.overlay-frame__header[data-overlay-frame-header-tone='neutral'] {}`,
     ],
     [
       OVERLAY_FRAME_TEMPLATE,
