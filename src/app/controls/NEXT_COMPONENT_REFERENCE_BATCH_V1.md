@@ -82,3 +82,21 @@ batch. Before its source implementation begins, the current
 ItemPicker/ComboBox/SearchBox selection architecture must be reconciled against
 the supplied Select reference so the new Select contract does not duplicate or
 silently contradict existing approved selection roles.
+
+
+## CheckBox V1 visual rejection / V2 current state
+
+The Product Owner rejected the first CheckBox reference correction after live
+runtime review. Technical green did not establish visual conformance.
+
+The first implementation was too conservative: it kept the previous CheckBox
+visual skeleton and treated the supplied template as general inspiration.
+
+That interpretation is superseded.
+
+Current CheckBox V2 uses the supplied Classic CheckBox visual assembly directly
+for geometry and interaction presentation while retaining Honesty ERP
+color/token authority.
+
+RadioBox remains unopened and unchanged until CheckBox V2 receives technical
+and Product Owner visual acceptance.
