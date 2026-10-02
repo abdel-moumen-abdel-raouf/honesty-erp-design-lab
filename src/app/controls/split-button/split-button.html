@@ -1,13 +1,38 @@
 <div class="split-button">
   <erp-button
+    data-split-button-primary
+    data-attached-axis="inline"
+    data-attached-position="first"
     [label]="label()"
     [disabled]="disabled()"
     (pressed)="primaryPressed.emit()"
   />
   <erp-icon-button
+    #menuTrigger
+    data-split-button-menu-trigger
+    data-attached-axis="inline"
+    data-attached-position="last"
     icon="chevron-down"
     [label]="label() + ' menu'"
+    variant="solid"
+    tone="primary"
+    size="md"
+    shape="default"
     [disabled]="disabled()"
-    (pressed)="openMenu()"
+    (pressed)="toggleMenu()"
+  />
+</div>
+
+<div
+  #menuSurface
+  class="split-button__menu"
+  popover="manual"
+  role="menu"
+  [attr.aria-label]="label() + ' menu'"
+  [attr.data-split-button-menu-open]="menuOpen()"
+>
+  <erp-action-menu-content
+    [items]="items()"
+    (itemSelected)="selectItem($event)"
   />
 </div>
