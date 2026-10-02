@@ -179,3 +179,85 @@ Correction checkpoint:
 `fix(showcase): use valid stack gap in choice review cards`.
 
 Fresh tests and complete `npm run verify:clean` remain mandatory.
+
+
+## 2026-10-02 — Product Owner V3: solid system tones + complete template variants
+
+The Product Owner reviewed CheckBox V2 in Light and Dark.
+
+New binding decisions:
+
+1. the gradient selected fill is rejected;
+2. selected CheckBox color must use one ordinary current ERP system tone;
+3. the supplied template must not be reduced to the Classic example;
+4. the template-defined Switch and Neon variants are part of the requested
+   CheckBox implementation.
+
+The earlier non-goal that excluded Switch/Neon was an incorrect architecture
+assumption and is superseded.
+
+### Source-grounded variant classification
+
+The supplied `erp-checkbox.html` Live Config exposes:
+
+- Classic;
+- Switch;
+- Neon.
+
+Its JavaScript likewise declares:
+
+`VARIANT_CLASSES = ['cb--switch', 'cb--neon']`.
+
+Therefore the production API is now:
+
+`variant: 'classic' | 'switch' | 'neon'`
+
+with `classic` as the default.
+
+The same source presents Selectable Tiles and Task List in separate demo
+sections/classes, not in the Variant selector. They remain composition examples
+rather than hidden CheckBox variants unless the Product Owner later explicitly
+promotes them.
+
+### Color law
+
+No selected-state gradient is allowed.
+
+- `tone='neutral'` resolves to the system inverse neutral fill;
+- `primary`, `secondary`, and `accent` resolve to their single solid
+  system tone;
+- status values continue to override selected fill with the corresponding
+  feedback strong surface/on-strong roles;
+- Neon glow derives from that same resolved fill tone;
+- no literal template palette is copied.
+
+### Switch law
+
+Switch follows the supplied proportional geometry:
+
+- track inline size = 1.95 × control size;
+- knob size = 0.72 × control size;
+- travel = 0.42 × control size;
+- track uses full radius;
+- checked knob moves to logical on side;
+- RTL reverses only travel signs;
+- indeterminate centers and scales the knob;
+- active scale = 0.95;
+- same native checkbox/CVA/required/disabled semantics remain authoritative.
+
+### Neon law
+
+Neon keeps Classic geometry and selected mark behavior, then adds:
+
+- tone-derived multi-layer glow;
+- tone-derived focus outline;
+- pulse animation;
+- reduced-motion disables the pulse.
+
+### Current verification boundary
+
+This V3 changes runtime source, tokens, tests, showcase, and governance after
+the previous green checkpoint.
+
+Fresh focused checks and full `npm run verify:clean` are mandatory before
+Product Owner visual re-review.
