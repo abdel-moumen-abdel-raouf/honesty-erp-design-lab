@@ -2,8 +2,26 @@ import {TestBed} from '@angular/core/testing';
 import {ErpFabMenu} from './fab-menu';
 
 describe('ErpFabMenu', () => {
+  let animationFrames: FrameRequestCallback[];
+
   beforeEach(() => {
+    vi.useFakeTimers();
+    animationFrames = [];
+    vi.stubGlobal(
+      'requestAnimationFrame',
+      vi.fn((callback: FrameRequestCallback) => {
+        animationFrames.push(callback);
+        return animationFrames.length;
+      }),
+    );
+    vi.stubGlobal('cancelAnimationFrame', vi.fn());
     TestBed.configureTestingModule({imports: [ErpFabMenu]});
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    vi.restoreAllMocks();
+    vi.useRealTimers();
   });
 
   function create() {
@@ -15,6 +33,23 @@ describe('ErpFabMenu', () => {
     ]);
     fixture.detectChanges();
     return fixture;
+  }
+
+  function flushAnimationFrames(): void {
+    while (animationFrames.length > 0) {
+      animationFrames.shift()?.(performance.now());
+    }
+  }
+
+  function installPopover(surface: HTMLElement): void {
+    Object.assign(surface, {
+      showPopover: vi.fn(() =>
+        surface.setAttribute('data-popover-open', ''),
+      ),
+      hidePopover: vi.fn(() =>
+        surface.removeAttribute('data-popover-open'),
+      ),
+    });
   }
 
   it('creates closed with one stable FAB trigger and a hidden top-layer action surface', () => {
@@ -35,11 +70,15 @@ describe('ErpFabMenu', () => {
     const selected = vi.fn();
     fixture.componentInstance.itemSelected.subscribe(selected);
     const host = fixture.nativeElement as HTMLElement;
+    const surface = host.querySelector<HTMLElement>('.fab-menu__actions')!;
+    installPopover(surface);
     const trigger = host.querySelector<HTMLButtonElement>(
       '[data-fab-menu-trigger] button',
     );
 
     trigger?.click();
+    fixture.detectChanges();
+    flushAnimationFrames();
     fixture.detectChanges();
     await Promise.resolve();
 
@@ -47,13 +86,11 @@ describe('ErpFabMenu', () => {
     expect(host.querySelector<HTMLButtonElement>(
       '[data-fab-menu-trigger] button',
     )).toBe(trigger);
-
-    const surface = host.querySelector<HTMLElement>('.fab-menu__actions');
-    expect(surface?.style.left).not.toBe('');
-    expect(surface?.style.top).not.toBe('');
+    expect(surface.style.left).not.toBe('');
+    expect(surface.style.top).not.toBe('');
 
     surface
-      ?.querySelector<HTMLButtonElement>('[data-fab-menu-action] button')
+      .querySelector<HTMLButtonElement>('[data-fab-menu-action] button')
       ?.click();
     fixture.detectChanges();
     await Promise.resolve();
@@ -68,11 +105,15 @@ describe('ErpFabMenu', () => {
     fixture.componentRef.setInput('placement', 'block-end');
     fixture.detectChanges();
     const host = fixture.nativeElement as HTMLElement;
+    const surface = host.querySelector<HTMLElement>('.fab-menu__actions')!;
+    installPopover(surface);
     const trigger = host.querySelector<HTMLButtonElement>(
       '[data-fab-menu-trigger] button',
     );
 
     trigger?.click();
+    fixture.detectChanges();
+    flushAnimationFrames();
     fixture.detectChanges();
 
     host.dispatchEvent(
