@@ -144,3 +144,38 @@ semantic ErpIcon `check`/`minus` is superseded by this V2 template match.
 
 Technical verification remains necessary but does not override Product Owner
 visual rejection.
+
+
+## 2026-10-02 — showcase Stack-gap compile follow-up
+
+Product Owner local verification at
+`42ad7f12e952bffe5f8bb0d4c6dc27fde540d59f` produced:
+
+- `component-tokens:check` PASS;
+- `erp-field:check` PASS;
+- `erp-field:check:self-test` PASS.
+
+Angular test bundle generation then stopped before executing tests because the
+new dedicated Boolean/Choice review cards authored:
+
+`<erp-stack gap="md">`
+
+but the canonical `ErpStackGap` contract is:
+
+`none | tight | default | loose`.
+
+This is a showcase-only compile defect, not a CheckBox runtime or visual-contract
+defect.
+
+Bounded correction:
+
+- both review-card stacks now use `gap="default"`;
+- no CheckBox runtime source, Component Token mapping, visual assembly, public
+  API, governance rule, or style budget changed.
+
+Correction checkpoint:
+
+`7c1a08d24c30c0c63dbd55333e41064fbd4d9c5a` —
+`fix(showcase): use valid stack gap in choice review cards`.
+
+Fresh tests and complete `npm run verify:clean` remain mandatory.
