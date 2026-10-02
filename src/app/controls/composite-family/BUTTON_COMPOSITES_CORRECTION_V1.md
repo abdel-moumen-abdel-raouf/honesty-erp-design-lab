@@ -235,3 +235,37 @@ Correction checkpoints:
   `test(fab-menu): use registered semantic file icon`.
 
 A fresh complete `npm run verify:clean` remains mandatory.
+
+
+## 2026-10-02 — canonical verification fully green
+
+Product Owner local verification at:
+
+`e920c9377f245128d863ce15916d63c17d1321af` —
+`docs(review): record button composite icon follow-up`
+
+completed successfully.
+
+Observed results:
+
+- all governance and Angular lint PASS;
+- Button/Tooltip/Field/Overlay/Confirm governance PASS;
+- **89/89 test files PASS**;
+- **681/681 tests PASS**;
+- `typecheck:app` PASS;
+- `typecheck:spec` PASS;
+- production build PASS;
+- **Zero-warning build gate PASS**.
+
+Therefore this Button Composites correction is now technically **Fully Green**.
+
+This does not constitute Product Owner visual approval or freeze.
+
+The remaining product gate is Product Owner runtime/visual re-review in Light
+and Dark for:
+
+- ErpButtonGroup attached geometry;
+- ErpSplitButton unified surface and anchored alternative-action menu;
+- ErpFabMenu stable trigger and top-layer action behavior.
+
+No new component family is authorized by this technical result alone.
