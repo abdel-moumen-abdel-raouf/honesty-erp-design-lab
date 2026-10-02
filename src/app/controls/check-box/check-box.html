@@ -23,5 +23,15 @@
       }
     </span>
   </span>
-  <erp-text type="label">{{ label() }}</erp-text>
+
+  <span class="check-box__text">
+    <erp-text class="check-box__title" type="label" tone="inherit">
+      {{ trimmedLabel() }}
+    </erp-text>
+    @if (trimmedDescription()) {
+      <erp-text class="check-box__description" type="caption" tone="inherit">
+        {{ trimmedDescription() }}
+      </erp-text>
+    }
+  </span>
 </label>
