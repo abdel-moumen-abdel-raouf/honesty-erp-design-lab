@@ -98,7 +98,7 @@ export class ButtonControls {
     {value: 'export-sheet', label: 'تصدير جدول', icon: 'download'},
   ];
   readonly createActionItems: readonly ErpItemPickerOption[] = [
-    {value: 'create-document', label: 'إنشاء مستند', icon: 'document'},
+    {value: 'create-document', label: 'إنشاء مستند', icon: 'file'},
     {value: 'create-customer', label: 'إنشاء عميل', icon: 'customer'},
   ];
   readonly pressedCount = signal(0);
