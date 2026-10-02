@@ -508,3 +508,46 @@ derived from the current Header on-solid foreground using `color-mix`. This
 keeps the thin light outline visible in both Light and Dark without raw white
 or theme-specific selectors. The ordinary `headerTone: 'default'` Header
 keeps the outline transparent.
+
+
+## 2026-10-02 — Header outline Component Token governance correction
+
+Canonical `npm run verify:clean` at
+`40b03ddc824a189bdefe16037f6687c4bc5a0430` stopped at
+`component-tokens:check`. The colored Header outline had placed both a
+`color-mix(...)` function and a nested facet `@include` inside the Overlay
+Component Token module. Both violate the repository-wide Component Token
+framework: token modules may emit Component Token custom-property declarations
+only, and raw color functions are forbidden there.
+
+The corrected ownership is:
+
+- every colored Header tone facet declares
+  `--honesty-overlay-frame-header-outline-color` from
+  `--honesty-overlay-frame-header-fg`;
+- the default Header keeps that Component Token transparent;
+- `ErpOverlayFrame` owns the presentation assembly and applies the approved
+  60% `color-mix` when rendering the inset outline;
+- no Reference color, raw palette value, local theme selector, public API, or
+  Header tone behavior was changed.
+
+The Component Token checker self-test now explicitly rejects raw
+`color-mix(...)` values and nested facet `@include` output. Overlay
+governance requires all eight colored Header facets to map the outline source
+from the Header foreground, forbids the obsolete helper/color function from the
+Overlay token module, and requires the 60% mix in the Frame presentation layer.
+
+Implementation checkpoints:
+
+- `948570c918f58326146388a1febfffec34b5a95b` —
+  `fix(overlays): restore component token purity`;
+- `50768e0919897404c30b3aec8ab8423f9204e62f` —
+  `fix(overlays): assemble header outline in frame layer`;
+- `355ac02cc6d6b797eba85292f6708833b15965af` —
+  `test(governance): pin component token purity regressions`;
+- `b102d37e5e7d389758ea49cd225cbbacbbe13205` —
+  `fix(governance): align overlay outline with token framework`.
+
+This correction is implemented but has not yet completed a fresh canonical
+`npm run verify:clean`. Technical green and Product Owner runtime re-review
+remain pending.
