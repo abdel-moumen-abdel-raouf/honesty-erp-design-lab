@@ -15,6 +15,8 @@ import {
 } from '../input-family/field-contracts';
 import {ErpInputBase} from '../input-family/input-base';
 
+export type ErpCheckBoxVariant = 'classic' | 'switch' | 'neon';
+
 let nextCheckBoxId = 0;
 
 @Component({
@@ -40,11 +42,13 @@ let nextCheckBoxId = 0;
     './check-box-states.scss',
     './check-box-facets.scss',
     './check-box-sizes.scss',
+    './check-box-variants.scss',
   ],
   host: {
     '[attr.data-check-box-tone]': 'tone()',
     '[attr.data-check-box-status]': "valid() ? status() : 'danger'",
     '[attr.data-check-box-size]': 'size()',
+    '[attr.data-check-box-variant]': 'variant()',
     '[attr.data-check-box-state]': 'controlState()',
     '[attr.data-check-box-checked]': 'currentValue()',
     '[attr.data-check-box-indeterminate]': 'indeterminate()',
@@ -57,6 +61,7 @@ export class ErpCheckBox extends ErpInputBase<boolean> {
   readonly tone = input<ErpFieldTone>('neutral');
   readonly status = input<ErpFieldStatus>('none');
   readonly size = input<ErpFieldSize>('md');
+  readonly variant = input<ErpCheckBoxVariant>('classic');
 
   protected readonly controlId = `erp-check-box-${++nextCheckBoxId}`;
   protected readonly trimmedDescription = computed(
