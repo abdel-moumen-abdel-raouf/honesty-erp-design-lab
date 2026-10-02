@@ -101,7 +101,7 @@ describe('InputControls showcase', () => {
     const root = fixture.nativeElement as HTMLElement;
     const group = root.querySelector('[data-review-group="boolean-choice"]');
 
-    expect(group?.querySelectorAll('erp-check-box').length).toBe(5);
+    expect(group?.querySelectorAll('erp-check-box').length).toBe(10);
 
     const radioBoxes = [
       ...(group?.querySelectorAll<HTMLElement>('erp-radio-box') ?? []),
@@ -122,17 +122,22 @@ describe('InputControls showcase', () => {
     expect(group?.querySelectorAll('[data-check-box-evidence]').length).toBe(1);
     expect(group?.querySelectorAll('[data-radio-box-evidence]').length).toBe(1);
     expect(group?.querySelectorAll('[data-check-box-reference-card]')).toHaveLength(1);
+    expect(group?.querySelectorAll('[data-check-box-switch-card]')).toHaveLength(1);
+    expect(group?.querySelectorAll('[data-check-box-neon-card]')).toHaveLength(1);
     expect(group?.querySelectorAll('[data-radio-current-card]')).toHaveLength(1);
     expect(group?.querySelectorAll('[data-boolean-choice-rtl-evidence]').length).toBe(1);
     expect(group?.querySelector<HTMLElement>('[data-boolean-choice-rtl-evidence]')?.dir).toBe('rtl');
-    expect(group?.querySelectorAll('erp-check-box .check-box__description')).toHaveLength(5);
+    expect(group?.querySelectorAll('erp-check-box .check-box__description')).toHaveLength(10);
     expect(
       [...(group?.querySelectorAll<HTMLElement>('erp-check-box') ?? [])]
         .slice(0, 4)
         .map((control) => control.getAttribute('data-check-box-size')),
     ).toEqual(['sm', 'md', 'lg', 'xl']);
     expect(group?.querySelectorAll('erp-check-box erp-icon')).toHaveLength(0);
-    expect(group?.querySelectorAll('erp-check-box .check-box__visual')).toHaveLength(5);
+    expect(group?.querySelectorAll('erp-check-box .check-box__visual')).toHaveLength(10);
+    expect(group?.querySelectorAll('erp-check-box[data-check-box-variant="classic"]')).toHaveLength(5);
+    expect(group?.querySelectorAll('erp-check-box[data-check-box-variant="switch"]')).toHaveLength(3);
+    expect(group?.querySelectorAll('erp-check-box[data-check-box-variant="neon"]')).toHaveLength(2);
   });
 
   it('contains all four numeric controls', () => {
