@@ -593,3 +593,37 @@ policy, or component-style budget changed in this correction.
 A fresh local `npm run erp-overlay:check`,
 `npm run erp-overlay:check:self-test`, and complete
 `npm run verify:clean` remain mandatory.
+
+
+## 2026-10-02 — SplitButton legacy blocking-menu consumer superseded
+
+Product Owner review of the Button Composites established that SplitButton must
+read as one attached visual entity and that its alternative-action menu is a
+nonblocking anchored menu, not a blocking modal-style Overlay.
+
+The current correction therefore supersedes the earlier
+`ErpSplitButton -> openLegacyCompactMenu` production exception:
+
+- `ErpSplitButton` now uses `AnchoredOverlayController`;
+- its action menu renders in a native `popover="manual"` top layer;
+- opening SplitButton no longer creates an `ErpOverlayManager` stack entry;
+- Tooltip remains forbidden as a menu subsystem;
+- `ErpFabMenu` uses the same shared anchored-overlay geometry for its floating
+  action collection;
+- `openLegacyCompactMenu` is no longer consumed by production controls and is
+  governance-limited to its OverlayManager owner until a separate cleanup may
+  remove that legacy API.
+
+This correction does not change modal/drawer/Confirm blocking Overlay defaults,
+Frame contracts, blur/backdrop policy, focus trapping, or OverlayHost ownership.
+
+The detailed Product Owner reference and composite contract is:
+
+`src/app/controls/composite-family/BUTTON_COMPOSITES_CORRECTION_V1.md`
+
+Earlier sections of this document describing SplitButton as the temporary
+legacy exception remain historical records of the prior state; this section
+supersedes them for current execution.
+
+Fresh focused governance and full `npm run verify:clean` are mandatory before
+the correction may be called technically green.
