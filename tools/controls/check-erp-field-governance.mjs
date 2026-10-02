@@ -94,6 +94,8 @@ const IMAGE_PICKER_TOKENS =
   'src/styles/foundation/components/image-picker/_tokens.scss';
 const IMAGE_PICKER_STYLES =
   'src/app/controls/image-picker/image-picker-selection.scss';
+const CHECK_BOX_SOURCE =
+  'src/app/controls/check-box/check-box.ts';
 const CHECK_BOX_TEMPLATE =
   'src/app/controls/check-box/check-box.html';
 const CHECK_BOX_TOKENS =
@@ -103,6 +105,7 @@ const CHECK_BOX_STYLES = [
   'src/app/controls/check-box/check-box-states.scss',
   'src/app/controls/check-box/check-box-facets.scss',
   'src/app/controls/check-box/check-box-sizes.scss',
+  'src/app/controls/check-box/check-box-variants.scss',
 ];
 const RADIO_BOX_TEMPLATE =
   'src/app/controls/radio-box/radio-box.html';
@@ -1330,6 +1333,7 @@ export function validateFileSelectionContracts(
 }
 
 export function validateChoiceVisualContracts(
+  checkSource,
   checkTemplate,
   checkTokens,
   checkStyles,
@@ -1340,6 +1344,9 @@ export function validateChoiceVisualContracts(
   const errors = [];
 
   if (
+    !checkSource.includes("export type ErpCheckBoxVariant = 'classic' | 'switch' | 'neon'") ||
+    !checkSource.includes("readonly variant = input<ErpCheckBoxVariant>('classic')") ||
+    !checkSource.includes("'[attr.data-check-box-variant]': 'variant()'") ||
     !checkTemplate.includes('type="checkbox"') ||
     !checkTemplate.includes('class="check-box__visual"') ||
     !checkTemplate.includes('class="check-box__text"') ||
@@ -1351,10 +1358,14 @@ export function validateChoiceVisualContracts(
     !checkTokens.includes('--honesty-check-box-control-size:') ||
     !checkTokens.includes('--honesty-check-box-title-size:') ||
     !checkTokens.includes('--honesty-check-box-description-size:') ||
-    !checkTokens.includes('--honesty-check-box-fill-start:') ||
-    !checkTokens.includes('--honesty-check-box-fill-end:') ||
+    !checkTokens.includes('--honesty-check-box-fill-color:') ||
+    checkTokens.includes('--honesty-check-box-fill-start:') ||
+    checkTokens.includes('--honesty-check-box-fill-end:') ||
     !checkTokens.includes('--honesty-check-box-selected-ring-width:') ||
     !checkTokens.includes('--honesty-check-box-pressed-scale:') ||
+    !checkTokens.includes('--honesty-check-box-switch-knob-off-color:') ||
+    !checkTokens.includes('--honesty-check-box-switch-knob-on-color:') ||
+    !checkTokens.includes('--honesty-check-box-neon-pulse-duration:') ||
     !checkTokens.includes('--honesty-check-box-control-size: 1.125rem;') ||
     !checkTokens.includes('--honesty-check-box-control-size: 1.5rem;') ||
     !checkTokens.includes('--honesty-check-box-control-size: 1.875rem;') ||
@@ -1362,10 +1373,16 @@ export function validateChoiceVisualContracts(
     !checkTokens.includes('var(--honesty-motion-duration-deliberate)') ||
     !checkStyles.includes('.check-box__visual::before') ||
     !checkStyles.includes('.check-box__visual::after') ||
+    !checkStyles.includes('background: var(--honesty-check-box-fill-color);') ||
+    checkStyles.includes('linear-gradient(') ||
     !checkStyles.includes('clip-path:') ||
     !checkStyles.includes('polygon(') ||
+    !checkStyles.includes("data-check-box-variant='switch'") ||
+    !checkStyles.includes("data-check-box-variant='neon'") ||
+    !checkStyles.includes('--_honesty-check-box-switch-off') ||
+    !checkStyles.includes('--_honesty-check-box-switch-on') ||
     !checkStyles.includes(":host-context([dir='rtl'])") ||
-    !checkStyles.includes('--_honesty-check-box-gradient-angle') ||
+    !checkStyles.includes('honesty-check-box-neon-pulse') ||
     !checkStyles.includes("data-check-box-checked='true'") ||
     !checkStyles.includes("data-check-box-indeterminate='true'") ||
     !checkStyles.includes('.check-box:active') ||
@@ -1376,7 +1393,7 @@ export function validateChoiceVisualContracts(
     /#[0-9a-fA-F]{3,8}\b/.test(checkStyles)
   ) {
     errors.push(
-      'CheckBox: Product Owner template structure, token-owned palette, CSS fill/mark assembly, exact sm/md/lg/xl geometry, RTL gradient, states, and Foundation Motion are required',
+      'CheckBox: Product Owner template requires classic/switch/neon variants, solid system-tone selection color, exact sm/md/lg/xl geometry, CSS mark assembly, RTL-aware switch travel, states, and Foundation Motion',
     );
   }
 
@@ -1929,12 +1946,14 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     throw new Error('ErpField checker accepted invalid File/Image fixtures');
   }
 
+  const validCheckSource =
+    "export type ErpCheckBoxVariant = 'classic' | 'switch' | 'neon'; readonly variant = input<ErpCheckBoxVariant>('classic'); '[attr.data-check-box-variant]': 'variant()';";
   const validCheckTemplate =
     '<input type="checkbox"><span class="check-box__visual"></span><span class="check-box__text"><erp-text class="check-box__title" type="span"></erp-text><erp-text class="check-box__description" type="span"></erp-text></span>';
   const validCheckTokens =
-    '--honesty-check-box-control-size: 1.125rem; --honesty-check-box-control-size: 1.5rem; --honesty-check-box-control-size: 1.875rem; --honesty-check-box-control-size: 2.375rem; --honesty-check-box-title-size: 0.93rem; --honesty-check-box-description-size: 0.76rem; --honesty-check-box-fill-start: var(--honesty-color-brand-primary-solid); --honesty-check-box-fill-end: var(--honesty-color-brand-accent-solid); --honesty-check-box-selected-ring-width: 0.25rem; --honesty-check-box-pressed-scale: 0.86; --honesty-check-box-transition-duration: var(--honesty-motion-duration-deliberate);';
+    '--honesty-check-box-control-size: 1.125rem; --honesty-check-box-control-size: 1.5rem; --honesty-check-box-control-size: 1.875rem; --honesty-check-box-control-size: 2.375rem; --honesty-check-box-title-size: 0.93rem; --honesty-check-box-description-size: 0.76rem; --honesty-check-box-fill-color: var(--honesty-color-brand-primary-solid); --honesty-check-box-selected-ring-width: 0.25rem; --honesty-check-box-pressed-scale: 0.86; --honesty-check-box-switch-knob-off-color: var(--honesty-color-text-muted); --honesty-check-box-switch-knob-on-color: var(--honesty-check-box-mark-color); --honesty-check-box-neon-pulse-duration: 2.4s; --honesty-check-box-transition-duration: var(--honesty-motion-duration-deliberate);';
   const validCheckStyles =
-    ":host-context([dir='rtl']) { --_honesty-check-box-gradient-angle: -135deg; } .check-box__visual::before { --_honesty-check-box-gradient-angle: 135deg; } .check-box__visual::after { clip-path: polygon(0 0, 1px 1px); } .check-box:active {} color-mix(in srgb, red 65%, transparent) .check-box__native:focus-visible {} :host([data-check-box-checked='true']) {} :host([data-check-box-indeterminate='true']) {} @media (prefers-reduced-motion: reduce) {}";
+    ":host-context([dir='rtl']) { --_honesty-check-box-switch-off: 1; --_honesty-check-box-switch-on: -1; } .check-box__visual::before { background: var(--honesty-check-box-fill-color); } .check-box__visual::after { clip-path: polygon(0 0, 1px 1px); } :host([data-check-box-variant='switch']) {} :host([data-check-box-variant='neon']) {} --_honesty-check-box-switch-off --_honesty-check-box-switch-on @keyframes honesty-check-box-neon-pulse {} .check-box:active {} color-mix(in srgb, red 65%, transparent) .check-box__native:focus-visible {} :host([data-check-box-checked='true']) {} :host([data-check-box-indeterminate='true']) {} @media (prefers-reduced-motion: reduce) {}";
   const validRadioTemplate =
     '<input type="radio"><span class="radio-box__visual"><span class="radio-box__dot"></span></span>';
   const validRadioTokens =
@@ -1944,6 +1963,7 @@ export class ErpImagePicker extends ErpFileSelectionBase {
 
   if (
     validateChoiceVisualContracts(
+      validCheckSource,
       validCheckTemplate,
       validCheckTokens,
       validCheckStyles,
@@ -1957,6 +1977,7 @@ export class ErpImagePicker extends ErpFileSelectionBase {
 
   if (
     validateChoiceVisualContracts(
+      validCheckSource,
       `${validCheckTemplate}<svg></svg>`,
       validCheckTokens,
       validCheckStyles,
@@ -1987,9 +2008,15 @@ export class ErpImagePicker extends ErpFileSelectionBase {
       validCheckTokens,
       validCheckStyles.replace('clip-path:', 'mask:'),
     ],
+    [
+      validCheckTemplate,
+      validCheckTokens,
+      `${validCheckStyles} linear-gradient(red, blue)`,
+    ],
   ].entries()) {
     if (
       validateChoiceVisualContracts(
+        validCheckSource,
         fixture[0],
         fixture[1],
         fixture[2],
@@ -2002,6 +2029,20 @@ export class ErpImagePicker extends ErpFileSelectionBase {
         `ErpField checker accepted invalid Product Owner CheckBox fixture ${index + 1}`,
       );
     }
+  }
+
+  if (
+    validateChoiceVisualContracts(
+      validCheckSource.replace("'switch' | 'neon'", "'switch'"),
+      validCheckTemplate,
+      validCheckTokens,
+      validCheckStyles,
+      validRadioTemplate,
+      validRadioTokens,
+      validRadioStyles,
+    ).length === 0
+  ) {
+    throw new Error('ErpField checker accepted incomplete CheckBox variant API');
   }
 
   const validTemporalFiles = new Map([
@@ -2672,6 +2713,7 @@ errors.push(
 );
 errors.push(
   ...validateChoiceVisualContracts(
+    files.get(CHECK_BOX_SOURCE) ?? '',
     files.get(CHECK_BOX_TEMPLATE) ?? '',
     files.get(CHECK_BOX_TOKENS) ?? '',
     CHECK_BOX_STYLES.map((file) => files.get(file) ?? '').join('\n'),
