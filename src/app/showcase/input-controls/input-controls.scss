@@ -31,6 +31,14 @@
   padding: var(--honesty-space-inset-default);
 }
 
+.review-group[data-review-group='boolean-choice'] > erp-grid > erp-surface {
+  grid-column: auto;
+}
+
+.choice-review-card {
+  min-block-size: 100%;
+}
+
 .glass-evidence-substrate {
   position: relative;
   overflow: hidden;
