@@ -246,6 +246,28 @@ describe('OverlayControls showcase', () => {
     });
   });
 
+  it('lets System Confirm derive a solid Header tone from its action intent by default', () => {
+    const fixture = create();
+    const manager = TestBed.inject(ErpOverlayManager);
+
+    fixture.componentInstance.openConfirm('default');
+    fixture.componentInstance.openConfirm('warning');
+    fixture.componentInstance.openConfirm('danger');
+
+    expect(
+      manager.entries().slice(-3).map((entry) => ({
+        headerTone: entry.ref.config.frame?.header.tone,
+        confirmTone: entry.ref.config.frame?.footer.actions.find(
+          (action) => action.id === 'confirm',
+        )?.tone,
+      })),
+    ).toEqual([
+      {headerTone: 'primary', confirmTone: 'primary'},
+      {headerTone: 'warning', confirmTone: 'warning'},
+      {headerTone: 'danger', confirmTone: 'danger'},
+    ]);
+  });
+
   it('opens the system Confirm service with semantic danger configuration', () => {
     const fixture = create();
     const manager = TestBed.inject(ErpOverlayManager);

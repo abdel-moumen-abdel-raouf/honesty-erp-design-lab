@@ -66,6 +66,22 @@ describe('ErpOverlayFrame', () => {
         'data-overlay-frame-header-tone',
       ),
     ).toBe('default');
+    expect(
+      root.querySelector('.overlay-frame__header erp-icon')?.getAttribute(
+        'data-icon-tone',
+      ),
+    ).toBe('primary');
+    expect(
+      root.querySelector('#frame-proof-title')?.getAttribute('data-text-tone'),
+    ).toBe('primary');
+    expect(
+      root.querySelector('#frame-proof-subtitle')?.getAttribute('data-text-tone'),
+    ).toBe('secondary');
+    expect(
+      root.querySelector('[data-overlay-frame-close]')?.getAttribute(
+        'data-icon-button-variant',
+      ),
+    ).toBe('ghost');
     expect(root.querySelector('[data-overlay-frame-close]')?.getAttribute('data-icon-button-state')).toBe('ready');
     expect(root.querySelector('[data-overlay-frame-close] button')?.getAttribute('aria-label')).toBe('إغلاق');
 
@@ -123,22 +139,48 @@ describe('ErpOverlayFrame', () => {
     }
   });
 
-  it('renders semantic Header tone and can hide only the Header close button through API', () => {
+  it('renders colored Header content with on-solid inheritance and a matching solid Close button', () => {
     const {fixture} = create({
       ...FRAME,
       header: {
         ...FRAME.header,
         tone: 'warning',
-        showCloseButton: false,
       },
     });
     const root = fixture.nativeElement as HTMLElement;
     const header = root.querySelector('.overlay-frame__header');
+    const icon = root.querySelector('.overlay-frame__header erp-icon');
+    const title = root.querySelector('#frame-proof-title');
+    const subtitle = root.querySelector('#frame-proof-subtitle');
+    const close = root.querySelector('[data-overlay-frame-close]');
 
     expect(header).not.toBeNull();
     expect(header?.getAttribute('data-overlay-frame-header-tone')).toBe(
       'warning',
     );
+    expect(icon?.getAttribute('data-icon-tone')).toBe('inherit');
+    expect(title?.getAttribute('data-text-tone')).toBe('inherit');
+    expect(subtitle?.getAttribute('data-text-tone')).toBe('inherit');
+    expect(close?.getAttribute('data-icon-button-variant')).toBe('solid');
+    expect(close?.getAttribute('data-icon-button-tone')).toBe('warning');
+  });
+
+  it('can hide only the Header close button through API while preserving the colored Header', () => {
+    const {fixture} = create({
+      ...FRAME,
+      header: {
+        ...FRAME.header,
+        tone: 'danger',
+        showCloseButton: false,
+      },
+    });
+    const root = fixture.nativeElement as HTMLElement;
+
+    expect(
+      root
+        .querySelector('.overlay-frame__header')
+        ?.getAttribute('data-overlay-frame-header-tone'),
+    ).toBe('danger');
     expect(root.querySelector('[data-overlay-frame-close]')).toBeNull();
     expect(root.querySelector('.overlay-frame__body')).not.toBeNull();
     expect(root.querySelector('.overlay-frame__footer')).not.toBeNull();

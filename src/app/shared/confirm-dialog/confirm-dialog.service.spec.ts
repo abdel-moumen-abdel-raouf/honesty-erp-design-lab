@@ -46,7 +46,7 @@ describe('ErpConfirmDialogService', () => {
           title: 'متابعة العملية',
           subtitle: 'يرجى تأكيد هذا الإجراء.',
           icon: 'help',
-          tone: 'default',
+          tone: 'primary',
           showCloseButton: true,
           closeLabel: 'إلغاء',
         },
@@ -136,6 +136,39 @@ describe('ErpConfirmDialogService', () => {
       type: 'dismissed',
       reason: 'escape',
     });
+  });
+
+  it('defaults Header tone to the same semantic tone as the Confirm action', () => {
+    const service = TestBed.inject(ErpConfirmDialogService);
+    const manager = TestBed.inject(ErpOverlayManager);
+
+    void service.confirm({
+      title: 'Default',
+      message: 'Default confirm.',
+    });
+    void service.confirm({
+      title: 'Warning',
+      message: 'Warning confirm.',
+      intent: 'warning',
+    });
+    void service.confirm({
+      title: 'Danger',
+      message: 'Danger confirm.',
+      intent: 'danger',
+    });
+
+    expect(
+      manager.entries().slice(-3).map((entry) => ({
+        headerTone: entry.ref.config.frame?.header.tone,
+        confirmTone: entry.ref.config.frame?.footer.actions.find(
+          (action) => action.id === 'confirm',
+        )?.tone,
+      })),
+    ).toEqual([
+      {headerTone: 'primary', confirmTone: 'primary'},
+      {headerTone: 'warning', confirmTone: 'warning'},
+      {headerTone: 'danger', confirmTone: 'danger'},
+    ]);
   });
 
   it('maps warning/danger intent and an explicit Header tone independently', () => {
