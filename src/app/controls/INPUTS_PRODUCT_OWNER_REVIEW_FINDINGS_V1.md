@@ -2057,3 +2057,54 @@ npm run verify:clean
 
 Technical PASS still does not imply Product Owner visual approval.
 <!-- CHATGPT_OVERLAY_LEGACY_SPEC_SCAN_2026_10_02_END -->
+
+
+<!-- CHATGPT_DERIVED_BLUEPRINT_REFERENCE_2026_10_02_START -->
+## 2026-10-02 — accepted historical reconstruction blueprint recorded as derived planning reference
+
+Accepted derived reference:
+
+`docs/project-history/derived/PROJECT_ORIGIN_COMPONENTS_AND_EXECUTION_BLUEPRINT_V1.md`
+
+Committed at:
+
+`ef8d5fc6e0107dc1afc85e428ab4ee1f74c1a1c2` —
+`docs(history): establish reconstructed product and component blueprint`.
+
+Classification:
+
+- accepted as an externally reviewed historical reconstruction and planning reference;
+- based on the immutable raw archive plus the current-authority documents and
+  repository snapshot recorded inside the blueprint;
+- useful for future Product Owner scope decisions, component inventory review,
+  dependency planning, gap analysis, and long-term roadmap discussions.
+
+Explicit authority boundary:
+
+- this blueprint is **not** continuity authority;
+- it does **not** authorize implementation;
+- it does **not** visually approve or freeze any component/family;
+- it does **not** override newer Product Owner decisions, current repository
+  source, or the four continuity-authority files;
+- historical/candidate inventory entries must not be treated as an authorized
+  backlog merely because they appear in the blueprint.
+
+The blueprint records 166 normalized component/capability entries and preserves
+the distinction between implemented, partial, deferred, superseded,
+historical-only, unresolved product decisions, and items requiring Product Owner
+confirmation.
+
+Current execution state is unchanged by this documentation-only milestone.
+
+The next technical gate remains:
+
+```text
+npm run erp-overlay:check
+npm run erp-overlay:check:self-test
+npm run verify:clean
+```
+
+Only after canonical technical green does the current Product Owner
+Overlay/Confirm runtime/visual re-review proceed. The historical blueprint must
+not be used to jump ahead to Table, Shell, Forms, or any other unopened family.
+<!-- CHATGPT_DERIVED_BLUEPRINT_REFERENCE_2026_10_02_END -->
