@@ -116,3 +116,20 @@ composition examples because the template itself does not expose them in its
 Variant selector.
 
 RadioBox remains unopened.
+
+
+## Pre-handoff consistency gate
+
+After a CheckBox V3 governance false-positive caused by stale private-variable
+names in the checker, this batch adds a mandatory pre-handoff static gate.
+
+Before any future component checkpoint is handed to Product Owner for local
+execution:
+
+- changed governance predicates must be evaluated against the actual current
+  production source;
+- changed tests must be checked for stale selectors/literals/contracts;
+- source/governance static mismatch count must be zero;
+- the full diff must remain bounded to the current component wave.
+
+Local `npm run verify:clean` remains the canonical executable gate.
