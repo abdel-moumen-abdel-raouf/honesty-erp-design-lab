@@ -1,0 +1,129 @@
+@use '../../../styles/foundation/components/empty-state' as tokens;
+
+:host {
+  @include tokens.base;
+  display: block;
+  inline-size: 100%;
+  min-inline-size: 0;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  inline-size: 100%;
+  max-inline-size: 38.75rem;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+  padding-block: clamp(2rem, 5vw, 3.5rem);
+  border-radius: var(--honesty-empty-state-radius);
+  color: var(--honesty-empty-state-text-primary);
+  text-align: center;
+  transition:
+    background-color var(--honesty-empty-state-transition-duration)
+      var(--honesty-empty-state-transition-easing),
+    border-color var(--honesty-empty-state-transition-duration)
+      var(--honesty-empty-state-transition-easing);
+}
+
+.empty-state__illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-block-end: 1.5rem;
+  cursor: pointer;
+  transition:
+    transform var(--honesty-empty-state-illustration-hover-duration)
+      var(--honesty-empty-state-easing-out);
+}
+
+.empty-state__illustration:hover {
+  transform: scale(1.05) translateY(-3px);
+}
+
+.empty-state__default-illustration {
+  display: contents;
+}
+
+.empty-state__illustration svg {
+  display: block;
+  inline-size: clamp(5.5rem, 16vw, 8.25rem);
+  block-size: clamp(5.5rem, 16vw, 8.25rem);
+}
+
+.empty-state .empty-state__title {
+  --honesty-text-font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+  --honesty-text-font-weight: 700;
+  --honesty-text-line-height: 1.25;
+  --honesty-text-color: var(--honesty-empty-state-text-primary);
+  margin-block-end: 0.65rem;
+  text-align: center;
+}
+
+.empty-state .empty-state__description {
+  --honesty-text-font-size: 1rem;
+  --honesty-text-line-height: 1.65;
+  --honesty-text-color: var(--honesty-empty-state-text-secondary);
+  max-inline-size: 48ch;
+  margin-inline: auto;
+  margin-block-end: 1.75rem;
+  text-align: center;
+}
+
+.empty-state__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  inline-size: 100%;
+  margin-block-end: 1.25rem;
+}
+
+.empty-state__actions erp-button {
+  transition:
+    transform var(--honesty-empty-state-action-duration)
+      var(--honesty-empty-state-transition-easing),
+    box-shadow var(--honesty-empty-state-action-duration)
+      var(--honesty-empty-state-transition-easing);
+}
+
+.empty-state__actions erp-button:hover {
+  transform: translateY(-2px);
+  filter: drop-shadow(var(--honesty-empty-state-action-hover-shadow));
+}
+
+.empty-state__actions erp-button:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+.empty-state__extra,
+.empty-state__default-extra,
+.empty-state__extra-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.empty-state__extra {
+  gap: 0.375rem;
+  margin-block-start: 0.5rem;
+  color: var(--honesty-empty-state-text-muted);
+}
+
+.empty-state__default-extra {
+  gap: 0.375rem;
+}
+
+.empty-state__extra-link {
+  gap: 0.25rem;
+}
+
+.empty-state .empty-state__extra-link erp-text {
+  --honesty-text-color: var(--honesty-empty-state-link);
+  --honesty-text-font-weight: 500;
+}
+
+.empty-state .empty-state__extra-link:hover erp-text {
+  text-decoration-line: underline;
+}

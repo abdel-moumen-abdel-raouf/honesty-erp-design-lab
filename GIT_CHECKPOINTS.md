@@ -213,3 +213,38 @@ Fresh mandatory gate:
 RadioBox remains implemented and technically pending only this rerun.
 EmptyState and Select remain unopened.
 <!-- CHATGPT_OVERLAY_RESTORE_TEST_CONTRACT_2026_10_04_END -->
+
+<!-- CHATGPT_EMPTY_STATE_EXACT_V1_2026_10_04_START -->
+## 2026-10-04 — ErpEmptyState exact-reference V1 opened and implemented
+
+Product Owner exact reference:
+
+`erp-empty-state.html`
+
+SHA-256:
+
+`935d1546f3e5d58f3b280fe30433888670d086f1a53f786a9b096ac3966ee048`
+
+Binding contract:
+
+`src/app/controls/empty-state/EMPTY_STATE_REFERENCE_EXACT_V1.md`
+
+Decision:
+
+- preserve all reference EmptyState scenarios, visual geometry, SVG
+  illustrations, content regions, action hierarchy, customization, motion,
+  speed/replay, and reduced-motion behavior;
+- replace the reference palette entirely with Honesty ERP Semantic -> Component
+  Tokens;
+- standard actions use `ErpButton`;
+- production text uses `ErpText`;
+- App remains the only Light/Dark authority;
+- EmptyState inherits RTL/LTR instead of owning a local direction API;
+- dedicated review route: `/controls/empty-states`;
+- dedicated governance and tests protect the exact-reference contract.
+
+Current status: implementation candidate complete; fresh
+`npm run verify:clean` pending.
+
+`ErpSelect` remains unopened.
+<!-- CHATGPT_EMPTY_STATE_EXACT_V1_2026_10_04_END -->

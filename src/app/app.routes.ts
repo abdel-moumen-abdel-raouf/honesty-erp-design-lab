@@ -49,6 +49,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'controls/empty-states',
+    loadComponent: () =>
+      import('./showcase/empty-state-controls/empty-state-controls').then(
+        (m) => m.EmptyStateControls
+      ),
+  },
+  {
     path: 'controls/overlays',
     loadComponent: () =>
       import('./showcase/overlay-controls/overlay-controls').then(

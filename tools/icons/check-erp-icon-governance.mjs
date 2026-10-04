@@ -33,6 +33,9 @@ function isExcludedHtml(file) {
   return (
     filePath === 'src/app/app.html' ||
     filePath === 'src/app/controls/check-box/check-box.html' ||
+    // EmptyState owns Product Owner-approved decorative SVG illustrations;
+    // semantic action/help icons inside it still use ErpButton/ErpIcon.
+    filePath === 'src/app/controls/empty-state/empty-state.html' ||
     filePath.startsWith('src/app/foundation/') ||
     filePath.startsWith('src/app/showcase/') ||
     filePath.startsWith(ICON_IMPLEMENTATION_ROOT)

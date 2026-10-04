@@ -1,0 +1,18 @@
+@use '../../../styles/foundation/components/empty-state' as tokens;
+
+.empty-state[data-variant='no-data'],
+.empty-state[data-variant='no-search'] {
+  @include tokens.tone-primary;
+}
+
+.empty-state[data-variant='error'] {
+  @include tokens.tone-danger;
+}
+
+.empty-state[data-variant='forbidden'] {
+  @include tokens.tone-warning;
+}
+
+.empty-state[data-variant='custom'] {
+  @include tokens.tone-success;
+}

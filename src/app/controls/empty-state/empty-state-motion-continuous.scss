@@ -1,0 +1,114 @@
+.empty-state[data-animated='true'][data-motion='float'] .es-anim-float-main {
+  animation:
+    honesty-empty-state-float-main
+    calc(3.2s / var(--honesty-empty-state-anim-speed))
+    ease-in-out
+    infinite;
+  transform-origin: center;
+}
+
+.empty-state[data-animated='true'][data-motion='float'] .es-anim-float-badge {
+  animation:
+    honesty-empty-state-float-badge
+    calc(2.4s / var(--honesty-empty-state-anim-speed))
+    ease-in-out
+    infinite 0.3s;
+  transform-origin: center;
+}
+
+.empty-state[data-animated='true'][data-motion='float'] .es-anim-shadow {
+  animation:
+    honesty-empty-state-shadow
+    calc(3.2s / var(--honesty-empty-state-anim-speed))
+    ease-in-out
+    infinite;
+  transform-origin: 80px 142px;
+}
+
+.empty-state[data-animated='true'][data-motion='float'] .es-anim-spin-slow {
+  animation:
+    honesty-empty-state-spin-slow
+    calc(14s / var(--honesty-empty-state-anim-speed))
+    linear
+    infinite;
+  transform-origin: center;
+}
+
+.empty-state[data-animated='true'][data-motion='float'] .es-anim-pulse-center {
+  animation:
+    honesty-empty-state-pulse-center
+    calc(2.2s / var(--honesty-empty-state-anim-speed))
+    ease-in-out
+    infinite;
+  transform-origin: center;
+}
+
+.empty-state[data-animated='true'][data-motion='float'] .es-anim-search-scan {
+  animation:
+    honesty-empty-state-search-scan
+    calc(4.2s / var(--honesty-empty-state-anim-speed))
+    ease-in-out
+    infinite;
+  transform-origin: 68px 68px;
+}
+
+.empty-state[data-animated='true'][data-motion='float'] .es-anim-radar-wave,
+.empty-state[data-animated='true'][data-motion='float'] .es-anim-radar-wave-delayed {
+  animation:
+    honesty-empty-state-radar
+    calc(2.4s / var(--honesty-empty-state-anim-speed))
+    ease-out
+    infinite;
+  transform-origin: 68px 68px;
+}
+
+.empty-state[data-animated='true'][data-motion='float'] .es-anim-radar-wave-delayed {
+  animation-delay: 1.2s;
+}
+
+.empty-state[data-animated='true'][data-motion='float'] .es-anim-sparkle-1,
+.empty-state[data-animated='true'][data-motion='float'] .es-anim-sparkle-2 {
+  animation:
+    honesty-empty-state-sparkle
+    calc(2.6s / var(--honesty-empty-state-anim-speed))
+    ease-in-out
+    infinite;
+  transform-origin: center;
+}
+
+.empty-state[data-animated='true'][data-motion='float'] .es-anim-sparkle-2 {
+  animation-duration: calc(2.1s / var(--honesty-empty-state-anim-speed));
+  animation-delay: 1s;
+}
+
+.empty-state[data-animated='true'][data-motion='float'] .es-anim-danger-halo,
+.empty-state[data-animated='true'][data-motion='float'] .es-anim-warning-halo {
+  animation:
+    honesty-empty-state-danger-halo
+    calc(2s / var(--honesty-empty-state-anim-speed))
+    ease-in-out
+    infinite;
+  transform-origin: center;
+}
+
+.empty-state[data-animated='true'][data-motion='float'] .es-anim-warning-halo {
+  animation-duration: calc(2.8s / var(--honesty-empty-state-anim-speed));
+}
+
+.empty-state[data-animated='true'][data-motion='float'] .es-anim-alert-shake {
+  animation:
+    honesty-empty-state-alert-shake
+    calc(3.6s / var(--honesty-empty-state-anim-speed))
+    ease-in-out
+    infinite;
+  transform-origin: center;
+}
+
+.empty-state[data-animated='true'][data-motion='pulse'] .empty-state__illustration {
+  animation:
+    honesty-empty-state-pulse-center
+    calc(2.2s / var(--honesty-empty-state-anim-speed))
+    ease-in-out
+    infinite;
+  transform-origin: center;
+}

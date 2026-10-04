@@ -69,13 +69,15 @@ Immediate technical gate:
 
 `npm run verify:clean`
 
-Do not call the current RadioBox implementation checkpoint Fully Green until that command passes on the current main.
+Do not call the current EmptyState implementation checkpoint Fully Green until a fresh canonical verification passes on the current main.
 
 ## Current Product Owner visual state
 
 `ErpCheckBox` exact-reference V5 is visually **ACCEPTED by the Product Owner**.
 
-`ErpRadioBox` is the active implementation/review item.
+`ErpRadioBox` implementation remains present, and the Product Owner has explicitly opened the next wave by supplying the exact EmptyState reference.
+
+`ErpEmptyState` is the active implementation/review item.
 
 Current binding visual authority:
 
@@ -116,17 +118,19 @@ Technical PASS will not equal Product Owner visual approval.
 The Product Owner selected this next reference batch order:
 
 1. `ErpCheckBox` — Product Owner visual acceptance complete;
-2. `ErpRadioBox` — current active implementation/review item;
-3. `ErpEmptyState`;
-4. `ErpSelect`.
+2. `ErpRadioBox` — implementation present; Product Owner moved the active wave forward;
+3. `ErpEmptyState` — current active exact-reference implementation/review item;
+4. `ErpSelect` — unopened.
 
-RadioBox source is now implemented under the accepted CheckBox-family language. Do not open EmptyState until RadioBox:
+RadioBox source is implemented under the accepted CheckBox-family language. The earlier "do not open EmptyState" gate is superseded by the Product Owner's explicit 2026-10-04 stage transition supplying the EmptyState reference and authorizing its implementation.
+
+Do not open `ErpSelect` until EmptyState:
 
 1. passes fresh `npm run verify:clean`;
-2. completes Product Owner Light/Dark runtime/visual review;
+2. completes Product Owner Light/Dark/runtime visual review;
 3. has all current Product Owner findings closed.
 
-The previously reserved single-select Tile requirement is now implemented by RadioBox/RadioGroup native radio semantics.
+The previously reserved single-select Tile requirement remains implemented by RadioBox/RadioGroup native radio semantics.
 
 ## Permanent execution laws
 
@@ -333,3 +337,53 @@ Fresh mandatory gate:
 RadioBox remains implemented and technically pending only this rerun.
 EmptyState and Select remain unopened.
 <!-- CHATGPT_OVERLAY_RESTORE_TEST_CONTRACT_2026_10_04_END -->
+
+<!-- CHATGPT_EMPTY_STATE_EXACT_V1_2026_10_04_START -->
+## 2026-10-04 — ErpEmptyState exact-reference V1 opened and implemented
+
+The Product Owner supplied the binding visual reference:
+
+`erp-empty-state.html`
+
+Recorded SHA-256:
+
+`935d1546f3e5d58f3b280fe30433888670d086f1a53f786a9b096ac3966ee048`
+
+Product Owner instruction is exact-reference implementation: preserve the
+reference design and features while replacing its palette with Honesty ERP
+system colors.
+
+Binding production contract:
+
+`src/app/controls/empty-state/EMPTY_STATE_REFERENCE_EXACT_V1.md`
+
+Current implementation includes:
+
+- five exact scenarios: `no-data | no-search | error | forbidden | custom`;
+- the five reference SVG illustration compositions;
+- independent Illustration/Title/Description/Actions/Extra visibility;
+- independent Primary/Secondary/Tertiary actions;
+- scenario-owned Arabic defaults and live text/action-label overrides;
+- custom Illustration and Extra projection;
+- reference entrance stagger and continuous illustration motion;
+- Float/Pulse/None motion API;
+- 0.5x/1.0x/1.5x speed;
+- replay API and reduced-motion protection;
+- `role=status`, polite live region, atomic announcements;
+- dedicated `/controls/empty-states` Design Lab route;
+- ERP-only routed review controls;
+- system-color Component Token mapping with no raw reference palette;
+- no local Light/Dark authority and no component-owned direction authority;
+- dedicated tests and governance.
+
+The reference's local Theme/Direction demo ownership is deliberately not copied:
+App remains the sole theme authority and RTL/LTR is inherited from context.
+
+The Product Owner's supplied reference explicitly opens this EmptyState wave.
+The next component, `ErpSelect`, remains unopened until EmptyState completes
+canonical verification and Product Owner Light/Dark/runtime visual review.
+
+Current technical status:
+
+**implementation candidate complete / fresh `npm run verify:clean` pending.**
+<!-- CHATGPT_EMPTY_STATE_EXACT_V1_2026_10_04_END -->

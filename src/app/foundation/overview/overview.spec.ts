@@ -32,6 +32,7 @@ const EXPECTED_PRODUCTION_REVIEW_ROUTES = [
   '/controls/buttons',
   '/controls/tooltips',
   '/controls/inputs',
+  '/controls/empty-states',
   '/controls/overlays',
 ] as const;
 
@@ -70,9 +71,9 @@ describe('Foundation Overview', () => {
 
     expect(compiled.querySelectorAll('[data-domain-entry]')).toHaveLength(12);
     expect(foundationLinks).toHaveLength(14);
-    expect(compiled.querySelectorAll('[data-review-family]')).toHaveLength(7);
-    expect(productionLinks).toHaveLength(7);
-    expect(FOUNDATION_CURRENT_REVIEW_FAMILIES).toHaveLength(7);
+    expect(compiled.querySelectorAll('[data-review-family]')).toHaveLength(8);
+    expect(productionLinks).toHaveLength(8);
+    expect(FOUNDATION_CURRENT_REVIEW_FAMILIES).toHaveLength(8);
     expect(productionLinks.map((link) => link.getAttribute('href'))).toEqual([
       ...EXPECTED_PRODUCTION_REVIEW_ROUTES,
     ]);

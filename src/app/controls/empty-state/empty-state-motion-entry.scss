@@ -1,0 +1,43 @@
+.empty-state.is-entering .empty-state__illustration {
+  animation:
+    honesty-empty-state-entrance-spring
+    calc(var(--honesty-empty-state-entrance-duration) / var(--honesty-empty-state-anim-speed))
+    var(--honesty-empty-state-easing-out)
+    both;
+}
+
+.empty-state.is-entering .empty-state__title {
+  animation:
+    honesty-empty-state-entrance-spring
+    calc(var(--honesty-empty-state-entrance-duration) / var(--honesty-empty-state-anim-speed))
+    var(--honesty-empty-state-easing-out)
+    calc(var(--honesty-empty-state-title-delay) / var(--honesty-empty-state-anim-speed))
+    both;
+}
+
+.empty-state.is-entering .empty-state__description {
+  animation:
+    honesty-empty-state-entrance-spring
+    calc(var(--honesty-empty-state-entrance-duration) / var(--honesty-empty-state-anim-speed))
+    var(--honesty-empty-state-easing-out)
+    calc(var(--honesty-empty-state-description-delay) / var(--honesty-empty-state-anim-speed))
+    both;
+}
+
+.empty-state.is-entering .empty-state__actions {
+  animation:
+    honesty-empty-state-entrance-spring
+    calc(var(--honesty-empty-state-entrance-duration) / var(--honesty-empty-state-anim-speed))
+    var(--honesty-empty-state-easing-out)
+    calc(var(--honesty-empty-state-actions-delay) / var(--honesty-empty-state-anim-speed))
+    both;
+}
+
+.empty-state.is-entering .empty-state__extra {
+  animation:
+    honesty-empty-state-entrance-spring
+    calc(var(--honesty-empty-state-entrance-duration) / var(--honesty-empty-state-anim-speed))
+    var(--honesty-empty-state-easing-out)
+    calc(var(--honesty-empty-state-extra-delay) / var(--honesty-empty-state-anim-speed))
+    both;
+}

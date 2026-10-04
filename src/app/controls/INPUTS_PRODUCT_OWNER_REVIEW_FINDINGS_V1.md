@@ -3717,3 +3717,53 @@ Fresh mandatory gate:
 RadioBox remains implemented and technically pending only this rerun.
 EmptyState and Select remain unopened.
 <!-- CHATGPT_OVERLAY_RESTORE_TEST_CONTRACT_2026_10_04_END -->
+
+<!-- CHATGPT_EMPTY_STATE_EXACT_V1_2026_10_04_START -->
+## 2026-10-04 — ErpEmptyState exact-reference V1 opened and implemented
+
+The Product Owner supplied the binding visual reference:
+
+`erp-empty-state.html`
+
+Recorded SHA-256:
+
+`935d1546f3e5d58f3b280fe30433888670d086f1a53f786a9b096ac3966ee048`
+
+Product Owner instruction is exact-reference implementation: preserve the
+reference design and features while replacing its palette with Honesty ERP
+system colors.
+
+Binding production contract:
+
+`src/app/controls/empty-state/EMPTY_STATE_REFERENCE_EXACT_V1.md`
+
+Current implementation includes:
+
+- five exact scenarios: `no-data | no-search | error | forbidden | custom`;
+- the five reference SVG illustration compositions;
+- independent Illustration/Title/Description/Actions/Extra visibility;
+- independent Primary/Secondary/Tertiary actions;
+- scenario-owned Arabic defaults and live text/action-label overrides;
+- custom Illustration and Extra projection;
+- reference entrance stagger and continuous illustration motion;
+- Float/Pulse/None motion API;
+- 0.5x/1.0x/1.5x speed;
+- replay API and reduced-motion protection;
+- `role=status`, polite live region, atomic announcements;
+- dedicated `/controls/empty-states` Design Lab route;
+- ERP-only routed review controls;
+- system-color Component Token mapping with no raw reference palette;
+- no local Light/Dark authority and no component-owned direction authority;
+- dedicated tests and governance.
+
+The reference's local Theme/Direction demo ownership is deliberately not copied:
+App remains the sole theme authority and RTL/LTR is inherited from context.
+
+The Product Owner's supplied reference explicitly opens this EmptyState wave.
+The next component, `ErpSelect`, remains unopened until EmptyState completes
+canonical verification and Product Owner Light/Dark/runtime visual review.
+
+Current technical status:
+
+**implementation candidate complete / fresh `npm run verify:clean` pending.**
+<!-- CHATGPT_EMPTY_STATE_EXACT_V1_2026_10_04_END -->

@@ -1,0 +1,71 @@
+@use '../../../styles/foundation/queries' as query;
+
+:host {
+  display: block;
+  min-width: 0;
+  background: var(--honesty-color-surface-canvas);
+  color: var(--honesty-color-text-primary);
+}
+
+.empty-state-review {
+  padding-block: var(--honesty-space-section-gap-large);
+}
+
+.empty-state-review__header {
+  margin-block-end: var(--honesty-space-section-gap-large);
+}
+
+.empty-state-review__workspace {
+  grid-template-columns: minmax(18rem, 23.75rem) minmax(0, 1fr);
+  align-items: start;
+}
+
+.empty-state-review__controls,
+.empty-state-review__stage,
+.empty-state-review__action-evidence,
+.empty-state-review__matrix erp-surface {
+  padding: var(--honesty-space-inset-default);
+}
+
+.empty-state-review__controls {
+  position: sticky;
+  inset-block-start: var(--honesty-space-inset-default);
+}
+
+.empty-state-review__scenario-buttons erp-button {
+  inline-size: 100%;
+}
+
+.empty-state-review__stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 30rem;
+  background: var(--honesty-color-surface-default);
+}
+
+.empty-state-review__action-evidence {
+  min-block-size: 5rem;
+}
+
+.empty-state-review__matrix {
+  margin-block-start: var(--honesty-space-section-gap-large);
+}
+
+.empty-state-review__matrix > erp-grid {
+  margin-block-start: var(--honesty-space-stack-default);
+}
+
+@include query.viewport-down(md) {
+  .empty-state-review__workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .empty-state-review__controls {
+    position: static;
+  }
+
+  .empty-state-review__stage {
+    min-block-size: 24rem;
+  }
+}

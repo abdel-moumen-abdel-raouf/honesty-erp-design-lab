@@ -21,6 +21,7 @@
 10. `src/app/controls/FIELD_FAMILY_V1.md`
 11. `src/app/controls/check-box/CHECK_BOX_REFERENCE_EXACT_V5.md`
 12. `src/app/controls/radio-box/RADIO_BOX_VISUAL_CONTRACT_V1.md`
+13. `src/app/controls/empty-state/EMPTY_STATE_REFERENCE_EXACT_V1.md`
 
 بعد ذلك تحقق من **live GitHub main** مباشرة ولا تعتمد على SHA قديم داخل chat.
 
@@ -69,3 +70,5 @@
 ---
 
 Current RadioBox source implementation is now present; treat it as verification-pending until a fresh `npm run verify:clean` passes. EmptyState and Select remain unopened.
+
+Current active component: ErpEmptyState exact-reference V1. Reference SHA-256: 935d1546f3e5d58f3b280fe30433888670d086f1a53f786a9b096ac3966ee048. Source implementation is present and canonical verification is pending. ErpSelect remains unopened.

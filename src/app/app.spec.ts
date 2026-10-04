@@ -114,6 +114,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     const buttonControlsLink = compiled.querySelector('#nav-link-button-controls');
     const tooltipControlsLink = compiled.querySelector('#nav-link-tooltip-controls');
     const inputControlsLink = compiled.querySelector('#nav-link-input-controls');
+    const emptyStateControlsLink = compiled.querySelector('#nav-link-empty-state-controls');
     const overlayControlsLink = compiled.querySelector('#nav-link-overlay-controls');
     const colorsLink = compiled.querySelector('#nav-link-colors');
     const themesLink = compiled.querySelector('#nav-link-themes');
@@ -132,6 +133,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(buttonControlsLink).toBeTruthy();
     expect(tooltipControlsLink).toBeTruthy();
     expect(inputControlsLink).toBeTruthy();
+    expect(emptyStateControlsLink).toBeTruthy();
     expect(overlayControlsLink).toBeTruthy();
     expect(colorsLink).toBeTruthy();
     expect(themesLink).toBeTruthy();
@@ -151,6 +153,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(buttonControlsLink?.textContent?.trim()).toBe('الأزرار الإنتاجية');
     expect(tooltipControlsLink?.textContent?.trim()).toBe('التلميحات الإنتاجية');
     expect(inputControlsLink?.textContent?.trim()).toBe('حقول الإدخال الإنتاجية');
+    expect(emptyStateControlsLink?.textContent?.trim()).toBe('الحالات الفارغة');
     expect(overlayControlsLink?.textContent?.trim()).toBe('النوافذ الحاجبة');
     expect(colorsLink?.textContent?.trim()).toBe('الألوان المرجعية');
     expect(themesLink?.textContent?.trim()).toBe('السمات الدلالية');
@@ -180,6 +183,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(linkPaths).toContain('/controls/buttons');
     expect(linkPaths).toContain('/controls/tooltips');
     expect(linkPaths).toContain('/controls/inputs');
+    expect(linkPaths).toContain('/controls/empty-states');
     expect(linkPaths).toContain('/controls/overlays');
     expect(linkPaths).toContain('/foundation/colors');
     expect(linkPaths).toContain('/foundation/themes');
@@ -201,6 +205,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
       'controls/buttons',
       'controls/tooltips',
       'controls/inputs',
+      'controls/empty-states',
       'controls/overlays',
       'foundation/colors',
       'foundation/colors/status-hues',
@@ -302,6 +307,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
   for (const [url, selector] of [
     ['/foundation/overview', 'app-foundation-overview'],
     ['/controls/inputs', 'app-input-controls'],
+    ['/controls/empty-states', 'app-empty-state-controls'],
     ['/controls/overlays', 'app-overlay-controls'],
   ] as const) {
     it(`renders ${url} through the direct single-document model`, async () => {

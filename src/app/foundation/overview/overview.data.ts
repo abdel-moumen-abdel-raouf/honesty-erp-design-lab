@@ -199,6 +199,12 @@ export const FOUNDATION_CURRENT_REVIEW_FAMILIES: readonly FoundationOverviewRevi
     status: 'مرشح تقني — بانتظار الموافقة البصرية',
   },
   {
+    id: 'empty-state-controls',
+    label: 'الحالات الفارغة',
+    route: '/controls/empty-states',
+    status: 'مرشح تقني — بانتظار الموافقة البصرية',
+  },
+  {
     id: 'blocking-overlay-controls',
     label: 'حظر عناصر تحكم التراكب',
     route: '/controls/overlays',

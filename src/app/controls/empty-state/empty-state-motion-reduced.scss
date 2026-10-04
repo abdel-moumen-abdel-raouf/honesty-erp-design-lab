@@ -1,0 +1,15 @@
+@media (prefers-reduced-motion: reduce) {
+  .empty-state,
+  .empty-state *,
+  .empty-state svg,
+  .empty-state svg * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .empty-state__illustration:hover,
+  .empty-state__actions erp-button:hover,
+  .empty-state__actions erp-button:active {
+    transform: none;
+  }
+}

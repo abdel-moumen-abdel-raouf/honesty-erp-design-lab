@@ -1,0 +1,146 @@
+<erp-container class="empty-state-review" width="wide">
+  <erp-stack class="empty-state-review__header" gap="tight">
+    <erp-text type="heading-1">Empty State — المرجع المعتمد</erp-text>
+    <erp-text type="paragraph" tone="secondary">
+      تنفيذ مباشر لمرجع erp-empty-state: نفس السيناريوهات والهندسة والرسوم
+      والحركة والأجزاء والإجراءات، مع استبدال Palette المرجع بألوان Honesty ERP.
+    </erp-text>
+  </erp-stack>
+
+  <erp-grid class="empty-state-review__workspace" [columns]="2" gap="lg" responsive="fixed">
+    <erp-surface class="empty-state-review__controls" border="subtle">
+      <erp-stack gap="default">
+        <erp-text type="heading-3">السيناريوهات الجاهزة</erp-text>
+
+        <erp-stack class="empty-state-review__scenario-buttons" gap="tight">
+          <erp-button
+            label="1. لا توجد بيانات"
+            [variant]="variant() === 'no-data' ? 'solid' : 'outline'"
+            (pressed)="applyScenario('no-data')"
+          />
+          <erp-button
+            label="2. بحث بدون نتائج"
+            [variant]="variant() === 'no-search' ? 'solid' : 'outline'"
+            (pressed)="applyScenario('no-search')"
+          />
+          <erp-button
+            label="3. خطأ في التحميل"
+            [variant]="variant() === 'error' ? 'solid' : 'outline'"
+            (pressed)="applyScenario('error')"
+          />
+          <erp-button
+            label="4. لا توجد صلاحية"
+            [variant]="variant() === 'forbidden' ? 'solid' : 'outline'"
+            (pressed)="applyScenario('forbidden')"
+          />
+          <erp-button
+            label="5. مخصص بالكامل"
+            [variant]="variant() === 'custom' ? 'solid' : 'outline'"
+            (pressed)="applyScenario('custom')"
+          />
+        </erp-stack>
+
+        <erp-review-select
+          label="Scenario"
+          [value]="variant()"
+          (selectionChanged)="setVariantFromEvent($event)"
+        >
+          <erp-review-choice value="no-data" label="No Data" />
+          <erp-review-choice value="no-search" label="No Search Results" />
+          <erp-review-choice value="error" label="Error" />
+          <erp-review-choice value="forbidden" label="Forbidden" />
+          <erp-review-choice value="custom" label="Custom" />
+        </erp-review-select>
+
+        <erp-text type="heading-4">إظهار / إخفاء الأجزاء</erp-text>
+        <erp-check-box label="Illustration" [ngModel]="showIllustration()" (ngModelChange)="showIllustration.set($event)" />
+        <erp-check-box label="Title" [ngModel]="showTitle()" (ngModelChange)="showTitle.set($event)" />
+        <erp-check-box label="Description" [ngModel]="showDescription()" (ngModelChange)="showDescription.set($event)" />
+        <erp-check-box label="Actions Area" [ngModel]="showActions()" (ngModelChange)="showActions.set($event)" />
+        <erp-check-box label="Extra Link" [ngModel]="showExtra()" (ngModelChange)="showExtra.set($event)" />
+
+        <erp-text type="heading-4">الأزرار التفاعلية</erp-text>
+        <erp-check-box label="Primary Action" [ngModel]="showPrimaryAction()" (ngModelChange)="showPrimaryAction.set($event)" />
+        <erp-check-box label="Secondary Action" [ngModel]="showSecondaryAction()" (ngModelChange)="showSecondaryAction.set($event)" />
+        <erp-check-box label="Tertiary Action" [ngModel]="showTertiaryAction()" (ngModelChange)="showTertiaryAction.set($event)" />
+
+        <erp-text type="heading-4">الحركة والمؤثرات</erp-text>
+        <erp-check-box label="Enable Animations" [ngModel]="animated()" (ngModelChange)="animated.set($event)" />
+        <erp-review-select label="Illustration Motion" [value]="motion()" (selectionChanged)="setMotionFromEvent($event)">
+          <erp-review-choice value="float" label="Floating & Breathing" />
+          <erp-review-choice value="pulse" label="Pulse" />
+          <erp-review-choice value="none" label="Static" />
+        </erp-review-select>
+        <erp-review-select label="Motion Speed" [value]="motionSpeed().toString()" (selectionChanged)="setSpeedFromEvent($event)">
+          <erp-review-choice value="0.5" label="Slow 0.5x" />
+          <erp-review-choice value="1" label="Normal 1.0x" />
+          <erp-review-choice value="1.5" label="Fast 1.5x" />
+        </erp-review-select>
+        <erp-button label="تشغيل حركة الدخول الآن" icon="redo" variant="subtle" (pressed)="replay()" />
+
+        <erp-text type="heading-4">النصوص المباشرة</erp-text>
+        <erp-text-box label="العنوان" [ngModel]="title()" (ngModelChange)="title.set($event)" />
+        <erp-text-area-box label="الوصف" [ngModel]="description()" (ngModelChange)="description.set($event)" />
+        <erp-text-box label="نص الإجراء الأساسي" [ngModel]="primaryActionLabel()" (ngModelChange)="primaryActionLabel.set($event)" />
+
+        <erp-review-select label="Direction Evidence" [value]="direction()" (selectionChanged)="setDirectionFromEvent($event)">
+          <erp-review-choice value="rtl" label="RTL" />
+          <erp-review-choice value="ltr" label="LTR" />
+        </erp-review-select>
+      </erp-stack>
+    </erp-surface>
+
+    <erp-stack class="empty-state-review__preview-column" gap="default">
+      <erp-surface
+        class="empty-state-review__stage"
+        border="subtle"
+        [attr.dir]="direction()"
+        data-empty-state-interactive-preview
+      >
+        <erp-empty-state
+          #previewEmptyState
+          [variant]="variant()"
+          [title]="title()"
+          [description]="description()"
+          [animated]="animated()"
+          [illustrationMotion]="motion()"
+          [motionSpeed]="motionSpeed()"
+          [showIllustration]="showIllustration()"
+          [showTitle]="showTitle()"
+          [showDescription]="showDescription()"
+          [showActions]="showActions()"
+          [showExtra]="showExtra()"
+          [showPrimaryAction]="showPrimaryAction()"
+          [primaryActionLabel]="primaryActionLabel()"
+          [showSecondaryAction]="showSecondaryAction()"
+          [showTertiaryAction]="showTertiaryAction()"
+          (primaryAction)="recordAction('primary')"
+          (secondaryAction)="recordAction('secondary')"
+          (tertiaryAction)="recordAction('tertiary')"
+        />
+      </erp-surface>
+
+      <erp-surface class="empty-state-review__action-evidence" border="subtle">
+        <erp-text type="caption" tone="secondary">Action event evidence</erp-text>
+        <erp-text data-empty-state-last-action type="paragraph">{{ lastAction() }}</erp-text>
+      </erp-surface>
+    </erp-stack>
+  </erp-grid>
+
+  <erp-section class="empty-state-review__matrix" data-empty-state-scenario-matrix>
+    <erp-stack gap="tight">
+      <erp-text type="heading-2">Scenario matrix</erp-text>
+      <erp-text type="paragraph" tone="secondary">
+        الرسومات الخمسة الأصلية وحالات الإجراءات كما يحددها المرجع.
+      </erp-text>
+    </erp-stack>
+
+    <erp-grid [columns]="2" gap="lg" responsive="auto">
+      <erp-surface border="subtle"><erp-empty-state variant="no-data" [animated]="false" /></erp-surface>
+      <erp-surface border="subtle"><erp-empty-state variant="no-search" [animated]="false" /></erp-surface>
+      <erp-surface border="subtle"><erp-empty-state variant="error" [animated]="false" /></erp-surface>
+      <erp-surface border="subtle"><erp-empty-state variant="forbidden" [animated]="false" /></erp-surface>
+      <erp-surface border="subtle"><erp-empty-state variant="custom" [animated]="false" /></erp-surface>
+    </erp-grid>
+  </erp-section>
+</erp-container>
