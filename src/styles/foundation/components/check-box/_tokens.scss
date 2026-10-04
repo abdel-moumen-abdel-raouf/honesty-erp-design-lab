@@ -1,3 +1,6 @@
+@mixin base {
+}
+
 @mixin base-color {
   --honesty-check-box-text: var(--honesty-color-text-primary);
   --honesty-check-box-text-muted: var(--honesty-color-text-muted);
@@ -100,11 +103,6 @@
   --honesty-check-box-easing-spring: var(--honesty-motion-easing-enter);
   --honesty-check-box-easing-draw: var(--honesty-motion-easing-enter);
   --honesty-check-box-easing-erase: var(--honesty-motion-easing-exit);
-}
-
-@mixin base {
-  @include base-color;
-  @include base-geometry;
 }
 
 @mixin tone-secondary {
