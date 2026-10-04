@@ -5,8 +5,13 @@
 This is the canonical context-recovery document for starting a new ChatGPT
 conversation without losing project history.
 
-The new ChatGPT session must treat this document together with `AGENTS.md` and
-the current execution-state files as authoritative project context.
+The new ChatGPT session must first read `CURRENT_EXECUTION_STATE.md` for the
+live execution snapshot, then use this file for the wider handoff/history.
+
+The new ChatGPT session must treat this document together with
+`CURRENT_EXECUTION_STATE.md`, `DECISIONS_AND_CONSTRAINTS.md`,
+`GIT_CHECKPOINTS.md`, `AGENTS.md`, and the current roadmap/review/component
+contracts as authoritative project context.
 
 Do not infer that a technical PASS equals Product Owner visual approval.
 
@@ -57,15 +62,26 @@ Visual approval remains exclusively with the Product Owner.
 
 Persistent state must not live only in chat.
 
-After every decision, implementation, blocker, verification result, or scope
-change, update:
+After every decision, implementation, blocker, verification result, Product
+Owner visual finding, scope/reference change, or stage transition, synchronize
+the mandatory set in the same execution cycle:
 
+- `CURRENT_EXECUTION_STATE.md`
+- `README_FIRST.md`
 - `NEW_CHAT_HANDOFF.md`
-- `AGENTS.md`
-- `POST_CR12_PRODUCT_OWNER_REVIEW_STATE_V1.md`
-- `CONTROLS_EXECUTION_ROADMAP_V1.md`
+- `src/app/controls/CONTROLS_EXECUTION_ROADMAP_V1.md`
+- `src/app/controls/INPUTS_PRODUCT_OWNER_REVIEW_FINDINGS_V1.md`
 
-as applicable.
+Also update when their subject changes:
+
+- `DECISIONS_AND_CONSTRAINTS.md`
+- `GIT_CHECKPOINTS.md`
+- `AGENTS.md`
+- active batch/component/family/system contracts.
+
+Do not hand a substantive implementation checkpoint to the Product Owner until
+the context, execution state, stage/roadmap, and Product Owner findings are
+synchronized.
 
 ---
 
