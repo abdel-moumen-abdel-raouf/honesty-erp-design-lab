@@ -106,11 +106,14 @@ const CHECK_BOX_TOKENS =
   'src/styles/foundation/components/check-box/_tokens.scss';
 const CHECK_BOX_STYLES = [
   'src/app/controls/check-box/check-box-token-frame.scss',
+  'src/app/controls/check-box/check-box-token-geometry.scss',
   'src/app/controls/check-box/check-box.scss',
   'src/app/controls/check-box/check-box-states.scss',
   'src/app/controls/check-box/check-box-switch.scss',
   'src/app/controls/check-box/check-box-tile.scss',
-  'src/app/controls/check-box/check-box-facets.scss',
+  'src/app/controls/check-box/check-box-tone-facets.scss',
+  'src/app/controls/check-box/check-box-status-facets.scss',
+  'src/app/controls/check-box/check-box-variant-facets.scss',
   'src/app/controls/check-box/check-box-sizes.scss',
 ];
 const RADIO_BOX_TEMPLATE =
