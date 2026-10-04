@@ -6,7 +6,6 @@
   [attr.data-readonly]="readOnly()"
   [attr.data-invalid]="effectiveStatus() === 'danger' ? 'true' : null"
   [attr.data-hide-text]="hideText()"
-  (click)="handleLabelClick($event)"
 >
   <input
     class="check-box__native"
@@ -21,6 +20,7 @@
     [indeterminate]="effectiveIndeterminate()"
     [required]="required()"
     [disabled]="effectiveDisabled()"
+    (click)="handleNativeClick($event)"
     (change)="handleChange($event)"
     (keydown)="handleNativeKeydown($event)"
     (focus)="handleNativeFocus()"
