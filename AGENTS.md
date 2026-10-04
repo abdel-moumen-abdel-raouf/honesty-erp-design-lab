@@ -1223,3 +1223,34 @@ Mandatory next gate:
 Inputs remains Product Owner BLOCKED pending a fresh technical green result and
 runtime/visual acceptance.
 <!-- CHATGPT_LOCAL_VERIFY_SYNC_END -->
+
+
+<!-- CONTINUITY_MAINTENANCE_PROTOCOL_START -->
+## Persistent continuity maintenance
+
+Every substantive execution cycle must synchronize persistent project state
+before handoff.
+
+A substantive cycle includes implementation, Product Owner decisions/findings,
+blockers/root-cause corrections, verification results, scope/reference changes,
+visual acceptance/rejection, or stage transitions.
+
+Mandatory synchronized files:
+
+- `CURRENT_EXECUTION_STATE.md`
+- `README_FIRST.md`
+- `NEW_CHAT_HANDOFF.md`
+- `src/app/controls/CONTROLS_EXECUTION_ROADMAP_V1.md`
+- `src/app/controls/INPUTS_PRODUCT_OWNER_REVIEW_FINDINGS_V1.md`
+
+Also update when relevant:
+
+- `DECISIONS_AND_CONSTRAINTS.md`
+- `GIT_CHECKPOINTS.md`
+- active batch/component/family/system contracts.
+
+Do not leave the newest state or decision only in chat/report text.
+Do not hand off a substantive implementation checkpoint until implementation,
+tests/governance, current state, roadmap/stage, and Product Owner findings are
+synchronized.
+<!-- CONTINUITY_MAINTENANCE_PROTOCOL_END -->

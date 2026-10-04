@@ -3006,3 +3006,121 @@ Current state:
 fresh canonical verification pending / Product Owner Light-Dark visual approval
 pending / RadioBox unopened.**
 <!-- CHATGPT_CHECKBOX_V5_READONLY_LINT_MERGED_2026_10_04_END -->
+
+
+<!-- CHATGPT_PERSISTENT_CONTINUITY_PROTOCOL_2026_10_04_START -->
+## Permanent continuity protocol — mandatory for every substantive execution cycle
+
+### New-chat reading order
+
+A new ChatGPT conversation must **not** ask the Product Owner to reconstruct the
+project history manually.
+
+At the start of a new chat, read the following repository files in this order,
+then verify live GitHub `main` before making any current-state claim:
+
+1. `README_FIRST.md`
+2. `CURRENT_EXECUTION_STATE.md`
+3. `NEW_CHAT_HANDOFF.md`
+4. `DECISIONS_AND_CONSTRAINTS.md`
+5. `GIT_CHECKPOINTS.md`
+6. `AGENTS.md`
+7. `src/app/controls/CONTROLS_EXECUTION_ROADMAP_V1.md`
+8. `src/app/controls/INPUTS_PRODUCT_OWNER_REVIEW_FINDINGS_V1.md`
+9. `src/app/controls/NEXT_COMPONENT_REFERENCE_BATCH_V1.md`
+10. `src/app/controls/FIELD_FAMILY_V1.md`
+11. current active component-specific contract:
+    `src/app/controls/check-box/CHECK_BOX_REFERENCE_EXACT_V5.md`
+
+For long-range inventory/dependency/planning context only, also read when
+needed:
+
+`docs/project-history/derived/PROJECT_ORIGIN_COMPONENTS_AND_EXECUTION_BLUEPRINT_V1.md`
+
+The blueprint is a derived planning reference, not implementation
+authorization or visual approval.
+
+### Current immediate state
+
+Current main documentation HEAD at the time of this protocol:
+
+`be140ad3c171fe3475101fb5a329ca0437060ba7`
+
+Current CheckBox runtime/source checkpoint:
+
+`4c7cfe502b14cb594dfafc1043d2e14a5ecb1db8` —
+`fix(check-box): move readonly click guard to native input`
+
+The first local canonical run of exact-reference V5 at
+`4c629875fb2cb1ee3e5d9c0ae2007ed0f6d764a6` passed every project governance
+gate through ErpConfirm and then stopped on two Angular template-lint
+accessibility findings caused by click ownership on the outer CheckBox label.
+
+That defect is corrected and merged.
+
+Fresh `npm run verify:clean` on current main remains pending.
+
+Product Owner Light/Dark visual approval of exact-reference CheckBox V5 also
+remains pending.
+
+RadioBox is not yet opened.
+
+### Mandatory synchronization law
+
+Every substantive cycle must update persistent project documentation **in the
+same cycle before handoff**.
+
+A substantive cycle includes any:
+
+- Product Owner decision or visual finding;
+- implementation/code change;
+- blocker or root-cause correction;
+- verification result;
+- visual acceptance/rejection;
+- scope/reference change;
+- execution stage/phase transition;
+- current/next component change.
+
+The mandatory synchronized set is:
+
+1. `CURRENT_EXECUTION_STATE.md`
+2. `README_FIRST.md`
+3. `NEW_CHAT_HANDOFF.md`
+4. `src/app/controls/CONTROLS_EXECUTION_ROADMAP_V1.md`
+5. `src/app/controls/INPUTS_PRODUCT_OWNER_REVIEW_FINDINGS_V1.md`
+
+Also update whenever their subject changes:
+
+- `DECISIONS_AND_CONSTRAINTS.md`
+- `GIT_CHECKPOINTS.md`
+- active batch contract;
+- active component-specific contract;
+- affected family/system contracts.
+
+Do **not** leave the latest state, decision, stage, blocker, or execution result
+only inside chat history.
+
+Do **not** hand a substantive checkpoint to the Product Owner until:
+
+- runtime/source changes;
+- dependent tests;
+- governance;
+- execution state;
+- roadmap/stage state;
+- Product Owner findings;
+- component/batch contracts
+
+are synchronized as one bounded unit.
+
+### Authority reminders
+
+- Product Owner is final product/visual authority.
+- technical PASS != Product Owner visual approval/freeze.
+- fix current implemented components before opening new ones.
+- future execution is bottom-up by dependency.
+- any new visual component requires Product Owner reference or explicit
+  no-reference authorization.
+- reference colors do not override Honesty ERP system color/token architecture
+  unless Product Owner explicitly says otherwise.
+- `npm run verify:clean` is the canonical technical executable gate.
+<!-- CHATGPT_PERSISTENT_CONTINUITY_PROTOCOL_2026_10_04_END -->

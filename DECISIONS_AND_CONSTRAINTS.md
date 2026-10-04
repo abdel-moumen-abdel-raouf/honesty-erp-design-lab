@@ -1,0 +1,145 @@
+# DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
+
+## Authority
+
+Product Owner:
+- final visual authority;
+- final product/scope authority;
+- chooses visual references;
+- decides acceptance/rejection/freeze.
+
+ChatGPT:
+- architecture/governance/external review;
+- inspect real source before implementation;
+- convert Product Owner findings into bounded contracts;
+- review implementation/tests/governance as one unit;
+- maintain persistent project context after each substantive cycle.
+
+Implementation agent:
+- execution only;
+- must not invent design decisions or widen scope.
+
+## Execution order
+
+Binding Product Owner law:
+
+1. close problems in current implemented components first;
+2. then proceed bottom-up by dependency;
+3. never jump to a higher-level composite/pattern/family while a lower
+   dependency remains unresolved;
+4. the next item is the lowest unresolved dependency, not simply the next row
+   in historical planning.
+
+Current authorized batch:
+
+1. CheckBox;
+2. RadioBox;
+3. EmptyState;
+4. Select.
+
+Current active item: CheckBox.
+
+RadioBox remains unopened until CheckBox is technically green and visually
+accepted.
+
+## Visual-reference law
+
+Any newly opened visual component requires, before visual implementation:
+
+- a visual reference explicitly supplied/identified by the Product Owner; or
+- explicit Product Owner authorization to work without a visual reference.
+
+ChatGPT/agent/history/blueprint may not choose a reference or infer a waiver from
+silence.
+
+When a visual reference is supplied:
+
+- treat it as Product Owner design authority to the scope the Product Owner
+  specifies;
+- do not silently omit capabilities because of assistant preferences;
+- analyze source-derived boundaries precisely;
+- preserve system architecture such as semantic/component color tokens when the
+  Product Owner says the reference colors are not authoritative.
+
+Current CheckBox authority:
+
+`src/app/controls/check-box/CHECK_BOX_REFERENCE_EXACT_V5.md`
+
+Reference:
+
+`erp-checkbox-3.html`
+
+## Theme / colors
+
+- App root only owns runtime Light/Dark state.
+- no local theme authority below App.
+- component colors resolve through Reference -> Semantic -> Theme ->
+  Component Tokens -> Component.
+- visual references do not bypass Honesty ERP color/token architecture unless
+  Product Owner explicitly says so.
+
+## Routed page authoring
+
+Routed Design Lab pages author ERP primitives/controls only.
+
+Native semantics stay behind approved ERP or review-internal owners.
+
+## Quality
+
+- `npm run verify:clean` is mandatory.
+- zero warnings.
+- component style budgets remain 4k warning / 8k error.
+- never raise or suppress budgets/quality gates to get green.
+- technical PASS != Product Owner visual approval.
+
+## Scope / dependency discipline
+
+- no unrelated redesign.
+- no new public component family without Product Owner authorization.
+- no dependency addition without authorization.
+- no Angular Material / Bootstrap / Tailwind.
+- use existing lower-level foundations where appropriate.
+
+## Current CheckBox V5 decision
+
+The Product Owner rejected previous CheckBox visual interpretations and supplied
+`erp-checkbox-3.html` as exact design authority.
+
+Current production CheckBox contract:
+
+- modes: checkbox / switch / tile;
+- variants: outline / filled / soft;
+- exact reference size geometry: 18 / 22 / 28 / 36 px;
+- exact reference stroke mark and motion behavior;
+- read-only / disabled / invalid / indeterminate;
+- reference structure/design, but Honesty ERP system colors.
+
+The source reference single-select Tile example uses radio semantics and is
+reserved for the next RadioBox wave.
+
+## Mandatory documentation synchronization law
+
+Every substantive cycle must update persistent documentation before handoff.
+
+A substantive cycle includes any:
+
+- Product Owner decision/finding;
+- code implementation;
+- blocker/root-cause correction;
+- verification result;
+- stage/phase transition;
+- scope/reference change;
+- visual acceptance/rejection.
+
+Mandatory synchronized files:
+
+- `CURRENT_EXECUTION_STATE.md`;
+- `README_FIRST.md`;
+- `NEW_CHAT_HANDOFF.md`;
+- `src/app/controls/CONTROLS_EXECUTION_ROADMAP_V1.md`;
+- `src/app/controls/INPUTS_PRODUCT_OWNER_REVIEW_FINDINGS_V1.md`.
+
+Update `GIT_CHECKPOINTS.md`, this file, current component/batch/family contracts
+whenever their subject changed.
+
+No important current decision may exist only in chat history.
