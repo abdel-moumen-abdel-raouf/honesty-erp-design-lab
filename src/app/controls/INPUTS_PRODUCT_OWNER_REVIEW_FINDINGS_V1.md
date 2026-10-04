@@ -3363,3 +3363,61 @@ Required executable gate after pull:
 Do not open the RadioBox reference wave until V5 is technically green and
 visually accepted by the Product Owner.
 <!-- CHATGPT_CHECKBOX_EXACT_REFERENCE_V5_2026_10_04_END -->
+
+
+<!-- CHATGPT_CHECKBOX_V5_READONLY_LINT_FOLLOWUP_2026_10_04_START -->
+## 2026-10-04 — CheckBox V5 verify advanced; read-only label-click lint defect corrected
+
+Product Owner locally pulled exact-reference V5 checkpoint:
+
+`4c629875fb2cb1ee3e5d9c0ae2007ed0f6d764a6` —
+`fix(check-box): implement exact Product Owner reference V5`.
+
+Canonical verification advanced through:
+
+- Single App theme authority PASS;
+- route-page ERP-only authoring PASS;
+- Component Token framework PASS;
+- system colors PASS;
+- ErpText PASS;
+- ErpIcon registry/governance PASS;
+- ErpButton PASS;
+- ErpTooltip PASS;
+- ErpField PASS;
+- ErpOverlay PASS;
+- ErpConfirm PASS.
+
+Angular template lint then stopped at exactly two CheckBox accessibility findings:
+
+- outer `<label>` had a `(click)` handler without a keyboard event;
+- the same non-focusable label was treated as an interactive element.
+
+Root cause:
+
+V5 implemented read-only pointer blocking on the outer label. That ownership is
+incorrect even though the label is associated with the native checkbox.
+
+Bounded correction:
+
+- remove all click ownership from the outer label;
+- move the read-only click guard to the native
+  `input[type="checkbox"]`, which is the authoritative interactive/focusable
+  element;
+- `handleNativeClick` prevents default only for read-only;
+- existing native keydown guard continues to block Space/Enter for read-only;
+- existing defensive change restoration remains;
+- CheckBox unit test now proves read-only native click is prevented;
+- ErpField governance now requires the native click handler and rejects any
+  `(click)` binding on the outer CheckBox label.
+
+No Product Owner visual design, reference geometry, token mapping, mode,
+variant, motion, or showcase implementation changed.
+
+Current state:
+
+**CheckBox exact-reference V5 unchanged visually / accessibility-lint follow-up
+implemented on bounded work branch / fresh canonical verification pending /
+Product Owner Light-Dark visual approval pending.**
+
+RadioBox remains unopened.
+<!-- CHATGPT_CHECKBOX_V5_READONLY_LINT_FOLLOWUP_2026_10_04_END -->
