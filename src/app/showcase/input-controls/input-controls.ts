@@ -119,10 +119,18 @@ export class InputControls {
   );
 
   readonly radioValue = signal(false);
+  readonly requiredRadioValue = signal(false);
+  readonly radioGroupValue = signal<string | null>('review');
+  readonly radioTileValue = signal<string | null>('analytics');
   readonly radioGroupItems: readonly ErpRadioGroupOption[] = [
-    {value: 'draft', label: 'مسودة'},
-    {value: 'review', label: 'مراجعة'},
-    {value: 'approved', label: 'معتمد'},
+    {value: 'draft', label: 'مسودة', description: 'العمل محفوظ ولم يُرسل للمراجعة.'},
+    {value: 'review', label: 'مراجعة', description: 'بانتظار مراجعة واعتماد المسؤول.'},
+    {value: 'approved', label: 'معتمد', description: 'تم اعتماد السجل ويمكن استخدامه.'},
+  ];
+  readonly radioTileItems: readonly ErpRadioGroupOption[] = [
+    {value: 'analytics', label: 'التحليلات', description: 'لوحات المعلومات والتقارير.'},
+    {value: 'automation', label: 'الأتمتة', description: 'المشغلات وسير العمل.'},
+    {value: 'audit', label: 'سجل التدقيق', description: 'السجل الكامل للأحداث.'},
   ];
   readonly numberValue = signal<number | null>(12);
   readonly moneyValue = signal<number | null>(1250);

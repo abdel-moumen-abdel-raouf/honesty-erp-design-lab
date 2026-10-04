@@ -655,7 +655,7 @@ Current mandatory decisions:
 - Fixed equal tiles are for icon/color grids; ItemPicker/ComboBox textual options use vertical list-row presentation.
 - ComboBox opens on normal pointer interaction, ArrowDown, and typing while preserving the entered query.
 - ErpContainer production width values remain full, 48rem, 75rem, and 90rem; current correction changed showcase evidence, not those contracts.
-- Do not redesign or delete ErpCheckBox/ErpRadioBox until the Product Owner supplies the dedicated templates/references.
+- ErpCheckBox V5 is Product Owner visually accepted. ErpRadioBox is now explicitly authorized and implemented using the accepted CheckBox-family visual language adapted to native radio semantics. The earlier RadioBox redesign deferral is superseded. EmptyState and Select remain unopened.
 - Unrelated visual/style refactoring remains deferred, but local Light/Dark theme authority cleanup is complete and must not be deferred or reintroduced.
 - No later unreviewed showcase family or new public component family is authorized until the Product Owner supplies the next page-by-page findings.
 
@@ -1254,3 +1254,29 @@ Do not hand off a substantive implementation checkpoint until implementation,
 tests/governance, current state, roadmap/stage, and Product Owner findings are
 synchronized.
 <!-- CONTINUITY_MAINTENANCE_PROTOCOL_END -->
+
+<!-- CHATGPT_RADIOBOX_IMPLEMENTED_2026_10_04_START -->
+## RadioBox accepted-family implementation
+
+Product Owner accepted CheckBox V5 visually and authorized immediate RadioBox
+implementation with the same family language adapted to native radio semantics.
+
+Current RadioBox contract:
+
+- `radio | tile` modes;
+- `outline | filled | soft` variants;
+- 18/22/28/36px sm/md/lg/xl geometry;
+- higher shared Field sizes alias xl;
+- optional description;
+- read-only interaction guard;
+- standalone text suppression with accessible label preservation;
+- stable circular indicator + centered dot;
+- no Switch and no indeterminate;
+- Tile single-select composition with RadioGroup.
+
+RadioGroup retains `string | null` CVA value, coordinated names, declared
+options, disabled-option exclusion, Arrow navigation, and focus transfer while
+passing through bounded RadioBox visual facets.
+
+Fresh canonical verification is pending.
+<!-- CHATGPT_RADIOBOX_IMPLEMENTED_2026_10_04_END -->

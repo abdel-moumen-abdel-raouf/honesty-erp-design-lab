@@ -1,0 +1,9 @@
+@use '../../../styles/foundation/components/radio-box' as tokens;
+
+:host([data-radio-box-tone='secondary']) {
+  @include tokens.tone-secondary;
+}
+
+:host([data-radio-box-tone='accent']) {
+  @include tokens.tone-accent;
+}

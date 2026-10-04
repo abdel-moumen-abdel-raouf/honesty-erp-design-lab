@@ -1,22 +1,60 @@
-<label class="radio-box" [for]="controlId">
-  <span class="radio-box__control">
-    <input
-      class="radio-box__native"
-      type="radio"
-      [id]="controlId"
-      [attr.name]="name()"
-      [attr.form]="form()"
-      [checked]="currentValue()"
-      [required]="required()"
-      [attr.aria-invalid]="valid() ? null : 'true'"
-      [disabled]="effectiveDisabled()"
-      (change)="handleChange($event)"
-      (focus)="handleNativeFocus()"
-      (blur)="handleNativeBlur()"
-    />
-    <span class="radio-box__visual" aria-hidden="true">
-      <span class="radio-box__dot"></span>
-    </span>
+<label
+  class="radio-box"
+  [for]="controlId"
+  [attr.data-mode]="mode()"
+  [attr.data-variant]="variant()"
+  [attr.data-readonly]="readOnly()"
+  [attr.data-invalid]="effectiveStatus() === 'danger' ? 'true' : null"
+  [attr.data-hide-text]="hideText()"
+>
+  <input
+    class="radio-box__native"
+    type="radio"
+    [id]="controlId"
+    [attr.name]="name()"
+    [attr.form]="form()"
+    [attr.aria-label]="hideText() ? trimmedLabel() : null"
+    [attr.aria-readonly]="readOnly() ? 'true' : null"
+    [attr.aria-invalid]="effectiveStatus() === 'danger' ? 'true' : null"
+    [checked]="currentValue()"
+    [required]="required()"
+    [disabled]="effectiveDisabled()"
+    (click)="handleNativeClick($event)"
+    (change)="handleChange($event)"
+    (keydown)="handleNativeKeydown($event)"
+    (focus)="handleNativeFocus()"
+    (blur)="handleNativeBlur()"
+  />
+
+  <span class="radio-box__visual" aria-hidden="true">
+    <span class="radio-box__dot"></span>
   </span>
-  <erp-text type="label">{{ label() }}</erp-text>
+
+  @if (!hideText()) {
+    <span class="radio-box__text">
+      <erp-text
+        class="radio-box__title"
+        type="span"
+        size="inherit"
+        weight="inherit"
+        lineHeight="inherit"
+        tone="inherit"
+      >
+        {{ trimmedLabel() }}
+      </erp-text>
+
+      @if (trimmedDescription()) {
+        <erp-text
+          class="radio-box__description"
+          type="span"
+          size="inherit"
+          weight="inherit"
+          lineHeight="inherit"
+          tone="inherit"
+        >
+          {{ trimmedDescription() }}
+        </erp-text>
+      }
+    </span>
+  }
 </label>

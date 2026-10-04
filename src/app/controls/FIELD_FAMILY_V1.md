@@ -752,3 +752,29 @@ Constraint configuration remains type-safe:
 - ranges -> global min/max + ordering/span rules.
 
 Validation is non-destructive and must evaluate the current user-visible draft.
+
+<!-- CHATGPT_RADIOBOX_IMPLEMENTED_2026_10_04_START -->
+## RadioBox accepted-family implementation
+
+Product Owner accepted CheckBox V5 visually and authorized immediate RadioBox
+implementation with the same family language adapted to native radio semantics.
+
+Current RadioBox contract:
+
+- `radio | tile` modes;
+- `outline | filled | soft` variants;
+- 18/22/28/36px sm/md/lg/xl geometry;
+- higher shared Field sizes alias xl;
+- optional description;
+- read-only interaction guard;
+- standalone text suppression with accessible label preservation;
+- stable circular indicator + centered dot;
+- no Switch and no indeterminate;
+- Tile single-select composition with RadioGroup.
+
+RadioGroup retains `string | null` CVA value, coordinated names, declared
+options, disabled-option exclusion, Arrow navigation, and focus transfer while
+passing through bounded RadioBox visual facets.
+
+Fresh canonical verification is pending.
+<!-- CHATGPT_RADIOBOX_IMPLEMENTED_2026_10_04_END -->

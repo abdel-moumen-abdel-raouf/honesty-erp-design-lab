@@ -1,92 +1,330 @@
 @mixin base {
-  --honesty-radio-box-bg: var(--honesty-color-surface-default);
-  --honesty-radio-box-bg-hover: var(--honesty-color-action-primary-subtle-bg-hover);
-  --honesty-radio-box-bg-disabled: var(--honesty-color-surface-default);
-  --honesty-radio-box-border-color: var(--honesty-border-default);
-  --honesty-radio-box-border-color-hover: var(--honesty-color-action-focus-ring);
-  --honesty-radio-box-border-color-selected: var(--honesty-color-brand-primary-content);
-  --honesty-radio-box-border-color-disabled: var(--honesty-border-subtle);
-  --honesty-radio-box-border-width: var(--honesty-border-width-default);
-  --honesty-radio-box-border-style: var(--honesty-border-style-default);
-  --honesty-radio-box-radius: var(--honesty-radius-full);
-  --honesty-radio-box-dot-color: var(--honesty-color-brand-primary-content);
-  --honesty-radio-box-dot-color-disabled: var(--honesty-color-text-disabled);
-  --honesty-radio-box-label-color: var(--honesty-color-text-primary);
-  --honesty-radio-box-label-color-disabled: var(--honesty-color-text-disabled);
-  --honesty-radio-box-focus-color: var(--honesty-color-action-focus-ring);
-  --honesty-radio-box-focus-width: var(--honesty-focus-ring-width);
-  --honesty-radio-box-focus-style: var(--honesty-focus-ring-style);
-  --honesty-radio-box-focus-offset: var(--honesty-focus-ring-offset);
-  --honesty-radio-box-gap: var(--honesty-space-inline-tight);
-  --honesty-radio-box-control-size: 1rem;
-  --honesty-radio-box-dot-size: 0.5rem;
-  --honesty-radio-box-transition-duration: var(--honesty-motion-duration-fast);
-  --honesty-radio-box-transition-easing: var(--honesty-motion-easing-standard);
-  --honesty-radio-box-reduced-duration: var(--honesty-motion-duration-instant);
+  --honesty-radio-box-text: var(--honesty-color-text-primary);
+  --honesty-radio-box-text-muted: var(--honesty-color-text-muted);
+  --honesty-radio-box-surface: var(--honesty-color-surface-default);
+  --honesty-radio-box-surface-hover: var(--honesty-color-surface-elevated);
+  --honesty-radio-box-surface-sunken: var(--honesty-border-subtle);
+  --honesty-radio-box-surface-sunken-hover: var(--honesty-border-default);
+  --honesty-radio-box-border: var(--honesty-border-default);
+  --honesty-radio-box-border-hover: var(--honesty-border-strong);
+  --honesty-radio-box-fill: var(--honesty-color-action-primary-bg);
+  --honesty-radio-box-fill-hover: var(--honesty-color-action-primary-bg-hover);
+  --honesty-radio-box-on-fill: var(--honesty-color-action-primary-fg);
+  --honesty-radio-box-accent-soft: var(--honesty-color-action-primary-subtle-bg);
+  --honesty-radio-box-accent-soft-hover:
+    var(--honesty-color-action-primary-subtle-bg-hover);
+  --honesty-radio-box-danger-text: var(--honesty-color-feedback-danger-text);
+  --honesty-radio-box-readonly-bg: var(--honesty-color-surface-canvas);
+  --honesty-radio-box-readonly-border: var(--honesty-border-subtle);
+  --honesty-radio-box-focus-ring: var(--honesty-color-action-focus-ring);
+  --honesty-radio-box-focus-ring-width: var(--honesty-focus-ring-width);
+  --honesty-radio-box-focus-ring-offset: var(--honesty-focus-ring-offset);
+  --honesty-radio-box-shadow-tile: var(--honesty-elevation-none);
+  --honesty-radio-box-shadow-tile-hover: var(--honesty-elevation-raised);
+  --honesty-radio-box-shadow-tile-selected: var(--honesty-elevation-overlay);
+  --honesty-radio-box-field-bg: transparent;
+  --honesty-radio-box-field-border: var(--honesty-radio-box-border);
+  --honesty-radio-box-field-bg-hover: transparent;
+  --honesty-radio-box-field-border-hover:
+    var(--honesty-radio-box-border-hover);
+  --honesty-radio-box-field-bg-on: var(--honesty-radio-box-fill);
+  --honesty-radio-box-field-border-on: var(--honesty-radio-box-fill);
+  --honesty-radio-box-field-bg-on-hover: var(--honesty-radio-box-fill-hover);
+  --honesty-radio-box-field-border-on-hover:
+    var(--honesty-radio-box-fill-hover);
+  --honesty-radio-box-dot-color: var(--honesty-radio-box-on-fill);
+  --honesty-radio-box-tile-bg: var(--honesty-radio-box-surface);
+  --honesty-radio-box-tile-bg-hover: var(--honesty-radio-box-surface-hover);
+  --honesty-radio-box-tile-bg-on: var(--honesty-radio-box-accent-soft);
+  --honesty-radio-box-control-size: 1.375rem;
+  --honesty-radio-box-dot-size: 0.6875rem;
+  --honesty-radio-box-border-width: 0.09375rem;
+  --honesty-radio-box-font-size: 0.875rem;
+  --honesty-radio-box-description-size: 0.8125rem;
+  --honesty-radio-box-gap: 0.625rem;
+  --honesty-radio-box-tile-padding-block: 0.75rem;
+  --honesty-radio-box-tile-padding-inline: 0.875rem;
+  --honesty-radio-box-tile-radius: 0.75rem;
+  --honesty-radio-box-tile-min-inline-size: 11rem;
+  --honesty-radio-box-tile-font-size: 0.9375rem;
+  --honesty-radio-box-tile-description-size: 0.8125rem;
+  --honesty-radio-box-line-height: 1.35;
+  --honesty-radio-box-description-line-height: 1.45;
+  --honesty-radio-box-title-weight: 600;
+  --honesty-radio-box-description-weight: 400;
+  --honesty-radio-box-tracking: 0em;
+  --honesty-radio-box-dot-rest-scale: 0.45;
+  --honesty-radio-box-pop-scale: 1.05;
+  --honesty-radio-box-press-scale: 0.94;
+  --honesty-radio-box-text-gap-ratio: 0.12;
+  --honesty-radio-box-duration-instant: 90ms;
+  --honesty-radio-box-duration-fast: 140ms;
+  --honesty-radio-box-duration-base: 220ms;
+  --honesty-radio-box-duration-pop: 240ms;
+  --honesty-radio-box-reduced-duration: 1ms;
+  --honesty-radio-box-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --honesty-radio-box-easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --honesty-radio-box-disabled-opacity: 0.45;
 }
 
-@mixin tone-neutral {
-  --honesty-radio-box-border-color-selected: var(--honesty-color-action-focus-ring);
-  --honesty-radio-box-dot-color: var(--honesty-color-action-focus-ring);
+@mixin base-color {
+  --honesty-radio-box-text: var(--honesty-color-text-primary);
+  --honesty-radio-box-text-muted: var(--honesty-color-text-muted);
+  --honesty-radio-box-surface: var(--honesty-color-surface-default);
+  --honesty-radio-box-surface-hover: var(--honesty-color-surface-elevated);
+  --honesty-radio-box-surface-sunken: var(--honesty-border-subtle);
+  --honesty-radio-box-surface-sunken-hover: var(--honesty-border-default);
+  --honesty-radio-box-border: var(--honesty-border-default);
+  --honesty-radio-box-border-hover: var(--honesty-border-strong);
+  --honesty-radio-box-fill: var(--honesty-color-action-primary-bg);
+  --honesty-radio-box-fill-hover: var(--honesty-color-action-primary-bg-hover);
+  --honesty-radio-box-on-fill: var(--honesty-color-action-primary-fg);
+  --honesty-radio-box-accent-soft: var(--honesty-color-action-primary-subtle-bg);
+  --honesty-radio-box-accent-soft-hover:
+    var(--honesty-color-action-primary-subtle-bg-hover);
+  --honesty-radio-box-danger-text: var(--honesty-color-feedback-danger-text);
+  --honesty-radio-box-readonly-bg: var(--honesty-color-surface-canvas);
+  --honesty-radio-box-readonly-border: var(--honesty-border-subtle);
+  --honesty-radio-box-focus-ring: var(--honesty-color-action-focus-ring);
+  --honesty-radio-box-focus-ring-width: var(--honesty-focus-ring-width);
+  --honesty-radio-box-focus-ring-offset: var(--honesty-focus-ring-offset);
+  --honesty-radio-box-shadow-tile: var(--honesty-elevation-none);
+  --honesty-radio-box-shadow-tile-hover: var(--honesty-elevation-raised);
+  --honesty-radio-box-shadow-tile-selected: var(--honesty-elevation-overlay);
+  --honesty-radio-box-field-bg: transparent;
+  --honesty-radio-box-field-border: var(--honesty-radio-box-border);
+  --honesty-radio-box-field-bg-hover: transparent;
+  --honesty-radio-box-field-border-hover:
+    var(--honesty-radio-box-border-hover);
+  --honesty-radio-box-field-bg-on: var(--honesty-radio-box-fill);
+  --honesty-radio-box-field-border-on: var(--honesty-radio-box-fill);
+  --honesty-radio-box-field-bg-on-hover: var(--honesty-radio-box-fill-hover);
+  --honesty-radio-box-field-border-on-hover:
+    var(--honesty-radio-box-fill-hover);
+  --honesty-radio-box-dot-color: var(--honesty-radio-box-on-fill);
+  --honesty-radio-box-tile-bg: var(--honesty-radio-box-surface);
+  --honesty-radio-box-tile-bg-hover: var(--honesty-radio-box-surface-hover);
+  --honesty-radio-box-tile-bg-on: var(--honesty-radio-box-accent-soft);
 }
-@mixin tone-primary {
-  --honesty-radio-box-border-color-selected: var(--honesty-color-brand-primary-content);
-  --honesty-radio-box-dot-color: var(--honesty-color-brand-primary-content);
+
+@mixin base-geometry {
+  --honesty-radio-box-control-size: 1.375rem;
+  --honesty-radio-box-dot-size: 0.6875rem;
+  --honesty-radio-box-border-width: 0.09375rem;
+  --honesty-radio-box-font-size: 0.875rem;
+  --honesty-radio-box-description-size: 0.8125rem;
+  --honesty-radio-box-gap: 0.625rem;
+  --honesty-radio-box-tile-padding-block: 0.75rem;
+  --honesty-radio-box-tile-padding-inline: 0.875rem;
+  --honesty-radio-box-tile-radius: 0.75rem;
+  --honesty-radio-box-tile-min-inline-size: 11rem;
+  --honesty-radio-box-tile-font-size: 0.9375rem;
+  --honesty-radio-box-tile-description-size: 0.8125rem;
+  --honesty-radio-box-line-height: 1.35;
+  --honesty-radio-box-description-line-height: 1.45;
+  --honesty-radio-box-title-weight: 600;
+  --honesty-radio-box-description-weight: 400;
+  --honesty-radio-box-tracking: 0em;
+  --honesty-radio-box-dot-rest-scale: 0.45;
+  --honesty-radio-box-pop-scale: 1.05;
+  --honesty-radio-box-press-scale: 0.94;
+  --honesty-radio-box-text-gap-ratio: 0.12;
+  --honesty-radio-box-duration-instant: 90ms;
+  --honesty-radio-box-duration-fast: 140ms;
+  --honesty-radio-box-duration-base: 220ms;
+  --honesty-radio-box-duration-pop: 240ms;
+  --honesty-radio-box-reduced-duration: 1ms;
+  --honesty-radio-box-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --honesty-radio-box-easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --honesty-radio-box-disabled-opacity: 0.45;
 }
+
 @mixin tone-secondary {
-  --honesty-radio-box-border-color-selected: var(--honesty-color-brand-secondary-content);
-  --honesty-radio-box-dot-color: var(--honesty-color-brand-secondary-content);
+  --honesty-radio-box-fill: var(--honesty-color-brand-secondary-solid);
+  --honesty-radio-box-fill-hover:
+    var(--honesty-color-brand-secondary-solid-strong);
+  --honesty-radio-box-on-fill:
+    var(--honesty-color-brand-secondary-on-solid);
+  --honesty-radio-box-accent-soft:
+    var(--honesty-color-brand-secondary-subtle);
+  --honesty-radio-box-accent-soft-hover:
+    var(--honesty-color-brand-secondary-subtle);
 }
+
 @mixin tone-accent {
-  --honesty-radio-box-border-color-selected: var(--honesty-color-brand-accent-content);
-  --honesty-radio-box-dot-color: var(--honesty-color-brand-accent-content);
+  --honesty-radio-box-fill: var(--honesty-color-brand-accent-solid);
+  --honesty-radio-box-fill-hover:
+    var(--honesty-color-brand-accent-solid-strong);
+  --honesty-radio-box-on-fill: var(--honesty-color-brand-accent-on-solid);
+  --honesty-radio-box-accent-soft: var(--honesty-color-brand-accent-subtle);
+  --honesty-radio-box-accent-soft-hover:
+    var(--honesty-color-brand-accent-subtle);
 }
-@mixin status-none { --honesty-radio-box-label-color: var(--honesty-color-text-primary); }
+
 @mixin status-success {
-  --honesty-radio-box-border-color: var(--honesty-color-feedback-success-border);
-  --honesty-radio-box-border-color-selected: var(--honesty-color-feedback-success-icon);
-  --honesty-radio-box-dot-color: var(--honesty-color-feedback-success-icon);
+  --honesty-radio-box-fill:
+    var(--honesty-color-feedback-success-surface-strong);
+  --honesty-radio-box-fill-hover:
+    var(--honesty-color-feedback-success-surface-strong);
+  --honesty-radio-box-on-fill:
+    var(--honesty-color-feedback-success-on-strong);
+  --honesty-radio-box-field-border:
+    var(--honesty-color-feedback-success-border);
+  --honesty-radio-box-field-border-hover:
+    var(--honesty-color-feedback-success-icon);
+  --honesty-radio-box-focus-ring:
+    var(--honesty-color-feedback-success-icon);
+  --honesty-radio-box-text-muted:
+    var(--honesty-color-feedback-success-text);
+  --honesty-radio-box-accent-soft:
+    var(--honesty-color-feedback-success-surface);
 }
+
 @mixin status-warning {
-  --honesty-radio-box-border-color: var(--honesty-color-feedback-warning-border);
-  --honesty-radio-box-border-color-selected: var(--honesty-color-feedback-warning-icon);
-  --honesty-radio-box-dot-color: var(--honesty-color-feedback-warning-icon);
+  --honesty-radio-box-fill:
+    var(--honesty-color-feedback-warning-surface-strong);
+  --honesty-radio-box-fill-hover:
+    var(--honesty-color-feedback-warning-surface-strong);
+  --honesty-radio-box-on-fill:
+    var(--honesty-color-feedback-warning-on-strong);
+  --honesty-radio-box-field-border:
+    var(--honesty-color-feedback-warning-border);
+  --honesty-radio-box-field-border-hover:
+    var(--honesty-color-feedback-warning-icon);
+  --honesty-radio-box-focus-ring:
+    var(--honesty-color-feedback-warning-icon);
+  --honesty-radio-box-text-muted:
+    var(--honesty-color-feedback-warning-text);
+  --honesty-radio-box-accent-soft:
+    var(--honesty-color-feedback-warning-surface);
 }
+
 @mixin status-danger {
-  --honesty-radio-box-border-color: var(--honesty-color-feedback-danger-border);
-  --honesty-radio-box-border-color-selected: var(--honesty-color-feedback-danger-icon);
-  --honesty-radio-box-dot-color: var(--honesty-color-feedback-danger-icon);
+  --honesty-radio-box-fill:
+    var(--honesty-color-feedback-danger-surface-strong);
+  --honesty-radio-box-fill-hover:
+    var(--honesty-color-feedback-danger-surface-strong);
+  --honesty-radio-box-on-fill:
+    var(--honesty-color-feedback-danger-on-strong);
+  --honesty-radio-box-field-border:
+    var(--honesty-color-feedback-danger-icon);
+  --honesty-radio-box-field-border-hover:
+    var(--honesty-color-feedback-danger-icon);
+  --honesty-radio-box-focus-ring:
+    var(--honesty-color-feedback-danger-icon);
+  --honesty-radio-box-text-muted:
+    var(--honesty-color-feedback-danger-text);
+  --honesty-radio-box-accent-soft:
+    var(--honesty-color-feedback-danger-surface);
 }
+
 @mixin status-info {
-  --honesty-radio-box-border-color: var(--honesty-color-feedback-info-border);
-  --honesty-radio-box-border-color-selected: var(--honesty-color-feedback-info-icon);
-  --honesty-radio-box-dot-color: var(--honesty-color-feedback-info-icon);
+  --honesty-radio-box-fill:
+    var(--honesty-color-feedback-info-surface-strong);
+  --honesty-radio-box-fill-hover:
+    var(--honesty-color-feedback-info-surface-strong);
+  --honesty-radio-box-on-fill:
+    var(--honesty-color-feedback-info-on-strong);
+  --honesty-radio-box-field-border:
+    var(--honesty-color-feedback-info-border);
+  --honesty-radio-box-field-border-hover:
+    var(--honesty-color-feedback-info-icon);
+  --honesty-radio-box-focus-ring:
+    var(--honesty-color-feedback-info-icon);
+  --honesty-radio-box-text-muted:
+    var(--honesty-color-feedback-info-text);
+  --honesty-radio-box-accent-soft:
+    var(--honesty-color-feedback-info-surface);
 }
+
+@mixin variant-filled {
+  --honesty-radio-box-field-bg: var(--honesty-radio-box-surface-sunken);
+  --honesty-radio-box-field-border: transparent;
+  --honesty-radio-box-field-bg-hover:
+    var(--honesty-radio-box-surface-sunken-hover);
+  --honesty-radio-box-field-border-hover: transparent;
+  --honesty-radio-box-tile-bg: var(--honesty-radio-box-surface-sunken);
+  --honesty-radio-box-tile-bg-hover:
+    var(--honesty-radio-box-surface-sunken-hover);
+}
+
+@mixin variant-soft {
+  --honesty-radio-box-field-bg: var(--honesty-radio-box-accent-soft);
+  --honesty-radio-box-field-border: transparent;
+  --honesty-radio-box-field-bg-hover:
+    var(--honesty-radio-box-accent-soft-hover);
+  --honesty-radio-box-field-border-hover: transparent;
+  --honesty-radio-box-tile-bg: var(--honesty-radio-box-accent-soft);
+  --honesty-radio-box-tile-bg-hover:
+    var(--honesty-radio-box-accent-soft-hover);
+}
+
+@mixin state-readonly {
+  --honesty-radio-box-field-bg: var(--honesty-radio-box-readonly-bg);
+  --honesty-radio-box-field-bg-hover: var(--honesty-radio-box-readonly-bg);
+  --honesty-radio-box-field-border: var(--honesty-radio-box-readonly-border);
+  --honesty-radio-box-field-border-hover:
+    var(--honesty-radio-box-readonly-border);
+  --honesty-radio-box-tile-bg: var(--honesty-radio-box-readonly-bg);
+  --honesty-radio-box-tile-bg-hover: var(--honesty-radio-box-readonly-bg);
+}
+
 @mixin size-sm {
-  --honesty-radio-box-control-size: 1rem;
-  --honesty-radio-box-dot-size: 0.5rem;
+  --honesty-radio-box-control-size: 1.125rem;
+  --honesty-radio-box-dot-size: 0.5625rem;
+  --honesty-radio-box-border-width: 0.09375rem;
+  --honesty-radio-box-font-size: 0.8125rem;
+  --honesty-radio-box-description-size: 0.75rem;
+  --honesty-radio-box-gap: 0.5rem;
+  --honesty-radio-box-tile-padding-block: 0.5rem;
+  --honesty-radio-box-tile-padding-inline: 0.75rem;
+  --honesty-radio-box-tile-radius: 0.625rem;
+  --honesty-radio-box-tile-min-inline-size: 9rem;
+  --honesty-radio-box-tile-font-size: 0.875rem;
+  --honesty-radio-box-tile-description-size: 0.75rem;
 }
+
 @mixin size-md {
-  --honesty-radio-box-control-size: 1rem;
-  --honesty-radio-box-dot-size: 0.5rem;
+  --honesty-radio-box-control-size: 1.375rem;
+  --honesty-radio-box-dot-size: 0.6875rem;
+  --honesty-radio-box-border-width: 0.09375rem;
+  --honesty-radio-box-font-size: 0.875rem;
+  --honesty-radio-box-description-size: 0.8125rem;
+  --honesty-radio-box-gap: 0.625rem;
+  --honesty-radio-box-tile-padding-block: 0.75rem;
+  --honesty-radio-box-tile-padding-inline: 0.875rem;
+  --honesty-radio-box-tile-radius: 0.75rem;
+  --honesty-radio-box-tile-min-inline-size: 11rem;
+  --honesty-radio-box-tile-font-size: 0.9375rem;
+  --honesty-radio-box-tile-description-size: 0.8125rem;
 }
+
 @mixin size-lg {
-  --honesty-radio-box-control-size: 1.25rem;
-  --honesty-radio-box-dot-size: 0.625rem;
-}
-@mixin size-xl {
-  --honesty-radio-box-control-size: 1.25rem;
-  --honesty-radio-box-dot-size: 0.625rem;
-}
-@mixin size-xxl {
-  --honesty-radio-box-control-size: 1.5rem;
-  --honesty-radio-box-dot-size: 0.75rem;
-}
-@mixin size-xxxl {
   --honesty-radio-box-control-size: 1.75rem;
   --honesty-radio-box-dot-size: 0.875rem;
+  --honesty-radio-box-border-width: 0.125rem;
+  --honesty-radio-box-font-size: 1rem;
+  --honesty-radio-box-description-size: 0.875rem;
+  --honesty-radio-box-gap: 0.75rem;
+  --honesty-radio-box-tile-padding-block: 1rem;
+  --honesty-radio-box-tile-padding-inline: 1.125rem;
+  --honesty-radio-box-tile-radius: 0.875rem;
+  --honesty-radio-box-tile-min-inline-size: 13rem;
+  --honesty-radio-box-tile-font-size: 1.0625rem;
+  --honesty-radio-box-tile-description-size: 0.875rem;
 }
-@mixin size-xxxxl {
-  --honesty-radio-box-control-size: 2rem;
-  --honesty-radio-box-dot-size: 1rem;
+
+@mixin size-xl {
+  --honesty-radio-box-control-size: 2.25rem;
+  --honesty-radio-box-dot-size: 1.125rem;
+  --honesty-radio-box-border-width: 0.125rem;
+  --honesty-radio-box-font-size: 1.125rem;
+  --honesty-radio-box-description-size: 1rem;
+  --honesty-radio-box-gap: 0.875rem;
+  --honesty-radio-box-tile-padding-block: 1.25rem;
+  --honesty-radio-box-tile-padding-inline: 1.5rem;
+  --honesty-radio-box-tile-radius: 1rem;
+  --honesty-radio-box-tile-min-inline-size: 16rem;
+  --honesty-radio-box-tile-font-size: 1.25rem;
+  --honesty-radio-box-tile-description-size: 1rem;
 }

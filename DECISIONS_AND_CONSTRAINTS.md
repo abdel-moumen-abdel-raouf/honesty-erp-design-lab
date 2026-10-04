@@ -37,10 +37,11 @@ Current authorized batch:
 3. EmptyState;
 4. Select.
 
-Current active item: CheckBox.
+CheckBox V5 visual state: Product Owner accepted.
 
-RadioBox remains unopened until CheckBox is technically green and visually
-accepted.
+Current active item: RadioBox.
+
+RadioBox source is implemented and awaits canonical technical verification plus Product Owner runtime/visual review. EmptyState remains unopened until RadioBox closes.
 
 ## Visual-reference law
 
@@ -180,3 +181,30 @@ Approved RadioBox direction:
 
 Technical green remains separate from Product Owner visual approval.
 <!-- CHATGPT_RADIOBOX_DESIGN_OPEN_2026_10_04_END -->
+
+<!-- CHATGPT_RADIOBOX_IMPLEMENTED_2026_10_04_START -->
+## 2026-10-04 — RadioBox accepted-family implementation completed
+
+Product Owner authorization now includes immediate source implementation.
+
+Implemented contract:
+
+- `ErpRadioBoxMode = 'radio' | 'tile'`;
+- `ErpRadioBoxVariant = 'outline' | 'filled' | 'soft'`;
+- sm/md/lg/xl = 18/22/28/36px;
+- description / readOnly / hideText;
+- native radio remains the semantic/CVA owner;
+- centered dot only; no SVG, switch, or indeterminate state;
+- Tile single-select is implemented through RadioBox + RadioGroup;
+- RadioGroup visual pass-through is bounded and preserves its existing
+  string-value CVA and Arrow-key selection model.
+
+Source/tests/showcase/governance are updated together.
+
+Current status: **implemented / fresh canonical verification pending / Product
+Owner RadioBox Light-Dark runtime and visual review pending**.
+
+Mandatory next gate: `npm run verify:clean`.
+
+EmptyState and Select remain closed.
+<!-- CHATGPT_RADIOBOX_IMPLEMENTED_2026_10_04_END -->

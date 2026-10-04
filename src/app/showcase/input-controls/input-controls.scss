@@ -42,7 +42,8 @@
   gap: var(--honesty-space-stack-loose) var(--honesty-space-inline-loose);
 }
 
-.check-reference-row--wide > erp-check-box {
+.check-reference-row--wide > erp-check-box,
+.check-reference-row--wide > erp-radio-box {
   flex: 1 1 20rem;
 }
 
@@ -62,7 +63,8 @@
 }
 
 @include query.viewport-down(md) {
-  .check-reference-row--wide > erp-check-box {
+  .check-reference-row--wide > erp-check-box,
+  .check-reference-row--wide > erp-radio-box {
     flex-basis: 100%;
   }
 

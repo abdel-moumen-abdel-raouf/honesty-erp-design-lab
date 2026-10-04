@@ -3773,3 +3773,38 @@ Approved RadioBox direction:
 
 Technical green remains separate from Product Owner visual approval.
 <!-- CHATGPT_RADIOBOX_DESIGN_OPEN_2026_10_04_END -->
+
+<!-- CHATGPT_RADIOBOX_IMPLEMENTED_2026_10_04_START -->
+## 2026-10-04 — RadioBox accepted-family implementation completed
+
+The Product Owner clarified that the RadioBox decision authorized immediate
+implementation, not documentation-only staging.
+
+Current source implementation now follows the accepted CheckBox V5 family
+language while preserving native radio semantics:
+
+- RadioBox modes: `radio | tile`;
+- variants: `outline | filled | soft`;
+- visual sizes: sm 18px / md 22px / lg 28px / xl 36px;
+- shared higher Field size names alias xl;
+- optional description;
+- `readOnly` interaction guard;
+- `hideText` standalone visual mode with accessible-label preservation;
+- circular native-radio indicator + centered dot;
+- no Switch and no indeterminate semantics;
+- tokenized hover/focus/pressed/disabled/read-only/status treatment;
+- RadioBox Tile owns the option surface;
+- RadioGroup owns coordinated single selection and now passes through the
+  approved RadioBox visual facets;
+- RadioGroup options may expose descriptions;
+- Inputs Design Lab now has dedicated RadioBox standalone/text/group/tile/
+  variants/sizes/state/RTL evidence;
+- RadioBox/RadioGroup tests and ErpField governance were expanded to protect the
+  new contract.
+
+The implementation is a technical candidate until a fresh complete
+`npm run verify:clean` passes on this current source.
+
+After technical green, Product Owner Light/Dark/runtime RadioBox review is
+mandatory. EmptyState and Select remain unopened until RadioBox is accepted.
+<!-- CHATGPT_RADIOBOX_IMPLEMENTED_2026_10_04_END -->

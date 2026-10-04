@@ -266,3 +266,28 @@ implementation waits for that technical gate.
 
 After RadioBox implementation becomes technically green, Product Owner
 Light/Dark runtime/visual approval is required before EmptyState opens.
+
+<!-- CHATGPT_RADIOBOX_IMPLEMENTED_2026_10_04_START -->
+## Implementation status
+
+The Product Owner clarified that this contract authorizes immediate
+implementation.
+
+The RadioBox source wave now implements this contract across:
+
+- RadioBox TypeScript/template/styles;
+- RadioBox Component Tokens;
+- RadioBox unit tests;
+- bounded RadioGroup compatibility;
+- Inputs Design Lab evidence;
+- Inputs/RadioGroup tests;
+- ErpField governance and governance self-test fixtures;
+- persistent project-state documentation.
+
+Current state:
+
+**implemented / canonical verification pending / Product Owner Light-Dark
+runtime and visual review pending.**
+
+The next executable gate is `npm run verify:clean`.
+<!-- CHATGPT_RADIOBOX_IMPLEMENTED_2026_10_04_END -->

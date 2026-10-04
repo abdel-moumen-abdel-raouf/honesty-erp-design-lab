@@ -113,7 +113,6 @@ describe('InputControls showcase', () => {
       '[data-check-box-indeterminate-panel]',
       '[data-check-box-size-panel]',
       '[data-check-box-state-matrix-panel]',
-      '[data-radio-current-card]',
     ]) {
       expect(group.querySelectorAll(selector)).toHaveLength(1);
     }
@@ -154,8 +153,82 @@ describe('InputControls showcase', () => {
     expect(
       group.querySelector<HTMLElement>('[data-boolean-choice-rtl-evidence]')?.dir,
     ).toBe('rtl');
+  });
+
+  it('renders the approved RadioBox family review and tile single-select evidence', async () => {
+    const fixture = create();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const root = fixture.nativeElement as HTMLElement;
+    const group = root.querySelector('[data-review-group="boolean-choice"]')!;
+
+    for (const selector of [
+      '[data-radio-box-standalone-panel]',
+      '[data-radio-box-text-panel]',
+      '[data-radio-box-group-panel]',
+      '[data-radio-box-tile-panel]',
+      '[data-radio-box-variants-panel]',
+      '[data-radio-box-size-panel]',
+      '[data-radio-box-state-matrix-panel]',
+    ]) {
+      expect(group.querySelectorAll(selector)).toHaveLength(1);
+    }
+
     expect(group.querySelectorAll('[data-radio-box-evidence]')).toHaveLength(1);
     expect(group.querySelectorAll('[data-radio-group-evidence]')).toHaveLength(1);
+    expect(group.querySelectorAll('[data-radio-tile-group-evidence]')).toHaveLength(1);
+    expect(
+      group.querySelectorAll(
+        '[data-radio-box-tile-panel] erp-radio-box[data-radio-box-mode="tile"]',
+      ),
+    ).toHaveLength(3);
+
+    expect(
+      group.querySelectorAll(
+        '[data-radio-box-variants-panel] erp-radio-box[data-radio-box-variant="filled"]',
+      ),
+    ).toHaveLength(2);
+    expect(
+      group.querySelectorAll(
+        '[data-radio-box-variants-panel] erp-radio-box[data-radio-box-variant="soft"]',
+      ),
+    ).toHaveLength(2);
+
+    const sizeEvidence = [
+      ...group.querySelectorAll<HTMLElement>(
+        '[data-radio-box-size-panel] erp-radio-box',
+      ),
+    ];
+    expect(
+      sizeEvidence.map((control) => control.getAttribute('data-radio-box-size')),
+    ).toEqual(['sm', 'md', 'lg', 'xl']);
+
+    expect(
+      group.querySelector<HTMLElement>('[data-radio-box-rtl-evidence]')?.dir,
+    ).toBe('rtl');
+  });
+
+  it('demonstrates RadioBox required recovery without checkbox-only states', async () => {
+    const fixture = create();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const root = fixture.nativeElement as HTMLElement;
+    const required = root.querySelector<HTMLElement>(
+      '[data-radio-box-required-evidence]',
+    )!;
+    const native = required.querySelector('input') as HTMLInputElement;
+
+    expect(required.getAttribute('data-radio-box-status')).toBe('danger');
+
+    native.checked = true;
+    native.dispatchEvent(new Event('change', {bubbles: true}));
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    expect(required.getAttribute('data-radio-box-status')).toBe('none');
+    expect(root.querySelector('[data-radio-box-standalone-panel] svg')).toBeNull();
   });
 
   it('demonstrates required recovery and select-all indeterminate behavior', async () => {

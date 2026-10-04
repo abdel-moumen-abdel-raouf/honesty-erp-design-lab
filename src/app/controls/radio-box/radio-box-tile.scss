@@ -1,0 +1,76 @@
+.radio-box[data-mode='tile'] {
+  display: flex;
+  align-items: center;
+  inline-size: 100%;
+  min-inline-size: var(--honesty-radio-box-tile-min-inline-size);
+  padding-block: var(--honesty-radio-box-tile-padding-block);
+  padding-inline: var(--honesty-radio-box-tile-padding-inline);
+  border:
+    var(--honesty-radio-box-border-width)
+    var(--honesty-border-style-default)
+    var(--honesty-radio-box-field-border);
+  border-radius: var(--honesty-radio-box-tile-radius);
+  background-color: var(--honesty-radio-box-tile-bg);
+  box-shadow: var(--honesty-radio-box-shadow-tile);
+  transition:
+    background-color var(--honesty-radio-box-duration-base)
+      var(--honesty-radio-box-easing-standard),
+    border-color var(--honesty-radio-box-duration-base)
+      var(--honesty-radio-box-easing-standard),
+    box-shadow var(--honesty-radio-box-duration-base)
+      var(--honesty-radio-box-easing-standard),
+    transform var(--honesty-radio-box-duration-fast)
+      var(--honesty-radio-box-easing-spring);
+}
+
+.radio-box[data-mode='tile'] .radio-box__visual {
+  margin-block-start: 0;
+}
+
+.radio-box[data-mode='tile'] .radio-box__title {
+  font-size: var(--honesty-radio-box-tile-font-size);
+}
+
+.radio-box[data-mode='tile'] .radio-box__description {
+  font-size: var(--honesty-radio-box-tile-description-size);
+}
+
+.radio-box[data-mode='tile']:hover {
+  background-color: var(--honesty-radio-box-tile-bg-hover);
+  border-color: var(--honesty-radio-box-field-border-hover);
+  box-shadow: var(--honesty-radio-box-shadow-tile-hover);
+}
+
+.radio-box[data-mode='tile']:active {
+  transform: scale(0.985);
+}
+
+.radio-box[data-mode='tile']:has(.radio-box__native:checked) {
+  background-color: var(--honesty-radio-box-tile-bg-on);
+  border-color: var(--honesty-radio-box-fill);
+  box-shadow: var(--honesty-radio-box-shadow-tile-selected);
+}
+
+.radio-box[data-mode='tile']
+  .radio-box__native:focus-visible
+  ~ .radio-box__visual {
+  outline: none;
+}
+
+.radio-box[data-mode='tile']:has(.radio-box__native:focus-visible) {
+  outline:
+    var(--honesty-radio-box-focus-ring-width)
+    solid
+    var(--honesty-radio-box-focus-ring);
+  outline-offset: var(--honesty-radio-box-focus-ring-offset);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .radio-box[data-mode='tile'] {
+    transition-duration: var(--honesty-radio-box-reduced-duration);
+  }
+
+  .radio-box[data-mode='tile']:active {
+    transform: none;
+  }
+}

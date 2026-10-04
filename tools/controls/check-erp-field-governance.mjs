@@ -122,9 +122,14 @@ const RADIO_BOX_TEMPLATE =
 const RADIO_BOX_TOKENS =
   'src/styles/foundation/components/radio-box/_tokens.scss';
 const RADIO_BOX_STYLES = [
+  'src/app/controls/radio-box/radio-box-token-frame.scss',
+  'src/app/controls/radio-box/radio-box-token-geometry.scss',
   'src/app/controls/radio-box/radio-box.scss',
   'src/app/controls/radio-box/radio-box-states.scss',
-  'src/app/controls/radio-box/radio-box-facets.scss',
+  'src/app/controls/radio-box/radio-box-tile.scss',
+  'src/app/controls/radio-box/radio-box-tone-facets.scss',
+  'src/app/controls/radio-box/radio-box-variant-facets.scss',
+  'src/app/controls/radio-box/radio-box-status-facets.scss',
   'src/app/controls/radio-box/radio-box-sizes.scss',
 ];
 const TEMPORAL_CONTROL_SLUGS = [
@@ -1347,6 +1352,7 @@ export function validateChoiceVisualContracts(
   checkTemplate,
   checkTokens,
   checkStyles,
+  radioSource,
   radioTemplate,
   radioTokens,
   radioStyles,
@@ -1447,19 +1453,67 @@ export function validateChoiceVisualContracts(
   }
 
   if (
+    !radioSource.includes("export type ErpRadioBoxMode = 'radio' | 'tile'") ||
+    !radioSource.includes("export type ErpRadioBoxVariant = 'outline' | 'filled' | 'soft'") ||
+    !radioSource.includes("readonly mode = input<ErpRadioBoxMode>('radio')") ||
+    !radioSource.includes("readonly variant = input<ErpRadioBoxVariant>('outline')") ||
+    !radioSource.includes('readonly description = input<string | null>(null)') ||
+    !radioSource.includes('readonly readOnly = input(false') ||
+    !radioSource.includes('readonly hideText = input(false') ||
+    !radioSource.includes('effectiveStatus = computed<ErpFieldStatus>') ||
+    !radioSource.includes('handleNativeClick(event: MouseEvent)') ||
+    !radioSource.includes('handleNativeKeydown(event: KeyboardEvent)') ||
+    !radioSource.includes('input.checked = this.currentValue()') ||
     !radioTemplate.includes('type="radio"') ||
+    !radioTemplate.includes('[attr.data-mode]="mode()"') ||
+    !radioTemplate.includes('[attr.data-variant]="variant()"') ||
+    !radioTemplate.includes('[attr.aria-readonly]="readOnly()') ||
+    !radioTemplate.includes('[attr.aria-invalid]="effectiveStatus()') ||
+    !radioTemplate.includes('[attr.aria-label]="hideText()') ||
+    !radioTemplate.includes('(click)="handleNativeClick($event)"') ||
+    /<label\b[^>]*\(click\)=/.test(radioTemplate) ||
     !radioTemplate.includes('class="radio-box__visual"') ||
     !radioTemplate.includes('class="radio-box__dot"') ||
+    !radioTemplate.includes('class="radio-box__text"') ||
+    !radioTemplate.includes('class="radio-box__title"') ||
+    !radioTemplate.includes('class="radio-box__description"') ||
     /<svg\b/.test(radioTemplate) ||
-    !radioTokens.includes('--honesty-radio-box-control-size:') ||
-    !radioTokens.includes('--honesty-radio-box-dot-size:') ||
-    !radioTokens.includes('var(--honesty-motion-duration-fast)') ||
-    !radioStyles.includes("data-radio-box-checked='true'") ||
+    radioTemplate.includes('indeterminate') ||
+    radioTemplate.includes('mode="switch"') ||
+    !radioTokens.includes('--honesty-radio-box-field-bg:') ||
+    !radioTokens.includes('--honesty-radio-box-field-bg-on:') ||
+    !radioTokens.includes('--honesty-radio-box-dot-size: 0.5625rem;') ||
+    !radioTokens.includes('--honesty-radio-box-dot-size: 0.6875rem;') ||
+    !radioTokens.includes('--honesty-radio-box-dot-size: 0.875rem;') ||
+    !radioTokens.includes('--honesty-radio-box-dot-size: 1.125rem;') ||
+    !radioTokens.includes('--honesty-radio-box-control-size: 1.125rem;') ||
+    !radioTokens.includes('--honesty-radio-box-control-size: 1.375rem;') ||
+    !radioTokens.includes('--honesty-radio-box-control-size: 1.75rem;') ||
+    !radioTokens.includes('--honesty-radio-box-control-size: 2.25rem;') ||
+    !radioTokens.includes('@mixin variant-filled') ||
+    !radioTokens.includes('@mixin variant-soft') ||
+    !radioTokens.includes('@mixin state-readonly') ||
+    !radioTokens.includes('--honesty-radio-box-duration-instant: 90ms;') ||
+    !radioTokens.includes('--honesty-radio-box-duration-fast: 140ms;') ||
+    !radioTokens.includes('--honesty-radio-box-duration-base: 220ms;') ||
+    !radioTokens.includes('--honesty-radio-box-duration-pop: 240ms;') ||
+    !radioTokens.includes('--honesty-radio-box-reduced-duration: 1ms;') ||
+    !radioTokens.includes('--honesty-radio-box-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);') ||
+    !radioTokens.includes('--honesty-radio-box-easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1);') ||
+    !radioStyles.includes('.radio-box__native:checked ~ .radio-box__visual') ||
+    !radioStyles.includes('@keyframes honesty-radio-box-pop') ||
+    !radioStyles.includes("data-mode='tile'") ||
+    !radioStyles.includes(':has(.radio-box__native:checked)') ||
     !radioStyles.includes('.radio-box__native:focus-visible') ||
-    !radioStyles.includes('prefers-reduced-motion: reduce')
+    !radioStyles.includes('prefers-reduced-motion: reduce') ||
+    radioStyles.includes('indeterminate') ||
+    radioStyles.includes("data-mode='switch'") ||
+    radioStyles.includes('linear-gradient(') ||
+    /#[0-9a-fA-F]{3,8}\b/.test(radioTokens) ||
+    /#[0-9a-fA-F]{3,8}\b/.test(radioStyles)
   ) {
     errors.push(
-      'RadioBox: native semantics, fixed circular geometry, centered dot, state visuals, and Foundation Motion are required',
+      'RadioBox: accepted CheckBox-family language requires radio/tile modes, outline/filled/soft token variants, exact 18/22/28/36 geometry, centered-dot selection, readonly/invalid states, Tile single-select presentation, reduced motion, and ERP-token-only colors without switch/indeterminate leakage',
     );
   }
 
@@ -1552,6 +1606,82 @@ export function validateCheckBoxShowcaseContracts(files) {
   ) {
     errors.push(
       'CheckBox showcase: superseded neon/custom-tile evidence must not remain',
+    );
+  }
+
+  return errors;
+}
+
+
+export function validateRadioBoxShowcaseContracts(files) {
+  const errors = [];
+  const source = files.get(INPUT_SHOWCASE_SOURCE) ?? '';
+  const template = files.get(INPUT_SHOWCASE) ?? '';
+  const groupSource = files.get('src/app/controls/radio-group/radio-group.ts') ?? '';
+  const groupTemplate = files.get('src/app/controls/radio-group/radio-group.html') ?? '';
+
+  for (const required of [
+    'data-radio-box-standalone-panel',
+    'data-radio-box-text-panel',
+    'data-radio-box-group-panel',
+    'data-radio-box-tile-panel',
+    'data-radio-box-variants-panel',
+    'data-radio-box-size-panel',
+    'data-radio-box-state-matrix-panel',
+    'data-radio-box-required-evidence',
+    'data-radio-group-evidence',
+    'data-radio-tile-group-evidence',
+    'mode="tile"',
+    'variant="filled"',
+    'variant="soft"',
+    'readOnly',
+    'hideText',
+  ]) {
+    if (!template.includes(required)) {
+      errors.push(`RadioBox showcase: accepted family evidence is missing ${required}`);
+    }
+  }
+
+  for (const required of [
+    'requiredRadioValue = signal(false)',
+    "radioGroupValue = signal<string | null>('review')",
+    "radioTileValue = signal<string | null>('analytics')",
+    'radioGroupItems: readonly ErpRadioGroupOption[]',
+    'radioTileItems: readonly ErpRadioGroupOption[]',
+  ]) {
+    if (!source.includes(required)) {
+      errors.push(`RadioBox showcase: interactive model is missing ${required}`);
+    }
+  }
+
+  const requiredControl = template.match(
+    /<erp-radio-box[\s\S]*?data-radio-box-required-evidence[\s\S]*?\/>/,
+  )?.[0] ?? '';
+
+  if (
+    requiredControl.length === 0 ||
+    !requiredControl.includes('required') ||
+    requiredControl.includes('status="danger"')
+  ) {
+    errors.push(
+      'RadioBox showcase: required invalid styling must be validation-derived',
+    );
+  }
+
+  if (
+    !groupSource.includes("readonly mode = input<ErpRadioBoxMode>('radio')") ||
+    !groupSource.includes("readonly variant = input<ErpRadioBoxVariant>('outline')") ||
+    !groupSource.includes('readonly readOnly = input(false') ||
+    !groupSource.includes('effectiveStatus = computed<ErpFieldStatus>') ||
+    !groupSource.includes('!this.readOnly()') ||
+    !groupTemplate.includes('[description]="option.description ?? null"') ||
+    !groupTemplate.includes('[mode]="mode()"') ||
+    !groupTemplate.includes('[variant]="variant()"') ||
+    !groupTemplate.includes('[readOnly]="readOnly()"') ||
+    !groupTemplate.includes('[status]="effectiveStatus()"')
+  ) {
+    errors.push(
+      'RadioGroup: RadioBox visual pass-through and read-only single-selection semantics are required',
     );
   }
 
@@ -2095,12 +2225,14 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     '--honesty-check-box-field-bg: transparent; --honesty-check-box-field-bg-on: var(--honesty-check-box-fill); --honesty-check-box-track-ratio: 1.85; --honesty-check-box-track-pad-ratio: 0.13; --honesty-check-box-mark-scale: 0.55; --honesty-check-box-pop-scale: 1.05; --honesty-check-box-press-scale: 0.94; --honesty-check-box-disabled-opacity: 0.45; --honesty-check-box-control-size: 1.125rem; --honesty-check-box-control-size: 1.375rem; --honesty-check-box-control-size: 1.75rem; --honesty-check-box-control-size: 2.25rem; --honesty-check-box-duration-instant: 90ms; --honesty-check-box-duration-fast: 140ms; --honesty-check-box-duration-base: 220ms; --honesty-check-box-duration-draw: 300ms; --honesty-check-box-duration-erase: 150ms; --honesty-check-box-duration-pop: 240ms; --honesty-check-box-delay-draw: 70ms; --honesty-check-box-reduced-duration: 1ms; --honesty-check-box-easing-standard: cubic-bezier(0.4, 0, 0.2, 1); --honesty-check-box-easing-out: cubic-bezier(0.16, 1, 0.3, 1); --honesty-check-box-easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1); --honesty-check-box-easing-draw: cubic-bezier(0.22, 0.9, 0.24, 1); --honesty-check-box-easing-erase: cubic-bezier(0.55, 0, 0.85, 0.3); @mixin variant-filled {} @mixin variant-soft {} @mixin state-readonly {};';
   const validCheckStyles =
     ".check-box { --_switch-fill-origin: 0% center; --_switch-travel: var(--_travel); } :host-context([dir='rtl']) .check-box { --_switch-fill-origin: 100% center; --_switch-travel: calc(0px - var(--_travel)); } .check-box__mark path { stroke-dasharray: 1; stroke-dashoffset: 1; } .check-box__native:checked ~ .check-box__box {} .check-box__native:indeterminate ~ .check-box__box {} @keyframes honesty-check-box-pop {} .check-box[data-mode='switch'] .check-box__box::before { transform-origin: var(--_switch-fill-origin); } .check-box[data-mode='switch'] .check-box__native:checked ~ .check-box__box .check-box__thumb { transform: translateX(var(--_switch-travel)); } .check-box[data-mode='tile']:has(.check-box__native:checked) {} .check-box__native:focus-visible {} @media (prefers-reduced-motion: reduce) {}";
+  const validRadioSource =
+    "export type ErpRadioBoxMode = 'radio' | 'tile'; export type ErpRadioBoxVariant = 'outline' | 'filled' | 'soft'; readonly description = input<string | null>(null); readonly mode = input<ErpRadioBoxMode>('radio'); readonly variant = input<ErpRadioBoxVariant>('outline'); readonly readOnly = input(false); readonly hideText = input(false); effectiveStatus = computed<ErpFieldStatus> handleNativeClick(event: MouseEvent) handleNativeKeydown(event: KeyboardEvent) input.checked = this.currentValue();";
   const validRadioTemplate =
-    '<input type="radio"><span class="radio-box__visual"><span class="radio-box__dot"></span></span>';
+    '<label [attr.data-mode]="mode()" [attr.data-variant]="variant()"><input type="radio" (click)="handleNativeClick($event)" [attr.aria-readonly]="readOnly() ? true : null" [attr.aria-invalid]="effectiveStatus() ? true : null" [attr.aria-label]="hideText() ? label : null"><span class="radio-box__visual"><span class="radio-box__dot"></span></span><span class="radio-box__text"><erp-text class="radio-box__title"></erp-text><erp-text class="radio-box__description"></erp-text></span></label>';
   const validRadioTokens =
-    '--honesty-radio-box-control-size: 1rem; --honesty-radio-box-dot-size: 0.5rem; --honesty-radio-box-transition-duration: var(--honesty-motion-duration-fast);';
+    '--honesty-radio-box-field-bg: transparent; --honesty-radio-box-field-bg-on: var(--honesty-radio-box-fill); --honesty-radio-box-control-size: 1.125rem; --honesty-radio-box-control-size: 1.375rem; --honesty-radio-box-control-size: 1.75rem; --honesty-radio-box-control-size: 2.25rem; --honesty-radio-box-dot-size: 0.5625rem; --honesty-radio-box-dot-size: 0.6875rem; --honesty-radio-box-dot-size: 0.875rem; --honesty-radio-box-dot-size: 1.125rem; --honesty-radio-box-duration-instant: 90ms; --honesty-radio-box-duration-fast: 140ms; --honesty-radio-box-duration-base: 220ms; --honesty-radio-box-duration-pop: 240ms; --honesty-radio-box-reduced-duration: 1ms; --honesty-radio-box-easing-standard: cubic-bezier(0.4, 0, 0.2, 1); --honesty-radio-box-easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1); @mixin variant-filled {} @mixin variant-soft {} @mixin state-readonly {};';
   const validRadioStyles =
-    ".radio-box__native:focus-visible {} :host([data-radio-box-checked='true']) {} @media (prefers-reduced-motion: reduce) {}";
+    ".radio-box__native:checked ~ .radio-box__visual {} @keyframes honesty-radio-box-pop {} .radio-box[data-mode='tile']:has(.radio-box__native:checked) {} .radio-box__native:focus-visible {} @media (prefers-reduced-motion: reduce) {}";
 
   if (
     validateChoiceVisualContracts(
@@ -2108,6 +2240,7 @@ export class ErpImagePicker extends ErpFileSelectionBase {
       validCheckTemplate,
       validCheckTokens,
       validCheckStyles,
+      validRadioSource,
       validRadioTemplate,
       validRadioTokens,
       validRadioStyles,
@@ -2154,6 +2287,7 @@ export class ErpImagePicker extends ErpFileSelectionBase {
         fixture[1],
         fixture[2],
         fixture[3],
+        validRadioSource,
         validRadioTemplate,
         validRadioTokens,
         validRadioStyles,
@@ -2161,6 +2295,51 @@ export class ErpImagePicker extends ErpFileSelectionBase {
     ) {
       throw new Error(
         `ErpField checker accepted invalid erp-checkbox-3 fixture ${index + 1}`,
+      );
+    }
+  }
+
+
+  for (const [index, fixture] of [
+    [
+      validRadioSource.replace("'radio' | 'tile'", "'radio'"),
+      validRadioTemplate,
+      validRadioTokens,
+      validRadioStyles,
+    ],
+    [
+      validRadioSource,
+      validRadioTemplate.replace('class="radio-box__dot"', 'class="missing-dot"'),
+      validRadioTokens,
+      validRadioStyles,
+    ],
+    [
+      validRadioSource,
+      validRadioTemplate,
+      `${validRadioTokens} --bad-reference-color: #7c5cff;`,
+      validRadioStyles,
+    ],
+    [
+      validRadioSource,
+      validRadioTemplate,
+      validRadioTokens,
+      `${validRadioStyles} .radio-box[data-mode='switch'] {}`,
+    ],
+  ].entries()) {
+    if (
+      validateChoiceVisualContracts(
+        validCheckSource,
+        validCheckTemplate,
+        validCheckTokens,
+        validCheckStyles,
+        fixture[0],
+        fixture[1],
+        fixture[2],
+        fixture[3],
+      ).length === 0
+    ) {
+      throw new Error(
+        `ErpField checker accepted invalid RadioBox family fixture ${index + 1}`,
       );
     }
   }
@@ -2191,6 +2370,39 @@ export class ErpImagePicker extends ErpFileSelectionBase {
   );
   if (validateCheckBoxShowcaseContracts(invalidCheckShowcase).length === 0) {
     throw new Error('ErpField checker accepted stale CheckBox showcase');
+  }
+
+
+  const validRadioShowcase = new Map([
+    [
+      INPUT_SHOWCASE_SOURCE,
+      "requiredRadioValue = signal(false); radioGroupValue = signal<string | null>('review'); radioTileValue = signal<string | null>('analytics'); radioGroupItems: readonly ErpRadioGroupOption[] radioTileItems: readonly ErpRadioGroupOption[]",
+    ],
+    [
+      INPUT_SHOWCASE,
+      'data-radio-box-standalone-panel data-radio-box-text-panel data-radio-box-group-panel data-radio-box-tile-panel data-radio-box-variants-panel data-radio-box-size-panel data-radio-box-state-matrix-panel <erp-radio-box data-radio-box-required-evidence required /> data-radio-group-evidence data-radio-tile-group-evidence mode="tile" variant="filled" variant="soft" readOnly hideText',
+    ],
+    [
+      'src/app/controls/radio-group/radio-group.ts',
+      "readonly mode = input<ErpRadioBoxMode>('radio'); readonly variant = input<ErpRadioBoxVariant>('outline'); readonly readOnly = input(false); effectiveStatus = computed<ErpFieldStatus> !this.readOnly()",
+    ],
+    [
+      'src/app/controls/radio-group/radio-group.html',
+      '[description]="option.description ?? null" [mode]="mode()" [variant]="variant()" [readOnly]="readOnly()" [status]="effectiveStatus()"',
+    ],
+  ]);
+
+  if (validateRadioBoxShowcaseContracts(validRadioShowcase).length > 0) {
+    throw new Error('ErpField checker rejected valid RadioBox family showcase');
+  }
+
+  const invalidRadioShowcase = new Map(validRadioShowcase);
+  invalidRadioShowcase.set(
+    INPUT_SHOWCASE,
+    '<erp-radio-box data-radio-box-required-evidence required status="danger" />',
+  );
+  if (validateRadioBoxShowcaseContracts(invalidRadioShowcase).length === 0) {
+    throw new Error('ErpField checker accepted stale RadioBox showcase');
   }
 
   const validTemporalFiles = new Map([
@@ -2865,12 +3077,14 @@ errors.push(
     files.get(CHECK_BOX_TEMPLATE) ?? '',
     files.get(CHECK_BOX_TOKENS) ?? '',
     CHECK_BOX_STYLES.map((file) => files.get(file) ?? '').join('\n'),
+    files.get('src/app/controls/radio-box/radio-box.ts') ?? '',
     files.get(RADIO_BOX_TEMPLATE) ?? '',
     files.get(RADIO_BOX_TOKENS) ?? '',
     RADIO_BOX_STYLES.map((file) => files.get(file) ?? '').join('\n'),
   ),
 );
 errors.push(...validateCheckBoxShowcaseContracts(files));
+errors.push(...validateRadioBoxShowcaseContracts(files));
 errors.push(...validateTemporalCorrectionContracts(files));
 errors.push(...validateSelectionCorrectionContracts(files));
 errors.push(

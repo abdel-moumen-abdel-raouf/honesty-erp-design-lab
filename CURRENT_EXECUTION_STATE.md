@@ -26,10 +26,12 @@ Persistent continuity protocol merge checkpoint:
 `66abb185c3e837d9c659ed56106cf668d46103c5` —
 `docs(handoff): establish persistent continuity protocol`
 
-Current runtime/source checkpoint:
+Previous runtime/source checkpoint before the current RadioBox execution commit:
 
 `4c7cfe502b14cb594dfafc1043d2e14a5ecb1db8` —
 `fix(check-box): move readonly click guard to native input`
+
+Current live source includes the Product Owner-authorized RadioBox family implementation; resolve its commit from live `main`.
 
 Exact-reference V5 implementation checkpoint:
 
@@ -61,18 +63,19 @@ findings because the outer CheckBox `<label>` owned a click handler.
 That defect is now corrected and merged at
 `4c7cfe502b14cb594dfafc1043d2e14a5ecb1db8`.
 
-Fresh canonical verification **after** that fix is still pending.
+That CheckBox defect is closed and the CheckBox visual result is Product Owner accepted. The newer RadioBox implementation now requires a fresh canonical verification.
 
 Immediate technical gate:
 
 `npm run verify:clean`
 
-Do not call the current CheckBox checkpoint Fully Green until that command
-passes on the current main.
+Do not call the current RadioBox implementation checkpoint Fully Green until that command passes on the current main.
 
 ## Current Product Owner visual state
 
-`ErpCheckBox` is the active review item.
+`ErpCheckBox` exact-reference V5 is visually **ACCEPTED by the Product Owner**.
+
+`ErpRadioBox` is the active implementation/review item.
 
 Current binding visual authority:
 
@@ -112,19 +115,18 @@ Technical PASS will not equal Product Owner visual approval.
 
 The Product Owner selected this next reference batch order:
 
-1. `ErpCheckBox` — current active item;
-2. `ErpRadioBox`;
+1. `ErpCheckBox` — Product Owner visual acceptance complete;
+2. `ErpRadioBox` — current active implementation/review item;
 3. `ErpEmptyState`;
 4. `ErpSelect`.
 
-Do not open RadioBox until CheckBox V5:
+RadioBox source is now implemented under the accepted CheckBox-family language. Do not open EmptyState until RadioBox:
 
 1. passes fresh `npm run verify:clean`;
 2. completes Product Owner Light/Dark runtime/visual review;
 3. has all current Product Owner findings closed.
 
-The source reference's single-select Tile example uses native radio semantics and
-therefore belongs to the RadioBox/RadioGroup wave, not to CheckBox.
+The previously reserved single-select Tile requirement is now implemented by RadioBox/RadioGroup native radio semantics.
 
 ## Permanent execution laws
 
@@ -196,7 +198,7 @@ Execution boundary:
 - fresh canonical `npm run verify:clean` after the merged CheckBox read-only
   lint correction is still technically pending;
 - RadioBox design/contract work is authorized now;
-- RadioBox runtime/source implementation waits for that technical gate to pass;
+- this original staging note was superseded by the Product Owner clarification to implement RadioBox immediately;
 - EmptyState and Select remain unopened.
 
 Approved RadioBox direction:
@@ -214,3 +216,38 @@ Approved RadioBox direction:
 
 Technical green remains separate from Product Owner visual approval.
 <!-- CHATGPT_RADIOBOX_DESIGN_OPEN_2026_10_04_END -->
+
+<!-- CHATGPT_RADIOBOX_IMPLEMENTED_2026_10_04_START -->
+## 2026-10-04 — RadioBox accepted-family implementation completed
+
+The Product Owner clarified that the RadioBox decision authorized immediate
+implementation, not documentation-only staging.
+
+Current source implementation now follows the accepted CheckBox V5 family
+language while preserving native radio semantics:
+
+- RadioBox modes: `radio | tile`;
+- variants: `outline | filled | soft`;
+- visual sizes: sm 18px / md 22px / lg 28px / xl 36px;
+- shared higher Field size names alias xl;
+- optional description;
+- `readOnly` interaction guard;
+- `hideText` standalone visual mode with accessible-label preservation;
+- circular native-radio indicator + centered dot;
+- no Switch and no indeterminate semantics;
+- tokenized hover/focus/pressed/disabled/read-only/status treatment;
+- RadioBox Tile owns the option surface;
+- RadioGroup owns coordinated single selection and now passes through the
+  approved RadioBox visual facets;
+- RadioGroup options may expose descriptions;
+- Inputs Design Lab now has dedicated RadioBox standalone/text/group/tile/
+  variants/sizes/state/RTL evidence;
+- RadioBox/RadioGroup tests and ErpField governance were expanded to protect the
+  new contract.
+
+The implementation is a technical candidate until a fresh complete
+`npm run verify:clean` passes on this current source.
+
+After technical green, Product Owner Light/Dark/runtime RadioBox review is
+mandatory. EmptyState and Select remain unopened until RadioBox is accepted.
+<!-- CHATGPT_RADIOBOX_IMPLEMENTED_2026_10_04_END -->

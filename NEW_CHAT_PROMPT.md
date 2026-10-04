@@ -20,6 +20,7 @@
 9. `src/app/controls/NEXT_COMPONENT_REFERENCE_BATCH_V1.md`
 10. `src/app/controls/FIELD_FAMILY_V1.md`
 11. `src/app/controls/check-box/CHECK_BOX_REFERENCE_EXACT_V5.md`
+12. `src/app/controls/radio-box/RADIO_BOX_VISUAL_CONTRACT_V1.md`
 
 بعد ذلك تحقق من **live GitHub main** مباشرة ولا تعتمد على SHA قديم داخل chat.
 
@@ -66,3 +67,5 @@
 ولا تبدأ تنفيذًا جديدًا قبل تثبيت هذه الحالة.
 
 ---
+
+Current RadioBox source implementation is now present; treat it as verification-pending until a fresh `npm run verify:clean` passes. EmptyState and Select remain unopened.

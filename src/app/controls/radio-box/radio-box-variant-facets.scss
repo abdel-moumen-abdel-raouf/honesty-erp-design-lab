@@ -1,0 +1,13 @@
+@use '../../../styles/foundation/components/radio-box' as tokens;
+
+:host([data-radio-box-variant='filled']) {
+  @include tokens.variant-filled;
+}
+
+:host([data-radio-box-variant='soft']) {
+  @include tokens.variant-soft;
+}
+
+:host([data-radio-box-readonly='true']) {
+  @include tokens.state-readonly;
+}

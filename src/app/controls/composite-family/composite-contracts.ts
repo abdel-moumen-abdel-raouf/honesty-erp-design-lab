@@ -3,6 +3,7 @@ import {ErpIconName} from '../../primitives/icon/icon-contracts';
 export interface ErpRadioGroupOption {
   readonly value: string;
   readonly label: string;
+  readonly description?: string;
   readonly disabled?: boolean;
 }
 

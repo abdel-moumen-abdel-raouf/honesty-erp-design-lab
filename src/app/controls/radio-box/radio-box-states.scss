@@ -1,44 +1,74 @@
-:host([data-radio-box-state='ready']) .radio-box:hover .radio-box__visual {
-  border-color: var(--honesty-radio-box-border-color-hover);
-  background: var(--honesty-radio-box-bg-hover);
+.radio-box:hover .radio-box__visual {
+  background-color: var(--honesty-radio-box-field-bg-hover);
+  border-color: var(--honesty-radio-box-field-border-hover);
 }
 
-:host([data-radio-box-checked='true']) .radio-box__visual {
-  border-color: var(--honesty-radio-box-border-color-selected);
+.radio-box__native:checked ~ .radio-box__visual {
+  background-color: var(--honesty-radio-box-field-bg-on);
+  border-color: var(--honesty-radio-box-field-border-on);
+  animation:
+    honesty-radio-box-pop
+    var(--honesty-radio-box-duration-pop)
+    var(--honesty-radio-box-easing-spring);
 }
 
-:host([data-radio-box-checked='true']) .radio-box__dot {
+.radio-box__native:checked ~ .radio-box__visual .radio-box__dot {
   opacity: 1;
   transform: scale(1);
 }
 
-.radio-box__native:focus-visible + .radio-box__visual {
-  outline-width: var(--honesty-radio-box-focus-width);
-  outline-style: var(--honesty-radio-box-focus-style);
-  outline-color: var(--honesty-radio-box-focus-color);
-  outline-offset: var(--honesty-radio-box-focus-offset);
+.radio-box:hover .radio-box__native:checked ~ .radio-box__visual {
+  background-color: var(--honesty-radio-box-field-bg-on-hover);
+  border-color: var(--honesty-radio-box-field-border-on-hover);
 }
 
-:host([data-radio-box-state='disabled']) .radio-box,
-:host([data-radio-box-state='invalid']) .radio-box {
-  color: var(--honesty-radio-box-label-color-disabled);
+.radio-box:active .radio-box__visual {
+  transform: scale(var(--honesty-radio-box-press-scale));
+}
+
+.radio-box__native:focus-visible ~ .radio-box__visual {
+  outline:
+    var(--honesty-radio-box-focus-ring-width)
+    solid
+    var(--honesty-radio-box-focus-ring);
+  outline-offset: var(--honesty-radio-box-focus-ring-offset);
+}
+
+:host([data-radio-box-state='disabled']) .radio-box {
+  opacity: var(--honesty-radio-box-disabled-opacity);
   cursor: not-allowed;
+  pointer-events: none;
 }
 
-:host([data-radio-box-state='disabled']) .radio-box__visual,
-:host([data-radio-box-state='invalid']) .radio-box__visual {
-  border-color: var(--honesty-radio-box-border-color-disabled);
-  background: var(--honesty-radio-box-bg-disabled);
+:host([data-radio-box-readonly='true']) .radio-box {
+  cursor: default;
 }
 
-:host([data-radio-box-state='disabled']) .radio-box__dot,
-:host([data-radio-box-state='invalid']) .radio-box__dot {
-  background: var(--honesty-radio-box-dot-color-disabled);
+:host([data-radio-box-status='danger']) .radio-box__description {
+  color: var(--honesty-radio-box-danger-text);
+}
+
+@keyframes honesty-radio-box-pop {
+  0% {
+    scale: 1;
+  }
+
+  45% {
+    scale: var(--honesty-radio-box-pop-scale);
+  }
+
+  100% {
+    scale: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .radio-box__visual,
   .radio-box__dot {
     transition-duration: var(--honesty-radio-box-reduced-duration);
+  }
+
+  .radio-box__native:checked ~ .radio-box__visual {
+    animation: none;
   }
 }

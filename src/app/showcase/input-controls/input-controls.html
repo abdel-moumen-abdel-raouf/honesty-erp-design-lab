@@ -622,7 +622,99 @@
 
       <erp-surface
         class="check-reference-panel"
-        data-radio-current-card
+        data-radio-box-standalone-panel
+        dir="rtl"
+        border="subtle"
+      >
+        <erp-stack gap="default">
+          <erp-stack gap="tight">
+            <erp-text type="heading-3">Standalone radio</erp-text>
+            <erp-text type="paragraph" tone="secondary">
+              نفس لغة CheckBox المعتمدة مع دائرة وcentered dot وnative radio semantics.
+            </erp-text>
+          </erp-stack>
+
+          <erp-review-box class="check-reference-row">
+            <erp-radio-box label="غير محدد" hideText />
+            <erp-radio-box label="محدد" hideText [ngModel]="true" />
+            <erp-radio-box label="معطل" hideText disabled />
+            <erp-radio-box label="قراءة فقط" hideText readOnly [ngModel]="true" />
+          </erp-review-box>
+        </erp-stack>
+      </erp-surface>
+
+      <erp-surface
+        class="check-reference-panel"
+        data-radio-box-text-panel
+        dir="rtl"
+        border="subtle"
+      >
+        <erp-stack gap="default">
+          <erp-stack gap="tight">
+            <erp-text type="heading-3">Radio with title &amp; sub-title</erp-text>
+            <erp-text type="paragraph" tone="secondary">
+              العنوان والوصف ومحاذاة المؤشر تتبع نفس hierarchy المعتمد في CheckBox V5.
+            </erp-text>
+          </erp-stack>
+
+          <erp-review-box class="check-reference-row check-reference-row--wide">
+            <erp-radio-box
+              data-radio-box-evidence
+              label="الدفع النقدي"
+              description="استلام المبلغ مباشرة عند تنفيذ العملية."
+              [ngModel]="radioValue()"
+              (ngModelChange)="radioValue.set($event)"
+            />
+            <erp-radio-box
+              label="التحويل البنكي"
+              description="استخدام الحساب البنكي المسجل."
+              [ngModel]="true"
+            />
+            <erp-radio-box
+              data-radio-box-required-evidence
+              label="اختيار مطلوب"
+              description="يجب اختيار هذا الخيار لإكمال المثال."
+              required
+              [ngModel]="requiredRadioValue()"
+              (ngModelChange)="requiredRadioValue.set($event)"
+            />
+            <erp-radio-box
+              label="مدار بواسطة المؤسسة"
+              description="لا يمكن تغيير هذا الاختيار من هنا."
+              readOnly
+              [ngModel]="true"
+            />
+          </erp-review-box>
+        </erp-stack>
+      </erp-surface>
+
+      <erp-surface
+        class="check-reference-panel"
+        data-radio-box-group-panel
+        dir="rtl"
+        border="subtle"
+      >
+        <erp-stack gap="default">
+          <erp-stack gap="tight">
+            <erp-text type="heading-3">Single-select group</erp-text>
+            <erp-text type="paragraph" tone="secondary">
+              RadioGroup يملك القيمة الواحدة والاسم المشترك والتنقل بالأسهم، بينما RadioBox يملك العرض.
+            </erp-text>
+          </erp-stack>
+
+          <erp-radio-group
+            data-radio-group-evidence
+            label="حالة السجل"
+            [options]="radioGroupItems"
+            [ngModel]="radioGroupValue()"
+            (ngModelChange)="radioGroupValue.set($event)"
+          />
+        </erp-stack>
+      </erp-surface>
+
+      <erp-surface
+        class="check-reference-panel"
+        data-radio-box-tile-panel
         dir="rtl"
         border="subtle"
       >
@@ -630,21 +722,101 @@
           <erp-stack gap="tight">
             <erp-text type="heading-3">Tile mode — single select</erp-text>
             <erp-text type="paragraph" tone="secondary">
-              هذا الجزء في القالب يستخدم native radio، لذلك يظل تابعًا لموجة RadioBox التالية ولا يتم تزويره داخل CheckBox.
+              البلاطة كاملة selectable surface، لكن الاختيار يظل native radio واحدًا داخل RadioGroup.
             </erp-text>
           </erp-stack>
 
-          <erp-radio-box
-            data-radio-box-evidence
-            label="اختيار مفرد غير محدد"
-            [ngModel]="radioValue()"
-            (ngModelChange)="radioValue.set($event)"
-          />
           <erp-radio-group
-            data-radio-group-evidence
-            label="مجموعة اختيار مفرد"
-            [options]="radioGroupItems"
+            data-radio-tile-group-evidence
+            label="نوع الوحدة"
+            mode="tile"
+            [options]="radioTileItems"
+            [ngModel]="radioTileValue()"
+            (ngModelChange)="radioTileValue.set($event)"
           />
+        </erp-stack>
+      </erp-surface>
+
+      <erp-surface
+        class="check-reference-panel"
+        data-radio-box-variants-panel
+        dir="rtl"
+        border="subtle"
+      >
+        <erp-stack gap="default">
+          <erp-stack gap="tight">
+            <erp-text type="heading-3">Variants</erp-text>
+            <erp-text type="paragraph" tone="secondary">
+              Outline وFilled وSoft بنفس الـmarkup والـnative semantics؛ الاختلاف Token swap فقط.
+            </erp-text>
+          </erp-stack>
+
+          <erp-grid class="check-reference-variants" [columns]="3" gap="md" responsive="auto">
+            <erp-stack gap="default">
+              <erp-text type="caption" tone="secondary">Outline</erp-text>
+              <erp-radio-box label="غير محدد" description="Outline variant" />
+              <erp-radio-box label="محدد" description="Outline variant" [ngModel]="true" />
+            </erp-stack>
+            <erp-stack gap="default">
+              <erp-text type="caption" tone="secondary">Filled</erp-text>
+              <erp-radio-box label="غير محدد" description="Filled variant" variant="filled" />
+              <erp-radio-box label="محدد" description="Filled variant" variant="filled" [ngModel]="true" />
+            </erp-stack>
+            <erp-stack gap="default">
+              <erp-text type="caption" tone="secondary">Soft</erp-text>
+              <erp-radio-box label="غير محدد" description="Soft variant" variant="soft" />
+              <erp-radio-box label="محدد" description="Soft variant" variant="soft" [ngModel]="true" />
+            </erp-stack>
+          </erp-grid>
+        </erp-stack>
+      </erp-surface>
+
+      <erp-surface
+        class="check-reference-panel"
+        data-radio-box-size-panel
+        data-radio-box-rtl-evidence
+        dir="rtl"
+        border="subtle"
+      >
+        <erp-stack gap="default">
+          <erp-stack gap="tight">
+            <erp-text type="heading-3">Radio size scale</erp-text>
+            <erp-text type="paragraph" tone="secondary">
+              نفس scale المعتمد: SM 18px، MD 22px، LG 28px، XL 36px.
+            </erp-text>
+          </erp-stack>
+
+          <erp-review-box class="check-reference-row check-reference-row--wide">
+            <erp-radio-box label="SM" description="18px control" size="sm" [ngModel]="true" />
+            <erp-radio-box label="MD" description="22px control" size="md" [ngModel]="true" />
+            <erp-radio-box label="LG" description="28px control" size="lg" [ngModel]="true" />
+            <erp-radio-box label="XL" description="36px control" size="xl" [ngModel]="true" />
+          </erp-review-box>
+        </erp-stack>
+      </erp-surface>
+
+      <erp-surface
+        class="check-reference-panel"
+        data-radio-box-state-matrix-panel
+        dir="rtl"
+        border="subtle"
+      >
+        <erp-stack gap="default">
+          <erp-stack gap="tight">
+            <erp-text type="heading-3">Radio state matrix</erp-text>
+            <erp-text type="paragraph" tone="secondary">
+              Default وSelected وDisabled وRead-only وInvalid بدون Switch أو Indeterminate.
+            </erp-text>
+          </erp-stack>
+
+          <erp-review-box class="check-reference-row check-reference-row--wide">
+            <erp-radio-box label="Default" />
+            <erp-radio-box label="Selected" [ngModel]="true" />
+            <erp-radio-box label="Disabled" disabled />
+            <erp-radio-box label="Read-only" readOnly [ngModel]="true" />
+            <erp-radio-box label="Invalid" description="حالة خطأ." status="danger" />
+            <erp-radio-box label="Success" description="حالة نجاح." status="success" [ngModel]="true" />
+          </erp-review-box>
         </erp-stack>
       </erp-surface>
     </erp-grid>

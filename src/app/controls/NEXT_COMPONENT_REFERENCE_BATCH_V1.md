@@ -66,7 +66,7 @@ Each component is a separate correction/implementation wave:
 
 ## Current item
 
-`ErpCheckBox` is the currently opened item.
+`ErpCheckBox` is visually accepted. `ErpRadioBox` is the currently opened item.
 
 Its current detailed contract is:
 
@@ -74,8 +74,7 @@ Its current detailed contract is:
 
 The earlier `CHECK_BOX_REFERENCE_CORRECTION_V1.md` is historical only.
 
-`ErpRadioBox`, `ErpEmptyState`, and `ErpSelect` are not yet authorized for
-source changes in this wave.
+`ErpRadioBox` source changes are now authorized and implemented in the current wave. `ErpEmptyState` and `ErpSelect` remain unauthorized for source changes.
 
 ## ErpSelect boundary
 
@@ -245,3 +244,30 @@ Approved RadioBox direction:
 
 Technical green remains separate from Product Owner visual approval.
 <!-- CHATGPT_RADIOBOX_DESIGN_OPEN_2026_10_04_END -->
+
+<!-- CHATGPT_RADIOBOX_IMPLEMENTED_2026_10_04_START -->
+## 2026-10-04 — RadioBox accepted-family implementation completed
+
+Product Owner authorization now includes immediate source implementation.
+
+Implemented contract:
+
+- `ErpRadioBoxMode = 'radio' | 'tile'`;
+- `ErpRadioBoxVariant = 'outline' | 'filled' | 'soft'`;
+- sm/md/lg/xl = 18/22/28/36px;
+- description / readOnly / hideText;
+- native radio remains the semantic/CVA owner;
+- centered dot only; no SVG, switch, or indeterminate state;
+- Tile single-select is implemented through RadioBox + RadioGroup;
+- RadioGroup visual pass-through is bounded and preserves its existing
+  string-value CVA and Arrow-key selection model.
+
+Source/tests/showcase/governance are updated together.
+
+Current status: **implemented / fresh canonical verification pending / Product
+Owner RadioBox Light-Dark runtime and visual review pending**.
+
+Mandatory next gate: `npm run verify:clean`.
+
+EmptyState and Select remain closed.
+<!-- CHATGPT_RADIOBOX_IMPLEMENTED_2026_10_04_END -->

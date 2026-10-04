@@ -1,0 +1,17 @@
+@use '../../../styles/foundation/components/radio-box' as tokens;
+
+:host([data-radio-box-status='success']) {
+  @include tokens.status-success;
+}
+
+:host([data-radio-box-status='warning']) {
+  @include tokens.status-warning;
+}
+
+:host([data-radio-box-status='danger']) {
+  @include tokens.status-danger;
+}
+
+:host([data-radio-box-status='info']) {
+  @include tokens.status-info;
+}
