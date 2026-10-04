@@ -1,5 +1,6 @@
 @use '../../../styles/foundation/components/check-box' as tokens;
 
 :host {
+  @include tokens.base;
   @include tokens.base-color;
 }
