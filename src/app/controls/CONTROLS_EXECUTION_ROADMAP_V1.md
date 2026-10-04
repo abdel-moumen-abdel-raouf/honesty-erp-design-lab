@@ -3586,3 +3586,35 @@ Product Owner Light-Dark visual approval pending.**
 
 RadioBox remains unopened.
 <!-- CHATGPT_CHECKBOX_V5_READONLY_LINT_FOLLOWUP_2026_10_04_END -->
+
+
+<!-- CHATGPT_CHECKBOX_V5_READONLY_LINT_MERGED_2026_10_04_START -->
+## 2026-10-04 — CheckBox V5 read-only lint follow-up merged
+
+The bounded accessibility follow-up was squash-merged to `main` at:
+
+`4c7cfe502b14cb594dfafc1043d2e14a5ecb1db8` —
+`fix(check-box): move readonly click guard to native input`.
+
+The change is behavior/semantics-only:
+
+- outer CheckBox label has no click handler;
+- native checkbox input owns the read-only click guard;
+- native keydown guard remains;
+- defensive change restoration remains;
+- tests/governance pin this ownership and reject label click handlers.
+
+Post-merge static audit:
+
+- **13/13 read-only/lint predicates PASS**;
+- **0 mismatches**.
+
+No Product Owner visual design, erp-checkbox-3 geometry, system-token mapping,
+mode, variant, size, motion, or showcase evidence changed.
+
+Current state:
+
+**CheckBox exact-reference V5 merged / read-only lint follow-up merged /
+fresh canonical verification pending / Product Owner Light-Dark visual approval
+pending / RadioBox unopened.**
+<!-- CHATGPT_CHECKBOX_V5_READONLY_LINT_MERGED_2026_10_04_END -->
