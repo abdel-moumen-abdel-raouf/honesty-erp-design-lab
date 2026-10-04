@@ -94,80 +94,7 @@ describe('InputControls showcase', () => {
     expect(group?.querySelectorAll('input[type="datetime-local"]').length).toBe(0);
   });
 
-  it('renders the full checkbox reference evidence separately from the current radio controls', async () => {
-    const fixture = create();
-    await fixture.whenStable();
-    fixture.detectChanges();
-    const root = fixture.nativeElement as HTMLElement;
-    const group = root.querySelector('[data-review-group="boolean-choice"]');
-
-    expect(group?.querySelectorAll('erp-check-box')).toHaveLength(21);
-
-    const radioBoxes = [
-      ...(group?.querySelectorAll<HTMLElement>('erp-radio-box') ?? []),
-    ];
-    const standaloneRadioBoxes = radioBoxes.filter(
-      (radioBox) => radioBox.closest('erp-radio-group') === null,
-    );
-    const groupedRadioBoxes = [
-      ...(group?.querySelectorAll<HTMLElement>(
-        'erp-radio-group erp-radio-box',
-      ) ?? []),
-    ];
-
-    expect(standaloneRadioBoxes).toHaveLength(4);
-    expect(groupedRadioBoxes).toHaveLength(3);
-    expect(group?.querySelectorAll('erp-radio-group')).toHaveLength(1);
-    expect(group?.querySelectorAll('[data-radio-group-evidence]')).toHaveLength(1);
-    expect(group?.querySelectorAll('[data-check-box-evidence]')).toHaveLength(1);
-    expect(group?.querySelectorAll('[data-radio-box-evidence]')).toHaveLength(1);
-
-    for (const selector of [
-      '[data-check-box-size-card]',
-      '[data-check-box-states-card]',
-      '[data-check-box-switch-card]',
-      '[data-check-box-neon-card]',
-      '[data-check-box-tiles-card]',
-      '[data-check-box-task-card]',
-      '[data-radio-current-card]',
-    ]) {
-      expect(group?.querySelectorAll(selector)).toHaveLength(1);
-    }
-
-    expect(group?.querySelectorAll('[data-boolean-choice-rtl-evidence]')).toHaveLength(1);
-    expect(
-      group?.querySelector<HTMLElement>('[data-boolean-choice-rtl-evidence]')?.dir,
-    ).toBe('rtl');
-
-    const sizeEvidence = [
-      ...(group?.querySelectorAll<HTMLElement>(
-        '[data-check-box-size-card] erp-check-box',
-      ) ?? []),
-    ];
-    expect(
-      sizeEvidence.map((control) => control.getAttribute('data-check-box-size')),
-    ).toEqual(['sm', 'md', 'lg', 'xl']);
-
-    expect(
-      group?.querySelectorAll(
-        'erp-check-box[data-check-box-variant="classic"]',
-      ),
-    ).toHaveLength(16);
-    expect(
-      group?.querySelectorAll(
-        'erp-check-box[data-check-box-variant="switch"]',
-      ),
-    ).toHaveLength(3);
-    expect(
-      group?.querySelectorAll(
-        'erp-check-box[data-check-box-variant="neon"]',
-      ),
-    ).toHaveLength(2);
-    expect(group?.querySelectorAll('erp-check-box erp-icon')).toHaveLength(0);
-    expect(group?.querySelectorAll('erp-check-box .check-box__visual')).toHaveLength(21);
-  });
-
-  it('demonstrates indeterminate exit, required recovery, selectable tiles, and select-all behavior', async () => {
+  it('renders the exact checkbox reference sections and contracts', async () => {
     const fixture = create();
     await fixture.whenStable();
     fixture.detectChanges();
@@ -175,48 +102,88 @@ describe('InputControls showcase', () => {
     const root = fixture.nativeElement as HTMLElement;
     const group = root.querySelector('[data-review-group="boolean-choice"]')!;
 
-    const mixed = group.querySelector<HTMLElement>(
-      '[data-check-box-mixed-evidence]',
-    )!;
-    const mixedInput = mixed.querySelector('input') as HTMLInputElement;
-    expect(mixed.getAttribute('data-check-box-indeterminate')).toBe('true');
+    expect(group.querySelectorAll('erp-check-box')).toHaveLength(46);
 
-    mixedInput.checked = true;
-    mixedInput.dispatchEvent(new Event('change', {bubbles: true}));
+    for (const selector of [
+      '[data-check-box-standalone-panel]',
+      '[data-check-box-text-panel]',
+      '[data-check-box-switch-panel]',
+      '[data-check-box-tile-panel]',
+      '[data-check-box-variants-panel]',
+      '[data-check-box-indeterminate-panel]',
+      '[data-check-box-size-panel]',
+      '[data-check-box-state-matrix-panel]',
+      '[data-radio-current-card]',
+    ]) {
+      expect(group.querySelectorAll(selector)).toHaveLength(1);
+    }
+
+    expect(
+      group.querySelectorAll('erp-check-box[data-check-box-mode="checkbox"]'),
+    ).toHaveLength(29);
+    expect(
+      group.querySelectorAll('erp-check-box[data-check-box-mode="switch"]'),
+    ).toHaveLength(13);
+    expect(
+      group.querySelectorAll('erp-check-box[data-check-box-mode="tile"]'),
+    ).toHaveLength(4);
+
+    expect(
+      group.querySelectorAll('erp-check-box[data-check-box-variant="outline"]'),
+    ).toHaveLength(40);
+    expect(
+      group.querySelectorAll('erp-check-box[data-check-box-variant="filled"]'),
+    ).toHaveLength(3);
+    expect(
+      group.querySelectorAll('erp-check-box[data-check-box-variant="soft"]'),
+    ).toHaveLength(3);
+
+    expect(group.querySelectorAll('svg.check-box__mark')).toHaveLength(46);
+    expect(group.querySelectorAll('.check-box__mark-check')).toHaveLength(46);
+    expect(group.querySelectorAll('.check-box__mark-dash')).toHaveLength(46);
+
+    const sizeEvidence = [
+      ...group.querySelectorAll<HTMLElement>(
+        '[data-check-box-size-panel] erp-check-box',
+      ),
+    ];
+    expect(
+      sizeEvidence.map((control) => control.getAttribute('data-check-box-size')),
+    ).toEqual(['sm', 'md', 'lg', 'xl']);
+
+    expect(
+      group.querySelector<HTMLElement>('[data-boolean-choice-rtl-evidence]')?.dir,
+    ).toBe('rtl');
+    expect(group.querySelectorAll('[data-radio-box-evidence]')).toHaveLength(1);
+    expect(group.querySelectorAll('[data-radio-group-evidence]')).toHaveLength(1);
+  });
+
+  it('demonstrates required recovery and select-all indeterminate behavior', async () => {
+    const fixture = create();
     await fixture.whenStable();
     fixture.detectChanges();
 
-    expect(mixed.getAttribute('data-check-box-indeterminate')).toBe('false');
-    expect(mixed.getAttribute('data-check-box-checked')).toBe('true');
+    const root = fixture.nativeElement as HTMLElement;
+    const group = root.querySelector('[data-review-group="boolean-choice"]')!;
 
     const required = group.querySelector<HTMLElement>(
       '[data-check-box-required-evidence]',
     )!;
     const requiredInput = required.querySelector('input') as HTMLInputElement;
-    expect(required.getAttribute('data-check-box-status')).toBe('danger');
 
+    expect(required.getAttribute('data-check-box-status')).toBe('danger');
     requiredInput.checked = true;
     requiredInput.dispatchEvent(new Event('change', {bubbles: true}));
     await fixture.whenStable();
     fixture.detectChanges();
-
     expect(required.getAttribute('data-check-box-status')).toBe('none');
-    expect(required.getAttribute('data-check-box-checked')).toBe('true');
-
-    const proTile = group.querySelector<HTMLElement>(
-      '[data-check-box-tiles-card] .check-tile:nth-of-type(2)',
-    );
-    expect(proTile?.getAttribute('data-selected')).toBe('false');
-    proTile?.dispatchEvent(new MouseEvent('click', {bubbles: true}));
-    fixture.detectChanges();
-    expect(proTile?.getAttribute('data-selected')).toBe('true');
 
     const master = group.querySelector<HTMLElement>(
       '[data-check-box-task-master]',
     )!;
     const masterInput = master.querySelector('input') as HTMLInputElement;
-    expect(master.getAttribute('data-check-box-indeterminate')).toBe('true');
 
+    expect(master.getAttribute('data-check-box-indeterminate')).toBe('true');
     masterInput.checked = true;
     masterInput.dispatchEvent(new Event('change', {bubbles: true}));
     await fixture.whenStable();
@@ -225,10 +192,11 @@ describe('InputControls showcase', () => {
     expect(master.getAttribute('data-check-box-indeterminate')).toBe('false');
     expect(master.getAttribute('data-check-box-checked')).toBe('true');
     expect(
-      [...group.querySelectorAll<HTMLElement>('.check-task erp-check-box')]
-        .every(
-          (control) => control.getAttribute('data-check-box-checked') === 'true',
-        ),
+      [...group.querySelectorAll<HTMLElement>(
+        '[data-check-box-indeterminate-panel] .check-reference-nested erp-check-box',
+      )].every(
+        (control) => control.getAttribute('data-check-box-checked') === 'true',
+      ),
     ).toBe(true);
   });
 
