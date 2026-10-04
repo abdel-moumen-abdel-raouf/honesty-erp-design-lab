@@ -14,10 +14,17 @@ Branch:
 
 ## Current GitHub checkpoints
 
-Current documentation / continuity HEAD:
+Live `main` must always be verified directly at the start of a new chat with:
 
-`be140ad3c171fe3475101fb5a329ca0437060ba7` —
-`docs(check-box): synchronize V5 lint merged checkpoint`
+`git rev-parse origin/main`
+
+Do not treat a documentation SHA written inside this file as an eternal HEAD,
+because updating this file itself creates a newer docs commit.
+
+Persistent continuity protocol merge checkpoint:
+
+`66abb185c3e837d9c659ed56106cf668d46103c5` —
+`docs(handoff): establish persistent continuity protocol`
 
 Current runtime/source checkpoint:
 
