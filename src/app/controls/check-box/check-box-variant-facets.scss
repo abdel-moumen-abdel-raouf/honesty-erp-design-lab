@@ -1,0 +1,13 @@
+@use '../../../styles/foundation/components/check-box' as tokens;
+
+:host([data-check-box-variant='filled']) {
+  @include tokens.variant-filled;
+}
+
+:host([data-check-box-variant='soft']) {
+  @include tokens.variant-soft;
+}
+
+:host([data-check-box-readonly='true']) {
+  @include tokens.readonly;
+}
