@@ -42,6 +42,7 @@ let nextCheckBoxId = 0;
   templateUrl: './check-box.html',
   styleUrls: [
     './check-box-token-frame.scss',
+    './check-box-token-geometry.scss',
     './check-box.scss',
     './check-box-states.scss',
     './check-box-switch.scss',
