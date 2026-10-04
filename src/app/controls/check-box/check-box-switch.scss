@@ -21,7 +21,7 @@
   inset: 0;
   border-radius: inherit;
   background-color: var(--honesty-check-box-fill);
-  transform-origin: calc(50% - 50% * var(--_direction)) center;
+  transform-origin: var(--_switch-fill-origin);
   transform: scaleX(0.35);
   opacity: 0;
   transition:
@@ -63,7 +63,7 @@
   .check-box__native:checked
   ~ .check-box__box
   .check-box__thumb {
-  transform: translateX(calc(var(--_direction) * var(--_travel)));
+  transform: translateX(var(--_switch-travel));
 }
 
 @media (prefers-reduced-motion: reduce) {
