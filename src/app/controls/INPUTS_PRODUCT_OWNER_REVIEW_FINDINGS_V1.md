@@ -3676,3 +3676,44 @@ The next mandatory gate remains:
 RadioBox implementation/design remains unchanged by this tooling correction.
 EmptyState and Select remain unopened.
 <!-- CHATGPT_RADIOBOX_VERIFY_TIMEOUT_FOLLOWUP_2026_10_04_END -->
+
+<!-- CHATGPT_OVERLAY_RESTORE_TEST_CONTRACT_2026_10_04_START -->
+## 2026-10-04 — canonical verification reduced to two Overlay restoration assertions
+
+Product Owner verification on
+`1161b780709c5f35c0b304ed2d441a26f564aa44` confirmed the worker-budget
+correction:
+
+- the custom Vitest runner config was loaded;
+- lint/governance remained fully PASS;
+- the previous timeout failures disappeared;
+- 88/89 test files passed;
+- 692/694 tests passed;
+- RadioBox 10/10 PASS;
+- RadioGroup 6/6 PASS;
+- InputControls 17/17 PASS including the complete RadioBox review evidence.
+
+The two remaining failures were both in `overlay-host.spec.ts` and both had the
+same assertion: the test expected restored `document.body.style.overflow` to
+be the empty string, while the actual prior document state was `hidden`.
+
+Production `ErpOverlayHost` deliberately captures and restores the previous
+inline body-overflow value. It must not force the page to an empty overflow
+value because another legitimate owner may have set a prior state.
+
+Test-contract correction:
+
+- no Overlay runtime code changed;
+- the two restoration tests now establish an explicit previous sentinel
+  `overflow = 'auto'`;
+- they prove `auto -> hidden -> auto` for close and destroy paths;
+- each test restores the external pre-test value in `finally`;
+- no timeout, retry, assertion, governance, or product behavior was weakened.
+
+Fresh mandatory gate:
+
+`npm run verify:clean`
+
+RadioBox remains implemented and technically pending only this rerun.
+EmptyState and Select remain unopened.
+<!-- CHATGPT_OVERLAY_RESTORE_TEST_CONTRACT_2026_10_04_END -->

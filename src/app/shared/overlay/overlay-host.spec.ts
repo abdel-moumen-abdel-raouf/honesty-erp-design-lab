@@ -170,43 +170,50 @@ describe('ErpOverlayHost', () => {
   });
 
   it('traps focus and restores document state after closing', async () => {
-    const fixture = TestBed.createComponent(TestOverlayShell);
-    const manager = TestBed.inject(ErpOverlayManager);
-    const ref = manager.open(TestOverlayContent, {frame: frame('Focus proof')});
-    fixture.detectChanges();
-    const [frameBlock] = await fixture.getDeferBlocks();
-    await frameBlock.render(DeferBlockState.Complete);
-    fixture.detectChanges();
-    await Promise.resolve();
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'auto';
 
-    const root = fixture.nativeElement as HTMLElement;
-    const focusable = Array.from(
-      root.querySelectorAll<HTMLButtonElement>('[role="dialog"] button'),
-    );
-    const first = focusable[0];
-    const firstBodyControl = root.querySelector('#first') as HTMLButtonElement;
-    const last = focusable.at(-1) as HTMLButtonElement;
-    const background = root.querySelector('#background') as HTMLElement;
+    try {
+      const fixture = TestBed.createComponent(TestOverlayShell);
+      const manager = TestBed.inject(ErpOverlayManager);
+      const ref = manager.open(TestOverlayContent, {frame: frame('Focus proof')});
+      fixture.detectChanges();
+      const [frameBlock] = await fixture.getDeferBlocks();
+      await frameBlock.render(DeferBlockState.Complete);
+      fixture.detectChanges();
+      await Promise.resolve();
 
-    expect(document.activeElement).toBe(firstBodyControl);
-    last.focus();
-    document.dispatchEvent(
-      new KeyboardEvent('keydown', {key: 'Tab', bubbles: true}),
-    );
-    expect(document.activeElement).toBe(first);
+      const root = fixture.nativeElement as HTMLElement;
+      const focusable = Array.from(
+        root.querySelectorAll<HTMLButtonElement>('[role="dialog"] button'),
+      );
+      const first = focusable[0];
+      const firstBodyControl = root.querySelector('#first') as HTMLButtonElement;
+      const last = focusable.at(-1) as HTMLButtonElement;
+      const background = root.querySelector('#background') as HTMLElement;
 
-    manager.completeTransition(ref.id, 'entering');
-    ref.close();
-    fixture.detectChanges();
-    expect(manager.entries()[0].phase).toBe('leaving');
-    expect(document.body.style.overflow).toBe('hidden');
-    expect(background.inert).toBe(true);
+      expect(document.activeElement).toBe(firstBodyControl);
+      last.focus();
+      document.dispatchEvent(
+        new KeyboardEvent('keydown', {key: 'Tab', bubbles: true}),
+      );
+      expect(document.activeElement).toBe(first);
 
-    manager.completeTransition(ref.id, 'leaving');
-    fixture.detectChanges();
-    expect(document.body.style.overflow).toBe('');
-    expect(background.inert).toBe(false);
-    expect(background.hasAttribute('aria-hidden')).toBe(false);
+      manager.completeTransition(ref.id, 'entering');
+      ref.close();
+      fixture.detectChanges();
+      expect(manager.entries()[0].phase).toBe('leaving');
+      expect(document.body.style.overflow).toBe('hidden');
+      expect(background.inert).toBe(true);
+
+      manager.completeTransition(ref.id, 'leaving');
+      fixture.detectChanges();
+      expect(document.body.style.overflow).toBe('auto');
+      expect(background.inert).toBe(false);
+      expect(background.hasAttribute('aria-hidden')).toBe(false);
+    } finally {
+      document.body.style.overflow = previousOverflow;
+    }
   });
 
   it('uses logical start/end evidence and top-only Escape dismissal', () => {
@@ -408,32 +415,39 @@ describe('ErpOverlayHost', () => {
   });
 
   it('removes its listener and restores document state when destroyed', () => {
-    const addListener = vi.spyOn(document, 'addEventListener');
-    const removeListener = vi.spyOn(document, 'removeEventListener');
-    const fixture = TestBed.createComponent(TestOverlayShell);
-    const manager = TestBed.inject(ErpOverlayManager);
-    manager.open(TestOverlayContent, {frame: frame('Destroy cleanup')});
-    fixture.detectChanges();
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'auto';
 
-    const background = (fixture.nativeElement as HTMLElement).querySelector(
-      '#background',
-    ) as HTMLElement;
-    const keydownRegistration = addListener.mock.calls.find(
-      ([type]) => type === 'keydown',
-    );
+    try {
+      const addListener = vi.spyOn(document, 'addEventListener');
+      const removeListener = vi.spyOn(document, 'removeEventListener');
+      const fixture = TestBed.createComponent(TestOverlayShell);
+      const manager = TestBed.inject(ErpOverlayManager);
+      manager.open(TestOverlayContent, {frame: frame('Destroy cleanup')});
+      fixture.detectChanges();
 
-    expect(keydownRegistration).toBeDefined();
-    expect(document.body.style.overflow).toBe('hidden');
-    expect(background.inert).toBe(true);
+      const background = (fixture.nativeElement as HTMLElement).querySelector(
+        '#background',
+      ) as HTMLElement;
+      const keydownRegistration = addListener.mock.calls.find(
+        ([type]) => type === 'keydown',
+      );
 
-    fixture.destroy();
+      expect(keydownRegistration).toBeDefined();
+      expect(document.body.style.overflow).toBe('hidden');
+      expect(background.inert).toBe(true);
 
-    expect(removeListener).toHaveBeenCalledWith(
-      'keydown',
-      keydownRegistration?.[1],
-    );
-    expect(document.body.style.overflow).toBe('');
-    expect(background.inert).toBe(false);
-    expect(background.hasAttribute('aria-hidden')).toBe(false);
+      fixture.destroy();
+
+      expect(removeListener).toHaveBeenCalledWith(
+        'keydown',
+        keydownRegistration?.[1],
+      );
+      expect(document.body.style.overflow).toBe('auto');
+      expect(background.inert).toBe(false);
+      expect(background.hasAttribute('aria-hidden')).toBe(false);
+    } finally {
+      document.body.style.overflow = previousOverflow;
+    }
   });
 });
