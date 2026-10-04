@@ -78,6 +78,6 @@
 @media (prefers-reduced-motion: reduce) {
   .check-box[data-mode='switch'] .check-box__box::before,
   .check-box[data-mode='switch'] .check-box__thumb {
-    transition-duration: var(--honesty-motion-duration-instant);
+    transition-duration: var(--honesty-check-box-reduced-duration);
   }
 }
