@@ -31,95 +31,43 @@
   padding: var(--honesty-space-inset-default);
 }
 
-.review-group[data-review-group='boolean-choice'] > erp-grid > erp-surface {
-  grid-column: auto;
-}
-
-.choice-review-card {
+.check-reference-panel {
   align-self: start;
 }
 
-.review-group[data-review-group='boolean-choice']
-  > erp-grid
-  > .choice-review-card--wide {
-  grid-column: 1 / -1;
+.check-reference-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--honesty-space-stack-loose) var(--honesty-space-inline-loose);
 }
 
-.check-tile {
-  display: block;
-  padding: var(--honesty-space-inset-default);
-  border: var(--honesty-border-width-default)
-    var(--honesty-border-style-default) var(--honesty-border-subtle);
-  border-radius: var(--honesty-radius-surface);
-  background: var(--honesty-color-surface-default);
-  cursor: pointer;
-  transition:
-    border-color var(--honesty-motion-duration-slow)
-      var(--honesty-motion-easing-standard),
-    background var(--honesty-motion-duration-slow)
-      var(--honesty-motion-easing-standard),
-    box-shadow var(--honesty-motion-duration-slow)
-      var(--honesty-motion-easing-standard),
-    transform var(--honesty-motion-duration-slow)
-      var(--honesty-motion-easing-standard);
+.check-reference-row--wide > erp-check-box {
+  flex: 1 1 20rem;
 }
 
-.check-tile:hover {
-  border-color:
-    color-mix(
-      in srgb,
-      var(--honesty-color-brand-primary-solid) 45%,
-      var(--honesty-border-subtle)
-    );
-  transform: translateY(-1px);
+.check-reference-tiles {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+  gap: var(--honesty-space-stack-default);
 }
 
-.check-tile[data-selected='true'] {
-  border-color:
-    color-mix(
-      in srgb,
-      var(--honesty-color-brand-primary-solid) 75%,
-      transparent
-    );
-  background:
-    color-mix(
-      in srgb,
-      var(--honesty-color-brand-primary-subtle) 72%,
-      var(--honesty-color-surface-default)
-    );
-  box-shadow:
-    var(--honesty-elevation-raised),
-    inset 0 0 0 var(--honesty-border-width-default)
-      color-mix(
-        in srgb,
-        var(--honesty-color-brand-primary-solid) 28%,
-        transparent
-      );
-  transform: translateY(-2px);
+.check-reference-nested {
+  padding-inline-start: 2.25rem;
 }
 
-.check-tile:active {
-  transform: scale(0.985);
+.check-reference-variants {
+  align-items: start;
 }
 
-.check-task-list {
-  padding-inline-start: var(--honesty-space-inline-default);
-  border-inline-start: var(--honesty-border-width-emphasis)
-    var(--honesty-border-style-default) var(--honesty-border-subtle);
-}
+@include query.viewport-down(md) {
+  .check-reference-row--wide > erp-check-box {
+    flex-basis: 100%;
+  }
 
-.check-task {
-  padding-block: var(--honesty-space-stack-tight);
-}
-
-.check-task[data-completed='true'] erp-check-box {
-  opacity: 0.45;
-  text-decoration-line: line-through;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .check-tile {
-    transition-duration: var(--honesty-motion-duration-instant);
+  .check-reference-nested {
+    padding-inline-start: var(--honesty-space-inline-default);
   }
 }
 
