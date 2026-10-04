@@ -82,12 +82,12 @@ export function validateEmptyStateContracts(files) {
     '<erp-text',
     'erpEmptyStateIllustration',
     'erpEmptyStateExtra',
-    "data-empty-state-action="primary"",
-    "data-empty-state-action="secondary"",
-    "data-empty-state-action="tertiary"",
-    "class="es-anim-search-scan"",
-    "class="es-anim-danger-halo"",
-    "class="es-anim-warning-halo"",
+    'data-empty-state-action="primary"',
+    'data-empty-state-action="secondary"',
+    'data-empty-state-action="tertiary"',
+    'class="es-anim-search-scan"',
+    'class="es-anim-danger-halo"',
+    'class="es-anim-warning-halo"',
     'class="es-fill-secondary-accent',
   ]) {
     if (!template.includes(required)) {

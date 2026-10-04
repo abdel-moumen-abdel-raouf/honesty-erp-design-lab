@@ -346,3 +346,48 @@ Fresh mandatory gate remains:
 
 `npm run verify:clean`
 <!-- CHATGPT_TOOLTIP_TOKEN_COUNT_DECOUPLED_2026_10_04_END -->
+
+<!-- CHATGPT_EMPTY_STATE_GOVERNANCE_SYNTAX_FIX_2026_10_05_START -->
+## 2026-10-05 — EmptyState governance JavaScript syntax repaired
+
+Product Owner local canonical verification on
+`fcc0c5b90f851ffe73a73fdb1fcc59c2765ffc6f` progressed successfully through:
+
+- Single App theme authority;
+- routed ERP-only authoring (23 templates);
+- Component Token framework (47 concrete modules);
+- System Colors;
+- ErpText;
+- ErpIcon;
+- ErpButton;
+- ErpTooltip;
+- ErpField.
+
+The run then stopped before EmptyState contract validation because
+`tools/controls/check-erp-empty-state-governance.mjs` itself had invalid
+JavaScript string quoting in six adjacent required-template literals:
+
+- Primary/Secondary/Tertiary `data-empty-state-action` markers;
+- Search/Danger/Warning illustration class markers.
+
+This was a checker-source syntax defect, not an EmptyState runtime/visual
+failure.
+
+Correction:
+
+- replace the six malformed double-quoted literals with valid single-quoted
+  JavaScript strings containing the required HTML double quotes;
+- no EmptyState source, template, token, style, route, test, or API was changed;
+- no governance assertion was removed or weakened;
+- compile-only JavaScript syntax audit of the complete patched checker passes;
+- the existing `erp-empty-state:check:self-test` remains the next direct
+  executable proof of the checker contract.
+
+Fresh mandatory commands:
+
+`npm run erp-empty-state:check:self-test`
+
+then
+
+`npm run verify:clean`
+<!-- CHATGPT_EMPTY_STATE_GOVERNANCE_SYNTAX_FIX_2026_10_05_END -->
