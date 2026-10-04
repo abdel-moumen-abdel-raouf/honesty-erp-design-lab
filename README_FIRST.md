@@ -3153,3 +3153,40 @@ are synchronized as one bounded unit.
   unless Product Owner explicitly says otherwise.
 - `npm run verify:clean` is the canonical technical executable gate.
 <!-- CHATGPT_PERSISTENT_CONTINUITY_PROTOCOL_2026_10_04_END -->
+
+<!-- CHATGPT_RADIOBOX_DESIGN_OPEN_2026_10_04_START -->
+## 2026-10-04 — CheckBox V5 visually accepted; RadioBox design wave opened
+
+Product Owner decision:
+
+- current exact-reference `ErpCheckBox` V5 is visually accepted;
+- `ErpRadioBox` is the next visual item and may be designed with the same
+  method, visual language, and design discipline;
+- native radio semantics remain authoritative;
+- the RadioBox design contract is
+  `src/app/controls/radio-box/RADIO_BOX_VISUAL_CONTRACT_V1.md`.
+
+Execution boundary:
+
+- CheckBox visual gate is closed;
+- fresh canonical `npm run verify:clean` after the merged CheckBox read-only
+  lint correction is still technically pending;
+- RadioBox design/contract work is authorized now;
+- RadioBox runtime/source implementation waits for that technical gate to pass;
+- EmptyState and Select remain unopened.
+
+Approved RadioBox direction:
+
+- modes: `radio | tile`;
+- variants: `outline | filled | soft`;
+- sizes: sm 18px / md 22px / lg 28px / xl 36px, with higher shared Field
+  sizes aliasing xl;
+- optional description, read-only guard, and standalone visible-text
+  suppression aligned to the accepted CheckBox family language;
+- circular native radio indicator with centered dot;
+- no switch and no indeterminate semantics;
+- Tile single-select is owned by RadioBox visual mode together with RadioGroup
+  coordinated single-selection semantics.
+
+Technical green remains separate from Product Owner visual approval.
+<!-- CHATGPT_RADIOBOX_DESIGN_OPEN_2026_10_04_END -->
