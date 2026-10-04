@@ -3,10 +3,16 @@
 These are technical/history checkpoints. They are **not** Product Owner visual
 approvals unless explicitly stated.
 
-## Current main
+## Live main rule
 
-- `be140ad3c171fe3475101fb5a329ca0437060ba7`
-  `docs(check-box): synchronize V5 lint merged checkpoint`
+Always resolve live `origin/main` directly at session start. This file records
+named checkpoints; it does not claim that its own latest docs SHA is an eternal
+repository HEAD.
+
+## Continuity protocol checkpoint
+
+- `66abb185c3e837d9c659ed56106cf668d46103c5`
+  `docs(handoff): establish persistent continuity protocol`
 
 ## Current CheckBox runtime/source
 
