@@ -183,6 +183,13 @@ describe('ErpCheckBox', () => {
     expect(native.getAttribute('aria-readonly')).toBe('true');
     expect(host.getAttribute('data-check-box-readonly')).toBe('true');
 
+    const click = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+    });
+    native.dispatchEvent(click);
+    expect(click.defaultPrevented).toBe(true);
+
     native.checked = false;
     native.dispatchEvent(new Event('change'));
     fixture.detectChanges();

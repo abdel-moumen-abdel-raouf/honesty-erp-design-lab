@@ -118,15 +118,10 @@ export class ErpCheckBox extends ErpInputBase<boolean> {
     return value === false ? 'no-selection' as const : null;
   }
 
-  protected handleLabelClick(event: MouseEvent): void {
-    if (!this.readOnly()) {
-      return;
+  protected handleNativeClick(event: MouseEvent): void {
+    if (this.readOnly()) {
+      event.preventDefault();
     }
-
-    event.preventDefault();
-    (event.currentTarget as HTMLElement)
-      .querySelector<HTMLInputElement>('input')
-      ?.focus();
   }
 
   protected handleNativeKeydown(event: KeyboardEvent): void {
