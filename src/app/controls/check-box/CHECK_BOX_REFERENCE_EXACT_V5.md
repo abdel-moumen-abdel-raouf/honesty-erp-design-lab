@@ -246,3 +246,37 @@ Technical green does not equal Product Owner visual approval.
 
 RadioBox remains unopened until this exact-reference CheckBox wave is green and
 visually accepted.
+
+
+## 2026-10-04 — read-only native-click accessibility follow-up
+
+Product Owner local `npm run verify:clean` at
+`4c629875fb2cb1ee3e5d9c0ae2007ed0f6d764a6` advanced through:
+
+- all project governance gates PASS;
+- ErpIcon governance PASS with the bounded CheckBox SVG exception;
+- ErpField governance PASS.
+
+Angular template lint then stopped with exactly two accessibility errors on the
+outer CheckBox `<label>` because V5 had placed a `(click)` read-only guard
+on that non-focusable label.
+
+The visual/reference implementation was not changed.
+
+Bounded correction:
+
+- outer label owns no click handler;
+- the read-only pointer guard now belongs to the authoritative native
+  `input[type="checkbox"]`;
+- `handleNativeClick` calls `preventDefault()` only while `readOnly=true`;
+- native Space/Enter prevention remains on the focusable checkbox input;
+- the existing `change` handler still restores the authoritative CVA value as
+  a defensive fallback if a change event is forced;
+- unit tests now prove read-only native click is default-prevented;
+- ErpField governance requires native click ownership and rejects any click
+  handler on the outer CheckBox label.
+
+This follow-up changes no visual geometry, tokens, modes, variants, motion,
+showcase layout, or Product Owner reference mapping.
+
+Fresh `npm run verify:clean` remains mandatory.
