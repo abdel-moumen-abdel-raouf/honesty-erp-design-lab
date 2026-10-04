@@ -49,6 +49,15 @@
   border-color: transparent;
 }
 
+.check-box[data-mode='switch']:hover
+  .check-box__native:checked
+  ~ .check-box__box,
+.check-box[data-mode='switch']:hover
+  .check-box__native:indeterminate
+  ~ .check-box__box {
+  background-color: var(--honesty-check-box-track-rest-hover);
+}
+
 .check-box[data-mode='switch']
   .check-box__native:checked
   ~ .check-box__box::before,
