@@ -41,7 +41,8 @@
       var(--honesty-check-box-control-size) *
       var(--honesty-check-box-text-gap-ratio)
     );
-  --_direction: 1;
+  --_switch-fill-origin: 0% center;
+  --_switch-travel: var(--_travel);
 
   position: relative;
   display: inline-flex;
@@ -58,7 +59,8 @@
 }
 
 :host-context([dir='rtl']) .check-box {
-  --_direction: -1;
+  --_switch-fill-origin: 100% center;
+  --_switch-travel: calc(0px - var(--_travel));
 }
 
 .check-box__native {
