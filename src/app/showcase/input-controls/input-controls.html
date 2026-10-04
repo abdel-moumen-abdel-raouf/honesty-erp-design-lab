@@ -242,20 +242,20 @@
           <erp-review-box class="check-reference-row">
             <erp-check-box
               label="مثال غير محدد"
-              hideText
+              [hideText]="true"
               [ngModel]="checkValue()"
               (ngModelChange)="checkValue.set($event)"
             />
             <erp-check-box
               label="مثال محدد"
-              hideText
+              [hideText]="true"
               [ngModel]="standaloneChecked()"
               (ngModelChange)="standaloneChecked.set($event)"
             />
-            <erp-check-box label="مثال معطل غير محدد" hideText disabled />
+            <erp-check-box label="مثال معطل غير محدد" [hideText]="true" disabled />
             <erp-check-box
               label="مثال معطل محدد"
-              hideText
+              [hideText]="true"
               disabled
               [ngModel]="true"
             />
@@ -300,7 +300,7 @@
             <erp-check-box
               label="مدار بواسطة المؤسسة"
               description="لا يمكن تغيير هذا الإعداد من هنا."
-              readOnly
+              [readOnly]="true"
               [ngModel]="true"
             />
           </erp-review-box>
@@ -612,7 +612,7 @@
               <erp-check-box
                 label="Read-only"
                 mode="switch"
-                readOnly
+                [readOnly]="true"
                 [ngModel]="true"
               />
               <erp-check-box
