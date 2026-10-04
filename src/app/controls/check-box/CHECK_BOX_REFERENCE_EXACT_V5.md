@@ -165,10 +165,23 @@ Native user activation exits indeterminate. An external change of the
 Required validation derives danger automatically and returns to the supplied
 status after a valid selection.
 
+### Motion
+
+The component preserves the supplied motion contract:
+
+- instant = 90ms;
+- fast = 140ms;
+- base = 220ms;
+- check draw = 300ms;
+- erase = 150ms;
+- pop = 240ms;
+- draw delay = 70ms;
+- the supplied standard/out/spring/draw/erase cubic-bezier curves.
+
 ### Reduced motion
 
-Reduced-motion disables the pop keyframe and collapses transitions to the
-Foundation instant duration.
+Reduced-motion disables the pop keyframe and collapses component transitions to
+the supplied 1ms reduced-motion duration.
 
 ## Single-select tile boundary
 
