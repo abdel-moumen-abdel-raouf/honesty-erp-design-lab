@@ -108,6 +108,7 @@ const CHECK_BOX_STYLES = [
   'src/app/controls/check-box/check-box-token-frame.scss',
   'src/app/controls/check-box/check-box-token-geometry.scss',
   'src/app/controls/check-box/check-box.scss',
+  'src/app/controls/check-box/check-box-mark.scss',
   'src/app/controls/check-box/check-box-states.scss',
   'src/app/controls/check-box/check-box-switch.scss',
   'src/app/controls/check-box/check-box-tile.scss',
