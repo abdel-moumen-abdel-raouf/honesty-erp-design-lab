@@ -49,8 +49,8 @@ let nextCheckBoxId = 0;
     './check-box-switch.scss',
     './check-box-tile.scss',
     './check-box-tone-facets.scss',
-    './check-box-status-facets.scss',
     './check-box-variant-facets.scss',
+    './check-box-status-facets.scss',
     './check-box-sizes.scss',
   ],
   host: {
