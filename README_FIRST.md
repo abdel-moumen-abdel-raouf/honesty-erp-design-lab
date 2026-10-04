@@ -3,12 +3,26 @@
 Start every new ChatGPT or implementation-agent session by reading these files
 in this order:
 
-1. `NEW_CHAT_HANDOFF.md`
-2. `AGENTS.md`
-3. `src/app/controls/POST_CR12_PRODUCT_OWNER_REVIEW_STATE_V1.md`
-4. `src/app/controls/CONTROLS_EXECUTION_ROADMAP_V1.md`
-5. `src/app/controls/CONTROLS_CORRECTION_PROGRAM_V1.md`
-6. `src/app/controls/POST_CR12_REVIEW_WAVE_A_V1.md`
+1. `README_FIRST.md`
+2. `CURRENT_EXECUTION_STATE.md`
+3. `NEW_CHAT_HANDOFF.md`
+4. `DECISIONS_AND_CONSTRAINTS.md`
+5. `GIT_CHECKPOINTS.md`
+6. `AGENTS.md`
+7. `src/app/controls/CONTROLS_EXECUTION_ROADMAP_V1.md`
+8. `src/app/controls/INPUTS_PRODUCT_OWNER_REVIEW_FINDINGS_V1.md`
+9. `src/app/controls/NEXT_COMPONENT_REFERENCE_BATCH_V1.md`
+10. `src/app/controls/FIELD_FAMILY_V1.md`
+11. current active component contract:
+    `src/app/controls/check-box/CHECK_BOX_REFERENCE_EXACT_V5.md`
+
+Then verify live GitHub `main` before making any current-state claim.
+
+For long-range inventory/dependency context only, read when needed:
+
+`docs/project-history/derived/PROJECT_ORIGIN_COMPONENTS_AND_EXECUTION_BLUEPRINT_V1.md`
+
+The blueprint is planning context only, not implementation authorization.
 
 ## Repository
 
@@ -21,6 +35,21 @@ Owner local workspace:
 Branch:
 
 `main`
+
+## Current-state authority
+
+The authoritative **current** execution snapshot is:
+
+`CURRENT_EXECUTION_STATE.md`
+
+Read that file before relying on any older historical snapshot that appears
+later in this document.
+
+This file intentionally preserves project history. Older "Current state",
+"Latest checkpoint", or review snapshots below are historical unless they are
+restated by the newest dated continuity blocks or by
+`CURRENT_EXECUTION_STATE.md`.
+
 
 ## Current state
 
