@@ -424,57 +424,69 @@ feedback is dismissed.
 
 ## Boolean / Choice Basics
 
-- `ErpCheckBox` is a Basic boolean ControlValueAccessor with a required label,
-  optional supporting `description`, authoritative native checkbox semantics,
-  checked state from the current CVA value, inherited disabled behavior, and
+- `ErpCheckBox` is a Basic boolean ControlValueAccessor with a required
+  accessible `label`, optional `description`, authoritative native
+  `input[type="checkbox"]`, inherited disabled/required validation, and
   `indeterminate = false`.
-- Its current visual contract is reference-led by the Product Owner supplied
-  `erp-checkbox.html`: one control centered against the complete
-  title/description block, CSS check/indeterminate mark geometry, selected halo,
-  pressed scale, focus-visible, disabled, user-exitable indeterminate, and
-  reduced-motion behavior. Reference colors are not adopted; all runtime colors
-  remain Component/Semantic Token driven.
-- The supplied reference's own Live Config defines the CheckBox visual variants
-  as `classic | switch | neon`; `ErpCheckBox` therefore exposes those three
-  variants directly. Switch keeps the same boolean/CVA value contract while
-  changing the visual box into an RTL-aware track/knob. Neon keeps Classic
-  geometry and adds tone-derived glow/pulse treatment.
-- Selectable Tile and Task List remain composition examples because the supplied
-  file presents them as separate sections/classes rather than entries in its
-  Variant selector; they are not silently promoted to CheckBox variants.
-- `ErpRadioBox` is a Basic boolean ControlValueAccessor leaf with a required
-  label, authoritative native radio semantics, checked state from the current
-  CVA value, and inherited disabled behavior.
-- Native Space-key behavior remains authoritative for both controls.
-- User activation changes `ErpRadioBox` from false to true. A checked radio
-  does not toggle itself from true to false through user activation; form
-  writes may still clear its boolean value.
-- Both controls expose the existing Field tone, status, and size vocabularies
-  where visually applicable. They own no FieldFrame chrome.
-- CheckBox renders one custom visual assembly around the authoritative native
-  checkbox. The Product Owner supplied template owns the Classic/Switch/Neon
-  geometry. Selected Classic/Neon fill uses one current ERP system tone
-  (no gradient); the large check silhouette is CSS clip-path geometry and the
-  indeterminate mark reuses the same CSS mark layer as a centered bar. Switch
-  uses the supplied proportional track/knob geometry and reverses knob travel
-  in RTL without mirroring the track. No ErpIcon/raw SVG mark is nested inside
-  the CheckBox visual box.
-- RadioBox renders one fixed circular visual around the authoritative native
-  radio. Its selected dot remains centered and present in the same outer
-  geometry for selected and unselected states.
-- CheckBox disabled presentation follows the reference's single whole-control
-  opacity treatment; it must not also apply disabled text colors and therefore
-  double-dim content. Required validation derives `danger` from the common
-  validation contract and returns to `none` immediately after a valid user
-  selection.
-- CheckBox preserves the shared `ErpFieldSize` input type for compatibility,
-  but its visual geometry is template-led: sm=18px, md=24px, lg=30px, and
-  xl/xxl/xxxl/xxxxl all resolve to the template's 38px X-Large geometry.
-- Both visual contracts include deterministic hover, focus-visible, disabled,
-  invalid, tone, and status treatment. State transitions use Foundation Motion
-  and honor reduced motion. No raw SVG mark is authored.
-- `ErpRadioGroup` remains Composite-classified and is not part of the Basic
-  boolean/choice implementation.
+- Product Owner authority for the current CheckBox visual contract is
+  `erp-checkbox-3.html`. Its reusable component geometry, structure, modes,
+  variants, states, and motion presentation are adopted directly. Its literal
+  Light/Dark palette is not adopted; all production colors resolve through
+  Honesty ERP Semantic/Component Tokens.
+- CheckBox public modes are:
+  - `checkbox` — default square indicator;
+  - `switch` — same native checkbox semantics rendered as track + thumb;
+  - `tile` — same native checkbox semantics rendered as a full selectable tile.
+- CheckBox public visual variants are:
+  - `outline` — default;
+  - `filled`;
+  - `soft`.
+  Variants are token swaps only; markup and semantics stay identical.
+- CheckBox supports `readOnly` as an interaction guard rather than a fake
+  native checkbox attribute. Read-only remains focusable, exposes
+  `aria-readonly`, blocks pointer/keyboard value mutation, and uses the
+  reference read-only surface/border treatment through ERP tokens.
+- CheckBox supports `hideText` for the reference's standalone-control
+  evidence. The required label remains the accessible name through
+  `aria-label`; only visible title/description rendering is suppressed.
+- The reference's exact visual size inputs are:
+  - sm = 18px;
+  - md = 22px;
+  - lg = 28px;
+  - xl = 36px.
+  Shared Field size names `xxl/xxxl/xxxxl` remain accepted for API
+  compatibility but resolve to the CheckBox xl geometry; no unsupported
+  CheckBox size is invented.
+- Switch geometry follows the supplied derived formula:
+  - track width = control × 1.85;
+  - track padding = control × 0.13;
+  - thumb = track height − 2 × padding;
+  - travel = track width − 2 × padding − thumb.
+  Direction changes only the fill origin and signed thumb travel.
+- The checked/indeterminate mark is the reference-owned internal SVG stroke
+  graphic using normalized `pathLength="1"` paths. Check and dash draw/erase
+  through stroke-dashoffset. This is a bounded internal CheckBox mark exception
+  to consumer-level ErpIcon governance; Feature/Page code still may not author
+  raw SVG icons.
+- Checked/indeterminate box fill, hover, focus, danger, read-only, disabled,
+  filled/soft surfaces, tile surfaces, track, and thumb colors resolve only
+  through CheckBox Component Tokens mapped to current system semantic colors.
+  No reference hex colors or local theme branching are allowed.
+- Native user activation may leave indeterminate state. An external change to
+  the `indeterminate` input may re-arm it. Required invalid state derives
+  `danger` from common validation and returns to the caller-provided status
+  after a valid selection.
+- Disabled presentation follows the supplied one-pass whole-control attenuation
+  and does not double-dim title/description.
+- Reduced motion disables the pop keyframe and collapses component transitions
+  to the Foundation instant-motion role.
+- The reference also demonstrates `Tile mode — single select` using native
+  `input[type="radio"]`. That subsection belongs to `ErpRadioBox` /
+  `ErpRadioGroup` and must not be faked with checkbox semantics. It remains
+  for the next authorized RadioBox wave.
+- `ErpRadioBox` remains the existing Basic boolean radio leaf until that
+  separate Product Owner reference wave opens. `ErpRadioGroup` remains
+  Composite-classified.
 
 ## Placeholder
 
