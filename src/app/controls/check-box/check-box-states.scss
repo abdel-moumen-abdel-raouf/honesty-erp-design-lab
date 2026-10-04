@@ -99,7 +99,7 @@
   .check-box__mark,
   .check-box__mark-check,
   .check-box__mark-dash {
-    transition-duration: var(--honesty-motion-duration-instant);
+    transition-duration: var(--honesty-check-box-reduced-duration);
   }
 
   .check-box__native:checked ~ .check-box__box,
