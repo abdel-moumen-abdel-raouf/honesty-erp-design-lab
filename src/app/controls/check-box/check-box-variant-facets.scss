@@ -9,5 +9,5 @@
 }
 
 :host([data-check-box-readonly='true']) {
-  @include tokens.readonly;
+  @include tokens.state-readonly;
 }
