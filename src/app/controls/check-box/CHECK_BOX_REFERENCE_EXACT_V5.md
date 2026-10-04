@@ -280,3 +280,20 @@ This follow-up changes no visual geometry, tokens, modes, variants, motion,
 showcase layout, or Product Owner reference mapping.
 
 Fresh `npm run verify:clean` remains mandatory.
+
+
+## 2026-10-04 — read-only lint follow-up merged checkpoint
+
+The accessibility/lint follow-up was squash-merged to `main` at:
+
+`4c7cfe502b14cb594dfafc1043d2e14a5ecb1db8` —
+`fix(check-box): move readonly click guard to native input`.
+
+Post-merge static audit on `main`:
+
+- 13 read-only/lint ownership predicates checked;
+- 13 PASS;
+- 0 mismatches.
+
+No visual/reference implementation changed after the exact-reference V5 commit.
+Fresh local `npm run verify:clean` remains pending.
