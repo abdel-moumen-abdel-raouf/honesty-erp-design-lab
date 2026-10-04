@@ -1,45 +1,78 @@
-<label class="check-box" [for]="controlId" [attr.data-variant]="variant()">
-  <span class="check-box__control">
-    <input
-      class="check-box__native"
-      type="checkbox"
-      [id]="controlId"
-      [attr.name]="name()"
-      [attr.form]="form()"
-      [checked]="currentValue()"
-      [indeterminate]="effectiveIndeterminate()"
-      [required]="required()"
-      [attr.aria-invalid]="valid() ? null : 'true'"
-      [disabled]="effectiveDisabled()"
-      (change)="handleChange($event)"
-      (focus)="handleNativeFocus()"
-      (blur)="handleNativeBlur()"
-    />
-    <span class="check-box__visual" aria-hidden="true"></span>
+<label
+  class="check-box"
+  [for]="controlId"
+  [attr.data-mode]="mode()"
+  [attr.data-variant]="variant()"
+  [attr.data-readonly]="readOnly()"
+  [attr.data-invalid]="effectiveStatus() === 'danger' ? 'true' : null"
+  [attr.data-hide-text]="hideText()"
+  (click)="handleLabelClick($event)"
+>
+  <input
+    class="check-box__native"
+    type="checkbox"
+    [id]="controlId"
+    [attr.name]="name()"
+    [attr.form]="form()"
+    [attr.aria-label]="hideText() ? trimmedLabel() : null"
+    [attr.aria-readonly]="readOnly() ? 'true' : null"
+    [attr.aria-invalid]="effectiveStatus() === 'danger' ? 'true' : null"
+    [checked]="currentValue()"
+    [indeterminate]="effectiveIndeterminate()"
+    [required]="required()"
+    [disabled]="effectiveDisabled()"
+    (change)="handleChange($event)"
+    (keydown)="handleNativeKeydown($event)"
+    (focus)="handleNativeFocus()"
+    (blur)="handleNativeBlur()"
+  />
+
+  <span class="check-box__box" aria-hidden="true">
+    <span class="check-box__thumb"></span>
+    <svg
+      class="check-box__mark"
+      viewBox="0 0 24 24"
+      focusable="false"
+      aria-hidden="true"
+    >
+      <path
+        class="check-box__mark-check"
+        pathLength="1"
+        d="M6 12 10.2 16.2 18 8"
+      />
+      <path
+        class="check-box__mark-dash"
+        pathLength="1"
+        d="M6.5 12h11"
+      />
+    </svg>
   </span>
 
-  <span class="check-box__text">
-    <erp-text
-      class="check-box__title"
-      type="span"
-      size="inherit"
-      weight="inherit"
-      lineHeight="inherit"
-      tone="inherit"
-    >
-      {{ trimmedLabel() }}
-    </erp-text>
-    @if (trimmedDescription()) {
+  @if (!hideText()) {
+    <span class="check-box__text">
       <erp-text
-        class="check-box__description"
+        class="check-box__title"
         type="span"
         size="inherit"
         weight="inherit"
         lineHeight="inherit"
         tone="inherit"
       >
-        {{ trimmedDescription() }}
+        {{ trimmedLabel() }}
       </erp-text>
-    }
-  </span>
+
+      @if (trimmedDescription()) {
+        <erp-text
+          class="check-box__description"
+          type="span"
+          size="inherit"
+          weight="inherit"
+          lineHeight="inherit"
+          tone="inherit"
+        >
+          {{ trimmedDescription() }}
+        </erp-text>
+      }
+    </span>
+  }
 </label>

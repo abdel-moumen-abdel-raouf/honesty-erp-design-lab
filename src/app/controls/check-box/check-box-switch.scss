@@ -1,53 +1,83 @@
-.check-box[data-variant='switch'] {
-  --_switch-off: -1;
-  --_switch-on: 1;
-}
-
-:host-context([dir='rtl']) .check-box[data-variant='switch'] {
-  --_switch-off: 1;
-  --_switch-on: -1;
-}
-
-.check-box[data-variant='switch'] .check-box__control,
-.check-box[data-variant='switch'] .check-box__native,
-.check-box[data-variant='switch'] .check-box__visual {
-  inline-size: calc(var(--honesty-check-box-control-size) * 1.95);
-}
-
-.check-box[data-variant='switch'] .check-box__visual {
-  border-color: var(--honesty-check-box-switch-border-color);
+.check-box[data-mode='switch'] .check-box__box {
+  inline-size: var(--_track-width);
+  block-size: var(--_track-height);
+  border-width: 0;
   border-radius: var(--honesty-radius-full);
-  background: var(--honesty-check-box-switch-track-bg);
+  background-color: var(--honesty-check-box-track-rest);
 }
 
-.check-box[data-variant='switch'] .check-box__visual::after {
-  inset: auto;
-  inline-size: calc(var(--honesty-check-box-control-size) * 0.72);
-  block-size: calc(var(--honesty-check-box-control-size) * 0.72);
-  border-radius: var(--honesty-radius-full);
-  background: var(--honesty-check-box-switch-knob-off-color);
-  clip-path: none;
-  transform: translateX(
-    calc(var(--honesty-check-box-control-size) * 0.42 * var(--_switch-off))
-  );
+.check-box[data-mode='switch'] .check-box__mark {
+  display: none;
 }
 
-:host([data-check-box-state='ready'])
-  .check-box[data-variant='switch']:active .check-box__visual {
-  transform: scale(0.95);
+.check-box[data-mode='switch'] .check-box__thumb {
+  display: block;
 }
 
-:host([data-check-box-checked='true'])
-  .check-box[data-variant='switch'] .check-box__visual::after {
-  background: var(--honesty-check-box-switch-knob-on-color);
-  box-shadow: var(--honesty-check-box-switch-knob-elevation);
-  transform: translateX(
-    calc(var(--honesty-check-box-control-size) * 0.42 * var(--_switch-on))
-  );
+.check-box[data-mode='switch'] .check-box__box::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  border-radius: inherit;
+  background-color: var(--honesty-check-box-fill);
+  transform-origin: var(--_switch-fill-origin);
+  transform: scaleX(0.35);
+  opacity: 0;
+  transition:
+    transform var(--honesty-check-box-duration-base)
+      var(--honesty-check-box-easing-out),
+    opacity var(--honesty-check-box-duration-fast)
+      var(--honesty-check-box-easing-standard),
+    background-color var(--honesty-check-box-duration-fast)
+      var(--honesty-check-box-easing-standard);
 }
 
-:host([data-check-box-indeterminate='true'])
-  .check-box[data-variant='switch'] .check-box__visual::after {
-  background: var(--honesty-check-box-switch-knob-on-color);
-  transform: scale(0.7);
+.check-box[data-mode='switch']:hover .check-box__box {
+  background-color: var(--honesty-check-box-track-rest-hover);
+}
+
+.check-box[data-mode='switch']:hover .check-box__box::before {
+  background-color: var(--honesty-check-box-fill-hover);
+}
+
+.check-box[data-mode='switch'] .check-box__native:checked ~ .check-box__box,
+.check-box[data-mode='switch']
+  .check-box__native:indeterminate
+  ~ .check-box__box {
+  background-color: var(--honesty-check-box-track-rest);
+  border-color: transparent;
+}
+
+.check-box[data-mode='switch']:hover
+  .check-box__native:checked
+  ~ .check-box__box,
+.check-box[data-mode='switch']:hover
+  .check-box__native:indeterminate
+  ~ .check-box__box {
+  background-color: var(--honesty-check-box-track-rest-hover);
+}
+
+.check-box[data-mode='switch']
+  .check-box__native:checked
+  ~ .check-box__box::before,
+.check-box[data-mode='switch']
+  .check-box__native:indeterminate
+  ~ .check-box__box::before {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.check-box[data-mode='switch']
+  .check-box__native:checked
+  ~ .check-box__box
+  .check-box__thumb {
+  transform: translateX(var(--_switch-travel));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .check-box[data-mode='switch'] .check-box__box::before,
+  .check-box[data-mode='switch'] .check-box__thumb {
+    transition-duration: var(--honesty-check-box-reduced-duration);
+  }
 }

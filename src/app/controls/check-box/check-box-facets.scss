@@ -1,8 +1,0 @@
-@use '../../../styles/foundation/components/check-box' as tokens;
-
-:host([data-check-box-tone='secondary']) { @include tokens.tone-secondary; }
-:host([data-check-box-tone='accent']) { @include tokens.tone-accent; }
-:host([data-check-box-status='success']) { @include tokens.status-success; }
-:host([data-check-box-status='warning']) { @include tokens.status-warning; }
-:host([data-check-box-status='danger']) { @include tokens.status-danger; }
-:host([data-check-box-status='info']) { @include tokens.status-info; }

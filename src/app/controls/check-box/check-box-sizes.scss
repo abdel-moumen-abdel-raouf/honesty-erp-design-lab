@@ -1,8 +1,17 @@
 @use '../../../styles/foundation/components/check-box' as tokens;
 
-:host([data-check-box-size='sm']) { @include tokens.size-sm; }
-:host([data-check-box-size='md']) { @include tokens.size-md; }
-:host([data-check-box-size='lg']) { @include tokens.size-lg; }
+:host([data-check-box-size='sm']) {
+  @include tokens.size-sm;
+}
+
+:host([data-check-box-size='md']) {
+  @include tokens.size-md;
+}
+
+:host([data-check-box-size='lg']) {
+  @include tokens.size-lg;
+}
+
 :host([data-check-box-size='xl']),
 :host([data-check-box-size='xxl']),
 :host([data-check-box-size='xxxl']),

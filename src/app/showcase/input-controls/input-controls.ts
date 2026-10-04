@@ -90,17 +90,20 @@ export class InputControls {
   readonly variants = ['solid', 'outline', 'subtle', 'ghost', 'text'] as const;
   readonly clearValue = signal('قيمة قابلة للمسح');
   readonly checkValue = signal(false);
-  readonly mixedCheckValue = signal(false);
+  readonly standaloneChecked = signal(true);
+  readonly textChecked = signal(true);
   readonly requiredCheckValue = signal(false);
   readonly switchEnabled = signal(true);
   readonly switchAutoUpdate = signal(false);
-  readonly neonEnabled = signal(true);
-  readonly starterTile = signal(true);
-  readonly proTile = signal(false);
+  readonly analyticsTile = signal(true);
+  readonly automationsTile = signal(false);
+  readonly auditTile = signal(false);
+  readonly outlineVariantValue = signal(true);
+  readonly filledVariantValue = signal(true);
+  readonly softVariantValue = signal(true);
   readonly taskValues = signal<readonly boolean[]>([
     true,
-    false,
-    false,
+    true,
     false,
   ]);
   readonly taskDoneCount = computed(
@@ -150,19 +153,6 @@ export class InputControls {
   readonly iconValue = signal<'settings' | null>('settings');
   readonly itemValue = signal<string | null>('customer');
   readonly comboValue = signal<string | null>('inventory');
-  protected toggleTile(
-    event: MouseEvent,
-    target: 'starter' | 'pro',
-  ): void {
-    const element = event.target as Element;
-    if (element.closest('erp-check-box')) {
-      return;
-    }
-
-    const state = target === 'starter' ? this.starterTile : this.proTile;
-    state.update((value) => !value);
-  }
-
   protected setTask(index: number, checked: boolean): void {
     this.taskValues.update((values) =>
       values.map((value, current) => (current === index ? checked : value)),

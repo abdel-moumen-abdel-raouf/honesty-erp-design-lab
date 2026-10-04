@@ -3172,3 +3172,194 @@ npm run verify:clean
 
 Do not begin RadioBox until this gate is green and CheckBox is visually accepted.
 <!-- CHATGPT_CHECKBOX_V4_MERGED_CHECKPOINT_2026_10_03_END -->
+
+
+<!-- CHATGPT_CHECKBOX_EXACT_REFERENCE_V5_2026_10_04_START -->
+## 2026-10-04 — Product Owner replaced CheckBox V1–V4 with exact erp-checkbox-3 authority
+
+### Binding Product Owner decision
+
+The Product Owner rejected the previous CheckBox visual result and supplied a
+replacement reference file:
+
+`erp-checkbox-3.html`
+
+Reference identity captured during implementation:
+
+- 59,910 bytes;
+- SHA-256:
+  `63d062383be8103cca172078d7ccf9f314779d4e829cd11416ebc199ddb5b6bf`.
+
+The Product Owner explicitly requires the production result to reproduce the
+demo's reusable component structure, geometry, modes, variants, states, and
+motion presentation, while replacing the demo palette with Honesty ERP system
+colors only.
+
+This V5 supersedes every earlier CheckBox V1/V2/V3/V4 visual assumption.
+Earlier CheckBox correction records remain historical only.
+
+Current detailed authority:
+
+`src/app/controls/check-box/CHECK_BOX_REFERENCE_EXACT_V5.md`
+
+### Implemented V5 public contract
+
+Modes:
+
+- `checkbox` — default;
+- `switch`;
+- `tile`.
+
+Variants:
+
+- `outline` — default;
+- `filled`;
+- `soft`.
+
+Additional exact-reference inputs:
+
+- optional `description`;
+- `readOnly` interaction guard;
+- `hideText` standalone visual mode while retaining the required label as the
+  accessible name;
+- existing `indeterminate`, tone, status, size, disabled, required, CVA, and
+  validation contracts remain.
+
+### Exact geometry and motion
+
+Reference CheckBox size geometry:
+
+- sm = 18px;
+- md = 22px;
+- lg = 28px;
+- xl = 36px.
+
+Shared Field size names xxl/xxxl/xxxxl remain accepted only for API
+compatibility and resolve to the CheckBox xl geometry.
+
+Switch math follows the source reference:
+
+- track width = control × 1.85;
+- track padding = control × 0.13;
+- thumb = track height − 2 × padding;
+- travel = track width − 2 × padding − thumb.
+
+Reference motion is preserved:
+
+- instant 90ms;
+- fast 140ms;
+- base 220ms;
+- check draw 300ms;
+- erase 150ms;
+- pop 240ms;
+- draw delay 70ms;
+- source standard/out/spring/draw/erase cubic-bezier curves;
+- reduced motion = 1ms and no pop animation.
+
+### Exact reusable visual assembly
+
+- native checkbox remains the sole semantic/CVA owner;
+- one internal SVG mark reproduces the supplied check and dash paths using
+  `pathLength="1"` and stroke-dashoffset draw/erase animation;
+- this SVG is a bounded internal CheckBox graphic exception only; raw SVG
+  remains forbidden for Feature/Page authors;
+- Switch uses the supplied resting track + directional fill sweep + derived
+  thumb travel;
+- Tile is now a real CheckBox mode owned by the component itself, not a
+  showcase wrapper;
+- Filled and Soft are token swaps only and keep identical markup;
+- read-only remains focusable and blocks pointer/Space/Enter mutation;
+- native user activation exits indeterminate; an external indeterminate input
+  change can re-arm it;
+- required validation derives danger and recovers automatically after a valid
+  selection;
+- disabled uses the supplied single whole-control attenuation path.
+
+### Color law
+
+Only the supplied palette is replaced.
+
+All production colors resolve from current Honesty ERP Semantic/Component
+Tokens:
+
+- system text/surface/border roles;
+- current action/brand tone fill roles;
+- action subtle roles for Soft;
+- Feedback roles for status/danger;
+- system focus and elevation roles.
+
+No reference hex colors, component-owned Light/Dark branching, gradient, or
+Neon treatment remains.
+
+### Design Lab evidence
+
+The Inputs review now mirrors the source demo sections owned by CheckBox:
+
+- Standalone checkbox;
+- Checkbox with title & sub-title;
+- Switch mode;
+- Tile mode — multi-select;
+- Outline / Filled / Soft variants;
+- Indeterminate / Select All;
+- Size scale;
+- State matrix.
+
+The source demo's "Tile mode — single select" uses native radio inputs.
+That subsection is intentionally not faked with checkbox semantics; it remains
+the first visual target of the next authorized RadioBox wave.
+
+### Tests and governance
+
+CheckBox unit tests pin:
+
+- native/CVA defaults;
+- checkbox/switch/tile modes;
+- outline/filled/soft variants;
+- standalone accessible naming;
+- indeterminate exit and external re-arm;
+- read-only interaction guard;
+- validation-derived danger recovery;
+- size compatibility;
+- disabled/invalid configuration boundaries.
+
+Showcase tests pin:
+
+- exact CheckBox evidence sections;
+- current mode/variant counts;
+- SVG check/dash evidence;
+- exact sm/md/lg/xl review scale;
+- required recovery;
+- Select All indeterminate behavior.
+
+ErpField governance now requires the V5 contract and rejects V1–V4 regressions,
+including Neon, gradient fill, old modes/variants/sizes, missing SVG stroke
+mark, missing Switch/Tile ownership, or stale showcase evidence.
+
+ErpIcon governance has one exact-file exception for the CheckBox-owned internal
+SVG mark. The general raw SVG prohibition remains active everywhere else.
+
+### Pre-handoff static audit
+
+Before merge, the final source was checked as one bounded unit:
+
+- Component runtime/token/test audit: 73/73 PASS;
+- Showcase/governance audit: 57/57 PASS;
+- Component Token mixin audit: 79 base tokens, 0 facet/base mismatches,
+  0 raw-color violations;
+- approximate post-Sass physical stylesheet budget preflight: 0 files at or
+  above the 4k warning threshold;
+- RadioBox production implementation remains otherwise untouched.
+
+Current state:
+
+**CheckBox exact-reference V5 implemented / static preflight PASS / fresh local
+executable verification pending / Product Owner Light-Dark visual approval
+pending.**
+
+Required executable gate after pull:
+
+`npm run verify:clean`
+
+Do not open the RadioBox reference wave until V5 is technically green and
+visually accepted by the Product Owner.
+<!-- CHATGPT_CHECKBOX_EXACT_REFERENCE_V5_2026_10_04_END -->

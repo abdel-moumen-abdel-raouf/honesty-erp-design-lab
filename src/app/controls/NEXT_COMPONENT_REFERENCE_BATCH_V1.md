@@ -68,9 +68,11 @@ Each component is a separate correction/implementation wave:
 
 `ErpCheckBox` is the currently opened item.
 
-Its detailed contract is:
+Its current detailed contract is:
 
-`src/app/controls/check-box/CHECK_BOX_REFERENCE_CORRECTION_V1.md`
+`src/app/controls/check-box/CHECK_BOX_REFERENCE_EXACT_V5.md`
+
+The earlier `CHECK_BOX_REFERENCE_CORRECTION_V1.md` is historical only.
 
 `ErpRadioBox`, `ErpEmptyState`, and `ErpSelect` are not yet authorized for
 source changes in this wave.
@@ -171,3 +173,38 @@ Final post-split pre-merge static audit:
 
 Fresh local executable verification and Product Owner Light/Dark visual
 re-review remain pending. RadioBox remains closed.
+
+
+## CheckBox V5 — erp-checkbox-3 exact-reference authority
+
+Product Owner rejected the V4 result and supplied a replacement authoritative
+file:
+
+`erp-checkbox-3.html`
+
+Binding implementation rule:
+
+- reproduce the reusable component's structure, geometry, modes, variants,
+  states, and motion presentation from that file;
+- replace only its literal palette with Honesty ERP Semantic/Component colors;
+- do not carry forward V1-V4 Neon/Classic assumptions that are absent from the
+  new file.
+
+Current CheckBox contract:
+
+- modes: `checkbox | switch | tile`;
+- variants: `outline | filled | soft`;
+- sizes: sm 18px / md 22px / lg 28px / xl 36px;
+- standalone visible-text suppression with accessible label preservation;
+- read-only guard;
+- SVG stroke check/dash;
+- Switch sweep + derived thumb travel;
+- production Tile mode;
+- indeterminate/select-all behavior;
+- exact state matrix.
+
+The source's single-select Tile subsection uses native radio inputs and is
+therefore reserved for the next RadioBox wave rather than being faked with
+checkbox semantics.
+
+RadioBox remains otherwise unopened.

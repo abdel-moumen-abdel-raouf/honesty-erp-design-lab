@@ -1,5 +1,11 @@
 # ErpCheckBox Reference Correction V1
 
+> **Historical / superseded.** Current Product Owner visual authority is
+> `src/app/controls/check-box/CHECK_BOX_REFERENCE_EXACT_V5.md`, based on
+> `erp-checkbox-3.html`. Earlier V1-V4 assumptions remain history only and
+> must not drive current implementation.
+
+
 ## Authority
 
 Product Owner supplied the visual reference in:
