@@ -1,122 +1,308 @@
-@use '../../reference/opacity' as opacity;
-
 @mixin base {
-  --honesty-check-box-bg: var(--honesty-color-surface-elevated);
-  --honesty-check-box-border-color: var(--honesty-border-default);
-  --honesty-check-box-border-color-hover: var(--honesty-color-action-focus-ring);
-  --honesty-check-box-border-color-disabled: var(--honesty-border-subtle);
+  --honesty-check-box-text: var(--honesty-color-text-primary);
+  --honesty-check-box-text-muted: var(--honesty-color-text-muted);
 
-  --honesty-check-box-fill-color: var(--honesty-color-action-primary-bg);
-  --honesty-check-box-mark-color: var(--honesty-color-action-primary-fg);
-  --honesty-check-box-switch-track-bg: var(--honesty-color-surface-canvas);
-  --honesty-check-box-switch-border-color: var(--honesty-border-strong);
-  --honesty-check-box-switch-knob-off-color: var(--honesty-color-text-muted);
-  --honesty-check-box-switch-knob-on-color: var(--honesty-check-box-mark-color);
-  --honesty-check-box-switch-knob-elevation: var(--honesty-elevation-raised);
+  --honesty-check-box-surface: var(--honesty-color-surface-default);
+  --honesty-check-box-surface-hover: var(--honesty-color-surface-elevated);
+  --honesty-check-box-surface-sunken: var(--honesty-color-surface-canvas);
+  --honesty-check-box-surface-sunken-hover: var(--honesty-color-surface-elevated);
 
-  --honesty-check-box-label-color: var(--honesty-color-text-primary);
-  --honesty-check-box-label-color-disabled: var(--honesty-color-text-disabled);
-  --honesty-check-box-description-color: var(--honesty-color-text-muted);
-  --honesty-check-box-description-color-disabled: var(--honesty-color-text-disabled);
+  --honesty-check-box-border: var(--honesty-border-default);
+  --honesty-check-box-border-hover: var(--honesty-border-strong);
 
-  --honesty-check-box-focus-color: var(--honesty-color-action-focus-ring);
-  --honesty-check-box-focus-width: var(--honesty-focus-ring-width);
-  --honesty-check-box-focus-style: var(--honesty-focus-ring-style);
+  --honesty-check-box-fill: var(--honesty-color-action-primary-bg);
+  --honesty-check-box-fill-hover: var(--honesty-color-action-primary-bg-hover);
+  --honesty-check-box-on-fill: var(--honesty-color-action-primary-fg);
+  --honesty-check-box-accent-soft: var(--honesty-color-action-primary-subtle-bg);
+  --honesty-check-box-accent-soft-hover:
+    var(--honesty-color-action-primary-subtle-bg-hover);
 
-  --honesty-check-box-control-size: 1.5rem;
-  --honesty-check-box-gap: 0.75rem;
-  --honesty-check-box-title-size: 0.93rem;
-  --honesty-check-box-description-size: 0.76rem;
-  --honesty-check-box-title-line-height: 1.35;
-  --honesty-check-box-description-line-height: 1.5;
-  --honesty-check-box-text-gap: 0.18em;
+  --honesty-check-box-track-off: var(--honesty-border-default);
+  --honesty-check-box-track-off-hover: var(--honesty-border-strong);
+  --honesty-check-box-thumb-bg: var(--honesty-color-surface-default);
 
-  --honesty-check-box-border-width:
-    max(1.5px, calc(var(--honesty-check-box-control-size) * 0.08));
-  --honesty-check-box-radius:
-    calc(var(--honesty-check-box-control-size) * 0.3);
-  --honesty-check-box-selected-ring-width:
-    calc(var(--honesty-check-box-control-size) * 0.16);
-  --honesty-check-box-focus-offset:
-    calc(var(--honesty-check-box-control-size) * 0.12);
+  --honesty-check-box-danger: var(--honesty-color-feedback-danger-icon);
+  --honesty-check-box-danger-hover:
+    var(--honesty-color-feedback-danger-surface-strong);
+  --honesty-check-box-danger-text: var(--honesty-color-feedback-danger-text);
 
-  --honesty-check-box-fill-initial-scale: 0.55;
-  --honesty-check-box-pressed-scale: 0.86;
-  --honesty-check-box-disabled-opacity: #{opacity.$honesty-ref-opacity-40};
-  --honesty-check-box-selected-ring-opacity: 16%;
-  --honesty-check-box-neon-glow-near-opacity: 72%;
-  --honesty-check-box-neon-glow-mid-opacity: 42%;
-  --honesty-check-box-neon-glow-far-opacity: 24%;
-  --honesty-check-box-neon-inner-opacity: 32%;
-  --honesty-check-box-neon-pulse-duration: 2.4s;
+  --honesty-check-box-readonly-bg: var(--honesty-color-surface-canvas);
+  --honesty-check-box-readonly-border: var(--honesty-border-subtle);
 
-  --honesty-check-box-transition-duration:
-    var(--honesty-motion-duration-deliberate);
-  --honesty-check-box-press-duration:
-    var(--honesty-motion-duration-slow);
-  --honesty-check-box-transition-easing:
-    var(--honesty-motion-easing-standard);
-  --honesty-check-box-fill-easing:
-    var(--honesty-motion-easing-enter);
-  --honesty-check-box-reduced-duration:
-    var(--honesty-motion-duration-instant);
+  --honesty-check-box-focus-ring: var(--honesty-color-action-focus-ring);
+  --honesty-check-box-focus-ring-width: var(--honesty-focus-ring-width);
+  --honesty-check-box-focus-ring-offset: var(--honesty-focus-ring-offset);
+
+  --honesty-check-box-shadow-tile: var(--honesty-elevation-none);
+  --honesty-check-box-shadow-tile-hover: var(--honesty-elevation-raised);
+  --honesty-check-box-shadow-tile-selected: var(--honesty-elevation-overlay);
+  --honesty-check-box-shadow-thumb: var(--honesty-elevation-raised);
+
+  --honesty-check-box-field-bg: transparent;
+  --honesty-check-box-field-border: var(--honesty-check-box-border);
+  --honesty-check-box-field-bg-hover: transparent;
+  --honesty-check-box-field-border-hover:
+    var(--honesty-check-box-border-hover);
+
+  --honesty-check-box-field-bg-on: var(--honesty-check-box-fill);
+  --honesty-check-box-field-border-on: var(--honesty-check-box-fill);
+  --honesty-check-box-field-bg-on-hover: var(--honesty-check-box-fill-hover);
+  --honesty-check-box-field-border-on-hover:
+    var(--honesty-check-box-fill-hover);
+
+  --honesty-check-box-track-rest: var(--honesty-check-box-track-off);
+  --honesty-check-box-track-rest-hover:
+    var(--honesty-check-box-track-off-hover);
+
+  --honesty-check-box-tile-bg: var(--honesty-check-box-surface);
+  --honesty-check-box-tile-bg-hover:
+    var(--honesty-check-box-surface-hover);
+  --honesty-check-box-tile-bg-on: var(--honesty-check-box-accent-soft);
+
+  --honesty-check-box-control-size: 1.375rem;
+  --honesty-check-box-radius: 0.375rem;
+  --honesty-check-box-border-width: 0.09375rem;
+  --honesty-check-box-font-size: 0.875rem;
+  --honesty-check-box-description-size: 0.8125rem;
+  --honesty-check-box-gap: 0.625rem;
+  --honesty-check-box-tile-padding-block: 0.75rem;
+  --honesty-check-box-tile-padding-inline: 0.875rem;
+  --honesty-check-box-tile-radius: 0.75rem;
+  --honesty-check-box-tile-min-inline-size: 11rem;
+  --honesty-check-box-tile-font-size: 0.9375rem;
+  --honesty-check-box-tile-description-size: 0.8125rem;
+  --honesty-check-box-mark-stroke: 2.6;
+
+  --honesty-check-box-line-height: 1.35;
+  --honesty-check-box-description-line-height: 1.45;
+  --honesty-check-box-title-weight: 600;
+  --honesty-check-box-description-weight: 400;
+  --honesty-check-box-track-ratio: 1.85;
+  --honesty-check-box-track-pad-ratio: 0.13;
+  --honesty-check-box-mark-scale: 0.55;
+  --honesty-check-box-pop-scale: 1.05;
+  --honesty-check-box-press-scale: 0.94;
+  --honesty-check-box-text-gap-ratio: 0.12;
+  --honesty-check-box-disabled-opacity: 0.45;
+
+  --honesty-check-box-duration-instant: var(--honesty-motion-duration-fast);
+  --honesty-check-box-duration-fast: var(--honesty-motion-duration-default);
+  --honesty-check-box-duration-base: var(--honesty-motion-duration-slow);
+  --honesty-check-box-duration-draw: var(--honesty-motion-duration-deliberate);
+  --honesty-check-box-duration-erase: var(--honesty-motion-duration-default);
+  --honesty-check-box-duration-pop: var(--honesty-motion-duration-slow);
+  --honesty-check-box-delay-draw: var(--honesty-motion-duration-fast);
+  --honesty-check-box-easing-standard: var(--honesty-motion-easing-standard);
+  --honesty-check-box-easing-out: var(--honesty-motion-easing-enter);
+  --honesty-check-box-easing-spring: var(--honesty-motion-easing-enter);
+  --honesty-check-box-easing-draw: var(--honesty-motion-easing-enter);
+  --honesty-check-box-easing-erase: var(--honesty-motion-easing-exit);
 }
 
 @mixin tone-secondary {
-  --honesty-check-box-fill-color: var(--honesty-color-brand-secondary-solid);
-  --honesty-check-box-mark-color: var(--honesty-color-brand-secondary-on-solid);
+  --honesty-check-box-fill: var(--honesty-color-brand-secondary-solid);
+  --honesty-check-box-fill-hover:
+    var(--honesty-color-brand-secondary-solid-strong);
+  --honesty-check-box-on-fill:
+    var(--honesty-color-brand-secondary-on-solid);
+  --honesty-check-box-accent-soft:
+    var(--honesty-color-brand-secondary-subtle);
+  --honesty-check-box-accent-soft-hover:
+    var(--honesty-color-brand-secondary-subtle);
 }
+
 @mixin tone-accent {
-  --honesty-check-box-fill-color: var(--honesty-color-brand-accent-solid);
-  --honesty-check-box-mark-color: var(--honesty-color-brand-accent-on-solid);
+  --honesty-check-box-fill: var(--honesty-color-brand-accent-solid);
+  --honesty-check-box-fill-hover:
+    var(--honesty-color-brand-accent-solid-strong);
+  --honesty-check-box-on-fill: var(--honesty-color-brand-accent-on-solid);
+  --honesty-check-box-accent-soft: var(--honesty-color-brand-accent-subtle);
+  --honesty-check-box-accent-soft-hover:
+    var(--honesty-color-brand-accent-subtle);
 }
 
 @mixin status-success {
-  --honesty-check-box-fill-color: var(--honesty-color-feedback-success-surface-strong);
-  --honesty-check-box-border-color: var(--honesty-color-feedback-success-border);
-  --honesty-check-box-mark-color: var(--honesty-color-feedback-success-on-strong);
+  --honesty-check-box-fill:
+    var(--honesty-color-feedback-success-surface-strong);
+  --honesty-check-box-fill-hover:
+    var(--honesty-color-feedback-success-surface-strong);
+  --honesty-check-box-on-fill:
+    var(--honesty-color-feedback-success-on-strong);
+  --honesty-check-box-field-border:
+    var(--honesty-color-feedback-success-border);
+  --honesty-check-box-field-border-hover:
+    var(--honesty-color-feedback-success-icon);
+  --honesty-check-box-focus-ring:
+    var(--honesty-color-feedback-success-icon);
+  --honesty-check-box-text-muted:
+    var(--honesty-color-feedback-success-text);
+  --honesty-check-box-accent-soft:
+    var(--honesty-color-feedback-success-surface);
+  --honesty-check-box-accent-soft-hover:
+    var(--honesty-color-feedback-success-surface);
 }
+
 @mixin status-warning {
-  --honesty-check-box-fill-color: var(--honesty-color-feedback-warning-surface-strong);
-  --honesty-check-box-border-color: var(--honesty-color-feedback-warning-border);
-  --honesty-check-box-mark-color: var(--honesty-color-feedback-warning-on-strong);
+  --honesty-check-box-fill:
+    var(--honesty-color-feedback-warning-surface-strong);
+  --honesty-check-box-fill-hover:
+    var(--honesty-color-feedback-warning-surface-strong);
+  --honesty-check-box-on-fill:
+    var(--honesty-color-feedback-warning-on-strong);
+  --honesty-check-box-field-border:
+    var(--honesty-color-feedback-warning-border);
+  --honesty-check-box-field-border-hover:
+    var(--honesty-color-feedback-warning-icon);
+  --honesty-check-box-focus-ring:
+    var(--honesty-color-feedback-warning-icon);
+  --honesty-check-box-text-muted:
+    var(--honesty-color-feedback-warning-text);
+  --honesty-check-box-accent-soft:
+    var(--honesty-color-feedback-warning-surface);
+  --honesty-check-box-accent-soft-hover:
+    var(--honesty-color-feedback-warning-surface);
 }
+
 @mixin status-danger {
-  --honesty-check-box-fill-color: var(--honesty-color-feedback-danger-surface-strong);
-  --honesty-check-box-border-color: var(--honesty-color-feedback-danger-border);
-  --honesty-check-box-mark-color: var(--honesty-color-feedback-danger-on-strong);
+  --honesty-check-box-fill:
+    var(--honesty-color-feedback-danger-surface-strong);
+  --honesty-check-box-fill-hover:
+    var(--honesty-color-feedback-danger-surface-strong);
+  --honesty-check-box-on-fill:
+    var(--honesty-color-feedback-danger-on-strong);
+  --honesty-check-box-field-border:
+    var(--honesty-color-feedback-danger-icon);
+  --honesty-check-box-field-border-hover:
+    var(--honesty-color-feedback-danger-icon);
+  --honesty-check-box-focus-ring:
+    var(--honesty-color-feedback-danger-icon);
+  --honesty-check-box-text-muted:
+    var(--honesty-color-feedback-danger-text);
+  --honesty-check-box-accent-soft:
+    var(--honesty-color-feedback-danger-surface);
+  --honesty-check-box-accent-soft-hover:
+    var(--honesty-color-feedback-danger-surface);
 }
+
 @mixin status-info {
-  --honesty-check-box-fill-color: var(--honesty-color-feedback-info-surface-strong);
-  --honesty-check-box-border-color: var(--honesty-color-feedback-info-border);
-  --honesty-check-box-mark-color: var(--honesty-color-feedback-info-on-strong);
+  --honesty-check-box-fill:
+    var(--honesty-color-feedback-info-surface-strong);
+  --honesty-check-box-fill-hover:
+    var(--honesty-color-feedback-info-surface-strong);
+  --honesty-check-box-on-fill:
+    var(--honesty-color-feedback-info-on-strong);
+  --honesty-check-box-field-border:
+    var(--honesty-color-feedback-info-border);
+  --honesty-check-box-field-border-hover:
+    var(--honesty-color-feedback-info-icon);
+  --honesty-check-box-focus-ring:
+    var(--honesty-color-feedback-info-icon);
+  --honesty-check-box-text-muted:
+    var(--honesty-color-feedback-info-text);
+  --honesty-check-box-accent-soft:
+    var(--honesty-color-feedback-info-surface);
+  --honesty-check-box-accent-soft-hover:
+    var(--honesty-color-feedback-info-surface);
+}
+
+@mixin variant-filled {
+  --honesty-check-box-field-bg: var(--honesty-check-box-surface-sunken);
+  --honesty-check-box-field-border: transparent;
+  --honesty-check-box-field-bg-hover:
+    var(--honesty-check-box-surface-sunken-hover);
+  --honesty-check-box-field-border-hover: transparent;
+  --honesty-check-box-track-rest: var(--honesty-check-box-surface-sunken);
+  --honesty-check-box-track-rest-hover:
+    var(--honesty-check-box-surface-sunken-hover);
+  --honesty-check-box-tile-bg: var(--honesty-check-box-surface-sunken);
+  --honesty-check-box-tile-bg-hover:
+    var(--honesty-check-box-surface-sunken-hover);
+}
+
+@mixin variant-soft {
+  --honesty-check-box-field-bg: var(--honesty-check-box-accent-soft);
+  --honesty-check-box-field-border: transparent;
+  --honesty-check-box-field-bg-hover:
+    var(--honesty-check-box-accent-soft-hover);
+  --honesty-check-box-field-border-hover: transparent;
+  --honesty-check-box-track-rest: var(--honesty-check-box-accent-soft);
+  --honesty-check-box-track-rest-hover:
+    var(--honesty-check-box-accent-soft-hover);
+  --honesty-check-box-tile-bg: var(--honesty-check-box-accent-soft);
+  --honesty-check-box-tile-bg-hover:
+    var(--honesty-check-box-accent-soft-hover);
+}
+
+@mixin readonly {
+  --honesty-check-box-field-bg: var(--honesty-check-box-readonly-bg);
+  --honesty-check-box-field-bg-hover: var(--honesty-check-box-readonly-bg);
+  --honesty-check-box-field-border: var(--honesty-check-box-readonly-border);
+  --honesty-check-box-field-border-hover:
+    var(--honesty-check-box-readonly-border);
+  --honesty-check-box-tile-bg: var(--honesty-check-box-readonly-bg);
+  --honesty-check-box-tile-bg-hover: var(--honesty-check-box-readonly-bg);
 }
 
 @mixin size-sm {
   --honesty-check-box-control-size: 1.125rem;
-  --honesty-check-box-gap: 0.6rem;
-  --honesty-check-box-title-size: 0.82rem;
-  --honesty-check-box-description-size: 0.7rem;
-  --honesty-check-box-title-line-height: 1.4;
+  --honesty-check-box-radius: 0.3125rem;
+  --honesty-check-box-border-width: 0.09375rem;
+  --honesty-check-box-font-size: 0.8125rem;
+  --honesty-check-box-description-size: 0.75rem;
+  --honesty-check-box-gap: 0.5rem;
+  --honesty-check-box-tile-padding-block: 0.5rem;
+  --honesty-check-box-tile-padding-inline: 0.75rem;
+  --honesty-check-box-tile-radius: 0.625rem;
+  --honesty-check-box-tile-min-inline-size: 9rem;
+  --honesty-check-box-tile-font-size: 0.875rem;
+  --honesty-check-box-tile-description-size: 0.75rem;
+  --honesty-check-box-mark-stroke: 2.9;
 }
+
 @mixin size-md {
-  --honesty-check-box-control-size: 1.5rem;
-  --honesty-check-box-gap: 0.75rem;
-  --honesty-check-box-title-size: 0.93rem;
-  --honesty-check-box-description-size: 0.76rem;
-  --honesty-check-box-title-line-height: 1.35;
+  --honesty-check-box-control-size: 1.375rem;
+  --honesty-check-box-radius: 0.375rem;
+  --honesty-check-box-border-width: 0.09375rem;
+  --honesty-check-box-font-size: 0.875rem;
+  --honesty-check-box-description-size: 0.8125rem;
+  --honesty-check-box-gap: 0.625rem;
+  --honesty-check-box-tile-padding-block: 0.75rem;
+  --honesty-check-box-tile-padding-inline: 0.875rem;
+  --honesty-check-box-tile-radius: 0.75rem;
+  --honesty-check-box-tile-min-inline-size: 11rem;
+  --honesty-check-box-tile-font-size: 0.9375rem;
+  --honesty-check-box-tile-description-size: 0.8125rem;
+  --honesty-check-box-mark-stroke: 2.6;
 }
+
 @mixin size-lg {
-  --honesty-check-box-control-size: 1.875rem;
-  --honesty-check-box-gap: 0.85rem;
-  --honesty-check-box-title-size: 1.04rem;
-  --honesty-check-box-description-size: 0.86rem;
-  --honesty-check-box-title-line-height: 1.35;
+  --honesty-check-box-control-size: 1.75rem;
+  --honesty-check-box-radius: 0.5rem;
+  --honesty-check-box-border-width: 0.125rem;
+  --honesty-check-box-font-size: 1rem;
+  --honesty-check-box-description-size: 0.875rem;
+  --honesty-check-box-gap: 0.75rem;
+  --honesty-check-box-tile-padding-block: 1rem;
+  --honesty-check-box-tile-padding-inline: 1.125rem;
+  --honesty-check-box-tile-radius: 0.875rem;
+  --honesty-check-box-tile-min-inline-size: 13rem;
+  --honesty-check-box-tile-font-size: 1.0625rem;
+  --honesty-check-box-tile-description-size: 0.875rem;
+  --honesty-check-box-mark-stroke: 2.35;
 }
+
 @mixin size-xl {
-  --honesty-check-box-control-size: 2.375rem;
-  --honesty-check-box-gap: 1rem;
-  --honesty-check-box-title-size: 1.16rem;
-  --honesty-check-box-description-size: 0.94rem;
-  --honesty-check-box-title-line-height: 1.25;
+  --honesty-check-box-control-size: 2.25rem;
+  --honesty-check-box-radius: 0.625rem;
+  --honesty-check-box-border-width: 0.125rem;
+  --honesty-check-box-font-size: 1.125rem;
+  --honesty-check-box-description-size: 1rem;
+  --honesty-check-box-gap: 0.875rem;
+  --honesty-check-box-tile-padding-block: 1.25rem;
+  --honesty-check-box-tile-padding-inline: 1.5rem;
+  --honesty-check-box-tile-radius: 1rem;
+  --honesty-check-box-tile-min-inline-size: 16rem;
+  --honesty-check-box-tile-font-size: 1.25rem;
+  --honesty-check-box-tile-description-size: 1rem;
+  --honesty-check-box-mark-stroke: 2.1;
 }
