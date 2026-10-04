@@ -1,4 +1,100 @@
 @mixin base {
+--honesty-check-box-text: var(--honesty-color-text-primary);
+  --honesty-check-box-text-muted: var(--honesty-color-text-muted);
+
+  --honesty-check-box-surface: var(--honesty-color-surface-default);
+  --honesty-check-box-surface-hover: var(--honesty-color-surface-elevated);
+  --honesty-check-box-surface-sunken: var(--honesty-color-surface-canvas);
+  --honesty-check-box-surface-sunken-hover: var(--honesty-color-surface-elevated);
+
+  --honesty-check-box-border: var(--honesty-border-default);
+  --honesty-check-box-border-hover: var(--honesty-border-strong);
+
+  --honesty-check-box-fill: var(--honesty-color-action-primary-bg);
+  --honesty-check-box-fill-hover: var(--honesty-color-action-primary-bg-hover);
+  --honesty-check-box-on-fill: var(--honesty-color-action-primary-fg);
+  --honesty-check-box-accent-soft: var(--honesty-color-action-primary-subtle-bg);
+  --honesty-check-box-accent-soft-hover:
+    var(--honesty-color-action-primary-subtle-bg-hover);
+
+  --honesty-check-box-track-off: var(--honesty-border-default);
+  --honesty-check-box-track-off-hover: var(--honesty-border-strong);
+  --honesty-check-box-thumb-bg: var(--honesty-color-brand-primary-on-solid);
+
+  --honesty-check-box-danger: var(--honesty-color-feedback-danger-icon);
+  --honesty-check-box-danger-hover:
+    var(--honesty-color-feedback-danger-surface-strong);
+  --honesty-check-box-danger-text: var(--honesty-color-feedback-danger-text);
+
+  --honesty-check-box-readonly-bg: var(--honesty-color-surface-canvas);
+  --honesty-check-box-readonly-border: var(--honesty-border-subtle);
+
+  --honesty-check-box-focus-ring: var(--honesty-color-action-focus-ring);
+  --honesty-check-box-focus-ring-width: var(--honesty-focus-ring-width);
+  --honesty-check-box-focus-ring-offset: var(--honesty-focus-ring-offset);
+
+  --honesty-check-box-shadow-tile: var(--honesty-elevation-none);
+  --honesty-check-box-shadow-tile-hover: var(--honesty-elevation-raised);
+  --honesty-check-box-shadow-tile-selected: var(--honesty-elevation-overlay);
+  --honesty-check-box-shadow-thumb: var(--honesty-elevation-raised);
+
+  --honesty-check-box-field-bg: transparent;
+  --honesty-check-box-field-border: var(--honesty-check-box-border);
+  --honesty-check-box-field-bg-hover: transparent;
+  --honesty-check-box-field-border-hover:
+    var(--honesty-check-box-border-hover);
+
+  --honesty-check-box-field-bg-on: var(--honesty-check-box-fill);
+  --honesty-check-box-field-border-on: var(--honesty-check-box-fill);
+  --honesty-check-box-field-bg-on-hover: var(--honesty-check-box-fill-hover);
+  --honesty-check-box-field-border-on-hover:
+    var(--honesty-check-box-fill-hover);
+
+  --honesty-check-box-track-rest: var(--honesty-check-box-track-off);
+  --honesty-check-box-track-rest-hover:
+    var(--honesty-check-box-track-off-hover);
+
+  --honesty-check-box-tile-bg: var(--honesty-check-box-surface);
+  --honesty-check-box-tile-bg-hover:
+    var(--honesty-check-box-surface-hover);
+  --honesty-check-box-tile-bg-on: var(--honesty-check-box-accent-soft);
+--honesty-check-box-control-size: 1.375rem;
+  --honesty-check-box-radius: 0.375rem;
+  --honesty-check-box-border-width: 0.09375rem;
+  --honesty-check-box-font-size: 0.875rem;
+  --honesty-check-box-description-size: 0.8125rem;
+  --honesty-check-box-gap: 0.625rem;
+  --honesty-check-box-tile-padding-block: 0.75rem;
+  --honesty-check-box-tile-padding-inline: 0.875rem;
+  --honesty-check-box-tile-radius: 0.75rem;
+  --honesty-check-box-tile-min-inline-size: 11rem;
+  --honesty-check-box-tile-font-size: 0.9375rem;
+  --honesty-check-box-tile-description-size: 0.8125rem;
+  --honesty-check-box-mark-stroke: 2.6;
+
+  --honesty-check-box-line-height: 1.35;
+  --honesty-check-box-description-line-height: 1.45;
+  --honesty-check-box-title-weight: 600;
+  --honesty-check-box-description-weight: 400;
+  --honesty-check-box-track-ratio: 1.85;
+  --honesty-check-box-track-pad-ratio: 0.13;
+  --honesty-check-box-mark-scale: 0.55;
+  --honesty-check-box-pop-scale: 1.05;
+  --honesty-check-box-press-scale: 0.94;
+  --honesty-check-box-text-gap-ratio: 0.12;
+
+  --honesty-check-box-duration-instant: var(--honesty-motion-duration-fast);
+  --honesty-check-box-duration-fast: var(--honesty-motion-duration-default);
+  --honesty-check-box-duration-base: var(--honesty-motion-duration-slow);
+  --honesty-check-box-duration-draw: var(--honesty-motion-duration-deliberate);
+  --honesty-check-box-duration-erase: var(--honesty-motion-duration-default);
+  --honesty-check-box-duration-pop: var(--honesty-motion-duration-slow);
+  --honesty-check-box-delay-draw: var(--honesty-motion-duration-fast);
+  --honesty-check-box-easing-standard: var(--honesty-motion-easing-standard);
+  --honesty-check-box-easing-out: var(--honesty-motion-easing-enter);
+  --honesty-check-box-easing-spring: var(--honesty-motion-easing-enter);
+  --honesty-check-box-easing-draw: var(--honesty-motion-easing-enter);
+  --honesty-check-box-easing-erase: var(--honesty-motion-easing-exit);
   --honesty-check-box-disabled-opacity: 0.45;
 }
 
@@ -103,6 +199,7 @@
   --honesty-check-box-easing-spring: var(--honesty-motion-easing-enter);
   --honesty-check-box-easing-draw: var(--honesty-motion-easing-enter);
   --honesty-check-box-easing-erase: var(--honesty-motion-easing-exit);
+  --honesty-check-box-disabled-opacity: 0.45;
 }
 
 @mixin tone-secondary {
