@@ -6,6 +6,12 @@ Product Owner supplied:
 
 `erp-checkbox-3.html`
 
+Reference identity captured at implementation time:
+
+- size: 59,910 bytes;
+- SHA-256:
+  `63d062383be8103cca172078d7ccf9f314779d4e829cd11416ebc199ddb5b6bf`.
+
 and explicitly required the production result to visually match that demo while
 using Honesty ERP system colors instead of the demo palette.
 
