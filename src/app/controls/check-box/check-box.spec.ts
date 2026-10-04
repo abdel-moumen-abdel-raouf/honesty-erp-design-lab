@@ -14,7 +14,7 @@ describe('ErpCheckBox', () => {
     return fixture;
   }
 
-  it('creates with exact defaults and authoritative native checkbox semantics', () => {
+  it('creates with the supplied reference defaults and native semantics', () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const host = fixture.nativeElement as HTMLElement;
@@ -23,18 +23,30 @@ describe('ErpCheckBox', () => {
     expect(reflectComponentType(ErpCheckBox)?.selector).toBe('erp-check-box');
     expect(control.description()).toBeNull();
     expect(control.indeterminate()).toBe(false);
+    expect(control.readOnly()).toBe(false);
+    expect(control.hideText()).toBe(false);
     expect(control.tone()).toBe('neutral');
     expect(control.status()).toBe('none');
     expect(control.size()).toBe('md');
-    expect(control.variant()).toBe('classic');
+    expect(control.mode()).toBe('checkbox');
+    expect(control.variant()).toBe('outline');
+
     expect(native.type).toBe('checkbox');
     expect(native.checked).toBe(false);
     expect(native.disabled).toBe(false);
-    expect(host.getAttribute('data-check-box-state')).toBe('ready');
-    expect(host.getAttribute('data-check-box-checked')).toBe('false');
-    expect(host.getAttribute('data-check-box-variant')).toBe('classic');
-    expect(host.getAttribute('data-check-box-has-description')).toBe('false');
-    expect(host.querySelector('label')?.getAttribute('for')).toBe(native.id);
+    expect(host.getAttribute('data-check-box-mode')).toBe('checkbox');
+    expect(host.getAttribute('data-check-box-variant')).toBe('outline');
+    expect(host.getAttribute('data-check-box-size')).toBe('md');
+    expect(host.getAttribute('data-check-box-status')).toBe('none');
+
+    expect(host.querySelectorAll('.check-box__box')).toHaveLength(1);
+    expect(host.querySelectorAll('.check-box__thumb')).toHaveLength(1);
+    expect(host.querySelectorAll('svg.check-box__mark')).toHaveLength(1);
+    expect(host.querySelectorAll('.check-box__mark-check')).toHaveLength(1);
+    expect(host.querySelectorAll('.check-box__mark-dash')).toHaveLength(1);
+    expect(
+      host.querySelector('.check-box__mark-check')?.getAttribute('pathLength'),
+    ).toBe('1');
   });
 
   it('normalizes CVA writes and publishes native user changes once', () => {
@@ -46,23 +58,24 @@ describe('ErpCheckBox', () => {
 
     control.writeValue(true);
     fixture.detectChanges();
+
     expect(native.checked).toBe(true);
     expect(onChange).not.toHaveBeenCalled();
 
     native.checked = false;
     native.dispatchEvent(new Event('change'));
     fixture.detectChanges();
+
     expect(onChange).toHaveBeenCalledOnce();
     expect(onChange).toHaveBeenCalledWith(false);
     expect(hostAttribute(fixture, 'data-check-box-checked')).toBe('false');
   });
 
-  it('centers one control against a title and optional multiline description block', () => {
+  it('renders title and optional description without nested native labels', () => {
     const fixture = create();
     const host = fixture.nativeElement as HTMLElement;
 
-    expect(host.querySelectorAll('.check-box__control')).toHaveLength(1);
-    expect(host.querySelectorAll('.check-box__text')).toHaveLength(1);
+    expect(host.querySelectorAll('label')).toHaveLength(1);
     expect(host.querySelector('.check-box__title')?.textContent?.trim()).toBe(
       'Active',
     );
@@ -70,58 +83,79 @@ describe('ErpCheckBox', () => {
 
     fixture.componentRef.setInput(
       'description',
-      '  A longer supporting description that may wrap onto multiple lines.  ',
+      '  Supporting text that may wrap to another line.  ',
     );
     fixture.detectChanges();
 
     expect(host.getAttribute('data-check-box-has-description')).toBe('true');
     expect(
       host.querySelector('.check-box__description')?.textContent?.trim(),
-    ).toBe('A longer supporting description that may wrap onto multiple lines.');
+    ).toBe('Supporting text that may wrap to another line.');
   });
 
-  it('keeps one fixed visual box while native state drives CSS check and indeterminate marks', () => {
+  it('supports the exact checkbox, switch, and tile modes', () => {
+    const fixture = create();
+    const host = fixture.nativeElement as HTMLElement;
+
+    for (const mode of ['checkbox', 'switch', 'tile'] as const) {
+      fixture.componentRef.setInput('mode', mode);
+      fixture.detectChanges();
+
+      expect(host.getAttribute('data-check-box-mode')).toBe(mode);
+      expect(
+        host.querySelector('label')?.getAttribute('data-mode'),
+      ).toBe(mode);
+      expect(host.querySelectorAll('input[type="checkbox"]')).toHaveLength(1);
+    }
+  });
+
+  it('supports the exact outline, filled, and soft variants', () => {
+    const fixture = create();
+    const host = fixture.nativeElement as HTMLElement;
+
+    for (const variant of ['outline', 'filled', 'soft'] as const) {
+      fixture.componentRef.setInput('variant', variant);
+      fixture.detectChanges();
+
+      expect(host.getAttribute('data-check-box-variant')).toBe(variant);
+      expect(
+        host.querySelector('label')?.getAttribute('data-variant'),
+      ).toBe(variant);
+    }
+  });
+
+  it('supports standalone visual evidence while preserving an accessible label', () => {
+    const fixture = create();
+    fixture.componentRef.setInput('hideText', true);
+    fixture.detectChanges();
+
+    const host = fixture.nativeElement as HTMLElement;
+    const native = host.querySelector('input') as HTMLInputElement;
+
+    expect(host.getAttribute('data-check-box-hide-text')).toBe('true');
+    expect(host.querySelector('.check-box__text')).toBeNull();
+    expect(native.getAttribute('aria-label')).toBe('Active');
+  });
+
+  it('leaves indeterminate after user activation and re-arms on input change', () => {
     const fixture = create();
     const control = fixture.componentInstance;
     const host = fixture.nativeElement as HTMLElement;
-    const visual = host.querySelector('.check-box__visual');
-
-    expect(host.querySelectorAll('.check-box__control')).toHaveLength(1);
-    expect(host.querySelectorAll('.check-box__visual')).toHaveLength(1);
-    expect(host.querySelector('erp-icon')).toBeNull();
-
-    control.writeValue(true);
-    fixture.detectChanges();
-    expect(host.querySelector('.check-box__visual')).toBe(visual);
-    expect(host.getAttribute('data-check-box-checked')).toBe('true');
-
-    fixture.componentRef.setInput('indeterminate', true);
-    fixture.detectChanges();
-    expect(host.querySelector('.check-box__visual')).toBe(visual);
-    expect(host.getAttribute('data-check-box-indeterminate')).toBe('true');
-    expect(host.querySelector('erp-icon')).toBeNull();
-  });
-
-  it('leaves indeterminate on user activation and re-arms it only when the input changes', () => {
-    const fixture = create();
-    const control = fixture.componentInstance;
-    const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
-    const onChange = vi.fn();
-    control.registerOnChange(onChange);
+    const native = host.querySelector('input') as HTMLInputElement;
 
     fixture.componentRef.setInput('indeterminate', true);
     fixture.detectChanges();
 
     expect(native.indeterminate).toBe(true);
-    expect(hostAttribute(fixture, 'data-check-box-indeterminate')).toBe('true');
+    expect(host.getAttribute('data-check-box-indeterminate')).toBe('true');
 
     native.checked = true;
     native.dispatchEvent(new Event('change'));
     fixture.detectChanges();
 
-    expect(onChange).toHaveBeenCalledWith(true);
     expect(native.indeterminate).toBe(false);
-    expect(hostAttribute(fixture, 'data-check-box-indeterminate')).toBe('false');
+    expect(host.getAttribute('data-check-box-indeterminate')).toBe('false');
+    expect(host.getAttribute('data-check-box-checked')).toBe('true');
 
     fixture.componentRef.setInput('indeterminate', false);
     fixture.detectChanges();
@@ -129,88 +163,98 @@ describe('ErpCheckBox', () => {
     fixture.detectChanges();
 
     expect(native.indeterminate).toBe(true);
-    expect(hostAttribute(fixture, 'data-check-box-indeterminate')).toBe('true');
+    expect(host.getAttribute('data-check-box-indeterminate')).toBe('true');
+    expect(control.indeterminate()).toBe(true);
   });
 
-  it('blocks invalid or disabled user changes', () => {
+  it('keeps read-only focusable and restores the authoritative value on change', () => {
     const fixture = create();
     const control = fixture.componentInstance;
-    const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
+    const host = fixture.nativeElement as HTMLElement;
+    const native = host.querySelector('input') as HTMLInputElement;
     const onChange = vi.fn();
     control.registerOnChange(onChange);
 
-    fixture.componentRef.setInput('disabled', true);
+    control.writeValue(true);
+    fixture.componentRef.setInput('readOnly', true);
     fixture.detectChanges();
-    expect(native.disabled).toBe(true);
-    expect(hostAttribute(fixture, 'data-check-box-state')).toBe('disabled');
 
-    fixture.componentRef.setInput('disabled', false);
-    fixture.componentRef.setInput('label', '   ');
+    expect(native.disabled).toBe(false);
+    expect(native.getAttribute('aria-readonly')).toBe('true');
+    expect(host.getAttribute('data-check-box-readonly')).toBe('true');
+
+    native.checked = false;
+    native.dispatchEvent(new Event('change'));
     fixture.detectChanges();
-    expect(native.disabled).toBe(true);
-    expect(hostAttribute(fixture, 'data-check-box-state')).toBe('invalid');
+
+    expect(native.checked).toBe(true);
     expect(onChange).not.toHaveBeenCalled();
+
+    const keydown = new KeyboardEvent('keydown', {
+      key: ' ',
+      cancelable: true,
+    });
+    native.dispatchEvent(keydown);
+    expect(keydown.defaultPrevented).toBe(true);
   });
 
-  it('updates every public visual facet without changing the one-control contract', () => {
-    const fixture = create();
-    fixture.componentRef.setInput('tone', 'accent');
-    fixture.componentRef.setInput('status', 'warning');
-    fixture.detectChanges();
-
-    expect(hostAttribute(fixture, 'data-check-box-tone')).toBe('accent');
-    expect(hostAttribute(fixture, 'data-check-box-status')).toBe('warning');
-
-    for (const size of ['sm', 'md', 'lg', 'xl', 'xxl', 'xxxl', 'xxxxl'] as const) {
-      fixture.componentRef.setInput('size', size);
-      fixture.detectChanges();
-      expect(hostAttribute(fixture, 'data-check-box-size')).toBe(size);
-      expect(
-        fixture.nativeElement.querySelectorAll('.check-box__visual').length,
-      ).toBe(1);
-    }
-  });
-
-  it('exposes the template classic, switch, and neon variants without changing native checkbox semantics', () => {
-    const fixture = create();
-    const host = fixture.nativeElement as HTMLElement;
-    const native = host.querySelector('input') as HTMLInputElement;
-
-    for (const variant of ['classic', 'switch', 'neon'] as const) {
-      fixture.componentRef.setInput('variant', variant);
-      fixture.detectChanges();
-
-      expect(host.getAttribute('data-check-box-variant')).toBe(variant);
-      expect(host.querySelectorAll('input[type="checkbox"]')).toHaveLength(1);
-      expect(host.querySelectorAll('.check-box__visual')).toHaveLength(1);
-      expect(native.type).toBe('checkbox');
-    }
-  });
-
-  it('reports no-selection and required validation when unchecked', () => {
+  it('derives danger from required validation and recovers after selection', () => {
     const fixture = create();
     const control = fixture.componentInstance;
-    const native = fixture.nativeElement.querySelector('input') as HTMLInputElement;
-
-    expect(control.inputState()).toBe('no-selection');
-    expect(control.valid()).toBe(true);
+    const host = fixture.nativeElement as HTMLElement;
+    const native = host.querySelector('input') as HTMLInputElement;
 
     fixture.componentRef.setInput('required', true);
     fixture.detectChanges();
 
-    expect(control.inputState()).toBe('no-selection');
     expect(control.valid()).toBe(false);
-    expect(control.errors()).toEqual(['القيمة مطلوبة.']);
+    expect(host.getAttribute('data-check-box-status')).toBe('danger');
     expect(native.getAttribute('aria-invalid')).toBe('true');
-    expect(hostAttribute(fixture, 'data-check-box-status')).toBe('danger');
 
     native.checked = true;
     native.dispatchEvent(new Event('change'));
     fixture.detectChanges();
 
-    expect(control.inputState()).toBe('valid-entry');
     expect(control.valid()).toBe(true);
-    expect(hostAttribute(fixture, 'data-check-box-status')).toBe('none');
+    expect(host.getAttribute('data-check-box-status')).toBe('none');
+    expect(native.getAttribute('aria-invalid')).toBeNull();
+  });
+
+  it('keeps every public size input while the CheckBox visual scale ends at xl', () => {
+    const fixture = create();
+    const host = fixture.nativeElement as HTMLElement;
+
+    for (const size of [
+      'sm',
+      'md',
+      'lg',
+      'xl',
+      'xxl',
+      'xxxl',
+      'xxxxl',
+    ] as const) {
+      fixture.componentRef.setInput('size', size);
+      fixture.detectChanges();
+      expect(host.getAttribute('data-check-box-size')).toBe(size);
+    }
+  });
+
+  it('preserves disabled and invalid-configuration boundaries', () => {
+    const fixture = create();
+    const host = fixture.nativeElement as HTMLElement;
+    const native = host.querySelector('input') as HTMLInputElement;
+
+    fixture.componentRef.setInput('disabled', true);
+    fixture.detectChanges();
+    expect(native.disabled).toBe(true);
+    expect(host.getAttribute('data-check-box-state')).toBe('disabled');
+
+    fixture.componentRef.setInput('disabled', false);
+    fixture.componentRef.setInput('label', '   ');
+    fixture.detectChanges();
+
+    expect(native.disabled).toBe(true);
+    expect(host.getAttribute('data-check-box-state')).toBe('invalid');
   });
 });
 
