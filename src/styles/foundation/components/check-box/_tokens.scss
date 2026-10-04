@@ -1,4 +1,5 @@
 @mixin base {
+  --honesty-check-box-disabled-opacity: 0.45;
 }
 
 @mixin base-color {
@@ -89,7 +90,6 @@
   --honesty-check-box-pop-scale: 1.05;
   --honesty-check-box-press-scale: 0.94;
   --honesty-check-box-text-gap-ratio: 0.12;
-  --honesty-check-box-disabled-opacity: 0.45;
 
   --honesty-check-box-duration-instant: var(--honesty-motion-duration-fast);
   --honesty-check-box-duration-fast: var(--honesty-motion-duration-default);
