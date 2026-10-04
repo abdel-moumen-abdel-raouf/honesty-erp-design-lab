@@ -1361,15 +1361,21 @@ export function validateChoiceVisualContracts(
     !checkSource.includes('readonly readOnly = input(false') ||
     !checkSource.includes('readonly hideText = input(false') ||
     !checkSource.includes('effectiveIndeterminate = computed(') ||
+    !checkSource.includes("changes['indeterminate'] !== undefined") ||
+    !checkSource.includes('this.userClearedIndeterminate.set(false)') ||
     !checkSource.includes('effectiveStatus = computed<ErpFieldStatus>') ||
     !checkSource.includes('handleLabelClick(event: MouseEvent)') ||
     !checkSource.includes('handleNativeKeydown(event: KeyboardEvent)') ||
+    !checkSource.includes('input.checked = this.currentValue()') ||
+    !checkSource.includes('input.indeterminate = this.effectiveIndeterminate()') ||
     !checkSource.includes('this.userClearedIndeterminate.set(true)') ||
     !checkTemplate.includes('type="checkbox"') ||
     !checkTemplate.includes('[indeterminate]="effectiveIndeterminate()"') ||
     !checkTemplate.includes('[attr.data-mode]="mode()"') ||
     !checkTemplate.includes('[attr.data-variant]="variant()"') ||
     !checkTemplate.includes('[attr.aria-readonly]="readOnly()') ||
+    !checkTemplate.includes('[attr.aria-invalid]="effectiveStatus()') ||
+    !checkTemplate.includes('[attr.data-invalid]="effectiveStatus()') ||
     !checkTemplate.includes('[attr.aria-label]="hideText()') ||
     !checkTemplate.includes('class="check-box__box"') ||
     !checkTemplate.includes('class="check-box__thumb"') ||
@@ -2079,9 +2085,9 @@ export class ErpImagePicker extends ErpFileSelectionBase {
   }
 
   const validCheckSource =
-    "export type ErpCheckBoxMode = 'checkbox' | 'switch' | 'tile'; export type ErpCheckBoxVariant = 'outline' | 'filled' | 'soft'; readonly mode = input<ErpCheckBoxMode>('checkbox'); readonly variant = input<ErpCheckBoxVariant>('outline'); readonly readOnly = input(false); readonly hideText = input(false); effectiveIndeterminate = computed( effectiveStatus = computed<ErpFieldStatus> handleLabelClick(event: MouseEvent) handleNativeKeydown(event: KeyboardEvent) this.userClearedIndeterminate.set(true);";
+    "export type ErpCheckBoxMode = 'checkbox' | 'switch' | 'tile'; export type ErpCheckBoxVariant = 'outline' | 'filled' | 'soft'; readonly mode = input<ErpCheckBoxMode>('checkbox'); readonly variant = input<ErpCheckBoxVariant>('outline'); readonly readOnly = input(false); readonly hideText = input(false); effectiveIndeterminate = computed( changes['indeterminate'] !== undefined this.userClearedIndeterminate.set(false); effectiveStatus = computed<ErpFieldStatus> handleLabelClick(event: MouseEvent) handleNativeKeydown(event: KeyboardEvent) input.checked = this.currentValue(); input.indeterminate = this.effectiveIndeterminate(); this.userClearedIndeterminate.set(true);";
   const validCheckTemplate =
-    '<label [attr.data-mode]="mode()" [attr.data-variant]="variant()"><input type="checkbox" [indeterminate]="effectiveIndeterminate()" [attr.aria-readonly]="readOnly() ? true : null" [attr.aria-label]="hideText() ? label : null"><span class="check-box__box"><span class="check-box__thumb"></span><svg class="check-box__mark"><path class="check-box__mark-check" pathLength="1" d="M6 12 10.2 16.2 18 8"></path><path class="check-box__mark-dash" pathLength="1" d="M6.5 12h11"></path></svg></span><span class="check-box__text"><erp-text class="check-box__title"></erp-text><erp-text class="check-box__description"></erp-text></span></label>';
+    '<label [attr.data-mode]="mode()" [attr.data-variant]="variant()"><input type="checkbox" [indeterminate]="effectiveIndeterminate()" [attr.aria-readonly]="readOnly() ? true : null" [attr.aria-invalid]="effectiveStatus() ? true : null" [attr.data-invalid]="effectiveStatus() ? true : null" [attr.aria-label]="hideText() ? label : null"><span class="check-box__box"><span class="check-box__thumb"></span><svg class="check-box__mark"><path class="check-box__mark-check" pathLength="1" d="M6 12 10.2 16.2 18 8"></path><path class="check-box__mark-dash" pathLength="1" d="M6.5 12h11"></path></svg></span><span class="check-box__text"><erp-text class="check-box__title"></erp-text><erp-text class="check-box__description"></erp-text></span></label>';
   const validCheckTokens =
     '--honesty-check-box-field-bg: transparent; --honesty-check-box-field-bg-on: var(--honesty-check-box-fill); --honesty-check-box-track-ratio: 1.85; --honesty-check-box-track-pad-ratio: 0.13; --honesty-check-box-mark-scale: 0.55; --honesty-check-box-pop-scale: 1.05; --honesty-check-box-press-scale: 0.94; --honesty-check-box-disabled-opacity: 0.45; --honesty-check-box-control-size: 1.125rem; --honesty-check-box-control-size: 1.375rem; --honesty-check-box-control-size: 1.75rem; --honesty-check-box-control-size: 2.25rem; --honesty-check-box-duration-instant: 90ms; --honesty-check-box-duration-fast: 140ms; --honesty-check-box-duration-base: 220ms; --honesty-check-box-duration-draw: 300ms; --honesty-check-box-duration-erase: 150ms; --honesty-check-box-duration-pop: 240ms; --honesty-check-box-delay-draw: 70ms; --honesty-check-box-reduced-duration: 1ms; --honesty-check-box-easing-standard: cubic-bezier(0.4, 0, 0.2, 1); --honesty-check-box-easing-out: cubic-bezier(0.16, 1, 0.3, 1); --honesty-check-box-easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1); --honesty-check-box-easing-draw: cubic-bezier(0.22, 0.9, 0.24, 1); --honesty-check-box-easing-erase: cubic-bezier(0.55, 0, 0.85, 0.3); @mixin variant-filled {} @mixin variant-soft {} @mixin state-readonly {};';
   const validCheckStyles =
