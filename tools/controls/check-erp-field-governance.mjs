@@ -1378,6 +1378,7 @@ export function validateChoiceVisualContracts(
     !checkTemplate.includes('[attr.data-invalid]="effectiveStatus()') ||
     !checkTemplate.includes('[attr.aria-label]="hideText()') ||
     !checkTemplate.includes('(click)="handleNativeClick($event)"') ||
+    /<label\b[^>]*\(click\)=/.test(checkTemplate) ||
     checkTemplate.includes('(click)="handleLabelClick($event)"') ||
     !checkTemplate.includes('class="check-box__box"') ||
     !checkTemplate.includes('class="check-box__thumb"') ||
