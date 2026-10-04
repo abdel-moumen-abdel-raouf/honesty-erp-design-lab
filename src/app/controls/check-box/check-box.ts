@@ -17,7 +17,8 @@ import {
 } from '../input-family/field-contracts';
 import {ErpInputBase} from '../input-family/input-base';
 
-export type ErpCheckBoxVariant = 'classic' | 'switch' | 'neon';
+export type ErpCheckBoxMode = 'checkbox' | 'switch' | 'tile';
+export type ErpCheckBoxVariant = 'outline' | 'filled' | 'soft';
 
 let nextCheckBoxId = 0;
 
@@ -44,34 +45,43 @@ let nextCheckBoxId = 0;
     './check-box.scss',
     './check-box-states.scss',
     './check-box-switch.scss',
-    './check-box-neon.scss',
+    './check-box-tile.scss',
     './check-box-facets.scss',
     './check-box-sizes.scss',
   ],
   host: {
     '[attr.data-check-box-tone]': 'tone()',
-    '[attr.data-check-box-status]': "valid() ? status() : 'danger'",
+    '[attr.data-check-box-status]': 'effectiveStatus()',
     '[attr.data-check-box-size]': 'size()',
+    '[attr.data-check-box-mode]': 'mode()',
     '[attr.data-check-box-variant]': 'variant()',
     '[attr.data-check-box-state]': 'controlState()',
     '[attr.data-check-box-checked]': 'currentValue()',
     '[attr.data-check-box-indeterminate]': 'effectiveIndeterminate()',
+    '[attr.data-check-box-readonly]': 'readOnly()',
+    '[attr.data-check-box-hide-text]': 'hideText()',
     '[attr.data-check-box-has-description]': 'trimmedDescription().length > 0',
   },
 })
 export class ErpCheckBox extends ErpInputBase<boolean> {
   readonly description = input<string | null>(null);
   readonly indeterminate = input(false, {transform: booleanAttribute});
+  readonly readOnly = input(false, {transform: booleanAttribute});
+  readonly hideText = input(false, {transform: booleanAttribute});
   readonly tone = input<ErpFieldTone>('neutral');
   readonly status = input<ErpFieldStatus>('none');
   readonly size = input<ErpFieldSize>('md');
-  readonly variant = input<ErpCheckBoxVariant>('classic');
+  readonly mode = input<ErpCheckBoxMode>('checkbox');
+  readonly variant = input<ErpCheckBoxVariant>('outline');
 
   private readonly userClearedIndeterminate = signal(false);
 
   protected readonly controlId = `erp-check-box-${++nextCheckBoxId}`;
   protected readonly effectiveIndeterminate = computed(
     () => this.indeterminate() && !this.userClearedIndeterminate(),
+  );
+  protected readonly effectiveStatus = computed<ErpFieldStatus>(
+    () => (this.valid() ? this.status() : 'danger'),
   );
   protected readonly trimmedDescription = computed(
     () => this.description()?.trim() ?? '',
@@ -104,12 +114,40 @@ export class ErpCheckBox extends ErpInputBase<boolean> {
     return value === false ? 'no-selection' as const : null;
   }
 
+  protected handleLabelClick(event: MouseEvent): void {
+    if (!this.readOnly()) {
+      return;
+    }
+
+    event.preventDefault();
+    (event.currentTarget as HTMLElement)
+      .querySelector<HTMLInputElement>('input')
+      ?.focus();
+  }
+
+  protected handleNativeKeydown(event: KeyboardEvent): void {
+    if (
+      this.readOnly() &&
+      (event.key === ' ' || event.key === 'Enter')
+    ) {
+      event.preventDefault();
+    }
+  }
+
   protected handleChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (this.readOnly()) {
+      input.checked = this.currentValue();
+      input.indeterminate = this.effectiveIndeterminate();
+      return;
+    }
+
     if (this.effectiveIndeterminate()) {
       this.userClearedIndeterminate.set(true);
     }
 
-    this.commitUserValue((event.target as HTMLInputElement).checked);
+    this.commitUserValue(input.checked);
   }
 
   protected handleNativeFocus(): void {
