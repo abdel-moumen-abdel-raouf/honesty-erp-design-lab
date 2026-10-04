@@ -1395,7 +1395,7 @@ export function validateChoiceVisualContracts(
     !checkTokens.includes('--honesty-check-box-control-size: 2.25rem;') ||
     !checkTokens.includes('@mixin variant-filled') ||
     !checkTokens.includes('@mixin variant-soft') ||
-    !checkTokens.includes('@mixin readonly') ||
+    !checkTokens.includes('@mixin state-readonly') ||
     !checkTokens.includes('var(--honesty-motion-duration-deliberate)') ||
     !checkStyles.includes('.check-box__mark path') ||
     !checkStyles.includes('stroke-dasharray: 1') ||
@@ -2070,7 +2070,7 @@ export class ErpImagePicker extends ErpFileSelectionBase {
   const validCheckTemplate =
     '<label [attr.data-mode]="mode()" [attr.data-variant]="variant()"><input type="checkbox" [indeterminate]="effectiveIndeterminate()" [attr.aria-readonly]="readOnly() ? true : null" [attr.aria-label]="hideText() ? label : null"><span class="check-box__box"><span class="check-box__thumb"></span><svg class="check-box__mark"><path class="check-box__mark-check" pathLength="1" d="M6 12 10.2 16.2 18 8"></path><path class="check-box__mark-dash" pathLength="1" d="M6.5 12h11"></path></svg></span><span class="check-box__text"><erp-text class="check-box__title"></erp-text><erp-text class="check-box__description"></erp-text></span></label>';
   const validCheckTokens =
-    '--honesty-check-box-field-bg: transparent; --honesty-check-box-field-bg-on: var(--honesty-check-box-fill); --honesty-check-box-track-ratio: 1.85; --honesty-check-box-track-pad-ratio: 0.13; --honesty-check-box-mark-scale: 0.55; --honesty-check-box-pop-scale: 1.05; --honesty-check-box-press-scale: 0.94; --honesty-check-box-disabled-opacity: 0.45; --honesty-check-box-control-size: 1.125rem; --honesty-check-box-control-size: 1.375rem; --honesty-check-box-control-size: 1.75rem; --honesty-check-box-control-size: 2.25rem; @mixin variant-filled {} @mixin variant-soft {} @mixin readonly {} var(--honesty-motion-duration-deliberate);';
+    '--honesty-check-box-field-bg: transparent; --honesty-check-box-field-bg-on: var(--honesty-check-box-fill); --honesty-check-box-track-ratio: 1.85; --honesty-check-box-track-pad-ratio: 0.13; --honesty-check-box-mark-scale: 0.55; --honesty-check-box-pop-scale: 1.05; --honesty-check-box-press-scale: 0.94; --honesty-check-box-disabled-opacity: 0.45; --honesty-check-box-control-size: 1.125rem; --honesty-check-box-control-size: 1.375rem; --honesty-check-box-control-size: 1.75rem; --honesty-check-box-control-size: 2.25rem; @mixin variant-filled {} @mixin variant-soft {} @mixin state-readonly {} var(--honesty-motion-duration-deliberate);';
   const validCheckStyles =
     ".check-box { --_switch-fill-origin: 0% center; --_switch-travel: var(--_travel); } :host-context([dir='rtl']) .check-box { --_switch-fill-origin: 100% center; --_switch-travel: calc(0px - var(--_travel)); } .check-box__mark path { stroke-dasharray: 1; stroke-dashoffset: 1; } .check-box__native:checked ~ .check-box__box {} .check-box__native:indeterminate ~ .check-box__box {} @keyframes honesty-check-box-pop {} .check-box[data-mode='switch'] .check-box__box::before { transform-origin: var(--_switch-fill-origin); } .check-box[data-mode='switch'] .check-box__native:checked ~ .check-box__box .check-box__thumb { transform: translateX(var(--_switch-travel)); } .check-box[data-mode='tile']:has(.check-box__native:checked) {} .check-box__native:focus-visible {} @media (prefers-reduced-motion: reduce) {}";
   const validRadioTemplate =
