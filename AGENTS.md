@@ -1337,3 +1337,63 @@ Current status: implementation candidate complete; fresh
 
 `ErpSelect` remains unopened.
 <!-- CHATGPT_EMPTY_STATE_EXACT_V1_2026_10_04_END -->
+
+<!-- CHATGPT_SYSTEM_FONT_AUTHORITY_RESTORED_2026_10_04_START -->
+## 2026-10-04 — Honesty ERP system font authority restored
+
+Product Owner finding:
+
+Routed/system pages were no longer consistently rendering with the approved
+Honesty ERP typography families.
+
+Root cause:
+
+- Font assets and Semantic Typography tokens were still correct;
+- approved families remain:
+  - Arabic: `Tajawal`;
+  - Latin: `Space Grotesk`;
+  - Mixed UI: `Space Grotesk, Tajawal`;
+- legacy application/page CSS still imposed OS-font stacks such as
+  `system-ui`, `-apple-system`, and `Segoe UI`;
+- native form controls that use `font: inherit` could therefore inherit the
+  wrong root stack even when adjacent `ErpText` labels were correct.
+
+Correction:
+
+- global `html/body` default font authority is now
+  `var(--honesty-type-family-ui)`;
+- native `button/input/select/textarea` inherit the approved UI stack by
+  default;
+- Design Lab application chrome now uses the UI typography token;
+- legacy Foundation routed roots using OS stacks were migrated to the UI token:
+  Colors, Status Hues, Themes, Feedback Colors, Typography, and Spacing;
+- newer routed roots already using Honesty ERP typography tokens remain
+  unchanged;
+- ErpText family-specific contracts remain unchanged:
+  `ui | arabic | latin | inherit`;
+- locally hosted Tajawal and Space Grotesk font assets remain the only approved
+  product UI families.
+
+Governance:
+
+`erp-text:check` now validates the global font authority and rejects OS-font
+stack fragments from application SCSS.
+
+Forbidden application font bypass examples include:
+
+- `system-ui`;
+- `-apple-system`;
+- `BlinkMacSystemFont`;
+- `Segoe UI`;
+- `Tahoma`;
+- `Geneva`;
+- `Verdana`;
+- `Arial`.
+
+This correction is cross-cutting typography infrastructure and does not change
+the active EmptyState exact-reference product contract.
+
+Fresh canonical verification remains required:
+
+`npm run verify:clean`
+<!-- CHATGPT_SYSTEM_FONT_AUTHORITY_RESTORED_2026_10_04_END -->

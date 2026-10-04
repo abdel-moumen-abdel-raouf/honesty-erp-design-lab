@@ -31,7 +31,7 @@
   color: var(--honesty-color-text-primary);
   background-color: var(--honesty-color-surface-default);
   border-bottom: 1px solid var(--honesty-border-subtle);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--honesty-type-family-ui);
   font-size: 0.875rem;
 }
 

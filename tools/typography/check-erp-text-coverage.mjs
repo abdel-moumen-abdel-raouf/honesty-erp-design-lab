@@ -7,6 +7,18 @@ import ts from 'typescript';
 const ROOT = process.cwd();
 const APP_ROOT = path.join(ROOT, 'src', 'app');
 const BYPASS_BINDINGS = new Set(['innerhtml', 'innertext', 'textcontent']);
+const GLOBAL_STYLES = path.join(ROOT, 'src', 'styles.scss');
+const APP_STYLE_ROOT = path.join(ROOT, 'src', 'app');
+const FORBIDDEN_OS_FONT_STACK_FRAGMENTS = [
+  'system-ui',
+  '-apple-system',
+  'BlinkMacSystemFont',
+  'Segoe UI',
+  'Tahoma',
+  'Geneva',
+  'Verdana',
+  'Arial',
+];
 
 function walk(directory) {
   if (!fs.existsSync(directory)) {
@@ -167,6 +179,42 @@ function validateTypeScriptSource(source, label) {
   return errors;
 }
 
+function validateSystemFontAuthority(globalStyles, appStyles) {
+  const errors = [];
+
+  if (
+    !globalStyles.includes(
+      'font-family: var(--honesty-type-family-ui);',
+    )
+  ) {
+    errors.push(
+      'Global typography: html/body must use --honesty-type-family-ui as the default font authority',
+    );
+  }
+
+  if (
+    !/button\s*,\s*input\s*,\s*select\s*,\s*textarea\s*\{[\s\S]*?font\s*:\s*inherit\s*;/m.test(
+      globalStyles,
+    )
+  ) {
+    errors.push(
+      'Global typography: native form controls must inherit the approved UI font stack',
+    );
+  }
+
+  for (const [label, source] of appStyles) {
+    for (const fragment of FORBIDDEN_OS_FONT_STACK_FRAGMENTS) {
+      if (source.includes(fragment)) {
+        errors.push(
+          `${label}: OS font stack fragment "${fragment}" bypasses Honesty ERP typography tokens`,
+        );
+      }
+    }
+  }
+
+  return errors;
+}
+
 function runSelfTest() {
   const validTemplates = [
     `<erp-text type="paragraph">
@@ -229,6 +277,24 @@ function runSelfTest() {
     throw new Error('ErpText coverage checker accepted invalid TypeScript fixture');
   }
 
+  const validFontAuthority = validateSystemFontAuthority(
+    'html, body { font-family: var(--honesty-type-family-ui); }\nbutton,\ninput,\nselect,\ntextarea {\nfont: inherit;\n}',
+    new Map([['valid.scss', '.page { font-family: var(--honesty-type-family-ui); }']]),
+  );
+  if (validFontAuthority.length > 0) {
+    throw new Error(
+      `ErpText coverage checker rejected valid font authority:\n${validFontAuthority.join('\n')}`,
+    );
+  }
+
+  const invalidFontAuthority = validateSystemFontAuthority(
+    'html, body { font-family: system-ui, sans-serif; }',
+    new Map([['invalid.scss', "font-family: 'Segoe UI', Arial, sans-serif;"]]),
+  );
+  if (invalidFontAuthority.length === 0) {
+    throw new Error('ErpText coverage checker accepted an OS font stack bypass.');
+  }
+
   console.log('ErpText coverage checker self-test passed.');
 }
 
@@ -244,6 +310,20 @@ const typeScriptFiles = walk(APP_ROOT).filter(
   (file) => file.endsWith('.ts') && !isExcludedTypeScript(file),
 );
 const errors = [];
+const appStyleFiles = walk(APP_STYLE_ROOT).filter((file) =>
+  file.endsWith('.scss'),
+);
+errors.push(
+  ...validateSystemFontAuthority(
+    fs.readFileSync(GLOBAL_STYLES, 'utf8'),
+    new Map(
+      appStyleFiles.map((file) => [
+        relative(file),
+        fs.readFileSync(file, 'utf8'),
+      ]),
+    ),
+  ),
+);
 
 for (const file of htmlFiles) {
   const source = fs.readFileSync(file, 'utf8');

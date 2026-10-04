@@ -13,8 +13,15 @@ body {
   margin: 0;
   padding: 0;
   direction: rtl;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--honesty-type-family-ui);
   color: #111111;
   background-color: #ffffff;
   -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
