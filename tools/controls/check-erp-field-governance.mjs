@@ -1403,8 +1403,12 @@ export function validateChoiceVisualContracts(
     !checkStyles.includes('.check-box__native:indeterminate ~ .check-box__box') ||
     !checkStyles.includes('@keyframes honesty-check-box-pop') ||
     !checkStyles.includes("data-mode='switch'") ||
-    !checkStyles.includes('transform-origin: calc(50% - 50% * var(--_direction)) center') ||
-    !checkStyles.includes('var(--_travel)') ||
+    !checkStyles.includes('--_switch-fill-origin: 0% center') ||
+    !checkStyles.includes('--_switch-fill-origin: 100% center') ||
+    !checkStyles.includes('--_switch-travel: var(--_travel)') ||
+    !checkStyles.includes('--_switch-travel: calc(0px - var(--_travel))') ||
+    !checkStyles.includes('transform-origin: var(--_switch-fill-origin)') ||
+    !checkStyles.includes('translateX(var(--_switch-travel))') ||
     !checkStyles.includes("data-mode='tile'") ||
     !checkStyles.includes(':has(.check-box__native:checked)') ||
     !checkStyles.includes('.check-box__native:focus-visible') ||
@@ -2067,7 +2071,7 @@ export class ErpImagePicker extends ErpFileSelectionBase {
   const validCheckTokens =
     '--honesty-check-box-field-bg: transparent; --honesty-check-box-field-bg-on: var(--honesty-check-box-fill); --honesty-check-box-track-ratio: 1.85; --honesty-check-box-track-pad-ratio: 0.13; --honesty-check-box-mark-scale: 0.55; --honesty-check-box-pop-scale: 1.05; --honesty-check-box-press-scale: 0.94; --honesty-check-box-disabled-opacity: 0.45; --honesty-check-box-control-size: 1.125rem; --honesty-check-box-control-size: 1.375rem; --honesty-check-box-control-size: 1.75rem; --honesty-check-box-control-size: 2.25rem; @mixin variant-filled {} @mixin variant-soft {} @mixin readonly {} var(--honesty-motion-duration-deliberate);';
   const validCheckStyles =
-    ".check-box__mark path { stroke-dasharray: 1; stroke-dashoffset: 1; } .check-box__native:checked ~ .check-box__box {} .check-box__native:indeterminate ~ .check-box__box {} @keyframes honesty-check-box-pop {} .check-box[data-mode='switch'] { transform-origin: calc(50% - 50% * var(--_direction)) center; transform: translateX(var(--_travel)); } .check-box[data-mode='tile']:has(.check-box__native:checked) {} .check-box__native:focus-visible {} @media (prefers-reduced-motion: reduce) {}";
+    ".check-box { --_switch-fill-origin: 0% center; --_switch-travel: var(--_travel); } :host-context([dir='rtl']) .check-box { --_switch-fill-origin: 100% center; --_switch-travel: calc(0px - var(--_travel)); } .check-box__mark path { stroke-dasharray: 1; stroke-dashoffset: 1; } .check-box__native:checked ~ .check-box__box {} .check-box__native:indeterminate ~ .check-box__box {} @keyframes honesty-check-box-pop {} .check-box[data-mode='switch'] .check-box__box::before { transform-origin: var(--_switch-fill-origin); } .check-box[data-mode='switch'] .check-box__native:checked ~ .check-box__box .check-box__thumb { transform: translateX(var(--_switch-travel)); } .check-box[data-mode='tile']:has(.check-box__native:checked) {} .check-box__native:focus-visible {} @media (prefers-reduced-motion: reduce) {}";
   const validRadioTemplate =
     '<input type="radio"><span class="radio-box__visual"><span class="radio-box__dot"></span></span>';
   const validRadioTokens =
