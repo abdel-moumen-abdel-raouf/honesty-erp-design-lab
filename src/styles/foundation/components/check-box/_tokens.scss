@@ -165,43 +165,45 @@
 
 @mixin base-geometry {
   --honesty-check-box-control-size: 1.375rem;
-  --honesty-check-box-radius: 0.375rem;
-  --honesty-check-box-border-width: 0.09375rem;
-  --honesty-check-box-font-size: 0.875rem;
-  --honesty-check-box-description-size: 0.8125rem;
-  --honesty-check-box-gap: 0.625rem;
-  --honesty-check-box-tile-padding-block: 0.75rem;
-  --honesty-check-box-tile-padding-inline: 0.875rem;
-  --honesty-check-box-tile-radius: 0.75rem;
-  --honesty-check-box-tile-min-inline-size: 11rem;
-  --honesty-check-box-tile-font-size: 0.9375rem;
-  --honesty-check-box-tile-description-size: 0.8125rem;
-  --honesty-check-box-mark-stroke: 2.6;
-
-  --honesty-check-box-line-height: 1.35;
-  --honesty-check-box-description-line-height: 1.45;
-  --honesty-check-box-title-weight: 600;
-  --honesty-check-box-description-weight: 400;
-  --honesty-check-box-track-ratio: 1.85;
-  --honesty-check-box-track-pad-ratio: 0.13;
-  --honesty-check-box-mark-scale: 0.55;
-  --honesty-check-box-pop-scale: 1.05;
-  --honesty-check-box-press-scale: 0.94;
-  --honesty-check-box-text-gap-ratio: 0.12;
-
-  --honesty-check-box-duration-instant: var(--honesty-motion-duration-fast);
-  --honesty-check-box-duration-fast: var(--honesty-motion-duration-default);
-  --honesty-check-box-duration-base: var(--honesty-motion-duration-slow);
-  --honesty-check-box-duration-draw: var(--honesty-motion-duration-deliberate);
-  --honesty-check-box-duration-erase: var(--honesty-motion-duration-default);
-  --honesty-check-box-duration-pop: var(--honesty-motion-duration-slow);
-  --honesty-check-box-delay-draw: var(--honesty-motion-duration-fast);
-  --honesty-check-box-easing-standard: var(--honesty-motion-easing-standard);
-  --honesty-check-box-easing-out: var(--honesty-motion-easing-enter);
-  --honesty-check-box-easing-spring: var(--honesty-motion-easing-enter);
-  --honesty-check-box-easing-draw: var(--honesty-motion-easing-enter);
-  --honesty-check-box-easing-erase: var(--honesty-motion-easing-exit);
-  --honesty-check-box-disabled-opacity: 0.45;
+    --honesty-check-box-radius: 0.375rem;
+    --honesty-check-box-border-width: 0.09375rem;
+    --honesty-check-box-font-size: 0.875rem;
+    --honesty-check-box-description-size: 0.8125rem;
+    --honesty-check-box-gap: 0.625rem;
+    --honesty-check-box-tile-padding-block: 0.75rem;
+    --honesty-check-box-tile-padding-inline: 0.875rem;
+    --honesty-check-box-tile-radius: 0.75rem;
+    --honesty-check-box-tile-min-inline-size: 11rem;
+    --honesty-check-box-tile-font-size: 0.9375rem;
+    --honesty-check-box-tile-description-size: 0.8125rem;
+    --honesty-check-box-mark-stroke: 2.6;
+  
+    --honesty-check-box-line-height: 1.35;
+    --honesty-check-box-description-line-height: 1.45;
+    --honesty-check-box-title-weight: 600;
+    --honesty-check-box-description-weight: 400;
+    --honesty-check-box-tracking: 0em;
+    --honesty-check-box-track-ratio: 1.85;
+    --honesty-check-box-track-pad-ratio: 0.13;
+    --honesty-check-box-mark-scale: 0.55;
+    --honesty-check-box-pop-scale: 1.05;
+    --honesty-check-box-press-scale: 0.94;
+    --honesty-check-box-text-gap-ratio: 0.12;
+  
+    --honesty-check-box-duration-instant: 90ms;
+    --honesty-check-box-duration-fast: 140ms;
+    --honesty-check-box-duration-base: 220ms;
+    --honesty-check-box-duration-draw: 300ms;
+    --honesty-check-box-duration-erase: 150ms;
+    --honesty-check-box-duration-pop: 240ms;
+    --honesty-check-box-delay-draw: 70ms;
+    --honesty-check-box-reduced-duration: 1ms;
+    --honesty-check-box-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+    --honesty-check-box-easing-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --honesty-check-box-easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --honesty-check-box-easing-draw: cubic-bezier(0.22, 0.9, 0.24, 1);
+    --honesty-check-box-easing-erase: cubic-bezier(0.55, 0, 0.85, 0.3);
+    --honesty-check-box-disabled-opacity: 0.45;
 }
 
 @mixin tone-secondary {
