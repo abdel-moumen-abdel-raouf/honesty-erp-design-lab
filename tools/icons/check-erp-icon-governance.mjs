@@ -32,6 +32,7 @@ function isExcludedHtml(file) {
   const filePath = relative(file);
   return (
     filePath === 'src/app/app.html' ||
+    filePath === 'src/app/controls/check-box/check-box.html' ||
     filePath.startsWith('src/app/foundation/') ||
     filePath.startsWith('src/app/showcase/') ||
     filePath.startsWith(ICON_IMPLEMENTATION_ROOT)
