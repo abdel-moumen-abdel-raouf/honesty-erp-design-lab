@@ -336,7 +336,7 @@
     var(--honesty-check-box-accent-soft-hover);
 }
 
-@mixin readonly {
+@mixin state-readonly {
   --honesty-check-box-field-bg: var(--honesty-check-box-readonly-bg);
   --honesty-check-box-field-bg-hover: var(--honesty-check-box-readonly-bg);
   --honesty-check-box-field-border: var(--honesty-check-box-readonly-border);
