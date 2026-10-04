@@ -263,8 +263,9 @@ function validateProductionContracts(files) {
   if (/transition:\s*all/.test(style)) errors.push('Tooltip must not use transition: all');
   if (/(?:@mixin\s+(?:enter|exit)-|--honesty-tooltip-(?:enter|exit|motion|reduced)-)/.test(tokenSource)) errors.push('Tooltip tokens must not recreate adapter-owned motion');
 
-  const modules = walk(path.join(ROOT, 'src', 'styles', 'foundation', 'components')).filter((file) => path.basename(file) === '_tokens.scss');
-  if (modules.length !== 46) errors.push(`Expected 46 concrete Component Token modules, found ${modules.length}`);
+  // The Component Token framework checker owns repository-wide token-module
+  // inventory/count validation. Tooltip governance must only validate Tooltip
+  // ownership boundaries so adding an unrelated component cannot break this gate.
   if (fs.existsSync(path.join(ROOT, 'src', 'styles', 'foundation', 'components', 'tooltip-content'))) errors.push('ErpTooltipContent must not own a Component Token module');
   return errors;
 }

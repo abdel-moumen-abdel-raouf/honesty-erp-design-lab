@@ -447,3 +447,41 @@ Fresh canonical verification remains required:
 
 `npm run verify:clean`
 <!-- CHATGPT_SYSTEM_FONT_AUTHORITY_RESTORED_2026_10_04_END -->
+
+<!-- CHATGPT_TOOLTIP_TOKEN_COUNT_DECOUPLED_2026_10_04_START -->
+## 2026-10-04 — Tooltip governance decoupled from global Component Token count
+
+Product Owner local `npm run verify:clean` on
+`4b2fa4894b23011e19349be2b6f43807507f3421` confirmed:
+
+- Theme authority PASS;
+- route-page ERP-only authoring PASS (23 routed templates);
+- Component Token framework PASS with 47 concrete modules;
+- System Colors PASS;
+- ErpText PASS;
+- ErpIcon PASS;
+- ErpButton PASS;
+- verification then stopped at `erp-tooltip:check`.
+
+Failure cause:
+
+`check-erp-tooltip-governance.mjs` still asserted a repository-wide hardcoded
+Component Token module count of 46. EmptyState legitimately added the 47th
+module, and the authoritative Component Token framework checker had already
+accepted it.
+
+Correction:
+
+- remove the stale hardcoded global count from Tooltip governance;
+- keep Tooltip-specific token ownership validation intact;
+- keep the prohibition against a separate `tooltip-content` token module;
+- repository-wide token inventory remains exclusively owned by
+  `component-tokens:check`.
+
+A scan of all 14 repository `.mjs` governance/check scripts found no second
+hardcoded Component Token module-count assertion.
+
+Fresh mandatory gate remains:
+
+`npm run verify:clean`
+<!-- CHATGPT_TOOLTIP_TOKEN_COUNT_DECOUPLED_2026_10_04_END -->
