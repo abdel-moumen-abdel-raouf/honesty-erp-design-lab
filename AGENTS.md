@@ -1280,3 +1280,25 @@ passing through bounded RadioBox visual facets.
 
 Fresh canonical verification is pending.
 <!-- CHATGPT_RADIOBOX_IMPLEMENTED_2026_10_04_END -->
+
+<!-- CHATGPT_RADIOBOX_VERIFY_TIMEOUT_FOLLOWUP_2026_10_04_START -->
+## 2026-10-04 — deterministic Vitest worker budget
+
+Canonical unit tests are jsdom-heavy and include several intentionally broad
+showcase/motion suites.
+
+After the RadioBox review expansion, the Product Owner's full run demonstrated
+cross-suite timeout contention while all governance/lint and RadioBox-specific
+tests passed.
+
+Decision:
+
+- Angular unit tests load `vitest-base.config.mts`;
+- Vitest `maxWorkers` is capped at 4;
+- default per-test timeouts are not increased to hide performance problems;
+- retries are not introduced;
+- a future change to this worker budget requires a demonstrated test-execution
+  reason rather than convenience.
+
+This is test execution scheduling only; it changes no runtime product behavior.
+<!-- CHATGPT_RADIOBOX_VERIFY_TIMEOUT_FOLLOWUP_2026_10_04_END -->

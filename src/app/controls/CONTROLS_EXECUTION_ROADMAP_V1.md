@@ -3808,3 +3808,44 @@ The implementation is a technical candidate until a fresh complete
 After technical green, Product Owner Light/Dark/runtime RadioBox review is
 mandatory. EmptyState and Select remain unopened until RadioBox is accepted.
 <!-- CHATGPT_RADIOBOX_IMPLEMENTED_2026_10_04_END -->
+
+<!-- CHATGPT_RADIOBOX_VERIFY_TIMEOUT_FOLLOWUP_2026_10_04_START -->
+## 2026-10-04 — RadioBox canonical verification reached tests; Vitest worker contention corrected
+
+Product Owner local verification on
+`6d00e7963ca986d92f72e597d3a2ff6c8aad2fa7` established:
+
+- `build:clean:self-test` PASS;
+- standalone `build:clean` PASS with zero warnings;
+- all repository governance checks PASS;
+- Angular lint PASS;
+- RadioBox unit tests PASS — 10/10;
+- RadioGroup unit tests PASS — 6/6;
+- the RadioBox Design Lab review tests that completed were PASS;
+- the full test stage stopped with 13 timeout failures across eight unrelated
+  suites;
+- no assertion failure or RadioBox/RadioGroup functional failure was reported.
+
+The failure distribution includes Tooltip/Overlay motion loops, App route
+loading, Buttons/Icons showcases, Selection/Temporal internals, and repeated
+Inputs full-page renders. This is execution-resource contention, not evidence of
+one shared product/runtime defect.
+
+Bounded tooling correction:
+
+- add `vitest-base.config.mts`;
+- configure Angular's unit-test `runnerConfig` to load it;
+- cap Vitest at `maxWorkers: 4`;
+- keep file parallelism enabled;
+- do not raise `testTimeout`;
+- do not add retries;
+- do not weaken any product test, assertion, lint/governance rule, typecheck,
+  style budget, or zero-warning gate.
+
+The next mandatory gate remains:
+
+`npm run verify:clean`
+
+RadioBox implementation/design remains unchanged by this tooling correction.
+EmptyState and Select remain unopened.
+<!-- CHATGPT_RADIOBOX_VERIFY_TIMEOUT_FOLLOWUP_2026_10_04_END -->
