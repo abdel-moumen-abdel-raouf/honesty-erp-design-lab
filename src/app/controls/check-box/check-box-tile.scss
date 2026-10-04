@@ -1,0 +1,77 @@
+.check-box[data-mode='tile'] {
+  display: flex;
+  align-items: center;
+  inline-size: 100%;
+  min-inline-size: var(--honesty-check-box-tile-min-inline-size);
+  padding-block: var(--honesty-check-box-tile-padding-block);
+  padding-inline: var(--honesty-check-box-tile-padding-inline);
+  border:
+    var(--honesty-check-box-border-width)
+    var(--honesty-border-style-default)
+    var(--honesty-check-box-field-border);
+  border-radius: var(--honesty-check-box-tile-radius);
+  background-color: var(--honesty-check-box-tile-bg);
+  box-shadow: var(--honesty-check-box-shadow-tile);
+  transition:
+    background-color var(--honesty-check-box-duration-base)
+      var(--honesty-check-box-easing-standard),
+    border-color var(--honesty-check-box-duration-base)
+      var(--honesty-check-box-easing-standard),
+    box-shadow var(--honesty-check-box-duration-base)
+      var(--honesty-check-box-easing-standard),
+    transform var(--honesty-check-box-duration-fast)
+      var(--honesty-check-box-easing-spring);
+}
+
+.check-box[data-mode='tile'] .check-box__box {
+  margin-block-start: 0;
+}
+
+.check-box[data-mode='tile'] .check-box__title {
+  font-size: var(--honesty-check-box-tile-font-size);
+}
+
+.check-box[data-mode='tile'] .check-box__description {
+  font-size: var(--honesty-check-box-tile-description-size);
+}
+
+.check-box[data-mode='tile']:hover {
+  background-color: var(--honesty-check-box-tile-bg-hover);
+  border-color: var(--honesty-check-box-field-border-hover);
+  box-shadow: var(--honesty-check-box-shadow-tile-hover);
+}
+
+.check-box[data-mode='tile']:active {
+  transform: scale(0.985);
+}
+
+.check-box[data-mode='tile']:has(.check-box__native:checked),
+.check-box[data-mode='tile']:has(.check-box__native:indeterminate) {
+  background-color: var(--honesty-check-box-tile-bg-on);
+  border-color: var(--honesty-check-box-fill);
+  box-shadow: var(--honesty-check-box-shadow-tile-selected);
+}
+
+.check-box[data-mode='tile']
+  .check-box__native:focus-visible
+  ~ .check-box__box {
+  outline: none;
+}
+
+.check-box[data-mode='tile']:has(.check-box__native:focus-visible) {
+  outline:
+    var(--honesty-check-box-focus-ring-width)
+    solid
+    var(--honesty-check-box-focus-ring);
+  outline-offset: var(--honesty-check-box-focus-ring-offset);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .check-box[data-mode='tile'] {
+    transition-duration: var(--honesty-motion-duration-instant);
+  }
+
+  .check-box[data-mode='tile']:active {
+    transform: none;
+  }
+}
