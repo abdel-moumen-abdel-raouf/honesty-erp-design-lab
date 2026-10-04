@@ -102,7 +102,7 @@ describe('InputControls showcase', () => {
     const root = fixture.nativeElement as HTMLElement;
     const group = root.querySelector('[data-review-group="boolean-choice"]')!;
 
-    expect(group.querySelectorAll('erp-check-box')).toHaveLength(46);
+    expect(group.querySelectorAll('erp-check-box')).toHaveLength(45);
 
     for (const selector of [
       '[data-check-box-standalone-panel]',
@@ -123,14 +123,14 @@ describe('InputControls showcase', () => {
     ).toHaveLength(29);
     expect(
       group.querySelectorAll('erp-check-box[data-check-box-mode="switch"]'),
-    ).toHaveLength(13);
+    ).toHaveLength(12);
     expect(
       group.querySelectorAll('erp-check-box[data-check-box-mode="tile"]'),
     ).toHaveLength(4);
 
     expect(
       group.querySelectorAll('erp-check-box[data-check-box-variant="outline"]'),
-    ).toHaveLength(40);
+    ).toHaveLength(39);
     expect(
       group.querySelectorAll('erp-check-box[data-check-box-variant="filled"]'),
     ).toHaveLength(3);
@@ -138,7 +138,7 @@ describe('InputControls showcase', () => {
       group.querySelectorAll('erp-check-box[data-check-box-variant="soft"]'),
     ).toHaveLength(3);
 
-    expect(group.querySelectorAll('svg.check-box__mark')).toHaveLength(46);
+    expect(group.querySelectorAll('svg.check-box__mark')).toHaveLength(45);
     expect(group.querySelectorAll('.check-box__mark-check')).toHaveLength(46);
     expect(group.querySelectorAll('.check-box__mark-dash')).toHaveLength(46);
 
