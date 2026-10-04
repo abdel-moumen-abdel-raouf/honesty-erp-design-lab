@@ -68,7 +68,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .check-box[data-mode='tile'] {
-    transition-duration: var(--honesty-motion-duration-instant);
+    transition-duration: var(--honesty-check-box-reduced-duration);
   }
 
   .check-box[data-mode='tile']:active {
