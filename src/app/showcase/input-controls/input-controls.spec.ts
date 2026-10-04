@@ -139,8 +139,8 @@ describe('InputControls showcase', () => {
     ).toHaveLength(3);
 
     expect(group.querySelectorAll('svg.check-box__mark')).toHaveLength(45);
-    expect(group.querySelectorAll('.check-box__mark-check')).toHaveLength(46);
-    expect(group.querySelectorAll('.check-box__mark-dash')).toHaveLength(46);
+    expect(group.querySelectorAll('.check-box__mark-check')).toHaveLength(45);
+    expect(group.querySelectorAll('.check-box__mark-dash')).toHaveLength(45);
 
     const sizeEvidence = [
       ...group.querySelectorAll<HTMLElement>(
