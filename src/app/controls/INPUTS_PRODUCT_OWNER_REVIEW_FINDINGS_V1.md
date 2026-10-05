@@ -4243,3 +4243,32 @@ warnings. Technical green does not equal Product Owner visual approval.
 
 Commit scope: `fix(controls): show no-search illustration by default`.
 <!-- CHATGPT_EMPTY_STATE_NO_SEARCH_DEFAULT_VISIBLE_2026_10_05_END -->
+
+<!-- CHATGPT_EMPTY_STATE_LOTTIE_SIZE_2026_10_05_START -->
+## 2026-10-05 — EmptyState Lottie illustration size enlarged
+
+Product Owner runtime review found that all five Lottie illustrations were
+visible and functional but relatively small. The shared responsive illustration
+bounds now supersede `clamp(5.5rem, 16vw, 8.25rem)` with
+`clamp(6.75rem, 20vw, 10rem)` for `no-data`, `no-search`, `error`,
+`forbidden`, and `custom`. This is one size-contract correction only; the
+runtime loader, JSON assets, variant mapping, reduced-motion, replay,
+`motionSpeed`, lifecycle cleanup, text, actions, and colors are unchanged.
+
+Runtime evidence covered all 20 combinations of five variants, Light/Dark, and
+desktop/narrow viewports. Every specimen reached `ready`, injected an SVG with
+`preserveAspectRatio="xMidYMid meet"`, stayed centered, preserved a 24px gap
+to the title, and produced no page or stage horizontal overflow. The resolved
+box was 160px square on desktop and 108px square at the narrow viewport.
+`float` and `pulse` remained animated; `none`, `animated=false`, and a
+page initialized with reduced motion retained a visible static SVG frame.
+Replay remained ready and visible.
+
+The bounded governance self-test and checker passed, 92/92 test files and
+728/728 tests passed, and `npm run verify:clean` passed with zero warnings.
+Technical green does not equal Product Owner visual approval. `ErpSelect`
+remains unopened; the immediate gate remains Product Owner runtime/visual
+review of the enlarged EmptyState illustrations.
+
+Commit scope: `fix(controls): enlarge empty-state illustrations`.
+<!-- CHATGPT_EMPTY_STATE_LOTTIE_SIZE_2026_10_05_END -->
