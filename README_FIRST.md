@@ -3549,3 +3549,50 @@ then
 
 `npm run verify:clean`
 <!-- CHATGPT_EMPTY_STATE_CLASS_TOKEN_GOV_FIX_2026_10_05_END -->
+
+<!-- CHATGPT_EMPTY_STATE_DIRECTIVE_SELECTOR_LINT_FIX_2026_10_05_START -->
+## 2026-10-05 — EmptyState projection-directive selector lint aligned with ERP naming
+
+Product Owner local verification on
+`b0a1a4b4a330baa56927779587c8f42a57d7b99c` confirmed:
+
+- `erp-empty-state:check:self-test` PASS;
+- Theme authority PASS;
+- routed ERP-only authoring PASS;
+- Component Token framework PASS (47 modules);
+- System Colors PASS;
+- ErpText PASS;
+- ErpIcon PASS;
+- ErpButton PASS;
+- ErpTooltip PASS;
+- ErpField PASS;
+- ErpEmptyState governance PASS;
+- ErpOverlay PASS;
+- ErpConfirmDialog PASS.
+
+The run reached Angular ESLint and stopped on exactly two
+`@angular-eslint/directive-selector` errors for the public EmptyState content
+projection directives:
+
+- `[erpEmptyStateIllustration]`;
+- `[erpEmptyStateExtra]`.
+
+The repository ESLint baseline still requires the generic `app` attribute
+prefix, while production ERP components intentionally use the `erp` namespace
+and already carry selector-rule exceptions where needed.
+
+Correction:
+
+- preserve the public ERP projection API names;
+- add the same narrow, line-local
+  `@angular-eslint/directive-selector` exception to the two directive selector
+  declarations only;
+- do not change global ESLint rules;
+- do not rename the directives to `app*`;
+- no EmptyState runtime, template, styles, tokens, scenarios, motion, or
+  governance assertions changed.
+
+Fresh mandatory gate:
+
+`npm run verify:clean`
+<!-- CHATGPT_EMPTY_STATE_DIRECTIVE_SELECTOR_LINT_FIX_2026_10_05_END -->

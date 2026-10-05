@@ -108,11 +108,13 @@ export const ERP_EMPTY_STATE_SCENARIOS: Readonly<
 });
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[erpEmptyStateIllustration]',
 })
 export class ErpEmptyStateIllustration {}
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[erpEmptyStateExtra]',
 })
 export class ErpEmptyStateExtra {}
