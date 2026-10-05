@@ -131,6 +131,7 @@ function nullableBooleanAttribute(value: unknown): boolean | null {
   templateUrl: './empty-state.html',
   styleUrls: [
     './empty-state.scss',
+    './empty-state-content.scss',
     './empty-state-illustrations.scss',
     './empty-state-motion-keyframes.scss',
     './empty-state-motion-entry.scss',

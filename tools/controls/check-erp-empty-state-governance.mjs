@@ -12,6 +12,7 @@ const CONTRACT =
   'src/app/controls/empty-state/EMPTY_STATE_REFERENCE_EXACT_V1.md';
 const STYLE_FILES = [
   'src/app/controls/empty-state/empty-state.scss',
+  'src/app/controls/empty-state/empty-state-content.scss',
   'src/app/controls/empty-state/empty-state-illustrations.scss',
   'src/app/controls/empty-state/empty-state-facets.scss',
   'src/app/controls/empty-state/empty-state-motion-keyframes.scss',
