@@ -2,20 +2,30 @@ import {TestBed} from '@angular/core/testing';
 import {provideRouter} from '@angular/router';
 import type {AnimationItem, LottiePlayer} from 'lottie-web';
 import {routes} from '../../app.routes';
-import {EMPTY_STATE_LOTTIE_LOADER} from '../../controls/empty-state/empty-state-lottie';
+import {
+  EMPTY_STATE_LOTTIE_ASSET_LOADER,
+  EMPTY_STATE_LOTTIE_LOADER,
+} from '../../controls/empty-state/empty-state-lottie';
 import {EmptyStateControls} from './empty-state-controls';
 
 describe('EmptyStateControls showcase', () => {
   beforeEach(() => {
     const animation = {
+      addEventListener: vi.fn(() => vi.fn()),
       destroy: vi.fn(),
       goToAndPlay: vi.fn(),
       goToAndStop: vi.fn(),
+      isLoaded: true,
       play: vi.fn(),
       setSpeed: vi.fn(),
     } as unknown as AnimationItem;
     const player = {
-      loadAnimation: vi.fn(() => animation),
+      loadAnimation: vi.fn((config) => {
+        config.container.append(
+          document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
+        );
+        return animation;
+      }),
     } as unknown as LottiePlayer;
 
     TestBed.configureTestingModule({
@@ -25,6 +35,10 @@ describe('EmptyStateControls showcase', () => {
         {
           provide: EMPTY_STATE_LOTTIE_LOADER,
           useValue: async () => player,
+        },
+        {
+          provide: EMPTY_STATE_LOTTIE_ASSET_LOADER,
+          useValue: async () => ({v: '5.13.0'}),
         },
       ],
     });
@@ -63,6 +77,7 @@ describe('EmptyStateControls showcase', () => {
         (item) => item.getAttribute('data-empty-state-variant'),
       ),
     ).toEqual(['no-data', 'no-search', 'error', 'forbidden', 'custom']);
+    expect(matrix.querySelectorAll('erp-empty-state-lottie')).toHaveLength(5);
   });
 
   it('applies reference scenario defaults to the interactive preview', () => {

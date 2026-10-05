@@ -3,7 +3,6 @@ import path from 'node:path';
 import process from 'node:process';
 
 const ROOT = process.cwd();
-const ANGULAR_CONFIG = 'angular.json';
 const SOURCE = 'src/app/controls/empty-state/empty-state.ts';
 const TEMPLATE = 'src/app/controls/empty-state/empty-state.html';
 const LOTTIE_SOURCE =
@@ -172,7 +171,6 @@ function validateLottieAsset(file, source) {
 export function validateEmptyStateContracts(files) {
   const errors = [];
   const source = files.get(SOURCE) ?? '';
-  const angularConfig = files.get(ANGULAR_CONFIG) ?? '';
   const template = files.get(TEMPLATE) ?? '';
   const lottieSource = files.get(LOTTIE_SOURCE) ?? '';
   const lottieStyle = files.get(LOTTIE_STYLE) ?? '';
@@ -263,12 +261,21 @@ export function validateEmptyStateContracts(files) {
   }
 
   for (const required of [
-    "const LOTTIE_WEB_SCRIPT = 'vendor/lottie-web/lottie_svg.min.js'",
-    "document.createElement('script')",
+    "import('lottie-web/build/player/esm/lottie_svg.min.js')",
+    'fetch(assetPath)',
+    'response.ok',
+    'response.json()',
     "renderer: 'svg'",
     'loop: true',
     'autoplay: false',
+    'animationData',
     "preserveAspectRatio: 'xMidYMid meet'",
+    "animation.addEventListener('DOMLoaded'",
+    "animation.addEventListener('data_failed'",
+    "animation.addEventListener('error'",
+    "container.querySelector('svg')",
+    "'loading' | 'ready' | 'static' | 'error'",
+    "'[attr.data-empty-state-lottie-state]'",
     'animation.setSpeed(speed)',
     'animation.goToAndStop(0, true)',
     'this.animation.goToAndPlay(0, true)',
@@ -282,13 +289,16 @@ export function validateEmptyStateContracts(files) {
     }
   }
 
-  for (const required of [
-    'node_modules/lottie-web/build/player',
-    'lottie_svg.min.js',
-    'vendor/lottie-web',
+  for (const forbidden of [
+    'LOTTIE_WEB_SCRIPT',
+    "document.createElement('script')",
+    'window.lottie',
+    'defaultView as',
   ]) {
-    if (!angularConfig.includes(required)) {
-      errors.push(`Angular asset pipeline is missing ${required}`);
+    if (lottieSource.includes(forbidden)) {
+      errors.push(
+        `EmptyState Lottie runtime must not use obsolete global script loading: ${forbidden}`,
+      );
     }
   }
 
@@ -385,10 +395,6 @@ export function validateEmptyStateContracts(files) {
 function createValidFixture() {
   const files = new Map([
     [
-      ANGULAR_CONFIG,
-      'node_modules/lottie-web/build/player lottie_svg.min.js vendor/lottie-web',
-    ],
-    [
       SOURCE,
       "export type ErpEmptyStateVariant = 'no-data' | 'no-search' | 'error' | 'forbidden' | 'custom'; export type ErpEmptyStateIllustrationMotion = 'float' | 'pulse' | 'none'; export type ErpEmptyStateMotionSpeed = 0.5 | 1 | 1.5; export const ERP_EMPTY_STATE_LOTTIE_ASSETS = {'no-data': '/lottie/empty-state/no-data.json', 'no-search': '/lottie/empty-state/no-search.json', error: '/lottie/empty-state/error.json', forbidden: '/lottie/empty-state/forbidden.json', custom: '/lottie/empty-state/custom.json'}; readonly showIllustration = input<boolean | null>; readonly showTitle = input(true); readonly showDescription = input(true); readonly showActions = input(true); readonly showExtra = input<boolean | null>; readonly showPrimaryAction = input<boolean | null>; readonly showSecondaryAction = input<boolean | null>; readonly showTertiaryAction = input<boolean | null>; readonly primaryAction = output<void>(); readonly secondaryAction = output<void>(); readonly tertiaryAction = output<void>(); replayEntrance(): void { this.defaultIllustration()?.replay(); } role: 'status'; 'aria-live': 'polite';",
     ],
@@ -398,7 +404,7 @@ function createValidFixture() {
     ],
     [
       LOTTIE_SOURCE,
-      "const LOTTIE_WEB_SCRIPT = 'vendor/lottie-web/lottie_svg.min.js'; document.createElement('script'); renderer: 'svg'; loop: true; autoplay: false; preserveAspectRatio: 'xMidYMid meet'; animation.setSpeed(speed); animation.goToAndStop(0, true); this.animation.goToAndPlay(0, true); animation.destroy(); matchMedia('(prefers-reduced-motion: reduce)'); addEventListener('change'); removeEventListener('change');",
+      "import('lottie-web/build/player/esm/lottie_svg.min.js'); fetch(assetPath); response.ok; response.json(); renderer: 'svg'; loop: true; autoplay: false; animationData; preserveAspectRatio: 'xMidYMid meet'; animation.addEventListener('DOMLoaded'); animation.addEventListener('data_failed'); animation.addEventListener('error'); container.querySelector('svg'); 'loading' | 'ready' | 'static' | 'error'; '[attr.data-empty-state-lottie-state]'; animation.setSpeed(speed); animation.goToAndStop(0, true); this.animation.goToAndPlay(0, true); animation.destroy(); matchMedia('(prefers-reduced-motion: reduce)'); addEventListener('change'); removeEventListener('change');",
     ],
     [
       TOKENS,
@@ -498,6 +504,48 @@ function runSelfTest() {
   );
   assertRejected(missingSpeed, 'missing Lottie speed handling');
 
+  const missingDynamicImport = new Map(valid);
+  missingDynamicImport.set(
+    LOTTIE_SOURCE,
+    valid
+      .get(LOTTIE_SOURCE)
+      .replace(
+        "import('lottie-web/build/player/esm/lottie_svg.min.js')",
+        '',
+      ),
+  );
+  assertRejected(missingDynamicImport, 'missing bundler-native runtime import');
+
+  const manualScriptLoader = new Map(valid);
+  manualScriptLoader.set(
+    LOTTIE_SOURCE,
+    `${valid.get(LOTTIE_SOURCE)} document.createElement('script')`,
+  );
+  assertRejected(manualScriptLoader, 'obsolete manual runtime script loader');
+
+  const missingAssetFailure = new Map(valid);
+  missingAssetFailure.set(
+    LOTTIE_SOURCE,
+    valid.get(LOTTIE_SOURCE).replace('response.ok', 'true'),
+  );
+  assertRejected(missingAssetFailure, 'missing explicit asset HTTP failure');
+
+  const missingDomReadiness = new Map(valid);
+  missingDomReadiness.set(
+    LOTTIE_SOURCE,
+    valid
+      .get(LOTTIE_SOURCE)
+      .replace("animation.addEventListener('DOMLoaded')", ''),
+  );
+  assertRejected(missingDomReadiness, 'missing DOMLoaded readiness');
+
+  const missingSvgEvidence = new Map(valid);
+  missingSvgEvidence.set(
+    LOTTIE_SOURCE,
+    valid.get(LOTTIE_SOURCE).replace("container.querySelector('svg')", ''),
+  );
+  assertRejected(missingSvgEvidence, 'missing generated SVG readiness evidence');
+
   const backgroundAsset = new Map(valid);
   backgroundAsset.set(
     'public/lottie/empty-state/custom.json',
@@ -530,7 +578,6 @@ if (process.argv.includes('--self-test')) {
 }
 
 const files = new Map([
-  [ANGULAR_CONFIG, read(ANGULAR_CONFIG)],
   [SOURCE, read(SOURCE)],
   [TEMPLATE, read(TEMPLATE)],
   [LOTTIE_SOURCE, read(LOTTIE_SOURCE)],

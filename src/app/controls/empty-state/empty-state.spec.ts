@@ -9,7 +9,10 @@ import {
   ErpEmptyStateIllustration,
   ErpEmptyStateVariant,
 } from './empty-state';
-import {EMPTY_STATE_LOTTIE_LOADER} from './empty-state-lottie';
+import {
+  EMPTY_STATE_LOTTIE_ASSET_LOADER,
+  EMPTY_STATE_LOTTIE_LOADER,
+} from './empty-state-lottie';
 
 @Component({
   imports: [ErpEmptyState, ErpEmptyStateIllustration, ErpEmptyStateExtra],
@@ -28,14 +31,23 @@ describe('ErpEmptyState', () => {
 
   beforeEach(() => {
     animation = {
+      addEventListener: vi.fn(() => vi.fn()),
       destroy: vi.fn(),
       goToAndPlay: vi.fn(),
       goToAndStop: vi.fn(),
+      isLoaded: true,
       play: vi.fn(),
       setSpeed: vi.fn(),
     } as unknown as AnimationItem;
     player = {
-      loadAnimation: vi.fn(() => animation),
+      loadAnimation: vi.fn((config) => {
+        const svg = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'svg',
+        );
+        config.container.append(svg);
+        return animation;
+      }),
     } as unknown as LottiePlayer;
 
     TestBed.configureTestingModule({
@@ -44,6 +56,10 @@ describe('ErpEmptyState', () => {
         {
           provide: EMPTY_STATE_LOTTIE_LOADER,
           useValue: async () => player,
+        },
+        {
+          provide: EMPTY_STATE_LOTTIE_ASSET_LOADER,
+          useValue: async () => ({v: '5.13.0'}),
         },
       ],
     });
@@ -309,7 +325,7 @@ describe('ErpEmptyState', () => {
   it('replays the Lottie illustration with the existing entrance API', async () => {
     const fixture = create();
     await vi.waitFor(() => {
-      expect(player.loadAnimation).toHaveBeenCalledOnce();
+      expect(animation.play).toHaveBeenCalledOnce();
     });
 
     fixture.componentInstance.replayEntrance();

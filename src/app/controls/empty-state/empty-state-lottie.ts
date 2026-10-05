@@ -1,4 +1,3 @@
-import {DOCUMENT} from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,6 +5,7 @@ import {
   DestroyRef,
   effect,
   ElementRef,
+  ErrorHandler,
   inject,
   InjectionToken,
   input,
@@ -19,59 +19,68 @@ import type {
 } from './empty-state';
 
 type EmptyStateLottieLoader = () => Promise<LottiePlayer>;
+type EmptyStateLottieAssetLoader = (assetPath: string) => Promise<unknown>;
+type EmptyStateLottieState = 'loading' | 'ready' | 'static' | 'error';
 
-const LOTTIE_WEB_SCRIPT = 'vendor/lottie-web/lottie_svg.min.js';
 let lottiePlayerPromise: Promise<LottiePlayer> | null = null;
 
-function loadLottiePlayer(document: Document): Promise<LottiePlayer> {
-  const currentPlayer = (document.defaultView as
-    | (Window & {lottie?: LottiePlayer})
-    | null)?.lottie;
+export function loadLottiePlayer(): Promise<LottiePlayer> {
+  if (lottiePlayerPromise === null) {
+    // @ts-expect-error -- lottie-web 5.13.0 ships this ESM build without colocated declarations; the package LottiePlayer type and runtime guard remain authoritative.
+    lottiePlayerPromise = import('lottie-web/build/player/esm/lottie_svg.min.js')
+      .then((module) => module.default)
+      .then((player) => {
+        if (typeof player.loadAnimation !== 'function') {
+          throw new Error('The imported lottie-web runtime is invalid.');
+        }
 
-  if (currentPlayer !== undefined) {
-    return Promise.resolve(currentPlayer);
-  }
-
-  if (lottiePlayerPromise !== null) {
-    return lottiePlayerPromise;
-  }
-
-  lottiePlayerPromise = new Promise<LottiePlayer>((resolve, reject) => {
-    const script = document.createElement('script');
-    script.src = new URL(LOTTIE_WEB_SCRIPT, document.baseURI).toString();
-    script.async = true;
-    script.dataset['emptyStateLottieRuntime'] = 'true';
-    script.addEventListener('load', () => {
-      const player = (document.defaultView as
-        | (Window & {lottie?: LottiePlayer})
-        | null)?.lottie;
-
-      if (player === undefined) {
+        return player;
+      })
+      .catch((error: unknown) => {
         lottiePlayerPromise = null;
-        reject(new Error('lottie-web loaded without exposing its player.'));
-        return;
-      }
-
-      resolve(player);
-    });
-    script.addEventListener('error', () => {
-      lottiePlayerPromise = null;
-      reject(new Error('Unable to load the local lottie-web runtime.'));
-    });
-    document.head.append(script);
-  });
+        throw new Error('Unable to import the lottie-web runtime.', {
+          cause: error,
+        });
+      });
+  }
 
   return lottiePlayerPromise;
+}
+
+export async function loadEmptyStateLottieAsset(
+  assetPath: string,
+): Promise<unknown> {
+  const response = await fetch(assetPath);
+
+  if (!response.ok) {
+    throw new Error(
+      `Unable to load Lottie asset ${assetPath}: HTTP ${response.status}.`,
+    );
+  }
+
+  try {
+    return await response.json();
+  } catch (error: unknown) {
+    throw new Error(`Lottie asset ${assetPath} is not valid JSON.`, {
+      cause: error,
+    });
+  }
 }
 
 export const EMPTY_STATE_LOTTIE_LOADER =
   new InjectionToken<EmptyStateLottieLoader>('EMPTY_STATE_LOTTIE_LOADER', {
     providedIn: 'root',
-    factory: () => {
-      const document = inject(DOCUMENT);
-      return () => loadLottiePlayer(document);
-    },
+    factory: () => loadLottiePlayer,
   });
+
+export const EMPTY_STATE_LOTTIE_ASSET_LOADER =
+  new InjectionToken<EmptyStateLottieAssetLoader>(
+    'EMPTY_STATE_LOTTIE_ASSET_LOADER',
+    {
+      providedIn: 'root',
+      factory: () => loadEmptyStateLottieAsset,
+    },
+  );
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -83,7 +92,8 @@ export const EMPTY_STATE_LOTTIE_LOADER =
     'aria-hidden': 'true',
     '[attr.data-empty-state-lottie-asset]': 'assetPath()',
     '[attr.data-empty-state-lottie-motion]': 'motion()',
-    '[attr.data-empty-state-lottie-playing]': 'shouldPlay()',
+    '[attr.data-empty-state-lottie-playing]': 'isPlaying()',
+    '[attr.data-empty-state-lottie-state]': 'runtimeState()',
     '[style.--honesty-empty-state-lottie-speed]': 'speed()',
   },
 })
@@ -94,19 +104,26 @@ export class ErpEmptyStateLottie {
   readonly speed = input<ErpEmptyStateMotionSpeed>(1);
 
   private readonly loader = inject(EMPTY_STATE_LOTTIE_LOADER);
+  private readonly assetLoader = inject(EMPTY_STATE_LOTTIE_ASSET_LOADER);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly errorHandler = inject(ErrorHandler);
   private readonly container =
     viewChild<ElementRef<HTMLElement>>('animationContainer');
   private readonly reducedMotion = signal(false);
-  private readonly animationRevision = signal(0);
+  protected readonly runtimeState = signal<EmptyStateLottieState>('loading');
   protected readonly shouldPlay = computed(
     () =>
       this.animated() &&
       this.motion() !== 'none' &&
       !this.reducedMotion(),
   );
+  protected readonly isPlaying = computed(
+    () => this.shouldPlay() && this.runtimeState() === 'ready',
+  );
 
   private animation: AnimationItem | null = null;
+  private animationReady = false;
+  private animationListenerCleanups: (() => void)[] = [];
   private loadRevision = 0;
   private motionQuery: MediaQueryList | null = null;
 
@@ -125,22 +142,15 @@ export class ErpEmptyStateLottie {
     });
 
     effect(() => {
-      this.animationRevision();
       const speed = this.speed();
       const shouldPlay = this.shouldPlay();
       const animation = this.animation;
 
-      if (animation === null) {
+      if (animation === null || !this.animationReady) {
         return;
       }
 
-      animation.setSpeed(speed);
-
-      if (shouldPlay) {
-        animation.play();
-      } else {
-        animation.goToAndStop(0, true);
-      }
+      this.applyPlayback(animation, speed, shouldPlay);
     });
 
     this.destroyRef.onDestroy(() => {
@@ -154,7 +164,11 @@ export class ErpEmptyStateLottie {
   }
 
   replay(): void {
-    if (!this.shouldPlay() || this.animation === null) {
+    if (
+      !this.shouldPlay() ||
+      this.animation === null ||
+      !this.animationReady
+    ) {
       return;
     }
 
@@ -182,39 +196,132 @@ export class ErpEmptyStateLottie {
   ): Promise<void> {
     const revision = ++this.loadRevision;
     this.destroyAnimation();
-    const player = await this.loader();
+    this.runtimeState.set('loading');
 
+    try {
+      const [player, animationData] = await Promise.all([
+        this.loader(),
+        this.assetLoader(assetPath),
+      ]);
+
+      if (revision !== this.loadRevision) {
+        return;
+      }
+
+      const animation = player.loadAnimation({
+        container,
+        renderer: 'svg',
+        loop: true,
+        autoplay: false,
+        animationData,
+        rendererSettings: {
+          preserveAspectRatio: 'xMidYMid meet',
+        },
+      });
+
+      if (revision !== this.loadRevision) {
+        animation.destroy();
+        return;
+      }
+
+      this.animation = animation;
+      this.animationReady = false;
+      this.animationListenerCleanups = [
+        animation.addEventListener('DOMLoaded', () => {
+          this.handleDomLoaded(revision, container, animation);
+        }),
+        animation.addEventListener('data_failed', () => {
+          this.handleAnimationFailure(
+            revision,
+            new Error(`Lottie data loading failed for ${assetPath}.`),
+          );
+        }),
+        animation.addEventListener('error', () => {
+          this.handleAnimationFailure(
+            revision,
+            new Error(`Lottie rendering failed for ${assetPath}.`),
+          );
+        }),
+      ];
+
+      if (animation.isLoaded) {
+        queueMicrotask(() => {
+          this.handleDomLoaded(revision, container, animation);
+        });
+      }
+    } catch (error: unknown) {
+      this.handleAnimationFailure(revision, error);
+    }
+  }
+
+  private handleDomLoaded(
+    revision: number,
+    container: HTMLElement,
+    animation: AnimationItem,
+  ): void {
+    if (
+      revision !== this.loadRevision ||
+      animation !== this.animation ||
+      this.animationReady
+    ) {
+      return;
+    }
+
+    if (container.querySelector('svg') === null) {
+      this.handleAnimationFailure(
+        revision,
+        new Error('Lottie DOMLoaded completed without a generated SVG.'),
+      );
+      return;
+    }
+
+    this.animationReady = true;
+    this.applyPlayback(animation, this.speed(), this.shouldPlay());
+  }
+
+  private applyPlayback(
+    animation: AnimationItem,
+    speed: ErpEmptyStateMotionSpeed,
+    shouldPlay: boolean,
+  ): void {
+    animation.setSpeed(speed);
+
+    if (shouldPlay) {
+      animation.play();
+      this.runtimeState.set('ready');
+    } else {
+      animation.goToAndStop(0, true);
+      this.runtimeState.set('static');
+    }
+  }
+
+  private handleAnimationFailure(revision: number, error: unknown): void {
     if (revision !== this.loadRevision) {
       return;
     }
 
-    const animation = player.loadAnimation({
-      container,
-      renderer: 'svg',
-      loop: true,
-      autoplay: false,
-      path: assetPath,
-      rendererSettings: {
-        preserveAspectRatio: 'xMidYMid meet',
-      },
-    });
+    const runtimeError =
+      error instanceof Error
+        ? error
+        : new Error('Unknown EmptyState Lottie runtime failure.');
 
-    if (revision !== this.loadRevision) {
-      animation.destroy();
-      return;
-    }
-
-    this.animation = animation;
-    this.animationRevision.update((value) => value + 1);
+    this.destroyAnimation();
+    this.runtimeState.set('error');
+    this.errorHandler.handleError(runtimeError);
   }
 
   private destroyAnimation(): void {
     const animation = this.animation;
     this.animation = null;
+    this.animationReady = false;
+
+    for (const cleanup of this.animationListenerCleanups) {
+      cleanup();
+    }
+    this.animationListenerCleanups = [];
 
     if (animation !== null) {
       animation.destroy();
-      this.animationRevision.update((value) => value + 1);
     }
   }
 }

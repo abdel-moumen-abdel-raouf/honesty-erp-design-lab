@@ -4163,3 +4163,56 @@ ComboBox, or SearchBox work is authorized by this wave.
 
 Commit scope: `feat(controls): adopt lottie empty-state illustrations`.
 <!-- CHATGPT_EMPTY_STATE_LOTTIE_MIGRATION_2026_10_05_END -->
+
+<!-- CHATGPT_EMPTY_STATE_LOTTIE_RUNTIME_REPAIR_2026_10_05_START -->
+## 2026-10-05 — EmptyState Lottie runtime visibility repaired
+
+Product Owner runtime review proved that the first Lottie migration was
+technically green while every default illustration remained invisible. The
+captured browser exception came from the manual runtime script error handler,
+before `window.lottie`, `loadAnimation()`, JSON loading, `DOMLoaded`, or SVG
+injection. The previous unit tests replaced the loader with a mock and therefore
+did not prove real runtime delivery or rendered DOM output.
+
+Repository diagnosis found the packaged
+`node_modules/lottie-web/build/player/lottie_svg.min.js` file present. Before
+the correction, the local dev URL `/vendor/lottie-web/lottie_svg.min.js`
+returned HTTP 200 with `text/javascript` and real JavaScript, while every
+Lottie JSON URL returned HTTP 200 with `application/json` and valid JSON. This
+does not negate the Product Owner environment's script-load failure; it proves
+that the copied-asset plus injected-global chain was environment-sensitive
+rather than a damaged five-asset set.
+
+The correction removes the copied runtime asset, manual `<script>` injection,
+and all `window.lottie` dependency. EmptyState now lazy-imports the packaged
+SVG-only ESM build through the Angular bundler, explicitly fetches and validates
+each JSON response, passes `animationData` to Lottie, and exposes internal
+`loading | ready | static | error` evidence. `ready` or `static` is reached
+only after `DOMLoaded` and a generated SVG are both present. Runtime import,
+HTTP/JSON, `loadAnimation`, `data_failed`, `error`, and missing-SVG failures
+are surfaced through Angular's ErrorHandler instead of failing silently.
+Animation listeners and the AnimationItem are cleaned up on replacement and
+destruction.
+
+Browser runtime evidence on `/controls/empty-states` confirms generated SVG
+output for `no-data`, explicitly enabled `no-search`, `error`, `forbidden`,
+and `custom`. The scenario matrix keeps all five visible as static evidence.
+`float` and `pulse` remain visible and playing; `none` and
+`animated=false` remain visible on a static first frame; Replay returns the
+allowed animation to playing state. Browser-emulated
+`prefers-reduced-motion: reduce` produced six visible generated SVGs in static
+state with no playback. The approved responsive clamp is unchanged.
+
+Final technical verification for this correction: EmptyState governance
+self-test PASS; EmptyState governance PASS; 92/92 test files and 728/728 tests
+PASS; lint/governance PASS; app/spec typechecks PASS; production build PASS at
+373.68 kB initial with zero Angular warnings; `npm run verify:clean` PASS.
+
+This technical pass does not equal Product Owner visual approval. The immediate
+gate remains Product Owner runtime Light/Dark review of EmptyState Lottie
+visibility, artwork, responsive sizing, motion, replay, and reduced motion.
+`ErpSelect` remains unopened; Selection Family, ItemPicker, ComboBox, and
+SearchBox were not modified.
+
+Commit scope: `fix(controls): restore empty-state lottie runtime`.
+<!-- CHATGPT_EMPTY_STATE_LOTTIE_RUNTIME_REPAIR_2026_10_05_END -->
