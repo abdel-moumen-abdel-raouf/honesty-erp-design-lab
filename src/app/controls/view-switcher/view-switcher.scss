@@ -1,0 +1,2 @@
+@use '../../../styles/foundation/components/view-switcher' as tokens;
+:host { @include tokens.base; display: inline-flex; padding: var(--honesty-view-switcher-padding); border-radius: var(--honesty-view-switcher-radius); background: var(--honesty-view-switcher-bg); }

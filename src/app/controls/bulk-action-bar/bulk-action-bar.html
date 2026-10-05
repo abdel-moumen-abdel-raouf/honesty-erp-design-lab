@@ -1,0 +1,5 @@
+@if (effectiveCount() > 0) {
+  <erp-text type="strong" weight="bold">تم تحديد {{ effectiveCount() }} سجل</erp-text>
+  <div class="bulk-action-bar__actions"><ng-content /></div>
+  <erp-button label="إلغاء التحديد" icon="close" variant="ghost" size="sm" (pressed)="clearSelection.emit()" />
+}

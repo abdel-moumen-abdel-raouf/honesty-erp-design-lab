@@ -1,0 +1,9 @@
+@mixin base {
+  --honesty-filter-bar-bg: var(--honesty-color-surface-default);
+  --honesty-filter-bar-border-color: var(--honesty-border-subtle);
+  --honesty-filter-bar-border-width: var(--honesty-border-width-default);
+  --honesty-filter-bar-radius: var(--honesty-radius-control);
+  --honesty-filter-bar-padding: var(--honesty-space-inset-default);
+  --honesty-filter-bar-gap: var(--honesty-space-stack-default);
+  --honesty-filter-bar-item-gap: var(--honesty-space-inline-tight);
+}

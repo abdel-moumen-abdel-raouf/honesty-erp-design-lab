@@ -116,6 +116,8 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     const inputControlsLink = compiled.querySelector('#nav-link-input-controls');
     const emptyStateControlsLink = compiled.querySelector('#nav-link-empty-state-controls');
     const overlayControlsLink = compiled.querySelector('#nav-link-overlay-controls');
+    const coreBatchLink = compiled.querySelector('#nav-link-core-batch');
+    const dataBatchLink = compiled.querySelector('#nav-link-data-batch');
     const colorsLink = compiled.querySelector('#nav-link-colors');
     const themesLink = compiled.querySelector('#nav-link-themes');
     const statusHuesLink = compiled.querySelector('#nav-link-status-hues');
@@ -135,6 +137,8 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(inputControlsLink).toBeTruthy();
     expect(emptyStateControlsLink).toBeTruthy();
     expect(overlayControlsLink).toBeTruthy();
+    expect(coreBatchLink).toBeTruthy();
+    expect(dataBatchLink).toBeTruthy();
     expect(colorsLink).toBeTruthy();
     expect(themesLink).toBeTruthy();
     expect(statusHuesLink).toBeTruthy();
@@ -155,6 +159,8 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(inputControlsLink?.textContent?.trim()).toBe('حقول الإدخال الإنتاجية');
     expect(emptyStateControlsLink?.textContent?.trim()).toBe('الحالات الفارغة');
     expect(overlayControlsLink?.textContent?.trim()).toBe('النوافذ الحاجبة');
+    expect(coreBatchLink?.textContent?.trim()).toBe('دفعة المكوّنات');
+    expect(dataBatchLink?.textContent?.trim()).toBe('دفعة البيانات والجداول');
     expect(colorsLink?.textContent?.trim()).toBe('الألوان المرجعية');
     expect(themesLink?.textContent?.trim()).toBe('السمات الدلالية');
     expect(statusHuesLink?.textContent?.trim()).toBe('صبغات الحالات');
@@ -185,6 +191,8 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(linkPaths).toContain('/controls/inputs');
     expect(linkPaths).toContain('/controls/empty-states');
     expect(linkPaths).toContain('/controls/overlays');
+    expect(linkPaths).toContain('/controls/core-batch');
+    expect(linkPaths).toContain('/controls/data-batch');
     expect(linkPaths).toContain('/foundation/colors');
     expect(linkPaths).toContain('/foundation/themes');
     expect(linkPaths).toContain('/foundation/colors/status-hues');
@@ -208,6 +216,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
       'controls/empty-states',
       'controls/overlays',
       'controls/core-batch',
+      'controls/data-batch',
       'foundation/colors',
       'foundation/colors/status-hues',
       'foundation/themes',

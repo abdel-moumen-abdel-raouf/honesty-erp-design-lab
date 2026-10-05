@@ -1,0 +1,5 @@
+@use '../../../styles/foundation/components/bulk-action-bar' as tokens;
+
+:host { @include tokens.base; display: flex; flex-wrap: wrap; align-items: center; gap: var(--honesty-bulk-action-bar-gap); padding: var(--honesty-bulk-action-bar-padding); border: var(--honesty-bulk-action-bar-border-width) solid var(--honesty-bulk-action-bar-border-color); border-radius: var(--honesty-bulk-action-bar-radius); background: var(--honesty-bulk-action-bar-bg); color: var(--honesty-bulk-action-bar-fg); }
+.bulk-action-bar__actions { display: flex; flex: 1; flex-wrap: wrap; align-items: center; gap: var(--honesty-bulk-action-bar-item-gap); }
+:host([data-selected-count='0']) { display: none; }

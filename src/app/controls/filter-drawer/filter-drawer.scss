@@ -1,0 +1,2 @@
+@use '../../../styles/foundation/components/filter-drawer' as tokens;
+:host { @include tokens.base; display: inline-flex; gap: var(--honesty-filter-drawer-gap); }

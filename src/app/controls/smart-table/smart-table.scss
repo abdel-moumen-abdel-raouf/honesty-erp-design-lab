@@ -1,0 +1,23 @@
+@use '../../../styles/foundation/components/smart-table' as tokens;
+
+:host {
+  @include tokens.base;
+  display: grid;
+  min-width: 0;
+  gap: var(--honesty-smart-table-gap);
+  padding: var(--honesty-smart-table-padding);
+  border: var(--honesty-smart-table-border-width) solid var(--honesty-smart-table-border-color);
+  border-radius: var(--honesty-smart-table-radius);
+  background: var(--honesty-smart-table-bg);
+}
+
+.smart-table__sorts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--honesty-smart-table-sort-gap);
+}
+
+.smart-table__body {
+  min-width: 0;
+  min-block-size: var(--honesty-smart-table-body-min-block-size);
+}

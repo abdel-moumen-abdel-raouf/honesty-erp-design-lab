@@ -1,0 +1,95 @@
+<erp-table-toolbar
+  [label]="caption()"
+  [refreshing]="loading()"
+  (refreshRequested)="refreshRequested.emit()"
+  (exportRequested)="exportRequested.emit()"
+>
+  @if (filterDefinitions().length > 0) {
+    <erp-filter-drawer
+      erpTableToolbarFilters
+      [definitions]="filterDefinitions()"
+      [filters]="filters()"
+      [disabled]="loading()"
+      (applied)="changeFilters($event)"
+    />
+  }
+  <erp-column-chooser
+    erpTableToolbarColumns
+    [columns]="columns()"
+    [visibleKeys]="effectiveVisibleKeys()"
+    [disabled]="loading()"
+    (visibilityChange)="changeVisibleColumns($event)"
+    (resetRequested)="resetColumns()"
+  />
+</erp-table-toolbar>
+
+@if (filters().length > 0) {
+  <erp-filter-bar
+    [filters]="filters()"
+    [disabled]="loading()"
+    (filterRemoved)="removeFilter($event)"
+    (resetRequested)="changeFilters([])"
+    (applyRequested)="applyCurrentFilters()"
+  />
+}
+
+@if (sortableColumns().length > 0) {
+  <div class="smart-table__sorts" aria-label="ترتيب البيانات">
+    @for (column of sortableColumns(); track column.key) {
+      <erp-sort-header
+        [label]="column.label"
+        [direction]="directionFor(column.key)"
+        [disabled]="loading()"
+        (sortChange)="changeSort(column.key, $event)"
+      />
+    }
+  </div>
+}
+
+@if (selectedKeys().length > 0) {
+  <erp-bulk-action-bar
+    [selectedCount]="selectedKeys().length"
+    (clearSelection)="clearSelection()"
+  >
+    <ng-content select="[erpSmartTableBulkActions]" />
+  </erp-bulk-action-bar>
+}
+
+<div class="smart-table__body">
+  @if (loading()) {
+    <erp-skeleton variant="line" [lines]="6" label="جارٍ تحميل بيانات الجدول" />
+  } @else if (error(); as message) {
+    <erp-alert title="تعذر تحميل البيانات" [description]="message" tone="danger" />
+  } @else if (displayedRows().length === 0) {
+    <erp-empty-state
+      variant="no-data"
+      [animated]="false"
+      [showActions]="false"
+      [showExtra]="false"
+    />
+  } @else {
+    <erp-table
+      [caption]="caption()"
+      [columns]="tableColumns()"
+      [rows]="displayedRows()"
+      [rowKey]="rowKey()"
+      [compact]="compact()"
+      [selectable]="selectable()"
+      [selectedKeys]="selectedKeys()"
+      [cellDefinitions]="projectedCellDefinitions()"
+      (rowActivated)="activateRow($event)"
+    >
+      <ng-content />
+    </erp-table>
+  }
+</div>
+
+<erp-pagination
+  [page]="effectivePage()"
+  [pageCount]="pageCount()"
+  [totalItems]="effectiveTotalItems()"
+  [pageSize]="pageSize()"
+  [pageSizeOptions]="pageSizeOptions()"
+  (pageChange)="changePage($event)"
+  (pageSizeChange)="changePageSize($event)"
+/>

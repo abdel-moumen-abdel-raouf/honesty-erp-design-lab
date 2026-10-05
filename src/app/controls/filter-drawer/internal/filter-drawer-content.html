@@ -1,0 +1,11 @@
+<erp-stack gap="default">
+  @for (definition of definitions; track definition.key) {
+    <erp-text-box
+      [label]="definition.label"
+      [placeholder]="definition.placeholder ?? null"
+      [ngModel]="value(definition.key)"
+      (ngModelChange)="update(definition.key, $event)"
+      [ngModelOptions]="{standalone: true}"
+    />
+  }
+</erp-stack>

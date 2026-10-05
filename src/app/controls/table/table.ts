@@ -61,6 +61,7 @@ export class ErpTable {
   readonly compact = input(false, {transform: booleanAttribute});
   readonly selectable = input(false, {transform: booleanAttribute});
   readonly selectedKeys = input<readonly string[]>([]);
+  readonly cellDefinitions = input<readonly ErpTableCell[]>([]);
   readonly rowActivated = output<ErpTableRow>();
 
   private readonly cellTemplates = contentChildren(ErpTableCell);
@@ -76,7 +77,9 @@ export class ErpTable {
   }
 
   protected cellTemplate(key: string): TemplateRef<ErpTableCellContext> | null {
-    return this.cellTemplates().find((cell) => cell.key() === key)?.template ?? null;
+    return [...this.cellTemplates(), ...this.cellDefinitions()].find(
+      (cell) => cell.key() === key,
+    )?.template ?? null;
   }
 
   protected cellContext(

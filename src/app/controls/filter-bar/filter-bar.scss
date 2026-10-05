@@ -1,0 +1,30 @@
+@use '../../../styles/foundation/components/filter-bar' as tokens;
+@use '../../../styles/foundation/queries' as query;
+
+:host {
+  @include tokens.base;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--honesty-filter-bar-gap);
+  padding: var(--honesty-filter-bar-padding);
+  border: var(--honesty-filter-bar-border-width) solid var(--honesty-filter-bar-border-color);
+  border-radius: var(--honesty-filter-bar-radius);
+  background: var(--honesty-filter-bar-bg);
+}
+
+.filter-bar__fields,
+.filter-bar__active,
+.filter-bar__actions,
+.filter-bar__criterion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--honesty-filter-bar-item-gap);
+  min-width: 0;
+}
+
+.filter-bar__active { grid-column: 1 / -1; }
+
+@include query.viewport-down('sm') {
+  :host { grid-template-columns: 1fr; }
+}

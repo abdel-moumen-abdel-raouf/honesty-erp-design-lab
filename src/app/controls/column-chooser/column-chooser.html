@@ -1,0 +1,13 @@
+<erp-select
+  label="الأعمدة الظاهرة"
+  multiple
+  [options]="options()"
+  [disabled]="disabled()"
+  [searchable]="false"
+  [filterable]="false"
+  [sortable]="false"
+  [ngModel]="effectiveVisible()"
+  (ngModelChange)="updateVisible($event)"
+  [ngModelOptions]="{standalone: true}"
+/>
+  <erp-button label="إعادة ضبط الأعمدة" icon="refresh" variant="ghost" size="sm" [disabled]="disabled()" (pressed)="resetRequested.emit()" />

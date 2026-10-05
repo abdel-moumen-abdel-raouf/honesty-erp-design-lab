@@ -1,0 +1,7 @@
+@use '../../../styles/foundation/components/sort-header' as tokens;
+
+:host {
+  @include tokens.base;
+  display: inline-flex;
+  color: var(--honesty-sort-header-fg);
+}

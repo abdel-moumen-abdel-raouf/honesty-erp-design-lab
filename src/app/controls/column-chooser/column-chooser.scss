@@ -1,0 +1,10 @@
+@use '../../../styles/foundation/components/column-chooser' as tokens;
+
+:host {
+  @include tokens.base;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: var(--honesty-column-chooser-gap);
+  min-width: 0;
+}

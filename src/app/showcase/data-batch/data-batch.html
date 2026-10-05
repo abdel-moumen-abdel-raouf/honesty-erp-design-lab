@@ -1,0 +1,83 @@
+<erp-container class="data-batch" width="wide">
+  <erp-stack gap="loose">
+    <erp-stack gap="tight">
+      <erp-text type="heading-1">مراجعة دفعة البيانات والجداول</erp-text>
+      <erp-text type="paragraph" tone="secondary">سطح مراجعة عربي موحد للمكوّنات الثمانية، يرث ثيم التطبيق واتجاهه، ولا يملك أي جلب بيانات.</erp-text>
+    </erp-stack>
+
+    <erp-section>
+      <erp-stack gap="default">
+        <erp-text type="heading-2">SortHeader</erp-text>
+        <erp-sort-header label="اسم العميل" [direction]="sortDirection()" (sortChange)="sortDirection.set($event)" />
+      </erp-stack>
+    </erp-section>
+
+    <erp-section>
+      <erp-stack gap="default">
+        <erp-text type="heading-2">ColumnChooser</erp-text>
+        <erp-column-chooser [columns]="columns" [visibleKeys]="visibleColumns()" (visibilityChange)="visibleColumns.set($event)" (resetRequested)="resetVisibleColumns()" />
+      </erp-stack>
+    </erp-section>
+
+    <erp-section>
+      <erp-stack gap="default">
+        <erp-text type="heading-2">FilterBar</erp-text>
+        <erp-filter-bar [filters]="filters()" (filterRemoved)="removeFilter($event)" (resetRequested)="filters.set([])">
+          <erp-text-box label="بحث سريع" placeholder="اسم العميل أو الكود" />
+        </erp-filter-bar>
+      </erp-stack>
+    </erp-section>
+
+    <erp-section>
+      <erp-stack gap="default">
+        <erp-text type="heading-2">FilterDrawer</erp-text>
+        <erp-filter-drawer [definitions]="filterDefinitions" [filters]="filters()" (applied)="filters.set($event)" />
+      </erp-stack>
+    </erp-section>
+
+    <erp-section>
+      <erp-stack gap="default">
+        <erp-text type="heading-2">TableToolbar</erp-text>
+        <erp-surface border="subtle">
+          <erp-table-toolbar label="دليل العملاء">
+            <erp-text-box erpTableToolbarSearch label="بحث الجدول" />
+            <erp-filter-drawer erpTableToolbarFilters [definitions]="filterDefinitions" [filters]="filters()" (applied)="filters.set($event)" />
+            <erp-column-chooser erpTableToolbarColumns [columns]="columns" [visibleKeys]="visibleColumns()" (visibilityChange)="visibleColumns.set($event)" />
+            <erp-button erpTableToolbarActions label="إضافة عميل" icon="add" size="sm" />
+          </erp-table-toolbar>
+        </erp-surface>
+      </erp-stack>
+    </erp-section>
+
+    <erp-section>
+      <erp-stack gap="default">
+        <erp-text type="heading-2">BulkActionBar</erp-text>
+        <erp-bulk-action-bar [selectedCount]="selectedKeys().length" (clearSelection)="selectedKeys.set([])">
+          <erp-button label="تصدير المحدد" icon="download" size="sm" variant="outline" />
+          <erp-button label="حذف المحدد" icon="delete" size="sm" tone="danger" variant="ghost" />
+        </erp-bulk-action-bar>
+      </erp-stack>
+    </erp-section>
+
+    <erp-section>
+      <erp-stack gap="default">
+        <erp-text type="heading-2">ViewSwitcher</erp-text>
+        <erp-view-switcher [(value)]="viewMode" (changed)="viewMode.set($event)" />
+        <erp-text type="caption" tone="secondary">العرض الحالي: {{ viewMode() === 'table' ? 'جدول' : 'بطاقات' }}</erp-text>
+      </erp-stack>
+    </erp-section>
+
+    <erp-section>
+      <erp-stack gap="default">
+        <erp-text type="heading-2">SmartTable</erp-text>
+        <erp-smart-table caption="دليل العملاء المحلي" [columns]="columns" [rows]="rows" [filterDefinitions]="filterDefinitions" [filters]="filters()" [sort]="nameSort" [visibleColumns]="visibleColumns()" [pageSize]="3" [pageSizeOptions]="[3, 5, 10]" selectable [(selectedKeys)]="selectedKeys" (queryChanged)="lastQuery.set($event)" />
+        <erp-text type="caption" tone="secondary">آخر إصدار استعلام: {{ lastQuery()?.revision ?? 0 }}</erp-text>
+        <erp-grid [columns]="3" gap="lg" responsive="auto">
+          <erp-smart-table data-state-evidence="loading" caption="حالة التحميل" [columns]="columns" [rows]="rows" loading [pageSize]="3" />
+          <erp-smart-table data-state-evidence="empty" caption="الحالة الفارغة" [columns]="columns" [rows]="[]" [pageSize]="3" />
+          <erp-smart-table data-state-evidence="error" caption="حالة الخطأ" [columns]="columns" [rows]="[]" error="تعذر تحميل سجلات العملاء من المصدر الخارجي." [pageSize]="3" />
+        </erp-grid>
+      </erp-stack>
+    </erp-section>
+  </erp-stack>
+</erp-container>

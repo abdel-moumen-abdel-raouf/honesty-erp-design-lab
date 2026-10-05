@@ -1,0 +1,10 @@
+@mixin base {
+  --honesty-smart-table-bg: var(--honesty-color-surface-default);
+  --honesty-smart-table-border-color: var(--honesty-border-subtle);
+  --honesty-smart-table-border-width: var(--honesty-border-width-default);
+  --honesty-smart-table-radius: var(--honesty-radius-container);
+  --honesty-smart-table-padding: var(--honesty-space-inset-default);
+  --honesty-smart-table-gap: var(--honesty-space-stack-default);
+  --honesty-smart-table-sort-gap: var(--honesty-space-inline-tight);
+  --honesty-smart-table-body-min-block-size: 12rem;
+}

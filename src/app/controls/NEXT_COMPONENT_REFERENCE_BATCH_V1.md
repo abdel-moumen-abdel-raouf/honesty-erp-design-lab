@@ -581,3 +581,51 @@ BulkActionBar, ViewSwitcher, and SmartTable. Product Owner visual review remains
 grouped until the connected cycle is complete. Forms and Shell remain unopened.
 Technical green does not equal visual acceptance.
 <!-- ACCELERATED_PHASE_A_HARDENING_2026_10_05_END -->
+
+
+<!-- ACCELERATED_PHASE_B_DATA_TABLE_2026_10_05_START -->
+## 2026-10-05 — Accelerated Phase B data/table batch complete
+
+Phase B implemented exactly ErpSortHeader, ErpColumnChooser, ErpFilterBar,
+ErpFilterDrawer, ErpTableToolbar, ErpBulkActionBar, ErpViewSwitcher, and
+ErpSmartTable. The pre-implementation reference audit found no external visual
+reference for any of the eight after checking repository source/docs, Product
+Owner template locations, Downloads, and the available template archive. All
+eight therefore use the explicit Product Owner accelerated-wave
+no-external-reference waiver and the existing Honesty ERP visual language.
+
+The data/table boundary is now explicit:
+
+- ErpTable remains the semantic rendering gateway and owns the single keyed
+  rich-cell template contract;
+- ErpSmartTable orchestrates the approved lower controls and owns local
+  sort/filter/page behavior or revisioned remote query intents only;
+- remote data loading, stale-response policy, transport, permissions, and
+  business actions remain outside SmartTable;
+- FilterDrawer stages typed filters in the shared OverlayFrame;
+- loading, empty, and error presentation reuse ErpSkeleton, ErpEmptyState, and
+  ErpAlert;
+- all eight visual components own isolated Component Token modules, bringing
+  the repository total to 63 concrete modules;
+- long-lived governance rejects HTTP ownership, missing lower-owner
+  composition, raw routed table authoring, a duplicate cell renderer, and
+  missing token bases; its self-test passes.
+
+Canonical Phase B verification:
+
+- npm run verify:clean: PASS;
+- lint/governance: PASS;
+- tests: 110/110 files and 778/778 tests PASS;
+- typecheck:app: PASS;
+- typecheck:spec: PASS;
+- production build: PASS, initial bundle 374.44 kB / estimated transfer
+  85.38 kB, zero Angular warnings.
+
+The combined technical review routes are /controls/core-batch and
+/controls/data-batch. Product Owner grouped runtime/visual review remains
+pending for both batches. Technical green does not equal visual acceptance and
+later findings may reopen any component. Forms, Shell, and every unlisted
+future component remain unopened.
+
+Commit scope: feat(controls): add accelerated data table batch.
+<!-- ACCELERATED_PHASE_B_DATA_TABLE_2026_10_05_END -->

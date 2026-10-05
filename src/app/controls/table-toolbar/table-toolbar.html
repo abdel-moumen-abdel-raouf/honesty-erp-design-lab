@@ -1,0 +1,9 @@
+<erp-text class="table-toolbar__label" type="strong" weight="bold">{{ label() }}</erp-text>
+<div class="table-toolbar__search"><ng-content select="[erpTableToolbarSearch]" /></div>
+<div class="table-toolbar__filters"><ng-content select="[erpTableToolbarFilters]" /></div>
+<div class="table-toolbar__columns"><ng-content select="[erpTableToolbarColumns]" /></div>
+<div class="table-toolbar__actions">
+  <ng-content select="[erpTableToolbarActions]" />
+  @if (showRefresh()) { <erp-button label="تحديث" icon="refresh" variant="ghost" size="sm" [loading]="refreshing()" [disabled]="disabled()" (pressed)="refreshRequested.emit()" /> }
+  @if (showExport()) { <erp-button label="تصدير" icon="download" variant="outline" size="sm" [disabled]="disabled()" (pressed)="exportRequested.emit()" /> }
+</div>
