@@ -727,3 +727,59 @@ required after this correction.
 
 `ErpSelect` remains unopened.
 <!-- CHATGPT_EMPTY_STATE_RUNTIME_ANIMATION_SCOPING_FIX_2026_10_05_END -->
+
+<!-- CHATGPT_EMPTY_STATE_LOTTIE_MIGRATION_2026_10_05_START -->
+## EmptyState Product Owner Lottie migration — 2026-10-05
+
+Starting checkpoint: `fb4b392071968800b1286c5c2ce824b173a50b0d`.
+
+The Product Owner superseded the five default SVG compositions with supplied
+Lottie artwork. The binding mapping is `no-data -> no-data.json`, `no-search ->
+no-search.json`, `error -> error.json`, `forbidden -> forbidden.json`, and
+`custom -> custom.json` under `public/lottie/empty-state/`. `no-search` retains
+its asset while its default `showIllustration` remains `false`. Consumer
+`erpEmptyStateIllustration` projection still overrides the default artwork.
+
+The five source files were inspected before import. They contain no external
+asset references. Only `general-analytics-animation.json` contained an explicit
+white full-canvas `background Outlines` artwork layer; that layer alone was
+removed from the project `custom.json` copy. The Downloads originals were not
+modified. The other four project copies required no background-layer removal.
+Embedded no-search PNG assets preserve alpha transparency.
+
+`lottie-web` `5.13.0` is the sole added runtime and is MIT-licensed. Its local
+SVG-only player is copied by the Angular asset pipeline and loaded lazily by an
+EmptyState-internal implementation helper; there is no CDN, absolute local
+path, or new public Lottie component family. The renderer uses
+`xMidYMid meet`, centered `clamp(5.5rem, 16vw, 8.25rem)` bounds, no crop,
+stretch, overflow, or CSS artwork background.
+
+Existing EmptyState animation API remains intact. `motionSpeed` calls the
+Lottie runtime speed API; `animated=false`, `illustrationMotion='none'`, and
+runtime reduced-motion all hold a static first frame. `replayEntrance()` also
+rewinds and replays Lottie when motion is allowed. Media-query changes are
+observed, and variant replacement/component destruction destroy the previous
+AnimationItem so instances cannot overlap or leak. Lottie artwork colors are
+Product Owner asset-owned for this wave; component chrome remains governed by
+Semantic and EmptyState Component Tokens.
+
+Obsolete default SVG markup, SVG-only tokens, and dead illustration motion
+styles were removed. EmptyState governance now verifies assets, exact mapping,
+local runtime loading, transparency/background restrictions, speed, replay,
+reduced-motion handling, and lifecycle cleanup. Its self-test rejects missing
+mapping, Downloads paths, missing destroy/reduced-motion/speed handling, and a
+full-canvas background. Entrance-keyframe validation is whitespace-insensitive.
+
+Technical verification is fully green: EmptyState governance self-test PASS;
+EmptyState governance PASS; lint/governance PASS; 92/92 test files and 721/721
+tests PASS; app/spec typechecks PASS; production build PASS at 373.68 kB initial
+with zero Angular warnings; `npm run verify:clean` PASS.
+
+This technical result does not equal Product Owner visual approval. The
+immediate gate is Product Owner runtime Light/Dark review of all five Lottie
+scenarios, responsive sizing, transparency, motion speeds, replay, and reduced
+motion. `ErpSelect` remains unopened, and no Selection Family, ItemPicker,
+ComboBox, or SearchBox work is authorized by this wave.
+
+Commit scope: `feat(controls): adopt lottie empty-state illustrations`.
+<!-- CHATGPT_EMPTY_STATE_LOTTIE_MIGRATION_2026_10_05_END -->

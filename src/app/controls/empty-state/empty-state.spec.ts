@@ -1,12 +1,15 @@
 import {Component, reflectComponentType} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
+import type {AnimationItem, LottiePlayer} from 'lottie-web';
 import {
+  ERP_EMPTY_STATE_LOTTIE_ASSETS,
   ERP_EMPTY_STATE_SCENARIOS,
   ErpEmptyState,
   ErpEmptyStateExtra,
   ErpEmptyStateIllustration,
   ErpEmptyStateVariant,
 } from './empty-state';
+import {EMPTY_STATE_LOTTIE_LOADER} from './empty-state-lottie';
 
 @Component({
   imports: [ErpEmptyState, ErpEmptyStateIllustration, ErpEmptyStateExtra],
@@ -20,8 +23,30 @@ import {
 class ProjectionHost {}
 
 describe('ErpEmptyState', () => {
+  let animation: AnimationItem;
+  let player: LottiePlayer;
+
   beforeEach(() => {
-    TestBed.configureTestingModule({imports: [ErpEmptyState, ProjectionHost]});
+    animation = {
+      destroy: vi.fn(),
+      goToAndPlay: vi.fn(),
+      goToAndStop: vi.fn(),
+      play: vi.fn(),
+      setSpeed: vi.fn(),
+    } as unknown as AnimationItem;
+    player = {
+      loadAnimation: vi.fn(() => animation),
+    } as unknown as LottiePlayer;
+
+    TestBed.configureTestingModule({
+      imports: [ErpEmptyState, ProjectionHost],
+      providers: [
+        {
+          provide: EMPTY_STATE_LOTTIE_LOADER,
+          useValue: async () => player,
+        },
+      ],
+    });
   });
 
   function create() {
@@ -54,7 +79,14 @@ describe('ErpEmptyState', () => {
     expect(host.querySelector('[data-empty-state-action="secondary"]')).toBeNull();
     expect(host.querySelector('[data-empty-state-action="tertiary"]')).toBeNull();
     expect(host.querySelector('[data-empty-state-part="extra"]')).not.toBeNull();
-    expect(host.querySelectorAll('svg.es-svg-root')).toHaveLength(1);
+    expect(
+      host
+        .querySelector('erp-empty-state-lottie')
+        ?.getAttribute('data-empty-state-lottie-asset'),
+    ).toBe(ERP_EMPTY_STATE_LOTTIE_ASSETS['no-data']);
+    expect(
+      host.querySelector('.empty-state__illustration svg'),
+    ).toBeNull();
   });
 
   it('implements all five reference variants with their exact scenario defaults', () => {
@@ -107,28 +139,43 @@ describe('ErpEmptyState', () => {
     fixture.detectChanges();
 
     const host = fixture.nativeElement as HTMLElement;
-    expect(host.querySelector('.es-anim-search-scan')).not.toBeNull();
-    expect(host.querySelectorAll('.es-anim-radar-wave')).toHaveLength(1);
-    expect(host.querySelectorAll('.es-anim-radar-wave-delayed')).toHaveLength(1);
+    expect(
+      host
+        .querySelector('erp-empty-state-lottie')
+        ?.getAttribute('data-empty-state-lottie-asset'),
+    ).toBe(ERP_EMPTY_STATE_LOTTIE_ASSETS['no-search']);
   });
 
-  it('preserves exact error, forbidden, and custom illustration identities', () => {
+  it('maps every variant to its exact Product Owner Lottie asset', () => {
     const fixture = create();
     const host = fixture.nativeElement as HTMLElement;
+    const variants: readonly ErpEmptyStateVariant[] = [
+      'no-data',
+      'no-search',
+      'error',
+      'forbidden',
+      'custom',
+    ];
 
-    fixture.componentRef.setInput('variant', 'error');
-    fixture.detectChanges();
-    expect(host.querySelector('.es-anim-danger-halo')).not.toBeNull();
-    expect(host.querySelector('.es-anim-alert-shake')).not.toBeNull();
+    expect(ERP_EMPTY_STATE_LOTTIE_ASSETS).toEqual({
+      'no-data': '/lottie/empty-state/no-data.json',
+      'no-search': '/lottie/empty-state/no-search.json',
+      error: '/lottie/empty-state/error.json',
+      forbidden: '/lottie/empty-state/forbidden.json',
+      custom: '/lottie/empty-state/custom.json',
+    });
 
-    fixture.componentRef.setInput('variant', 'forbidden');
-    fixture.detectChanges();
-    expect(host.querySelector('.es-anim-warning-halo')).not.toBeNull();
+    for (const variant of variants) {
+      fixture.componentRef.setInput('variant', variant);
+      fixture.componentRef.setInput('showIllustration', true);
+      fixture.detectChanges();
 
-    fixture.componentRef.setInput('variant', 'custom');
-    fixture.detectChanges();
-    expect(host.querySelector('.es-fill-secondary-accent')).not.toBeNull();
-    expect(host.querySelector('.es-anim-float-badge')).not.toBeNull();
+      expect(
+        host
+          .querySelector('erp-empty-state-lottie')
+          ?.getAttribute('data-empty-state-lottie-asset'),
+      ).toBe(ERP_EMPTY_STATE_LOTTIE_ASSETS[variant]);
+    }
   });
 
   it('supports independent visibility overrides for every component region and action', () => {
@@ -242,19 +289,32 @@ describe('ErpEmptyState', () => {
     );
   });
 
-  it('uses projected illustration and extra regions instead of rendering defaults', () => {
+  it('uses projected illustration and extra regions instead of creating default Lottie', async () => {
     const fixture = TestBed.createComponent(ProjectionHost);
     fixture.detectChanges();
+    await fixture.whenStable();
 
     const host = fixture.nativeElement as HTMLElement;
     expect(host.querySelector('[data-custom-illustration]')?.textContent).toContain(
       'Custom art',
     );
-    expect(host.querySelector('.empty-state__default-illustration')).toBeNull();
+    expect(host.querySelector('erp-empty-state-lottie')).toBeNull();
+    expect(player.loadAnimation).not.toHaveBeenCalled();
     expect(host.querySelector('[data-custom-extra]')?.textContent).toContain(
       'Custom extra',
     );
     expect(host.querySelector('.empty-state__default-extra')).toBeNull();
+  });
+
+  it('replays the Lottie illustration with the existing entrance API', async () => {
+    const fixture = create();
+    await vi.waitFor(() => {
+      expect(player.loadAnimation).toHaveBeenCalledOnce();
+    });
+
+    fixture.componentInstance.replayEntrance();
+
+    expect(animation.goToAndPlay).toHaveBeenCalledWith(0, true);
   });
 
 });

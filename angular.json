@@ -29,6 +29,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "lottie_svg.min.js",
+                "input": "node_modules/lottie-web/build/player",
+                "output": "vendor/lottie-web"
               }
             ],
             "styles": [

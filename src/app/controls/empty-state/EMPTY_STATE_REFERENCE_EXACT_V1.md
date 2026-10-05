@@ -18,6 +18,17 @@ Product Owner instruction:
 This file is the binding visual/product contract for the current
 `ErpEmptyState` wave.
 
+Product Owner superseding illustration decision on 2026-10-05:
+
+- the five component-owned SVG compositions are replaced by supplied Lottie
+  JSON artwork;
+- Lottie artwork colors are asset-owned for this wave and are not converted
+  into CSS variables or runtime recoloring rules;
+- component chrome, typography, actions, surfaces, focus, and interaction
+  remain governed by Honesty ERP Semantic and Component Tokens;
+- the supplied artwork must render transparently without JSON or CSS
+  backgrounds.
+
 ## Reference-owned scenarios
 
 The exact five reference variants are mandatory:
@@ -65,19 +76,38 @@ gateway.
 
 ## Illustration contract
 
-The five reference SVG compositions are retained as component-owned decorative
-illustrations:
+The Product Owner-supplied Lottie mapping is exact:
 
-- No Data floating document/card + rotating dotted circle + plus badge;
-- No Search radar/search composition;
-- Error danger halo + alert mark;
-- Forbidden warning halo + lock;
-- Custom document/chart + success badge.
+- `no-data` -> `/lottie/empty-state/no-data.json`;
+- `no-search` -> `/lottie/empty-state/no-search.json`;
+- `error` -> `/lottie/empty-state/error.json`;
+- `forbidden` -> `/lottie/empty-state/forbidden.json`;
+- `custom` -> `/lottie/empty-state/custom.json`.
 
-Illustration geometry/path data is reference-owned.
+Asset inspection established:
 
-Reference palette literals are not retained. Every SVG fill/stroke/shadow role
-resolves through EmptyState Component Tokens into Honesty ERP semantic colors.
+| Variant | Composition | FPS | In / Out | Embedded / external assets | Background correction |
+| --- | --- | ---: | ---: | --- | --- |
+| `no-data` | 800 x 600 | 30 | 0 / 91 | none | none |
+| `no-search` | 500 x 500 | 25 | 0 / 273 | four embedded transparent PNG assets; no external references | none |
+| `error` | 241.12 x 215 | 25 | 28 / 66 | none | none |
+| `forbidden` | 1000 x 1000 | 60 | 0 / 60 | none | none |
+| `custom` | 1278 x 1239 | 60 | 0 / 221 | internal precompositions only; no external references | removed one white full-canvas `background Outlines` layer from the project copy |
+
+The source files under Downloads remain unchanged. Only the project-owned
+`custom.json` copy removes the explicit full-canvas background layer.
+
+The internal Lottie renderer uses SVG with
+`preserveAspectRatio="xMidYMid meet"`. The responsive illustration box remains:
+
+```scss
+inline-size: clamp(5.5rem, 16vw, 8.25rem);
+block-size: clamp(5.5rem, 16vw, 8.25rem);
+```
+
+It is centered, does not crop or stretch artwork, and adds no CSS background.
+The default Lottie renderer is internal to EmptyState and does not create a
+public Lottie component family.
 
 Consumers may replace the default illustration through
 `erpEmptyStateIllustration` content projection.
@@ -106,18 +136,22 @@ Reference entrance wave is retained:
 - Extra delay: 330ms;
 - easing: `cubic-bezier(0.16, 1, 0.3, 1)`.
 
-Reference continuous illustration motions are retained:
+The supplied Lottie timelines now own continuous artwork motion. Runtime rules
+are:
 
-- floating main object;
-- floating badge;
-- breathing shadow;
-- slow spin;
-- center pulse;
-- search scan;
-- radar waves;
-- sparkle;
-- danger/warning halo;
-- alert shake.
+- `motionSpeed` uses Lottie's `setSpeed()` with 0.5x, 1.0x, or 1.5x;
+- `animated=false` pauses on the first frame and disables Entrance motion;
+- `illustrationMotion='none'` pauses on the first frame;
+- `illustrationMotion='float'` plays the asset timeline without an extra
+  floating transform;
+- `illustrationMotion='pulse'` plays the asset timeline with one subtle local
+  wrapper pulse;
+- `replayEntrance()` restarts both Entrance and the Lottie timeline when motion
+  is allowed;
+- changing the variant destroys the prior `AnimationItem` before loading the
+  next asset;
+- component destruction destroys the active `AnimationItem` and removes the
+  media-query listener.
 
 Reference motion speed values remain:
 
@@ -131,8 +165,10 @@ selector exposes Float and None. Production honors the full declared union.
 
 `replayEntrance()` is the production equivalent of the reference replay API.
 
-`prefers-reduced-motion: reduce` disables all EmptyState animations and
-transitions.
+`prefers-reduced-motion: reduce` is enforced in both CSS and JavaScript. It
+prevents autoplay and looping, pauses Lottie at the first frame, disables the
+Entrance/pulse effects, and responds to media-query changes during the
+component lifetime.
 
 ## Accessibility
 
@@ -140,7 +176,7 @@ The production host preserves:
 
 - `role="status"`;
 - `aria-live="polite"`;
-- decorative SVGs as `aria-hidden="true"`.
+- decorative Lottie renderers as `aria-hidden="true"`.
 
 Production additionally uses `aria-atomic="true"` so a scenario/content update
 is announced coherently.
@@ -164,20 +200,19 @@ colors.
 
 ## System-color mapping
 
-Reference color roles map to Honesty ERP Semantic -> Component Tokens:
+Component-owned color roles map to Honesty ERP Semantic -> Component Tokens:
 
 - primary/secondary/muted text -> system text roles;
 - surface/subtle surface -> system surface roles;
 - subtle/default borders -> system border roles;
-- primary illustration/action color -> Brand Primary roles;
-- Error illustration -> Feedback Danger roles;
-- Forbidden illustration -> Feedback Warning roles;
-- Custom success illustration -> Feedback Success roles;
 - links/focus -> Brand Primary / Action Focus roles;
 - shadows -> system overlay/elevation-backed semantic roles.
 
-No reference hexadecimal, rgb/hsl, or component-owned Light/Dark palette is
-allowed in production EmptyState source.
+No hexadecimal, rgb/hsl, or component-owned Light/Dark palette is allowed in
+production EmptyState TypeScript, templates, or CSS. The colors encoded inside
+the Product Owner-supplied Lottie JSON artwork are the explicit asset-owned
+exception for this wave. They are not component CSS and must not be silently
+recolored.
 
 ## Design Lab evidence
 

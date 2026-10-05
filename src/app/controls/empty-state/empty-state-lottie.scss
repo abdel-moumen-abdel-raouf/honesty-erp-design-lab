@@ -1,0 +1,41 @@
+@keyframes honesty-empty-state-lottie-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.035);
+  }
+}
+
+:host {
+  display: block;
+  inline-size: clamp(5.5rem, 16vw, 8.25rem);
+  block-size: clamp(5.5rem, 16vw, 8.25rem);
+  max-inline-size: 100%;
+  overflow: visible;
+}
+
+:host([data-empty-state-lottie-playing='true'][data-empty-state-lottie-motion='pulse']) {
+  animation:
+    honesty-empty-state-lottie-pulse
+    calc(2.2s / var(--honesty-empty-state-lottie-speed))
+    ease-in-out
+    infinite;
+  transform-origin: center;
+}
+
+.empty-state-lottie__canvas {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host {
+    animation: none !important;
+    transition: none !important;
+  }
+}

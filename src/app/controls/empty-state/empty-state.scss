@@ -41,13 +41,3 @@
 .empty-state__illustration:hover {
   transform: scale(1.05) translateY(-3px);
 }
-
-.empty-state__default-illustration {
-  display: contents;
-}
-
-.empty-state__illustration svg {
-  display: block;
-  inline-size: clamp(5.5rem, 16vw, 8.25rem);
-  block-size: clamp(5.5rem, 16vw, 8.25rem);
-}

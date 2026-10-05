@@ -1,13 +1,32 @@
 import {TestBed} from '@angular/core/testing';
 import {provideRouter} from '@angular/router';
+import type {AnimationItem, LottiePlayer} from 'lottie-web';
 import {routes} from '../../app.routes';
+import {EMPTY_STATE_LOTTIE_LOADER} from '../../controls/empty-state/empty-state-lottie';
 import {EmptyStateControls} from './empty-state-controls';
 
 describe('EmptyStateControls showcase', () => {
   beforeEach(() => {
+    const animation = {
+      destroy: vi.fn(),
+      goToAndPlay: vi.fn(),
+      goToAndStop: vi.fn(),
+      play: vi.fn(),
+      setSpeed: vi.fn(),
+    } as unknown as AnimationItem;
+    const player = {
+      loadAnimation: vi.fn(() => animation),
+    } as unknown as LottiePlayer;
+
     TestBed.configureTestingModule({
       imports: [EmptyStateControls],
-      providers: [provideRouter(routes)],
+      providers: [
+        provideRouter(routes),
+        {
+          provide: EMPTY_STATE_LOTTIE_LOADER,
+          useValue: async () => player,
+        },
+      ],
     });
   });
 
@@ -58,7 +77,11 @@ describe('EmptyStateControls showcase', () => {
       '[data-empty-state-interactive-preview] erp-empty-state',
     )!;
     expect(preview.getAttribute('data-empty-state-variant')).toBe('error');
-    expect(preview.querySelector('.es-anim-danger-halo')).not.toBeNull();
+    expect(
+      preview
+        .querySelector('erp-empty-state-lottie')
+        ?.getAttribute('data-empty-state-lottie-asset'),
+    ).toBe('/lottie/empty-state/error.json');
     expect(preview.querySelector('[data-empty-state-action="primary"]')).not.toBeNull();
     expect(preview.querySelector('[data-empty-state-action="tertiary"]')).not.toBeNull();
     expect(preview.querySelector('[data-empty-state-action="secondary"]')).toBeNull();

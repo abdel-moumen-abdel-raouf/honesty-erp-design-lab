@@ -8,11 +8,13 @@ import {
   input,
   output,
   signal,
+  viewChild,
 } from '@angular/core';
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
 import {ErpIcon} from '../../primitives/icon/icon';
 import {ErpText} from '../../primitives/text/text';
 import {ErpButton} from '../button/button';
+import {ErpEmptyStateLottie} from './empty-state-lottie';
 
 export type ErpEmptyStateVariant =
   | 'no-data'
@@ -23,6 +25,16 @@ export type ErpEmptyStateVariant =
 
 export type ErpEmptyStateIllustrationMotion = 'float' | 'pulse' | 'none';
 export type ErpEmptyStateMotionSpeed = 0.5 | 1 | 1.5;
+
+export const ERP_EMPTY_STATE_LOTTIE_ASSETS: Readonly<
+  Record<ErpEmptyStateVariant, string>
+> = Object.freeze({
+  'no-data': '/lottie/empty-state/no-data.json',
+  'no-search': '/lottie/empty-state/no-search.json',
+  error: '/lottie/empty-state/error.json',
+  forbidden: '/lottie/empty-state/forbidden.json',
+  custom: '/lottie/empty-state/custom.json',
+});
 
 export interface ErpEmptyStateScenarioDefaults {
   readonly title: string;
@@ -127,18 +139,13 @@ function nullableBooleanAttribute(value: unknown): boolean | null {
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-empty-state',
-  imports: [ErpButton, ErpIcon, ErpText],
+  imports: [ErpButton, ErpEmptyStateLottie, ErpIcon, ErpText],
   templateUrl: './empty-state.html',
   styleUrls: [
     './empty-state.scss',
     './empty-state-content.scss',
-    './empty-state-illustrations.scss',
     './empty-state-motion-entry.scss',
-    './empty-state-motion-float.scss',
-    './empty-state-motion-search.scss',
-    './empty-state-motion-status.scss',
     './empty-state-motion-reduced.scss',
-    './empty-state-facets.scss',
   ],
   host: {
     role: 'status',
@@ -195,8 +202,12 @@ export class ErpEmptyState {
 
   protected readonly projectedIllustration = contentChild(ErpEmptyStateIllustration);
   protected readonly projectedExtra = contentChild(ErpEmptyStateExtra);
+  private readonly defaultIllustration = viewChild(ErpEmptyStateLottie);
   protected readonly entering = signal(true);
   protected readonly defaults = computed(() => ERP_EMPTY_STATE_SCENARIOS[this.variant()]);
+  protected readonly defaultIllustrationAsset = computed(
+    () => ERP_EMPTY_STATE_LOTTIE_ASSETS[this.variant()],
+  );
   protected readonly effectiveTitle = computed(
     () => this.title() ?? this.defaults().title,
   );
@@ -246,6 +257,7 @@ export class ErpEmptyState {
       return;
     }
 
+    this.defaultIllustration()?.replay();
     this.entering.set(false);
     const schedule =
       typeof requestAnimationFrame === 'function'
