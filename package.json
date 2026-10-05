@@ -27,7 +27,7 @@
     "erp-field:check:self-test": "node tools/controls/check-erp-field-governance.mjs --self-test",
     "erp-overlay:check": "node tools/controls/check-erp-overlay-governance.mjs",
     "erp-overlay:check:self-test": "node tools/controls/check-erp-overlay-governance.mjs --self-test",
-    "lint": "npm run theme-authority:check && npm run route-pages:check && npm run component-tokens:check && npm run system-colors:check && npm run erp-text:check && npm run erp-icon:check && npm run erp-button:check && npm run erp-tooltip:check && npm run erp-field:check && npm run erp-empty-state:check && npm run erp-overlay:check && npm run erp-confirm:check && npm run erp-data-table:check && npm run erp-forms:check && ng lint",
+    "lint": "npm run theme-authority:check && npm run route-pages:check && npm run component-tokens:check && npm run system-colors:check && npm run erp-text:check && npm run erp-icon:check && npm run erp-button:check && npm run erp-tooltip:check && npm run erp-field:check && npm run erp-empty-state:check && npm run erp-overlay:check && npm run erp-confirm:check && npm run erp-data-table:check && npm run erp-forms:check && npm run erp-entity-form:check && ng lint",
     "route-pages:check": "node tools/foundation/check-route-page-erp-authoring.mjs",
     "route-pages:check:self-test": "node tools/foundation/check-route-page-erp-authoring.mjs --self-test",
     "verify:clean": "npm run lint && npm run test -- --watch=false && npm run typecheck:app && npm run typecheck:spec && npm run build:clean",
@@ -44,7 +44,9 @@
     "erp-data-table:check": "node tools/controls/check-erp-data-table-governance.mjs",
     "erp-data-table:check:self-test": "node tools/controls/check-erp-data-table-governance.mjs --self-test",
     "erp-forms:check": "node tools/controls/check-erp-forms-governance.mjs",
-    "erp-forms:check:self-test": "node tools/controls/check-erp-forms-governance.mjs --self-test"
+    "erp-forms:check:self-test": "node tools/controls/check-erp-forms-governance.mjs --self-test",
+    "erp-entity-form:check": "node tools/controls/check-erp-entity-form-governance.mjs",
+    "erp-entity-form:check:self-test": "node tools/controls/check-erp-entity-form-governance.mjs --self-test"
   },
   "private": true,
   "dependencies": {

@@ -1,0 +1,54 @@
+<erp-form [label]="validatedSchema().label" [description]="validatedSchema().description ?? null" [disabled]="disabled()" [busy]="busy()" (submitRequested)="submit()" (resetRequested)="resetRequested.emit()">
+  <erp-validation-summary [issues]="issues()" (issueActivated)="issueActivated.emit($event)" />
+
+  @if (validatedSchema().steps?.length) {
+    <erp-stepper [steps]="stepDefinitions()" [(activeId)]="activeStepId">
+      @for (step of validatedSchema().steps ?? []; track step.id) {
+        <ng-template [erpStepPanel]="step.id">
+          <span class="standard-entity-form__sections">
+            @for (section of sectionsFor(step); track section.id) {
+              @if (section.kind === 'fields') {
+                <erp-form-section [title]="section.title" [description]="section.description ?? null" [compact]="section.compact ?? false">
+                  <erp-entity-schema-fields [fields]="section.fields" [section]="section" [values]="values()" [issues]="issues()" [customFieldOutlets]="customFieldOutlets()" (fieldValueChanged)="handleFieldChange($event)" />
+                </erp-form-section>
+              } @else {
+                <erp-form-section [title]="section.title" [description]="section.description ?? null">
+                  <ng-container [ngTemplateOutlet]="customSectionTemplate(section)" [ngTemplateOutletContext]="customSectionContext(section)" />
+                </erp-form-section>
+              }
+            }
+            @if (reviewTemplateFor(step); as template) {
+              <span class="standard-entity-form__review">
+                <ng-container [ngTemplateOutlet]="template" [ngTemplateOutletContext]="reviewContext(step)" />
+              </span>
+            }
+          </span>
+        </ng-template>
+      }
+    </erp-stepper>
+  } @else {
+    <span class="standard-entity-form__sections">
+      @for (section of validatedSchema().sections; track section.id) {
+        @if (section.kind === 'fields') {
+          <erp-form-section [title]="section.title" [description]="section.description ?? null" [compact]="section.compact ?? false">
+            <erp-entity-schema-fields [fields]="section.fields" [section]="section" [values]="values()" [issues]="issues()" [customFieldOutlets]="customFieldOutlets()" (fieldValueChanged)="handleFieldChange($event)" />
+          </erp-form-section>
+        } @else {
+          <erp-form-section [title]="section.title" [description]="section.description ?? null">
+            <ng-container [ngTemplateOutlet]="customSectionTemplate(section)" [ngTemplateOutletContext]="customSectionContext(section)" />
+          </erp-form-section>
+        }
+      }
+    </span>
+  }
+
+  <erp-form-actions>
+    @if (validatedSchema().actions.cancelLabel) {
+      <erp-button erpFormActionsSecondary type="button" variant="ghost" [label]="validatedSchema().actions.cancelLabel ?? ''" [disabled]="disabled() || busy()" (pressed)="cancelRequested.emit()" />
+    }
+    @if (validatedSchema().actions.resetLabel) {
+      <erp-button erpFormActionsSecondary type="reset" variant="outline" [label]="validatedSchema().actions.resetLabel ?? ''" [disabled]="disabled() || busy()" />
+    }
+    <erp-button erpFormActionsPrimary type="submit" [label]="validatedSchema().actions.submitLabel" [disabled]="disabled()" [loading]="busy()" />
+  </erp-form-actions>
+</erp-form>

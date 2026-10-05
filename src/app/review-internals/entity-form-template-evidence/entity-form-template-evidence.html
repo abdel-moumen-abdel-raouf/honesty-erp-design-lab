@@ -1,0 +1,12 @@
+<erp-standard-entity-form [schema]="schema()" [values]="values()" [issues]="issues()" (valueChanged)="valueChanged.emit($event)" (submitRequested)="submitRequested.emit($event)" (resetRequested)="resetRequested.emit()" (cancelRequested)="cancelRequested.emit()">
+  <ng-template erpEntityCustomField="reference-code" let-field let-value="value" let-update="update">
+    <erp-text-box [label]="field.label" [helperText]="field.description ?? null" [ngModel]="value" [ngModelOptions]="{standalone: true}" (ngModelChange)="update($event)" />
+  </ng-template>
+  <ng-template erpEntityCustomSection="audit-note" let-values="values" let-update="update">
+    <erp-text-box label="ملاحظة تدقيق" helperText="قسم متخصص يظل مملوكًا للمستهلك" [ngModel]="values.auditNote ?? ''" [ngModelOptions]="{standalone: true}" (ngModelChange)="update({key: 'auditNote', value: $event})" />
+  </ng-template>
+  <ng-template erpEntityFormReview let-values>
+    <erp-text type="heading-3">مراجعة السجل قبل الإرسال</erp-text>
+    <erp-text type="paragraph" selectable>الاسم: {{ values.name }} — الرمز: {{ values.referenceCode }}</erp-text>
+  </ng-template>
+</erp-standard-entity-form>

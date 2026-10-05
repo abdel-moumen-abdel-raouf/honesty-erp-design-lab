@@ -14,13 +14,12 @@ Branch:
 
 ## Authoritative current execution state — 2026-10-06
 
-Live `main` entered this two-commit wave at
-`36fdd62f0b65ea9b137639f2b002640603f46525`
-(`feat(controls): add accelerated data table batch`) and contains the independent
-continuity checkpoint `f12d28cb37972c18e2a4e897530be9f509c0540d`
-(`docs(handoff): normalize accelerated current state`). Always resolve the final
-live local and remote SHAs directly because the Forms implementation commit is
-newer than both recorded entry checkpoints.
+Live `main` entered Phase 6 at
+`754e18dfe49c97b06eb799c05984bfd2134154b0`
+(`feat(forms): add accelerated forms composition batch`). The Phase 6 source,
+verification, and continuity changes are committed together as
+`feat(forms): add schema-driven entity form engine`; always resolve the live
+local and remote SHA directly because this document is part of that commit.
 
 Completed technical checkpoints:
 
@@ -35,24 +34,32 @@ Completed technical checkpoints:
   both TypeScript typechecks, production build, and zero warnings; initial
   bundle 374.97 kB / 85.34 kB estimated transfer and Forms Batch lazy chunk
   34.28 kB / 7.17 kB estimated transfer.
+- Schema-Driven Entity Form Engine V1 implemented for exactly
+  `ErpStandardEntityForm`, `ErpEntitySchemaFields`,
+  `ErpEntityCustomFieldOutlet`, and `ErpEntityCustomSectionOutlet`; its
+  canonical gate passed 121/121 test files, 809/809 tests, both TypeScript
+  typechecks, production build, and zero warnings; initial bundle 375.34 kB /
+  85.44 kB estimated transfer and Entity Form lazy chunk 37.44 kB / 6.88 kB
+  estimated transfer.
 
-The Forms external-reference audit found no reference for any of the six owners,
-so each was implemented under the Product Owner accelerated no-external-reference
-waiver recorded in `src/app/controls/FORMS_BATCH_V1.md`.
+The Phase 6 reference audit found no external reference for any of the four
+owners, so each was implemented under the Product Owner Phase 6 accelerated
+no-external-reference waiver recorded in
+`src/app/controls/ENTITY_FORM_ENGINE_V1.md`.
 
 Product Owner visual state and immediate next action:
 
-- Core, Data/Table, and Forms runtime/visual acceptance remains pending and may
-  reopen any component;
+- Core, Data/Table, Forms, and Entity Form Engine runtime/visual acceptance
+  remains pending and may reopen any component;
 - technical green does not equal Product Owner visual approval or freeze;
-- the exact next action is grouped Product Owner runtime/Light/Dark review of
-  the accelerated work at `/controls/core-batch`, `/controls/data-batch`, and
-  `/controls/forms-batch`;
+- the exact next action is Product Owner runtime/Light/Dark review of the
+  grouped accelerated work, including `/controls/entity-form-batch`;
 - no further implementation scope is authorized by this checkpoint.
 
-Still unopened: `StandardEntityForm`, Form Engine/schema, Entity Wizard,
-entity/application patterns, SmartTable-adjacent application patterns, Shell,
-Sidebar/Topbar, Navigation, Features/Pages, and every seventh Forms owner.
+Still unopened: standalone EntityReview, Entity Wizard, workflow engine,
+DataPage, EntityDirectory, EntityDetail, reusable page/entity patterns, Shell,
+Sidebar/Topbar, Navigation, Features/Pages, ERP-specific domain editors, and
+every unlisted owner. Phase 7 is not authorized.
 
 ## Historical GitHub checkpoints — superseded snapshot
 

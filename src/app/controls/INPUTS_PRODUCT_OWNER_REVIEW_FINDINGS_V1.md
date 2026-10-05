@@ -16,6 +16,14 @@ review of Core, Data/Table, and Forms. Shell, higher application patterns, and
 every unlisted family remain unopened. Technical PASS does not equal visual
 approval.
 
+Phase 6 now implements exactly `ErpStandardEntityForm`,
+`ErpEntitySchemaFields`, `ErpEntityCustomFieldOutlet`, and
+`ErpEntityCustomSectionOutlet`. Its canonical technical gate passed 121/121
+test files and 809/809 tests with both typechecks, production build, and zero
+warnings. The exact next action is Product Owner runtime/Light/Dark review of
+the grouped Core, Data/Table, Forms, and Entity Form Engine evidence. Phase 7
+and every unlisted family remain unopened.
+
 ## Historical Inputs review status — superseded snapshot
 
 Product Owner review of `/controls/inputs` is BLOCKED. The page must not be

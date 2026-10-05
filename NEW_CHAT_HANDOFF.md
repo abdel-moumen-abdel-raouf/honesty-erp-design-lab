@@ -2,12 +2,11 @@
 
 ## 0. Authoritative current handoff — 2026-10-06
 
-The accelerated source entry checkpoint was
-`36fdd62f0b65ea9b137639f2b002640603f46525`
-(`feat(controls): add accelerated data table batch`) and the separate continuity
-normalization checkpoint is `f12d28cb37972c18e2a4e897530be9f509c0540d`.
-Resolve the final live local and remote SHAs at session start because the Forms
-implementation commit is newer.
+Phase 6 started from `754e18dfe49c97b06eb799c05984bfd2134154b0`
+(`feat(forms): add accelerated forms composition batch`). Resolve the final live
+local and remote SHAs at session start; the Phase 6 implementation and current
+state are committed together as `feat(forms): add schema-driven entity form
+engine`.
 
 Accelerated Core, Phase A hardening, and Phase B Data/Table remain technically
 green. The Forms Composition Batch now implements exactly `ErpForm`,
@@ -19,11 +18,20 @@ The six-component reference
 audit found no external files, so the scoped accelerated waiver applies as
 recorded in `src/app/controls/FORMS_BATCH_V1.md`.
 
-The exact next action is grouped Product Owner runtime/Light/Dark review of the
-Core, Data/Table, and Forms review routes. Technical PASS never equals visual
-acceptance. No `StandardEntityForm`, Form Engine/schema, Entity Wizard, entity
-pattern, Shell, Sidebar/Topbar, Navigation, Feature/Page migration, seventh
-Forms owner, or subsequent wave is open.
+Schema-Driven Entity Form Engine V1 now implements exactly
+`ErpStandardEntityForm`, `ErpEntitySchemaFields`,
+`ErpEntityCustomFieldOutlet`, and `ErpEntityCustomSectionOutlet`. Its canonical
+gate passed 121/121 test files, 809/809 tests, both typechecks, production
+build, and zero warnings; initial bundle 375.34 kB / 85.44 kB estimated
+transfer and Entity Form lazy chunk 37.44 kB / 6.88 kB estimated transfer. The
+four-owner reference audit found no external file, so the Product Owner Phase 6
+accelerated waiver applies as recorded in `ENTITY_FORM_ENGINE_V1.md`.
+
+The exact next action is Product Owner runtime/Light/Dark review of the grouped
+Core, Data/Table, Forms, and Entity Form Engine review routes. Technical PASS
+never equals visual acceptance. Standalone EntityReview, Entity Wizard,
+workflow engine, reusable page/entity patterns, Shell, Sidebar/Topbar,
+Navigation, Feature/Page migration, and every subsequent wave remain unopened.
 
 ## 1. Purpose of this document
 

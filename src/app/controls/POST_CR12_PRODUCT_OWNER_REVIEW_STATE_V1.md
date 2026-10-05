@@ -8,10 +8,9 @@ It records Product Owner decisions, externally reviewed Git state, execution bou
 
 ## Authoritative current review transition — 2026-10-06
 
-Live `main` entered this transition at
-`36fdd62f0b65ea9b137639f2b002640603f46525`
-(`feat(controls): add accelerated data table batch`). Resolve newer continuity
-and implementation commits directly from Git.
+Phase 6 entered from `754e18dfe49c97b06eb799c05984bfd2134154b0`
+(`feat(forms): add accelerated forms composition batch`). Resolve the final
+Phase 6 implementation SHA directly from live Git.
 
 The Accelerated Core Batch, Phase A hardening, and Phase B Data/Table batch are
 implemented and technically green. The Phase B canonical gate passed 110/110
@@ -27,10 +26,16 @@ Product Owner's scoped accelerated waiver applied. Canonical verification passed
 117/117 test files, 792/792 tests, both typechecks, production build, and zero
 warnings.
 
-The exact next gate is grouped Product Owner runtime and Light/Dark visual review
-of Core, Data/Table, and Forms. No later implementation wave is authorized.
-`StandardEntityForm`, Form Engine/schema, Entity Wizard/patterns,
-SmartTable-adjacent application patterns, Shell, Sidebar/Topbar, Navigation,
+Schema-Driven Entity Form Engine V1 now implements exactly
+`ErpStandardEntityForm`, `ErpEntitySchemaFields`,
+`ErpEntityCustomFieldOutlet`, and `ErpEntityCustomSectionOutlet`. Canonical
+verification passed 121/121 test files, 809/809 tests, both typechecks,
+production build, and zero warnings.
+
+The exact next gate is Product Owner runtime and Light/Dark visual review of
+Core, Data/Table, Forms, and Entity Form Engine. No later implementation wave
+is authorized. Standalone EntityReview, Entity Wizard, workflow engine,
+reusable page/entity patterns, Shell, Sidebar/Topbar, Navigation,
 Features/Pages, and every unlisted family remain unopened. Technical PASS never
 equals visual approval.
 

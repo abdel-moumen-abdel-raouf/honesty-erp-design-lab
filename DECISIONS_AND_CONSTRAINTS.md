@@ -30,25 +30,24 @@ Binding Product Owner law:
 4. the next item is the lowest unresolved dependency, not simply the next row
    in historical planning.
 
-Latest completed authorized batch:
+Latest completed authorized phase:
 
-1. `ErpForm`;
-2. `ErpFormSection`;
-3. `ErpFormActions`;
-4. `ErpValidationSummary`;
-5. `ErpRepeater`;
-6. `ErpStepper`.
+1. `ErpStandardEntityForm`;
+2. `ErpEntitySchemaFields`;
+3. `ErpEntityCustomFieldOutlet`;
+4. `ErpEntityCustomSectionOutlet`.
 
-This Accelerated Forms Composition Wave follows technically green Core, Phase A
-hardening, and Data/Table batches. The six Forms owners are now implemented and
-canonically green at 117/117 test files and 792/792 tests, with both typechecks,
-production build, and zero warnings.
+This Schema-Driven Entity Form Engine phase follows technically green Core,
+Phase A hardening, Data/Table, and Forms Composition batches. The four Phase 6
+owners are now implemented and canonically green at 121/121 test files and
+809/809 tests, with both typechecks, production build, and zero warnings.
 
-Current active gate is grouped Product Owner runtime/Light/Dark review of Core,
-Data/Table, and Forms. Technical PASS is not visual freeze. No subsequent
-implementation scope is authorized. `StandardEntityForm`, Form Engine/schema,
-Entity Wizard, entity patterns, Shell, Sidebar/Topbar, Navigation,
-Features/Pages, and every unlisted family remain unopened.
+Current active gate is Product Owner runtime/Light/Dark review of Core,
+Data/Table, Forms, and Entity Form Engine. Technical PASS is not visual freeze.
+No subsequent implementation scope is authorized. Standalone EntityReview,
+Entity Wizard, workflow engine, reusable page/entity patterns, Shell,
+Sidebar/Topbar, Navigation, Features/Pages, and every unlisted family remain
+unopened. Phase 7 is not authorized.
 
 ## Visual-reference law
 

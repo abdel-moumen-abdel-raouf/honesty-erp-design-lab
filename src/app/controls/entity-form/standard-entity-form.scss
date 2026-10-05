@@ -1,0 +1,28 @@
+@use '../../../styles/foundation/components/standard-entity-form' as tokens;
+@use '../../../styles/foundation/queries' as query;
+
+:host {
+  @include tokens.base;
+  display: block;
+  min-inline-size: 0;
+  container-type: inline-size;
+}
+.standard-entity-form__sections {
+  display: grid;
+  gap: var(--honesty-standard-entity-form-section-gap);
+  min-inline-size: 0;
+}
+
+.standard-entity-form__review {
+  display: block;
+  padding: var(--honesty-standard-entity-form-review-padding);
+  border: var(--honesty-standard-entity-form-review-border-width) solid var(--honesty-standard-entity-form-review-border-color);
+  border-radius: var(--honesty-standard-entity-form-review-radius);
+  background: var(--honesty-standard-entity-form-review-bg);
+}
+
+@include query.container-down('sm') {
+  .standard-entity-form__review {
+    padding: var(--honesty-standard-entity-form-review-padding-narrow);
+  }
+}

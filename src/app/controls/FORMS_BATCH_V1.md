@@ -13,6 +13,11 @@ chunk 34.28 kB / 7.17 kB estimated transfer.
 It remains a technical implementation candidate. Technical green does not equal
 Product Owner runtime/visual approval or freeze.
 
+The later Product Owner Phase 6 authorization superseded only this batch's
+historical `StandardEntityForm` / schema-engine boundary. Phase 6 consumes
+these six stable composition owners through exactly four bounded Entity Form
+owners. It does not alter their contracts or visually approve this batch.
+
 ## Reference audit
 
 The audit searched repository source/documentation, available Product Owner
@@ -61,7 +66,9 @@ subsequent implementation wave.
 
 ## Explicit non-goals
 
-No `StandardEntityForm`, Form Engine/schema, Entity Field Registry, Entity
-Wizard, entity/application pattern, SmartTable-adjacent application pattern,
-Shell, Sidebar/Topbar, Navigation, Feature/Page migration, or seventh Forms
-owner is opened by this batch.
+At this batch's completion, `StandardEntityForm` and Form Engine/schema were
+unopened. That historical boundary is superseded only by the later explicit
+Phase 6 authorization recorded in `ENTITY_FORM_ENGINE_V1.md`. Entity Wizard,
+workflow engine, reusable page/entity patterns, Shell, Sidebar/Topbar,
+Navigation, Feature/Page migration, and every seventh Forms owner remain
+unopened.

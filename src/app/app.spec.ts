@@ -118,6 +118,8 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     const overlayControlsLink = compiled.querySelector('#nav-link-overlay-controls');
     const coreBatchLink = compiled.querySelector('#nav-link-core-batch');
     const dataBatchLink = compiled.querySelector('#nav-link-data-batch');
+    const formsBatchLink = compiled.querySelector('#nav-link-forms-batch');
+    const entityFormBatchLink = compiled.querySelector('#nav-link-entity-form-batch');
     const colorsLink = compiled.querySelector('#nav-link-colors');
     const themesLink = compiled.querySelector('#nav-link-themes');
     const statusHuesLink = compiled.querySelector('#nav-link-status-hues');
@@ -139,6 +141,8 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(overlayControlsLink).toBeTruthy();
     expect(coreBatchLink).toBeTruthy();
     expect(dataBatchLink).toBeTruthy();
+    expect(formsBatchLink).toBeTruthy();
+    expect(entityFormBatchLink).toBeTruthy();
     expect(colorsLink).toBeTruthy();
     expect(themesLink).toBeTruthy();
     expect(statusHuesLink).toBeTruthy();
@@ -161,6 +165,8 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(overlayControlsLink?.textContent?.trim()).toBe('النوافذ الحاجبة');
     expect(coreBatchLink?.textContent?.trim()).toBe('دفعة المكوّنات');
     expect(dataBatchLink?.textContent?.trim()).toBe('دفعة البيانات والجداول');
+    expect(formsBatchLink?.textContent?.trim()).toBe('دفعة تكوين النماذج');
+    expect(entityFormBatchLink?.textContent?.trim()).toBe('محرك نماذج الكيانات');
     expect(colorsLink?.textContent?.trim()).toBe('الألوان المرجعية');
     expect(themesLink?.textContent?.trim()).toBe('السمات الدلالية');
     expect(statusHuesLink?.textContent?.trim()).toBe('صبغات الحالات');
@@ -193,6 +199,8 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(linkPaths).toContain('/controls/overlays');
     expect(linkPaths).toContain('/controls/core-batch');
     expect(linkPaths).toContain('/controls/data-batch');
+    expect(linkPaths).toContain('/controls/forms-batch');
+    expect(linkPaths).toContain('/controls/entity-form-batch');
     expect(linkPaths).toContain('/foundation/colors');
     expect(linkPaths).toContain('/foundation/themes');
     expect(linkPaths).toContain('/foundation/colors/status-hues');
@@ -218,6 +226,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
       'controls/core-batch',
       'controls/data-batch',
       'controls/forms-batch',
+      'controls/entity-form-batch',
       'foundation/colors',
       'foundation/colors/status-hues',
       'foundation/themes',

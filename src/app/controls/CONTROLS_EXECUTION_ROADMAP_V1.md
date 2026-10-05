@@ -27,12 +27,19 @@ files, 792/792 tests, both typechecks, production build, and zero warnings. The
 reference audit found no external reference for the six; the scoped accelerated
 waiver and matrix are recorded in `FORMS_BATCH_V1.md`.
 
-`StandardEntityForm`, Form Engine/schema, Entity Wizard, entity patterns,
-SmartTable-adjacent application patterns, Shell, Sidebar/Topbar, Navigation,
-Features/Pages, and every unlisted family remain unopened. The exact next action
-is grouped Product Owner runtime/Light/Dark review of Core, Data/Table, and
-Forms; no subsequent implementation phase is authorized. Technical green is
-not Product Owner visual approval.
+Schema-Driven Entity Form Engine V1 is implemented for exactly
+`ErpStandardEntityForm`, `ErpEntitySchemaFields`,
+`ErpEntityCustomFieldOutlet`, and `ErpEntityCustomSectionOutlet`. Canonical
+verification passed 121/121 test files, 809/809 tests, both typechecks,
+production build, and zero warnings. Its four-owner reference audit found no
+external reference, so the scoped Phase 6 accelerated waiver applies.
+
+Standalone EntityReview, Entity Wizard, workflow engine, reusable page/entity
+patterns, Shell, Sidebar/Topbar, Navigation, Features/Pages, and every unlisted
+family remain unopened. The exact next action is Product Owner runtime/Light/
+Dark review of Core, Data/Table, Forms, and Entity Form Engine; no subsequent
+implementation phase is authorized. Technical green is not Product Owner
+visual approval.
 
 ## Canonical Classification
 
@@ -90,6 +97,22 @@ Other implemented Composites:
 - `ErpButtonGroup`
 - `ErpSplitButton`
 - `ErpFabMenu`
+
+Forms composition owners:
+
+- `ErpForm`
+- `ErpFormSection`
+- `ErpFormActions`
+- `ErpValidationSummary`
+- `ErpRepeater`
+- `ErpStepper`
+
+Schema-driven entity form owners:
+
+- `ErpStandardEntityForm`
+- `ErpEntitySchemaFields`
+- `ErpEntityCustomFieldOutlet`
+- `ErpEntityCustomSectionOutlet`
 
 ## Phase Program
 

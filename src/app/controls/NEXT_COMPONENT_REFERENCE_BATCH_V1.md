@@ -13,8 +13,12 @@ The repository/template/Downloads audit found no external reference for any of
 the six, so the Product Owner accelerated no-external-reference waiver applied
 to those owners only. The batch passed canonical technical verification at
 117/117 test files and 792/792 tests. The next action is grouped Product Owner
-runtime/Light/Dark review; no subsequent implementation wave is open. Shell and
-all higher/unlisted families remain unopened. Technical PASS is not visual
+runtime/Light/Dark review. Phase 6 subsequently implemented exactly
+`ErpStandardEntityForm`, `ErpEntitySchemaFields`,
+`ErpEntityCustomFieldOutlet`, and `ErpEntityCustomSectionOutlet` under its
+scoped no-reference waiver and passed 121/121 test files and 809/809 tests.
+The current review gate includes `/controls/entity-form-batch`; Phase 7, Shell,
+and all higher/unlisted families remain unopened. Technical PASS is not visual
 approval.
 
 ## Historical Product Owner decision — superseded execution order

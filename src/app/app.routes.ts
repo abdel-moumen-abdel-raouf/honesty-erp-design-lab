@@ -78,6 +78,13 @@ export const routes: Routes = [
       import('./showcase/forms-batch/forms-batch').then((m) => m.FormsBatch),
   },
   {
+    path: 'controls/entity-form-batch',
+    loadComponent: () =>
+      import('./showcase/entity-form-batch/entity-form-batch').then(
+        (m) => m.EntityFormBatch,
+      ),
+  },
+  {
     path: 'foundation/colors',
     loadComponent: () =>
       import('./foundation/colors/colors').then((m) => m.Colors),

@@ -17,12 +17,12 @@ requested.
 The Product Owner is the final authority for visual approval.
 Technical success, green tests, or Codex judgment do not equal visual approval.
 
-## Current Accelerated Forms Composition State
+## Current Accelerated Schema-Driven Entity Form State
 
 The technically green Accelerated Core Batch, Phase A hardening, and Phase B
 Data/Table batch remain pending grouped Product Owner runtime/visual review.
 
-The completed Forms implementation contains exactly:
+The completed Forms Composition implementation contains exactly:
 
 - `ErpForm`;
 - `ErpFormSection`;
@@ -36,11 +36,24 @@ so the Product Owner accelerated no-reference waiver applied to these owners
 only. The batch passed canonical verification at 117/117 test files and 792/792
 tests, with both typechecks, production build, and zero warnings.
 
-The current gate is grouped Product Owner runtime/Light/Dark review. No further
-implementation wave is authorized. `StandardEntityForm`, Form Engine/schema,
-Entity Wizard, entity patterns, SmartTable-adjacent application patterns,
-Shell, Sidebar/Topbar, Navigation, Features/Pages, and every seventh Forms owner
-remain unopened. Technical PASS does not equal Product Owner visual approval.
+Schema-Driven Entity Form Engine V1 now contains exactly:
+
+- `ErpStandardEntityForm`;
+- `ErpEntitySchemaFields`;
+- `ErpEntityCustomFieldOutlet`;
+- `ErpEntityCustomSectionOutlet`.
+
+The Phase 6 four-owner reference audit found no external visual reference, so
+the Product Owner accelerated no-reference waiver applies to those owners only.
+Canonical verification passed 121/121 test files and 809/809 tests, both
+typechecks, production build, and zero warnings.
+
+The current gate is Product Owner runtime/Light/Dark review of Core, Data/Table,
+Forms, and Entity Form Engine. No further implementation wave is authorized.
+Standalone EntityReview, Entity Wizard, workflow engine, reusable page/entity
+patterns, Shell, Sidebar/Topbar, Navigation, Features/Pages, and every unlisted
+owner remain unopened. Technical PASS does not equal Product Owner visual
+approval.
 
 ## Production Forms Composition Governance
 
@@ -64,8 +77,35 @@ remain unopened. Technical PASS does not equal Product Owner visual approval.
   Component Token access and Feature/Page overrides remain forbidden.
 - `/controls/forms-batch` is review evidence only, remains ERP-only authored,
   and is not a Form Engine or production entity pattern.
-- `StandardEntityForm`, schema/registry engines, Entity Wizard, entity patterns,
-  Shell, and Feature/Page migration require separate Product Owner authorization.
+- The later Product Owner Phase 6 authorization opens only the four bounded
+  Entity Form owners recorded below; Entity Wizard, workflow engine, reusable
+  page/entity patterns, Shell, and Feature/Page migration remain unopened.
+
+## Production Schema-Driven Entity Form Governance
+
+- `ErpStandardEntityForm` is bounded schema-assisted CRUD composition. It
+  composes existing Forms and approved ERP controls; it owns no HTTP,
+  persistence, permissions, domain rules, DTO mapping, or backend validation.
+- `ErpEntitySchemaFields` renders only the documented V1 discriminated field
+  kinds through existing ERP controls. Unknown kinds fail deterministically and
+  never fall back to raw native inputs or silent omission.
+- Entity-form values are consumer-controlled immutable snapshots. The engine
+  emits typed field changes and never mutates input records in place.
+- Form-level validation remains the shared `ErpFormValidationIssue` contract;
+  field issues adapt into existing input external-validation contracts. No
+  duplicate CVA or validation engine is permitted.
+- `ErpEntityCustomFieldOutlet` and `ErpEntityCustomSectionOutlet` are nonvisual
+  typed template escape hatches. They do not reinterpret consumer content and
+  do not own Component Token namespaces.
+- Optional steps compose `ErpStepper`; optional review uses the supporting
+  `erpEntityFormReview` template directive. Neither is an Entity Wizard,
+  workflow engine, nor standalone `ErpEntityReview` owner.
+- `/controls/entity-form-batch` is ERP-only review evidence and owns no HTTP,
+  persistence, backend, or feature/page authority.
+- Only `standard-entity-form` and `entity-schema-fields` own Phase 6 Component
+  Token namespaces because only those two owners render independent visual UI.
+- Phase 7, Shell/navigation, reusable page/entity patterns, Features/Pages, and
+  ERP-specific domain editors remain unopened.
 
 ## Design Architecture
 

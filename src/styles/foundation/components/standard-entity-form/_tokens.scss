@@ -1,0 +1,9 @@
+@mixin base {
+  --honesty-standard-entity-form-section-gap: var(--honesty-space-stack-loose);
+  --honesty-standard-entity-form-review-padding: var(--honesty-space-inset-default);
+  --honesty-standard-entity-form-review-padding-narrow: var(--honesty-space-inset-tight);
+  --honesty-standard-entity-form-review-border-width: var(--honesty-border-width-default);
+  --honesty-standard-entity-form-review-border-color: var(--honesty-border-subtle);
+  --honesty-standard-entity-form-review-radius: var(--honesty-radius-container);
+  --honesty-standard-entity-form-review-bg: var(--honesty-color-surface-subtle);
+}

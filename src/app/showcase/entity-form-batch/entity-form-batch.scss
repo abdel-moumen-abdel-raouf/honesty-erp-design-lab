@@ -1,0 +1,12 @@
+.entity-form-batch {
+  display: block;
+  padding-block: var(--honesty-space-section-default);
+}
+erp-section,
+erp-surface {
+  display: block;
+}
+
+erp-surface {
+  padding: var(--honesty-space-inset-loose);
+}

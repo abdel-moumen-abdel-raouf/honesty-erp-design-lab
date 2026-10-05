@@ -9,7 +9,26 @@ Always resolve live `origin/main` directly at session start. This file records
 named checkpoints; it does not claim that its own latest docs SHA is an eternal
 repository HEAD.
 
-## Current accelerated checkpoints — 2026-10-06
+## Current Phase 6 checkpoint — 2026-10-06
+
+Phase 6 entry checkpoint:
+
+- `754e18dfe49c97b06eb799c05984bfd2134154b0`
+  `feat(forms): add accelerated forms composition batch`
+
+The Schema-Driven Entity Form Engine implementation commit is
+`feat(forms): add schema-driven entity form engine`; resolve its final SHA from
+live `main` because this document is committed with the implementation. It adds
+exactly the four authorized owners and passed 121/121 test files, 809/809 tests,
+both typechecks, production build, and the zero-warning gate. Initial bundle:
+375.34 kB / 85.44 kB estimated transfer. Entity Form lazy chunk: 37.44 kB /
+6.88 kB estimated transfer.
+
+Product Owner runtime/visual acceptance remains pending for Core, Data/Table,
+Forms, and Entity Form Engine. Phase 7, Shell, Entity Wizard, reusable page
+patterns, Features/Pages, and every unlisted owner remain unopened.
+
+## Historical accelerated checkpoints — superseded current-state snapshot
 
 Entry source checkpoint:
 

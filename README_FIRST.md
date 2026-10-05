@@ -56,12 +56,10 @@ restated by the newest dated continuity blocks or by
 
 ## Authoritative current state — 2026-10-06
 
-The accelerated source entry checkpoint was
-`36fdd62f0b65ea9b137639f2b002640603f46525`
-(`feat(controls): add accelerated data table batch`) and the independent
-continuity checkpoint is `f12d28cb37972c18e2a4e897530be9f509c0540d`
-(`docs(handoff): normalize accelerated current state`). Resolve the final live
-SHA from Git because the Forms implementation commit is newer.
+Phase 6 started from `754e18dfe49c97b06eb799c05984bfd2134154b0`
+(`feat(forms): add accelerated forms composition batch`). Resolve the final live
+SHA from Git; the Entity Form Engine implementation and this synchronized state
+are committed together as `feat(forms): add schema-driven entity form engine`.
 
 - The Accelerated Core Batch and Phase A hardening are technically green.
 - Accelerated Phase B Data/Table is canonically green at 110/110 test files and
@@ -74,13 +72,21 @@ SHA from Git because the Forms implementation commit is newer.
 - No external reference was found for the six Forms owners; the scoped Product
   Owner accelerated no-reference waiver and matrix are recorded in
   `src/app/controls/FORMS_BATCH_V1.md`.
-- Product Owner runtime/Light/Dark acceptance of Core, Data/Table, and Forms is
-  pending. Technical PASS is not visual approval or freeze.
-- The exact next action is grouped Product Owner runtime/visual review of the
-  accelerated review routes. No subsequent implementation wave is authorized.
-- `StandardEntityForm`, any Form Engine/schema, Entity Wizard/patterns, Shell,
-  Sidebar/Topbar, Navigation, Features/Pages, and every unlisted family remain
-  unopened.
+- Schema-Driven Entity Form Engine V1 implements exactly
+  `ErpStandardEntityForm`, `ErpEntitySchemaFields`,
+  `ErpEntityCustomFieldOutlet`, and `ErpEntityCustomSectionOutlet`; canonical
+  verification passed 121/121 test files, 809/809 tests, both typechecks,
+  production build, and zero warnings; initial bundle 375.34 kB / 85.44 kB
+  estimated transfer and Entity Form lazy chunk 37.44 kB / 6.88 kB.
+- Product Owner runtime/Light/Dark acceptance of Core, Data/Table, Forms, and
+  Entity Form Engine remains pending. Technical PASS is not visual approval or
+  freeze.
+- The exact next action is Product Owner runtime/visual review of the grouped
+  accelerated review routes, including `/controls/entity-form-batch`. No
+  subsequent implementation wave is authorized.
+- Standalone EntityReview, Entity Wizard, workflow engine, reusable page/entity
+  patterns, Shell, Sidebar/Topbar, Navigation, Features/Pages, and every
+  unlisted family remain unopened. Phase 7 is not authorized.
 
 
 ## Historical state snapshot — superseded

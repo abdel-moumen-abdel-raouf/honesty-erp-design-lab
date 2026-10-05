@@ -1,0 +1,48 @@
+<erp-container class="entity-form-batch" width="wide">
+  <erp-stack gap="loose">
+    <erp-stack gap="tight">
+      <erp-text type="heading-1">مراجعة محرك نماذج الكيانات V1</erp-text>
+      <erp-text type="paragraph" tone="secondary">مخطط CRUD محدود يركّب ملاك ERP الحاليين، مع ملكية حالة مضبوطة وبدون HTTP أو قواعد أعمال.</erp-text>
+    </erp-stack>
+
+    <erp-section data-entity-form-owner="standard-entity-form">
+      <erp-text type="heading-2">ErpStandardEntityForm</erp-text>
+      <erp-text type="paragraph" tone="secondary">المالك العام يركّب ErpForm والأقسام والملخص والإجراءات والخطوات.</erp-text>
+    </erp-section>
+
+    <erp-section data-entity-form-owner="entity-schema-fields">
+      <erp-text type="heading-2">ErpEntitySchemaFields</erp-text>
+      <erp-surface border="subtle">
+        <erp-entity-schema-fields [fields]="fieldEvidence" [values]="values()" [issues]="issues()" (fieldValueChanged)="applyFieldChange($event)" />
+      </erp-surface>
+    </erp-section>
+
+    <erp-section data-entity-form-owner="custom-field-outlet">
+      <erp-text type="heading-2">ErpEntityCustomFieldOutlet</erp-text>
+      <erp-text type="paragraph">الحقل المرجعي المتخصص في النموذج المتكامل يُرسم من template المستهلك عبر outlet صريح.</erp-text>
+    </erp-section>
+
+    <erp-section data-entity-form-owner="custom-section-outlet">
+      <erp-text type="heading-2">ErpEntityCustomSectionOutlet</erp-text>
+      <erp-text type="paragraph">قسم التدقيق يُستبدل بتركيب ERP مملوك للمستهلك دون أن يتحول المحرك إلى إطار صفحات.</erp-text>
+    </erp-section>
+
+    <erp-section data-integrated-entity-form-specimen>
+      <erp-surface border="subtle">
+        <erp-review-entity-form-template-evidence [schema]="schema" [values]="values()" [issues]="issues()" (valueChanged)="applyChange($event)" (submitRequested)="status.set('استُقبلت نية الإرسال فقط')" (resetRequested)="status.set('استُقبلت نية إعادة الضبط')" (cancelRequested)="status.set('استُقبلت نية الإلغاء')" />
+      </erp-surface>
+      <erp-text type="caption" tone="secondary">{{ status() }}</erp-text>
+    </erp-section>
+
+    <erp-section data-step-review-evidence>
+      <erp-text type="heading-2">الخطوات والمراجعة الاختيارية</erp-text>
+      <erp-text type="paragraph">ErpStepper يحتفظ بدلالاته المضبوطة، والوصول إلى خطوة المراجعة لا يرسل النموذج تلقائيًا.</erp-text>
+    </erp-section>
+
+    <erp-section data-unsupported-kind-evidence>
+      <erp-alert title="الفشل الحتمي للنوع غير المدعوم" tone="info">
+        <erp-text type="paragraph">يتحقق العقد والحوكمة والاختبارات من رفع ErpEntityFormSchemaError؛ لا يوجد تخطٍ صامت ولا fallback إلى input خام.</erp-text>
+      </erp-alert>
+    </erp-section>
+  </erp-stack>
+</erp-container>
