@@ -1,0 +1,17 @@
+<form
+  [id]="formId"
+  [attr.aria-labelledby]="labelId"
+  [attr.aria-describedby]="trimmedDescription() ? descriptionId : null"
+  [attr.aria-busy]="busy()"
+  [attr.aria-disabled]="blocked()"
+  (submit)="submit($event)"
+  (reset)="reset($event)"
+>
+  <span class="form__heading">
+    <erp-text [id]="labelId" type="heading-2">{{ trimmedLabel() }}</erp-text>
+    @if (trimmedDescription()) {
+      <erp-text [id]="descriptionId" type="paragraph" tone="secondary">{{ trimmedDescription() }}</erp-text>
+    }
+  </span>
+  <span class="form__content"><ng-content /></span>
+</form>

@@ -1,0 +1,5 @@
+@mixin base {
+  --honesty-form-gap: var(--honesty-space-stack-loose);
+  --honesty-form-heading-gap: var(--honesty-space-stack-tight);
+  --honesty-form-disabled-opacity: 0.48;
+}

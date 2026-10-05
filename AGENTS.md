@@ -17,12 +17,12 @@ requested.
 The Product Owner is the final authority for visual approval.
 Technical success, green tests, or Codex judgment do not equal visual approval.
 
-## Current Accelerated Forms Composition Authorization
+## Current Accelerated Forms Composition State
 
 The technically green Accelerated Core Batch, Phase A hardening, and Phase B
 Data/Table batch remain pending grouped Product Owner runtime/visual review.
 
-The current implementation authorization contains exactly:
+The completed Forms implementation contains exactly:
 
 - `ErpForm`;
 - `ErpFormSection`;
@@ -31,12 +31,41 @@ The current implementation authorization contains exactly:
 - `ErpRepeater`;
 - `ErpStepper`.
 
-An external-reference audit is mandatory before styling. If no reference is
-found, the Product Owner accelerated no-reference waiver applies to these six
-owners only. `StandardEntityForm`, Form Engine/schema, Entity Wizard, entity
-patterns, SmartTable-adjacent application patterns, Shell, Sidebar/Topbar,
-Navigation, Features/Pages, and every seventh Forms owner remain unopened.
-Technical PASS does not equal Product Owner visual approval.
+The completed reference audit found no external reference for any of the six,
+so the Product Owner accelerated no-reference waiver applied to these owners
+only. The batch passed canonical verification at 117/117 test files and 792/792
+tests, with both typechecks, production build, and zero warnings.
+
+The current gate is grouped Product Owner runtime/Light/Dark review. No further
+implementation wave is authorized. `StandardEntityForm`, Form Engine/schema,
+Entity Wizard, entity patterns, SmartTable-adjacent application patterns,
+Shell, Sidebar/Topbar, Navigation, Features/Pages, and every seventh Forms owner
+remain unopened. Technical PASS does not equal Product Owner visual approval.
+
+## Production Forms Composition Governance
+
+- `ErpForm` is the public native-form semantic gateway. Feature/Page/review
+  consumers do not author raw `<form>` and the component emits submit/reset
+  intents without owning feature state, persistence, transport, or payloads.
+- `ErpFormSection` owns semantic grouping only; `ErpFormActions` owns responsive
+  primary/secondary projection layout only. Neither assigns business meaning.
+- `ErpValidationSummary` consumes the shared typed Forms issue contract and emits
+  activation intent. It does not inspect arbitrary child controls or create a
+  second validation engine.
+- `ErpRepeater` is consumer-controlled: keyed items are inputs and add/remove
+  requests are intents. It owns no domain array mutation, FormArray, service,
+  persistence, or transport.
+- `ErpStepper` owns generic controlled step navigation and keyed rich panels. It
+  is distinct from Tabs and must not become an Entity Wizard or workflow engine.
+- Forms composition owners consume existing Input/Field/Button/Overlay and
+  structural gateways, use stable CVA/Angular Forms validation, and must not use
+  experimental Signal Forms.
+- Every Forms owner keeps its own Component Token namespace. Cross-component
+  Component Token access and Feature/Page overrides remain forbidden.
+- `/controls/forms-batch` is review evidence only, remains ERP-only authored,
+  and is not a Form Engine or production entity pattern.
+- `StandardEntityForm`, schema/registry engines, Entity Wizard, entity patterns,
+  Shell, and Feature/Page migration require separate Product Owner authorization.
 
 ## Design Architecture
 

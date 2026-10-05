@@ -8,10 +8,13 @@ the Accelerated Core Batch, Phase A hardening, and Phase B Data/Table batch with
 canonical technical green, while Product Owner runtime/visual acceptance
 remains pending.
 
-The Product Owner now authorizes only the Accelerated Forms Composition Wave:
-`ErpForm`, `ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`,
-`ErpRepeater`, and `ErpStepper`. Shell, higher application patterns, and every
-unlisted family remain unopened. Technical PASS does not equal visual approval.
+The Accelerated Forms Composition Wave has now implemented exactly `ErpForm`,
+`ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`, `ErpRepeater`, and
+`ErpStepper` and passed the canonical technical gate at 117/117 test files and
+792/792 tests. The exact next action is grouped Product Owner runtime/Light/Dark
+review of Core, Data/Table, and Forms. Shell, higher application patterns, and
+every unlisted family remain unopened. Technical PASS does not equal visual
+approval.
 
 ## Historical Inputs review status — superseded snapshot
 

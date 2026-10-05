@@ -1,0 +1,10 @@
+@mixin base {
+  --honesty-repeater-gap: var(--honesty-space-stack-default);
+  --honesty-repeater-item-gap: var(--honesty-space-stack-tight);
+  --honesty-repeater-action-gap: var(--honesty-space-inline-default);
+  --honesty-repeater-item-padding: var(--honesty-space-inset-default);
+  --honesty-repeater-border-width: var(--honesty-border-width-default);
+  --honesty-repeater-border-color: var(--honesty-border-subtle);
+  --honesty-repeater-radius: var(--honesty-radius-control);
+  --honesty-repeater-bg: var(--honesty-color-surface-default);
+}

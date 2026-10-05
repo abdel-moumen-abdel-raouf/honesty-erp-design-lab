@@ -9,7 +9,7 @@ Always resolve live `origin/main` directly at session start. This file records
 named checkpoints; it does not claim that its own latest docs SHA is an eternal
 repository HEAD.
 
-## Current accelerated checkpoint — 2026-10-06
+## Current accelerated checkpoints — 2026-10-06
 
 Entry source checkpoint:
 
@@ -21,10 +21,20 @@ hardening, and Phase B Data/Table batch. Phase B canonical verification passed
 110/110 test files, 778/778 tests, both typechecks, production build, and zero
 warnings; initial bundle 374.44 kB / 85.38 kB estimated transfer.
 
-Product Owner visual acceptance remains pending. The next authorized source
-scope is exactly the six-owner Accelerated Forms Composition Wave after this
-independent continuity normalization commit. Higher/unlisted families and
-Shell remain unopened.
+Independent continuity normalization checkpoint:
+
+- `f12d28cb37972c18e2a4e897530be9f509c0540d`
+  `docs(handoff): normalize accelerated current state`
+
+The following implementation commit adds the six-owner Accelerated Forms
+Composition Batch. Resolve its final SHA from live `main`; it is committed as
+`feat(forms): add accelerated forms composition batch`. Its canonical gate
+passed 117/117 test files, 792/792 tests, both typechecks, production build, and
+zero warnings.
+
+Product Owner runtime/visual acceptance remains pending for Core, Data/Table,
+and Forms. The exact next action is grouped runtime/Light/Dark review, not a new
+source wave. Higher/unlisted families and Shell remain unopened.
 
 ## Continuity protocol checkpoint
 

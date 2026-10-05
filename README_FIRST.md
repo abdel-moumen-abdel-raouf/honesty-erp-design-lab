@@ -56,29 +56,31 @@ restated by the newest dated continuity blocks or by
 
 ## Authoritative current state — 2026-10-06
 
-Live `main` entered this transition at
+The accelerated source entry checkpoint was
 `36fdd62f0b65ea9b137639f2b002640603f46525`
-(`feat(controls): add accelerated data table batch`). Resolve the live SHA with
-Git at every new session because a continuity commit may be newer.
+(`feat(controls): add accelerated data table batch`) and the independent
+continuity checkpoint is `f12d28cb37972c18e2a4e897530be9f509c0540d`
+(`docs(handoff): normalize accelerated current state`). Resolve the final live
+SHA from Git because the Forms implementation commit is newer.
 
-- The Accelerated Core Batch is implemented and technically green.
-- Accelerated Phase A hardening is complete and technically green.
-- Accelerated Phase B Data/Table is implemented and canonically verified:
-  110/110 test files, 778/778 tests, both typechecks, production build, and
-  zero-warning gate passed; initial bundle was 374.44 kB / 85.38 kB estimated
-  transfer.
-- Product Owner runtime/visual acceptance of the Core and Data batches remains
-  pending; technical PASS is not visual approval or freeze.
-- The Product Owner has explicitly opened the Accelerated Forms Composition
-  Wave for exactly `ErpForm`, `ErpFormSection`, `ErpFormActions`,
-  `ErpValidationSummary`, `ErpRepeater`, and `ErpStepper`.
+- The Accelerated Core Batch and Phase A hardening are technically green.
+- Accelerated Phase B Data/Table is canonically green at 110/110 test files and
+  778/778 tests.
+- The Accelerated Forms Composition Batch now implements exactly `ErpForm`,
+  `ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`, `ErpRepeater`, and
+  `ErpStepper`; canonical verification passed 117/117 test files, 792/792 tests,
+  both typechecks, production build, and zero warnings; initial bundle 374.97 kB
+  / 85.34 kB estimated transfer and Forms Batch lazy chunk 34.28 kB / 7.17 kB.
+- No external reference was found for the six Forms owners; the scoped Product
+  Owner accelerated no-reference waiver and matrix are recorded in
+  `src/app/controls/FORMS_BATCH_V1.md`.
+- Product Owner runtime/Light/Dark acceptance of Core, Data/Table, and Forms is
+  pending. Technical PASS is not visual approval or freeze.
+- The exact next action is grouped Product Owner runtime/visual review of the
+  accelerated review routes. No subsequent implementation wave is authorized.
 - `StandardEntityForm`, any Form Engine/schema, Entity Wizard/patterns, Shell,
   Sidebar/Topbar, Navigation, Features/Pages, and every unlisted family remain
   unopened.
-
-The immediate authorized action is continuity normalization followed by the
-six-owner Forms wave. The next product gate after technical completion is the
-Product Owner grouped runtime/visual review.
 
 
 ## Historical state snapshot — superseded

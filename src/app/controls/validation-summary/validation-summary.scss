@@ -1,0 +1,6 @@
+@use '../../../styles/foundation/components/validation-summary' as tokens;
+
+:host { @include tokens.base; display: block; }
+:host([data-validation-summary-count='0']) { display: none; }
+.validation-summary__issues { display: grid; gap: var(--honesty-validation-summary-gap); margin-block-start: var(--honesty-validation-summary-offset); }
+.validation-summary__issues erp-button { justify-self: start; }

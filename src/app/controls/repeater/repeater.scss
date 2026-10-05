@@ -1,0 +1,7 @@
+@use '../../../styles/foundation/components/repeater' as tokens;
+
+:host { @include tokens.base; display: grid; gap: var(--honesty-repeater-gap); }
+.repeater__items { display: grid; gap: var(--honesty-repeater-item-gap); }
+.repeater__item { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: var(--honesty-repeater-action-gap); padding: var(--honesty-repeater-item-padding); border: var(--honesty-repeater-border-width) solid var(--honesty-repeater-border-color); border-radius: var(--honesty-repeater-radius); background: var(--honesty-repeater-bg); }
+.repeater__content { min-inline-size: 0; }
+:host > erp-button { justify-self: start; }

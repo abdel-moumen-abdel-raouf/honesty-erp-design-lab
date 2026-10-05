@@ -73,6 +73,11 @@ export const routes: Routes = [
       import('./showcase/data-batch/data-batch').then((m) => m.DataBatch),
   },
   {
+    path: 'controls/forms-batch',
+    loadComponent: () =>
+      import('./showcase/forms-batch/forms-batch').then((m) => m.FormsBatch),
+  },
+  {
     path: 'foundation/colors',
     loadComponent: () =>
       import('./foundation/colors/colors').then((m) => m.Colors),

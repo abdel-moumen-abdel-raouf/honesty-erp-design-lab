@@ -20,15 +20,18 @@ technically green. Phase B canonical verification passed 110/110 test files,
 778/778 tests, both typechecks, production build, and zero warnings. Grouped
 Product Owner runtime/visual acceptance remains pending.
 
-The current authorized implementation scope is exactly `ErpForm`,
-`ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`, `ErpRepeater`, and
-`ErpStepper`, after independent continuity normalization and an external
-reference audit. The accelerated no-reference waiver applies only where that
-audit finds no reference for these six.
+The Accelerated Forms Composition Batch is now implemented for exactly
+`ErpForm`, `ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`,
+`ErpRepeater`, and `ErpStepper`. Canonical verification passed 117/117 test
+files, 792/792 tests, both typechecks, production build, and zero warnings. The
+reference audit found no external reference for the six; the scoped accelerated
+waiver and matrix are recorded in `FORMS_BATCH_V1.md`.
 
 `StandardEntityForm`, Form Engine/schema, Entity Wizard, entity patterns,
 SmartTable-adjacent application patterns, Shell, Sidebar/Topbar, Navigation,
-Features/Pages, and every unlisted family remain unopened. Technical green is
+Features/Pages, and every unlisted family remain unopened. The exact next action
+is grouped Product Owner runtime/Light/Dark review of Core, Data/Table, and
+Forms; no subsequent implementation phase is authorized. Technical green is
 not Product Owner visual approval.
 
 ## Canonical Classification

@@ -1,0 +1,15 @@
+@use '../../../styles/foundation/components/stepper' as tokens;
+@use '../../../styles/foundation/queries' as query;
+
+:host { @include tokens.base; display: grid; grid-template-columns: minmax(var(--honesty-stepper-nav-min), var(--honesty-stepper-nav-max)) minmax(0, 1fr); gap: var(--honesty-stepper-gap); min-inline-size: 0; }
+.stepper__list { display: grid; align-content: start; gap: var(--honesty-stepper-list-gap); min-inline-size: 0; }
+.stepper__list erp-tab-trigger { inline-size: 100%; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: var(--honesty-stepper-trigger-gap); padding: var(--honesty-stepper-trigger-padding); border-radius: var(--honesty-stepper-radius); color: var(--honesty-stepper-fg); cursor: pointer; }
+.stepper__list erp-tab-trigger:hover:not(:has(button:disabled)) { background: var(--honesty-stepper-hover-bg); }
+.stepper__list erp-tab-trigger:has(button:focus-visible) { outline: var(--honesty-stepper-focus-width) solid var(--honesty-stepper-focus-color); outline-offset: var(--honesty-stepper-focus-offset); }
+.stepper__list erp-tab-trigger:has(button[aria-selected='true']) { background: var(--honesty-stepper-active-bg); color: var(--honesty-stepper-active-fg); }
+.stepper__list erp-tab-trigger:has(button:disabled) { color: var(--honesty-stepper-disabled-fg); cursor: not-allowed; }
+.stepper__marker { inline-size: var(--honesty-stepper-marker-size); block-size: var(--honesty-stepper-marker-size); display: grid; place-items: center; border: var(--honesty-stepper-marker-border-width) solid var(--honesty-stepper-marker-border-color); border-radius: 50%; }
+erp-tab-trigger:has(button[aria-selected='true']) .stepper__marker, erp-tab-trigger[data-step-completed='true'] .stepper__marker { border-color: var(--honesty-stepper-marker-active-color); background: var(--honesty-stepper-marker-active-color); color: var(--honesty-stepper-marker-active-fg); }
+.stepper__copy { display: grid; gap: var(--honesty-stepper-copy-gap); min-inline-size: 0; }
+.stepper__panel { min-inline-size: 0; padding: var(--honesty-stepper-panel-padding); border: var(--honesty-stepper-border-width) solid var(--honesty-stepper-border-color); border-radius: var(--honesty-stepper-radius); background: var(--honesty-stepper-panel-bg); }
+@include query.viewport-down('md') { :host { grid-template-columns: 1fr; } .stepper__list { grid-template-columns: repeat(auto-fit, minmax(var(--honesty-stepper-trigger-min), 1fr)); overflow-x: auto; } }

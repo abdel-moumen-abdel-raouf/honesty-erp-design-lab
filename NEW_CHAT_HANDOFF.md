@@ -2,28 +2,28 @@
 
 ## 0. Authoritative current handoff — 2026-10-06
 
-The current authorization began from live `main`
+The accelerated source entry checkpoint was
 `36fdd62f0b65ea9b137639f2b002640603f46525`
-(`feat(controls): add accelerated data table batch`). Resolve the live SHA at
-session start because newer continuity/implementation commits supersede that
-entry checkpoint.
+(`feat(controls): add accelerated data table batch`) and the separate continuity
+normalization checkpoint is `f12d28cb37972c18e2a4e897530be9f509c0540d`.
+Resolve the final live local and remote SHAs at session start because the Forms
+implementation commit is newer.
 
-The Accelerated Core Batch, Phase A hardening, and Phase B Data/Table batch are
-implemented and technically green. The latest Phase B canonical gate passed
-110/110 test files and 778/778 tests, both typechecks, production build, and
-zero warnings; initial bundle was 374.44 kB / 85.38 kB estimated transfer.
-Their grouped Product Owner runtime/visual acceptance remains pending.
+Accelerated Core, Phase A hardening, and Phase B Data/Table remain technically
+green. The Forms Composition Batch now implements exactly `ErpForm`,
+`ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`, `ErpRepeater`, and
+`ErpStepper`. Its canonical gate passed 117/117 test files, 792/792 tests, both
+typechecks, production build, and zero warnings; initial bundle 374.97 kB /
+85.34 kB estimated transfer and Forms Batch lazy chunk 34.28 kB / 7.17 kB.
+The six-component reference
+audit found no external files, so the scoped accelerated waiver applies as
+recorded in `src/app/controls/FORMS_BATCH_V1.md`.
 
-The Product Owner now authorizes exactly the Accelerated Forms Composition
-Wave owners: `ErpForm`, `ErpFormSection`, `ErpFormActions`,
-`ErpValidationSummary`, `ErpRepeater`, and `ErpStepper`. Persistent state must
-be normalized before source implementation. No `StandardEntityForm`, Form
-Engine/schema, Entity Wizard, entity pattern, Shell, Sidebar/Topbar,
-Navigation, Feature/Page migration, or seventh Forms owner is open.
-
-After the Forms source and canonical verification are complete, synchronize
-the current sections again and stop for grouped Product Owner runtime/visual
-review. Technical PASS never equals visual acceptance.
+The exact next action is grouped Product Owner runtime/Light/Dark review of the
+Core, Data/Table, and Forms review routes. Technical PASS never equals visual
+acceptance. No `StandardEntityForm`, Form Engine/schema, Entity Wizard, entity
+pattern, Shell, Sidebar/Topbar, Navigation, Feature/Page migration, seventh
+Forms owner, or subsequent wave is open.
 
 ## 1. Purpose of this document
 

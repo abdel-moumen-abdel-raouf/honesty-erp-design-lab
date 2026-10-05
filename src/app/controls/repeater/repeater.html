@@ -1,0 +1,22 @@
+<span class="repeater__items" role="list" [attr.aria-label]="label()">
+  @for (item of items(); track item.key; let index = $index) {
+    <span class="repeater__item" role="listitem" [attr.data-repeater-key]="item.key">
+      <span class="repeater__content">
+        @if (template(); as itemTemplate) {
+          <ng-container [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="context(item, index)" />
+        }
+      </span>
+      <erp-tooltip [text]="removeLabel() + ' ' + (index + 1)">
+        <erp-icon-button
+          icon="delete"
+          [label]="removeLabel() + ' ' + (index + 1)"
+          size="sm"
+          tone="danger"
+          [disabled]="!canRemove()"
+          (pressed)="removeRequested.emit(item.key)"
+        />
+      </erp-tooltip>
+    </span>
+  }
+</span>
+<erp-button icon="add" [label]="addLabel()" variant="outline" [disabled]="!canAdd()" (pressed)="addRequested.emit()" />

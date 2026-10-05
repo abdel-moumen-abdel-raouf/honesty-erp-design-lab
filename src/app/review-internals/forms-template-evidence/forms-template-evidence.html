@@ -1,0 +1,15 @@
+@if (mode() === 'repeater') {
+  <erp-repeater label="جهات الاتصال" [items]="contacts()" [minItems]="1" [maxItems]="3" (addRequested)="addRequested.emit()" (removeRequested)="removeRequested.emit($event)">
+    <ng-template erpRepeaterItem let-contact let-index="index">
+      <erp-text type="strong">{{ index + 1 }} — {{ contact.name }}</erp-text>
+      <erp-text type="caption" tone="secondary">{{ contact.role }}</erp-text>
+    </ng-template>
+  </erp-repeater>
+}
+@if (mode() === 'stepper') {
+  <erp-stepper [steps]="steps()" [(activeId)]="activeId">
+    <ng-template erpStepPanel="identity"><erp-text type="paragraph">تحقق من بيانات الهوية.</erp-text></ng-template>
+    <ng-template erpStepPanel="contacts"><erp-text type="paragraph">تحقق من جهات الاتصال.</erp-text></ng-template>
+    <ng-template erpStepPanel="review"><erp-text type="paragraph">أكد البيانات قبل الإرسال.</erp-text></ng-template>
+  </erp-stepper>
+}

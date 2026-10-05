@@ -1,0 +1,15 @@
+@if (issues().length > 0) {
+  <erp-alert [title]="title()" tone="danger">
+    <span class="validation-summary__issues">
+      @for (issue of issues(); track issue.key) {
+        <erp-button
+          size="sm"
+          variant="ghost"
+          tone="danger"
+          [label]="issue.fieldLabel ? issue.fieldLabel + ': ' + issue.message : issue.message"
+          (pressed)="issueActivated.emit(issue)"
+        />
+      }
+    </span>
+  </erp-alert>
+}

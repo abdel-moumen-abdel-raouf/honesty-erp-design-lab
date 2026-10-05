@@ -1,0 +1,7 @@
+@use '../../../styles/foundation/components/form' as tokens;
+
+:host { @include tokens.base; display: block; }
+form { display: grid; gap: var(--honesty-form-gap); margin: 0; min-inline-size: 0; }
+.form__heading, .form__content { display: grid; gap: var(--honesty-form-heading-gap); min-inline-size: 0; }
+:host([data-form-disabled='true']) { opacity: var(--honesty-form-disabled-opacity); }
+:host([data-form-busy='true']) { cursor: progress; }

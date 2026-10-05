@@ -1,0 +1,33 @@
+<span class="stepper__list" role="tablist" aria-label="خطوات النموذج">
+  @for (step of steps(); track step.id; let index = $index) {
+    <erp-tab-trigger
+      [id]="step.id + '-step'"
+      [controls]="step.id + '-panel'"
+      [selected]="resolvedActiveId() === step.id"
+      [disabled]="step.disabled ?? false"
+      [tabIndex]="resolvedActiveId() === step.id ? 0 : -1"
+      [attr.data-step-completed]="step.completed ?? false"
+      [attr.data-step-optional]="step.optional ?? false"
+      (activated)="activate(step)"
+      (keyPressed)="keydown($event, index)"
+    >
+      <span class="stepper__marker" aria-hidden="true">
+        @if (step.completed) { <erp-icon name="check" size="xs" /> }
+      </span>
+      <span class="stepper__copy">
+        <erp-text type="strong" weight="bold">{{ step.label }}</erp-text>
+        @if (step.description) { <erp-text type="caption" tone="secondary">{{ step.description }}</erp-text> }
+        @if (step.optional) { <erp-text type="caption" tone="secondary">اختياري</erp-text> }
+      </span>
+    </erp-tab-trigger>
+  }
+</span>
+@for (step of steps(); track step.id) {
+  @if (resolvedActiveId() === step.id) {
+    <span class="stepper__panel" role="tabpanel" [id]="step.id + '-panel'" [attr.aria-labelledby]="step.id + '-step'" tabindex="0">
+      @if (panelTemplate(step.id); as template) {
+        <ng-container [ngTemplateOutlet]="template" [ngTemplateOutletContext]="panelContext(step)" />
+      }
+    </span>
+  }
+}

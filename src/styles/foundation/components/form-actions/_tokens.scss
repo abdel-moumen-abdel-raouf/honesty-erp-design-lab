@@ -1,0 +1,7 @@
+@mixin base {
+  --honesty-form-actions-gap: var(--honesty-space-inline-default);
+  --honesty-form-actions-item-gap: var(--honesty-space-inline-tight);
+  --honesty-form-actions-padding: var(--honesty-space-inset-default);
+  --honesty-form-actions-border-width: var(--honesty-border-width-default);
+  --honesty-form-actions-border-color: var(--honesty-border-subtle);
+}

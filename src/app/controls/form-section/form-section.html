@@ -1,0 +1,12 @@
+<section [attr.aria-labelledby]="titleId">
+  <span class="form-section__header">
+    <span class="form-section__copy">
+      <erp-text [id]="titleId" type="heading-3">{{ trimmedTitle() }}</erp-text>
+      @if (trimmedDescription()) {
+        <erp-text type="paragraph" tone="secondary">{{ trimmedDescription() }}</erp-text>
+      }
+    </span>
+    <span class="form-section__actions"><ng-content select="[erpFormSectionActions]" /></span>
+  </span>
+  <span class="form-section__content"><ng-content /></span>
+</section>

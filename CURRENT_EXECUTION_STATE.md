@@ -14,11 +14,13 @@ Branch:
 
 ## Authoritative current execution state — 2026-10-06
 
-Live `main` entered the current authorization at
+Live `main` entered this two-commit wave at
 `36fdd62f0b65ea9b137639f2b002640603f46525`
-(`feat(controls): add accelerated data table batch`). Always verify the live
-local and remote SHAs because this continuity normalization creates a newer
-documentation commit.
+(`feat(controls): add accelerated data table batch`) and contains the independent
+continuity checkpoint `f12d28cb37972c18e2a4e897530be9f509c0540d`
+(`docs(handoff): normalize accelerated current state`). Always resolve the final
+live local and remote SHAs directly because the Forms implementation commit is
+newer than both recorded entry checkpoints.
 
 Completed technical checkpoints:
 
@@ -26,29 +28,27 @@ Completed technical checkpoints:
 - Accelerated Phase A hardening implemented and technically green;
 - Accelerated Phase B Data/Table implemented and canonically verified with
   110/110 test files, 778/778 tests, both TypeScript typechecks, production
-  build, and zero warnings; initial bundle 374.44 kB / 85.38 kB estimated
-  transfer.
+  build, and zero warnings;
+- Accelerated Forms Composition Batch implemented for exactly `ErpForm`,
+  `ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`, `ErpRepeater`, and
+  `ErpStepper`; its canonical gate passed 117/117 test files, 792/792 tests,
+  both TypeScript typechecks, production build, and zero warnings; initial
+  bundle 374.97 kB / 85.34 kB estimated transfer and Forms Batch lazy chunk
+  34.28 kB / 7.17 kB estimated transfer.
 
-Product Owner visual state:
+The Forms external-reference audit found no reference for any of the six owners,
+so each was implemented under the Product Owner accelerated no-external-reference
+waiver recorded in `src/app/controls/FORMS_BATCH_V1.md`.
 
-- Core and Data/Table runtime/visual acceptance remains pending and may reopen
-  any component;
-- technical green does not equal Product Owner visual approval or freeze.
+Product Owner visual state and immediate next action:
 
-Current authorized implementation scope is exactly:
-
-1. `ErpForm`;
-2. `ErpFormSection`;
-3. `ErpFormActions`;
-4. `ErpValidationSummary`;
-5. `ErpRepeater`;
-6. `ErpStepper`.
-
-First normalize persistent current-state wording, then implement the six-owner
-Accelerated Forms Composition Wave. The external-reference audit must precede
-styling; the Product Owner accelerated no-reference waiver applies only when no
-reference is found. The final gate is `npm run verify:clean`, followed by
-grouped Product Owner runtime/visual review.
+- Core, Data/Table, and Forms runtime/visual acceptance remains pending and may
+  reopen any component;
+- technical green does not equal Product Owner visual approval or freeze;
+- the exact next action is grouped Product Owner runtime/Light/Dark review of
+  the accelerated work at `/controls/core-batch`, `/controls/data-batch`, and
+  `/controls/forms-batch`;
+- no further implementation scope is authorized by this checkpoint.
 
 Still unopened: `StandardEntityForm`, Form Engine/schema, Entity Wizard,
 entity/application patterns, SmartTable-adjacent application patterns, Shell,

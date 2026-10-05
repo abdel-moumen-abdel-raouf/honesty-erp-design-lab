@@ -1,0 +1,91 @@
+<erp-container class="forms-batch" width="wide">
+  <erp-stack gap="loose">
+    <erp-stack gap="tight">
+      <erp-text type="heading-1">مراجعة دفعة تكوين النماذج</erp-text>
+      <erp-text type="paragraph" tone="secondary">ستة ملاك تكوين عامّين، بلا نقل بيانات أو مخطط مجال، ويرثون ثيم التطبيق واتجاهه.</erp-text>
+    </erp-stack>
+
+    <erp-grid [columns]="2" gap="lg" responsive="auto">
+      <erp-section data-forms-owner="form">
+        <erp-stack gap="default">
+          <erp-form label="ErpForm" description="حدّ النموذج الدلالي ونيات الإرسال وإعادة الضبط" [disabled]="formDisabled()" [busy]="busy()" (submitRequested)="status.set('إرسال مستقل')" (resetRequested)="status.set('إعادة ضبط مستقلة')">
+            <erp-text-box label="حقل تجريبي" [disabled]="formDisabled() || busy()" />
+            <erp-form-actions>
+              <erp-button erpFormActionsSecondary type="reset" label="إعادة ضبط" variant="outline" [disabled]="formDisabled() || busy()" />
+              <erp-button erpFormActionsPrimary type="submit" label="إرسال" [disabled]="formDisabled()" [loading]="busy()" />
+            </erp-form-actions>
+          </erp-form>
+          <erp-form-actions>
+            <erp-button erpFormActionsSecondary [label]="formDisabled() ? 'تفعيل النموذج' : 'تعطيل النموذج'" variant="outline" (pressed)="formDisabled.set(!formDisabled())" />
+            <erp-button erpFormActionsPrimary [label]="busy() ? 'إنهاء الانشغال' : 'عرض الانشغال'" variant="outline" (pressed)="busy.set(!busy())" />
+          </erp-form-actions>
+        </erp-stack>
+      </erp-section>
+
+      <erp-section data-forms-owner="form-section">
+        <erp-form-section title="ErpFormSection" description="مجموعة دلالية متجاوبة" compact>
+          <erp-button erpFormSectionActions label="إجراء القسم" size="sm" variant="ghost" />
+          <erp-text-box label="محتوى القسم" />
+        </erp-form-section>
+      </erp-section>
+
+      <erp-section data-forms-owner="form-actions">
+        <erp-stack gap="default">
+          <erp-text type="heading-2">ErpFormActions</erp-text>
+          <erp-form-actions>
+            <erp-button erpFormActionsSecondary label="إلغاء" variant="outline" />
+            <erp-button erpFormActionsPrimary label="حفظ" />
+          </erp-form-actions>
+        </erp-stack>
+      </erp-section>
+
+      <erp-section data-forms-owner="validation-summary">
+        <erp-stack gap="default">
+          <erp-text type="heading-2">ErpValidationSummary</erp-text>
+          <erp-validation-summary [issues]="[{key: 'code', fieldLabel: 'الكود', message: 'الكود مستخدم مسبقًا'}]" />
+        </erp-stack>
+      </erp-section>
+
+      <erp-section data-forms-owner="repeater">
+        <erp-stack gap="default">
+          <erp-text type="heading-2">ErpRepeater</erp-text>
+          <erp-review-forms-template-evidence mode="repeater" [contacts]="contacts()" [steps]="steps" [(activeId)]="activeStep" (addRequested)="addContact()" (removeRequested)="removeContact($event)" />
+        </erp-stack>
+      </erp-section>
+
+      <erp-section data-forms-owner="stepper">
+        <erp-stack gap="default">
+          <erp-text type="heading-2">ErpStepper</erp-text>
+          <erp-review-forms-template-evidence mode="stepper" [contacts]="contacts()" [steps]="steps" [(activeId)]="activeStep" />
+        </erp-stack>
+      </erp-section>
+    </erp-grid>
+
+    <erp-section data-integrated-forms-specimen>
+      <erp-surface border="subtle">
+        <erp-form label="نموذج عميل متكامل" description="دليل تكوين بدون HTTP أو امتلاك نموذج مجال" [busy]="busy()" (submitRequested)="submit()" (resetRequested)="reset()">
+          <erp-validation-summary [issues]="issues()" />
+          <erp-form-section title="بيانات الحساب" description="حقول CVA الحالية وعقد التحقق الموحد">
+            <erp-grid [columns]="2" gap="lg" responsive="auto">
+              <erp-text-box id="forms-customer-name" label="اسم العميل" required />
+              <erp-select label="الفرع" [options]="selectOptions" required />
+              <erp-radio-group label="نوع العميل" [options]="radioOptions" />
+              <erp-check-box label="الحساب نشط" />
+            </erp-grid>
+          </erp-form-section>
+          <erp-form-section title="جهات الاتصال" description="المصفوفة والحالة يملكهما المستهلك">
+            <erp-review-forms-template-evidence mode="repeater" [contacts]="contacts()" [steps]="steps" [(activeId)]="activeStep" (addRequested)="addContact()" (removeRequested)="removeContact($event)" />
+          </erp-form-section>
+          <erp-form-section title="تسلسل المراجعة">
+            <erp-review-forms-template-evidence mode="stepper" [contacts]="contacts()" [steps]="steps" [(activeId)]="activeStep" />
+          </erp-form-section>
+          <erp-text type="caption" tone="secondary">{{ status() }}</erp-text>
+          <erp-form-actions>
+            <erp-button erpFormActionsSecondary type="reset" label="إعادة ضبط" variant="outline" [disabled]="busy()" />
+            <erp-button erpFormActionsPrimary type="submit" label="حفظ العميل" [loading]="busy()" />
+          </erp-form-actions>
+        </erp-form>
+      </erp-surface>
+    </erp-section>
+  </erp-stack>
+</erp-container>

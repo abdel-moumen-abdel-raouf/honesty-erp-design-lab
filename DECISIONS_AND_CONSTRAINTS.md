@@ -30,7 +30,7 @@ Binding Product Owner law:
 4. the next item is the lowest unresolved dependency, not simply the next row
    in historical planning.
 
-Current authorized batch:
+Latest completed authorized batch:
 
 1. `ErpForm`;
 2. `ErpFormSection`;
@@ -40,13 +40,15 @@ Current authorized batch:
 6. `ErpStepper`.
 
 This Accelerated Forms Composition Wave follows technically green Core, Phase A
-hardening, and Data/Table batches. Their grouped Product Owner runtime/visual
-acceptance remains pending and technical PASS is not visual freeze.
+hardening, and Data/Table batches. The six Forms owners are now implemented and
+canonically green at 117/117 test files and 792/792 tests, with both typechecks,
+production build, and zero warnings.
 
-Current active work is continuity normalization followed by those six Forms
-owners only. `StandardEntityForm`, Form Engine/schema, Entity Wizard, entity
-patterns, Shell, Sidebar/Topbar, Navigation, Features/Pages, and every unlisted
-family remain unopened.
+Current active gate is grouped Product Owner runtime/Light/Dark review of Core,
+Data/Table, and Forms. Technical PASS is not visual freeze. No subsequent
+implementation scope is authorized. `StandardEntityForm`, Form Engine/schema,
+Entity Wizard, entity patterns, Shell, Sidebar/Topbar, Navigation,
+Features/Pages, and every unlisted family remain unopened.
 
 ## Visual-reference law
 

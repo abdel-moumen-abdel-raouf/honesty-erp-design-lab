@@ -20,16 +20,19 @@ initial bundle was 374.44 kB / 85.38 kB estimated transfer. None of those facts
 implies Product Owner visual acceptance or freeze; grouped runtime/visual review
 remains pending.
 
-The Product Owner has explicitly opened exactly six Forms Composition owners:
-`ErpForm`, `ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`,
-`ErpRepeater`, and `ErpStepper`. Persistent state normalization and reference
-audit precede implementation. `StandardEntityForm`, Form Engine/schema, Entity
-Wizard/patterns, SmartTable-adjacent application patterns, Shell,
-Sidebar/Topbar, Navigation, Features/Pages, and every unlisted family remain
-unopened.
+Exactly six Forms Composition owners are now implemented: `ErpForm`,
+`ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`, `ErpRepeater`, and
+`ErpStepper`. The completed reference audit found no external reference, so the
+Product Owner's scoped accelerated waiver applied. Canonical verification passed
+117/117 test files, 792/792 tests, both typechecks, production build, and zero
+warnings.
 
-After technical completion, the next gate is grouped Product Owner runtime and
-Light/Dark visual review. Technical PASS never equals visual approval.
+The exact next gate is grouped Product Owner runtime and Light/Dark visual review
+of Core, Data/Table, and Forms. No later implementation wave is authorized.
+`StandardEntityForm`, Form Engine/schema, Entity Wizard/patterns,
+SmartTable-adjacent application patterns, Shell, Sidebar/Topbar, Navigation,
+Features/Pages, and every unlisted family remain unopened. Technical PASS never
+equals visual approval.
 
 ## Historical Git checkpoints — superseded snapshot
 

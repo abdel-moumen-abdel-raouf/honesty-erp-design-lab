@@ -1,0 +1,7 @@
+@use '../../../styles/foundation/components/form-actions' as tokens;
+@use '../../../styles/foundation/queries' as query;
+
+:host { @include tokens.base; display: flex; align-items: center; justify-content: space-between; gap: var(--honesty-form-actions-gap); padding: var(--honesty-form-actions-padding); border-block-start: var(--honesty-form-actions-border-width) solid var(--honesty-form-actions-border-color); }
+.form-actions__primary, .form-actions__secondary { display: flex; flex-wrap: wrap; gap: var(--honesty-form-actions-item-gap); }
+.form-actions__primary:empty, .form-actions__secondary:empty { display: none; }
+@include query.viewport-down('sm') { :host { align-items: stretch; flex-direction: column-reverse; } .form-actions__primary, .form-actions__secondary { flex-direction: column; } }

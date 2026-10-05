@@ -7,12 +7,15 @@ the later accelerated Core and Phase A work. Phase B Data/Table is also
 implemented and canonically green. Product Owner runtime/visual acceptance of
 the grouped Core/Data work remains pending.
 
-The current authorized wave is exactly `ErpForm`, `ErpFormSection`,
+The completed Forms wave implements exactly `ErpForm`, `ErpFormSection`,
 `ErpFormActions`, `ErpValidationSummary`, `ErpRepeater`, and `ErpStepper`.
-Before styling, audit repository/template/Downloads reference locations. If no
-reference exists, the Product Owner accelerated no-external-reference waiver
-applies to these six owners only. Shell and all higher/unlisted families remain
-unopened. Technical PASS is not visual approval.
+The repository/template/Downloads audit found no external reference for any of
+the six, so the Product Owner accelerated no-external-reference waiver applied
+to those owners only. The batch passed canonical technical verification at
+117/117 test files and 792/792 tests. The next action is grouped Product Owner
+runtime/Light/Dark review; no subsequent implementation wave is open. Shell and
+all higher/unlisted families remain unopened. Technical PASS is not visual
+approval.
 
 ## Historical Product Owner decision — superseded execution order
 

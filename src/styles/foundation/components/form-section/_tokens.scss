@@ -1,0 +1,9 @@
+@mixin base {
+  --honesty-form-section-gap: var(--honesty-space-stack-default);
+  --honesty-form-section-header-gap: var(--honesty-space-inline-default);
+  --honesty-form-section-copy-gap: var(--honesty-space-stack-tight);
+  --honesty-form-section-padding: var(--honesty-space-inset-loose);
+  --honesty-form-section-padding-compact: var(--honesty-space-inset-default);
+  --honesty-form-section-border-width: var(--honesty-border-width-default);
+  --honesty-form-section-border-color: var(--honesty-border-subtle);
+}

@@ -1,0 +1,10 @@
+@use '../../../styles/foundation/components/form-section' as tokens;
+@use '../../../styles/foundation/queries' as query;
+
+:host { @include tokens.base; display: block; }
+section { display: grid; gap: var(--honesty-form-section-gap); padding: var(--honesty-form-section-padding); border-block-end: var(--honesty-form-section-border-width) solid var(--honesty-form-section-border-color); }
+.form-section__header { display: flex; align-items: start; justify-content: space-between; gap: var(--honesty-form-section-header-gap); }
+.form-section__copy, .form-section__content { display: grid; gap: var(--honesty-form-section-copy-gap); min-inline-size: 0; }
+.form-section__actions:empty { display: none; }
+:host([data-form-section-compact='true']) section { padding: var(--honesty-form-section-padding-compact); }
+@include query.viewport-down('sm') { .form-section__header { flex-direction: column; } }
