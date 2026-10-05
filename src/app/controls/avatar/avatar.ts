@@ -1,0 +1,6 @@
+/* eslint-disable @angular-eslint/component-selector */
+import {ChangeDetectionStrategy, Component, computed, input, signal} from '@angular/core';
+import {ErpIcon} from '../../primitives/icon/icon'; import {ErpIconName} from '../../primitives/icon/icon-contracts'; import {ErpText} from '../../primitives/text/text';
+export type ErpAvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'; export type ErpAvatarShape = 'circle' | 'rounded';
+@Component({changeDetection: ChangeDetectionStrategy.OnPush,   selector: 'erp-avatar', imports: [ErpIcon, ErpText], templateUrl: './avatar.html', styleUrl: './avatar.scss', host: {'[attr.data-avatar-size]': 'size()', '[attr.data-avatar-shape]': 'shape()', '[attr.aria-label]': 'name()'}})
+export class ErpAvatar { readonly name = input.required<string>(); readonly src = input<string | null>(null); readonly size = input<ErpAvatarSize>('md'); readonly shape = input<ErpAvatarShape>('circle'); readonly fallbackIcon = input<ErpIconName | null>(null); protected readonly imageFailed = signal(false); protected readonly imageVisible = computed(() => !!this.src() && !this.imageFailed()); protected readonly initials = computed(() => this.name().trim().split(/\s+/u).filter(Boolean).slice(0, 2).map((part) => part[0]).join('').toLocaleUpperCase()); protected failImage(): void { this.imageFailed.set(true); } }

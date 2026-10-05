@@ -1,0 +1,10 @@
+<div class="table__scroll" tabindex="0" [attr.aria-label]="caption()">
+  <table>
+    <caption><erp-text type="caption" tone="secondary">{{ caption() }}</erp-text></caption>
+    <thead><tr>@for (column of columns(); track column.key) { <th scope="col" [attr.data-align]="column.align ?? 'start'"><erp-text type="table-header" weight="bold">{{ column.header }}</erp-text></th> }</tr></thead>
+    <tbody>
+      @for (row of rows(); track key(row, $index); let index = $index) { <tr [attr.aria-selected]="selectable() ? selectedSet().has(key(row, index)) : null" [attr.tabindex]="selectable() ? 0 : null" (click)="activate(row)" (keydown.enter)="activate(row)">@for (column of columns(); track column.key) { <td [attr.data-align]="column.align ?? 'start'"><erp-text type="table-cell">{{ row[column.key] ?? '—' }}</erp-text></td> }</tr> }
+      @empty { <tr><td [attr.colspan]="columns().length"><erp-text class="table__empty" type="paragraph" tone="secondary" align="center">{{ emptyText() }}</erp-text></td></tr> }
+    </tbody>
+  </table>
+</div>

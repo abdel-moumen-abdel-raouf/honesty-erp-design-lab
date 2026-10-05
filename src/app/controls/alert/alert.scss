@@ -1,0 +1,4 @@
+@use '../../../styles/foundation/components/alert' as tokens;
+:host { @include tokens.base; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: start; gap: var(--honesty-alert-gap); padding: var(--honesty-alert-padding); border: var(--honesty-alert-border-width) solid var(--honesty-alert-border-color); border-inline-start-width: var(--honesty-alert-accent-width); border-radius: var(--honesty-alert-radius); background: var(--honesty-alert-bg); color: var(--honesty-alert-fg); }
+:host([data-alert-tone='success']) { @include tokens.tone-success; } :host([data-alert-tone='warning']) { @include tokens.tone-warning; } :host([data-alert-tone='danger']) { @include tokens.tone-danger; }
+.alert__copy { display: grid; gap: var(--honesty-alert-copy-gap); min-width: 0; } .alert__actions { display: inline-flex; align-items: center; gap: var(--honesty-alert-action-gap); }

@@ -1,0 +1,2 @@
+import {TestBed} from '@angular/core/testing'; import {ErpSkeleton} from './skeleton';
+describe('ErpSkeleton', () => { it('exposes loading semantics and requested line count', () => { const f = TestBed.createComponent(ErpSkeleton); f.componentRef.setInput('lines', 3); f.detectChanges(); expect(f.nativeElement.getAttribute('role')).toBe('status'); expect(f.nativeElement.querySelectorAll('.skeleton__shape')).toHaveLength(3); }); });

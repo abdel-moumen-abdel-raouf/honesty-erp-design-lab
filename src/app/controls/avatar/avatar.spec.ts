@@ -1,0 +1,2 @@
+import {TestBed} from '@angular/core/testing'; import {ErpAvatar} from './avatar';
+describe('ErpAvatar', () => { it('uses deterministic initials when no valid image is available', () => { const f = TestBed.createComponent(ErpAvatar); f.componentRef.setInput('name', 'أحمد علي'); f.detectChanges(); expect(f.nativeElement.textContent).toContain('أع'); expect(f.nativeElement.querySelector('img')).toBeNull(); }); });

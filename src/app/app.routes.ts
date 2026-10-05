@@ -63,6 +63,11 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'controls/core-batch',
+    loadComponent: () =>
+      import('./showcase/core-batch/core-batch').then((m) => m.CoreBatch),
+  },
+  {
     path: 'foundation/colors',
     loadComponent: () =>
       import('./foundation/colors/colors').then((m) => m.Colors),

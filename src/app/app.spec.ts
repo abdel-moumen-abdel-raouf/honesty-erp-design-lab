@@ -207,6 +207,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
       'controls/inputs',
       'controls/empty-states',
       'controls/overlays',
+      'controls/core-batch',
       'foundation/colors',
       'foundation/colors/status-hues',
       'foundation/themes',

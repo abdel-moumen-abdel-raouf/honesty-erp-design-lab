@@ -1,0 +1,96 @@
+<erp-field-frame
+  [label]="label()"
+  [controlId]="controlId"
+  [tone]="tone()"
+  [status]="effectiveFieldStatus()"
+  [variant]="variant()"
+  [borderMode]="effectiveBorderMode()"
+  [shape]="shape()"
+  [size]="fieldSize()"
+  [appearance]="appearance()"
+  [labelMode]="labelMode()"
+  [floatingPosition]="floatingPosition()"
+  [helperText]="helperText()"
+  [helperPosition]="helperPosition()"
+  [leadingIcon]="leadingIcon()"
+  trailingIcon="chevron-down"
+  [clearable]="clearActionVisible()"
+  [feedbackText]="effectiveFeedbackText()"
+  [feedbackDismissible]="feedbackDismissible()"
+  [feedbackVisible]="effectiveFeedbackVisible()"
+  [focused]="fieldFocused() || open()"
+  [hasDisplayValue]="selectedValues().length > 0"
+  [placeholder]="placeholder()"
+  [disabled]="fieldEffectiveDisabled()"
+  [configurationState]="fieldConfigurationState()"
+  (clearRequested)="clearSelection()"
+  (feedbackDismissed)="dismissFeedback()"
+>
+  <erp-field-trigger
+    #trigger
+    field-control
+    class="select__trigger"
+    [id]="controlId"
+    [name]="name()"
+    [form]="form()"
+    [disabled]="fieldEffectiveDisabled()"
+    ariaHasPopup="listbox"
+    [ariaControls]="popupId"
+    [ariaExpanded]="open()"
+    [ariaDescribedBy]="fieldAriaDescribedBy(controlId)"
+    [ariaErrorMessage]="fieldAriaErrorMessage(controlId)"
+    [ariaInvalid]="effectiveFieldStatus() === 'danger'"
+    (activated)="toggle()"
+    (keyPressed)="handleKeydown($event)"
+    (focused)="handleFocus()"
+  >
+    <erp-text type="text" tone="inherit" overflow="ellipsis">
+      {{ displayValue() || placeholder() }}
+    </erp-text>
+  </erp-field-trigger>
+</erp-field-frame>
+
+<div #popup class="select__popup" popover="manual" [id]="popupId">
+  @if (searchable()) {
+    <label class="select__search-label" [for]="searchId">
+      <erp-text type="caption" tone="secondary">{{ searchPlaceholder() }}</erp-text>
+    </label>
+    <div class="select__search-control">
+      <erp-icon name="search" size="sm" tone="muted" />
+      <input [id]="searchId" type="search" [value]="query()" [placeholder]="searchPlaceholder()" (input)="updateQuery($event)" (keydown)="handleKeydown($event)" />
+    </div>
+  }
+
+  @if (filterable() && groups().length > 0) {
+    <div class="select__filters" aria-label="تصفية المجموعات">
+      <erp-button label="الكل" size="sm" [variant]="activeGroup() === null ? 'subtle' : 'ghost'" (pressed)="setGroup(null)" />
+      @for (group of groups(); track group) {
+        <erp-button [label]="group" size="sm" [variant]="activeGroup() === group ? 'subtle' : 'ghost'" (pressed)="setGroup(group)" />
+      }
+    </div>
+  }
+
+  @if (sortable()) {
+    <div class="select__sort" aria-label="ترتيب الخيارات">
+      <erp-button label="الأصلي" size="sm" [variant]="sort() === 'source' ? 'subtle' : 'ghost'" (pressed)="setSort('source')" />
+      <erp-button label="تصاعدي" icon="sort-ascending" size="sm" [variant]="sort() === 'ascending' ? 'subtle' : 'ghost'" (pressed)="setSort('ascending')" />
+      <erp-button label="تنازلي" icon="sort-descending" size="sm" [variant]="sort() === 'descending' ? 'subtle' : 'ghost'" (pressed)="setSort('descending')" />
+    </div>
+  }
+
+  <div class="select__options" role="listbox" [attr.aria-multiselectable]="multiple()">
+    @for (option of visibleOptions(); track option.value; let index = $index) {
+      <erp-selection-tile presentation="list" [label]="option.label" [selected]="selectedValues().includes(option.value)" [active]="activeIndex() === index" [disabled]="option.disabled ?? false" [tabIndex]="activeIndex() === index ? 0 : -1" (focused)="activeIndex.set(index)" (activated)="select(option)">
+        @if (option.imageUrl) { <img class="select__option-image" [src]="option.imageUrl" alt="" /> }
+        @if (option.icon) { <erp-icon [name]="option.icon" size="sm" /> }
+        <span class="select__option-copy">
+          <erp-text type="text">{{ option.label }}</erp-text>
+          @if (option.description) { <erp-text type="caption" tone="secondary">{{ option.description }}</erp-text> }
+        </span>
+        @if (selectedValues().includes(option.value)) { <erp-icon name="check" size="sm" tone="brand-primary" /> }
+      </erp-selection-tile>
+    } @empty {
+      <erp-text class="select__empty" type="caption" tone="secondary">لا توجد خيارات مطابقة</erp-text>
+    }
+  </div>
+</div>

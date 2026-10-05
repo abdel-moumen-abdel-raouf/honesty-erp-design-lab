@@ -1,0 +1,9 @@
+<div class="pagination__summary"><erp-text type="caption" tone="secondary">الصفحة {{ page() }} من {{ pageCount() }}@if (totalItems() !== null) { — {{ totalItems() }} سجل }</erp-text></div>
+<div class="pagination__controls" aria-label="التنقل بين الصفحات">
+  <erp-button label="الأولى" icon="skip-start" variant="ghost" size="sm" [disabled]="page() <= 1" (pressed)="go(1)" />
+  <erp-button label="السابقة" icon="chevron-start" variant="ghost" size="sm" [disabled]="page() <= 1" (pressed)="go(page() - 1)" />
+  @for (candidate of visiblePages(); track candidate) { <erp-button [label]="candidate.toString()" [variant]="candidate === page() ? 'solid' : 'ghost'" size="sm" (pressed)="go(candidate)" /> }
+  <erp-button label="التالية" icon="chevron-end" iconPosition="end" variant="ghost" size="sm" [disabled]="page() >= pageCount()" (pressed)="go(page() + 1)" />
+  <erp-button label="الأخيرة" icon="skip-end" iconPosition="end" variant="ghost" size="sm" [disabled]="page() >= pageCount()" (pressed)="go(pageCount())" />
+</div>
+@if (showPageSize()) { <erp-select class="pagination__size" label="حجم الصفحة" [options]="pageOptions()" [searchable]="false" [filterable]="false" [sortable]="false" selectSize="sm" [ngModel]="pageSize().toString()" (ngModelChange)="changeSize($event)" [ngModelOptions]="{standalone: true}" /> }

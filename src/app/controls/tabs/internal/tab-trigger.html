@@ -1,0 +1,1 @@
+<button type="button" role="tab" [id]="id()" [attr.aria-controls]="controls()" [attr.aria-selected]="selected()" [tabindex]="tabIndex()" [disabled]="disabled()" (click)="activated.emit()" (keydown)="keyPressed.emit($event)"><ng-content></ng-content></button>

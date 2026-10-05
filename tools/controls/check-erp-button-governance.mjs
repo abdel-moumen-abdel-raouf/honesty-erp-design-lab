@@ -118,6 +118,7 @@ const APPROVED_NATIVE_BUTTON_ROOTS = new Set([
   'src/app/controls/extended-fab/extended-fab.html',
   'src/app/controls/input-family/internal/field-trigger.html',
   'src/app/controls/selection-family/internal/selection-tile.html',
+  'src/app/controls/tabs/internal/tab-trigger.html',
 ]);
 
 const BUTTON_COMPOSITE_FILES = [

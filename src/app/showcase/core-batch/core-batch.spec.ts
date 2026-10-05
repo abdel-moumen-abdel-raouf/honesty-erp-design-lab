@@ -1,0 +1,2 @@
+import {TestBed} from '@angular/core/testing'; import {CoreBatch} from './core-batch';
+describe('CoreBatch', () => { it('renders exactly the eight accelerated-wave review sections', () => { const f=TestBed.createComponent(CoreBatch); f.detectChanges(); expect(f.nativeElement.querySelectorAll('erp-section')).toHaveLength(8); expect(f.nativeElement.querySelector('erp-select')).not.toBeNull(); expect(f.nativeElement.querySelector('erp-pagination')).not.toBeNull(); }); });

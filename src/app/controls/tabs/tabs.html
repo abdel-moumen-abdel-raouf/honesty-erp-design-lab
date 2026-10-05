@@ -1,0 +1,4 @@
+<div class="tabs__list" role="tablist" aria-label="التبويبات">
+  @for (item of items(); track item.id; let index = $index) { <erp-tab-trigger [id]="item.id + '-tab'" [controls]="item.id + '-panel'" [selected]="resolvedActiveId() === item.id" [tabIndex]="resolvedActiveId() === item.id ? 0 : -1" [disabled]="item.disabled ?? false" (activated)="activate(item)" (keyPressed)="keydown($event, index)">@if (item.icon) { <erp-icon [name]="item.icon" size="sm" /> }<erp-text type="span" tone="inherit">{{ item.label }}</erp-text></erp-tab-trigger> }
+</div>
+@for (item of items(); track item.id) { @if (resolvedActiveId() === item.id) { <div class="tabs__panel" role="tabpanel" [id]="item.id + '-panel'" [attr.aria-labelledby]="item.id + '-tab'" tabindex="0"><erp-text type="paragraph">{{ item.content }}</erp-text></div> } }

@@ -1397,3 +1397,12 @@ Fresh canonical verification remains required:
 
 `npm run verify:clean`
 <!-- CHATGPT_SYSTEM_FONT_AUTHORITY_RESTORED_2026_10_04_END -->
+
+## Accelerated Core Component Wave Governance
+
+- The Product Owner authorizes one grouped-review implementation wave containing exactly ErpSelect, ErpStatusBadge, ErpAlert, ErpSkeleton, ErpAvatar, ErpTabs, ErpTable, and ErpPagination.
+- Product Owner visual review is grouped after the eight-component wave; technical green does not equal visual acceptance and later findings may reopen any component.
+- ErpEmptyState is temporarily accepted only for accelerated continuation and is not visually frozen.
+- ErpSelect follows the supplied erp-select.html reference while remaining distinct from ComboBox, SearchBox, and ItemPicker ownership.
+- Components in this wave without an external reference use the explicit Product Owner accelerated-wave waiver and the existing Honesty ERP visual language.
+- Forms, SmartTable, Shell, and any ninth component remain outside this wave.

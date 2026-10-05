@@ -1,0 +1,37 @@
+@use '../../../styles/foundation/components/select' as tokens;
+
+:host {
+  @include tokens.base;
+  display: block;
+  min-width: 0;
+}
+
+.select__trigger { inline-size: 100%; min-width: 0; }
+
+.select__popup {
+  position: fixed;
+  inset: auto;
+  box-sizing: border-box;
+  max-inline-size: calc(100dvw - (2 * var(--honesty-select-popup-viewport-inset)));
+  max-block-size: min(var(--honesty-select-popup-max-block-size), calc(100dvh - (2 * var(--honesty-select-popup-viewport-inset))));
+  margin: 0;
+  padding: var(--honesty-select-popup-padding);
+  border: var(--honesty-select-popup-border-width) var(--honesty-select-popup-border-style) var(--honesty-select-popup-border-color);
+  border-radius: var(--honesty-select-popup-radius);
+  background: var(--honesty-select-popup-bg);
+  color: var(--honesty-select-popup-fg);
+  box-shadow: var(--honesty-select-popup-elevation);
+  z-index: var(--honesty-select-popup-layer);
+  overflow: hidden;
+}
+
+.select__search-label { display: block; margin-block-end: var(--honesty-select-content-gap); }
+.select__search-control { display: flex; align-items: center; gap: var(--honesty-select-content-gap); padding: var(--honesty-select-control-padding); border: var(--honesty-select-popup-border-width) solid var(--honesty-select-popup-border-color); border-radius: var(--honesty-select-control-radius); }
+.select__search-control input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: inherit; font: inherit; }
+.select__filters, .select__sort { display: flex; flex-wrap: wrap; gap: var(--honesty-select-filter-gap); margin-block-start: var(--honesty-select-content-gap); }
+.select__options { display: grid; gap: var(--honesty-select-option-gap); max-block-size: var(--honesty-select-options-max-block-size); margin-block-start: var(--honesty-select-content-gap); overflow: auto; }
+.select__option-copy { display: grid; flex: 1; min-width: 0; }
+.select__option-image { inline-size: var(--honesty-select-option-image-size); block-size: var(--honesty-select-option-image-size); border-radius: 50%; object-fit: cover; }
+.select__empty { padding: var(--honesty-select-popup-padding); text-align: center; }
+
+@media (prefers-reduced-motion: reduce) { .select__popup { scroll-behavior: auto; } }

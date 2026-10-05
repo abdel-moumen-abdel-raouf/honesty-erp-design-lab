@@ -753,3 +753,21 @@ review of the enlarged EmptyState illustrations.
 
 Commit scope: `fix(controls): enlarge empty-state illustrations`.
 <!-- CHATGPT_EMPTY_STATE_LOTTIE_SIZE_2026_10_05_END -->
+
+<!-- CHATGPT_ACCELERATED_CORE_BATCH_2026_10_05_BEGIN -->
+## 2026-10-05 — Accelerated Multi-Component Wave
+
+The Product Owner temporarily accepts the current ErpEmptyState result for accelerated continuation; this is not a visual freeze or final approval. The Product Owner explicitly opened one grouped-review wave for ErpSelect, ErpStatusBadge, ErpAlert, ErpSkeleton, ErpAvatar, ErpTabs, ErpTable, and ErpPagination. Technical checks occur per component, while Product Owner runtime/visual review is deferred to the completed group. Technical green remains distinct from visual acceptance, and later findings may reopen any component. Forms, SmartTable, Shell, and all unlisted component families remain unopened.
+
+ErpSelect uses the supplied erp-select.html visual authority and remains distinct from ComboBox, SearchBox, and ItemPicker ownership. The other seven components are implemented under the Product Owner accelerated-wave no-external-reference waiver and reuse the existing Honesty ERP visual language.
+<!-- CHATGPT_ACCELERATED_CORE_BATCH_2026_10_05_END -->
+
+### Technical checkpoint
+
+- `npm run verify:clean`: PASS.
+- Lint/governance: PASS.
+- Tests: 101/101 files and 740/740 tests PASS.
+- `typecheck:app`: PASS.
+- `typecheck:spec`: PASS.
+- Production build: PASS; initial bundle 374.07 kB; zero warnings.
+- Grouped Product Owner review remains pending at `/controls/core-batch`.

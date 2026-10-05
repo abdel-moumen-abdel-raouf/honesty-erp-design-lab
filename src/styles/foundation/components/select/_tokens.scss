@@ -1,0 +1,25 @@
+@mixin base {
+  --honesty-select-popup-bg: var(--honesty-color-surface-elevated);
+  --honesty-select-popup-fg: var(--honesty-color-text-primary);
+  --honesty-select-popup-border-color: var(--honesty-border-subtle);
+  --honesty-select-popup-border-width: var(--honesty-border-width-default);
+  --honesty-select-popup-border-style: var(--honesty-border-style-default);
+  --honesty-select-popup-radius: var(--honesty-radius-overlay);
+  --honesty-select-popup-elevation: var(--honesty-elevation-overlay);
+  --honesty-select-popup-layer: var(--honesty-layer-overlay);
+  --honesty-select-popup-viewport-inset: var(--honesty-space-inset-tight);
+  --honesty-select-popup-padding: var(--honesty-space-inset-default);
+  --honesty-select-popup-max-block-size: 28rem;
+  --honesty-select-options-max-block-size: 18rem;
+  --honesty-select-content-gap: var(--honesty-space-stack-tight);
+  --honesty-select-option-gap: var(--honesty-space-stack-compact);
+  --honesty-select-control-padding: var(--honesty-space-inset-tight);
+  --honesty-select-control-radius: var(--honesty-radius-control);
+  --honesty-select-filter-gap: var(--honesty-space-inline-tight);
+  --honesty-select-filter-padding: var(--honesty-space-inset-tight);
+  --honesty-select-filter-radius: var(--honesty-radius-pill);
+  --honesty-select-selected-bg: var(--honesty-color-action-primary-subtle-bg);
+  --honesty-select-selected-border: var(--honesty-color-action-primary-bg);
+  --honesty-select-selected-fg: var(--honesty-color-text-primary);
+  --honesty-select-option-image-size: 2rem;
+}

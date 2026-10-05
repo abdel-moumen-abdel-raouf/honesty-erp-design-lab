@@ -15,12 +15,14 @@ const MOTION_ADAPTER =
   'src/app/foundation/motion/animate-css-motion-adapter.ts';
 const SEARCH_BOX_TEMPLATE =
   'src/app/controls/search-box/search-box.html';
+const SELECT_TEMPLATE = 'src/app/controls/select/select.html';
 const SPLIT_BUTTON_TEMPLATE =
   'src/app/controls/split-button/split-button.html';
 const FAB_MENU_TEMPLATE =
   'src/app/controls/fab-menu/fab-menu.html';
 const APPROVED_MANUAL_POPOVER_TEMPLATES = new Set([
   SEARCH_BOX_TEMPLATE,
+  SELECT_TEMPLATE,
   SPLIT_BUTTON_TEMPLATE,
   FAB_MENU_TEMPLATE,
 ]);
