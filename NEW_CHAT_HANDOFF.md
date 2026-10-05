@@ -1,5 +1,30 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## 0. Authoritative current handoff — 2026-10-06
+
+The current authorization began from live `main`
+`36fdd62f0b65ea9b137639f2b002640603f46525`
+(`feat(controls): add accelerated data table batch`). Resolve the live SHA at
+session start because newer continuity/implementation commits supersede that
+entry checkpoint.
+
+The Accelerated Core Batch, Phase A hardening, and Phase B Data/Table batch are
+implemented and technically green. The latest Phase B canonical gate passed
+110/110 test files and 778/778 tests, both typechecks, production build, and
+zero warnings; initial bundle was 374.44 kB / 85.38 kB estimated transfer.
+Their grouped Product Owner runtime/visual acceptance remains pending.
+
+The Product Owner now authorizes exactly the Accelerated Forms Composition
+Wave owners: `ErpForm`, `ErpFormSection`, `ErpFormActions`,
+`ErpValidationSummary`, `ErpRepeater`, and `ErpStepper`. Persistent state must
+be normalized before source implementation. No `StandardEntityForm`, Form
+Engine/schema, Entity Wizard, entity pattern, Shell, Sidebar/Topbar,
+Navigation, Feature/Page migration, or seventh Forms owner is open.
+
+After the Forms source and canonical verification are complete, synchronize
+the current sections again and stop for grouped Product Owner runtime/visual
+review. Technical PASS never equals visual acceptance.
+
 ## 1. Purpose of this document
 
 This is the canonical context-recovery document for starting a new ChatGPT
@@ -131,7 +156,7 @@ documentation/state only.
 
 ---
 
-## 5. Current verified technical state
+## 5. Historical verified technical state — superseded snapshot
 
 The source checkpoint `b1b20585adcb272f17835ef8182935353a67d243`
 was verified locally in the Product Owner Windows workspace.
@@ -337,7 +362,7 @@ visually reviews the result.
 
 ---
 
-## 10. Exact next authorized action
+## 10. Historical next action — superseded
 
 New ChatGPT session should:
 
@@ -438,7 +463,7 @@ The mandatory next gate is:
 
 The ChatGPT tool environment used for the GitHub write does not have a repository checkout/network path capable of executing the repository's Node/npm verification locally, and the repository has no existing GitHub Actions workflow to run that gate remotely. Therefore the new source checkpoint is implemented and externally source-reviewed, but the canonical local verification remains pending.
 
-## Exact next authorized action
+## Historical next action — superseded by later dated continuity
 
 1. Run `npm run verify:clean` against current `main` / the no-iframe source.
 2. If it passes, record the new fully verified source checkpoint and zero-warning evidence.

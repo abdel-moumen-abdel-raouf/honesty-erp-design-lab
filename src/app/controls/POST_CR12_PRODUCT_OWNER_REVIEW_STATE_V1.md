@@ -6,7 +6,32 @@ This document is the current execution/review state for the Product Owner's page
 
 It records Product Owner decisions, externally reviewed Git state, execution boundaries, and the next authorized action. It does not itself declare visual approval or freeze any component family.
 
-## Current Git checkpoint
+## Authoritative current review transition — 2026-10-06
+
+Live `main` entered this transition at
+`36fdd62f0b65ea9b137639f2b002640603f46525`
+(`feat(controls): add accelerated data table batch`). Resolve newer continuity
+and implementation commits directly from Git.
+
+The Accelerated Core Batch, Phase A hardening, and Phase B Data/Table batch are
+implemented and technically green. The Phase B canonical gate passed 110/110
+test files, 778/778 tests, both typechecks, production build, and zero warnings;
+initial bundle was 374.44 kB / 85.38 kB estimated transfer. None of those facts
+implies Product Owner visual acceptance or freeze; grouped runtime/visual review
+remains pending.
+
+The Product Owner has explicitly opened exactly six Forms Composition owners:
+`ErpForm`, `ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`,
+`ErpRepeater`, and `ErpStepper`. Persistent state normalization and reference
+audit precede implementation. `StandardEntityForm`, Form Engine/schema, Entity
+Wizard/patterns, SmartTable-adjacent application patterns, Shell,
+Sidebar/Topbar, Navigation, Features/Pages, and every unlisted family remain
+unopened.
+
+After technical completion, the next gate is grouped Product Owner runtime and
+Light/Dark visual review. Technical PASS never equals visual approval.
+
+## Historical Git checkpoints — superseded snapshot
 
 Externally reviewed baseline before this round:
 
@@ -223,7 +248,7 @@ This is a technical implementation checkpoint only. Product Owner subjective vis
 - Repository verification now includes `typecheck:app`, `typecheck:spec`, and a cross-platform `build:clean` gate that fails if Angular emits a build warning.
 - Hosted GitHub CI/status evidence is still absent; local verification remains required after pulling.
 
-## Next authorized action
+## Historical next action — superseded
 
 No additional implementation phase is authorized at this checkpoint.
 

@@ -1,6 +1,20 @@
 # Next Component Reference Batch V1
 
-## Product Owner decision
+## Current transition — 2026-10-06
+
+The four-component reference batch below is historical and completed through
+the later accelerated Core and Phase A work. Phase B Data/Table is also
+implemented and canonically green. Product Owner runtime/visual acceptance of
+the grouped Core/Data work remains pending.
+
+The current authorized wave is exactly `ErpForm`, `ErpFormSection`,
+`ErpFormActions`, `ErpValidationSummary`, `ErpRepeater`, and `ErpStepper`.
+Before styling, audit repository/template/Downloads reference locations. If no
+reference exists, the Product Owner accelerated no-external-reference waiver
+applies to these six owners only. Shell and all higher/unlisted families remain
+unopened. Technical PASS is not visual approval.
+
+## Historical Product Owner decision — superseded execution order
 
 The Product Owner supplied `erp-component-templates.zip` as the visual
 reference package for the next component phase and selected execution option A.
@@ -64,7 +78,7 @@ Each component is a separate correction/implementation wave:
 6. Product Owner performs runtime/visual Light/Dark review;
 7. only then may the next component be opened.
 
-## Current item
+## Historical current item — superseded
 
 `ErpCheckBox` is visually accepted. `ErpRadioBox` is the currently opened item.
 

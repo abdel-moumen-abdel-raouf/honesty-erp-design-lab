@@ -13,6 +13,24 @@ commit to `origin/main`; records progress; and then advances to the next phase.
 The roadmap does not declare visual approval, close Basic Controls, or freeze a
 family. Those decisions remain with the Product Owner and ChatGPT after review.
 
+## Current accelerated execution state — 2026-10-06
+
+Core Batch, Phase A hardening, and Phase B Data/Table are implemented and
+technically green. Phase B canonical verification passed 110/110 test files,
+778/778 tests, both typechecks, production build, and zero warnings. Grouped
+Product Owner runtime/visual acceptance remains pending.
+
+The current authorized implementation scope is exactly `ErpForm`,
+`ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`, `ErpRepeater`, and
+`ErpStepper`, after independent continuity normalization and an external
+reference audit. The accelerated no-reference waiver applies only where that
+audit finds no reference for these six.
+
+`StandardEntityForm`, Form Engine/schema, Entity Wizard, entity patterns,
+SmartTable-adjacent application patterns, Shell, Sidebar/Topbar, Navigation,
+Features/Pages, and every unlisted family remain unopened. Technical green is
+not Product Owner visual approval.
+
 ## Canonical Classification
 
 Internal nonvisual foundation:
@@ -323,7 +341,7 @@ zero-warning detector strips ANSI before matching warning output.
 A fresh local `npm run verify:clean` is mandatory.
 
 
-### Fully Green local verification
+### Historical Fully Green local verification
 
 The current technical correction round is fully green locally at
 `b1b20585adcb272f17835ef8182935353a67d243`.
@@ -337,11 +355,11 @@ Verified evidence:
 - the zero-warning wrapper self-test passes;
 - final `Zero-warning build gate: PASS`.
 
-No additional technical correction phase is authorized from this gate alone.
-The next authorized action is Product Owner runtime/visual review.
+No additional technical correction phase was authorized from that gate alone.
+Its next action was Product Owner runtime/visual review.
 
 
-### Next authorized execution — remove iframe preview architecture
+### Historical authorized execution — remove iframe preview architecture
 
 The fully green technical gate is complete. The Product Owner has now
 authorized one bounded structural correction to the Design Lab shell:
@@ -462,7 +480,7 @@ Evidence:
 
 Technical correction program is green again.
 
-Next authorized action is not another implementation family:
+The historical next action was not another implementation family:
 **Product Owner runtime re-review of Tooltip V1.**
 Do not continue page-by-page review past Tooltip until Product Owner accepts it.
 

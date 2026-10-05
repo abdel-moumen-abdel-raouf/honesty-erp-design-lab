@@ -54,8 +54,34 @@ This file intentionally preserves project history. Older "Current state",
 restated by the newest dated continuity blocks or by
 `CURRENT_EXECUTION_STATE.md`.
 
+## Authoritative current state — 2026-10-06
 
-## Current state
+Live `main` entered this transition at
+`36fdd62f0b65ea9b137639f2b002640603f46525`
+(`feat(controls): add accelerated data table batch`). Resolve the live SHA with
+Git at every new session because a continuity commit may be newer.
+
+- The Accelerated Core Batch is implemented and technically green.
+- Accelerated Phase A hardening is complete and technically green.
+- Accelerated Phase B Data/Table is implemented and canonically verified:
+  110/110 test files, 778/778 tests, both typechecks, production build, and
+  zero-warning gate passed; initial bundle was 374.44 kB / 85.38 kB estimated
+  transfer.
+- Product Owner runtime/visual acceptance of the Core and Data batches remains
+  pending; technical PASS is not visual approval or freeze.
+- The Product Owner has explicitly opened the Accelerated Forms Composition
+  Wave for exactly `ErpForm`, `ErpFormSection`, `ErpFormActions`,
+  `ErpValidationSummary`, `ErpRepeater`, and `ErpStepper`.
+- `StandardEntityForm`, any Form Engine/schema, Entity Wizard/patterns, Shell,
+  Sidebar/Topbar, Navigation, Features/Pages, and every unlisted family remain
+  unopened.
+
+The immediate authorized action is continuity normalization followed by the
+six-owner Forms wave. The next product gate after technical completion is the
+Product Owner grouped runtime/visual review.
+
+
+## Historical state snapshot — superseded
 
 The expanded Inputs correction and unified validation program is now implemented
 in source/tests/governance on current `main`.

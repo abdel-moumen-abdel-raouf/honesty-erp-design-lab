@@ -17,6 +17,27 @@ requested.
 The Product Owner is the final authority for visual approval.
 Technical success, green tests, or Codex judgment do not equal visual approval.
 
+## Current Accelerated Forms Composition Authorization
+
+The technically green Accelerated Core Batch, Phase A hardening, and Phase B
+Data/Table batch remain pending grouped Product Owner runtime/visual review.
+
+The current implementation authorization contains exactly:
+
+- `ErpForm`;
+- `ErpFormSection`;
+- `ErpFormActions`;
+- `ErpValidationSummary`;
+- `ErpRepeater`;
+- `ErpStepper`.
+
+An external-reference audit is mandatory before styling. If no reference is
+found, the Product Owner accelerated no-reference waiver applies to these six
+owners only. `StandardEntityForm`, Form Engine/schema, Entity Wizard, entity
+patterns, SmartTable-adjacent application patterns, Shell, Sidebar/Topbar,
+Navigation, Features/Pages, and every seventh Forms owner remain unopened.
+Technical PASS does not equal Product Owner visual approval.
+
 ## Design Architecture
 
 The token architecture is strictly:
@@ -594,9 +615,9 @@ Rules:
   semantics. No new exception is allowed.
 - These technical rules do not declare visual approval or start Wave B.
 
-## Current Product Owner Page-by-Page Review Governance
+## Historical Product Owner Page-by-Page Review Governance
 
-Current execution/review state is recorded in:
+This historical execution/review snapshot is recorded in:
 
 src/app/controls/POST_CR12_PRODUCT_OWNER_REVIEW_STATE_V1.md
 
@@ -619,10 +640,11 @@ Local verification is complete and fully green:
 - production `build:clean` completed with zero Angular warnings;
 - `Zero-warning build gate: PASS`.
 
-This does not declare Product Owner visual approval or a frozen family. The
-next authorized action is Product Owner runtime/visual re-review.
+This did not declare Product Owner visual approval or a frozen family. Its
+then-authorized action was Product Owner runtime/visual re-review; the current
+authorization is defined near the top of this file.
 
-Current mandatory decisions:
+Durable decisions from that review:
 
 - The App root is the sole runtime theme authority. Exactly one application binding,
   `[attr.data-theme]="theme()"`, belongs in `app.html`; the `App` class owns
@@ -655,9 +677,14 @@ Current mandatory decisions:
 - Fixed equal tiles are for icon/color grids; ItemPicker/ComboBox textual options use vertical list-row presentation.
 - ComboBox opens on normal pointer interaction, ArrowDown, and typing while preserving the entered query.
 - ErpContainer production width values remain full, 48rem, 75rem, and 90rem; current correction changed showcase evidence, not those contracts.
-- ErpCheckBox V5 is Product Owner visually accepted. ErpRadioBox is now explicitly authorized and implemented using the accepted CheckBox-family visual language adapted to native radio semantics. The earlier RadioBox redesign deferral is superseded. EmptyState and Select remain unopened.
+- ErpCheckBox V5 is Product Owner visually accepted. ErpRadioBox was
+  subsequently authorized and implemented using the accepted CheckBox-family
+  visual language adapted to native radio semantics. The historical statement
+  that EmptyState and Select were unopened is superseded.
 - Unrelated visual/style refactoring remains deferred, but local Light/Dark theme authority cleanup is complete and must not be deferred or reintroduced.
-- No later unreviewed showcase family or new public component family is authorized until the Product Owner supplies the next page-by-page findings.
+- No later unreviewed showcase family or public component family was authorized
+  by that historical checkpoint alone; later explicit Product Owner
+  authorizations govern current scope.
 
 The first-round correction checkpoint is a technical implementation candidate, not Product Owner visual approval. Do not declare family freeze, Basic Controls closure, or Wave B from it.
 
@@ -714,7 +741,7 @@ Zero-warning verification must inspect normalized build output.
   warning example so a colored warning can never produce a false PASS.
 
 
-## Fully Green Local Verification
+## Historical Fully Green Local Verification
 
 The current technical source checkpoint
 `b1b20585adcb272f17835ef8182935353a67d243` is fully green in the Product
@@ -727,10 +754,9 @@ checks, and a production build with no Angular warnings.
 The zero-warning wrapper also passed its dedicated self-test and standalone
 `build:clean` execution.
 
-Do not repeat corrective implementation solely for technical gating unless a
-new regression is observed. The next authorized work is Product Owner
-page-by-page visual/runtime review and any findings explicitly produced by
-that review.
+Do not repeat that corrective implementation solely for technical gating unless
+a new regression is observed. The then-authorized work was Product Owner
+page-by-page visual/runtime review; the current scope is defined above.
 
 
 ## Persistent Handoff Synchronization
@@ -755,12 +781,12 @@ new ChatGPT thread. It must record the current Git checkpoint, accepted
 decisions, deferred scope, open findings, and exact next authorized action.
 
 
-## No-Iframe Design Lab Direction
+## Historical No-Iframe Design Lab Direction — implemented
 
 The Product Owner has decided that the Design Lab must become a normal
 single-document Angular application with no iframe preview architecture.
 
-Next authorized work must review and remove:
+That historical authorized work required review and removal of:
 
 - the preview iframe from `app.html`;
 - embedded-preview query flags such as `labPreview`;
@@ -785,7 +811,8 @@ Inputs and Overlays must no longer be special direct-review exceptions. After
 the iframe architecture is removed, all routes use the same direct
 `router-outlet` rendering model.
 
-This decision is authorized but not yet implemented at the current handoff.
+This historical decision was subsequently implemented; it is not the current
+execution action.
 
 
 ## No-Iframe Design Lab Implementation Status — 2026-09-29
@@ -1407,11 +1434,16 @@ Fresh canonical verification remains required:
 - Components in this wave without an external reference use the explicit Product Owner accelerated-wave waiver and the existing Honesty ERP visual language.
 - Forms, SmartTable, Shell, and any ninth component remain outside this wave.
 
-## Accelerated Data/Table Wave Governance
+## Accelerated Data/Table Wave Governance — completed technical checkpoint
 
 - Phase A hardening of the accelerated core batch must remain green before Phase B data/table implementation.
 - Phase B contains exactly ErpSortHeader, ErpColumnChooser, ErpFilterBar, ErpFilterDrawer, ErpTableToolbar, ErpBulkActionBar, ErpViewSwitcher, and ErpSmartTable.
 - ErpSmartTable orchestrates approved lower controls; it owns no HTTP, server transport, domain permissions, or business rules.
 - ErpTable rich cells use the keyed erpTableCell contract; SmartTable must not create a competing cell renderer.
 - Product Owner visual review is grouped after Phase B. Technical green does not equal visual acceptance.
-- Forms, SmartTable-adjacent application patterns, Shell, and unlisted components remain unopened.
+- The Data/Table batch is technically complete; Product Owner visual acceptance
+  remains pending.
+- Forms were unopened during that historical batch. The newer explicit
+  authorization above now opens exactly the six Forms Composition owners while
+  SmartTable-adjacent application patterns, Shell, and unlisted components
+  remain unopened.

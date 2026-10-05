@@ -12,7 +12,49 @@ Branch:
 
 `main`
 
-## Current GitHub checkpoints
+## Authoritative current execution state — 2026-10-06
+
+Live `main` entered the current authorization at
+`36fdd62f0b65ea9b137639f2b002640603f46525`
+(`feat(controls): add accelerated data table batch`). Always verify the live
+local and remote SHAs because this continuity normalization creates a newer
+documentation commit.
+
+Completed technical checkpoints:
+
+- Accelerated Core Batch implemented and technically green;
+- Accelerated Phase A hardening implemented and technically green;
+- Accelerated Phase B Data/Table implemented and canonically verified with
+  110/110 test files, 778/778 tests, both TypeScript typechecks, production
+  build, and zero warnings; initial bundle 374.44 kB / 85.38 kB estimated
+  transfer.
+
+Product Owner visual state:
+
+- Core and Data/Table runtime/visual acceptance remains pending and may reopen
+  any component;
+- technical green does not equal Product Owner visual approval or freeze.
+
+Current authorized implementation scope is exactly:
+
+1. `ErpForm`;
+2. `ErpFormSection`;
+3. `ErpFormActions`;
+4. `ErpValidationSummary`;
+5. `ErpRepeater`;
+6. `ErpStepper`.
+
+First normalize persistent current-state wording, then implement the six-owner
+Accelerated Forms Composition Wave. The external-reference audit must precede
+styling; the Product Owner accelerated no-reference waiver applies only when no
+reference is found. The final gate is `npm run verify:clean`, followed by
+grouped Product Owner runtime/visual review.
+
+Still unopened: `StandardEntityForm`, Form Engine/schema, Entity Wizard,
+entity/application patterns, SmartTable-adjacent application patterns, Shell,
+Sidebar/Topbar, Navigation, Features/Pages, and every seventh Forms owner.
+
+## Historical GitHub checkpoints — superseded snapshot
 
 Live `main` must always be verified directly at the start of a new chat with:
 
@@ -38,7 +80,7 @@ Exact-reference V5 implementation checkpoint:
 `4c629875fb2cb1ee3e5d9c0ae2007ed0f6d764a6` —
 `fix(check-box): implement exact Product Owner reference V5`
 
-## Current verification state
+## Historical verification state — superseded snapshot
 
 Product Owner locally ran `npm run verify:clean` at
 `4c629875fb2cb1ee3e5d9c0ae2007ed0f6d764a6`.
@@ -71,7 +113,7 @@ Immediate technical gate:
 
 Do not call the current EmptyState implementation checkpoint Fully Green until a fresh canonical verification passes on the current main.
 
-## Current Product Owner visual state
+## Historical Product Owner visual state — superseded snapshot
 
 `ErpCheckBox` exact-reference V5 is visually **ACCEPTED by the Product Owner**.
 
@@ -113,7 +155,7 @@ Current V5 CheckBox contract includes:
 
 Technical PASS will not equal Product Owner visual approval.
 
-## Current execution order
+## Historical execution order — superseded snapshot
 
 The Product Owner selected this next reference batch order:
 

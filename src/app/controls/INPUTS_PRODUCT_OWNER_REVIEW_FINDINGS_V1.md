@@ -1,6 +1,19 @@
 # Inputs Product Owner Review Findings V1
 
-## Status
+## Current continuity notice — 2026-10-06
+
+The findings below remain an auditable Product Owner review record; they are
+not the current active implementation authorization. Subsequent work completed
+the Accelerated Core Batch, Phase A hardening, and Phase B Data/Table batch with
+canonical technical green, while Product Owner runtime/visual acceptance
+remains pending.
+
+The Product Owner now authorizes only the Accelerated Forms Composition Wave:
+`ErpForm`, `ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`,
+`ErpRepeater`, and `ErpStepper`. Shell, higher application patterns, and every
+unlisted family remain unopened. Technical PASS does not equal visual approval.
+
+## Historical Inputs review status — superseded snapshot
 
 Product Owner review of `/controls/inputs` is BLOCKED. The page must not be
 passed until the findings below are corrected and re-reviewed.

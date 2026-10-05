@@ -32,16 +32,21 @@ Binding Product Owner law:
 
 Current authorized batch:
 
-1. CheckBox;
-2. RadioBox;
-3. EmptyState;
-4. Select.
+1. `ErpForm`;
+2. `ErpFormSection`;
+3. `ErpFormActions`;
+4. `ErpValidationSummary`;
+5. `ErpRepeater`;
+6. `ErpStepper`.
 
-CheckBox V5 visual state: Product Owner accepted.
+This Accelerated Forms Composition Wave follows technically green Core, Phase A
+hardening, and Data/Table batches. Their grouped Product Owner runtime/visual
+acceptance remains pending and technical PASS is not visual freeze.
 
-Current active item: RadioBox.
-
-RadioBox source is implemented and awaits canonical technical verification plus Product Owner runtime/visual review. EmptyState remains unopened until RadioBox closes.
+Current active work is continuity normalization followed by those six Forms
+owners only. `StandardEntityForm`, Form Engine/schema, Entity Wizard, entity
+patterns, Shell, Sidebar/Topbar, Navigation, Features/Pages, and every unlisted
+family remain unopened.
 
 ## Visual-reference law
 

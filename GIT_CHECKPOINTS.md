@@ -9,12 +9,29 @@ Always resolve live `origin/main` directly at session start. This file records
 named checkpoints; it does not claim that its own latest docs SHA is an eternal
 repository HEAD.
 
+## Current accelerated checkpoint — 2026-10-06
+
+Entry source checkpoint:
+
+- `36fdd62f0b65ea9b137639f2b002640603f46525`
+  `feat(controls): add accelerated data table batch`
+
+That checkpoint contains the technically green Accelerated Core Batch, Phase A
+hardening, and Phase B Data/Table batch. Phase B canonical verification passed
+110/110 test files, 778/778 tests, both typechecks, production build, and zero
+warnings; initial bundle 374.44 kB / 85.38 kB estimated transfer.
+
+Product Owner visual acceptance remains pending. The next authorized source
+scope is exactly the six-owner Accelerated Forms Composition Wave after this
+independent continuity normalization commit. Higher/unlisted families and
+Shell remain unopened.
+
 ## Continuity protocol checkpoint
 
 - `66abb185c3e837d9c659ed56106cf668d46103c5`
   `docs(handoff): establish persistent continuity protocol`
 
-## Current CheckBox runtime/source
+## Historical CheckBox runtime/source — superseded snapshot
 
 - `4c7cfe502b14cb594dfafc1043d2e14a5ecb1db8`
   `fix(check-box): move readonly click guard to native input`
