@@ -218,6 +218,19 @@ export function validateEmptyStateContracts(files) {
     }
   }
 
+  const noSearchScenario = source.match(
+    /'no-search': Object\.freeze\(\{([\s\S]*?)\}\),/,
+  );
+
+  if (
+    noSearchScenario === null ||
+    !/showIllustration:\s*true/.test(noSearchScenario[1])
+  ) {
+    errors.push(
+      'ErpEmptyState no-search scenario must show its illustration by default.',
+    );
+  }
+
   for (const forbidden of [
     'readonly theme =',
     'readonly direction =',
@@ -396,7 +409,7 @@ function createValidFixture() {
   const files = new Map([
     [
       SOURCE,
-      "export type ErpEmptyStateVariant = 'no-data' | 'no-search' | 'error' | 'forbidden' | 'custom'; export type ErpEmptyStateIllustrationMotion = 'float' | 'pulse' | 'none'; export type ErpEmptyStateMotionSpeed = 0.5 | 1 | 1.5; export const ERP_EMPTY_STATE_LOTTIE_ASSETS = {'no-data': '/lottie/empty-state/no-data.json', 'no-search': '/lottie/empty-state/no-search.json', error: '/lottie/empty-state/error.json', forbidden: '/lottie/empty-state/forbidden.json', custom: '/lottie/empty-state/custom.json'}; readonly showIllustration = input<boolean | null>; readonly showTitle = input(true); readonly showDescription = input(true); readonly showActions = input(true); readonly showExtra = input<boolean | null>; readonly showPrimaryAction = input<boolean | null>; readonly showSecondaryAction = input<boolean | null>; readonly showTertiaryAction = input<boolean | null>; readonly primaryAction = output<void>(); readonly secondaryAction = output<void>(); readonly tertiaryAction = output<void>(); replayEntrance(): void { this.defaultIllustration()?.replay(); } role: 'status'; 'aria-live': 'polite';",
+      "export type ErpEmptyStateVariant = 'no-data' | 'no-search' | 'error' | 'forbidden' | 'custom'; export type ErpEmptyStateIllustrationMotion = 'float' | 'pulse' | 'none'; export type ErpEmptyStateMotionSpeed = 0.5 | 1 | 1.5; export const ERP_EMPTY_STATE_LOTTIE_ASSETS = {'no-data': '/lottie/empty-state/no-data.json', 'no-search': '/lottie/empty-state/no-search.json', error: '/lottie/empty-state/error.json', forbidden: '/lottie/empty-state/forbidden.json', custom: '/lottie/empty-state/custom.json'}; export const ERP_EMPTY_STATE_SCENARIOS = {'no-search': Object.freeze({showIllustration: true}),}; readonly showIllustration = input<boolean | null>; readonly showTitle = input(true); readonly showDescription = input(true); readonly showActions = input(true); readonly showExtra = input<boolean | null>; readonly showPrimaryAction = input<boolean | null>; readonly showSecondaryAction = input<boolean | null>; readonly showTertiaryAction = input<boolean | null>; readonly primaryAction = output<void>(); readonly secondaryAction = output<void>(); readonly tertiaryAction = output<void>(); replayEntrance(): void { this.defaultIllustration()?.replay(); } role: 'status'; 'aria-live': 'polite';",
     ],
     [
       TEMPLATE,
@@ -473,6 +486,18 @@ function runSelfTest() {
     valid.get(SOURCE).replace("custom: '/lottie/empty-state/custom.json'", ''),
   );
   assertRejected(missingMapping, 'missing asset mapping');
+
+  const hiddenNoSearchIllustration = new Map(valid);
+  hiddenNoSearchIllustration.set(
+    SOURCE,
+    valid
+      .get(SOURCE)
+      .replace('showIllustration: true', 'showIllustration: false'),
+  );
+  assertRejected(
+    hiddenNoSearchIllustration,
+    'hidden no-search illustration default',
+  );
 
   const localPath = new Map(valid);
   localPath.set(

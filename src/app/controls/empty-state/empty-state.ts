@@ -69,7 +69,7 @@ export const ERP_EMPTY_STATE_SCENARIOS: Readonly<
     title: 'لا توجد نتائج مطابقة',
     description:
       'لم نعثر على أي نتائج تطابق معايير البحث الحالية. جرّب كلمات مفتاحية أخرى أو قم بإعادة ضبط خيارات الفلاتر.',
-    showIllustration: false,
+    showIllustration: true,
     showPrimaryAction: false,
     primaryActionLabel: 'إضافة سجل جديد',
     showSecondaryAction: true,

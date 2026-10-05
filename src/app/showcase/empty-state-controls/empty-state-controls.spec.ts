@@ -78,6 +78,13 @@ describe('EmptyStateControls showcase', () => {
       ),
     ).toEqual(['no-data', 'no-search', 'error', 'forbidden', 'custom']);
     expect(matrix.querySelectorAll('erp-empty-state-lottie')).toHaveLength(5);
+    expect(
+      matrix
+        .querySelector<HTMLElement>(
+          'erp-empty-state[data-empty-state-variant="no-search"] erp-empty-state-lottie',
+        )
+        ?.getAttribute('data-empty-state-lottie-asset'),
+    ).toBe('/lottie/empty-state/no-search.json');
   });
 
   it('applies reference scenario defaults to the interactive preview', () => {

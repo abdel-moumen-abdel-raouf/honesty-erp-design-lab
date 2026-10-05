@@ -42,12 +42,10 @@ The exact five reference variants are mandatory:
 Their Arabic default title/description/action visibility and labels are copied
 from the reference scenario model.
 
-A notable reference behavior is preserved deliberately:
-
-- `no-search` has a dedicated Search illustration;
-- its scenario default nevertheless sets Illustration visibility to false;
-- consumers/review controls may reveal it through the ordinary Illustration
-  visibility override.
+The Product Owner superseded the original `no-search` hidden-illustration
+behavior. The `no-search` Lottie is now visible by default, matching the other
+four scenarios. Consumers may still hide it through the ordinary Illustration
+visibility override.
 
 ## Exact component regions
 
@@ -409,3 +407,28 @@ SearchBox were not modified.
 
 Commit scope: `fix(controls): restore empty-state lottie runtime`.
 <!-- CHATGPT_EMPTY_STATE_LOTTIE_RUNTIME_REPAIR_2026_10_05_END -->
+
+<!-- CHATGPT_EMPTY_STATE_NO_SEARCH_DEFAULT_VISIBLE_2026_10_05_START -->
+## 2026-10-05 — no-search illustration default superseded
+
+Product Owner superseded the original `no-search` hidden-illustration behavior.
+The `no-search` Lottie is now visible by default, so all five EmptyState
+scenarios default to visible illustrations. The exact asset mapping remains
+`no-search -> /lottie/empty-state/no-search.json`; the ordinary explicit
+`showIllustration=false` override remains supported.
+
+The redundant Scenario Matrix `showIllustration=true` override was removed so
+the review evidence now exercises the real scenario default. Unit tests prove
+the default Lottie and explicit hide override; showcase tests prove the exact
+asset; governance rejects a restored hidden default. Browser runtime evidence
+confirmed immediate generated SVG output for `no-search`, playing `float` and
+`pulse`, visible static `none`, and continued visibility in Light and Dark.
+
+The Lottie runtime, dynamic import, fetch/readiness pipeline, reduced-motion,
+lifecycle, sizing, speed, Replay, and JSON assets were not changed. 92/92 test
+files and 728/728 tests passed; `npm run verify:clean` passed with zero Angular
+warnings. Technical green does not equal Product Owner visual approval.
+`ErpSelect` remains unopened.
+
+Commit scope: `fix(controls): show no-search illustration by default`.
+<!-- CHATGPT_EMPTY_STATE_NO_SEARCH_DEFAULT_VISIBLE_2026_10_05_END -->

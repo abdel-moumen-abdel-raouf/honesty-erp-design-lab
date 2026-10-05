@@ -148,10 +148,9 @@ describe('ErpEmptyState', () => {
     }
   });
 
-  it('keeps the dedicated no-search illustration available when its part override is enabled', () => {
+  it('shows the dedicated no-search illustration by default and supports an explicit hide override', () => {
     const fixture = create();
     fixture.componentRef.setInput('variant', 'no-search');
-    fixture.componentRef.setInput('showIllustration', true);
     fixture.detectChanges();
 
     const host = fixture.nativeElement as HTMLElement;
@@ -160,6 +159,11 @@ describe('ErpEmptyState', () => {
         .querySelector('erp-empty-state-lottie')
         ?.getAttribute('data-empty-state-lottie-asset'),
     ).toBe(ERP_EMPTY_STATE_LOTTIE_ASSETS['no-search']);
+
+    fixture.componentRef.setInput('showIllustration', false);
+    fixture.detectChanges();
+
+    expect(host.querySelector('erp-empty-state-lottie')).toBeNull();
   });
 
   it('maps every variant to its exact Product Owner Lottie asset', () => {
