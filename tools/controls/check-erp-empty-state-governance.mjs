@@ -27,6 +27,11 @@ function read(relative) {
   return fs.readFileSync(path.join(ROOT, relative), 'utf8');
 }
 
+function hasClassToken(source, className) {
+  return [...source.matchAll(/\bclass=(["'])(.*?)\1/g)].some((match) =>
+    match[2].split(/\s+/).includes(className),
+  );
+}
 export function validateEmptyStateContracts(files) {
   const errors = [];
   const source = files.get(SOURCE) ?? '';
@@ -85,13 +90,20 @@ export function validateEmptyStateContracts(files) {
     'data-empty-state-action="primary"',
     'data-empty-state-action="secondary"',
     'data-empty-state-action="tertiary"',
-    'class="es-anim-search-scan"',
-    'class="es-anim-danger-halo"',
-    'class="es-anim-warning-halo"',
-    'class="es-fill-secondary-accent',
   ]) {
     if (!template.includes(required)) {
       errors.push(`ErpEmptyState template is missing ${required}`);
+    }
+  }
+
+  for (const className of [
+    'es-anim-search-scan',
+    'es-anim-danger-halo',
+    'es-anim-warning-halo',
+    'es-fill-secondary-accent',
+  ]) {
+    if (!hasClassToken(template, className)) {
+      errors.push(`ErpEmptyState template is missing class token ${className}`);
     }
   }
 
@@ -180,7 +192,7 @@ function runSelfTest() {
     ],
     [
       TEMPLATE,
-      '<erp-button data-empty-state-action="primary"></erp-button><erp-button data-empty-state-action="secondary"></erp-button><erp-button data-empty-state-action="tertiary"></erp-button><erp-text></erp-text> erpEmptyStateIllustration erpEmptyStateExtra class="es-anim-search-scan" class="es-anim-danger-halo" class="es-anim-warning-halo" class="es-fill-secondary-accent"',
+      '<erp-button data-empty-state-action="primary"></erp-button><erp-button data-empty-state-action="secondary"></erp-button><erp-button data-empty-state-action="tertiary"></erp-button><erp-text></erp-text> erpEmptyStateIllustration erpEmptyStateExtra class="es-fill-surface es-anim-search-scan" class="es-fill-accent-subtle es-anim-danger-halo" class="es-fill-accent-subtle es-anim-warning-halo" class="es-fill-secondary-accent es-opacity-80"',
     ],
     [
       TOKENS,

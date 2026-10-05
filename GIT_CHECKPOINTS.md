@@ -391,3 +391,48 @@ then
 
 `npm run verify:clean`
 <!-- CHATGPT_EMPTY_STATE_GOVERNANCE_SYNTAX_FIX_2026_10_05_END -->
+
+<!-- CHATGPT_EMPTY_STATE_CLASS_TOKEN_GOV_FIX_2026_10_05_START -->
+## 2026-10-05 — EmptyState governance class-token matching corrected
+
+Product Owner local verification on
+`fad838e25370bde850e3fa38fa11dd0ef8d84839` confirmed:
+
+- `erp-empty-state:check:self-test` PASS;
+- canonical lint gates passed through ErpField;
+- `erp-empty-state:check` then reported missing
+  `es-anim-danger-halo` and `es-anim-warning-halo`.
+
+Production template inspection confirmed both classes are present:
+
+- Danger illustration:
+  `class="es-fill-accent-subtle es-anim-danger-halo"`;
+- Warning illustration:
+  `class="es-fill-accent-subtle es-anim-warning-halo"`.
+
+Root cause was a false-negative governance implementation: it searched for an
+exact attribute substring such as `class="es-anim-danger-halo"`, which only
+works when the required class is the sole/first exact attribute value.
+
+Correction:
+
+- add token-aware class matching that parses each static `class` attribute and
+  tests whitespace-separated class tokens;
+- apply it to Search, Danger, Warning, and Custom illustration evidence;
+- keep action/data markers as exact attribute checks;
+- strengthen the valid self-test fixture so required illustration classes are
+  deliberately embedded in multi-class attributes matching production;
+- no EmptyState runtime/template/style/token/API changed;
+- no governance requirement removed or weakened;
+- patched checker passes compile-only JavaScript syntax audit;
+- all four required production class tokens are detected by the corrected
+  matcher.
+
+Fresh mandatory commands:
+
+`npm run erp-empty-state:check:self-test`
+
+then
+
+`npm run verify:clean`
+<!-- CHATGPT_EMPTY_STATE_CLASS_TOKEN_GOV_FIX_2026_10_05_END -->
