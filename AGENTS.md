@@ -1406,3 +1406,12 @@ Fresh canonical verification remains required:
 - ErpSelect follows the supplied erp-select.html reference while remaining distinct from ComboBox, SearchBox, and ItemPicker ownership.
 - Components in this wave without an external reference use the explicit Product Owner accelerated-wave waiver and the existing Honesty ERP visual language.
 - Forms, SmartTable, Shell, and any ninth component remain outside this wave.
+
+## Accelerated Data/Table Wave Governance
+
+- Phase A hardening of the accelerated core batch must remain green before Phase B data/table implementation.
+- Phase B contains exactly ErpSortHeader, ErpColumnChooser, ErpFilterBar, ErpFilterDrawer, ErpTableToolbar, ErpBulkActionBar, ErpViewSwitcher, and ErpSmartTable.
+- ErpSmartTable orchestrates approved lower controls; it owns no HTTP, server transport, domain permissions, or business rules.
+- ErpTable rich cells use the keyed erpTableCell contract; SmartTable must not create a competing cell renderer.
+- Product Owner visual review is grouped after Phase B. Technical green does not equal visual acceptance.
+- Forms, SmartTable-adjacent application patterns, Shell, and unlisted components remain unopened.

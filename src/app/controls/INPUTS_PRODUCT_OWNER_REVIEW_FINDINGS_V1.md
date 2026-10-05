@@ -4290,3 +4290,43 @@ ErpSelect uses the supplied erp-select.html visual authority and remains distinc
 - `typecheck:spec`: PASS.
 - Production build: PASS; initial bundle 374.07 kB; zero warnings.
 - Grouped Product Owner review remains pending at `/controls/core-batch`.
+
+
+<!-- ACCELERATED_PHASE_A_HARDENING_2026_10_05_START -->
+## 2026-10-05 — Accelerated Phase A hardening complete
+
+The Product Owner authorized a connected two-phase cycle. Phase A hardened the
+existing accelerated core batch before any data/table component was opened.
+
+Closed findings:
+
+- ErpSelect now has real coverage for five sizes, single/multiple normalization,
+  disabled options, max selection, search/group filtering, all sort modes,
+  keyboard/open/close/clear behavior, disabled state, and CVA publication;
+- the Product Owner Select reference is recorded as `erp-select.html`,
+  SHA-256 `5A31FC10A3D1208BF64E35EB5139823E48F8E2BF1D0190D07DD5DB5DBC4DF23B`;
+- Pagination uses the Foundation Query API and one normalized page/count source;
+- Tabs consumes its own disabled-foreground Component Token and supports keyed
+  rich panel templates;
+- Avatar image failure is scoped to the failing source;
+- Skeleton line count normalizes to an integer of at least one;
+- Table supports keyed rich-cell templates and documents controlled
+  `selectedKeys` plus intent-only `rowActivated`;
+- broad selector lint suppressions were replaced by line-scoped exceptions;
+- StatusBadge remains noninteractive and creates no automatic live region.
+
+Canonical Phase A verification:
+
+- `npm run verify:clean`: PASS;
+- lint/governance: PASS;
+- tests: 101/101 files and 758/758 tests PASS;
+- `typecheck:app`: PASS;
+- `typecheck:spec`: PASS;
+- production build: PASS, initial bundle 374.08 kB, zero Angular warnings.
+
+The Product Owner explicitly authorizes immediate Phase B implementation of
+exactly SortHeader, ColumnChooser, FilterBar, FilterDrawer, TableToolbar,
+BulkActionBar, ViewSwitcher, and SmartTable. Product Owner visual review remains
+grouped until the connected cycle is complete. Forms and Shell remain unopened.
+Technical green does not equal visual acceptance.
+<!-- ACCELERATED_PHASE_A_HARDENING_2026_10_05_END -->

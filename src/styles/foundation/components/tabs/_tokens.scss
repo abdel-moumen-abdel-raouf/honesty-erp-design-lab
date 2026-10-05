@@ -1,1 +1,17 @@
-@mixin base { --honesty-tabs-fg: var(--honesty-color-text-secondary); --honesty-tabs-active-fg: var(--honesty-color-text-primary); --honesty-tabs-border-color: var(--honesty-border-subtle); --honesty-tabs-border-width: var(--honesty-border-width-default); --honesty-tabs-indicator-color: var(--honesty-color-action-primary-bg); --honesty-tabs-indicator-size: var(--honesty-border-width-strong); --honesty-tabs-indicator-radius: var(--honesty-radius-pill); --honesty-tabs-gap: var(--honesty-space-stack-default); --honesty-tabs-item-gap: var(--honesty-space-inline-tight); --honesty-tabs-item-padding: var(--honesty-space-inset-default); --honesty-tabs-panel-padding: var(--honesty-space-inset-default); --honesty-tabs-focus-width: var(--honesty-focus-ring-width); --honesty-tabs-focus-offset: var(--honesty-focus-ring-offset); --honesty-tabs-focus-color: var(--honesty-color-action-focus-ring); }
+@mixin base {
+  --honesty-tabs-fg: var(--honesty-color-text-secondary);
+  --honesty-tabs-active-fg: var(--honesty-color-text-primary);
+  --honesty-tabs-disabled-fg: var(--honesty-color-text-disabled);
+  --honesty-tabs-border-color: var(--honesty-border-subtle);
+  --honesty-tabs-border-width: var(--honesty-border-width-default);
+  --honesty-tabs-indicator-color: var(--honesty-color-action-primary-bg);
+  --honesty-tabs-indicator-size: var(--honesty-border-width-strong);
+  --honesty-tabs-indicator-radius: var(--honesty-radius-pill);
+  --honesty-tabs-gap: var(--honesty-space-stack-default);
+  --honesty-tabs-item-gap: var(--honesty-space-inline-tight);
+  --honesty-tabs-item-padding: var(--honesty-space-inset-default);
+  --honesty-tabs-panel-padding: var(--honesty-space-inset-default);
+  --honesty-tabs-focus-width: var(--honesty-focus-ring-width);
+  --honesty-tabs-focus-offset: var(--honesty-focus-ring-offset);
+  --honesty-tabs-focus-color: var(--honesty-color-action-focus-ring);
+}

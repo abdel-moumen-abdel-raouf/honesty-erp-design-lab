@@ -141,6 +141,7 @@ export class ErpSelect extends ErpFieldBase<ErpSelectValue> implements OnDestroy
       const selected = new Set(this.selectedValues());
       if (selected.has(option.value)) selected.delete(option.value);
       else if (this.maxSelected() === null || selected.size < (this.maxSelected() as number)) selected.add(option.value);
+      else return;
       this.commitUserValue([...selected]);
     } else {
       this.commitUserValue(option.value);
