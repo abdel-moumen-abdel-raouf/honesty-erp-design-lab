@@ -1,0 +1,109 @@
+@keyframes honesty-empty-state-float-main {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes honesty-empty-state-float-badge {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-8px) scale(1.08);
+  }
+}
+
+@keyframes honesty-empty-state-shadow {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: scale(0.82);
+    opacity: 0.38;
+  }
+}
+
+@keyframes honesty-empty-state-spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes honesty-empty-state-pulse-center {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.18);
+  }
+}
+
+.empty-state[data-animated='true'][data-motion='float'] .es-anim-float-main {
+  animation:
+    honesty-empty-state-float-main
+    calc(3.2s / var(--honesty-empty-state-anim-speed))
+    ease-in-out
+    infinite;
+  transform-origin: center;
+}
+
+.empty-state[data-animated='true'][data-motion='float'] .es-anim-float-badge {
+  animation:
+    honesty-empty-state-float-badge
+    calc(2.4s / var(--honesty-empty-state-anim-speed))
+    ease-in-out
+    infinite 0.3s;
+  transform-origin: center;
+}
+
+.empty-state[data-animated='true'][data-motion='float'] .es-anim-shadow {
+  animation:
+    honesty-empty-state-shadow
+    calc(3.2s / var(--honesty-empty-state-anim-speed))
+    ease-in-out
+    infinite;
+  transform-origin: 80px 142px;
+}
+
+.empty-state[data-animated='true'][data-motion='float'] .es-anim-spin-slow {
+  animation:
+    honesty-empty-state-spin-slow
+    calc(14s / var(--honesty-empty-state-anim-speed))
+    linear
+    infinite;
+  transform-origin: center;
+}
+
+.empty-state[data-animated='true'][data-motion='float'] .es-anim-pulse-center {
+  animation:
+    honesty-empty-state-pulse-center
+    calc(2.2s / var(--honesty-empty-state-anim-speed))
+    ease-in-out
+    infinite;
+  transform-origin: center;
+}
+
+.empty-state[data-animated='true'][data-motion='pulse'] .empty-state__illustration {
+  animation:
+    honesty-empty-state-pulse-center
+    calc(2.2s / var(--honesty-empty-state-anim-speed))
+    ease-in-out
+    infinite;
+  transform-origin: center;
+}

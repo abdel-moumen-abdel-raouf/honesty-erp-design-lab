@@ -4054,3 +4054,56 @@ Current product state:
 - `ErpSelect` remains unopened and no Selection-family implementation is
   authorized.
 <!-- CHATGPT_EMPTY_STATE_FULLY_GREEN_2026_10_05_END -->
+
+<!-- CHATGPT_EMPTY_STATE_RUNTIME_ANIMATION_SCOPING_FIX_2026_10_05_START -->
+## 2026-10-05 — EmptyState runtime animation failure diagnosed and corrected
+
+Product Owner runtime/visual review finding:
+
+**EmptyState animation does not run in the browser.**
+
+This finding reopens EmptyState despite the prior canonical technical green.
+Technical PASS did not prove rendered CSS animation behavior.
+
+Root cause:
+
+- EmptyState used Angular's default Emulated view encapsulation;
+- all `@keyframes honesty-empty-state-*` declarations lived in
+  `empty-state-motion-keyframes.scss`;
+- the `animation:` declarations that referenced those names lived in separate
+  component stylesheets;
+- Angular's ShadowCss scopes local keyframe declarations and only rewrites an
+  animation reference when the corresponding local keyframe is known while
+  processing that same stylesheet;
+- therefore the detached keyframe declarations were emitted under scoped names
+  while animation declarations in the other stylesheet(s) continued to
+  reference the original names.
+
+Correction:
+
+- do not disable view encapsulation;
+- do not move component-specific motion to global CSS;
+- remove the detached `empty-state-motion-keyframes.scss` assembly;
+- remove the monolithic `empty-state-motion-continuous.scss`;
+- co-locate each keyframe definition with the animation rules that consume it;
+- use bounded motion files:
+  - `empty-state-motion-entry.scss`;
+  - `empty-state-motion-float.scss`;
+  - `empty-state-motion-search.scss`;
+  - `empty-state-motion-status.scss`;
+  - `empty-state-motion-reduced.scss`;
+- keep each motion stylesheet below the component style warning budget before
+  build processing;
+- strengthen EmptyState governance so an animation/keyframe pair split across
+  component stylesheets is rejected by self-test.
+
+No reference geometry, color mapping, public API, scenarios, motion names,
+durations, easing, speed contract, or reduced-motion behavior is intentionally
+changed by this correction.
+
+EmptyState is no longer considered Product Owner visually accepted or closed.
+Fresh executable verification and fresh runtime Light/Dark animation review are
+required after this correction.
+
+`ErpSelect` remains unopened.
+<!-- CHATGPT_EMPTY_STATE_RUNTIME_ANIMATION_SCOPING_FIX_2026_10_05_END -->

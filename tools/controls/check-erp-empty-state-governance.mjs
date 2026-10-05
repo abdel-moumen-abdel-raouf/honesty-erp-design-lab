@@ -15,12 +15,32 @@ const STYLE_FILES = [
   'src/app/controls/empty-state/empty-state-content.scss',
   'src/app/controls/empty-state/empty-state-illustrations.scss',
   'src/app/controls/empty-state/empty-state-facets.scss',
-  'src/app/controls/empty-state/empty-state-motion-keyframes.scss',
   'src/app/controls/empty-state/empty-state-motion-entry.scss',
-  'src/app/controls/empty-state/empty-state-motion-continuous.scss',
+  'src/app/controls/empty-state/empty-state-motion-float.scss',
+  'src/app/controls/empty-state/empty-state-motion-search.scss',
+  'src/app/controls/empty-state/empty-state-motion-status.scss',
   'src/app/controls/empty-state/empty-state-motion-reduced.scss',
 ];
 
+const MOTION_KEYFRAME_LOCALITY = new Map([
+  ['src/app/controls/empty-state/empty-state-motion-entry.scss', ['honesty-empty-state-entrance-spring']],
+  ['src/app/controls/empty-state/empty-state-motion-float.scss', [
+    'honesty-empty-state-float-main',
+    'honesty-empty-state-float-badge',
+    'honesty-empty-state-shadow',
+    'honesty-empty-state-spin-slow',
+    'honesty-empty-state-pulse-center',
+  ]],
+  ['src/app/controls/empty-state/empty-state-motion-search.scss', [
+    'honesty-empty-state-search-scan',
+    'honesty-empty-state-radar',
+  ]],
+  ['src/app/controls/empty-state/empty-state-motion-status.scss', [
+    'honesty-empty-state-sparkle',
+    'honesty-empty-state-danger-halo',
+    'honesty-empty-state-alert-shake',
+  ]],
+]);
 const REFERENCE_SHA =
   '935d1546f3e5d58f3b280fe30433888670d086f1a53f786a9b096ac3966ee048';
 
@@ -33,6 +53,25 @@ function hasClassToken(source, className) {
     match[2].split(/\s+/).includes(className),
   );
 }
+function validateMotionKeyframeLocality(files) {
+  const errors = [];
+
+  for (const [file, keyframes] of MOTION_KEYFRAME_LOCALITY) {
+    const source = files.get(file) ?? '';
+
+    for (const keyframe of keyframes) {
+      if (!source.includes(`@keyframes ${keyframe}`)) {
+        errors.push(`${file}: must define local @keyframes ${keyframe} beside its animation rules`);
+      }
+
+      if (!source.includes(`animation:\n    ${keyframe}`) && !source.includes(`animation: ${keyframe}`)) {
+        errors.push(`${file}: ${keyframe} must be referenced by animation in the same stylesheet`);
+      }
+    }
+  }
+
+  return errors;
+}
 export function validateEmptyStateContracts(files) {
   const errors = [];
   const source = files.get(SOURCE) ?? '';
@@ -42,6 +81,7 @@ export function validateEmptyStateContracts(files) {
   const routes = files.get(ROUTES) ?? '';
   const contract = files.get(CONTRACT) ?? '';
   const styles = STYLE_FILES.map((file) => files.get(file) ?? '').join('\n');
+  errors.push(...validateMotionKeyframeLocality(files));
 
   for (const required of [
     "export type ErpEmptyStateVariant =",
@@ -77,6 +117,8 @@ export function validateEmptyStateContracts(files) {
     "readonly direction =",
     "'[attr.data-theme]'",
     "'[attr.dir]'",
+    "'./empty-state-motion-keyframes.scss'",
+    "'./empty-state-motion-continuous.scss'",
   ]) {
     if (source.includes(forbidden)) {
       errors.push(`ErpEmptyState must inherit App theme/direction; found ${forbidden}`);
@@ -208,14 +250,34 @@ function runSelfTest() {
   ]);
 
   for (const style of STYLE_FILES) {
+    valid.set(style, 'prefers-reduced-motion: reduce');
+  }
+
+  for (const [style, keyframes] of MOTION_KEYFRAME_LOCALITY) {
     valid.set(
       style,
-      'honesty-empty-state-entrance-spring honesty-empty-state-float-main honesty-empty-state-search-scan honesty-empty-state-radar honesty-empty-state-danger-halo honesty-empty-state-alert-shake prefers-reduced-motion: reduce',
+      keyframes
+        .map(
+          (keyframe) =>
+            `@keyframes ${keyframe} { to { opacity: 1; } }\n.x { animation: ${keyframe} 1s; }`,
+        )
+        .join('\n'),
     );
   }
 
   if (validateEmptyStateContracts(valid).length > 0) {
     throw new Error('EmptyState governance rejected its valid self-test fixture.');
+  }
+
+  const splitKeyframes = new Map(valid);
+  splitKeyframes.set(
+    'src/app/controls/empty-state/empty-state-motion-float.scss',
+    '.x { animation: honesty-empty-state-float-main 1s; }',
+  );
+  if (validateEmptyStateContracts(splitKeyframes).length === 0) {
+    throw new Error(
+      'EmptyState governance accepted animation rules whose local keyframes were split into another stylesheet.',
+    );
   }
 
   const invalid = new Map(valid);
