@@ -6,7 +6,7 @@
     [attr.aria-label]="label()"
     (click)="activate($event)"
   >
-    <erp-icon [name]="icon() ?? 'close'" size="inherit" tone="inherit" />
+    <erp-icon [name]="icon() ?? 'dismiss'" size="inherit" tone="inherit" />
   </span>
 } @else {
   <button
@@ -20,7 +20,7 @@
         {{ label() }}
       </erp-text>
     } @else {
-      <erp-icon [name]="icon() ?? 'close'" size="inherit" tone="inherit" />
+      <erp-icon [name]="icon() ?? 'dismiss'" size="inherit" tone="inherit" />
     }
   </button>
 }

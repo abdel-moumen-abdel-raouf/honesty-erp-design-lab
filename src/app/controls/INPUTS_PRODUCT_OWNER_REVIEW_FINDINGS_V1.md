@@ -9,9 +9,9 @@ The latest Product Owner decision makes `ERP-SELECT.html`, SHA-256
 `EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, the
 single binding visual and behavioral authority for `ErpSelect`. It supersedes
 the prior lowercase reference and conflicting Select findings. The exact
-contract is `select/ERP_SELECT_REFERENCE_EXACT_V2.md`.
+contract is `select/ERP_SELECT_REFERENCE_EXACT_V3.md`.
 
-The rebuilt candidate passes 133/133 test files and 866/866 tests, all
+The rebuilt candidate passes 133/133 test files and 868/868 tests, all
 governance, both typechecks, production build, and zero warnings.
 
 The exact next action is Product Owner runtime/Light/Dark/RTL/narrow comparison

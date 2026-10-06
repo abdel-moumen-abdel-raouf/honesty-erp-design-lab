@@ -1,4 +1,8 @@
-# ErpSelect Exact Reference Contract V2
+# ErpSelect Exact Reference Contract V2 — Historical / Superseded
+
+> Superseded on 2026-10-06 by `ERP_SELECT_REFERENCE_EXACT_V3.md` after the
+> Product Owner rejected the first exact-reference candidate. This file remains
+> historical evidence and is not current implementation authority.
 
 ## Binding authority
 

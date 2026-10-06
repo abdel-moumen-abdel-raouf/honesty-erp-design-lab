@@ -6,6 +6,10 @@
   min-width: 0;
 }
 
+.select__option + .select__option {
+  margin-block-start: var(--honesty-select-panel-option-row-gap);
+}
+
 .select__option-label,
 .select__option-description { min-width: 0; }
 

@@ -16,6 +16,11 @@ describe('CoreBatch', () => {
     expect(fixture.nativeElement.querySelector('erp-select[multiple][selectAll]')).not.toBeNull();
     expect(fixture.nativeElement.querySelector('erp-select[selectAppearance="filled"]')).not.toBeNull();
     expect(fixture.nativeElement.querySelector('erp-select[selectAppearance="ghost"]')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('erp-select[sortMode="label"]')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('erp-select[label="نتيجة فارغة"]')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('erp-select[label="حالة غير صالحة"]')).not.toBeNull();
+    expect(fixture.nativeElement.querySelectorAll('.select-parity-matrix erp-select'))
+      .toHaveLength(6);
     expect(fixture.nativeElement.querySelectorAll('[data-select-direction-evidence] erp-select'))
       .toHaveLength(2);
     expect(fixture.nativeElement.querySelector('erp-avatar-picker')).not.toBeNull();

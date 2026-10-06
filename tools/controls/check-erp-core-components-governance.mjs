@@ -9,10 +9,11 @@ const REVIEW_TABLE = 'src/app/review-internals/review-core-table/review-core-tab
 const SELECT = 'src/app/controls/select/select.html';
 const SELECT_TS = 'src/app/controls/select/select.ts';
 const SELECT_SCSS = 'src/app/controls/select/select.scss';
+const SELECT_OPTION_SCSS = 'src/app/controls/select/select-option-content.scss';
 const SELECT_MOTION_SCSS = 'src/app/controls/select/select-popup.scss';
 const SELECT_TOKENS = 'src/styles/foundation/components/select/_tokens.scss';
 const SELECT_PANEL_TOKENS = 'src/styles/foundation/components/select-panel/_tokens.scss';
-const SELECT_CONTRACT = 'src/app/controls/select/ERP_SELECT_REFERENCE_EXACT_V2.md';
+const SELECT_CONTRACT = 'src/app/controls/select/ERP_SELECT_REFERENCE_EXACT_V3.md';
 const SELECT_REFERENCE_SHA = 'EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D';
 const ALERT_TS = 'src/app/controls/alert/alert.ts';
 const STATUS_BADGE_TS = 'src/app/controls/status-badge/status-badge.ts';
@@ -57,7 +58,7 @@ export function validateCoreComponents(files) {
   const reviewEvidence = `${review}\n${files.get(REVIEW_TABLE) ?? ''}`;
   const select = files.get(SELECT) ?? '';
   const selectTs = files.get(SELECT_TS) ?? '';
-  const selectScss = `${files.get(SELECT_SCSS) ?? ''}\n${files.get(SELECT_MOTION_SCSS) ?? ''}`;
+  const selectScss = `${files.get(SELECT_SCSS) ?? ''}\n${files.get(SELECT_MOTION_SCSS) ?? ''}\n${files.get(SELECT_OPTION_SCSS) ?? ''}`;
   const selectTokens = `${files.get(SELECT_TOKENS) ?? ''}\n${files.get(SELECT_PANEL_TOKENS) ?? ''}`;
   const selectContract = files.get(SELECT_CONTRACT) ?? '';
   const alertTs = files.get(ALERT_TS) ?? '';
@@ -111,6 +112,20 @@ export function validateCoreComponents(files) {
   if (/<input\b/i.test(select)) {
     errors.push('ErpSelect must reuse the approved SearchBox editor instead of authoring a private raw input');
   }
+  for (const focusContract of [
+    '(blurred)="handleTriggerBlur()"',
+    'icon="dismiss"',
+    'name="check-mark"',
+  ]) {
+    if (!select.includes(focusContract)) errors.push(`ErpSelect strict rebuild is missing ${focusContract}`);
+  }
+  if (selectScss.includes('.select__control:focus-within')) {
+    errors.push('ErpSelect pointer focus must not recreate the rejected persistent focus ring');
+  }
+  if (!selectTs.includes("event.target.matches(':focus-visible')") ||
+      !selectTs.includes('this.triggerFocusVisible.set(false)')) {
+    errors.push('ErpSelect must separate browser focus-visible state and clear it on blur');
+  }
   if (selectTs.includes('Math.max(trigger.getBoundingClientRect().width, 320)')) {
     errors.push('ErpSelect must not restore the fixed 320px popup minimum');
   }
@@ -134,8 +149,20 @@ export function validateCoreComponents(files) {
     '--honesty-select-panel-radius: 0.75rem',
     '--honesty-select-panel-max-block-size: 18.75rem',
     '--honesty-select-panel-list-padding: 0.25rem',
+    '--honesty-select-panel-option-row-gap: 0.25rem',
   ]) {
     if (!selectTokens.includes(geometry)) errors.push(`ErpSelect reference geometry is missing ${geometry}`);
+  }
+  if (!selectScss.includes('margin-block-start: var(--honesty-select-panel-option-row-gap)')) {
+    errors.push('ErpSelect options must retain the strict-rebuild vertical row gap');
+  }
+  for (const evidence of [
+    'class="select-parity-matrix"',
+    'sortMode="label"',
+    'label="نتيجة فارغة"',
+    'label="حالة غير صالحة"',
+  ]) {
+    if (!review.includes(evidence)) errors.push(`Core review is missing Select parity evidence ${evidence}`);
   }
   if (!selectScss.includes("@media (prefers-reduced-motion: reduce)")) {
     errors.push('ErpSelect exact-reference motion must remain deterministic under reduced motion');
@@ -278,14 +305,15 @@ export function validateCoreComponents(files) {
 function fixture(overrides = new Map()) {
   const files = new Map([
     [ROUTES, "path: 'controls/core-batch'"],
-    [REVIEW, '<erp-select/><erp-status-badge/><erp-alert/><erp-skeleton/><erp-avatar/><erp-tabs/><erp-avatar-picker/><erp-table/><erp-pagination/>'],
+    [REVIEW, '<erp-select/><erp-status-badge/><erp-alert/><erp-skeleton/><erp-avatar/><erp-tabs/><erp-avatar-picker/><erp-table/><erp-pagination/><div class="select-parity-matrix" sortMode="label" label="نتيجة فارغة" label="حالة غير صالحة"></div>'],
     [REVIEW_TABLE, '<erp-column-chooser/>'],
-    [SELECT, '<div class="select__control"></div><erp-field-trigger semanticRole="combobox"/><erp-search-box presentation="select-panel"/><erp-selection-tile presentation="select-option"/><div class="select__group-label"></div><div class="select__footer"></div><erp-avatar/><erp-select-action/>'],
-    [SELECT_TS, "this.controlSurface()?.nativeElement; Math.min(control.getBoundingClientRect().width, availableWidth); readonly searchLabel = input('البحث'); readonly sortMode = input<ErpSelectSortMode>('none'); readonly groupBy = input<keyof ErpSelectOption | null>(null); readonly selectSize = input<ErpSelectSize>('md'); readonly selectAppearance = input<ErpSelectAppearance | null>(null)"],
+    [SELECT, '<div class="select__control"></div><erp-field-trigger semanticRole="combobox" (blurred)="handleTriggerBlur()"/><erp-search-box presentation="select-panel"/><erp-selection-tile presentation="select-option"/><div class="select__group-label"></div><div class="select__footer"></div><erp-avatar/><erp-select-action icon="dismiss"/><erp-icon name="check-mark"/>'],
+    [SELECT_TS, "this.controlSurface()?.nativeElement; Math.min(control.getBoundingClientRect().width, availableWidth); event.target.matches(':focus-visible'); this.triggerFocusVisible.set(false); readonly searchLabel = input('البحث'); readonly sortMode = input<ErpSelectSortMode>('none'); readonly groupBy = input<keyof ErpSelectOption | null>(null); readonly selectSize = input<ErpSelectSize>('md'); readonly selectAppearance = input<ErpSelectAppearance | null>(null)"],
     [SELECT_SCSS, '@media (prefers-reduced-motion: reduce) {}'],
+    [SELECT_OPTION_SCSS, 'margin-block-start: var(--honesty-select-panel-option-row-gap)'],
     [SELECT_MOTION_SCSS, ''],
     [SELECT_TOKENS, '@mixin base {}; --honesty-select-control-height: 2.375rem; --honesty-select-control-height: 1.875rem; --honesty-select-control-height: 2.875rem;'],
-    [SELECT_PANEL_TOKENS, '@mixin base {}; --honesty-select-panel-radius: 0.75rem; --honesty-select-panel-max-block-size: 18.75rem; --honesty-select-panel-list-padding: 0.25rem;'],
+    [SELECT_PANEL_TOKENS, '@mixin base {}; --honesty-select-panel-radius: 0.75rem; --honesty-select-panel-max-block-size: 18.75rem; --honesty-select-panel-list-padding: 0.25rem; --honesty-select-panel-option-row-gap: 0.25rem;'],
     [SELECT_CONTRACT, `${SELECT_REFERENCE_SHA}; ERP-SELECT.html supersedes all previous ErpSelect visual references`],
     [ALERT_TS, "'[attr.title]': 'null'"],
     [STATUS_BADGE_TS, "'sm' | 'md' | 'lg' | 'xl'; 'square' | 'rounded' | 'pill'; 'content' | 'stretch'"],
@@ -324,6 +352,9 @@ function runSelfTest() {
     ['fixed select minimum', fixture(new Map([[SELECT_TS, 'Math.max(trigger.getBoundingClientRect().width, 320)']])), '320px'],
     ['raw select search editor', fixture(new Map([[SELECT, '<div class="select__control"><input/></div>']])), 'private raw input'],
     ['superseded select toolbar', fixture(new Map([[SELECT, '<div class="select__toolbar"></div><div class="select__sort-menu"></div>']])), 'superseded toolbar'],
+    ['persisted pointer focus ring', fixture(new Map([[SELECT_SCSS, '.select__control:focus-within {} @media (prefers-reduced-motion: reduce) {}']])), 'persistent focus ring'],
+    ['missing select blur lifecycle', fixture(new Map([[SELECT, '<div class="select__control"></div><erp-field-trigger semanticRole="combobox"/><erp-search-box presentation="select-panel"/><erp-selection-tile presentation="select-option"/><div class="select__group-label"></div><div class="select__footer"></div><erp-avatar/><erp-select-action icon="dismiss"/><erp-icon name="check-mark"/>']])), 'handleTriggerBlur'],
+    ['missing select option gap', fixture(new Map([[SELECT_OPTION_SCSS, '']])), 'vertical row gap'],
     ['missing select reference SHA', fixture(new Map([[SELECT_CONTRACT, 'old reference']])), 'binding ERP-SELECT.html SHA'],
     ['missing select exact geometry', fixture(new Map([[SELECT_PANEL_TOKENS, '@mixin base {}']])), 'reference geometry'],
     ['native alert title tooltip', fixture(new Map([[ALERT_TS, 'readonly title = input.required<string>();']])), 'native host title'],
@@ -354,6 +385,7 @@ function runCheck() {
     [SELECT, read(SELECT)],
     [SELECT_TS, read(SELECT_TS)],
     [SELECT_SCSS, read(SELECT_SCSS)],
+    [SELECT_OPTION_SCSS, read(SELECT_OPTION_SCSS)],
     [SELECT_MOTION_SCSS, read(SELECT_MOTION_SCSS)],
     [SELECT_TOKENS, read(SELECT_TOKENS)],
     [SELECT_PANEL_TOKENS, read(SELECT_PANEL_TOKENS)],

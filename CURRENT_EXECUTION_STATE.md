@@ -14,8 +14,8 @@ Branch:
 
 ## Authoritative current execution state — 2026-10-06
 
-The Product Owner's bounded `ErpSelect Exact Reference Rebuild` started from
-`58bbeb82c97f809e420fe04c41dc6bbfd0691b1e`. Resolve live local and remote SHAs
+The Product Owner's bounded `ErpSelect Strict Rebuild Escalation` started from
+`2c68970831c95136dfab4faf36cc32078beb2f91`. Resolve live local and remote SHAs
 directly; source and continuity are synchronized in the same implementation
 commit.
 
@@ -26,11 +26,13 @@ the former lowercase `erp-select.html` reference and every conflicting Select
 interpretation. Geometry, hierarchy, states, selection, grouping, search,
 sorting, keyboard behavior, and motion follow the new reference; only palette
 values are translated through Honesty Semantic and Select Component Tokens.
+The authoritative implementation contract is
+`src/app/controls/select/ERP_SELECT_REFERENCE_EXACT_V3.md`.
 
-Technical verification passes 133/133 test files and 866/866 tests, all
+Technical verification passes 133/133 test files and 868/868 tests, all
 lint/governance checks, both TypeScript typechecks, production build, and zero
-Angular/build warnings. The production initial bundle is 376.10 kB / 85.69 kB
-estimated transfer; the Core Batch lazy chunk is 56.97 kB / 10.88 kB estimated
+Angular/build warnings. The production initial bundle is 376.12 kB / 85.61 kB
+estimated transfer; the Core Batch lazy chunk is 58.86 kB / 11.22 kB estimated
 transfer. Component Token governance reports 83 concrete modules and route
 governance reports 28 routed templates.
 
@@ -39,9 +41,11 @@ Product Owner visual state and immediate next action:
 - `ErpSelect` remains pending Product Owner runtime/Light/Dark/RTL/narrow review
   at `/controls/core-batch` against the new exact reference;
 - browser runtime evidence verifies exact control/popup width equality, 30/38/46
-  px size heights, 6/8/12 px radii, searchable grouped options, single/multiple
-  selection, footer actions, images/icons/descriptions, disabled state, and
-  Light/Dark plus RTL/LTR operation;
+  px size heights, 6/8/12 px radii, a 4 px intra-group option-row gap, searchable
+  grouped options, single/multiple selection, simple dismiss/check-mark icons,
+  disabled state, and Light/Dark plus RTL/LTR operation;
+- pointer selection closes without a residual focus ring, blur clears Field
+  focus state, and keyboard Tab focus retains the intended focus-visible ring;
 - sorting is a data-order pipeline as in the binding reference; the superseded
   visual sort toolbar and secondary menu are removed;
 - technical green does not equal Product Owner visual approval or freeze;

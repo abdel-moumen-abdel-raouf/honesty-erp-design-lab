@@ -122,6 +122,53 @@ describe('ErpSelect', () => {
     expect(fixture.nativeElement.querySelector('.select__option-meta')?.textContent).toContain('B-20');
   });
 
+  it('uses the dedicated clear and selected-marker glyphs from the approved registry', () => {
+    const fixture = createSelect();
+    fixture.componentInstance.writeValue('bravo');
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector(
+      'erp-select-action[data-select-action-kind="clear"] erp-icon[data-icon-name="dismiss"]',
+    )).not.toBeNull();
+    expect(fixture.nativeElement.querySelector(
+      '.select__tick[data-icon-name="check-mark"]',
+    )).not.toBeNull();
+
+    fixture.componentRef.setInput('multiple', true);
+    fixture.componentInstance.writeValue(['bravo']);
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector(
+      'erp-select-action[data-select-action-kind="chip-remove"] erp-icon[data-icon-name="dismiss"]',
+    )).not.toBeNull();
+    expect(fixture.nativeElement.querySelector(
+      '.select__check erp-icon[data-icon-name="check-mark"]',
+    )).not.toBeNull();
+  });
+
+  it('separates pointer focus from focus-visible and clears Field focus on blur', () => {
+    const fixture = createSelect();
+    const host = fixture.nativeElement as HTMLElement;
+    const trigger = host.querySelector('erp-field-trigger button') as HTMLButtonElement;
+    const frame = host.querySelector('erp-field-frame') as HTMLElement;
+    const matches = vi.spyOn(trigger, 'matches');
+
+    matches.mockReturnValue(false);
+    trigger.dispatchEvent(new FocusEvent('focus'));
+    fixture.detectChanges();
+    expect(host.getAttribute('data-select-focus-visible')).toBe('false');
+    expect(frame.getAttribute('data-field-focused')).toBe('true');
+
+    trigger.dispatchEvent(new FocusEvent('blur'));
+    fixture.detectChanges();
+    expect(host.getAttribute('data-select-focus-visible')).toBe('false');
+    expect(frame.getAttribute('data-field-focused')).toBe('false');
+
+    matches.mockReturnValue(true);
+    trigger.dispatchEvent(new FocusEvent('focus'));
+    fixture.detectChanges();
+    expect(host.getAttribute('data-select-focus-visible')).toBe('true');
+  });
+
   it('enforces multiple limits and renders chips, overflow count, and select-all footer', () => {
     const fixture = createSelect();
     const component = fixture.componentInstance;

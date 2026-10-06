@@ -30,7 +30,7 @@
   border-color: var(--honesty-select-control-border-hover);
 }
 
-.select__control:focus-within,
+:host([data-select-focus-visible='true']) .select__control,
 :host([data-select-open='true']) .select__control {
   border-color: var(--honesty-select-control-border-focus);
   box-shadow: 0 0 0 3px var(--honesty-select-focus-color);

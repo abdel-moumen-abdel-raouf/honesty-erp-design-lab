@@ -17,7 +17,7 @@ requested.
 The Product Owner is the final authority for visual approval.
 Technical success, green tests, or Codex judgment do not equal visual approval.
 
-## Current Product Owner ErpSelect Exact Reference State
+## Current Product Owner ErpSelect Strict Rebuild State
 
 The Product Owner made `C:\Users\Misrtech\Downloads\ERP-SELECT.html`, SHA-256
 `EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, the
@@ -25,10 +25,13 @@ single binding visual and behavioral authority for `ErpSelect`. It supersedes
 the old lowercase reference and conflicting Select corrections. Only colors
 are mapped to Honesty Semantic and Component Tokens.
 
-The exact-reference candidate entered from
-`58bbeb82c97f809e420fe04c41dc6bbfd0691b1e` and is technically green at 133/133
-test files and 866/866 tests, both typechecks, production build, and zero
+The strict-rebuild candidate entered from
+`2c68970831c95136dfab4faf36cc32078beb2f91` and is technically green at 133/133
+test files and 868/868 tests, both typechecks, production build, and zero
 warnings.
+
+The authoritative implementation contract is
+`src/app/controls/select/ERP_SELECT_REFERENCE_EXACT_V3.md`.
 
 The current gate is Product Owner runtime/Light/Dark/RTL/narrow comparison of
 the rebuilt Select at `/controls/core-batch` against the exact reference. The
@@ -60,6 +63,11 @@ migration, and every unlisted owner remain unopened.
   approved internal Select action owner, and `AnchoredOverlayController`.
 - Select sorting remains a data-order pipeline. The superseded visual toolbar,
   sort dropdown, and secondary action-menu chrome must not return.
+- Select clear/remove actions use the simple `dismiss` semantic icon and
+  selected options use the simple `check-mark` semantic icon.
+- Pointer selection must not leave a persistent focus ring; blur clears Field
+  focus state, while keyboard focus retains the intended focus-visible ring.
+- Select options preserve the tokenized 4 px intra-group vertical row gap.
 - `ErpAlert` uses only the Tooltip-wrapped IconButton close path and must not
   restore a native `title` tooltip.
 - Core motion uses Foundation motion values and remains static-but-visible

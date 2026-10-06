@@ -3,15 +3,15 @@
 ## Current transition — 2026-10-06
 
 The four-component sequence below is historical. The current Product Owner
-authorization is only the bounded `ErpSelect Exact Reference Rebuild`.
+authorization is only the bounded `ErpSelect Strict Rebuild Escalation`.
 
 `C:\Users\Misrtech\Downloads\ERP-SELECT.html`, SHA-256
 `EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, is the
 single binding visual and behavioral Select authority. It supersedes the former
 `erp-select.html` reference and all conflicting Select interpretations. The
-current contract is `select/ERP_SELECT_REFERENCE_EXACT_V2.md`.
+current contract is `select/ERP_SELECT_REFERENCE_EXACT_V3.md`.
 
-The rebuilt candidate is technically green at 133/133 test files and 866/866
+The rebuilt candidate is technically green at 133/133 test files and 868/868
 tests. The exact next action is Product Owner runtime/Light/Dark/RTL/narrow
 comparison at `/controls/core-batch`. No Data/Table Visual Correction Wave or
 later component reference batch is authorized.

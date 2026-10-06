@@ -22,7 +22,7 @@ in this order:
 14. current Navigation and ERP Shell batch contract:
     `src/app/controls/SHELL_BATCH_V1.md`
 15. current exact ErpSelect reference contract:
-    `src/app/controls/select/ERP_SELECT_REFERENCE_EXACT_V2.md`
+    `src/app/controls/select/ERP_SELECT_REFERENCE_EXACT_V3.md`
 
 Then verify live GitHub `main` before making any current-state claim.
 
@@ -60,8 +60,8 @@ restated by the newest dated continuity blocks or by
 
 ## Authoritative current state — 2026-10-06
 
-The bounded `ErpSelect Exact Reference Rebuild` started from
-`58bbeb82c97f809e420fe04c41dc6bbfd0691b1e`. Resolve the final live SHA from Git.
+The bounded `ErpSelect Strict Rebuild Escalation` started from
+`2c68970831c95136dfab4faf36cc32078beb2f91`. Resolve the final live SHA from Git.
 
 - `ERP-SELECT.html`, SHA-256
   `EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, is the
@@ -69,10 +69,12 @@ The bounded `ErpSelect Exact Reference Rebuild` started from
   lowercase reference.
 - Exact geometry and behavior are implemented through ERP owners; only colors
   are mapped through Honesty Semantic and Select Component Tokens.
-- Verification passes 133/133 test files, 866/866 tests, every lint/governance
+- The authoritative contract is
+  `src/app/controls/select/ERP_SELECT_REFERENCE_EXACT_V3.md`.
+- Verification passes 133/133 test files, 868/868 tests, every lint/governance
   gate, both typechecks, production build, and zero warnings.
-- Initial bundle: 376.10 kB / 85.69 kB estimated transfer. Core Batch lazy
-  chunk: 56.97 kB / 10.88 kB estimated transfer.
+- Initial bundle: 376.12 kB / 85.61 kB estimated transfer. Core Batch lazy
+  chunk: 58.86 kB / 11.22 kB estimated transfer.
 - Product Owner runtime/Light/Dark/RTL/narrow acceptance remains pending at
   `/controls/core-batch`; technical PASS is not visual approval or freeze.
 - The Data/Table Visual Correction Wave and every later unlisted scope remain

@@ -5,6 +5,8 @@ import {
   tablerChevronUp as erpChevronUpOutline,
   tablerBuildings as erpBranchesOutline,
   tablerBuilding as erpBuildingOutline,
+  tablerCheck as erpCheckMarkOutline,
+  tablerX as erpDismissOutline,
   tablerCopy as erpCopyOutline,
   tablerUser as erpCustomerOutline,
   tablerLayoutGrid as erpDashboardOutline,
@@ -84,7 +86,9 @@ import {
   phosphorBuildingsFill as erpBranchesFilled,
   phosphorBuildingFill as erpBuildingFilled,
   phosphorCheckCircleFill as erpCheckFilled,
+  phosphorCheckFill as erpCheckMarkFilled,
   phosphorXCircleFill as erpCloseFilled,
+  phosphorXFill as erpDismissFilled,
   phosphorCopyFill as erpCopyFilled,
   phosphorSquaresFourFill as erpDashboardFilled,
   phosphorXCircleFill as erpErrorFilled,
@@ -211,9 +215,19 @@ export const ERP_ICON_REGISTRY: Readonly<Record<ErpIconName, ErpIconDefinition>>
     filledSvg: erpCheckFilled,
     mirrorInRtl: false,
   },
+  'check-mark': {
+    outlineSvg: erpCheckMarkOutline,
+    filledSvg: erpCheckMarkFilled,
+    mirrorInRtl: false,
+  },
   'close': {
     outlineSvg: erpCloseOutline,
     filledSvg: erpCloseFilled,
+    mirrorInRtl: false,
+  },
+  'dismiss': {
+    outlineSvg: erpDismissOutline,
+    filledSvg: erpDismissFilled,
     mirrorInRtl: false,
   },
   'copy': {

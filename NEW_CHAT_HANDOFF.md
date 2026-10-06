@@ -2,8 +2,8 @@
 
 ## 0. Authoritative current handoff — 2026-10-06
 
-The bounded `ErpSelect Exact Reference Rebuild` started from
-`58bbeb82c97f809e420fe04c41dc6bbfd0691b1e`. Resolve final local and remote SHAs
+The bounded `ErpSelect Strict Rebuild Escalation` started from
+`2c68970831c95136dfab4faf36cc32078beb2f91`. Resolve final local and remote SHAs
 at session start.
 
 The Product Owner made `C:\Users\Misrtech\Downloads\ERP-SELECT.html`, SHA-256
@@ -11,11 +11,13 @@ The Product Owner made `C:\Users\Misrtech\Downloads\ERP-SELECT.html`, SHA-256
 single binding visual and behavioral authority for `ErpSelect`. It supersedes
 the previous lowercase reference and every conflicting Select interpretation.
 Only reference colors are translated to Honesty Semantic and Component Tokens.
+The authoritative implementation contract is
+`src/app/controls/select/ERP_SELECT_REFERENCE_EXACT_V3.md`.
 
-The rebuilt Select is technically green at 133/133 test files and 866/866
+The rebuilt Select is technically green at 133/133 test files and 868/868
 tests, all lint/governance gates, both typechecks, production build, and zero
-warnings. Initial bundle is 376.10 kB / 85.69 kB estimated transfer; Core Batch
-lazy chunk is 56.97 kB / 10.88 kB.
+warnings. Initial bundle is 376.12 kB / 85.61 kB estimated transfer; Core Batch
+lazy chunk is 58.86 kB / 11.22 kB.
 
 The exact next action is Product Owner runtime/Light/Dark/RTL/narrow comparison
 of the rebuilt Select at `/controls/core-batch` against `ERP-SELECT.html`.

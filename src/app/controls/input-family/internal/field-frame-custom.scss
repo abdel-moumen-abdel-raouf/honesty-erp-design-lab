@@ -9,3 +9,14 @@
   --honesty-field-frame-radius: 0;
   --honesty-field-frame-backdrop-blur: 0;
 }
+
+:host([data-field-control-presentation='custom'][data-field-focused='true'])
+  .field-frame__control {
+  border-color: transparent;
+  background: transparent;
+}
+
+:host([data-field-control-presentation='custom'])
+  .field-frame__control::after {
+  display: none;
+}

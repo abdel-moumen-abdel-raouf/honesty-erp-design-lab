@@ -52,8 +52,8 @@ describe('ErpIcon', () => {
   });
 
   it('keeps the semantic registry exhaustive and exact', () => {
-    expect(ERP_ICON_NAMES.length).toBe(75);
-    expect(Object.keys(ERP_ICON_REGISTRY).length).toBe(75);
+    expect(ERP_ICON_NAMES.length).toBe(77);
+    expect(Object.keys(ERP_ICON_REGISTRY).length).toBe(77);
 
     for (const name of ERP_ICON_NAMES) {
       const definition = ERP_ICON_REGISTRY[name];

@@ -64,6 +64,50 @@
             />
           }
         </erp-grid>
+        <erp-grid class="select-parity-matrix" [columns]="2" gap="lg" responsive="auto">
+          <erp-select
+            label="قيمة نصية فقط"
+            [options]="employeeOptions"
+            [ngModel]="'general'"
+            placeholder="اختر إدارة"
+          />
+          <erp-select
+            label="قيمة بأيقونة"
+            [options]="employeeOptions"
+            [ngModel]="'inventory'"
+            placeholder="اختر مسؤولًا"
+          />
+          <erp-select
+            label="ترتيب أبجدي وترشيح"
+            [options]="employeeOptions"
+            [filterFn]="enabledEmployeeFilter"
+            sortMode="label"
+            searchable
+          />
+          <erp-select
+            label="نتيجة فارغة"
+            [options]="[]"
+            searchable
+            emptyText="لا توجد نتائج مطابقة"
+          />
+          <erp-select
+            label="حالة غير صالحة"
+            [options]="employeeOptions"
+            status="danger"
+            feedbackText="القيمة مطلوبة"
+            feedbackVisible
+          />
+          <erp-select
+            label="تحديد متعدد محدود"
+            [options]="employeeOptions"
+            multiple
+            searchable
+            selectAll
+            [maxSelected]="3"
+            [maxChips]="2"
+            placeholder="اختر حتى ثلاثة عناصر"
+          />
+        </erp-grid>
         <erp-grid [columns]="2" gap="lg" responsive="auto">
           <erp-stack data-select-direction-evidence="rtl" dir="rtl" gap="tight">
             <erp-text type="label">RTL</erp-text>

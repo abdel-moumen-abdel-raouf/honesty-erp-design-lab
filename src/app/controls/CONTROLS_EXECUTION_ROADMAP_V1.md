@@ -15,14 +15,15 @@ family. Those decisions remain with the Product Owner and ChatGPT after review.
 
 ## Current exact-reference execution state — 2026-10-06
 
-The Product Owner opened only the bounded `ErpSelect Exact Reference Rebuild`
-from `58bbeb82c97f809e420fe04c41dc6bbfd0691b1e`. `ERP-SELECT.html`, SHA-256
+The Product Owner opened only the bounded `ErpSelect Strict Rebuild Escalation`
+from `2c68970831c95136dfab4faf36cc32078beb2f91`. `ERP-SELECT.html`, SHA-256
 `EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, is the
 single binding Select visual and behavioral authority and supersedes all prior
 Select reference interpretations. Only reference palette values are translated
 to Honesty tokens.
 
-The rebuilt candidate passes 133/133 test files and 866/866 tests, both
+The authoritative contract is `select/ERP_SELECT_REFERENCE_EXACT_V3.md`.
+The rebuilt candidate passes 133/133 test files and 868/868 tests, both
 typechecks, production build, all governance, and zero warnings.
 
 The exact next action is Product Owner runtime/Light/Dark/RTL/narrow comparison

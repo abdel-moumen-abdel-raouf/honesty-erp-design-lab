@@ -30,9 +30,9 @@ Binding Product Owner law:
 4. the next item is the lowest unresolved dependency, not simply the next row
    in historical planning.
 
-Latest completed authorized implementation is the bounded `ErpSelect Exact
-Reference Rebuild`, entered from
-`58bbeb82c97f809e420fe04c41dc6bbfd0691b1e`.
+Latest completed authorized implementation is the bounded `ErpSelect Strict
+Rebuild Escalation`, entered from
+`2c68970831c95136dfab4faf36cc32078beb2f91`.
 
 `ERP-SELECT.html`, SHA-256
 `EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, is the
@@ -41,7 +41,10 @@ lowercase reference and conflicting V2/V3 Select interpretations. Geometry and
 behavior are copied exactly; palette values alone map through Honesty Semantic
 and Select Component Tokens.
 
-The rebuilt candidate passes 133/133 test files and 866/866 tests, both
+The authoritative implementation contract is
+`src/app/controls/select/ERP_SELECT_REFERENCE_EXACT_V3.md`.
+
+The rebuilt candidate passes 133/133 test files and 868/868 tests, both
 typechecks, production build, all governance, and zero warnings.
 
 Current active gate is Product Owner runtime/Light/Dark/RTL/narrow comparison of

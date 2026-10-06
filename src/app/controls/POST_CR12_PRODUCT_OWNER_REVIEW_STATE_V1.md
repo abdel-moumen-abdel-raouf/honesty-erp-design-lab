@@ -8,16 +8,17 @@ It records Product Owner decisions, externally reviewed Git state, execution bou
 
 ## Authoritative current review transition — 2026-10-06
 
-The Product Owner opened only the bounded `ErpSelect Exact Reference Rebuild`
-from `58bbeb82c97f809e420fe04c41dc6bbfd0691b1e`. Resolve the final implementation
+The Product Owner opened only the bounded `ErpSelect Strict Rebuild Escalation`
+from `2c68970831c95136dfab4faf36cc32078beb2f91`. Resolve the final implementation
 SHA directly from live Git.
 
 `ERP-SELECT.html`, SHA-256
 `EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, is the
 single binding Select visual and behavioral authority. It supersedes all prior
 Select references and conflicting corrections; only palette values map to the
-Honesty token architecture. Its technical gate passes 133/133 test files and
-866/866 tests, all governance, both typechecks, production build, and zero
+Honesty token architecture. The authoritative implementation contract is
+`select/ERP_SELECT_REFERENCE_EXACT_V3.md`. Its technical gate passes 133/133
+test files and 868/868 tests, all governance, both typechecks, production build, and zero
 warnings.
 
 The exact next gate is Product Owner runtime/Light/Dark/RTL/narrow comparison of

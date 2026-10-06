@@ -178,6 +178,9 @@ export class CoreBatch {
     },
   ];
 
+  readonly enabledEmployeeFilter = (option: ErpSelectOption): boolean =>
+    option.disabled !== true;
+
   readonly tabs: readonly ErpTabItem[] = [
     {id: 'summary', label: 'الملخص', content: 'ملخص حركة الحساب خلال الفترة الحالية.', icon: 'dashboard'},
     {id: 'transactions', label: 'القيود', content: 'قائمة القيود المحاسبية المرتبطة بالحساب.', icon: 'operations'},

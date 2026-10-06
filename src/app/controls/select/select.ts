@@ -81,6 +81,7 @@ type ErpSelectPopupPhase = 'closed' | 'entering' | 'open' | 'leaving';
     '[attr.data-select-appearance]': 'resolvedSelectAppearance()',
     '[attr.data-select-placement]': 'resolvedPlacement() ?? placement()',
     '[attr.data-select-has-value]': 'selectedOptions().length > 0',
+    '[attr.data-select-focus-visible]': 'triggerFocusVisible()',
     '[attr.data-select-invalid]': `effectiveFieldStatus() === 'danger'`,
     '[attr.data-select-disabled]': 'fieldEffectiveDisabled()',
     '[attr.data-field-configuration-state]': 'fieldConfigurationState()',
@@ -132,6 +133,7 @@ export class ErpSelect extends ErpFieldBase<ErpSelectValue> implements OnDestroy
   );
   protected readonly query = signal('');
   protected readonly activeIndex = signal(-1);
+  protected readonly triggerFocusVisible = signal(false);
   protected readonly resolvedPlacement =
     signal<AnchoredOverlayPhysicalPlacement | null>(null);
   protected readonly popup = viewChild<ElementRef<HTMLElement>>('popup');
@@ -377,6 +379,18 @@ export class ErpSelect extends ErpFieldBase<ErpSelectValue> implements OnDestroy
         this.removeOption(last);
       }
     }
+  }
+
+  protected handleTriggerFocus(event: FocusEvent): void {
+    this.handleFocus();
+    this.triggerFocusVisible.set(
+      event.target instanceof Element && event.target.matches(':focus-visible'),
+    );
+  }
+
+  protected handleTriggerBlur(): void {
+    this.triggerFocusVisible.set(false);
+    if (!this.open()) this.handleBlur();
   }
 
   protected preserveSearchFocus(event: PointerEvent): void {
