@@ -12,45 +12,47 @@ Branch:
 
 `main`
 
-## Authoritative current execution state — 2026-10-06
+## Authoritative current execution state — 2026-10-07
 
-The Product Owner's bounded `ErpSelect Strict Rebuild Escalation` started from
-`2c68970831c95136dfab4faf36cc32078beb2f91`. Resolve live local and remote SHAs
-directly; source and continuity are synchronized in the same implementation
+The Product Owner's bounded `ErpStatusBadge Exact Reference Rebuild` started
+from `cc9a3d0305529aef94e370c862b01876dcba9d01`. Resolve live local and remote
+SHAs directly; source and continuity are synchronized in the same implementation
 commit.
 
-`C:\Users\Misrtech\Downloads\ERP-SELECT.html`, SHA-256
-`EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, is the
-single binding visual and behavioral authority for `ErpSelect`. It supersedes
-the former lowercase `erp-select.html` reference and every conflicting Select
-interpretation. Geometry, hierarchy, states, selection, grouping, search,
-sorting, keyboard behavior, and motion follow the new reference; only palette
-values are translated through Honesty Semantic and Select Component Tokens.
-The authoritative implementation contract is
-`src/app/controls/select/ERP_SELECT_REFERENCE_EXACT_V3.md`.
+`C:\Users\Misrtech\Downloads\ERP-STATUS-BADGE.html`, SHA-256
+`654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`, is the
+single binding visual and behavioral authority for `ErpStatusBadge`. It
+supersedes the previous Dribbble reference, the accelerated-wave no-reference
+waiver, and every conflicting StatusBadge interpretation. Geometry, variants,
+sizes, anatomy, states, width behavior, interaction, and motion follow the
+reference exactly. Only colors and font families resolve through Honesty ERP
+Semantic, Typography, and StatusBadge Component Tokens. The authoritative
+contract is
+`src/app/controls/status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md`.
 
-Technical verification passes 133/133 test files and 868/868 tests, all
+Technical verification passes 133/133 test files and 875/875 tests, all
 lint/governance checks, both TypeScript typechecks, production build, and zero
-Angular/build warnings. The production initial bundle is 376.12 kB / 85.61 kB
-estimated transfer; the Core Batch lazy chunk is 58.86 kB / 11.22 kB estimated
-transfer. Component Token governance reports 83 concrete modules and route
-governance reports 28 routed templates.
+Angular/build warnings. The production initial bundle is 376.12 kB / 85.65 kB
+estimated transfer; the Core Batch lazy chunk is 64.25 kB / 12.07 kB estimated
+transfer.
 
 Product Owner visual state and immediate next action:
 
-- `ErpSelect` remains pending Product Owner runtime/Light/Dark/RTL/narrow review
-  at `/controls/core-batch` against the new exact reference;
-- browser runtime evidence verifies exact control/popup width equality, 30/38/46
-  px size heights, 6/8/12 px radii, a 4 px intra-group option-row gap, searchable
-  grouped options, single/multiple selection, simple dismiss/check-mark icons,
-  disabled state, and Light/Dark plus RTL/LTR operation;
-- pointer selection closes without a residual focus ring, blur clears Field
-  focus state, and keyboard Tab focus retains the intended focus-visible ring;
-- sorting is a data-order pipeline as in the binding reference; the superseded
-  visual sort toolbar and secondary menu are removed;
+- `ErpStatusBadge` remains pending Product Owner runtime/Light/Dark/RTL/LTR/
+  narrow review at `/controls/core-batch` against the exact HTML reference;
+- runtime evidence verifies the exact 18/22/26/32 px size heights, 7/9/11/14 px
+  inline padding, 4/5/6/7 px gaps, 4/6/6/8 px radii, 1 px borders, 10/12/14/16
+  px icons, 3 px keyboard focus ring, all eight tones, all four variants,
+  content/stretch widths, interactive selection/removal, and reduced-motion
+  static presentation;
+- Light and Dark preserve identical geometry while semantic colors resolve per
+  theme; RTL and LTR preserve the reference icon/text order; the 390 px narrow
+  runtime surface has no horizontal document overflow;
+- `ErpSelect` remains the previously rebuilt technical candidate and is not
+  reopened by this task;
 - technical green does not equal Product Owner visual approval or freeze;
-- the exact next action is the grouped Product Owner review of this corrected
-  Core surface;
+- the exact next action is Product Owner visual/runtime review of the rebuilt
+  `ErpStatusBadge` at `/controls/core-batch`;
 - the Data/Table Visual Correction Wave is not opened and no other Core owner is
   redesigned by this bounded task.
 

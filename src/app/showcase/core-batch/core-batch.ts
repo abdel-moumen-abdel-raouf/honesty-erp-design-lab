@@ -27,6 +27,7 @@ import {
   ErpStatusBadgeShape,
   ErpStatusBadgeSize,
   ErpStatusBadgeTone,
+  ErpStatusBadgeVariant,
   ErpStatusBadgeWidthMode,
 } from '../../controls/status-badge/status-badge';
 import {
@@ -81,9 +82,12 @@ export class CoreBatch {
   readonly page = signal(3);
   readonly pageSize = signal(25);
   readonly badgeTone = signal<ErpStatusBadgeTone>('success');
+  readonly badgeVariant = signal<ErpStatusBadgeVariant>('soft');
   readonly badgeSize = signal<ErpStatusBadgeSize>('md');
-  readonly badgeShape = signal<ErpStatusBadgeShape>('pill');
+  readonly badgeShape = signal<ErpStatusBadgeShape>('rounded');
   readonly badgeWidth = signal<ErpStatusBadgeWidthMode>('content');
+  readonly badgeSelected = signal(true);
+  readonly badgeInteractionEvidence = signal('لم يحدث تفاعل بعد');
   readonly avatarShape = signal<ErpAvatarShape>('circle');
   readonly avatarCursor = signal<ErpAvatarCursor>('default');
   readonly avatarPresence = signal<ErpAvatarPresence>('online');
@@ -106,10 +110,20 @@ export class CoreBatch {
   readonly showLast = signal(true);
   readonly selectSizes: readonly ErpSelectSize[] = ['sm', 'md', 'lg'];
   readonly avatarSizes: readonly ErpAvatarSize[] = ['xs', 'sm', 'md', 'lg', 'xl'];
-  readonly badgeToneOptions = this.options(['neutral', 'success', 'warning', 'danger', 'info']);
+  readonly badgeToneOptions = this.options([
+    'neutral', 'success', 'warning', 'danger', 'info', 'brand', 'pending', 'archived',
+  ]);
+  readonly badgeVariantOptions = this.options(['soft', 'solid', 'outline', 'ghost']);
   readonly badgeSizeOptions = this.options(['sm', 'md', 'lg', 'xl']);
   readonly badgeShapeOptions = this.options(['square', 'rounded', 'pill']);
   readonly badgeWidthOptions = this.options(['content', 'stretch']);
+  readonly badgeTones: readonly ErpStatusBadgeTone[] = [
+    'neutral', 'success', 'warning', 'danger', 'info', 'brand', 'pending', 'archived',
+  ];
+  readonly badgeVariants: readonly ErpStatusBadgeVariant[] = [
+    'soft', 'solid', 'outline', 'ghost',
+  ];
+  readonly badgeSizes: readonly ErpStatusBadgeSize[] = ['sm', 'md', 'lg', 'xl'];
   readonly avatarShapeOptions = this.options(['circle', 'rounded', 'square']);
   readonly avatarCursorOptions = this.options(['default', 'pointer']);
   readonly avatarPresenceOptions = this.options(['online', 'away', 'busy', 'offline']);
@@ -186,6 +200,15 @@ export class CoreBatch {
     {id: 'transactions', label: 'القيود', content: 'قائمة القيود المحاسبية المرتبطة بالحساب.', icon: 'operations'},
     {id: 'audit', label: 'سجل المراجعة', content: 'هذا التبويب معطل للمستخدم الحالي.', icon: 'history', disabled: true},
   ];
+
+  protected updateBadgeSelection(selected: boolean): void {
+    this.badgeSelected.set(selected);
+    this.badgeInteractionEvidence.set(selected ? 'تم تحديد الحالة' : 'تم إلغاء تحديد الحالة');
+  }
+
+  protected recordBadgeRemoval(): void {
+    this.badgeInteractionEvidence.set('تم طلب إزالة الحالة');
+  }
 
   readonly iconOnlyTabs: readonly ErpTabItem[] = [
     {id: 'overview', label: 'نظرة عامة', content: 'محتوى النظرة العامة.', icon: 'dashboard', headerPresentation: 'icon-only'},

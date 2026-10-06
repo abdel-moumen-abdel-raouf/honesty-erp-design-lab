@@ -119,6 +119,7 @@ const APPROVED_NATIVE_BUTTON_ROOTS = new Set([
   'src/app/controls/input-family/internal/field-trigger.html',
   'src/app/controls/selection-family/internal/selection-tile.html',
   'src/app/controls/select/internal/select-action.html',
+  'src/app/controls/status-badge/internal/status-badge-action.html',
   'src/app/controls/tabs/internal/tab-trigger.html',
   'src/app/controls/sort-header/internal/sort-trigger.html',
   'src/app/controls/table/internal/table-resize-handle.html',

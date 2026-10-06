@@ -1,0 +1,15 @@
+@use '../../../styles/foundation/components/status-badge' as tokens;
+
+:host([data-status-badge-size='sm']) { @include tokens.size-sm; }
+:host([data-status-badge-size='lg']) { @include tokens.size-lg; }
+:host([data-status-badge-size='xl']) { @include tokens.size-xl; }
+
+:host([data-status-badge-shape='square']) { @include tokens.shape-square; }
+:host([data-status-badge-shape='pill']) { @include tokens.shape-pill; }
+
+:host([data-status-badge-width='stretch']) { inline-size: 100%; }
+
+:host([data-status-badge-uppercase='true']) {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}

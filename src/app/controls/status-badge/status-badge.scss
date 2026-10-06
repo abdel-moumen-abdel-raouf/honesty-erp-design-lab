@@ -1,13 +1,29 @@
 @use '../../../styles/foundation/components/status-badge' as tokens;
-:host { @include tokens.base; display: inline-flex; align-items: center; align-self: start; justify-self: start; gap: var(--honesty-status-badge-gap); box-sizing: border-box; inline-size: max-content; max-inline-size: 100%; min-block-size: var(--honesty-status-badge-min-block-size); padding: var(--honesty-status-badge-padding); border: var(--honesty-status-badge-border-width) solid var(--honesty-status-badge-border-color); border-radius: var(--honesty-status-badge-radius); background: var(--honesty-status-badge-bg); color: var(--honesty-status-badge-fg); font-size: var(--honesty-status-badge-font-size); line-height: 1; white-space: nowrap; }
-.status-badge__icon { display: inline-grid; place-items: center; inline-size: var(--honesty-status-badge-icon-size); block-size: var(--honesty-status-badge-icon-size); border-radius: 50%; background: var(--honesty-status-badge-icon-bg); }
-:host([data-status-badge-tone='success']) { @include tokens.tone-success; }
-:host([data-status-badge-tone='warning']) { @include tokens.tone-warning; }
-:host([data-status-badge-tone='danger']) { @include tokens.tone-danger; }
-:host([data-status-badge-tone='info']) { @include tokens.tone-info; }
-:host([data-status-badge-size='sm']) { @include tokens.size-sm; }
-:host([data-status-badge-size='lg']) { @include tokens.size-lg; }
-:host([data-status-badge-size='xl']) { @include tokens.size-xl; }
-:host([data-status-badge-shape='square']) { @include tokens.shape-square; }
-:host([data-status-badge-shape='rounded']) { @include tokens.shape-rounded; }
-:host([data-status-badge-width='stretch']) { inline-size: 100%; justify-content: center; }
+
+:host {
+  @include tokens.base;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  align-self: start;
+  justify-self: start;
+  justify-content: center;
+  gap: var(--honesty-status-badge-gap);
+  box-sizing: border-box;
+  inline-size: max-content;
+  block-size: var(--honesty-status-badge-height);
+  padding-inline: var(--honesty-status-badge-padding-inline);
+  border: var(--honesty-status-badge-border-width)
+    var(--honesty-status-badge-border-style)
+    var(--honesty-status-badge-border-color);
+  border-radius: var(--honesty-status-badge-radius);
+  background: var(--honesty-status-badge-bg);
+  color: var(--honesty-status-badge-fg);
+  font-size: var(--honesty-status-badge-font-size);
+  font-weight: var(--honesty-status-badge-font-weight);
+  line-height: var(--honesty-status-badge-line-height);
+  letter-spacing: var(--honesty-status-badge-letter-spacing);
+  white-space: nowrap;
+  vertical-align: middle;
+  isolation: isolate;
+}

@@ -1,10 +1,186 @@
-@mixin base { --honesty-status-badge-bg: var(--honesty-color-surface-default); --honesty-status-badge-fg: var(--honesty-color-text-secondary); --honesty-status-badge-border-color: var(--honesty-border-subtle); --honesty-status-badge-border-width: var(--honesty-border-width-default); --honesty-status-badge-radius: var(--honesty-radius-full); --honesty-status-badge-gap: var(--honesty-space-inline-tight); --honesty-status-badge-padding: var(--honesty-space-inset-tight); --honesty-status-badge-min-block-size: 2rem; --honesty-status-badge-font-size: var(--honesty-type-body-small-font-size); --honesty-status-badge-icon-size: 1.25rem; --honesty-status-badge-icon-bg: var(--honesty-color-surface-elevated); }
-@mixin tone-success { --honesty-status-badge-bg: var(--honesty-color-feedback-success-surface); --honesty-status-badge-fg: var(--honesty-color-feedback-success-text); --honesty-status-badge-border-color: var(--honesty-color-feedback-success-border); --honesty-status-badge-icon-bg: var(--honesty-color-feedback-success-surface-strong); }
-@mixin tone-warning { --honesty-status-badge-bg: var(--honesty-color-feedback-warning-surface); --honesty-status-badge-fg: var(--honesty-color-feedback-warning-text); --honesty-status-badge-border-color: var(--honesty-color-feedback-warning-border); --honesty-status-badge-icon-bg: var(--honesty-color-feedback-warning-surface-strong); }
-@mixin tone-danger { --honesty-status-badge-bg: var(--honesty-color-feedback-danger-surface); --honesty-status-badge-fg: var(--honesty-color-feedback-danger-text); --honesty-status-badge-border-color: var(--honesty-color-feedback-danger-border); --honesty-status-badge-icon-bg: var(--honesty-color-feedback-danger-surface-strong); }
-@mixin tone-info { --honesty-status-badge-bg: var(--honesty-color-feedback-info-surface); --honesty-status-badge-fg: var(--honesty-color-feedback-info-text); --honesty-status-badge-border-color: var(--honesty-color-feedback-info-border); --honesty-status-badge-icon-bg: var(--honesty-color-feedback-info-surface-strong); }
-@mixin size-sm { --honesty-status-badge-font-size: var(--honesty-type-caption-font-size); --honesty-status-badge-icon-size: 1rem; --honesty-status-badge-min-block-size: 1.75rem; }
-@mixin size-lg { --honesty-status-badge-font-size: var(--honesty-type-body-font-size); --honesty-status-badge-icon-size: 1.5rem; --honesty-status-badge-min-block-size: 2.5rem; }
-@mixin size-xl { --honesty-status-badge-font-size: var(--honesty-type-section-title-font-size); --honesty-status-badge-icon-size: 1.75rem; --honesty-status-badge-min-block-size: 3rem; --honesty-status-badge-padding: var(--honesty-space-inset-default); }
-@mixin shape-square { --honesty-status-badge-radius: var(--honesty-radius-none); }
-@mixin shape-rounded { --honesty-status-badge-radius: var(--honesty-radius-control); }
+@mixin base {
+  --honesty-status-badge-strong: var(--honesty-color-text-muted);
+  --honesty-status-badge-text: var(--honesty-color-text-secondary);
+  --honesty-status-badge-tone-bg: var(--honesty-color-surface-default);
+  --honesty-status-badge-tone-border: var(--honesty-border-default);
+  --honesty-status-badge-tone-on: var(--honesty-color-text-inverse);
+
+  --honesty-status-badge-bg: var(--honesty-status-badge-tone-bg);
+  --honesty-status-badge-fg: var(--honesty-status-badge-text);
+  --honesty-status-badge-border-color: transparent;
+  --honesty-status-badge-border-width: var(--honesty-border-width-default);
+  --honesty-status-badge-border-style: var(--honesty-border-style-default);
+  --honesty-status-badge-height: 1.375rem;
+  --honesty-status-badge-padding-inline: 0.5625rem;
+  --honesty-status-badge-gap: 0.3125rem;
+  --honesty-status-badge-font-size: 0.6875rem;
+  --honesty-status-badge-font-weight: var(--honesty-type-label-font-weight);
+  --honesty-status-badge-line-height: 1;
+  --honesty-status-badge-letter-spacing: 0.01em;
+  --honesty-status-badge-radius: 0.375rem;
+  --honesty-status-badge-round-radius: var(--honesty-radius-full);
+  --honesty-status-badge-dot-size: 0.375rem;
+  --honesty-status-badge-icon-size: 0.75rem;
+  --honesty-status-badge-image-size: 0.875rem;
+
+  --honesty-status-badge-image-border: var(--honesty-border-subtle);
+  --honesty-status-badge-count-bg: var(--honesty-color-surface-elevated);
+  --honesty-status-badge-count-fg: var(--honesty-status-badge-text);
+  --honesty-status-badge-count-padding: 0.25rem;
+  --honesty-status-badge-count-size-adjustment: 0.0625rem;
+  --honesty-status-badge-count-block-adjustment: 0.5rem;
+  --honesty-status-badge-label-max-width: 11.25rem;
+  --honesty-status-badge-remove-edge-factor: -0.5;
+  --honesty-status-badge-remove-extra: 0.625rem;
+  --honesty-status-badge-remove-coarse-extra: 0.375rem;
+  --honesty-status-badge-remove-icon-extra: 0.0625rem;
+  --honesty-status-badge-remove-opacity: 0.6;
+
+  --honesty-status-badge-disabled-opacity: 0.45;
+  --honesty-status-badge-disabled-saturation: 0.7;
+  --honesty-status-badge-hover-lift: -0.0625rem;
+  --honesty-status-badge-active-scale: 0.97;
+  --honesty-status-badge-remove-hover-scale: 1.15;
+  --honesty-status-badge-remove-active-scale: 0.9;
+  --honesty-status-badge-elevation-hover: var(--honesty-elevation-raised);
+  --honesty-status-badge-focus-ring-width: 0.1875rem;
+  --honesty-status-badge-focus-ring-color: var(--honesty-color-action-focus-ring);
+  --honesty-status-badge-focus-ring-offset: var(--honesty-focus-ring-offset);
+  --honesty-status-badge-selected-shadow:
+    0 0 0 0.1875rem var(--honesty-status-badge-tone-border);
+  --honesty-status-badge-solid-shadow:
+    0 0 0 0.1875rem var(--honesty-status-badge-tone-border);
+
+  --honesty-status-badge-motion:
+    var(--honesty-motion-duration-default) var(--honesty-motion-easing-standard);
+  --honesty-status-badge-entry-duration: var(--honesty-motion-duration-deliberate);
+  --honesty-status-badge-entry-easing: var(--honesty-motion-easing-enter);
+  --honesty-status-badge-pulse-duration: 1.8s;
+  --honesty-status-badge-pulse-scale: 2.6;
+  --honesty-status-badge-check-duration: var(--honesty-motion-duration-slow);
+  --honesty-status-badge-check-easing: var(--honesty-motion-easing-enter);
+  --honesty-status-badge-reduced-duration: var(--honesty-motion-duration-instant);
+}
+
+@mixin tone-success {
+  --honesty-status-badge-strong: var(--honesty-color-feedback-success-surface-strong);
+  --honesty-status-badge-text: var(--honesty-color-feedback-success-text);
+  --honesty-status-badge-tone-bg: var(--honesty-color-feedback-success-surface);
+  --honesty-status-badge-tone-border: var(--honesty-color-feedback-success-border);
+  --honesty-status-badge-tone-on: var(--honesty-color-feedback-success-on-strong);
+}
+
+@mixin tone-warning {
+  --honesty-status-badge-strong: var(--honesty-color-feedback-warning-surface-strong);
+  --honesty-status-badge-text: var(--honesty-color-feedback-warning-text);
+  --honesty-status-badge-tone-bg: var(--honesty-color-feedback-warning-surface);
+  --honesty-status-badge-tone-border: var(--honesty-color-feedback-warning-border);
+  --honesty-status-badge-tone-on: var(--honesty-color-feedback-warning-on-strong);
+}
+
+@mixin tone-danger {
+  --honesty-status-badge-strong: var(--honesty-color-feedback-danger-surface-strong);
+  --honesty-status-badge-text: var(--honesty-color-feedback-danger-text);
+  --honesty-status-badge-tone-bg: var(--honesty-color-feedback-danger-surface);
+  --honesty-status-badge-tone-border: var(--honesty-color-feedback-danger-border);
+  --honesty-status-badge-tone-on: var(--honesty-color-feedback-danger-on-strong);
+}
+
+@mixin tone-info {
+  --honesty-status-badge-strong: var(--honesty-color-feedback-info-surface-strong);
+  --honesty-status-badge-text: var(--honesty-color-feedback-info-text);
+  --honesty-status-badge-tone-bg: var(--honesty-color-feedback-info-surface);
+  --honesty-status-badge-tone-border: var(--honesty-color-feedback-info-border);
+  --honesty-status-badge-tone-on: var(--honesty-color-feedback-info-on-strong);
+}
+
+@mixin tone-brand {
+  --honesty-status-badge-strong: var(--honesty-color-brand-primary-solid);
+  --honesty-status-badge-text: var(--honesty-color-brand-primary-content);
+  --honesty-status-badge-tone-bg: var(--honesty-color-brand-primary-subtle);
+  --honesty-status-badge-tone-border: var(--honesty-color-brand-primary-solid);
+  --honesty-status-badge-tone-on: var(--honesty-color-brand-primary-on-solid);
+}
+
+@mixin tone-pending {
+  --honesty-status-badge-strong: var(--honesty-color-brand-accent-solid);
+  --honesty-status-badge-text: var(--honesty-color-brand-accent-content);
+  --honesty-status-badge-tone-bg: var(--honesty-color-brand-accent-subtle);
+  --honesty-status-badge-tone-border: var(--honesty-color-brand-accent-solid);
+  --honesty-status-badge-tone-on: var(--honesty-color-brand-accent-on-solid);
+}
+
+@mixin tone-archived {
+  --honesty-status-badge-strong: var(--honesty-color-text-muted);
+  --honesty-status-badge-text: var(--honesty-color-text-secondary);
+  --honesty-status-badge-tone-bg: var(--honesty-color-surface-default);
+  --honesty-status-badge-tone-border: var(--honesty-border-default);
+  --honesty-status-badge-tone-on: var(--honesty-color-text-inverse);
+}
+
+@mixin variant-soft {
+  --honesty-status-badge-bg: var(--honesty-status-badge-tone-bg);
+  --honesty-status-badge-fg: var(--honesty-status-badge-text);
+  --honesty-status-badge-border-color: transparent;
+}
+
+@mixin variant-solid {
+  --honesty-status-badge-bg: var(--honesty-status-badge-strong);
+  --honesty-status-badge-fg: var(--honesty-status-badge-tone-on);
+  --honesty-status-badge-border-color: transparent;
+  --honesty-status-badge-count-bg: var(--honesty-status-badge-tone-border);
+  --honesty-status-badge-count-fg: var(--honesty-status-badge-tone-on);
+}
+
+@mixin variant-outline {
+  --honesty-status-badge-bg: transparent;
+  --honesty-status-badge-fg: var(--honesty-status-badge-text);
+  --honesty-status-badge-border-color: var(--honesty-status-badge-tone-border);
+}
+
+@mixin variant-ghost {
+  --honesty-status-badge-bg: transparent;
+  --honesty-status-badge-fg: var(--honesty-status-badge-text);
+  --honesty-status-badge-border-color: transparent;
+}
+
+@mixin size-sm {
+  --honesty-status-badge-height: 1.125rem;
+  --honesty-status-badge-padding-inline: 0.4375rem;
+  --honesty-status-badge-font-size: 0.625rem;
+  --honesty-status-badge-dot-size: 0.3125rem;
+  --honesty-status-badge-gap: 0.25rem;
+  --honesty-status-badge-icon-size: 0.625rem;
+  --honesty-status-badge-radius: 0.25rem;
+  --honesty-status-badge-image-size: 0.75rem;
+}
+
+@mixin size-lg {
+  --honesty-status-badge-height: 1.625rem;
+  --honesty-status-badge-padding-inline: 0.6875rem;
+  --honesty-status-badge-font-size: 0.75rem;
+  --honesty-status-badge-dot-size: 0.4375rem;
+  --honesty-status-badge-gap: 0.375rem;
+  --honesty-status-badge-icon-size: 0.875rem;
+  --honesty-status-badge-radius: 0.375rem;
+  --honesty-status-badge-image-size: 1.125rem;
+}
+
+@mixin size-xl {
+  --honesty-status-badge-height: 2rem;
+  --honesty-status-badge-padding-inline: 0.875rem;
+  --honesty-status-badge-font-size: 0.8125rem;
+  --honesty-status-badge-dot-size: 0.5rem;
+  --honesty-status-badge-gap: 0.4375rem;
+  --honesty-status-badge-icon-size: 1rem;
+  --honesty-status-badge-radius: 0.5rem;
+  --honesty-status-badge-image-size: 1.375rem;
+}
+
+@mixin shape-square {
+  --honesty-status-badge-radius: var(--honesty-radius-none);
+}
+
+@mixin shape-pill {
+  --honesty-status-badge-radius: var(--honesty-radius-full);
+}

@@ -9,28 +9,36 @@ Always resolve live `origin/main` directly at session start. This file records
 named checkpoints; it does not claim that its own latest docs SHA is an eternal
 repository HEAD.
 
-## Current ErpSelect strict-rebuild checkpoint — 2026-10-06
+## Current ErpStatusBadge exact-reference checkpoint — 2026-10-07
 
 Entry checkpoint:
 
-- `2c68970831c95136dfab4faf36cc32078beb2f91`
+- `cc9a3d0305529aef94e370c862b01876dcba9d01`
 
-The bounded implementation commit is `fix(select): complete strict exact-reference
-rebuild`; resolve its final SHA from live `main` because this file is committed
-with it. Its canonical gate passes 133/133 test files, 868/868 tests,
+The bounded implementation commit is `fix(status-badge): rebuild from exact Product
+Owner reference`; resolve its final SHA from live `main` because this file is
+committed with it. Its canonical gate passes 133/133 test files, 875/875 tests,
 both typechecks, production build, every governance check, and zero warnings.
-Initial bundle: 376.12 kB / 85.61 kB estimated transfer. Core Batch lazy chunk:
-58.86 kB / 11.22 kB.
+Initial bundle: 376.12 kB / 85.65 kB estimated transfer. Core Batch lazy chunk:
+64.25 kB / 12.07 kB.
 
-Binding reference: `ERP-SELECT.html`, SHA-256
-`EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`.
+Binding reference: `ERP-STATUS-BADGE.html`, SHA-256
+`654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`.
 Product Owner visual acceptance remains pending and the Data/Table Visual
 Correction Wave remains unopened.
 
 The authoritative implementation contract is
-`src/app/controls/select/ERP_SELECT_REFERENCE_EXACT_V3.md`. The prior
-exact-reference checkpoint remains historical evidence and is superseded by
-this strict-rebuild escalation.
+`src/app/controls/status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md`. The
+former Dribbble reference and accelerated no-reference waiver are historical
+evidence and are superseded by this exact-reference rebuild.
+
+## Historical ErpSelect strict-rebuild checkpoint — superseded current gate
+
+The Select strict-rebuild entered from
+`2c68970831c95136dfab4faf36cc32078beb2f91`. Its binding reference remains
+`ERP-SELECT.html`, SHA-256
+`EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, and its
+technical checkpoint remains preserved. It is not the current active component.
 
 ## Historical Core Visual Correction V3 checkpoint — superseded Select state
 

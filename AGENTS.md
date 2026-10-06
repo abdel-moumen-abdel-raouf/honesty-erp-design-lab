@@ -17,24 +17,27 @@ requested.
 The Product Owner is the final authority for visual approval.
 Technical success, green tests, or Codex judgment do not equal visual approval.
 
-## Current Product Owner ErpSelect Strict Rebuild State
+## Current Product Owner ErpStatusBadge Exact Reference State
 
-The Product Owner made `C:\Users\Misrtech\Downloads\ERP-SELECT.html`, SHA-256
-`EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, the
-single binding visual and behavioral authority for `ErpSelect`. It supersedes
-the old lowercase reference and conflicting Select corrections. Only colors
-are mapped to Honesty Semantic and Component Tokens.
+The Product Owner made
+`C:\Users\Misrtech\Downloads\ERP-STATUS-BADGE.html`, SHA-256
+`654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`, the
+single binding visual and behavioral authority for `ErpStatusBadge`. It
+supersedes the Dribbble reference, the accelerated no-reference waiver, and
+conflicting StatusBadge corrections. Only colors and font families are mapped
+to Honesty ERP system contracts.
 
-The strict-rebuild candidate entered from
-`2c68970831c95136dfab4faf36cc32078beb2f91` and is technically green at 133/133
-test files and 868/868 tests, both typechecks, production build, and zero
+The exact-reference candidate entered from
+`cc9a3d0305529aef94e370c862b01876dcba9d01` and is technically green at 133/133
+test files and 875/875 tests, both typechecks, production build, and zero
 warnings.
 
 The authoritative implementation contract is
-`src/app/controls/select/ERP_SELECT_REFERENCE_EXACT_V3.md`.
+`src/app/controls/status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md`.
 
-The current gate is Product Owner runtime/Light/Dark/RTL/narrow comparison of
-the rebuilt Select at `/controls/core-batch` against the exact reference. The
+The current gate is Product Owner runtime/Light/Dark/RTL/LTR/narrow comparison
+of the rebuilt StatusBadge at `/controls/core-batch` against the exact
+reference. `ErpSelect` remains a prior candidate and is not reopened. The
 Data/Table Visual Correction Wave is not opened. Technical PASS does not equal
 Product Owner visual approval or freeze.
 
@@ -46,6 +49,15 @@ migration, and every unlisted owner remain unopened.
 
 ## Production Core Components Visual Correction V2 Governance
 
+- `ErpStatusBadge` exact geometry, variants, sizes, anatomy, states, width
+  behavior, interaction, and motion come only from `ERP-STATUS-BADGE.html` at
+  SHA-256 `654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`.
+  Its former Dribbble reference and accelerated no-reference waiver are
+  superseded. Only colors and font families resolve through Honesty ERP system
+  contracts.
+- `ErpStatusBadge` composes `ErpIcon` and `ErpText`; native action semantics are
+  isolated in its approved internal action owner. It does not automatically
+  author `role=status` or a live region.
 - `ErpAvatarPicker` composes `ErpTabs` and `ErpAvatar`; it does not own upload,
   cropping, camera, transport, or a second tabs/avatar engine.
 - `ErpTable` composes `ErpCheckBox` for selection and `ErpSortHeader` for sort;

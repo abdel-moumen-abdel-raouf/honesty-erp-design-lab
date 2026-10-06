@@ -14,7 +14,7 @@ Product Owner visual review reopened `ErpSelect`, `ErpStatusBadge`, `ErpAlert`, 
 | Owner | Reference | SHA-256 | Treatment |
 | --- | --- | --- | --- |
 | ErpSelect | `erp-select.html` local Product Owner template | `5A31FC10A3D1208BF64E35EB5139823E48F8E2BF1D0190D07DD5DB5DBC4DF23B` | Exact hierarchy/geometry adapted to ERP owners and tokens |
-| ErpStatusBadge | Product Owner Dribbble reference | `6DF01EFBC155613B9920B549357F6C63848EFED2BC78EFD0055D745B8DF89E09` | Compact status language with ERP semantic feedback roles |
+| ErpStatusBadge | Historical Product Owner Dribbble reference | `6DF01EFBC155613B9920B549357F6C63848EFED2BC78EFD0055D745B8DF89E09` | **SUPERSEDED** by `ERP-STATUS-BADGE.html`, SHA-256 `654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`, and `status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md` |
 | ErpAlert | Product Owner findings plus existing ERP family | N/A | Bounded correction; no new external file |
 | ErpSkeleton | Product Owner runtime finding plus existing ERP family | N/A | Bounded visibility correction; no new external file |
 | ErpAvatar | Two Product Owner avatar references | `21DAC54CC0A54460E554063C3597892AF93DFB1C5E47B54CB746577E7C573DBE`, `D5379A4E2277E82F0CDFD47A4A9C2B5B13470424A66C76D2025DFF4A43141F3B` | Shapes, presence, placement, bounded motion |

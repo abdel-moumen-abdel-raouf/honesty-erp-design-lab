@@ -1,0 +1,69 @@
+.status-badge__dot,
+.status-badge__icon,
+.status-badge__image,
+.status-badge__check,
+.status-badge__label,
+.status-badge__count {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  pointer-events: none;
+}
+
+.status-badge__dot {
+  inline-size: var(--honesty-status-badge-dot-size);
+  block-size: var(--honesty-status-badge-dot-size);
+  border-radius: var(--honesty-status-badge-round-radius);
+  background: var(--honesty-status-badge-strong);
+}
+
+.status-badge__pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  animation: status-badge-pulse var(--honesty-status-badge-pulse-duration) ease-out infinite;
+}
+
+.status-badge__icon,
+.status-badge__check {
+  display: inline-grid;
+  place-items: center;
+  inline-size: var(--honesty-status-badge-icon-size);
+  block-size: var(--honesty-status-badge-icon-size);
+  font-size: var(--honesty-status-badge-icon-size);
+}
+
+.status-badge__check {
+  animation: status-badge-check var(--honesty-status-badge-check-duration)
+    var(--honesty-status-badge-check-easing) both;
+}
+
+.status-badge__image {
+  inline-size: var(--honesty-status-badge-image-size);
+  block-size: var(--honesty-status-badge-image-size);
+  border: var(--honesty-status-badge-border-width) var(--honesty-status-badge-border-style)
+    var(--honesty-status-badge-image-border);
+  border-radius: var(--honesty-status-badge-round-radius);
+  object-fit: cover;
+}
+
+.status-badge__label {
+  min-inline-size: 0;
+  max-inline-size: var(--honesty-status-badge-label-max-width);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.status-badge__count {
+  display: inline-grid;
+  place-items: center;
+  min-inline-size: calc(var(--honesty-status-badge-font-size) + var(--honesty-status-badge-count-block-adjustment));
+  block-size: calc(var(--honesty-status-badge-font-size) + var(--honesty-status-badge-count-block-adjustment));
+  padding-inline: var(--honesty-status-badge-count-padding);
+  border-radius: var(--honesty-status-badge-round-radius);
+  background: var(--honesty-status-badge-count-bg);
+  color: var(--honesty-status-badge-count-fg);
+  font-size: calc(var(--honesty-status-badge-font-size) - var(--honesty-status-badge-count-size-adjustment));
+  line-height: 1;
+}

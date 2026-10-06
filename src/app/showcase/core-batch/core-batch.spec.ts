@@ -28,6 +28,26 @@ describe('CoreBatch', () => {
     expect(fixture.nativeElement.querySelector('erp-pagination')).not.toBeNull();
     expect(
       fixture.nativeElement.querySelectorAll(
+        '.status-badge-parity-matrix erp-status-badge',
+      ),
+    ).toHaveLength(32);
+    expect(
+      fixture.nativeElement.querySelectorAll(
+        '.status-badge-size-matrix erp-status-badge',
+      ),
+    ).toHaveLength(4);
+    expect(
+      fixture.nativeElement.querySelectorAll(
+        '.status-badge-anatomy-matrix erp-status-badge',
+      ),
+    ).toHaveLength(12);
+    expect(
+      fixture.nativeElement.querySelectorAll(
+        '[data-status-badge-direction-evidence] erp-status-badge',
+      ),
+    ).toHaveLength(2);
+    expect(
+      fixture.nativeElement.querySelectorAll(
         '[data-avatar-direction-evidence] erp-avatar',
       ),
     ).toHaveLength(16);
@@ -36,6 +56,27 @@ describe('CoreBatch', () => {
         '[data-row-activation-evidence]',
       ).textContent,
     ).toContain('لم يتم تفعيل صف');
+  });
+
+  it('exposes controlled StatusBadge selection and independent remove evidence', () => {
+    const fixture = TestBed.createComponent(CoreBatch);
+    fixture.detectChanges();
+    const preview = fixture.nativeElement.querySelector(
+      '.status-badge-reference-preview erp-status-badge',
+    ) as HTMLElement;
+    const evidence = fixture.nativeElement.querySelector(
+      '[data-status-badge-interaction-evidence]',
+    ) as HTMLElement;
+
+    (preview.querySelector('[data-status-badge-action="main"] button') as HTMLButtonElement)
+      .click();
+    fixture.detectChanges();
+    expect(evidence.textContent).toContain('تم إلغاء تحديد الحالة');
+
+    (preview.querySelector('[data-status-badge-action="remove"] button') as HTMLButtonElement)
+      .click();
+    fixture.detectChanges();
+    expect(evidence.textContent).toContain('تم طلب إزالة الحالة');
   });
 
   it('keeps the routed review template ERP-only authored', () => {

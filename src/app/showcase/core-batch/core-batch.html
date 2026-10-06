@@ -134,19 +134,104 @@
     <erp-section>
       <erp-stack gap="default">
         <erp-text type="heading-2">ErpStatusBadge</erp-text>
-        <erp-grid [columns]="4" gap="sm" responsive="auto">
+        <erp-text type="paragraph" tone="secondary">
+          مصفوفة مطابقة مرجع ERP-STATUS-BADGE.html: ثماني حالات، وأربعة مظاهر،
+          وأربعة أحجام، وكل أنماط المحتوى والتفاعل.
+        </erp-text>
+        <erp-grid [columns]="5" gap="sm" responsive="auto">
           <erp-select label="اللون" [options]="badgeToneOptions" [ngModel]="badgeTone()" (ngModelChange)="badgeTone.set($event)" />
+          <erp-select label="المظهر" [options]="badgeVariantOptions" [ngModel]="badgeVariant()" (ngModelChange)="badgeVariant.set($event)" />
           <erp-select label="الحجم" [options]="badgeSizeOptions" [ngModel]="badgeSize()" (ngModelChange)="badgeSize.set($event)" />
           <erp-select label="الشكل" [options]="badgeShapeOptions" [ngModel]="badgeShape()" (ngModelChange)="badgeShape.set($event)" />
           <erp-select label="العرض" [options]="badgeWidthOptions" [ngModel]="badgeWidth()" (ngModelChange)="badgeWidth.set($event)" />
         </erp-grid>
-        <erp-status-badge label="معاينة الحالة" icon="success" [tone]="badgeTone()" [size]="badgeSize()" [shape]="badgeShape()" [widthMode]="badgeWidth()" />
-        <erp-grid [columns]="5" gap="sm" responsive="auto">
-          <erp-status-badge label="محايد" size="sm" shape="square" />
-          <erp-status-badge label="ناجح" tone="success" icon="success" shape="rounded" />
-          <erp-status-badge label="تحذير" tone="warning" icon="warning" size="lg" />
-          <erp-status-badge label="خطر" tone="danger" icon="error" size="xl" />
-          <erp-status-badge label="معلومة ممتدة" tone="info" icon="info" widthMode="stretch" />
+        <erp-surface class="status-badge-reference-preview" border="subtle">
+          <erp-stack gap="tight">
+            <erp-text type="heading-4">معاينة المرجع التفاعلية</erp-text>
+            <erp-status-badge
+              label="قيد المراجعة"
+              icon="warning"
+              [tone]="badgeTone()"
+              [variant]="badgeVariant()"
+              [size]="badgeSize()"
+              [shape]="badgeShape()"
+              [widthMode]="badgeWidth()"
+              [selected]="badgeSelected()"
+              interactive
+              removable
+              showDot
+              pulse
+              [count]="12"
+              (selectedChange)="updateBadgeSelection($event)"
+              (remove)="recordBadgeRemoval()"
+            />
+            <erp-text data-status-badge-interaction-evidence type="caption" tone="secondary">
+              {{ badgeInteractionEvidence() }}
+            </erp-text>
+          </erp-stack>
+        </erp-surface>
+
+        <erp-text type="heading-4">الحالات × المظاهر</erp-text>
+        <erp-stack class="status-badge-parity-matrix" gap="tight">
+          @for (tone of badgeTones; track tone) {
+            <erp-stack class="status-badge-parity-row" gap="tight" [attr.data-status-badge-tone-row]="tone">
+              <erp-text type="label">{{ tone }}</erp-text>
+              <erp-grid [columns]="4" gap="sm" responsive="auto">
+                @for (variant of badgeVariants; track variant) {
+                  <erp-status-badge
+                    [label]="tone + ' / ' + variant"
+                    [tone]="tone"
+                    [variant]="variant"
+                    icon="info"
+                  />
+                }
+              </erp-grid>
+            </erp-stack>
+          }
+        </erp-stack>
+
+        <erp-text type="heading-4">الأحجام المرجعية</erp-text>
+        <erp-grid class="status-badge-size-matrix" [columns]="4" gap="sm" responsive="auto">
+          @for (size of badgeSizes; track size) {
+            <erp-status-badge
+              [label]="'الحجم ' + size"
+              tone="brand"
+              [size]="size"
+              icon="success"
+              [count]="8"
+            />
+          }
+        </erp-grid>
+
+        <erp-text type="heading-4">أنماط المحتوى والحالات</erp-text>
+        <erp-grid class="status-badge-anatomy-matrix" [columns]="4" gap="sm" responsive="auto">
+          <erp-status-badge label="نقطة حالة" tone="success" showDot />
+          <erp-status-badge label="نبض مباشر" tone="danger" showDot pulse />
+          <erp-status-badge label="أيقونة" tone="info" icon="info" />
+          <erp-status-badge
+            label="صورة مستخدم"
+            tone="brand"
+            image="/assets/honesty-erp-avatars/users/female/avatar-21.png"
+          />
+          <erp-status-badge label="عداد" tone="pending" [count]="24" />
+          <erp-status-badge label="قابل للإزالة" tone="warning" removable />
+          <erp-status-badge label="مختار" tone="success" interactive selected />
+          <erp-status-badge label="معطل" tone="archived" interactive disabled />
+          <erp-status-badge label="uppercase" tone="neutral" uppercase />
+          <erp-status-badge label="مربع" tone="danger" shape="square" />
+          <erp-status-badge label="دائري" tone="info" shape="pill" />
+          <erp-status-badge label="ممتد" tone="brand" widthMode="stretch" />
+        </erp-grid>
+
+        <erp-grid [columns]="2" gap="lg" responsive="auto">
+          <erp-stack data-status-badge-direction-evidence="rtl" dir="rtl" gap="tight">
+            <erp-text type="label">RTL</erp-text>
+            <erp-status-badge label="حالة عربية" tone="success" icon="success" removable />
+          </erp-stack>
+          <erp-stack data-status-badge-direction-evidence="ltr" dir="ltr" gap="tight">
+            <erp-text type="label">LTR</erp-text>
+            <erp-status-badge label="English status" tone="success" icon="success" removable />
+          </erp-stack>
         </erp-grid>
       </erp-stack>
     </erp-section>

@@ -1,23 +1,24 @@
 # Inputs Product Owner Review Findings V1
 
-## Current continuity notice — 2026-10-06
+## Current continuity notice — 2026-10-07
 
 The findings below remain an auditable historical Product Owner review record;
 they are not current implementation authorization.
 
-The latest Product Owner decision makes `ERP-SELECT.html`, SHA-256
-`EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, the
-single binding visual and behavioral authority for `ErpSelect`. It supersedes
-the prior lowercase reference and conflicting Select findings. The exact
-contract is `select/ERP_SELECT_REFERENCE_EXACT_V3.md`.
+The latest Product Owner decision is the bounded StatusBadge exact-reference
+rebuild. `ERP-STATUS-BADGE.html`, SHA-256
+`654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`, is the
+single binding visual and behavioral authority for `ErpStatusBadge`; its exact
+contract is `status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md`. The prior
+Select contract remains technically implemented and is not reopened.
 
-The rebuilt candidate passes 133/133 test files and 868/868 tests, all
+The rebuilt candidate passes 133/133 test files and 875/875 tests, all
 governance, both typechecks, production build, and zero warnings.
 
-The exact next action is Product Owner runtime/Light/Dark/RTL/narrow comparison
-of the rebuilt Select at `/controls/core-batch`. Runtime browser evidence does
-not confer Product Owner visual acceptance. The Data/Table Visual Correction
-Wave and all later unlisted work remain unopened.
+The exact next action is Product Owner runtime/Light/Dark/RTL/LTR/narrow
+comparison of the rebuilt StatusBadge at `/controls/core-batch`. Runtime browser
+evidence does not confer Product Owner visual acceptance. The Data/Table Visual
+Correction Wave and all later unlisted work remain unopened.
 
 ## Historical Inputs review status — superseded snapshot
 

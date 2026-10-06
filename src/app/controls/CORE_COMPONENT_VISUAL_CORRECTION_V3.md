@@ -22,7 +22,7 @@ gate remains grouped runtime/Light/Dark/RTL/narrow Product Owner review at
 | Owner | Reference authority | Treatment |
 | --- | --- | --- |
 | ErpSelect | Historical `erp-select.html`, SHA-256 `5A31FC10A3D1208BF64E35EB5139823E48F8E2BF1D0190D07DD5DB5DBC4DF23B` | SUPERSEDED by `ERP-SELECT.html`, SHA-256 `EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D` |
-| ErpStatusBadge | Product Owner Dribbble status-badge reference | Compact max-content status geometry; ERP semantic feedback colors remain authoritative |
+| ErpStatusBadge | Historical Product Owner Dribbble status-badge reference | **SUPERSEDED** by `ERP-STATUS-BADGE.html`, SHA-256 `654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`, and the exact V1 contract |
 | ErpAlert | Product Owner runtime finding | Bounded native-tooltip removal; Tooltip-wrapped ERP action remains authoritative |
 | ErpSkeleton | Product Owner animated skeleton reference | Visible tokenized surface and moving shimmer; static-but-visible reduced motion |
 | ErpAvatar | Product Owner V2 references and V3 runtime findings | Existing media/presence contract retained; cursor and ambient motion corrected |
@@ -36,8 +36,10 @@ gate remains grouped runtime/Light/Dark/RTL/narrow Product Owner review at
 - Historical Select-specific text in this section is superseded. The current
   exact contract is `select/ERP_SELECT_REFERENCE_EXACT_V2.md`; sorting is a
   data-order pipeline and has no visual toolbar or secondary sort menu.
-- StatusBadge is max-content by default, adds `xl`, supports
-  `square | rounded | pill`, and exposes explicit content/stretch width modes.
+- Historical StatusBadge correction is superseded by
+  `status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md`; the current component
+  follows the binding HTML reference for its complete geometry, variants,
+  sizes, anatomy, states, width behavior, interaction, and motion.
 - Alert suppresses native host `title`; its only explanatory close surface is
   the approved Tooltip-wrapped IconButton.
 - Skeleton consumes valid semantic-backed Component Tokens for a visible base,

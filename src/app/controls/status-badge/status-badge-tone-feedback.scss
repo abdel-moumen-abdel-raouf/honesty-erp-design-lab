@@ -1,0 +1,6 @@
+@use '../../../styles/foundation/components/status-badge' as tokens;
+
+:host([data-status-badge-tone='success']) { @include tokens.tone-success; }
+:host([data-status-badge-tone='warning']) { @include tokens.tone-warning; }
+:host([data-status-badge-tone='danger']) { @include tokens.tone-danger; }
+:host([data-status-badge-tone='info']) { @include tokens.tone-info; }

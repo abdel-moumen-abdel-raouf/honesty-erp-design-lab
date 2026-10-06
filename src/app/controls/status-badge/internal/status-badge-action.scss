@@ -1,0 +1,76 @@
+:host {
+  display: contents;
+}
+
+button {
+  box-sizing: border-box;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.status-badge-action__button--main {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  border-radius: inherit;
+}
+
+.status-badge-action__button--remove {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  inline-size: calc(var(--honesty-status-badge-icon-size) + var(--honesty-status-badge-remove-extra));
+  block-size: calc(var(--honesty-status-badge-icon-size) + var(--honesty-status-badge-remove-extra));
+  margin-inline-end: calc(
+    var(--honesty-status-badge-padding-inline) *
+    var(--honesty-status-badge-remove-edge-factor)
+  );
+  border-radius: var(--honesty-status-badge-round-radius);
+  font-size: calc(var(--honesty-status-badge-icon-size) + var(--honesty-status-badge-remove-icon-extra));
+  opacity: var(--honesty-status-badge-remove-opacity);
+  transition:
+    opacity var(--honesty-status-badge-motion),
+    background-color var(--honesty-status-badge-motion),
+    transform var(--honesty-status-badge-motion);
+}
+
+.status-badge-action__button--remove:hover {
+  background: var(--honesty-status-badge-count-bg);
+  opacity: 1;
+  transform: scale(var(--honesty-status-badge-remove-hover-scale));
+}
+
+.status-badge-action__button--remove:active {
+  transform: scale(var(--honesty-status-badge-remove-active-scale));
+}
+
+button:focus-visible {
+  outline: var(--honesty-status-badge-focus-ring-width) solid
+    var(--honesty-status-badge-focus-ring-color);
+  outline-offset: var(--honesty-status-badge-focus-ring-offset);
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+@media (pointer: coarse) {
+  .status-badge-action__button--remove {
+    inline-size: calc(var(--honesty-status-badge-icon-size) + var(--honesty-status-badge-remove-coarse-extra));
+    block-size: calc(var(--honesty-status-badge-icon-size) + var(--honesty-status-badge-remove-coarse-extra));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-badge-action__button--remove {
+    transition-duration: var(--honesty-status-badge-reduced-duration);
+  }
+}

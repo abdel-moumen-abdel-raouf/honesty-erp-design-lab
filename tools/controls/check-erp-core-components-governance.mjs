@@ -17,6 +17,19 @@ const SELECT_CONTRACT = 'src/app/controls/select/ERP_SELECT_REFERENCE_EXACT_V3.m
 const SELECT_REFERENCE_SHA = 'EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D';
 const ALERT_TS = 'src/app/controls/alert/alert.ts';
 const STATUS_BADGE_TS = 'src/app/controls/status-badge/status-badge.ts';
+const STATUS_BADGE_TEMPLATE = 'src/app/controls/status-badge/status-badge.html';
+const STATUS_BADGE_SCSS = 'src/app/controls/status-badge/status-badge.scss';
+const STATUS_BADGE_TONE_FEEDBACK_SCSS = 'src/app/controls/status-badge/status-badge-tone-feedback.scss';
+const STATUS_BADGE_TONE_BRAND_SCSS = 'src/app/controls/status-badge/status-badge-tone-brand.scss';
+const STATUS_BADGE_VARIANTS_SCSS = 'src/app/controls/status-badge/status-badge-variants.scss';
+const STATUS_BADGE_SIZES_SCSS = 'src/app/controls/status-badge/status-badge-sizes.scss';
+const STATUS_BADGE_STATES_SCSS = 'src/app/controls/status-badge/status-badge-states.scss';
+const STATUS_BADGE_CONTENT_SCSS = 'src/app/controls/status-badge/status-badge-content.scss';
+const STATUS_BADGE_MOTION_SCSS = 'src/app/controls/status-badge/status-badge-motion.scss';
+const STATUS_BADGE_TOKENS = 'src/styles/foundation/components/status-badge/_tokens.scss';
+const STATUS_BADGE_CONTRACT = 'src/app/controls/status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md';
+const STATUS_BADGE_LEGACY_REFERENCE = 'src/app/controls/status-badge/STATUS_BADGE_REFERENCE_V1.md';
+const STATUS_BADGE_REFERENCE_SHA = '654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0';
 const AVATAR_TS = 'src/app/controls/avatar/avatar.ts';
 const AVATAR_SCSS = 'src/app/controls/avatar/avatar.scss';
 const AVATAR_PRESENCE = 'src/app/controls/avatar/avatar-presence.scss';
@@ -63,6 +76,20 @@ export function validateCoreComponents(files) {
   const selectContract = files.get(SELECT_CONTRACT) ?? '';
   const alertTs = files.get(ALERT_TS) ?? '';
   const statusBadgeTs = files.get(STATUS_BADGE_TS) ?? '';
+  const statusBadgeTemplate = files.get(STATUS_BADGE_TEMPLATE) ?? '';
+  const statusBadgeScss = [
+    STATUS_BADGE_SCSS,
+    STATUS_BADGE_TONE_FEEDBACK_SCSS,
+    STATUS_BADGE_TONE_BRAND_SCSS,
+    STATUS_BADGE_VARIANTS_SCSS,
+    STATUS_BADGE_SIZES_SCSS,
+    STATUS_BADGE_STATES_SCSS,
+    STATUS_BADGE_CONTENT_SCSS,
+    STATUS_BADGE_MOTION_SCSS,
+  ].map((file) => files.get(file) ?? '').join('\n');
+  const statusBadgeTokens = files.get(STATUS_BADGE_TOKENS) ?? '';
+  const statusBadgeContract = files.get(STATUS_BADGE_CONTRACT) ?? '';
+  const statusBadgeLegacyReference = files.get(STATUS_BADGE_LEGACY_REFERENCE) ?? '';
   const avatarTs = files.get(AVATAR_TS) ?? '';
   const avatarPresence = files.get(AVATAR_PRESENCE) ?? '';
   const avatarMotion = files.get(AVATAR_MOTION) ?? '';
@@ -174,8 +201,95 @@ export function validateCoreComponents(files) {
   if (!alertTs.includes("'[attr.title]': 'null'")) {
     errors.push('ErpAlert must declaratively suppress the native host title tooltip');
   }
-  for (const contract of ["'sm' | 'md' | 'lg' | 'xl'", "'square' | 'rounded' | 'pill'", "'content' | 'stretch'"]) {
+  for (const contract of [
+    "'neutral'",
+    "'success'",
+    "'warning'",
+    "'danger'",
+    "'info'",
+    "'brand'",
+    "'pending'",
+    "'archived'",
+    "'soft' | 'solid' | 'outline' | 'ghost'",
+    "'sm' | 'md' | 'lg' | 'xl'",
+    "'square' | 'rounded' | 'pill'",
+    "'content' | 'stretch'",
+    "readonly interactive = input(false",
+    "readonly selected = input(false",
+    "readonly removable = input(false",
+    'readonly selectedChange = output<boolean>()',
+    'readonly remove = output<void>()',
+  ]) {
     if (!statusBadgeTs.includes(contract)) errors.push(`ErpStatusBadge contract is missing ${contract}`);
+  }
+  for (const hierarchy of [
+    '<erp-text',
+    '<erp-icon',
+    '<erp-status-badge-action',
+    'class="status-badge__dot"',
+    'class="status-badge__image"',
+    'class="status-badge__count"',
+    'class="status-badge__check"',
+  ]) {
+    if (!statusBadgeTemplate.includes(hierarchy)) {
+      errors.push(`ErpStatusBadge exact-reference hierarchy is missing ${hierarchy}`);
+    }
+  }
+  for (const geometry of [
+    '--honesty-status-badge-height: 1.125rem',
+    '--honesty-status-badge-height: 1.375rem',
+    '--honesty-status-badge-height: 1.625rem',
+    '--honesty-status-badge-height: 2rem',
+    '--honesty-status-badge-padding-inline: 0.4375rem',
+    '--honesty-status-badge-padding-inline: 0.5625rem',
+    '--honesty-status-badge-padding-inline: 0.6875rem',
+    '--honesty-status-badge-padding-inline: 0.875rem',
+    '--honesty-status-badge-label-max-width: 11.25rem',
+    '--honesty-status-badge-focus-ring-width: 0.1875rem',
+  ]) {
+    if (!statusBadgeTokens.includes(geometry)) {
+      errors.push(`ErpStatusBadge exact-reference geometry is missing ${geometry}`);
+    }
+  }
+  for (const mixin of [
+    'tone-success', 'tone-warning', 'tone-danger', 'tone-info',
+    'tone-brand', 'tone-pending', 'tone-archived',
+    'variant-soft', 'variant-solid', 'variant-outline', 'variant-ghost',
+    'size-sm', 'size-lg', 'size-xl', 'shape-square', 'shape-pill',
+  ]) {
+    if (!statusBadgeTokens.includes(`@mixin ${mixin}`)) {
+      errors.push(`ErpStatusBadge Component Tokens are missing @mixin ${mixin}`);
+    }
+  }
+  if (/#[0-9a-f]{3,8}\b|\b(?:rgb|hsl)a?\(/iu.test(`${statusBadgeScss}\n${statusBadgeTokens}`)) {
+    errors.push('ErpStatusBadge must not copy raw reference colors');
+  }
+  if (/var\(--honesty-(?:color|border|radius|elevation|motion)-/u.test(statusBadgeScss)) {
+    errors.push('ErpStatusBadge implementation SCSS must consume only its own Component Tokens');
+  }
+  if (!statusBadgeScss.includes('@media (prefers-reduced-motion: reduce)') ||
+      !statusBadgeScss.includes('status-badge-enter') ||
+      !statusBadgeScss.includes('status-badge-pulse')) {
+    errors.push('ErpStatusBadge exact-reference motion and reduced-motion contracts are incomplete');
+  }
+  if (!statusBadgeContract.includes(STATUS_BADGE_REFERENCE_SHA) ||
+      !statusBadgeContract.includes('supersedes every earlier `ErpStatusBadge` visual interpretation')) {
+    errors.push('ErpStatusBadge exact-reference contract must record the binding ERP-STATUS-BADGE.html SHA and supersession');
+  }
+  if (!statusBadgeLegacyReference.includes('SUPERSEDED') ||
+      !statusBadgeLegacyReference.includes(STATUS_BADGE_REFERENCE_SHA)) {
+    errors.push('The former ErpStatusBadge Dribbble reference must remain explicitly superseded');
+  }
+  for (const evidence of [
+    'class="status-badge-parity-matrix"',
+    'class="status-badge-size-matrix"',
+    'class="status-badge-anatomy-matrix"',
+    'data-status-badge-direction-evidence="rtl"',
+    'data-status-badge-direction-evidence="ltr"',
+  ]) {
+    if (!review.includes(evidence)) {
+      errors.push(`Core review is missing StatusBadge exact-reference evidence ${evidence}`);
+    }
   }
 
   for (const contract of [
@@ -305,7 +419,7 @@ export function validateCoreComponents(files) {
 function fixture(overrides = new Map()) {
   const files = new Map([
     [ROUTES, "path: 'controls/core-batch'"],
-    [REVIEW, '<erp-select/><erp-status-badge/><erp-alert/><erp-skeleton/><erp-avatar/><erp-tabs/><erp-avatar-picker/><erp-table/><erp-pagination/><div class="select-parity-matrix" sortMode="label" label="نتيجة فارغة" label="حالة غير صالحة"></div>'],
+    [REVIEW, '<erp-select/><erp-status-badge/><erp-alert/><erp-skeleton/><erp-avatar/><erp-tabs/><erp-avatar-picker/><erp-table/><erp-pagination/><div class="select-parity-matrix" sortMode="label" label="نتيجة فارغة" label="حالة غير صالحة"></div><div class="status-badge-parity-matrix"></div><div class="status-badge-size-matrix"></div><div class="status-badge-anatomy-matrix"></div><div data-status-badge-direction-evidence="rtl"></div><div data-status-badge-direction-evidence="ltr"></div>'],
     [REVIEW_TABLE, '<erp-column-chooser/>'],
     [SELECT, '<div class="select__control"></div><erp-field-trigger semanticRole="combobox" (blurred)="handleTriggerBlur()"/><erp-search-box presentation="select-panel"/><erp-selection-tile presentation="select-option"/><div class="select__group-label"></div><div class="select__footer"></div><erp-avatar/><erp-select-action icon="dismiss"/><erp-icon name="check-mark"/>'],
     [SELECT_TS, "this.controlSurface()?.nativeElement; Math.min(control.getBoundingClientRect().width, availableWidth); event.target.matches(':focus-visible'); this.triggerFocusVisible.set(false); readonly searchLabel = input('البحث'); readonly sortMode = input<ErpSelectSortMode>('none'); readonly groupBy = input<keyof ErpSelectOption | null>(null); readonly selectSize = input<ErpSelectSize>('md'); readonly selectAppearance = input<ErpSelectAppearance | null>(null)"],
@@ -316,7 +430,19 @@ function fixture(overrides = new Map()) {
     [SELECT_PANEL_TOKENS, '@mixin base {}; --honesty-select-panel-radius: 0.75rem; --honesty-select-panel-max-block-size: 18.75rem; --honesty-select-panel-list-padding: 0.25rem; --honesty-select-panel-option-row-gap: 0.25rem;'],
     [SELECT_CONTRACT, `${SELECT_REFERENCE_SHA}; ERP-SELECT.html supersedes all previous ErpSelect visual references`],
     [ALERT_TS, "'[attr.title]': 'null'"],
-    [STATUS_BADGE_TS, "'sm' | 'md' | 'lg' | 'xl'; 'square' | 'rounded' | 'pill'; 'content' | 'stretch'"],
+    [STATUS_BADGE_TS, "'neutral'; 'success'; 'warning'; 'danger'; 'info'; 'brand'; 'pending'; 'archived'; 'soft' | 'solid' | 'outline' | 'ghost'; 'sm' | 'md' | 'lg' | 'xl'; 'square' | 'rounded' | 'pill'; 'content' | 'stretch'; readonly interactive = input(false; readonly selected = input(false; readonly removable = input(false; readonly selectedChange = output<boolean>(); readonly remove = output<void>()"],
+    [STATUS_BADGE_TEMPLATE, '<erp-status-badge-action/><erp-text/><erp-icon/><span class="status-badge__dot"></span><img class="status-badge__image"><erp-text class="status-badge__count"/><span class="status-badge__check"></span>'],
+    [STATUS_BADGE_SCSS, '@media (prefers-reduced-motion: reduce) {} status-badge-enter status-badge-pulse'],
+    [STATUS_BADGE_TONE_FEEDBACK_SCSS, ''],
+    [STATUS_BADGE_TONE_BRAND_SCSS, ''],
+    [STATUS_BADGE_VARIANTS_SCSS, ''],
+    [STATUS_BADGE_SIZES_SCSS, ''],
+    [STATUS_BADGE_STATES_SCSS, ''],
+    [STATUS_BADGE_CONTENT_SCSS, ''],
+    [STATUS_BADGE_MOTION_SCSS, ''],
+    [STATUS_BADGE_TOKENS, '@mixin base {}; @mixin tone-success {}; @mixin tone-warning {}; @mixin tone-danger {}; @mixin tone-info {}; @mixin tone-brand {}; @mixin tone-pending {}; @mixin tone-archived {}; @mixin variant-soft {}; @mixin variant-solid {}; @mixin variant-outline {}; @mixin variant-ghost {}; @mixin size-sm {}; @mixin size-lg {}; @mixin size-xl {}; @mixin shape-square {}; @mixin shape-pill {}; --honesty-status-badge-height: 1.125rem; --honesty-status-badge-height: 1.375rem; --honesty-status-badge-height: 1.625rem; --honesty-status-badge-height: 2rem; --honesty-status-badge-padding-inline: 0.4375rem; --honesty-status-badge-padding-inline: 0.5625rem; --honesty-status-badge-padding-inline: 0.6875rem; --honesty-status-badge-padding-inline: 0.875rem; --honesty-status-badge-label-max-width: 11.25rem; --honesty-status-badge-focus-ring-width: 0.1875rem;'],
+    [STATUS_BADGE_CONTRACT, `${STATUS_BADGE_REFERENCE_SHA}; supersedes every earlier \`ErpStatusBadge\` visual interpretation`],
+    [STATUS_BADGE_LEGACY_REFERENCE, `SUPERSEDED; ${STATUS_BADGE_REFERENCE_SHA}`],
     [AVATAR_TS, "'circle' | 'rounded' | 'square'; 'online' | 'away' | 'busy' | 'offline'; 'top-left'; 'bottom-right'; 'none' | 'pulse' | 'ping' | 'breathe'; 'none' | 'scale' | 'lift'"],
     [AVATAR_SCSS, '@media (prefers-reduced-motion: reduce) {}'],
     [AVATAR_PRESENCE, "class=\"avatar__presence-indicator\"; position='left']) .avatar__presence { top: 50%; left: 0; } position='right']) .avatar__presence { top: 50%; right: 0; } position='top-left']) .avatar__presence { top: 0; left: 0; } position='bottom-right']) .avatar__presence { right: 0; bottom: 0; }"],
@@ -358,6 +484,11 @@ function runSelfTest() {
     ['missing select reference SHA', fixture(new Map([[SELECT_CONTRACT, 'old reference']])), 'binding ERP-SELECT.html SHA'],
     ['missing select exact geometry', fixture(new Map([[SELECT_PANEL_TOKENS, '@mixin base {}']])), 'reference geometry'],
     ['native alert title tooltip', fixture(new Map([[ALERT_TS, 'readonly title = input.required<string>();']])), 'native host title'],
+    ['missing status-badge reference SHA', fixture(new Map([[STATUS_BADGE_CONTRACT, 'old reference']])), 'binding ERP-STATUS-BADGE.html SHA'],
+    ['missing status-badge reference tone', fixture(new Map([[STATUS_BADGE_TS, "'neutral'; 'success'; 'warning'; 'danger'; 'info'; 'soft' | 'solid' | 'outline' | 'ghost'; 'sm' | 'md' | 'lg' | 'xl'; 'square' | 'rounded' | 'pill'; 'content' | 'stretch'; readonly interactive = input(false; readonly selected = input(false; readonly removable = input(false; readonly selectedChange = output<boolean>(); readonly remove = output<void>()"]])), "'brand'"],
+    ['raw status-badge color', fixture(new Map([[STATUS_BADGE_SCSS, '#fff; @media (prefers-reduced-motion: reduce) {} status-badge-enter status-badge-pulse']])), 'raw reference colors'],
+    ['missing status-badge geometry', fixture(new Map([[STATUS_BADGE_TOKENS, '@mixin base {}']])), 'exact-reference geometry'],
+    ['current former Dribbble authority', fixture(new Map([[STATUS_BADGE_LEGACY_REFERENCE, 'current Dribbble reference']])), 'explicitly superseded'],
     ['missing avatar reduced motion', fixture(new Map([[AVATAR_SCSS, '']])), 'reduced-motion'],
     ['logical avatar positions', fixture(new Map([[AVATAR_PRESENCE, "inset-inline-start: 0; class=\"avatar__presence-indicator\";"]])), 'physical left/right'],
     ['motion on avatar positioning layer', fixture(new Map([[AVATAR_MOTION, ":host([data-avatar-presence-motion='pulse']) .avatar__presence { animation: pulse; }"]])), 'positioning layer'],
@@ -392,6 +523,18 @@ function runCheck() {
     [SELECT_CONTRACT, read(SELECT_CONTRACT)],
     [ALERT_TS, read(ALERT_TS)],
     [STATUS_BADGE_TS, read(STATUS_BADGE_TS)],
+    [STATUS_BADGE_TEMPLATE, read(STATUS_BADGE_TEMPLATE)],
+    [STATUS_BADGE_SCSS, read(STATUS_BADGE_SCSS)],
+    [STATUS_BADGE_TONE_FEEDBACK_SCSS, read(STATUS_BADGE_TONE_FEEDBACK_SCSS)],
+    [STATUS_BADGE_TONE_BRAND_SCSS, read(STATUS_BADGE_TONE_BRAND_SCSS)],
+    [STATUS_BADGE_VARIANTS_SCSS, read(STATUS_BADGE_VARIANTS_SCSS)],
+    [STATUS_BADGE_SIZES_SCSS, read(STATUS_BADGE_SIZES_SCSS)],
+    [STATUS_BADGE_STATES_SCSS, read(STATUS_BADGE_STATES_SCSS)],
+    [STATUS_BADGE_CONTENT_SCSS, read(STATUS_BADGE_CONTENT_SCSS)],
+    [STATUS_BADGE_MOTION_SCSS, read(STATUS_BADGE_MOTION_SCSS)],
+    [STATUS_BADGE_TOKENS, read(STATUS_BADGE_TOKENS)],
+    [STATUS_BADGE_CONTRACT, read(STATUS_BADGE_CONTRACT)],
+    [STATUS_BADGE_LEGACY_REFERENCE, read(STATUS_BADGE_LEGACY_REFERENCE)],
     [AVATAR_TS, read(AVATAR_TS)],
     [AVATAR_SCSS, read(AVATAR_SCSS)],
     [AVATAR_PRESENCE, read(AVATAR_PRESENCE)],

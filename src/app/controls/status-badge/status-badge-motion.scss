@@ -1,0 +1,38 @@
+@keyframes status-badge-enter {
+  0% { opacity: 0; transform: scale(0.72); }
+  72% { opacity: 1; transform: scale(1.06); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes status-badge-pulse {
+  0% { opacity: 0.68; transform: scale(1); }
+  100% { opacity: 0; transform: scale(var(--honesty-status-badge-pulse-scale)); }
+}
+
+@keyframes status-badge-check {
+  0% { opacity: 0; transform: scale(0.5) rotate(-18deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+:host {
+  animation: status-badge-enter var(--honesty-status-badge-entry-duration)
+    var(--honesty-status-badge-entry-easing) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host,
+  .status-badge__pulse,
+  .status-badge__check {
+    animation: none;
+  }
+
+  :host {
+    transition-duration: var(--honesty-status-badge-reduced-duration);
+  }
+}
+
+@media (prefers-contrast: more) {
+  :host {
+    border-width: calc(var(--honesty-status-badge-border-width) * 2);
+  }
+}

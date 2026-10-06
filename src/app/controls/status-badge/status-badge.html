@@ -1,6 +1,63 @@
-@if (icon()) {
+@if (interactive()) {
+  <erp-status-badge-action
+    kind="main"
+    [label]="label()"
+    [disabled]="disabled()"
+    [pressed]="selected()"
+    (action)="activate($event)"
+  />
+}
+
+@if (showDot()) {
+  <span class="status-badge__dot" aria-hidden="true">
+    @if (pulse()) {
+      <span class="status-badge__pulse"></span>
+    }
+  </span>
+}
+
+@if (image()) {
+  <img class="status-badge__image" [src]="image()!" alt="" />
+} @else if (icon()) {
   <span class="status-badge__icon" aria-hidden="true">
     <erp-icon [name]="icon()!" size="inherit" tone="inherit" />
   </span>
 }
-<erp-text type="span" size="inherit" tone="inherit" weight="medium">{{ label() }}</erp-text>
+
+@if (selected() && interactive()) {
+  <span class="status-badge__check" aria-hidden="true">
+    <erp-icon name="check" size="inherit" tone="inherit" strokeWidth="bold" />
+  </span>
+}
+
+<erp-text
+  class="status-badge__label"
+  type="span"
+  size="inherit"
+  tone="inherit"
+  weight="inherit"
+>
+  {{ label() }}
+</erp-text>
+
+@if (count() !== null) {
+  <erp-text
+    class="status-badge__count"
+    type="span"
+    size="inherit"
+    tone="inherit"
+    weight="inherit"
+    [attr.aria-label]="'العدد ' + count()"
+  >
+    {{ count() }}
+  </erp-text>
+}
+
+@if (removable()) {
+  <erp-status-badge-action
+    kind="remove"
+    [label]="'إزالة ' + label()"
+    [disabled]="disabled()"
+    (action)="removeBadge($event)"
+  />
+}

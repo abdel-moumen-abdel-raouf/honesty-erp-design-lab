@@ -1,0 +1,13 @@
+<button
+  type="button"
+  [class.status-badge-action__button--main]="kind() === 'main'"
+  [class.status-badge-action__button--remove]="kind() === 'remove'"
+  [attr.aria-label]="label()"
+  [attr.aria-pressed]="kind() === 'main' ? pressed() : null"
+  [disabled]="disabled()"
+  (click)="action.emit($event)"
+>
+  @if (kind() === 'remove') {
+    <erp-icon name="dismiss" size="inherit" tone="inherit" strokeWidth="bold" />
+  }
+</button>

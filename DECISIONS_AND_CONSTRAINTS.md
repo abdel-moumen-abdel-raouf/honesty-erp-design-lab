@@ -30,26 +30,27 @@ Binding Product Owner law:
 4. the next item is the lowest unresolved dependency, not simply the next row
    in historical planning.
 
-Latest completed authorized implementation is the bounded `ErpSelect Strict
-Rebuild Escalation`, entered from
-`2c68970831c95136dfab4faf36cc32078beb2f91`.
+Latest completed authorized implementation is the bounded `ErpStatusBadge
+Exact Reference Rebuild`, entered from
+`cc9a3d0305529aef94e370c862b01876dcba9d01`.
 
-`ERP-SELECT.html`, SHA-256
-`EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, is the
-single binding Select visual and behavioral authority. It supersedes the prior
-lowercase reference and conflicting V2/V3 Select interpretations. Geometry and
-behavior are copied exactly; palette values alone map through Honesty Semantic
-and Select Component Tokens.
+`ERP-STATUS-BADGE.html`, SHA-256
+`654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`, is the
+single binding StatusBadge visual and behavioral authority. It supersedes the
+old Dribbble reference, the accelerated no-reference waiver, and conflicting
+StatusBadge interpretations. Geometry and behavior are copied exactly; palette
+and font-family values alone map through Honesty ERP system contracts.
 
 The authoritative implementation contract is
-`src/app/controls/select/ERP_SELECT_REFERENCE_EXACT_V3.md`.
+`src/app/controls/status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md`.
 
-The rebuilt candidate passes 133/133 test files and 868/868 tests, both
+The rebuilt candidate passes 133/133 test files and 875/875 tests, both
 typechecks, production build, all governance, and zero warnings.
 
 Current active gate is Product Owner runtime/Light/Dark/RTL/narrow comparison of
-the rebuilt Select at `/controls/core-batch` against the binding reference.
-Browser runtime evidence does not confer visual acceptance. The Data/Table
+the rebuilt StatusBadge at `/controls/core-batch` against the binding reference.
+The previous Select candidate is not reopened. Browser runtime evidence does
+not confer visual acceptance. The Data/Table
 Visual Correction Wave remains unopened. Technical PASS is not visual freeze.
 Standalone EntityReview, Entity Wizard, workflow engine, DataPage,
 EntityDirectory, EntityDetail, CRUD/transaction patterns, Feature/Page

@@ -1,7 +1,28 @@
 # ErpStatusBadge V1
 
-`ErpStatusBadge` is a compact, noninteractive visual badge for semantic status text. It supports the controlled `neutral | success | warning | danger | info` tones, `sm | md | lg` sizes, and an optional semantic `ErpIcon`.
+`ErpStatusBadge` is the public status-indicator owner rebuilt from the exact
+Product Owner reference `ERP-STATUS-BADGE.html`. The authoritative contract is
+`ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md`.
 
-The badge does not become a button, emit interaction events, or automatically author `role="status"` or an `aria-live` region. The consuming feature owns live announcements when a status change must be announced.
+## Public behavior
 
-Implemented under the Product Owner accelerated-wave no-external-reference waiver and the existing Honesty ERP token/theme language. Technical green does not equal Product Owner visual acceptance.
+- Tones: `neutral | success | warning | danger | info | brand | pending | archived`.
+- Variants: `soft | solid | outline | ghost`.
+- Sizes: `sm | md | lg | xl` with exact reference geometry.
+- Shapes: reference-default `rounded`, plus bounded compatibility `square | pill`.
+- Widths: reference-default `content`, plus bounded compatibility `stretch`.
+- Optional anatomy: semantic icon, decorative image, dot/pulse, count, selected
+  check, uppercase label, and remove action.
+- Optional controlled interaction: `interactive`, `selected`, `badgeClick`, and
+  `selectedChange`.
+- Independent removal: `removable` and `remove`.
+- `disabled` suppresses every action.
+
+The badge is noninteractive by default and does not automatically author a live
+region. When interaction is explicitly enabled, native button semantics remain
+inside the internal StatusBadge action owner. Visible text uses `ErpText`; icons
+use `ErpIcon`.
+
+Light/Dark remains App-owned, direction is inherited, and reduced motion keeps
+the badge static but visible. Technical verification does not equal Product
+Owner visual acceptance.

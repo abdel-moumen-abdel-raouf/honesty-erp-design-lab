@@ -6,26 +6,27 @@ This document is the current execution/review state for the Product Owner's page
 
 It records Product Owner decisions, externally reviewed Git state, execution boundaries, and the next authorized action. It does not itself declare visual approval or freeze any component family.
 
-## Authoritative current review transition — 2026-10-06
+## Authoritative current review transition — 2026-10-07
 
-The Product Owner opened only the bounded `ErpSelect Strict Rebuild Escalation`
-from `2c68970831c95136dfab4faf36cc32078beb2f91`. Resolve the final implementation
-SHA directly from live Git.
+The Product Owner opened only the bounded `ErpStatusBadge Exact Reference
+Rebuild` from `cc9a3d0305529aef94e370c862b01876dcba9d01`. Resolve the final
+implementation SHA directly from live Git.
 
-`ERP-SELECT.html`, SHA-256
-`EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, is the
-single binding Select visual and behavioral authority. It supersedes all prior
-Select references and conflicting corrections; only palette values map to the
-Honesty token architecture. The authoritative implementation contract is
-`select/ERP_SELECT_REFERENCE_EXACT_V3.md`. Its technical gate passes 133/133
-test files and 868/868 tests, all governance, both typechecks, production build, and zero
-warnings.
+`ERP-STATUS-BADGE.html`, SHA-256
+`654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`, is the
+single binding StatusBadge visual and behavioral authority. It supersedes the
+previous Dribbble reference, the accelerated no-reference waiver, and all
+conflicting StatusBadge corrections. Only palette and font-family values map to
+Honesty ERP system contracts. The authoritative implementation contract is
+`status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md`. Its technical gate passes
+133/133 test files and 875/875 tests, all governance, both typechecks, production
+build, and zero warnings.
 
-The exact next gate is Product Owner runtime/Light/Dark/RTL/narrow comparison of
-the rebuilt Select at `/controls/core-batch`. Browser runtime evidence does not
-claim visual approval. The Data/Table Visual Correction Wave and every later
-implementation wave remain unopened. Technical PASS never equals visual
-approval.
+The exact next gate is Product Owner runtime/Light/Dark/RTL/LTR/narrow comparison
+of the rebuilt StatusBadge at `/controls/core-batch`. `ErpSelect` is not
+reopened. Browser runtime evidence does not claim visual approval. The
+Data/Table Visual Correction Wave and every later implementation wave remain
+unopened. Technical PASS never equals visual approval.
 
 ## Historical Git checkpoints — superseded snapshot
 

@@ -1,20 +1,21 @@
 # Next Component Reference Batch V1
 
-## Current transition — 2026-10-06
+## Current transition — 2026-10-07
 
 The four-component sequence below is historical. The current Product Owner
-authorization is only the bounded `ErpSelect Strict Rebuild Escalation`.
+authorization is only the bounded `ErpStatusBadge Exact Reference Rebuild`.
 
-`C:\Users\Misrtech\Downloads\ERP-SELECT.html`, SHA-256
-`EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, is the
-single binding visual and behavioral Select authority. It supersedes the former
-`erp-select.html` reference and all conflicting Select interpretations. The
-current contract is `select/ERP_SELECT_REFERENCE_EXACT_V3.md`.
+`C:\Users\Misrtech\Downloads\ERP-STATUS-BADGE.html`, SHA-256
+`654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`, is the
+single binding visual and behavioral StatusBadge authority. It supersedes the
+former Dribbble reference, the no-reference waiver, and all conflicting
+StatusBadge interpretations. The current contract is
+`status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md`.
 
-The rebuilt candidate is technically green at 133/133 test files and 868/868
-tests. The exact next action is Product Owner runtime/Light/Dark/RTL/narrow
-comparison at `/controls/core-batch`. No Data/Table Visual Correction Wave or
-later component reference batch is authorized.
+The rebuilt candidate is technically green at 133/133 test files and 875/875
+tests. The exact next action is Product Owner runtime/Light/Dark/RTL/LTR/narrow
+comparison at `/controls/core-batch`. `ErpSelect` is not reopened. No Data/Table
+Visual Correction Wave or later component reference batch is authorized.
 
 ## Historical Product Owner decision — superseded execution order
 

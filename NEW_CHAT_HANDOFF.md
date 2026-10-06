@@ -1,28 +1,31 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
-## 0. Authoritative current handoff — 2026-10-06
+## 0. Authoritative current handoff — 2026-10-07
 
-The bounded `ErpSelect Strict Rebuild Escalation` started from
-`2c68970831c95136dfab4faf36cc32078beb2f91`. Resolve final local and remote SHAs
+The bounded `ErpStatusBadge Exact Reference Rebuild` started from
+`cc9a3d0305529aef94e370c862b01876dcba9d01`. Resolve final local and remote SHAs
 at session start.
 
-The Product Owner made `C:\Users\Misrtech\Downloads\ERP-SELECT.html`, SHA-256
-`EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, the
-single binding visual and behavioral authority for `ErpSelect`. It supersedes
-the previous lowercase reference and every conflicting Select interpretation.
-Only reference colors are translated to Honesty Semantic and Component Tokens.
-The authoritative implementation contract is
-`src/app/controls/select/ERP_SELECT_REFERENCE_EXACT_V3.md`.
+The Product Owner made
+`C:\Users\Misrtech\Downloads\ERP-STATUS-BADGE.html`, SHA-256
+`654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`, the
+single binding visual and behavioral authority for `ErpStatusBadge`. It
+supersedes the Dribbble reference, the accelerated no-reference waiver, and all
+conflicting StatusBadge interpretations. Only reference colors and font family
+are translated to Honesty ERP Semantic, Typography, and Component Tokens. The
+authoritative implementation contract is
+`src/app/controls/status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md`.
 
-The rebuilt Select is technically green at 133/133 test files and 868/868
+The rebuilt StatusBadge is technically green at 133/133 test files and 875/875
 tests, all lint/governance gates, both typechecks, production build, and zero
-warnings. Initial bundle is 376.12 kB / 85.61 kB estimated transfer; Core Batch
-lazy chunk is 58.86 kB / 11.22 kB.
+warnings. Initial bundle is 376.12 kB / 85.65 kB estimated transfer; Core Batch
+lazy chunk is 64.25 kB / 12.07 kB.
 
-The exact next action is Product Owner runtime/Light/Dark/RTL/narrow comparison
-of the rebuilt Select at `/controls/core-batch` against `ERP-SELECT.html`.
-Browser runtime evidence is implementation evidence only, not Product Owner
-visual acceptance. The Data/Table Visual Correction Wave is not opened.
+The exact next action is Product Owner runtime/Light/Dark/RTL/LTR/narrow
+comparison of the rebuilt StatusBadge at `/controls/core-batch` against
+`ERP-STATUS-BADGE.html`. Browser runtime evidence is implementation evidence
+only, not Product Owner visual acceptance. `ErpSelect` is not reopened. The
+Data/Table Visual Correction Wave is not opened.
 Technical PASS never equals visual acceptance.
 Standalone EntityReview, Entity Wizard, workflow engine, DataPage,
 EntityDirectory, EntityDetail, CRUD/transaction patterns, Feature/Page

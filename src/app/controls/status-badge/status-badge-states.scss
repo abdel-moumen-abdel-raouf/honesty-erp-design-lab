@@ -1,0 +1,37 @@
+:host {
+  transition:
+    background-color var(--honesty-status-badge-motion),
+    border-color var(--honesty-status-badge-motion),
+    color var(--honesty-status-badge-motion),
+    box-shadow var(--honesty-status-badge-motion),
+    transform var(--honesty-status-badge-motion);
+}
+
+:host(.status-badge--interactive) { cursor: pointer; }
+
+:host(.status-badge--interactive:hover) {
+  z-index: 1;
+  box-shadow: var(--honesty-status-badge-elevation-hover);
+  transform: translateY(var(--honesty-status-badge-hover-lift));
+}
+
+:host(.status-badge--interactive:active) {
+  box-shadow: none;
+  transform: scale(var(--honesty-status-badge-active-scale));
+}
+
+:host(.status-badge--selected) {
+  border-color: var(--honesty-status-badge-tone-border);
+  box-shadow: var(--honesty-status-badge-selected-shadow);
+}
+
+:host(.status-badge--selected[data-status-badge-variant='solid']) {
+  box-shadow: var(--honesty-status-badge-solid-shadow);
+}
+
+:host(.status-badge--disabled) {
+  filter: saturate(var(--honesty-status-badge-disabled-saturation));
+  cursor: not-allowed;
+  opacity: var(--honesty-status-badge-disabled-opacity);
+  pointer-events: none;
+}

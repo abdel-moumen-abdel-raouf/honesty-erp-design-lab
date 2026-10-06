@@ -13,21 +13,25 @@ commit to `origin/main`; records progress; and then advances to the next phase.
 The roadmap does not declare visual approval, close Basic Controls, or freeze a
 family. Those decisions remain with the Product Owner and ChatGPT after review.
 
-## Current exact-reference execution state — 2026-10-06
+## Current exact-reference execution state — 2026-10-07
 
-The Product Owner opened only the bounded `ErpSelect Strict Rebuild Escalation`
-from `2c68970831c95136dfab4faf36cc32078beb2f91`. `ERP-SELECT.html`, SHA-256
-`EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, is the
-single binding Select visual and behavioral authority and supersedes all prior
-Select reference interpretations. Only reference palette values are translated
-to Honesty tokens.
+The Product Owner opened only the bounded `ErpStatusBadge Exact Reference
+Rebuild` from `cc9a3d0305529aef94e370c862b01876dcba9d01`.
+`ERP-STATUS-BADGE.html`, SHA-256
+`654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`, is the
+single binding StatusBadge visual and behavioral authority. It supersedes the
+previous Dribbble reference, the accelerated no-reference waiver, and all prior
+StatusBadge visual interpretations. Only reference colors and font families are
+translated to Honesty ERP system contracts.
 
-The authoritative contract is `select/ERP_SELECT_REFERENCE_EXACT_V3.md`.
-The rebuilt candidate passes 133/133 test files and 868/868 tests, both
-typechecks, production build, all governance, and zero warnings.
+The authoritative contract is
+`status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md`. The rebuilt candidate
+passes 133/133 test files and 875/875 tests, both typechecks, production build,
+all governance, and zero warnings.
 
-The exact next action is Product Owner runtime/Light/Dark/RTL/narrow comparison
-at `/controls/core-batch`. Browser evidence does not claim visual approval. The
+The exact next action is Product Owner runtime/Light/Dark/RTL/LTR/narrow
+comparison at `/controls/core-batch`. `ErpSelect` is not reopened. Browser
+evidence does not claim visual approval. The
 Data/Table Visual Correction Wave, DataPage, Entity patterns, Feature/Page
 migration, and every unlisted family remain unopened.
 

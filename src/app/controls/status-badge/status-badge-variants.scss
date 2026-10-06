@@ -1,0 +1,10 @@
+@use '../../../styles/foundation/components/status-badge' as tokens;
+
+:host { @include tokens.variant-soft; }
+:host([data-status-badge-variant='solid']) { @include tokens.variant-solid; }
+:host([data-status-badge-variant='outline']) { @include tokens.variant-outline; }
+:host([data-status-badge-variant='ghost']) { @include tokens.variant-ghost; }
+
+:host([data-status-badge-variant='ghost']:hover) {
+  background: var(--honesty-status-badge-tone-bg);
+}
