@@ -1,0 +1,12 @@
+@use '../../../styles/foundation/components/select' as tokens;
+
+:host {
+  @include tokens.base;
+}
+
+:host([data-select-reference-size='sm']) { @include tokens.size-sm; }
+:host([data-select-reference-size='md']) { @include tokens.size-md; }
+:host([data-select-reference-size='lg']) { @include tokens.size-lg; }
+:host([data-select-appearance='outline']) { @include tokens.appearance-outline; }
+:host([data-select-appearance='filled']) { @include tokens.appearance-filled; }
+:host([data-select-appearance='ghost']) { @include tokens.appearance-ghost; }

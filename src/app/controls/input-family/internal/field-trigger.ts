@@ -27,6 +27,10 @@ export class ErpFieldTrigger {
   readonly ariaHasPopup = input<string | null>(null);
   readonly ariaControls = input<string | null>(null);
   readonly ariaExpanded = input<boolean | null>(null);
+  readonly semanticRole = input<'combobox' | null>(null);
+  readonly ariaActiveDescendant = input<string | null>(null);
+  readonly ariaAutocomplete = input<'list' | 'none' | null>(null);
+  readonly ariaRequired = input<boolean | null>(null);
 
   readonly activated = output<MouseEvent>();
   readonly keyPressed = output<KeyboardEvent>();

@@ -1,4 +1,35 @@
-@if (mode() === 'inline') {
+@if (mode() === 'inline' && presentation() === 'select-panel') {
+  <span class="search-box__select-panel-editor">
+    @if (effectiveLeadingIcon()) {
+      <erp-icon
+        class="search-box__select-panel-icon"
+        [name]="effectiveLeadingIcon()!"
+        size="inherit"
+        tone="inherit"
+        aria-hidden="true"
+      />
+    }
+    <input
+      #nativeInput
+      class="search-box__select-panel-input"
+      type="search"
+      [attr.aria-label]="label()"
+      [attr.name]="name()"
+      [attr.form]="form()"
+      [value]="currentValue()"
+      [placeholder]="placeholder() ?? ''"
+      [disabled]="fieldEffectiveDisabled()"
+      [readOnly]="readonly()"
+      [required]="required()"
+      [attr.minlength]="minLength()"
+      [attr.autocomplete]="autocomplete()"
+      [attr.aria-invalid]="effectiveFieldStatus() === 'danger' ? 'true' : null"
+      (input)="handleInlineInput($event)"
+      (focus)="handleTriggerFocus()"
+      (blur)="handleTriggerBlur()"
+    />
+  </span>
+} @else if (mode() === 'inline') {
   <erp-field-frame
     [label]="label()"
     [controlId]="controlId"

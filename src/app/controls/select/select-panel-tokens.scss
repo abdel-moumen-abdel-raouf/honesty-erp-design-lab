@@ -1,0 +1,5 @@
+@use '../../../styles/foundation/components/select-panel' as tokens;
+
+:host {
+  @include tokens.base;
+}

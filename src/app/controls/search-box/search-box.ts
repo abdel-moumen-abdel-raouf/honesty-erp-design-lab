@@ -43,6 +43,7 @@ let nextSearchBoxId = 0;
 type ErpSearchBoxPopupPhase = 'closed' | 'entering' | 'open' | 'leaving';
 
 export type ErpSearchBoxMode = 'modal' | 'dropdown' | 'inline';
+export type ErpSearchBoxPresentation = 'field' | 'select-panel';
 
 export type ErpSearchBoxOption = ErpItemPickerOption;
 
@@ -75,6 +76,7 @@ const openSearchBoxes: ErpSearchBox[] = [];
   templateUrl: './search-box.html',
   styleUrls: [
     './search-box.scss',
+    './search-box-select-panel.scss',
     './search-box-popup.scss',
     './search-box-popup-facets.scss',
   ],
@@ -86,10 +88,12 @@ const openSearchBoxes: ErpSearchBox[] = [];
     '[attr.data-search-box-popup-phase]': 'popupPhase()',
     '[attr.data-search-box-animation]': 'activeAnimation()',
     '[attr.data-search-box-resolved-placement]': 'resolvedPlacement()',
+    '[attr.data-search-box-presentation]': 'presentation()',
   },
 })
 export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
   readonly mode = input<ErpSearchBoxMode>('dropdown');
+  readonly presentation = input<ErpSearchBoxPresentation>('field');
   readonly items = input<readonly ErpSearchBoxOption[]>([]);
   readonly placeholder = input<string | null>(null);
   readonly readonly = input(false, {transform: booleanAttribute});
@@ -193,6 +197,10 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
     this.detachDismissalListeners();
     this.controller?.destroy();
     this.activeModalRef?.dismiss('destroyed');
+  }
+
+  focusEditor(): void {
+    this.nativeInput()?.nativeElement.focus();
   }
 
   protected override normalizeValue(value: unknown): string {

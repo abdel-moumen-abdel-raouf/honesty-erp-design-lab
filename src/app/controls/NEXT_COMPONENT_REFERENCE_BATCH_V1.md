@@ -3,22 +3,18 @@
 ## Current transition — 2026-10-06
 
 The four-component sequence below is historical. The current Product Owner
-authorization is Core Components Visual Correction Wave V3, which keeps open
-Select plus seven other Core owners and adds AvatarPicker. V2 has a technically
-green baseline; V3 is technically green at 133/133 test files and 862/862 tests. The bounded
-external-review correction separates Table selection/activation, fixes
-Pagination labeling, makes Avatar positioning physical and motion-safe, and
-makes Select reuse approved lower owners.
+authorization is only the bounded `ErpSelect Exact Reference Rebuild`.
 
-The current reference authority is recorded in
-`CORE_COMPONENT_VISUAL_CORRECTION_V2.md`, `CORE_COMPONENT_VISUAL_CORRECTION_V3.md`, and the Select, StatusBadge, Avatar,
-AvatarPicker, and Tabs contracts. Select uses the local `erp-select.html`
-reference with SHA
-`5A31FC10A3D1208BF64E35EB5139823E48F8E2BF1D0190D07DD5DB5DBC4DF23B`.
+`C:\Users\Misrtech\Downloads\ERP-SELECT.html`, SHA-256
+`EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, is the
+single binding visual and behavioral Select authority. It supersedes the former
+`erp-select.html` reference and all conflicting Select interpretations. The
+current contract is `select/ERP_SELECT_REFERENCE_EXACT_V2.md`.
 
-The exact next action is grouped Product Owner runtime/Light/Dark/RTL/narrow
-review at `/controls/core-batch`. No Data/Table Visual Correction Wave or later
-component reference batch is authorized. Technical PASS is not visual approval.
+The rebuilt candidate is technically green at 133/133 test files and 866/866
+tests. The exact next action is Product Owner runtime/Light/Dark/RTL/narrow
+comparison at `/controls/core-batch`. No Data/Table Visual Correction Wave or
+later component reference batch is authorized.
 
 ## Historical Product Owner decision — superseded execution order
 

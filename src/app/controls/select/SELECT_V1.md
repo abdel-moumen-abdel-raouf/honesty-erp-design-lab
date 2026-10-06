@@ -1,4 +1,10 @@
-# ErpSelect V1 Reference Contract
+# ErpSelect V1 Reference Contract — Historical / Superseded
+
+> Superseded on 2026-10-06 by
+> `ERP_SELECT_REFERENCE_EXACT_V2.md`. The Product Owner-supplied
+> `C:\Users\Misrtech\Downloads\ERP-SELECT.html` is now the single binding
+> visual and behavioral authority. This file remains only as historical audit
+> evidence and must not drive implementation.
 
 ## Authority
 

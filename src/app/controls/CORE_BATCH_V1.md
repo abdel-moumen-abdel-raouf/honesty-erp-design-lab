@@ -4,7 +4,7 @@ This batch implements eight components under the Product Owner-authorized groupe
 
 | Component | Reference found | Authority |
 | --- | --- | --- |
-| ErpSelect | Yes: `erp-select.html` (`5A31FC10A3D1208BF64E35EB5139823E48F8E2BF1D0190D07DD5DB5DBC4DF23B`) | Exact structure/geometry/behavior adapted to Honesty ERP tokens and ownership |
+| ErpSelect | Yes: `ERP-SELECT.html` (`EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`) | Single binding exact structure/geometry/behavior authority; colors alone map to Honesty ERP tokens |
 | ErpStatusBadge | No | Product Owner accelerated-wave no-external-reference waiver |
 | ErpAlert | No | Product Owner accelerated-wave no-external-reference waiver |
 | ErpSkeleton | No | Product Owner accelerated-wave no-external-reference waiver |

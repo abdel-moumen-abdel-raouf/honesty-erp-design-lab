@@ -14,48 +14,41 @@ Branch:
 
 ## Authoritative current execution state — 2026-10-06
 
-Product Owner Core Components Visual Correction Wave V3 started from
-`13586508b3bbdb6d86225633e0837f20cd965a7c`. Resolve live local and remote SHAs
-directly; this document is synchronized in the same bounded implementation
+The Product Owner's bounded `ErpSelect Exact Reference Rebuild` started from
+`58bbeb82c97f809e420fe04c41dc6bbfd0691b1e`. Resolve live local and remote SHAs
+directly; source and continuity are synchronized in the same implementation
 commit.
 
-The bounded external-review correction started from
-`ae5b6e2664c1d664f61ee9c745a54b8e0008989a`. It separates Table row activation
-from checkbox selection, gives Pagination one visible horizontal page-size
-label plus a genuine visually hidden Select label, makes all eight Avatar
-presence names physical in both directions while isolating motion from
-positioning, and replaces Select-private search/menu authoring with the
-approved `ErpSearchBox` and internal action-menu owners.
+`C:\Users\Misrtech\Downloads\ERP-SELECT.html`, SHA-256
+`EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, is the
+single binding visual and behavioral authority for `ErpSelect`. It supersedes
+the former lowercase `erp-select.html` reference and every conflicting Select
+interpretation. Geometry, hierarchy, states, selection, grouping, search,
+sorting, keyboard behavior, and motion follow the new reference; only palette
+values are translated through Honesty Semantic and Select Component Tokens.
 
-The Product Owner explicitly reopened `ErpSelect`, `ErpStatusBadge`, `ErpAlert`,
-`ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`, and `ErpPagination` after
-visual review, and authorized the new `ErpAvatarPicker`. The correction now
-implements the supplied Select reference contract, downloaded StatusBadge,
-Avatar, Tabs, and AvatarPicker reference evidence, the 40 supplied avatar PNG
-assets plus manifest, bottom-up owner reuse, and the rebuilt
-`/controls/core-batch` evidence surface.
-
-Technical verification for this corrected V3 candidate passed 133/133 test files and
-862/862 tests, all lint/governance checks, both TypeScript typechecks, production
-build, and zero Angular/build warnings. The production initial bundle is
-375.75 kB / 85.43 kB estimated transfer; the Core Batch lazy chunk is 54.76 kB
-/ 10.57 kB estimated transfer. Component Token governance reports 82 concrete
-modules and route governance reports 28 routed templates.
+Technical verification passes 133/133 test files and 866/866 tests, all
+lint/governance checks, both TypeScript typechecks, production build, and zero
+Angular/build warnings. The production initial bundle is 376.10 kB / 85.69 kB
+estimated transfer; the Core Batch lazy chunk is 56.97 kB / 10.88 kB estimated
+transfer. Component Token governance reports 83 concrete modules and route
+governance reports 28 routed templates.
 
 Product Owner visual state and immediate next action:
 
-- the eight reopened owners and new AvatarPicker remain pending grouped
-  Product Owner runtime/Light/Dark/RTL/narrow review at `/controls/core-batch`;
-- browser runtime evidence on `/controls/core-batch` verified the requested
-  Table separation, the single horizontal Pagination label, identical physical
-  Avatar positions in RTL/LTR with independent pulse motion, Select popup/trigger
-  width equality, SearchBox-based filtering, and action-menu sorting;
+- `ErpSelect` remains pending Product Owner runtime/Light/Dark/RTL/narrow review
+  at `/controls/core-batch` against the new exact reference;
+- browser runtime evidence verifies exact control/popup width equality, 30/38/46
+  px size heights, 6/8/12 px radii, searchable grouped options, single/multiple
+  selection, footer actions, images/icons/descriptions, disabled state, and
+  Light/Dark plus RTL/LTR operation;
+- sorting is a data-order pipeline as in the binding reference; the superseded
+  visual sort toolbar and secondary menu are removed;
 - technical green does not equal Product Owner visual approval or freeze;
 - the exact next action is the grouped Product Owner review of this corrected
   Core surface;
-- the Data/Table Visual Correction Wave is not opened. `ErpSmartTable` received
-  compatibility-only delegation changes required by the lower `ErpTable`
-  contract.
+- the Data/Table Visual Correction Wave is not opened and no other Core owner is
+  redesigned by this bounded task.
 
 Core, Data/Table, Forms, Entity Form Engine, and Shell remain prior technically
 green candidates, but their Product Owner visual acceptance is not inferred.

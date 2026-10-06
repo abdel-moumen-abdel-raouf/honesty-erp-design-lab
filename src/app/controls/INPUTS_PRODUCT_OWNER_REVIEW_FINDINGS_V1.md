@@ -5,26 +5,19 @@
 The findings below remain an auditable historical Product Owner review record;
 they are not current implementation authorization.
 
-The latest Product Owner visual review explicitly reopened `ErpSelect`,
-`ErpStatusBadge`, `ErpAlert`, `ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`,
-and `ErpPagination`, and authorized `ErpAvatarPicker`. Core Visual Correction
-V3 preserves those findings and passes 133/133 test files, 862/862 tests, all
+The latest Product Owner decision makes `ERP-SELECT.html`, SHA-256
+`EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, the
+single binding visual and behavioral authority for `ErpSelect`. It supersedes
+the prior lowercase reference and conflicting Select findings. The exact
+contract is `select/ERP_SELECT_REFERENCE_EXACT_V2.md`.
+
+The rebuilt candidate passes 133/133 test files and 866/866 tests, all
 governance, both typechecks, production build, and zero warnings.
 
-The bounded external-review follow-up from
-`ae5b6e2664c1d664f61ee9c745a54b8e0008989a` closes Table intent separation,
-Pagination accessible one-label composition, Avatar physical position/motion
-layering, and Select lower-owner hierarchy gaps. Its gate passes 133/133 test
-files and 853/853 tests with zero warnings. The subsequent V3 correction entered
-from `13586508b3bbdb6d86225633e0837f20cd965a7c`; its current contract is
-`CORE_COMPONENT_VISUAL_CORRECTION_V3.md`.
-
-The exact next action is grouped Product Owner runtime/Light/Dark/RTL/narrow
-review of `/controls/core-batch`. Runtime browser evidence now exists for the
-four bounded gaps, but no Product Owner visual acceptance is claimed. The
-Data/Table Visual Correction Wave and all later unlisted work remain unopened;
-SmartTable changes are compatibility-only. Technical PASS does not equal visual
-approval.
+The exact next action is Product Owner runtime/Light/Dark/RTL/narrow comparison
+of the rebuilt Select at `/controls/core-batch`. Runtime browser evidence does
+not confer Product Owner visual acceptance. The Data/Table Visual Correction
+Wave and all later unlisted work remain unopened.
 
 ## Historical Inputs review status — superseded snapshot
 

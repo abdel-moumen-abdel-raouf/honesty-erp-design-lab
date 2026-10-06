@@ -10,25 +10,49 @@
     <erp-section>
       <erp-stack gap="default">
         <erp-text type="heading-2">ErpSelect</erp-text>
+        <erp-text type="paragraph" tone="secondary">
+          مصفوفة مرجعية مخصصة للحالة المغلقة والمفتوحة، والبحث، والتجميع، والاختيار
+          الفردي والمتعدد، والأحجام، والمظاهر، والتعطيل.
+        </erp-text>
         <erp-stack gap="default">
-          <erp-select class="core-select--150" label="عرض 150" [options]="employeeOptions" />
-          <erp-select class="core-select--240" label="عرض 240" [options]="employeeOptions" />
-          <erp-select class="core-select--400" label="عرض 400" [options]="employeeOptions" />
-          <erp-select class="core-select--full" label="عرض كامل" [options]="employeeOptions" />
+          <erp-select class="core-select--150" label="عرض 150" [options]="employeeOptions" searchable />
+          <erp-select class="core-select--240" label="عرض 240" [options]="employeeOptions" searchable />
+          <erp-select class="core-select--400" label="عرض 400" [options]="employeeOptions" searchable />
+          <erp-select class="core-select--full" label="عرض كامل" [options]="employeeOptions" searchable />
         </erp-stack>
         <erp-grid [columns]="2" gap="lg" responsive="auto">
           <erp-select
             label="الموظف المسؤول"
             [options]="employeeOptions"
             [(ngModel)]="selectedEmployee"
+            searchable
+            groupBy="group"
             helperText="صورة أو أيقونة ووصف ومجموعة وحالة تعطيل"
           />
           <erp-select
             label="فريق المراجعة"
             [options]="employeeOptions"
+            [(ngModel)]="selectedReviewTeam"
             multiple
             selectSize="lg"
+            searchable
+            groupBy="group"
+            selectAll
+            [maxChips]="2"
             placeholder="اختر أعضاء الفريق"
+          />
+          <erp-select
+            label="اختيار ممتلئ"
+            [options]="employeeOptions"
+            selectAppearance="filled"
+            placeholder="اختر من القائمة"
+          />
+          <erp-select
+            label="اختيار شفاف"
+            [options]="employeeOptions"
+            selectAppearance="ghost"
+            placement="top"
+            placeholder="تفتح القائمة إلى أعلى"
           />
           <erp-select label="حالة مقفلة" [options]="employeeOptions" disabled />
           @for (size of selectSizes; track size) {
@@ -39,6 +63,26 @@
               placeholder="اختر موظفًا"
             />
           }
+        </erp-grid>
+        <erp-grid [columns]="2" gap="lg" responsive="auto">
+          <erp-stack data-select-direction-evidence="rtl" dir="rtl" gap="tight">
+            <erp-text type="label">RTL</erp-text>
+            <erp-select
+              label="اختيار عربي"
+              [options]="employeeOptions"
+              searchable
+              groupBy="group"
+            />
+          </erp-stack>
+          <erp-stack data-select-direction-evidence="ltr" dir="ltr" gap="tight">
+            <erp-text type="label">LTR</erp-text>
+            <erp-select
+              label="Latin direction"
+              [options]="employeeOptions"
+              searchable
+              groupBy="group"
+            />
+          </erp-stack>
         </erp-grid>
       </erp-stack>
     </erp-section>

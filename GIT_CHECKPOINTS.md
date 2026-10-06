@@ -9,7 +9,25 @@ Always resolve live `origin/main` directly at session start. This file records
 named checkpoints; it does not claim that its own latest docs SHA is an eternal
 repository HEAD.
 
-## Current Core Visual Correction V3 checkpoint — 2026-10-06
+## Current ErpSelect exact-reference checkpoint — 2026-10-06
+
+Entry checkpoint:
+
+- `58bbeb82c97f809e420fe04c41dc6bbfd0691b1e`
+
+The bounded implementation commit is `fix(select): rebuild from exact Product
+Owner reference`; resolve its final SHA from live `main` because this file is
+committed with it. Its canonical gate passes 133/133 test files, 866/866 tests,
+both typechecks, production build, every governance check, and zero warnings.
+Initial bundle: 376.10 kB / 85.69 kB estimated transfer. Core Batch lazy chunk:
+56.97 kB / 10.88 kB.
+
+Binding reference: `ERP-SELECT.html`, SHA-256
+`EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`.
+Product Owner visual acceptance remains pending and the Data/Table Visual
+Correction Wave remains unopened.
+
+## Historical Core Visual Correction V3 checkpoint — superseded Select state
 
 V3 correction entry checkpoint:
 

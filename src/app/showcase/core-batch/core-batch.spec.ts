@@ -8,6 +8,16 @@ describe('CoreBatch', () => {
 
     expect(fixture.nativeElement.querySelectorAll('erp-section')).toHaveLength(9);
     expect(fixture.nativeElement.querySelector('erp-select')).not.toBeNull();
+    expect(
+      fixture.nativeElement.querySelector(
+        'erp-select[searchable][groupBy="group"]',
+      ),
+    ).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('erp-select[multiple][selectAll]')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('erp-select[selectAppearance="filled"]')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('erp-select[selectAppearance="ghost"]')).not.toBeNull();
+    expect(fixture.nativeElement.querySelectorAll('[data-select-direction-evidence] erp-select'))
+      .toHaveLength(2);
     expect(fixture.nativeElement.querySelector('erp-avatar-picker')).not.toBeNull();
     expect(fixture.nativeElement.querySelector('erp-review-core-table erp-table')).not.toBeNull();
     expect(fixture.nativeElement.querySelector('erp-pagination')).not.toBeNull();

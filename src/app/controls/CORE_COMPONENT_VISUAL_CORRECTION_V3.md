@@ -1,5 +1,9 @@
 # Core Components Visual Correction V3
 
+> Historical Core correction record. Its ErpSelect reference and Select-specific
+> contracts are superseded by `select/ERP_SELECT_REFERENCE_EXACT_V2.md` and the
+> Product Owner's binding `ERP-SELECT.html` decision.
+
 ## Authority and boundary
 
 This bounded correction entered from
@@ -17,7 +21,7 @@ gate remains grouped runtime/Light/Dark/RTL/narrow Product Owner review at
 
 | Owner | Reference authority | Treatment |
 | --- | --- | --- |
-| ErpSelect | `erp-select.html`, SHA-256 `5A31FC10A3D1208BF64E35EB5139823E48F8E2BF1D0190D07DD5DB5DBC4DF23B` | Exact hierarchy and geometry adapted to approved ERP owners and tokens |
+| ErpSelect | Historical `erp-select.html`, SHA-256 `5A31FC10A3D1208BF64E35EB5139823E48F8E2BF1D0190D07DD5DB5DBC4DF23B` | SUPERSEDED by `ERP-SELECT.html`, SHA-256 `EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D` |
 | ErpStatusBadge | Product Owner Dribbble status-badge reference | Compact max-content status geometry; ERP semantic feedback colors remain authoritative |
 | ErpAlert | Product Owner runtime finding | Bounded native-tooltip removal; Tooltip-wrapped ERP action remains authoritative |
 | ErpSkeleton | Product Owner animated skeleton reference | Visible tokenized surface and moving shimmer; static-but-visible reduced motion |
@@ -29,11 +33,9 @@ gate remains grouped runtime/Light/Dark/RTL/narrow Product Owner review at
 
 ## Corrected contracts
 
-- Select popup inline size follows the visible FieldFrame control at 150 px,
-  240 px, 400 px, and full-width evidence sizes. Popup search keeps an explicit
-  `searchLabel` separate from placeholder text. Selected values preserve image
-  or semantic-icon identity. Sort choices expose distinct source/ascending/
-  descending icons and render inside an ERP surface.
+- Historical Select-specific text in this section is superseded. The current
+  exact contract is `select/ERP_SELECT_REFERENCE_EXACT_V2.md`; sorting is a
+  data-order pipeline and has no visual toolbar or secondary sort menu.
 - StatusBadge is max-content by default, adds `xl`, supports
   `square | rounded | pill`, and exposes explicit content/stretch width modes.
 - Alert suppresses native host `title`; its only explanatory close surface is

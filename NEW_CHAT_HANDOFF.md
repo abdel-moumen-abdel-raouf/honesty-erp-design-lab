@@ -2,36 +2,26 @@
 
 ## 0. Authoritative current handoff — 2026-10-06
 
-Product Owner Core Components Visual Correction Wave V3 started from
-`13586508b3bbdb6d86225633e0837f20cd965a7c`. Resolve final local and remote SHAs
+The bounded `ErpSelect Exact Reference Rebuild` started from
+`58bbeb82c97f809e420fe04c41dc6bbfd0691b1e`. Resolve final local and remote SHAs
 at session start.
 
-The bounded external-review gap correction started from
-`ae5b6e2664c1d664f61ee9c745a54b8e0008989a`. It fixes only Table intent
-separation, Pagination label composition, Avatar physical position/motion
-layering, and Select lower-owner hierarchy.
+The Product Owner made `C:\Users\Misrtech\Downloads\ERP-SELECT.html`, SHA-256
+`EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, the
+single binding visual and behavioral authority for `ErpSelect`. It supersedes
+the previous lowercase reference and every conflicting Select interpretation.
+Only reference colors are translated to Honesty Semantic and Component Tokens.
 
-The Product Owner reopened `ErpSelect`, `ErpStatusBadge`, `ErpAlert`,
-`ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`, and `ErpPagination`, and
-authorized the new `ErpAvatarPicker`. The corrected V3 implementation is technically
-green at 133/133 test files and 862/862 tests, all lint/governance gates, both
-typechecks, production build, and zero warnings. Initial bundle is 375.75 kB /
-85.43 kB estimated transfer; Core Batch lazy chunk is 54.76 kB / 10.57 kB.
+The rebuilt Select is technically green at 133/133 test files and 866/866
+tests, all lint/governance gates, both typechecks, production build, and zero
+warnings. Initial bundle is 376.10 kB / 85.69 kB estimated transfer; Core Batch
+lazy chunk is 56.97 kB / 10.88 kB.
 
-The corrected source follows the Product Owner reference contracts documented
-in `CORE_COMPONENT_VISUAL_CORRECTION_V2.md`, the current bounded V3 contract in
-`CORE_COMPONENT_VISUAL_CORRECTION_V3.md`, and the per-owner reference files.
-Forty supplied avatar PNGs plus manifest are stored under
-`public/assets/honesty-erp-avatars/users`; AvatarPicker composes existing Tabs
-and Avatar owners. Table composes CheckBox and SortHeader, Pagination composes
-Select, and Alert keeps the Tooltip-wrapped IconButton path.
-
-The exact next action is Product Owner grouped runtime/Light/Dark/RTL/narrow
-review of `/controls/core-batch`. The execution environment's browser
-runtime verified the requested gap behaviors, but that evidence is not Product
-Owner visual acceptance. The
-Data/Table Visual Correction Wave is not opened; SmartTable changes are lower-
-owner compatibility only. Technical PASS never equals visual acceptance.
+The exact next action is Product Owner runtime/Light/Dark/RTL/narrow comparison
+of the rebuilt Select at `/controls/core-batch` against `ERP-SELECT.html`.
+Browser runtime evidence is implementation evidence only, not Product Owner
+visual acceptance. The Data/Table Visual Correction Wave is not opened.
+Technical PASS never equals visual acceptance.
 Standalone EntityReview, Entity Wizard, workflow engine, DataPage,
 EntityDirectory, EntityDetail, CRUD/transaction patterns, Feature/Page
 migration, and every subsequent wave remain unopened.

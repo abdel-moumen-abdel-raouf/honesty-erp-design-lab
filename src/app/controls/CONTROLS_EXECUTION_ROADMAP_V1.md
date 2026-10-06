@@ -13,29 +13,22 @@ commit to `origin/main`; records progress; and then advances to the next phase.
 The roadmap does not declare visual approval, close Basic Controls, or freeze a
 family. Those decisions remain with the Product Owner and ChatGPT after review.
 
-## Current accelerated execution state — 2026-10-06
+## Current exact-reference execution state — 2026-10-06
 
-Product Owner Core Components Visual Correction Wave V3, entered from
-`13586508b3bbdb6d86225633e0837f20cd965a7c`, keeps open exactly `ErpSelect`,
-`ErpStatusBadge`, `ErpAlert`, `ErpSkeleton`, `ErpAvatar`,
-`ErpTabs`, `ErpTable`, and `ErpPagination`, and authorized the ninth Core owner,
-`ErpAvatarPicker`. The corrected V3 candidate passed 133/133 test files and 862/862 tests,
-both typechecks, production build, all governance, and zero warnings.
+The Product Owner opened only the bounded `ErpSelect Exact Reference Rebuild`
+from `58bbeb82c97f809e420fe04c41dc6bbfd0691b1e`. `ERP-SELECT.html`, SHA-256
+`EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, is the
+single binding Select visual and behavioral authority and supersedes all prior
+Select reference interpretations. Only reference palette values are translated
+to Honesty tokens.
 
-The corrected hierarchy is explicit: AvatarPicker composes Tabs and Avatar;
-Table composes CheckBox and SortHeader; Pagination composes Select; Alert
-composes IconButton and Tooltip. The supplied avatar catalog contains 20 male
-and 20 female assets plus its manifest. `CORE_COMPONENT_VISUAL_CORRECTION_V2.md`
-and the V2/V3 component correction contracts record the exact reference evidence.
+The rebuilt candidate passes 133/133 test files and 866/866 tests, both
+typechecks, production build, all governance, and zero warnings.
 
-The exact next action is grouped Product Owner runtime/Light/Dark/RTL/narrow
-review at `/controls/core-batch`. A bounded external-review follow-up obtained
-browser evidence for Table intent separation, Pagination labeling, Avatar
-physical positioning/motion layering, and Select lower-owner reuse; this does
-not claim visual approval. The Data/Table
-Visual Correction Wave, DataPage, Entity patterns, Feature/Page migration, and
-every unlisted family remain unopened. Previously green Data/Table, Forms,
-Entity Form, and Shell source remains present but not visually frozen.
+The exact next action is Product Owner runtime/Light/Dark/RTL/narrow comparison
+at `/controls/core-batch`. Browser evidence does not claim visual approval. The
+Data/Table Visual Correction Wave, DataPage, Entity patterns, Feature/Page
+migration, and every unlisted family remain unopened.
 
 ## Canonical Classification
 

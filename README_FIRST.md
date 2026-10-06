@@ -21,6 +21,8 @@ in this order:
     `src/app/controls/empty-state/EMPTY_STATE_REFERENCE_EXACT_V1.md`
 14. current Navigation and ERP Shell batch contract:
     `src/app/controls/SHELL_BATCH_V1.md`
+15. current exact ErpSelect reference contract:
+    `src/app/controls/select/ERP_SELECT_REFERENCE_EXACT_V2.md`
 
 Then verify live GitHub `main` before making any current-state claim.
 
@@ -58,42 +60,23 @@ restated by the newest dated continuity blocks or by
 
 ## Authoritative current state — 2026-10-06
 
-Product Owner Core Components Visual Correction Wave V3 started from
-`13586508b3bbdb6d86225633e0837f20cd965a7c`. Resolve the final live SHA from
-Git; source and continuity are committed together in the bounded correction
-commit.
+The bounded `ErpSelect Exact Reference Rebuild` started from
+`58bbeb82c97f809e420fe04c41dc6bbfd0691b1e`. Resolve the final live SHA from Git.
 
-The external-review gap correction started from
-`ae5b6e2664c1d664f61ee9c745a54b8e0008989a` and is part of the same open V2
-review state: Table selection/activation are independent, Pagination has one
-visible horizontal page-size label with an accessible hidden field label,
-Avatar positions are physical and motion-safe, and Select reuses approved
-SearchBox/action-menu lower owners.
-
-- Product Owner visual review reopened `ErpSelect`, `ErpStatusBadge`,
-  `ErpAlert`, `ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`, and
-  `ErpPagination`, and explicitly authorized `ErpAvatarPicker`.
-- Corrected V3 technical verification passed 133/133 test files, 862/862 tests, all
-  lint/governance gates, both typechecks, production build, and zero warnings.
-- Initial bundle: 375.75 kB / 85.43 kB estimated transfer. Core Batch lazy
-  chunk: 54.76 kB / 10.57 kB estimated transfer.
-- The Select reference SHA remains
-  `5A31FC10A3D1208BF64E35EB5139823E48F8E2BF1D0190D07DD5DB5DBC4DF23B`.
-  Downloaded reference SHAs and adoption boundaries are recorded in the V2
-  component contracts, `CORE_COMPONENT_VISUAL_CORRECTION_V2.md`, and the current
-  `CORE_COMPONENT_VISUAL_CORRECTION_V3.md` correction contract.
-- Forty Product Owner avatar PNGs and their manifest are now project assets;
-  `ErpAvatarPicker` composes `ErpTabs` and `ErpAvatar`.
+- `ERP-SELECT.html`, SHA-256
+  `EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, is the
+  single binding Select visual and behavioral authority and supersedes the old
+  lowercase reference.
+- Exact geometry and behavior are implemented through ERP owners; only colors
+  are mapped through Honesty Semantic and Select Component Tokens.
+- Verification passes 133/133 test files, 866/866 tests, every lint/governance
+  gate, both typechecks, production build, and zero warnings.
+- Initial bundle: 376.10 kB / 85.69 kB estimated transfer. Core Batch lazy
+  chunk: 56.97 kB / 10.88 kB estimated transfer.
 - Product Owner runtime/Light/Dark/RTL/narrow acceptance remains pending at
   `/controls/core-batch`; technical PASS is not visual approval or freeze.
-- Browser runtime evidence verifies only the requested gap behaviors on
-  `/controls/core-batch`; it does not confer Product Owner visual acceptance.
-- The Data/Table Visual Correction Wave remains unopened; only bounded
-  `ErpSmartTable` compatibility was changed to delegate sorting to `ErpTable`.
-- All prior Core/Data/Forms/Entity Form/Shell technical candidates remain in
-  place. Standalone EntityReview, Entity Wizard, workflow engine, DataPage,
-  EntityDirectory, EntityDetail, CRUD/transaction page patterns,
-  Feature/Page migration, and every unlisted family remain unopened.
+- The Data/Table Visual Correction Wave and every later unlisted scope remain
+  unopened.
 
 
 ## Historical state snapshot — superseded

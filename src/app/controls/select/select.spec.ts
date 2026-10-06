@@ -1,16 +1,17 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {ErpSelect} from './select';
-import {ErpSelectOption, ErpSelectSort, ErpSelectValue} from './select-contracts';
+import {ErpSelectOption, ErpSelectRenderRow, ErpSelectValue} from './select-contracts';
 
 interface SelectTestAccess {
   readonly selectedValues: () => readonly string[];
   readonly visibleOptions: () => readonly ErpSelectOption[];
+  readonly rows: () => readonly ErpSelectRenderRow[];
   readonly activeIndex: () => number;
+  readonly popupPhase: () => string;
+  readonly referenceSize: () => 'sm' | 'md' | 'lg';
   select(option: ErpSelectOption): void;
   clearSelection(): void;
-  setGroup(group: string | null): void;
-  setSort(sort: ErpSelectSort): void;
-  toggleSortMenu(): void;
+  selectAllVisible(): void;
   syncPopupWidth(): void;
   updateQuery(value: string): void;
   handleKeydown(event: KeyboardEvent): void;
@@ -18,9 +19,16 @@ interface SelectTestAccess {
 }
 
 const options: readonly ErpSelectOption[] = [
-  {value: 'bravo', label: 'Bravo', group: 'operations', keywords: ['ledger']},
-  {value: 'alpha', label: 'Alpha', group: 'finance', description: 'Accounts'},
+  {
+    value: 'bravo', label: 'Bravo', group: 'operations', keywords: ['ledger'],
+    icon: 'user', meta: 'B-20',
+  },
+  {
+    value: 'alpha', label: 'Alpha', group: 'finance', description: 'Accounts',
+    imageUrl: '/avatar.png',
+  },
   {value: 'charlie', label: 'Charlie', group: 'finance', disabled: true},
+  {value: 'hidden', label: 'Hidden', hidden: true},
 ];
 
 describe('ErpSelect', () => {
@@ -40,187 +48,233 @@ describe('ErpSelect', () => {
     return component as unknown as SelectTestAccess;
   }
 
-  it('defaults to normal and applies every controlled reference size', () => {
-    const fixture = createSelect();
-    expect(fixture.componentInstance.selectSize()).toBe('normal');
+  function rect(width: number): DOMRect {
+    return {
+      width, height: 38, x: 0, y: 0, top: 0, right: width, bottom: 38, left: 0,
+      toJSON: () => ({}),
+    } as DOMRect;
+  }
 
-    for (const size of ['sm', 'md', 'normal', 'lg', 'xlg'] as const) {
-      fixture.componentRef.setInput('selectSize', size);
+  it('uses the reference md default and preserves legacy size aliases', () => {
+    const fixture = createSelect();
+    const test = access(fixture.componentInstance);
+    expect(fixture.componentInstance.selectSize()).toBe('md');
+    expect(test.referenceSize()).toBe('md');
+
+    const matrix = [
+      ['sm', 'sm'], ['md', 'md'], ['normal', 'md'], ['lg', 'lg'], ['xlg', 'lg'],
+    ] as const;
+    for (const [inputSize, referenceSize] of matrix) {
+      fixture.componentRef.setInput('selectSize', inputSize);
       fixture.detectChanges();
-      expect(fixture.nativeElement.getAttribute('data-select-size')).toBe(size);
+      expect(fixture.nativeElement.getAttribute('data-select-size')).toBe(inputSize);
+      expect(fixture.nativeElement.getAttribute('data-select-reference-size')).toBe(referenceSize);
     }
   });
 
-  it('normalizes single and multiple form values without publishing form writes', () => {
+  it('renders the exact-reference hierarchy through approved ERP owners', () => {
+    const fixture = createSelect();
+    fixture.componentRef.setInput('searchable', true);
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector(
+      'erp-field-frame[data-field-control-presentation="custom"]',
+    )).not.toBeNull();
+    expect(fixture.nativeElement.querySelector(
+      'erp-field-trigger button[role="combobox"][aria-haspopup="listbox"]',
+    )).not.toBeNull();
+    expect(fixture.nativeElement.querySelector(
+      'erp-search-box[data-search-box-presentation="select-panel"]',
+    )).not.toBeNull();
+    expect(fixture.nativeElement.querySelector(
+      'erp-selection-tile[data-selection-tile-presentation="select-option"]',
+    )).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('.select__toolbar')).toBeNull();
+    expect(fixture.nativeElement.querySelector('.select__sort-menu')).toBeNull();
+  });
+
+  it('normalizes controlled single and multiple values without publishing form writes', () => {
     const fixture = createSelect();
     const component = fixture.componentInstance;
     const onChange = vi.fn();
     component.registerOnChange(onChange);
-
     component.writeValue(42);
-    fixture.detectChanges();
     expect(access(component).selectedValues()).toEqual(['42']);
-
     fixture.componentRef.setInput('multiple', true);
     fixture.detectChanges();
     component.writeValue(['alpha', 'alpha', 42]);
-    fixture.detectChanges();
     expect(access(component).selectedValues()).toEqual(['alpha', '42']);
     expect(onChange).not.toHaveBeenCalled();
   });
 
-  it('rejects disabled options and enforces maxSelected while propagating one CVA change', () => {
+  it('publishes single selection and renders reference media, description, and metadata', () => {
+    const fixture = createSelect();
+    const component = fixture.componentInstance;
+    const onChange = vi.fn<(value: ErpSelectValue) => void>();
+    component.registerOnChange(onChange);
+    access(component).select(options[1]);
+    fixture.detectChanges();
+    expect(onChange).toHaveBeenCalledWith('alpha');
+    expect(fixture.nativeElement.querySelector('.select__single erp-avatar')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('.select__option-description')).not.toBeNull();
+    component.writeValue('bravo');
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('.select__single erp-icon')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('.select__option-meta')?.textContent).toContain('B-20');
+  });
+
+  it('enforces multiple limits and renders chips, overflow count, and select-all footer', () => {
     const fixture = createSelect();
     const component = fixture.componentInstance;
     const test = access(component);
     const onChange = vi.fn();
     component.registerOnChange(onChange);
     fixture.componentRef.setInput('multiple', true);
-    fixture.componentRef.setInput('maxSelected', 1);
+    fixture.componentRef.setInput('maxSelected', 2);
+    fixture.componentRef.setInput('maxChips', 1);
+    fixture.componentRef.setInput('selectAll', true);
     fixture.detectChanges();
-
     test.select(options[2]);
     test.select(options[0]);
-    test.select(options[1]);
-
-    expect(test.selectedValues()).toEqual(['bravo']);
-    expect(onChange).toHaveBeenCalledOnce();
-    expect(onChange).toHaveBeenCalledWith(['bravo']);
+    test.selectAllVisible();
+    fixture.detectChanges();
+    expect(test.selectedValues()).toEqual(['bravo', 'alpha']);
+    expect(onChange).toHaveBeenCalledTimes(2);
+    expect(fixture.nativeElement.querySelectorAll('.select__chip')).toHaveLength(2);
+    expect(fixture.nativeElement.querySelector('.select__chip--more')?.textContent).toContain('+1');
+    expect(fixture.nativeElement.querySelector('.select__footer')?.textContent).toContain('2 محدد');
   });
 
-  it('filters by search and group and preserves source/ascending/descending sort', () => {
+  it('filters hidden options, searches all reference text, and supports custom filtering', () => {
     const fixture = createSelect();
     const test = access(fixture.componentInstance);
-
     expect(test.visibleOptions().map(({value}) => value)).toEqual(['bravo', 'alpha', 'charlie']);
-    test.setSort('ascending');
-    expect(test.visibleOptions().map(({value}) => value)).toEqual(['alpha', 'bravo', 'charlie']);
-    test.setSort('descending');
-    expect(test.visibleOptions().map(({value}) => value)).toEqual(['charlie', 'bravo', 'alpha']);
-    test.setSort('source');
-    test.setGroup('finance');
-    expect(test.visibleOptions().map(({value}) => value)).toEqual(['alpha', 'charlie']);
-    test.setGroup(null);
     test.updateQuery('ledger');
     expect(test.visibleOptions().map(({value}) => value)).toEqual(['bravo']);
+    test.updateQuery('');
+    fixture.componentRef.setInput('filterFn', (option: ErpSelectOption) => option.group === 'finance');
+    fixture.detectChanges();
+    expect(test.visibleOptions().map(({value}) => value)).toEqual(['alpha', 'charlie']);
+    fixture.componentRef.setInput('filterPredicate', () => false);
+    test.updateQuery('anything');
+    expect(test.visibleOptions()).toEqual([]);
   });
 
-  it('keeps search in one labelled row and exposes one bounded sort menu', () => {
+  it('supports reference label/custom sorting and legacy data sorting without toolbar chrome', () => {
     const fixture = createSelect();
     const test = access(fixture.componentInstance);
-    expect(fixture.nativeElement.querySelector('.select__search-row erp-text')).not.toBeNull();
-    expect(
-      fixture.nativeElement.querySelector(
-        '.select__search-row erp-search-box[data-search-box-mode="inline"]',
-      ),
-    ).not.toBeNull();
-    expect(fixture.nativeElement.querySelector('.select__toolbar .select__sort')).not.toBeNull();
-    expect(fixture.nativeElement.querySelector('.select__sort-menu')).toBeNull();
-    test.toggleSortMenu();
+    fixture.componentRef.setInput('sortMode', 'label');
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('.select__sort-menu erp-stack[role="menu"]')).not.toBeNull();
-    expect(fixture.nativeElement.querySelectorAll('.select__sort-menu erp-button')).toHaveLength(3);
-    (
-      fixture.nativeElement.querySelector(
-        '.select__sort-menu [data-value="ascending"] button',
-      ) as HTMLButtonElement
-    ).click();
-    expect(fixture.componentInstance.sort()).toBe('ascending');
+    expect(test.visibleOptions().map(({value}) => value)).toEqual(['alpha', 'bravo', 'charlie']);
+    fixture.componentRef.setInput('sortMode', 'custom');
+    fixture.componentRef.setInput('comparator', (left: ErpSelectOption, right: ErpSelectOption) =>
+      right.value.localeCompare(left.value));
+    fixture.detectChanges();
+    expect(test.visibleOptions().map(({value}) => value)).toEqual(['charlie', 'bravo', 'alpha']);
+    fixture.componentRef.setInput('sortMode', 'none');
+    fixture.componentInstance.sort.set('ascending');
+    fixture.detectChanges();
+    expect(test.visibleOptions().map(({value}) => value)).toEqual(['alpha', 'bravo', 'charlie']);
+    expect(fixture.nativeElement.querySelector('.select__toolbar')).toBeNull();
   });
 
-  it('matches popup inline size to the trigger while respecting viewport inset', () => {
+  it('renders sticky group rows without obsolete group-filter chrome', () => {
     const fixture = createSelect();
-    const visibleControl = fixture.nativeElement.querySelector('.field-frame__control') as HTMLElement;
-    vi.spyOn(visibleControl, 'getBoundingClientRect').mockReturnValue({
-      width: 480,
-      height: 48,
-      x: 0,
-      y: 0,
-      top: 0,
-      right: 480,
-      bottom: 48,
-      left: 0,
-      toJSON: () => ({}),
-    });
-    vi.stubGlobal('innerWidth', 420);
-    access(fixture.componentInstance).syncPopupWidth();
-    expect((fixture.nativeElement.querySelector('.select__popup') as HTMLElement).style.inlineSize).toBe('396px');
-    vi.unstubAllGlobals();
+    const test = access(fixture.componentInstance);
+    fixture.componentRef.setInput('groupBy', 'group');
+    fixture.detectChanges();
+    expect(test.rows().map((row) => row.kind)).toEqual([
+      'group', 'option', 'group', 'option', 'option',
+    ]);
+    expect([...fixture.nativeElement.querySelectorAll('.select__group-label')]
+      .map((element: Element) => element.textContent?.trim())).toEqual(['operations', 'finance']);
+    expect(fixture.nativeElement.querySelector('.select__group-tabs')).toBeNull();
   });
 
-  it.each([150, 240, 400])('matches a %spx visible Field control exactly', (width) => {
+  it.each([150, 240, 400])('matches a %spx control with no hidden popup minimum', (width) => {
     const fixture = createSelect();
-    const visibleControl = fixture.nativeElement.querySelector('.field-frame__control') as HTMLElement;
-    vi.spyOn(visibleControl, 'getBoundingClientRect').mockReturnValue({
-      width, height: 48, x: 0, y: 0, top: 0, right: width, bottom: 48, left: 0,
-      toJSON: () => ({}),
-    });
+    const control = fixture.nativeElement.querySelector('.select__control') as HTMLElement;
+    vi.spyOn(control, 'getBoundingClientRect').mockReturnValue(rect(width));
     vi.stubGlobal('innerWidth', 1200);
     access(fixture.componentInstance).syncPopupWidth();
-    expect((fixture.nativeElement.querySelector('.select__popup') as HTMLElement).style.inlineSize).toBe(`${width}px`);
+    expect((fixture.nativeElement.querySelector('.select__popup') as HTMLElement).style.inlineSize)
+      .toBe(`${width}px`);
     vi.unstubAllGlobals();
   });
 
-  it('gives source, ascending, and descending sort modes distinct semantic icons', () => {
+  it('caps popup width only at the exact viewport inset boundary', () => {
     const fixture = createSelect();
-    access(fixture.componentInstance).toggleSortMenu();
-    fixture.detectChanges();
-    const icons = [...fixture.nativeElement.querySelectorAll('.select__sort-menu erp-icon')]
-      .map((icon: Element) => icon.getAttribute('data-icon-name'));
-    expect(icons).toEqual(expect.arrayContaining(['source-order', 'sort-ascending', 'sort-descending']));
+    const control = fixture.nativeElement.querySelector('.select__control') as HTMLElement;
+    vi.spyOn(control, 'getBoundingClientRect').mockReturnValue(rect(480));
+    vi.stubGlobal('innerWidth', 420);
+    access(fixture.componentInstance).syncPopupWidth();
+    expect((fixture.nativeElement.querySelector('.select__popup') as HTMLElement).style.inlineSize)
+      .toBe('396px');
+    vi.unstubAllGlobals();
   });
 
-  it('separates the visible search label from its placeholder and preserves selected identity', () => {
-    const fixture = createSelect();
-    fixture.componentRef.setInput('searchLabel', 'البحث المتقدم');
-    fixture.componentRef.setInput('searchPlaceholder', 'اكتب اسمًا');
-    fixture.componentRef.setInput('options', [
-      {value: 'image', label: 'صورة', imageUrl: '/avatar.png'},
-      {value: 'icon', label: 'أيقونة', icon: 'user'},
-    ] satisfies readonly ErpSelectOption[]);
-    fixture.componentInstance.writeValue('image');
-    fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('.select__search-label').textContent.trim()).toBe('البحث المتقدم');
-    expect(fixture.nativeElement.querySelector('erp-search-box input').getAttribute('placeholder')).toBe('اكتب اسمًا');
-    expect(fixture.nativeElement.querySelector('.select__selected-item erp-avatar')).not.toBeNull();
-
-    fixture.componentInstance.writeValue('icon');
-    fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('.select__selected-item erp-icon')).not.toBeNull();
-  });
-
-  it('opens, navigates, selects with Enter, closes with Escape, and clears', () => {
+  it('opens, navigates around disabled options, selects, clears, and closes after motion', async () => {
+    vi.useFakeTimers();
     const fixture = createSelect();
     const component = fixture.componentInstance;
     const test = access(component);
     const onChange = vi.fn<(value: ErpSelectValue) => void>();
     component.registerOnChange(onChange);
-
     test.toggle();
+    await Promise.resolve();
     fixture.detectChanges();
-    expect(fixture.nativeElement.getAttribute('data-select-open')).toBe('true');
-
-    test.handleKeydown(new KeyboardEvent('keydown', {key: 'ArrowDown'}));
+    expect(test.popupPhase()).toBe('open');
+    expect(fixture.nativeElement.querySelector('erp-field-trigger button')
+      ?.getAttribute('aria-expanded')).toBe('true');
+    test.handleKeydown(new KeyboardEvent('keydown', {key: 'End'}));
     expect(test.activeIndex()).toBe(1);
     test.handleKeydown(new KeyboardEvent('keydown', {key: 'ArrowUp'}));
     expect(test.activeIndex()).toBe(0);
     test.handleKeydown(new KeyboardEvent('keydown', {key: 'Enter'}));
-    fixture.detectChanges();
     expect(test.selectedValues()).toEqual(['bravo']);
+    expect(test.popupPhase()).toBe('leaving');
+    vi.advanceTimersByTime(200);
+    expect(test.popupPhase()).toBe('closed');
     expect(onChange).toHaveBeenCalledWith('bravo');
-    expect(fixture.nativeElement.getAttribute('data-select-open')).toBe('false');
-
-    test.toggle();
-    test.handleKeydown(new KeyboardEvent('keydown', {key: 'Escape'}));
-    fixture.detectChanges();
-    expect(fixture.nativeElement.getAttribute('data-select-open')).toBe('false');
-
     test.clearSelection();
     expect(test.selectedValues()).toEqual([]);
     expect(onChange).toHaveBeenLastCalledWith(null);
+    vi.useRealTimers();
   });
 
-  it('does not open or publish values while the field is disabled', () => {
+  it('supports Backspace removal and Escape/Tab lifecycle in multiple mode', async () => {
+    const fixture = createSelect();
+    const component = fixture.componentInstance;
+    const test = access(component);
+    fixture.componentRef.setInput('multiple', true);
+    component.writeValue(['bravo', 'alpha']);
+    fixture.detectChanges();
+    test.toggle();
+    await Promise.resolve();
+    test.handleKeydown(new KeyboardEvent('keydown', {key: 'Backspace'}));
+    expect(test.selectedValues()).toEqual(['bravo']);
+    test.handleKeydown(new KeyboardEvent('keydown', {key: 'Escape'}));
+    expect(test.popupPhase()).toBe('leaving');
+  });
+
+  it('closes immediately under reduced motion without changing selection visibility', async () => {
+    vi.stubGlobal('matchMedia', vi.fn().mockReturnValue({
+      matches: true, media: '(prefers-reduced-motion: reduce)', onchange: null,
+      addListener: vi.fn(), removeListener: vi.fn(), addEventListener: vi.fn(),
+      removeEventListener: vi.fn(), dispatchEvent: vi.fn(),
+    }));
+    const fixture = createSelect();
+    const test = access(fixture.componentInstance);
+    fixture.componentInstance.writeValue('alpha');
+    test.toggle();
+    await Promise.resolve();
+    test.handleKeydown(new KeyboardEvent('keydown', {key: 'Escape'}));
+    fixture.detectChanges();
+    expect(test.popupPhase()).toBe('closed');
+    expect(fixture.nativeElement.querySelector('.select__single-label')?.textContent).toContain('Alpha');
+    vi.unstubAllGlobals();
+  });
+
+  it('does not open or publish while disabled', () => {
     const fixture = createSelect();
     const component = fixture.componentInstance;
     const test = access(component);
@@ -228,13 +282,22 @@ describe('ErpSelect', () => {
     component.registerOnChange(onChange);
     fixture.componentRef.setInput('disabled', true);
     fixture.detectChanges();
-
     test.toggle();
     test.select(options[0]);
-    fixture.detectChanges();
-
-    expect(fixture.nativeElement.getAttribute('data-select-open')).toBe('false');
+    expect(test.popupPhase()).toBe('closed');
     expect(test.selectedValues()).toEqual([]);
     expect(onChange).not.toHaveBeenCalled();
+  });
+
+  it('maps exact appearance and top placement while retaining Field compatibility', () => {
+    const fixture = createSelect();
+    for (const appearance of ['outline', 'filled', 'ghost'] as const) {
+      fixture.componentRef.setInput('selectAppearance', appearance);
+      fixture.detectChanges();
+      expect(fixture.nativeElement.getAttribute('data-select-appearance')).toBe(appearance);
+    }
+    fixture.componentRef.setInput('placement', 'top');
+    fixture.detectChanges();
+    expect(fixture.nativeElement.getAttribute('data-select-placement')).toBe('top');
   });
 });

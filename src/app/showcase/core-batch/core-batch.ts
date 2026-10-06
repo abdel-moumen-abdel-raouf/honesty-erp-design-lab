@@ -76,6 +76,7 @@ import {ErpReviewCoreTabs} from '../../review-internals/review-core-tabs/review-
 })
 export class CoreBatch {
   readonly selectedEmployee = signal<ErpSelectValue>('ahmed');
+  readonly selectedReviewTeam = signal<ErpSelectValue>(['ahmed', 'sara']);
   readonly selectedAvatar = signal<string | null>('avatar-01');
   readonly page = signal(3);
   readonly pageSize = signal(25);
@@ -103,7 +104,7 @@ export class CoreBatch {
   readonly showPageNumbers = signal(true);
   readonly showNext = signal(true);
   readonly showLast = signal(true);
-  readonly selectSizes: readonly ErpSelectSize[] = ['sm', 'md', 'normal', 'lg', 'xlg'];
+  readonly selectSizes: readonly ErpSelectSize[] = ['sm', 'md', 'lg'];
   readonly avatarSizes: readonly ErpAvatarSize[] = ['xs', 'sm', 'md', 'lg', 'xl'];
   readonly badgeToneOptions = this.options(['neutral', 'success', 'warning', 'danger', 'info']);
   readonly badgeSizeOptions = this.options(['sm', 'md', 'lg', 'xl']);

@@ -1,0 +1,41 @@
+:host([data-selection-tile-presentation='select-option']) {
+  inline-size: 100%;
+  block-size: auto;
+}
+
+:host([data-selection-tile-presentation='select-option']) button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  block-size: auto;
+  padding: 0.5rem 0.75rem;
+  border: 0;
+  border-radius: 0.375rem;
+  background: transparent;
+  color: var(--honesty-selection-picker-tile-fg);
+  text-align: start;
+}
+
+:host([data-selection-tile-presentation='select-option'][data-selection-tile-active='true']) button {
+  background: var(--honesty-selection-picker-tile-bg-hover);
+}
+
+:host([data-selection-tile-presentation='select-option'][data-selection-tile-selected='true']) button {
+  background: var(--honesty-selection-picker-tile-bg-selected);
+  color: var(--honesty-selection-picker-tile-fg-selected);
+  font-weight: 500;
+}
+
+:host([data-selection-tile-presentation='select-option'][data-selection-tile-selected='true'][data-selection-tile-active='true']) button {
+  background: var(--honesty-selection-picker-tile-bg-hover);
+}
+
+:host([data-selection-tile-presentation='select-option'][data-selection-tile-disabled='true']) button {
+  opacity: 0.42;
+}
+
+@media (hover: none) {
+  :host([data-selection-tile-presentation='select-option']) button {
+    padding-block: 0.75rem;
+  }
+}

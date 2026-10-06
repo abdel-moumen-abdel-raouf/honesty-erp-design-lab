@@ -8,30 +8,23 @@ It records Product Owner decisions, externally reviewed Git state, execution bou
 
 ## Authoritative current review transition — 2026-10-06
 
-Product Owner Core Components Visual Correction Wave V3 entered from
-`13586508b3bbdb6d86225633e0837f20cd965a7c`. Resolve the final implementation
+The Product Owner opened only the bounded `ErpSelect Exact Reference Rebuild`
+from `58bbeb82c97f809e420fe04c41dc6bbfd0691b1e`. Resolve the final implementation
 SHA directly from live Git.
 
-The Product Owner explicitly rejected implied visual acceptance for Select,
-StatusBadge, Alert, Skeleton, Avatar, Tabs, Table, and Pagination, and opened
-AvatarPicker. V2 implements the prescribed references, bottom-up composition,
-40 supplied avatar assets plus manifest, expanded APIs and evidence, and
-compatibility-only Data/Table changes. Its technical gate passes 133/133
-test files and 862/862 tests, all governance, both typechecks, production build,
-and zero warnings.
+`ERP-SELECT.html`, SHA-256
+`EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, is the
+single binding Select visual and behavioral authority. It supersedes all prior
+Select references and conflicting corrections; only palette values map to the
+Honesty token architecture. Its technical gate passes 133/133 test files and
+866/866 tests, all governance, both typechecks, production build, and zero
+warnings.
 
-The bounded external-review correction started from
-`ae5b6e2664c1d664f61ee9c745a54b8e0008989a` and closes only the four requested
-Table, Pagination, Avatar, and Select gaps. Browser runtime evidence verifies
-those behaviors without implying grouped visual acceptance.
-
-The exact next gate is grouped Product Owner runtime/Light/Dark/RTL/narrow
-visual review at `/controls/core-batch`. Browser attachment failed in the
-original implementation environment; the bounded follow-up supplied runtime
-evidence for its requested gaps but does not claim visual approval. The Data/Table Visual Correction Wave and every
-later implementation wave remain unopened. Technical PASS never equals visual
-approval. Previous Core/Data/Forms/Entity Form/Shell technical candidates
-remain present but not visually frozen.
+The exact next gate is Product Owner runtime/Light/Dark/RTL/narrow comparison of
+the rebuilt Select at `/controls/core-batch`. Browser runtime evidence does not
+claim visual approval. The Data/Table Visual Correction Wave and every later
+implementation wave remain unopened. Technical PASS never equals visual
+approval.
 
 ## Historical Git checkpoints — superseded snapshot
 

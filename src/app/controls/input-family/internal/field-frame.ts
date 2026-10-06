@@ -41,7 +41,7 @@ import {ErpInputConfigurationState} from '../input-contracts';
     ErpTooltip,
   ],
   templateUrl: './field-frame.html',
-  styleUrls: ['./field-frame.scss', './field-frame-part-2.scss', './field-frame-part-3.scss', './field-frame-part-4.scss', './field-frame-part-5.scss', './field-frame-part-6.scss', './field-frame-part-7.scss', './field-frame-part-8.scss', './field-frame-facets.scss', './field-frame-facets-part-2.scss', './field-frame-facets-part-3.scss', './field-frame-facets-part-4.scss', './field-frame-facets-part-5.scss'],
+  styleUrls: ['./field-frame.scss', './field-frame-part-2.scss', './field-frame-part-3.scss', './field-frame-part-4.scss', './field-frame-part-5.scss', './field-frame-part-6.scss', './field-frame-part-7.scss', './field-frame-part-8.scss', './field-frame-facets.scss', './field-frame-facets-part-2.scss', './field-frame-facets-part-3.scss', './field-frame-facets-part-4.scss', './field-frame-facets-part-5.scss', './field-frame-custom.scss'],
   host: {
     '(click)': 'handleControlSurfaceClick($event)',
     '[attr.data-field-tone]': 'tone()',
@@ -59,6 +59,7 @@ import {ErpInputConfigurationState} from '../input-contracts';
     '[attr.data-field-disabled]': 'disabled()',
     '[attr.data-field-configuration-state]': 'configurationState()',
     '[attr.data-field-multiline]': 'multiline()',
+    '[attr.data-field-control-presentation]': 'controlPresentation()',
   },
 })
 export class ErpFieldFrame implements AfterViewInit {
@@ -94,6 +95,7 @@ export class ErpFieldFrame implements AfterViewInit {
   readonly configurationState =
     input<ErpInputConfigurationState>('ready');
   readonly multiline = input(false, {transform: booleanAttribute});
+  readonly controlPresentation = input<'standard' | 'custom'>('standard');
 
   readonly clearRequested = output<void>();
   readonly feedbackDismissed = output<void>();

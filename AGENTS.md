@@ -17,23 +17,23 @@ requested.
 The Product Owner is the final authority for visual approval.
 Technical success, green tests, or Codex judgment do not equal visual approval.
 
-## Current Product Owner Core Components Visual Correction V3 State
+## Current Product Owner ErpSelect Exact Reference State
 
-Product Owner visual review reopened `ErpSelect`, `ErpStatusBadge`, `ErpAlert`,
-`ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`, and `ErpPagination`, and
-authorized `ErpAvatarPicker`. Their V3 candidate, entered from
-`13586508b3bbdb6d86225633e0837f20cd965a7c`, is technically green at
-133/133 test files and 862/862 tests, both typechecks, production build, and
-zero warnings.
+The Product Owner made `C:\Users\Misrtech\Downloads\ERP-SELECT.html`, SHA-256
+`EF07C963C55A3547BC58A89E1ACD4B45D913E5C13BA126121DAF0C0663B0C64D`, the
+single binding visual and behavioral authority for `ErpSelect`. It supersedes
+the old lowercase reference and conflicting Select corrections. Only colors
+are mapped to Honesty Semantic and Component Tokens.
 
-The current gate is grouped Product Owner runtime/Light/Dark/RTL/narrow review
-of `/controls/core-batch`. A bounded external-review follow-up verified Table
-intent separation, Pagination labeling, Avatar position/motion invariants, and
-Select lower-owner hierarchy in the browser, but no visual approval is inferred.
-The Data/Table Visual
-Correction Wave is not opened; only compatibility changes required by the
-lower Table contract are allowed. Technical PASS does not equal Product Owner
-visual approval or freeze.
+The exact-reference candidate entered from
+`58bbeb82c97f809e420fe04c41dc6bbfd0691b1e` and is technically green at 133/133
+test files and 866/866 tests, both typechecks, production build, and zero
+warnings.
+
+The current gate is Product Owner runtime/Light/Dark/RTL/narrow comparison of
+the rebuilt Select at `/controls/core-batch` against the exact reference. The
+Data/Table Visual Correction Wave is not opened. Technical PASS does not equal
+Product Owner visual approval or freeze.
 
 Previously implemented Data/Table, Forms Composition, Entity Form Engine, and
 Shell batches remain technical candidates pending Product Owner acceptance.
@@ -55,9 +55,11 @@ migration, and every unlisted owner remain unopened.
   the Select accessible name through the Field Family visually-hidden label mode.
 - Avatar `left`/`right` position names are physical in both LTR and RTL; a
   nested indicator owns motion so animation never replaces position transforms.
-- `ErpSelect` composes `ErpSearchBox` for inline popup search and the approved
-  internal action-menu content for sort choices; it does not own raw search or
-  a second menu architecture.
+- `ErpSelect` composes Field Family, `ErpSearchBox` select-panel presentation,
+  `ErpSelectionTile` select-option presentation, `ErpAvatar`/`ErpIcon`, the
+  approved internal Select action owner, and `AnchoredOverlayController`.
+- Select sorting remains a data-order pipeline. The superseded visual toolbar,
+  sort dropdown, and secondary action-menu chrome must not return.
 - `ErpAlert` uses only the Tooltip-wrapped IconButton close path and must not
   restore a native `title` tooltip.
 - Core motion uses Foundation motion values and remains static-but-visible

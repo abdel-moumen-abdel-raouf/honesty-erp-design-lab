@@ -1,0 +1,26 @@
+@if (kind() === 'chip-remove') {
+  <span
+    class="select-action__chip"
+    role="button"
+    [tabindex]="tabIndex()"
+    [attr.aria-label]="label()"
+    (click)="activate($event)"
+  >
+    <erp-icon [name]="icon() ?? 'close'" size="inherit" tone="inherit" />
+  </span>
+} @else {
+  <button
+    class="select-action__button"
+    type="button"
+    [attr.aria-label]="label()"
+    (click)="activate($event)"
+  >
+    @if (kind() === 'footer') {
+      <erp-text type="span" size="inherit" weight="medium" tone="inherit">
+        {{ label() }}
+      </erp-text>
+    } @else {
+      <erp-icon [name]="icon() ?? 'close'" size="inherit" tone="inherit" />
+    }
+  </button>
+}

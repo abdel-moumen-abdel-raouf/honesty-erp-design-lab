@@ -1,7 +1,55 @@
-.select__search-row { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: var(--honesty-select-content-gap); }
-.select__search-label { white-space: nowrap; }
-.select__search-control { display: block; min-width: 0; }
-.select__toolbar { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--honesty-select-filter-gap); margin-block-start: var(--honesty-select-content-gap); }
-.select__filters { display: flex; flex: 1; flex-wrap: wrap; gap: var(--honesty-select-filter-gap); }
-.select__sort { position: relative; flex: 0 0 auto; }
-.select__sort-menu { position: absolute; inset-block-start: calc(100% + var(--honesty-select-option-gap)); inset-inline-end: 0; min-inline-size: var(--honesty-select-sort-menu-min-inline-size); z-index: 1; }
+.select__search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: var(--honesty-select-panel-search-padding);
+  border-block-end: var(--honesty-border-width-default) solid var(--honesty-select-panel-search-border);
+}
+
+.select__search-editor {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.select__search-clear {
+  position: absolute;
+  inset-inline-end: 1rem;
+}
+
+.select__listbox {
+  max-block-size: var(--honesty-select-panel-max-block-size);
+  padding: var(--honesty-select-panel-list-padding);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--honesty-select-control-border-hover) transparent;
+  scrollbar-width: thin;
+}
+
+.select__listbox::-webkit-scrollbar { inline-size: 0.5rem; }
+
+.select__listbox::-webkit-scrollbar-thumb {
+  border: 0.125rem solid transparent;
+  border-radius: var(--honesty-radius-full);
+  background: var(--honesty-select-control-border-hover);
+  background-clip: content-box;
+}
+
+.select__group-label {
+  position: sticky;
+  inset-block-start: 0;
+  padding: var(--honesty-select-panel-group-padding);
+  background: var(--honesty-select-panel-bg);
+  color: var(--honesty-select-panel-group-fg);
+  font-size: var(--honesty-select-panel-group-font-size);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  user-select: none;
+  z-index: 1;
+}
+
+.select__group-label:not(:first-child) {
+  margin-block-start: 0.25rem;
+  padding-block-start: var(--honesty-select-panel-group-padding-separated);
+  border-block-start: var(--honesty-border-width-default) solid var(--honesty-select-panel-border);
+}
