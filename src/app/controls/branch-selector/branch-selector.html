@@ -1,0 +1,13 @@
+<erp-select
+  [label]="label()"
+  [placeholder]="placeholder()"
+  [options]="options()"
+  [disabled]="disabled()"
+  [ngModel]="value()"
+  [ngModelOptions]="{standalone: true}"
+  leadingIcon="building"
+  [searchable]="branches().length > 6"
+  [filterable]="false"
+  [sortable]="false"
+  (ngModelChange)="update($event)"
+/>

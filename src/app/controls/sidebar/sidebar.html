@@ -1,0 +1,43 @@
+<nav [attr.aria-label]="label()">
+  <ul>
+    @for (entry of entries(); track entry.item.id) {
+      <li
+        [attr.data-sidebar-level]="entry.level"
+        [style.--_honesty-sidebar-level]="entry.level"
+      >
+        @if (entry.group) {
+          <div class="sidebar__group" [attr.aria-label]="entry.item.label">
+            @if (entry.item.icon) {
+              <erp-icon [name]="entry.item.icon" size="sm" tone="inherit" />
+            }
+            <erp-text type="span" tone="inherit" weight="medium">
+              {{ entry.item.label }}
+            </erp-text>
+          </div>
+        } @else {
+          <a
+            data-sidebar-link
+            [href]="entry.item.disabled ? null : entry.item.href ?? '#'"
+            [attr.aria-current]="activeId() === entry.item.id ? 'page' : null"
+            [attr.aria-disabled]="entry.item.disabled ? 'true' : null"
+            [attr.tabindex]="entry.item.disabled ? -1 : null"
+            (click)="activate(entry.item, $event)"
+            (keydown)="handleKeydown($event)"
+          >
+            @if (entry.item.icon) {
+              <erp-icon [name]="entry.item.icon" size="sm" tone="inherit" />
+            }
+            <erp-text type="span" tone="inherit">{{ entry.item.label }}</erp-text>
+            @if (entry.item.badge; as badge) {
+              <erp-status-badge
+                [label]="badge.label"
+                [tone]="badge.tone ?? 'neutral'"
+                size="sm"
+              />
+            }
+          </a>
+        }
+      </li>
+    }
+  </ul>
+</nav>

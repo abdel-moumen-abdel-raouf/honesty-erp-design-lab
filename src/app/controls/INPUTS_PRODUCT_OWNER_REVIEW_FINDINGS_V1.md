@@ -21,8 +21,17 @@ Phase 6 now implements exactly `ErpStandardEntityForm`,
 `ErpEntityCustomSectionOutlet`. Its canonical technical gate passed 121/121
 test files and 809/809 tests with both typechecks, production build, and zero
 warnings. The exact next action is Product Owner runtime/Light/Dark review of
-the grouped Core, Data/Table, Forms, and Entity Form Engine evidence. Phase 7
-and every unlisted family remain unopened.
+the grouped Core, Data/Table, Forms, and Entity Form Engine evidence.
+
+The later Product Owner authorization opened and completed the Accelerated
+Navigation & ERP Shell Batch V1 for exactly `ErpBreadcrumbs`, `ErpPageHeader`,
+`ErpPageShell`, `ErpSidebar`, `ErpTopbar`, `ErpBranchSelector`,
+`ErpGlobalSearch`, `ErpNotificationBell`, `ErpUserMenu`, and `ErpAppShell`.
+Its canonical technical gate passed 132/132 test files and 829/829 tests with
+both typechecks, production build, and zero warnings. The exact next action is
+grouped Product Owner runtime/Light/Dark review including
+`/controls/shell-batch`; Entity/Page patterns, Feature/Page migration, and
+every unlisted family remain unopened.
 
 ## Historical Inputs review status — superseded snapshot
 

@@ -20,11 +20,17 @@ const SPLIT_BUTTON_TEMPLATE =
   'src/app/controls/split-button/split-button.html';
 const FAB_MENU_TEMPLATE =
   'src/app/controls/fab-menu/fab-menu.html';
+const NOTIFICATION_BELL_TEMPLATE =
+  'src/app/controls/notification-bell/notification-bell.html';
+const USER_MENU_TEMPLATE =
+  'src/app/controls/user-menu/user-menu.html';
 const APPROVED_MANUAL_POPOVER_TEMPLATES = new Set([
   SEARCH_BOX_TEMPLATE,
   SELECT_TEMPLATE,
   SPLIT_BUTTON_TEMPLATE,
   FAB_MENU_TEMPLATE,
+  NOTIFICATION_BELL_TEMPLATE,
+  USER_MENU_TEMPLATE,
 ]);
 const SHOWCASE = 'src/app/showcase/tooltip-controls/tooltip-controls.html';
 const TOKEN_FILE = path.join(ROOT, 'src', 'styles', 'foundation', 'components', 'tooltip', '_tokens.scss');
@@ -277,6 +283,8 @@ function selfTest() {
     [SEARCH_BOX_TEMPLATE, 'SearchBox'],
     [SPLIT_BUTTON_TEMPLATE, 'SplitButton'],
     [FAB_MENU_TEMPLATE, 'FabMenu'],
+    [NOTIFICATION_BELL_TEMPLATE, 'NotificationBell'],
+    [USER_MENU_TEMPLATE, 'UserMenu'],
   ]) {
     if (
       validate(

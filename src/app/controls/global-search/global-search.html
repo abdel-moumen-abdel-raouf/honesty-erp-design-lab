@@ -1,0 +1,9 @@
+<erp-search-box
+  [label]="label()"
+  [placeholder]="placeholder()"
+  [mode]="mode()"
+  [items]="searchItems()"
+  [ngModel]="query()"
+  [ngModelOptions]="{standalone: true}"
+  (ngModelChange)="update($event)"
+/>

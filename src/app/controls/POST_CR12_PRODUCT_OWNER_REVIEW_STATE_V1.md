@@ -8,9 +8,9 @@ It records Product Owner decisions, externally reviewed Git state, execution bou
 
 ## Authoritative current review transition — 2026-10-06
 
-Phase 6 entered from `754e18dfe49c97b06eb799c05984bfd2134154b0`
-(`feat(forms): add accelerated forms composition batch`). Resolve the final
-Phase 6 implementation SHA directly from live Git.
+The Accelerated Navigation & ERP Shell Batch V1 entered from
+`ecc7e0b2492a3267309e0eefd48f51b355ed71ba`. Resolve the final implementation
+SHA directly from live Git.
 
 The Accelerated Core Batch, Phase A hardening, and Phase B Data/Table batch are
 implemented and technically green. The Phase B canonical gate passed 110/110
@@ -32,12 +32,20 @@ Schema-Driven Entity Form Engine V1 now implements exactly
 verification passed 121/121 test files, 809/809 tests, both typechecks,
 production build, and zero warnings.
 
-The exact next gate is Product Owner runtime and Light/Dark visual review of
-Core, Data/Table, Forms, and Entity Form Engine. No later implementation wave
-is authorized. Standalone EntityReview, Entity Wizard, workflow engine,
-reusable page/entity patterns, Shell, Sidebar/Topbar, Navigation,
-Features/Pages, and every unlisted family remain unopened. Technical PASS never
-equals visual approval.
+Accelerated Navigation & ERP Shell Batch V1 now implements exactly
+`ErpBreadcrumbs`, `ErpPageHeader`, `ErpPageShell`, `ErpSidebar`, `ErpTopbar`,
+`ErpBranchSelector`, `ErpGlobalSearch`, `ErpNotificationBell`, `ErpUserMenu`,
+and `ErpAppShell`. Canonical verification passed 132/132 test files, 829/829
+tests, both typechecks, production build, and zero warnings. The reference audit
+found no external files, so the scoped waiver applies as recorded in
+`SHELL_BATCH_V1.md`.
+
+The exact next gate is grouped Product Owner runtime and Light/Dark visual
+review of Core, Data/Table, Forms, Entity Form Engine, and Shell. No later
+implementation wave is authorized. Standalone EntityReview, Entity Wizard,
+workflow engine, DataPage, EntityDirectory, EntityDetail, CRUD/transaction page
+patterns, Feature/Page migration, and every unlisted family remain unopened.
+Technical PASS never equals visual approval.
 
 ## Historical Git checkpoints — superseded snapshot
 

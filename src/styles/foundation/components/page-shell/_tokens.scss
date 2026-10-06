@@ -1,0 +1,8 @@
+@mixin base {
+  --honesty-page-shell-gap: var(--honesty-space-section-default);
+  --honesty-page-shell-content-gap: var(--honesty-space-layout-gutter);
+  --honesty-page-shell-side-width: 20rem;
+  --honesty-page-shell-footer-padding: var(--honesty-space-inset-default);
+  --honesty-page-shell-border-width: var(--honesty-border-width-default);
+  --honesty-page-shell-border-color: var(--honesty-border-subtle);
+}

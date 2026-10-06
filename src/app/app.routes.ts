@@ -85,6 +85,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'controls/shell-batch',
+    loadComponent: () =>
+      import('./showcase/shell-batch/shell-batch').then(
+        (m) => m.ShellBatch,
+      ),
+  },
+  {
     path: 'foundation/colors',
     loadComponent: () =>
       import('./foundation/colors/colors').then((m) => m.Colors),

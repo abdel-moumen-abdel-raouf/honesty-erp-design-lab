@@ -1,0 +1,26 @@
+<header>
+  <div class="page-header__breadcrumbs">
+    <ng-content select="[erpPageHeaderBreadcrumbs]" />
+  </div>
+
+  <div class="page-header__main">
+    <div class="page-header__copy">
+      <erp-text type="heading-1">{{ title() }}</erp-text>
+      @if (subtitle()) {
+        <erp-text type="paragraph" tone="secondary">{{ subtitle() }}</erp-text>
+      }
+      <div class="page-header__meta">
+        <ng-content select="[erpPageHeaderMeta]" />
+      </div>
+    </div>
+
+    <div class="page-header__actions">
+      <div class="page-header__secondary">
+        <ng-content select="[erpPageHeaderSecondary]" />
+      </div>
+      <div class="page-header__primary">
+        <ng-content select="[erpPageHeaderPrimary]" />
+      </div>
+    </div>
+  </div>
+</header>

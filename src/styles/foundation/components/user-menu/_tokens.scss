@@ -1,0 +1,15 @@
+@mixin base {
+  --honesty-user-menu-bg: var(--honesty-color-surface-elevated);
+  --honesty-user-menu-fg: var(--honesty-color-text-primary);
+  --honesty-user-menu-border-color: var(--honesty-border-subtle);
+  --honesty-user-menu-border-width: var(--honesty-border-width-default);
+  --honesty-user-menu-radius: var(--honesty-radius-overlay);
+  --honesty-user-menu-elevation: var(--honesty-elevation-overlay);
+  --honesty-user-menu-layer: var(--honesty-layer-overlay);
+  --honesty-user-menu-inline-size: 18rem;
+  --honesty-user-menu-padding: var(--honesty-space-inset-default);
+  --honesty-user-menu-gap: var(--honesty-space-inline-default);
+  --honesty-user-menu-copy-gap: var(--honesty-space-stack-compact);
+  --honesty-user-menu-anchor-gap: var(--honesty-space-inline-tight);
+  --honesty-user-menu-viewport-inset: var(--honesty-space-inset-tight);
+}

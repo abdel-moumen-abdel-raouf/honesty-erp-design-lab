@@ -1,0 +1,69 @@
+<div class="notification-bell__trigger-wrap">
+  <erp-tooltip [text]="label()" placement="bottom">
+    <erp-icon-button
+      #trigger
+      icon="notification"
+      [label]="label()"
+      ariaHasPopup="dialog"
+      [ariaControls]="surfaceId"
+      [ariaExpanded]="open()"
+      (pressed)="toggle()"
+    />
+  </erp-tooltip>
+  @if (effectiveUnreadCount() > 0) {
+    <erp-status-badge
+      class="notification-bell__badge"
+      [label]="effectiveUnreadCount() > 99 ? '99+' : effectiveUnreadCount().toString()"
+      tone="danger"
+      size="sm"
+    />
+  }
+</div>
+
+<section
+  #surface
+  class="notification-bell__surface"
+  popover="manual"
+  role="dialog"
+  [id]="surfaceId"
+  [attr.aria-label]="label()"
+>
+  <header class="notification-bell__header">
+    <erp-text type="heading-3">{{ label() }}</erp-text>
+    @if (effectiveUnreadCount() > 0) {
+      <erp-button
+        label="تعيين الكل كمقروء"
+        size="sm"
+        variant="ghost"
+        tone="neutral"
+        (pressed)="markAllRead()"
+      />
+    }
+  </header>
+
+  <ul>
+    @for (notification of notifications(); track notification.id) {
+      <li [attr.data-notification-read]="notification.read ?? false">
+        <erp-button
+          [label]="notification.title"
+          [icon]="notification.icon ?? 'notification'"
+          variant="ghost"
+          tone="neutral"
+          fullWidth
+          [disabled]="notification.disabled ?? false"
+          (pressed)="activate(notification)"
+        />
+        @if (notification.description) {
+          <erp-text type="caption" tone="secondary">
+            {{ notification.description }}
+          </erp-text>
+        }
+      </li>
+    } @empty {
+      <li class="notification-bell__empty">
+        <erp-icon name="notification" size="md" tone="muted" />
+        <erp-text type="caption" tone="secondary">لا توجد إشعارات</erp-text>
+      </li>
+    }
+  </ul>
+</section>

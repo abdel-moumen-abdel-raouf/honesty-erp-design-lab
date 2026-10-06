@@ -1,0 +1,11 @@
+@mixin base {
+  --honesty-app-shell-bg: var(--honesty-color-surface-canvas);
+  --honesty-app-shell-fg: var(--honesty-color-text-primary);
+  --honesty-app-shell-border-color: var(--honesty-border-subtle);
+  --honesty-app-shell-border-width: var(--honesty-border-width-default);
+  --honesty-app-shell-radius: var(--honesty-radius-surface);
+  --honesty-app-shell-sidebar-width: 18rem;
+  --honesty-app-shell-min-height: 32rem;
+  --honesty-app-shell-sidebar-max-block-size-narrow: 18rem;
+  --honesty-app-shell-content-padding: var(--honesty-space-inset-loose);
+}

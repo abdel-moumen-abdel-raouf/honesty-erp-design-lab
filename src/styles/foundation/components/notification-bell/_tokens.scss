@@ -1,0 +1,18 @@
+@mixin base {
+  --honesty-notification-bell-bg: var(--honesty-color-surface-elevated);
+  --honesty-notification-bell-fg: var(--honesty-color-text-primary);
+  --honesty-notification-bell-border-color: var(--honesty-border-subtle);
+  --honesty-notification-bell-border-width: var(--honesty-border-width-default);
+  --honesty-notification-bell-radius: var(--honesty-radius-overlay);
+  --honesty-notification-bell-elevation: var(--honesty-elevation-overlay);
+  --honesty-notification-bell-layer: var(--honesty-layer-overlay);
+  --honesty-notification-bell-inline-size: 22rem;
+  --honesty-notification-bell-max-block-size: 28rem;
+  --honesty-notification-bell-padding: var(--honesty-space-inset-default);
+  --honesty-notification-bell-gap: var(--honesty-space-stack-tight);
+  --honesty-notification-bell-copy-gap: var(--honesty-space-stack-compact);
+  --honesty-notification-bell-empty-padding: var(--honesty-space-inset-loose);
+  --honesty-notification-bell-anchor-gap: var(--honesty-space-inline-tight);
+  --honesty-notification-bell-viewport-inset: var(--honesty-space-inset-tight);
+  --honesty-notification-bell-badge-offset: -0.25rem;
+}

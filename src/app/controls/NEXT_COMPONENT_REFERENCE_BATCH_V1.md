@@ -18,8 +18,15 @@ runtime/Light/Dark review. Phase 6 subsequently implemented exactly
 `ErpEntityCustomFieldOutlet`, and `ErpEntityCustomSectionOutlet` under its
 scoped no-reference waiver and passed 121/121 test files and 809/809 tests.
 The current review gate includes `/controls/entity-form-batch`; Phase 7, Shell,
-and all higher/unlisted families remain unopened. Technical PASS is not visual
-approval.
+and all higher/unlisted families were unopened at that historical transition.
+The later Product Owner authorization opened and completed the Accelerated
+Navigation & ERP Shell Batch V1 for ten owners. Its audit found no external
+reference, so the scoped accelerated-wave waiver applies as recorded in
+`SHELL_BATCH_V1.md`; canonical verification passed 132/132 test files and
+829/829 tests with both typechecks, production build, and zero warnings. The
+current gate is grouped Product Owner runtime/Light/Dark review including
+`/controls/shell-batch`. Entity/Page patterns, Feature/Page migration, and all
+unlisted families remain unopened. Technical PASS is not visual approval.
 
 ## Historical Product Owner decision — superseded execution order
 

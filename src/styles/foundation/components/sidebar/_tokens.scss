@@ -1,0 +1,21 @@
+@mixin base {
+  --honesty-sidebar-bg: var(--honesty-color-surface-default);
+  --honesty-sidebar-fg: var(--honesty-color-text-primary);
+  --honesty-sidebar-group-fg: var(--honesty-color-text-secondary);
+  --honesty-sidebar-item-bg-hover: var(--honesty-color-surface-elevated);
+  --honesty-sidebar-item-bg-active: var(--honesty-color-action-primary-subtle-bg);
+  --honesty-sidebar-item-fg-active: var(--honesty-color-text-primary);
+  --honesty-sidebar-item-fg-disabled: var(--honesty-color-text-disabled);
+  --honesty-sidebar-border-color: var(--honesty-border-subtle);
+  --honesty-sidebar-border-width: var(--honesty-border-width-default);
+  --honesty-sidebar-padding: var(--honesty-space-inset-default);
+  --honesty-sidebar-item-gap: var(--honesty-space-stack-tight);
+  --honesty-sidebar-content-gap: var(--honesty-space-inline-default);
+  --honesty-sidebar-item-padding-inline: var(--honesty-space-inset-default);
+  --honesty-sidebar-item-height: 2.75rem;
+  --honesty-sidebar-item-radius: var(--honesty-radius-control);
+  --honesty-sidebar-indent: var(--honesty-space-inline-default);
+  --honesty-sidebar-focus-width: var(--honesty-focus-ring-width);
+  --honesty-sidebar-focus-color: var(--honesty-focus-ring-color);
+  --honesty-sidebar-focus-offset: var(--honesty-focus-ring-offset);
+}

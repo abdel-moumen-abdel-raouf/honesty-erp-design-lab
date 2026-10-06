@@ -30,24 +30,31 @@ Binding Product Owner law:
 4. the next item is the lowest unresolved dependency, not simply the next row
    in historical planning.
 
-Latest completed authorized phase:
+Latest completed authorized phase is the Accelerated Navigation & ERP Shell
+Batch V1, containing exactly:
 
-1. `ErpStandardEntityForm`;
-2. `ErpEntitySchemaFields`;
-3. `ErpEntityCustomFieldOutlet`;
-4. `ErpEntityCustomSectionOutlet`.
+1. `ErpBreadcrumbs`;
+2. `ErpPageHeader`;
+3. `ErpPageShell`;
+4. `ErpSidebar`;
+5. `ErpTopbar`;
+6. `ErpBranchSelector`;
+7. `ErpGlobalSearch`;
+8. `ErpNotificationBell`;
+9. `ErpUserMenu`;
+10. `ErpAppShell`.
 
-This Schema-Driven Entity Form Engine phase follows technically green Core,
-Phase A hardening, Data/Table, and Forms Composition batches. The four Phase 6
-owners are now implemented and canonically green at 121/121 test files and
-809/809 tests, with both typechecks, production build, and zero warnings.
+This batch follows technically green Core, Phase A hardening, Data/Table,
+Forms Composition, and Schema-Driven Entity Form Engine batches. The ten Shell
+owners are canonically green at 132/132 test files and 829/829 tests, with both
+typechecks, production build, and zero warnings.
 
-Current active gate is Product Owner runtime/Light/Dark review of Core,
-Data/Table, Forms, and Entity Form Engine. Technical PASS is not visual freeze.
-No subsequent implementation scope is authorized. Standalone EntityReview,
-Entity Wizard, workflow engine, reusable page/entity patterns, Shell,
-Sidebar/Topbar, Navigation, Features/Pages, and every unlisted family remain
-unopened. Phase 7 is not authorized.
+Current active gate is grouped Product Owner runtime/Light/Dark review of
+Core, Data/Table, Forms, Entity Form Engine, and Shell. Technical PASS is not
+visual freeze. No subsequent implementation scope is authorized. Standalone
+EntityReview, Entity Wizard, workflow engine, DataPage, EntityDirectory,
+EntityDetail, CRUD/transaction page patterns, Feature/Page migration, and every
+unlisted family remain unopened.
 
 ## Visual-reference law
 

@@ -1,0 +1,41 @@
+<nav [attr.aria-label]="label()">
+  <ol>
+    @for (item of items(); track item.id; let first = $first) {
+      <li>
+        @if (!first) {
+          <erp-icon
+            class="breadcrumbs__separator"
+            name="chevron-start"
+            size="xs"
+            tone="muted"
+          />
+        }
+
+        @if (item.id === resolvedCurrentId()) {
+          <span class="breadcrumbs__current" aria-current="page">
+            @if (item.icon) {
+              <erp-icon [name]="item.icon" size="xs" tone="inherit" />
+            }
+            <erp-text type="span" tone="inherit" weight="medium">
+              {{ item.label }}
+            </erp-text>
+          </span>
+        } @else if (item.href) {
+          <a [href]="item.href" (click)="activate(item)">
+            @if (item.icon) {
+              <erp-icon [name]="item.icon" size="xs" tone="inherit" />
+            }
+            <erp-text type="span" tone="inherit">{{ item.label }}</erp-text>
+          </a>
+        } @else {
+          <span class="breadcrumbs__ancestor">
+            @if (item.icon) {
+              <erp-icon [name]="item.icon" size="xs" tone="inherit" />
+            }
+            <erp-text type="span" tone="inherit">{{ item.label }}</erp-text>
+          </span>
+        }
+      </li>
+    }
+  </ol>
+</nav>

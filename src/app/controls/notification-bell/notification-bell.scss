@@ -1,0 +1,67 @@
+@use '../../../styles/foundation/components/notification-bell' as tokens;
+
+:host {
+  @include tokens.base;
+  display: inline-block;
+  position: relative;
+}
+
+.notification-bell__trigger-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.notification-bell__badge {
+  position: absolute;
+  inset-block-start: var(--honesty-notification-bell-badge-offset);
+  inset-inline-end: var(--honesty-notification-bell-badge-offset);
+  pointer-events: none;
+}
+
+.notification-bell__surface {
+  position: fixed;
+  inset: auto;
+  inline-size: min(
+    var(--honesty-notification-bell-inline-size),
+    calc(100vw - 2 * var(--honesty-notification-bell-viewport-inset))
+  );
+  max-block-size: var(--honesty-notification-bell-max-block-size);
+  margin: 0;
+  padding: var(--honesty-notification-bell-padding);
+  overflow: auto;
+  color: var(--honesty-notification-bell-fg);
+  background: var(--honesty-notification-bell-bg);
+  border: var(--honesty-notification-bell-border-width) solid
+    var(--honesty-notification-bell-border-color);
+  border-radius: var(--honesty-notification-bell-radius);
+  box-shadow: var(--honesty-notification-bell-elevation);
+  z-index: var(--honesty-notification-bell-layer);
+}
+
+.notification-bell__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--honesty-notification-bell-gap);
+  padding-block-end: var(--honesty-notification-bell-gap);
+  border-block-end: var(--honesty-notification-bell-border-width) solid
+    var(--honesty-notification-bell-border-color);
+}
+
+ul {
+  display: grid;
+  gap: var(--honesty-notification-bell-gap);
+  margin: 0;
+  padding: var(--honesty-notification-bell-gap) 0 0;
+  list-style: none;
+}
+
+li {
+  display: grid;
+  gap: var(--honesty-notification-bell-copy-gap);
+}
+
+.notification-bell__empty {
+  place-items: center;
+  padding: var(--honesty-notification-bell-empty-padding);
+}

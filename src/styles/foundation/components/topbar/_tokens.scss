@@ -1,0 +1,11 @@
+@mixin base {
+  --honesty-topbar-bg: var(--honesty-color-surface-elevated);
+  --honesty-topbar-fg: var(--honesty-color-text-primary);
+  --honesty-topbar-border-color: var(--honesty-border-subtle);
+  --honesty-topbar-border-width: var(--honesty-border-width-default);
+  --honesty-topbar-height: 4rem;
+  --honesty-topbar-padding-inline: var(--honesty-space-inset-default);
+  --honesty-topbar-padding-block-narrow: var(--honesty-space-inset-tight);
+  --honesty-topbar-region-gap: var(--honesty-space-inline-loose);
+  --honesty-topbar-item-gap: var(--honesty-space-inline-default);
+}

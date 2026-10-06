@@ -227,6 +227,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
       'controls/data-batch',
       'controls/forms-batch',
       'controls/entity-form-batch',
+      'controls/shell-batch',
       'foundation/colors',
       'foundation/colors/status-hues',
       'foundation/themes',

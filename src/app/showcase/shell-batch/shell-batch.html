@@ -1,0 +1,158 @@
+<erp-container class="shell-batch" width="wide">
+  <erp-stack gap="loose">
+    <erp-stack gap="tight">
+      <erp-text type="heading-1">مراجعة دفعة التنقل وإطار ERP</erp-text>
+      <erp-text type="paragraph" tone="secondary">
+        عشرة ملاك عرض وتركيب بدون نقل بيانات أو صلاحيات أو حالة سمة محلية.
+      </erp-text>
+    </erp-stack>
+
+    <erp-grid [columns]="2" gap="lg" responsive="auto">
+      <erp-section data-shell-owner="breadcrumbs">
+        <erp-stack gap="default">
+          <erp-text type="heading-2">ErpBreadcrumbs</erp-text>
+          <erp-breadcrumbs [items]="breadcrumbs" />
+        </erp-stack>
+      </erp-section>
+
+      <erp-section data-shell-owner="page-header">
+        <erp-page-header title="دليل العملاء" subtitle="إدارة بيانات العملاء وحالاتهم">
+          <erp-breadcrumbs erpPageHeaderBreadcrumbs [items]="breadcrumbs" />
+          <erp-status-badge erpPageHeaderMeta label="نشط" tone="success" />
+          <erp-button erpPageHeaderSecondary label="تصدير" variant="outline" />
+          <erp-button erpPageHeaderPrimary label="عميل جديد" icon="add" />
+        </erp-page-header>
+      </erp-section>
+
+      <erp-section data-shell-owner="page-shell">
+        <erp-page-shell>
+          <erp-page-header erpPageShellHeader title="صفحة الحساب" />
+          <erp-surface border="subtle">
+            <erp-text type="paragraph">منطقة المحتوى الرئيسية</erp-text>
+          </erp-surface>
+          <erp-surface erpPageShellSide border="subtle">
+            <erp-text type="caption" tone="secondary">سياق جانبي اختياري</erp-text>
+          </erp-surface>
+          <erp-text erpPageShellFooter type="caption">إجراءات أو معلومات تذييل اختيارية</erp-text>
+        </erp-page-shell>
+      </erp-section>
+
+      <erp-section data-shell-owner="sidebar">
+        <erp-surface border="subtle" padding="none">
+          <erp-sidebar
+            [items]="navigationItems"
+            [activeId]="activeNavigationId()"
+            (navigationActivated)="navigate($event)"
+          />
+        </erp-surface>
+      </erp-section>
+
+      <erp-section data-shell-owner="topbar">
+        <erp-topbar>
+          <erp-text erpTopbarStart type="heading-3">Honesty ERP</erp-text>
+          <erp-text erpTopbarContext type="caption">فرع القاهرة</erp-text>
+          <erp-global-search erpTopbarSearch [results]="searchResults" />
+          <erp-notification-bell erpTopbarActions [notifications]="notifications" />
+          <erp-user-menu erpTopbarUser [user]="user" [items]="userMenuItems" />
+        </erp-topbar>
+      </erp-section>
+
+      <erp-section data-shell-owner="branch-selector">
+        <erp-stack gap="default">
+          <erp-text type="heading-2">ErpBranchSelector</erp-text>
+          <erp-branch-selector
+            [branches]="branches"
+            [(value)]="activeBranchId"
+            (changed)="lastIntent.set('تغيير الفرع: ' + ($event ?? 'بدون اختيار'))"
+          />
+        </erp-stack>
+      </erp-section>
+
+      <erp-section data-shell-owner="global-search">
+        <erp-stack gap="default">
+          <erp-text type="heading-2">ErpGlobalSearch</erp-text>
+          <erp-global-search
+            [results]="searchResults"
+            [(query)]="globalQuery"
+            (resultActivated)="lastIntent.set('فتح نتيجة: ' + $event.label)"
+          />
+        </erp-stack>
+      </erp-section>
+
+      <erp-section data-shell-owner="notification-bell">
+        <erp-inline gap="default">
+          <erp-text type="heading-2">ErpNotificationBell</erp-text>
+          <erp-notification-bell
+            [notifications]="notifications"
+            (notificationActivated)="lastIntent.set('فتح إشعار: ' + $event.title)"
+            (markAllReadRequested)="lastIntent.set('نية تعيين الكل كمقروء')"
+          />
+        </erp-inline>
+      </erp-section>
+
+      <erp-section data-shell-owner="user-menu">
+        <erp-inline gap="default">
+          <erp-text type="heading-2">ErpUserMenu</erp-text>
+          <erp-user-menu
+            [user]="user"
+            [items]="userMenuItems"
+            (actionActivated)="lastIntent.set('إجراء المستخدم: ' + $event.label)"
+          />
+        </erp-inline>
+      </erp-section>
+    </erp-grid>
+
+    <erp-section data-shell-owner="app-shell" data-integrated-shell-specimen>
+      <erp-stack gap="default">
+        <erp-text type="heading-2">ErpAppShell — عينة ERP متكاملة</erp-text>
+        <erp-app-shell
+          [navigationItems]="navigationItems"
+          [activeNavigationId]="activeNavigationId()"
+          (navigationActivated)="navigate($event)"
+        >
+          <erp-text erpAppShellTopbarStart type="heading-3">Honesty ERP</erp-text>
+          <erp-branch-selector
+            erpAppShellTopbarContext
+            [branches]="branches"
+            [(value)]="activeBranchId"
+          />
+          <erp-global-search
+            erpAppShellTopbarSearch
+            [results]="searchResults"
+            [(query)]="globalQuery"
+          />
+          <erp-inline erpAppShellTopbarActions gap="tight">
+            <erp-notification-bell [notifications]="notifications" />
+          </erp-inline>
+          <erp-user-menu
+            erpAppShellTopbarUser
+            [user]="user"
+            [items]="userMenuItems"
+          />
+
+          <erp-page-shell>
+            <erp-page-header
+              erpPageShellHeader
+              title="الحسابات العامة"
+              subtitle="متابعة القيود والأرصدة"
+            >
+              <erp-breadcrumbs erpPageHeaderBreadcrumbs [items]="breadcrumbs" />
+              <erp-status-badge erpPageHeaderMeta label="الفترة مفتوحة" tone="success" />
+              <erp-button erpPageHeaderSecondary label="تصدير" variant="outline" />
+              <erp-button erpPageHeaderPrimary label="قيد جديد" icon="add" />
+            </erp-page-header>
+            <erp-surface border="subtle">
+              <erp-stack gap="default">
+                <erp-text type="heading-3">ملخص اليوم</erp-text>
+                <erp-text type="paragraph" tone="secondary">
+                  عرض تجريبي لمحتوى ERP يظل مملوكًا للمستهلك.
+                </erp-text>
+                <erp-text type="caption">{{ lastIntent() }}</erp-text>
+              </erp-stack>
+            </erp-surface>
+          </erp-page-shell>
+        </erp-app-shell>
+      </erp-stack>
+    </erp-section>
+  </erp-stack>
+</erp-container>

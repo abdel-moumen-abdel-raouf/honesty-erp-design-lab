@@ -1,0 +1,61 @@
+<div class="user-menu__trigger">
+  <erp-avatar
+    [name]="user().displayName"
+    [src]="user().avatarSrc ?? null"
+    [fallbackIcon]="user().fallbackIcon ?? 'user'"
+    size="sm"
+  />
+  <erp-button
+    #trigger
+    [label]="user().displayName"
+    icon="chevron-down"
+    iconPosition="end"
+    variant="ghost"
+    tone="neutral"
+    ariaHasPopup="menu"
+    [ariaControls]="surfaceId"
+    [ariaExpanded]="open()"
+    (pressed)="toggle()"
+  />
+</div>
+
+<section
+  #surface
+  class="user-menu__surface"
+  popover="manual"
+  role="menu"
+  [id]="surfaceId"
+  [attr.aria-label]="label()"
+>
+  <header>
+    <erp-avatar
+      [name]="user().displayName"
+      [src]="user().avatarSrc ?? null"
+      [fallbackIcon]="user().fallbackIcon ?? 'user'"
+      size="md"
+    />
+    <span class="user-menu__identity">
+      <erp-text type="span" weight="medium">{{ user().displayName }}</erp-text>
+      @if (user().secondaryText) {
+        <erp-text type="caption" tone="secondary">
+          {{ user().secondaryText }}
+        </erp-text>
+      }
+    </span>
+  </header>
+
+  <div class="user-menu__items">
+    @for (item of items(); track item.id) {
+      <erp-button
+        role="menuitem"
+        [label]="item.label"
+        [icon]="item.icon ?? null"
+        variant="ghost"
+        [tone]="item.tone ?? 'neutral'"
+        fullWidth
+        [disabled]="item.disabled ?? false"
+        (pressed)="activate(item)"
+      />
+    }
+  </div>
+</section>

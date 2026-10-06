@@ -51,6 +51,9 @@ export class ErpIconButton {
   readonly name = input<string | null>(null);
   readonly value = input<string | null>(null);
   readonly form = input<string | null>(null);
+  readonly ariaHasPopup = input<'menu' | 'dialog' | 'listbox' | null>(null);
+  readonly ariaControls = input<string | null>(null);
+  readonly ariaExpanded = input<boolean | null>(null);
   readonly disabled = input(false, {transform: booleanAttribute});
   readonly loading = input(false, {transform: booleanAttribute});
   readonly cursor = input<ErpPressableCursor>('pointer');

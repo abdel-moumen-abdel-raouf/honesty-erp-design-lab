@@ -1,0 +1,31 @@
+<section class="app-shell">
+  <erp-topbar class="app-shell__topbar">
+    <div erpTopbarStart class="app-shell__topbar-slot">
+      <ng-content select="[erpAppShellTopbarStart]" />
+    </div>
+    <div erpTopbarContext class="app-shell__topbar-slot">
+      <ng-content select="[erpAppShellTopbarContext]" />
+    </div>
+    <div erpTopbarSearch class="app-shell__topbar-slot">
+      <ng-content select="[erpAppShellTopbarSearch]" />
+    </div>
+    <div erpTopbarActions class="app-shell__topbar-slot">
+      <ng-content select="[erpAppShellTopbarActions]" />
+    </div>
+    <div erpTopbarUser class="app-shell__topbar-slot">
+      <ng-content select="[erpAppShellTopbarUser]" />
+    </div>
+  </erp-topbar>
+
+  <erp-sidebar
+    class="app-shell__sidebar"
+    [items]="navigationItems()"
+    [activeId]="activeNavigationId()"
+    [label]="sidebarLabel()"
+    (navigationActivated)="navigationActivated.emit($event)"
+  />
+
+  <main class="app-shell__content" [attr.aria-label]="contentLabel()">
+    <ng-content />
+  </main>
+</section>

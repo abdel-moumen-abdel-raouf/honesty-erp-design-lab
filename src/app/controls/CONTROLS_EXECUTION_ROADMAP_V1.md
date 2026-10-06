@@ -34,12 +34,20 @@ verification passed 121/121 test files, 809/809 tests, both typechecks,
 production build, and zero warnings. Its four-owner reference audit found no
 external reference, so the scoped Phase 6 accelerated waiver applies.
 
-Standalone EntityReview, Entity Wizard, workflow engine, reusable page/entity
-patterns, Shell, Sidebar/Topbar, Navigation, Features/Pages, and every unlisted
-family remain unopened. The exact next action is Product Owner runtime/Light/
-Dark review of Core, Data/Table, Forms, and Entity Form Engine; no subsequent
-implementation phase is authorized. Technical green is not Product Owner
-visual approval.
+Accelerated Navigation & ERP Shell Batch V1 is implemented for exactly
+`ErpBreadcrumbs`, `ErpPageHeader`, `ErpPageShell`, `ErpSidebar`, `ErpTopbar`,
+`ErpBranchSelector`, `ErpGlobalSearch`, `ErpNotificationBell`, `ErpUserMenu`,
+and `ErpAppShell`. Canonical verification passed 132/132 test files, 829/829
+tests, both typechecks, production build, and zero warnings. Its ten-owner
+reference audit found no external reference, so the scoped accelerated-wave
+waiver applies as recorded in `SHELL_BATCH_V1.md`.
+
+Standalone EntityReview, Entity Wizard, workflow engine, DataPage,
+EntityDirectory, EntityDetail, CRUD/transaction page patterns, Feature/Page
+migration, and every unlisted family remain unopened. The exact next action is
+grouped Product Owner runtime/Light/Dark review of Core, Data/Table, Forms,
+Entity Form Engine, and Shell; no subsequent implementation phase is
+authorized. Technical green is not Product Owner visual approval.
 
 ## Canonical Classification
 

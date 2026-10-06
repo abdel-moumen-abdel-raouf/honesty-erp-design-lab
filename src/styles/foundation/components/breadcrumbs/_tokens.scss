@@ -1,0 +1,14 @@
+@mixin base {
+  --honesty-breadcrumbs-fg: var(--honesty-color-text-primary);
+  --honesty-breadcrumbs-link-fg: var(--honesty-color-text-secondary);
+  --honesty-breadcrumbs-link-fg-hover: var(--honesty-color-action-primary-bg);
+  --honesty-breadcrumbs-current-fg: var(--honesty-color-text-primary);
+  --honesty-breadcrumbs-muted-fg: var(--honesty-color-text-muted);
+  --honesty-breadcrumbs-item-gap: var(--honesty-space-inline-tight);
+  --honesty-breadcrumbs-separator-gap: var(--honesty-space-inline-default);
+  --honesty-breadcrumbs-hit-size: 2rem;
+  --honesty-breadcrumbs-radius: var(--honesty-radius-control);
+  --honesty-breadcrumbs-focus-width: var(--honesty-focus-ring-width);
+  --honesty-breadcrumbs-focus-color: var(--honesty-focus-ring-color);
+  --honesty-breadcrumbs-focus-offset: var(--honesty-focus-ring-offset);
+}

@@ -1,0 +1,8 @@
+@mixin base {
+  --honesty-page-header-gap: var(--honesty-space-stack-default);
+  --honesty-page-header-copy-gap: var(--honesty-space-stack-tight);
+  --honesty-page-header-action-gap: var(--honesty-space-inline-default);
+  --honesty-page-header-padding-block-end: var(--honesty-space-inset-default);
+  --honesty-page-header-border-width: var(--honesty-border-width-default);
+  --honesty-page-header-border-color: var(--honesty-border-subtle);
+}

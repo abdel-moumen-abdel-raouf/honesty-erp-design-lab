@@ -17,7 +17,7 @@ requested.
 The Product Owner is the final authority for visual approval.
 Technical success, green tests, or Codex judgment do not equal visual approval.
 
-## Current Accelerated Schema-Driven Entity Form State
+## Current Accelerated Navigation and ERP Shell State
 
 The technically green Accelerated Core Batch, Phase A hardening, and Phase B
 Data/Table batch remain pending grouped Product Owner runtime/visual review.
@@ -36,7 +36,7 @@ so the Product Owner accelerated no-reference waiver applied to these owners
 only. The batch passed canonical verification at 117/117 test files and 792/792
 tests, with both typechecks, production build, and zero warnings.
 
-Schema-Driven Entity Form Engine V1 now contains exactly:
+Schema-Driven Entity Form Engine V1 contains exactly:
 
 - `ErpStandardEntityForm`;
 - `ErpEntitySchemaFields`;
@@ -48,12 +48,46 @@ the Product Owner accelerated no-reference waiver applies to those owners only.
 Canonical verification passed 121/121 test files and 809/809 tests, both
 typechecks, production build, and zero warnings.
 
-The current gate is Product Owner runtime/Light/Dark review of Core, Data/Table,
-Forms, and Entity Form Engine. No further implementation wave is authorized.
-Standalone EntityReview, Entity Wizard, workflow engine, reusable page/entity
-patterns, Shell, Sidebar/Topbar, Navigation, Features/Pages, and every unlisted
-owner remain unopened. Technical PASS does not equal Product Owner visual
-approval.
+Accelerated Navigation & ERP Shell Batch V1 now contains exactly
+`ErpBreadcrumbs`, `ErpPageHeader`, `ErpPageShell`, `ErpSidebar`, `ErpTopbar`,
+`ErpBranchSelector`, `ErpGlobalSearch`, `ErpNotificationBell`, `ErpUserMenu`,
+and `ErpAppShell`. Its audit found no external visual reference, so the Product
+Owner accelerated-wave no-reference waiver applies to these ten owners only.
+Canonical verification passed 132/132 test files and 829/829 tests, both
+typechecks, production build, and zero warnings.
+
+The current gate is grouped Product Owner runtime/Light/Dark review of Core,
+Data/Table, Forms, Entity Form Engine, and Shell. No further implementation
+wave is authorized. Standalone EntityReview, Entity Wizard, workflow engine,
+DataPage, EntityDirectory, EntityDetail, CRUD/transaction page patterns,
+Feature/Page migration, and every unlisted owner remain unopened. Technical
+PASS does not equal Product Owner visual approval.
+
+## Production Navigation and ERP Shell Governance
+
+- `ErpBreadcrumbs`, `ErpPageHeader`, and `ErpPageShell` own bounded page
+  location, hierarchy, and composition only; they own no router configuration,
+  entity business actions, session, transport, or global application state.
+- `ErpSidebar` consumes an already-filtered navigation model and emits
+  navigation intent. Consumers own permissions, routing, and business context.
+- `ErpTopbar` owns projection layout only. App root remains the sole runtime
+  Light/Dark authority; no Shell owner may expose theme state or `data-theme`.
+- `ErpBranchSelector` must remain a thin composition over `ErpSelect` and own no
+  branch persistence, session switching, permissions, or backend behavior.
+- `ErpGlobalSearch` must reuse `ErpSearchBox` and own no search transport or
+  data source.
+- `ErpNotificationBell` and `ErpUserMenu` use the approved anchored-overlay
+  controller, ERP actions, and Tooltip contracts. They own no notification
+  store, polling, WebSocket, authentication, session, or sign-out logic.
+- `ErpAppShell` composes `ErpSidebar` and `ErpTopbar`; it owns no theme, router
+  definition, permissions, session fetch, transport, or business state.
+- Shell production SCSS consumes only its owner's Component Tokens and uses the
+  Foundation Query API. Raw responsive thresholds and cross-component token
+  reads are forbidden.
+- `/controls/shell-batch` is ERP-only review evidence. The Design Lab App chrome
+  remains review tooling and is not migrated to `ErpAppShell` by this batch.
+- The grouped technical checkpoint does not declare Product Owner visual
+  approval and does not authorize Entity/Page patterns or Feature migration.
 
 ## Production Forms Composition Governance
 
@@ -77,9 +111,11 @@ approval.
   Component Token access and Feature/Page overrides remain forbidden.
 - `/controls/forms-batch` is review evidence only, remains ERP-only authored,
   and is not a Form Engine or production entity pattern.
-- The later Product Owner Phase 6 authorization opens only the four bounded
-  Entity Form owners recorded below; Entity Wizard, workflow engine, reusable
-  page/entity patterns, Shell, and Feature/Page migration remain unopened.
+- The later Product Owner Phase 6 authorization opened only the four bounded
+  Entity Form owners recorded below. The subsequent Shell authorization is
+  recorded in the current-state and Shell-governance sections above; Entity
+  Wizard, workflow engine, reusable page/entity patterns, and Feature/Page
+  migration remain unopened.
 
 ## Production Schema-Driven Entity Form Governance
 
@@ -104,8 +140,9 @@ approval.
   persistence, backend, or feature/page authority.
 - Only `standard-entity-form` and `entity-schema-fields` own Phase 6 Component
   Token namespaces because only those two owners render independent visual UI.
-- Phase 7, Shell/navigation, reusable page/entity patterns, Features/Pages, and
-  ERP-specific domain editors remain unopened.
+- The subsequent Product Owner authorization opened only the bounded Shell
+  owners recorded above. Reusable page/entity patterns, Features/Pages, Entity
+  Wizard, workflow engine, and ERP-specific domain editors remain unopened.
 
 ## Design Architecture
 

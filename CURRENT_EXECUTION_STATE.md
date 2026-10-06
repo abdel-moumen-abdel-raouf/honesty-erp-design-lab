@@ -14,12 +14,11 @@ Branch:
 
 ## Authoritative current execution state — 2026-10-06
 
-Live `main` entered Phase 6 at
-`754e18dfe49c97b06eb799c05984bfd2134154b0`
-(`feat(forms): add accelerated forms composition batch`). The Phase 6 source,
-verification, and continuity changes are committed together as
-`feat(forms): add schema-driven entity form engine`; always resolve the live
-local and remote SHA directly because this document is part of that commit.
+The Accelerated Navigation & ERP Shell Batch V1 started from
+`ecc7e0b2492a3267309e0eefd48f51b355ed71ba`. Its source, verification, and
+continuity changes are committed together as `feat(shell): add accelerated
+navigation and erp shell batch`; always resolve the live local and remote SHA
+directly because this document is part of that commit.
 
 Completed technical checkpoints:
 
@@ -31,35 +30,37 @@ Completed technical checkpoints:
 - Accelerated Forms Composition Batch implemented for exactly `ErpForm`,
   `ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`, `ErpRepeater`, and
   `ErpStepper`; its canonical gate passed 117/117 test files, 792/792 tests,
-  both TypeScript typechecks, production build, and zero warnings; initial
-  bundle 374.97 kB / 85.34 kB estimated transfer and Forms Batch lazy chunk
-  34.28 kB / 7.17 kB estimated transfer.
+  both TypeScript typechecks, production build, and zero warnings;
 - Schema-Driven Entity Form Engine V1 implemented for exactly
   `ErpStandardEntityForm`, `ErpEntitySchemaFields`,
   `ErpEntityCustomFieldOutlet`, and `ErpEntityCustomSectionOutlet`; its
   canonical gate passed 121/121 test files, 809/809 tests, both TypeScript
-  typechecks, production build, and zero warnings; initial bundle 375.34 kB /
-  85.44 kB estimated transfer and Entity Form lazy chunk 37.44 kB / 6.88 kB
-  estimated transfer.
+  typechecks, production build, and zero warnings;
+- Accelerated Navigation & ERP Shell Batch V1 implemented for exactly
+  `ErpBreadcrumbs`, `ErpPageHeader`, `ErpPageShell`, `ErpSidebar`, `ErpTopbar`,
+  `ErpBranchSelector`, `ErpGlobalSearch`, `ErpNotificationBell`, `ErpUserMenu`,
+  and `ErpAppShell`; its canonical gate passed 132/132 test files, 829/829
+  tests, both TypeScript typechecks, production build, and zero warnings;
+  initial bundle 375.68 kB / 85.46 kB estimated transfer and Shell Batch lazy
+  chunk 51.57 kB / 10.04 kB estimated transfer.
 
-The Phase 6 reference audit found no external reference for any of the four
-owners, so each was implemented under the Product Owner Phase 6 accelerated
-no-external-reference waiver recorded in
-`src/app/controls/ENTITY_FORM_ENGINE_V1.md`.
+The Shell reference audit found no external reference for any of the ten
+owners, so each was implemented under the Product Owner accelerated-wave
+no-external-reference waiver recorded in `src/app/controls/SHELL_BATCH_V1.md`.
 
 Product Owner visual state and immediate next action:
 
-- Core, Data/Table, Forms, and Entity Form Engine runtime/visual acceptance
-  remains pending and may reopen any component;
+- Core, Data/Table, Forms, Entity Form Engine, and Shell Batch runtime/visual
+  acceptance remains pending and may reopen any component;
 - technical green does not equal Product Owner visual approval or freeze;
 - the exact next action is Product Owner runtime/Light/Dark review of the
-  grouped accelerated work, including `/controls/entity-form-batch`;
+  grouped accelerated work, including `/controls/shell-batch`;
 - no further implementation scope is authorized by this checkpoint.
 
 Still unopened: standalone EntityReview, Entity Wizard, workflow engine,
-DataPage, EntityDirectory, EntityDetail, reusable page/entity patterns, Shell,
-Sidebar/Topbar, Navigation, Features/Pages, ERP-specific domain editors, and
-every unlisted owner. Phase 7 is not authorized.
+DataPage, EntityDirectory, EntityDetail, CRUD page archetypes, transaction
+patterns, Feature/Page migration, ERP-specific domain editors, and every
+unlisted owner. No later Entity/Page Patterns wave is authorized.
 
 ## Historical GitHub checkpoints — superseded snapshot
 

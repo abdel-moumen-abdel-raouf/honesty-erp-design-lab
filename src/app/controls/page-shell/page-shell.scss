@@ -1,0 +1,45 @@
+@use '../../../styles/foundation/components/page-shell' as tokens;
+@use '../../../styles/foundation/queries' as query;
+
+:host {
+  @include tokens.base;
+  display: block;
+  min-inline-size: 0;
+}
+
+.page-shell__layout,
+.page-shell__main,
+.page-shell__side {
+  min-inline-size: 0;
+}
+
+.page-shell__layout {
+  display: grid;
+  gap: var(--honesty-page-shell-gap);
+}
+
+.page-shell__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr)
+    minmax(0, var(--honesty-page-shell-side-width));
+  gap: var(--honesty-page-shell-content-gap);
+  align-items: start;
+}
+
+.page-shell__side:empty,
+.page-shell__footer:empty,
+.page-shell__header:empty {
+  display: none;
+}
+
+.page-shell__footer {
+  padding-block-start: var(--honesty-page-shell-footer-padding);
+  border-block-start: var(--honesty-page-shell-border-width) solid
+    var(--honesty-page-shell-border-color);
+}
+
+@include query.viewport-down('md') {
+  .page-shell__body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

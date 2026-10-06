@@ -19,6 +19,8 @@ in this order:
     `src/app/controls/radio-box/RADIO_BOX_VISUAL_CONTRACT_V1.md`
 13. current EmptyState exact-reference contract:
     `src/app/controls/empty-state/EMPTY_STATE_REFERENCE_EXACT_V1.md`
+14. current Navigation and ERP Shell batch contract:
+    `src/app/controls/SHELL_BATCH_V1.md`
 
 Then verify live GitHub `main` before making any current-state claim.
 
@@ -56,10 +58,10 @@ restated by the newest dated continuity blocks or by
 
 ## Authoritative current state — 2026-10-06
 
-Phase 6 started from `754e18dfe49c97b06eb799c05984bfd2134154b0`
-(`feat(forms): add accelerated forms composition batch`). Resolve the final live
-SHA from Git; the Entity Form Engine implementation and this synchronized state
-are committed together as `feat(forms): add schema-driven entity form engine`.
+The Accelerated Navigation & ERP Shell Batch V1 started from
+`ecc7e0b2492a3267309e0eefd48f51b355ed71ba`. Resolve the final live SHA from
+Git; the implementation and this synchronized state are committed together as
+`feat(shell): add accelerated navigation and erp shell batch`.
 
 - The Accelerated Core Batch and Phase A hardening are technically green.
 - Accelerated Phase B Data/Table is canonically green at 110/110 test files and
@@ -78,15 +80,24 @@ are committed together as `feat(forms): add schema-driven entity form engine`.
   verification passed 121/121 test files, 809/809 tests, both typechecks,
   production build, and zero warnings; initial bundle 375.34 kB / 85.44 kB
   estimated transfer and Entity Form lazy chunk 37.44 kB / 6.88 kB.
-- Product Owner runtime/Light/Dark acceptance of Core, Data/Table, Forms, and
-  Entity Form Engine remains pending. Technical PASS is not visual approval or
-  freeze.
+- Accelerated Navigation & ERP Shell Batch V1 implements exactly
+  `ErpBreadcrumbs`, `ErpPageHeader`, `ErpPageShell`, `ErpSidebar`, `ErpTopbar`,
+  `ErpBranchSelector`, `ErpGlobalSearch`, `ErpNotificationBell`, `ErpUserMenu`,
+  and `ErpAppShell`; canonical verification passed 132/132 test files, 829/829
+  tests, both typechecks, production build, and zero warnings; initial bundle
+  375.68 kB / 85.46 kB estimated transfer and Shell Batch lazy chunk 51.57 kB
+  / 10.04 kB.
+- The Shell reference audit found no external files; the scoped waiver and
+  matrix are recorded in `src/app/controls/SHELL_BATCH_V1.md`.
+- Product Owner runtime/Light/Dark acceptance of Core, Data/Table, Forms,
+  Entity Form Engine, and Shell remains pending. Technical PASS is not visual
+  approval or freeze.
 - The exact next action is Product Owner runtime/visual review of the grouped
-  accelerated review routes, including `/controls/entity-form-batch`. No
+  accelerated review routes, including `/controls/shell-batch`. No
   subsequent implementation wave is authorized.
-- Standalone EntityReview, Entity Wizard, workflow engine, reusable page/entity
-  patterns, Shell, Sidebar/Topbar, Navigation, Features/Pages, and every
-  unlisted family remain unopened. Phase 7 is not authorized.
+- Standalone EntityReview, Entity Wizard, workflow engine, DataPage,
+  EntityDirectory, EntityDetail, CRUD/transaction page patterns,
+  Feature/Page migration, and every unlisted family remain unopened.
 
 
 ## Historical state snapshot — superseded

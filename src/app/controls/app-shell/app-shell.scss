@@ -1,0 +1,61 @@
+@use '../../../styles/foundation/components/app-shell' as tokens;
+@use '../../../styles/foundation/queries' as query;
+
+:host {
+  @include tokens.base;
+  display: block;
+  min-inline-size: 0;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-areas:
+    'topbar topbar'
+    'sidebar content';
+  grid-template-columns: var(--honesty-app-shell-sidebar-width) minmax(0, 1fr);
+  grid-template-rows: auto minmax(var(--honesty-app-shell-min-height), 1fr);
+  min-inline-size: 0;
+  color: var(--honesty-app-shell-fg);
+  background: var(--honesty-app-shell-bg);
+  border: var(--honesty-app-shell-border-width) solid
+    var(--honesty-app-shell-border-color);
+  border-radius: var(--honesty-app-shell-radius);
+  overflow: hidden;
+}
+
+.app-shell__topbar {
+  grid-area: topbar;
+}
+
+.app-shell__topbar-slot {
+  display: contents;
+}
+
+.app-shell__sidebar {
+  grid-area: sidebar;
+  min-block-size: 0;
+}
+
+.app-shell__content {
+  grid-area: content;
+  min-inline-size: 0;
+  padding: var(--honesty-app-shell-content-padding);
+  overflow: auto;
+}
+
+@include query.viewport-down('md') {
+  .app-shell {
+    grid-template-areas:
+      'topbar'
+      'sidebar'
+      'content';
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto minmax(var(--honesty-app-shell-min-height), 1fr);
+  }
+
+  .app-shell__sidebar {
+    max-block-size: var(--honesty-app-shell-sidebar-max-block-size-narrow);
+    border-block-end: var(--honesty-app-shell-border-width) solid
+      var(--honesty-app-shell-border-color);
+  }
+}

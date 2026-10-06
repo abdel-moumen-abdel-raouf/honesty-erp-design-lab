@@ -1,0 +1,52 @@
+@use '../../../styles/foundation/components/user-menu' as tokens;
+
+:host {
+  @include tokens.base;
+  display: inline-block;
+}
+
+.user-menu__trigger,
+header {
+  display: flex;
+  align-items: center;
+  gap: var(--honesty-user-menu-gap);
+}
+
+.user-menu__surface {
+  position: fixed;
+  inset: auto;
+  inline-size: min(
+    var(--honesty-user-menu-inline-size),
+    calc(100vw - 2 * var(--honesty-user-menu-viewport-inset))
+  );
+  margin: 0;
+  padding: var(--honesty-user-menu-padding);
+  color: var(--honesty-user-menu-fg);
+  background: var(--honesty-user-menu-bg);
+  border: var(--honesty-user-menu-border-width) solid
+    var(--honesty-user-menu-border-color);
+  border-radius: var(--honesty-user-menu-radius);
+  box-shadow: var(--honesty-user-menu-elevation);
+  z-index: var(--honesty-user-menu-layer);
+}
+
+header {
+  padding-block-end: var(--honesty-user-menu-padding);
+  border-block-end: var(--honesty-user-menu-border-width) solid
+    var(--honesty-user-menu-border-color);
+}
+
+.user-menu__identity,
+.user-menu__items {
+  display: grid;
+  min-inline-size: 0;
+  gap: var(--honesty-user-menu-copy-gap);
+}
+
+.user-menu__identity {
+  flex: 1 1 auto;
+}
+
+.user-menu__items {
+  padding-block-start: var(--honesty-user-menu-padding);
+}

@@ -1,0 +1,56 @@
+@use '../../../styles/foundation/components/topbar' as tokens;
+@use '../../../styles/foundation/queries' as query;
+
+:host {
+  @include tokens.base;
+  display: block;
+  min-inline-size: 0;
+  color: var(--honesty-topbar-fg);
+  background: var(--honesty-topbar-bg);
+  border-block-end: var(--honesty-topbar-border-width) solid
+    var(--honesty-topbar-border-color);
+}
+
+header,
+.topbar__start,
+.topbar__context,
+.topbar__search,
+.topbar__actions,
+.topbar__user {
+  display: flex;
+  align-items: center;
+  min-inline-size: 0;
+  gap: var(--honesty-topbar-item-gap);
+}
+
+header {
+  min-block-size: var(--honesty-topbar-height);
+  padding-inline: var(--honesty-topbar-padding-inline);
+  gap: var(--honesty-topbar-region-gap);
+}
+
+.topbar__search {
+  flex: 1 1 auto;
+  justify-content: center;
+}
+
+.topbar__actions:empty,
+.topbar__user:empty,
+.topbar__context:empty,
+.topbar__start:empty,
+.topbar__search:empty {
+  display: none;
+}
+
+@include query.viewport-down('md') {
+  header {
+    align-items: stretch;
+    flex-wrap: wrap;
+    padding-block: var(--honesty-topbar-padding-block-narrow);
+  }
+
+  .topbar__search {
+    flex-basis: 100%;
+    order: 10;
+  }
+}

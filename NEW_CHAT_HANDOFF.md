@@ -2,11 +2,11 @@
 
 ## 0. Authoritative current handoff — 2026-10-06
 
-Phase 6 started from `754e18dfe49c97b06eb799c05984bfd2134154b0`
-(`feat(forms): add accelerated forms composition batch`). Resolve the final live
-local and remote SHAs at session start; the Phase 6 implementation and current
-state are committed together as `feat(forms): add schema-driven entity form
-engine`.
+The Accelerated Navigation & ERP Shell Batch V1 started from
+`ecc7e0b2492a3267309e0eefd48f51b355ed71ba`. Resolve the final live local and
+remote SHAs at session start; the implementation and current state are
+committed together as `feat(shell): add accelerated navigation and erp shell
+batch`.
 
 Accelerated Core, Phase A hardening, and Phase B Data/Table remain technically
 green. The Forms Composition Batch now implements exactly `ErpForm`,
@@ -27,11 +27,21 @@ transfer and Entity Form lazy chunk 37.44 kB / 6.88 kB estimated transfer. The
 four-owner reference audit found no external file, so the Product Owner Phase 6
 accelerated waiver applies as recorded in `ENTITY_FORM_ENGINE_V1.md`.
 
+The Shell Batch now implements exactly `ErpBreadcrumbs`, `ErpPageHeader`,
+`ErpPageShell`, `ErpSidebar`, `ErpTopbar`, `ErpBranchSelector`,
+`ErpGlobalSearch`, `ErpNotificationBell`, `ErpUserMenu`, and `ErpAppShell`.
+Its canonical gate passed 132/132 test files, 829/829 tests, both typechecks,
+production build, and zero warnings; initial bundle 375.68 kB / 85.46 kB
+estimated transfer and Shell Batch lazy chunk 51.57 kB / 10.04 kB. The
+reference audit found no external file for the ten owners; the scoped waiver
+and reference matrix are recorded in `SHELL_BATCH_V1.md`.
+
 The exact next action is Product Owner runtime/Light/Dark review of the grouped
-Core, Data/Table, Forms, and Entity Form Engine review routes. Technical PASS
-never equals visual acceptance. Standalone EntityReview, Entity Wizard,
-workflow engine, reusable page/entity patterns, Shell, Sidebar/Topbar,
-Navigation, Feature/Page migration, and every subsequent wave remain unopened.
+Core, Data/Table, Forms, Entity Form Engine, and Shell review routes. Technical
+PASS never equals visual acceptance. Standalone EntityReview, Entity Wizard,
+workflow engine, DataPage, EntityDirectory, EntityDetail, CRUD/transaction
+page patterns, Feature/Page migration, and every subsequent wave remain
+unopened.
 
 ## 1. Purpose of this document
 

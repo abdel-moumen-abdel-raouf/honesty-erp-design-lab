@@ -1,0 +1,12 @@
+@use '../../../styles/foundation/components/global-search' as tokens;
+
+:host {
+  @include tokens.base;
+  display: block;
+  inline-size: min(100%, var(--honesty-global-search-inline-size));
+  min-inline-size: var(--honesty-global-search-min-inline-size);
+}
+
+erp-search-box {
+  display: block;
+}

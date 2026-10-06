@@ -1,0 +1,12 @@
+@use '../../../styles/foundation/components/branch-selector' as tokens;
+
+:host {
+  @include tokens.base;
+  display: block;
+  inline-size: min(100%, var(--honesty-branch-selector-inline-size));
+  min-inline-size: var(--honesty-branch-selector-min-inline-size);
+}
+
+erp-select {
+  display: block;
+}

@@ -1,0 +1,8 @@
+.shell-batch {
+  display: block;
+  padding-block: var(--honesty-space-section-default);
+}
+
+[data-shell-owner='sidebar'] erp-sidebar {
+  min-block-size: 24rem;
+}
