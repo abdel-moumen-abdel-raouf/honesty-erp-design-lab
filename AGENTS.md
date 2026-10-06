@@ -17,51 +17,43 @@ requested.
 The Product Owner is the final authority for visual approval.
 Technical success, green tests, or Codex judgment do not equal visual approval.
 
-## Current Accelerated Navigation and ERP Shell State
+## Current Product Owner Core Components Visual Correction V2 State
 
-The technically green Accelerated Core Batch, Phase A hardening, and Phase B
-Data/Table batch remain pending grouped Product Owner runtime/visual review.
+Product Owner visual review reopened `ErpSelect`, `ErpStatusBadge`, `ErpAlert`,
+`ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`, and `ErpPagination`, and
+authorized `ErpAvatarPicker`. Their V2 candidate is technically green at
+133/133 test files and 845/845 tests, both typechecks, production build, and
+zero warnings.
 
-The completed Forms Composition implementation contains exactly:
+The current gate is grouped Product Owner runtime/Light/Dark/RTL/narrow review
+of `/controls/core-batch`. Browser attachment was unavailable during the
+implementation run, so no visual approval is inferred. The Data/Table Visual
+Correction Wave is not opened; only compatibility changes required by the
+lower Table contract are allowed. Technical PASS does not equal Product Owner
+visual approval or freeze.
 
-- `ErpForm`;
-- `ErpFormSection`;
-- `ErpFormActions`;
-- `ErpValidationSummary`;
-- `ErpRepeater`;
-- `ErpStepper`.
+Previously implemented Data/Table, Forms Composition, Entity Form Engine, and
+Shell batches remain technical candidates pending Product Owner acceptance.
+Standalone EntityReview, Entity Wizard, workflow engine, DataPage,
+EntityDirectory, EntityDetail, CRUD/transaction patterns, Feature/Page
+migration, and every unlisted owner remain unopened.
 
-The completed reference audit found no external reference for any of the six,
-so the Product Owner accelerated no-reference waiver applied to these owners
-only. The batch passed canonical verification at 117/117 test files and 792/792
-tests, with both typechecks, production build, and zero warnings.
+## Production Core Components Visual Correction V2 Governance
 
-Schema-Driven Entity Form Engine V1 contains exactly:
-
-- `ErpStandardEntityForm`;
-- `ErpEntitySchemaFields`;
-- `ErpEntityCustomFieldOutlet`;
-- `ErpEntityCustomSectionOutlet`.
-
-The Phase 6 four-owner reference audit found no external visual reference, so
-the Product Owner accelerated no-reference waiver applies to those owners only.
-Canonical verification passed 121/121 test files and 809/809 tests, both
-typechecks, production build, and zero warnings.
-
-Accelerated Navigation & ERP Shell Batch V1 now contains exactly
-`ErpBreadcrumbs`, `ErpPageHeader`, `ErpPageShell`, `ErpSidebar`, `ErpTopbar`,
-`ErpBranchSelector`, `ErpGlobalSearch`, `ErpNotificationBell`, `ErpUserMenu`,
-and `ErpAppShell`. Its audit found no external visual reference, so the Product
-Owner accelerated-wave no-reference waiver applies to these ten owners only.
-Canonical verification passed 132/132 test files and 829/829 tests, both
-typechecks, production build, and zero warnings.
-
-The current gate is grouped Product Owner runtime/Light/Dark review of Core,
-Data/Table, Forms, Entity Form Engine, and Shell. No further implementation
-wave is authorized. Standalone EntityReview, Entity Wizard, workflow engine,
-DataPage, EntityDirectory, EntityDetail, CRUD/transaction page patterns,
-Feature/Page migration, and every unlisted owner remain unopened. Technical
-PASS does not equal Product Owner visual approval.
+- `ErpAvatarPicker` composes `ErpTabs` and `ErpAvatar`; it does not own upload,
+  cropping, camera, transport, or a second tabs/avatar engine.
+- `ErpTable` composes `ErpCheckBox` for selection and `ErpSortHeader` for sort;
+  row activation and controlled selection remain distinct intents.
+- `ErpPagination` composes `ErpSelect` for page size and keeps all seven region
+  visibility inputs enabled by default.
+- `ErpAlert` uses only the Tooltip-wrapped IconButton close path and must not
+  restore a native `title` tooltip.
+- Core motion uses Foundation motion values and remains static-but-visible
+  under reduced motion.
+- `/controls/core-batch` remains ERP-only authored. Rich keyed templates are
+  isolated in Design-Lab-only `erp-review-*` internals.
+- These technical rules do not declare Product Owner visual acceptance or open
+  the Data/Table Visual Correction Wave.
 
 ## Production Navigation and ERP Shell Governance
 

@@ -1,29 +1,44 @@
-<div class="pagination__summary">
-  <erp-text type="caption" tone="secondary">
-    الصفحة {{ effectivePage() }} من {{ effectivePageCount() }}
-    @if (totalItems() !== null) { — {{ totalItems() }} سجل }
-  </erp-text>
-</div>
+@if (showSummary()) {
+  <div class="pagination__summary">
+    <erp-text type="caption" tone="secondary">
+      الصفحة {{ effectivePage() }} من {{ effectivePageCount() }}
+      @if (totalItems() !== null) { — {{ totalItems() }} سجل }
+    </erp-text>
+  </div>
+}
 <div class="pagination__controls" aria-label="التنقل بين الصفحات">
-  <erp-button label="الأولى" icon="skip-start" variant="ghost" size="sm" [disabled]="effectivePage() <= 1" (pressed)="go(1)" />
-  <erp-button label="السابقة" icon="chevron-start" variant="ghost" size="sm" [disabled]="effectivePage() <= 1" (pressed)="go(effectivePage() - 1)" />
-  @for (candidate of visiblePages(); track candidate) {
-    <erp-button [label]="candidate.toString()" [variant]="candidate === effectivePage() ? 'solid' : 'ghost'" size="sm" (pressed)="go(candidate)" />
+  @if (showFirst()) {
+    <erp-button label="الأولى" icon="skip-start" variant="ghost" size="sm" [disabled]="effectivePage() <= 1" (pressed)="go(1)" />
   }
-  <erp-button label="التالية" icon="chevron-end" iconPosition="end" variant="ghost" size="sm" [disabled]="effectivePage() >= effectivePageCount()" (pressed)="go(effectivePage() + 1)" />
-  <erp-button label="الأخيرة" icon="skip-end" iconPosition="end" variant="ghost" size="sm" [disabled]="effectivePage() >= effectivePageCount()" (pressed)="go(effectivePageCount())" />
+  @if (showPrevious()) {
+    <erp-button label="السابقة" icon="chevron-start" variant="ghost" size="sm" [disabled]="effectivePage() <= 1" (pressed)="go(effectivePage() - 1)" />
+  }
+  @if (showPageNumbers()) {
+    @for (candidate of visiblePages(); track candidate) {
+      <erp-button [label]="candidate.toString()" [variant]="candidate === effectivePage() ? 'solid' : 'ghost'" size="sm" (pressed)="go(candidate)" />
+    }
+  }
+  @if (showNext()) {
+    <erp-button label="التالية" icon="chevron-end" iconPosition="end" variant="ghost" size="sm" [disabled]="effectivePage() >= effectivePageCount()" (pressed)="go(effectivePage() + 1)" />
+  }
+  @if (showLast()) {
+    <erp-button label="الأخيرة" icon="skip-end" iconPosition="end" variant="ghost" size="sm" [disabled]="effectivePage() >= effectivePageCount()" (pressed)="go(effectivePageCount())" />
+  }
 </div>
 @if (showPageSize()) {
-  <erp-select
-    class="pagination__size"
-    label="حجم الصفحة"
-    [options]="pageOptions()"
-    [searchable]="false"
-    [filterable]="false"
-    [sortable]="false"
-    selectSize="sm"
-    [ngModel]="pageSize().toString()"
-    (ngModelChange)="changeSize($event)"
-    [ngModelOptions]="{standalone: true}"
-  />
+  <erp-inline class="pagination__size-row" align="center" gap="tight" wrap="nowrap">
+    <erp-text type="label" size="sm">عدد السجلات</erp-text>
+    <erp-select
+      class="pagination__size"
+      label="حجم الصفحة"
+      [options]="pageOptions()"
+      [searchable]="false"
+      [filterable]="false"
+      [sortable]="false"
+      selectSize="sm"
+      [ngModel]="pageSize().toString()"
+      (ngModelChange)="changeSize($event)"
+      [ngModelOptions]="{standalone: true}"
+    />
+  </erp-inline>
 }

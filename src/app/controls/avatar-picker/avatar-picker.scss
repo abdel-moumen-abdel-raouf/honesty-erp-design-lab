@@ -1,0 +1,38 @@
+@use '../../../styles/foundation/components/avatar-picker' as tokens;
+@use '../../../styles/foundation/queries' as query;
+
+:host {
+  @include tokens.base;
+  display: grid;
+  gap: var(--honesty-avatar-picker-gap);
+  min-width: 0;
+  padding: var(--honesty-avatar-picker-padding);
+  border: var(--honesty-avatar-picker-border-width) solid var(--honesty-avatar-picker-border-color);
+  border-radius: var(--honesty-avatar-picker-radius);
+  background: var(--honesty-avatar-picker-bg);
+}
+
+.avatar-picker__preview {
+  display: inline-flex;
+  align-items: center;
+  justify-self: center;
+  gap: var(--honesty-avatar-picker-preview-gap);
+}
+
+.avatar-picker__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--honesty-avatar-picker-tile-size), 1fr));
+  gap: var(--honesty-avatar-picker-grid-gap);
+  max-block-size: var(--honesty-avatar-picker-grid-max-block-size);
+  overflow: auto;
+}
+
+.avatar-picker__grid erp-selection-tile {
+  justify-self: center;
+}
+
+@include query.viewport-down('sm') {
+  :host {
+    @include tokens.layout-narrow;
+  }
+}

@@ -2,31 +2,20 @@
 
 ## Current transition — 2026-10-06
 
-The four-component reference batch below is historical and completed through
-the later accelerated Core and Phase A work. Phase B Data/Table is also
-implemented and canonically green. Product Owner runtime/visual acceptance of
-the grouped Core/Data work remains pending.
+The four-component sequence below is historical. The current Product Owner
+authorization is Core Components Visual Correction Wave V2, which reopens
+Select plus seven other Core owners and adds AvatarPicker. V2 has a technically
+green candidate at 133/133 test files and 845/845 tests.
 
-The completed Forms wave implements exactly `ErpForm`, `ErpFormSection`,
-`ErpFormActions`, `ErpValidationSummary`, `ErpRepeater`, and `ErpStepper`.
-The repository/template/Downloads audit found no external reference for any of
-the six, so the Product Owner accelerated no-external-reference waiver applied
-to those owners only. The batch passed canonical technical verification at
-117/117 test files and 792/792 tests. The next action is grouped Product Owner
-runtime/Light/Dark review. Phase 6 subsequently implemented exactly
-`ErpStandardEntityForm`, `ErpEntitySchemaFields`,
-`ErpEntityCustomFieldOutlet`, and `ErpEntityCustomSectionOutlet` under its
-scoped no-reference waiver and passed 121/121 test files and 809/809 tests.
-The current review gate includes `/controls/entity-form-batch`; Phase 7, Shell,
-and all higher/unlisted families were unopened at that historical transition.
-The later Product Owner authorization opened and completed the Accelerated
-Navigation & ERP Shell Batch V1 for ten owners. Its audit found no external
-reference, so the scoped accelerated-wave waiver applies as recorded in
-`SHELL_BATCH_V1.md`; canonical verification passed 132/132 test files and
-829/829 tests with both typechecks, production build, and zero warnings. The
-current gate is grouped Product Owner runtime/Light/Dark review including
-`/controls/shell-batch`. Entity/Page patterns, Feature/Page migration, and all
-unlisted families remain unopened. Technical PASS is not visual approval.
+The current reference authority is recorded in
+`CORE_COMPONENT_VISUAL_CORRECTION_V2.md` and the Select, StatusBadge, Avatar,
+AvatarPicker, and Tabs contracts. Select uses the local `erp-select.html`
+reference with SHA
+`5A31FC10A3D1208BF64E35EB5139823E48F8E2BF1D0190D07DD5DB5DBC4DF23B`.
+
+The exact next action is grouped Product Owner runtime/Light/Dark/RTL/narrow
+review at `/controls/core-batch`. No Data/Table Visual Correction Wave or later
+component reference batch is authorized. Technical PASS is not visual approval.
 
 ## Historical Product Owner decision — superseded execution order
 

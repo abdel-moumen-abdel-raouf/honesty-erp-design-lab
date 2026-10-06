@@ -30,31 +30,25 @@ Binding Product Owner law:
 4. the next item is the lowest unresolved dependency, not simply the next row
    in historical planning.
 
-Latest completed authorized phase is the Accelerated Navigation & ERP Shell
-Batch V1, containing exactly:
+Latest completed authorized implementation is Product Owner Core Components
+Visual Correction Wave V2. It reopened exactly `ErpSelect`, `ErpStatusBadge`,
+`ErpAlert`, `ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`, and
+`ErpPagination`, and authorized `ErpAvatarPicker` as the ninth Core owner.
 
-1. `ErpBreadcrumbs`;
-2. `ErpPageHeader`;
-3. `ErpPageShell`;
-4. `ErpSidebar`;
-5. `ErpTopbar`;
-6. `ErpBranchSelector`;
-7. `ErpGlobalSearch`;
-8. `ErpNotificationBell`;
-9. `ErpUserMenu`;
-10. `ErpAppShell`.
+The V2 hierarchy is binding: AvatarPicker composes Tabs + Avatar; Table composes
+CheckBox + SortHeader; Pagination composes Select; Alert composes IconButton +
+Tooltip; rich routed evidence lives behind approved `erp-review-*` internals.
+The candidate passed 133/133 test files and 845/845 tests, both typechecks,
+production build, and zero warnings.
 
-This batch follows technically green Core, Phase A hardening, Data/Table,
-Forms Composition, and Schema-Driven Entity Form Engine batches. The ten Shell
-owners are canonically green at 132/132 test files and 829/829 tests, with both
-typechecks, production build, and zero warnings.
-
-Current active gate is grouped Product Owner runtime/Light/Dark review of
-Core, Data/Table, Forms, Entity Form Engine, and Shell. Technical PASS is not
-visual freeze. No subsequent implementation scope is authorized. Standalone
-EntityReview, Entity Wizard, workflow engine, DataPage, EntityDirectory,
-EntityDetail, CRUD/transaction page patterns, Feature/Page migration, and every
-unlisted family remain unopened.
+Current active gate is grouped Product Owner runtime/Light/Dark/RTL/narrow
+review at `/controls/core-batch`. Browser attachment was unavailable during the
+implementation run, so no visual acceptance is claimed. The Data/Table Visual
+Correction Wave remains unopened; only SmartTable compatibility required by
+the lower Table contract is authorized. Technical PASS is not visual freeze.
+Standalone EntityReview, Entity Wizard, workflow engine, DataPage,
+EntityDirectory, EntityDetail, CRUD/transaction patterns, Feature/Page
+migration, and every unlisted family remain unopened.
 
 ## Visual-reference law
 

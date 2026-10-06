@@ -58,44 +58,32 @@ restated by the newest dated continuity blocks or by
 
 ## Authoritative current state — 2026-10-06
 
-The Accelerated Navigation & ERP Shell Batch V1 started from
-`ecc7e0b2492a3267309e0eefd48f51b355ed71ba`. Resolve the final live SHA from
-Git; the implementation and this synchronized state are committed together as
-`feat(shell): add accelerated navigation and erp shell batch`.
+Product Owner Core Components Visual Correction Wave V2 started from
+`555dde11e2a922393b9e5d0fb128c6465934d42f`. Resolve the final live SHA from
+Git; source and continuity are committed together in the bounded correction
+commit.
 
-- The Accelerated Core Batch and Phase A hardening are technically green.
-- Accelerated Phase B Data/Table is canonically green at 110/110 test files and
-  778/778 tests.
-- The Accelerated Forms Composition Batch now implements exactly `ErpForm`,
-  `ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`, `ErpRepeater`, and
-  `ErpStepper`; canonical verification passed 117/117 test files, 792/792 tests,
-  both typechecks, production build, and zero warnings; initial bundle 374.97 kB
-  / 85.34 kB estimated transfer and Forms Batch lazy chunk 34.28 kB / 7.17 kB.
-- No external reference was found for the six Forms owners; the scoped Product
-  Owner accelerated no-reference waiver and matrix are recorded in
-  `src/app/controls/FORMS_BATCH_V1.md`.
-- Schema-Driven Entity Form Engine V1 implements exactly
-  `ErpStandardEntityForm`, `ErpEntitySchemaFields`,
-  `ErpEntityCustomFieldOutlet`, and `ErpEntityCustomSectionOutlet`; canonical
-  verification passed 121/121 test files, 809/809 tests, both typechecks,
-  production build, and zero warnings; initial bundle 375.34 kB / 85.44 kB
-  estimated transfer and Entity Form lazy chunk 37.44 kB / 6.88 kB.
-- Accelerated Navigation & ERP Shell Batch V1 implements exactly
-  `ErpBreadcrumbs`, `ErpPageHeader`, `ErpPageShell`, `ErpSidebar`, `ErpTopbar`,
-  `ErpBranchSelector`, `ErpGlobalSearch`, `ErpNotificationBell`, `ErpUserMenu`,
-  and `ErpAppShell`; canonical verification passed 132/132 test files, 829/829
-  tests, both typechecks, production build, and zero warnings; initial bundle
-  375.68 kB / 85.46 kB estimated transfer and Shell Batch lazy chunk 51.57 kB
-  / 10.04 kB.
-- The Shell reference audit found no external files; the scoped waiver and
-  matrix are recorded in `src/app/controls/SHELL_BATCH_V1.md`.
-- Product Owner runtime/Light/Dark acceptance of Core, Data/Table, Forms,
-  Entity Form Engine, and Shell remains pending. Technical PASS is not visual
-  approval or freeze.
-- The exact next action is Product Owner runtime/visual review of the grouped
-  accelerated review routes, including `/controls/shell-batch`. No
-  subsequent implementation wave is authorized.
-- Standalone EntityReview, Entity Wizard, workflow engine, DataPage,
+- Product Owner visual review reopened `ErpSelect`, `ErpStatusBadge`,
+  `ErpAlert`, `ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`, and
+  `ErpPagination`, and explicitly authorized `ErpAvatarPicker`.
+- V2 technical verification passed 133/133 test files, 845/845 tests, all
+  lint/governance gates, both typechecks, production build, and zero warnings.
+- Initial bundle: 375.68 kB / 85.48 kB estimated transfer. Core Batch lazy
+  chunk: 39.37 kB / 8.34 kB estimated transfer.
+- The Select reference SHA remains
+  `5A31FC10A3D1208BF64E35EB5139823E48F8E2BF1D0190D07DD5DB5DBC4DF23B`.
+  Downloaded reference SHAs and adoption boundaries are recorded in the V2
+  component contracts and `CORE_COMPONENT_VISUAL_CORRECTION_V2.md`.
+- Forty Product Owner avatar PNGs and their manifest are now project assets;
+  `ErpAvatarPicker` composes `ErpTabs` and `ErpAvatar`.
+- Product Owner runtime/Light/Dark/RTL/narrow acceptance remains pending at
+  `/controls/core-batch`; technical PASS is not visual approval or freeze.
+- The browser attachment tool failed in this execution environment, so no
+  manual visual acceptance is claimed.
+- The Data/Table Visual Correction Wave remains unopened; only bounded
+  `ErpSmartTable` compatibility was changed to delegate sorting to `ErpTable`.
+- All prior Core/Data/Forms/Entity Form/Shell technical candidates remain in
+  place. Standalone EntityReview, Entity Wizard, workflow engine, DataPage,
   EntityDirectory, EntityDetail, CRUD/transaction page patterns,
   Feature/Page migration, and every unlisted family remain unopened.
 

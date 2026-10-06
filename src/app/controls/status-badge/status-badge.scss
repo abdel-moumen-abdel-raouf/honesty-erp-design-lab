@@ -1,5 +1,6 @@
 @use '../../../styles/foundation/components/status-badge' as tokens;
 :host { @include tokens.base; display: inline-flex; align-items: center; gap: var(--honesty-status-badge-gap); box-sizing: border-box; padding: var(--honesty-status-badge-padding); border: var(--honesty-status-badge-border-width) solid var(--honesty-status-badge-border-color); border-radius: var(--honesty-status-badge-radius); background: var(--honesty-status-badge-bg); color: var(--honesty-status-badge-fg); font-size: var(--honesty-status-badge-font-size); line-height: 1; white-space: nowrap; }
+.status-badge__icon { display: inline-grid; place-items: center; inline-size: var(--honesty-status-badge-icon-size); block-size: var(--honesty-status-badge-icon-size); border-radius: 50%; background: var(--honesty-status-badge-icon-bg); }
 :host([data-status-badge-tone='success']) { @include tokens.tone-success; }
 :host([data-status-badge-tone='warning']) { @include tokens.tone-warning; }
 :host([data-status-badge-tone='danger']) { @include tokens.tone-danger; }

@@ -1,4 +1,4 @@
-<div class="tabs__list" role="tablist" aria-label="التبويبات">
+<div class="tabs__list" role="tablist" aria-label="التبويبات" [attr.aria-orientation]="orientation()">
   @for (item of items(); track item.id; let index = $index) {
     <erp-tab-trigger
       [id]="item.id + '-tab'"
@@ -6,11 +6,17 @@
       [selected]="resolvedActiveId() === item.id"
       [tabIndex]="resolvedActiveId() === item.id ? 0 : -1"
       [disabled]="item.disabled ?? false"
+      [label]="item.label"
+      [fill]="distribution() === 'fill'"
       (activated)="activate(item)"
       (keyPressed)="keydown($event, index)"
     >
-      @if (item.icon) { <erp-icon [name]="item.icon" size="sm" /> }
-      <erp-text type="span" tone="inherit">{{ item.label }}</erp-text>
+      @if (item.icon && headerPresentation(item) !== 'text') {
+        <erp-icon [name]="item.icon" size="sm" />
+      }
+      @if (headerPresentation(item) !== 'icon-only') {
+        <erp-text type="span" tone="inherit">{{ item.label }}</erp-text>
+      }
     </erp-tab-trigger>
   }
 </div>
@@ -22,6 +28,7 @@
       [id]="item.id + '-panel'"
       [attr.aria-labelledby]="item.id + '-tab'"
       tabindex="0"
+      [attr.data-tabs-panel-transition]="transition()"
     >
       @if (panelTemplate(item.id); as template) {
         <ng-container

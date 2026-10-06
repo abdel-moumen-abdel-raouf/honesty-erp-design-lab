@@ -71,4 +71,32 @@ describe('ErpTabs', () => {
     buttons[2].dispatchEvent(new KeyboardEvent('keydown', {key: 'Home', bubbles: true}));
     expect(spy.mock.calls.map(([id]) => id)).toEqual(['three', 'one']);
   });
+
+  it('exposes underline/pills, content/fill, vertical placement, and panel transitions', () => {
+    const fixture = TestBed.createComponent(ErpTabs);
+    fixture.componentRef.setInput('items', items);
+    fixture.componentRef.setInput('variant', 'pills');
+    fixture.componentRef.setInput('distribution', 'fill');
+    fixture.componentRef.setInput('orientation', 'vertical');
+    fixture.componentRef.setInput('verticalPlacement', 'end');
+    fixture.componentRef.setInput('transition', 'fade-end');
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.getAttribute('data-tabs-variant')).toBe('pills');
+    expect(fixture.nativeElement.getAttribute('data-tabs-distribution')).toBe('fill');
+    expect(fixture.nativeElement.getAttribute('data-tabs-orientation')).toBe('vertical');
+    expect(fixture.nativeElement.getAttribute('data-tabs-vertical-placement')).toBe('end');
+    expect(fixture.nativeElement.querySelector('[role="tabpanel"]').getAttribute('data-tabs-panel-transition')).toBe('fade-end');
+  });
+
+  it('uses Up/Down navigation for vertical tabs', () => {
+    const fixture = TestBed.createComponent(ErpTabs);
+    fixture.componentRef.setInput('items', items);
+    fixture.componentRef.setInput('orientation', 'vertical');
+    fixture.detectChanges();
+    const buttons = fixture.nativeElement.querySelectorAll('[role="tab"]');
+    buttons[0].dispatchEvent(new KeyboardEvent('keydown', {key: 'ArrowDown', bubbles: true}));
+    fixture.detectChanges();
+    expect(fixture.nativeElement.getAttribute('data-tabs-active')).toBe('three');
+  });
 });

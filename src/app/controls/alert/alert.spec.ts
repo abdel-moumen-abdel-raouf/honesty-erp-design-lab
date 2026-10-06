@@ -34,6 +34,10 @@ describe('ErpAlert', () => {
 
     fixture.componentRef.setInput('dismissible', true);
     fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('.alert__icon-region')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('.alert__copy')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('.alert__actions')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('[title]')).toBeNull();
     (fixture.nativeElement.querySelector('erp-icon-button button') as HTMLButtonElement).click();
     expect(spy).toHaveBeenCalledOnce();
     expect(fixture.nativeElement.querySelector('erp-tooltip')).not.toBeNull();

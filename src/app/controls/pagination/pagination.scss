@@ -1,5 +1,7 @@
 @use '../../../styles/foundation/components/pagination' as tokens;
 @use '../../../styles/foundation/queries' as query;
 :host { @include tokens.base; display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: var(--honesty-pagination-gap); min-width: 0; }
-.pagination__controls { display: flex; align-items: center; gap: var(--honesty-pagination-control-gap); overflow-x: auto; } .pagination__size { inline-size: var(--honesty-pagination-size-width); }
+.pagination__controls { display: flex; align-items: center; gap: var(--honesty-pagination-control-gap); overflow-x: auto; }
+.pagination__size-row { min-inline-size: max-content; }
+.pagination__size { inline-size: var(--honesty-pagination-size-width); }
 @include query.viewport-down('sm') { :host { grid-template-columns: 1fr; } .pagination__controls { justify-content: start; } }

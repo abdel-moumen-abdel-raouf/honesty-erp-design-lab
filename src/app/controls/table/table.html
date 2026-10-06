@@ -1,11 +1,56 @@
 <div class="table__scroll" tabindex="0" [attr.aria-label]="caption()">
   <table>
-    <caption><erp-text type="caption" tone="secondary">{{ caption() }}</erp-text></caption>
+    <caption>
+      <erp-text type="caption" tone="secondary">{{ caption() }}</erp-text>
+    </caption>
+    <colgroup>
+      @if (selectable()) {
+        <col class="table__selection-column" />
+      }
+      @for (column of effectiveColumns(); track column.key) {
+        <col [style.inline-size.px]="columnWidth(column)" />
+      }
+    </colgroup>
     <thead>
       <tr>
-        @for (column of columns(); track column.key) {
-          <th scope="col" [attr.data-align]="column.align ?? 'start'">
-            <erp-text type="table-header" weight="bold">{{ column.header }}</erp-text>
+        @if (selectable()) {
+          <th class="table__selection" scope="col">
+            @if (showHeaderSelection()) {
+              <erp-check-box
+                label="تحديد جميع الصفوف"
+                hideText
+                size="sm"
+                [indeterminate]="partiallySelected()"
+                [ngModel]="allSelected()"
+                (ngModelChange)="toggleAll($event)"
+                [ngModelOptions]="{standalone: true}"
+              />
+            }
+          </th>
+        }
+        @for (column of effectiveColumns(); track column.key) {
+          <th
+            scope="col"
+            [attr.data-align]="column.headerAlign ?? column.align ?? 'start'"
+          >
+            @if (column.sortable) {
+              <erp-sort-header
+                [label]="column.header"
+                [direction]="sortDirection(column)"
+                (sortChange)="updateSort(column, $event)"
+              />
+            } @else {
+              <erp-text type="table-header" weight="bold">
+                {{ column.header }}
+              </erp-text>
+            }
+            @if (column.resizable) {
+              <erp-table-resize-handle
+                [label]="'تغيير عرض عمود ' + column.header"
+                (resizeStarted)="startResize($event, column)"
+                (resizeStepped)="stepResize(column, $event)"
+              />
+            }
           </th>
         }
       </tr>
@@ -14,30 +59,102 @@
       @for (row of rows(); track key(row, $index); let rowIndex = $index) {
         <tr
           [attr.aria-selected]="selectable() ? selectedSet().has(key(row, rowIndex)) : null"
-          [attr.tabindex]="selectable() ? 0 : null"
+          [attr.tabindex]="rowActivatable() || selectable() ? 0 : null"
           (click)="activate(row)"
           (keydown.enter)="activate(row)"
         >
-          @for (column of columns(); track column.key) {
-            <td [attr.data-align]="column.align ?? 'start'">
+          @if (selectable()) {
+            <td class="table__selection" (click)="$event.stopPropagation()">
+              <erp-check-box
+                [label]="'تحديد الصف ' + (rowIndex + 1)"
+                hideText
+                size="sm"
+                [ngModel]="selectedSet().has(key(row, rowIndex))"
+                (ngModelChange)="toggleRow(row, rowIndex, $event)"
+                [ngModelOptions]="{standalone: true}"
+              />
+            </td>
+          }
+          @for (column of effectiveColumns(); track column.key) {
+            <td
+              [attr.data-align]="column.cellAlign ?? column.align ?? 'start'"
+              [attr.data-overflow]="column.overflow ?? 'wrap'"
+            >
               @if (cellTemplate(column.key); as template) {
                 <ng-container
                   [ngTemplateOutlet]="template"
                   [ngTemplateOutletContext]="cellContext(row, column, rowIndex)"
                 />
               } @else {
-                <erp-text type="table-cell">{{ row[column.key] ?? '—' }}</erp-text>
+                <span class="table__cell-copy">
+                  <erp-text
+                    type="table-cell"
+                    [family]="textFamily(column)"
+                    [direction]="textDirection(column)"
+                    [overflow]="column.overflow === 'ellipsis' ? 'ellipsis' : 'visible'"
+                    [wrap]="column.overflow === 'wrap' ? 'normal' : 'nowrap'"
+                  >
+                    {{ displayValue(row[column.key], column) }}
+                  </erp-text>
+                  @if (
+                    column.descriptionKey &&
+                    row[column.descriptionKey] !== null &&
+                    row[column.descriptionKey] !== undefined
+                  ) {
+                    <erp-text
+                      type="caption"
+                      tone="secondary"
+                      [family]="textFamily(column)"
+                      [direction]="textDirection(column)"
+                    >
+                      {{ displayValue(row[column.descriptionKey], column) }}
+                    </erp-text>
+                  }
+                </span>
               }
             </td>
           }
         </tr>
       } @empty {
         <tr>
-          <td [attr.colspan]="columns().length">
-            <erp-text class="table__empty" type="paragraph" tone="secondary" align="center">{{ emptyText() }}</erp-text>
+          <td [attr.colspan]="effectiveColumns().length + (selectable() ? 1 : 0)">
+            <erp-text
+              class="table__empty"
+              type="paragraph"
+              tone="secondary"
+              align="center"
+            >
+              {{ emptyText() }}
+            </erp-text>
           </td>
         </tr>
       }
     </tbody>
+    @if (hasFooter()) {
+      <tfoot>
+        <tr>
+          @if (selectable()) {
+            <td class="table__selection"></td>
+          }
+          @for (column of effectiveColumns(); track column.key) {
+            <td [attr.data-align]="column.cellAlign ?? column.align ?? 'start'">
+              @if (footerTemplate(column.key); as template) {
+                <ng-container
+                  [ngTemplateOutlet]="template"
+                  [ngTemplateOutletContext]="footerContext(column)"
+                />
+              } @else if (
+                footerValues()[column.key] !== null &&
+                footerValues()[column.key] !== undefined
+              ) {
+                <erp-text type="table-cell" weight="bold">
+                  {{ displayValue(footerValues()[column.key], column) }}
+                </erp-text>
+              }
+            </td>
+          }
+        </tr>
+      </tfoot>
+    }
   </table>
 </div>

@@ -2,46 +2,32 @@
 
 ## 0. Authoritative current handoff — 2026-10-06
 
-The Accelerated Navigation & ERP Shell Batch V1 started from
-`ecc7e0b2492a3267309e0eefd48f51b355ed71ba`. Resolve the final live local and
-remote SHAs at session start; the implementation and current state are
-committed together as `feat(shell): add accelerated navigation and erp shell
-batch`.
+Product Owner Core Components Visual Correction Wave V2 started from
+`555dde11e2a922393b9e5d0fb128c6465934d42f`. Resolve final local and remote SHAs
+at session start.
 
-Accelerated Core, Phase A hardening, and Phase B Data/Table remain technically
-green. The Forms Composition Batch now implements exactly `ErpForm`,
-`ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`, `ErpRepeater`, and
-`ErpStepper`. Its canonical gate passed 117/117 test files, 792/792 tests, both
-typechecks, production build, and zero warnings; initial bundle 374.97 kB /
-85.34 kB estimated transfer and Forms Batch lazy chunk 34.28 kB / 7.17 kB.
-The six-component reference
-audit found no external files, so the scoped accelerated waiver applies as
-recorded in `src/app/controls/FORMS_BATCH_V1.md`.
+The Product Owner reopened `ErpSelect`, `ErpStatusBadge`, `ErpAlert`,
+`ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`, and `ErpPagination`, and
+authorized the new `ErpAvatarPicker`. The V2 implementation is technically
+green at 133/133 test files and 845/845 tests, all lint/governance gates, both
+typechecks, production build, and zero warnings. Initial bundle is 375.68 kB /
+85.48 kB estimated transfer; Core Batch lazy chunk is 39.37 kB / 8.34 kB.
 
-Schema-Driven Entity Form Engine V1 now implements exactly
-`ErpStandardEntityForm`, `ErpEntitySchemaFields`,
-`ErpEntityCustomFieldOutlet`, and `ErpEntityCustomSectionOutlet`. Its canonical
-gate passed 121/121 test files, 809/809 tests, both typechecks, production
-build, and zero warnings; initial bundle 375.34 kB / 85.44 kB estimated
-transfer and Entity Form lazy chunk 37.44 kB / 6.88 kB estimated transfer. The
-four-owner reference audit found no external file, so the Product Owner Phase 6
-accelerated waiver applies as recorded in `ENTITY_FORM_ENGINE_V1.md`.
+The corrected source follows the Product Owner reference contracts documented
+in `CORE_COMPONENT_VISUAL_CORRECTION_V2.md` and the per-owner reference files.
+Forty supplied avatar PNGs plus manifest are stored under
+`public/assets/honesty-erp-avatars/users`; AvatarPicker composes existing Tabs
+and Avatar owners. Table composes CheckBox and SortHeader, Pagination composes
+Select, and Alert keeps the Tooltip-wrapped IconButton path.
 
-The Shell Batch now implements exactly `ErpBreadcrumbs`, `ErpPageHeader`,
-`ErpPageShell`, `ErpSidebar`, `ErpTopbar`, `ErpBranchSelector`,
-`ErpGlobalSearch`, `ErpNotificationBell`, `ErpUserMenu`, and `ErpAppShell`.
-Its canonical gate passed 132/132 test files, 829/829 tests, both typechecks,
-production build, and zero warnings; initial bundle 375.68 kB / 85.46 kB
-estimated transfer and Shell Batch lazy chunk 51.57 kB / 10.04 kB. The
-reference audit found no external file for the ten owners; the scoped waiver
-and reference matrix are recorded in `SHELL_BATCH_V1.md`.
-
-The exact next action is Product Owner runtime/Light/Dark review of the grouped
-Core, Data/Table, Forms, Entity Form Engine, and Shell review routes. Technical
-PASS never equals visual acceptance. Standalone EntityReview, Entity Wizard,
-workflow engine, DataPage, EntityDirectory, EntityDetail, CRUD/transaction
-page patterns, Feature/Page migration, and every subsequent wave remain
-unopened.
+The exact next action is Product Owner grouped runtime/Light/Dark/RTL/narrow
+review of `/controls/core-batch`. The execution environment's browser
+attachment failed, so this checkpoint claims technical evidence only. The
+Data/Table Visual Correction Wave is not opened; SmartTable changes are lower-
+owner compatibility only. Technical PASS never equals visual acceptance.
+Standalone EntityReview, Entity Wizard, workflow engine, DataPage,
+EntityDirectory, EntityDetail, CRUD/transaction patterns, Feature/Page
+migration, and every subsequent wave remain unopened.
 
 ## 1. Purpose of this document
 

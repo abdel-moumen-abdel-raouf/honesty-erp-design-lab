@@ -1,0 +1,42 @@
+:host {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 0;
+  display: block;
+  inline-size: var(--honesty-table-resize-hit-size);
+  translate: 50% 0;
+  z-index: 1;
+}
+
+button {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: col-resize;
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  inset-block: var(--honesty-table-resize-inset);
+  inset-inline-start: 50%;
+  inline-size: var(--honesty-table-resize-indicator-width);
+  border-radius: var(--honesty-table-resize-indicator-radius);
+  background: var(--honesty-table-resize-color);
+  opacity: 0;
+  transform: translateX(-50%);
+}
+
+button:hover::after,
+button:focus-visible::after {
+  opacity: 1;
+}
+
+button:focus-visible {
+  outline: var(--honesty-table-focus-width) solid var(--honesty-table-focus-color);
+  outline-offset: calc(-1 * var(--honesty-table-focus-width));
+}

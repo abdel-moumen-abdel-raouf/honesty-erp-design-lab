@@ -3,6 +3,7 @@
     <erp-tab-trigger
       [id]="step.id + '-step'"
       [controls]="step.id + '-panel'"
+      [label]="step.label"
       [selected]="resolvedActiveId() === step.id"
       [disabled]="step.disabled ?? false"
       [tabIndex]="resolvedActiveId() === step.id ? 0 : -1"

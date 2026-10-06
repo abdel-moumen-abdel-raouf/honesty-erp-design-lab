@@ -14,53 +14,44 @@ Branch:
 
 ## Authoritative current execution state — 2026-10-06
 
-The Accelerated Navigation & ERP Shell Batch V1 started from
-`ecc7e0b2492a3267309e0eefd48f51b355ed71ba`. Its source, verification, and
-continuity changes are committed together as `feat(shell): add accelerated
-navigation and erp shell batch`; always resolve the live local and remote SHA
-directly because this document is part of that commit.
+Product Owner Core Components Visual Correction Wave V2 started from
+`555dde11e2a922393b9e5d0fb128c6465934d42f`. Resolve live local and remote SHAs
+directly; this document is synchronized in the same bounded implementation
+commit.
 
-Completed technical checkpoints:
+The Product Owner explicitly reopened `ErpSelect`, `ErpStatusBadge`, `ErpAlert`,
+`ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`, and `ErpPagination` after
+visual review, and authorized the new `ErpAvatarPicker`. The correction now
+implements the supplied Select reference contract, downloaded StatusBadge,
+Avatar, Tabs, and AvatarPicker reference evidence, the 40 supplied avatar PNG
+assets plus manifest, bottom-up owner reuse, and the rebuilt
+`/controls/core-batch` evidence surface.
 
-- Accelerated Core Batch implemented and technically green;
-- Accelerated Phase A hardening implemented and technically green;
-- Accelerated Phase B Data/Table implemented and canonically verified with
-  110/110 test files, 778/778 tests, both TypeScript typechecks, production
-  build, and zero warnings;
-- Accelerated Forms Composition Batch implemented for exactly `ErpForm`,
-  `ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`, `ErpRepeater`, and
-  `ErpStepper`; its canonical gate passed 117/117 test files, 792/792 tests,
-  both TypeScript typechecks, production build, and zero warnings;
-- Schema-Driven Entity Form Engine V1 implemented for exactly
-  `ErpStandardEntityForm`, `ErpEntitySchemaFields`,
-  `ErpEntityCustomFieldOutlet`, and `ErpEntityCustomSectionOutlet`; its
-  canonical gate passed 121/121 test files, 809/809 tests, both TypeScript
-  typechecks, production build, and zero warnings;
-- Accelerated Navigation & ERP Shell Batch V1 implemented for exactly
-  `ErpBreadcrumbs`, `ErpPageHeader`, `ErpPageShell`, `ErpSidebar`, `ErpTopbar`,
-  `ErpBranchSelector`, `ErpGlobalSearch`, `ErpNotificationBell`, `ErpUserMenu`,
-  and `ErpAppShell`; its canonical gate passed 132/132 test files, 829/829
-  tests, both TypeScript typechecks, production build, and zero warnings;
-  initial bundle 375.68 kB / 85.46 kB estimated transfer and Shell Batch lazy
-  chunk 51.57 kB / 10.04 kB estimated transfer.
-
-The Shell reference audit found no external reference for any of the ten
-owners, so each was implemented under the Product Owner accelerated-wave
-no-external-reference waiver recorded in `src/app/controls/SHELL_BATCH_V1.md`.
+Technical verification for this V2 candidate passed 133/133 test files and
+845/845 tests, all lint/governance checks, both TypeScript typechecks, production
+build, and zero Angular/build warnings. The production initial bundle is
+375.68 kB / 85.48 kB estimated transfer; the Core Batch lazy chunk is 39.37 kB
+/ 8.34 kB estimated transfer. Component Token governance reports 82 concrete
+modules and route governance reports 28 routed templates.
 
 Product Owner visual state and immediate next action:
 
-- Core, Data/Table, Forms, Entity Form Engine, and Shell Batch runtime/visual
-  acceptance remains pending and may reopen any component;
+- the eight reopened owners and new AvatarPicker remain pending grouped
+  Product Owner runtime/Light/Dark/RTL/narrow review at `/controls/core-batch`;
+- browser visual evidence could not be completed in this execution environment
+  because the Codex computer-use runtime failed before browser attachment;
 - technical green does not equal Product Owner visual approval or freeze;
-- the exact next action is Product Owner runtime/Light/Dark review of the
-  grouped accelerated work, including `/controls/shell-batch`;
-- no further implementation scope is authorized by this checkpoint.
+- the exact next action is the grouped Product Owner review of this corrected
+  Core surface;
+- the Data/Table Visual Correction Wave is not opened. `ErpSmartTable` received
+  compatibility-only delegation changes required by the lower `ErpTable`
+  contract.
 
-Still unopened: standalone EntityReview, Entity Wizard, workflow engine,
-DataPage, EntityDirectory, EntityDetail, CRUD page archetypes, transaction
-patterns, Feature/Page migration, ERP-specific domain editors, and every
-unlisted owner. No later Entity/Page Patterns wave is authorized.
+Core, Data/Table, Forms, Entity Form Engine, and Shell remain prior technically
+green candidates, but their Product Owner visual acceptance is not inferred.
+Standalone EntityReview, Entity Wizard, workflow engine, DataPage,
+EntityDirectory, EntityDetail, CRUD/transaction patterns, Feature/Page
+migration, ERP-specific editors, and every unlisted owner remain unopened.
 
 ## Historical GitHub checkpoints — superseded snapshot
 

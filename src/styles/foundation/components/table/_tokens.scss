@@ -1,2 +1,31 @@
-@mixin base { --honesty-table-bg: var(--honesty-color-surface-default); --honesty-table-fg: var(--honesty-color-text-primary); --honesty-table-header-bg: var(--honesty-color-surface-raised); --honesty-table-row-hover-bg: var(--honesty-color-action-primary-subtle-bg); --honesty-table-row-selected-bg: var(--honesty-color-action-primary-subtle-bg); --honesty-table-border-color: var(--honesty-border-subtle); --honesty-table-border-width: var(--honesty-border-width-default); --honesty-table-radius: var(--honesty-radius-control); --honesty-table-cell-padding: var(--honesty-space-inset-default); --honesty-table-empty-padding: var(--honesty-space-inset-relaxed); --honesty-table-min-inline-size: 40rem; --honesty-table-focus-width: var(--honesty-focus-ring-width); --honesty-table-focus-color: var(--honesty-color-action-focus-ring); }
-@mixin density-compact { --honesty-table-cell-padding: var(--honesty-space-inset-tight); }
+@mixin base {
+  --honesty-table-bg: var(--honesty-color-surface-default);
+  --honesty-table-fg: var(--honesty-color-text-primary);
+  --honesty-table-header-bg: var(--honesty-color-surface-raised);
+  --honesty-table-footer-bg: var(--honesty-color-surface-subtle);
+  --honesty-table-row-hover-bg: var(--honesty-color-action-primary-subtle-bg);
+  --honesty-table-row-selected-bg: var(--honesty-color-action-primary-subtle-bg);
+  --honesty-table-row-striped-bg: var(--honesty-color-surface-subtle);
+  --honesty-table-border-color: var(--honesty-border-subtle);
+  --honesty-table-border-width: var(--honesty-border-width-default);
+  --honesty-table-radius: var(--honesty-radius-control);
+  --honesty-table-cell-padding: var(--honesty-space-inset-default);
+  --honesty-table-cell-copy-gap: var(--honesty-space-stack-tight);
+  --honesty-table-empty-padding: var(--honesty-space-inset-relaxed);
+  --honesty-table-min-inline-size: 40rem;
+  --honesty-table-selection-size: 3rem;
+  --honesty-table-focus-width: var(--honesty-focus-ring-width);
+  --honesty-table-focus-color: var(--honesty-color-action-focus-ring);
+  --honesty-table-resize-hit-size: 0.75rem;
+  --honesty-table-resize-inset: var(--honesty-space-inset-tight);
+  --honesty-table-resize-indicator-width: var(--honesty-border-width-strong);
+  --honesty-table-resize-indicator-radius: var(--honesty-radius-pill);
+  --honesty-table-resize-color: var(--honesty-color-action-primary-fg);
+  --honesty-table-row-motion-duration: var(--honesty-motion-duration-fast);
+  --honesty-table-row-motion-easing: var(--honesty-motion-easing-standard);
+  --honesty-table-row-hover-translate: -0.0625rem;
+}
+
+@mixin density-compact {
+  --honesty-table-cell-padding: var(--honesty-space-inset-tight);
+}

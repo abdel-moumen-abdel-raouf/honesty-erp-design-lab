@@ -1,0 +1,18 @@
+@mixin base {
+  --honesty-avatar-picker-bg: var(--honesty-color-surface-default);
+  --honesty-avatar-picker-border-color: var(--honesty-border-subtle);
+  --honesty-avatar-picker-border-width: var(--honesty-border-width-default);
+  --honesty-avatar-picker-radius: var(--honesty-radius-overlay);
+  --honesty-avatar-picker-padding: var(--honesty-space-inset-default);
+  --honesty-avatar-picker-gap: var(--honesty-space-stack-default);
+  --honesty-avatar-picker-preview-gap: var(--honesty-space-inline-default);
+  --honesty-avatar-picker-grid-gap: var(--honesty-space-stack-default);
+  --honesty-avatar-picker-tile-size: 4.75rem;
+  --honesty-avatar-picker-grid-max-block-size: 25rem;
+}
+
+@mixin layout-narrow {
+  --honesty-avatar-picker-padding: var(--honesty-space-inset-tight);
+  --honesty-avatar-picker-grid-gap: var(--honesty-space-stack-tight);
+  --honesty-avatar-picker-tile-size: 4rem;
+}

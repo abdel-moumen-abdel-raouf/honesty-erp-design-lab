@@ -1,2 +1,6 @@
-@if (icon()) { <erp-icon [name]="icon()!" size="inherit" tone="inherit" /> }
+@if (icon()) {
+  <span class="status-badge__icon" aria-hidden="true">
+    <erp-icon [name]="icon()!" size="inherit" tone="inherit" />
+  </span>
+}
 <erp-text type="span" size="inherit" tone="inherit" weight="medium">{{ label() }}</erp-text>

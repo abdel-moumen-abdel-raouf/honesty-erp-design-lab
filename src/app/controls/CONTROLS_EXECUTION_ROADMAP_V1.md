@@ -15,39 +15,24 @@ family. Those decisions remain with the Product Owner and ChatGPT after review.
 
 ## Current accelerated execution state — 2026-10-06
 
-Core Batch, Phase A hardening, and Phase B Data/Table are implemented and
-technically green. Phase B canonical verification passed 110/110 test files,
-778/778 tests, both typechecks, production build, and zero warnings. Grouped
-Product Owner runtime/visual acceptance remains pending.
+Product Owner Core Components Visual Correction Wave V2 reopened exactly
+`ErpSelect`, `ErpStatusBadge`, `ErpAlert`, `ErpSkeleton`, `ErpAvatar`,
+`ErpTabs`, `ErpTable`, and `ErpPagination`, and authorized the ninth Core owner,
+`ErpAvatarPicker`. The V2 candidate passed 133/133 test files and 845/845 tests,
+both typechecks, production build, all governance, and zero warnings.
 
-The Accelerated Forms Composition Batch is now implemented for exactly
-`ErpForm`, `ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`,
-`ErpRepeater`, and `ErpStepper`. Canonical verification passed 117/117 test
-files, 792/792 tests, both typechecks, production build, and zero warnings. The
-reference audit found no external reference for the six; the scoped accelerated
-waiver and matrix are recorded in `FORMS_BATCH_V1.md`.
+The corrected hierarchy is explicit: AvatarPicker composes Tabs and Avatar;
+Table composes CheckBox and SortHeader; Pagination composes Select; Alert
+composes IconButton and Tooltip. The supplied avatar catalog contains 20 male
+and 20 female assets plus its manifest. `CORE_COMPONENT_VISUAL_CORRECTION_V2.md`
+and the component reference contracts record the exact reference evidence.
 
-Schema-Driven Entity Form Engine V1 is implemented for exactly
-`ErpStandardEntityForm`, `ErpEntitySchemaFields`,
-`ErpEntityCustomFieldOutlet`, and `ErpEntityCustomSectionOutlet`. Canonical
-verification passed 121/121 test files, 809/809 tests, both typechecks,
-production build, and zero warnings. Its four-owner reference audit found no
-external reference, so the scoped Phase 6 accelerated waiver applies.
-
-Accelerated Navigation & ERP Shell Batch V1 is implemented for exactly
-`ErpBreadcrumbs`, `ErpPageHeader`, `ErpPageShell`, `ErpSidebar`, `ErpTopbar`,
-`ErpBranchSelector`, `ErpGlobalSearch`, `ErpNotificationBell`, `ErpUserMenu`,
-and `ErpAppShell`. Canonical verification passed 132/132 test files, 829/829
-tests, both typechecks, production build, and zero warnings. Its ten-owner
-reference audit found no external reference, so the scoped accelerated-wave
-waiver applies as recorded in `SHELL_BATCH_V1.md`.
-
-Standalone EntityReview, Entity Wizard, workflow engine, DataPage,
-EntityDirectory, EntityDetail, CRUD/transaction page patterns, Feature/Page
-migration, and every unlisted family remain unopened. The exact next action is
-grouped Product Owner runtime/Light/Dark review of Core, Data/Table, Forms,
-Entity Form Engine, and Shell; no subsequent implementation phase is
-authorized. Technical green is not Product Owner visual approval.
+The exact next action is grouped Product Owner runtime/Light/Dark/RTL/narrow
+review at `/controls/core-batch`. The execution environment could not attach to
+a browser, so technical evidence does not claim visual approval. The Data/Table
+Visual Correction Wave, DataPage, Entity patterns, Feature/Page migration, and
+every unlisted family remain unopened. Previously green Data/Table, Forms,
+Entity Form, and Shell source remains present but not visually frozen.
 
 ## Canonical Classification
 

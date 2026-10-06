@@ -22,8 +22,22 @@ export interface ErpTabItem {
   readonly label: string;
   readonly content?: string;
   readonly icon?: ErpIconName;
+  readonly headerPresentation?: ErpTabHeaderPresentation;
   readonly disabled?: boolean;
 }
+
+export type ErpTabHeaderPresentation = 'text' | 'icon-text' | 'icon-only';
+export type ErpTabsOrientation = 'horizontal' | 'vertical';
+export type ErpTabsVerticalPlacement = 'start' | 'end';
+export type ErpTabsDistribution = 'content' | 'fill';
+export type ErpTabsVariant = 'underline' | 'pills';
+export type ErpTabsTransition =
+  | 'none'
+  | 'fade'
+  | 'fade-up'
+  | 'fade-down'
+  | 'fade-start'
+  | 'fade-end';
 
 export interface ErpTabPanelContext {
   readonly $implicit: ErpTabItem;
@@ -45,8 +59,15 @@ export class ErpTabPanel {
   selector: 'erp-tabs',
   imports: [ErpIcon, ErpTabTrigger, ErpText, NgTemplateOutlet],
   templateUrl: './tabs.html',
-  styleUrl: './tabs.scss',
-  host: {'[attr.data-tabs-active]': 'resolvedActiveId()'},
+  styleUrls: ['./tabs.scss', './tabs-facets.scss', './tabs-motion.scss'],
+  host: {
+    '[attr.data-tabs-active]': 'resolvedActiveId()',
+    '[attr.data-tabs-orientation]': 'orientation()',
+    '[attr.data-tabs-vertical-placement]': 'verticalPlacement()',
+    '[attr.data-tabs-distribution]': 'distribution()',
+    '[attr.data-tabs-variant]': 'variant()',
+    '[attr.data-tabs-transition]': 'transition()',
+  },
 })
 export class ErpTabs {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
@@ -55,6 +76,11 @@ export class ErpTabs {
   readonly items = input.required<readonly ErpTabItem[]>();
   readonly activeId = model('');
   readonly changed = output<string>();
+  readonly orientation = input<ErpTabsOrientation>('horizontal');
+  readonly verticalPlacement = input<ErpTabsVerticalPlacement>('start');
+  readonly distribution = input<ErpTabsDistribution>('content');
+  readonly variant = input<ErpTabsVariant>('underline');
+  readonly transition = input<ErpTabsTransition>('none');
 
   protected readonly resolvedActiveId = computed(() => {
     const requested = this.activeId();
@@ -78,12 +104,19 @@ export class ErpTabs {
     return {$implicit: tab, tab};
   }
 
+  protected headerPresentation(item: ErpTabItem): ErpTabHeaderPresentation {
+    return item.headerPresentation ?? (item.icon ? 'icon-text' : 'text');
+  }
+
   protected keydown(event: KeyboardEvent, index: number): void {
+    const horizontal = this.orientation() === 'horizontal';
     const direction = getComputedStyle(this.host.nativeElement).direction;
-    const logicalNext =
+    const horizontalStep =
       (event.key === 'ArrowRight' ? 1 : event.key === 'ArrowLeft' ? -1 : 0) *
       (direction === 'rtl' ? -1 : 1);
-    if (!logicalNext && event.key !== 'Home' && event.key !== 'End') return;
+    const verticalStep = event.key === 'ArrowDown' ? 1 : event.key === 'ArrowUp' ? -1 : 0;
+    const step = horizontal ? horizontalStep : verticalStep;
+    if (!step && event.key !== 'Home' && event.key !== 'End') return;
     event.preventDefault();
     const enabled = this.items()
       .map((item, itemIndex) => ({item, itemIndex}))
@@ -93,7 +126,7 @@ export class ErpTabs {
       ? enabled[0]
       : event.key === 'End'
         ? enabled.at(-1)
-        : enabled[(current + logicalNext + enabled.length) % enabled.length];
+        : enabled[(current + step + enabled.length) % enabled.length];
     if (target) {
       this.activate(target.item);
       this.host.nativeElement

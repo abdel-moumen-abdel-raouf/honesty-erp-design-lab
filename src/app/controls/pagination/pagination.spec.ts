@@ -51,9 +51,25 @@ describe('ErpPagination', () => {
   it('uses ErpSelect for optional page-size selection and can hide it', () => {
     const fixture = create(3);
     expect(fixture.nativeElement.querySelector('erp-select')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('erp-inline.pagination__size-row')).not.toBeNull();
     expect(fixture.nativeElement.querySelector('select')).toBeNull();
     fixture.componentRef.setInput('showPageSize', false);
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('erp-select')).toBeNull();
+  });
+
+  it('independently controls every summary and navigation region', () => {
+    const fixture = create(8, 4);
+    fixture.componentRef.setInput('showSummary', false);
+    fixture.componentRef.setInput('showFirst', false);
+    fixture.componentRef.setInput('showPrevious', false);
+    fixture.componentRef.setInput('showPageNumbers', false);
+    fixture.componentRef.setInput('showNext', false);
+    fixture.componentRef.setInput('showLast', false);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.pagination__summary')).toBeNull();
+    expect(nativeButtons(fixture)).toHaveLength(0);
+    expect(fixture.nativeElement.querySelector('erp-select')).not.toBeNull();
   });
 });

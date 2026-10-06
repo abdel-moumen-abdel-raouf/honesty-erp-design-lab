@@ -19,6 +19,7 @@ import {ErpText} from '../../primitives/text/text';
 import {AnchoredOverlayController} from '../../shared/anchored-overlay/anchored-overlay-controller';
 import {AnchoredOverlayGeometryResult} from '../../shared/anchored-overlay/anchored-overlay-contracts';
 import {ErpButton} from '../button/button';
+import {ErpAvatar} from '../avatar/avatar';
 import {ErpFieldBase} from '../input-family/field-base';
 import {ErpFieldSize} from '../input-family/field-contracts';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
@@ -37,13 +38,13 @@ let nextSelectId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-select',
-  imports: [ErpButton, ErpFieldFrame, ErpFieldTrigger, ErpIcon, ErpSelectionTile, ErpText],
+  imports: [ErpAvatar, ErpButton, ErpFieldFrame, ErpFieldTrigger, ErpIcon, ErpSelectionTile, ErpText],
   providers: [
     {provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => ErpSelect), multi: true},
     {provide: NG_VALIDATORS, useExisting: forwardRef(() => ErpSelect), multi: true},
   ],
   templateUrl: './select.html',
-  styleUrl: './select.scss',
+  styleUrls: ['./select.scss', './select-popup-controls.scss'],
   host: {
     '[attr.data-select-open]': 'open()',
     '[attr.data-select-multiple]': 'multiple()',
@@ -70,6 +71,7 @@ export class ErpSelect extends ErpFieldBase<ErpSelectValue> implements OnDestroy
   protected readonly query = signal('');
   protected readonly activeGroup = signal<string | null>(null);
   protected readonly activeIndex = signal(0);
+  protected readonly sortMenuOpen = signal(false);
   protected readonly popup = viewChild<ElementRef<HTMLElement>>('popup');
   protected readonly trigger = viewChild('trigger', {read: ElementRef<HTMLElement>});
   protected readonly fieldSize = computed<ErpFieldSize>(() => ({
@@ -105,7 +107,13 @@ export class ErpSelect extends ErpFieldBase<ErpSelectValue> implements OnDestroy
   protected readonly clearActionVisible = computed(() =>
     this.clearable() && this.selectedValues().length > 0 && !this.fieldEffectiveDisabled(),
   );
+  protected readonly sortLabel = computed(() => ({
+    source: 'ترتيب المصدر',
+    ascending: 'ترتيب تصاعدي',
+    descending: 'ترتيب تنازلي',
+  })[this.sort()]);
   private controller: AnchoredOverlayController | null = null;
+  private widthObserver: ResizeObserver | null = null;
 
   constructor() {
     super(null);
@@ -115,6 +123,7 @@ export class ErpSelect extends ErpFieldBase<ErpSelectValue> implements OnDestroy
   }
 
   ngOnDestroy(): void {
+    this.detachWidthSync();
     this.controller?.destroy();
   }
 
@@ -160,6 +169,11 @@ export class ErpSelect extends ErpFieldBase<ErpSelectValue> implements OnDestroy
 
   protected setSort(sort: ErpSelectSort): void {
     this.sort.set(sort);
+    this.sortMenuOpen.set(false);
+  }
+
+  protected toggleSortMenu(): void {
+    this.sortMenuOpen.update((open) => !open);
   }
 
   protected updateQuery(event: Event): void {
@@ -196,8 +210,7 @@ export class ErpSelect extends ErpFieldBase<ErpSelectValue> implements OnDestroy
     const popup = this.popup()?.nativeElement;
     const trigger = this.trigger()?.nativeElement;
     if (!popup || !trigger) return;
-    const width = Math.min(Math.max(trigger.getBoundingClientRect().width, 320), Math.min(576, window.innerWidth - 24));
-    popup.style.inlineSize = `${width}px`;
+    this.syncPopupWidth();
     this.controller?.destroy();
     this.controller = new AnchoredOverlayController({
       anchor: trigger,
@@ -206,13 +219,16 @@ export class ErpSelect extends ErpFieldBase<ErpSelectValue> implements OnDestroy
       applyGeometry: (result) => this.applyGeometry(result),
     });
     if (!this.controller.show()) return;
+    this.attachWidthSync();
     this.open.set(true);
     this.handleFocus();
   }
 
   private close(): void {
+    this.detachWidthSync();
     this.controller?.hide();
     this.open.set(false);
+    this.sortMenuOpen.set(false);
     this.query.set('');
     this.handleBlur();
   }
@@ -223,5 +239,33 @@ export class ErpSelect extends ErpFieldBase<ErpSelectValue> implements OnDestroy
     popup.style.left = `${result.x}px`;
     popup.style.top = `${result.y}px`;
     popup.style.transformOrigin = result.placement === 'top' ? 'center bottom' : 'center top';
+  }
+
+  private readonly syncPopupWidth = (): void => {
+    const popup = this.popup()?.nativeElement;
+    const trigger = this.trigger()?.nativeElement;
+    if (!popup || !trigger) return;
+    const viewportWidth = window.visualViewport?.width ?? window.innerWidth;
+    const availableWidth = Math.max(0, viewportWidth - 24);
+    popup.style.inlineSize = `${Math.min(trigger.getBoundingClientRect().width, availableWidth)}px`;
+    this.controller?.requestPosition();
+  };
+
+  private attachWidthSync(): void {
+    this.detachWidthSync();
+    window.addEventListener('resize', this.syncPopupWidth);
+    window.visualViewport?.addEventListener('resize', this.syncPopupWidth);
+    const trigger = this.trigger()?.nativeElement;
+    if (trigger && typeof ResizeObserver !== 'undefined') {
+      this.widthObserver = new ResizeObserver(this.syncPopupWidth);
+      this.widthObserver.observe(trigger);
+    }
+  }
+
+  private detachWidthSync(): void {
+    window.removeEventListener('resize', this.syncPopupWidth);
+    window.visualViewport?.removeEventListener('resize', this.syncPopupWidth);
+    this.widthObserver?.disconnect();
+    this.widthObserver = null;
   }
 }

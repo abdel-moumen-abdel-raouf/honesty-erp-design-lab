@@ -1,6 +1,6 @@
 @use '../../../styles/foundation/components/skeleton' as tokens;
 :host { @include tokens.base; display: grid; gap: var(--honesty-skeleton-gap); inline-size: 100%; }
-.skeleton__shape { display: block; inline-size: 100%; block-size: var(--honesty-skeleton-block-size); border-radius: var(--honesty-skeleton-radius); background: var(--honesty-skeleton-bg); opacity: var(--honesty-skeleton-opacity); }
+.skeleton__shape { display: block; box-sizing: border-box; inline-size: 100%; block-size: var(--honesty-skeleton-block-size); border: var(--honesty-skeleton-border-width) solid var(--honesty-skeleton-border-color); border-radius: var(--honesty-skeleton-radius); background: var(--honesty-skeleton-bg); opacity: var(--honesty-skeleton-opacity); }
 :host([data-skeleton-variant='circle']) { inline-size: var(--honesty-skeleton-circle-size); } :host([data-skeleton-variant='circle']) .skeleton__shape { aspect-ratio: 1; block-size: auto; border-radius: 50%; }
 :host([data-skeleton-variant='block']) .skeleton__shape { block-size: var(--honesty-skeleton-block-size-large); }
 :host([data-skeleton-size='sm']) { @include tokens.size-sm; } :host([data-skeleton-size='lg']) { @include tokens.size-lg; }

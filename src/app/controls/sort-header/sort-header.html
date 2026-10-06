@@ -1,9 +1,7 @@
-<erp-button
-  [label]="label()"
-  [icon]="icon()"
-  iconPosition="end"
-  variant="ghost"
-  size="sm"
-  [disabled]="disabled()"
-  (pressed)="requestSort()"
-/>
+<erp-sort-trigger [label]="accessibleLabel()" [disabled]="disabled()" (activated)="requestSort()">
+  <erp-text type="table-header" weight="bold" tone="inherit">{{ label() }}</erp-text>
+  <span class="sort-header__arrows" aria-hidden="true">
+    <erp-icon name="chevron-up" size="xs" tone="inherit" [attr.data-sort-active]="direction() === 'ascending'" />
+    <erp-icon name="chevron-down" size="xs" tone="inherit" [attr.data-sort-active]="direction() === 'descending'" />
+  </span>
+</erp-sort-trigger>

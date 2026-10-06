@@ -1,11 +1,213 @@
-<erp-container class="core-batch" width="wide"><erp-stack gap="loose">
-<erp-stack gap="tight"><erp-text type="heading-1">مراجعة المكوّنات الأساسية المجمعة</erp-text><erp-text type="paragraph" tone="secondary">سطح مراجعة عربي موحد للمكوّنات الثمانية، يرث ثيم التطبيق واتجاهه دون سلطة محلية.</erp-text></erp-stack>
-<erp-section><erp-stack gap="default"><erp-text type="heading-2">Select</erp-text><erp-grid [columns]="2" gap="lg" responsive="auto"><erp-select label="الموظف المسؤول" [options]="employeeOptions" [(ngModel)]="selectedEmployee" helperText="اختيار مفرد مع بحث وتجميع وترتيب" /><erp-select label="فريق المراجعة" [options]="employeeOptions" multiple selectSize="lg" placeholder="اختر أعضاء الفريق" /></erp-grid></erp-stack></erp-section>
-<erp-section><erp-stack gap="default"><erp-text type="heading-2">StatusBadge</erp-text><erp-grid [columns]="5" gap="sm" responsive="auto"><erp-status-badge label="محايد" /><erp-status-badge label="ناجح" tone="success" icon="success" /><erp-status-badge label="تحذير" tone="warning" icon="warning" /><erp-status-badge label="خطر" tone="danger" icon="error" /><erp-status-badge label="معلومة" tone="info" icon="info" /></erp-grid></erp-stack></erp-section>
-<erp-section><erp-stack gap="default"><erp-text type="heading-2">Alert</erp-text><erp-alert title="تم حفظ القيد" description="حُفظ القيد المحاسبي بنجاح." tone="success" /><erp-alert title="تحتاج العملية إلى مراجعة" description="تحقق من مركز التكلفة قبل الاعتماد." tone="warning" dismissible /></erp-stack></erp-section>
-<erp-section><erp-stack gap="default"><erp-text type="heading-2">Skeleton</erp-text><erp-grid [columns]="3" gap="lg" responsive="auto"><erp-skeleton [lines]="3" /><erp-skeleton variant="block" /><erp-skeleton variant="circle" size="lg" /></erp-grid></erp-stack></erp-section>
-<erp-section><erp-stack gap="default"><erp-text type="heading-2">Avatar</erp-text><erp-grid [columns]="5" gap="lg" responsive="auto"><erp-avatar name="أحمد علي" size="xs" /><erp-avatar name="سارة محمود" size="sm" /><erp-avatar name="محمد حسن" /><erp-avatar name="نور خالد" size="lg" shape="rounded" /><erp-avatar name="" size="xl" fallbackIcon="user" /></erp-grid></erp-stack></erp-section>
-<erp-section><erp-stack gap="default"><erp-text type="heading-2">Tabs</erp-text><erp-surface border="subtle"><erp-tabs [items]="tabs" activeId="summary" /></erp-surface></erp-stack></erp-section>
-<erp-section><erp-stack gap="default"><erp-text type="heading-2">Table</erp-text><erp-table caption="دليل الحسابات" [columns]="columns" [rows]="rows" selectable [selectedKeys]="['2']" /></erp-stack></erp-section>
-<erp-section><erp-stack gap="default"><erp-text type="heading-2">Pagination</erp-text><erp-pagination [page]="page()" [pageCount]="12" [totalItems]="286" [pageSize]="pageSize()" (pageChange)="page.set($event)" (pageSizeChange)="pageSize.set($event)" /></erp-stack></erp-section>
-</erp-stack></erp-container>
+<erp-container class="core-batch" width="wide">
+  <erp-stack gap="loose">
+    <erp-stack gap="tight">
+      <erp-text type="heading-1">مراجعة تصحيح المكوّنات الأساسية V2</erp-text>
+      <erp-text type="paragraph" tone="secondary">
+        سطح مراجعة عربي موحد للعقود المصححة، يرث ثيم التطبيق واتجاهه دون سلطة محلية.
+      </erp-text>
+    </erp-stack>
+
+    <erp-section>
+      <erp-stack gap="default">
+        <erp-text type="heading-2">ErpSelect</erp-text>
+        <erp-grid [columns]="2" gap="lg" responsive="auto">
+          <erp-select
+            label="الموظف المسؤول"
+            [options]="employeeOptions"
+            [(ngModel)]="selectedEmployee"
+            helperText="صورة أو أيقونة ووصف ومجموعة وحالة تعطيل"
+          />
+          <erp-select
+            label="فريق المراجعة"
+            [options]="employeeOptions"
+            multiple
+            selectSize="lg"
+            placeholder="اختر أعضاء الفريق"
+          />
+          <erp-select label="حالة مقفلة" [options]="employeeOptions" disabled />
+          @for (size of selectSizes; track size) {
+            <erp-select
+              [label]="'حجم ' + size"
+              [options]="employeeOptions"
+              [selectSize]="size"
+              placeholder="اختر موظفًا"
+            />
+          }
+        </erp-grid>
+      </erp-stack>
+    </erp-section>
+
+    <erp-section>
+      <erp-stack gap="default">
+        <erp-text type="heading-2">ErpStatusBadge</erp-text>
+        <erp-grid [columns]="5" gap="sm" responsive="auto">
+          <erp-status-badge label="محايد" size="sm" />
+          <erp-status-badge label="ناجح" tone="success" icon="success" />
+          <erp-status-badge label="تحذير" tone="warning" icon="warning" size="lg" />
+          <erp-status-badge label="خطر" tone="danger" icon="error" />
+          <erp-status-badge label="معلومة" tone="info" icon="info" />
+        </erp-grid>
+      </erp-stack>
+    </erp-section>
+
+    <erp-section>
+      <erp-stack gap="default">
+        <erp-text type="heading-2">ErpAlert</erp-text>
+        <erp-alert title="تنبيه معلوماتي" description="هذه رسالة معلومات قصيرة." tone="info" />
+        <erp-alert title="تم حفظ القيد" description="حُفظ القيد المحاسبي بنجاح." tone="success" />
+        <erp-alert
+          title="تحتاج العملية إلى مراجعة"
+          description="تحقق من مركز التكلفة قبل الاعتماد."
+          tone="warning"
+          dismissible
+        >
+          <erp-button erpAlertAction label="فتح التفاصيل" variant="ghost" size="sm" />
+        </erp-alert>
+        <erp-alert title="تعذر تنفيذ العملية" tone="danger">
+          <erp-text type="paragraph" size="sm">
+            راجع الصلاحيات ثم أعد المحاولة. هذا وصف متعدد الأسطر يثبت محاذاة الأيقونة
+            وإجراء الإغلاق في منتصف مساحة التنبيه.
+          </erp-text>
+        </erp-alert>
+      </erp-stack>
+    </erp-section>
+
+    <erp-section>
+      <erp-stack gap="default">
+        <erp-text type="heading-2">ErpSkeleton</erp-text>
+        <erp-grid [columns]="3" gap="lg" responsive="auto">
+          <erp-skeleton [lines]="3" />
+          <erp-skeleton variant="block" />
+          <erp-skeleton variant="circle" size="lg" />
+          <erp-skeleton [lines]="2" [animated]="false" label="تحميل ثابت" />
+        </erp-grid>
+      </erp-stack>
+    </erp-section>
+
+    <erp-section>
+      <erp-stack gap="default">
+        <erp-text type="heading-2">ErpAvatar</erp-text>
+        <erp-grid [columns]="5" gap="lg" responsive="auto">
+          <erp-avatar
+            name="أحمد علي"
+            src="/assets/honesty-erp-avatars/users/male/avatar-01.png"
+            size="xs"
+            presence="online"
+            presenceMotion="pulse"
+          />
+          <erp-avatar name="سارة محمود" size="sm" shape="rounded" presence="away" presencePosition="top-left" />
+          <erp-avatar name="محمد حسن" presence="busy" presencePosition="right" presenceMotion="ping" hoverMotion="scale" />
+          <erp-avatar name="نور خالد" size="lg" shape="square" presence="offline" presencePosition="bottom" hoverMotion="lift" />
+          <erp-avatar name="مستخدم" size="xl" fallbackIcon="user" presence="online" presencePosition="top-right" presenceMotion="breathe" />
+        </erp-grid>
+        <erp-text type="heading-4">كل الأحجام</erp-text>
+        <erp-grid [columns]="5" gap="lg" responsive="auto">
+          @for (size of avatarSizes; track size) {
+            <erp-avatar name="حجم تجريبي" [size]="size" shape="circle" />
+          }
+        </erp-grid>
+        <erp-text type="heading-4">كل مواضع وحالات مؤشر الاتصال</erp-text>
+        <erp-grid [columns]="4" gap="lg" responsive="auto">
+          @for (example of avatarPositions; track example.position) {
+            <erp-avatar
+              [name]="'موضع ' + example.position"
+              shape="rounded"
+              [presence]="example.status"
+              [presencePosition]="example.position"
+              [presenceMotion]="example.motion"
+              hoverMotion="scale"
+            />
+          }
+        </erp-grid>
+      </erp-stack>
+    </erp-section>
+
+    <erp-section>
+      <erp-stack gap="default">
+        <erp-text type="heading-2">ErpTabs</erp-text>
+        <erp-grid [columns]="2" gap="lg" responsive="auto">
+          <erp-surface border="subtle">
+            <erp-tabs [items]="tabs" activeId="summary" variant="underline" transition="fade-start" />
+          </erp-surface>
+          <erp-surface border="subtle">
+            <erp-tabs
+              [items]="tabs"
+              activeId="summary"
+              orientation="vertical"
+              verticalPlacement="start"
+              transition="fade"
+            />
+          </erp-surface>
+          <erp-surface border="subtle">
+            <erp-review-core-tabs />
+          </erp-surface>
+          <erp-surface border="subtle">
+            <erp-tabs [items]="tabs" activeId="summary" variant="pills" distribution="fill" transition="fade-up" />
+          </erp-surface>
+          <erp-surface border="subtle">
+            <erp-tabs [items]="iconOnlyTabs" activeId="overview" variant="pills" />
+          </erp-surface>
+          <erp-surface border="subtle">
+            <erp-tabs
+              [items]="tabs"
+              activeId="summary"
+              orientation="vertical"
+              verticalPlacement="end"
+              transition="fade-down"
+            />
+          </erp-surface>
+        </erp-grid>
+      </erp-stack>
+    </erp-section>
+
+    <erp-section>
+      <erp-stack gap="default">
+        <erp-text type="heading-2">ErpAvatarPicker</erp-text>
+        <erp-avatar-picker [(value)]="selectedAvatar" />
+      </erp-stack>
+    </erp-section>
+
+    <erp-section>
+      <erp-stack gap="default">
+        <erp-text type="heading-2">ErpTable</erp-text>
+        <erp-review-core-table />
+      </erp-stack>
+    </erp-section>
+
+    <erp-section>
+      <erp-stack gap="default">
+        <erp-text type="heading-2">ErpPagination</erp-text>
+        <erp-pagination
+          [page]="page()"
+          [pageCount]="12"
+          [totalItems]="286"
+          [pageSize]="pageSize()"
+          (pageChange)="page.set($event)"
+          (pageSizeChange)="pageSize.set($event)"
+        />
+        <erp-pagination
+          [page]="1"
+          [pageCount]="4"
+          [showSummary]="false"
+          [showFirst]="false"
+          [showLast]="false"
+          [showPageSize]="false"
+        />
+        <erp-pagination
+          [page]="2"
+          [pageCount]="6"
+          [showPageSize]="false"
+          [showPrevious]="false"
+          [showNext]="false"
+        />
+        <erp-pagination
+          [page]="2"
+          [pageCount]="6"
+          [showFirst]="false"
+          [showLast]="false"
+          [showPageNumbers]="false"
+        />
+      </erp-stack>
+    </erp-section>
+  </erp-stack>
+</erp-container>

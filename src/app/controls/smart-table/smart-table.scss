@@ -11,12 +11,6 @@
   background: var(--honesty-smart-table-bg);
 }
 
-.smart-table__sorts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--honesty-smart-table-sort-gap);
-}
-
 .smart-table__body {
   min-width: 0;
   min-block-size: var(--honesty-smart-table-body-min-block-size);

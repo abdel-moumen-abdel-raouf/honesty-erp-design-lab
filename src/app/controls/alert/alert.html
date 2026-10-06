@@ -1,3 +1,20 @@
-<erp-icon class="alert__icon" [name]="effectiveIcon()" size="lg" [tone]="tone()" />
-<span class="alert__copy"><erp-text type="strong" weight="bold">{{ title() }}</erp-text>@if (description()) { <erp-text type="paragraph" tone="secondary">{{ description() }}</erp-text> }<ng-content></ng-content></span>
-<span class="alert__actions"><ng-content select="[erpAlertAction]"></ng-content>@if (dismissible()) { <erp-tooltip [text]="dismissLabel()"><erp-icon-button icon="close" [label]="dismissLabel()" size="sm" (pressed)="dismissed.emit()" /></erp-tooltip> }</span>
+<span class="alert__icon-region">
+  <erp-icon class="alert__icon" [name]="effectiveIcon()" size="lg" [tone]="tone()" />
+</span>
+<span class="alert__copy">
+  <erp-text class="alert__title" type="heading-5" tone="inherit">{{ title() }}</erp-text>
+  @if (description()) {
+    <erp-text class="alert__description" type="paragraph" size="sm" tone="secondary">
+      {{ description() }}
+    </erp-text>
+  }
+  <ng-content></ng-content>
+</span>
+<span class="alert__actions">
+  <ng-content select="[erpAlertAction]"></ng-content>
+  @if (dismissible()) {
+    <erp-tooltip [text]="dismissLabel()">
+      <erp-icon-button icon="close" [label]="dismissLabel()" size="sm" (pressed)="dismissed.emit()" />
+    </erp-tooltip>
+  }
+</span>

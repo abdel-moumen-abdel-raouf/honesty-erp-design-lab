@@ -25,8 +25,13 @@ import {ErpFilterBar} from '../filter-bar/filter-bar';
 import {ErpFilterDrawer} from '../filter-drawer/filter-drawer';
 import {ErpPagination} from '../pagination/pagination';
 import {ErpSkeleton} from '../skeleton/skeleton';
-import {ErpSortHeader} from '../sort-header/sort-header';
-import {ErpTable, ErpTableCell, ErpTableColumn, ErpTableRow} from '../table/table';
+import {
+  ErpTable,
+  ErpTableCell,
+  ErpTableColumn,
+  ErpTableRow,
+  ErpTableSort,
+} from '../table/table';
 import {ErpTableToolbar} from '../table-toolbar/table-toolbar';
 
 @Component({
@@ -42,7 +47,6 @@ import {ErpTableToolbar} from '../table-toolbar/table-toolbar';
     ErpFilterDrawer,
     ErpPagination,
     ErpSkeleton,
-    ErpSortHeader,
     ErpTable,
     ErpTableToolbar,
   ],
@@ -101,6 +105,7 @@ export class ErpSmartTable {
       key: column.key,
       header: column.label,
       align: column.align,
+      sortable: column.sortable,
     })),
   );
   protected readonly filteredRows = computed(() => {
@@ -142,21 +147,13 @@ export class ErpSmartTable {
     const start = (this.effectivePage() - 1) * this.normalizedPageSize();
     return this.sortedRows().slice(start, start + this.normalizedPageSize());
   });
-  protected readonly sortableColumns = computed(() =>
-    this.visibleColumnDefinitions().filter((column) => column.sortable),
-  );
-
   private normalizedPageSize(): number {
     const value = this.pageSize();
     return Number.isFinite(value) ? Math.max(1, Math.floor(value)) : 25;
   }
 
-  protected directionFor(key: string): 'none' | 'ascending' | 'descending' {
-    return this.sort()?.key === key ? this.sort()!.direction : 'none';
-  }
-
-  protected changeSort(key: string, direction: 'none' | 'ascending' | 'descending'): void {
-    this.sort.set(direction === 'none' ? null : {key, direction});
+  protected changeSort(sort: ErpTableSort | null): void {
+    this.sort.set(sort);
     this.page.set(1);
     this.emitQuery();
   }
@@ -193,14 +190,11 @@ export class ErpSmartTable {
   }
 
   protected activateRow(row: ErpTableRow): void {
-    if (this.selectable()) {
-      const key = String(row[this.rowKey()] ?? '');
-      const selected = new Set(this.selectedKeys());
-      if (selected.has(key)) selected.delete(key);
-      else selected.add(key);
-      this.selectedKeys.set([...selected]);
-    }
     this.rowActivated.emit(row);
+  }
+
+  protected changeSelection(keys: readonly string[]): void {
+    this.selectedKeys.set(keys);
   }
 
   protected clearSelection(): void {

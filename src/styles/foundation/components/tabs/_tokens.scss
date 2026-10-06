@@ -14,4 +14,11 @@
   --honesty-tabs-focus-width: var(--honesty-focus-ring-width);
   --honesty-tabs-focus-offset: var(--honesty-focus-ring-offset);
   --honesty-tabs-focus-color: var(--honesty-color-action-focus-ring);
+  --honesty-tabs-pill-radius: var(--honesty-radius-pill);
+  --honesty-tabs-pill-active-bg: var(--honesty-color-action-primary-subtle-bg);
+  --honesty-tabs-pill-active-fg: var(--honesty-color-text-primary);
+  --honesty-tabs-vertical-list-size: 13rem;
+  --honesty-tabs-transition-duration: var(--honesty-motion-duration-default);
+  --honesty-tabs-transition-easing: var(--honesty-motion-easing-enter);
+  --honesty-tabs-transition-distance: 0.5rem;
 }

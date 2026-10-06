@@ -40,7 +40,6 @@ export function validateDataTableContracts(files) {
     '<erp-column-chooser',
     '<erp-filter-drawer',
     '<erp-filter-bar',
-    '<erp-sort-header',
     '<erp-bulk-action-bar',
     '<erp-table',
     '<erp-pagination',
@@ -50,6 +49,17 @@ export function validateDataTableContracts(files) {
   ]) {
     if (!template.includes(owner)) {
       errors.push(`ErpSmartTable must compose ${owner}`);
+    }
+  }
+
+  for (const required of [
+    'sortable: column.sortable',
+    '[sort]="sort()"',
+    '(sortChange)="changeSort($event)"',
+  ]) {
+    const owner = required === 'sortable: column.sortable' ? source : template;
+    if (!owner.includes(required)) {
+      errors.push(`ErpSmartTable must delegate sorting through ErpTable: ${required}`);
     }
   }
 
@@ -89,8 +99,8 @@ export function validateDataTableContracts(files) {
 
 function fixture(overrides = new Map()) {
   const files = new Map([
-    [SMART_TABLE, 'export class ErpSmartTable {}'],
-    [SMART_TABLE_TEMPLATE, '<erp-table-toolbar/><erp-column-chooser/><erp-filter-drawer/><erp-filter-bar/><erp-sort-header/><erp-bulk-action-bar/><erp-skeleton/><erp-empty-state/><erp-alert/><erp-table><ng-content /></erp-table><erp-pagination/>'],
+    [SMART_TABLE, 'export class ErpSmartTable { sortable: column.sortable }'],
+    [SMART_TABLE_TEMPLATE, '<erp-table-toolbar/><erp-column-chooser/><erp-filter-drawer/><erp-filter-bar/><erp-bulk-action-bar/><erp-skeleton/><erp-empty-state/><erp-alert/><erp-table [sort]="sort()" (sortChange)="changeSort($event)"><ng-content /></erp-table><erp-pagination/>'],
     [CONTRACTS, "export type ErpSmartTableMode = 'local' | 'remote'; readonly revision: number; readonly filters: readonly ErpDataFilter[]; readonly visibleColumns: readonly string[];"],
     [ROUTES, "path: 'controls/data-batch'"],
     [REVIEW, '<erp-smart-table/>'],

@@ -1,0 +1,8 @@
+<button
+  type="button"
+  [attr.aria-label]="label()"
+  [disabled]="disabled()"
+  (pointerdown)="resizeStarted.emit($event)"
+  (keydown.arrowleft)="resizeStepped.emit(-1); $event.preventDefault()"
+  (keydown.arrowright)="resizeStepped.emit(1); $event.preventDefault()"
+></button>

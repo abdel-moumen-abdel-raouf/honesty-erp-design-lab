@@ -10,6 +10,8 @@ interface SelectTestAccess {
   clearSelection(): void;
   setGroup(group: string | null): void;
   setSort(sort: ErpSelectSort): void;
+  toggleSortMenu(): void;
+  syncPopupWidth(): void;
   updateQuery(event: Event): void;
   handleKeydown(event: KeyboardEvent): void;
   toggle(): void;
@@ -103,6 +105,37 @@ describe('ErpSelect', () => {
     search.value = 'ledger';
     test.updateQuery({target: search} as unknown as Event);
     expect(test.visibleOptions().map(({value}) => value)).toEqual(['bravo']);
+  });
+
+  it('keeps search in one labelled row and exposes one bounded sort menu', () => {
+    const fixture = createSelect();
+    const test = access(fixture.componentInstance);
+    expect(fixture.nativeElement.querySelector('.select__search-row erp-text')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('.select__toolbar .select__sort')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('.select__sort-menu')).toBeNull();
+    test.toggleSortMenu();
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelectorAll('.select__sort-menu erp-button')).toHaveLength(3);
+  });
+
+  it('matches popup inline size to the trigger while respecting viewport inset', () => {
+    const fixture = createSelect();
+    const trigger = fixture.nativeElement.querySelector('erp-field-trigger') as HTMLElement;
+    vi.spyOn(trigger, 'getBoundingClientRect').mockReturnValue({
+      width: 480,
+      height: 48,
+      x: 0,
+      y: 0,
+      top: 0,
+      right: 480,
+      bottom: 48,
+      left: 0,
+      toJSON: () => ({}),
+    });
+    vi.stubGlobal('innerWidth', 420);
+    access(fixture.componentInstance).syncPopupWidth();
+    expect((fixture.nativeElement.querySelector('.select__popup') as HTMLElement).style.inlineSize).toBe('396px');
+    vi.unstubAllGlobals();
   });
 
   it('opens, navigates, selects with Enter, closes with Escape, and clears', () => {

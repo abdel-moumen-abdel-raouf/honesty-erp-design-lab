@@ -8,44 +8,25 @@ It records Product Owner decisions, externally reviewed Git state, execution bou
 
 ## Authoritative current review transition — 2026-10-06
 
-The Accelerated Navigation & ERP Shell Batch V1 entered from
-`ecc7e0b2492a3267309e0eefd48f51b355ed71ba`. Resolve the final implementation
+Product Owner Core Components Visual Correction Wave V2 entered from
+`555dde11e2a922393b9e5d0fb128c6465934d42f`. Resolve the final implementation
 SHA directly from live Git.
 
-The Accelerated Core Batch, Phase A hardening, and Phase B Data/Table batch are
-implemented and technically green. The Phase B canonical gate passed 110/110
-test files, 778/778 tests, both typechecks, production build, and zero warnings;
-initial bundle was 374.44 kB / 85.38 kB estimated transfer. None of those facts
-implies Product Owner visual acceptance or freeze; grouped runtime/visual review
-remains pending.
+The Product Owner explicitly rejected implied visual acceptance for Select,
+StatusBadge, Alert, Skeleton, Avatar, Tabs, Table, and Pagination, and opened
+AvatarPicker. V2 implements the prescribed references, bottom-up composition,
+40 supplied avatar assets plus manifest, expanded APIs and evidence, and
+compatibility-only SmartTable delegation. Its technical gate passes 133/133
+test files and 845/845 tests, all governance, both typechecks, production build,
+and zero warnings.
 
-Exactly six Forms Composition owners are now implemented: `ErpForm`,
-`ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`, `ErpRepeater`, and
-`ErpStepper`. The completed reference audit found no external reference, so the
-Product Owner's scoped accelerated waiver applied. Canonical verification passed
-117/117 test files, 792/792 tests, both typechecks, production build, and zero
-warnings.
-
-Schema-Driven Entity Form Engine V1 now implements exactly
-`ErpStandardEntityForm`, `ErpEntitySchemaFields`,
-`ErpEntityCustomFieldOutlet`, and `ErpEntityCustomSectionOutlet`. Canonical
-verification passed 121/121 test files, 809/809 tests, both typechecks,
-production build, and zero warnings.
-
-Accelerated Navigation & ERP Shell Batch V1 now implements exactly
-`ErpBreadcrumbs`, `ErpPageHeader`, `ErpPageShell`, `ErpSidebar`, `ErpTopbar`,
-`ErpBranchSelector`, `ErpGlobalSearch`, `ErpNotificationBell`, `ErpUserMenu`,
-and `ErpAppShell`. Canonical verification passed 132/132 test files, 829/829
-tests, both typechecks, production build, and zero warnings. The reference audit
-found no external files, so the scoped waiver applies as recorded in
-`SHELL_BATCH_V1.md`.
-
-The exact next gate is grouped Product Owner runtime and Light/Dark visual
-review of Core, Data/Table, Forms, Entity Form Engine, and Shell. No later
-implementation wave is authorized. Standalone EntityReview, Entity Wizard,
-workflow engine, DataPage, EntityDirectory, EntityDetail, CRUD/transaction page
-patterns, Feature/Page migration, and every unlisted family remain unopened.
-Technical PASS never equals visual approval.
+The exact next gate is grouped Product Owner runtime/Light/Dark/RTL/narrow
+visual review at `/controls/core-batch`. Browser attachment failed in the
+implementation environment, so this checkpoint does not claim manual runtime
+visual evidence or approval. The Data/Table Visual Correction Wave and every
+later implementation wave remain unopened. Technical PASS never equals visual
+approval. Previous Core/Data/Forms/Entity Form/Shell technical candidates
+remain present but not visually frozen.
 
 ## Historical Git checkpoints — superseded snapshot
 

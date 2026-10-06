@@ -77,11 +77,11 @@ describe('ErpSmartTable', () => {
     fixture.detectChanges();
     const component = fixture.componentInstance as unknown as {
       changePage(page: number): void;
-      changeSort(key: string, direction: 'ascending'): void;
+      changeSort(sort: {key: string; direction: 'ascending'}): void;
     };
 
     component.changePage(3);
-    component.changeSort('name', 'ascending');
+    component.changeSort({key: 'name', direction: 'ascending'});
 
     expect(spy.mock.calls.map(([query]) => query.revision)).toEqual([1, 2]);
     expect(spy).toHaveBeenLastCalledWith(expect.objectContaining({
@@ -98,7 +98,9 @@ describe('ErpSmartTable', () => {
     expect(fixture.nativeElement.querySelector('erp-status-badge')).not.toBeNull();
     const smartTable = fixture.nativeElement.querySelector('erp-smart-table');
     const row = fixture.nativeElement.querySelector('erp-table tbody tr') as HTMLElement;
-    row.click();
+    const selection = row.querySelector('erp-check-box input') as HTMLInputElement;
+    selection.checked = true;
+    selection.dispatchEvent(new Event('change', {bubbles: true}));
     fixture.detectChanges();
     expect(smartTable.getAttribute('aria-busy')).toBe('false');
     expect(row.getAttribute('aria-selected')).toBe('true');

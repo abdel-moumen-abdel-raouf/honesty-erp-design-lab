@@ -33,19 +33,6 @@
   />
 }
 
-@if (sortableColumns().length > 0) {
-  <div class="smart-table__sorts" aria-label="ترتيب البيانات">
-    @for (column of sortableColumns(); track column.key) {
-      <erp-sort-header
-        [label]="column.label"
-        [direction]="directionFor(column.key)"
-        [disabled]="loading()"
-        (sortChange)="changeSort(column.key, $event)"
-      />
-    }
-  </div>
-}
-
 @if (selectedKeys().length > 0) {
   <erp-bulk-action-bar
     [selectedCount]="selectedKeys().length"
@@ -76,7 +63,11 @@
       [compact]="compact()"
       [selectable]="selectable()"
       [selectedKeys]="selectedKeys()"
+      [sort]="sort()"
       [cellDefinitions]="projectedCellDefinitions()"
+      rowActivatable
+      (selectedKeysChange)="changeSelection($event)"
+      (sortChange)="changeSort($event)"
       (rowActivated)="activateRow($event)"
     >
       <ng-content />

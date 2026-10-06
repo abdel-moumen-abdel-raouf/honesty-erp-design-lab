@@ -4,7 +4,19 @@ import {ErpIconName} from '../../primitives/icon/icon-contracts';
 import {ErpText} from '../../primitives/text/text';
 
 export type ErpAvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export type ErpAvatarShape = 'circle' | 'rounded';
+export type ErpAvatarShape = 'circle' | 'rounded' | 'square';
+export type ErpAvatarPresence = 'online' | 'away' | 'busy' | 'offline';
+export type ErpAvatarPresencePosition =
+  | 'top'
+  | 'bottom'
+  | 'left'
+  | 'right'
+  | 'top-left'
+  | 'top-right'
+  | 'bottom-left'
+  | 'bottom-right';
+export type ErpAvatarPresenceMotion = 'none' | 'pulse' | 'ping' | 'breathe';
+export type ErpAvatarHoverMotion = 'none' | 'scale' | 'lift';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -12,11 +24,15 @@ export type ErpAvatarShape = 'circle' | 'rounded';
   selector: 'erp-avatar',
   imports: [ErpIcon, ErpText],
   templateUrl: './avatar.html',
-  styleUrl: './avatar.scss',
+  styleUrls: ['./avatar.scss', './avatar-presence.scss', './avatar-motion.scss'],
   host: {
     '[attr.data-avatar-size]': 'size()',
     '[attr.data-avatar-shape]': 'shape()',
-    '[attr.aria-label]': 'name()',
+    '[attr.data-avatar-presence]': 'presence()',
+    '[attr.data-avatar-presence-position]': 'presencePosition()',
+    '[attr.data-avatar-presence-motion]': 'presenceMotion()',
+    '[attr.data-avatar-hover-motion]': 'hoverMotion()',
+    '[attr.aria-label]': 'accessibleLabel()',
   },
 })
 export class ErpAvatar {
@@ -25,6 +41,10 @@ export class ErpAvatar {
   readonly size = input<ErpAvatarSize>('md');
   readonly shape = input<ErpAvatarShape>('circle');
   readonly fallbackIcon = input<ErpIconName | null>(null);
+  readonly presence = input<ErpAvatarPresence | null>(null);
+  readonly presencePosition = input<ErpAvatarPresencePosition>('bottom-right');
+  readonly presenceMotion = input<ErpAvatarPresenceMotion>('none');
+  readonly hoverMotion = input<ErpAvatarHoverMotion>('none');
 
   private readonly failedSrc = signal<string | null>(null);
 
@@ -42,6 +62,13 @@ export class ErpAvatar {
       .join('')
       .toLocaleUpperCase(),
   );
+  protected readonly accessibleLabel = computed(() => {
+    const name = this.name().trim() || 'مستخدم';
+    const presence = this.presence();
+    if (!presence) return name;
+    const label = {online: 'متصل', away: 'بعيد', busy: 'مشغول', offline: 'غير متصل'}[presence];
+    return `${name} — ${label}`;
+  });
 
   protected failImage(): void {
     this.failedSrc.set(this.src());

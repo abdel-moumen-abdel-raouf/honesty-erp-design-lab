@@ -1,0 +1,17 @@
+<erp-tabs
+  [items]="items"
+  activeId="summary"
+  variant="pills"
+  distribution="fill"
+  transition="fade-end"
+>
+  <ng-template erpTabPanel="summary">
+    <erp-stack gap="tight">
+      <erp-status-badge label="محتوى مسقط" tone="info" icon="info" />
+      <erp-text type="paragraph">لوحة غنية مملوكة للمستهلك داخل عقد التبويب المفتاحي.</erp-text>
+    </erp-stack>
+  </ng-template>
+  <ng-template erpTabPanel="audit">
+    <erp-text type="paragraph">سجل المراجعة المركب دون إنشاء محرّك عرض ثانٍ.</erp-text>
+  </ng-template>
+</erp-tabs>

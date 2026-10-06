@@ -1,4 +1,7 @@
 @use '../../../styles/foundation/components/avatar' as tokens;
-:host { @include tokens.base; display: inline-grid; place-items: center; box-sizing: border-box; inline-size: var(--honesty-avatar-size); block-size: var(--honesty-avatar-size); overflow: hidden; border: var(--honesty-avatar-border-width) solid var(--honesty-avatar-border-color); border-radius: var(--honesty-avatar-radius); background: var(--honesty-avatar-bg); color: var(--honesty-avatar-fg); font-size: var(--honesty-avatar-font-size); }
-img { inline-size: 100%; block-size: 100%; object-fit: cover; } :host([data-avatar-shape='rounded']) { --honesty-avatar-radius: var(--honesty-avatar-rounded-radius); }
+:host { @include tokens.base; position: relative; display: inline-grid; place-items: center; box-sizing: border-box; inline-size: var(--honesty-avatar-size); block-size: var(--honesty-avatar-size); overflow: visible; color: var(--honesty-avatar-fg); font-size: var(--honesty-avatar-font-size); transition: transform var(--honesty-avatar-hover-duration) var(--honesty-avatar-hover-easing); }
+.avatar__media { display: grid; place-items: center; box-sizing: border-box; inline-size: 100%; block-size: 100%; overflow: hidden; border: var(--honesty-avatar-border-width) solid var(--honesty-avatar-border-color); border-radius: var(--honesty-avatar-radius); background: var(--honesty-avatar-bg); }
+img { inline-size: 100%; block-size: 100%; object-fit: cover; }
+:host([data-avatar-shape='rounded']) { --honesty-avatar-radius: var(--honesty-avatar-rounded-radius); }
+:host([data-avatar-shape='square']) { --honesty-avatar-radius: var(--honesty-avatar-square-radius); }
 :host([data-avatar-size='xs']) { @include tokens.size-xs; } :host([data-avatar-size='sm']) { @include tokens.size-sm; } :host([data-avatar-size='lg']) { @include tokens.size-lg; } :host([data-avatar-size='xl']) { @include tokens.size-xl; }

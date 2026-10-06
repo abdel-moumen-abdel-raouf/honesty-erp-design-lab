@@ -1,0 +1,51 @@
+<erp-text type="heading-5">{{ label() }}</erp-text>
+
+@if (selected(); as avatar) {
+  <span class="avatar-picker__preview">
+    <erp-avatar
+      name="الصورة الشخصية المختارة"
+      [src]="avatar.imageUrl"
+      size="xl"
+      hoverMotion="scale"
+    />
+    <erp-text type="caption" tone="secondary">{{ avatar.id }}</erp-text>
+  </span>
+}
+
+<erp-tabs
+  [items]="tabs"
+  [activeId]="activeGender()"
+  distribution="fill"
+  variant="pills"
+  transition="fade"
+  (activeIdChange)="setGender($event)"
+>
+  <ng-template erpTabPanel="male">
+    <span class="avatar-picker__grid" role="listbox" aria-label="صور المستخدمين الذكور">
+      @for (avatar of avatarsFor('male'); track avatar.id) {
+        <erp-selection-tile
+          [label]="'اختيار ' + avatar.id"
+          [selected]="value() === avatar.id"
+          [disabled]="disabled()"
+          (activated)="select(avatar)"
+        >
+          <erp-avatar [name]="avatar.id" [src]="avatar.imageUrl" size="lg" />
+        </erp-selection-tile>
+      }
+    </span>
+  </ng-template>
+  <ng-template erpTabPanel="female">
+    <span class="avatar-picker__grid" role="listbox" aria-label="صور المستخدمين الإناث">
+      @for (avatar of avatarsFor('female'); track avatar.id) {
+        <erp-selection-tile
+          [label]="'اختيار ' + avatar.id"
+          [selected]="value() === avatar.id"
+          [disabled]="disabled()"
+          (activated)="select(avatar)"
+        >
+          <erp-avatar [name]="avatar.id" [src]="avatar.imageUrl" size="lg" />
+        </erp-selection-tile>
+      }
+    </span>
+  </ng-template>
+</erp-tabs>

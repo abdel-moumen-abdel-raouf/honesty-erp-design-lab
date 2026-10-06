@@ -1,0 +1,571 @@
+﻿{
+  "version": 1,
+  "sourceSha256": "f2f036d1a6aa770dc16d14f556c0a07b6a2087767eee31bab8bec184cac90fe3",
+  "total": 40,
+  "male": 20,
+  "female": 20,
+  "width": 256,
+  "height": 256,
+  "items": [
+    {
+      "id": "avatar-01",
+      "sequence": 1,
+      "gender": "male",
+      "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+      "source": {
+        "row": 0,
+        "column": 0,
+        "x": 10,
+        "y": 6,
+        "width": 179,
+        "height": 174
+      }
+    },
+    {
+      "id": "avatar-02",
+      "sequence": 2,
+      "gender": "male",
+      "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-02.png",
+      "source": {
+        "row": 0,
+        "column": 2,
+        "x": 402,
+        "y": 7,
+        "width": 184,
+        "height": 173
+      }
+    },
+    {
+      "id": "avatar-03",
+      "sequence": 3,
+      "gender": "male",
+      "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-03.png",
+      "source": {
+        "row": 0,
+        "column": 4,
+        "x": 802,
+        "y": 6,
+        "width": 177,
+        "height": 174
+      }
+    },
+    {
+      "id": "avatar-04",
+      "sequence": 4,
+      "gender": "male",
+      "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-04.png",
+      "source": {
+        "row": 1,
+        "column": 1,
+        "x": 205,
+        "y": 188,
+        "width": 186,
+        "height": 173
+      }
+    },
+    {
+      "id": "avatar-05",
+      "sequence": 5,
+      "gender": "male",
+      "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-05.png",
+      "source": {
+        "row": 1,
+        "column": 3,
+        "x": 598,
+        "y": 187,
+        "width": 183,
+        "height": 176
+      }
+    },
+    {
+      "id": "avatar-06",
+      "sequence": 6,
+      "gender": "male",
+      "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-06.png",
+      "source": {
+        "row": 2,
+        "column": 0,
+        "x": 11,
+        "y": 370,
+        "width": 180,
+        "height": 174
+      }
+    },
+    {
+      "id": "avatar-07",
+      "sequence": 7,
+      "gender": "male",
+      "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-07.png",
+      "source": {
+        "row": 2,
+        "column": 2,
+        "x": 405,
+        "y": 370,
+        "width": 185,
+        "height": 174
+      }
+    },
+    {
+      "id": "avatar-08",
+      "sequence": 8,
+      "gender": "male",
+      "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-08.png",
+      "source": {
+        "row": 2,
+        "column": 4,
+        "x": 796,
+        "y": 370,
+        "width": 189,
+        "height": 174
+      }
+    },
+    {
+      "id": "avatar-09",
+      "sequence": 9,
+      "gender": "male",
+      "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-09.png",
+      "source": {
+        "row": 3,
+        "column": 1,
+        "x": 200,
+        "y": 551,
+        "width": 191,
+        "height": 178
+      }
+    },
+    {
+      "id": "avatar-10",
+      "sequence": 10,
+      "gender": "male",
+      "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-10.png",
+      "source": {
+        "row": 3,
+        "column": 3,
+        "x": 599,
+        "y": 550,
+        "width": 188,
+        "height": 178
+      }
+    },
+    {
+      "id": "avatar-11",
+      "sequence": 11,
+      "gender": "male",
+      "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-11.png",
+      "source": {
+        "row": 4,
+        "column": 0,
+        "x": 3,
+        "y": 737,
+        "width": 187,
+        "height": 177
+      }
+    },
+    {
+      "id": "avatar-12",
+      "sequence": 12,
+      "gender": "male",
+      "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-12.png",
+      "source": {
+        "row": 4,
+        "column": 2,
+        "x": 402,
+        "y": 737,
+        "width": 185,
+        "height": 178
+      }
+    },
+    {
+      "id": "avatar-13",
+      "sequence": 13,
+      "gender": "male",
+      "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-13.png",
+      "source": {
+        "row": 4,
+        "column": 4,
+        "x": 798,
+        "y": 738,
+        "width": 189,
+        "height": 177
+      }
+    },
+    {
+      "id": "avatar-14",
+      "sequence": 14,
+      "gender": "male",
+      "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-14.png",
+      "source": {
+        "row": 5,
+        "column": 1,
+        "x": 205,
+        "y": 923,
+        "width": 185,
+        "height": 179
+      }
+    },
+    {
+      "id": "avatar-15",
+      "sequence": 15,
+      "gender": "male",
+      "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-15.png",
+      "source": {
+        "row": 5,
+        "column": 3,
+        "x": 595,
+        "y": 925,
+        "width": 195,
+        "height": 177
+      }
+    },
+    {
+      "id": "avatar-16",
+      "sequence": 16,
+      "gender": "male",
+      "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-16.png",
+      "source": {
+        "row": 6,
+        "column": 0,
+        "x": 4,
+        "y": 1113,
+        "width": 189,
+        "height": 184
+      }
+    },
+    {
+      "id": "avatar-17",
+      "sequence": 17,
+      "gender": "male",
+      "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-17.png",
+      "source": {
+        "row": 6,
+        "column": 2,
+        "x": 396,
+        "y": 1111,
+        "width": 196,
+        "height": 186
+      }
+    },
+    {
+      "id": "avatar-18",
+      "sequence": 18,
+      "gender": "male",
+      "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-18.png",
+      "source": {
+        "row": 6,
+        "column": 4,
+        "x": 798,
+        "y": 1111,
+        "width": 187,
+        "height": 186
+      }
+    },
+    {
+      "id": "avatar-19",
+      "sequence": 19,
+      "gender": "male",
+      "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-19.png",
+      "source": {
+        "row": 7,
+        "column": 1,
+        "x": 189,
+        "y": 1307,
+        "width": 205,
+        "height": 205
+      }
+    },
+    {
+      "id": "avatar-20",
+      "sequence": 20,
+      "gender": "male",
+      "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-20.png",
+      "source": {
+        "row": 7,
+        "column": 3,
+        "x": 596,
+        "y": 1309,
+        "width": 195,
+        "height": 203
+      }
+    },
+    {
+      "id": "avatar-21",
+      "sequence": 21,
+      "gender": "female",
+      "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+      "source": {
+        "row": 0,
+        "column": 1,
+        "x": 214,
+        "y": 10,
+        "width": 165,
+        "height": 170
+      }
+    },
+    {
+      "id": "avatar-22",
+      "sequence": 22,
+      "gender": "female",
+      "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
+      "source": {
+        "row": 0,
+        "column": 3,
+        "x": 604,
+        "y": 10,
+        "width": 177,
+        "height": 171
+      }
+    },
+    {
+      "id": "avatar-23",
+      "sequence": 23,
+      "gender": "female",
+      "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-23.png",
+      "source": {
+        "row": 1,
+        "column": 0,
+        "x": 7,
+        "y": 192,
+        "width": 182,
+        "height": 169
+      }
+    },
+    {
+      "id": "avatar-24",
+      "sequence": 24,
+      "gender": "female",
+      "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-24.png",
+      "source": {
+        "row": 1,
+        "column": 2,
+        "x": 411,
+        "y": 192,
+        "width": 168,
+        "height": 171
+      }
+    },
+    {
+      "id": "avatar-25",
+      "sequence": 25,
+      "gender": "female",
+      "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-25.png",
+      "source": {
+        "row": 1,
+        "column": 4,
+        "x": 802,
+        "y": 189,
+        "width": 172,
+        "height": 174
+      }
+    },
+    {
+      "id": "avatar-26",
+      "sequence": 26,
+      "gender": "female",
+      "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-26.png",
+      "source": {
+        "row": 2,
+        "column": 1,
+        "x": 210,
+        "y": 374,
+        "width": 180,
+        "height": 170
+      }
+    },
+    {
+      "id": "avatar-27",
+      "sequence": 27,
+      "gender": "female",
+      "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-27.png",
+      "source": {
+        "row": 2,
+        "column": 3,
+        "x": 604,
+        "y": 371,
+        "width": 176,
+        "height": 174
+      }
+    },
+    {
+      "id": "avatar-28",
+      "sequence": 28,
+      "gender": "female",
+      "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-28.png",
+      "source": {
+        "row": 3,
+        "column": 0,
+        "x": 14,
+        "y": 556,
+        "width": 174,
+        "height": 172
+      }
+    },
+    {
+      "id": "avatar-29",
+      "sequence": 29,
+      "gender": "female",
+      "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-29.png",
+      "source": {
+        "row": 3,
+        "column": 2,
+        "x": 405,
+        "y": 556,
+        "width": 172,
+        "height": 172
+      }
+    },
+    {
+      "id": "avatar-30",
+      "sequence": 30,
+      "gender": "female",
+      "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-30.png",
+      "source": {
+        "row": 3,
+        "column": 4,
+        "x": 799,
+        "y": 556,
+        "width": 183,
+        "height": 172
+      }
+    },
+    {
+      "id": "avatar-31",
+      "sequence": 31,
+      "gender": "female",
+      "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-31.png",
+      "source": {
+        "row": 4,
+        "column": 1,
+        "x": 208,
+        "y": 739,
+        "width": 170,
+        "height": 176
+      }
+    },
+    {
+      "id": "avatar-32",
+      "sequence": 32,
+      "gender": "female",
+      "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-32.png",
+      "source": {
+        "row": 4,
+        "column": 3,
+        "x": 598,
+        "y": 741,
+        "width": 182,
+        "height": 174
+      }
+    },
+    {
+      "id": "avatar-33",
+      "sequence": 33,
+      "gender": "female",
+      "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-33.png",
+      "source": {
+        "row": 5,
+        "column": 0,
+        "x": 12,
+        "y": 922,
+        "width": 172,
+        "height": 180
+      }
+    },
+    {
+      "id": "avatar-34",
+      "sequence": 34,
+      "gender": "female",
+      "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-34.png",
+      "source": {
+        "row": 5,
+        "column": 2,
+        "x": 404,
+        "y": 924,
+        "width": 177,
+        "height": 178
+      }
+    },
+    {
+      "id": "avatar-35",
+      "sequence": 35,
+      "gender": "female",
+      "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-35.png",
+      "source": {
+        "row": 5,
+        "column": 4,
+        "x": 796,
+        "y": 924,
+        "width": 187,
+        "height": 178
+      }
+    },
+    {
+      "id": "avatar-36",
+      "sequence": 36,
+      "gender": "female",
+      "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-36.png",
+      "source": {
+        "row": 6,
+        "column": 1,
+        "x": 199,
+        "y": 1114,
+        "width": 188,
+        "height": 183
+      }
+    },
+    {
+      "id": "avatar-37",
+      "sequence": 37,
+      "gender": "female",
+      "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-37.png",
+      "source": {
+        "row": 6,
+        "column": 3,
+        "x": 612,
+        "y": 1114,
+        "width": 168,
+        "height": 183
+      }
+    },
+    {
+      "id": "avatar-38",
+      "sequence": 38,
+      "gender": "female",
+      "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-38.png",
+      "source": {
+        "row": 7,
+        "column": 0,
+        "x": 5,
+        "y": 1308,
+        "width": 177,
+        "height": 204
+      }
+    },
+    {
+      "id": "avatar-39",
+      "sequence": 39,
+      "gender": "female",
+      "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-39.png",
+      "source": {
+        "row": 7,
+        "column": 2,
+        "x": 403,
+        "y": 1310,
+        "width": 187,
+        "height": 202
+      }
+    },
+    {
+      "id": "avatar-40",
+      "sequence": 40,
+      "gender": "female",
+      "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-40.png",
+      "source": {
+        "row": 7,
+        "column": 4,
+        "x": 807,
+        "y": 1309,
+        "width": 182,
+        "height": 203
+      }
+    }
+  ]
+}

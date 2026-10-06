@@ -52,36 +52,54 @@
 
 <div #popup class="select__popup" popover="manual" [id]="popupId">
   @if (searchable()) {
-    <label class="select__search-label" [for]="searchId">
-      <erp-text type="caption" tone="secondary">{{ searchPlaceholder() }}</erp-text>
-    </label>
-    <div class="select__search-control">
-      <erp-icon name="search" size="sm" tone="muted" />
-      <input [id]="searchId" type="search" [value]="query()" [placeholder]="searchPlaceholder()" (input)="updateQuery($event)" (keydown)="handleKeydown($event)" />
+    <div class="select__search-row">
+      <erp-text class="select__search-label" type="label" tone="secondary" [for]="searchId">
+        {{ searchPlaceholder() }}
+      </erp-text>
+      <div class="select__search-control">
+        <erp-icon name="search" size="sm" tone="muted" />
+        <input [id]="searchId" type="search" [value]="query()" [placeholder]="searchPlaceholder()" (input)="updateQuery($event)" (keydown)="handleKeydown($event)" />
+      </div>
     </div>
   }
 
-  @if (filterable() && groups().length > 0) {
-    <div class="select__filters" aria-label="تصفية المجموعات">
-      <erp-button label="الكل" size="sm" [variant]="activeGroup() === null ? 'subtle' : 'ghost'" (pressed)="setGroup(null)" />
-      @for (group of groups(); track group) {
-        <erp-button [label]="group" size="sm" [variant]="activeGroup() === group ? 'subtle' : 'ghost'" (pressed)="setGroup(group)" />
+  @if ((filterable() && groups().length > 0) || sortable()) {
+    <div class="select__toolbar">
+      @if (filterable() && groups().length > 0) {
+        <div class="select__filters" aria-label="تصفية المجموعات">
+          <erp-button label="الكل" size="sm" [variant]="activeGroup() === null ? 'subtle' : 'ghost'" (pressed)="setGroup(null)" />
+          @for (group of groups(); track group) {
+            <erp-button [label]="group" size="sm" [variant]="activeGroup() === group ? 'subtle' : 'ghost'" (pressed)="setGroup(group)" />
+          }
+        </div>
       }
-    </div>
-  }
-
-  @if (sortable()) {
-    <div class="select__sort" aria-label="ترتيب الخيارات">
-      <erp-button label="الأصلي" size="sm" [variant]="sort() === 'source' ? 'subtle' : 'ghost'" (pressed)="setSort('source')" />
-      <erp-button label="تصاعدي" icon="sort-ascending" size="sm" [variant]="sort() === 'ascending' ? 'subtle' : 'ghost'" (pressed)="setSort('ascending')" />
-      <erp-button label="تنازلي" icon="sort-descending" size="sm" [variant]="sort() === 'descending' ? 'subtle' : 'ghost'" (pressed)="setSort('descending')" />
+      @if (sortable()) {
+        <div class="select__sort">
+          <erp-button
+            [label]="sortLabel()"
+            icon="sort-ascending"
+            size="sm"
+            variant="outline"
+            ariaHasPopup="menu"
+            [ariaExpanded]="sortMenuOpen()"
+            (pressed)="toggleSortMenu()"
+          />
+          @if (sortMenuOpen()) {
+            <div class="select__sort-menu" role="menu" aria-label="ترتيب الخيارات">
+              <erp-button label="ترتيب المصدر" size="sm" variant="ghost" role="menuitem" (pressed)="setSort('source')" />
+              <erp-button label="ترتيب تصاعدي" icon="sort-ascending" size="sm" variant="ghost" role="menuitem" (pressed)="setSort('ascending')" />
+              <erp-button label="ترتيب تنازلي" icon="sort-descending" size="sm" variant="ghost" role="menuitem" (pressed)="setSort('descending')" />
+            </div>
+          }
+        </div>
+      }
     </div>
   }
 
   <div class="select__options" role="listbox" [attr.aria-multiselectable]="multiple()">
     @for (option of visibleOptions(); track option.value; let index = $index) {
       <erp-selection-tile presentation="list" [label]="option.label" [selected]="selectedValues().includes(option.value)" [active]="activeIndex() === index" [disabled]="option.disabled ?? false" [tabIndex]="activeIndex() === index ? 0 : -1" (focused)="activeIndex.set(index)" (activated)="select(option)">
-        @if (option.imageUrl) { <img class="select__option-image" [src]="option.imageUrl" alt="" /> }
+        @if (option.imageUrl) { <erp-avatar class="select__option-image" [name]="option.label" [src]="option.imageUrl" size="sm" /> }
         @if (option.icon) { <erp-icon [name]="option.icon" size="sm" /> }
         <span class="select__option-copy">
           <erp-text type="text">{{ option.label }}</erp-text>

@@ -1,1 +1,12 @@
-@if (imageVisible()) { <img [src]="src()!" [alt]="name()" (error)="failImage()" /> } @else if (initials()) { <erp-text type="span" size="inherit" tone="inherit" weight="bold">{{ initials() }}</erp-text> } @else { <erp-icon [name]="fallbackIcon() ?? 'user'" size="inherit" tone="inherit" /> }
+<span class="avatar__media">
+  @if (imageVisible()) {
+    <img [src]="src()!" [alt]="name()" (error)="failImage()" />
+  } @else if (initials()) {
+    <erp-text type="span" size="inherit" tone="inherit" weight="bold">{{ initials() }}</erp-text>
+  } @else {
+    <erp-icon [name]="fallbackIcon() ?? 'user'" size="inherit" tone="inherit" />
+  }
+</span>
+@if (presence()) {
+  <span class="avatar__presence" aria-hidden="true"></span>
+}

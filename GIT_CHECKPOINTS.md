@@ -9,25 +9,24 @@ Always resolve live `origin/main` directly at session start. This file records
 named checkpoints; it does not claim that its own latest docs SHA is an eternal
 repository HEAD.
 
-## Current Shell Batch checkpoint — 2026-10-06
+## Current Core Visual Correction V2 checkpoint — 2026-10-06
 
-Shell Batch entry checkpoint:
+Entry checkpoint:
 
-- `ecc7e0b2492a3267309e0eefd48f51b355ed71ba`
-  `feat(forms): add schema-driven entity form engine`
+- `555dde11e2a922393b9e5d0fb128c6465934d42f`
+  `feat(shell): add accelerated navigation and erp shell batch`
 
-The Accelerated Navigation & ERP Shell Batch V1 implementation commit is
-`feat(shell): add accelerated navigation and erp shell batch`; resolve its
-final SHA from live `main` because this document is committed with the
-implementation. It adds exactly the ten authorized owners and passed 132/132
-test files, 829/829 tests, both typechecks, production build, and the
-zero-warning gate. Initial bundle: 375.68 kB / 85.46 kB estimated transfer.
-Shell Batch lazy chunk: 51.57 kB / 10.04 kB estimated transfer.
+The bounded implementation commit is `fix(controls): apply core visual
+correction wave v2`; resolve its final SHA from live `main` because this file
+is committed with the implementation. It corrects the eight Product Owner-
+reopened Core owners, adds the authorized AvatarPicker, and passes 133/133 test
+files, 845/845 tests, both typechecks, production build, and zero warnings.
+Initial bundle: 375.68 kB / 85.48 kB estimated transfer. Core Batch lazy chunk:
+39.37 kB / 8.34 kB estimated transfer.
 
-Product Owner runtime/visual acceptance remains pending for Core, Data/Table,
-Forms, Entity Form Engine, and Shell. Entity Wizard, DataPage,
-EntityDirectory, EntityDetail, CRUD/transaction page patterns, Feature/Page
-migration, and every unlisted owner remain unopened.
+Product Owner grouped visual/runtime acceptance remains pending at
+`/controls/core-batch`. The Data/Table Visual Correction Wave and every later
+unlisted wave remain unopened.
 
 ## Historical accelerated checkpoints — superseded current-state snapshot
 

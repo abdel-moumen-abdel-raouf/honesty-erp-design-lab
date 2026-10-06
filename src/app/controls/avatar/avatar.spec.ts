@@ -32,7 +32,7 @@ describe('ErpAvatar', () => {
     expect(fixture.nativeElement.querySelector('img')?.getAttribute('src')).toBe('/avatar-b.png');
   });
 
-  it('applies every size and shape as inherited-theme host evidence', () => {
+  it('applies every size and exact shape as inherited-theme host evidence', () => {
     const fixture = TestBed.createComponent(ErpAvatar);
     fixture.componentRef.setInput('name', 'User');
     for (const size of ['xs', 'sm', 'md', 'lg', 'xl'] as const) {
@@ -40,9 +40,36 @@ describe('ErpAvatar', () => {
       fixture.detectChanges();
       expect(fixture.nativeElement.getAttribute('data-avatar-size')).toBe(size);
     }
-    fixture.componentRef.setInput('shape', 'rounded');
-    fixture.detectChanges();
-    expect(fixture.nativeElement.getAttribute('data-avatar-shape')).toBe('rounded');
+    for (const shape of ['circle', 'rounded', 'square'] as const) {
+      fixture.componentRef.setInput('shape', shape);
+      fixture.detectChanges();
+      expect(fixture.nativeElement.getAttribute('data-avatar-shape')).toBe(shape);
+    }
     expect(fixture.nativeElement.hasAttribute('data-theme')).toBe(false);
+  });
+
+  it('supports all presence states, physical positions, and bounded motions', () => {
+    const fixture = TestBed.createComponent(ErpAvatar);
+    fixture.componentRef.setInput('name', 'أحمد علي');
+    for (const presence of ['online', 'away', 'busy', 'offline'] as const) {
+      fixture.componentRef.setInput('presence', presence);
+      fixture.detectChanges();
+      expect(fixture.nativeElement.getAttribute('data-avatar-presence')).toBe(presence);
+    }
+    for (const position of [
+      'top', 'bottom', 'left', 'right',
+      'top-left', 'top-right', 'bottom-left', 'bottom-right',
+    ] as const) {
+      fixture.componentRef.setInput('presencePosition', position);
+      fixture.detectChanges();
+      expect(fixture.nativeElement.getAttribute('data-avatar-presence-position')).toBe(position);
+    }
+    fixture.componentRef.setInput('presenceMotion', 'ping');
+    fixture.componentRef.setInput('hoverMotion', 'lift');
+    fixture.detectChanges();
+    expect(fixture.nativeElement.getAttribute('data-avatar-presence-motion')).toBe('ping');
+    expect(fixture.nativeElement.getAttribute('data-avatar-hover-motion')).toBe('lift');
+    expect(fixture.nativeElement.getAttribute('aria-label')).toContain('غير متصل');
+    expect(fixture.nativeElement.querySelector('.avatar__media')).not.toBeNull();
   });
 });

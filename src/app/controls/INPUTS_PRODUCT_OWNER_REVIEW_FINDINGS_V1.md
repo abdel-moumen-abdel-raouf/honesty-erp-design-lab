@@ -2,36 +2,21 @@
 
 ## Current continuity notice — 2026-10-06
 
-The findings below remain an auditable Product Owner review record; they are
-not the current active implementation authorization. Subsequent work completed
-the Accelerated Core Batch, Phase A hardening, and Phase B Data/Table batch with
-canonical technical green, while Product Owner runtime/visual acceptance
-remains pending.
+The findings below remain an auditable historical Product Owner review record;
+they are not current implementation authorization.
 
-The Accelerated Forms Composition Wave has now implemented exactly `ErpForm`,
-`ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`, `ErpRepeater`, and
-`ErpStepper` and passed the canonical technical gate at 117/117 test files and
-792/792 tests. The exact next action is grouped Product Owner runtime/Light/Dark
-review of Core, Data/Table, and Forms. Shell, higher application patterns, and
-every unlisted family remain unopened. Technical PASS does not equal visual
+The latest Product Owner visual review explicitly reopened `ErpSelect`,
+`ErpStatusBadge`, `ErpAlert`, `ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`,
+and `ErpPagination`, and authorized `ErpAvatarPicker`. Core Visual Correction
+V2 implements those findings and passes 133/133 test files, 845/845 tests, all
+governance, both typechecks, production build, and zero warnings.
+
+The exact next action is grouped Product Owner runtime/Light/Dark/RTL/narrow
+review of `/controls/core-batch`. The browser tool was unavailable in the
+implementation environment, so no visual acceptance is claimed. The
+Data/Table Visual Correction Wave and all later unlisted work remain unopened;
+SmartTable changes are compatibility-only. Technical PASS does not equal visual
 approval.
-
-Phase 6 now implements exactly `ErpStandardEntityForm`,
-`ErpEntitySchemaFields`, `ErpEntityCustomFieldOutlet`, and
-`ErpEntityCustomSectionOutlet`. Its canonical technical gate passed 121/121
-test files and 809/809 tests with both typechecks, production build, and zero
-warnings. The exact next action is Product Owner runtime/Light/Dark review of
-the grouped Core, Data/Table, Forms, and Entity Form Engine evidence.
-
-The later Product Owner authorization opened and completed the Accelerated
-Navigation & ERP Shell Batch V1 for exactly `ErpBreadcrumbs`, `ErpPageHeader`,
-`ErpPageShell`, `ErpSidebar`, `ErpTopbar`, `ErpBranchSelector`,
-`ErpGlobalSearch`, `ErpNotificationBell`, `ErpUserMenu`, and `ErpAppShell`.
-Its canonical technical gate passed 132/132 test files and 829/829 tests with
-both typechecks, production build, and zero warnings. The exact next action is
-grouped Product Owner runtime/Light/Dark review including
-`/controls/shell-batch`; Entity/Page patterns, Feature/Page migration, and
-every unlisted family remain unopened.
 
 ## Historical Inputs review status — superseded snapshot
 

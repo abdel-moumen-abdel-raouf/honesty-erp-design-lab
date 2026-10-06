@@ -1,0 +1,56 @@
+<erp-table
+  caption="دليل الحسابات — دليل المزايا الموسع"
+  [columns]="columns"
+  [visibleColumnKeys]="visibleColumnKeys()"
+  [rows]="rows"
+  selectable
+  striped
+  rowActivatable
+  [selectedKeys]="selectedRows()"
+  [sort]="tableSort()"
+  [footerValues]="{
+    account: 'الإجمالي',
+    balanceLatin: '273585.50',
+    balanceArabic: '273585.50',
+    status: '3 سجلات'
+  }"
+  (selectedKeysChange)="selectedRows.set($event)"
+  (sortChange)="tableSort.set($event)"
+>
+  <ng-template erpTableCell="owner" let-row>
+    <erp-inline gap="tight" align="center" wrap="nowrap">
+      <erp-avatar
+        [name]="ownerName(row)"
+        [src]="row['owner']?.toString() ?? null"
+        size="sm"
+      />
+      <erp-text type="table-cell">{{ ownerName(row) }}</erp-text>
+    </erp-inline>
+  </ng-template>
+
+  <ng-template erpTableCell="status" let-value="value">
+    <erp-status-badge
+      [label]="value?.toString() ?? 'غير محدد'"
+      [tone]="value === 'نشط' ? 'success' : 'warning'"
+      size="sm"
+    />
+  </ng-template>
+
+  <ng-template erpTableCell="categoryIcon" let-row>
+    <erp-icon [name]="iconName(row)" size="md" label="نوع الحساب" />
+  </ng-template>
+
+  <ng-template erpTableCell="action" let-value="value">
+    <erp-button [label]="value?.toString() ?? 'عرض'" size="sm" variant="subtle" />
+  </ng-template>
+
+  <ng-template erpTableCell="iconAction">
+    <erp-tooltip text="فتح السجل">
+      <erp-icon-button icon="external-link" label="فتح السجل" size="sm" />
+    </erp-tooltip>
+  </ng-template>
+
+  <ng-template erpTableFooter="status" let-value>
+    <erp-status-badge [label]="value?.toString() ?? '—'" tone="info" size="sm" />
+  </ng-template>
+</erp-table>
