@@ -17,27 +17,27 @@ requested.
 The Product Owner is the final authority for visual approval.
 Technical success, green tests, or Codex judgment do not equal visual approval.
 
-## Current Product Owner ErpStatusBadge Exact Reference State
+## Current Product Owner ErpAvatar Exact Reference State
 
 The Product Owner made
-`C:\Users\Misrtech\Downloads\ERP-STATUS-BADGE.html`, SHA-256
-`654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`, the
-single binding visual and behavioral authority for `ErpStatusBadge`. It
-supersedes the Dribbble reference, the accelerated no-reference waiver, and
-conflicting StatusBadge corrections. Only colors and font families are mapped
+`C:\Users\Misrtech\Downloads\ERP-AVATAR.html`, SHA-256
+`2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`, the
+single binding visual and behavioral authority for `ErpAvatar`. It supersedes
+all previous Avatar references, waivers, and conflicting visual
+interpretations. Only colors and font families are mapped
 to Honesty ERP system contracts.
 
 The exact-reference candidate entered from
-`cc9a3d0305529aef94e370c862b01876dcba9d01` and is technically green at 133/133
-test files and 875/875 tests, both typechecks, production build, and zero
+`3558434c274a11b7b52296f78b8968806817e1e8` and is technically green at 133/133
+test files and 881/881 tests, both typechecks, production build, and zero
 warnings.
 
 The authoritative implementation contract is
-`src/app/controls/status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md`.
+`src/app/controls/avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md`.
 
 The current gate is Product Owner runtime/Light/Dark/RTL/LTR/narrow comparison
-of the rebuilt StatusBadge at `/controls/core-batch` against the exact
-reference. `ErpSelect` remains a prior candidate and is not reopened. The
+of the rebuilt Avatar at `/controls/core-batch` against the exact reference.
+`ErpSelect` and `ErpStatusBadge` remain prior candidates and are not reopened. The
 Data/Table Visual Correction Wave is not opened. Technical PASS does not equal
 Product Owner visual approval or freeze.
 
@@ -49,6 +49,16 @@ migration, and every unlisted owner remain unopened.
 
 ## Production Core Components Visual Correction V2 Governance
 
+- `ErpAvatar` exact sizes, shapes, content hierarchy, tones, ring/loading,
+  presence states, physical positions, interaction, and reference motion come
+  only from `ERP-AVATAR.html` at SHA-256
+  `2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`.
+  Earlier Avatar references and waivers are superseded. Only colors and system
+  font families replace the reference palette and font family.
+- `ErpAvatar` composes `ErpText` and `ErpIcon`; native image and bounded action
+  semantics stay inside Avatar-owned internals. Presence positioning and
+  animation remain separate layers, and physical left/right never become
+  logical start/end. AvatarGroup/stack remains an unopened separate owner.
 - `ErpStatusBadge` exact geometry, variants, sizes, anatomy, states, width
   behavior, interaction, and motion come only from `ERP-STATUS-BADGE.html` at
   SHA-256 `654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`.

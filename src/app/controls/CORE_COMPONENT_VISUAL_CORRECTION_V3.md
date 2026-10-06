@@ -25,7 +25,7 @@ gate remains grouped runtime/Light/Dark/RTL/narrow Product Owner review at
 | ErpStatusBadge | Historical Product Owner Dribbble status-badge reference | **SUPERSEDED** by `ERP-STATUS-BADGE.html`, SHA-256 `654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`, and the exact V1 contract |
 | ErpAlert | Product Owner runtime finding | Bounded native-tooltip removal; Tooltip-wrapped ERP action remains authoritative |
 | ErpSkeleton | Product Owner animated skeleton reference | Visible tokenized surface and moving shimmer; static-but-visible reduced motion |
-| ErpAvatar | Product Owner V2 references and V3 runtime findings | Existing media/presence contract retained; cursor and ambient motion corrected |
+| ErpAvatar | Historical Product Owner V2 references and V3 runtime findings | **SUPERSEDED** by `ERP-AVATAR.html`, SHA-256 `2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`, and the exact V1 contract |
 | ErpAvatarPicker | Product Owner V2 picker references and supplied assets | Tabs and Avatar composition retained; size/shape forwarding and unclipped grid corrected |
 | ErpTabs | Nexlink tabs reference | Header boundaries, shapes, fill distribution, and controlled active presentation |
 | ErpTable | Product Owner explicit V3 behavior contract | Alignment, header hierarchy, state precedence, motion, resize, and chooser evidence only |
@@ -45,9 +45,10 @@ gate remains grouped runtime/Light/Dark/RTL/narrow Product Owner review at
 - Skeleton consumes valid semantic-backed Component Tokens for a visible base,
   border, and shimmer band in Light and Dark. Reduced motion removes animation
   without hiding the skeleton.
-- Avatar exposes bounded `default | pointer` cursor intent. Presence breathe
-  uses the Foundation ambient duration while position and animation layers stay
-  independent.
+- Historical Avatar correction here is superseded by
+  `avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md`; the current base Avatar follows the
+  binding HTML reference for geometry, content hierarchy, presence, interaction,
+  and motion while preserving only explicitly documented compatibility opt-ins.
 - AvatarPicker forwards size/shape to every rendered Avatar, uses semantic
   male/female tab icons, and keeps the avatar grid visible without an internal
   automatic scrollbar.

@@ -25,6 +25,9 @@ describe('ErpUserMenu', () => {
     installPopover(fixture.nativeElement.querySelector('.user-menu__surface'));
 
     expect(fixture.nativeElement.querySelector('erp-avatar')).not.toBeNull();
+    expect(
+      fixture.nativeElement.querySelector('erp-avatar .avatar__frame'),
+    ).not.toBeNull();
     const trigger = fixture.nativeElement.querySelector(
       '.user-menu__trigger erp-button button',
     ) as HTMLButtonElement;

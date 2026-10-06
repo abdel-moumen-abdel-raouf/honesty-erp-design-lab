@@ -30,26 +30,26 @@ Binding Product Owner law:
 4. the next item is the lowest unresolved dependency, not simply the next row
    in historical planning.
 
-Latest completed authorized implementation is the bounded `ErpStatusBadge
+Latest completed authorized implementation is the bounded `ErpAvatar
 Exact Reference Rebuild`, entered from
-`cc9a3d0305529aef94e370c862b01876dcba9d01`.
+`3558434c274a11b7b52296f78b8968806817e1e8`.
 
-`ERP-STATUS-BADGE.html`, SHA-256
-`654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`, is the
-single binding StatusBadge visual and behavioral authority. It supersedes the
-old Dribbble reference, the accelerated no-reference waiver, and conflicting
-StatusBadge interpretations. Geometry and behavior are copied exactly; palette
+`ERP-AVATAR.html`, SHA-256
+`2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`, is the
+single binding Avatar visual and behavioral authority. It supersedes all
+previous Avatar references, waivers, and conflicting visual interpretations.
+Geometry and behavior are copied exactly; palette
 and font-family values alone map through Honesty ERP system contracts.
 
 The authoritative implementation contract is
-`src/app/controls/status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md`.
+`src/app/controls/avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md`.
 
-The rebuilt candidate passes 133/133 test files and 875/875 tests, both
+The rebuilt candidate passes 133/133 test files and 881/881 tests, both
 typechecks, production build, all governance, and zero warnings.
 
 Current active gate is Product Owner runtime/Light/Dark/RTL/narrow comparison of
-the rebuilt StatusBadge at `/controls/core-batch` against the binding reference.
-The previous Select candidate is not reopened. Browser runtime evidence does
+the rebuilt Avatar at `/controls/core-batch` against the binding reference.
+The previous Select and StatusBadge candidates are not reopened. Browser runtime evidence does
 not confer visual acceptance. The Data/Table
 Visual Correction Wave remains unopened. Technical PASS is not visual freeze.
 Standalone EntityReview, Entity Wizard, workflow engine, DataPage,

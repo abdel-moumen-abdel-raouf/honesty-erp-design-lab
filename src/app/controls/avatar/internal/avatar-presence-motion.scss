@@ -1,0 +1,67 @@
+erp-avatar[data-avatar-presence-motion='pulse'] .avatar__presence-indicator::after,
+erp-avatar[data-avatar-presence-motion='ping'] .avatar__presence-indicator::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  content: '';
+}
+
+erp-avatar[data-avatar-presence-motion='pulse'] .avatar__presence-indicator::after {
+  background: inherit;
+  animation: honesty-avatar-pulse var(--honesty-avatar-pulse-duration)
+    var(--honesty-avatar-motion-easing) infinite;
+}
+
+erp-avatar[data-avatar-presence-motion='ping'] .avatar__presence-indicator::after {
+  border: var(--honesty-avatar-ping-border-width) solid var(--honesty-avatar-presence-bg);
+  background: transparent;
+  animation: honesty-avatar-ping var(--honesty-avatar-ping-duration)
+    var(--honesty-avatar-motion-easing-enter) infinite;
+}
+
+erp-avatar[data-avatar-presence-motion='bounce'] .avatar__presence-indicator {
+  animation: honesty-avatar-bounce var(--honesty-avatar-bounce-duration)
+    var(--honesty-avatar-motion-easing-enter) infinite;
+}
+
+erp-avatar[data-avatar-presence-motion='blink'] .avatar__presence-indicator {
+  animation: honesty-avatar-blink var(--honesty-avatar-blink-duration)
+    var(--honesty-avatar-motion-easing) infinite;
+}
+
+erp-avatar[data-avatar-presence-motion='breathe'] .avatar__presence-indicator {
+  animation: honesty-avatar-breathe var(--honesty-avatar-breathe-duration)
+    var(--honesty-avatar-motion-easing) infinite alternate;
+}
+
+@keyframes honesty-avatar-pulse {
+  0% { opacity: var(--honesty-avatar-pulse-opacity); transform: scale(1); }
+  70%, 100% { opacity: 0; transform: scale(var(--honesty-avatar-pulse-scale)); }
+}
+
+@keyframes honesty-avatar-ping {
+  0% { opacity: var(--honesty-avatar-ping-opacity); transform: scale(1); }
+  100% { opacity: 0; transform: scale(var(--honesty-avatar-ping-scale)); }
+}
+
+@keyframes honesty-avatar-bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(var(--honesty-avatar-bounce-distance)); }
+}
+
+@keyframes honesty-avatar-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: var(--honesty-avatar-blink-opacity); }
+}
+
+@keyframes honesty-avatar-breathe {
+  to { opacity: var(--honesty-avatar-breathe-opacity); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  erp-avatar .avatar__presence-indicator,
+  erp-avatar .avatar__presence-indicator::after {
+    animation: none;
+    transition-duration: var(--honesty-avatar-reduced-duration);
+  }
+}

@@ -273,35 +273,131 @@
     <erp-section>
       <erp-stack gap="default">
         <erp-text type="heading-2">ErpAvatar</erp-text>
+        <erp-text type="paragraph" tone="secondary">
+          دليل مطابق لمرجع ERP-AVATAR.html: مصفوفة الشكل والحجم، أنواع المحتوى،
+          النغمات، الحلقة، الحضور، الحركة، والتفاعل.
+        </erp-text>
         <erp-grid [columns]="4" gap="sm" responsive="auto">
           <erp-select label="الشكل" [options]="avatarShapeOptions" [ngModel]="avatarShape()" (ngModelChange)="avatarShape.set($event)" />
+          <erp-select label="النغمة" [options]="avatarToneOptions" [ngModel]="avatarTone()" (ngModelChange)="avatarTone.set($event)" />
           <erp-select label="المؤشر" [options]="avatarCursorOptions" [ngModel]="avatarCursor()" (ngModelChange)="avatarCursor.set($event)" />
           <erp-select label="الحضور" [options]="avatarPresenceOptions" [ngModel]="avatarPresence()" (ngModelChange)="avatarPresence.set($event)" />
           <erp-select label="الموضع" [options]="avatarPositionOptions" [ngModel]="avatarPresencePosition()" (ngModelChange)="avatarPresencePosition.set($event)" />
           <erp-select label="حركة الحضور" [options]="avatarMotionOptions" [ngModel]="avatarPresenceMotion()" (ngModelChange)="avatarPresenceMotion.set($event)" />
           <erp-select label="حركة التحويم" [options]="avatarHoverOptions" [ngModel]="avatarHoverMotion()" (ngModelChange)="avatarHoverMotion.set($event)" />
         </erp-grid>
-        <erp-avatar name="معاينة تفاعلية" src="/assets/honesty-erp-avatars/users/male/avatar-01.png" size="xl" [shape]="avatarShape()" [cursor]="avatarCursor()" [presence]="avatarPresence()" [presencePosition]="avatarPresencePosition()" [presenceMotion]="avatarPresenceMotion()" [hoverMotion]="avatarHoverMotion()" />
-        <erp-grid [columns]="5" gap="lg" responsive="auto">
+        <erp-stack class="avatar-reference-preview" gap="tight">
           <erp-avatar
-            name="أحمد علي"
+            name="معاينة تفاعلية"
             src="/assets/honesty-erp-avatars/users/male/avatar-01.png"
-            size="xs"
-            presence="online"
-            presenceMotion="pulse"
+            size="xl"
+            [shape]="avatarShape()"
+            [tone]="avatarTone()"
+            [cursor]="avatarCursor()"
+            [presence]="avatarPresence()"
+            [presencePosition]="avatarPresencePosition()"
+            [presenceMotion]="avatarPresenceMotion()"
+            [hoverMotion]="avatarHoverMotion()"
+            ring
+            interactive
+            (avatarClick)="recordAvatarActivation()"
           />
-          <erp-avatar name="سارة محمود" size="sm" shape="rounded" presence="away" presencePosition="top-left" />
-          <erp-avatar name="محمد حسن" presence="busy" presencePosition="right" presenceMotion="ping" hoverMotion="scale" />
-          <erp-avatar name="نور خالد" size="lg" shape="square" presence="offline" presencePosition="bottom" hoverMotion="lift" />
-          <erp-avatar name="مستخدم" size="xl" fallbackIcon="user" presence="online" presencePosition="top-right" presenceMotion="breathe" />
+          <erp-text type="caption" data-avatar-interaction-evidence>
+            {{ avatarInteractionEvidence() }}
+          </erp-text>
+        </erp-stack>
+
+        <erp-text type="heading-4">مصفوفة الشكل × الحجم المرجعية</erp-text>
+        <erp-stack class="avatar-reference-size-matrix" gap="default">
+          @for (shape of avatarShapes; track shape) {
+            <erp-stack gap="tight">
+              <erp-text type="label">{{ shape }}</erp-text>
+              <erp-grid [columns]="6" gap="lg" responsive="auto">
+                @for (size of avatarSizes; track size) {
+                  <erp-stack gap="tight">
+                    <erp-avatar
+                      [name]="shape + ' ' + size"
+                      initials="AR"
+                      [size]="size"
+                      [shape]="shape"
+                      tone="brand"
+                    />
+                    <erp-text type="caption" tone="muted">{{ size }}</erp-text>
+                  </erp-stack>
+                }
+              </erp-grid>
+            </erp-stack>
+          }
+        </erp-stack>
+
+        <erp-text type="heading-4">أنواع المحتوى والنغمات والحلقة</erp-text>
+        <erp-grid class="avatar-reference-content-types" [columns]="4" gap="lg" responsive="auto">
+          <erp-stack gap="tight">
+            <erp-avatar name="صورة" alt="صورة موظف" src="/assets/honesty-erp-avatars/users/male/avatar-01.png" size="xl" />
+            <erp-text type="caption">صورة</erp-text>
+          </erp-stack>
+          <erp-stack gap="tight">
+            <erp-avatar name="أميرة حداد" initials="AH" size="xl" tone="brand" />
+            <erp-text type="caption">أحرف صريحة</erp-text>
+          </erp-stack>
+          <erp-stack gap="tight">
+            <erp-avatar name="مستخدم" fallbackIcon="user" size="xl" tone="slate" />
+            <erp-text type="caption">أيقونة</erp-text>
+          </erp-stack>
+          <erp-stack gap="tight">
+            <erp-avatar name="تحميل" size="xl" loading />
+            <erp-text type="caption">تحميل</erp-text>
+          </erp-stack>
+          @for (tone of avatarTones; track tone) {
+            <erp-stack gap="tight">
+              <erp-avatar [name]="'نغمة ' + tone" initials="AR" size="lg" [tone]="tone" />
+              <erp-text type="caption">{{ tone }}</erp-text>
+            </erp-stack>
+          }
+          <erp-stack gap="tight">
+            <erp-avatar name="حلقة متصل" initials="AR" size="lg" tone="brand" presence="online" ring />
+            <erp-text type="caption">حلقة مع حضور</erp-text>
+          </erp-stack>
+          <erp-stack gap="tight">
+            <erp-avatar name="تفاعلي" initials="AR" size="lg" tone="purple" interactive />
+            <erp-text type="caption">تفاعلي</erp-text>
+          </erp-stack>
         </erp-grid>
-        <erp-text type="heading-4">كل الأحجام</erp-text>
-        <erp-grid [columns]="5" gap="lg" responsive="auto">
-          @for (size of avatarSizes; track size) {
-            <erp-avatar name="حجم تجريبي" [size]="size" shape="circle" />
+
+        <erp-text type="heading-4">حركات الحضور المرجعية</erp-text>
+        <erp-grid class="avatar-reference-motion-matrix" [columns]="5" gap="lg" responsive="auto">
+          @for (motion of avatarReferenceMotions; track motion) {
+            <erp-stack gap="tight">
+              <erp-avatar
+                [name]="'حركة ' + motion"
+                initials="AR"
+                size="lg"
+                tone="brand"
+                presence="online"
+                [presenceMotion]="motion"
+              />
+              <erp-text type="caption">{{ motion }}</erp-text>
+            </erp-stack>
           }
         </erp-grid>
-        <erp-text type="heading-4">كل مواضع وحالات مؤشر الاتصال</erp-text>
+
+        <erp-text type="heading-4">ألوان الحضور المرجعية</erp-text>
+        <erp-grid class="avatar-reference-presence-matrix" [columns]="4" gap="lg" responsive="auto">
+          @for (status of avatarPresences; track status) {
+            <erp-stack gap="tight">
+              <erp-avatar
+                [name]="'حالة ' + status"
+                initials="AR"
+                size="lg"
+                tone="slate"
+                [presence]="status"
+              />
+              <erp-text type="caption">{{ status }}</erp-text>
+            </erp-stack>
+          }
+        </erp-grid>
+
+        <erp-text type="heading-4">كل المواضع الفيزيائية في RTL وLTR</erp-text>
         <erp-stack data-avatar-direction-evidence="rtl" dir="rtl" gap="tight">
           <erp-text type="label">RTL</erp-text>
           <erp-grid [columns]="4" gap="lg" responsive="auto">
@@ -332,6 +428,12 @@
             }
           </erp-grid>
         </erp-stack>
+        <erp-text type="heading-4">قدرات التوافق غير المرجعية</erp-text>
+        <erp-grid class="avatar-compatibility-evidence" [columns]="3" gap="lg" responsive="auto">
+          <erp-avatar name="تنفس" initials="AR" size="lg" presence="online" presenceMotion="breathe" />
+          <erp-avatar name="تكبير" initials="AR" size="lg" hoverMotion="scale" cursor="pointer" />
+          <erp-avatar name="رفع" initials="AR" size="lg" hoverMotion="lift" cursor="pointer" />
+        </erp-grid>
       </erp-stack>
     </erp-section>
 

@@ -52,6 +52,26 @@ describe('CoreBatch', () => {
       ),
     ).toHaveLength(16);
     expect(
+      fixture.nativeElement.querySelectorAll(
+        '.avatar-reference-size-matrix erp-avatar',
+      ),
+    ).toHaveLength(18);
+    expect(
+      fixture.nativeElement.querySelectorAll(
+        '.avatar-reference-content-types erp-avatar',
+      ),
+    ).toHaveLength(14);
+    expect(
+      fixture.nativeElement.querySelectorAll(
+        '.avatar-reference-motion-matrix erp-avatar',
+      ),
+    ).toHaveLength(5);
+    expect(
+      fixture.nativeElement.querySelectorAll(
+        '.avatar-reference-presence-matrix erp-avatar',
+      ),
+    ).toHaveLength(8);
+    expect(
       fixture.nativeElement.querySelector(
         '[data-row-activation-evidence]',
       ).textContent,
@@ -77,6 +97,21 @@ describe('CoreBatch', () => {
       .click();
     fixture.detectChanges();
     expect(evidence.textContent).toContain('تم طلب إزالة الحالة');
+  });
+
+  it('exposes the exact-reference interactive Avatar activation evidence', () => {
+    const fixture = TestBed.createComponent(CoreBatch);
+    fixture.detectChanges();
+    const preview = fixture.nativeElement.querySelector(
+      '.avatar-reference-preview erp-avatar',
+    ) as HTMLElement;
+    const evidence = fixture.nativeElement.querySelector(
+      '[data-avatar-interaction-evidence]',
+    ) as HTMLElement;
+
+    (preview.querySelector('erp-avatar-action button') as HTMLButtonElement).click();
+    fixture.detectChanges();
+    expect(evidence.textContent).toContain('تم تفعيل الصورة الشخصية');
   });
 
   it('keeps the routed review template ERP-only authored', () => {

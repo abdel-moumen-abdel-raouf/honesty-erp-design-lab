@@ -25,6 +25,8 @@ in this order:
     `src/app/controls/select/ERP_SELECT_REFERENCE_EXACT_V3.md`
 16. current exact ErpStatusBadge reference contract:
     `src/app/controls/status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md`
+17. current exact ErpAvatar reference contract:
+    `src/app/controls/avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md`
 
 Then verify live GitHub `main` before making any current-state claim.
 
@@ -62,25 +64,27 @@ restated by the newest dated continuity blocks or by
 
 ## Authoritative current state — 2026-10-07
 
-The bounded `ErpStatusBadge Exact Reference Rebuild` started from
-`cc9a3d0305529aef94e370c862b01876dcba9d01`. Resolve the final live SHA from Git.
+The bounded `ErpAvatar Exact Reference Rebuild` started from
+`3558434c274a11b7b52296f78b8968806817e1e8`. Resolve the final live SHA from Git.
 
-- `ERP-STATUS-BADGE.html`, SHA-256
-  `654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`, is the
-  single binding StatusBadge visual and behavioral authority. It supersedes the
-  former Dribbble reference and the old accelerated-wave waiver.
-- Exact geometry, variants, sizes, anatomy, states, width behavior, and motion
-  are implemented through ERP owners. Only colors and font families map through
-  Honesty ERP tokens and typography.
+- `ERP-AVATAR.html`, SHA-256
+  `2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`, is the
+  single binding Avatar visual and behavioral authority. It supersedes all
+  previous Avatar references, waivers, and visual interpretations.
+- Exact sizes, shapes, content fallbacks, tones, ring/loading treatment,
+  physical presence positions, statuses, and reference motions are implemented
+  through ERP owners. Only colors and font families map through Honesty ERP
+  tokens and typography.
 - The authoritative contract is
-  `src/app/controls/status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md`.
-- Verification passes 133/133 test files, 875/875 tests, every lint/governance
+  `src/app/controls/avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md`.
+- Verification passes 133/133 test files, 881/881 tests, every lint/governance
   gate, both typechecks, production build, and zero warnings.
-- Initial bundle: 376.12 kB / 85.65 kB estimated transfer. Core Batch lazy
-  chunk: 64.25 kB / 12.07 kB estimated transfer.
+- Initial bundle: 376.12 kB / 85.63 kB estimated transfer. Core Batch lazy
+  chunk: 70.10 kB / 12.81 kB estimated transfer.
 - Product Owner runtime/Light/Dark/RTL/LTR/narrow acceptance remains pending at
   `/controls/core-batch`; technical PASS is not visual approval or freeze.
-- `ErpSelect` remains a prior technical candidate and is not reopened.
+- `ErpSelect` and `ErpStatusBadge` remain prior technical candidates and are not
+  reopened.
 - The Data/Table Visual Correction Wave and every later unlisted scope remain
   unopened.
 

@@ -1,0 +1,39 @@
+erp-avatar[data-avatar-interactive='true'] erp-avatar-action:hover .avatar__frame,
+erp-avatar[data-avatar-hover-motion='scale']:hover .avatar__frame {
+  box-shadow: var(--honesty-avatar-elevation-hover);
+  transform: scale(var(--honesty-avatar-hover-scale));
+}
+
+erp-avatar[data-avatar-hover-motion='lift']:hover .avatar__frame {
+  box-shadow: var(--honesty-avatar-elevation-hover);
+  transform: translateY(var(--honesty-avatar-hover-lift));
+}
+
+erp-avatar[data-avatar-interactive='true'] erp-avatar-action:active .avatar__frame {
+  transform: scale(var(--honesty-avatar-active-scale));
+}
+
+erp-avatar[data-avatar-loading='true'] .avatar__frame {
+  animation: honesty-avatar-shimmer var(--honesty-avatar-loading-duration)
+    var(--honesty-avatar-motion-linear) infinite;
+}
+
+@keyframes honesty-avatar-shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  erp-avatar .avatar__frame,
+  erp-avatar .avatar__image {
+    animation: none;
+    transition-duration: var(--honesty-avatar-reduced-duration);
+  }
+
+  erp-avatar[data-avatar-interactive='true'] erp-avatar-action:hover .avatar__frame,
+  erp-avatar[data-avatar-interactive='true'] erp-avatar-action:active .avatar__frame,
+  erp-avatar[data-avatar-hover-motion='scale']:hover .avatar__frame,
+  erp-avatar[data-avatar-hover-motion='lift']:hover .avatar__frame {
+    transform: none;
+  }
+}

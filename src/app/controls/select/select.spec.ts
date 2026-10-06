@@ -114,7 +114,12 @@ describe('ErpSelect', () => {
     access(component).select(options[1]);
     fixture.detectChanges();
     expect(onChange).toHaveBeenCalledWith('alpha');
-    expect(fixture.nativeElement.querySelector('.select__single erp-avatar')).not.toBeNull();
+    const imageAvatar = fixture.nativeElement.querySelector(
+      '.select__single erp-avatar',
+    ) as HTMLElement;
+    expect(imageAvatar).not.toBeNull();
+    expect(imageAvatar.getAttribute('data-avatar-size')).toBe('xs');
+    expect(imageAvatar.querySelector('.avatar__frame')).not.toBeNull();
     expect(fixture.nativeElement.querySelector('.select__option-description')).not.toBeNull();
     component.writeValue('bravo');
     fixture.detectChanges();

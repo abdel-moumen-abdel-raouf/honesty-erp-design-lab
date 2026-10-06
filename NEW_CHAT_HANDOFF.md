@@ -2,30 +2,30 @@
 
 ## 0. Authoritative current handoff — 2026-10-07
 
-The bounded `ErpStatusBadge Exact Reference Rebuild` started from
-`cc9a3d0305529aef94e370c862b01876dcba9d01`. Resolve final local and remote SHAs
+The bounded `ErpAvatar Exact Reference Rebuild` started from
+`3558434c274a11b7b52296f78b8968806817e1e8`. Resolve final local and remote SHAs
 at session start.
 
 The Product Owner made
-`C:\Users\Misrtech\Downloads\ERP-STATUS-BADGE.html`, SHA-256
-`654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`, the
-single binding visual and behavioral authority for `ErpStatusBadge`. It
-supersedes the Dribbble reference, the accelerated no-reference waiver, and all
-conflicting StatusBadge interpretations. Only reference colors and font family
+`C:\Users\Misrtech\Downloads\ERP-AVATAR.html`, SHA-256
+`2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`, the
+single binding visual and behavioral authority for `ErpAvatar`. It supersedes
+all previous Avatar references, waivers, and conflicting visual
+interpretations. Only reference colors and font family
 are translated to Honesty ERP Semantic, Typography, and Component Tokens. The
 authoritative implementation contract is
-`src/app/controls/status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md`.
+`src/app/controls/avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md`.
 
-The rebuilt StatusBadge is technically green at 133/133 test files and 875/875
+The rebuilt Avatar is technically green at 133/133 test files and 881/881
 tests, all lint/governance gates, both typechecks, production build, and zero
-warnings. Initial bundle is 376.12 kB / 85.65 kB estimated transfer; Core Batch
-lazy chunk is 64.25 kB / 12.07 kB.
+warnings. Initial bundle is 376.12 kB / 85.63 kB estimated transfer; Core Batch
+lazy chunk is 70.10 kB / 12.81 kB.
 
 The exact next action is Product Owner runtime/Light/Dark/RTL/LTR/narrow
-comparison of the rebuilt StatusBadge at `/controls/core-batch` against
-`ERP-STATUS-BADGE.html`. Browser runtime evidence is implementation evidence
-only, not Product Owner visual acceptance. `ErpSelect` is not reopened. The
-Data/Table Visual Correction Wave is not opened.
+comparison of the rebuilt Avatar at `/controls/core-batch` against
+`ERP-AVATAR.html`. Browser runtime evidence is implementation evidence only,
+not Product Owner visual acceptance. `ErpSelect` and `ErpStatusBadge` are not
+reopened. The Data/Table Visual Correction Wave is not opened.
 Technical PASS never equals visual acceptance.
 Standalone EntityReview, Entity Wizard, workflow engine, DataPage,
 EntityDirectory, EntityDetail, CRUD/transaction patterns, Feature/Page

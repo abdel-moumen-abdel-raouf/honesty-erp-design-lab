@@ -1,5 +1,10 @@
 # ErpAvatar Reference V1
 
+> **SUPERSEDED — historical only.** `ERP-AVATAR.html`, SHA-256
+> `2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`,
+> and `ERP_AVATAR_REFERENCE_EXACT_V1.md` are the sole current `ErpAvatar`
+> visual authority. The references and contract below must not be restored.
+
 ## Authority
 
 - Reference 1: `https://cdn.prod.website-files.com/61f9082050036c6c4b4899f8/69a0488093460fd20f8cc4b4_avatars-1689756128376-2x.jpeg`.

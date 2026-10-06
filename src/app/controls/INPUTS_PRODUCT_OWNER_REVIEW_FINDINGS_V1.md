@@ -5,18 +5,18 @@
 The findings below remain an auditable historical Product Owner review record;
 they are not current implementation authorization.
 
-The latest Product Owner decision is the bounded StatusBadge exact-reference
-rebuild. `ERP-STATUS-BADGE.html`, SHA-256
-`654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`, is the
-single binding visual and behavioral authority for `ErpStatusBadge`; its exact
-contract is `status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md`. The prior
-Select contract remains technically implemented and is not reopened.
+The latest Product Owner decision is the bounded Avatar exact-reference
+rebuild. `ERP-AVATAR.html`, SHA-256
+`2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`, is the
+single binding visual and behavioral authority for `ErpAvatar`; its exact
+contract is `avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md`. The prior Select and
+StatusBadge contracts remain technically implemented and are not reopened.
 
-The rebuilt candidate passes 133/133 test files and 875/875 tests, all
+The rebuilt candidate passes 133/133 test files and 881/881 tests, all
 governance, both typechecks, production build, and zero warnings.
 
 The exact next action is Product Owner runtime/Light/Dark/RTL/LTR/narrow
-comparison of the rebuilt StatusBadge at `/controls/core-batch`. Runtime browser
+comparison of the rebuilt Avatar at `/controls/core-batch`. Runtime browser
 evidence does not confer Product Owner visual acceptance. The Data/Table Visual
 Correction Wave and all later unlisted work remain unopened.
 

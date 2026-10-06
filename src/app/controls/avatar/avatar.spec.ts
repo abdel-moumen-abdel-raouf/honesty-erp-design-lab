@@ -1,28 +1,57 @@
 import {TestBed} from '@angular/core/testing';
-import {ErpAvatar} from './avatar';
+import {ErpAvatar, ErpAvatarPresenceMotion, ErpAvatarPresencePosition} from './avatar';
 
 describe('ErpAvatar', () => {
-  it('uses deterministic initials and semantic fallback when no image is available', () => {
+  it('uses the exact reference defaults without making the Avatar interactive', () => {
     const fixture = TestBed.createComponent(ErpAvatar);
     fixture.componentRef.setInput('name', 'أحمد علي');
     fixture.detectChanges();
-    expect(fixture.nativeElement.textContent).toContain('أع');
-    expect(fixture.nativeElement.querySelector('img')).toBeNull();
 
-    fixture.componentRef.setInput('name', '');
-    fixture.componentRef.setInput('fallbackIcon', 'user');
-    fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('erp-icon')).not.toBeNull();
+    const host = fixture.nativeElement as HTMLElement;
+    expect(host.getAttribute('data-avatar-size')).toBe('md');
+    expect(host.getAttribute('data-avatar-shape')).toBe('circle');
+    expect(host.getAttribute('data-avatar-tone')).toBe('neutral');
+    expect(host.getAttribute('data-avatar-ring')).toBe('false');
+    expect(host.getAttribute('data-avatar-loading')).toBe('false');
+    expect(host.getAttribute('data-avatar-interactive')).toBe('false');
+    expect(host.getAttribute('role')).toBe('img');
+    expect(host.getAttribute('aria-label')).toBe('أحمد علي');
+    expect(host.querySelector('button')).toBeNull();
   });
 
-  it('scopes image failure to the failing src and retries a replacement src', () => {
+  it('follows image then explicit icon then initials then default icon fallback order', () => {
+    const fixture = TestBed.createComponent(ErpAvatar);
+    fixture.componentRef.setInput('name', 'أحمد علي');
+    fixture.componentRef.setInput('src', '/avatar.png');
+    fixture.componentRef.setInput('fallbackIcon', 'user');
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('img')?.getAttribute('src')).toBe('/avatar.png');
+
+    (fixture.nativeElement.querySelector('img') as HTMLImageElement)
+      .dispatchEvent(new Event('error'));
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('erp-icon')?.getAttribute('data-icon-name'))
+      .toBe('user');
+
+    fixture.componentRef.setInput('fallbackIcon', null);
+    fixture.componentRef.setInput('initials', 'aa');
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('erp-text')?.textContent).toContain('AA');
+
+    fixture.componentRef.setInput('initials', null);
+    fixture.componentRef.setInput('name', '');
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('erp-icon')?.getAttribute('data-icon-name'))
+      .toBe('user');
+  });
+
+  it('scopes image failure to the failing source and retries a replacement source', () => {
     const fixture = TestBed.createComponent(ErpAvatar);
     fixture.componentRef.setInput('name', 'أحمد علي');
     fixture.componentRef.setInput('src', '/avatar-a.png');
     fixture.detectChanges();
 
     const first = fixture.nativeElement.querySelector('img') as HTMLImageElement;
-    expect(first.getAttribute('src')).toBe('/avatar-a.png');
     first.dispatchEvent(new Event('error'));
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('img')).toBeNull();
@@ -32,97 +61,120 @@ describe('ErpAvatar', () => {
     expect(fixture.nativeElement.querySelector('img')?.getAttribute('src')).toBe('/avatar-b.png');
   });
 
-  it('applies every size and exact shape as inherited-theme host evidence', () => {
+  it('maps all six reference sizes to their exact desktop geometry tokens', () => {
     const fixture = TestBed.createComponent(ErpAvatar);
     fixture.componentRef.setInput('name', 'User');
-    for (const size of ['xs', 'sm', 'md', 'lg', 'xl'] as const) {
+    const expected = {
+      xs: '1.5rem', sm: '1.875rem', md: '2.375rem',
+      lg: '3.125rem', xl: '4.25rem', '2xl': '5.5rem',
+    } as const;
+
+    for (const [size, pixels] of Object.entries(expected)) {
       fixture.componentRef.setInput('size', size);
       fixture.detectChanges();
-      expect(fixture.nativeElement.getAttribute('data-avatar-size')).toBe(size);
+      const style = getComputedStyle(fixture.nativeElement);
+      expect(style.getPropertyValue('--honesty-avatar-size').trim()).toBe(pixels);
     }
-    for (const shape of ['circle', 'rounded', 'square'] as const) {
+  });
+
+  it('maps circle, rounded, and square to the reference radii', () => {
+    const fixture = TestBed.createComponent(ErpAvatar);
+    fixture.componentRef.setInput('name', 'User');
+    const expected = {
+      circle: {
+        radius: '50%',
+        sourceToken: null,
+        sourceValue: null,
+      },
+      rounded: {
+        radius: 'var(--honesty-avatar-rounded-radius)',
+        sourceToken: '--honesty-avatar-rounded-radius',
+        sourceValue: '26%',
+      },
+      square: {
+        radius: 'var(--honesty-avatar-square-radius)',
+        sourceToken: '--honesty-avatar-square-radius',
+        sourceValue: '0.25rem',
+      },
+    } as const;
+
+    for (const [shape, contract] of Object.entries(expected)) {
       fixture.componentRef.setInput('shape', shape);
       fixture.detectChanges();
-      expect(fixture.nativeElement.getAttribute('data-avatar-shape')).toBe(shape);
+      const style = getComputedStyle(fixture.nativeElement);
+      expect(style.getPropertyValue('--honesty-avatar-radius').trim())
+        .toBe(contract.radius);
+      if (contract.sourceToken !== null) {
+        expect(style.getPropertyValue(contract.sourceToken).trim())
+          .toBe(contract.sourceValue);
+      }
+    }
+  });
+
+  it('supports every reference tone and presence semantic without local theme ownership', () => {
+    const fixture = TestBed.createComponent(ErpAvatar);
+    fixture.componentRef.setInput('name', 'User');
+    for (const tone of [
+      'neutral', 'brand', 'success', 'warning', 'danger', 'info', 'purple', 'slate',
+    ] as const) {
+      fixture.componentRef.setInput('tone', tone);
+      fixture.detectChanges();
+      expect(fixture.nativeElement.getAttribute('data-avatar-tone')).toBe(tone);
+    }
+    for (const presence of [
+      'online', 'away', 'busy', 'offline', 'info', 'brand', 'pending', 'vacation',
+    ] as const) {
+      fixture.componentRef.setInput('presence', presence);
+      fixture.detectChanges();
+      expect(fixture.nativeElement.getAttribute('data-avatar-presence')).toBe(presence);
+      expect(fixture.nativeElement.getAttribute('aria-label')).toContain('—');
     }
     expect(fixture.nativeElement.hasAttribute('data-theme')).toBe(false);
   });
 
-  it('supports all presence states, physical positions, and bounded motions', () => {
-    const fixture = TestBed.createComponent(ErpAvatar);
-    fixture.componentRef.setInput('name', 'أحمد علي');
-    for (const presence of ['online', 'away', 'busy', 'offline'] as const) {
-      fixture.componentRef.setInput('presence', presence);
-      fixture.detectChanges();
-      expect(fixture.nativeElement.getAttribute('data-avatar-presence')).toBe(presence);
-    }
-    for (const position of [
-      'top', 'bottom', 'left', 'right',
-      'top-left', 'top-right', 'bottom-left', 'bottom-right',
-    ] as const) {
-      fixture.componentRef.setInput('presencePosition', position);
-      fixture.detectChanges();
-      expect(fixture.nativeElement.getAttribute('data-avatar-presence-position')).toBe(position);
-    }
-    fixture.componentRef.setInput('presenceMotion', 'ping');
-    fixture.componentRef.setInput('hoverMotion', 'lift');
-    fixture.detectChanges();
-    expect(fixture.nativeElement.getAttribute('data-avatar-presence-motion')).toBe('ping');
-    expect(fixture.nativeElement.getAttribute('data-avatar-hover-motion')).toBe('lift');
-    expect(fixture.nativeElement.getAttribute('aria-label')).toContain('غير متصل');
-    expect(fixture.nativeElement.querySelector('.avatar__media')).not.toBeNull();
-    expect(fixture.componentInstance.cursor()).toBe('default');
-    fixture.componentRef.setInput('cursor', 'pointer');
-    fixture.detectChanges();
-    expect(fixture.nativeElement.getAttribute('data-avatar-cursor')).toBe('pointer');
-  });
-
   it.each(['ltr', 'rtl'] as const)(
-    'keeps all named presence positions physical in %s',
+    'keeps every named position physically invariant in %s',
     (direction) => {
       const fixture = TestBed.createComponent(ErpAvatar);
       fixture.nativeElement.setAttribute('dir', direction);
-      fixture.componentRef.setInput('name', 'أحمد علي');
+      fixture.componentRef.setInput('name', 'User');
       fixture.componentRef.setInput('presence', 'online');
-
       const expected = {
-        top: {top: true, left: true, transform: 'translateX'},
-        bottom: {bottom: true, left: true, transform: 'translateX'},
-        left: {top: true, left: true, transform: 'translateY'},
-        right: {top: true, right: true, transform: 'translateY'},
-        'top-left': {top: true, left: true},
-        'top-right': {top: true, right: true},
-        'bottom-left': {bottom: true, left: true},
-        'bottom-right': {bottom: true, right: true},
+        top: ['top', 'left'], bottom: ['bottom', 'left'],
+        left: ['top', 'left'], right: ['top', 'right'],
+        'top-left': ['top', 'left'], 'top-right': ['top', 'right'],
+        'bottom-left': ['bottom', 'left'], 'bottom-right': ['bottom', 'right'],
       } as const;
 
-      for (const [position, contract] of Object.entries(expected)) {
+      for (const [position, assignedEdges] of Object.entries(expected)) {
         fixture.componentRef.setInput('presencePosition', position);
         fixture.detectChanges();
-        const layer = fixture.nativeElement.querySelector(
-          '.avatar__presence',
-        ) as HTMLElement;
-        const style = getComputedStyle(layer);
+        const style = getComputedStyle(
+          fixture.nativeElement.querySelector('.avatar__presence') as HTMLElement,
+        );
         for (const edge of ['top', 'right', 'bottom', 'left'] as const) {
-          expect(style[edge] !== '').toBe(edge in contract);
-        }
-        if ('transform' in contract) {
-          expect(style.transform).toContain(contract.transform);
+          expect(style[edge] !== '').toBe(
+            (assignedEdges as readonly string[]).includes(edge),
+          );
         }
       }
     },
   );
 
-  it('keeps positioning and presence motion on distinct layers for every combination', () => {
+  it('keeps position and all reference or compatibility motions on separate layers', () => {
     const fixture = TestBed.createComponent(ErpAvatar);
-    fixture.componentRef.setInput('name', 'أحمد علي');
+    fixture.componentRef.setInput('name', 'User');
     fixture.componentRef.setInput('presence', 'online');
-
-    for (const position of [
+    const positions: readonly ErpAvatarPresencePosition[] = [
       'top', 'bottom', 'left', 'right',
       'top-left', 'top-right', 'bottom-left', 'bottom-right',
-    ] as const) {
-      for (const motion of ['none', 'pulse', 'ping', 'breathe'] as const) {
+    ];
+    const motions: readonly ErpAvatarPresenceMotion[] = [
+      'none', 'pulse', 'ping', 'bounce', 'blink', 'breathe',
+    ];
+
+    for (const position of positions) {
+      for (const motion of motions) {
         fixture.componentRef.setInput('presencePosition', position);
         fixture.componentRef.setInput('presenceMotion', motion);
         fixture.detectChanges();
@@ -132,12 +184,54 @@ describe('ErpAvatar', () => {
         const motionLayer = positionLayer.querySelector(
           '.avatar__presence-indicator',
         ) as HTMLElement;
-
         expect(positionLayer).not.toBe(motionLayer);
         expect(positionLayer.contains(motionLayer)).toBe(true);
-        expect(fixture.nativeElement.getAttribute('data-avatar-presence-position')).toBe(position);
-        expect(fixture.nativeElement.getAttribute('data-avatar-presence-motion')).toBe(motion);
       }
     }
+  });
+
+  it('owns explicit interactive button semantics and emits activation', () => {
+    const fixture = TestBed.createComponent(ErpAvatar);
+    fixture.componentRef.setInput('name', 'أحمد علي');
+    fixture.componentRef.setInput('interactive', true);
+    const activated = vi.fn();
+    fixture.componentInstance.avatarClick.subscribe(activated);
+    fixture.detectChanges();
+
+    const host = fixture.nativeElement as HTMLElement;
+    const button = host.querySelector('erp-avatar-action button') as HTMLButtonElement;
+    expect(host.getAttribute('role')).toBeNull();
+    expect(host.getAttribute('aria-label')).toBeNull();
+    expect(host.querySelector('.avatar__frame')).not.toBeNull();
+    expect(host.querySelector('erp-text')?.textContent).toContain('أع');
+    expect(button.getAttribute('aria-label')).toBe('أحمد علي');
+    button.click();
+    expect(activated).toHaveBeenCalledOnce();
+  });
+
+  it('uses alt as the composite accessible name while keeping the internal image decorative', () => {
+    const fixture = TestBed.createComponent(ErpAvatar);
+    fixture.componentRef.setInput('name', 'System name');
+    fixture.componentRef.setInput('alt', 'الصورة الشخصية لسارة');
+    fixture.componentRef.setInput('src', '/avatar.png');
+    fixture.detectChanges();
+
+    const image = fixture.nativeElement.querySelector('img') as HTMLImageElement;
+    expect(fixture.nativeElement.getAttribute('aria-label')).toBe('الصورة الشخصية لسارة');
+    expect(image.getAttribute('alt')).toBe('');
+    expect(image.getAttribute('aria-hidden')).toBe('true');
+  });
+
+  it('renders loading as a visible frame without duplicate content', () => {
+    const fixture = TestBed.createComponent(ErpAvatar);
+    fixture.componentRef.setInput('name', 'User');
+    fixture.componentRef.setInput('src', '/avatar.png');
+    fixture.componentRef.setInput('loading', true);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.avatar__frame')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('img')).toBeNull();
+    expect(fixture.nativeElement.querySelector('erp-icon')).toBeNull();
+    expect(fixture.nativeElement.querySelector('erp-text')).toBeNull();
   });
 });

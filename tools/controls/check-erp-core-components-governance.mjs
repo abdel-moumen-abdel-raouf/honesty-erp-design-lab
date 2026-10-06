@@ -31,9 +31,19 @@ const STATUS_BADGE_CONTRACT = 'src/app/controls/status-badge/ERP_STATUS_BADGE_RE
 const STATUS_BADGE_LEGACY_REFERENCE = 'src/app/controls/status-badge/STATUS_BADGE_REFERENCE_V1.md';
 const STATUS_BADGE_REFERENCE_SHA = '654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0';
 const AVATAR_TS = 'src/app/controls/avatar/avatar.ts';
+const AVATAR_TEMPLATE = 'src/app/controls/avatar/avatar.html';
 const AVATAR_SCSS = 'src/app/controls/avatar/avatar.scss';
-const AVATAR_PRESENCE = 'src/app/controls/avatar/avatar-presence.scss';
-const AVATAR_MOTION = 'src/app/controls/avatar/avatar-motion.scss';
+const AVATAR_FRAME_TEMPLATE = 'src/app/controls/avatar/internal/avatar-frame.html';
+const AVATAR_PRESENCE_TEMPLATE = 'src/app/controls/avatar/internal/avatar-presence-indicator.html';
+const AVATAR_TONES = 'src/app/controls/avatar/internal/avatar-frame.scss';
+const AVATAR_PRESENCE = 'src/app/controls/avatar/internal/avatar-presence-indicator.scss';
+const AVATAR_MOTION = 'src/app/controls/avatar/internal/avatar-presence-motion.scss';
+const AVATAR_FRAME_MOTION = 'src/app/controls/avatar/internal/avatar-frame-motion.scss';
+const AVATAR_RESPONSIVE = 'src/app/controls/avatar/internal/avatar-action.scss';
+const AVATAR_TOKENS = 'src/styles/foundation/components/avatar/_tokens.scss';
+const AVATAR_CONTRACT = 'src/app/controls/avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md';
+const AVATAR_LEGACY_REFERENCE = 'src/app/controls/avatar/AVATAR_REFERENCE_V1.md';
+const AVATAR_REFERENCE_SHA = '2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA';
 const TABS_TS = 'src/app/controls/tabs/tabs.ts';
 const TABS_SCSS = 'src/app/controls/tabs/tabs.scss';
 const TABS_MOTION = 'src/app/controls/tabs/tabs-motion.scss';
@@ -91,9 +101,18 @@ export function validateCoreComponents(files) {
   const statusBadgeContract = files.get(STATUS_BADGE_CONTRACT) ?? '';
   const statusBadgeLegacyReference = files.get(STATUS_BADGE_LEGACY_REFERENCE) ?? '';
   const avatarTs = files.get(AVATAR_TS) ?? '';
-  const avatarPresence = files.get(AVATAR_PRESENCE) ?? '';
+  const avatarTemplate = [
+    AVATAR_TEMPLATE, AVATAR_FRAME_TEMPLATE, AVATAR_PRESENCE_TEMPLATE,
+  ].map((file) => files.get(file) ?? '').join('\n');
+  const avatarPresence = files.get(AVATAR_SCSS) ?? '';
   const avatarMotion = files.get(AVATAR_MOTION) ?? '';
-  const avatarScss = `${files.get(AVATAR_SCSS) ?? ''}\n${avatarPresence}\n${avatarMotion}`;
+  const avatarScss = [
+    AVATAR_SCSS, AVATAR_TONES, AVATAR_PRESENCE, AVATAR_MOTION,
+    AVATAR_FRAME_MOTION, AVATAR_RESPONSIVE,
+  ].map((file) => files.get(file) ?? '').join('\n');
+  const avatarTokens = files.get(AVATAR_TOKENS) ?? '';
+  const avatarContract = files.get(AVATAR_CONTRACT) ?? '';
+  const avatarLegacyReference = files.get(AVATAR_LEGACY_REFERENCE) ?? '';
   const tabsTs = files.get(TABS_TS) ?? '';
   const tabsScss = `${files.get(TABS_SCSS) ?? ''}\n${files.get(TABS_MOTION) ?? ''}`;
   const table = files.get(TABLE) ?? '';
@@ -293,38 +312,121 @@ export function validateCoreComponents(files) {
   }
 
   for (const contract of [
+    "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'",
     "'circle' | 'rounded' | 'square'",
-    "'online' | 'away' | 'busy' | 'offline'",
+    "'neutral'",
+    "'purple'",
+    "'slate'",
+    "'vacation'",
     "'top-left'",
     "'bottom-right'",
-    "'none' | 'pulse' | 'ping' | 'breathe'",
-    "'none' | 'scale' | 'lift'",
+    "'bounce'",
+    "'blink'",
+    "'breathe'",
+    "readonly initials = input<string | null>(null)",
+    "readonly alt = input('')",
+    "readonly ring = input(false",
+    "readonly loading = input(false",
+    "readonly interactive = input(false",
+    'readonly avatarClick = output<MouseEvent>()',
   ]) {
     if (!avatarTs.includes(contract)) errors.push(`ErpAvatar contract is missing ${contract}`);
+  }
+  for (const hierarchy of [
+    '<erp-avatar-action', '<erp-text', '<erp-icon', 'class="avatar__frame"',
+    'class="avatar__image"', 'class="avatar__initials"',
+    'class="avatar__presence-indicator"',
+  ]) {
+    if (!avatarTemplate.includes(hierarchy)) {
+      errors.push(`ErpAvatar exact-reference hierarchy is missing ${hierarchy}`);
+    }
+  }
+  if (/<svg\b/i.test(avatarTemplate) || /<button\b/i.test(avatarTemplate)) {
+    errors.push('ErpAvatar must delegate icon and interactive semantics to approved internal owners');
   }
   if (!avatarScss.includes('@media (prefers-reduced-motion: reduce)')) {
     errors.push('ErpAvatar must disable authored motion for reduced-motion users');
   }
+  if (!avatarScss.includes("@include query.viewport-down('sm')")) {
+    errors.push('ErpAvatar narrow geometry must use the Foundation Query API');
+  }
+  if (/@media\s*\([^)]*(?:width|height)\s*:/iu.test(avatarScss)) {
+    errors.push('ErpAvatar must not author raw responsive thresholds');
+  }
+  if (/(?:#[0-9a-f]{3,8}\b|\brgba?\s*\(|\bhsla?\s*\()/iu.test(avatarScss)) {
+    errors.push('ErpAvatar implementation must not copy raw reference colors');
+  }
   if (avatarPresence.includes('inset-inline-')) {
     errors.push('ErpAvatar physical left/right presence positions must not use logical inline edges');
   }
-  for (const physicalEdge of [
-    "position='left']) .avatar__presence { top:",
-    "position='left']) .avatar__presence { top: 50%; left:",
-    "position='right']) .avatar__presence { top: 50%; right:",
-    "position='top-left']) .avatar__presence { top:",
-    "position='bottom-right']) .avatar__presence { right:",
+  for (const [label, physicalEdge] of [
+    ['left', /position='left'\]\)\s+erp-avatar-presence\s*\{[^}]*top:\s*50%;[^}]*left:/u],
+    ['right', /position='right'\]\)\s+erp-avatar-presence\s*\{[^}]*top:\s*50%;[^}]*right:/u],
+    ['top-left', /position='top-left'\]\)\s+erp-avatar-presence\s*\{[^}]*top:\s*0;[^}]*left:/u],
+    ['bottom-right', /position='bottom-right'\]\)\s+erp-avatar-presence\s*\{[^}]*right:\s*0;[^}]*bottom:/u],
   ]) {
-    if (!avatarPresence.includes(physicalEdge)) {
-      errors.push(`ErpAvatar physical positioning is missing ${physicalEdge}`);
+    if (!physicalEdge.test(avatarPresence)) {
+      errors.push(`ErpAvatar physical positioning is missing ${label}`);
     }
   }
   if (!avatarPresence.includes('class="avatar__presence-indicator"') &&
       !avatarMotion.includes('.avatar__presence-indicator')) {
     errors.push('ErpAvatar presence motion requires a layer independent from positioning');
   }
-  if (/presence-motion='(?:pulse|ping|breathe)'\]\) \.avatar__presence\s*\{/u.test(avatarMotion)) {
+  if (/presence-motion='(?:pulse|ping|bounce|blink|breathe)'\]\) \.avatar__presence\s*\{/u.test(avatarMotion)) {
     errors.push('ErpAvatar presence motion must not animate the positioning layer');
+  }
+  for (const geometry of [
+    '--honesty-avatar-size: 1.5rem',
+    '--honesty-avatar-size: 1.875rem',
+    '--honesty-avatar-size: 2.375rem',
+    '--honesty-avatar-size: 3.125rem',
+    '--honesty-avatar-size: 4.25rem',
+    '--honesty-avatar-size: 5.5rem',
+    '--honesty-avatar-rounded-radius: 26%',
+    '--honesty-avatar-square-radius: 0.25rem',
+    '--honesty-avatar-hover-scale: 1.06',
+    '--honesty-avatar-active-scale: 0.96',
+  ]) {
+    if (!avatarTokens.includes(geometry)) {
+      errors.push(`ErpAvatar Component Tokens are missing exact-reference geometry ${geometry}`);
+    }
+  }
+  for (const mixin of [
+    '@mixin base', '@mixin root-base', '@mixin frame-base', '@mixin action-base',
+    '@mixin presence-base',
+    '@mixin tone-brand', '@mixin tone-success', '@mixin tone-warning',
+    '@mixin tone-danger', '@mixin tone-info', '@mixin tone-purple',
+    '@mixin tone-slate', '@mixin presence-info', '@mixin presence-brand',
+    '@mixin presence-pending', '@mixin presence-vacation',
+  ]) {
+    if (!avatarTokens.includes(mixin)) {
+      errors.push(`ErpAvatar Component Tokens are missing ${mixin}`);
+    }
+  }
+  if (/(?:#[0-9a-f]{3,8}\b|\brgba?\s*\(|\bhsla?\s*\()/iu.test(avatarTokens)) {
+    errors.push('ErpAvatar Component Tokens must map colors through Semantic roles');
+  }
+  if (!avatarContract.includes(AVATAR_REFERENCE_SHA) ||
+      !avatarContract.includes('ERP-AVATAR.html') ||
+      !avatarContract.includes('supersedes every earlier `ErpAvatar` visual reference')) {
+    errors.push('ErpAvatar must retain the binding ERP-AVATAR.html SHA and authority contract');
+  }
+  if (!avatarLegacyReference.includes('SUPERSEDED') ||
+      !avatarLegacyReference.includes(AVATAR_REFERENCE_SHA)) {
+    errors.push('Former ErpAvatar references must remain explicitly superseded');
+  }
+  for (const evidence of [
+    'class="avatar-reference-size-matrix"',
+    'class="avatar-reference-content-types"',
+    'class="avatar-reference-motion-matrix"',
+    'class="avatar-reference-presence-matrix"',
+    'data-avatar-direction-evidence="rtl"',
+    'data-avatar-direction-evidence="ltr"',
+  ]) {
+    if (!review.includes(evidence)) {
+      errors.push(`Core review is missing Avatar exact-reference evidence ${evidence}`);
+    }
   }
 
   for (const contract of [
@@ -419,7 +521,7 @@ export function validateCoreComponents(files) {
 function fixture(overrides = new Map()) {
   const files = new Map([
     [ROUTES, "path: 'controls/core-batch'"],
-    [REVIEW, '<erp-select/><erp-status-badge/><erp-alert/><erp-skeleton/><erp-avatar/><erp-tabs/><erp-avatar-picker/><erp-table/><erp-pagination/><div class="select-parity-matrix" sortMode="label" label="نتيجة فارغة" label="حالة غير صالحة"></div><div class="status-badge-parity-matrix"></div><div class="status-badge-size-matrix"></div><div class="status-badge-anatomy-matrix"></div><div data-status-badge-direction-evidence="rtl"></div><div data-status-badge-direction-evidence="ltr"></div>'],
+    [REVIEW, '<erp-select/><erp-status-badge/><erp-alert/><erp-skeleton/><erp-avatar/><erp-tabs/><erp-avatar-picker/><erp-table/><erp-pagination/><div class="select-parity-matrix" sortMode="label" label="نتيجة فارغة" label="حالة غير صالحة"></div><div class="status-badge-parity-matrix"></div><div class="status-badge-size-matrix"></div><div class="status-badge-anatomy-matrix"></div><div data-status-badge-direction-evidence="rtl"></div><div data-status-badge-direction-evidence="ltr"></div><div class="avatar-reference-size-matrix"></div><div class="avatar-reference-content-types"></div><div class="avatar-reference-motion-matrix"></div><div class="avatar-reference-presence-matrix"></div><div data-avatar-direction-evidence="rtl"></div><div data-avatar-direction-evidence="ltr"></div>'],
     [REVIEW_TABLE, '<erp-column-chooser/>'],
     [SELECT, '<div class="select__control"></div><erp-field-trigger semanticRole="combobox" (blurred)="handleTriggerBlur()"/><erp-search-box presentation="select-panel"/><erp-selection-tile presentation="select-option"/><div class="select__group-label"></div><div class="select__footer"></div><erp-avatar/><erp-select-action icon="dismiss"/><erp-icon name="check-mark"/>'],
     [SELECT_TS, "this.controlSurface()?.nativeElement; Math.min(control.getBoundingClientRect().width, availableWidth); event.target.matches(':focus-visible'); this.triggerFocusVisible.set(false); readonly searchLabel = input('البحث'); readonly sortMode = input<ErpSelectSortMode>('none'); readonly groupBy = input<keyof ErpSelectOption | null>(null); readonly selectSize = input<ErpSelectSize>('md'); readonly selectAppearance = input<ErpSelectAppearance | null>(null)"],
@@ -443,10 +545,19 @@ function fixture(overrides = new Map()) {
     [STATUS_BADGE_TOKENS, '@mixin base {}; @mixin tone-success {}; @mixin tone-warning {}; @mixin tone-danger {}; @mixin tone-info {}; @mixin tone-brand {}; @mixin tone-pending {}; @mixin tone-archived {}; @mixin variant-soft {}; @mixin variant-solid {}; @mixin variant-outline {}; @mixin variant-ghost {}; @mixin size-sm {}; @mixin size-lg {}; @mixin size-xl {}; @mixin shape-square {}; @mixin shape-pill {}; --honesty-status-badge-height: 1.125rem; --honesty-status-badge-height: 1.375rem; --honesty-status-badge-height: 1.625rem; --honesty-status-badge-height: 2rem; --honesty-status-badge-padding-inline: 0.4375rem; --honesty-status-badge-padding-inline: 0.5625rem; --honesty-status-badge-padding-inline: 0.6875rem; --honesty-status-badge-padding-inline: 0.875rem; --honesty-status-badge-label-max-width: 11.25rem; --honesty-status-badge-focus-ring-width: 0.1875rem;'],
     [STATUS_BADGE_CONTRACT, `${STATUS_BADGE_REFERENCE_SHA}; supersedes every earlier \`ErpStatusBadge\` visual interpretation`],
     [STATUS_BADGE_LEGACY_REFERENCE, `SUPERSEDED; ${STATUS_BADGE_REFERENCE_SHA}`],
-    [AVATAR_TS, "'circle' | 'rounded' | 'square'; 'online' | 'away' | 'busy' | 'offline'; 'top-left'; 'bottom-right'; 'none' | 'pulse' | 'ping' | 'breathe'; 'none' | 'scale' | 'lift'"],
-    [AVATAR_SCSS, '@media (prefers-reduced-motion: reduce) {}'],
-    [AVATAR_PRESENCE, "class=\"avatar__presence-indicator\"; position='left']) .avatar__presence { top: 50%; left: 0; } position='right']) .avatar__presence { top: 50%; right: 0; } position='top-left']) .avatar__presence { top: 0; left: 0; } position='bottom-right']) .avatar__presence { right: 0; bottom: 0; }"],
-    [AVATAR_MOTION, '.avatar__presence-indicator {}'],
+    [AVATAR_TS, "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'; 'circle' | 'rounded' | 'square'; 'neutral'; 'purple'; 'slate'; 'vacation'; 'top-left'; 'bottom-right'; 'bounce'; 'blink'; 'breathe'; readonly initials = input<string | null>(null); readonly alt = input(''); readonly ring = input(false; readonly loading = input(false; readonly interactive = input(false; readonly avatarClick = output<MouseEvent>()"],
+    [AVATAR_TEMPLATE, '<erp-avatar-action/><erp-text/><erp-icon/><span class="avatar__frame"></span><img class="avatar__image"><erp-text class="avatar__initials"/><span class="avatar__presence-indicator"></span>'],
+    [AVATAR_FRAME_TEMPLATE, '<span class="avatar__frame"></span>'],
+    [AVATAR_PRESENCE_TEMPLATE, '<span class="avatar__presence-indicator"></span>'],
+    [AVATAR_SCSS, "@include query.viewport-down('sm') {} position='left']) erp-avatar-presence { top: 50%; left: 0; } position='right']) erp-avatar-presence { top: 50%; right: 0; } position='top-left']) erp-avatar-presence { top: 0; left: 0; } position='bottom-right']) erp-avatar-presence { right: 0; bottom: 0; }"],
+    [AVATAR_TONES, ''],
+    [AVATAR_PRESENCE, 'class="avatar__presence-indicator"'],
+    [AVATAR_MOTION, '@media (prefers-reduced-motion: reduce) {} .avatar__presence-indicator {}'],
+    [AVATAR_FRAME_MOTION, '@media (prefers-reduced-motion: reduce) {} .avatar__frame {}'],
+    [AVATAR_RESPONSIVE, ''],
+    [AVATAR_TOKENS, '@mixin base {}; @mixin root-base {}; @mixin frame-base {}; @mixin action-base {}; @mixin presence-base {}; @mixin tone-brand {}; @mixin tone-success {}; @mixin tone-warning {}; @mixin tone-danger {}; @mixin tone-info {}; @mixin tone-purple {}; @mixin tone-slate {}; @mixin presence-info {}; @mixin presence-brand {}; @mixin presence-pending {}; @mixin presence-vacation {}; --honesty-avatar-size: 1.5rem; --honesty-avatar-size: 1.875rem; --honesty-avatar-size: 2.375rem; --honesty-avatar-size: 3.125rem; --honesty-avatar-size: 4.25rem; --honesty-avatar-size: 5.5rem; --honesty-avatar-rounded-radius: 26%; --honesty-avatar-square-radius: 0.25rem; --honesty-avatar-hover-scale: 1.06; --honesty-avatar-active-scale: 0.96;'],
+    [AVATAR_CONTRACT, `${AVATAR_REFERENCE_SHA}; ERP-AVATAR.html supersedes every earlier \`ErpAvatar\` visual reference`],
+    [AVATAR_LEGACY_REFERENCE, `SUPERSEDED; ${AVATAR_REFERENCE_SHA}`],
     [TABS_TS, "'horizontal' | 'vertical'; 'start' | 'end'; 'content' | 'fill'; 'underline' | 'pills'; 'fade-start'; 'fade-end'; 'rectangle' | 'rounded' | 'circle'"],
     [TABS_SCSS, '@media (prefers-reduced-motion: reduce) {}'],
     [TABS_MOTION, ''],
@@ -489,9 +600,18 @@ function runSelfTest() {
     ['raw status-badge color', fixture(new Map([[STATUS_BADGE_SCSS, '#fff; @media (prefers-reduced-motion: reduce) {} status-badge-enter status-badge-pulse']])), 'raw reference colors'],
     ['missing status-badge geometry', fixture(new Map([[STATUS_BADGE_TOKENS, '@mixin base {}']])), 'exact-reference geometry'],
     ['current former Dribbble authority', fixture(new Map([[STATUS_BADGE_LEGACY_REFERENCE, 'current Dribbble reference']])), 'explicitly superseded'],
-    ['missing avatar reduced motion', fixture(new Map([[AVATAR_SCSS, '']])), 'reduced-motion'],
-    ['logical avatar positions', fixture(new Map([[AVATAR_PRESENCE, "inset-inline-start: 0; class=\"avatar__presence-indicator\";"]])), 'physical left/right'],
+    ['missing avatar reduced motion', fixture(new Map([
+      [AVATAR_MOTION, ''],
+      [AVATAR_FRAME_MOTION, ''],
+    ])), 'reduced-motion'],
+    ['logical avatar positions', fixture(new Map([[AVATAR_SCSS, "inset-inline-start: 0; class=\"avatar__presence-indicator\";"]])), 'physical left/right'],
     ['motion on avatar positioning layer', fixture(new Map([[AVATAR_MOTION, ":host([data-avatar-presence-motion='pulse']) .avatar__presence { animation: pulse; }"]])), 'positioning layer'],
+    ['missing avatar reference SHA', fixture(new Map([[AVATAR_CONTRACT, 'old avatar reference']])), 'binding ERP-AVATAR.html SHA'],
+    ['missing avatar exact size', fixture(new Map([[AVATAR_TOKENS, '@mixin base {}']])), 'exact-reference geometry'],
+    ['raw avatar color', fixture(new Map([[AVATAR_TONES, '#fff']])), 'raw reference colors'],
+    ['missing avatar hierarchy', fixture(new Map([[AVATAR_TEMPLATE, '<span class="avatar__frame"></span>']])), 'exact-reference hierarchy'],
+    ['raw avatar breakpoint', fixture(new Map([[AVATAR_SCSS, '@media (max-width: 520px) {}']])), 'Foundation Query API'],
+    ['current former avatar authority', fixture(new Map([[AVATAR_LEGACY_REFERENCE, 'current external references']])), 'explicitly superseded'],
     ['missing table selection owner', fixture(new Map([[TABLE, '<erp-sort-header/><erp-table-resize-handle/><tfoot></tfoot> descriptionKey data-overflow']])), 'erp-check-box'],
     ['selection activates table rows', fixture(new Map([[TABLE_TS, 'if (this.rowActivatable() || this.selectable()) this.rowActivated.emit(row);']])), 'independent from checkbox selection'],
     ['pagination duplicates visible labels', fixture(new Map([[PAGINATION, '<erp-inline class="pagination__size-row"><erp-select label="حجم الصفحة"/></erp-inline>']])), 'hidden accessible Select label'],
@@ -536,9 +656,18 @@ function runCheck() {
     [STATUS_BADGE_CONTRACT, read(STATUS_BADGE_CONTRACT)],
     [STATUS_BADGE_LEGACY_REFERENCE, read(STATUS_BADGE_LEGACY_REFERENCE)],
     [AVATAR_TS, read(AVATAR_TS)],
+    [AVATAR_TEMPLATE, read(AVATAR_TEMPLATE)],
+    [AVATAR_FRAME_TEMPLATE, read(AVATAR_FRAME_TEMPLATE)],
+    [AVATAR_PRESENCE_TEMPLATE, read(AVATAR_PRESENCE_TEMPLATE)],
     [AVATAR_SCSS, read(AVATAR_SCSS)],
+    [AVATAR_TONES, read(AVATAR_TONES)],
     [AVATAR_PRESENCE, read(AVATAR_PRESENCE)],
     [AVATAR_MOTION, read(AVATAR_MOTION)],
+    [AVATAR_FRAME_MOTION, read(AVATAR_FRAME_MOTION)],
+    [AVATAR_RESPONSIVE, read(AVATAR_RESPONSIVE)],
+    [AVATAR_TOKENS, read(AVATAR_TOKENS)],
+    [AVATAR_CONTRACT, read(AVATAR_CONTRACT)],
+    [AVATAR_LEGACY_REFERENCE, read(AVATAR_LEGACY_REFERENCE)],
     [TABS_TS, read(TABS_TS)],
     [TABS_SCSS, read(TABS_SCSS)],
     [TABS_MOTION, read(TABS_MOTION)],

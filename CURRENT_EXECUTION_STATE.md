@@ -14,45 +14,43 @@ Branch:
 
 ## Authoritative current execution state — 2026-10-07
 
-The Product Owner's bounded `ErpStatusBadge Exact Reference Rebuild` started
-from `cc9a3d0305529aef94e370c862b01876dcba9d01`. Resolve live local and remote
+The Product Owner's bounded `ErpAvatar Exact Reference Rebuild` started
+from `3558434c274a11b7b52296f78b8968806817e1e8`. Resolve live local and remote
 SHAs directly; source and continuity are synchronized in the same implementation
 commit.
 
-`C:\Users\Misrtech\Downloads\ERP-STATUS-BADGE.html`, SHA-256
-`654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`, is the
-single binding visual and behavioral authority for `ErpStatusBadge`. It
-supersedes the previous Dribbble reference, the accelerated-wave no-reference
-waiver, and every conflicting StatusBadge interpretation. Geometry, variants,
-sizes, anatomy, states, width behavior, interaction, and motion follow the
-reference exactly. Only colors and font families resolve through Honesty ERP
-Semantic, Typography, and StatusBadge Component Tokens. The authoritative
-contract is
-`src/app/controls/status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md`.
+`C:\Users\Misrtech\Downloads\ERP-AVATAR.html`, SHA-256
+`2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`, is the
+single binding visual and behavioral authority for `ErpAvatar`. It supersedes
+all previous Avatar references, waivers, and visual interpretations. Sizes,
+shapes, content hierarchy, tones, ring/loading treatment, status/presence,
+physical positions, interaction, and motion follow the reference exactly.
+Only colors and font families resolve through Honesty ERP Semantic,
+Typography, and Avatar Component Tokens. The authoritative contract is
+`src/app/controls/avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md`.
 
-Technical verification passes 133/133 test files and 875/875 tests, all
+Technical verification passes 133/133 test files and 881/881 tests, all
 lint/governance checks, both TypeScript typechecks, production build, and zero
-Angular/build warnings. The production initial bundle is 376.12 kB / 85.65 kB
-estimated transfer; the Core Batch lazy chunk is 64.25 kB / 12.07 kB estimated
+Angular/build warnings. The production initial bundle is 376.12 kB / 85.63 kB
+estimated transfer; the Core Batch lazy chunk is 70.10 kB / 12.81 kB estimated
 transfer.
 
 Product Owner visual state and immediate next action:
 
-- `ErpStatusBadge` remains pending Product Owner runtime/Light/Dark/RTL/LTR/
+- `ErpAvatar` remains pending Product Owner runtime/Light/Dark/RTL/LTR/
   narrow review at `/controls/core-batch` against the exact HTML reference;
-- runtime evidence verifies the exact 18/22/26/32 px size heights, 7/9/11/14 px
-  inline padding, 4/5/6/7 px gaps, 4/6/6/8 px radii, 1 px borders, 10/12/14/16
-  px icons, 3 px keyboard focus ring, all eight tones, all four variants,
-  content/stretch widths, interactive selection/removal, and reduced-motion
-  static presentation;
-- Light and Dark preserve identical geometry while semantic colors resolve per
-  theme; RTL and LTR preserve the reference icon/text order; the 390 px narrow
-  runtime surface has no horizontal document overflow;
-- `ErpSelect` remains the previously rebuilt technical candidate and is not
-  reopened by this task;
+- runtime evidence verifies 24/30/38/50/68/88 px desktop frames, 58/72 px
+  narrow `xl`/`2xl`, 50%/26%/4 px radii, 1 px frame border, image cover-fit,
+  all eight physical presence positions invariant in RTL and LTR, interactive
+  activation, and no narrow horizontal overflow;
+- Light and Dark preserve geometry while Semantic colors resolve per theme;
+  reduced-motion is protected by CSS, governance, and tests and remains
+  static-visible;
+- `ErpSelect` and `ErpStatusBadge` remain prior rebuilt technical candidates
+  and are not reopened by this task;
 - technical green does not equal Product Owner visual approval or freeze;
 - the exact next action is Product Owner visual/runtime review of the rebuilt
-  `ErpStatusBadge` at `/controls/core-batch`;
+  `ErpAvatar` at `/controls/core-batch`;
 - the Data/Table Visual Correction Wave is not opened and no other Core owner is
   redesigned by this bounded task.
 

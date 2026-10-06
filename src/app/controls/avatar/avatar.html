@@ -1,14 +1,39 @@
-<span class="avatar__media">
-  @if (imageVisible()) {
-    <img [src]="src()!" [alt]="name()" (error)="failImage()" />
-  } @else if (initials()) {
-    <erp-text type="span" size="inherit" tone="inherit" weight="bold">{{ initials() }}</erp-text>
-  } @else {
-    <erp-icon [name]="fallbackIcon() ?? 'user'" size="inherit" tone="inherit" />
-  }
-</span>
+<erp-avatar-action
+  [interactive]="interactive()"
+  [label]="accessibleLabel()"
+  (action)="activate($event)"
+>
+  <erp-avatar-frame>
+    @if (!loading()) {
+      @if (imageVisible()) {
+        <img
+          class="avatar__image"
+          [src]="src()!"
+          alt=""
+          aria-hidden="true"
+          (error)="failImage()"
+        />
+      } @else if (effectiveIcon(); as icon) {
+        <erp-icon
+          class="avatar__icon"
+          [name]="icon"
+          size="inherit"
+          tone="inherit"
+        />
+      } @else {
+        <erp-text
+          class="avatar__initials"
+          type="span"
+          size="inherit"
+          tone="inherit"
+          weight="inherit"
+          lineHeight="tight"
+        >{{ effectiveInitials() }}</erp-text>
+      }
+    }
+  </erp-avatar-frame>
+</erp-avatar-action>
+
 @if (presence()) {
-  <span class="avatar__presence" aria-hidden="true">
-    <span class="avatar__presence-indicator"></span>
-  </span>
+  <erp-avatar-presence aria-hidden="true" />
 }

@@ -5,3 +5,15 @@
 .core-select--full { inline-size: 100%; }
 .status-badge-reference-preview { padding: var(--honesty-space-inset-default); }
 .status-badge-parity-row { padding-block: var(--honesty-space-stack-tight); }
+.avatar-reference-preview {
+  align-items: center;
+  padding: var(--honesty-space-inset-default);
+}
+
+.avatar-reference-size-matrix erp-stack,
+.avatar-reference-content-types erp-stack,
+.avatar-reference-motion-matrix erp-stack,
+.avatar-reference-presence-matrix erp-stack {
+  align-items: center;
+  justify-content: center;
+}

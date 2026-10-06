@@ -8,23 +8,23 @@ It records Product Owner decisions, externally reviewed Git state, execution bou
 
 ## Authoritative current review transition — 2026-10-07
 
-The Product Owner opened only the bounded `ErpStatusBadge Exact Reference
-Rebuild` from `cc9a3d0305529aef94e370c862b01876dcba9d01`. Resolve the final
+The Product Owner opened only the bounded `ErpAvatar Exact Reference Rebuild`
+from `3558434c274a11b7b52296f78b8968806817e1e8`. Resolve the final
 implementation SHA directly from live Git.
 
-`ERP-STATUS-BADGE.html`, SHA-256
-`654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`, is the
-single binding StatusBadge visual and behavioral authority. It supersedes the
-previous Dribbble reference, the accelerated no-reference waiver, and all
-conflicting StatusBadge corrections. Only palette and font-family values map to
+`ERP-AVATAR.html`, SHA-256
+`2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`, is the
+single binding Avatar visual and behavioral authority. It supersedes all
+previous Avatar references, waivers, and conflicting visual interpretations.
+Only palette and font-family values map to
 Honesty ERP system contracts. The authoritative implementation contract is
-`status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md`. Its technical gate passes
-133/133 test files and 875/875 tests, all governance, both typechecks, production
+`avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md`. Its technical gate passes
+133/133 test files and 881/881 tests, all governance, both typechecks, production
 build, and zero warnings.
 
 The exact next gate is Product Owner runtime/Light/Dark/RTL/LTR/narrow comparison
-of the rebuilt StatusBadge at `/controls/core-batch`. `ErpSelect` is not
-reopened. Browser runtime evidence does not claim visual approval. The
+of the rebuilt Avatar at `/controls/core-batch`. `ErpSelect` and `ErpStatusBadge`
+are not reopened. Browser runtime evidence does not claim visual approval. The
 Data/Table Visual Correction Wave and every later implementation wave remain
 unopened. Technical PASS never equals visual approval.
 

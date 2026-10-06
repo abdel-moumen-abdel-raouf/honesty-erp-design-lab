@@ -11,6 +11,7 @@ import {
   ErpAvatarHoverMotion,
   ErpAvatarShape,
   ErpAvatarSize,
+  ErpAvatarTone,
 } from '../../controls/avatar/avatar';
 import {ErpButton} from '../../controls/button/button';
 import {ErpCheckBox} from '../../controls/check-box/check-box';
@@ -94,6 +95,8 @@ export class CoreBatch {
   readonly avatarPresencePosition = signal<ErpAvatarPresencePosition>('bottom-right');
   readonly avatarPresenceMotion = signal<ErpAvatarPresenceMotion>('breathe');
   readonly avatarHoverMotion = signal<ErpAvatarHoverMotion>('scale');
+  readonly avatarTone = signal<ErpAvatarTone>('brand');
+  readonly avatarInteractionEvidence = signal('لم يحدث تفاعل بعد');
   readonly pickerSize = signal<ErpAvatarSize>('lg');
   readonly pickerShape = signal<ErpAvatarShape>('circle');
   readonly tabsOrientation = signal<ErpTabsOrientation>('horizontal');
@@ -109,7 +112,17 @@ export class CoreBatch {
   readonly showNext = signal(true);
   readonly showLast = signal(true);
   readonly selectSizes: readonly ErpSelectSize[] = ['sm', 'md', 'lg'];
-  readonly avatarSizes: readonly ErpAvatarSize[] = ['xs', 'sm', 'md', 'lg', 'xl'];
+  readonly avatarSizes: readonly ErpAvatarSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'];
+  readonly avatarShapes: readonly ErpAvatarShape[] = ['circle', 'rounded', 'square'];
+  readonly avatarTones: readonly ErpAvatarTone[] = [
+    'neutral', 'brand', 'success', 'warning', 'danger', 'info', 'purple', 'slate',
+  ];
+  readonly avatarPresences: readonly ErpAvatarPresence[] = [
+    'online', 'away', 'busy', 'offline', 'info', 'brand', 'pending', 'vacation',
+  ];
+  readonly avatarReferenceMotions: readonly ErpAvatarPresenceMotion[] = [
+    'pulse', 'ping', 'bounce', 'blink', 'none',
+  ];
   readonly badgeToneOptions = this.options([
     'neutral', 'success', 'warning', 'danger', 'info', 'brand', 'pending', 'archived',
   ]);
@@ -126,13 +139,20 @@ export class CoreBatch {
   readonly badgeSizes: readonly ErpStatusBadgeSize[] = ['sm', 'md', 'lg', 'xl'];
   readonly avatarShapeOptions = this.options(['circle', 'rounded', 'square']);
   readonly avatarCursorOptions = this.options(['default', 'pointer']);
-  readonly avatarPresenceOptions = this.options(['online', 'away', 'busy', 'offline']);
+  readonly avatarToneOptions = this.options([
+    'neutral', 'brand', 'success', 'warning', 'danger', 'info', 'purple', 'slate',
+  ]);
+  readonly avatarPresenceOptions = this.options([
+    'online', 'away', 'busy', 'offline', 'info', 'brand', 'pending', 'vacation',
+  ]);
   readonly avatarPositionOptions = this.options([
     'top', 'bottom', 'left', 'right', 'top-left', 'top-right', 'bottom-left', 'bottom-right',
   ]);
-  readonly avatarMotionOptions = this.options(['none', 'pulse', 'ping', 'breathe']);
+  readonly avatarMotionOptions = this.options([
+    'none', 'pulse', 'ping', 'bounce', 'blink', 'breathe',
+  ]);
   readonly avatarHoverOptions = this.options(['none', 'scale', 'lift']);
-  readonly avatarSizeOptions = this.options(['xs', 'sm', 'md', 'lg', 'xl']);
+  readonly avatarSizeOptions = this.options(['xs', 'sm', 'md', 'lg', 'xl', '2xl']);
   readonly tabsOrientationOptions = this.options(['horizontal', 'vertical']);
   readonly tabsDistributionOptions = this.options(['content', 'fill']);
   readonly tabsVariantOptions = this.options(['underline', 'pills']);
@@ -147,12 +167,12 @@ export class CoreBatch {
   }[] = [
     {position: 'top', status: 'online', motion: 'pulse'},
     {position: 'bottom', status: 'away', motion: 'ping'},
-    {position: 'left', status: 'busy', motion: 'breathe'},
-    {position: 'right', status: 'offline', motion: 'none'},
-    {position: 'top-left', status: 'online', motion: 'ping'},
-    {position: 'top-right', status: 'away', motion: 'breathe'},
-    {position: 'bottom-left', status: 'busy', motion: 'pulse'},
-    {position: 'bottom-right', status: 'offline', motion: 'none'},
+    {position: 'left', status: 'busy', motion: 'bounce'},
+    {position: 'right', status: 'offline', motion: 'blink'},
+    {position: 'top-left', status: 'info', motion: 'ping'},
+    {position: 'top-right', status: 'brand', motion: 'bounce'},
+    {position: 'bottom-left', status: 'pending', motion: 'pulse'},
+    {position: 'bottom-right', status: 'vacation', motion: 'none'},
   ];
 
   readonly employeeOptions: readonly ErpSelectOption[] = [
@@ -208,6 +228,10 @@ export class CoreBatch {
 
   protected recordBadgeRemoval(): void {
     this.badgeInteractionEvidence.set('تم طلب إزالة الحالة');
+  }
+
+  protected recordAvatarActivation(): void {
+    this.avatarInteractionEvidence.set('تم تفعيل الصورة الشخصية');
   }
 
   readonly iconOnlyTabs: readonly ErpTabItem[] = [

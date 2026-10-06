@@ -1,8 +1,84 @@
 @use '../../../styles/foundation/components/avatar' as tokens;
-:host { @include tokens.base; position: relative; display: inline-grid; place-items: center; box-sizing: border-box; inline-size: var(--honesty-avatar-size); block-size: var(--honesty-avatar-size); overflow: visible; color: var(--honesty-avatar-fg); font-size: var(--honesty-avatar-font-size); transition: transform var(--honesty-avatar-hover-duration) var(--honesty-avatar-hover-easing); }
-.avatar__media { display: grid; place-items: center; box-sizing: border-box; inline-size: 100%; block-size: 100%; overflow: hidden; border: var(--honesty-avatar-border-width) solid var(--honesty-avatar-border-color); border-radius: var(--honesty-avatar-radius); background: var(--honesty-avatar-bg); }
-img { inline-size: 100%; block-size: 100%; object-fit: cover; }
-:host([data-avatar-shape='rounded']) { --honesty-avatar-radius: var(--honesty-avatar-rounded-radius); }
-:host([data-avatar-shape='square']) { --honesty-avatar-radius: var(--honesty-avatar-square-radius); }
-:host([data-avatar-cursor='pointer']) { cursor: pointer; }
-:host([data-avatar-size='xs']) { @include tokens.size-xs; } :host([data-avatar-size='sm']) { @include tokens.size-sm; } :host([data-avatar-size='lg']) { @include tokens.size-lg; } :host([data-avatar-size='xl']) { @include tokens.size-xl; }
+
+:host {
+  @include tokens.root-base;
+
+  position: relative;
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  box-sizing: border-box;
+  inline-size: var(--honesty-avatar-size);
+  block-size: var(--honesty-avatar-size);
+  color: var(--honesty-avatar-fg);
+  font-size: var(--honesty-avatar-font-size);
+  font-weight: var(--honesty-avatar-font-weight);
+  line-height: 1;
+  letter-spacing: var(--honesty-avatar-letter-spacing);
+  vertical-align: middle;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:host([data-avatar-size='xs']) { @include tokens.size-xs; }
+:host([data-avatar-size='sm']) { @include tokens.size-sm; }
+:host([data-avatar-size='lg']) { @include tokens.size-lg; }
+:host([data-avatar-size='xl']) { @include tokens.size-xl; }
+:host([data-avatar-size='2xl']) { @include tokens.size-2xl; }
+
+:host([data-avatar-shape='rounded']) {
+  --honesty-avatar-radius: var(--honesty-avatar-rounded-radius);
+}
+
+:host([data-avatar-shape='square']) {
+  --honesty-avatar-radius: var(--honesty-avatar-square-radius);
+}
+
+:host([data-avatar-presence-position='top']) erp-avatar-presence {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+:host([data-avatar-presence-position='bottom']) erp-avatar-presence {
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+:host([data-avatar-presence-position='left']) erp-avatar-presence {
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+:host([data-avatar-presence-position='right']) erp-avatar-presence {
+  top: 50%;
+  right: 0;
+  transform: translate(50%, -50%);
+}
+
+:host([data-avatar-presence-position='top-left']) erp-avatar-presence {
+  top: 0;
+  left: 0;
+  transform: translate(-35%, -35%);
+}
+
+:host([data-avatar-presence-position='top-right']) erp-avatar-presence {
+  top: 0;
+  right: 0;
+  transform: translate(35%, -35%);
+}
+
+:host([data-avatar-presence-position='bottom-left']) erp-avatar-presence {
+  bottom: 0;
+  left: 0;
+  transform: translate(-35%, 35%);
+}
+
+:host([data-avatar-presence-position='bottom-right']) erp-avatar-presence {
+  right: 0;
+  bottom: 0;
+  transform: translate(35%, 35%);
+}

@@ -1,6 +1,241 @@
-@mixin base { --honesty-avatar-size: 3rem; --honesty-avatar-bg: var(--honesty-color-action-primary-subtle-bg); --honesty-avatar-fg: var(--honesty-color-text-primary); --honesty-avatar-border-color: var(--honesty-border-subtle); --honesty-avatar-border-width: var(--honesty-border-width-default); --honesty-avatar-radius: var(--honesty-radius-full); --honesty-avatar-rounded-radius: var(--honesty-radius-control); --honesty-avatar-square-radius: var(--honesty-radius-none); --honesty-avatar-font-size: var(--honesty-type-body-font-size); --honesty-avatar-presence-size: 0.75rem; --honesty-avatar-presence-offset: -0.125rem; --honesty-avatar-presence-border-width: var(--honesty-border-width-emphasis); --honesty-avatar-presence-border-color: var(--honesty-color-surface-default); --honesty-avatar-presence-bg: var(--honesty-color-text-muted); --honesty-avatar-presence-duration: var(--honesty-motion-duration-deliberate); --honesty-avatar-presence-breathe-duration: var(--honesty-motion-duration-ambient); --honesty-avatar-presence-easing: var(--honesty-motion-easing-standard); --honesty-avatar-presence-pulse-scale: 1.18; --honesty-avatar-presence-ping-size: 0.25rem; --honesty-avatar-presence-ping-color: var(--honesty-border-subtle); --honesty-avatar-presence-breathe-opacity: 0.45; --honesty-avatar-hover-duration: var(--honesty-motion-duration-fast); --honesty-avatar-hover-easing: var(--honesty-motion-easing-standard); --honesty-avatar-hover-scale: 1.05; --honesty-avatar-hover-lift: -0.125rem; --honesty-avatar-reduced-duration: var(--honesty-motion-duration-instant); }
-@mixin presence-online { --honesty-avatar-presence-bg: var(--honesty-color-feedback-success-text); }
-@mixin presence-away { --honesty-avatar-presence-bg: var(--honesty-color-feedback-warning-text); }
-@mixin presence-busy { --honesty-avatar-presence-bg: var(--honesty-color-feedback-danger-text); }
+@mixin base {
+  --honesty-avatar-size: 2.375rem;
+  --honesty-avatar-font-size: 0.8125rem;
+  --honesty-avatar-icon-size: 1.1875rem;
+  --honesty-avatar-presence-size: 0.625rem;
+  --honesty-avatar-presence-border-width: 0.125rem;
+  --honesty-avatar-ring-width: 0.125rem;
+  --honesty-avatar-ring-offset: 0.125rem;
+  --honesty-avatar-radius: 50%;
+  --honesty-avatar-rounded-radius: 26%;
+  --honesty-avatar-square-radius: 0.25rem;
+  --honesty-avatar-bg-from: var(--honesty-border-strong);
+  --honesty-avatar-bg-to: var(--honesty-color-text-secondary);
+  --honesty-avatar-fg: var(--honesty-color-text-inverse);
+  --honesty-avatar-ring-color: var(--honesty-color-surface-default);
+  --honesty-avatar-presence-bg: var(--honesty-color-text-muted);
+  --honesty-avatar-letter-spacing: 0.02em;
+  --honesty-avatar-font-weight: var(--honesty-type-label-font-weight);
+  --honesty-avatar-border-width: var(--honesty-border-width-default);
+  --honesty-avatar-border-width-contrast: var(--honesty-border-width-emphasis);
+  --honesty-avatar-border-color: var(--honesty-border-subtle);
+  --honesty-avatar-border-color-contrast: var(--honesty-border-strong);
+  --honesty-avatar-initials-latin-offset: -0.0625rem;
+  --honesty-avatar-gradient-angle: 135deg;
+  --honesty-avatar-image-fit: cover;
+  --honesty-avatar-hover-scale: 1.06;
+  --honesty-avatar-active-scale: 0.96;
+  --honesty-avatar-hover-lift: -0.1875rem;
+  --honesty-avatar-elevation-hover: var(--honesty-elevation-raised);
+  --honesty-avatar-transition-duration: var(--honesty-motion-duration-deliberate);
+  --honesty-avatar-transition-easing: var(--honesty-motion-easing-standard);
+  --honesty-avatar-loading-duration: calc(var(--honesty-motion-duration-fast) * 16);
+  --honesty-avatar-motion-linear: var(--honesty-motion-easing-linear);
+  --honesty-avatar-loading-edge: var(--honesty-color-surface-canvas);
+  --honesty-avatar-loading-center: var(--honesty-color-surface-elevated);
+  --honesty-avatar-loading-size: 200% 100%;
+  --honesty-avatar-reduced-duration: var(--honesty-motion-duration-instant);
+  --honesty-avatar-focus-ring-width: 0.1875rem;
+  --honesty-avatar-focus-ring-color: var(--honesty-color-action-focus-ring);
+  --honesty-avatar-presence-transition-duration: var(--honesty-motion-duration-deliberate);
+  --honesty-avatar-presence-transition-easing: var(--honesty-motion-easing-standard);
+  --honesty-avatar-pulse-duration: calc(var(--honesty-motion-duration-deliberate) * 6);
+  --honesty-avatar-ping-duration: calc(var(--honesty-motion-duration-fast) * 16);
+  --honesty-avatar-bounce-duration: calc(var(--honesty-motion-duration-fast) * 14);
+  --honesty-avatar-blink-duration: calc(var(--honesty-motion-duration-fast) * 16);
+  --honesty-avatar-breathe-duration: var(--honesty-motion-duration-ambient);
+  --honesty-avatar-motion-easing: var(--honesty-motion-easing-standard);
+  --honesty-avatar-motion-easing-enter: var(--honesty-motion-easing-enter);
+  --honesty-avatar-pulse-opacity: 0.75;
+  --honesty-avatar-pulse-scale: 2.4;
+  --honesty-avatar-ping-opacity: 0.9;
+  --honesty-avatar-ping-scale: 2.8;
+  --honesty-avatar-ping-border-width: 0.125rem;
+  --honesty-avatar-bounce-distance: -0.1875rem;
+  --honesty-avatar-blink-opacity: 0.35;
+  --honesty-avatar-breathe-opacity: 0.45;
+}
+
+// The public Avatar is composed from internal frame, action, and presence
+// owners. Each owner emits only its slice while `base` remains the canonical
+// declaration inventory required by the Component Token framework.
+@mixin root-base {
+  --honesty-avatar-size: 2.375rem;
+  --honesty-avatar-font-size: 0.8125rem;
+  --honesty-avatar-icon-size: 1.1875rem;
+  --honesty-avatar-presence-size: 0.625rem;
+  --honesty-avatar-presence-border-width: 0.125rem;
+  --honesty-avatar-ring-width: 0.125rem;
+  --honesty-avatar-ring-offset: 0.125rem;
+  --honesty-avatar-radius: 50%;
+  --honesty-avatar-rounded-radius: 26%;
+  --honesty-avatar-square-radius: 0.25rem;
+  --honesty-avatar-bg-from: var(--honesty-border-strong);
+  --honesty-avatar-bg-to: var(--honesty-color-text-secondary);
+  --honesty-avatar-fg: var(--honesty-color-text-inverse);
+  --honesty-avatar-ring-color: var(--honesty-color-surface-default);
+  --honesty-avatar-presence-bg: var(--honesty-color-text-muted);
+  --honesty-avatar-letter-spacing: 0.02em;
+  --honesty-avatar-font-weight: var(--honesty-type-label-font-weight);
+}
+
+@mixin frame-base {
+  --honesty-avatar-border-width: var(--honesty-border-width-default);
+  --honesty-avatar-border-width-contrast: var(--honesty-border-width-emphasis);
+  --honesty-avatar-border-color: var(--honesty-border-subtle);
+  --honesty-avatar-border-color-contrast: var(--honesty-border-strong);
+  --honesty-avatar-initials-latin-offset: -0.0625rem;
+  --honesty-avatar-gradient-angle: 135deg;
+  --honesty-avatar-image-fit: cover;
+  --honesty-avatar-hover-scale: 1.06;
+  --honesty-avatar-active-scale: 0.96;
+  --honesty-avatar-hover-lift: -0.1875rem;
+  --honesty-avatar-elevation-hover: var(--honesty-elevation-raised);
+  --honesty-avatar-transition-duration: var(--honesty-motion-duration-deliberate);
+  --honesty-avatar-transition-easing: var(--honesty-motion-easing-standard);
+  --honesty-avatar-loading-duration: calc(var(--honesty-motion-duration-fast) * 16);
+  --honesty-avatar-motion-linear: var(--honesty-motion-easing-linear);
+  --honesty-avatar-loading-edge: var(--honesty-color-surface-canvas);
+  --honesty-avatar-loading-center: var(--honesty-color-surface-elevated);
+  --honesty-avatar-loading-size: 200% 100%;
+  --honesty-avatar-reduced-duration: var(--honesty-motion-duration-instant);
+}
+
+@mixin action-base {
+  --honesty-avatar-focus-ring-width: 0.1875rem;
+  --honesty-avatar-focus-ring-color: var(--honesty-color-action-focus-ring);
+}
+
+@mixin presence-base {
+  --honesty-avatar-presence-transition-duration: var(--honesty-motion-duration-deliberate);
+  --honesty-avatar-presence-transition-easing: var(--honesty-motion-easing-standard);
+  --honesty-avatar-pulse-duration: calc(var(--honesty-motion-duration-deliberate) * 6);
+  --honesty-avatar-ping-duration: calc(var(--honesty-motion-duration-fast) * 16);
+  --honesty-avatar-bounce-duration: calc(var(--honesty-motion-duration-fast) * 14);
+  --honesty-avatar-blink-duration: calc(var(--honesty-motion-duration-fast) * 16);
+  --honesty-avatar-breathe-duration: var(--honesty-motion-duration-ambient);
+  --honesty-avatar-motion-easing: var(--honesty-motion-easing-standard);
+  --honesty-avatar-motion-easing-enter: var(--honesty-motion-easing-enter);
+  --honesty-avatar-pulse-opacity: 0.75;
+  --honesty-avatar-pulse-scale: 2.4;
+  --honesty-avatar-ping-opacity: 0.9;
+  --honesty-avatar-ping-scale: 2.8;
+  --honesty-avatar-ping-border-width: 0.125rem;
+  --honesty-avatar-bounce-distance: -0.1875rem;
+  --honesty-avatar-blink-opacity: 0.35;
+  --honesty-avatar-breathe-opacity: 0.45;
+  --honesty-avatar-reduced-duration: var(--honesty-motion-duration-instant);
+}
+
+@mixin size-xs {
+  --honesty-avatar-size: 1.5rem;
+  --honesty-avatar-font-size: 0.625rem;
+  --honesty-avatar-icon-size: 0.8125rem;
+  --honesty-avatar-presence-size: 0.4375rem;
+  --honesty-avatar-presence-border-width: 0.125rem;
+  --honesty-avatar-ring-width: 0.125rem;
+  --honesty-avatar-ring-offset: 0.0625rem;
+}
+
+@mixin size-sm {
+  --honesty-avatar-size: 1.875rem;
+  --honesty-avatar-font-size: 0.6875rem;
+  --honesty-avatar-icon-size: 0.9375rem;
+  --honesty-avatar-presence-size: 0.5rem;
+  --honesty-avatar-presence-border-width: 0.125rem;
+  --honesty-avatar-ring-width: 0.125rem;
+  --honesty-avatar-ring-offset: 0.125rem;
+}
+
+@mixin size-lg {
+  --honesty-avatar-size: 3.125rem;
+  --honesty-avatar-font-size: 1rem;
+  --honesty-avatar-icon-size: 1.625rem;
+  --honesty-avatar-presence-size: 0.8125rem;
+  --honesty-avatar-presence-border-width: 0.1875rem;
+  --honesty-avatar-ring-width: 0.125rem;
+  --honesty-avatar-ring-offset: 0.1875rem;
+}
+
+@mixin size-xl {
+  --honesty-avatar-size: 4.25rem;
+  --honesty-avatar-font-size: 1.375rem;
+  --honesty-avatar-icon-size: 2.25rem;
+  --honesty-avatar-presence-size: 1.0625rem;
+  --honesty-avatar-presence-border-width: 0.1875rem;
+  --honesty-avatar-ring-width: 0.1875rem;
+  --honesty-avatar-ring-offset: 0.1875rem;
+}
+
+@mixin size-2xl {
+  --honesty-avatar-size: 5.5rem;
+  --honesty-avatar-font-size: 1.75rem;
+  --honesty-avatar-icon-size: 2.875rem;
+  --honesty-avatar-presence-size: 1.375rem;
+  --honesty-avatar-presence-border-width: 0.25rem;
+  --honesty-avatar-ring-width: 0.1875rem;
+  --honesty-avatar-ring-offset: 0.25rem;
+}
+
+@mixin narrow-xl {
+  --honesty-avatar-size: 3.625rem;
+  --honesty-avatar-font-size: 1.125rem;
+  --honesty-avatar-presence-size: 0.875rem;
+}
+
+@mixin narrow-2xl {
+  --honesty-avatar-size: 4.5rem;
+  --honesty-avatar-font-size: 1.375rem;
+  --honesty-avatar-presence-size: 1.125rem;
+}
+
+@mixin tone-brand {
+  --honesty-avatar-bg-from: var(--honesty-color-brand-primary-solid);
+  --honesty-avatar-bg-to: var(--honesty-color-brand-primary-solid-strong);
+  --honesty-avatar-fg: var(--honesty-color-brand-primary-on-solid);
+}
+
+@mixin tone-success {
+  --honesty-avatar-bg-from: var(--honesty-color-feedback-success-icon);
+  --honesty-avatar-bg-to: var(--honesty-color-feedback-success-surface-strong);
+  --honesty-avatar-fg: var(--honesty-color-feedback-success-on-strong);
+}
+
+@mixin tone-warning {
+  --honesty-avatar-bg-from: var(--honesty-color-feedback-warning-icon);
+  --honesty-avatar-bg-to: var(--honesty-color-feedback-warning-surface-strong);
+  --honesty-avatar-fg: var(--honesty-color-feedback-warning-on-strong);
+}
+
+@mixin tone-danger {
+  --honesty-avatar-bg-from: var(--honesty-color-feedback-danger-icon);
+  --honesty-avatar-bg-to: var(--honesty-color-feedback-danger-surface-strong);
+  --honesty-avatar-fg: var(--honesty-color-feedback-danger-on-strong);
+}
+
+@mixin tone-info {
+  --honesty-avatar-bg-from: var(--honesty-color-feedback-info-icon);
+  --honesty-avatar-bg-to: var(--honesty-color-feedback-info-surface-strong);
+  --honesty-avatar-fg: var(--honesty-color-feedback-info-on-strong);
+}
+
+@mixin tone-purple {
+  --honesty-avatar-bg-from: var(--honesty-color-brand-accent-solid);
+  --honesty-avatar-bg-to: var(--honesty-color-brand-accent-solid-strong);
+  --honesty-avatar-fg: var(--honesty-color-brand-accent-on-solid);
+}
+
+@mixin tone-slate {
+  --honesty-avatar-bg-from: var(--honesty-color-brand-secondary-solid);
+  --honesty-avatar-bg-to: var(--honesty-color-brand-secondary-solid-strong);
+  --honesty-avatar-fg: var(--honesty-color-brand-secondary-on-solid);
+}
+
+@mixin presence-online { --honesty-avatar-presence-bg: var(--honesty-color-feedback-success-icon); }
+@mixin presence-away { --honesty-avatar-presence-bg: var(--honesty-color-feedback-warning-icon); }
+@mixin presence-busy { --honesty-avatar-presence-bg: var(--honesty-color-feedback-danger-icon); }
 @mixin presence-offline { --honesty-avatar-presence-bg: var(--honesty-color-text-muted); }
-@mixin size-xs { --honesty-avatar-size: 1.5rem; --honesty-avatar-font-size: var(--honesty-type-caption-font-size); } @mixin size-sm { --honesty-avatar-size: 2rem; --honesty-avatar-font-size: var(--honesty-type-body-small-font-size); } @mixin size-lg { --honesty-avatar-size: 4rem; --honesty-avatar-font-size: var(--honesty-type-section-title-font-size); } @mixin size-xl { --honesty-avatar-size: 5rem; --honesty-avatar-font-size: var(--honesty-type-page-title-font-size); }
+@mixin presence-info { --honesty-avatar-presence-bg: var(--honesty-color-feedback-info-icon); }
+@mixin presence-brand { --honesty-avatar-presence-bg: var(--honesty-color-brand-primary-solid); }
+@mixin presence-pending { --honesty-avatar-presence-bg: var(--honesty-color-brand-accent-solid); }
+@mixin presence-vacation { --honesty-avatar-presence-bg: var(--honesty-color-brand-secondary-solid); }

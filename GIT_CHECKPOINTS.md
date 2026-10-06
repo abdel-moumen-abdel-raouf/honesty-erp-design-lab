@@ -9,7 +9,26 @@ Always resolve live `origin/main` directly at session start. This file records
 named checkpoints; it does not claim that its own latest docs SHA is an eternal
 repository HEAD.
 
-## Current ErpStatusBadge exact-reference checkpoint — 2026-10-07
+## Current ErpAvatar exact-reference checkpoint — 2026-10-07
+
+Entry checkpoint:
+
+- `3558434c274a11b7b52296f78b8968806817e1e8`
+
+The bounded implementation commit is `fix(avatar): rebuild from exact Product
+Owner reference`; resolve its final SHA from live `main` because this file is
+committed with it. Its canonical gate passes 133/133 test files, 881/881 tests,
+both typechecks, production build, every governance check, and zero warnings.
+Initial bundle: 376.12 kB / 85.63 kB estimated transfer. Core Batch lazy chunk:
+70.10 kB / 12.81 kB.
+
+Binding reference: `ERP-AVATAR.html`, SHA-256
+`2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`.
+Product Owner visual acceptance remains pending and the Data/Table Visual
+Correction Wave remains unopened. The authoritative implementation contract is
+`src/app/controls/avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md`.
+
+## Historical ErpStatusBadge exact-reference checkpoint — superseded current gate
 
 Entry checkpoint:
 

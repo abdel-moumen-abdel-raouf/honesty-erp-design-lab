@@ -14,6 +14,9 @@ describe('ErpAvatarPicker', () => {
     expect(fixture.nativeElement.querySelectorAll('[role="tab"]')).toHaveLength(2);
     expect(fixture.nativeElement.querySelectorAll('erp-selection-tile')).toHaveLength(20);
     expect(fixture.nativeElement.querySelectorAll('erp-selection-tile erp-avatar')).toHaveLength(20);
+    expect(
+      fixture.nativeElement.querySelectorAll('erp-selection-tile erp-avatar .avatar__frame'),
+    ).toHaveLength(20);
   });
 
   it('keeps value controlled through model and emits the explicit changed intent', () => {

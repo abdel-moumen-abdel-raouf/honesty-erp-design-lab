@@ -1,0 +1,5 @@
+<ng-content />
+
+@if (interactive()) {
+  <button type="button" [attr.aria-label]="label()" (click)="action.emit($event)"></button>
+}

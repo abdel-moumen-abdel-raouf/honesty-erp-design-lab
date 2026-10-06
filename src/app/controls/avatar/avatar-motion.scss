@@ -1,9 +1,0 @@
-:host([data-avatar-presence-motion='pulse']) .avatar__presence-indicator { animation: honesty-avatar-pulse var(--honesty-avatar-presence-duration) var(--honesty-avatar-presence-easing) infinite alternate; }
-:host([data-avatar-presence-motion='ping']) .avatar__presence-indicator { animation: honesty-avatar-ping var(--honesty-avatar-presence-duration) var(--honesty-avatar-presence-easing) infinite; }
-:host([data-avatar-presence-motion='breathe']) .avatar__presence-indicator { animation: honesty-avatar-breathe var(--honesty-avatar-presence-breathe-duration) var(--honesty-avatar-presence-easing) infinite alternate; }
-:host([data-avatar-hover-motion='scale']:hover) { transform: scale(var(--honesty-avatar-hover-scale)); }
-:host([data-avatar-hover-motion='lift']:hover) { transform: translateY(var(--honesty-avatar-hover-lift)); }
-@keyframes honesty-avatar-pulse { to { transform: scale(var(--honesty-avatar-presence-pulse-scale)); } }
-@keyframes honesty-avatar-ping { 50% { box-shadow: 0 0 0 var(--honesty-avatar-presence-ping-size) var(--honesty-avatar-presence-ping-color); } }
-@keyframes honesty-avatar-breathe { to { opacity: var(--honesty-avatar-presence-breathe-opacity); } }
-@media (prefers-reduced-motion: reduce) { :host, .avatar__presence-indicator { animation: none; transition-duration: var(--honesty-avatar-reduced-duration); } :host:hover { transform: none; } }
