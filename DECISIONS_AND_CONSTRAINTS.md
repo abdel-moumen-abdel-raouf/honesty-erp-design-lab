@@ -35,15 +35,23 @@ Visual Correction Wave V2. It reopened exactly `ErpSelect`, `ErpStatusBadge`,
 `ErpAlert`, `ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`, and
 `ErpPagination`, and authorized `ErpAvatarPicker` as the ninth Core owner.
 
+The subsequent bounded external-review correction started from
+`ae5b6e2664c1d664f61ee9c745a54b8e0008989a` and changes only four contracts:
+Table selection never implies row activation; Pagination keeps one visual
+page-size label and an accessible hidden Select label; Avatar left/right names
+are physical and its motion layer cannot replace positioning; Select composes
+the approved SearchBox and action-menu lower owners.
+
 The V2 hierarchy is binding: AvatarPicker composes Tabs + Avatar; Table composes
 CheckBox + SortHeader; Pagination composes Select; Alert composes IconButton +
 Tooltip; rich routed evidence lives behind approved `erp-review-*` internals.
-The candidate passed 133/133 test files and 845/845 tests, both typechecks,
+The corrected candidate passed 133/133 test files and 853/853 tests, both typechecks,
 production build, and zero warnings.
 
 Current active gate is grouped Product Owner runtime/Light/Dark/RTL/narrow
 review at `/controls/core-batch`. Browser attachment was unavailable during the
-implementation run, so no visual acceptance is claimed. The Data/Table Visual
+original implementation run; the bounded follow-up obtained runtime evidence
+for the four requested gaps, without conferring visual acceptance. The Data/Table Visual
 Correction Wave remains unopened; only SmartTable compatibility required by
 the lower Table contract is authorized. Technical PASS is not visual freeze.
 Standalone EntityReview, Entity Wizard, workflow engine, DataPage,

@@ -6,12 +6,17 @@ Product Owner Core Components Visual Correction Wave V2 started from
 `555dde11e2a922393b9e5d0fb128c6465934d42f`. Resolve final local and remote SHAs
 at session start.
 
+The bounded external-review gap correction started from
+`ae5b6e2664c1d664f61ee9c745a54b8e0008989a`. It fixes only Table intent
+separation, Pagination label composition, Avatar physical position/motion
+layering, and Select lower-owner hierarchy.
+
 The Product Owner reopened `ErpSelect`, `ErpStatusBadge`, `ErpAlert`,
 `ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`, and `ErpPagination`, and
-authorized the new `ErpAvatarPicker`. The V2 implementation is technically
-green at 133/133 test files and 845/845 tests, all lint/governance gates, both
+authorized the new `ErpAvatarPicker`. The corrected V2 implementation is technically
+green at 133/133 test files and 853/853 tests, all lint/governance gates, both
 typechecks, production build, and zero warnings. Initial bundle is 375.68 kB /
-85.48 kB estimated transfer; Core Batch lazy chunk is 39.37 kB / 8.34 kB.
+85.45 kB estimated transfer; Core Batch lazy chunk is 41.10 kB / 8.70 kB.
 
 The corrected source follows the Product Owner reference contracts documented
 in `CORE_COMPONENT_VISUAL_CORRECTION_V2.md` and the per-owner reference files.
@@ -22,7 +27,8 @@ Select, and Alert keeps the Tooltip-wrapped IconButton path.
 
 The exact next action is Product Owner grouped runtime/Light/Dark/RTL/narrow
 review of `/controls/core-batch`. The execution environment's browser
-attachment failed, so this checkpoint claims technical evidence only. The
+runtime verified the requested gap behaviors, but that evidence is not Product
+Owner visual acceptance. The
 Data/Table Visual Correction Wave is not opened; SmartTable changes are lower-
 owner compatibility only. Technical PASS never equals visual acceptance.
 Standalone EntityReview, Entity Wizard, workflow engine, DataPage,

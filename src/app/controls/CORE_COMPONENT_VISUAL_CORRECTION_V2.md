@@ -45,11 +45,28 @@ Only bounded compatibility changes may flow into `ErpSmartTable` and existing co
 
 - Governance/lint: PASS, including 82 Component Token modules and 28 ERP-only
   routed templates.
-- Tests: 133/133 files and 845/845 tests PASS.
+- Tests: 133/133 files and 853/853 tests PASS after the bounded external-review
+  correction.
 - TypeScript app/spec typechecks: PASS.
 - Production build: PASS with zero warnings; initial bundle 375.68 kB /
-  85.48 kB estimated transfer; Core Batch lazy chunk 39.37 kB / 8.34 kB.
-- Browser visual attachment failed in the execution environment before a page
-  could be inspected. Therefore Light/Dark/RTL/narrow runtime acceptance,
-  actual computed Skeleton contrast, and pointer-driven geometry remain the
-  next Product Owner review gate rather than claimed evidence.
+  85.45 kB estimated transfer; Core Batch lazy chunk 41.10 kB / 8.70 kB.
+- Browser runtime evidence verifies the requested Table separation, one-label
+  Pagination composition, eight physical Avatar positions in LTR and RTL with
+  independent pulse motion, Select popup/trigger width equality,
+  SearchBox-based filtering, and action-menu sorting. This does not constitute
+  Product Owner visual acceptance; grouped Light/Dark/RTL/narrow review remains
+  the next gate.
+
+## External-review gap correction
+
+- Table row body activation emits only when `rowActivatable=true`; `selectable`
+  owns checkbox selection only. Tests cover the complete two-boolean matrix.
+- Pagination renders exactly one visible `عدد السجلات` label in the horizontal
+  row. Its Select retains a genuine accessible name through Field Family
+  `labelMode='visually-hidden'`.
+- Avatar presence positions use physical edges for all eight public physical
+  names in both LTR and RTL. A nested indicator owns pulse/ping/breathe motion,
+  preserving the outer position transform; reduced motion disables animation.
+- Select popup search composes `ErpSearchBox mode='inline'`; sort choices
+  compose the existing internal action-menu content. The Select template no
+  longer owns a raw search input or private sort-menu buttons.

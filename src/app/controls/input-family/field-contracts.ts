@@ -43,7 +43,8 @@ export type ErpFieldAppearance =
 
 export type ErpFieldLabelMode =
   | 'static'
-  | 'floating';
+  | 'floating'
+  | 'visually-hidden';
 
 export type ErpFieldFloatingPosition =
   | 'top'

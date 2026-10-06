@@ -19,6 +19,14 @@ Product Owner Core Components Visual Correction Wave V2 started from
 directly; this document is synchronized in the same bounded implementation
 commit.
 
+The bounded external-review correction started from
+`ae5b6e2664c1d664f61ee9c745a54b8e0008989a`. It separates Table row activation
+from checkbox selection, gives Pagination one visible horizontal page-size
+label plus a genuine visually hidden Select label, makes all eight Avatar
+presence names physical in both directions while isolating motion from
+positioning, and replaces Select-private search/menu authoring with the
+approved `ErpSearchBox` and internal action-menu owners.
+
 The Product Owner explicitly reopened `ErpSelect`, `ErpStatusBadge`, `ErpAlert`,
 `ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`, and `ErpPagination` after
 visual review, and authorized the new `ErpAvatarPicker`. The correction now
@@ -27,19 +35,21 @@ Avatar, Tabs, and AvatarPicker reference evidence, the 40 supplied avatar PNG
 assets plus manifest, bottom-up owner reuse, and the rebuilt
 `/controls/core-batch` evidence surface.
 
-Technical verification for this V2 candidate passed 133/133 test files and
-845/845 tests, all lint/governance checks, both TypeScript typechecks, production
+Technical verification for this corrected V2 candidate passed 133/133 test files and
+853/853 tests, all lint/governance checks, both TypeScript typechecks, production
 build, and zero Angular/build warnings. The production initial bundle is
-375.68 kB / 85.48 kB estimated transfer; the Core Batch lazy chunk is 39.37 kB
-/ 8.34 kB estimated transfer. Component Token governance reports 82 concrete
+375.68 kB / 85.45 kB estimated transfer; the Core Batch lazy chunk is 41.10 kB
+/ 8.70 kB estimated transfer. Component Token governance reports 82 concrete
 modules and route governance reports 28 routed templates.
 
 Product Owner visual state and immediate next action:
 
 - the eight reopened owners and new AvatarPicker remain pending grouped
   Product Owner runtime/Light/Dark/RTL/narrow review at `/controls/core-batch`;
-- browser visual evidence could not be completed in this execution environment
-  because the Codex computer-use runtime failed before browser attachment;
+- browser runtime evidence on `/controls/core-batch` verified the requested
+  Table separation, the single horizontal Pagination label, identical physical
+  Avatar positions in RTL/LTR with independent pulse motion, Select popup/trigger
+  width equality, SearchBox-based filtering, and action-menu sorting;
 - technical green does not equal Product Owner visual approval or freeze;
 - the exact next action is the grouped Product Owner review of this corrected
   Core surface;

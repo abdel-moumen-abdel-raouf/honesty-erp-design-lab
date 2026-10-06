@@ -63,13 +63,20 @@ Product Owner Core Components Visual Correction Wave V2 started from
 Git; source and continuity are committed together in the bounded correction
 commit.
 
+The external-review gap correction started from
+`ae5b6e2664c1d664f61ee9c745a54b8e0008989a` and is part of the same open V2
+review state: Table selection/activation are independent, Pagination has one
+visible horizontal page-size label with an accessible hidden field label,
+Avatar positions are physical and motion-safe, and Select reuses approved
+SearchBox/action-menu lower owners.
+
 - Product Owner visual review reopened `ErpSelect`, `ErpStatusBadge`,
   `ErpAlert`, `ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`, and
   `ErpPagination`, and explicitly authorized `ErpAvatarPicker`.
-- V2 technical verification passed 133/133 test files, 845/845 tests, all
+- Corrected V2 technical verification passed 133/133 test files, 853/853 tests, all
   lint/governance gates, both typechecks, production build, and zero warnings.
-- Initial bundle: 375.68 kB / 85.48 kB estimated transfer. Core Batch lazy
-  chunk: 39.37 kB / 8.34 kB estimated transfer.
+- Initial bundle: 375.68 kB / 85.45 kB estimated transfer. Core Batch lazy
+  chunk: 41.10 kB / 8.70 kB estimated transfer.
 - The Select reference SHA remains
   `5A31FC10A3D1208BF64E35EB5139823E48F8E2BF1D0190D07DD5DB5DBC4DF23B`.
   Downloaded reference SHAs and adoption boundaries are recorded in the V2
@@ -78,8 +85,8 @@ commit.
   `ErpAvatarPicker` composes `ErpTabs` and `ErpAvatar`.
 - Product Owner runtime/Light/Dark/RTL/narrow acceptance remains pending at
   `/controls/core-batch`; technical PASS is not visual approval or freeze.
-- The browser attachment tool failed in this execution environment, so no
-  manual visual acceptance is claimed.
+- Browser runtime evidence verifies only the requested gap behaviors on
+  `/controls/core-batch`; it does not confer Product Owner visual acceptance.
 - The Data/Table Visual Correction Wave remains unopened; only bounded
   `ErpSmartTable` compatibility was changed to delegate sorting to `ErpTable`.
 - All prior Core/Data/Forms/Entity Form/Shell technical candidates remain in

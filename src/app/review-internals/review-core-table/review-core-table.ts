@@ -1,6 +1,8 @@
 import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 import {ErpAvatar} from '../../controls/avatar/avatar';
 import {ErpButton} from '../../controls/button/button';
+import {ErpCheckBox} from '../../controls/check-box/check-box';
 import {ErpIconButton} from '../../controls/icon-button/icon-button';
 import {ErpStatusBadge} from '../../controls/status-badge/status-badge';
 import {
@@ -24,6 +26,7 @@ import {ErpText} from '../../primitives/text/text';
   imports: [
     ErpAvatar,
     ErpButton,
+    ErpCheckBox,
     ErpIcon,
     ErpIconButton,
     ErpInline,
@@ -33,11 +36,14 @@ import {ErpText} from '../../primitives/text/text';
     ErpTableFooter,
     ErpText,
     ErpTooltip,
+    FormsModule,
   ],
   templateUrl: './review-core-table.html',
 })
 export class ErpReviewCoreTable {
   readonly selectedRows = signal<readonly string[]>(['2']);
+  readonly rowActivatable = signal(false);
+  readonly activatedRowCode = signal<string | null>(null);
   readonly tableSort = signal<ErpTableSort | null>(null);
   readonly visibleColumnKeys = signal<readonly string[]>([
     'code',
@@ -152,5 +158,9 @@ export class ErpReviewCoreTable {
 
   protected iconName(row: ErpTableRow): ErpIconName {
     return String(row['categoryIcon'] ?? 'info') as ErpIconName;
+  }
+
+  protected activateRow(row: ErpTableRow): void {
+    this.activatedRowCode.set(String(row['code'] ?? '—'));
   }
 }

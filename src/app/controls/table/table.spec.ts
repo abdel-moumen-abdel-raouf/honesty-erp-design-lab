@@ -17,7 +17,8 @@ import {
       caption="الحسابات"
       [columns]="columns"
       [rows]="rows"
-      selectable
+      [selectable]="selectable"
+      [rowActivatable]="rowActivatable"
       [selectedKeys]="selectedKeys"
       [sort]="sort"
       [footerValues]="footerValues"
@@ -49,6 +50,8 @@ class TableHost {
   readonly selectedKeys = ['1'];
   readonly sort = {key: 'name', direction: 'ascending'} as const;
   readonly footerValues = {name: 'الإجمالي'} as const;
+  selectable = true;
+  rowActivatable = false;
   activated: ErpTableRow | null = null;
   selection: readonly string[] = this.selectedKeys;
   sortIntent: unknown = null;
@@ -80,16 +83,37 @@ describe('ErpTable', () => {
     expect(fixture.nativeElement.querySelector('tbody td erp-text').textContent).toContain('النقدية');
   });
 
-  it('treats selectedKeys as controlled presentation and rowActivated as intent', () => {
+  it('treats selectedKeys as controlled presentation without implying row activation', () => {
     const fixture = TestBed.createComponent(TableHost);
     fixture.detectChanges();
     const row = fixture.nativeElement.querySelector('tbody tr') as HTMLElement;
     expect(row.getAttribute('aria-selected')).toBe('true');
     row.click();
     fixture.detectChanges();
-    expect(fixture.componentInstance.activated).toEqual({id: '1', name: 'النقدية', status: 'نشط'});
+    expect(fixture.componentInstance.activated).toBeNull();
     expect(row.getAttribute('aria-selected')).toBe('true');
   });
+
+  it.each([
+    {selectable: false, rowActivatable: false, emits: false},
+    {selectable: true, rowActivatable: false, emits: false},
+    {selectable: false, rowActivatable: true, emits: true},
+    {selectable: true, rowActivatable: true, emits: true},
+  ])(
+    'keeps selection and activation independent: selectable=$selectable rowActivatable=$rowActivatable',
+    ({selectable, rowActivatable, emits}) => {
+      const fixture = TestBed.createComponent(TableHost);
+      fixture.componentInstance.selectable = selectable;
+      fixture.componentInstance.rowActivatable = rowActivatable;
+      fixture.detectChanges();
+      const row = fixture.nativeElement.querySelector('tbody tr') as HTMLElement;
+
+      row.click();
+
+      expect(fixture.componentInstance.activated !== null).toBe(emits);
+      expect(row.getAttribute('tabindex')).toBe(rowActivatable ? '0' : null);
+    },
+  );
 
   it('emits checkbox selection separately from row activation and supports select all', () => {
     const fixture = TestBed.createComponent(TableHost);

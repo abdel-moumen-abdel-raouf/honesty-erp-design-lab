@@ -22,12 +22,14 @@ Technical success, green tests, or Codex judgment do not equal visual approval.
 Product Owner visual review reopened `ErpSelect`, `ErpStatusBadge`, `ErpAlert`,
 `ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`, and `ErpPagination`, and
 authorized `ErpAvatarPicker`. Their V2 candidate is technically green at
-133/133 test files and 845/845 tests, both typechecks, production build, and
+133/133 test files and 853/853 tests, both typechecks, production build, and
 zero warnings.
 
 The current gate is grouped Product Owner runtime/Light/Dark/RTL/narrow review
-of `/controls/core-batch`. Browser attachment was unavailable during the
-implementation run, so no visual approval is inferred. The Data/Table Visual
+of `/controls/core-batch`. A bounded external-review follow-up verified Table
+intent separation, Pagination labeling, Avatar position/motion invariants, and
+Select lower-owner hierarchy in the browser, but no visual approval is inferred.
+The Data/Table Visual
 Correction Wave is not opened; only compatibility changes required by the
 lower Table contract are allowed. Technical PASS does not equal Product Owner
 visual approval or freeze.
@@ -46,6 +48,15 @@ migration, and every unlisted owner remain unopened.
   row activation and controlled selection remain distinct intents.
 - `ErpPagination` composes `ErpSelect` for page size and keeps all seven region
   visibility inputs enabled by default.
+- `ErpTable` row activation is controlled only by `rowActivatable`; checkbox
+  selection never implies or emits row activation.
+- Pagination page-size composition has one visible horizontal label and retains
+  the Select accessible name through the Field Family visually-hidden label mode.
+- Avatar `left`/`right` position names are physical in both LTR and RTL; a
+  nested indicator owns motion so animation never replaces position transforms.
+- `ErpSelect` composes `ErpSearchBox` for inline popup search and the approved
+  internal action-menu content for sort choices; it does not own raw search or
+  a second menu architecture.
 - `ErpAlert` uses only the Tooltip-wrapped IconButton close path and must not
   restore a native `title` tooltip.
 - Core motion uses Foundation motion values and remains static-but-visible

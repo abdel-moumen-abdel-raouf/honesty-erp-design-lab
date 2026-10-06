@@ -50,8 +50,25 @@ describe('ErpPagination', () => {
 
   it('uses ErpSelect for optional page-size selection and can hide it', () => {
     const fixture = create(3);
-    expect(fixture.nativeElement.querySelector('erp-select')).not.toBeNull();
+    const select = fixture.nativeElement.querySelector('erp-select') as HTMLElement;
+    const accessibleLabelHost = select.querySelector(
+      '.field-frame__label--visually-hidden',
+    ) as HTMLElement;
+    const accessibleLabel = accessibleLabelHost.querySelector(
+      'label',
+    ) as HTMLLabelElement;
+    expect(select).not.toBeNull();
     expect(fixture.nativeElement.querySelector('erp-inline.pagination__size-row')).not.toBeNull();
+    expect(
+      fixture.nativeElement.querySelector(
+        '.pagination__size-row > erp-text',
+      ).textContent.trim(),
+    ).toBe('عدد السجلات');
+    expect(accessibleLabel.textContent?.trim()).toBe('عدد السجلات');
+    expect(accessibleLabel.htmlFor).toBe(
+      select.querySelector('erp-field-trigger button')?.id,
+    );
+    expect(select.querySelector('.field-frame__label--static')).toBeNull();
     expect(fixture.nativeElement.querySelector('select')).toBeNull();
     fixture.componentRef.setInput('showPageSize', false);
     fixture.detectChanges();

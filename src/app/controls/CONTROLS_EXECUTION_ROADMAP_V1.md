@@ -18,7 +18,7 @@ family. Those decisions remain with the Product Owner and ChatGPT after review.
 Product Owner Core Components Visual Correction Wave V2 reopened exactly
 `ErpSelect`, `ErpStatusBadge`, `ErpAlert`, `ErpSkeleton`, `ErpAvatar`,
 `ErpTabs`, `ErpTable`, and `ErpPagination`, and authorized the ninth Core owner,
-`ErpAvatarPicker`. The V2 candidate passed 133/133 test files and 845/845 tests,
+`ErpAvatarPicker`. The corrected V2 candidate passed 133/133 test files and 853/853 tests,
 both typechecks, production build, all governance, and zero warnings.
 
 The corrected hierarchy is explicit: AvatarPicker composes Tabs and Avatar;
@@ -28,8 +28,10 @@ and 20 female assets plus its manifest. `CORE_COMPONENT_VISUAL_CORRECTION_V2.md`
 and the component reference contracts record the exact reference evidence.
 
 The exact next action is grouped Product Owner runtime/Light/Dark/RTL/narrow
-review at `/controls/core-batch`. The execution environment could not attach to
-a browser, so technical evidence does not claim visual approval. The Data/Table
+review at `/controls/core-batch`. A bounded external-review follow-up obtained
+browser evidence for Table intent separation, Pagination labeling, Avatar
+physical positioning/motion layering, and Select lower-owner reuse; this does
+not claim visual approval. The Data/Table
 Visual Correction Wave, DataPage, Entity patterns, Feature/Page migration, and
 every unlisted family remain unopened. Previously green Data/Table, Forms,
 Entity Form, and Shell source remains present but not visually frozen.

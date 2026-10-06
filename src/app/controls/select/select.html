@@ -53,13 +53,22 @@
 <div #popup class="select__popup" popover="manual" [id]="popupId">
   @if (searchable()) {
     <div class="select__search-row">
-      <erp-text class="select__search-label" type="label" tone="secondary" [for]="searchId">
+      <erp-text class="select__search-label" type="label" tone="secondary">
         {{ searchPlaceholder() }}
       </erp-text>
-      <div class="select__search-control">
-        <erp-icon name="search" size="sm" tone="muted" />
-        <input [id]="searchId" type="search" [value]="query()" [placeholder]="searchPlaceholder()" (input)="updateQuery($event)" (keydown)="handleKeydown($event)" />
-      </div>
+      <erp-search-box
+        class="select__search-control"
+        mode="inline"
+        [label]="searchPlaceholder()"
+        labelMode="visually-hidden"
+        [placeholder]="searchPlaceholder()"
+        [size]="fieldSize()"
+        [clearable]="false"
+        [ngModel]="query()"
+        (ngModelChange)="updateQuery($event)"
+        (keydown)="handleKeydown($event)"
+        [ngModelOptions]="{standalone: true}"
+      />
     </div>
   }
 
@@ -85,11 +94,11 @@
             (pressed)="toggleSortMenu()"
           />
           @if (sortMenuOpen()) {
-            <div class="select__sort-menu" role="menu" aria-label="ترتيب الخيارات">
-              <erp-button label="ترتيب المصدر" size="sm" variant="ghost" role="menuitem" (pressed)="setSort('source')" />
-              <erp-button label="ترتيب تصاعدي" icon="sort-ascending" size="sm" variant="ghost" role="menuitem" (pressed)="setSort('ascending')" />
-              <erp-button label="ترتيب تنازلي" icon="sort-descending" size="sm" variant="ghost" role="menuitem" (pressed)="setSort('descending')" />
-            </div>
+            <erp-action-menu-content
+              class="select__sort-menu"
+              [items]="sortMenuItems"
+              (itemSelected)="selectSort($event)"
+            />
           }
         </div>
       }

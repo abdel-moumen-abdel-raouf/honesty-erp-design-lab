@@ -12,7 +12,7 @@ interface SelectTestAccess {
   setSort(sort: ErpSelectSort): void;
   toggleSortMenu(): void;
   syncPopupWidth(): void;
-  updateQuery(event: Event): void;
+  updateQuery(value: string): void;
   handleKeydown(event: KeyboardEvent): void;
   toggle(): void;
 }
@@ -101,9 +101,7 @@ describe('ErpSelect', () => {
     test.setGroup('finance');
     expect(test.visibleOptions().map(({value}) => value)).toEqual(['alpha', 'charlie']);
     test.setGroup(null);
-    const search = document.createElement('input');
-    search.value = 'ledger';
-    test.updateQuery({target: search} as unknown as Event);
+    test.updateQuery('ledger');
     expect(test.visibleOptions().map(({value}) => value)).toEqual(['bravo']);
   });
 
@@ -111,11 +109,23 @@ describe('ErpSelect', () => {
     const fixture = createSelect();
     const test = access(fixture.componentInstance);
     expect(fixture.nativeElement.querySelector('.select__search-row erp-text')).not.toBeNull();
+    expect(
+      fixture.nativeElement.querySelector(
+        '.select__search-row erp-search-box[data-search-box-mode="inline"]',
+      ),
+    ).not.toBeNull();
     expect(fixture.nativeElement.querySelector('.select__toolbar .select__sort')).not.toBeNull();
     expect(fixture.nativeElement.querySelector('.select__sort-menu')).toBeNull();
     test.toggleSortMenu();
     fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('.select__sort-menu erp-stack[role="menu"]')).not.toBeNull();
     expect(fixture.nativeElement.querySelectorAll('.select__sort-menu erp-button')).toHaveLength(3);
+    (
+      fixture.nativeElement.querySelector(
+        '.select__sort-menu [data-value="ascending"] button',
+      ) as HTMLButtonElement
+    ).click();
+    expect(fixture.componentInstance.sort()).toBe('ascending');
   });
 
   it('matches popup inline size to the trigger while respecting viewport inset', () => {

@@ -59,7 +59,7 @@
       @for (row of rows(); track key(row, $index); let rowIndex = $index) {
         <tr
           [attr.aria-selected]="selectable() ? selectedSet().has(key(row, rowIndex)) : null"
-          [attr.tabindex]="rowActivatable() || selectable() ? 0 : null"
+          [attr.tabindex]="rowActivatable() ? 0 : null"
           (click)="activate(row)"
           (keydown.enter)="activate(row)"
         >

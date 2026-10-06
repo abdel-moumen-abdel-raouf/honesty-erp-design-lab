@@ -107,18 +107,36 @@
           }
         </erp-grid>
         <erp-text type="heading-4">كل مواضع وحالات مؤشر الاتصال</erp-text>
-        <erp-grid [columns]="4" gap="lg" responsive="auto">
-          @for (example of avatarPositions; track example.position) {
-            <erp-avatar
-              [name]="'موضع ' + example.position"
-              shape="rounded"
-              [presence]="example.status"
-              [presencePosition]="example.position"
-              [presenceMotion]="example.motion"
-              hoverMotion="scale"
-            />
-          }
-        </erp-grid>
+        <erp-stack data-avatar-direction-evidence="rtl" dir="rtl" gap="tight">
+          <erp-text type="label">RTL</erp-text>
+          <erp-grid [columns]="4" gap="lg" responsive="auto">
+            @for (example of avatarPositions; track example.position) {
+              <erp-avatar
+                [name]="'موضع ' + example.position + ' RTL'"
+                shape="rounded"
+                [presence]="example.status"
+                [presencePosition]="example.position"
+                [presenceMotion]="example.motion"
+                hoverMotion="scale"
+              />
+            }
+          </erp-grid>
+        </erp-stack>
+        <erp-stack data-avatar-direction-evidence="ltr" dir="ltr" gap="tight">
+          <erp-text type="label">LTR</erp-text>
+          <erp-grid [columns]="4" gap="lg" responsive="auto">
+            @for (example of avatarPositions; track example.position) {
+              <erp-avatar
+                [name]="'موضع ' + example.position + ' LTR'"
+                shape="rounded"
+                [presence]="example.status"
+                [presencePosition]="example.position"
+                [presenceMotion]="example.motion"
+                hoverMotion="scale"
+              />
+            }
+          </erp-grid>
+        </erp-stack>
       </erp-stack>
     </erp-section>
 

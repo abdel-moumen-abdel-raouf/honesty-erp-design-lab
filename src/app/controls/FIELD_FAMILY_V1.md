@@ -97,7 +97,8 @@ export type ErpFieldAppearance =
 
 export type ErpFieldLabelMode =
   | 'static'
-  | 'floating';
+  | 'floating'
+  | 'visually-hidden';
 
 export type ErpFieldFloatingPosition =
   | 'top'
@@ -138,6 +139,11 @@ changes, computed feedback visibility, and common feedback-dismiss helpers.
 It does not own placeholder, readonly, min/max/step, maxlength, autocomplete,
 inputMode, or parser/formatter domain logic. Those remain concrete-control
 capabilities.
+
+`labelMode = 'visually-hidden'` retains the genuine native label and accessible
+name while removing only its visual footprint. It is reserved for bounded
+compositions, such as Pagination's single external visual page-size label; it
+must not be replaced with a page-specific CSS hiding hack.
 
 ## Compatibility Matrix
 

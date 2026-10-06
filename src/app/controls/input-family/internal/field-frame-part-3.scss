@@ -1,5 +1,17 @@
 @use '../../../../styles/foundation/components/field-frame' as tokens;
 
+.field-frame__label--visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 :host([data-field-interaction='editor']:not([data-field-disabled='true']):not([data-field-configuration-state='invalid']))
   .field-frame__control {
   cursor: text;

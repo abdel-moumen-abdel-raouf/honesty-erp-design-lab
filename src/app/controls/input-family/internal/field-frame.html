@@ -7,6 +7,14 @@
   >{{ label() }}</erp-text>
 }
 
+@if (labelMode() === 'visually-hidden') {
+  <erp-text
+    class="field-frame__label field-frame__label--visually-hidden"
+    type="label"
+    [for]="controlId()"
+  >{{ label() }}</erp-text>
+}
+
 @if (helperPosition() === 'above' && trimmedHelperText()) {
   <erp-text
     class="field-frame__helper"

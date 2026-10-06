@@ -11,6 +11,16 @@ describe('CoreBatch', () => {
     expect(fixture.nativeElement.querySelector('erp-avatar-picker')).not.toBeNull();
     expect(fixture.nativeElement.querySelector('erp-review-core-table erp-table')).not.toBeNull();
     expect(fixture.nativeElement.querySelector('erp-pagination')).not.toBeNull();
+    expect(
+      fixture.nativeElement.querySelectorAll(
+        '[data-avatar-direction-evidence] erp-avatar',
+      ),
+    ).toHaveLength(16);
+    expect(
+      fixture.nativeElement.querySelector(
+        '[data-row-activation-evidence]',
+      ).textContent,
+    ).toContain('لم يتم تفعيل صف');
   });
 
   it('keeps the routed review template ERP-only authored', () => {

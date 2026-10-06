@@ -13,18 +13,20 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {FormsModule, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpIcon} from '../../primitives/icon/icon';
 import {ErpText} from '../../primitives/text/text';
 import {AnchoredOverlayController} from '../../shared/anchored-overlay/anchored-overlay-controller';
 import {AnchoredOverlayGeometryResult} from '../../shared/anchored-overlay/anchored-overlay-contracts';
 import {ErpButton} from '../button/button';
 import {ErpAvatar} from '../avatar/avatar';
+import {ErpActionMenuContent} from '../composite-family/internal/action-menu-content';
 import {ErpFieldBase} from '../input-family/field-base';
 import {ErpFieldSize} from '../input-family/field-contracts';
 import {ErpFieldFrame} from '../input-family/internal/field-frame';
 import {ErpFieldTrigger} from '../input-family/internal/field-trigger';
 import {ErpSelectionTile} from '../selection-family/internal/selection-tile';
+import {ErpSearchBox} from '../search-box/search-box';
 import {
   ErpSelectOption,
   ErpSelectSize,
@@ -38,7 +40,18 @@ let nextSelectId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-select',
-  imports: [ErpAvatar, ErpButton, ErpFieldFrame, ErpFieldTrigger, ErpIcon, ErpSelectionTile, ErpText],
+  imports: [
+    ErpActionMenuContent,
+    ErpAvatar,
+    ErpButton,
+    ErpFieldFrame,
+    ErpFieldTrigger,
+    ErpIcon,
+    ErpSearchBox,
+    ErpSelectionTile,
+    ErpText,
+    FormsModule,
+  ],
   providers: [
     {provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => ErpSelect), multi: true},
     {provide: NG_VALIDATORS, useExisting: forwardRef(() => ErpSelect), multi: true},
@@ -66,7 +79,6 @@ export class ErpSelect extends ErpFieldBase<ErpSelectValue> implements OnDestroy
 
   protected readonly controlId = `erp-select-${++nextSelectId}`;
   protected readonly popupId = `${this.controlId}-popup`;
-  protected readonly searchId = `${this.controlId}-search`;
   protected readonly open = signal(false);
   protected readonly query = signal('');
   protected readonly activeGroup = signal<string | null>(null);
@@ -112,6 +124,11 @@ export class ErpSelect extends ErpFieldBase<ErpSelectValue> implements OnDestroy
     ascending: 'ترتيب تصاعدي',
     descending: 'ترتيب تنازلي',
   })[this.sort()]);
+  protected readonly sortMenuItems: readonly ErpSelectOption[] = [
+    {value: 'source', label: 'ترتيب المصدر'},
+    {value: 'ascending', label: 'ترتيب تصاعدي', icon: 'sort-ascending'},
+    {value: 'descending', label: 'ترتيب تنازلي', icon: 'sort-descending'},
+  ];
   private controller: AnchoredOverlayController | null = null;
   private widthObserver: ResizeObserver | null = null;
 
@@ -176,9 +193,15 @@ export class ErpSelect extends ErpFieldBase<ErpSelectValue> implements OnDestroy
     this.sortMenuOpen.update((open) => !open);
   }
 
-  protected updateQuery(event: Event): void {
-    this.query.set((event.target as HTMLInputElement).value);
+  protected updateQuery(value: string): void {
+    this.query.set(value);
     this.activeIndex.set(0);
+  }
+
+  protected selectSort(value: string): void {
+    if (value === 'source' || value === 'ascending' || value === 'descending') {
+      this.setSort(value);
+    }
   }
 
   protected handleKeydown(event: KeyboardEvent): void {

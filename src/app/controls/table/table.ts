@@ -172,7 +172,7 @@ export class ErpTable implements OnDestroy {
   }
 
   protected activate(row: ErpTableRow): void {
-    if (this.rowActivatable() || this.selectable()) this.rowActivated.emit(row);
+    if (this.rowActivatable()) this.rowActivated.emit(row);
   }
 
   protected toggleRow(row: ErpTableRow, index: number, checked: boolean): void {

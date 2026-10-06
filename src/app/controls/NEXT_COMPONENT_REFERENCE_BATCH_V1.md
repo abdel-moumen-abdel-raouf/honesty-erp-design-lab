@@ -5,7 +5,10 @@
 The four-component sequence below is historical. The current Product Owner
 authorization is Core Components Visual Correction Wave V2, which reopens
 Select plus seven other Core owners and adds AvatarPicker. V2 has a technically
-green candidate at 133/133 test files and 845/845 tests.
+green corrected candidate at 133/133 test files and 853/853 tests. The bounded
+external-review correction separates Table selection/activation, fixes
+Pagination labeling, makes Avatar positioning physical and motion-safe, and
+makes Select reuse approved lower owners.
 
 The current reference authority is recorded in
 `CORE_COMPONENT_VISUAL_CORRECTION_V2.md` and the Select, StatusBadge, Avatar,

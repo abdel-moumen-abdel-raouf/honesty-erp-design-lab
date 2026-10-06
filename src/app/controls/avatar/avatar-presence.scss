@@ -1,15 +1,29 @@
 @use '../../../styles/foundation/components/avatar' as tokens;
 
-.avatar__presence { position: absolute; inline-size: var(--honesty-avatar-presence-size); block-size: var(--honesty-avatar-presence-size); border: var(--honesty-avatar-presence-border-width) solid var(--honesty-avatar-presence-border-color); border-radius: 50%; background: var(--honesty-avatar-presence-bg); }
+.avatar__presence {
+  position: absolute;
+  inline-size: var(--honesty-avatar-presence-size);
+  block-size: var(--honesty-avatar-presence-size);
+}
+
+.avatar__presence-indicator {
+  display: block;
+  box-sizing: border-box;
+  inline-size: 100%;
+  block-size: 100%;
+  border: var(--honesty-avatar-presence-border-width) solid var(--honesty-avatar-presence-border-color);
+  border-radius: 50%;
+  background: var(--honesty-avatar-presence-bg);
+}
 :host([data-avatar-presence='online']) { @include tokens.presence-online; }
 :host([data-avatar-presence='away']) { @include tokens.presence-away; }
 :host([data-avatar-presence='busy']) { @include tokens.presence-busy; }
 :host([data-avatar-presence='offline']) { @include tokens.presence-offline; }
-:host([data-avatar-presence-position='top']) .avatar__presence { inset-block-start: var(--honesty-avatar-presence-offset); inset-inline-start: 50%; transform: translateX(-50%); }
-:host([data-avatar-presence-position='bottom']) .avatar__presence { inset-block-end: var(--honesty-avatar-presence-offset); inset-inline-start: 50%; transform: translateX(-50%); }
-:host([data-avatar-presence-position='left']) .avatar__presence { inset-inline-start: var(--honesty-avatar-presence-offset); inset-block-start: 50%; transform: translateY(-50%); }
-:host([data-avatar-presence-position='right']) .avatar__presence { inset-inline-end: var(--honesty-avatar-presence-offset); inset-block-start: 50%; transform: translateY(-50%); }
-:host([data-avatar-presence-position='top-left']) .avatar__presence { inset-block-start: var(--honesty-avatar-presence-offset); inset-inline-start: var(--honesty-avatar-presence-offset); }
-:host([data-avatar-presence-position='top-right']) .avatar__presence { inset-block-start: var(--honesty-avatar-presence-offset); inset-inline-end: var(--honesty-avatar-presence-offset); }
-:host([data-avatar-presence-position='bottom-left']) .avatar__presence { inset-block-end: var(--honesty-avatar-presence-offset); inset-inline-start: var(--honesty-avatar-presence-offset); }
-:host([data-avatar-presence-position='bottom-right']) .avatar__presence { inset-block-end: var(--honesty-avatar-presence-offset); inset-inline-end: var(--honesty-avatar-presence-offset); }
+:host([data-avatar-presence-position='top']) .avatar__presence { top: var(--honesty-avatar-presence-offset); left: 50%; transform: translateX(-50%); }
+:host([data-avatar-presence-position='bottom']) .avatar__presence { bottom: var(--honesty-avatar-presence-offset); left: 50%; transform: translateX(-50%); }
+:host([data-avatar-presence-position='left']) .avatar__presence { top: 50%; left: var(--honesty-avatar-presence-offset); transform: translateY(-50%); }
+:host([data-avatar-presence-position='right']) .avatar__presence { top: 50%; right: var(--honesty-avatar-presence-offset); transform: translateY(-50%); }
+:host([data-avatar-presence-position='top-left']) .avatar__presence { top: var(--honesty-avatar-presence-offset); left: var(--honesty-avatar-presence-offset); }
+:host([data-avatar-presence-position='top-right']) .avatar__presence { top: var(--honesty-avatar-presence-offset); right: var(--honesty-avatar-presence-offset); }
+:host([data-avatar-presence-position='bottom-left']) .avatar__presence { bottom: var(--honesty-avatar-presence-offset); left: var(--honesty-avatar-presence-offset); }
+:host([data-avatar-presence-position='bottom-right']) .avatar__presence { right: var(--honesty-avatar-presence-offset); bottom: var(--honesty-avatar-presence-offset); }

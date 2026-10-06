@@ -11,6 +11,24 @@ repository HEAD.
 
 ## Current Core Visual Correction V2 checkpoint — 2026-10-06
 
+External-review gap-correction entry checkpoint:
+
+- `ae5b6e2664c1d664f61ee9c745a54b8e0008989a`
+
+The bounded correction commit is `fix(controls): close core external review
+gaps`; resolve its final SHA from live `main` because this file is committed
+with it. It separates Table activation/selection, corrects Pagination labeling,
+hardens Avatar physical positioning/motion layering, and makes Select compose
+approved lower owners. Its gate passes 133/133 test files, 853/853 tests, both
+typechecks, production build, and zero warnings. Initial bundle: 375.68 kB /
+85.45 kB estimated transfer. Core Batch lazy chunk: 41.10 kB / 8.70 kB.
+
+Browser runtime evidence verifies these four requested gaps. Product Owner
+grouped visual acceptance remains pending, and the Data/Table Visual Correction
+Wave remains unopened.
+
+### Original V2 implementation checkpoint
+
 Entry checkpoint:
 
 - `555dde11e2a922393b9e5d0fb128c6465934d42f`

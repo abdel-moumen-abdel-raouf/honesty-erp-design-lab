@@ -95,6 +95,26 @@ describe('ErpFieldFrame', () => {
     expect(label?.textContent?.trim()).toBe('Name');
   });
 
+  it('keeps a genuine accessible label while hiding only its visual presentation', () => {
+    const fixture = createFixture();
+    fixture.componentRef.setInput('labelMode', 'visually-hidden');
+    fixture.detectChanges();
+
+    const host = fixture.nativeElement as HTMLElement;
+    const labelHost = host.querySelector(
+      '.field-frame__label--visually-hidden',
+    ) as HTMLElement;
+    const label = labelHost.querySelector('label') as HTMLLabelElement;
+
+    expect(host.getAttribute('data-field-label-mode')).toBe('visually-hidden');
+    expect(labelHost.tagName).toBe('ERP-TEXT');
+    expect(label.tagName).toBe('LABEL');
+    expect(label.htmlFor).toBe('name-control');
+    expect(label.textContent?.trim()).toBe('Name');
+    expect(host.querySelector('.field-frame__label--static')).toBeNull();
+    expect(host.querySelector('.field-frame__label--floating')).toBeNull();
+  });
+
   it('exposes deterministic invalid and multiline state without changing field facets', () => {
     const fixture = createFixture();
     const host = fixture.nativeElement as HTMLElement;

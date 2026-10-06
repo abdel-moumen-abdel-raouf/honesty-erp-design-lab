@@ -1,3 +1,19 @@
+<erp-inline gap="default" align="center" wrap="wrap">
+  <erp-check-box
+    label="تفعيل فتح الصف بالنقر"
+    [ngModel]="rowActivatable()"
+    (ngModelChange)="rowActivatable.set($event)"
+    [ngModelOptions]="{standalone: true}"
+  />
+  <erp-text data-row-activation-evidence type="caption" tone="secondary">
+    @if (activatedRowCode(); as code) {
+      آخر صف مُفعّل: {{ code }}
+    } @else {
+      لم يتم تفعيل صف
+    }
+  </erp-text>
+</erp-inline>
+
 <erp-table
   caption="دليل الحسابات — دليل المزايا الموسع"
   [columns]="columns"
@@ -5,7 +21,7 @@
   [rows]="rows"
   selectable
   striped
-  rowActivatable
+  [rowActivatable]="rowActivatable()"
   [selectedKeys]="selectedRows()"
   [sort]="tableSort()"
   [footerValues]="{
@@ -16,6 +32,7 @@
   }"
   (selectedKeysChange)="selectedRows.set($event)"
   (sortChange)="tableSort.set($event)"
+  (rowActivated)="activateRow($event)"
 >
   <ng-template erpTableCell="owner" let-row>
     <erp-inline gap="tight" align="center" wrap="nowrap">

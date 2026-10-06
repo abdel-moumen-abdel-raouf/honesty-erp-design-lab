@@ -17,13 +17,18 @@ StatusBadge, Alert, Skeleton, Avatar, Tabs, Table, and Pagination, and opened
 AvatarPicker. V2 implements the prescribed references, bottom-up composition,
 40 supplied avatar assets plus manifest, expanded APIs and evidence, and
 compatibility-only SmartTable delegation. Its technical gate passes 133/133
-test files and 845/845 tests, all governance, both typechecks, production build,
+test files and 853/853 tests, all governance, both typechecks, production build,
 and zero warnings.
+
+The bounded external-review correction started from
+`ae5b6e2664c1d664f61ee9c745a54b8e0008989a` and closes only the four requested
+Table, Pagination, Avatar, and Select gaps. Browser runtime evidence verifies
+those behaviors without implying grouped visual acceptance.
 
 The exact next gate is grouped Product Owner runtime/Light/Dark/RTL/narrow
 visual review at `/controls/core-batch`. Browser attachment failed in the
-implementation environment, so this checkpoint does not claim manual runtime
-visual evidence or approval. The Data/Table Visual Correction Wave and every
+original implementation environment; the bounded follow-up supplied runtime
+evidence for its requested gaps but does not claim visual approval. The Data/Table Visual Correction Wave and every
 later implementation wave remain unopened. Technical PASS never equals visual
 approval. Previous Core/Data/Forms/Entity Form/Shell technical candidates
 remain present but not visually frozen.

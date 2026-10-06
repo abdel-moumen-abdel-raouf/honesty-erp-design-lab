@@ -72,4 +72,68 @@ describe('ErpAvatar', () => {
     expect(fixture.nativeElement.getAttribute('aria-label')).toContain('غير متصل');
     expect(fixture.nativeElement.querySelector('.avatar__media')).not.toBeNull();
   });
+
+  it.each(['ltr', 'rtl'] as const)(
+    'keeps all named presence positions physical in %s',
+    (direction) => {
+      const fixture = TestBed.createComponent(ErpAvatar);
+      fixture.nativeElement.setAttribute('dir', direction);
+      fixture.componentRef.setInput('name', 'أحمد علي');
+      fixture.componentRef.setInput('presence', 'online');
+
+      const expected = {
+        top: {top: true, left: true, transform: 'translateX'},
+        bottom: {bottom: true, left: true, transform: 'translateX'},
+        left: {top: true, left: true, transform: 'translateY'},
+        right: {top: true, right: true, transform: 'translateY'},
+        'top-left': {top: true, left: true},
+        'top-right': {top: true, right: true},
+        'bottom-left': {bottom: true, left: true},
+        'bottom-right': {bottom: true, right: true},
+      } as const;
+
+      for (const [position, contract] of Object.entries(expected)) {
+        fixture.componentRef.setInput('presencePosition', position);
+        fixture.detectChanges();
+        const layer = fixture.nativeElement.querySelector(
+          '.avatar__presence',
+        ) as HTMLElement;
+        const style = getComputedStyle(layer);
+        for (const edge of ['top', 'right', 'bottom', 'left'] as const) {
+          expect(style[edge] !== '').toBe(edge in contract);
+        }
+        if ('transform' in contract) {
+          expect(style.transform).toContain(contract.transform);
+        }
+      }
+    },
+  );
+
+  it('keeps positioning and presence motion on distinct layers for every combination', () => {
+    const fixture = TestBed.createComponent(ErpAvatar);
+    fixture.componentRef.setInput('name', 'أحمد علي');
+    fixture.componentRef.setInput('presence', 'online');
+
+    for (const position of [
+      'top', 'bottom', 'left', 'right',
+      'top-left', 'top-right', 'bottom-left', 'bottom-right',
+    ] as const) {
+      for (const motion of ['none', 'pulse', 'ping', 'breathe'] as const) {
+        fixture.componentRef.setInput('presencePosition', position);
+        fixture.componentRef.setInput('presenceMotion', motion);
+        fixture.detectChanges();
+        const positionLayer = fixture.nativeElement.querySelector(
+          '.avatar__presence',
+        ) as HTMLElement;
+        const motionLayer = positionLayer.querySelector(
+          '.avatar__presence-indicator',
+        ) as HTMLElement;
+
+        expect(positionLayer).not.toBe(motionLayer);
+        expect(positionLayer.contains(motionLayer)).toBe(true);
+        expect(fixture.nativeElement.getAttribute('data-avatar-presence-position')).toBe(position);
+        expect(fixture.nativeElement.getAttribute('data-avatar-presence-motion')).toBe(motion);
+      }
+    }
+  });
 });
