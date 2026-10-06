@@ -1,16 +1,10 @@
 tbody tr {
-  transition:
-    background-color var(--honesty-table-row-motion-duration)
-      var(--honesty-table-row-motion-easing),
-    transform var(--honesty-table-row-motion-duration)
-      var(--honesty-table-row-motion-easing);
+  transition: background-color var(--honesty-table-row-motion-duration)
+    var(--honesty-table-row-motion-easing);
 }
 
-:host([data-table-hover-motion='true']) tbody tr:hover {
-  transform: translateY(var(--honesty-table-row-hover-translate));
-}
+:host([data-table-hover-motion='false']) tbody tr { transition: none; }
 
 @media (prefers-reduced-motion: reduce) {
   tbody tr { transition: none; }
-  :host([data-table-hover-motion='true']) tbody tr:hover { transform: none; }
 }

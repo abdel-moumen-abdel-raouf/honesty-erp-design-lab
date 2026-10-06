@@ -3,6 +3,8 @@ import {FormsModule} from '@angular/forms';
 import {ErpAvatar} from '../../controls/avatar/avatar';
 import {ErpButton} from '../../controls/button/button';
 import {ErpCheckBox} from '../../controls/check-box/check-box';
+import {ErpColumnChooser} from '../../controls/column-chooser/column-chooser';
+import {ErpDataColumn} from '../../controls/data-table/data-table-contracts';
 import {ErpIconButton} from '../../controls/icon-button/icon-button';
 import {ErpStatusBadge} from '../../controls/status-badge/status-badge';
 import {
@@ -27,6 +29,7 @@ import {ErpText} from '../../primitives/text/text';
     ErpAvatar,
     ErpButton,
     ErpCheckBox,
+    ErpColumnChooser,
     ErpIcon,
     ErpIconButton,
     ErpInline,
@@ -43,6 +46,8 @@ import {ErpText} from '../../primitives/text/text';
 export class ErpReviewCoreTable {
   readonly selectedRows = signal<readonly string[]>(['2']);
   readonly rowActivatable = signal(false);
+  readonly striped = signal(true);
+  readonly hoverMotion = signal(true);
   readonly activatedRowCode = signal<string | null>(null);
   readonly tableSort = signal<ErpTableSort | null>(null);
   readonly visibleColumnKeys = signal<readonly string[]>([
@@ -57,6 +62,7 @@ export class ErpReviewCoreTable {
     'action',
     'iconAction',
   ]);
+  readonly columnWidths = signal<Readonly<Record<string, number>>>({});
 
   readonly columns: readonly ErpTableColumn[] = [
     {
@@ -85,6 +91,7 @@ export class ErpReviewCoreTable {
       sortable: true,
       headerAlign: 'right',
       cellAlign: 'right',
+      resizable: true,
     },
     {
       key: 'balanceArabic',
@@ -92,14 +99,19 @@ export class ErpReviewCoreTable {
       digitSet: 'arabic-indic',
       headerAlign: 'right',
       cellAlign: 'right',
+      resizable: true,
     },
-    {key: 'status', header: 'الحالة', headerAlign: 'center', cellAlign: 'center'},
-    {key: 'categoryIcon', header: 'النوع', headerAlign: 'center', cellAlign: 'center'},
-    {key: 'notes', header: 'ملاحظات', overflow: 'ellipsis', minWidth: 180},
-    {key: 'action', header: 'إجراء', headerAlign: 'center', cellAlign: 'center'},
-    {key: 'iconAction', header: 'أيقونة', headerAlign: 'center', cellAlign: 'center'},
-    {key: 'hiddenAudit', header: 'مخفي افتراضيًا'},
+    {key: 'status', header: 'الحالة', headerAlign: 'center', cellAlign: 'center', resizable: true},
+    {key: 'categoryIcon', header: 'النوع', headerAlign: 'center', cellAlign: 'center', resizable: true},
+    {key: 'notes', header: 'ملاحظات', overflow: 'ellipsis', minWidth: 180, resizable: true},
+    {key: 'action', header: 'إجراء', headerAlign: 'center', cellAlign: 'center', resizable: true},
+    {key: 'iconAction', header: 'أيقونة', headerAlign: 'center', cellAlign: 'center', resizable: true},
+    {key: 'hiddenAudit', header: 'مخفي افتراضيًا', resizable: true},
   ];
+  readonly chooserColumns: readonly ErpDataColumn[] = this.columns.map((column) => ({
+    key: column.key,
+    label: column.header,
+  }));
 
   readonly rows: readonly ErpTableRow[] = [
     {
@@ -162,5 +174,9 @@ export class ErpReviewCoreTable {
 
   protected activateRow(row: ErpTableRow): void {
     this.activatedRowCode.set(String(row['code'] ?? '—'));
+  }
+
+  protected resetColumns(): void {
+    this.visibleColumnKeys.set(this.columns.map((column) => column.key));
   }
 }

@@ -8,14 +8,16 @@ they are not current implementation authorization.
 The latest Product Owner visual review explicitly reopened `ErpSelect`,
 `ErpStatusBadge`, `ErpAlert`, `ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`,
 and `ErpPagination`, and authorized `ErpAvatarPicker`. Core Visual Correction
-V2 implements those findings and passes 133/133 test files, 845/845 tests, all
+V3 preserves those findings and passes 133/133 test files, 862/862 tests, all
 governance, both typechecks, production build, and zero warnings.
 
 The bounded external-review follow-up from
 `ae5b6e2664c1d664f61ee9c745a54b8e0008989a` closes Table intent separation,
 Pagination accessible one-label composition, Avatar physical position/motion
 layering, and Select lower-owner hierarchy gaps. Its gate passes 133/133 test
-files and 853/853 tests with zero warnings.
+files and 853/853 tests with zero warnings. The subsequent V3 correction entered
+from `13586508b3bbdb6d86225633e0837f20cd965a7c`; its current contract is
+`CORE_COMPONENT_VISUAL_CORRECTION_V3.md`.
 
 The exact next action is grouped Product Owner runtime/Light/Dark/RTL/narrow
 review of `/controls/core-batch`. Runtime browser evidence now exists for the

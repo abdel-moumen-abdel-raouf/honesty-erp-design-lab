@@ -9,7 +9,24 @@ Always resolve live `origin/main` directly at session start. This file records
 named checkpoints; it does not claim that its own latest docs SHA is an eternal
 repository HEAD.
 
-## Current Core Visual Correction V2 checkpoint — 2026-10-06
+## Current Core Visual Correction V3 checkpoint — 2026-10-06
+
+V3 correction entry checkpoint:
+
+- `13586508b3bbdb6d86225633e0837f20cd965a7c`
+  `fix(controls): close core external review gaps`
+
+The bounded V3 correction commit is `fix(controls): complete core visual
+correction v3`; resolve its final SHA from live `main` because this file is
+committed with it. Its canonical gate passes 133/133 test files, 862/862 tests,
+both typechecks, production build, and zero warnings. Initial bundle: 375.75 kB
+/ 85.43 kB estimated transfer. Core Batch lazy chunk: 54.76 kB / 10.57 kB.
+
+Browser runtime evidence verifies the V3 behavior matrix. Product Owner grouped
+visual acceptance remains pending, and the Data/Table Visual Correction Wave
+remains unopened.
+
+### Historical V2 external-review checkpoint
 
 External-review gap-correction entry checkpoint:
 

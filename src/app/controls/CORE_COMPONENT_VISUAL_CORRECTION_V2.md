@@ -1,5 +1,10 @@
 # Core Components Visual Correction V2
 
+> Historical baseline: the current bounded follow-up is
+> `CORE_COMPONENT_VISUAL_CORRECTION_V3.md`, entered from
+> `13586508b3bbdb6d86225633e0837f20cd965a7c`. V2 evidence below is retained for
+> audit history and does not replace the current V3 technical/review state.
+
 ## Current authority
 
 Product Owner visual review reopened `ErpSelect`, `ErpStatusBadge`, `ErpAlert`, `ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`, and `ErpPagination`, and explicitly authorized the new `ErpAvatarPicker`. Earlier technical green never represented visual approval.

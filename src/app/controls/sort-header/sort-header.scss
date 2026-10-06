@@ -8,7 +8,6 @@
   color: var(--honesty-sort-header-fg);
 }
 
-.sort-header__arrows { display: grid; color: var(--honesty-sort-header-inactive-fg); line-height: 0; }
-.sort-header__arrows erp-icon { margin-block: var(--honesty-sort-header-arrow-overlap); }
+.sort-header__arrows { display: inline-flex; align-items: center; gap: var(--honesty-sort-header-arrow-gap); color: var(--honesty-sort-header-inactive-fg); line-height: 0; }
 .sort-header__arrows erp-icon[data-sort-active='true'] { color: var(--honesty-sort-header-active-fg); }
 :host:has(erp-sort-trigger:focus-within) { outline: var(--honesty-sort-header-focus-width) solid var(--honesty-sort-header-focus-color); outline-offset: var(--honesty-sort-header-focus-offset); border-radius: var(--honesty-sort-header-focus-radius); }

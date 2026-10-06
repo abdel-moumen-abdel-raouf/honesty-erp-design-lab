@@ -37,6 +37,7 @@ td {
 th {
   position: relative;
   background: var(--honesty-table-header-bg);
+  border-block-end: var(--honesty-table-header-border-width) solid var(--honesty-table-header-border-color);
 }
 
 tfoot td {
@@ -58,16 +59,17 @@ tfoot td {
   display: inline-block;
 }
 
+.table__cell-content { display: flex; align-items: center; inline-size: 100%; min-inline-size: 0; }
 .table__cell-copy {
   display: grid;
   gap: var(--honesty-table-cell-copy-gap);
   min-inline-size: 0;
 }
 
-[data-align='center'] { text-align: center; }
-[data-align='end'] { text-align: end; }
-[data-align='left'] { text-align: left; }
-[data-align='right'] { text-align: right; }
+[data-align='center'] > .table__cell-content { justify-content: center; }
+[data-align='end'] > .table__cell-content,
+[data-align='right'] > .table__cell-content { justify-content: flex-end; }
+[data-align='left'] > .table__cell-content { justify-content: flex-start; }
 
 [data-overflow='ellipsis'] .table__cell-copy,
 [data-overflow='clip'] .table__cell-copy {
@@ -77,12 +79,11 @@ tfoot td {
 
 [data-overflow='clip'] .table__cell-copy { text-overflow: clip; }
 
-tbody tr:hover { background: var(--honesty-table-row-hover-bg); }
-
-:host([data-table-striped='true']) tbody tr:nth-child(even) {
+:host([data-table-striped='true']) tbody tr:nth-child(even):not(:hover):not([aria-selected='true']) {
   background: var(--honesty-table-row-striped-bg);
 }
 
+tbody tr:hover { background: var(--honesty-table-row-hover-bg); }
 tbody tr[aria-selected='true'] { background: var(--honesty-table-row-selected-bg); }
 
 tbody tr[tabindex]:focus-visible {

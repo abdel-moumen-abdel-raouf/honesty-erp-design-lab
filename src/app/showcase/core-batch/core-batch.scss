@@ -1,1 +1,5 @@
 .core-batch { display: block; padding-block: var(--honesty-space-section-default); }
+.core-select--150 { inline-size: 150px; max-inline-size: 100%; }
+.core-select--240 { inline-size: 240px; max-inline-size: 100%; }
+.core-select--400 { inline-size: 400px; max-inline-size: 100%; }
+.core-select--full { inline-size: 100%; }

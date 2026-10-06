@@ -58,8 +58,8 @@ restated by the newest dated continuity blocks or by
 
 ## Authoritative current state — 2026-10-06
 
-Product Owner Core Components Visual Correction Wave V2 started from
-`555dde11e2a922393b9e5d0fb128c6465934d42f`. Resolve the final live SHA from
+Product Owner Core Components Visual Correction Wave V3 started from
+`13586508b3bbdb6d86225633e0837f20cd965a7c`. Resolve the final live SHA from
 Git; source and continuity are committed together in the bounded correction
 commit.
 
@@ -73,14 +73,15 @@ SearchBox/action-menu lower owners.
 - Product Owner visual review reopened `ErpSelect`, `ErpStatusBadge`,
   `ErpAlert`, `ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`, and
   `ErpPagination`, and explicitly authorized `ErpAvatarPicker`.
-- Corrected V2 technical verification passed 133/133 test files, 853/853 tests, all
+- Corrected V3 technical verification passed 133/133 test files, 862/862 tests, all
   lint/governance gates, both typechecks, production build, and zero warnings.
-- Initial bundle: 375.68 kB / 85.45 kB estimated transfer. Core Batch lazy
-  chunk: 41.10 kB / 8.70 kB estimated transfer.
+- Initial bundle: 375.75 kB / 85.43 kB estimated transfer. Core Batch lazy
+  chunk: 54.76 kB / 10.57 kB estimated transfer.
 - The Select reference SHA remains
   `5A31FC10A3D1208BF64E35EB5139823E48F8E2BF1D0190D07DD5DB5DBC4DF23B`.
   Downloaded reference SHAs and adoption boundaries are recorded in the V2
-  component contracts and `CORE_COMPONENT_VISUAL_CORRECTION_V2.md`.
+  component contracts, `CORE_COMPONENT_VISUAL_CORRECTION_V2.md`, and the current
+  `CORE_COMPONENT_VISUAL_CORRECTION_V3.md` correction contract.
 - Forty Product Owner avatar PNGs and their manifest are now project assets;
   `ErpAvatarPicker` composes `ErpTabs` and `ErpAvatar`.
 - Product Owner runtime/Light/Dark/RTL/narrow acceptance remains pending at

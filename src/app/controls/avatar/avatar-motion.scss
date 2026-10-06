@@ -1,6 +1,6 @@
 :host([data-avatar-presence-motion='pulse']) .avatar__presence-indicator { animation: honesty-avatar-pulse var(--honesty-avatar-presence-duration) var(--honesty-avatar-presence-easing) infinite alternate; }
 :host([data-avatar-presence-motion='ping']) .avatar__presence-indicator { animation: honesty-avatar-ping var(--honesty-avatar-presence-duration) var(--honesty-avatar-presence-easing) infinite; }
-:host([data-avatar-presence-motion='breathe']) .avatar__presence-indicator { animation: honesty-avatar-breathe var(--honesty-avatar-presence-duration) var(--honesty-avatar-presence-easing) infinite alternate; }
+:host([data-avatar-presence-motion='breathe']) .avatar__presence-indicator { animation: honesty-avatar-breathe var(--honesty-avatar-presence-breathe-duration) var(--honesty-avatar-presence-easing) infinite alternate; }
 :host([data-avatar-hover-motion='scale']:hover) { transform: scale(var(--honesty-avatar-hover-scale)); }
 :host([data-avatar-hover-motion='lift']:hover) { transform: translateY(var(--honesty-avatar-hover-lift)); }
 @keyframes honesty-avatar-pulse { to { transform: scale(var(--honesty-avatar-presence-pulse-scale)); } }

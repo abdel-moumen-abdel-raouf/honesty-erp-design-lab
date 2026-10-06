@@ -8,16 +8,16 @@ It records Product Owner decisions, externally reviewed Git state, execution bou
 
 ## Authoritative current review transition — 2026-10-06
 
-Product Owner Core Components Visual Correction Wave V2 entered from
-`555dde11e2a922393b9e5d0fb128c6465934d42f`. Resolve the final implementation
+Product Owner Core Components Visual Correction Wave V3 entered from
+`13586508b3bbdb6d86225633e0837f20cd965a7c`. Resolve the final implementation
 SHA directly from live Git.
 
 The Product Owner explicitly rejected implied visual acceptance for Select,
 StatusBadge, Alert, Skeleton, Avatar, Tabs, Table, and Pagination, and opened
 AvatarPicker. V2 implements the prescribed references, bottom-up composition,
 40 supplied avatar assets plus manifest, expanded APIs and evidence, and
-compatibility-only SmartTable delegation. Its technical gate passes 133/133
-test files and 853/853 tests, all governance, both typechecks, production build,
+compatibility-only Data/Table changes. Its technical gate passes 133/133
+test files and 862/862 tests, all governance, both typechecks, production build,
 and zero warnings.
 
 The bounded external-review correction started from

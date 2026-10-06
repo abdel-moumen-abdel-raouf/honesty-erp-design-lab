@@ -101,6 +101,9 @@ const SEMANTIC_CANDIDATES = {
   filter: ['Funnel', 'Filter'],
   'sort-ascending': ['SortAscending', 'SortAsc', 'BarsArrowUp'],
   'sort-descending': ['SortDescending', 'SortDesc', 'BarsArrowDown'],
+  'source-order': ['ListNumbers'],
+  male: ['GenderMale'],
+  female: ['GenderFemale'],
   'more-horizontal': ['DotsThree', 'Dots', 'MoreHorizontal', 'EllipsisHorizontal'],
   'more-vertical': ['DotsThreeVertical', 'DotsVertical', 'MoreVertical', 'EllipsisVertical'],
   calendar: ['CalendarBlank', 'Calendar'],
@@ -129,7 +132,7 @@ function normalizeSemanticCandidate(value) {
 function normalizeVendorExportName(value) {
   let normalized = value.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
 
-  for (const prefix of ['tabler', 'lucide', 'hero', 'fluent', 'ph']) {
+  for (const prefix of ['tabler', 'lucide', 'hero', 'fluent', 'phosphor', 'ph']) {
     if (normalized.startsWith(prefix)) {
       normalized = normalized.slice(prefix.length);
       break;
@@ -177,6 +180,7 @@ function runNormalizationSelfCheck() {
     [normalizeVendorExportName('heroPhoneSolid'), 'phone'],
     [normalizeVendorExportName('phPhone'), 'phone'],
     [normalizeVendorExportName('phPhoneRegular'), 'phone'],
+    [normalizeVendorExportName('phosphorGenderMaleFill'), 'gendermale'],
     [normalizeVendorExportName('fluentCall24Filled'), 'call'],
   ];
 

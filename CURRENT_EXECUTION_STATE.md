@@ -14,8 +14,8 @@ Branch:
 
 ## Authoritative current execution state — 2026-10-06
 
-Product Owner Core Components Visual Correction Wave V2 started from
-`555dde11e2a922393b9e5d0fb128c6465934d42f`. Resolve live local and remote SHAs
+Product Owner Core Components Visual Correction Wave V3 started from
+`13586508b3bbdb6d86225633e0837f20cd965a7c`. Resolve live local and remote SHAs
 directly; this document is synchronized in the same bounded implementation
 commit.
 
@@ -35,11 +35,11 @@ Avatar, Tabs, and AvatarPicker reference evidence, the 40 supplied avatar PNG
 assets plus manifest, bottom-up owner reuse, and the rebuilt
 `/controls/core-batch` evidence surface.
 
-Technical verification for this corrected V2 candidate passed 133/133 test files and
-853/853 tests, all lint/governance checks, both TypeScript typechecks, production
+Technical verification for this corrected V3 candidate passed 133/133 test files and
+862/862 tests, all lint/governance checks, both TypeScript typechecks, production
 build, and zero Angular/build warnings. The production initial bundle is
-375.68 kB / 85.45 kB estimated transfer; the Core Batch lazy chunk is 41.10 kB
-/ 8.70 kB estimated transfer. Component Token governance reports 82 concrete
+375.75 kB / 85.43 kB estimated transfer; the Core Batch lazy chunk is 54.76 kB
+/ 10.57 kB estimated transfer. Component Token governance reports 82 concrete
 modules and route governance reports 28 routed templates.
 
 Product Owner visual state and immediate next action:

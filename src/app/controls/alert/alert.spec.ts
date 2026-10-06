@@ -15,6 +15,7 @@ describe('ErpAlert', () => {
     const fixture = TestBed.createComponent(ErpAlert);
     fixture.componentRef.setInput('title', 'معلومة');
     fixture.detectChanges();
+    expect(fixture.nativeElement.hasAttribute('title')).toBe(false);
     expect(fixture.nativeElement.getAttribute('role')).toBe('status');
     expect(fixture.nativeElement.querySelector('erp-icon')).not.toBeNull();
 

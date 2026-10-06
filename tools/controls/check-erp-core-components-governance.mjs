@@ -8,6 +8,8 @@ const REVIEW = 'src/app/showcase/core-batch/core-batch.html';
 const REVIEW_TABLE = 'src/app/review-internals/review-core-table/review-core-table.html';
 const SELECT = 'src/app/controls/select/select.html';
 const SELECT_TS = 'src/app/controls/select/select.ts';
+const ALERT_TS = 'src/app/controls/alert/alert.ts';
+const STATUS_BADGE_TS = 'src/app/controls/status-badge/status-badge.ts';
 const AVATAR_TS = 'src/app/controls/avatar/avatar.ts';
 const AVATAR_SCSS = 'src/app/controls/avatar/avatar.scss';
 const AVATAR_PRESENCE = 'src/app/controls/avatar/avatar-presence.scss';
@@ -49,6 +51,8 @@ export function validateCoreComponents(files) {
   const reviewEvidence = `${review}\n${files.get(REVIEW_TABLE) ?? ''}`;
   const select = files.get(SELECT) ?? '';
   const selectTs = files.get(SELECT_TS) ?? '';
+  const alertTs = files.get(ALERT_TS) ?? '';
+  const statusBadgeTs = files.get(STATUS_BADGE_TS) ?? '';
   const avatarTs = files.get(AVATAR_TS) ?? '';
   const avatarPresence = files.get(AVATAR_PRESENCE) ?? '';
   const avatarMotion = files.get(AVATAR_MOTION) ?? '';
@@ -83,6 +87,7 @@ export function validateCoreComponents(files) {
     'class="select__sort-menu"',
     '<erp-search-box',
     '<erp-action-menu-content',
+    '<erp-surface',
     '<erp-avatar',
   ]) {
     if (!select.includes(required)) errors.push(`ErpSelect hierarchy is missing ${required}`);
@@ -93,8 +98,19 @@ export function validateCoreComponents(files) {
   if (selectTs.includes('Math.max(trigger.getBoundingClientRect().width, 320)')) {
     errors.push('ErpSelect must not restore the fixed 320px popup minimum');
   }
-  if (!selectTs.includes('Math.min(trigger.getBoundingClientRect().width, availableWidth)')) {
-    errors.push('ErpSelect must match trigger width while respecting viewport space');
+  if (!selectTs.includes("querySelector<HTMLElement>('.field-frame__control')") ||
+      !selectTs.includes('Math.min(visibleControl.getBoundingClientRect().width, availableWidth)')) {
+    errors.push('ErpSelect must match the visible Field control width while respecting viewport space');
+  }
+  if (!selectTs.includes("readonly searchLabel = input('البحث')") ||
+      !selectTs.includes("icon: 'source-order'")) {
+    errors.push('ErpSelect must keep an independent Arabic search label and source-order icon');
+  }
+  if (!alertTs.includes("'[attr.title]': 'null'")) {
+    errors.push('ErpAlert must declaratively suppress the native host title tooltip');
+  }
+  for (const contract of ["'sm' | 'md' | 'lg' | 'xl'", "'square' | 'rounded' | 'pill'", "'content' | 'stretch'"]) {
+    if (!statusBadgeTs.includes(contract)) errors.push(`ErpStatusBadge contract is missing ${contract}`);
   }
 
   for (const contract of [
@@ -139,6 +155,7 @@ export function validateCoreComponents(files) {
     "'underline' | 'pills'",
     "'fade-start'",
     "'fade-end'",
+    "'rectangle' | 'rounded' | 'circle'",
   ]) {
     if (!tabsTs.includes(contract)) errors.push(`ErpTabs contract is missing ${contract}`);
   }
@@ -178,8 +195,13 @@ export function validateCoreComponents(files) {
 
   if (!avatarPicker.includes('ERP_AVATAR_CATALOG') ||
       !avatarPickerTemplate.includes('<erp-tabs') ||
-      !avatarPickerTemplate.includes('<erp-avatar')) {
+      !avatarPickerTemplate.includes('<erp-avatar') ||
+      !avatarPicker.includes('readonly avatarShape') ||
+      !avatarPicker.includes('readonly avatarSize')) {
     errors.push('ErpAvatarPicker must compose the bounded catalog through ErpTabs and ErpAvatar');
+  }
+  if (!reviewEvidence.includes('<erp-column-chooser')) {
+    errors.push('Core Table visibility evidence must reuse ErpColumnChooser');
   }
 
   const assetPaths = files.get(AVATAR_ASSET_ROOT) ?? [];
@@ -219,14 +241,16 @@ function fixture(overrides = new Map()) {
   const files = new Map([
     [ROUTES, "path: 'controls/core-batch'"],
     [REVIEW, '<erp-select/><erp-status-badge/><erp-alert/><erp-skeleton/><erp-avatar/><erp-tabs/><erp-avatar-picker/><erp-table/><erp-pagination/>'],
-    [REVIEW_TABLE, ''],
-    [SELECT, '<span class="select__search-row"></span><span class="select__toolbar"></span><span class="select__sort-menu"></span><erp-search-box/><erp-action-menu-content/><erp-avatar/>'],
-    [SELECT_TS, 'Math.min(trigger.getBoundingClientRect().width, availableWidth)'],
+    [REVIEW_TABLE, '<erp-column-chooser/>'],
+    [SELECT, '<span class="select__search-row"></span><span class="select__toolbar"></span><erp-surface class="select__sort-menu"><erp-action-menu-content/></erp-surface><erp-search-box/><erp-avatar/>'],
+    [SELECT_TS, "querySelector<HTMLElement>('.field-frame__control'); Math.min(visibleControl.getBoundingClientRect().width, availableWidth); readonly searchLabel = input('البحث'); icon: 'source-order'"],
+    [ALERT_TS, "'[attr.title]': 'null'"],
+    [STATUS_BADGE_TS, "'sm' | 'md' | 'lg' | 'xl'; 'square' | 'rounded' | 'pill'; 'content' | 'stretch'"],
     [AVATAR_TS, "'circle' | 'rounded' | 'square'; 'online' | 'away' | 'busy' | 'offline'; 'top-left'; 'bottom-right'; 'none' | 'pulse' | 'ping' | 'breathe'; 'none' | 'scale' | 'lift'"],
     [AVATAR_SCSS, '@media (prefers-reduced-motion: reduce) {}'],
     [AVATAR_PRESENCE, "class=\"avatar__presence-indicator\"; position='left']) .avatar__presence { top: 50%; left: 0; } position='right']) .avatar__presence { top: 50%; right: 0; } position='top-left']) .avatar__presence { top: 0; left: 0; } position='bottom-right']) .avatar__presence { right: 0; bottom: 0; }"],
     [AVATAR_MOTION, '.avatar__presence-indicator {}'],
-    [TABS_TS, "'horizontal' | 'vertical'; 'start' | 'end'; 'content' | 'fill'; 'underline' | 'pills'; 'fade-start'; 'fade-end'"],
+    [TABS_TS, "'horizontal' | 'vertical'; 'start' | 'end'; 'content' | 'fill'; 'underline' | 'pills'; 'fade-start'; 'fade-end'; 'rectangle' | 'rounded' | 'circle'"],
     [TABS_SCSS, '@media (prefers-reduced-motion: reduce) {}'],
     [TABS_MOTION, ''],
     [TABLE, '<erp-check-box/><erp-sort-header/><erp-table-resize-handle/><tfoot></tfoot> descriptionKey data-overflow'],
@@ -235,7 +259,7 @@ function fixture(overrides = new Map()) {
     [TABLE_MOTION, ''],
     [PAGINATION, '<erp-inline class="pagination__size-row"><erp-select label="عدد السجلات" labelMode="visually-hidden"/></erp-inline>'],
     [PAGINATION_TS, ['showSummary', 'showPageSize', 'showFirst', 'showPrevious', 'showPageNumbers', 'showNext', 'showLast'].map((name) => `readonly ${name} = input(true`).join(';')],
-    [AVATAR_PICKER, 'ERP_AVATAR_CATALOG'],
+    [AVATAR_PICKER, 'ERP_AVATAR_CATALOG; readonly avatarShape; readonly avatarSize'],
     [AVATAR_PICKER_TEMPLATE, '<erp-tabs><erp-avatar/></erp-tabs>'],
     [AVATAR_CATALOG, "avatarItems('male', 1, 20); avatarItems('female', 21, 40); /assets/honesty-erp-avatars/users/"],
     [AVATAR_ASSET_ROOT, ['manifest.json', ...Array.from({length: 40}, (_, index) => `avatar-${index + 1}.png`)]],
@@ -255,6 +279,8 @@ function runSelfTest() {
     ['raw route control', fixture(new Map([[REVIEW, '<button>raw</button>']])), 'ERP-only'],
     ['fixed select minimum', fixture(new Map([[SELECT_TS, 'Math.max(trigger.getBoundingClientRect().width, 320)']])), '320px'],
     ['raw select search editor', fixture(new Map([[SELECT, '<span class="select__search-row"><input/></span><span class="select__toolbar"></span><span class="select__sort-menu"></span><erp-search-box/><erp-action-menu-content/><erp-avatar/>']])), 'private raw input'],
+    ['select sort without approved surface', fixture(new Map([[SELECT, '<span class="select__search-row"></span><span class="select__toolbar"></span><span class="select__sort-menu"></span><erp-search-box/><erp-action-menu-content/><erp-avatar/>']])), 'erp-surface'],
+    ['native alert title tooltip', fixture(new Map([[ALERT_TS, 'readonly title = input.required<string>();']])), 'native host title'],
     ['missing avatar reduced motion', fixture(new Map([[AVATAR_SCSS, '']])), 'reduced-motion'],
     ['logical avatar positions', fixture(new Map([[AVATAR_PRESENCE, "inset-inline-start: 0; class=\"avatar__presence-indicator\";"]])), 'physical left/right'],
     ['motion on avatar positioning layer', fixture(new Map([[AVATAR_MOTION, ":host([data-avatar-presence-motion='pulse']) .avatar__presence { animation: pulse; }"]])), 'positioning layer'],
@@ -281,6 +307,8 @@ function runCheck() {
     [REVIEW_TABLE, read(REVIEW_TABLE)],
     [SELECT, read(SELECT)],
     [SELECT_TS, read(SELECT_TS)],
+    [ALERT_TS, read(ALERT_TS)],
+    [STATUS_BADGE_TS, read(STATUS_BADGE_TS)],
     [AVATAR_TS, read(AVATAR_TS)],
     [AVATAR_SCSS, read(AVATAR_SCSS)],
     [AVATAR_PRESENCE, read(AVATAR_PRESENCE)],

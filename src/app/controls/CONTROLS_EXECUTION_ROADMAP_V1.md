@@ -15,17 +15,18 @@ family. Those decisions remain with the Product Owner and ChatGPT after review.
 
 ## Current accelerated execution state — 2026-10-06
 
-Product Owner Core Components Visual Correction Wave V2 reopened exactly
-`ErpSelect`, `ErpStatusBadge`, `ErpAlert`, `ErpSkeleton`, `ErpAvatar`,
+Product Owner Core Components Visual Correction Wave V3, entered from
+`13586508b3bbdb6d86225633e0837f20cd965a7c`, keeps open exactly `ErpSelect`,
+`ErpStatusBadge`, `ErpAlert`, `ErpSkeleton`, `ErpAvatar`,
 `ErpTabs`, `ErpTable`, and `ErpPagination`, and authorized the ninth Core owner,
-`ErpAvatarPicker`. The corrected V2 candidate passed 133/133 test files and 853/853 tests,
+`ErpAvatarPicker`. The corrected V3 candidate passed 133/133 test files and 862/862 tests,
 both typechecks, production build, all governance, and zero warnings.
 
 The corrected hierarchy is explicit: AvatarPicker composes Tabs and Avatar;
 Table composes CheckBox and SortHeader; Pagination composes Select; Alert
 composes IconButton and Tooltip. The supplied avatar catalog contains 20 male
 and 20 female assets plus its manifest. `CORE_COMPONENT_VISUAL_CORRECTION_V2.md`
-and the component reference contracts record the exact reference evidence.
+and the V2/V3 component correction contracts record the exact reference evidence.
 
 The exact next action is grouped Product Owner runtime/Light/Dark/RTL/narrow
 review at `/controls/core-batch`. A bounded external-review follow-up obtained

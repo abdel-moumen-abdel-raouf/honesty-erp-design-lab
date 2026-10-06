@@ -31,7 +31,8 @@ Binding Product Owner law:
    in historical planning.
 
 Latest completed authorized implementation is Product Owner Core Components
-Visual Correction Wave V2. It reopened exactly `ErpSelect`, `ErpStatusBadge`,
+Visual Correction Wave V3, entered from
+`13586508b3bbdb6d86225633e0837f20cd965a7c`. It keeps open exactly `ErpSelect`, `ErpStatusBadge`,
 `ErpAlert`, `ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`, and
 `ErpPagination`, and authorized `ErpAvatarPicker` as the ninth Core owner.
 
@@ -45,7 +46,7 @@ the approved SearchBox and action-menu lower owners.
 The V2 hierarchy is binding: AvatarPicker composes Tabs + Avatar; Table composes
 CheckBox + SortHeader; Pagination composes Select; Alert composes IconButton +
 Tooltip; rich routed evidence lives behind approved `erp-review-*` internals.
-The corrected candidate passed 133/133 test files and 853/853 tests, both typechecks,
+The corrected candidate passed 133/133 test files and 862/862 tests, both typechecks,
 production build, and zero warnings.
 
 Current active gate is grouped Product Owner runtime/Light/Dark/RTL/narrow

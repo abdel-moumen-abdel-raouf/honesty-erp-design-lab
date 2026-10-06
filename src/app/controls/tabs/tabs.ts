@@ -31,6 +31,7 @@ export type ErpTabsOrientation = 'horizontal' | 'vertical';
 export type ErpTabsVerticalPlacement = 'start' | 'end';
 export type ErpTabsDistribution = 'content' | 'fill';
 export type ErpTabsVariant = 'underline' | 'pills';
+export type ErpTabHeaderShape = 'rectangle' | 'rounded' | 'circle';
 export type ErpTabsTransition =
   | 'none'
   | 'fade'
@@ -67,6 +68,7 @@ export class ErpTabPanel {
     '[attr.data-tabs-distribution]': 'distribution()',
     '[attr.data-tabs-variant]': 'variant()',
     '[attr.data-tabs-transition]': 'transition()',
+    '[attr.data-tabs-header-shape]': 'headerShape()',
   },
 })
 export class ErpTabs {
@@ -81,6 +83,7 @@ export class ErpTabs {
   readonly distribution = input<ErpTabsDistribution>('content');
   readonly variant = input<ErpTabsVariant>('underline');
   readonly transition = input<ErpTabsTransition>('none');
+  readonly headerShape = input<ErpTabHeaderShape>('rounded');
 
   protected readonly resolvedActiveId = computed(() => {
     const requested = this.activeId();

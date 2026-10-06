@@ -130,8 +130,8 @@ describe('ErpSelect', () => {
 
   it('matches popup inline size to the trigger while respecting viewport inset', () => {
     const fixture = createSelect();
-    const trigger = fixture.nativeElement.querySelector('erp-field-trigger') as HTMLElement;
-    vi.spyOn(trigger, 'getBoundingClientRect').mockReturnValue({
+    const visibleControl = fixture.nativeElement.querySelector('.field-frame__control') as HTMLElement;
+    vi.spyOn(visibleControl, 'getBoundingClientRect').mockReturnValue({
       width: 480,
       height: 48,
       x: 0,
@@ -146,6 +146,47 @@ describe('ErpSelect', () => {
     access(fixture.componentInstance).syncPopupWidth();
     expect((fixture.nativeElement.querySelector('.select__popup') as HTMLElement).style.inlineSize).toBe('396px');
     vi.unstubAllGlobals();
+  });
+
+  it.each([150, 240, 400])('matches a %spx visible Field control exactly', (width) => {
+    const fixture = createSelect();
+    const visibleControl = fixture.nativeElement.querySelector('.field-frame__control') as HTMLElement;
+    vi.spyOn(visibleControl, 'getBoundingClientRect').mockReturnValue({
+      width, height: 48, x: 0, y: 0, top: 0, right: width, bottom: 48, left: 0,
+      toJSON: () => ({}),
+    });
+    vi.stubGlobal('innerWidth', 1200);
+    access(fixture.componentInstance).syncPopupWidth();
+    expect((fixture.nativeElement.querySelector('.select__popup') as HTMLElement).style.inlineSize).toBe(`${width}px`);
+    vi.unstubAllGlobals();
+  });
+
+  it('gives source, ascending, and descending sort modes distinct semantic icons', () => {
+    const fixture = createSelect();
+    access(fixture.componentInstance).toggleSortMenu();
+    fixture.detectChanges();
+    const icons = [...fixture.nativeElement.querySelectorAll('.select__sort-menu erp-icon')]
+      .map((icon: Element) => icon.getAttribute('data-icon-name'));
+    expect(icons).toEqual(expect.arrayContaining(['source-order', 'sort-ascending', 'sort-descending']));
+  });
+
+  it('separates the visible search label from its placeholder and preserves selected identity', () => {
+    const fixture = createSelect();
+    fixture.componentRef.setInput('searchLabel', 'البحث المتقدم');
+    fixture.componentRef.setInput('searchPlaceholder', 'اكتب اسمًا');
+    fixture.componentRef.setInput('options', [
+      {value: 'image', label: 'صورة', imageUrl: '/avatar.png'},
+      {value: 'icon', label: 'أيقونة', icon: 'user'},
+    ] satisfies readonly ErpSelectOption[]);
+    fixture.componentInstance.writeValue('image');
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('.select__search-label').textContent.trim()).toBe('البحث المتقدم');
+    expect(fixture.nativeElement.querySelector('erp-search-box input').getAttribute('placeholder')).toBe('اكتب اسمًا');
+    expect(fixture.nativeElement.querySelector('.select__selected-item erp-avatar')).not.toBeNull();
+
+    fixture.componentInstance.writeValue('icon');
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('.select__selected-item erp-icon')).not.toBeNull();
   });
 
   it('opens, navigates, selects with Enter, closes with Escape, and clears', () => {

@@ -5,6 +5,18 @@
     (ngModelChange)="rowActivatable.set($event)"
     [ngModelOptions]="{standalone: true}"
   />
+  <erp-check-box
+    label="صفوف متعاقبة"
+    [ngModel]="striped()"
+    (ngModelChange)="striped.set($event)"
+    [ngModelOptions]="{standalone: true}"
+  />
+  <erp-check-box
+    label="حركة التحويم"
+    [ngModel]="hoverMotion()"
+    (ngModelChange)="hoverMotion.set($event)"
+    [ngModelOptions]="{standalone: true}"
+  />
   <erp-text data-row-activation-evidence type="caption" tone="secondary">
     @if (activatedRowCode(); as code) {
       آخر صف مُفعّل: {{ code }}
@@ -14,16 +26,25 @@
   </erp-text>
 </erp-inline>
 
+<erp-column-chooser
+  [columns]="chooserColumns"
+  [visibleKeys]="visibleColumnKeys()"
+  (visibilityChange)="visibleColumnKeys.set($event)"
+  (resetRequested)="resetColumns()"
+/>
+
 <erp-table
   caption="دليل الحسابات — دليل المزايا الموسع"
   [columns]="columns"
   [visibleColumnKeys]="visibleColumnKeys()"
   [rows]="rows"
   selectable
-  striped
+  [striped]="striped()"
+  [hoverMotion]="hoverMotion()"
   [rowActivatable]="rowActivatable()"
   [selectedKeys]="selectedRows()"
   [sort]="tableSort()"
+  [columnWidths]="columnWidths()"
   [footerValues]="{
     account: 'الإجمالي',
     balanceLatin: '273585.50',
@@ -32,6 +53,7 @@
   }"
   (selectedKeysChange)="selectedRows.set($event)"
   (sortChange)="tableSort.set($event)"
+  (columnWidthsChange)="columnWidths.set($event)"
   (rowActivated)="activateRow($event)"
 >
   <ng-template erpTableCell="owner" let-row>

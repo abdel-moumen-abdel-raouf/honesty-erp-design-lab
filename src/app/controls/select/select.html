@@ -44,9 +44,22 @@
     (keyPressed)="handleKeydown($event)"
     (focused)="handleFocus()"
   >
-    <erp-text type="text" tone="inherit" overflow="ellipsis">
-      {{ displayValue() || placeholder() }}
-    </erp-text>
+    @if (selectedOptions().length > 0) {
+      <span class="select__selected" [attr.data-multiple]="multiple()">
+        @for (option of selectedOptions(); track option.value) {
+          <span class="select__selected-item">
+            @if (option.imageUrl) {
+              <erp-avatar [name]="option.label" [src]="option.imageUrl" size="xs" />
+            } @else if (option.icon) {
+              <erp-icon [name]="option.icon" size="sm" />
+            }
+            <erp-text type="text" tone="inherit" overflow="ellipsis">{{ option.label }}</erp-text>
+          </span>
+        }
+      </span>
+    } @else {
+      <erp-text type="text" tone="inherit" overflow="ellipsis">{{ placeholder() }}</erp-text>
+    }
   </erp-field-trigger>
 </erp-field-frame>
 
@@ -54,12 +67,12 @@
   @if (searchable()) {
     <div class="select__search-row">
       <erp-text class="select__search-label" type="label" tone="secondary">
-        {{ searchPlaceholder() }}
+        {{ searchLabel() }}
       </erp-text>
       <erp-search-box
         class="select__search-control"
         mode="inline"
-        [label]="searchPlaceholder()"
+        [label]="searchLabel()"
         labelMode="visually-hidden"
         [placeholder]="searchPlaceholder()"
         [size]="fieldSize()"
@@ -86,7 +99,7 @@
         <div class="select__sort">
           <erp-button
             [label]="sortLabel()"
-            icon="sort-ascending"
+            [icon]="sort() === 'source' ? 'source-order' : sort() === 'ascending' ? 'sort-ascending' : 'sort-descending'"
             size="sm"
             variant="outline"
             ariaHasPopup="menu"
@@ -94,11 +107,12 @@
             (pressed)="toggleSortMenu()"
           />
           @if (sortMenuOpen()) {
-            <erp-action-menu-content
-              class="select__sort-menu"
-              [items]="sortMenuItems"
-              (itemSelected)="selectSort($event)"
-            />
+            <erp-surface class="select__sort-menu" tone="elevated" border="subtle" elevation="overlay" radius="overlay" padding="tight">
+              <erp-action-menu-content
+                [items]="sortMenuItems"
+                (itemSelected)="selectSort($event)"
+              />
+            </erp-surface>
           }
         </div>
       }

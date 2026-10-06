@@ -16,6 +16,7 @@ import {
 import {FormsModule, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {ErpIcon} from '../../primitives/icon/icon';
 import {ErpText} from '../../primitives/text/text';
+import {ErpSurface} from '../../primitives/surface/surface';
 import {AnchoredOverlayController} from '../../shared/anchored-overlay/anchored-overlay-controller';
 import {AnchoredOverlayGeometryResult} from '../../shared/anchored-overlay/anchored-overlay-contracts';
 import {ErpButton} from '../button/button';
@@ -49,6 +50,7 @@ let nextSelectId = 0;
     ErpIcon,
     ErpSearchBox,
     ErpSelectionTile,
+    ErpSurface,
     ErpText,
     FormsModule,
   ],
@@ -74,6 +76,7 @@ export class ErpSelect extends ErpFieldBase<ErpSelectValue> implements OnDestroy
   readonly maxSelected = input<number | null>(null);
   readonly placeholder = input('اختر قيمة');
   readonly searchPlaceholder = input('ابحث في الخيارات');
+  readonly searchLabel = input('البحث');
   readonly selectSize = input<ErpSelectSize>('normal');
   readonly sort = model<ErpSelectSort>('source');
 
@@ -86,6 +89,7 @@ export class ErpSelect extends ErpFieldBase<ErpSelectValue> implements OnDestroy
   protected readonly sortMenuOpen = signal(false);
   protected readonly popup = viewChild<ElementRef<HTMLElement>>('popup');
   protected readonly trigger = viewChild('trigger', {read: ElementRef<HTMLElement>});
+  protected readonly fieldFrame = viewChild(ErpFieldFrame, {read: ElementRef<HTMLElement>});
   protected readonly fieldSize = computed<ErpFieldSize>(() => ({
     sm: 'sm', md: 'md', normal: 'lg', lg: 'xl', xlg: 'xxl',
   })[this.selectSize()] as ErpFieldSize);
@@ -97,9 +101,6 @@ export class ErpSelect extends ErpFieldBase<ErpSelectValue> implements OnDestroy
     const selected = new Set(this.selectedValues());
     return this.options().filter((option) => selected.has(option.value));
   });
-  protected readonly displayValue = computed(() =>
-    this.selectedOptions().map((option) => option.label).join('، '),
-  );
   protected readonly groups = computed(() =>
     [...new Set(this.options().map((option) => option.group).filter((value): value is string => !!value))],
   );
@@ -125,7 +126,7 @@ export class ErpSelect extends ErpFieldBase<ErpSelectValue> implements OnDestroy
     descending: 'ترتيب تنازلي',
   })[this.sort()]);
   protected readonly sortMenuItems: readonly ErpSelectOption[] = [
-    {value: 'source', label: 'ترتيب المصدر'},
+    {value: 'source', label: 'ترتيب المصدر', icon: 'source-order'},
     {value: 'ascending', label: 'ترتيب تصاعدي', icon: 'sort-ascending'},
     {value: 'descending', label: 'ترتيب تنازلي', icon: 'sort-descending'},
   ];
@@ -266,11 +267,11 @@ export class ErpSelect extends ErpFieldBase<ErpSelectValue> implements OnDestroy
 
   private readonly syncPopupWidth = (): void => {
     const popup = this.popup()?.nativeElement;
-    const trigger = this.trigger()?.nativeElement;
-    if (!popup || !trigger) return;
+    const visibleControl = this.visibleControl();
+    if (!popup || !visibleControl) return;
     const viewportWidth = window.visualViewport?.width ?? window.innerWidth;
     const availableWidth = Math.max(0, viewportWidth - 24);
-    popup.style.inlineSize = `${Math.min(trigger.getBoundingClientRect().width, availableWidth)}px`;
+    popup.style.inlineSize = `${Math.min(visibleControl.getBoundingClientRect().width, availableWidth)}px`;
     this.controller?.requestPosition();
   };
 
@@ -278,10 +279,10 @@ export class ErpSelect extends ErpFieldBase<ErpSelectValue> implements OnDestroy
     this.detachWidthSync();
     window.addEventListener('resize', this.syncPopupWidth);
     window.visualViewport?.addEventListener('resize', this.syncPopupWidth);
-    const trigger = this.trigger()?.nativeElement;
-    if (trigger && typeof ResizeObserver !== 'undefined') {
+    const visibleControl = this.visibleControl();
+    if (visibleControl && typeof ResizeObserver !== 'undefined') {
       this.widthObserver = new ResizeObserver(this.syncPopupWidth);
-      this.widthObserver.observe(trigger);
+      this.widthObserver.observe(visibleControl);
     }
   }
 
@@ -290,5 +291,10 @@ export class ErpSelect extends ErpFieldBase<ErpSelectValue> implements OnDestroy
     window.visualViewport?.removeEventListener('resize', this.syncPopupWidth);
     this.widthObserver?.disconnect();
     this.widthObserver = null;
+  }
+
+  private visibleControl(): HTMLElement | null {
+    const frame = this.fieldFrame()?.nativeElement as HTMLElement | undefined;
+    return frame?.querySelector<HTMLElement>('.field-frame__control') ?? null;
   }
 }

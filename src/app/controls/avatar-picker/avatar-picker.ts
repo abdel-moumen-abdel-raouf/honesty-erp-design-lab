@@ -9,7 +9,7 @@ import {
   signal,
 } from '@angular/core';
 import {ErpText} from '../../primitives/text/text';
-import {ErpAvatar} from '../avatar/avatar';
+import {ErpAvatar, ErpAvatarShape, ErpAvatarSize} from '../avatar/avatar';
 import {ErpSelectionTile} from '../selection-family/internal/selection-tile';
 import {ErpTabItem, ErpTabPanel, ErpTabs} from '../tabs/tabs';
 import {
@@ -36,11 +36,13 @@ export class ErpAvatarPicker {
   readonly disabled = input(false, {transform: booleanAttribute});
   readonly value = model<string | null>(null);
   readonly changed = output<string>();
+  readonly avatarShape = input<ErpAvatarShape>('circle');
+  readonly avatarSize = input<ErpAvatarSize>('lg');
 
   protected readonly activeGender = signal<ErpAvatarGender>('male');
   protected readonly tabs: readonly ErpTabItem[] = Object.freeze([
-    {id: 'male', label: 'ذكر'},
-    {id: 'female', label: 'أنثى'},
+    {id: 'male', label: 'ذكر', icon: 'male', headerPresentation: 'icon-text'},
+    {id: 'female', label: 'أنثى', icon: 'female', headerPresentation: 'icon-text'},
   ]);
   protected readonly selected = computed(() =>
     ERP_AVATAR_CATALOG.find((item) => item.id === this.value()) ?? null,

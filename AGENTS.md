@@ -17,12 +17,13 @@ requested.
 The Product Owner is the final authority for visual approval.
 Technical success, green tests, or Codex judgment do not equal visual approval.
 
-## Current Product Owner Core Components Visual Correction V2 State
+## Current Product Owner Core Components Visual Correction V3 State
 
 Product Owner visual review reopened `ErpSelect`, `ErpStatusBadge`, `ErpAlert`,
 `ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`, and `ErpPagination`, and
-authorized `ErpAvatarPicker`. Their V2 candidate is technically green at
-133/133 test files and 853/853 tests, both typechecks, production build, and
+authorized `ErpAvatarPicker`. Their V3 candidate, entered from
+`13586508b3bbdb6d86225633e0837f20cd965a7c`, is technically green at
+133/133 test files and 862/862 tests, both typechecks, production build, and
 zero warnings.
 
 The current gate is grouped Product Owner runtime/Light/Dark/RTL/narrow review

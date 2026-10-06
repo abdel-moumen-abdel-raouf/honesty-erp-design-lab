@@ -2,8 +2,8 @@
 
 ## 0. Authoritative current handoff — 2026-10-06
 
-Product Owner Core Components Visual Correction Wave V2 started from
-`555dde11e2a922393b9e5d0fb128c6465934d42f`. Resolve final local and remote SHAs
+Product Owner Core Components Visual Correction Wave V3 started from
+`13586508b3bbdb6d86225633e0837f20cd965a7c`. Resolve final local and remote SHAs
 at session start.
 
 The bounded external-review gap correction started from
@@ -13,13 +13,14 @@ layering, and Select lower-owner hierarchy.
 
 The Product Owner reopened `ErpSelect`, `ErpStatusBadge`, `ErpAlert`,
 `ErpSkeleton`, `ErpAvatar`, `ErpTabs`, `ErpTable`, and `ErpPagination`, and
-authorized the new `ErpAvatarPicker`. The corrected V2 implementation is technically
-green at 133/133 test files and 853/853 tests, all lint/governance gates, both
-typechecks, production build, and zero warnings. Initial bundle is 375.68 kB /
-85.45 kB estimated transfer; Core Batch lazy chunk is 41.10 kB / 8.70 kB.
+authorized the new `ErpAvatarPicker`. The corrected V3 implementation is technically
+green at 133/133 test files and 862/862 tests, all lint/governance gates, both
+typechecks, production build, and zero warnings. Initial bundle is 375.75 kB /
+85.43 kB estimated transfer; Core Batch lazy chunk is 54.76 kB / 10.57 kB.
 
 The corrected source follows the Product Owner reference contracts documented
-in `CORE_COMPONENT_VISUAL_CORRECTION_V2.md` and the per-owner reference files.
+in `CORE_COMPONENT_VISUAL_CORRECTION_V2.md`, the current bounded V3 contract in
+`CORE_COMPONENT_VISUAL_CORRECTION_V3.md`, and the per-owner reference files.
 Forty supplied avatar PNGs plus manifest are stored under
 `public/assets/honesty-erp-avatars/users`; AvatarPicker composes existing Tabs
 and Avatar owners. Table composes CheckBox and SortHeader, Pagination composes

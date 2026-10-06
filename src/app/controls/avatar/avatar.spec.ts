@@ -71,6 +71,10 @@ describe('ErpAvatar', () => {
     expect(fixture.nativeElement.getAttribute('data-avatar-hover-motion')).toBe('lift');
     expect(fixture.nativeElement.getAttribute('aria-label')).toContain('غير متصل');
     expect(fixture.nativeElement.querySelector('.avatar__media')).not.toBeNull();
+    expect(fixture.componentInstance.cursor()).toBe('default');
+    fixture.componentRef.setInput('cursor', 'pointer');
+    fixture.detectChanges();
+    expect(fixture.nativeElement.getAttribute('data-avatar-cursor')).toBe('pointer');
   });
 
   it.each(['ltr', 'rtl'] as const)(

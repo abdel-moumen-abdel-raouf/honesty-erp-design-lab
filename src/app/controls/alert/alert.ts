@@ -13,6 +13,7 @@ export type ErpAlertTone = 'info' | 'success' | 'warning' | 'danger';
   templateUrl: './alert.html',
   styleUrl: './alert.scss',
   host: {
+    '[attr.title]': 'null',
     '[attr.data-alert-tone]': 'tone()',
     '[attr.role]': 'tone() === "danger" ? "alert" : "status"',
   },

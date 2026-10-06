@@ -10,6 +10,12 @@
     <erp-section>
       <erp-stack gap="default">
         <erp-text type="heading-2">ErpSelect</erp-text>
+        <erp-stack gap="default">
+          <erp-select class="core-select--150" label="عرض 150" [options]="employeeOptions" />
+          <erp-select class="core-select--240" label="عرض 240" [options]="employeeOptions" />
+          <erp-select class="core-select--400" label="عرض 400" [options]="employeeOptions" />
+          <erp-select class="core-select--full" label="عرض كامل" [options]="employeeOptions" />
+        </erp-stack>
         <erp-grid [columns]="2" gap="lg" responsive="auto">
           <erp-select
             label="الموظف المسؤول"
@@ -40,12 +46,19 @@
     <erp-section>
       <erp-stack gap="default">
         <erp-text type="heading-2">ErpStatusBadge</erp-text>
+        <erp-grid [columns]="4" gap="sm" responsive="auto">
+          <erp-select label="اللون" [options]="badgeToneOptions" [ngModel]="badgeTone()" (ngModelChange)="badgeTone.set($event)" />
+          <erp-select label="الحجم" [options]="badgeSizeOptions" [ngModel]="badgeSize()" (ngModelChange)="badgeSize.set($event)" />
+          <erp-select label="الشكل" [options]="badgeShapeOptions" [ngModel]="badgeShape()" (ngModelChange)="badgeShape.set($event)" />
+          <erp-select label="العرض" [options]="badgeWidthOptions" [ngModel]="badgeWidth()" (ngModelChange)="badgeWidth.set($event)" />
+        </erp-grid>
+        <erp-status-badge label="معاينة الحالة" icon="success" [tone]="badgeTone()" [size]="badgeSize()" [shape]="badgeShape()" [widthMode]="badgeWidth()" />
         <erp-grid [columns]="5" gap="sm" responsive="auto">
-          <erp-status-badge label="محايد" size="sm" />
-          <erp-status-badge label="ناجح" tone="success" icon="success" />
+          <erp-status-badge label="محايد" size="sm" shape="square" />
+          <erp-status-badge label="ناجح" tone="success" icon="success" shape="rounded" />
           <erp-status-badge label="تحذير" tone="warning" icon="warning" size="lg" />
-          <erp-status-badge label="خطر" tone="danger" icon="error" />
-          <erp-status-badge label="معلومة" tone="info" icon="info" />
+          <erp-status-badge label="خطر" tone="danger" icon="error" size="xl" />
+          <erp-status-badge label="معلومة ممتدة" tone="info" icon="info" widthMode="stretch" />
         </erp-grid>
       </erp-stack>
     </erp-section>
@@ -76,9 +89,9 @@
       <erp-stack gap="default">
         <erp-text type="heading-2">ErpSkeleton</erp-text>
         <erp-grid [columns]="3" gap="lg" responsive="auto">
-          <erp-skeleton [lines]="3" />
-          <erp-skeleton variant="block" />
-          <erp-skeleton variant="circle" size="lg" />
+          <erp-surface tone="canvas"><erp-skeleton [lines]="3" /></erp-surface>
+          <erp-surface tone="default"><erp-skeleton variant="block" /></erp-surface>
+          <erp-surface tone="elevated"><erp-skeleton variant="circle" size="lg" /></erp-surface>
           <erp-skeleton [lines]="2" [animated]="false" label="تحميل ثابت" />
         </erp-grid>
       </erp-stack>
@@ -87,6 +100,15 @@
     <erp-section>
       <erp-stack gap="default">
         <erp-text type="heading-2">ErpAvatar</erp-text>
+        <erp-grid [columns]="4" gap="sm" responsive="auto">
+          <erp-select label="الشكل" [options]="avatarShapeOptions" [ngModel]="avatarShape()" (ngModelChange)="avatarShape.set($event)" />
+          <erp-select label="المؤشر" [options]="avatarCursorOptions" [ngModel]="avatarCursor()" (ngModelChange)="avatarCursor.set($event)" />
+          <erp-select label="الحضور" [options]="avatarPresenceOptions" [ngModel]="avatarPresence()" (ngModelChange)="avatarPresence.set($event)" />
+          <erp-select label="الموضع" [options]="avatarPositionOptions" [ngModel]="avatarPresencePosition()" (ngModelChange)="avatarPresencePosition.set($event)" />
+          <erp-select label="حركة الحضور" [options]="avatarMotionOptions" [ngModel]="avatarPresenceMotion()" (ngModelChange)="avatarPresenceMotion.set($event)" />
+          <erp-select label="حركة التحويم" [options]="avatarHoverOptions" [ngModel]="avatarHoverMotion()" (ngModelChange)="avatarHoverMotion.set($event)" />
+        </erp-grid>
+        <erp-avatar name="معاينة تفاعلية" src="/assets/honesty-erp-avatars/users/male/avatar-01.png" size="xl" [shape]="avatarShape()" [cursor]="avatarCursor()" [presence]="avatarPresence()" [presencePosition]="avatarPresencePosition()" [presenceMotion]="avatarPresenceMotion()" [hoverMotion]="avatarHoverMotion()" />
         <erp-grid [columns]="5" gap="lg" responsive="auto">
           <erp-avatar
             name="أحمد علي"
@@ -143,6 +165,14 @@
     <erp-section>
       <erp-stack gap="default">
         <erp-text type="heading-2">ErpTabs</erp-text>
+        <erp-grid [columns]="5" gap="sm" responsive="auto">
+          <erp-select label="الاتجاه" [options]="tabsOrientationOptions" [ngModel]="tabsOrientation()" (ngModelChange)="tabsOrientation.set($event)" />
+          <erp-select label="التوزيع" [options]="tabsDistributionOptions" [ngModel]="tabsDistribution()" (ngModelChange)="tabsDistribution.set($event)" />
+          <erp-select label="النمط" [options]="tabsVariantOptions" [ngModel]="tabsVariant()" (ngModelChange)="tabsVariant.set($event)" />
+          <erp-select label="شكل الرأس" [options]="tabsShapeOptions" [ngModel]="tabsShape()" (ngModelChange)="tabsShape.set($event)" />
+          <erp-select label="الانتقال" [options]="tabsTransitionOptions" [ngModel]="tabsTransition()" (ngModelChange)="tabsTransition.set($event)" />
+        </erp-grid>
+        <erp-tabs [items]="tabs" activeId="summary" [orientation]="tabsOrientation()" [distribution]="tabsDistribution()" [variant]="tabsVariant()" [headerShape]="tabsShape()" [transition]="tabsTransition()" />
         <erp-grid [columns]="2" gap="lg" responsive="auto">
           <erp-surface border="subtle">
             <erp-tabs [items]="tabs" activeId="summary" variant="underline" transition="fade-start" />
@@ -163,7 +193,7 @@
             <erp-tabs [items]="tabs" activeId="summary" variant="pills" distribution="fill" transition="fade-up" />
           </erp-surface>
           <erp-surface border="subtle">
-            <erp-tabs [items]="iconOnlyTabs" activeId="overview" variant="pills" />
+            <erp-tabs [items]="iconOnlyTabs" activeId="overview" variant="pills" headerShape="circle" />
           </erp-surface>
           <erp-surface border="subtle">
             <erp-tabs
@@ -181,7 +211,11 @@
     <erp-section>
       <erp-stack gap="default">
         <erp-text type="heading-2">ErpAvatarPicker</erp-text>
-        <erp-avatar-picker [(value)]="selectedAvatar" />
+        <erp-grid [columns]="2" gap="sm" responsive="auto">
+          <erp-select label="حجم الصور" [options]="avatarSizeOptions" [ngModel]="pickerSize()" (ngModelChange)="pickerSize.set($event)" />
+          <erp-select label="شكل الصور" [options]="avatarShapeOptions" [ngModel]="pickerShape()" (ngModelChange)="pickerShape.set($event)" />
+        </erp-grid>
+        <erp-avatar-picker [(value)]="selectedAvatar" [avatarSize]="pickerSize()" [avatarShape]="pickerShape()" />
       </erp-stack>
     </erp-section>
 
@@ -195,11 +229,27 @@
     <erp-section>
       <erp-stack gap="default">
         <erp-text type="heading-2">ErpPagination</erp-text>
+        <erp-grid [columns]="4" gap="sm" responsive="auto">
+          <erp-check-box label="الملخص" [ngModel]="showSummary()" (ngModelChange)="showSummary.set($event)" [ngModelOptions]="{standalone: true}" />
+          <erp-check-box label="حجم الصفحة" [ngModel]="showPageSize()" (ngModelChange)="showPageSize.set($event)" [ngModelOptions]="{standalone: true}" />
+          <erp-check-box label="الأولى" [ngModel]="showFirst()" (ngModelChange)="showFirst.set($event)" [ngModelOptions]="{standalone: true}" />
+          <erp-check-box label="السابقة" [ngModel]="showPrevious()" (ngModelChange)="showPrevious.set($event)" [ngModelOptions]="{standalone: true}" />
+          <erp-check-box label="أرقام الصفحات" [ngModel]="showPageNumbers()" (ngModelChange)="showPageNumbers.set($event)" [ngModelOptions]="{standalone: true}" />
+          <erp-check-box label="التالية" [ngModel]="showNext()" (ngModelChange)="showNext.set($event)" [ngModelOptions]="{standalone: true}" />
+          <erp-check-box label="الأخيرة" [ngModel]="showLast()" (ngModelChange)="showLast.set($event)" [ngModelOptions]="{standalone: true}" />
+        </erp-grid>
         <erp-pagination
           [page]="page()"
           [pageCount]="12"
           [totalItems]="286"
           [pageSize]="pageSize()"
+          [showSummary]="showSummary()"
+          [showPageSize]="showPageSize()"
+          [showFirst]="showFirst()"
+          [showPrevious]="showPrevious()"
+          [showPageNumbers]="showPageNumbers()"
+          [showNext]="showNext()"
+          [showLast]="showLast()"
           (pageChange)="page.set($event)"
           (pageSizeChange)="pageSize.set($event)"
         />

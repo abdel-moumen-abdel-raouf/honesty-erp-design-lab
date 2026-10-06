@@ -5,7 +5,8 @@
     <erp-avatar
       name="الصورة الشخصية المختارة"
       [src]="avatar.imageUrl"
-      size="xl"
+      [size]="avatarSize()"
+      [shape]="avatarShape()"
       hoverMotion="scale"
     />
     <erp-text type="caption" tone="secondary">{{ avatar.id }}</erp-text>
@@ -29,7 +30,7 @@
           [disabled]="disabled()"
           (activated)="select(avatar)"
         >
-          <erp-avatar [name]="avatar.id" [src]="avatar.imageUrl" size="lg" />
+          <erp-avatar [name]="avatar.id" [src]="avatar.imageUrl" [size]="avatarSize()" [shape]="avatarShape()" />
         </erp-selection-tile>
       }
     </span>
@@ -43,7 +44,7 @@
           [disabled]="disabled()"
           (activated)="select(avatar)"
         >
-          <erp-avatar [name]="avatar.id" [src]="avatar.imageUrl" size="lg" />
+          <erp-avatar [name]="avatar.id" [src]="avatar.imageUrl" [size]="avatarSize()" [shape]="avatarShape()" />
         </erp-selection-tile>
       }
     </span>

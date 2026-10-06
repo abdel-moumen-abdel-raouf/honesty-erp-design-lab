@@ -33,17 +33,19 @@
             scope="col"
             [attr.data-align]="column.headerAlign ?? column.align ?? 'start'"
           >
-            @if (column.sortable) {
-              <erp-sort-header
-                [label]="column.header"
-                [direction]="sortDirection(column)"
-                (sortChange)="updateSort(column, $event)"
-              />
-            } @else {
-              <erp-text type="table-header" weight="bold">
-                {{ column.header }}
-              </erp-text>
-            }
+            <span class="table__cell-content">
+              @if (column.sortable) {
+                <erp-sort-header
+                  [label]="column.header"
+                  [direction]="sortDirection(column)"
+                  (sortChange)="updateSort(column, $event)"
+                />
+              } @else {
+                <erp-text type="table-header" weight="bold">
+                  {{ column.header }}
+                </erp-text>
+              }
+            </span>
             @if (column.resizable) {
               <erp-table-resize-handle
                 [label]="'تغيير عرض عمود ' + column.header"
@@ -80,13 +82,14 @@
               [attr.data-align]="column.cellAlign ?? column.align ?? 'start'"
               [attr.data-overflow]="column.overflow ?? 'wrap'"
             >
-              @if (cellTemplate(column.key); as template) {
-                <ng-container
-                  [ngTemplateOutlet]="template"
-                  [ngTemplateOutletContext]="cellContext(row, column, rowIndex)"
-                />
-              } @else {
-                <span class="table__cell-copy">
+              <span class="table__cell-content">
+                @if (cellTemplate(column.key); as template) {
+                  <ng-container
+                    [ngTemplateOutlet]="template"
+                    [ngTemplateOutletContext]="cellContext(row, column, rowIndex)"
+                  />
+                } @else {
+                  <span class="table__cell-copy">
                   <erp-text
                     type="table-cell"
                     [family]="textFamily(column)"
@@ -110,8 +113,9 @@
                       {{ displayValue(row[column.descriptionKey], column) }}
                     </erp-text>
                   }
-                </span>
-              }
+                  </span>
+                }
+              </span>
             </td>
           }
         </tr>
@@ -138,19 +142,21 @@
           }
           @for (column of effectiveColumns(); track column.key) {
             <td [attr.data-align]="column.cellAlign ?? column.align ?? 'start'">
-              @if (footerTemplate(column.key); as template) {
-                <ng-container
-                  [ngTemplateOutlet]="template"
-                  [ngTemplateOutletContext]="footerContext(column)"
-                />
-              } @else if (
-                footerValues()[column.key] !== null &&
-                footerValues()[column.key] !== undefined
-              ) {
-                <erp-text type="table-cell" weight="bold">
-                  {{ displayValue(footerValues()[column.key], column) }}
-                </erp-text>
-              }
+              <span class="table__cell-content">
+                @if (footerTemplate(column.key); as template) {
+                  <ng-container
+                    [ngTemplateOutlet]="template"
+                    [ngTemplateOutletContext]="footerContext(column)"
+                  />
+                } @else if (
+                  footerValues()[column.key] !== null &&
+                  footerValues()[column.key] !== undefined
+                ) {
+                  <erp-text type="table-cell" weight="bold">
+                    {{ displayValue(footerValues()[column.key], column) }}
+                  </erp-text>
+                }
+              </span>
             </td>
           }
         </tr>

@@ -22,7 +22,7 @@ describe('ErpStatusBadge', () => {
       fixture.detectChanges();
       expect(fixture.nativeElement.getAttribute('data-status-badge-tone')).toBe(tone);
     }
-    for (const size of ['sm', 'md', 'lg'] as const) {
+    for (const size of ['sm', 'md', 'lg', 'xl'] as const) {
       fixture.componentRef.setInput('size', size);
       fixture.detectChanges();
       expect(fixture.nativeElement.getAttribute('data-status-badge-size')).toBe(size);
@@ -30,5 +30,21 @@ describe('ErpStatusBadge', () => {
     fixture.componentRef.setInput('icon', 'success');
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('erp-icon')).not.toBeNull();
+  });
+
+  it('supports bounded shape and width contracts with content width by default', () => {
+    const fixture = TestBed.createComponent(ErpStatusBadge);
+    fixture.componentRef.setInput('label', 'حالة');
+    fixture.detectChanges();
+    expect(fixture.componentInstance.shape()).toBe('pill');
+    expect(fixture.componentInstance.widthMode()).toBe('content');
+    for (const shape of ['square', 'rounded', 'pill'] as const) {
+      fixture.componentRef.setInput('shape', shape);
+      fixture.detectChanges();
+      expect(fixture.nativeElement.getAttribute('data-status-badge-shape')).toBe(shape);
+    }
+    fixture.componentRef.setInput('widthMode', 'stretch');
+    fixture.detectChanges();
+    expect(fixture.nativeElement.getAttribute('data-status-badge-width')).toBe('stretch');
   });
 });

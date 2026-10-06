@@ -80,6 +80,7 @@ describe('ErpTabs', () => {
     fixture.componentRef.setInput('orientation', 'vertical');
     fixture.componentRef.setInput('verticalPlacement', 'end');
     fixture.componentRef.setInput('transition', 'fade-end');
+    fixture.componentRef.setInput('headerShape', 'rectangle');
     fixture.detectChanges();
 
     expect(fixture.nativeElement.getAttribute('data-tabs-variant')).toBe('pills');
@@ -87,6 +88,17 @@ describe('ErpTabs', () => {
     expect(fixture.nativeElement.getAttribute('data-tabs-orientation')).toBe('vertical');
     expect(fixture.nativeElement.getAttribute('data-tabs-vertical-placement')).toBe('end');
     expect(fixture.nativeElement.querySelector('[role="tabpanel"]').getAttribute('data-tabs-panel-transition')).toBe('fade-end');
+    expect(fixture.nativeElement.getAttribute('data-tabs-header-shape')).toBe('rectangle');
+  });
+
+  it('supports rectangle, rounded, and circle header boundaries', () => {
+    const fixture = TestBed.createComponent(ErpTabs);
+    fixture.componentRef.setInput('items', items);
+    for (const shape of ['rectangle', 'rounded', 'circle'] as const) {
+      fixture.componentRef.setInput('headerShape', shape);
+      fixture.detectChanges();
+      expect(fixture.nativeElement.getAttribute('data-tabs-header-shape')).toBe(shape);
+    }
   });
 
   it('uses Up/Down navigation for vertical tabs', () => {

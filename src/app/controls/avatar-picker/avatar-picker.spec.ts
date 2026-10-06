@@ -41,4 +41,15 @@ describe('ErpAvatarPicker', () => {
     expect(fixture.nativeElement.hasAttribute('data-theme')).toBe(false);
     expect(fixture.nativeElement.hasAttribute('dir')).toBe(false);
   });
+
+  it('uses icon-text gender tabs and forwards bounded avatar size and shape', () => {
+    const fixture = TestBed.createComponent(ErpAvatarPicker);
+    fixture.componentRef.setInput('avatarSize', 'sm');
+    fixture.componentRef.setInput('avatarShape', 'square');
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelectorAll('[role="tab"] erp-icon')).toHaveLength(2);
+    const avatar = fixture.nativeElement.querySelector('erp-selection-tile erp-avatar');
+    expect(avatar.getAttribute('data-avatar-size')).toBe('sm');
+    expect(avatar.getAttribute('data-avatar-shape')).toBe('square');
+  });
 });

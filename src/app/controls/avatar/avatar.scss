@@ -4,4 +4,5 @@
 img { inline-size: 100%; block-size: 100%; object-fit: cover; }
 :host([data-avatar-shape='rounded']) { --honesty-avatar-radius: var(--honesty-avatar-rounded-radius); }
 :host([data-avatar-shape='square']) { --honesty-avatar-radius: var(--honesty-avatar-square-radius); }
+:host([data-avatar-cursor='pointer']) { cursor: pointer; }
 :host([data-avatar-size='xs']) { @include tokens.size-xs; } :host([data-avatar-size='sm']) { @include tokens.size-sm; } :host([data-avatar-size='lg']) { @include tokens.size-lg; } :host([data-avatar-size='xl']) { @include tokens.size-xl; }

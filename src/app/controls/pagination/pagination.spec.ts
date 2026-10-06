@@ -24,6 +24,17 @@ describe('ErpPagination', () => {
     expect(buttons.at(-1)?.disabled).toBe(true);
   });
 
+  it('defaults every optional region to visible and keeps 100 سجل as one option label', () => {
+    const fixture = create(4);
+    const component = fixture.componentInstance;
+    expect([
+      component.showSummary(), component.showPageSize(), component.showFirst(),
+      component.showPrevious(), component.showPageNumbers(), component.showNext(), component.showLast(),
+    ]).toEqual([true, true, true, true, true, true, true]);
+    expect(fixture.nativeElement.querySelector('erp-select')).not.toBeNull();
+    expect(component.pageSizeOptions()).toContain(100);
+  });
+
   it('clamps a page above count and emits no contradictory boundary intent', () => {
     const fixture = create(3, 9);
     const spy = vi.fn();

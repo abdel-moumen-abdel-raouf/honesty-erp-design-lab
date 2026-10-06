@@ -17,6 +17,7 @@ export type ErpAvatarPresencePosition =
   | 'bottom-right';
 export type ErpAvatarPresenceMotion = 'none' | 'pulse' | 'ping' | 'breathe';
 export type ErpAvatarHoverMotion = 'none' | 'scale' | 'lift';
+export type ErpAvatarCursor = 'default' | 'pointer';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -32,6 +33,7 @@ export type ErpAvatarHoverMotion = 'none' | 'scale' | 'lift';
     '[attr.data-avatar-presence-position]': 'presencePosition()',
     '[attr.data-avatar-presence-motion]': 'presenceMotion()',
     '[attr.data-avatar-hover-motion]': 'hoverMotion()',
+    '[attr.data-avatar-cursor]': 'cursor()',
     '[attr.aria-label]': 'accessibleLabel()',
   },
 })
@@ -45,6 +47,7 @@ export class ErpAvatar {
   readonly presencePosition = input<ErpAvatarPresencePosition>('bottom-right');
   readonly presenceMotion = input<ErpAvatarPresenceMotion>('none');
   readonly hoverMotion = input<ErpAvatarHoverMotion>('none');
+  readonly cursor = input<ErpAvatarCursor>('default');
 
   private readonly failedSrc = signal<string | null>(null);
 

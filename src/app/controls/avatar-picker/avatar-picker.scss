@@ -23,8 +23,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--honesty-avatar-picker-tile-size), 1fr));
   gap: var(--honesty-avatar-picker-grid-gap);
-  max-block-size: var(--honesty-avatar-picker-grid-max-block-size);
-  overflow: auto;
+  overflow: visible;
 }
 
 .avatar-picker__grid erp-selection-tile {
