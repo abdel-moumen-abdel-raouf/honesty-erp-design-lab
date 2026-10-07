@@ -26,7 +26,7 @@
     var(--honesty-tabs-transition-easing);
 }
 
-.tabs__list erp-tab-trigger {
+erp-tab-trigger {
   --honesty-tab-trigger-justify: center;
   --honesty-tab-trigger-gap: var(--honesty-tabs-tab-gap);
   --honesty-tab-trigger-padding: var(--honesty-tabs-tab-padding-block)
@@ -46,26 +46,26 @@
   transition:
     color var(--honesty-tabs-transition-duration) var(--honesty-tabs-transition-easing),
     background-color var(--honesty-tabs-transition-duration) var(--honesty-tabs-transition-easing),
-    transform var(--honesty-tabs-transition-fast) var(--honesty-tabs-transition-easing-enter);
+    transform var(--honesty-tabs-transition-fast) var(--honesty-tabs-transition-easing-spring);
 }
 
-.tabs__list erp-tab-trigger:hover:not(:has(button:disabled)) {
+erp-tab-trigger:hover:not(.is-disabled) {
   color: var(--honesty-tabs-fg-hover);
   background: var(--honesty-tabs-tab-hover-bg);
 }
 
-.tabs__list erp-tab-trigger:has(button[aria-selected='true']) {
+erp-tab-trigger.is-active {
   color: var(--honesty-tabs-active-fg);
   background: var(--honesty-tabs-tab-active-bg);
   font-weight: var(--honesty-tabs-active-font-weight);
 }
 
-.tabs__list erp-tab-trigger:has(button:focus-visible) {
+erp-tab-trigger:has(button:focus-visible) {
   border-radius: var(--honesty-tabs-focus-radius);
   box-shadow: inset 0 0 0 var(--honesty-tabs-focus-width) var(--honesty-tabs-focus-color);
 }
 
-.tabs__list erp-tab-trigger:has(button:disabled) {
+erp-tab-trigger.is-disabled {
   color: var(--honesty-tabs-disabled-fg);
   cursor: not-allowed;
   pointer-events: none;
@@ -78,30 +78,30 @@
   block-size: var(--honesty-tabs-icon-size);
   flex: 0 0 var(--honesty-tabs-icon-size);
   transition: transform var(--honesty-tabs-transition-duration)
-    var(--honesty-tabs-transition-easing-enter);
+    var(--honesty-tabs-transition-easing-spring);
 }
 
-erp-tab-trigger:has(button[aria-selected='true']) .tabs__icon {
+erp-tab-trigger.is-active .tabs__icon {
   transform: scale(1.08);
 }
 
 .tabs__image {
-  display: block;
+  display: grid;
+  place-items: center;
   inline-size: var(--honesty-tabs-image-size);
   block-size: var(--honesty-tabs-image-size);
   box-sizing: border-box;
-  min-inline-size: var(--honesty-tabs-image-size);
-  max-inline-size: var(--honesty-tabs-image-size);
   flex: 0 0 var(--honesty-tabs-image-size);
   overflow: hidden;
   border: var(--honesty-tabs-image-border-width) solid var(--honesty-tabs-image-border-color);
   border-radius: var(--honesty-tabs-image-radius);
-  transition:
-    border-color var(--honesty-tabs-transition-duration) var(--honesty-tabs-transition-easing),
-    transform var(--honesty-tabs-transition-duration) var(--honesty-tabs-transition-easing-enter);
+  background: var(--honesty-tabs-image-bg);
+  transition-property: border-color, transform;
+  transition-duration: var(--honesty-tabs-transition-duration);
+  transition-timing-function: var(--honesty-tabs-transition-easing);
 }
 
-erp-tab-trigger:has(button[aria-selected='true']) .tabs__image {
+erp-tab-trigger.is-active .tabs__image {
   border-color: var(--honesty-tabs-image-active-border-color);
   transform: scale(1.06);
 }
@@ -127,7 +127,17 @@ erp-tab-trigger:has(button[aria-selected='true']) .tabs__image {
   line-height: var(--honesty-tabs-count-line-height);
 }
 
-erp-tab-trigger:has(button[aria-selected='true']) .tabs__count {
+erp-tab-trigger.is-active .tabs__count {
   background: var(--honesty-tabs-count-active-bg);
   color: var(--honesty-tabs-count-active-fg);
+}
+
+@media (prefers-contrast: more) {
+  .tabs__list {
+    border-color: var(--honesty-tabs-track-border-color-contrast);
+  }
+
+  erp-tab-trigger.is-active {
+    font-weight: var(--honesty-tabs-active-font-weight-contrast);
+  }
 }

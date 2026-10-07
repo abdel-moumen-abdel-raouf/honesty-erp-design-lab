@@ -15,6 +15,20 @@
 The absolute Windows path records provenance only. Runtime code has no
 dependency on Downloads or any local absolute path.
 
+## Product Owner rejection and reconstruction
+
+The technically green candidate at
+`302056ad312dec403a1cdf2f9ded92d57d011ba5` was rejected by the Product Owner
+for complete visual mismatch with `ERP-TABS.html`. It is not a successful
+visual rebuild in project history. This reconstruction was derived from the
+rendered reference at a fixed `1440 x 900` viewport and from its computed box
+geometry, rather than from the rejected Tabs styling.
+
+Permitted differences are limited to Honesty ERP colors, Honesty ERP font
+families, visually invisible accessibility markup, and the
+`prefers-reduced-motion` override. Reference spacing, radii, borders, sizes,
+distances, durations, and easings are literal Component Token values.
+
 ## Reference feature inventory
 
 | Area | Exact reference contract |
@@ -31,7 +45,7 @@ dependency on Downloads or any local absolute path.
 | Track variants | pill/solid track uses 4 px padding and 4 px gap; reference tab radius is 8 px; reference track radius is 12 px |
 | Vertical layout | 240 px list width, 20 px list/panel gap, 12 px tab block padding |
 | Panels | keyed rich projection plus string convenience content; panel relationship remains within the Tabs owner |
-| Motion | `slide`, `fade`, `scale`, `none`; slide distance 16 px; scale entry starts at `.94` |
+| Motion | `slide`, `fade`, `scale`, `none`; 220 ms standard transition `cubic-bezier(.2, 0, 0, 1)`; 140 ms spring interaction `cubic-bezier(.34, 1.4, .64, 1)`; 320 ms panel transition; slide uses `cubic-bezier(0, 0, .2, 1)` over 16 px; scale entry starts at `.94` |
 | Overflow | horizontal content distribution scrolls without visible scrollbar |
 | Responsive | vertical composition resolves to the horizontal reference presentation through the Foundation Query API at the system `sm` boundary |
 | Keyboard | automatic activation; horizontal Left/Right with RTL reversal, vertical Up/Down, Home/End, disabled-item skipping |
@@ -69,9 +83,9 @@ Bounded compatibility remains opt-in:
 - `fade-up|fade-down|fade-start|fade-end` remain opt-in transitions;
 - `renderPanels=false` and `count` remain required by `ErpAvatarPicker`.
 
-The default is the reference `underline`, `content`, `horizontal`, `slide`, and
-`reference` header presentation. Compatibility extensions must not alter that
-default.
+The default is the reference `underline`, `content`, `horizontal`, `slide`,
+`text` header presentation, and `reference` header shape. Compatibility
+extensions must not alter that default.
 
 ## Separate-owner findings
 

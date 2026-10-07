@@ -3,8 +3,9 @@
 ## Current transition — 2026-10-07
 
 The four-component sequence below is historical. The current Product Owner
-authorization is only the strict ErpTabs exact-reference rebuild entered from
-`f76f63d88ba600381ddab6cc59bb67ce276a22ab`.
+authorization is only the literal ErpTabs exact-reference reconstruction
+entered from the Product Owner-rejected candidate
+`302056ad312dec403a1cdf2f9ded92d57d011ba5`.
 
 `C:\Users\Misrtech\Downloads\ERP-TABS.html`, SHA-256
 `CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`, is the
@@ -16,7 +17,7 @@ interpretations. The current contract is
 The rebuild implements reference variants, anatomy, orientations,
 distribution, panels, motion, responsive behavior, keyboard, and ARIA while
 preserving bounded Stepper and AvatarPicker compatibility. The candidate is
-technically green at 133/133 test files and 893/893 tests. The exact next action
+technically green at 133/133 test files and 895/895 tests. The exact next action
 is Product Owner runtime/Light/Dark/RTL/LTR/narrow review of ErpTabs at
 `/controls/core-batch`. `ErpSelect`, `ErpStatusBadge`, `ErpAvatar`,
 `ErpAvatarPicker`, and every other Core owner remain closed to implementation.

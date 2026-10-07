@@ -85,6 +85,7 @@ const PRESENCE_LABELS: Readonly<Record<ErpAvatarPresence, string>> = {
     '[attr.data-avatar-shape]': 'shape()',
     '[attr.data-avatar-tone]': 'tone()',
     '[attr.data-avatar-ring]': 'ring()',
+    '[attr.data-avatar-bordered]': 'bordered()',
     '[attr.data-avatar-loading]': 'loading()',
     '[attr.data-avatar-interactive]': 'interactive()',
     '[attr.data-avatar-presence]': 'presence()',
@@ -106,6 +107,7 @@ export class ErpAvatar {
   readonly tone = input<ErpAvatarTone>('neutral');
   readonly fallbackIcon = input<ErpIconName | null>(null);
   readonly ring = input(false, {transform: booleanAttribute});
+  readonly bordered = input(true, {transform: booleanAttribute});
   readonly loading = input(false, {transform: booleanAttribute});
   readonly interactive = input(false, {transform: booleanAttribute});
   readonly presence = input<ErpAvatarPresence | null>(null);

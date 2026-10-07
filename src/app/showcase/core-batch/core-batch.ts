@@ -222,29 +222,6 @@ export class CoreBatch {
     {id: 'audit', label: 'سجل المراجعة', content: 'هذا التبويب معطل للمستخدم الحالي.', icon: 'history', disabled: true},
   ];
 
-  readonly textOnlyTabs: readonly ErpTabItem[] = [
-    {id: 'overview', label: 'نظرة عامة', content: 'نظرة عامة على السجل.'},
-    {id: 'details', label: 'التفاصيل', content: 'البيانات التفصيلية للسجل.'},
-    {id: 'documents', label: 'المستندات', content: 'المستندات المرتبطة بالسجل.'},
-  ];
-
-  readonly imageTabs: readonly ErpTabItem[] = [
-    {
-      id: 'ahmed',
-      label: 'أحمد محمود',
-      content: 'العمليات المسندة إلى أحمد محمود.',
-      imageUrl: '/assets/honesty-erp-avatars/users/male/avatar-01.png',
-      headerPresentation: 'image-text',
-    },
-    {
-      id: 'sara',
-      label: 'سارة علي',
-      content: 'العمليات المسندة إلى سارة علي.',
-      imageUrl: '/assets/honesty-erp-avatars/users/female/avatar-21.png',
-      headerPresentation: 'image-text',
-    },
-  ];
-
   protected updateBadgeSelection(selected: boolean): void {
     this.badgeSelected.set(selected);
     this.badgeInteractionEvidence.set(selected ? 'تم تحديد الحالة' : 'تم إلغاء تحديد الحالة');
@@ -257,11 +234,6 @@ export class CoreBatch {
   protected recordAvatarActivation(): void {
     this.avatarInteractionEvidence.set('تم تفعيل الصورة الشخصية');
   }
-
-  readonly iconOnlyTabs: readonly ErpTabItem[] = [
-    {id: 'overview', label: 'نظرة عامة', content: 'محتوى النظرة العامة.', icon: 'dashboard', headerPresentation: 'icon-only'},
-    {id: 'history', label: 'السجل', content: 'محتوى سجل الحركة.', icon: 'history', headerPresentation: 'icon-only'},
-  ];
 
   private options(values: readonly string[]): readonly ErpSelectOption[] {
     return values.map((value) => ({value, label: value}));

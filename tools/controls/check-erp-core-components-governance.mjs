@@ -6,6 +6,7 @@ const ROOT = process.cwd();
 const ROUTES = 'src/app/app.routes.ts';
 const REVIEW = 'src/app/showcase/core-batch/core-batch.html';
 const REVIEW_TABLE = 'src/app/review-internals/review-core-table/review-core-table.html';
+const REVIEW_TABS = 'src/app/review-internals/review-core-tabs/review-core-tabs.html';
 const SELECT = 'src/app/controls/select/select.html';
 const SELECT_TS = 'src/app/controls/select/select.ts';
 const SELECT_SCSS = 'src/app/controls/select/select.scss';
@@ -105,7 +106,8 @@ export function validateCoreComponents(files) {
   const errors = [];
   const routes = files.get(ROUTES) ?? '';
   const review = files.get(REVIEW) ?? '';
-  const reviewEvidence = `${review}\n${files.get(REVIEW_TABLE) ?? ''}`;
+  const tabsReview = files.get(REVIEW_TABS) ?? '';
+  const reviewEvidence = `${review}\n${files.get(REVIEW_TABLE) ?? ''}\n${tabsReview}`;
   const select = files.get(SELECT) ?? '';
   const selectTs = files.get(SELECT_TS) ?? '';
   const selectScss = `${files.get(SELECT_SCSS) ?? ''}\n${files.get(SELECT_MOTION_SCSS) ?? ''}\n${files.get(SELECT_OPTION_SCSS) ?? ''}`;
@@ -499,18 +501,25 @@ export function validateCoreComponents(files) {
     }
   }
   for (const geometry of [
-    '--honesty-tabs-tab-padding-block: 0.625rem',
-    '--honesty-tabs-tab-padding-inline: 1rem',
-    '--honesty-tabs-tab-gap: 0.5rem',
-    '--honesty-tabs-icon-size: 1rem',
-    '--honesty-tabs-image-size: 1.5rem',
-    '--honesty-tabs-count-min-size: 1.125rem',
-    '--honesty-tabs-count-padding-inline: 0.3125rem',
-    '--honesty-tabs-indicator-size: 0.1875rem',
-    '--honesty-tabs-track-radius: 0.75rem',
-    '--honesty-tabs-vertical-list-size: 15rem',
-    '--honesty-tabs-vertical-gap: 1.25rem',
-    '--honesty-tabs-slide-distance: 1rem',
+    '--honesty-tabs-tab-padding-block: 10px',
+    '--honesty-tabs-tab-padding-inline: 16px',
+    '--honesty-tabs-tab-gap: 8px',
+    '--honesty-tabs-icon-size: 16px',
+    '--honesty-tabs-image-size: 24px',
+    '--honesty-tabs-count-min-size: 18px',
+    '--honesty-tabs-count-padding-inline: 5px',
+    '--honesty-tabs-indicator-size: 3px',
+    '--honesty-tabs-track-radius: 12px',
+    '--honesty-tabs-reference-tab-radius: 8px',
+    '--honesty-tabs-vertical-list-size: 240px',
+    '--honesty-tabs-vertical-gap: 20px',
+    '--honesty-tabs-transition-fast: 140ms',
+    '--honesty-tabs-transition-duration: 220ms',
+    '--honesty-tabs-panel-transition-duration: 320ms',
+    '--honesty-tabs-transition-easing: cubic-bezier(0.2, 0, 0, 1)',
+    '--honesty-tabs-transition-easing-decelerate: cubic-bezier(0, 0, 0.2, 1)',
+    '--honesty-tabs-transition-easing-spring: cubic-bezier(0.34, 1.4, 0.64, 1)',
+    '--honesty-tabs-slide-distance: 16px',
     '--honesty-tabs-scale-start: 0.94',
     '@mixin variant-pill',
     '@mixin variant-solid',
@@ -548,15 +557,24 @@ export function validateCoreComponents(files) {
   for (const evidence of [
     'class="tabs-reference-parity-matrix"',
     'data-tabs-reference="ERP-TABS.html"',
+    'data-tabs-specimen="demo-h1"',
+    'data-tabs-specimen="demo-h2"',
+    'data-tabs-specimen="demo-h3"',
+    'data-tabs-specimen="demo-h4"',
+    'data-tabs-specimen="demo-h5"',
+    'data-tabs-specimen="demo-h6"',
+    'data-tabs-specimen="demo-h7"',
+    'data-tabs-specimen="demo-v1"',
+    'data-tabs-specimen="demo-v2"',
+    'data-tabs-specimen="demo-anim"',
     'variant="pill"',
     'variant="solid"',
-    'variant="ghost"',
     'orientation="vertical"',
     'distribution="fill"',
     'data-tabs-direction-evidence="rtl"',
     'data-tabs-direction-evidence="ltr"',
   ]) {
-    if (!review.includes(evidence)) {
+    if (!reviewEvidence.includes(evidence)) {
       errors.push(`Core review is missing Tabs exact-reference evidence ${evidence}`);
     }
   }
@@ -697,6 +715,7 @@ function fixture(overrides = new Map()) {
     [ROUTES, "path: 'controls/core-batch'"],
     [REVIEW, '<erp-select/><erp-status-badge/><erp-alert/><erp-skeleton/><erp-avatar/><erp-tabs/><erp-avatar-picker/><erp-table/><erp-pagination/><div class="select-parity-matrix" sortMode="label" label="نتيجة فارغة" label="حالة غير صالحة"></div><div class="status-badge-parity-matrix"></div><div class="status-badge-size-matrix"></div><div class="status-badge-anatomy-matrix"></div><div data-status-badge-direction-evidence="rtl"></div><div data-status-badge-direction-evidence="ltr"></div><div class="avatar-reference-size-matrix"></div><div class="avatar-large-size-matrix"></div><div data-avatar-picker-large-size-evidence></div><div class="avatar-reference-content-types"></div><div class="avatar-reference-motion-matrix"></div><div class="avatar-reference-presence-matrix"></div><div data-avatar-direction-evidence="rtl"></div><div data-avatar-direction-evidence="ltr"></div><div class="tabs-reference-parity-matrix" data-tabs-reference="ERP-TABS.html"><erp-tabs variant="pill" data-tabs-direction-evidence="rtl"/><erp-tabs variant="solid" distribution="fill"/><erp-tabs variant="ghost" orientation="vertical" data-tabs-direction-evidence="ltr"/></div>'],
     [REVIEW_TABLE, '<erp-column-chooser/>'],
+    [REVIEW_TABS, '<div data-tabs-reference="ERP-TABS.html" data-tabs-direction-evidence="ltr"><div data-tabs-specimen="demo-h1"></div><div data-tabs-specimen="demo-h2"></div><div data-tabs-specimen="demo-h3" distribution="fill"></div><div data-tabs-specimen="demo-h4"></div><div data-tabs-specimen="demo-h5"></div><div data-tabs-specimen="demo-h6" variant="pill"></div><div data-tabs-specimen="demo-h7" variant="solid"></div><div data-tabs-specimen="demo-v1" orientation="vertical"></div><div data-tabs-specimen="demo-v2"></div><div data-tabs-specimen="demo-anim"></div><div data-tabs-direction-evidence="rtl"></div></div>'],
     [SELECT, '<div class="select__control"></div><erp-field-trigger semanticRole="combobox" (blurred)="handleTriggerBlur()"/><erp-search-box presentation="select-panel"/><erp-selection-tile presentation="select-option"/><div class="select__group-label"></div><div class="select__footer"></div><erp-avatar/><erp-select-action icon="dismiss"/><erp-icon name="check-mark"/>'],
     [SELECT_TS, "this.controlSurface()?.nativeElement; Math.min(control.getBoundingClientRect().width, availableWidth); event.target.matches(':focus-visible'); this.triggerFocusVisible.set(false); readonly searchLabel = input('البحث'); readonly sortMode = input<ErpSelectSortMode>('none'); readonly groupBy = input<keyof ErpSelectOption | null>(null); readonly selectSize = input<ErpSelectSize>('md'); readonly selectAppearance = input<ErpSelectAppearance | null>(null)"],
     [SELECT_SCSS, '@media (prefers-reduced-motion: reduce) {}'],
@@ -742,7 +761,7 @@ function fixture(overrides = new Map()) {
     [TABS_TOKEN_CONTRACT, "@include tokens.base"],
     [TABS_MOTION, '@media (prefers-reduced-motion: reduce) {}'],
     [TABS_TRIGGER_SCSS, '--honesty-tab-trigger-padding: 0'],
-    [TABS_TOKENS, '@mixin base {}; @mixin variant-pill {}; @mixin variant-solid {}; @mixin variant-ghost {}; @mixin variant-pills-compat {}; --honesty-tabs-tab-padding-block: 0.625rem; --honesty-tabs-tab-padding-inline: 1rem; --honesty-tabs-tab-gap: 0.5rem; --honesty-tabs-icon-size: 1rem; --honesty-tabs-image-size: 1.5rem; --honesty-tabs-count-min-size: 1.125rem; --honesty-tabs-count-padding-inline: 0.3125rem; --honesty-tabs-indicator-size: 0.1875rem; --honesty-tabs-track-radius: 0.75rem; --honesty-tabs-reference-tab-radius: 0.5rem; --honesty-tabs-vertical-list-size: 15rem; --honesty-tabs-vertical-gap: 1.25rem; --honesty-tabs-slide-distance: 1rem; --honesty-tabs-scale-start: 0.94;'],
+    [TABS_TOKENS, '@mixin base {}; @mixin variant-pill {}; @mixin variant-solid {}; @mixin variant-ghost {}; @mixin variant-pills-compat {}; --honesty-tabs-tab-padding-block: 10px; --honesty-tabs-tab-padding-inline: 16px; --honesty-tabs-tab-gap: 8px; --honesty-tabs-icon-size: 16px; --honesty-tabs-image-size: 24px; --honesty-tabs-count-min-size: 18px; --honesty-tabs-count-padding-inline: 5px; --honesty-tabs-indicator-size: 3px; --honesty-tabs-track-radius: 12px; --honesty-tabs-reference-tab-radius: 8px; --honesty-tabs-vertical-list-size: 240px; --honesty-tabs-vertical-gap: 20px; --honesty-tabs-transition-fast: 140ms; --honesty-tabs-transition-duration: 220ms; --honesty-tabs-panel-transition-duration: 320ms; --honesty-tabs-transition-easing: cubic-bezier(0.2, 0, 0, 1); --honesty-tabs-transition-easing-decelerate: cubic-bezier(0, 0, 0.2, 1); --honesty-tabs-transition-easing-spring: cubic-bezier(0.34, 1.4, 0.64, 1); --honesty-tabs-slide-distance: 16px; --honesty-tabs-scale-start: 0.94;'],
     [TABS_CONTRACT, `${TABS_REFERENCE_SHA}; ERP-TABS.html supersedes every previous \`ErpTabs\` visual reference`],
     [TABS_LEGACY_REFERENCE, `SUPERSEDED; ${TABS_REFERENCE_SHA}`],
     [TABLE, '<erp-check-box/><erp-sort-header/><erp-table-resize-handle/><tfoot></tfoot> descriptionKey data-overflow'],
@@ -837,6 +856,7 @@ function runCheck() {
     [ROUTES, read(ROUTES)],
     [REVIEW, read(REVIEW)],
     [REVIEW_TABLE, read(REVIEW_TABLE)],
+    [REVIEW_TABS, read(REVIEW_TABS)],
     [SELECT, read(SELECT)],
     [SELECT_TS, read(SELECT_TS)],
     [SELECT_SCSS, read(SELECT_SCSS)],

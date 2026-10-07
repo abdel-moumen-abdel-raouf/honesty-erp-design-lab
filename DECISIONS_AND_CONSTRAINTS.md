@@ -30,8 +30,10 @@ Binding Product Owner law:
 4. the next item is the lowest unresolved dependency, not simply the next row
    in historical planning.
 
-Latest authorized implementation is the strict exact-reference rebuild of
-`ErpTabs`, entered from `f76f63d88ba600381ddab6cc59bb67ce276a22ab`.
+Latest authorized implementation is the literal exact-reference reconstruction
+of `ErpTabs`, entered from the Product Owner-rejected technically green
+candidate `302056ad312dec403a1cdf2f9ded92d57d011ba5`. That candidate is not a
+successful visual rebuild in project history.
 
 `ERP-TABS.html`, SHA-256
 `CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`, is the
@@ -50,7 +52,7 @@ relationship, automatic keyboard activation, responsive overflow, and motion.
 into `ErpStepper`; `count` and `renderPanels=false` remain bounded
 `ErpAvatarPicker` compatibility extensions.
 
-The rebuilt candidate passes 133/133 test files and 893/893 tests, both
+The rebuilt candidate passes 133/133 test files and 895/895 tests, both
 typechecks, production build, all governance, and zero warnings.
 
 Current active gate is Product Owner runtime/Light/Dark/RTL/LTR/narrow review of

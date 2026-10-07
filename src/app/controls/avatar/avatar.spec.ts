@@ -12,11 +12,26 @@ describe('ErpAvatar', () => {
     expect(host.getAttribute('data-avatar-shape')).toBe('circle');
     expect(host.getAttribute('data-avatar-tone')).toBe('neutral');
     expect(host.getAttribute('data-avatar-ring')).toBe('false');
+    expect(host.getAttribute('data-avatar-bordered')).toBe('true');
     expect(host.getAttribute('data-avatar-loading')).toBe('false');
     expect(host.getAttribute('data-avatar-interactive')).toBe('false');
     expect(host.getAttribute('role')).toBe('img');
     expect(host.getAttribute('aria-label')).toBe('أحمد علي');
     expect(host.querySelector('button')).toBeNull();
+  });
+
+  it('allows an approved composite to own the outer media frame without changing Avatar content', () => {
+    const fixture = TestBed.createComponent(ErpAvatar);
+    fixture.componentRef.setInput('name', 'Amira Hassan');
+    fixture.componentRef.setInput('bordered', false);
+    fixture.detectChanges();
+
+    const host = fixture.nativeElement as HTMLElement;
+    const style = getComputedStyle(host);
+    expect(host.getAttribute('data-avatar-bordered')).toBe('false');
+    expect(style.getPropertyValue('--honesty-avatar-border-width').trim()).toBe('0');
+    expect(host.querySelector('.avatar__frame')).not.toBeNull();
+    expect(host.querySelector('erp-text')?.textContent).toContain('AH');
   });
 
   it('follows image then explicit icon then initials then default icon fallback order', () => {

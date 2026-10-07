@@ -27,15 +27,17 @@ Nexlink reference, the accelerated no-reference waiver, and all conflicting
 visual interpretations. Only colors and font families are mapped to Honesty ERP
 system contracts.
 
-The strict exact-reference rebuild entered from
-`f76f63d88ba600381ddab6cc59bb67ce276a22ab`. It implements the reference
+The technically green candidate at
+`302056ad312dec403a1cdf2f9ded92d57d011ba5` was rejected by the Product Owner
+for complete visual mismatch. The current literal reconstruction entered from
+that checkpoint and implements the reference
 variants, header anatomies, orientations, distribution, panels, active
 indicator, responsive behavior, motion, automatic keyboard activation, and
 ARIA. `ErpTabTrigger` remains a generic semantic primitive, so Tabs visual
 styling does not leak into `ErpStepper`. `count` and `renderPanels=false` remain
 bounded AvatarPicker compatibility extensions.
 
-Its canonical gate passes 133/133 test files and 893/893 tests, both typechecks,
+Its canonical gate passes 133/133 test files and 895/895 tests, both typechecks,
 production build, all governance, and zero warnings.
 
 The authoritative implementation contract is

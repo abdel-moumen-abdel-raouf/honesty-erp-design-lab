@@ -41,12 +41,12 @@ describe('IconPrimitives showcase', () => {
     expect(render().querySelectorAll('[data-review-group]').length).toBe(5);
   });
 
-  it('evidences all 77 unique semantic icon names in the core catalog', () => {
+  it('evidences all 80 unique semantic icon names in the core catalog', () => {
     const icons = [...render().querySelectorAll<HTMLElement>('[data-catalog-icon]')];
     const names = icons.map((icon) => icon.getAttribute('data-icon-name'));
 
-    expect(icons.length).toBe(77);
-    expect(new Set(names).size).toBe(77);
+    expect(icons.length).toBe(80);
+    expect(new Set(names).size).toBe(80);
     expect(names).toEqual([...ERP_ICON_NAMES]);
   });
 

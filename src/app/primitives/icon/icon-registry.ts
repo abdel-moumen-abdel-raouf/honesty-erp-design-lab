@@ -5,6 +5,7 @@ import {
   tablerChevronUp as erpChevronUpOutline,
   tablerBuildings as erpBranchesOutline,
   tablerBuilding as erpBuildingOutline,
+  tablerChartLine as erpChartOutline,
   tablerCheck as erpCheckMarkOutline,
   tablerX as erpDismissOutline,
   tablerCopy as erpCopyOutline,
@@ -28,7 +29,9 @@ import {
   tablerPrinter as erpPrintOutline,
   tablerServer as erpServerOutline,
   tablerSettings as erpSettingsOutline,
+  tablerShield as erpShieldOutline,
   tablerShieldCheck as erpShieldCheckOutline,
+  tablerShoppingCart as erpShoppingCartOutline,
   tablerSun as erpSunOutline,
   tablerUser as erpUserOutline,
   tablerWallet as erpWalletOutline,
@@ -85,6 +88,7 @@ import {
   phosphorPlusCircleFill as erpAddFilled,
   phosphorBuildingsFill as erpBranchesFilled,
   phosphorBuildingFill as erpBuildingFilled,
+  phosphorChartLineFill as erpChartFilled,
   phosphorCheckCircleFill as erpCheckFilled,
   phosphorCheckFill as erpCheckMarkFilled,
   phosphorXCircleFill as erpCloseFilled,
@@ -146,7 +150,9 @@ import {
   tablerBriefcaseFill as erpOperationsFilled,
   tablerPhoneFill as erpPhoneFilled,
   tablerShieldLockFill as erpSecurityFilled,
+  tablerShieldFill as erpShieldFilled,
   tablerShieldCheckFill as erpShieldCheckFilled,
+  tablerShoppingCartFill as erpShoppingCartFilled,
   tablerSunFill as erpSunFilled,
   tablerUserFill as erpUserFilled,
   tablerClockFill as erpClockFilled,
@@ -208,6 +214,11 @@ export const ERP_ICON_REGISTRY: Readonly<Record<ErpIconName, ErpIconDefinition>>
   'building': {
     outlineSvg: erpBuildingOutline,
     filledSvg: erpBuildingFilled,
+    mirrorInRtl: false,
+  },
+  'chart': {
+    outlineSvg: erpChartOutline,
+    filledSvg: erpChartFilled,
     mirrorInRtl: false,
   },
   'check': {
@@ -380,9 +391,19 @@ export const ERP_ICON_REGISTRY: Readonly<Record<ErpIconName, ErpIconDefinition>>
     filledSvg: erpSettingsFilled,
     mirrorInRtl: false,
   },
+  'shield': {
+    outlineSvg: erpShieldOutline,
+    filledSvg: erpShieldFilled,
+    mirrorInRtl: false,
+  },
   'shield-check': {
     outlineSvg: erpShieldCheckOutline,
     filledSvg: erpShieldCheckFilled,
+    mirrorInRtl: false,
+  },
+  'shopping-cart': {
+    outlineSvg: erpShoppingCartOutline,
+    filledSvg: erpShoppingCartFilled,
     mirrorInRtl: false,
   },
   'skip-start': {

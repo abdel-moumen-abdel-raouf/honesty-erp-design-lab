@@ -5,8 +5,9 @@
 The findings below remain an auditable historical Product Owner review record;
 they are not current implementation authorization.
 
-The latest Product Owner decision is the strict ErpTabs exact-reference rebuild
-entered from `f76f63d88ba600381ddab6cc59bb67ce276a22ab`.
+The latest Product Owner decision rejects the technically green ErpTabs
+candidate at `302056ad312dec403a1cdf2f9ded92d57d011ba5` for complete visual
+mismatch and authorizes only the literal reconstruction from that checkpoint.
 `ERP-TABS.html`, SHA-256
 `CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`, is the
 single binding visual and behavioral authority for `ErpTabs`; its exact
@@ -15,7 +16,7 @@ and accelerated no-reference waiver are superseded. The prior Select,
 StatusBadge, Avatar, and AvatarPicker contracts remain technically implemented
 and are not reopened.
 
-The rebuilt candidate passes 133/133 test files and 893/893 tests, all
+The rebuilt candidate passes 133/133 test files and 895/895 tests, all
 governance, both typechecks, production build, and zero warnings.
 
 The exact next action is Product Owner runtime/Light/Dark/RTL/LTR/narrow

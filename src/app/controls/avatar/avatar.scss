@@ -29,6 +29,13 @@
   --honesty-avatar-radius: var(--honesty-avatar-square-radius);
 }
 
+// Bounded embedded-media mode: a composite may own the exact outer frame while
+// Avatar keeps image, initials, fallback, sizing, and shape ownership.
+:host([data-avatar-bordered='false']) {
+  --honesty-avatar-border-width: 0;
+  --honesty-avatar-border-width-contrast: 0;
+}
+
 :host([data-avatar-presence-position='top']) erp-avatar-presence {
   top: 0;
   left: 50%;

@@ -68,8 +68,10 @@ restated by the newest dated continuity blocks or by
 
 ## Authoritative current state — 2026-10-07
 
-The strict exact-reference rebuild for `ErpTabs` entered from
-`f76f63d88ba600381ddab6cc59bb67ce276a22ab`. Resolve the final live SHA from Git.
+The Product Owner rejected the technically green `ErpTabs` candidate at
+`302056ad312dec403a1cdf2f9ded92d57d011ba5` for complete visual mismatch. The
+current bounded work is the literal reference reconstruction entered from that
+checkpoint; resolve the final live SHA from Git.
 
 - `ERP-TABS.html`, SHA-256
   `CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`, is the
@@ -82,10 +84,10 @@ The strict exact-reference rebuild for `ErpTabs` entered from
   are implemented. Compatibility extensions remain opt-in and isolated.
 - `ErpTabTrigger` stays generic; `ErpStepper` retains its own visuals and
   `ErpAvatarPicker` retains counted panel-less gender tabs.
-- Verification passes 133/133 test files, 893/893 tests, every lint/governance
+- Verification passes 133/133 test files, 895/895 tests, every lint/governance
   gate, both typechecks, production build, and zero warnings.
-- Initial bundle: 376.12 kB / 85.66 kB estimated transfer. Core Batch lazy
-  chunk: 114.10 kB / 19.53 kB estimated transfer.
+- Initial bundle: 376.16 kB / 85.67 kB estimated transfer. Core Batch lazy
+  chunk: 119.32 kB / 21.22 kB estimated transfer.
 - Product Owner runtime/Light/Dark/RTL/LTR/narrow acceptance for `ErpTabs`
   remains pending at `/controls/core-batch`; technical PASS is not visual
   approval or freeze.

@@ -6,7 +6,11 @@ import {booleanAttribute, ChangeDetectionStrategy, Component, input, output} fro
   selector: 'erp-tab-trigger',
   templateUrl: './tab-trigger.html',
   styleUrl: './tab-trigger.scss',
-  host: {'[attr.data-tab-trigger-fill]': 'fill()'},
+  host: {
+    '[attr.data-tab-trigger-fill]': 'fill()',
+    '[class.is-active]': 'selected()',
+    '[class.is-disabled]': 'disabled()',
+  },
 })
 export class ErpTabTrigger {
   readonly id = input.required<string>();

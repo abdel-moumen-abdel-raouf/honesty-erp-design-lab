@@ -14,10 +14,11 @@ Branch:
 
 ## Authoritative current execution state — 2026-10-07
 
-The Product Owner's strict exact-reference rebuild of `ErpTabs` entered from
-`f76f63d88ba600381ddab6cc59bb67ce276a22ab`. Resolve the final local and remote
-SHAs directly; source and continuity are synchronized in the same bounded
-implementation commit.
+The Product Owner rejected the technically green `ErpTabs` candidate at
+`302056ad312dec403a1cdf2f9ded92d57d011ba5` for complete visual mismatch and
+opened a literal reference reconstruction from that checkpoint. Resolve the
+final local and remote SHAs directly; source and continuity are synchronized in
+the same bounded implementation commit.
 
 `C:\Users\Misrtech\Downloads\ERP-TABS.html`, SHA-256
 `CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`, is the
@@ -38,17 +39,18 @@ consumers. `ErpTabTrigger` remains a generic semantic owner, so Tabs visuals do
 not leak into `ErpStepper`; `ErpAvatarPicker` continues to reuse `ErpTabs` with
 two counted gender tabs and no panels.
 
-Technical verification passes 133/133 test files and 893/893 tests, all
+Technical verification passes 133/133 test files and 895/895 tests, all
 lint/governance checks, both TypeScript typechecks, production build, and zero
-Angular/build warnings. The production initial bundle is 376.12 kB / 85.66 kB
-estimated transfer; the Core Batch lazy chunk is 114.10 kB / 19.53 kB estimated
+Angular/build warnings. The production initial bundle is 376.16 kB / 85.67 kB
+estimated transfer; the Core Batch lazy chunk is 119.32 kB / 21.22 kB estimated
 transfer.
 
 Product Owner visual state and immediate next action:
 
-- browser evidence confirms reference geometry, Light/Dark token inheritance,
-  RTL/LTR behavior, keyboard/focus behavior, unique ARIA relationships, and a
-  390 px narrow layout with no page overflow;
+- paired browser captures and computed measurements cover all ten reference
+  specimens at equal desktop viewports; the 390 px implementation evidence has
+  no horizontal overflow. Approved `ErpIcon` glyph contours remain an explicit
+  Product Owner comparison point rather than an inferred visual acceptance;
 - `ErpTabs` remains pending Product Owner runtime/Light/Dark/RTL/LTR/narrow
   comparison at `/controls/core-batch` against `ERP-TABS.html`;
 - `ErpAvatarPicker` and `ErpStepper` compatibility remains technically green;

@@ -1,36 +1,33 @@
 .tabs__panel--active[data-tabs-panel-transition='slide'] {
-  animation: honesty-tabs-slide var(--honesty-tabs-panel-transition-duration)
-    var(--honesty-tabs-transition-easing-enter) both;
+  animation-name: honesty-tabs-slide;
+  animation-duration: var(--honesty-tabs-panel-transition-duration);
+  animation-timing-function: var(--honesty-tabs-transition-easing-decelerate);
+  animation-fill-mode: both;
 }
 
 .tabs__panel--active[data-tabs-panel-transition='fade'] {
-  animation: honesty-tabs-fade var(--honesty-tabs-transition-duration)
-    var(--honesty-tabs-transition-easing) both;
+  animation-name: honesty-tabs-fade;
+  animation-duration: var(--honesty-tabs-transition-duration);
+  animation-timing-function: var(--honesty-tabs-transition-easing);
+  animation-fill-mode: both;
 }
 
-.tabs__panel--active[data-tabs-panel-transition='scale'] {
-  animation: honesty-tabs-scale var(--honesty-tabs-panel-transition-duration)
-    var(--honesty-tabs-transition-easing-enter) both;
+.tabs__panel--active:is(
+  [data-tabs-panel-transition='scale'],
+  [data-tabs-panel-transition='fade-up'],
+  [data-tabs-panel-transition='fade-down'],
+  [data-tabs-panel-transition='fade-start'],
+  [data-tabs-panel-transition='fade-end']
+) {
+  animation-duration: var(--honesty-tabs-panel-transition-duration);
+  animation-timing-function: var(--honesty-tabs-transition-easing-spring);
+  animation-fill-mode: both;
 }
 
-.tabs__panel--active[data-tabs-panel-transition='fade-up'] {
-  animation: honesty-tabs-fade-up var(--honesty-tabs-panel-transition-duration)
-    var(--honesty-tabs-transition-easing-enter) both;
-}
-
-.tabs__panel--active[data-tabs-panel-transition='fade-down'] {
-  animation: honesty-tabs-fade-down var(--honesty-tabs-panel-transition-duration)
-    var(--honesty-tabs-transition-easing-enter) both;
-}
-
-.tabs__panel--active[data-tabs-panel-transition='fade-start'] {
-  animation: honesty-tabs-fade-start var(--honesty-tabs-panel-transition-duration)
-    var(--honesty-tabs-transition-easing-enter) both;
-}
-
-.tabs__panel--active[data-tabs-panel-transition='fade-end'] {
-  animation: honesty-tabs-fade-end var(--honesty-tabs-panel-transition-duration)
-    var(--honesty-tabs-transition-easing-enter) both;
+@each $transition in scale, fade-up, fade-down, fade-start, fade-end {
+  .tabs__panel--active[data-tabs-panel-transition='#{$transition}'] {
+    animation-name: honesty-tabs-#{$transition};
+  }
 }
 
 @keyframes honesty-tabs-slide {
@@ -87,7 +84,8 @@
   .tabs__image,
   .tabs__indicator,
   .tabs__panel {
-    animation: none;
-    transition: none;
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
   }
 }

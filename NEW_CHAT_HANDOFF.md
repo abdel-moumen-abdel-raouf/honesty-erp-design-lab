@@ -2,9 +2,10 @@
 
 ## 0. Authoritative current handoff — 2026-10-07
 
-The strict exact-reference rebuild for `ErpTabs` entered from
-`f76f63d88ba600381ddab6cc59bb67ce276a22ab`. Resolve final local and remote SHAs
-at session start.
+The Product Owner rejected the technically green `ErpTabs` candidate at
+`302056ad312dec403a1cdf2f9ded92d57d011ba5` for complete visual mismatch. The
+current literal reference reconstruction entered from that checkpoint. Resolve
+final local and remote SHAs at session start.
 
 The Product Owner made `C:\Users\Misrtech\Downloads\ERP-TABS.html`, SHA-256
 `CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`, the
@@ -21,10 +22,10 @@ indicator, lazy keyed panels, reference transitions, reduced motion, automatic
 orientation-aware keyboard navigation, collision-free ARIA IDs, and narrow
 Query-API behavior. Compatibility-only shapes, legacy transitions, `pills`,
 `count`, and `renderPanels=false` remain isolated for current consumers. The
-candidate is technically green at 133/133 test files and 893/893 tests, all
+candidate is technically green at 133/133 test files and 895/895 tests, all
 lint/governance gates, both typechecks, production build, and zero warnings.
-Initial bundle is 376.12 kB / 85.66 kB estimated transfer; Core Batch lazy chunk
-is 114.10 kB / 19.53 kB.
+Initial bundle is 376.16 kB / 85.67 kB estimated transfer; Core Batch lazy chunk
+is 119.32 kB / 21.22 kB.
 
 The exact next action is Product Owner runtime/Light/Dark/RTL/LTR/narrow review
 of `ErpTabs` at `/controls/core-batch` against the binding reference. Browser

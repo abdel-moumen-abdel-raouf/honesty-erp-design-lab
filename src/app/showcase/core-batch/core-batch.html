@@ -441,91 +441,27 @@
       <erp-stack class="tabs-reference-parity-matrix" gap="default" data-tabs-reference="ERP-TABS.html">
         <erp-text type="heading-2">ErpTabs</erp-text>
         <erp-text type="paragraph" tone="secondary">
-          مصفوفة المطابقة المباشرة للمرجع: الأنماط الأربعة، الاتجاهان، توزيع المحتوى
-          والملء، المحتوى النصي والأيقوني والصوري، العدادات، التعطيل، والحركات المرجعية.
+          إعادة بناء حرفية لنماذج ERP-TABS.html العشرة بنفس ترتيب المرجع، مع فصل قدرات التوافق.
         </erp-text>
+        <erp-review-core-tabs />
+
+        <erp-text type="heading-4">COMPATIBILITY EVIDENCE — قدرات غير مرجعية</erp-text>
         <erp-grid [columns]="4" gap="sm" responsive="auto">
           <erp-select label="الاتجاه" [options]="tabsOrientationOptions" [ngModel]="tabsOrientation()" (ngModelChange)="tabsOrientation.set($event)" />
           <erp-select label="التوزيع" [options]="tabsDistributionOptions" [ngModel]="tabsDistribution()" (ngModelChange)="tabsDistribution.set($event)" />
           <erp-select label="النمط" [options]="tabsVariantOptions" [ngModel]="tabsVariant()" (ngModelChange)="tabsVariant.set($event)" />
           <erp-select label="الانتقال" [options]="tabsTransitionOptions" [ngModel]="tabsTransition()" (ngModelChange)="tabsTransition.set($event)" />
         </erp-grid>
-        <erp-tabs data-tabs-direction-evidence="rtl" [items]="tabs" activeId="summary" [orientation]="tabsOrientation()" [distribution]="tabsDistribution()" [variant]="tabsVariant()" [transition]="tabsTransition()" />
-        <erp-grid [columns]="2" gap="lg" responsive="auto">
-          <erp-surface border="subtle">
-            <erp-stack gap="tight">
-              <erp-text type="label">Underline — نص بعرض المحتوى</erp-text>
-              <erp-tabs [items]="textOnlyTabs" activeId="overview" variant="underline" transition="slide" />
-            </erp-stack>
-          </erp-surface>
-          <erp-surface border="subtle">
-            <erp-stack gap="tight">
-              <erp-text type="label">أيقونات + نصوص + عدادات</erp-text>
-              <erp-tabs [items]="tabs" activeId="summary" variant="underline" transition="slide" />
-            </erp-stack>
-          </erp-surface>
-          <erp-surface border="subtle">
-            <erp-stack gap="tight">
-              <erp-text type="label">Fill — عرض متساوٍ</erp-text>
-              <erp-tabs [items]="tabs" activeId="summary" variant="underline" distribution="fill" transition="slide" />
-            </erp-stack>
-          </erp-surface>
-          <erp-surface border="subtle">
-            <erp-stack gap="tight">
-              <erp-text type="label">أيقونة فقط — تسمية وصولية</erp-text>
-              <erp-tabs [items]="iconOnlyTabs" activeId="overview" variant="underline" />
-            </erp-stack>
-          </erp-surface>
-          <erp-surface dir="ltr" border="subtle" data-tabs-direction-evidence="ltr">
-            <erp-stack gap="tight">
-              <erp-text type="label">Image + text — LTR</erp-text>
-              <erp-tabs [items]="imageTabs" activeId="ahmed" variant="ghost" transition="none" />
-            </erp-stack>
-          </erp-surface>
-          <erp-surface border="subtle">
-            <erp-stack gap="tight">
-              <erp-text type="label">Pill — مسار ناعم وتبويب نشط</erp-text>
-              <erp-tabs [items]="tabs" activeId="summary" variant="pill" transition="fade" />
-            </erp-stack>
-          </erp-surface>
-          <erp-surface border="subtle">
-            <erp-stack gap="tight">
-              <erp-text type="label">Solid — تبويب نشط مرتفع</erp-text>
-              <erp-tabs [items]="tabs" activeId="summary" variant="solid" transition="scale" />
-            </erp-stack>
-          </erp-surface>
-          <erp-surface border="subtle">
-            <erp-stack gap="tight">
-              <erp-text type="label">رأسي — تنقل جانبي</erp-text>
-              <erp-tabs
-                [items]="tabs"
-                activeId="summary"
-                orientation="vertical"
-                transition="slide"
-              />
-            </erp-stack>
-          </erp-surface>
-          <erp-surface border="subtle">
-            <erp-stack gap="tight">
-              <erp-text type="label">رأسي — Pill وأيقونات فقط</erp-text>
-              <erp-tabs
-                [items]="iconOnlyTabs"
-                activeId="overview"
-                orientation="vertical"
-                variant="pill"
-                transition="fade"
-              />
-            </erp-stack>
-          </erp-surface>
-          <erp-surface border="subtle">
-            <erp-stack gap="tight">
-              <erp-text type="label">لوحة غنية مفتاحية</erp-text>
-              <erp-review-core-tabs />
-            </erp-stack>
-          </erp-surface>
-        </erp-grid>
-
-        <erp-text type="heading-4">قدرات التوافق غير المرجعية</erp-text>
+        <erp-tabs
+          data-tabs-direction-evidence="rtl"
+          [items]="tabs"
+          activeId="summary"
+          [orientation]="tabsOrientation()"
+          [distribution]="tabsDistribution()"
+          [variant]="tabsVariant()"
+          [transition]="tabsTransition()"
+          headerPresentation="icon-text"
+        />
         <erp-grid [columns]="2" gap="lg" responsive="auto">
           <erp-surface border="subtle">
             <erp-stack gap="tight">

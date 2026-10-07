@@ -15,8 +15,9 @@ family. Those decisions remain with the Product Owner and ChatGPT after review.
 
 ## Current exact-reference execution state — 2026-10-07
 
-The Product Owner opened only the strict ErpTabs exact-reference rebuild from
-`f76f63d88ba600381ddab6cc59bb67ce276a22ab`.
+The Product Owner rejected the technically green ErpTabs candidate at
+`302056ad312dec403a1cdf2f9ded92d57d011ba5` for complete visual mismatch and
+opened only the literal exact-reference reconstruction from that checkpoint.
 `ERP-TABS.html`, SHA-256
 `CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`, is the
 single binding Tabs visual and behavioral authority. It supersedes the Nexlink
@@ -28,7 +29,7 @@ The authoritative contract is `tabs/ERP_TABS_REFERENCE_EXACT_V1.md`. The
 rebuilt candidate implements the reference variants, anatomy, orientations,
 distribution, panels, motion, responsive behavior, keyboard, and ARIA while
 preserving bounded Stepper and AvatarPicker compatibility. It passes 133/133
-test files and 893/893 tests, both typechecks, production build, all governance,
+test files and 895/895 tests, both typechecks, production build, all governance,
 and zero warnings.
 
 The exact next action is Product Owner runtime/Light/Dark/RTL/LTR/narrow review

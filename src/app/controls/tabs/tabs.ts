@@ -20,7 +20,7 @@ import {
 import {ErpIcon} from '../../primitives/icon/icon';
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
 import {ErpText} from '../../primitives/text/text';
-import {ErpAvatar} from '../avatar/avatar';
+import {ErpAvatar, ErpAvatarTone} from '../avatar/avatar';
 import {ErpTabTrigger} from './internal/tab-trigger';
 
 let nextTabsInstanceId = 0;
@@ -31,6 +31,7 @@ export interface ErpTabItem {
   readonly content?: string;
   readonly icon?: ErpIconName;
   readonly imageUrl?: string;
+  readonly imageTone?: ErpAvatarTone;
   readonly count?: number | string | null;
   readonly headerPresentation?: ErpTabHeaderPresentation;
   readonly disabled?: boolean;
@@ -100,6 +101,7 @@ export class ErpTabPanel {
     '[attr.data-tabs-distribution]': 'distribution()',
     '[attr.data-tabs-variant]': 'variant()',
     '[attr.data-tabs-transition]': 'transition()',
+    '[attr.data-tabs-header-presentation]': 'headerPresentation()',
     '[attr.data-tabs-header-shape]': 'headerShape()',
     '[attr.data-tabs-render-panels]': 'renderPanels()',
   },
@@ -124,6 +126,7 @@ export class ErpTabs implements AfterViewInit, OnDestroy {
   readonly distribution = input<ErpTabsDistribution>('content');
   readonly variant = input<ErpTabsVariant>('underline');
   readonly transition = input<ErpTabsTransition>('slide');
+  readonly headerPresentation = input<ErpTabHeaderPresentation>('text');
   readonly headerShape = input<ErpTabHeaderShape>('reference');
   readonly renderPanels = input(true);
   readonly lazy = input(true);
@@ -209,25 +212,23 @@ export class ErpTabs implements AfterViewInit, OnDestroy {
     return {$implicit: tab, tab};
   }
 
-  protected headerPresentation(item: ErpTabItem): ErpTabHeaderPresentation {
-    if (item.headerPresentation) return item.headerPresentation;
-    if (item.imageUrl) return 'image-text';
-    return item.icon ? 'icon-text' : 'text';
+  protected resolvedHeaderPresentation(item: ErpTabItem): ErpTabHeaderPresentation {
+    return item.headerPresentation ?? this.headerPresentation();
   }
 
   protected showsIcon(item: ErpTabItem): boolean {
-    const presentation = this.headerPresentation(item);
+    const presentation = this.resolvedHeaderPresentation(item);
     return !!item.icon &&
       (presentation === 'icon' || presentation === 'icon-only' || presentation === 'icon-text');
   }
 
   protected showsImage(item: ErpTabItem): boolean {
-    const presentation = this.headerPresentation(item);
-    return !!item.imageUrl && (presentation === 'image' || presentation === 'image-text');
+    const presentation = this.resolvedHeaderPresentation(item);
+    return presentation === 'image' || presentation === 'image-text';
   }
 
   protected showsLabel(item: ErpTabItem): boolean {
-    const presentation = this.headerPresentation(item);
+    const presentation = this.resolvedHeaderPresentation(item);
     return presentation !== 'icon' && presentation !== 'icon-only' && presentation !== 'image';
   }
 
@@ -314,11 +315,13 @@ export class ErpTabs implements AfterViewInit, OnDestroy {
     const list = this.tablist()?.nativeElement;
     const active = this.activeTrigger();
     if (!list || !active) return;
+    const listRect = list.getBoundingClientRect();
+    const activeRect = active.getBoundingClientRect();
     this.indicator.set({
-      left: active.offsetLeft,
-      top: active.offsetTop,
-      width: active.offsetWidth,
-      height: active.offsetHeight,
+      left: activeRect.left - listRect.left + list.scrollLeft,
+      top: activeRect.top - listRect.top + list.scrollTop,
+      width: activeRect.width,
+      height: activeRect.height,
     });
   }
 }

@@ -8,11 +8,9 @@
   pointer-events: none;
   border-radius: var(--honesty-tabs-indicator-radius) var(--honesty-tabs-indicator-radius) 0 0;
   background: var(--honesty-tabs-indicator-color);
-  transition:
-    left var(--honesty-tabs-transition-duration) var(--honesty-tabs-transition-easing),
-    top var(--honesty-tabs-transition-duration) var(--honesty-tabs-transition-easing),
-    width var(--honesty-tabs-transition-duration) var(--honesty-tabs-transition-easing),
-    height var(--honesty-tabs-transition-duration) var(--honesty-tabs-transition-easing);
+  transition-property: left, top, width, height;
+  transition-duration: var(--honesty-tabs-transition-duration);
+  transition-timing-function: var(--honesty-tabs-transition-easing);
 }
 
 :host([data-tabs-orientation='horizontal']) .tabs__indicator {

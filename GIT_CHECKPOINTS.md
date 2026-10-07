@@ -13,9 +13,10 @@ repository HEAD.
 
 Entry checkpoint:
 
-- `f76f63d88ba600381ddab6cc59bb67ce276a22ab`
+- `302056ad312dec403a1cdf2f9ded92d57d011ba5` — technically green but rejected
+  by the Product Owner for complete visual mismatch with `ERP-TABS.html`.
 
-The bounded implementation commit is `fix(tabs): rebuild from exact Product
+The bounded implementation commit is `fix(tabs): reconstruct exact Product
 Owner reference`; resolve its final SHA from live `main` because this file is
 committed with it.
 
@@ -28,10 +29,10 @@ rebuilds Tabs geometry, variants, orientations, distribution, panels, motion,
 responsive behavior, ARIA, and keyboard behavior while retaining bounded
 Stepper and AvatarPicker compatibility. Product Owner visual acceptance remains
 pending and the Data/Table Visual Correction Wave remains unopened. The
-canonical gate passes 133/133 test files, 893/893 tests, both typechecks,
+canonical gate passes 133/133 test files, 895/895 tests, both typechecks,
 production build, every governance check, and zero warnings. Initial bundle:
-376.12 kB / 85.66 kB estimated transfer. Core Batch lazy chunk: 114.10 kB /
-19.53 kB estimated transfer.
+376.16 kB / 85.67 kB estimated transfer. Core Batch lazy chunk: 119.32 kB /
+21.22 kB estimated transfer.
 
 ## Historical Avatar/AvatarPicker large-size compatibility checkpoint — superseded current gate
 

@@ -8,9 +8,10 @@ It records Product Owner decisions, externally reviewed Git state, execution bou
 
 ## Authoritative current review transition — 2026-10-07
 
-The Product Owner opened only the strict ErpTabs exact-reference rebuild from
-`f76f63d88ba600381ddab6cc59bb67ce276a22ab`. Resolve the final implementation
-SHA directly from live Git.
+The Product Owner rejected the technically green ErpTabs candidate at
+`302056ad312dec403a1cdf2f9ded92d57d011ba5` for complete visual mismatch and
+opened only the literal exact-reference reconstruction from that checkpoint.
+Resolve the final implementation SHA directly from live Git.
 
 `ERP-TABS.html`, SHA-256
 `CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`, is the
@@ -21,7 +22,7 @@ contracts. The authoritative implementation contract is
 `tabs/ERP_TABS_REFERENCE_EXACT_V1.md`. The rebuild implements reference
 variants, anatomy, orientations, distribution, panels, motion, responsive
 behavior, keyboard, and ARIA. Its technical gate passes 133/133 test files and
-893/893 tests, all governance, both typechecks, production
+895/895 tests, all governance, both typechecks, production
 build, and zero warnings.
 
 The exact next gate is Product Owner runtime/Light/Dark/RTL/LTR/narrow review of

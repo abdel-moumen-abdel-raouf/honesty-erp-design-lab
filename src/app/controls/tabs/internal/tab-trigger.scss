@@ -13,6 +13,7 @@ button {
   display: inline-flex;
   align-items: center;
   inline-size: 100%;
+  block-size: 100%;
   justify-content: var(--honesty-tab-trigger-justify, flex-start);
   gap: var(--honesty-tab-trigger-gap, 0);
   padding: var(--honesty-tab-trigger-padding, 0);

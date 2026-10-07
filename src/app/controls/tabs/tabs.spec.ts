@@ -138,6 +138,32 @@ describe('ErpTabs', () => {
     expect(buttons[4].querySelector('.tabs__count')?.textContent).toContain('7');
   });
 
+  it('uses the literal reference text-only default and explicit component presentation modes', () => {
+    const fixture = TestBed.createComponent(ErpTabs);
+    fixture.componentRef.setInput('items', [
+      {id: 'home', label: 'Home', icon: 'home'},
+      {id: 'team', label: 'Team', imageTone: 'brand'},
+    ] satisfies readonly ErpTabItem[]);
+    fixture.detectChanges();
+
+    let tabs = fixture.nativeElement.querySelectorAll('[role="tab"]');
+    expect(fixture.nativeElement.getAttribute('data-tabs-header-presentation')).toBe('text');
+    expect(tabs[0].querySelector('erp-icon')).toBeNull();
+    expect(tabs[1].querySelector('erp-avatar')).toBeNull();
+
+    fixture.componentRef.setInput('headerPresentation', 'icon-text');
+    fixture.detectChanges();
+    tabs = fixture.nativeElement.querySelectorAll('[role="tab"]');
+    expect(tabs[0].querySelector('erp-icon')).not.toBeNull();
+
+    fixture.componentRef.setInput('headerPresentation', 'image-text');
+    fixture.detectChanges();
+    tabs = fixture.nativeElement.querySelectorAll('[role="tab"]');
+    const embeddedAvatar = tabs[1].querySelector('erp-avatar');
+    expect(embeddedAvatar).not.toBeNull();
+    expect(embeddedAvatar.getAttribute('data-avatar-bordered')).toBe('false');
+  });
+
   it('supports reference transitions and retains bounded compatibility transitions', () => {
     const fixture = TestBed.createComponent(ErpTabs);
     fixture.componentRef.setInput('items', enabledItems);

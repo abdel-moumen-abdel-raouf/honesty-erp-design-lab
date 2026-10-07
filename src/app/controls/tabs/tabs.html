@@ -15,7 +15,7 @@
       [label]="item.label"
       [fill]="distribution() === 'fill'"
       [attr.data-tabs-tab-id]="item.id"
-      [attr.data-tabs-header-presentation]="headerPresentation(item)"
+      [attr.data-tabs-header-presentation]="resolvedHeaderPresentation(item)"
       (activated)="activate(item)"
       (keyPressed)="keydown($event, index)"
     >
@@ -26,7 +26,14 @@
       }
       @if (showsImage(item)) {
         <span class="tabs__image" aria-hidden="true">
-          <erp-avatar [name]="item.label" [src]="item.imageUrl!" size="xs" shape="circle" />
+          <erp-avatar
+            [name]="item.label"
+            [src]="item.imageUrl ?? null"
+            [tone]="item.imageTone ?? 'neutral'"
+            [bordered]="false"
+            size="xs"
+            shape="circle"
+          />
         </span>
       }
       @if (showsLabel(item)) {
