@@ -1,39 +1,40 @@
 <erp-stack
   class="tabs-reference-specimens"
   gap="loose"
-  dir="ltr"
+  dir="rtl"
   data-tabs-reference="ERP-TABS.html"
-  data-tabs-direction-evidence="ltr"
+  data-tabs-direction-evidence="rtl"
+  data-tabs-primary-evidence="arabic-rtl"
 >
   <erp-stack class="tabs-reference-specimen" gap="tight" data-tabs-specimen="demo-h1">
-    <erp-text type="label">Underline variant · text only</erp-text>
+    <erp-text type="label">نمط الخط السفلي · نص فقط</erp-text>
     <erp-tabs [items]="textTabs" activeId="overview">
       <ng-template erpTabPanel="overview">
         <erp-stack class="tabs-reference-panel" gap="tight">
-          <erp-text type="heading-4">Overview</erp-text>
-          <erp-text type="paragraph">Dashboard summary with KPIs, recent activity and quick actions.</erp-text>
+          <erp-text type="heading-4">نظرة عامة</erp-text>
+          <erp-text type="paragraph">ملخص مؤشرات الأداء والنشاطات الحديثة والإجراءات السريعة.</erp-text>
         </erp-stack>
       </ng-template>
     </erp-tabs>
   </erp-stack>
 
   <erp-stack class="tabs-reference-specimen" gap="tight" data-tabs-specimen="demo-h2">
-    <erp-text type="label">With icons + labels + badges</erp-text>
+    <erp-text type="label">أيقونات وتسميات وعدادات</erp-text>
     <erp-tabs [items]="iconTextTabs" activeId="home" headerPresentation="icon-text">
       <ng-template erpTabPanel="home">
         <erp-stack class="tabs-reference-panel" gap="tight">
-          <erp-text type="heading-4">Home</erp-text>
+          <erp-text type="heading-4">الرئيسية</erp-text>
           <erp-grid class="tabs-reference-stats" [columns]="3" gap="sm" responsive="auto">
             <erp-stack class="tabs-reference-stat" gap="none">
-              <erp-text type="caption">ACTIVE USERS</erp-text>
+              <erp-text type="caption">المستخدمون النشطون</erp-text>
               <erp-text type="heading-4">1,284</erp-text>
             </erp-stack>
             <erp-stack class="tabs-reference-stat" gap="none">
-              <erp-text type="caption">SESSIONS</erp-text>
+              <erp-text type="caption">الجلسات</erp-text>
               <erp-text type="heading-4">8.4k</erp-text>
             </erp-stack>
             <erp-stack class="tabs-reference-stat" gap="none">
-              <erp-text type="caption">UPTIME</erp-text>
+              <erp-text type="caption">وقت التشغيل</erp-text>
               <erp-text type="heading-4">99.9%</erp-text>
             </erp-stack>
           </erp-grid>
@@ -43,67 +44,67 @@
   </erp-stack>
 
   <erp-stack class="tabs-reference-specimen" gap="tight" data-tabs-specimen="demo-h3">
-    <erp-text type="label">Fill mode · equal width tabs</erp-text>
+    <erp-text type="label">توزيع ممتد · تبويبات متساوية العرض</erp-text>
     <erp-tabs [items]="fillTabs" activeId="day" distribution="fill">
       <ng-template erpTabPanel="day">
         <erp-stack class="tabs-reference-panel" gap="tight">
-          <erp-text type="heading-4">Day</erp-text>
-          <erp-text type="paragraph">Hourly breakdown for today.</erp-text>
+          <erp-text type="heading-4">اليوم</erp-text>
+          <erp-text type="paragraph">تفصيل الحركة بالساعة لليوم الحالي.</erp-text>
         </erp-stack>
       </ng-template>
     </erp-tabs>
   </erp-stack>
 
   <erp-stack class="tabs-reference-specimen" gap="tight" data-tabs-specimen="demo-h4">
-    <erp-text type="label">Icon-only tabs</erp-text>
+    <erp-text type="label">تبويبات بأيقونات فقط</erp-text>
     <erp-tabs [items]="iconTabs" activeId="home" headerPresentation="icon" transition="scale">
       <ng-template erpTabPanel="home">
         <erp-stack class="tabs-reference-panel" gap="tight">
-          <erp-text type="heading-4">Home</erp-text>
-          <erp-text type="paragraph">Workspace home.</erp-text>
+          <erp-text type="heading-4">الرئيسية</erp-text>
+          <erp-text type="paragraph">مساحة العمل الرئيسية.</erp-text>
         </erp-stack>
       </ng-template>
     </erp-tabs>
   </erp-stack>
 
   <erp-stack class="tabs-reference-specimen" gap="tight" data-tabs-specimen="demo-h5">
-    <erp-text type="label">Image + text (team switcher)</erp-text>
+    <erp-text type="label">صورة ونص · تبديل أعضاء الفريق</erp-text>
     <erp-tabs [items]="imageTabs" activeId="amira" headerPresentation="image-text">
       <ng-template erpTabPanel="amira">
         <erp-stack class="tabs-reference-panel" gap="tight">
-          <erp-text type="heading-4">Amira Haddad</erp-text>
-          <erp-text type="paragraph">Finance Manager — 24 open tasks, 3 reviews.</erp-text>
+          <erp-text type="heading-4">أميرة حداد</erp-text>
+          <erp-text type="paragraph">مديرة المالية — 24 مهمة مفتوحة و3 مراجعات.</erp-text>
         </erp-stack>
       </ng-template>
     </erp-tabs>
   </erp-stack>
 
   <erp-stack class="tabs-reference-specimen" gap="tight" data-tabs-specimen="demo-h6">
-    <erp-text type="label">Pill variant</erp-text>
+    <erp-text type="label">نمط الكبسولة</erp-text>
     <erp-tabs [items]="pillTabs" activeId="all" variant="pill">
       <ng-template erpTabPanel="all">
         <erp-stack class="tabs-reference-panel" gap="tight">
-          <erp-text type="heading-4">All</erp-text>
-          <erp-text type="paragraph">Showing all 128 records.</erp-text>
+          <erp-text type="heading-4">الكل</erp-text>
+          <erp-text type="paragraph">عرض جميع السجلات وعددها 128 سجلًا.</erp-text>
         </erp-stack>
       </ng-template>
     </erp-tabs>
   </erp-stack>
 
   <erp-stack class="tabs-reference-specimen" gap="tight" data-tabs-specimen="demo-h7">
-    <erp-text type="label">Solid variant</erp-text>
+    <erp-text type="label">النمط المصمت</erp-text>
     <erp-tabs [items]="solidTabs" activeId="list" variant="solid" headerPresentation="icon-text">
       <ng-template erpTabPanel="list">
         <erp-stack class="tabs-reference-panel" gap="tight">
-          <erp-text type="heading-4">List</erp-text>
-          <erp-text type="paragraph">Tabular data view.</erp-text>
+          <erp-text type="heading-4">قائمة</erp-text>
+          <erp-text type="paragraph">عرض البيانات في قائمة منظمة.</erp-text>
         </erp-stack>
       </ng-template>
     </erp-tabs>
   </erp-stack>
 
   <erp-stack class="tabs-reference-specimen" gap="tight" data-tabs-specimen="demo-v1">
-    <erp-text type="label">Vertical · sidebar navigation</erp-text>
+    <erp-text type="label">تبويبات رأسية · تنقل جانبي</erp-text>
     <erp-tabs
       [items]="verticalTabs"
       activeId="dashboard"
@@ -112,22 +113,22 @@
     >
       <ng-template erpTabPanel="dashboard">
         <erp-stack class="tabs-reference-panel" gap="tight">
-          <erp-text type="heading-4">Dashboard</erp-text>
+          <erp-text type="heading-4">لوحة التحكم</erp-text>
           <erp-grid class="tabs-reference-stats" [columns]="4" gap="sm" responsive="auto">
             <erp-stack class="tabs-reference-stat" gap="none">
-              <erp-text type="caption">REVENUE</erp-text>
-              <erp-text type="heading-4">$482k</erp-text>
+              <erp-text type="caption">الإيرادات</erp-text>
+              <erp-text type="heading-4">482 ألف</erp-text>
             </erp-stack>
             <erp-stack class="tabs-reference-stat" gap="none">
-              <erp-text type="caption">ORDERS</erp-text>
+              <erp-text type="caption">الطلبات</erp-text>
               <erp-text type="heading-4">1,204</erp-text>
             </erp-stack>
             <erp-stack class="tabs-reference-stat" gap="none">
-              <erp-text type="caption">GROWTH</erp-text>
+              <erp-text type="caption">النمو</erp-text>
               <erp-text type="heading-4">+18%</erp-text>
             </erp-stack>
             <erp-stack class="tabs-reference-stat" gap="none">
-              <erp-text type="caption">CHURN</erp-text>
+              <erp-text type="caption">معدل التسرب</erp-text>
               <erp-text type="heading-4">2.1%</erp-text>
             </erp-stack>
           </erp-grid>
@@ -137,7 +138,7 @@
   </erp-stack>
 
   <erp-stack class="tabs-reference-specimen" gap="tight" data-tabs-specimen="demo-v2">
-    <erp-text type="label">Vertical · settings</erp-text>
+    <erp-text type="label">تبويبات رأسية · الإعدادات</erp-text>
     <erp-tabs
       [items]="verticalIconTabs"
       activeId="profile"
@@ -148,27 +149,33 @@
     >
       <ng-template erpTabPanel="profile">
         <erp-stack class="tabs-reference-panel" gap="tight">
-          <erp-text type="heading-4">Profile</erp-text>
-          <erp-text type="paragraph">User profile and preferences.</erp-text>
+          <erp-text type="heading-4">الملف الشخصي</erp-text>
+          <erp-text type="paragraph">بيانات المستخدم وتفضيلاته.</erp-text>
         </erp-stack>
       </ng-template>
     </erp-tabs>
   </erp-stack>
 
   <erp-stack class="tabs-reference-specimen" gap="tight" data-tabs-specimen="demo-anim">
-    <erp-text type="label">Slide (default) · Fade · Scale · None</erp-text>
+    <erp-text type="label">انزلاق افتراضي · تلاشي · تحجيم · بدون حركة</erp-text>
     <erp-tabs [items]="animationTabs" activeId="slide">
       <ng-template erpTabPanel="slide">
         <erp-stack class="tabs-reference-panel" gap="tight">
-          <erp-text type="heading-4">Slide transition</erp-text>
-          <erp-text type="paragraph">Panels slide in from the inline-start direction — default.</erp-text>
+          <erp-text type="heading-4">انتقال بالانزلاق</erp-text>
+          <erp-text type="paragraph">تنزلق اللوحات من جهة البداية المنطقية، وهو الانتقال الافتراضي.</erp-text>
         </erp-stack>
       </ng-template>
     </erp-tabs>
   </erp-stack>
 
-  <erp-stack class="tabs-reference-specimen" gap="tight" dir="rtl" data-tabs-direction-evidence="rtl">
-    <erp-text type="label">RTL logical mirror evidence</erp-text>
+  <erp-stack
+    class="tabs-reference-specimen"
+    gap="tight"
+    dir="ltr"
+    data-tabs-direction-evidence="ltr"
+    data-tabs-compatibility-evidence="ltr"
+  >
+    <erp-text type="label">دليل التوافق مع الاتجاه من اليسار إلى اليمين</erp-text>
     <erp-tabs [items]="iconTextTabs" activeId="home" headerPresentation="icon-text" />
   </erp-stack>
 </erp-stack>

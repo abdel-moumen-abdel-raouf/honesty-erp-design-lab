@@ -156,11 +156,32 @@ export class CoreBatch {
   readonly avatarSizeOptions = this.options([
     'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl',
   ]);
-  readonly tabsOrientationOptions = this.options(['horizontal', 'vertical']);
-  readonly tabsDistributionOptions = this.options(['content', 'fill']);
-  readonly tabsVariantOptions = this.options(['underline', 'pill', 'solid', 'ghost']);
-  readonly tabsShapeOptions = this.options(['reference', 'rectangle', 'rounded', 'circle']);
-  readonly tabsTransitionOptions = this.options(['slide', 'fade', 'scale', 'none']);
+  readonly tabsOrientationOptions: readonly ErpSelectOption[] = [
+    {value: 'horizontal', label: 'أفقي'},
+    {value: 'vertical', label: 'رأسي'},
+  ];
+  readonly tabsDistributionOptions: readonly ErpSelectOption[] = [
+    {value: 'content', label: 'بحسب المحتوى'},
+    {value: 'fill', label: 'توزيع متساوٍ'},
+  ];
+  readonly tabsVariantOptions: readonly ErpSelectOption[] = [
+    {value: 'underline', label: 'خط سفلي'},
+    {value: 'pill', label: 'كبسولة'},
+    {value: 'solid', label: 'مصمت'},
+    {value: 'ghost', label: 'شفاف'},
+  ];
+  readonly tabsShapeOptions: readonly ErpSelectOption[] = [
+    {value: 'reference', label: 'المرجع'},
+    {value: 'rectangle', label: 'مستطيل'},
+    {value: 'rounded', label: 'مستدير'},
+    {value: 'circle', label: 'دائري'},
+  ];
+  readonly tabsTransitionOptions: readonly ErpSelectOption[] = [
+    {value: 'slide', label: 'انزلاق'},
+    {value: 'fade', label: 'تلاشي'},
+    {value: 'scale', label: 'تحجيم'},
+    {value: 'none', label: 'بدون حركة'},
+  ];
   readonly avatarPositions: readonly {
     position: ErpAvatarPresencePosition;
     status: ErpAvatarPresence;

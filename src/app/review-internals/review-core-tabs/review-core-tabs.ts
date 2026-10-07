@@ -14,82 +14,82 @@ import {ErpText} from '../../primitives/text/text';
 })
 export class ErpReviewCoreTabs {
   readonly textTabs: readonly ErpTabItem[] = [
-    {id: 'overview', label: 'Overview', content: 'Dashboard summary with KPIs, recent activity and quick actions.'},
-    {id: 'orders', label: 'Orders', content: 'All purchase and sales orders in the current period.'},
-    {id: 'invoices', label: 'Invoices', content: 'Incoming and outgoing invoice records with payment status.'},
-    {id: 'customers', label: 'Customers', content: 'Customer directory with segments and contact details.'},
-    {id: 'reports', label: 'Reports', content: 'Scheduled and ad-hoc reports across all modules.'},
+    {id: 'overview', label: 'نظرة عامة', content: 'ملخص مؤشرات الأداء والنشاطات الحديثة والإجراءات السريعة.'},
+    {id: 'orders', label: 'الطلبات', content: 'جميع أوامر الشراء والبيع خلال الفترة الحالية.'},
+    {id: 'invoices', label: 'الفواتير', content: 'سجلات الفواتير الواردة والصادرة مع حالة السداد.'},
+    {id: 'customers', label: 'العملاء', content: 'دليل العملاء وتصنيفاتهم وبيانات التواصل معهم.'},
+    {id: 'reports', label: 'التقارير', content: 'التقارير المجدولة والفورية لجميع وحدات النظام.'},
   ];
 
   readonly iconTextTabs: readonly ErpTabItem[] = [
-    {id: 'home', label: 'Home', icon: 'home'},
-    {id: 'orders', label: 'Orders', icon: 'shopping-cart', count: 12, content: '12 orders pending fulfilment across 3 warehouses.'},
-    {id: 'stock', label: 'Stock', icon: 'inventory', count: 4, content: '4 SKUs below reorder threshold.'},
-    {id: 'reports', label: 'Reports', icon: 'chart', content: 'Financial and operational analytics.'},
-    {id: 'alerts', label: 'Alerts', icon: 'notification', count: 23, content: '23 unread alerts from integrations and audits.'},
-    {id: 'settings', label: 'Settings', icon: 'settings', content: 'System-wide configuration.'},
+    {id: 'home', label: 'الرئيسية', icon: 'home'},
+    {id: 'orders', label: 'الطلبات', icon: 'shopping-cart', count: 12, content: 'هناك 12 طلبًا بانتظار التجهيز في ثلاثة مخازن.'},
+    {id: 'stock', label: 'المخزون', icon: 'inventory', count: 4, content: 'هناك أربعة أصناف دون حد إعادة الطلب.'},
+    {id: 'reports', label: 'التقارير', icon: 'chart', content: 'التحليلات المالية والتشغيلية للنظام.'},
+    {id: 'alerts', label: 'التنبيهات', icon: 'notification', count: 23, content: 'هناك 23 تنبيهًا غير مقروء من التكاملات والمراجعات.'},
+    {id: 'settings', label: 'الإعدادات', icon: 'settings', content: 'إعدادات النظام العامة.'},
   ];
 
   readonly fillTabs: readonly ErpTabItem[] = [
-    {id: 'day', label: 'Day', content: 'Hourly breakdown for today.'},
-    {id: 'week', label: 'Week', content: 'Daily aggregation for the current week.'},
-    {id: 'month', label: 'Month', content: 'Weekly aggregation for the current month.'},
-    {id: 'year', label: 'Year', content: 'Monthly aggregation for the current year.'},
+    {id: 'day', label: 'اليوم', content: 'تفصيل الحركة بالساعة لليوم الحالي.'},
+    {id: 'week', label: 'الأسبوع', content: 'إجمالي الحركة اليومي للأسبوع الحالي.'},
+    {id: 'month', label: 'الشهر', content: 'إجمالي الحركة الأسبوعي للشهر الحالي.'},
+    {id: 'year', label: 'السنة', content: 'إجمالي الحركة الشهري للسنة الحالية.'},
   ];
 
   readonly iconTabs: readonly ErpTabItem[] = [
-    {id: 'home', label: 'Home', icon: 'home', content: 'Workspace home.'},
-    {id: 'users', label: 'Users', icon: 'people', content: 'Directory and access management.'},
-    {id: 'wallet', label: 'Wallet', icon: 'wallet', content: 'Accounts and balances.'},
-    {id: 'chart', label: 'Chart', icon: 'chart', content: 'Analytics and BI.'},
-    {id: 'shield', label: 'Shield', icon: 'shield', content: 'Security and audit.'},
-    {id: 'gear', label: 'Gear', icon: 'settings', content: 'Configuration.'},
+    {id: 'home', label: 'الرئيسية', icon: 'home', content: 'مساحة العمل الرئيسية.'},
+    {id: 'users', label: 'المستخدمون', icon: 'people', content: 'دليل المستخدمين وإدارة الوصول.'},
+    {id: 'wallet', label: 'الحسابات', icon: 'wallet', content: 'الحسابات والأرصدة.'},
+    {id: 'chart', label: 'التحليلات', icon: 'chart', content: 'تحليلات الأعمال ومؤشرات الأداء.'},
+    {id: 'shield', label: 'الأمان', icon: 'shield', content: 'الأمان وسجل المراجعة.'},
+    {id: 'gear', label: 'الإعدادات', icon: 'settings', content: 'تهيئة النظام.'},
   ];
 
   readonly imageTabs: readonly ErpTabItem[] = [
-    {id: 'amira', label: 'Amira H.', imageTone: 'brand', content: 'Finance Manager — 24 open tasks, 3 reviews.'},
-    {id: 'omar', label: 'Omar N.', imageTone: 'success', content: 'Warehouse Lead — 18 open tasks, 5 pending.'},
-    {id: 'leila', label: 'Leila M.', imageTone: 'warning', content: 'HR Business Partner — 12 open tasks.'},
-    {id: 'youssef', label: 'Youssef K.', imageTone: 'purple', content: 'Senior Engineer — 6 open tasks, 2 PRs.'},
-    {id: 'nadia', label: 'Nadia F.', imageTone: 'info', content: 'Procurement Officer — 9 open tasks.'},
+    {id: 'amira', label: 'أميرة حداد', imageTone: 'brand', content: 'مديرة المالية — 24 مهمة مفتوحة و3 مراجعات.'},
+    {id: 'omar', label: 'عمر ناصر', imageTone: 'success', content: 'مسؤول المخزون — 18 مهمة مفتوحة و5 مهام معلقة.'},
+    {id: 'leila', label: 'ليلى محمود', imageTone: 'warning', content: 'مسؤولة الموارد البشرية — 12 مهمة مفتوحة.'},
+    {id: 'youssef', label: 'يوسف كريم', imageTone: 'purple', content: 'مهندس أول — 6 مهام مفتوحة ومراجعتان تقنيتان.'},
+    {id: 'nadia', label: 'نادية فؤاد', imageTone: 'info', content: 'مسؤولة المشتريات — 9 مهام مفتوحة.'},
   ];
 
   readonly pillTabs: readonly ErpTabItem[] = [
-    {id: 'all', label: 'All', count: 128, content: 'Showing all 128 records.'},
-    {id: 'active', label: 'Active', count: 94, content: '94 active records.'},
-    {id: 'pending', label: 'Pending', count: 22, content: '22 records awaiting review.'},
-    {id: 'archived', label: 'Archived', count: 12, content: '12 archived records.'},
+    {id: 'all', label: 'الكل', count: 128, content: 'عرض جميع السجلات وعددها 128 سجلًا.'},
+    {id: 'active', label: 'نشط', count: 94, content: 'هناك 94 سجلًا نشطًا.'},
+    {id: 'pending', label: 'قيد المراجعة', count: 22, content: 'هناك 22 سجلًا بانتظار المراجعة.'},
+    {id: 'archived', label: 'مؤرشف', count: 12, content: 'هناك 12 سجلًا مؤرشفًا.'},
   ];
 
   readonly solidTabs: readonly ErpTabItem[] = [
-    {id: 'list', label: 'List', icon: 'file', content: 'Tabular data view.'},
-    {id: 'grid', label: 'Grid', icon: 'dashboard', content: 'Card / grid view.'},
-    {id: 'chart', label: 'Chart', icon: 'chart', content: 'Visual analytics.'},
-    {id: 'map', label: 'Map', icon: 'home', content: 'Geographic distribution.'},
+    {id: 'list', label: 'قائمة', icon: 'file', content: 'عرض البيانات في قائمة منظمة.'},
+    {id: 'grid', label: 'شبكة', icon: 'dashboard', content: 'عرض البيانات في شبكة من البطاقات.'},
+    {id: 'chart', label: 'مخطط', icon: 'chart', content: 'عرض التحليلات المرئية.'},
+    {id: 'map', label: 'خريطة', icon: 'home', content: 'عرض التوزيع الجغرافي للفروع.'},
   ];
 
   readonly verticalTabs: readonly ErpTabItem[] = [
-    {id: 'dashboard', label: 'Dashboard', icon: 'dashboard'},
-    {id: 'orders', label: 'Orders', icon: 'shopping-cart', count: 12, content: 'Recent orders across all channels.'},
-    {id: 'inventory', label: 'Inventory', icon: 'inventory', count: 4, content: 'Stock levels and reorder alerts.'},
-    {id: 'customers', label: 'Customers', icon: 'people', content: 'Directory of active customers.'},
-    {id: 'finance', label: 'Finance', icon: 'wallet', content: 'Accounts, payments and reconciliation.'},
-    {id: 'reports', label: 'Reports', icon: 'chart', content: 'Scheduled and ad-hoc reports.'},
-    {id: 'settings', label: 'Settings', icon: 'settings', content: 'System-wide configuration.'},
+    {id: 'dashboard', label: 'لوحة التحكم', icon: 'dashboard'},
+    {id: 'orders', label: 'الطلبات', icon: 'shopping-cart', count: 12, content: 'أحدث الطلبات من جميع قنوات البيع.'},
+    {id: 'inventory', label: 'المخزون', icon: 'inventory', count: 4, content: 'مستويات المخزون وتنبيهات إعادة الطلب.'},
+    {id: 'customers', label: 'العملاء', icon: 'people', content: 'دليل العملاء النشطين.'},
+    {id: 'finance', label: 'المالية', icon: 'wallet', content: 'الحسابات والمدفوعات والتسويات.'},
+    {id: 'reports', label: 'التقارير', icon: 'chart', content: 'التقارير المجدولة والفورية.'},
+    {id: 'settings', label: 'الإعدادات', icon: 'settings', content: 'إعدادات النظام العامة.'},
   ];
 
   readonly verticalIconTabs: readonly ErpTabItem[] = [
-    {id: 'profile', label: 'Profile', icon: 'people', content: 'User profile and preferences.'},
-    {id: 'security', label: 'Security', icon: 'shield', content: 'Password, 2FA and sessions.'},
-    {id: 'notify', label: 'Notifications', icon: 'notification', content: 'Email and in-app alerts.'},
-    {id: 'billing', label: 'Billing', icon: 'wallet', content: 'Plans, invoices and payment methods.'},
-    {id: 'system', label: 'System', icon: 'settings', content: 'Advanced system settings.'},
+    {id: 'profile', label: 'الملف الشخصي', icon: 'people', content: 'بيانات المستخدم وتفضيلاته.'},
+    {id: 'security', label: 'الأمان', icon: 'shield', content: 'كلمة المرور والتحقق الثنائي والجلسات.'},
+    {id: 'notify', label: 'الإشعارات', icon: 'notification', content: 'إشعارات البريد الإلكتروني والتنبيهات داخل النظام.'},
+    {id: 'billing', label: 'الفوترة', icon: 'wallet', content: 'الخطط والفواتير ووسائل السداد.'},
+    {id: 'system', label: 'النظام', icon: 'settings', content: 'إعدادات النظام المتقدمة.'},
   ];
 
   readonly animationTabs: readonly ErpTabItem[] = [
-    {id: 'slide', label: 'Slide', content: 'Panels slide in from the inline-start direction — default.'},
-    {id: 'fade', label: 'Fade', content: 'Simple opacity fade-in.'},
-    {id: 'scale', label: 'Scale', content: 'Panels scale up from 94% to 100% with a spring ease.'},
-    {id: 'none', label: 'None', content: 'Instant swap — useful for heavy content.'},
+    {id: 'slide', label: 'انزلاق', content: 'تنزلق اللوحات من جهة البداية المنطقية، وهو الانتقال الافتراضي.'},
+    {id: 'fade', label: 'تلاشي', content: 'تظهر اللوحة تدريجيًا من خلال الشفافية.'},
+    {id: 'scale', label: 'تحجيم', content: 'تتدرج اللوحة من 94٪ إلى 100٪ بحركة مرنة.'},
+    {id: 'none', label: 'بدون حركة', content: 'تبديل فوري مناسب للمحتوى الكثيف.'},
   ];
 }

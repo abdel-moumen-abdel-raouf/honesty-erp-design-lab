@@ -445,7 +445,7 @@
         </erp-text>
         <erp-review-core-tabs />
 
-        <erp-text type="heading-4">COMPATIBILITY EVIDENCE — قدرات غير مرجعية</erp-text>
+        <erp-text type="heading-4">دليل التوافق · قدرات غير مرجعية</erp-text>
         <erp-grid [columns]="4" gap="sm" responsive="auto">
           <erp-select label="الاتجاه" [options]="tabsOrientationOptions" [ngModel]="tabsOrientation()" (ngModelChange)="tabsOrientation.set($event)" />
           <erp-select label="التوزيع" [options]="tabsDistributionOptions" [ngModel]="tabsDistribution()" (ngModelChange)="tabsDistribution.set($event)" />
@@ -471,7 +471,7 @@
           </erp-surface>
           <erp-surface border="subtle">
             <erp-stack gap="tight">
-              <erp-text type="label">Vertical placement=end + انتقال توافق</erp-text>
+              <erp-text type="label">موضع رأسي عند النهاية · انتقال توافق</erp-text>
               <erp-tabs
                 [items]="tabs"
                 activeId="summary"

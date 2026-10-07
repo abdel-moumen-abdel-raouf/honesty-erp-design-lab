@@ -127,6 +127,21 @@ describe('CoreBatch', () => {
     expect(tabsEvidence.querySelector('erp-tabs[data-tabs-variant="pills"]')).not.toBeNull();
     expect(tabsEvidence.querySelector('[data-tabs-direction-evidence="rtl"]')).not.toBeNull();
     expect(tabsEvidence.querySelector('[data-tabs-direction-evidence="ltr"]')).not.toBeNull();
+    const primaryTabsEvidence = tabsEvidence.querySelector(
+      '[data-tabs-primary-evidence="arabic-rtl"]',
+    ) as HTMLElement;
+    expect(primaryTabsEvidence.getAttribute('dir')).toBe('rtl');
+    expect(primaryTabsEvidence.textContent).toContain('نظرة عامة');
+    expect(primaryTabsEvidence.textContent).toContain('المستخدمون النشطون');
+    expect(primaryTabsEvidence.textContent).toContain('أميرة حداد');
+    expect(primaryTabsEvidence.textContent).toContain('انزلاق افتراضي');
+    expect(primaryTabsEvidence.textContent).not.toMatch(
+      /Overview|Orders|Invoices|Customers|Reports|Slide|Fade|Scale|None/,
+    );
+    const ltrCompatibility = tabsEvidence.querySelector(
+      '[data-tabs-compatibility-evidence="ltr"]',
+    ) as HTMLElement;
+    expect(ltrCompatibility.getAttribute('dir')).toBe('ltr');
 
     fixture.componentInstance.tabsVariant.set('ghost');
     fixture.detectChanges();
