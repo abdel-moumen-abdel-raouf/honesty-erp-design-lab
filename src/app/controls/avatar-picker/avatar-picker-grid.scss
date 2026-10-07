@@ -1,0 +1,34 @@
+.avatar-picker__grid-region {
+  min-block-size: 0;
+  padding-inline: var(--honesty-avatar-picker-padding);
+}
+
+.avatar-picker__grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--honesty-avatar-picker-tile-size), 1fr)
+  );
+  gap: var(--honesty-avatar-picker-grid-gap);
+  max-block-size: var(--honesty-avatar-picker-grid-max-block-size);
+  padding-block: var(--honesty-avatar-picker-grid-gap);
+  padding-inline: var(--honesty-avatar-picker-grid-inline-padding);
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-color: var(--honesty-avatar-picker-scrollbar-color) transparent;
+  scrollbar-width: thin;
+}
+
+.avatar-picker__grid::-webkit-scrollbar {
+  inline-size: var(--honesty-avatar-picker-scrollbar-size);
+}
+
+.avatar-picker__grid::-webkit-scrollbar-thumb {
+  border-radius: var(--honesty-avatar-picker-tabs-radius);
+  background: var(--honesty-avatar-picker-scrollbar-color);
+}
+
+.avatar-picker__empty {
+  display: block;
+  padding: var(--honesty-avatar-picker-empty-padding);
+}

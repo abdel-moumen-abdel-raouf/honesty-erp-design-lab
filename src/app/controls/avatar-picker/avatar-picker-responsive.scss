@@ -1,0 +1,17 @@
+@use '../../../styles/foundation/components/avatar-picker' as tokens;
+@use '../../../styles/foundation/queries' as query;
+
+@include query.viewport-down('sm') {
+  :host {
+    @include tokens.layout-narrow;
+  }
+
+  .avatar-picker__footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .avatar-picker__actions {
+    justify-content: flex-end;
+  }
+}

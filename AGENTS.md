@@ -17,27 +17,27 @@ requested.
 The Product Owner is the final authority for visual approval.
 Technical success, green tests, or Codex judgment do not equal visual approval.
 
-## Current Product Owner ErpAvatar Exact Reference State
+## Current Product Owner ErpAvatarPicker Exact Reference State
 
 The Product Owner made
-`C:\Users\Misrtech\Downloads\ERP-AVATAR.html`, SHA-256
-`2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`, the
-single binding visual and behavioral authority for `ErpAvatar`. It supersedes
-all previous Avatar references, waivers, and conflicting visual
+`C:\Users\Misrtech\Downloads\ERP-AVATAR-PICKER.html`, SHA-256
+`24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`, the
+single binding visual and behavioral authority for `ErpAvatarPicker`. It
+supersedes all previous AvatarPicker references, waivers, and conflicting visual
 interpretations. Only colors and font families are mapped
 to Honesty ERP system contracts.
 
 The exact-reference candidate entered from
-`3558434c274a11b7b52296f78b8968806817e1e8` and is technically green at 133/133
-test files and 881/881 tests, both typechecks, production build, and zero
-warnings.
+`4a3e65ab5f8bc5d38b3ea25dd8b77045c6a6b53c`.
+Its canonical gate passes 133/133 test files and 887/887 tests, both typechecks,
+production build, all governance, and zero warnings.
 
 The authoritative implementation contract is
-`src/app/controls/avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md`.
+`src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`.
 
 The current gate is Product Owner runtime/Light/Dark/RTL/LTR/narrow comparison
-of the rebuilt Avatar at `/controls/core-batch` against the exact reference.
-`ErpSelect` and `ErpStatusBadge` remain prior candidates and are not reopened. The
+of the rebuilt AvatarPicker at `/controls/core-batch` against the exact reference.
+`ErpAvatar`, `ErpSelect` and `ErpStatusBadge` remain prior candidates and are not reopened. The
 Data/Table Visual Correction Wave is not opened. Technical PASS does not equal
 Product Owner visual approval or freeze.
 
@@ -70,6 +70,12 @@ migration, and every unlisted owner remain unopened.
   author `role=status` or a live region.
 - `ErpAvatarPicker` composes `ErpTabs` and `ErpAvatar`; it does not own upload,
   cropping, camera, transport, or a second tabs/avatar engine.
+- `ErpAvatarPicker` exact surface, header, counted gender tabs, search, grid,
+  staged selection, preview, footer, and motion come only from
+  `ERP-AVATAR-PICKER.html` at SHA-256
+  `24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`.
+  Earlier Picker references and waivers are superseded. Every tile and preview
+  uses `ErpAvatar`; `ErpTabs` remains the only tabs owner.
 - `ErpTable` composes `ErpCheckBox` for selection and `ErpSortHeader` for sort;
   row activation and controlled selection remain distinct intents.
 - `ErpPagination` composes `ErpSelect` for page size and keeps all seven region

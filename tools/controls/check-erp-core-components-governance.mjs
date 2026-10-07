@@ -55,6 +55,22 @@ const PAGINATION = 'src/app/controls/pagination/pagination.html';
 const PAGINATION_TS = 'src/app/controls/pagination/pagination.ts';
 const AVATAR_PICKER = 'src/app/controls/avatar-picker/avatar-picker.ts';
 const AVATAR_PICKER_TEMPLATE = 'src/app/controls/avatar-picker/avatar-picker.html';
+const AVATAR_PICKER_TILE = 'src/app/controls/avatar-picker/internal/avatar-picker-tile.html';
+const AVATAR_PICKER_SCSS = [
+  'src/app/controls/avatar-picker/avatar-picker-tokens.scss',
+  'src/app/controls/avatar-picker/avatar-picker.scss',
+  'src/app/controls/avatar-picker/avatar-picker-grid.scss',
+  'src/app/controls/avatar-picker/avatar-picker-footer.scss',
+  'src/app/controls/avatar-picker/avatar-picker-motion.scss',
+  'src/app/controls/avatar-picker/avatar-picker-responsive.scss',
+  'src/app/controls/avatar-picker/internal/avatar-picker-tile.scss',
+  'src/app/controls/avatar-picker/internal/avatar-picker-tile-tokens.scss',
+  'src/app/controls/avatar-picker/internal/avatar-picker-tile-motion.scss',
+];
+const AVATAR_PICKER_TOKENS = 'src/styles/foundation/components/avatar-picker/_tokens.scss';
+const AVATAR_PICKER_CONTRACT = 'src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md';
+const AVATAR_PICKER_LEGACY_REFERENCE = 'src/app/controls/avatar-picker/AVATAR_PICKER_REFERENCE_V1.md';
+const AVATAR_PICKER_REFERENCE_SHA = '24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66';
 const AVATAR_CATALOG = 'src/app/controls/avatar-picker/avatar-picker-contracts.ts';
 const AVATAR_ASSET_ROOT = 'public/assets/honesty-erp-avatars/users';
 const AVATAR_MANIFEST = `${AVATAR_ASSET_ROOT}/manifest.json`;
@@ -122,6 +138,11 @@ export function validateCoreComponents(files) {
   const paginationTs = files.get(PAGINATION_TS) ?? '';
   const avatarPicker = files.get(AVATAR_PICKER) ?? '';
   const avatarPickerTemplate = files.get(AVATAR_PICKER_TEMPLATE) ?? '';
+  const avatarPickerTile = files.get(AVATAR_PICKER_TILE) ?? '';
+  const avatarPickerScss = AVATAR_PICKER_SCSS.map((file) => files.get(file) ?? '').join('\n');
+  const avatarPickerTokens = files.get(AVATAR_PICKER_TOKENS) ?? '';
+  const avatarPickerContract = files.get(AVATAR_PICKER_CONTRACT) ?? '';
+  const avatarPickerLegacyReference = files.get(AVATAR_PICKER_LEGACY_REFERENCE) ?? '';
   const avatarCatalog = files.get(AVATAR_CATALOG) ?? '';
 
   if (!routes.includes("path: 'controls/core-batch'")) {
@@ -474,12 +495,59 @@ export function validateCoreComponents(files) {
     errors.push('ErpPagination must expose one horizontal visual page-size label and retain a hidden accessible Select label');
   }
 
-  if (!avatarPicker.includes('ERP_AVATAR_CATALOG') ||
-      !avatarPickerTemplate.includes('<erp-tabs') ||
-      !avatarPickerTemplate.includes('<erp-avatar') ||
-      !avatarPicker.includes('readonly avatarShape') ||
-      !avatarPicker.includes('readonly avatarSize')) {
-    errors.push('ErpAvatarPicker must compose the bounded catalog through ErpTabs and ErpAvatar');
+  if (!avatarPickerContract.includes(AVATAR_PICKER_REFERENCE_SHA) ||
+      !avatarPickerContract.includes('exact visual and behavioral replication')) {
+    errors.push('ErpAvatarPicker contract must record the binding ERP-AVATAR-PICKER.html SHA and exact-reference instruction');
+  }
+  if (!avatarPickerLegacyReference.includes('SUPERSEDED') ||
+      !avatarPickerLegacyReference.includes(AVATAR_PICKER_REFERENCE_SHA)) {
+    errors.push('Earlier ErpAvatarPicker references must be explicitly superseded by the exact reference');
+  }
+  for (const required of [
+    'ERP_AVATAR_CATALOG', 'readonly avatarShape', 'readonly avatarSize',
+    'readonly pick = output', 'readonly confirm = output', 'readonly cancelRequested = output',
+  ]) {
+    if (!avatarPicker.includes(required)) {
+      errors.push(`ErpAvatarPicker exact-reference state contract is missing ${required}`);
+    }
+  }
+  for (const required of [
+    '<erp-tabs', '<erp-search-box', '<erp-avatar-picker-tile', '<erp-avatar',
+    '<erp-empty-state', '<erp-button', '<erp-tooltip', '[renderPanels]="false"',
+  ]) {
+    if (!avatarPickerTemplate.includes(required)) {
+      errors.push(`ErpAvatarPicker exact-reference hierarchy is missing ${required}`);
+    }
+  }
+  if (!avatarPickerTile.includes('<erp-avatar') ||
+      !avatarPickerTile.includes('<erp-icon name="check-mark"') ||
+      /<img\b/i.test(`${avatarPickerTemplate}\n${avatarPickerTile}`)) {
+    errors.push('ErpAvatarPicker tiles must render only through ErpAvatar and the semantic selected marker, never raw avatar images');
+  }
+  if (/role=["']tab["']/i.test(`${avatarPickerTemplate}\n${avatarPickerTile}`)) {
+    errors.push('ErpAvatarPicker must not create a private Tabs implementation');
+  }
+  if (/[A-Za-z]:\\|Downloads[\\/]/i.test(`${avatarPicker}\n${avatarPickerTemplate}\n${avatarPickerTile}`)) {
+    errors.push('ErpAvatarPicker runtime source must not depend on local Windows or Downloads paths');
+  }
+  if (/#[0-9a-f]{3,8}\b|\brgba?\(|\bhsla?\(/i.test(`${avatarPickerScss}\n${avatarPickerTokens}`)) {
+    errors.push('ErpAvatarPicker must not copy raw reference colors');
+  }
+  if (/@media\s*\([^)]*(?:max|min)-width|@container\s*\([^)]*(?:max|min)-width/i.test(avatarPickerScss) ||
+      !avatarPickerScss.includes("query.viewport-down('sm')")) {
+    errors.push('ErpAvatarPicker responsive behavior must use the Foundation Query API');
+  }
+  for (const required of [
+    '@mixin base', '@mixin root-base', '@mixin tile-base', '@mixin size-compact',
+    '@mixin layout-narrow', '--honesty-avatar-picker-max-inline-size: 32.5rem',
+    '--honesty-avatar-picker-tile-size: 4.75rem',
+    '--honesty-avatar-picker-grid-gap: 0.75rem',
+    '--honesty-avatar-picker-grid-max-block-size: 27.5rem',
+    '--honesty-avatar-picker-check-size: 1.375rem',
+  ]) {
+    if (!avatarPickerTokens.includes(required)) {
+      errors.push(`ErpAvatarPicker tokens are missing exact-reference geometry ${required}`);
+    }
   }
   if (!reviewEvidence.includes('<erp-column-chooser')) {
     errors.push('Core Table visibility evidence must reuse ErpColumnChooser');
@@ -493,7 +561,9 @@ export function validateCoreComponents(files) {
   try {
     const manifest = JSON.parse((files.get(AVATAR_MANIFEST) ?? '{}').replace(/^\uFEFF/u, ''));
     const manifestPaths = manifest.items?.map((item) => item.imageUrl.replace('/assets/honesty-erp-avatars/users/', '')) ?? [];
-    if (manifest.total !== 40 || manifest.male !== 20 || manifest.female !== 20 || manifestPaths.length !== 40) {
+    const manifestIds = manifest.items?.map((item) => item.id) ?? [];
+    if (manifest.total !== 40 || manifest.male !== 20 || manifest.female !== 20 || manifestPaths.length !== 40 ||
+        new Set(manifestIds).size !== 40 || new Set(manifestPaths).size !== 40) {
       errors.push('Avatar manifest must describe exactly 20 male and 20 female assets');
     }
     for (const relative of manifestPaths) {
@@ -567,11 +637,16 @@ function fixture(overrides = new Map()) {
     [TABLE_MOTION, ''],
     [PAGINATION, '<erp-inline class="pagination__size-row"><erp-select label="عدد السجلات" labelMode="visually-hidden"/></erp-inline>'],
     [PAGINATION_TS, ['showSummary', 'showPageSize', 'showFirst', 'showPrevious', 'showPageNumbers', 'showNext', 'showLast'].map((name) => `readonly ${name} = input(true`).join(';')],
-    [AVATAR_PICKER, 'ERP_AVATAR_CATALOG; readonly avatarShape; readonly avatarSize'],
-    [AVATAR_PICKER_TEMPLATE, '<erp-tabs><erp-avatar/></erp-tabs>'],
+    [AVATAR_PICKER, 'ERP_AVATAR_CATALOG; readonly avatarShape; readonly avatarSize; readonly pick = output; readonly confirm = output; readonly cancelRequested = output'],
+    [AVATAR_PICKER_TEMPLATE, '<erp-tabs [renderPanels]="false"/><erp-search-box/><erp-avatar-picker-tile/><erp-avatar/><erp-empty-state/><erp-button/><erp-tooltip/>'],
+    [AVATAR_PICKER_TILE, '<button><erp-avatar/><erp-icon name="check-mark"/></button>'],
+    ...AVATAR_PICKER_SCSS.map((file) => [file, file.endsWith('responsive.scss') ? "query.viewport-down('sm')" : '']),
+    [AVATAR_PICKER_TOKENS, '@mixin base {}; @mixin root-base {}; @mixin tile-base {}; @mixin size-compact {}; @mixin layout-narrow {}; --honesty-avatar-picker-max-inline-size: 32.5rem; --honesty-avatar-picker-tile-size: 4.75rem; --honesty-avatar-picker-grid-gap: 0.75rem; --honesty-avatar-picker-grid-max-block-size: 27.5rem; --honesty-avatar-picker-check-size: 1.375rem;'],
+    [AVATAR_PICKER_CONTRACT, `${AVATAR_PICKER_REFERENCE_SHA}; exact visual and behavioral replication`],
+    [AVATAR_PICKER_LEGACY_REFERENCE, `SUPERSEDED; ${AVATAR_PICKER_REFERENCE_SHA}`],
     [AVATAR_CATALOG, "avatarItems('male', 1, 20); avatarItems('female', 21, 40); /assets/honesty-erp-avatars/users/"],
     [AVATAR_ASSET_ROOT, ['manifest.json', ...Array.from({length: 40}, (_, index) => `avatar-${index + 1}.png`)]],
-    [AVATAR_MANIFEST, JSON.stringify({total: 40, male: 20, female: 20, items: Array.from({length: 40}, (_, index) => ({imageUrl: `/assets/honesty-erp-avatars/users/avatar-${index + 1}.png`}))})],
+    [AVATAR_MANIFEST, JSON.stringify({total: 40, male: 20, female: 20, items: Array.from({length: 40}, (_, index) => ({id: `avatar-${index + 1}`, imageUrl: `/assets/honesty-erp-avatars/users/avatar-${index + 1}.png`}))})],
   ]);
   for (const owner of TOKEN_OWNERS) {
     const tokenPath = `src/styles/foundation/components/${owner}/_tokens.scss`;
@@ -612,6 +687,13 @@ function runSelfTest() {
     ['missing avatar hierarchy', fixture(new Map([[AVATAR_TEMPLATE, '<span class="avatar__frame"></span>']])), 'exact-reference hierarchy'],
     ['raw avatar breakpoint', fixture(new Map([[AVATAR_SCSS, '@media (max-width: 520px) {}']])), 'Foundation Query API'],
     ['current former avatar authority', fixture(new Map([[AVATAR_LEGACY_REFERENCE, 'current external references']])), 'explicitly superseded'],
+    ['missing avatar-picker reference SHA', fixture(new Map([[AVATAR_PICKER_CONTRACT, 'old picker reference']])), 'binding ERP-AVATAR-PICKER.html SHA'],
+    ['current former avatar-picker authority', fixture(new Map([[AVATAR_PICKER_LEGACY_REFERENCE, 'current external references']])), 'explicitly superseded'],
+    ['missing avatar-picker tabs owner', fixture(new Map([[AVATAR_PICKER_TEMPLATE, '<erp-search-box/><erp-avatar-picker-tile/><erp-avatar/><erp-empty-state/><erp-button/><erp-tooltip/>']])), 'erp-tabs'],
+    ['raw avatar-picker image', fixture(new Map([[AVATAR_PICKER_TILE, '<button><img src="avatar.png"></button>']])), 'never raw avatar images'],
+    ['private avatar-picker tabs', fixture(new Map([[AVATAR_PICKER_TILE, '<button role="tab"><erp-avatar/><erp-icon name="check-mark"/></button>']])), 'private Tabs implementation'],
+    ['local avatar-picker path', fixture(new Map([[AVATAR_PICKER, 'C:\\Users\\Owner\\Downloads\\avatar.png']])), 'local Windows'],
+    ['missing avatar-picker exact geometry', fixture(new Map([[AVATAR_PICKER_TOKENS, '@mixin base {}']])), 'exact-reference geometry'],
     ['missing table selection owner', fixture(new Map([[TABLE, '<erp-sort-header/><erp-table-resize-handle/><tfoot></tfoot> descriptionKey data-overflow']])), 'erp-check-box'],
     ['selection activates table rows', fixture(new Map([[TABLE_TS, 'if (this.rowActivatable() || this.selectable()) this.rowActivated.emit(row);']])), 'independent from checkbox selection'],
     ['pagination duplicates visible labels', fixture(new Map([[PAGINATION, '<erp-inline class="pagination__size-row"><erp-select label="حجم الصفحة"/></erp-inline>']])), 'hidden accessible Select label'],
@@ -679,6 +761,11 @@ function runCheck() {
     [PAGINATION_TS, read(PAGINATION_TS)],
     [AVATAR_PICKER, read(AVATAR_PICKER)],
     [AVATAR_PICKER_TEMPLATE, read(AVATAR_PICKER_TEMPLATE)],
+    [AVATAR_PICKER_TILE, read(AVATAR_PICKER_TILE)],
+    ...AVATAR_PICKER_SCSS.map((file) => [file, read(file)]),
+    [AVATAR_PICKER_TOKENS, read(AVATAR_PICKER_TOKENS)],
+    [AVATAR_PICKER_CONTRACT, read(AVATAR_PICKER_CONTRACT)],
+    [AVATAR_PICKER_LEGACY_REFERENCE, read(AVATAR_PICKER_LEGACY_REFERENCE)],
     [AVATAR_CATALOG, read(AVATAR_CATALOG)],
     [AVATAR_MANIFEST, read(AVATAR_MANIFEST)],
   ]);

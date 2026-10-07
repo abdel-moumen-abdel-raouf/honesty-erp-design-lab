@@ -1,9 +1,12 @@
 export type ErpAvatarGender = 'male' | 'female';
+export type ErpAvatarPickerSize = 'default' | 'compact';
 
 export interface ErpAvatarCatalogItem {
   readonly id: string;
   readonly gender: ErpAvatarGender;
   readonly imageUrl: string;
+  readonly label?: string;
+  readonly disabled?: boolean;
 }
 
 function avatarItems(

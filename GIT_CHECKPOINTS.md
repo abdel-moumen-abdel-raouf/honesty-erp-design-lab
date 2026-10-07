@@ -9,7 +9,27 @@ Always resolve live `origin/main` directly at session start. This file records
 named checkpoints; it does not claim that its own latest docs SHA is an eternal
 repository HEAD.
 
-## Current ErpAvatar exact-reference checkpoint — 2026-10-07
+## Current ErpAvatarPicker exact-reference checkpoint — 2026-10-07
+
+Entry checkpoint:
+
+- `4a3e65ab5f8bc5d38b3ea25dd8b77045c6a6b53c`
+
+The bounded implementation commit is `fix(avatar-picker): rebuild from exact
+Product Owner reference`; resolve its final SHA from live `main` because this
+file is committed with it.
+
+Binding reference: `ERP-AVATAR-PICKER.html`, SHA-256
+`24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`.
+Product Owner visual acceptance remains pending and the Data/Table Visual
+Correction Wave remains unopened. The authoritative implementation contract is
+`src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`.
+The canonical gate passes 133/133 test files, 887/887 tests, both typechecks,
+production build, every governance check, and zero warnings. Initial bundle:
+376.12 kB / 85.65 kB estimated transfer. Core Batch lazy chunk: 95.63 kB /
+16.94 kB estimated transfer.
+
+## Historical ErpAvatar exact-reference checkpoint — superseded current gate
 
 Entry checkpoint:
 

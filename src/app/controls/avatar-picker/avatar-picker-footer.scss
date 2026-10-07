@@ -1,0 +1,49 @@
+.avatar-picker__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--honesty-avatar-picker-footer-gap);
+  margin-block-start: var(--honesty-avatar-picker-footer-gap);
+  padding: var(--honesty-avatar-picker-padding);
+  padding-block-start: var(--honesty-avatar-picker-footer-padding-block-start);
+  border-block-start: var(--honesty-avatar-picker-border-width) solid
+    var(--honesty-avatar-picker-footer-border-color);
+}
+
+.avatar-picker__preview,
+.avatar-picker__actions {
+  display: flex;
+  align-items: center;
+}
+
+.avatar-picker__preview {
+  min-inline-size: 0;
+  gap: var(--honesty-avatar-picker-preview-gap);
+}
+
+.avatar-picker__preview-copy {
+  display: grid;
+  min-inline-size: 0;
+  gap: var(--honesty-avatar-picker-preview-copy-gap);
+}
+
+.avatar-picker__actions {
+  flex: 0 0 auto;
+  gap: var(--honesty-avatar-picker-actions-gap);
+}
+
+.avatar-picker__toast {
+  position: absolute;
+  inset-block-start: var(--honesty-avatar-picker-toast-inset);
+  inset-inline-end: var(--honesty-avatar-picker-toast-inset);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: var(--honesty-avatar-picker-toast-gap);
+  padding-block: var(--honesty-avatar-picker-toast-padding-block);
+  padding-inline: var(--honesty-avatar-picker-toast-padding-inline);
+  border-radius: var(--honesty-avatar-picker-toast-radius);
+  background: var(--honesty-avatar-picker-toast-bg);
+  color: var(--honesty-avatar-picker-toast-fg);
+  box-shadow: var(--honesty-avatar-picker-toast-shadow);
+}

@@ -80,6 +80,7 @@ export class CoreBatch {
   readonly selectedEmployee = signal<ErpSelectValue>('ahmed');
   readonly selectedReviewTeam = signal<ErpSelectValue>(['ahmed', 'sara']);
   readonly selectedAvatar = signal<string | null>('avatar-01');
+  readonly selectedFemaleAvatar = signal<string | null>('avatar-21');
   readonly page = signal(3);
   readonly pageSize = signal(25);
   readonly badgeTone = signal<ErpStatusBadgeTone>('success');

@@ -1,0 +1,30 @@
+@keyframes avatar-picker-item-enter {
+  0% {
+    opacity: 0;
+    transform:
+      translateY(var(--honesty-avatar-picker-item-entry-translate))
+      scale(var(--honesty-avatar-picker-item-entry-scale));
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(0) scale(var(--honesty-avatar-picker-item-entry-scale-peak));
+  }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+button {
+  animation: avatar-picker-item-enter
+    var(--honesty-avatar-picker-entry-duration)
+    var(--honesty-avatar-picker-motion-easing-enter) both;
+  animation-delay: calc(
+    var(--avatar-picker-item-index, 0) * var(--honesty-avatar-picker-entry-stagger)
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button,
+  .avatar-picker-tile__check {
+    animation: none;
+    transition-duration: var(--honesty-avatar-picker-reduced-duration);
+  }
+}

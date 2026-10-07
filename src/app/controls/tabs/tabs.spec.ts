@@ -101,6 +101,20 @@ describe('ErpTabs', () => {
     }
   });
 
+  it('supports counted filter tabs without creating a private tab-panel surface', () => {
+    const fixture = TestBed.createComponent(ErpTabs);
+    fixture.componentRef.setInput('items', [
+      {id: 'male', label: 'ذكر', count: 20},
+      {id: 'female', label: 'أنثى', count: 20},
+    ] satisfies readonly ErpTabItem[]);
+    fixture.componentRef.setInput('renderPanels', false);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelectorAll('[role="tab"]')).toHaveLength(2);
+    expect(fixture.nativeElement.querySelectorAll('[role="tab"] erp-text')).toHaveLength(4);
+    expect(fixture.nativeElement.querySelector('[role="tabpanel"]')).toBeNull();
+  });
+
   it('uses Up/Down navigation for vertical tabs', () => {
     const fixture = TestBed.createComponent(ErpTabs);
     fixture.componentRef.setInput('items', items);

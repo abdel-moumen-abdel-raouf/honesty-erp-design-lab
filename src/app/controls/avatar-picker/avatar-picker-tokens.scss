@@ -1,0 +1,9 @@
+@use '../../../styles/foundation/components/avatar-picker' as tokens;
+
+:host {
+  @include tokens.root-base;
+}
+
+:host([data-avatar-picker-size='compact']) {
+  @include tokens.size-compact;
+}

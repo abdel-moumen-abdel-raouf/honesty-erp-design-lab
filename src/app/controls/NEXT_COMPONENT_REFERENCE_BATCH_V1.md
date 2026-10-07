@@ -3,17 +3,18 @@
 ## Current transition — 2026-10-07
 
 The four-component sequence below is historical. The current Product Owner
-authorization is only the bounded `ErpAvatar Exact Reference Rebuild`.
+authorization is only the bounded `ErpAvatarPicker Exact Reference Rebuild`.
 
-`C:\Users\Misrtech\Downloads\ERP-AVATAR.html`, SHA-256
-`2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`, is the
-single binding visual and behavioral Avatar authority. It supersedes all
-former Avatar references, waivers, and conflicting interpretations. The current
-contract is `avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md`.
+`C:\Users\Misrtech\Downloads\ERP-AVATAR-PICKER.html`, SHA-256
+`24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`, is the
+single binding visual and behavioral AvatarPicker authority. It supersedes all
+former AvatarPicker references, waivers, and conflicting interpretations. The current
+contract is `avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`.
 
-The rebuilt candidate is technically green at 133/133 test files and 881/881
+The rebuilt candidate is technically green at 133/133 test files and 887/887
 tests. The exact next action is Product Owner runtime/Light/Dark/RTL/LTR/narrow
-comparison at `/controls/core-batch`. `ErpSelect` and `ErpStatusBadge` are not reopened. No Data/Table
+comparison of AvatarPicker at `/controls/core-batch`. `ErpAvatar`, `ErpSelect`
+and `ErpStatusBadge` are not reopened. No Data/Table
 Visual Correction Wave or later component reference batch is authorized.
 
 ## Historical Product Owner decision — superseded execution order

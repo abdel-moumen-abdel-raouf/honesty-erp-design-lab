@@ -1,4 +1,9 @@
-# ErpAvatarPicker Reference V1
+# ErpAvatarPicker Reference V1 — SUPERSEDED HISTORICAL CONTRACT
+
+> Superseded on 2026-10-07. The sole current authority is
+> `ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`, derived from
+> `ERP-AVATAR-PICKER.html` at SHA-256
+> `24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`.
 
 ## Authority
 

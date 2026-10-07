@@ -23,7 +23,17 @@ describe('CoreBatch', () => {
       .toHaveLength(6);
     expect(fixture.nativeElement.querySelectorAll('[data-select-direction-evidence] erp-select'))
       .toHaveLength(2);
-    expect(fixture.nativeElement.querySelector('erp-avatar-picker')).not.toBeNull();
+    expect(fixture.nativeElement.querySelectorAll('erp-avatar-picker')).toHaveLength(5);
+    expect(
+      fixture.nativeElement.querySelector(
+        '.avatar-picker-reference-matrix erp-avatar-picker[data-avatar-picker-size="compact"]',
+      ),
+    ).not.toBeNull();
+    expect(
+      fixture.nativeElement.querySelector(
+        '[data-avatar-picker-direction-evidence="ltr"] erp-avatar-picker',
+      ),
+    ).not.toBeNull();
     expect(fixture.nativeElement.querySelector('erp-review-core-table erp-table')).not.toBeNull();
     expect(fixture.nativeElement.querySelector('erp-pagination')).not.toBeNull();
     expect(

@@ -486,11 +486,56 @@
     <erp-section>
       <erp-stack gap="default">
         <erp-text type="heading-2">ErpAvatarPicker</erp-text>
+        <erp-text type="paragraph" tone="secondary">
+          مرشح المطابقة المباشرة لـ ERP-AVATAR-PICKER.html: عنوان ووصف، تبويبا الجنس
+          مع العدادات، بحث، شبكة اختيار مرحلية، معاينة، وإجراءات حفظ وإلغاء.
+        </erp-text>
+        <erp-grid class="avatar-picker-reference-matrix" [columns]="2" gap="lg" responsive="auto">
+          <erp-stack gap="tight">
+            <erp-text type="label">الحالة المرجعية الافتراضية — RTL</erp-text>
+            <erp-avatar-picker
+              title="اختيار الصورة الشخصية"
+              subtitle="اختر الصورة التي تناسب حسابك"
+              [(value)]="selectedAvatar"
+            />
+          </erp-stack>
+          <erp-stack dir="ltr" gap="tight" data-avatar-picker-direction-evidence="ltr">
+            <erp-text type="label">Compact / Female — LTR</erp-text>
+            <erp-avatar-picker
+              title="Choose profile avatar"
+              subtitle="Select an avatar for this account"
+              size="compact"
+              gender="female"
+              [(value)]="selectedFemaleAvatar"
+            />
+          </erp-stack>
+          <erp-stack class="avatar-picker-narrow-evidence" gap="tight">
+            <erp-text type="label">عرض ضيق</erp-text>
+            <erp-avatar-picker
+              title="اختيار داخل مساحة ضيقة"
+              subtitle="دليل الاستجابة دون تمرير أفقي"
+              [value]="'avatar-03'"
+            />
+          </erp-stack>
+          <erp-stack gap="tight">
+            <erp-text type="label">حالة التعطيل</erp-text>
+            <erp-avatar-picker [value]="'avatar-04'" disabled />
+          </erp-stack>
+        </erp-grid>
+
+        <erp-text type="heading-4">قدرات توافق الشكل والحجم</erp-text>
         <erp-grid [columns]="2" gap="sm" responsive="auto">
           <erp-select label="حجم الصور" [options]="avatarSizeOptions" [ngModel]="pickerSize()" (ngModelChange)="pickerSize.set($event)" />
           <erp-select label="شكل الصور" [options]="avatarShapeOptions" [ngModel]="pickerShape()" (ngModelChange)="pickerShape.set($event)" />
         </erp-grid>
-        <erp-avatar-picker [(value)]="selectedAvatar" [avatarSize]="pickerSize()" [avatarShape]="pickerShape()" />
+        <erp-avatar-picker
+          title="دليل توافق API"
+          subtitle="تمرير شكل وحجم ErpAvatar دون إعادة رسمه"
+          [value]="selectedAvatar()"
+          [showConfirm]="false"
+          [avatarSize]="pickerSize()"
+          [avatarShape]="pickerShape()"
+        />
       </erp-stack>
     </erp-section>
 

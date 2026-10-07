@@ -1,52 +1,125 @@
-<erp-text type="heading-5">{{ label() }}</erp-text>
+<header class="avatar-picker__header">
+  <erp-text type="heading-5">{{ effectiveTitle() }}</erp-text>
+  <erp-text type="caption" tone="secondary">{{ subtitle() }}</erp-text>
+</header>
 
-@if (selected(); as avatar) {
-  <span class="avatar-picker__preview">
-    <erp-avatar
-      name="الصورة الشخصية المختارة"
-      [src]="avatar.imageUrl"
-      [size]="avatarSize()"
-      [shape]="avatarShape()"
-      hoverMotion="scale"
+<div class="avatar-picker__tabs">
+  <erp-tabs
+    [items]="tabs()"
+    [activeId]="gender()"
+    distribution="fill"
+    variant="pills"
+    headerShape="rounded"
+    [renderPanels]="false"
+    (activeIdChange)="setGender($event)"
+  />
+</div>
+
+@if (searchable()) {
+  <div class="avatar-picker__search">
+    <erp-search-box
+      label="البحث"
+      labelMode="visually-hidden"
+      mode="inline"
+      presentation="select-panel"
+      [placeholder]="searchPlaceholder()"
+      [disabled]="disabled()"
+      [ngModel]="query()"
+      (ngModelChange)="setQuery($event)"
     />
-    <erp-text type="caption" tone="secondary">{{ avatar.id }}</erp-text>
-  </span>
+    @if (query()) {
+      <erp-tooltip class="avatar-picker__search-clear" text="مسح البحث">
+        <erp-icon-button
+          icon="dismiss"
+          label="مسح البحث"
+          size="sm"
+          [disabled]="disabled()"
+          (pressed)="setQuery('')"
+        />
+      </erp-tooltip>
+    }
+  </div>
 }
 
-<erp-tabs
-  [items]="tabs"
-  [activeId]="activeGender()"
-  distribution="fill"
-  variant="pills"
-  transition="fade"
-  (activeIdChange)="setGender($event)"
->
-  <ng-template erpTabPanel="male">
-    <span class="avatar-picker__grid" role="listbox" aria-label="صور المستخدمين الذكور">
-      @for (avatar of avatarsFor('male'); track avatar.id) {
-        <erp-selection-tile
-          [label]="'اختيار ' + avatar.id"
-          [selected]="value() === avatar.id"
-          [disabled]="disabled()"
-          (activated)="select(avatar)"
-        >
-          <erp-avatar [name]="avatar.id" [src]="avatar.imageUrl" [size]="avatarSize()" [shape]="avatarShape()" />
-        </erp-selection-tile>
+<div class="avatar-picker__grid-region">
+  @if (filteredAvatars().length === 0) {
+    <erp-empty-state
+      class="avatar-picker__empty"
+      variant="no-search"
+      [title]="emptyText()"
+      [showIllustration]="true"
+      [showDescription]="false"
+      [showActions]="false"
+      [showExtra]="false"
+      [animated]="false"
+    >
+      <erp-icon erpEmptyStateIllustration name="search" size="xl" tone="muted" />
+    </erp-empty-state>
+  } @else {
+    <div
+      class="avatar-picker__grid"
+      role="listbox"
+      [attr.aria-label]="effectiveTitle()"
+      [attr.aria-disabled]="disabled()"
+    >
+      @for (avatar of filteredAvatars(); track avatar.id; let index = $index) {
+        <erp-avatar-picker-tile
+          [item]="avatar"
+          [selected]="selectedId() === avatar.id"
+          [disabled]="disabled() || !!avatar.disabled"
+          [avatarSize]="effectiveAvatarSize()"
+          [avatarShape]="avatarShape()"
+          [tabIndex]="tileTabIndex(index)"
+          [animationIndex]="index"
+          (focused)="activeIndex.set(index)"
+          (activated)="select(avatar, index)"
+          (keyPressed)="handleTileKeydown($event, index)"
+        />
       }
-    </span>
-  </ng-template>
-  <ng-template erpTabPanel="female">
-    <span class="avatar-picker__grid" role="listbox" aria-label="صور المستخدمين الإناث">
-      @for (avatar of avatarsFor('female'); track avatar.id) {
-        <erp-selection-tile
-          [label]="'اختيار ' + avatar.id"
-          [selected]="value() === avatar.id"
-          [disabled]="disabled()"
-          (activated)="select(avatar)"
-        >
-          <erp-avatar [name]="avatar.id" [src]="avatar.imageUrl" [size]="avatarSize()" [shape]="avatarShape()" />
-        </erp-selection-tile>
+    </div>
+  }
+</div>
+
+@if (showConfirm()) {
+  <footer class="avatar-picker__footer">
+    <div class="avatar-picker__preview">
+      @if (selectedAvatar(); as avatar) {
+        <erp-avatar
+          [name]="avatarLabel(avatar)"
+          [src]="avatar.imageUrl"
+          size="md"
+          [shape]="avatarShape()"
+        />
+        <span class="avatar-picker__preview-copy">
+          <erp-text type="label">الصورة المختارة</erp-text>
+          <erp-text type="caption" tone="secondary">{{ avatar.id }}</erp-text>
+        </span>
+      } @else {
+        <erp-avatar name="لم يتم اختيار صورة" fallbackIcon="user" size="md" [shape]="avatarShape()" />
+        <erp-text type="caption" tone="secondary">لم يتم اختيار صورة</erp-text>
       }
-    </span>
-  </ng-template>
-</erp-tabs>
+    </div>
+    <div class="avatar-picker__actions">
+      <erp-button
+        [label]="cancelLabel()"
+        variant="outline"
+        tone="neutral"
+        [disabled]="disabled()"
+        (pressed)="cancelSelection()"
+      />
+      <erp-button
+        [label]="confirmLabel()"
+        icon="success"
+        [disabled]="!canConfirm()"
+        (pressed)="confirmSelection()"
+      />
+    </div>
+  </footer>
+}
+
+@if (toastVisible()) {
+  <div class="avatar-picker__toast" role="status">
+    <erp-icon name="success" size="sm" tone="inherit" />
+    <erp-text type="caption" tone="inherit">{{ savedLabel() }}</erp-text>
+  </div>
+}

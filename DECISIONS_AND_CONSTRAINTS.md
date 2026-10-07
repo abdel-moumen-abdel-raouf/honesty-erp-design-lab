@@ -30,26 +30,26 @@ Binding Product Owner law:
 4. the next item is the lowest unresolved dependency, not simply the next row
    in historical planning.
 
-Latest completed authorized implementation is the bounded `ErpAvatar
-Exact Reference Rebuild`, entered from
-`3558434c274a11b7b52296f78b8968806817e1e8`.
+Latest authorized implementation is the bounded `ErpAvatarPicker Exact
+Reference Rebuild`, entered from
+`4a3e65ab5f8bc5d38b3ea25dd8b77045c6a6b53c`.
 
-`ERP-AVATAR.html`, SHA-256
-`2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`, is the
-single binding Avatar visual and behavioral authority. It supersedes all
-previous Avatar references, waivers, and conflicting visual interpretations.
+`ERP-AVATAR-PICKER.html`, SHA-256
+`24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`, is the
+single binding AvatarPicker visual and behavioral authority. It supersedes all
+previous AvatarPicker references, waivers, and conflicting visual interpretations.
 Geometry and behavior are copied exactly; palette
 and font-family values alone map through Honesty ERP system contracts.
 
 The authoritative implementation contract is
-`src/app/controls/avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md`.
+`src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`.
 
-The rebuilt candidate passes 133/133 test files and 881/881 tests, both
+The rebuilt candidate passes 133/133 test files and 887/887 tests, both
 typechecks, production build, all governance, and zero warnings.
 
-Current active gate is Product Owner runtime/Light/Dark/RTL/narrow comparison of
-the rebuilt Avatar at `/controls/core-batch` against the binding reference.
-The previous Select and StatusBadge candidates are not reopened. Browser runtime evidence does
+Current active gate is Product Owner runtime/Light/Dark/RTL/LTR/narrow comparison of
+the rebuilt AvatarPicker at `/controls/core-batch` against the binding reference.
+The previous Avatar, Select and StatusBadge candidates are not reopened. Browser runtime evidence does
 not confer visual acceptance. The Data/Table
 Visual Correction Wave remains unopened. Technical PASS is not visual freeze.
 Standalone EntityReview, Entity Wizard, workflow engine, DataPage,

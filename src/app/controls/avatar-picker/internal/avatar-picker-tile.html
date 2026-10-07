@@ -1,0 +1,23 @@
+<button
+  type="button"
+  role="option"
+  [attr.aria-label]="label()"
+  [attr.aria-selected]="selected()"
+  [disabled]="disabled()"
+  [tabindex]="tabIndex()"
+  [style.--avatar-picker-item-index]="animationIndex()"
+  (click)="activated.emit()"
+  (focus)="focused.emit()"
+  (keydown)="keyPressed.emit($event)"
+>
+  <erp-avatar
+    [name]="label()"
+    [src]="item().imageUrl"
+    [size]="avatarSize()"
+    [shape]="avatarShape()"
+    hoverMotion="scale"
+  />
+  <span class="avatar-picker-tile__check" aria-hidden="true">
+    <erp-icon name="check-mark" size="sm" />
+  </span>
+</button>

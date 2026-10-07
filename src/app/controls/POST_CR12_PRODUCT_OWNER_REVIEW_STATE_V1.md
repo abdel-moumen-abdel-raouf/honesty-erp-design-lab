@@ -8,23 +8,23 @@ It records Product Owner decisions, externally reviewed Git state, execution bou
 
 ## Authoritative current review transition — 2026-10-07
 
-The Product Owner opened only the bounded `ErpAvatar Exact Reference Rebuild`
-from `3558434c274a11b7b52296f78b8968806817e1e8`. Resolve the final
+The Product Owner opened only the bounded `ErpAvatarPicker Exact Reference Rebuild`
+from `4a3e65ab5f8bc5d38b3ea25dd8b77045c6a6b53c`. Resolve the final
 implementation SHA directly from live Git.
 
-`ERP-AVATAR.html`, SHA-256
-`2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`, is the
-single binding Avatar visual and behavioral authority. It supersedes all
-previous Avatar references, waivers, and conflicting visual interpretations.
+`ERP-AVATAR-PICKER.html`, SHA-256
+`24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`, is the
+single binding AvatarPicker visual and behavioral authority. It supersedes all
+previous AvatarPicker references, waivers, and conflicting visual interpretations.
 Only palette and font-family values map to
 Honesty ERP system contracts. The authoritative implementation contract is
-`avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md`. Its technical gate passes
-133/133 test files and 881/881 tests, all governance, both typechecks, production
+`avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`. Its technical gate passes
+133/133 test files and 887/887 tests, all governance, both typechecks, production
 build, and zero warnings.
 
 The exact next gate is Product Owner runtime/Light/Dark/RTL/LTR/narrow comparison
-of the rebuilt Avatar at `/controls/core-batch`. `ErpSelect` and `ErpStatusBadge`
-are not reopened. Browser runtime evidence does not claim visual approval. The
+of the rebuilt AvatarPicker at `/controls/core-batch`. `ErpAvatar`, `ErpSelect`
+and `ErpStatusBadge` are not reopened. Browser runtime evidence does not claim visual approval. The
 Data/Table Visual Correction Wave and every later implementation wave remain
 unopened. Technical PASS never equals visual approval.
 

@@ -1,0 +1,5 @@
+@use '../../../../styles/foundation/components/avatar-picker' as tokens;
+
+:host {
+  @include tokens.tile-base;
+}

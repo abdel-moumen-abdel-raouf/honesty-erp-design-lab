@@ -22,6 +22,7 @@ export interface ErpTabItem {
   readonly label: string;
   readonly content?: string;
   readonly icon?: ErpIconName;
+  readonly count?: number;
   readonly headerPresentation?: ErpTabHeaderPresentation;
   readonly disabled?: boolean;
 }
@@ -84,6 +85,7 @@ export class ErpTabs {
   readonly variant = input<ErpTabsVariant>('underline');
   readonly transition = input<ErpTabsTransition>('none');
   readonly headerShape = input<ErpTabHeaderShape>('rounded');
+  readonly renderPanels = input(true);
 
   protected readonly resolvedActiveId = computed(() => {
     const requested = this.activeId();

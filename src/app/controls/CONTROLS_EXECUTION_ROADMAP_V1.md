@@ -15,21 +15,22 @@ family. Those decisions remain with the Product Owner and ChatGPT after review.
 
 ## Current exact-reference execution state — 2026-10-07
 
-The Product Owner opened only the bounded `ErpAvatar Exact Reference Rebuild`
-from `3558434c274a11b7b52296f78b8968806817e1e8`.
-`ERP-AVATAR.html`, SHA-256
-`2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`, is the
-single binding Avatar visual and behavioral authority. It supersedes all prior
-Avatar visual references, waivers, and interpretations. Only reference colors and font families are
+The Product Owner opened only the bounded `ErpAvatarPicker Exact Reference Rebuild`
+from `4a3e65ab5f8bc5d38b3ea25dd8b77045c6a6b53c`.
+`ERP-AVATAR-PICKER.html`, SHA-256
+`24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`, is the
+single binding AvatarPicker visual and behavioral authority. It supersedes all prior
+AvatarPicker visual references, waivers, and interpretations. Only reference colors and font families are
 translated to Honesty ERP system contracts.
 
 The authoritative contract is
-`avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md`. The rebuilt candidate
-passes 133/133 test files and 881/881 tests, both typechecks, production build,
+`avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`. The rebuilt candidate
+passes 133/133 test files and 887/887 tests, both typechecks, production build,
 all governance, and zero warnings.
 
 The exact next action is Product Owner runtime/Light/Dark/RTL/LTR/narrow
-comparison at `/controls/core-batch`. `ErpSelect` and `ErpStatusBadge` are not reopened. Browser
+comparison of AvatarPicker at `/controls/core-batch`. `ErpAvatar`, `ErpSelect`
+and `ErpStatusBadge` are not reopened. Browser
 evidence does not claim visual approval. The
 Data/Table Visual Correction Wave, DataPage, Entity patterns, Feature/Page
 migration, and every unlisted family remain unopened.

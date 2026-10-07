@@ -27,6 +27,8 @@ in this order:
     `src/app/controls/status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md`
 17. current exact ErpAvatar reference contract:
     `src/app/controls/avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md`
+18. current exact ErpAvatarPicker reference contract:
+    `src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`
 
 Then verify live GitHub `main` before making any current-state claim.
 
@@ -64,27 +66,27 @@ restated by the newest dated continuity blocks or by
 
 ## Authoritative current state — 2026-10-07
 
-The bounded `ErpAvatar Exact Reference Rebuild` started from
-`3558434c274a11b7b52296f78b8968806817e1e8`. Resolve the final live SHA from Git.
+The bounded `ErpAvatarPicker Exact Reference Rebuild` started from
+`4a3e65ab5f8bc5d38b3ea25dd8b77045c6a6b53c`. Resolve the final live SHA from Git.
 
-- `ERP-AVATAR.html`, SHA-256
-  `2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`, is the
-  single binding Avatar visual and behavioral authority. It supersedes all
-  previous Avatar references, waivers, and visual interpretations.
-- Exact sizes, shapes, content fallbacks, tones, ring/loading treatment,
-  physical presence positions, statuses, and reference motions are implemented
-  through ERP owners. Only colors and font families map through Honesty ERP
-  tokens and typography.
+- `ERP-AVATAR-PICKER.html`, SHA-256
+  `24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`, is the
+  single binding AvatarPicker visual and behavioral authority. It supersedes
+  all previous AvatarPicker references, waivers, and visual interpretations.
+- Exact Picker surface, header, counted gender tabs, search, responsive grid,
+  staged selection, preview, footer actions and motion are implemented through
+  approved ERP owners. Colors and font families alone map through system contracts.
 - The authoritative contract is
-  `src/app/controls/avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md`.
-- Verification passes 133/133 test files, 881/881 tests, every lint/governance
+  `src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`.
+- Verification passes 133/133 test files, 887/887 tests, every lint/governance
   gate, both typechecks, production build, and zero warnings.
-- Initial bundle: 376.12 kB / 85.63 kB estimated transfer. Core Batch lazy
-  chunk: 70.10 kB / 12.81 kB estimated transfer.
-- Product Owner runtime/Light/Dark/RTL/LTR/narrow acceptance remains pending at
-  `/controls/core-batch`; technical PASS is not visual approval or freeze.
-- `ErpSelect` and `ErpStatusBadge` remain prior technical candidates and are not
-  reopened.
+- Initial bundle: 376.12 kB / 85.65 kB estimated transfer. Core Batch lazy
+  chunk: 95.63 kB / 16.94 kB estimated transfer.
+- Product Owner runtime/Light/Dark/RTL/LTR/narrow acceptance for AvatarPicker
+  remains pending at `/controls/core-batch`; technical PASS is not visual
+  approval or freeze.
+- `ErpAvatar`, `ErpSelect`, and `ErpStatusBadge` remain prior technical
+  candidates and are not reopened.
 - The Data/Table Visual Correction Wave and every later unlisted scope remain
   unopened.
 

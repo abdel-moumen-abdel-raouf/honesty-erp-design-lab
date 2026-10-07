@@ -2,30 +2,30 @@
 
 ## 0. Authoritative current handoff — 2026-10-07
 
-The bounded `ErpAvatar Exact Reference Rebuild` started from
-`3558434c274a11b7b52296f78b8968806817e1e8`. Resolve final local and remote SHAs
+The bounded `ErpAvatarPicker Exact Reference Rebuild` started from
+`4a3e65ab5f8bc5d38b3ea25dd8b77045c6a6b53c`. Resolve final local and remote SHAs
 at session start.
 
 The Product Owner made
-`C:\Users\Misrtech\Downloads\ERP-AVATAR.html`, SHA-256
-`2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`, the
-single binding visual and behavioral authority for `ErpAvatar`. It supersedes
-all previous Avatar references, waivers, and conflicting visual
+`C:\Users\Misrtech\Downloads\ERP-AVATAR-PICKER.html`, SHA-256
+`24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`, the
+single binding visual and behavioral authority for `ErpAvatarPicker`. It
+supersedes all previous AvatarPicker references, waivers, and conflicting visual
 interpretations. Only reference colors and font family
 are translated to Honesty ERP Semantic, Typography, and Component Tokens. The
 authoritative implementation contract is
-`src/app/controls/avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md`.
+`src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`.
 
-The rebuilt Avatar is technically green at 133/133 test files and 881/881
+The rebuilt AvatarPicker is technically green at 133/133 test files and 887/887
 tests, all lint/governance gates, both typechecks, production build, and zero
-warnings. Initial bundle is 376.12 kB / 85.63 kB estimated transfer; Core Batch
-lazy chunk is 70.10 kB / 12.81 kB.
+warnings. Initial bundle is 376.12 kB / 85.65 kB estimated transfer; Core Batch
+lazy chunk is 95.63 kB / 16.94 kB.
 
 The exact next action is Product Owner runtime/Light/Dark/RTL/LTR/narrow
-comparison of the rebuilt Avatar at `/controls/core-batch` against
-`ERP-AVATAR.html`. Browser runtime evidence is implementation evidence only,
-not Product Owner visual acceptance. `ErpSelect` and `ErpStatusBadge` are not
-reopened. The Data/Table Visual Correction Wave is not opened.
+comparison of the rebuilt AvatarPicker at `/controls/core-batch` against
+`ERP-AVATAR-PICKER.html`. Browser runtime evidence is implementation evidence
+only, not Product Owner visual acceptance. `ErpAvatar`, `ErpSelect`, and
+`ErpStatusBadge` are not reopened. The Data/Table Visual Correction Wave is not opened.
 Technical PASS never equals visual acceptance.
 Standalone EntityReview, Entity Wizard, workflow engine, DataPage,
 EntityDirectory, EntityDetail, CRUD/transaction patterns, Feature/Page

@@ -17,3 +17,11 @@
   align-items: center;
   justify-content: center;
 }
+
+.avatar-picker-reference-matrix > erp-stack {
+  min-inline-size: 0;
+}
+
+.avatar-picker-narrow-evidence {
+  inline-size: min(100%, 24.375rem);
+}

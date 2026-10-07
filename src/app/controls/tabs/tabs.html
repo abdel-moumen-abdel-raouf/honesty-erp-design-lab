@@ -17,27 +17,32 @@
       @if (headerPresentation(item) !== 'icon-only') {
         <erp-text type="span" tone="inherit">{{ item.label }}</erp-text>
       }
+      @if (item.count !== undefined) {
+        <erp-text type="caption" tone="muted">{{ item.count }}</erp-text>
+      }
     </erp-tab-trigger>
   }
 </div>
-@for (item of items(); track item.id) {
-  @if (resolvedActiveId() === item.id) {
-    <div
-      class="tabs__panel"
-      role="tabpanel"
-      [id]="item.id + '-panel'"
-      [attr.aria-labelledby]="item.id + '-tab'"
-      tabindex="0"
-      [attr.data-tabs-panel-transition]="transition()"
-    >
-      @if (panelTemplate(item.id); as template) {
-        <ng-container
-          [ngTemplateOutlet]="template"
-          [ngTemplateOutletContext]="panelContext(item)"
-        />
-      } @else if (item.content) {
-        <erp-text type="paragraph">{{ item.content }}</erp-text>
-      }
-    </div>
+@if (renderPanels()) {
+  @for (item of items(); track item.id) {
+    @if (resolvedActiveId() === item.id) {
+      <div
+        class="tabs__panel"
+        role="tabpanel"
+        [id]="item.id + '-panel'"
+        [attr.aria-labelledby]="item.id + '-tab'"
+        tabindex="0"
+        [attr.data-tabs-panel-transition]="transition()"
+      >
+        @if (panelTemplate(item.id); as template) {
+          <ng-container
+            [ngTemplateOutlet]="template"
+            [ngTemplateOutletContext]="panelContext(item)"
+          />
+        } @else if (item.content) {
+          <erp-text type="paragraph">{{ item.content }}</erp-text>
+        }
+      </div>
+    }
   }
 }
