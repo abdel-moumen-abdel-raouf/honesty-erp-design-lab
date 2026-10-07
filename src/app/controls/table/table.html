@@ -1,25 +1,31 @@
-<div class="table__scroll" tabindex="0" [attr.aria-label]="caption()">
-  <table>
+<erp-table-viewport
+  [caption]="caption()"
+  [density]="effectiveDensity()"
+  [fixedHeight]="fixedHeight()"
+  [vertical]="layout() === 'vertical'"
+>
+  <table class="table">
     <caption>
       <erp-text type="caption" tone="secondary">{{ caption() }}</erp-text>
     </caption>
     <colgroup>
       @if (selectable()) {
-        <col class="table__selection-column" />
+        <col class="selection-column" />
       }
       @for (column of effectiveColumns(); track column.key) {
         <col [style.inline-size.px]="columnWidth(column)" />
       }
     </colgroup>
     <thead>
-      <tr>
+      <tr class="table__header-row">
         @if (selectable()) {
-          <th class="table__selection" scope="col">
+          <th class="selection" scope="col">
             @if (showHeaderSelection()) {
               <erp-check-box
                 label="تحديد جميع الصفوف"
                 hideText
                 size="sm"
+                presentation="table-reference"
                 [indeterminate]="partiallySelected()"
                 [ngModel]="allSelected()"
                 (ngModelChange)="toggleAll($event)"
@@ -31,17 +37,29 @@
         @for (column of effectiveColumns(); track column.key) {
           <th
             scope="col"
+            [class.sortable]="column.sortable"
+            [attr.data-sorted]="sortDirection(column) === 'none' ? null : sortDirection(column)"
             [attr.data-align]="column.headerAlign ?? column.align ?? 'start'"
           >
-            <span class="table__cell-content">
+            <span class="content">
+              @if (column.headerIcon) {
+                <erp-icon [name]="column.headerIcon" size="sm" tone="inherit" />
+              }
               @if (column.sortable) {
                 <erp-sort-header
                   [label]="column.header"
                   [direction]="sortDirection(column)"
+                  presentation="table-reference"
                   (sortChange)="updateSort(column, $event)"
                 />
               } @else {
-                <erp-text type="table-header" weight="bold">
+                <erp-text
+                  type="table-header"
+                  size="inherit"
+                  weight="inherit"
+                  tone="inherit"
+                  lineHeight="inherit"
+                >
                   {{ column.header }}
                 </erp-text>
               }
@@ -60,17 +78,19 @@
     <tbody>
       @for (row of rows(); track key(row, $index); let rowIndex = $index) {
         <tr
+          class="row"
           [attr.aria-selected]="selectable() ? selectedSet().has(key(row, rowIndex)) : null"
           [attr.tabindex]="rowActivatable() ? 0 : null"
           (click)="activate(row)"
           (keydown.enter)="activate(row)"
         >
           @if (selectable()) {
-            <td class="table__selection" (click)="$event.stopPropagation()">
+            <td class="selection" data-label="تحديد" (click)="$event.stopPropagation()">
               <erp-check-box
                 [label]="'تحديد الصف ' + (rowIndex + 1)"
                 hideText
                 size="sm"
+                presentation="table-reference"
                 [ngModel]="selectedSet().has(key(row, rowIndex))"
                 (ngModelChange)="toggleRow(row, rowIndex, $event)"
                 [ngModelOptions]="{standalone: true}"
@@ -79,19 +99,22 @@
           }
           @for (column of effectiveColumns(); track column.key) {
             <td
+              [attr.data-label]="column.header"
               [attr.data-align]="column.cellAlign ?? column.align ?? 'start'"
               [attr.data-overflow]="column.overflow ?? 'wrap'"
             >
-              <span class="table__cell-content">
+              <span class="content">
                 @if (cellTemplate(column.key); as template) {
                   <ng-container
                     [ngTemplateOutlet]="template"
                     [ngTemplateOutletContext]="cellContext(row, column, rowIndex)"
                   />
                 } @else {
-                  <span class="table__cell-copy">
+                  <span class="copy">
                   <erp-text
                     type="table-cell"
+                    size="inherit"
+                    lineHeight="inherit"
                     [family]="textFamily(column)"
                     [direction]="textDirection(column)"
                     [overflow]="column.overflow === 'ellipsis' ? 'ellipsis' : 'visible'"
@@ -105,8 +128,11 @@
                     row[column.descriptionKey] !== undefined
                   ) {
                     <erp-text
+                      class="description"
                       type="caption"
                       tone="secondary"
+                      size="inherit"
+                      lineHeight="inherit"
                       [family]="textFamily(column)"
                       [direction]="textDirection(column)"
                     >
@@ -123,7 +149,7 @@
         <tr>
           <td [attr.colspan]="effectiveColumns().length + (selectable() ? 1 : 0)">
             <erp-text
-              class="table__empty"
+              class="empty"
               type="paragraph"
               tone="secondary"
               align="center"
@@ -138,11 +164,14 @@
       <tfoot>
         <tr>
           @if (selectable()) {
-            <td class="table__selection"></td>
+            <td class="selection"></td>
           }
           @for (column of effectiveColumns(); track column.key) {
-            <td [attr.data-align]="column.cellAlign ?? column.align ?? 'start'">
-              <span class="table__cell-content">
+            <td
+              [attr.data-label]="column.header"
+              [attr.data-align]="column.cellAlign ?? column.align ?? 'start'"
+            >
+              <span class="content">
                 @if (footerTemplate(column.key); as template) {
                   <ng-container
                     [ngTemplateOutlet]="template"
@@ -163,4 +192,4 @@
       </tfoot>
     }
   </table>
-</div>
+</erp-table-viewport>

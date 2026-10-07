@@ -1,32 +1,71 @@
 @mixin base {
+  // ERP-TABLE.html owns these physical values. Only colors and font families
+  // resolve through Honesty ERP semantic contracts.
   --honesty-table-bg: var(--honesty-color-surface-default);
   --honesty-table-fg: var(--honesty-color-text-primary);
-  --honesty-table-header-bg: var(--honesty-color-surface-canvas);
-  --honesty-table-header-border-color: var(--honesty-border-default);
-  --honesty-table-header-border-width: var(--honesty-border-width-emphasis);
-  --honesty-table-footer-bg: var(--honesty-color-surface-canvas);
-  --honesty-table-row-hover-bg: var(--honesty-color-action-primary-subtle-bg);
-  --honesty-table-row-selected-bg: var(--honesty-color-action-primary-subtle-bg);
-  --honesty-table-row-striped-bg: var(--honesty-color-surface-canvas);
-  --honesty-table-border-color: var(--honesty-border-subtle);
-  --honesty-table-border-width: var(--honesty-border-width-default);
-  --honesty-table-radius: var(--honesty-radius-control);
-  --honesty-table-cell-padding: var(--honesty-space-inset-default);
-  --honesty-table-cell-copy-gap: var(--honesty-space-stack-tight);
-  --honesty-table-empty-padding: var(--honesty-space-inset-relaxed);
-  --honesty-table-min-inline-size: 40rem;
-  --honesty-table-selection-size: 3rem;
+  --honesty-table-head-bg: var(--honesty-color-surface-canvas);
+  --honesty-table-head-fg: var(--honesty-color-text-muted);
+  --honesty-table-head-hover-bg: var(--honesty-color-surface-elevated);
+  --honesty-table-head-hover-fg: var(--honesty-color-text-secondary);
+  --honesty-table-head-sort-fg: var(--honesty-color-action-primary-bg);
+  --honesty-table-foot-bg: var(--honesty-color-surface-canvas);
+  --honesty-table-hover-bg: var(--honesty-color-surface-elevated);
+  --honesty-table-select-bg: var(--honesty-color-action-primary-subtle-bg);
+  --honesty-table-select-hover-bg: var(--honesty-color-action-primary-subtle-bg-hover);
+  --honesty-table-stripe-bg: var(--honesty-color-surface-canvas);
+  --honesty-table-line: var(--honesty-border-subtle);
+  --honesty-table-head-line: var(--honesty-border-default);
+  --honesty-table-resize-fg: var(--honesty-color-action-primary-bg);
+  --honesty-table-focus: var(--honesty-color-action-focus-ring);
+  --honesty-table-shadow: var(--honesty-elevation-raised);
+
+  --honesty-table-border-width: 1px;
+  --honesty-table-radius: 12px;
+  --honesty-table-cell-padding-block: 12px;
+  --honesty-table-cell-padding-inline: 16px;
+  --honesty-table-fs: 13px;
+  --honesty-table-lh: 16px;
+  --honesty-table-desc-fs: 11px;
+  --honesty-table-desc-lh: 13px;
+  --honesty-table-copy-gap: 1px;
+  --honesty-table-header-padding-block: 8px;
+  --honesty-table-head-fs: 11px;
+  --honesty-table-head-weight: 600;
+  --honesty-table-head-lh: 14px;
+  --honesty-table-head-ls: 0.03em;
+  --honesty-table-head-gap: 8px;
+  --honesty-table-selection-size: 44px;
+  --honesty-table-empty-py: 40px;
+  --honesty-table-empty-px: 16px;
+  --honesty-table-scroll-size: 10px;
+  --honesty-table-scroll-border: 3px;
+  --honesty-table-resize-hit-size: 8px;
+  --honesty-table-resize-inset: 20%;
+  --honesty-table-resize-indicator-width: 2px;
+  --honesty-table-resize-radius: 2px;
   --honesty-table-focus-width: var(--honesty-focus-ring-width);
-  --honesty-table-focus-color: var(--honesty-color-action-focus-ring);
-  --honesty-table-resize-hit-size: 0.75rem;
-  --honesty-table-resize-inset: var(--honesty-space-inset-tight);
-  --honesty-table-resize-indicator-width: var(--honesty-border-width-emphasis);
-  --honesty-table-resize-indicator-radius: var(--honesty-radius-full);
-  --honesty-table-resize-color: var(--honesty-color-action-primary-bg);
-  --honesty-table-row-motion-duration: var(--honesty-motion-duration-fast);
-  --honesty-table-row-motion-easing: var(--honesty-motion-easing-standard);
+  --honesty-table-fixed-height: 420px;
+  --honesty-table-row-motion-duration: 140ms;
+  --honesty-table-row-motion-easing: cubic-bezier(0.2, 0, 0, 1);
+
+  --honesty-table-vcard-margin: 12px;
+  --honesty-table-vcard-padding: 12px;
+  --honesty-table-vcard-radius: 8px;
+  --honesty-table-vertical-label-width: 110px;
+  --honesty-table-vcell-gap: 12px;
+  --honesty-table-vcell-py: 8px;
+  --honesty-table-vlabel-fs: 10px;
 }
 
 @mixin density-compact {
-  --honesty-table-cell-padding: var(--honesty-space-inset-tight);
+  --honesty-table-cell-padding-block: 8px;
+  --honesty-table-cell-padding-inline: 12px;
+}
+
+@mixin density-comfortable {
+  --honesty-table-cell-padding-block: 16px;
+}
+
+@mixin layout-narrow {
+  --honesty-table-cell-padding-inline: 12px;
 }

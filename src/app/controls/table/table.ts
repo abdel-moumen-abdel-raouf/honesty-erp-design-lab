@@ -6,6 +6,7 @@ import {
   computed,
   contentChildren,
   Directive,
+  ElementRef,
   inject,
   input,
   model,
@@ -15,6 +16,8 @@ import {
 } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {ErpText, ErpTextDirection, ErpTextFamily} from '../../primitives/text/text';
+import {ErpIcon} from '../../primitives/icon/icon';
+import {ErpIconName} from '../../primitives/icon/icon-contracts';
 import {convertDigits, resolveContextualPreference} from '../../foundation/preferences/core/ui-settings.formatters';
 import {UiSettingsService} from '../../foundation/preferences/core/ui-settings.service';
 import {DigitSet} from '../../foundation/preferences/core/ui-settings.types';
@@ -22,10 +25,13 @@ import {ErpCheckBox} from '../check-box/check-box';
 import {ErpSortDirection} from '../data-table/data-table-contracts';
 import {ErpSortHeader} from '../sort-header/sort-header';
 import {ErpTableResizeHandle} from './internal/table-resize-handle';
+import {ErpTableViewport} from './internal/table-viewport';
 
 export type ErpTableAlign = 'start' | 'center' | 'end' | 'left' | 'right';
 export type ErpTableOverflow = 'wrap' | 'ellipsis' | 'clip';
 export type ErpTableDigitSet = 'system' | DigitSet;
+export type ErpTableDensity = 'compact' | 'normal' | 'comfortable';
+export type ErpTableLayout = 'horizontal' | 'vertical';
 
 export interface ErpTableColumn {
   readonly key: string;
@@ -41,6 +47,7 @@ export interface ErpTableColumn {
   readonly initialWidth?: number;
   readonly minWidth?: number;
   readonly maxWidth?: number;
+  readonly headerIcon?: ErpIconName;
 }
 
 export type ErpTableRow = Readonly<Record<string, string | number | null | undefined>>;
@@ -93,19 +100,31 @@ export class ErpTableFooter {
   selector: 'erp-table',
   imports: [
     ErpCheckBox,
+    ErpIcon,
     ErpSortHeader,
     ErpTableResizeHandle,
+    ErpTableViewport,
     ErpText,
     FormsModule,
     NgTemplateOutlet,
   ],
   templateUrl: './table.html',
-  styleUrls: ['./table.scss', './table-motion.scss'],
+  styleUrls: [
+    './table.scss',
+    './table-states.scss',
+    './table-vertical.scss',
+  ],
   host: {
     '[attr.data-table-compact]': 'compact()',
+    '[attr.data-table-density]': 'effectiveDensity()',
+    '[attr.data-table-layout]': 'layout()',
+    '[attr.data-table-fixed]': 'fixedHeight() !== null',
     '[attr.data-table-selectable]': 'selectable()',
     '[attr.data-table-striped]': 'striped()',
+    '[attr.data-table-hover]': 'hover()',
+    '[attr.data-table-clickable]': 'rowActivatable()',
     '[attr.data-table-hover-motion]': 'hoverMotion()',
+    '[style.--honesty-table-fixed-height.px]': 'fixedHeight()',
   },
 })
 export class ErpTable implements OnDestroy {
@@ -116,10 +135,14 @@ export class ErpTable implements OnDestroy {
   readonly rowKey = input('id');
   readonly emptyText = input('لا توجد بيانات متاحة');
   readonly compact = input(false, {transform: booleanAttribute});
+  readonly density = input<ErpTableDensity>('normal');
+  readonly layout = input<ErpTableLayout>('horizontal');
+  readonly fixedHeight = input<number | null>(null);
   readonly selectable = input(false, {transform: booleanAttribute});
   readonly showHeaderSelection = input(true, {transform: booleanAttribute});
   readonly rowActivatable = input(false, {transform: booleanAttribute});
   readonly striped = input(false, {transform: booleanAttribute});
+  readonly hover = input(true, {transform: booleanAttribute});
   readonly hoverMotion = input(true, {transform: booleanAttribute});
   readonly selectedKeys = model<readonly string[]>([]);
   readonly sort = input<ErpTableSort | null>(null);
@@ -133,6 +156,7 @@ export class ErpTable implements OnDestroy {
   readonly columnWidthChange = output<ErpTableColumnWidthChange>();
 
   private readonly settings = inject(UiSettingsService);
+  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly cellTemplates = contentChildren(ErpTableCell);
   private readonly footerTemplates = contentChildren(ErpTableFooter);
   private resizeCleanup: (() => void) | null = null;
@@ -144,6 +168,9 @@ export class ErpTable implements OnDestroy {
     return this.columns().filter((column) => visible.has(column.key));
   });
   protected readonly selectedSet = computed(() => new Set(this.selectedKeys()));
+  protected readonly effectiveDensity = computed<ErpTableDensity>(() =>
+    this.compact() ? 'compact' : this.density(),
+  );
   protected readonly selectableRowKeys = computed(() =>
     this.rows().map((row, index) => this.key(row, index)),
   );
@@ -278,7 +305,9 @@ export class ErpTable implements OnDestroy {
   }
 
   protected stepResize(column: ErpTableColumn, physicalDirection: number): void {
-    const logicalDirection = document.dir === 'rtl' ? -physicalDirection : physicalDirection;
+    const logicalDirection = getComputedStyle(this.host.nativeElement).direction === 'rtl'
+      ? -physicalDirection
+      : physicalDirection;
     this.setColumnWidth(column, (this.columnWidth(column) ?? 160) + logicalDirection * 8);
   }
 

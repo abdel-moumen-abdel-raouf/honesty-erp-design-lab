@@ -1,5 +1,20 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Authoritative current gate — 2026-10-07 — ErpTable exact reconstruction
+
+Phase A is commit `a5b272c`: exact Tabs evidence is Arabic/RTL by default with
+separate LTR evidence and unchanged geometry. Phase B reconstructs ErpTable
+from `ERP-TABLE.html`, SHA-256
+`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`, under
+`table/ERP_TABLE_REFERENCE_EXACT_V1.md`. The candidate passes 133/133 test files
+and 897/897 tests; all lint/governance, both typechecks, production build, and
+zero-warning gates pass.
+
+The exact next action is Product Owner review of ErpTable at
+`/controls/core-batch`. SmartTable, ColumnChooser, FilterBar, FilterDrawer,
+TableToolbar, BulkActionBar, ViewSwitcher, and every later Data/Table visual
+correction remain unopened. Technical PASS is not visual acceptance.
+
 ## Authority
 
 This roadmap starts from committed SHA:
@@ -13,7 +28,7 @@ commit to `origin/main`; records progress; and then advances to the next phase.
 The roadmap does not declare visual approval, close Basic Controls, or freeze a
 family. Those decisions remain with the Product Owner and ChatGPT after review.
 
-## Current exact-reference execution state — 2026-10-07
+## Historical ErpTabs-only exact-reference state — superseded 2026-10-07
 
 The Product Owner rejected the technically green ErpTabs candidate at
 `302056ad312dec403a1cdf2f9ded92d57d011ba5` for complete visual mismatch and

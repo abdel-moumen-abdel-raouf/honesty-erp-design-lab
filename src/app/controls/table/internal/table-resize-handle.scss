@@ -25,10 +25,15 @@ button::after {
   inset-block: var(--honesty-table-resize-inset);
   inset-inline-start: 50%;
   inline-size: var(--honesty-table-resize-indicator-width);
-  border-radius: var(--honesty-table-resize-indicator-radius);
-  background: var(--honesty-table-resize-color);
+  border-radius: var(--honesty-table-resize-radius);
+  background: var(--honesty-table-resize-fg);
   opacity: 0;
-  transform: translateX(-50%);
+  translate: -50% 0;
+  transition: background-color var(--honesty-table-row-motion-duration);
+}
+
+:host-context([dir='rtl']) button::after {
+  translate: 50% 0;
 }
 
 button:hover::after,
@@ -37,6 +42,6 @@ button:focus-visible::after {
 }
 
 button:focus-visible {
-  outline: var(--honesty-table-focus-width) solid var(--honesty-table-focus-color);
+  outline: var(--honesty-table-focus-width) solid var(--honesty-table-focus);
   outline-offset: calc(-1 * var(--honesty-table-focus-width));
 }

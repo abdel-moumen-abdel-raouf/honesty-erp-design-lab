@@ -1,6 +1,23 @@
 # Inputs Product Owner Review Findings V1
 
-## Current continuity notice — 2026-10-07
+## Authoritative current Product Owner finding — 2026-10-07
+
+Phase A requires Arabic/RTL primary ErpTabs evidence while preserving exact
+geometry; it is commit `a5b272c`. Phase B makes
+`C:\Users\Misrtech\Downloads\ERP-TABLE.html`, SHA-256
+`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`, the
+single binding ErpTable authority. The former accelerated Table visual
+interpretation is superseded. Only system colors/font family, invisible
+accessibility semantics, reduced motion, and ERP hierarchy may differ.
+
+The candidate passes all lint/governance, 133/133 test files and 897/897 tests,
+both typechecks, production build, and zero warnings. Runtime evidence covers
+wide/narrow, RTL/LTR, and Light/Dark. The exact next action is Product Owner
+review of ErpTable at
+`/controls/core-batch`. This task does not open any other Data/Table owner.
+Technical evidence is not visual acceptance.
+
+## Historical ErpTabs-only continuity notice — superseded 2026-10-07
 
 The findings below remain an auditable historical Product Owner review record;
 they are not current implementation authorization.

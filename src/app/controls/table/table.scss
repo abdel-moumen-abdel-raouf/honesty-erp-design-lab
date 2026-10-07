@@ -1,99 +1,100 @@
-@use '../../../styles/foundation/components/table' as tokens;
-
 :host {
-  @include tokens.base;
   display: block;
-  min-width: 0;
-}
-
-.table__scroll {
-  overflow-x: auto;
-  border: var(--honesty-table-border-width) solid var(--honesty-table-border-color);
-  border-radius: var(--honesty-table-radius);
-  background: var(--honesty-table-bg);
-}
-
-table {
+  min-inline-size: 0;
   inline-size: 100%;
-  min-inline-size: var(--honesty-table-min-inline-size);
+}
+
+.table {
+  inline-size: 100%;
   table-layout: fixed;
-  border-collapse: collapse;
-  color: var(--honesty-table-fg);
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: var(--honesty-table-fs);
 }
 
 caption {
-  padding: var(--honesty-table-cell-padding);
-  text-align: start;
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 th,
 td {
-  padding: var(--honesty-table-cell-padding);
-  border-block-end: var(--honesty-table-border-width) solid var(--honesty-table-border-color);
   text-align: start;
   vertical-align: middle;
 }
 
 th {
   position: relative;
-  background: var(--honesty-table-header-bg);
-  border-block-end: var(--honesty-table-header-border-width) solid var(--honesty-table-header-border-color);
+  padding: var(--honesty-table-header-padding-block)
+    var(--honesty-table-cell-padding-inline);
+  border-block-end: var(--honesty-table-border-width) solid
+    var(--honesty-table-head-line);
+  background: var(--honesty-table-head-bg);
+  color: var(--honesty-table-head-fg);
+  font-size: var(--honesty-table-head-fs);
+  font-weight: var(--honesty-table-head-weight);
+  line-height: var(--honesty-table-head-lh);
+  letter-spacing: var(--honesty-table-head-ls);
+  text-transform: uppercase;
+  white-space: nowrap;
+  user-select: none;
 }
 
-tfoot td {
-  border-block-start: var(--honesty-table-border-width) solid var(--honesty-table-border-color);
-  border-block-end: 0;
-  background: var(--honesty-table-footer-bg);
-}
-
-.table__selection-column,
-.table__selection {
-  inline-size: var(--honesty-table-selection-size);
-}
-
-.table__selection {
-  text-align: center;
-}
-
-.table__selection erp-check-box {
-  display: inline-block;
-}
-
-.table__cell-content { display: flex; align-items: center; inline-size: 100%; min-inline-size: 0; }
-.table__cell-copy {
-  display: grid;
-  gap: var(--honesty-table-cell-copy-gap);
-  min-inline-size: 0;
-}
-
-[data-align='center'] > .table__cell-content { justify-content: center; }
-[data-align='end'] > .table__cell-content,
-[data-align='right'] > .table__cell-content { justify-content: flex-end; }
-[data-align='left'] > .table__cell-content { justify-content: flex-start; }
-
-[data-overflow='ellipsis'] .table__cell-copy,
-[data-overflow='clip'] .table__cell-copy {
+td {
+  padding: var(--honesty-table-cell-padding-block)
+    var(--honesty-table-cell-padding-inline);
   overflow: hidden;
+  border-block-end: var(--honesty-table-border-width) solid
+    var(--honesty-table-line);
+  font-size: var(--honesty-table-fs);
+  line-height: var(--honesty-table-lh);
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-[data-overflow='clip'] .table__cell-copy { text-overflow: clip; }
+tbody tr:last-child td { border-block-end: 0; }
 
-:host([data-table-striped='true']) tbody tr:nth-child(even):not(:hover):not([aria-selected='true']) {
-  background: var(--honesty-table-row-striped-bg);
+tfoot td {
+  padding: 12px var(--honesty-table-cell-padding-inline);
+  border-block-start: var(--honesty-table-border-width) solid
+    var(--honesty-table-line);
+  border-block-end: 0;
+  background: var(--honesty-table-foot-bg);
 }
 
-tbody tr:hover { background: var(--honesty-table-row-hover-bg); }
-tbody tr[aria-selected='true'] { background: var(--honesty-table-row-selected-bg); }
+.selection-column,
+.selection { inline-size: var(--honesty-table-selection-size); }
 
-tbody tr[tabindex]:focus-visible {
-  outline: var(--honesty-table-focus-width) solid var(--honesty-table-focus-color);
-  outline-offset: calc(-1 * var(--honesty-table-focus-width));
+.selection {
+  padding-inline: 12px;
+  text-align: center;
 }
 
-.table__empty {
-  display: block;
-  padding: var(--honesty-table-empty-padding);
+.content {
+  display: flex;
+  align-items: center;
+  gap: var(--honesty-table-head-gap);
+  inline-size: 100%;
+  min-inline-size: 0;
 }
 
-:host([data-table-compact='true']) { @include tokens.density-compact; }
+.copy {
+  display: grid;
+  gap: var(--honesty-table-copy-gap);
+  min-inline-size: 0;
+}
+
+.description {
+  overflow: hidden;
+  font-size: var(--honesty-table-desc-fs);
+  line-height: var(--honesty-table-desc-lh);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

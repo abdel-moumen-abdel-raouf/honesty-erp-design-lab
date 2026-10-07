@@ -192,6 +192,44 @@ describe('ErpTable', () => {
     expect(fixture.nativeElement.getAttribute('data-table-hover-motion')).toBe('false');
   });
 
+  it('maps the literal reference density, layout, fixed-height, and header-icon contracts', () => {
+    const fixture = TestBed.createComponent(ErpTable);
+    fixture.componentRef.setInput('caption', 'حسابات مرجعية');
+    fixture.componentRef.setInput('columns', [
+      {key: 'name', header: 'الحساب', headerIcon: 'wallet', sortable: true},
+    ] satisfies readonly ErpTableColumn[]);
+    fixture.componentRef.setInput('rows', [{id: '1', name: 'النقدية'}]);
+    fixture.componentRef.setInput('density', 'comfortable');
+    fixture.componentRef.setInput('layout', 'vertical');
+    fixture.componentRef.setInput('fixedHeight', 380);
+    fixture.componentRef.setInput('selectable', true);
+    fixture.detectChanges();
+
+    const host = fixture.nativeElement as HTMLElement;
+    expect(host.getAttribute('data-table-density')).toBe('comfortable');
+    expect(host.getAttribute('data-table-layout')).toBe('vertical');
+    expect(host.getAttribute('data-table-fixed')).toBe('true');
+    expect(host.style.getPropertyValue('--honesty-table-fixed-height')).toBe('380px');
+    expect(host.querySelector('th > .content > erp-icon')).not.toBeNull();
+    expect(host.querySelector('td[data-label="الحساب"]')).not.toBeNull();
+    expect(
+      host.querySelector('erp-check-box')?.getAttribute('data-check-box-presentation'),
+    ).toBe('table-reference');
+    expect(
+      host.querySelector('erp-sort-header')?.getAttribute('data-sort-presentation'),
+    ).toBe('table-reference');
+  });
+
+  it('keeps compact as a compatibility alias while density owns the new vocabulary', () => {
+    const fixture = TestBed.createComponent(ErpTable);
+    fixture.componentRef.setInput('caption', 'جدول مضغوط');
+    fixture.componentRef.setInput('columns', [{key: 'name', header: 'الحساب'}]);
+    fixture.componentRef.setInput('density', 'comfortable');
+    fixture.componentRef.setInput('compact', true);
+    fixture.detectChanges();
+    expect(fixture.nativeElement.getAttribute('data-table-density')).toBe('compact');
+  });
+
   it('supports controlled visible columns, physical alignment, and digit conversion', () => {
     const fixture = TestBed.createComponent(ErpTable);
     fixture.componentRef.setInput('caption', 'الأرصدة');
@@ -204,7 +242,7 @@ describe('ErpTable', () => {
     fixture.detectChanges();
     const cell = fixture.nativeElement.querySelector('tbody td');
     expect(cell.getAttribute('data-align')).toBe('left');
-    expect(cell.querySelector(':scope > .table__cell-content')).not.toBeNull();
+    expect(cell.querySelector(':scope > .content')).not.toBeNull();
     expect(cell.textContent).toContain('١٢٠٤');
     expect(fixture.nativeElement.textContent).not.toContain('لا يظهر');
   });

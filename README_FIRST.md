@@ -31,6 +31,8 @@ in this order:
     `src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`
 19. current exact ErpTabs reference contract:
     `src/app/controls/tabs/ERP_TABS_REFERENCE_EXACT_V1.md`
+20. current exact ErpTable reference contract:
+    `src/app/controls/table/ERP_TABLE_REFERENCE_EXACT_V1.md`
 
 Then verify live GitHub `main` before making any current-state claim.
 
@@ -66,7 +68,25 @@ This file intentionally preserves project history. Older "Current state",
 restated by the newest dated continuity blocks or by
 `CURRENT_EXECUTION_STATE.md`.
 
-## Authoritative current state — 2026-10-07
+## Authoritative current state — 2026-10-07 — Tabs Arabic evidence + ErpTable exact reconstruction
+
+Phase A is commit `a5b272c`: primary Tabs review/example copy is Arabic ERP copy
+under RTL without changing exact Tabs geometry; separate LTR compatibility
+evidence remains.
+
+Phase B entered from `0add01a6d342d8056ce026ba9c0d7015faff1c7f`.
+`ERP-TABLE.html`, SHA-256
+`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`, is the
+single binding ErpTable authority. Its contract is
+`src/app/controls/table/ERP_TABLE_REFERENCE_EXACT_V1.md`. Canonical verification
+passes all lint/governance gates, 133/133 test files and 897/897 tests, both
+typechecks, production build, and zero warnings. Initial bundle is 376.16 kB /
+85.69 kB estimated transfer; Core Batch is 148.92 kB / 23.72 kB estimated
+transfer. Runtime evidence covers Light/Dark, RTL/LTR, 1440, 480, and 390 px.
+The exact next action is Product Owner review of ErpTable at
+`/controls/core-batch`. No later Data/Table visual owner or wave is opened.
+
+## Historical ErpTabs-only authoritative state — superseded 2026-10-07
 
 The Product Owner rejected the technically green `ErpTabs` candidate at
 `302056ad312dec403a1cdf2f9ded92d57d011ba5` for complete visual mismatch. The

@@ -1,5 +1,29 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Product Owner ErpTable Exact Reference State
+
+The current two-phase task entered from
+`0add01a6d342d8056ce026ba9c0d7015faff1c7f`. Phase A is commit `a5b272c` and
+Arabicizes primary ErpTabs review evidence under RTL while retaining separate
+LTR compatibility evidence; it changes no exact Tabs geometry token.
+
+`C:\Users\Misrtech\Downloads\ERP-TABLE.html`, SHA-256
+`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`, is the
+single binding visual and behavioral authority for `ErpTable`. It supersedes
+the accelerated Table visual interpretation. Only Honesty colors, system font
+families, invisible accessibility semantics, reduced motion, and ERP component
+hierarchy may differ. The contract is
+`src/app/controls/table/ERP_TABLE_REFERENCE_EXACT_V1.md`.
+
+ErpTable retains native table semantics and composes `ErpText`, `ErpCheckBox`,
+`ErpSortHeader`, `ErpTableResizeHandle`, and projected ERP cells. Selection and
+activation remain independent. Higher Data/Table composition stays outside
+base Table. The candidate passes 133/133 files and 897/897 tests; final
+canonical verification passes all lint/governance, both typechecks, production
+build, and zero warnings. Runtime evidence does not declare visual acceptance.
+The current gate is Product Owner review of
+ErpTable at `/controls/core-batch`; no later Data/Table wave is opened.
+
 ## Working Scope
 
 Work only inside this repository.
@@ -17,7 +41,7 @@ requested.
 The Product Owner is the final authority for visual approval.
 Technical success, green tests, or Codex judgment do not equal visual approval.
 
-## Current Product Owner ErpTabs Exact Reference State
+## Historical Product Owner ErpTabs Exact Reference State — superseded current gate
 
 The Product Owner made
 `C:\Users\Misrtech\Downloads\ERP-TABS.html`, SHA-256

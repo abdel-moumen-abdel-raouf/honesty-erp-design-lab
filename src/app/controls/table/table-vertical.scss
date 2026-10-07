@@ -1,0 +1,42 @@
+@use '../../../styles/foundation/components/table' as tokens;
+@use '../../../styles/foundation/queries' as query;
+
+:host([data-table-layout='vertical']) .table,
+:host([data-table-layout='vertical']) tbody { display: block; }
+:host([data-table-layout='vertical']) thead { display: none; }
+
+:host([data-table-layout='vertical']) .row {
+  display: block;
+  margin: var(--honesty-table-vcard-margin);
+  padding: var(--honesty-table-vcard-padding);
+  border: var(--honesty-table-border-width) solid var(--honesty-table-line);
+  border-radius: var(--honesty-table-vcard-radius);
+}
+
+:host([data-table-layout='vertical']) td {
+  display: grid;
+  grid-template-columns: var(--honesty-table-vertical-label-width) 1fr;
+  gap: var(--honesty-table-vcell-gap);
+  align-items: center;
+  padding: var(--honesty-table-vcell-py) 0;
+  overflow: visible;
+  border-block-end-style: dashed;
+  white-space: normal;
+  text-align: start !important;
+}
+
+:host([data-table-layout='vertical']) td::before {
+  content: attr(data-label);
+  color: var(--honesty-table-head-fg);
+  font-size: var(--honesty-table-vlabel-fs);
+  font-weight: var(--honesty-table-head-weight);
+  letter-spacing: var(--honesty-table-head-ls);
+  text-transform: uppercase;
+}
+
+:host([data-table-layout='vertical']) td:last-child { border-block-end: 0; }
+
+@include query.container-down('md') {
+  th,
+  td { @include tokens.layout-narrow; }
+}

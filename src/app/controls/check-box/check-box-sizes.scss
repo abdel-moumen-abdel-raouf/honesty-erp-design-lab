@@ -18,3 +18,9 @@
 :host([data-check-box-size='xxxxl']) {
   @include tokens.size-xl;
 }
+
+:host([data-check-box-presentation='table-reference']) {
+  --honesty-check-box-control-size: 1rem;
+  --honesty-check-box-radius: 0.25rem;
+  --honesty-check-box-border-width: 0.09375rem;
+}

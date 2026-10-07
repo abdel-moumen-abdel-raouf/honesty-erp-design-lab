@@ -11,3 +11,35 @@
 .sort-header__arrows { display: inline-flex; align-items: center; gap: var(--honesty-sort-header-arrow-gap); color: var(--honesty-sort-header-inactive-fg); line-height: 0; }
 .sort-header__arrows erp-icon[data-sort-active='true'] { color: var(--honesty-sort-header-active-fg); }
 :host:has(erp-sort-trigger:focus-within) { outline: var(--honesty-sort-header-focus-width) solid var(--honesty-sort-header-focus-color); outline-offset: var(--honesty-sort-header-focus-offset); border-radius: var(--honesty-sort-header-focus-radius); }
+
+:host([data-sort-presentation='table-reference']) {
+  gap: 0;
+  padding: 0;
+  inline-size: 100%;
+}
+
+:host([data-sort-presentation='table-reference']) erp-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:host([data-sort-presentation='table-reference']) .sort-header__arrows {
+  flex-direction: column;
+  gap: 1px;
+  inline-size: 10px;
+  margin-inline-start: 4px;
+}
+
+:host([data-sort-presentation='table-reference']) .sort-header__arrows erp-icon {
+  inline-size: 10px;
+  block-size: 6px;
+  overflow: hidden;
+}
+
+:host([data-sort-presentation='table-reference'][data-sort-direction='ascending'])
+  .sort-header__arrows erp-icon:not([data-sort-active='true']),
+:host([data-sort-presentation='table-reference'][data-sort-direction='descending'])
+  .sort-header__arrows erp-icon:not([data-sort-active='true']) {
+  opacity: 0.35;
+}

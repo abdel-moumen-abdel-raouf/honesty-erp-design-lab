@@ -1,0 +1,41 @@
+@use '../../../../styles/foundation/components/table' as tokens;
+
+:host {
+  @include tokens.base;
+  display: block;
+  min-inline-size: 0;
+  inline-size: 100%;
+  overflow: hidden;
+  border: var(--honesty-table-border-width) solid var(--honesty-table-line);
+  border-radius: var(--honesty-table-radius);
+  background: var(--honesty-table-bg);
+  color: var(--honesty-table-fg);
+  box-shadow: var(--honesty-table-shadow);
+  container-type: inline-size;
+}
+
+:host([data-density='compact']) { @include tokens.density-compact; }
+:host([data-density='comfortable']) { @include tokens.density-comfortable; }
+
+.scroll {
+  inline-size: 100%;
+  overflow: auto;
+}
+
+:host([data-fixed='true']) .scroll {
+  max-block-size: var(--honesty-table-fixed-height);
+}
+
+:host([data-vertical='true']) .scroll { display: block; }
+
+.scroll::-webkit-scrollbar {
+  inline-size: var(--honesty-table-scroll-size);
+  block-size: var(--honesty-table-scroll-size);
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  border: var(--honesty-table-scroll-border) solid transparent;
+  border-radius: 999px;
+  background: var(--honesty-table-head-line);
+  background-clip: content-box;
+}

@@ -1,0 +1,18 @@
+.table-review {
+  display: grid;
+  gap: 16px;
+}
+
+.table-review__specimen {
+  display: grid;
+  gap: 4px;
+}
+
+.table-review__specimen erp-table { margin-block-start: 12px; }
+.table-review--compatibility { margin-block-start: 32px; }
+
+.table-review__identity {
+  display: grid;
+  gap: 1px;
+  min-inline-size: 0;
+}

@@ -1,4 +1,9 @@
-# ErpTable V1
+# ErpTable V1 — historical visual contract (SUPERSEDED)
+
+> Current visual authority: `ERP-TABLE.html`, SHA-256
+> `292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`,
+> recorded in `ERP_TABLE_REFERENCE_EXACT_V1.md`. The behavior/history below is
+> retained for audit only and is not the current visual authority.
 
 `ErpTable` owns semantic visual table rendering only. It does not own HTTP, server paging/filtering, business rules, bulk actions, or SmartTable orchestration.
 

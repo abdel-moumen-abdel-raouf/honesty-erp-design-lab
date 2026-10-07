@@ -65,6 +65,7 @@ let nextCheckBoxId = 0;
     '[attr.data-check-box-readonly]': 'readOnly()',
     '[attr.data-check-box-hide-text]': 'hideText()',
     '[attr.data-check-box-has-description]': 'trimmedDescription().length > 0',
+    '[attr.data-check-box-presentation]': 'presentation()',
   },
 })
 export class ErpCheckBox extends ErpInputBase<boolean> {
@@ -77,6 +78,7 @@ export class ErpCheckBox extends ErpInputBase<boolean> {
   readonly size = input<ErpFieldSize>('md');
   readonly mode = input<ErpCheckBoxMode>('checkbox');
   readonly variant = input<ErpCheckBoxVariant>('outline');
+  readonly presentation = input<'default' | 'table-reference'>('default');
 
   private readonly userClearedIndeterminate = signal(false);
 

@@ -1,6 +1,33 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
-## 0. Authoritative current handoff — 2026-10-07
+## Authoritative current handoff — 2026-10-07 — ErpTable exact-reference candidate
+
+Start from live `main`; the two-phase work entered from
+`0add01a6d342d8056ce026ba9c0d7015faff1c7f`. Phase A is commit `a5b272c`:
+primary Tabs review content is Arabic/RTL and LTR compatibility remains, with no
+Tabs geometry-token change.
+
+`C:\Users\Misrtech\Downloads\ERP-TABLE.html`, SHA-256
+`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`, is the
+single binding ErpTable visual/behavioral authority. The contract is
+`src/app/controls/table/ERP_TABLE_REFERENCE_EXACT_V1.md`. The candidate retains
+native table semantics and composes approved CheckBox, SortHeader, resize,
+text, and projected rich-cell owners. Higher Data/Table owners remain separate.
+
+Canonical verification passes all lint/governance gates, 133/133 test files and
+897/897 tests, both typechecks, production build, and zero warnings. Initial
+bundle is 376.16 kB / 85.69 kB estimated transfer; Core Batch is 148.92 kB /
+23.72 kB estimated transfer. Requested Core/Data governance self-tests also
+pass. Runtime evidence covers Light/Dark, RTL/LTR,
+wide and narrow internal scrolling without page overflow. This is evidence
+only, never visual approval.
+
+The exact next action is Product Owner review of ErpTable at
+`/controls/core-batch`. Do not begin SmartTable, ColumnChooser, FilterBar,
+FilterDrawer, TableToolbar, BulkActionBar, ViewSwitcher, or a later Data/Table
+visual correction without new authorization.
+
+## Historical ErpTabs-only handoff — superseded 2026-10-07
 
 The Product Owner rejected the technically green `ErpTabs` candidate at
 `302056ad312dec403a1cdf2f9ded92d57d011ba5` for complete visual mismatch. The

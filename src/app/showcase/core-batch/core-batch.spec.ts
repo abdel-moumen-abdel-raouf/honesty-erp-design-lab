@@ -45,6 +45,35 @@ describe('CoreBatch', () => {
       ),
     ).not.toBeNull();
     expect(fixture.nativeElement.querySelector('erp-review-core-table erp-table')).not.toBeNull();
+    const tableEvidence = fixture.nativeElement.querySelector(
+      'erp-review-core-table [data-table-reference-evidence="exact"]',
+    ) as HTMLElement;
+    expect(tableEvidence.getAttribute('dir')).toBe('rtl');
+    expect(tableEvidence.querySelectorAll('[data-table-specimen]')).toHaveLength(6);
+    expect(tableEvidence.querySelector('[data-table-specimen="fixed-height"] erp-table[data-table-fixed="true"]')).not.toBeNull();
+    expect(tableEvidence.querySelector('[data-table-specimen="compact"] erp-table[data-table-density="compact"]')).not.toBeNull();
+    expect(tableEvidence.querySelector('[data-table-specimen="vertical"] erp-table[data-table-layout="vertical"]')).not.toBeNull();
+    expect(tableEvidence.textContent).toContain('دليل الحسابات');
+    expect(tableEvidence.textContent).not.toMatch(/Full-featured|Fixed-height|Compact density|Clickable rows|Vertical layout|Header content/);
+    const tableLtrCompatibility = fixture.nativeElement.querySelector(
+      'erp-review-core-table [data-table-direction-evidence="ltr"]',
+    ) as HTMLElement;
+    expect(tableLtrCompatibility.getAttribute('dir')).toBe('ltr');
+    expect(
+      tableEvidence.querySelectorAll(
+        '[data-table-specimen="full-featured"] erp-table erp-avatar',
+      ),
+    ).toHaveLength(5);
+    expect(
+      tableEvidence.querySelectorAll(
+        '[data-table-specimen="full-featured"] erp-table erp-check-box',
+      ).length,
+    ).toBeGreaterThan(0);
+    expect(
+      tableEvidence.querySelectorAll(
+        '[data-table-specimen="full-featured"] erp-table erp-sort-header',
+      ).length,
+    ).toBeGreaterThan(0);
     expect(fixture.nativeElement.querySelector('erp-pagination')).not.toBeNull();
     expect(
       fixture.nativeElement.querySelectorAll(

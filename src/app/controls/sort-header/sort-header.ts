@@ -11,12 +11,16 @@ import {ErpSortTrigger} from './internal/sort-trigger';
   imports: [ErpIcon, ErpSortTrigger, ErpText],
   templateUrl: './sort-header.html',
   styleUrl: './sort-header.scss',
-  host: {'[attr.data-sort-direction]': 'direction()'},
+  host: {
+    '[attr.data-sort-direction]': 'direction()',
+    '[attr.data-sort-presentation]': 'presentation()',
+  },
 })
 export class ErpSortHeader {
   readonly label = input.required<string>();
   readonly direction = input<ErpSortDirection>('none');
   readonly disabled = input(false, {transform: booleanAttribute});
+  readonly presentation = input<'default' | 'table-reference'>('default');
   readonly sortChange = output<ErpSortDirection>();
 
   protected readonly nextDirection = computed<ErpSortDirection>(() =>

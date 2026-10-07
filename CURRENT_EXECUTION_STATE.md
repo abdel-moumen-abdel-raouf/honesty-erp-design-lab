@@ -1,5 +1,41 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Authoritative current execution state — 2026-10-07 — Tabs Arabic evidence + ErpTable exact reconstruction
+
+Live work entered from `0add01a6d342d8056ce026ba9c0d7015faff1c7f` on `main`.
+Phase A is committed as `a5b272c` (`fix(tabs): arabicize exact-reference
+evidence`): exact Tabs geometry and motion tokens are unchanged, the primary
+review evidence is Arabic/RTL, and a separate LTR compatibility specimen remains.
+
+`C:\Users\Misrtech\Downloads\ERP-TABLE.html`, SHA-256
+`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`, is the
+single binding visual and behavioral authority for `ErpTable`. It supersedes
+the accelerated visual interpretation. Only palette, font family, invisible
+accessibility semantics, reduced motion, and ERP ownership under the rendered
+output may differ. The authoritative contract is
+`src/app/controls/table/ERP_TABLE_REFERENCE_EXACT_V1.md`.
+
+The candidate reconstructs the reference frame, horizontal/vertical layouts,
+normal/compact/comfortable density, exact padding, row states, fixed-height
+internal scroll, sorting, selection, resizing, rich projected cells, footer
+compatibility, and Query-API narrow behavior. Table continues to compose
+`ErpCheckBox`, `ErpSortHeader`, `ErpTableResizeHandle`, `ErpText`, and projected
+ERP cells. Selection remains independent from row activation. Higher
+toolbar/search/chooser/pagination/bulk/view composition remains separate.
+
+Canonical `npm run verify:clean` passes all lint/governance gates, 133/133 test
+files and 897/897 tests, both typechecks, production build, and the zero-warning
+gate. Initial bundle is 376.16 kB / 85.69 kB estimated transfer; Core Batch is
+148.92 kB / 23.72 kB estimated transfer. Requested Core/Data governance and
+self-tests pass. Runtime evidence covers
+Light/Dark, RTL/LTR, 1440, 480, and 390 px, with internal Table scrolling and no
+page horizontal overflow. These facts do not declare Product Owner acceptance.
+
+The exact next action is Product Owner visual/runtime review of `ErpTable` at
+`/controls/core-batch`. `ErpTabs` remains an Arabic exact-reference candidate.
+No later Data/Table visual owner or wave is opened. Technical PASS does not
+equal visual approval.
+
 ## Repository
 
 `abdel-moumen-abdel-raouf/honesty-erp-design-lab`
@@ -12,7 +48,7 @@ Branch:
 
 `main`
 
-## Authoritative current execution state — 2026-10-07
+## Historical ErpTabs-only current state — superseded 2026-10-07
 
 The Product Owner rejected the technically green `ErpTabs` candidate at
 `302056ad312dec403a1cdf2f9ded92d57d011ba5` for complete visual mismatch and

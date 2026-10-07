@@ -1,5 +1,11 @@
 <erp-sort-trigger [label]="accessibleLabel()" [disabled]="disabled()" (activated)="requestSort()">
-  <erp-text type="table-header" weight="bold" tone="inherit">{{ label() }}</erp-text>
+  <erp-text
+    type="table-header"
+    size="inherit"
+    weight="inherit"
+    tone="inherit"
+    lineHeight="inherit"
+  >{{ label() }}</erp-text>
   <span class="sort-header__arrows" aria-hidden="true">
     <erp-icon name="chevron-up" size="xs" tone="inherit" [attr.data-sort-active]="direction() === 'ascending'" />
     <erp-icon name="chevron-down" size="xs" tone="inherit" [attr.data-sort-active]="direction() === 'descending'" />

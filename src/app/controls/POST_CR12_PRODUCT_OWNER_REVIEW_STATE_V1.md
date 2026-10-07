@@ -1,12 +1,30 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Authoritative current review state — 2026-10-07 — ErpTable
+
+Phase A Arabicized exact Tabs evidence without changing geometry and is commit
+`a5b272c`. Phase B makes `ERP-TABLE.html`, SHA-256
+`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`, the
+single binding ErpTable authority. The implementation contract is
+`table/ERP_TABLE_REFERENCE_EXACT_V1.md`.
+
+The candidate passes all lint/governance, 133/133 test files and 897/897 tests,
+both typechecks, production build, and zero warnings. Runtime captures and
+measurements cover Light/Dark, RTL/LTR, wide,
+480 px, and 390 px. Product Owner visual acceptance remains separate.
+
+The exact next gate is Product Owner review of ErpTable at
+`/controls/core-batch`. No SmartTable, ColumnChooser, FilterBar, FilterDrawer,
+TableToolbar, BulkActionBar, ViewSwitcher, or later Data/Table visual work is
+authorized.
+
 ## Authority
 
 This document is the current execution/review state for the Product Owner's page-by-page review after CR12 and Post-CR12 Wave A.
 
 It records Product Owner decisions, externally reviewed Git state, execution boundaries, and the next authorized action. It does not itself declare visual approval or freeze any component family.
 
-## Authoritative current review transition — 2026-10-07
+## Historical ErpTabs-only review transition — superseded 2026-10-07
 
 The Product Owner rejected the technically green ErpTabs candidate at
 `302056ad312dec403a1cdf2f9ded92d57d011ba5` for complete visual mismatch and

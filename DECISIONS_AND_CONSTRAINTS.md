@@ -30,7 +30,27 @@ Binding Product Owner law:
 4. the next item is the lowest unresolved dependency, not simply the next row
    in historical planning.
 
-Latest authorized implementation is the literal exact-reference reconstruction
+Current authorization supersedes the ErpTabs-only gate below. Phase A
+Arabicized exact Tabs review evidence without changing geometry and is commit
+`a5b272c`. Phase B authorizes only literal ErpTable reconstruction from
+`ERP-TABLE.html`, SHA-256
+`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`.
+The contract is `src/app/controls/table/ERP_TABLE_REFERENCE_EXACT_V1.md`.
+Only colors, font family, invisible accessibility semantics, reduced motion,
+and ERP hierarchy may differ from the rendered reference.
+
+ErpTable retains native table ownership and composes `ErpCheckBox`,
+`ErpSortHeader`, `ErpTableResizeHandle`, `ErpText`, and projected rich cells.
+Selection does not imply row activation. Higher toolbar/search/chooser/
+pagination/bulk/view/SmartTable composition is outside base Table. The current
+canonical gate passes all governance/lint, 133/133 test files and 897/897
+tests, both typechecks, production build, and zero warnings. The current
+gate is Product Owner review at `/controls/core-batch`; technical green never
+confers acceptance. No subsequent Data/Table visual owner is authorized.
+
+### Historical ErpTabs-only authorization — superseded
+
+The prior authorized implementation was the literal exact-reference reconstruction
 of `ErpTabs`, entered from the Product Owner-rejected technically green
 candidate `302056ad312dec403a1cdf2f9ded92d57d011ba5`. That candidate is not a
 successful visual rebuild in project history.

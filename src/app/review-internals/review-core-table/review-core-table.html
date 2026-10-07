@@ -1,95 +1,149 @@
-<erp-inline gap="default" align="center" wrap="wrap">
-  <erp-check-box
-    label="تفعيل فتح الصف بالنقر"
-    [ngModel]="rowActivatable()"
-    (ngModelChange)="rowActivatable.set($event)"
-    [ngModelOptions]="{standalone: true}"
-  />
-  <erp-check-box
-    label="صفوف متعاقبة"
-    [ngModel]="striped()"
-    (ngModelChange)="striped.set($event)"
-    [ngModelOptions]="{standalone: true}"
-  />
-  <erp-check-box
-    label="حركة التحويم"
-    [ngModel]="hoverMotion()"
-    (ngModelChange)="hoverMotion.set($event)"
-    [ngModelOptions]="{standalone: true}"
-  />
-  <erp-text data-row-activation-evidence type="caption" tone="secondary">
-    @if (activatedRowCode(); as code) {
-      آخر صف مُفعّل: {{ code }}
-    } @else {
-      لم يتم تفعيل صف
-    }
+<div class="table-review" data-table-reference-evidence="exact" dir="rtl">
+  <erp-text type="heading-3" weight="bold">مرجع ERP-TABLE الدقيق</erp-text>
+  <erp-text type="paragraph" tone="secondary">
+    بيانات عربية لنظام تخطيط الموارد مع هندسة الصفوف والرؤوس والحالات المأخوذة من المرجع الملزم.
   </erp-text>
-</erp-inline>
 
-<erp-column-chooser
-  [columns]="chooserColumns"
-  [visibleKeys]="visibleColumnKeys()"
-  (visibilityChange)="visibleColumnKeys.set($event)"
-  (resetRequested)="resetColumns()"
-/>
+  <section class="table-review__specimen" data-table-specimen="full-featured">
+    <erp-text type="label" weight="bold">١ · جميع أنواع الخلايا والخصائص الأساسية</erp-text>
+    <erp-text type="caption" tone="secondary">تحديد وصفوف متعاقبة وتحويم وفرز وتغيير عرض وخلايا غنية.</erp-text>
+    <erp-table
+      caption="دليل الحسابات — جميع أنواع الخلايا"
+      [columns]="referenceColumns"
+      [rows]="referenceEmployeeRows"
+      selectable
+      striped
+      [selectedKeys]="selectedRows()"
+      [sort]="tableSort()"
+      [columnWidths]="columnWidths()"
+      (selectedKeysChange)="selectedRows.set($event)"
+      (sortChange)="tableSort.set($event)"
+      (columnWidthsChange)="columnWidths.set($event)"
+    >
+      <ng-template erpTableCell="employee" let-row>
+        <erp-inline gap="tight" align="center" wrap="nowrap">
+          <erp-avatar [name]="employeeName(row)" [src]="row['employeePhoto']?.toString() ?? null" size="sm" />
+          <span class="table-review__identity">
+            <erp-text type="table-cell" weight="medium" lineHeight="tight">{{ employeeName(row) }}</erp-text>
+            <erp-text type="caption" tone="secondary" lineHeight="tight">{{ row['employeeCode'] }}</erp-text>
+          </span>
+        </erp-inline>
+      </ng-template>
+      <ng-template erpTableCell="department" let-value="value">
+        <erp-status-badge [label]="value?.toString() ?? 'غير محدد'" tone="neutral" size="md" />
+      </ng-template>
+      <ng-template erpTableCell="status" let-value="value">
+        <erp-status-badge [label]="value?.toString() ?? 'غير محدد'" [tone]="statusTone(value)" size="md" />
+      </ng-template>
+      <ng-template erpTableCell="actions">
+        <erp-inline gap="tight" align="center" justify="center" wrap="nowrap">
+          <erp-tooltip text="عرض الموظف"><erp-icon-button icon="eye" label="عرض الموظف" size="sm" /></erp-tooltip>
+          <erp-tooltip text="تعديل الموظف"><erp-icon-button icon="edit" label="تعديل الموظف" size="sm" /></erp-tooltip>
+        </erp-inline>
+      </ng-template>
+    </erp-table>
+  </section>
 
-<erp-table
-  caption="دليل الحسابات — دليل المزايا الموسع"
-  [columns]="columns"
-  [visibleColumnKeys]="visibleColumnKeys()"
-  [rows]="rows"
-  selectable
-  [striped]="striped()"
-  [hoverMotion]="hoverMotion()"
-  [rowActivatable]="rowActivatable()"
-  [selectedKeys]="selectedRows()"
-  [sort]="tableSort()"
-  [columnWidths]="columnWidths()"
-  [footerValues]="{
-    account: 'الإجمالي',
-    balanceLatin: '273585.50',
-    balanceArabic: '273585.50',
-    status: '3 سجلات'
-  }"
-  (selectedKeysChange)="selectedRows.set($event)"
-  (sortChange)="tableSort.set($event)"
-  (columnWidthsChange)="columnWidths.set($event)"
-  (rowActivated)="activateRow($event)"
+  <section class="table-review__specimen" data-table-specimen="fixed-height">
+    <erp-text type="label" weight="bold">٢ · جسم ثابت الارتفاع وقابل للتمرير</erp-text>
+    <erp-text type="caption" tone="secondary">ارتفاع داخلي ٣٨٠ بكسل مع تمرير داخل حدود الجدول.</erp-text>
+    <erp-table caption="حركة الموظفين داخل ارتفاع ثابت" [columns]="referenceColumns" [rows]="fixedRows" [fixedHeight]="380" selectable striped>
+      <ng-template erpTableCell="employee" let-row>
+        <erp-inline gap="tight" align="center" wrap="nowrap">
+          <erp-avatar [name]="employeeName(row)" [src]="row['employeePhoto']?.toString() ?? null" size="sm" />
+          <span class="table-review__identity">
+            <erp-text type="table-cell" weight="medium" lineHeight="tight">{{ employeeName(row) }}</erp-text>
+            <erp-text type="caption" tone="secondary" lineHeight="tight">{{ row['employeeCode'] }}</erp-text>
+          </span>
+        </erp-inline>
+      </ng-template>
+      <ng-template erpTableCell="department" let-value="value">
+        <erp-status-badge [label]="value?.toString() ?? 'غير محدد'" tone="neutral" size="md" />
+      </ng-template>
+      <ng-template erpTableCell="status" let-value="value">
+        <erp-status-badge [label]="value?.toString() ?? 'غير محدد'" [tone]="statusTone(value)" size="md" />
+      </ng-template>
+      <ng-template erpTableCell="actions">
+        <erp-inline gap="tight" align="center" justify="center" wrap="nowrap">
+          <erp-tooltip text="عرض الموظف"><erp-icon-button icon="eye" label="عرض الموظف" size="sm" /></erp-tooltip>
+          <erp-tooltip text="تعديل الموظف"><erp-icon-button icon="edit" label="تعديل الموظف" size="sm" /></erp-tooltip>
+        </erp-inline>
+      </ng-template>
+    </erp-table>
+  </section>
+
+  <section class="table-review__specimen" data-table-specimen="compact">
+    <erp-text type="label" weight="bold">٣ · كثافة مضغوطة وصفوف متعاقبة</erp-text>
+    <erp-text type="caption" tone="secondary">حشوة رأسية ٨ بكسل وحشوة أفقية ١٢ بكسل.</erp-text>
+    <erp-table caption="الحسابات بالكثافة المضغوطة" [columns]="compactColumns" [rows]="referenceRows" density="compact" striped>
+      <ng-template erpTableCell="status" let-value="value">
+        <erp-status-badge [label]="value?.toString() ?? 'غير محدد'" [tone]="statusTone(value)" size="md" />
+      </ng-template>
+    </erp-table>
+  </section>
+
+  <section class="table-review__specimen" data-table-specimen="clickable">
+    <erp-text type="label" weight="bold">٤ · صفوف قابلة للتفعيل</erp-text>
+    <erp-text type="caption" tone="secondary">التفعيل مستقل تمامًا عن تحديد مربعات الاختيار.</erp-text>
+    <erp-table caption="سجلات قابلة للتفعيل" [columns]="compactColumns" [rows]="referenceRows" rowActivatable (rowActivated)="activateRow($event)">
+      <ng-template erpTableCell="status" let-value="value">
+        <erp-status-badge [label]="value?.toString() ?? 'غير محدد'" [tone]="statusTone(value)" size="md" />
+      </ng-template>
+    </erp-table>
+  </section>
+
+  <section class="table-review__specimen" data-table-specimen="vertical">
+    <erp-text type="label" weight="bold">٥ · تخطيط بطاقات رأسي</erp-text>
+    <erp-text type="caption" tone="secondary">عناوين الحقول داخل كل سجل وفق تخطيط المرجع الرأسي.</erp-text>
+    <erp-table caption="الموظفون في تخطيط رأسي" [columns]="verticalColumns" [rows]="referenceEmployeeRows.slice(0, 3)" layout="vertical">
+      <ng-template erpTableCell="employee" let-row>
+        <erp-inline gap="tight" align="center" wrap="nowrap">
+          <erp-avatar [name]="employeeName(row)" [src]="row['employeePhoto']?.toString() ?? null" size="sm" />
+          <span class="table-review__identity">
+            <erp-text type="table-cell" weight="medium" lineHeight="tight">{{ employeeName(row) }}</erp-text>
+            <erp-text type="caption" tone="secondary" lineHeight="tight">{{ row['employeeCode'] }}</erp-text>
+          </span>
+        </erp-inline>
+      </ng-template>
+    </erp-table>
+  </section>
+
+  <section class="table-review__specimen" data-table-specimen="header-types">
+    <erp-text type="label" weight="bold">٦ · أيقونات الرأس والمحاذاة</erp-text>
+    <erp-text type="caption" tone="secondary">أيقونة مع نص وفرز ومحاذاة بدء ووسط ونهاية.</erp-text>
+    <erp-table caption="أنواع محتوى رأس الجدول" [columns]="headerTypeColumns" [rows]="referenceRows" striped>
+      <ng-template erpTableCell="status" let-value="value">
+        <erp-status-badge [label]="value?.toString() ?? 'غير محدد'" [tone]="statusTone(value)" size="md" />
+      </ng-template>
+    </erp-table>
+  </section>
+</div>
+
+<div
+  class="table-review table-review--compatibility"
+  data-table-compatibility-evidence="true"
+  data-table-direction-evidence="ltr"
+  dir="ltr"
 >
-  <ng-template erpTableCell="owner" let-row>
-    <erp-inline gap="tight" align="center" wrap="nowrap">
-      <erp-avatar
-        [name]="ownerName(row)"
-        [src]="row['owner']?.toString() ?? null"
-        size="sm"
-      />
-      <erp-text type="table-cell">{{ ownerName(row) }}</erp-text>
-    </erp-inline>
-  </ng-template>
-
-  <ng-template erpTableCell="status" let-value="value">
-    <erp-status-badge
-      [label]="value?.toString() ?? 'غير محدد'"
-      [tone]="value === 'نشط' ? 'success' : 'warning'"
-      size="sm"
-    />
-  </ng-template>
-
-  <ng-template erpTableCell="categoryIcon" let-row>
-    <erp-icon [name]="iconName(row)" size="md" label="نوع الحساب" />
-  </ng-template>
-
-  <ng-template erpTableCell="action" let-value="value">
-    <erp-button [label]="value?.toString() ?? 'عرض'" size="sm" variant="subtle" />
-  </ng-template>
-
-  <ng-template erpTableCell="iconAction">
-    <erp-tooltip text="فتح السجل">
-      <erp-icon-button icon="external-link" label="فتح السجل" size="sm" />
-    </erp-tooltip>
-  </ng-template>
-
-  <ng-template erpTableFooter="status" let-value>
-    <erp-status-badge [label]="value?.toString() ?? '—'" tone="info" size="sm" />
-  </ng-template>
-</erp-table>
+  <erp-text type="heading-3" weight="bold">دليل التوافق مع المالكين الأعلى</erp-text>
+  <erp-text type="paragraph" tone="secondary">اختيار الأعمدة وتذييل القيم وواجهات التحكم القديمة تبقى منفصلة عن العقد المرئي الأساسي.</erp-text>
+  <erp-inline gap="default" align="center" wrap="wrap">
+    <erp-check-box label="تفعيل فتح الصف بالنقر" [ngModel]="rowActivatable()" (ngModelChange)="rowActivatable.set($event)" [ngModelOptions]="{standalone: true}" />
+    <erp-check-box label="صفوف متعاقبة" [ngModel]="striped()" (ngModelChange)="striped.set($event)" [ngModelOptions]="{standalone: true}" />
+    <erp-check-box label="حركة التحويم" [ngModel]="hoverMotion()" (ngModelChange)="hoverMotion.set($event)" [ngModelOptions]="{standalone: true}" />
+    <erp-text data-row-activation-evidence type="caption" tone="secondary">
+      @if (activatedRowCode(); as code) { آخر صف مُفعّل: {{ code }} } @else { لم يتم تفعيل صف }
+    </erp-text>
+  </erp-inline>
+  <erp-column-chooser [columns]="chooserColumns" [visibleKeys]="visibleColumnKeys()" (visibilityChange)="visibleColumnKeys.set($event)" (resetRequested)="resetColumns()" />
+  <erp-table
+    caption="توافق التذييل والرؤية"
+    [columns]="plainColumns"
+    [rows]="referenceRows.slice(0, 3)"
+    [rowActivatable]="rowActivatable()"
+    [striped]="striped()"
+    [hoverMotion]="hoverMotion()"
+    [footerValues]="{account: 'الإجمالي', balanceArabic: '273585.50', status: '3 سجلات'}"
+    (rowActivated)="activateRow($event)"
+  />
+</div>
