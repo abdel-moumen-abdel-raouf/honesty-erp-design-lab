@@ -3,21 +3,24 @@
 ## Current transition — 2026-10-07
 
 The four-component sequence below is historical. The current Product Owner
-authorization is only the bounded Avatar/AvatarPicker large-size compatibility
-correction entered from `478cd171c974ea2ba5f360b3e345597b2ea49d0a`.
+authorization is only the strict ErpTabs exact-reference rebuild entered from
+`f76f63d88ba600381ddab6cc59bb67ce276a22ab`.
 
-`C:\Users\Misrtech\Downloads\ERP-AVATAR-PICKER.html`, SHA-256
-`24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`, is the
-single binding visual and behavioral AvatarPicker authority. It supersedes all
-former AvatarPicker references, waivers, and conflicting interpretations. The current
-contract is `avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`.
+`C:\Users\Misrtech\Downloads\ERP-TABS.html`, SHA-256
+`CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`, is the
+single binding visual and behavioral Tabs authority. It supersedes the Nexlink
+reference, the accelerated no-reference waiver, and conflicting
+interpretations. The current contract is
+`tabs/ERP_TABS_REFERENCE_EXACT_V1.md`.
 
-The correction fixes `2xl` and adds `3xl`, `4xl`, and `5xl` to Avatar and
-AvatarPicker while preserving their hierarchy. The candidate is technically
-green at 133/133 test files and 889/889 tests. The exact next action is Product
-Owner runtime/Light/Dark/RTL/LTR/narrow review of large Avatar/AvatarPicker size
-compatibility at `/controls/core-batch`. `ErpSelect`, `ErpStatusBadge`, and every
-other Core owner remain closed to implementation. No Data/Table
+The rebuild implements reference variants, anatomy, orientations,
+distribution, panels, motion, responsive behavior, keyboard, and ARIA while
+preserving bounded Stepper and AvatarPicker compatibility. The candidate is
+technically green at 133/133 test files and 893/893 tests. The exact next action
+is Product Owner runtime/Light/Dark/RTL/LTR/narrow review of ErpTabs at
+`/controls/core-batch`. `ErpSelect`, `ErpStatusBadge`, `ErpAvatar`,
+`ErpAvatarPicker`, and every other Core owner remain closed to implementation.
+No Data/Table
 Visual Correction Wave or later component reference batch is authorized.
 
 ## Historical Product Owner decision — superseded execution order

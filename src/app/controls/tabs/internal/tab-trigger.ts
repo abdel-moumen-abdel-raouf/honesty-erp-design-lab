@@ -10,7 +10,7 @@ import {booleanAttribute, ChangeDetectionStrategy, Component, input, output} fro
 })
 export class ErpTabTrigger {
   readonly id = input.required<string>();
-  readonly controls = input.required<string>();
+  readonly controls = input<string | null>(null);
   readonly label = input.required<string>();
   readonly selected = input(false, {transform: booleanAttribute});
   readonly disabled = input(false, {transform: booleanAttribute});

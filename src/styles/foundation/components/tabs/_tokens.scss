@@ -1,34 +1,101 @@
+@use '../../reference/typography' as type;
+
 @mixin base {
   --honesty-tabs-fg: var(--honesty-color-text-secondary);
-  --honesty-tabs-active-fg: var(--honesty-color-text-primary);
+  --honesty-tabs-fg-hover: var(--honesty-color-text-primary);
+  --honesty-tabs-active-fg: var(--honesty-color-action-primary-bg);
   --honesty-tabs-disabled-fg: var(--honesty-color-text-disabled);
-  --honesty-tabs-border-color: var(--honesty-border-subtle);
-  --honesty-tabs-border-width: var(--honesty-border-width-default);
-  --honesty-tabs-item-border-width: var(--honesty-border-width-default);
-  --honesty-tabs-item-border-color: var(--honesty-border-subtle);
-  --honesty-tabs-item-bg: var(--honesty-color-surface-default);
-  --honesty-tabs-item-hover-bg: var(--honesty-color-surface-canvas);
-  --honesty-tabs-active-bg: var(--honesty-color-action-primary-subtle-bg);
-  --honesty-tabs-active-border-color: var(--honesty-color-action-primary-bg);
+  --honesty-tabs-track-bg: transparent;
+  --honesty-tabs-track-border-color: var(--honesty-border-subtle);
+  --honesty-tabs-track-border-width: var(--honesty-border-width-default);
+  --honesty-tabs-track-radius: 0.75rem;
+  --honesty-tabs-track-padding: 0;
+  --honesty-tabs-track-gap: 0;
+  --honesty-tabs-tab-bg: transparent;
+  --honesty-tabs-tab-hover-bg: var(--honesty-color-surface-canvas);
+  --honesty-tabs-tab-active-bg: transparent;
+  --honesty-tabs-tab-radius: 0;
+  --honesty-tabs-reference-tab-radius: 0.5rem;
+  --honesty-tabs-tab-shadow: var(--honesty-elevation-none);
+  --honesty-tabs-tab-padding-block: 0.625rem;
+  --honesty-tabs-tab-padding-inline: 1rem;
+  --honesty-tabs-tab-gap: 0.5rem;
+  --honesty-tabs-font-size: 0.8125rem;
+  --honesty-tabs-line-height: 1.2;
+  --honesty-tabs-font-weight: #{type.$honesty-ref-font-weight-medium};
+  // ERP-TABS.html owns the active 600 weight; Foundation has no semibold primitive.
+  --honesty-tabs-active-font-weight: 600;
+  --honesty-tabs-icon-size: 1rem;
+  --honesty-tabs-image-size: 1.5rem;
+  --honesty-tabs-image-border-width: 0.09375rem;
+  --honesty-tabs-image-border-color: var(--honesty-border-subtle);
+  --honesty-tabs-image-active-border-color: var(--honesty-color-action-primary-bg);
+  --honesty-tabs-image-radius: var(--honesty-radius-full);
+  --honesty-tabs-count-min-size: 1.125rem;
+  --honesty-tabs-count-padding-inline: 0.3125rem;
+  --honesty-tabs-count-radius: var(--honesty-radius-full);
+  --honesty-tabs-count-bg: var(--honesty-border-subtle);
+  --honesty-tabs-count-fg: var(--honesty-color-text-secondary);
+  --honesty-tabs-count-active-bg: var(--honesty-color-action-primary-subtle-bg);
+  --honesty-tabs-count-active-fg: var(--honesty-color-action-primary-bg);
+  --honesty-tabs-count-font-size: 0.625rem;
+  --honesty-tabs-count-line-height: 1;
   --honesty-tabs-indicator-color: var(--honesty-color-action-primary-bg);
-  --honesty-tabs-indicator-size: var(--honesty-border-width-strong);
+  --honesty-tabs-indicator-size: 0.1875rem;
   --honesty-tabs-indicator-radius: var(--honesty-radius-full);
-  --honesty-tabs-gap: var(--honesty-space-stack-default);
-  --honesty-tabs-item-gap: var(--honesty-space-inline-tight);
-  --honesty-tabs-item-padding: var(--honesty-space-inset-default);
-  --honesty-tabs-item-radius: var(--honesty-radius-control);
-  --honesty-tabs-rectangle-radius: var(--honesty-radius-none);
-  --honesty-tabs-circle-radius: var(--honesty-radius-full);
-  --honesty-tabs-circle-size: 2.75rem;
-  --honesty-tabs-panel-padding: var(--honesty-space-inset-default);
   --honesty-tabs-focus-width: var(--honesty-focus-ring-width);
-  --honesty-tabs-focus-offset: var(--honesty-focus-ring-offset);
   --honesty-tabs-focus-color: var(--honesty-color-action-focus-ring);
-  --honesty-tabs-pill-radius: var(--honesty-radius-full);
-  --honesty-tabs-pill-active-bg: var(--honesty-color-action-primary-subtle-bg);
-  --honesty-tabs-pill-active-fg: var(--honesty-color-text-primary);
-  --honesty-tabs-vertical-list-size: 13rem;
-  --honesty-tabs-transition-duration: var(--honesty-motion-duration-default);
-  --honesty-tabs-transition-easing: var(--honesty-motion-easing-enter);
-  --honesty-tabs-transition-distance: 0.5rem;
+  --honesty-tabs-focus-radius: var(--honesty-radius-control);
+  --honesty-tabs-panel-padding: 0;
+  --honesty-tabs-vertical-list-size: 15rem;
+  --honesty-tabs-vertical-gap: 1.25rem;
+  --honesty-tabs-vertical-list-padding: 0.25rem;
+  --honesty-tabs-vertical-tab-padding-block: 0.75rem;
+  --honesty-tabs-narrow-gap: 0.75rem;
+  --honesty-tabs-transition-fast: var(--honesty-motion-duration-fast);
+  --honesty-tabs-transition-duration: var(--honesty-motion-duration-slow);
+  --honesty-tabs-panel-transition-duration: calc(var(--honesty-motion-duration-slow) * 1.5);
+  --honesty-tabs-transition-easing: var(--honesty-motion-easing-standard);
+  --honesty-tabs-transition-easing-enter: var(--honesty-motion-easing-enter);
+  --honesty-tabs-slide-distance: 1rem;
+  --honesty-tabs-compat-transition-distance: 0.5rem;
+  --honesty-tabs-scale-start: 0.94;
+  --honesty-tabs-compat-rectangle-radius: 0;
+  --honesty-tabs-compat-rounded-radius: var(--honesty-radius-control);
+  --honesty-tabs-compat-circle-radius: var(--honesty-radius-full);
+  --honesty-tabs-compat-circle-size: 2.75rem;
+}
+
+@mixin variant-pill {
+  --honesty-tabs-track-bg: var(--honesty-color-surface-canvas);
+  --honesty-tabs-track-border-color: transparent;
+  --honesty-tabs-track-padding: 0.25rem;
+  --honesty-tabs-track-gap: 0.25rem;
+  --honesty-tabs-tab-radius: var(--honesty-tabs-reference-tab-radius);
+}
+
+// Compatibility-only alias retained for the exact-reference AvatarPicker consumer.
+// The singular `pill` mixin above is the ERP-TABS.html reference variant.
+@mixin variant-pills-compat {
+  --honesty-tabs-track-bg: var(--honesty-color-surface-canvas);
+  --honesty-tabs-track-border-color: transparent;
+  --honesty-tabs-track-padding: 0.25rem;
+  --honesty-tabs-track-gap: 0.25rem;
+  --honesty-tabs-tab-radius: var(--honesty-radius-full);
+  --honesty-tabs-tab-active-bg: var(--honesty-color-action-primary-subtle-bg);
+}
+
+@mixin variant-solid {
+  --honesty-tabs-track-bg: var(--honesty-color-surface-canvas);
+  --honesty-tabs-track-padding: 0.25rem;
+  --honesty-tabs-track-gap: 0.25rem;
+  --honesty-tabs-tab-radius: var(--honesty-tabs-reference-tab-radius);
+  --honesty-tabs-track-border-color: var(--honesty-border-subtle);
+  --honesty-tabs-tab-active-bg: var(--honesty-color-surface-elevated);
+  --honesty-tabs-active-fg: var(--honesty-color-text-primary);
+  --honesty-tabs-tab-shadow: var(--honesty-elevation-raised);
+}
+
+@mixin variant-ghost {
+  --honesty-tabs-track-border-color: transparent;
 }

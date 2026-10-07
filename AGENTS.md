@@ -17,33 +17,34 @@ requested.
 The Product Owner is the final authority for visual approval.
 Technical success, green tests, or Codex judgment do not equal visual approval.
 
-## Current Product Owner Avatar/AvatarPicker Large-Size State
+## Current Product Owner ErpTabs Exact Reference State
 
 The Product Owner made
-`C:\Users\Misrtech\Downloads\ERP-AVATAR-PICKER.html`, SHA-256
-`24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`, the
-single binding visual and behavioral authority for `ErpAvatarPicker`. It
-supersedes all previous AvatarPicker references, waivers, and conflicting visual
-interpretations. Only colors and font families are mapped
-to Honesty ERP system contracts.
+`C:\Users\Misrtech\Downloads\ERP-TABS.html`, SHA-256
+`CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`, the
+single binding visual and behavioral authority for `ErpTabs`. It supersedes the
+Nexlink reference, the accelerated no-reference waiver, and all conflicting
+visual interpretations. Only colors and font families are mapped to Honesty ERP
+system contracts.
 
-The bounded large-size compatibility correction entered from
-`478cd171c974ea2ba5f360b3e345597b2ea49d0a`. It corrects `2xl` and extends
-`ErpAvatarSize` through `3xl`, `4xl`, and `5xl`. Avatar owns the proportional
-frame, content, presence, ring, shape, and narrow-size law. AvatarPicker
-continues to render every catalog cell through Avatar and owns only the
-responsive tile/grid/selection composition law.
+The strict exact-reference rebuild entered from
+`f76f63d88ba600381ddab6cc59bb67ce276a22ab`. It implements the reference
+variants, header anatomies, orientations, distribution, panels, active
+indicator, responsive behavior, motion, automatic keyboard activation, and
+ARIA. `ErpTabTrigger` remains a generic semantic primitive, so Tabs visual
+styling does not leak into `ErpStepper`. `count` and `renderPanels=false` remain
+bounded AvatarPicker compatibility extensions.
 
-Its canonical gate passes 133/133 test files and 889/889 tests, both typechecks,
+Its canonical gate passes 133/133 test files and 893/893 tests, both typechecks,
 production build, all governance, and zero warnings.
 
 The authoritative implementation contract is
-`src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`.
+`src/app/controls/tabs/ERP_TABS_REFERENCE_EXACT_V1.md`.
 
 The current gate is Product Owner runtime/Light/Dark/RTL/LTR/narrow review of
-large Avatar/AvatarPicker size compatibility at `/controls/core-batch` against
-both exact references. `ErpSelect`, `ErpStatusBadge`, and every other Core owner
-remain closed to implementation. The
+the rebuilt Tabs at `/controls/core-batch` against the exact reference.
+`ErpSelect`, `ErpStatusBadge`, `ErpAvatar`, `ErpAvatarPicker`, and every other
+Core owner remain closed to implementation. The
 Data/Table Visual Correction Wave is not opened. Technical PASS does not equal
 Product Owner visual approval or freeze.
 
@@ -90,6 +91,18 @@ migration, and every unlisted owner remain unopened.
   `24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`.
   Earlier Picker references and waivers are superseded. Every tile and preview
   uses `ErpAvatar`; `ErpTabs` remains the only tabs owner.
+- `ErpTabs` exact geometry, variants, header anatomy, active/inactive states,
+  orientations, distribution, panel relationship, motion, and responsive
+  behavior come only from `ERP-TABS.html` at SHA-256
+  `CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`.
+  The Nexlink reference and accelerated no-reference waiver are superseded.
+  Only colors and system font families replace the reference palette and font.
+- `ErpTabTrigger` owns generic native-button semantics, forwarded ARIA, focus,
+  disabled behavior, and activation. Reference-specific Tabs visuals remain in
+  `ErpTabs` and do not leak into `ErpStepper`.
+- `ErpTabs` retains `count` and `renderPanels=false` as bounded AvatarPicker
+  compatibility extensions. Panel-less mode must not emit dangling
+  `aria-controls`; per-instance IDs must remain collision-free.
 - `ErpTable` composes `ErpCheckBox` for selection and `ErpSortHeader` for sort;
   row activation and controlled selection remain distinct intents.
 - `ErpPagination` composes `ErpSelect` for page size and keeps all seven region

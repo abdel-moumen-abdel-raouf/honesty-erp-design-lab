@@ -29,6 +29,8 @@ in this order:
     `src/app/controls/avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md`
 18. current exact ErpAvatarPicker reference contract:
     `src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`
+19. current exact ErpTabs reference contract:
+    `src/app/controls/tabs/ERP_TABS_REFERENCE_EXACT_V1.md`
 
 Then verify live GitHub `main` before making any current-state claim.
 
@@ -66,34 +68,29 @@ restated by the newest dated continuity blocks or by
 
 ## Authoritative current state — 2026-10-07
 
-The bounded large-size compatibility correction for `ErpAvatar` and
-`ErpAvatarPicker` started from
-`478cd171c974ea2ba5f360b3e345597b2ea49d0a`. Resolve the final live SHA from Git.
+The strict exact-reference rebuild for `ErpTabs` entered from
+`f76f63d88ba600381ddab6cc59bb67ce276a22ab`. Resolve the final live SHA from Git.
 
-- `ERP-AVATAR-PICKER.html`, SHA-256
-  `24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`, is the
-  single binding AvatarPicker visual and behavioral authority. It supersedes
-  all previous AvatarPicker references, waivers, and visual interpretations.
-- Exact Picker surface, header, counted gender tabs, search, responsive grid,
-  staged selection, preview, footer actions and motion are implemented through
-  approved ERP owners. Colors and font families alone map through system contracts.
-- The authoritative contract is
-  `src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`.
-- `2xl` is corrected and the public size vocabulary now includes `3xl`, `4xl`,
-  and `5xl`, with proportional Avatar geometry and responsive Picker tile/grid
-  composition for `circle`, `rounded`, and `square`.
-- Verification passes 133/133 test files, 889/889 tests, every lint/governance
+- `ERP-TABS.html`, SHA-256
+  `CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`, is the
+  single binding Tabs visual and behavioral authority. It supersedes Nexlink,
+  the accelerated waiver, and every conflicting Tabs visual interpretation.
+- The exact contract is `src/app/controls/tabs/ERP_TABS_REFERENCE_EXACT_V1.md`;
+  only colors and font families map through Honesty ERP system contracts.
+- Exact variants, anatomy, orientation, fill/content distribution, indicator,
+  panels, motion, keyboard/ARIA, RTL/LTR, and Foundation Query responsiveness
+  are implemented. Compatibility extensions remain opt-in and isolated.
+- `ErpTabTrigger` stays generic; `ErpStepper` retains its own visuals and
+  `ErpAvatarPicker` retains counted panel-less gender tabs.
+- Verification passes 133/133 test files, 893/893 tests, every lint/governance
   gate, both typechecks, production build, and zero warnings.
-- Initial bundle: 376.12 kB / 85.63 kB estimated transfer. Core Batch lazy
-  chunk: 96.67 kB / 17.02 kB estimated transfer.
-- Product Owner runtime/Light/Dark/RTL/LTR/narrow acceptance for large
-  Avatar/AvatarPicker size compatibility remains pending at
-  `/controls/core-batch`; technical PASS is not visual approval or freeze.
-- `ErpAvatar` and `ErpAvatarPicker` were reopened only for large-size
-  compatibility. `ErpSelect`, `ErpStatusBadge`, and all other Core owners remain
-  closed to implementation.
-- The Data/Table Visual Correction Wave and every later unlisted scope remain
-  unopened.
+- Initial bundle: 376.12 kB / 85.66 kB estimated transfer. Core Batch lazy
+  chunk: 114.10 kB / 19.53 kB estimated transfer.
+- Product Owner runtime/Light/Dark/RTL/LTR/narrow acceptance for `ErpTabs`
+  remains pending at `/controls/core-batch`; technical PASS is not visual
+  approval or freeze.
+- All other Core owners remain closed to implementation. The Data/Table Visual
+  Correction Wave and every later unlisted scope remain unopened.
 
 
 ## Historical state snapshot — superseded

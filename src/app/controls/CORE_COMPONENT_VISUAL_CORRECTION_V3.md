@@ -27,7 +27,7 @@ gate remains grouped runtime/Light/Dark/RTL/narrow Product Owner review at
 | ErpSkeleton | Product Owner animated skeleton reference | Visible tokenized surface and moving shimmer; static-but-visible reduced motion |
 | ErpAvatar | Historical Product Owner V2 references and V3 runtime findings | **SUPERSEDED** by `ERP-AVATAR.html`, SHA-256 `2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`, and the exact V1 contract |
 | ErpAvatarPicker | Product Owner V2 picker references and supplied assets | Tabs and Avatar composition retained; size/shape forwarding and unclipped grid corrected |
-| ErpTabs | Nexlink tabs reference | Header boundaries, shapes, fill distribution, and controlled active presentation |
+| ErpTabs | Historical Nexlink tabs reference | **SUPERSEDED** by `ERP-TABS.html`, SHA-256 `CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`, and the exact V1 contract |
 | ErpTable | Product Owner explicit V3 behavior contract | Alignment, header hierarchy, state precedence, motion, resize, and chooser evidence only |
 | ErpPagination | Product Owner explicit V3 behavior contract | Seven default regions retained; page-size Select remains one horizontal accessible composition |
 
@@ -52,9 +52,11 @@ gate remains grouped runtime/Light/Dark/RTL/narrow Product Owner review at
 - AvatarPicker forwards size/shape to every rendered Avatar, uses semantic
   male/female tab icons, and keeps the avatar grid visible without an internal
   automatic scrollbar.
-- Tabs adds bounded `rectangle | rounded | circle` header shapes, preserves
-  equal fill distribution, and gives active/inactive headers explicit tokenized
-  boundaries without double padding.
+- Historical Tabs correction here is superseded by
+  `tabs/ERP_TABS_REFERENCE_EXACT_V1.md`; the current component follows the
+  binding HTML reference for variants, header anatomy, orientations,
+  distribution, panels, motion, responsive behavior, keyboard, and ARIA while
+  retaining only documented compatibility extensions.
 - Table wraps all cell content in one alignment owner, strengthens the header
   separator, applies state priority `selected > hover > stripe`, and uses
   background-only hover motion. Review evidence enables all column resize
@@ -75,8 +77,8 @@ gate remains grouped runtime/Light/Dark/RTL/narrow Product Owner review at
 - Avatar shape clipping stayed bounded and breathe resolved to 3 s.
   AvatarPicker remained free of internal horizontal overflow at desktop and a
   480 px viewport.
-- Tabs rendered equal fill widths and 44 x 44 px icon-only circles after the
-  duplicate-padding defect was removed.
+- Historical Tabs measurements in this V3 section are superseded by the exact
+  reference contract and its current `/controls/core-batch` runtime evidence.
 - Selectable-only Table row clicks did not emit row activation. Selected rows
   overrode hover/stripe. Every configured column resize handle changed width,
   and ColumnChooser hide/show changed the rendered header set.

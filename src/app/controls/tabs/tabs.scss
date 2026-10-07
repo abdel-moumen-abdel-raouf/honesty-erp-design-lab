@@ -1,10 +1,133 @@
-@use '../../../styles/foundation/components/tabs' as tokens;
-:host { @include tokens.base; display: grid; gap: var(--honesty-tabs-gap); min-width: 0; }
-.tabs__list { display: flex; gap: var(--honesty-tabs-item-gap); min-width: 0; overflow-x: auto; border-block-end: var(--honesty-tabs-border-width) solid var(--honesty-tabs-border-color); }
-.tabs__list erp-tab-trigger { --honesty-tab-trigger-padding: var(--honesty-tabs-item-padding); gap: var(--honesty-tabs-item-gap); border: var(--honesty-tabs-item-border-width) solid var(--honesty-tabs-item-border-color); border-radius: var(--honesty-tabs-item-radius); background: var(--honesty-tabs-item-bg); color: var(--honesty-tabs-fg); cursor: pointer; }
-.tabs__list erp-tab-trigger:hover:not(:has(button:disabled)) { background: var(--honesty-tabs-item-hover-bg); }
-.tabs__list erp-tab-trigger:has(button[aria-selected='true']) { border-color: var(--honesty-tabs-active-border-color); background: var(--honesty-tabs-active-bg); color: var(--honesty-tabs-active-fg); } .tabs__list erp-tab-trigger:has(button[aria-selected='true'])::after { position: absolute; inset-inline: 0; inset-block-end: calc(-1 * var(--honesty-tabs-border-width)); block-size: var(--honesty-tabs-indicator-size); border-radius: var(--honesty-tabs-indicator-radius); background: var(--honesty-tabs-indicator-color); content: ''; }
-.tabs__list erp-tab-trigger:has(button:focus-visible) { outline: var(--honesty-tabs-focus-width) solid var(--honesty-tabs-focus-color); outline-offset: var(--honesty-tabs-focus-offset); } .tabs__list erp-tab-trigger:has(button:disabled) { color: var(--honesty-tabs-disabled-fg); cursor: not-allowed; }
-.tabs__panel { min-width: 0; padding: var(--honesty-tabs-panel-padding); }
-:host([data-tabs-header-shape='rectangle']) .tabs__list erp-tab-trigger { border-radius: var(--honesty-tabs-rectangle-radius); }
-:host([data-tabs-header-shape='circle']) .tabs__list erp-tab-trigger { inline-size: var(--honesty-tabs-circle-size); min-inline-size: var(--honesty-tabs-circle-size); block-size: var(--honesty-tabs-circle-size); min-block-size: var(--honesty-tabs-circle-size); padding: 0; border-radius: var(--honesty-tabs-circle-radius); }
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  inline-size: 100%;
+  min-inline-size: 0;
+  color: var(--honesty-tabs-fg);
+}
+
+.tabs__list {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  min-inline-size: 0;
+  padding: var(--honesty-tabs-track-padding);
+  gap: var(--honesty-tabs-track-gap);
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-block-end: var(--honesty-tabs-track-border-width) solid
+    var(--honesty-tabs-track-border-color);
+  border-radius: var(--honesty-tabs-track-radius);
+  background: var(--honesty-tabs-track-bg);
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  transition: background-color var(--honesty-tabs-transition-duration)
+    var(--honesty-tabs-transition-easing);
+}
+
+.tabs__list erp-tab-trigger {
+  --honesty-tab-trigger-justify: center;
+  --honesty-tab-trigger-gap: var(--honesty-tabs-tab-gap);
+  --honesty-tab-trigger-padding: var(--honesty-tabs-tab-padding-block)
+    var(--honesty-tabs-tab-padding-inline);
+
+  flex: 0 0 auto;
+  min-inline-size: 0;
+  border-radius: var(--honesty-tabs-tab-radius);
+  background: var(--honesty-tabs-tab-bg);
+  color: var(--honesty-tabs-fg);
+  box-shadow: var(--honesty-tabs-tab-shadow);
+  font-size: var(--honesty-tabs-font-size);
+  font-weight: var(--honesty-tabs-font-weight);
+  line-height: var(--honesty-tabs-line-height);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color var(--honesty-tabs-transition-duration) var(--honesty-tabs-transition-easing),
+    background-color var(--honesty-tabs-transition-duration) var(--honesty-tabs-transition-easing),
+    transform var(--honesty-tabs-transition-fast) var(--honesty-tabs-transition-easing-enter);
+}
+
+.tabs__list erp-tab-trigger:hover:not(:has(button:disabled)) {
+  color: var(--honesty-tabs-fg-hover);
+  background: var(--honesty-tabs-tab-hover-bg);
+}
+
+.tabs__list erp-tab-trigger:has(button[aria-selected='true']) {
+  color: var(--honesty-tabs-active-fg);
+  background: var(--honesty-tabs-tab-active-bg);
+  font-weight: var(--honesty-tabs-active-font-weight);
+}
+
+.tabs__list erp-tab-trigger:has(button:focus-visible) {
+  border-radius: var(--honesty-tabs-focus-radius);
+  box-shadow: inset 0 0 0 var(--honesty-tabs-focus-width) var(--honesty-tabs-focus-color);
+}
+
+.tabs__list erp-tab-trigger:has(button:disabled) {
+  color: var(--honesty-tabs-disabled-fg);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.tabs__icon {
+  display: grid;
+  place-items: center;
+  inline-size: var(--honesty-tabs-icon-size);
+  block-size: var(--honesty-tabs-icon-size);
+  flex: 0 0 var(--honesty-tabs-icon-size);
+  transition: transform var(--honesty-tabs-transition-duration)
+    var(--honesty-tabs-transition-easing-enter);
+}
+
+erp-tab-trigger:has(button[aria-selected='true']) .tabs__icon {
+  transform: scale(1.08);
+}
+
+.tabs__image {
+  display: block;
+  inline-size: var(--honesty-tabs-image-size);
+  block-size: var(--honesty-tabs-image-size);
+  box-sizing: border-box;
+  min-inline-size: var(--honesty-tabs-image-size);
+  max-inline-size: var(--honesty-tabs-image-size);
+  flex: 0 0 var(--honesty-tabs-image-size);
+  overflow: hidden;
+  border: var(--honesty-tabs-image-border-width) solid var(--honesty-tabs-image-border-color);
+  border-radius: var(--honesty-tabs-image-radius);
+  transition:
+    border-color var(--honesty-tabs-transition-duration) var(--honesty-tabs-transition-easing),
+    transform var(--honesty-tabs-transition-duration) var(--honesty-tabs-transition-easing-enter);
+}
+
+erp-tab-trigger:has(button[aria-selected='true']) .tabs__image {
+  border-color: var(--honesty-tabs-image-active-border-color);
+  transform: scale(1.06);
+}
+
+.tabs__label {
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tabs__count {
+  display: inline-grid;
+  place-items: center;
+  min-inline-size: var(--honesty-tabs-count-min-size);
+  block-size: var(--honesty-tabs-count-min-size);
+  padding-inline: var(--honesty-tabs-count-padding-inline);
+  border-radius: var(--honesty-tabs-count-radius);
+  background: var(--honesty-tabs-count-bg);
+  color: var(--honesty-tabs-count-fg);
+  font-size: var(--honesty-tabs-count-font-size);
+  font-weight: var(--honesty-tabs-active-font-weight);
+  line-height: var(--honesty-tabs-count-line-height);
+}
+
+erp-tab-trigger:has(button[aria-selected='true']) .tabs__count {
+  background: var(--honesty-tabs-count-active-bg);
+  color: var(--honesty-tabs-count-active-fg);
+}

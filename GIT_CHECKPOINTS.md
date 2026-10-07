@@ -9,26 +9,40 @@ Always resolve live `origin/main` directly at session start. This file records
 named checkpoints; it does not claim that its own latest docs SHA is an eternal
 repository HEAD.
 
-## Current Avatar/AvatarPicker large-size compatibility checkpoint — 2026-10-07
+## Current ErpTabs exact-reference checkpoint — 2026-10-07
+
+Entry checkpoint:
+
+- `f76f63d88ba600381ddab6cc59bb67ce276a22ab`
+
+The bounded implementation commit is `fix(tabs): rebuild from exact Product
+Owner reference`; resolve its final SHA from live `main` because this file is
+committed with it.
+
+Binding reference: `ERP-TABS.html`, SHA-256
+`CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`.
+The authoritative contract is
+`src/app/controls/tabs/ERP_TABS_REFERENCE_EXACT_V1.md`. The former Nexlink
+reference and accelerated no-reference waiver are superseded. This checkpoint
+rebuilds Tabs geometry, variants, orientations, distribution, panels, motion,
+responsive behavior, ARIA, and keyboard behavior while retaining bounded
+Stepper and AvatarPicker compatibility. Product Owner visual acceptance remains
+pending and the Data/Table Visual Correction Wave remains unopened. The
+canonical gate passes 133/133 test files, 893/893 tests, both typechecks,
+production build, every governance check, and zero warnings. Initial bundle:
+376.12 kB / 85.66 kB estimated transfer. Core Batch lazy chunk: 114.10 kB /
+19.53 kB estimated transfer.
+
+## Historical Avatar/AvatarPicker large-size compatibility checkpoint — superseded current gate
 
 Entry checkpoint:
 
 - `478cd171c974ea2ba5f360b3e345597b2ea49d0a`
 
-The bounded implementation commit is `fix(avatar-picker): add responsive large
-avatar sizes`; resolve its final SHA from live `main` because this file is
-committed with it.
-
-Binding reference: `ERP-AVATAR-PICKER.html`, SHA-256
-`24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`.
-Both Avatar and AvatarPicker exact-reference contracts remain authoritative.
-This checkpoint corrects `2xl` and adds responsive `3xl`, `4xl`, and `5xl`
-compatibility for `circle`, `rounded`, and `square`. Product Owner visual
-acceptance remains pending and the Data/Table Visual Correction Wave remains
-unopened. The canonical gate passes 133/133 test files, 889/889 tests, both typechecks,
-production build, every governance check, and zero warnings. Initial bundle:
-376.12 kB / 85.63 kB estimated transfer. Core Batch lazy chunk: 96.67 kB /
-17.02 kB estimated transfer.
+The bounded implementation commit was `fix(avatar-picker): add responsive large
+avatar sizes`. Its technical gate passed 133/133 test files and 889/889 tests.
+This remains useful history, but the later Tabs exact-reference checkpoint is
+current.
 
 ## Historical ErpAvatarPicker exact-reference checkpoint — superseded current gate
 

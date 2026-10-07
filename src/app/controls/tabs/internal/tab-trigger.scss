@@ -1,1 +1,29 @@
-:host { position: relative; display: block; flex: 0 0 auto; } :host([data-tab-trigger-fill='true']) { flex: 1 1 0; } button { display: inline-flex; align-items: center; gap: inherit; inline-size: 100%; block-size: 100%; padding: var(--honesty-tab-trigger-padding); border: 0; outline: 0; background: transparent; color: inherit; font: inherit; cursor: inherit; } :host([data-tab-trigger-fill='true']) button { justify-content: center; }
+:host {
+  position: relative;
+  display: block;
+  flex: 0 0 auto;
+  min-inline-size: 0;
+}
+
+:host([data-tab-trigger-fill='true']) {
+  flex: 1 1 0;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  inline-size: 100%;
+  justify-content: var(--honesty-tab-trigger-justify, flex-start);
+  gap: var(--honesty-tab-trigger-gap, 0);
+  padding: var(--honesty-tab-trigger-padding, 0);
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: inherit;
+}
+
+:host([data-tab-trigger-fill='true']) button {
+  justify-content: center;
+}

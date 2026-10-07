@@ -1,0 +1,26 @@
+@use '../../../styles/foundation/queries' as query;
+
+@include query.viewport-down('sm') {
+  :host([data-tabs-orientation='vertical']) {
+    flex-direction: column;
+    gap: var(--honesty-tabs-narrow-gap);
+  }
+
+  :host([data-tabs-orientation='vertical']) .tabs__list {
+    order: 0;
+    flex-direction: row;
+    flex-basis: auto;
+    inline-size: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-block-end: var(--honesty-tabs-track-border-width) solid
+      var(--honesty-tabs-track-border-color);
+    border-inline: 0;
+  }
+
+  :host([data-tabs-orientation='vertical']) .tabs__list erp-tab-trigger {
+    --honesty-tab-trigger-justify: center;
+
+    flex: 0 0 auto;
+  }
+}

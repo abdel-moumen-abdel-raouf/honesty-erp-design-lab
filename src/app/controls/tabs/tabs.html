@@ -1,48 +1,77 @@
-<div class="tabs__list" role="tablist" aria-label="التبويبات" [attr.aria-orientation]="orientation()">
+<div
+  #tablist
+  class="tabs__list"
+  role="tablist"
+  aria-label="التبويبات"
+  [attr.aria-orientation]="orientation()"
+>
   @for (item of items(); track item.id; let index = $index) {
     <erp-tab-trigger
-      [id]="item.id + '-tab'"
-      [controls]="item.id + '-panel'"
-      [selected]="resolvedActiveId() === item.id"
-      [tabIndex]="resolvedActiveId() === item.id ? 0 : -1"
+      [id]="tabDomId(index)"
+      [controls]="controlsId(index, item)"
+      [selected]="isActive(item)"
+      [tabIndex]="isActive(item) ? 0 : -1"
       [disabled]="item.disabled ?? false"
       [label]="item.label"
       [fill]="distribution() === 'fill'"
+      [attr.data-tabs-tab-id]="item.id"
+      [attr.data-tabs-header-presentation]="headerPresentation(item)"
       (activated)="activate(item)"
       (keyPressed)="keydown($event, index)"
     >
-      @if (item.icon && headerPresentation(item) !== 'text') {
-        <erp-icon [name]="item.icon" size="sm" />
+      @if (showsIcon(item)) {
+        <span class="tabs__icon" aria-hidden="true">
+          <erp-icon [name]="item.icon!" size="xs" />
+        </span>
       }
-      @if (headerPresentation(item) !== 'icon-only') {
-        <erp-text type="span" tone="inherit">{{ item.label }}</erp-text>
+      @if (showsImage(item)) {
+        <span class="tabs__image" aria-hidden="true">
+          <erp-avatar [name]="item.label" [src]="item.imageUrl!" size="xs" shape="circle" />
+        </span>
       }
-      @if (item.count !== undefined) {
-        <erp-text type="caption" tone="muted">{{ item.count }}</erp-text>
+      @if (showsLabel(item)) {
+        <erp-text class="tabs__label" type="span" tone="inherit">{{ item.label }}</erp-text>
+      }
+      @if (item.count !== undefined && item.count !== null) {
+        <erp-text class="tabs__count" type="caption" tone="inherit">{{ item.count }}</erp-text>
       }
     </erp-tab-trigger>
   }
+
+  <span
+    class="tabs__indicator"
+    aria-hidden="true"
+    [style.left.px]="orientation() === 'horizontal' ? indicator().left : null"
+    [style.top.px]="orientation() === 'vertical' ? indicator().top : null"
+    [style.width.px]="orientation() === 'horizontal' ? indicator().width : null"
+    [style.height.px]="orientation() === 'vertical' ? indicator().height : null"
+  ></span>
 </div>
+
 @if (renderPanels()) {
-  @for (item of items(); track item.id) {
-    @if (resolvedActiveId() === item.id) {
-      <div
-        class="tabs__panel"
-        role="tabpanel"
-        [id]="item.id + '-panel'"
-        [attr.aria-labelledby]="item.id + '-tab'"
-        tabindex="0"
-        [attr.data-tabs-panel-transition]="transition()"
-      >
-        @if (panelTemplate(item.id); as template) {
-          <ng-container
-            [ngTemplateOutlet]="template"
-            [ngTemplateOutletContext]="panelContext(item)"
-          />
-        } @else if (item.content) {
-          <erp-text type="paragraph">{{ item.content }}</erp-text>
-        }
-      </div>
+  <div class="tabs__panels">
+    @for (item of items(); track item.id; let index = $index) {
+      @if (shouldRenderPanel(item)) {
+        <div
+          class="tabs__panel"
+          role="tabpanel"
+          [class.tabs__panel--active]="isActive(item)"
+          [id]="panelDomId(index)"
+          [attr.aria-labelledby]="tabDomId(index)"
+          [attr.hidden]="isActive(item) ? null : ''"
+          [attr.tabindex]="isActive(item) ? 0 : -1"
+          [attr.data-tabs-panel-transition]="transition()"
+        >
+          @if (panelTemplate(item.id); as template) {
+            <ng-container
+              [ngTemplateOutlet]="template"
+              [ngTemplateOutletContext]="panelContext(item)"
+            />
+          } @else if (item.content) {
+            <erp-text type="paragraph">{{ item.content }}</erp-text>
+          }
+        </div>
+      }
     }
-  }
+  </div>
 }

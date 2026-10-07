@@ -5,22 +5,21 @@
 The findings below remain an auditable historical Product Owner review record;
 they are not current implementation authorization.
 
-The latest Product Owner decision is the bounded Avatar/AvatarPicker large-size
-compatibility correction entered from
-`478cd171c974ea2ba5f360b3e345597b2ea49d0a`. `ERP-AVATAR-PICKER.html`, SHA-256
-`24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`, is the
-single binding visual and behavioral authority for `ErpAvatarPicker`; its exact
-contract is `avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`. The prior
-Select and StatusBadge contracts remain technically implemented and are not
-reopened. The Avatar and AvatarPicker contracts were reopened only for the
-authorized `2xl` correction and `3xl`/`4xl`/`5xl` extension.
+The latest Product Owner decision is the strict ErpTabs exact-reference rebuild
+entered from `f76f63d88ba600381ddab6cc59bb67ce276a22ab`.
+`ERP-TABS.html`, SHA-256
+`CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`, is the
+single binding visual and behavioral authority for `ErpTabs`; its exact
+contract is `tabs/ERP_TABS_REFERENCE_EXACT_V1.md`. The former Nexlink reference
+and accelerated no-reference waiver are superseded. The prior Select,
+StatusBadge, Avatar, and AvatarPicker contracts remain technically implemented
+and are not reopened.
 
-The rebuilt candidate passes 133/133 test files and 889/889 tests, all
+The rebuilt candidate passes 133/133 test files and 893/893 tests, all
 governance, both typechecks, production build, and zero warnings.
 
 The exact next action is Product Owner runtime/Light/Dark/RTL/LTR/narrow
-review of large Avatar/AvatarPicker size compatibility at
-`/controls/core-batch`. Runtime browser
+review of ErpTabs at `/controls/core-batch`. Runtime browser
 evidence does not confer Product Owner visual acceptance. The Data/Table Visual
 Correction Wave and all later unlisted work remain unopened.
 

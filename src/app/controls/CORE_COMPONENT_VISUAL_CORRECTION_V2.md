@@ -18,7 +18,7 @@ Product Owner visual review reopened `ErpSelect`, `ErpStatusBadge`, `ErpAlert`, 
 | ErpAlert | Product Owner findings plus existing ERP family | N/A | Bounded correction; no new external file |
 | ErpSkeleton | Product Owner runtime finding plus existing ERP family | N/A | Bounded visibility correction; no new external file |
 | ErpAvatar | Historical Product Owner avatar references | `21DAC54CC0A54460E554063C3597892AF93DFB1C5E47B54CB746577E7C573DBE`, `D5379A4E2277E82F0CDFD47A4A9C2B5B13470424A66C76D2025DFF4A43141F3B` | **SUPERSEDED** by `ERP-AVATAR.html`, SHA-256 `2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`, and `avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md` |
-| ErpTabs | Nexlink tabs reference | `F86BD4FA2D603904EAB02464F39079AFD85B2F5EAD685DEAA9DA296DAF4861A7` | Underline/pills/fill/vertical/motion adapted to ERP architecture |
+| ErpTabs | Historical Nexlink tabs reference | `F86BD4FA2D603904EAB02464F39079AFD85B2F5EAD685DEAA9DA296DAF4861A7` | **SUPERSEDED** by `ERP-TABS.html`, SHA-256 `CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`, and `tabs/ERP_TABS_REFERENCE_EXACT_V1.md` |
 | ErpAvatarPicker | Two Product Owner picker references plus 40 supplied PNGs | `23773F31B513D79EDDCC21221E9FCAE7CF6824517E3554712005B7EEC06578D6`, `183DEA993FBABBB43DBC3E709ED961EDAA27A76F865E7BB95AEE3B6CF9D0C26C` | New authorized composite using ErpTabs + ErpAvatar |
 | ErpTable | Product Owner explicit behavior contract | N/A | Existing-system reference waiver for this correction |
 | ErpPagination | Product Owner explicit correction | N/A | Existing visual retained; page-size layout and visibility only |

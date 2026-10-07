@@ -14,52 +14,50 @@ Branch:
 
 ## Authoritative current execution state — 2026-10-07
 
-The Product Owner's bounded large-size compatibility correction for
-`ErpAvatar` and `ErpAvatarPicker` started from
-`478cd171c974ea2ba5f360b3e345597b2ea49d0a`. Resolve live local and remote SHAs
-directly; source and continuity are synchronized in the same implementation
-commit.
+The Product Owner's strict exact-reference rebuild of `ErpTabs` entered from
+`f76f63d88ba600381ddab6cc59bb67ce276a22ab`. Resolve the final local and remote
+SHAs directly; source and continuity are synchronized in the same bounded
+implementation commit.
 
-`C:\Users\Misrtech\Downloads\ERP-AVATAR-PICKER.html`, SHA-256
-`24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`, is the
-single binding visual and behavioral authority for `ErpAvatarPicker`. It
-supersedes all previous AvatarPicker references, waivers, and visual
-interpretations. Only colors and font families resolve through Honesty ERP
-system contracts. The Picker composes the exact-reference `ErpAvatar`, one
-`ErpTabs` owner, `ErpSearchBox`, ERP actions, and a bounded internal semantic
-selection action; it owns no private Avatar or Tabs implementation. The
-authoritative contract is
-`src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`.
+`C:\Users\Misrtech\Downloads\ERP-TABS.html`, SHA-256
+`CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`, is the
+single binding visual and behavioral authority for `ErpTabs`. It supersedes the
+former Nexlink reference, the accelerated no-reference waiver, and every
+conflicting Tabs visual interpretation. Only colors and font families resolve
+through Honesty ERP system contracts. The authoritative implementation contract
+is `src/app/controls/tabs/ERP_TABS_REFERENCE_EXACT_V1.md`.
 
-The public Avatar size vocabulary now extends the exact-reference progression
-from `2xl` through `3xl`, `4xl`, and `5xl`. Avatar owns the proportional frame,
-content, presence, ring, shape, and narrow size law. AvatarPicker continues to
-render every catalog cell through `ErpAvatar` and owns only the corresponding
-tile/grid/selection composition law. The three shapes remain `circle`,
-`rounded`, and `square` at every large size.
+The exact candidate implements the reference `underline`, `pill`, `solid`, and
+`ghost` variants; text, icon, image, and count anatomy; content/fill width modes;
+horizontal/vertical layouts; sliding indicator; lazy keyed panels; reference
+motion and reduced motion; automatic orientation-aware keyboard activation;
+collision-free IDs; and responsive narrow overflow through the Foundation Query
+API. `pills`, legacy directional transitions, header shapes, `count`, and
+`renderPanels=false` remain isolated compatibility extensions for existing
+consumers. `ErpTabTrigger` remains a generic semantic owner, so Tabs visuals do
+not leak into `ErpStepper`; `ErpAvatarPicker` continues to reuse `ErpTabs` with
+two counted gender tabs and no panels.
 
-Technical verification passes 133/133 test files and 889/889 tests, all
+Technical verification passes 133/133 test files and 893/893 tests, all
 lint/governance checks, both TypeScript typechecks, production build, and zero
-Angular/build warnings. The production initial bundle is 376.12 kB / 85.63 kB
-estimated transfer; the Core Batch lazy chunk is 96.67 kB / 17.02 kB estimated
+Angular/build warnings. The production initial bundle is 376.12 kB / 85.66 kB
+estimated transfer; the Core Batch lazy chunk is 114.10 kB / 19.53 kB estimated
 transfer.
 
 Product Owner visual state and immediate next action:
 
-- the `2xl` correction and the new `3xl`, `4xl`, and `5xl` Avatar/AvatarPicker
-  compatibility remain pending Product Owner runtime/Light/Dark/RTL/LTR/narrow
-  review at `/controls/core-batch` against both binding references;
-- the 20 male / 20 female / 40 total asset catalog and manifest remain intact;
-- every tile and the preview render through `ErpAvatar`; the Picker template
-  authors no raw avatar image and no private Tabs implementation;
-- `ErpAvatar` and `ErpAvatarPicker` were reopened only for the authorized
-  large-size compatibility correction; `ErpSelect`, `ErpStatusBadge`, and all
-  other Core owners remain closed to implementation;
+- browser evidence confirms reference geometry, Light/Dark token inheritance,
+  RTL/LTR behavior, keyboard/focus behavior, unique ARIA relationships, and a
+  390 px narrow layout with no page overflow;
+- `ErpTabs` remains pending Product Owner runtime/Light/Dark/RTL/LTR/narrow
+  comparison at `/controls/core-batch` against `ERP-TABS.html`;
+- `ErpAvatarPicker` and `ErpStepper` compatibility remains technically green;
+- `ErpSelect`, `ErpStatusBadge`, `ErpAvatar`, `ErpAvatarPicker`, and every other
+  Core owner remain closed to visual implementation by this task;
 - technical green does not equal Product Owner visual approval or freeze;
-- the exact next action is Product Owner visual/runtime review of large
-  Avatar/AvatarPicker size compatibility at `/controls/core-batch`;
-- the Data/Table Visual Correction Wave is not opened and no other Core owner is
-  redesigned by this bounded task.
+- the exact next action is Product Owner visual/runtime review of `ErpTabs` at
+  `/controls/core-batch`;
+- the Data/Table Visual Correction Wave is not opened.
 
 Core, Data/Table, Forms, Entity Form Engine, and Shell remain prior technically
 green candidates, but their Product Owner visual acceptance is not inferred.

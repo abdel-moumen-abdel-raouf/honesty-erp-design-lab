@@ -46,8 +46,18 @@ const AVATAR_CONTRACT = 'src/app/controls/avatar/ERP_AVATAR_REFERENCE_EXACT_V1.m
 const AVATAR_LEGACY_REFERENCE = 'src/app/controls/avatar/AVATAR_REFERENCE_V1.md';
 const AVATAR_REFERENCE_SHA = '2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA';
 const TABS_TS = 'src/app/controls/tabs/tabs.ts';
+const TABS_TEMPLATE = 'src/app/controls/tabs/tabs.html';
 const TABS_SCSS = 'src/app/controls/tabs/tabs.scss';
+const TABS_INDICATOR_PANEL = 'src/app/controls/tabs/tabs-indicator-panel.scss';
+const TABS_FACETS = 'src/app/controls/tabs/tabs-facets.scss';
+const TABS_RESPONSIVE = 'src/app/controls/tabs/tabs-responsive.scss';
+const TABS_TOKEN_CONTRACT = 'src/app/controls/tabs/tabs-token-contract.scss';
 const TABS_MOTION = 'src/app/controls/tabs/tabs-motion.scss';
+const TABS_TRIGGER_SCSS = 'src/app/controls/tabs/internal/tab-trigger.scss';
+const TABS_TOKENS = 'src/styles/foundation/components/tabs/_tokens.scss';
+const TABS_CONTRACT = 'src/app/controls/tabs/ERP_TABS_REFERENCE_EXACT_V1.md';
+const TABS_LEGACY_REFERENCE = 'src/app/controls/tabs/TABS_REFERENCE_V1.md';
+const TABS_REFERENCE_SHA = 'CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9';
 const TABLE = 'src/app/controls/table/table.html';
 const TABLE_TS = 'src/app/controls/table/table.ts';
 const TABLE_SCSS = 'src/app/controls/table/table.scss';
@@ -131,7 +141,13 @@ export function validateCoreComponents(files) {
   const avatarContract = files.get(AVATAR_CONTRACT) ?? '';
   const avatarLegacyReference = files.get(AVATAR_LEGACY_REFERENCE) ?? '';
   const tabsTs = files.get(TABS_TS) ?? '';
-  const tabsScss = `${files.get(TABS_SCSS) ?? ''}\n${files.get(TABS_MOTION) ?? ''}`;
+  const tabsTemplate = files.get(TABS_TEMPLATE) ?? '';
+  const tabsScss = [TABS_TOKEN_CONTRACT, TABS_SCSS, TABS_INDICATOR_PANEL, TABS_FACETS, TABS_RESPONSIVE, TABS_MOTION]
+    .map((file) => files.get(file) ?? '').join('\n');
+  const tabsTriggerScss = files.get(TABS_TRIGGER_SCSS) ?? '';
+  const tabsTokens = files.get(TABS_TOKENS) ?? '';
+  const tabsContract = files.get(TABS_CONTRACT) ?? '';
+  const tabsLegacyReference = files.get(TABS_LEGACY_REFERENCE) ?? '';
   const table = files.get(TABLE) ?? '';
   const tableTs = files.get(TABLE_TS) ?? '';
   const tableScss = `${files.get(TABLE_SCSS) ?? ''}\n${files.get(TABLE_MOTION) ?? ''}`;
@@ -460,15 +476,89 @@ export function validateCoreComponents(files) {
     "'horizontal' | 'vertical'",
     "'start' | 'end'",
     "'content' | 'fill'",
-    "'underline' | 'pills'",
-    "'fade-start'",
-    "'fade-end'",
-    "'rectangle' | 'rounded' | 'circle'",
+    "'underline' | 'pill' | 'solid' | 'ghost' | 'pills'",
+    "'text'",
+    "'icon-text'",
+    "'image-text'",
+    "'slide'",
+    "'scale'",
+    'readonly tabClick = output<ErpTabItem>()',
+    'readonly lazy = input(true)',
+    'readonly keepAlive = input(true)',
+    'private readonly instanceId = `erp-tabs-${++nextTabsInstanceId}`',
+    'this.renderPanels() && this.shouldRenderPanel(item) ? this.panelDomId(index) : null',
   ]) {
-    if (!tabsTs.includes(contract)) errors.push(`ErpTabs contract is missing ${contract}`);
+    if (!tabsTs.includes(contract)) errors.push(`ErpTabs exact-reference contract is missing ${contract}`);
+  }
+  for (const hierarchy of [
+    '<erp-tab-trigger', '<erp-icon', '<erp-text', '<erp-avatar',
+    'class="tabs__indicator"', 'class="tabs__panel"',
+  ]) {
+    if (!tabsTemplate.includes(hierarchy)) {
+      errors.push(`ErpTabs exact-reference hierarchy is missing ${hierarchy}`);
+    }
+  }
+  for (const geometry of [
+    '--honesty-tabs-tab-padding-block: 0.625rem',
+    '--honesty-tabs-tab-padding-inline: 1rem',
+    '--honesty-tabs-tab-gap: 0.5rem',
+    '--honesty-tabs-icon-size: 1rem',
+    '--honesty-tabs-image-size: 1.5rem',
+    '--honesty-tabs-count-min-size: 1.125rem',
+    '--honesty-tabs-count-padding-inline: 0.3125rem',
+    '--honesty-tabs-indicator-size: 0.1875rem',
+    '--honesty-tabs-track-radius: 0.75rem',
+    '--honesty-tabs-vertical-list-size: 15rem',
+    '--honesty-tabs-vertical-gap: 1.25rem',
+    '--honesty-tabs-slide-distance: 1rem',
+    '--honesty-tabs-scale-start: 0.94',
+    '@mixin variant-pill',
+    '@mixin variant-solid',
+    '@mixin variant-ghost',
+    '@mixin variant-pills-compat',
+  ]) {
+    if (!tabsTokens.includes(geometry)) {
+      errors.push(`ErpTabs exact-reference geometry is missing ${geometry}`);
+    }
   }
   if (!tabsScss.includes('@media (prefers-reduced-motion: reduce)')) {
     errors.push('ErpTabs transitions must respect reduced motion');
+  }
+  if (!tabsScss.includes("query.viewport-down('sm')") ||
+      /@media\s*\([^)]*(?:max|min)-width|@container\s*\([^)]*(?:max|min)-width/iu.test(tabsScss)) {
+    errors.push('ErpTabs responsive behavior must use the Foundation Query API');
+  }
+  if (/(?:#[0-9a-f]{3,8}\b|\brgba?\s*\(|\bhsla?\s*\()/iu.test(`${tabsScss}\n${tabsTokens}`)) {
+    errors.push('ErpTabs must not copy raw reference colors');
+  }
+  if (/var\(--honesty-(?:color|border|radius|elevation|motion)-/u.test(tabsScss)) {
+    errors.push('ErpTabs implementation SCSS must consume only its own Component Tokens');
+  }
+  if (tabsTriggerScss.includes('--honesty-tabs-')) {
+    errors.push('ErpTabTrigger must remain a generic semantic owner without Tabs visual tokens');
+  }
+  if (!tabsContract.includes(TABS_REFERENCE_SHA) ||
+      !tabsContract.includes('supersedes every previous `ErpTabs`')) {
+    errors.push('ErpTabs exact-reference contract must record the binding ERP-TABS.html SHA and supersession');
+  }
+  if (!tabsLegacyReference.includes('SUPERSEDED') ||
+      !tabsLegacyReference.includes(TABS_REFERENCE_SHA)) {
+    errors.push('The former ErpTabs Nexlink reference must remain explicitly superseded');
+  }
+  for (const evidence of [
+    'class="tabs-reference-parity-matrix"',
+    'data-tabs-reference="ERP-TABS.html"',
+    'variant="pill"',
+    'variant="solid"',
+    'variant="ghost"',
+    'orientation="vertical"',
+    'distribution="fill"',
+    'data-tabs-direction-evidence="rtl"',
+    'data-tabs-direction-evidence="ltr"',
+  ]) {
+    if (!review.includes(evidence)) {
+      errors.push(`Core review is missing Tabs exact-reference evidence ${evidence}`);
+    }
   }
 
   for (const required of [
@@ -605,7 +695,7 @@ export function validateCoreComponents(files) {
 function fixture(overrides = new Map()) {
   const files = new Map([
     [ROUTES, "path: 'controls/core-batch'"],
-    [REVIEW, '<erp-select/><erp-status-badge/><erp-alert/><erp-skeleton/><erp-avatar/><erp-tabs/><erp-avatar-picker/><erp-table/><erp-pagination/><div class="select-parity-matrix" sortMode="label" label="نتيجة فارغة" label="حالة غير صالحة"></div><div class="status-badge-parity-matrix"></div><div class="status-badge-size-matrix"></div><div class="status-badge-anatomy-matrix"></div><div data-status-badge-direction-evidence="rtl"></div><div data-status-badge-direction-evidence="ltr"></div><div class="avatar-reference-size-matrix"></div><div class="avatar-large-size-matrix"></div><div data-avatar-picker-large-size-evidence></div><div class="avatar-reference-content-types"></div><div class="avatar-reference-motion-matrix"></div><div class="avatar-reference-presence-matrix"></div><div data-avatar-direction-evidence="rtl"></div><div data-avatar-direction-evidence="ltr"></div>'],
+    [REVIEW, '<erp-select/><erp-status-badge/><erp-alert/><erp-skeleton/><erp-avatar/><erp-tabs/><erp-avatar-picker/><erp-table/><erp-pagination/><div class="select-parity-matrix" sortMode="label" label="نتيجة فارغة" label="حالة غير صالحة"></div><div class="status-badge-parity-matrix"></div><div class="status-badge-size-matrix"></div><div class="status-badge-anatomy-matrix"></div><div data-status-badge-direction-evidence="rtl"></div><div data-status-badge-direction-evidence="ltr"></div><div class="avatar-reference-size-matrix"></div><div class="avatar-large-size-matrix"></div><div data-avatar-picker-large-size-evidence></div><div class="avatar-reference-content-types"></div><div class="avatar-reference-motion-matrix"></div><div class="avatar-reference-presence-matrix"></div><div data-avatar-direction-evidence="rtl"></div><div data-avatar-direction-evidence="ltr"></div><div class="tabs-reference-parity-matrix" data-tabs-reference="ERP-TABS.html"><erp-tabs variant="pill" data-tabs-direction-evidence="rtl"/><erp-tabs variant="solid" distribution="fill"/><erp-tabs variant="ghost" orientation="vertical" data-tabs-direction-evidence="ltr"/></div>'],
     [REVIEW_TABLE, '<erp-column-chooser/>'],
     [SELECT, '<div class="select__control"></div><erp-field-trigger semanticRole="combobox" (blurred)="handleTriggerBlur()"/><erp-search-box presentation="select-panel"/><erp-selection-tile presentation="select-option"/><div class="select__group-label"></div><div class="select__footer"></div><erp-avatar/><erp-select-action icon="dismiss"/><erp-icon name="check-mark"/>'],
     [SELECT_TS, "this.controlSurface()?.nativeElement; Math.min(control.getBoundingClientRect().width, availableWidth); event.target.matches(':focus-visible'); this.triggerFocusVisible.set(false); readonly searchLabel = input('البحث'); readonly sortMode = input<ErpSelectSortMode>('none'); readonly groupBy = input<keyof ErpSelectOption | null>(null); readonly selectSize = input<ErpSelectSize>('md'); readonly selectAppearance = input<ErpSelectAppearance | null>(null)"],
@@ -643,9 +733,18 @@ function fixture(overrides = new Map()) {
     [AVATAR_TOKENS, '@mixin base {}; @mixin root-base {}; @mixin frame-base {}; @mixin action-base {}; @mixin presence-base {}; @mixin tone-brand {}; @mixin tone-success {}; @mixin tone-warning {}; @mixin tone-danger {}; @mixin tone-info {}; @mixin tone-purple {}; @mixin tone-slate {}; @mixin presence-info {}; @mixin presence-brand {}; @mixin presence-pending {}; @mixin presence-vacation {}; --honesty-avatar-size: 1.5rem; --honesty-avatar-size: 1.875rem; --honesty-avatar-size: 2.375rem; --honesty-avatar-size: 3.125rem; --honesty-avatar-size: 4.25rem; --honesty-avatar-size: 5.5rem; --honesty-avatar-size: 7rem; --honesty-avatar-size: 9rem; --honesty-avatar-size: 11.5rem; --honesty-avatar-rounded-radius: 26%; --honesty-avatar-square-radius: 0.25rem; --honesty-avatar-hover-scale: 1.06; --honesty-avatar-active-scale: 0.96;'],
     [AVATAR_CONTRACT, `${AVATAR_REFERENCE_SHA}; ERP-AVATAR.html supersedes every earlier \`ErpAvatar\` visual reference`],
     [AVATAR_LEGACY_REFERENCE, `SUPERSEDED; ${AVATAR_REFERENCE_SHA}`],
-    [TABS_TS, "'horizontal' | 'vertical'; 'start' | 'end'; 'content' | 'fill'; 'underline' | 'pills'; 'fade-start'; 'fade-end'; 'rectangle' | 'rounded' | 'circle'"],
-    [TABS_SCSS, '@media (prefers-reduced-motion: reduce) {}'],
-    [TABS_MOTION, ''],
+    [TABS_TS, "'horizontal' | 'vertical'; 'start' | 'end'; 'content' | 'fill'; 'underline' | 'pill' | 'solid' | 'ghost' | 'pills'; 'text'; 'icon-text'; 'image-text'; 'slide'; 'scale'; readonly tabClick = output<ErpTabItem>(); readonly lazy = input(true); readonly keepAlive = input(true); private readonly instanceId = `erp-tabs-${++nextTabsInstanceId}`; this.renderPanels() && this.shouldRenderPanel(item) ? this.panelDomId(index) : null"],
+    [TABS_TEMPLATE, '<erp-tab-trigger/><erp-icon/><erp-text/><erp-avatar/><span class="tabs__indicator"></span><section class="tabs__panel"></section>'],
+    [TABS_SCSS, ''],
+    [TABS_INDICATOR_PANEL, ''],
+    [TABS_FACETS, ''],
+    [TABS_RESPONSIVE, "query.viewport-down('sm')"],
+    [TABS_TOKEN_CONTRACT, "@include tokens.base"],
+    [TABS_MOTION, '@media (prefers-reduced-motion: reduce) {}'],
+    [TABS_TRIGGER_SCSS, '--honesty-tab-trigger-padding: 0'],
+    [TABS_TOKENS, '@mixin base {}; @mixin variant-pill {}; @mixin variant-solid {}; @mixin variant-ghost {}; @mixin variant-pills-compat {}; --honesty-tabs-tab-padding-block: 0.625rem; --honesty-tabs-tab-padding-inline: 1rem; --honesty-tabs-tab-gap: 0.5rem; --honesty-tabs-icon-size: 1rem; --honesty-tabs-image-size: 1.5rem; --honesty-tabs-count-min-size: 1.125rem; --honesty-tabs-count-padding-inline: 0.3125rem; --honesty-tabs-indicator-size: 0.1875rem; --honesty-tabs-track-radius: 0.75rem; --honesty-tabs-reference-tab-radius: 0.5rem; --honesty-tabs-vertical-list-size: 15rem; --honesty-tabs-vertical-gap: 1.25rem; --honesty-tabs-slide-distance: 1rem; --honesty-tabs-scale-start: 0.94;'],
+    [TABS_CONTRACT, `${TABS_REFERENCE_SHA}; ERP-TABS.html supersedes every previous \`ErpTabs\` visual reference`],
+    [TABS_LEGACY_REFERENCE, `SUPERSEDED; ${TABS_REFERENCE_SHA}`],
     [TABLE, '<erp-check-box/><erp-sort-header/><erp-table-resize-handle/><tfoot></tfoot> descriptionKey data-overflow'],
     [TABLE_TS, 'if (this.rowActivatable()) this.rowActivated.emit(row);'],
     [TABLE_SCSS, '@media (prefers-reduced-motion: reduce) {}'],
@@ -702,6 +801,14 @@ function runSelfTest() {
     ['missing avatar hierarchy', fixture(new Map([[AVATAR_TEMPLATE, '<span class="avatar__frame"></span>']])), 'exact-reference hierarchy'],
     ['raw avatar breakpoint', fixture(new Map([[AVATAR_SCSS, '@media (max-width: 520px) {}']])), 'Foundation Query API'],
     ['current former avatar authority', fixture(new Map([[AVATAR_LEGACY_REFERENCE, 'current external references']])), 'explicitly superseded'],
+    ['missing tabs reference SHA', fixture(new Map([[TABS_CONTRACT, 'old tabs reference']])), 'binding ERP-TABS.html SHA'],
+    ['current former Nexlink authority', fixture(new Map([[TABS_LEGACY_REFERENCE, 'current Nexlink reference']])), 'explicitly superseded'],
+    ['missing tabs hierarchy', fixture(new Map([[TABS_TEMPLATE, '<erp-tab-trigger/>']])), 'exact-reference hierarchy'],
+    ['missing tabs exact geometry', fixture(new Map([[TABS_TOKENS, '@mixin base {}']])), 'exact-reference geometry'],
+    ['raw tabs color', fixture(new Map([[TABS_SCSS, '#fff']])), 'raw reference colors'],
+    ['raw tabs breakpoint', fixture(new Map([[TABS_FACETS, '@media (max-width: 640px) {}']])), 'Foundation Query API'],
+    ['tabs visuals leak into trigger', fixture(new Map([[TABS_TRIGGER_SCSS, '--honesty-tabs-tab-bg: red']])), 'generic semantic owner'],
+    ['missing panel-less aria contract', fixture(new Map([[TABS_TS, "'horizontal' | 'vertical'; 'start' | 'end'; 'content' | 'fill'; 'underline' | 'pill' | 'solid' | 'ghost' | 'pills'; 'text'; 'icon-text'; 'image-text'; 'slide'; 'scale'; readonly tabClick = output<ErpTabItem>(); readonly lazy = input(true); readonly keepAlive = input(true); private readonly instanceId = `erp-tabs-${++nextTabsInstanceId}`;"]])), 'renderPanels'],
     ['missing avatar-picker reference SHA', fixture(new Map([[AVATAR_PICKER_CONTRACT, 'old picker reference']])), 'binding ERP-AVATAR-PICKER.html SHA'],
     ['current former avatar-picker authority', fixture(new Map([[AVATAR_PICKER_LEGACY_REFERENCE, 'current external references']])), 'explicitly superseded'],
     ['missing avatar-picker tabs owner', fixture(new Map([[AVATAR_PICKER_TEMPLATE, '<erp-search-box/><erp-avatar-picker-tile/><erp-avatar/><erp-empty-state/><erp-button/><erp-tooltip/>']])), 'erp-tabs'],
@@ -767,8 +874,17 @@ function runCheck() {
     [AVATAR_CONTRACT, read(AVATAR_CONTRACT)],
     [AVATAR_LEGACY_REFERENCE, read(AVATAR_LEGACY_REFERENCE)],
     [TABS_TS, read(TABS_TS)],
+    [TABS_TEMPLATE, read(TABS_TEMPLATE)],
     [TABS_SCSS, read(TABS_SCSS)],
+    [TABS_INDICATOR_PANEL, read(TABS_INDICATOR_PANEL)],
+    [TABS_FACETS, read(TABS_FACETS)],
+    [TABS_RESPONSIVE, read(TABS_RESPONSIVE)],
+    [TABS_TOKEN_CONTRACT, read(TABS_TOKEN_CONTRACT)],
     [TABS_MOTION, read(TABS_MOTION)],
+    [TABS_TRIGGER_SCSS, read(TABS_TRIGGER_SCSS)],
+    [TABS_TOKENS, read(TABS_TOKENS)],
+    [TABS_CONTRACT, read(TABS_CONTRACT)],
+    [TABS_LEGACY_REFERENCE, read(TABS_LEGACY_REFERENCE)],
     [TABLE, read(TABLE)],
     [TABLE_TS, read(TABLE_TS)],
     [TABLE_SCSS, read(TABLE_SCSS)],

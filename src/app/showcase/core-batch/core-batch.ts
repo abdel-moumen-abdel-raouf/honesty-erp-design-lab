@@ -103,8 +103,8 @@ export class CoreBatch {
   readonly tabsOrientation = signal<ErpTabsOrientation>('horizontal');
   readonly tabsDistribution = signal<ErpTabsDistribution>('content');
   readonly tabsVariant = signal<ErpTabsVariant>('underline');
-  readonly tabsShape = signal<ErpTabHeaderShape>('rounded');
-  readonly tabsTransition = signal<ErpTabsTransition>('fade');
+  readonly tabsShape = signal<ErpTabHeaderShape>('reference');
+  readonly tabsTransition = signal<ErpTabsTransition>('slide');
   readonly showSummary = signal(true);
   readonly showPageSize = signal(true);
   readonly showFirst = signal(true);
@@ -158,11 +158,9 @@ export class CoreBatch {
   ]);
   readonly tabsOrientationOptions = this.options(['horizontal', 'vertical']);
   readonly tabsDistributionOptions = this.options(['content', 'fill']);
-  readonly tabsVariantOptions = this.options(['underline', 'pills']);
-  readonly tabsShapeOptions = this.options(['rectangle', 'rounded', 'circle']);
-  readonly tabsTransitionOptions = this.options([
-    'none', 'fade', 'fade-up', 'fade-down', 'fade-start', 'fade-end',
-  ]);
+  readonly tabsVariantOptions = this.options(['underline', 'pill', 'solid', 'ghost']);
+  readonly tabsShapeOptions = this.options(['reference', 'rectangle', 'rounded', 'circle']);
+  readonly tabsTransitionOptions = this.options(['slide', 'fade', 'scale', 'none']);
   readonly avatarPositions: readonly {
     position: ErpAvatarPresencePosition;
     status: ErpAvatarPresence;
@@ -219,9 +217,32 @@ export class CoreBatch {
     option.disabled !== true;
 
   readonly tabs: readonly ErpTabItem[] = [
-    {id: 'summary', label: 'الملخص', content: 'ملخص حركة الحساب خلال الفترة الحالية.', icon: 'dashboard'},
-    {id: 'transactions', label: 'القيود', content: 'قائمة القيود المحاسبية المرتبطة بالحساب.', icon: 'operations'},
+    {id: 'summary', label: 'الملخص', content: 'ملخص حركة الحساب خلال الفترة الحالية.', icon: 'dashboard', count: 4},
+    {id: 'transactions', label: 'القيود', content: 'قائمة القيود المحاسبية المرتبطة بالحساب.', icon: 'operations', count: 18},
     {id: 'audit', label: 'سجل المراجعة', content: 'هذا التبويب معطل للمستخدم الحالي.', icon: 'history', disabled: true},
+  ];
+
+  readonly textOnlyTabs: readonly ErpTabItem[] = [
+    {id: 'overview', label: 'نظرة عامة', content: 'نظرة عامة على السجل.'},
+    {id: 'details', label: 'التفاصيل', content: 'البيانات التفصيلية للسجل.'},
+    {id: 'documents', label: 'المستندات', content: 'المستندات المرتبطة بالسجل.'},
+  ];
+
+  readonly imageTabs: readonly ErpTabItem[] = [
+    {
+      id: 'ahmed',
+      label: 'أحمد محمود',
+      content: 'العمليات المسندة إلى أحمد محمود.',
+      imageUrl: '/assets/honesty-erp-avatars/users/male/avatar-01.png',
+      headerPresentation: 'image-text',
+    },
+    {
+      id: 'sara',
+      label: 'سارة علي',
+      content: 'العمليات المسندة إلى سارة علي.',
+      imageUrl: '/assets/honesty-erp-avatars/users/female/avatar-21.png',
+      headerPresentation: 'image-text',
+    },
   ];
 
   protected updateBadgeSelection(selected: boolean): void {

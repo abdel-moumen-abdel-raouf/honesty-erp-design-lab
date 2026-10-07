@@ -30,34 +30,35 @@ Binding Product Owner law:
 4. the next item is the lowest unresolved dependency, not simply the next row
    in historical planning.
 
-Latest authorized implementation is the bounded large-size compatibility
-correction for `ErpAvatar` and `ErpAvatarPicker`, entered from
-`478cd171c974ea2ba5f360b3e345597b2ea49d0a`.
+Latest authorized implementation is the strict exact-reference rebuild of
+`ErpTabs`, entered from `f76f63d88ba600381ddab6cc59bb67ce276a22ab`.
 
-`ERP-AVATAR-PICKER.html`, SHA-256
-`24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`, is the
-single binding AvatarPicker visual and behavioral authority. It supersedes all
-previous AvatarPicker references, waivers, and conflicting visual interpretations.
-Geometry and behavior are copied exactly; palette
-and font-family values alone map through Honesty ERP system contracts.
+`ERP-TABS.html`, SHA-256
+`CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`, is the
+single binding Tabs visual and behavioral authority. It supersedes the Nexlink
+reference, the accelerated no-reference waiver, and conflicting visual
+interpretations. Geometry and behavior are copied exactly; palette and
+font-family values alone map through Honesty ERP system contracts.
 
 The authoritative implementation contract is
-`src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`.
+`src/app/controls/tabs/ERP_TABS_REFERENCE_EXACT_V1.md`.
 
-The correction fixes `2xl`, adds `3xl`, `4xl`, and `5xl`, and keeps Avatar as
-the sole owner of avatar geometry while AvatarPicker owns only responsive
-tile/grid/selection composition. The three supported shapes remain physically
-correct at every large size.
+The rebuilt owner implements the reference variants, anatomy, horizontal and
+vertical orientations, content/fill distribution, active indicator, panel
+relationship, automatic keyboard activation, responsive overflow, and motion.
+`ErpTabTrigger` remains a generic semantic owner so Tabs visuals do not leak
+into `ErpStepper`; `count` and `renderPanels=false` remain bounded
+`ErpAvatarPicker` compatibility extensions.
 
-The rebuilt candidate passes 133/133 test files and 889/889 tests, both
+The rebuilt candidate passes 133/133 test files and 893/893 tests, both
 typechecks, production build, all governance, and zero warnings.
 
 Current active gate is Product Owner runtime/Light/Dark/RTL/LTR/narrow review of
-large Avatar/AvatarPicker size compatibility at `/controls/core-batch` against
-both binding references. Select, StatusBadge, and every other Core candidate
-remain closed to implementation. Browser runtime evidence does
-not confer visual acceptance. The Data/Table
-Visual Correction Wave remains unopened. Technical PASS is not visual freeze.
+`ErpTabs` at `/controls/core-batch` against the binding reference. Select,
+StatusBadge, Avatar, AvatarPicker, and every other Core candidate remain closed
+to implementation. Browser runtime evidence does not confer visual acceptance.
+The Data/Table Visual Correction Wave remains unopened. Technical PASS is not
+visual freeze.
 Standalone EntityReview, Entity Wizard, workflow engine, DataPage,
 EntityDirectory, EntityDetail, CRUD/transaction patterns, Feature/Page
 migration, and every unlisted family remain unopened.

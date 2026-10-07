@@ -2,37 +2,36 @@
 
 ## 0. Authoritative current handoff — 2026-10-07
 
-The bounded large-size compatibility correction for `ErpAvatar` and
-`ErpAvatarPicker` started from
-`478cd171c974ea2ba5f360b3e345597b2ea49d0a`. Resolve final local and remote SHAs
+The strict exact-reference rebuild for `ErpTabs` entered from
+`f76f63d88ba600381ddab6cc59bb67ce276a22ab`. Resolve final local and remote SHAs
 at session start.
 
-The Product Owner made
-`C:\Users\Misrtech\Downloads\ERP-AVATAR-PICKER.html`, SHA-256
-`24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`, the
-single binding visual and behavioral authority for `ErpAvatarPicker`. It
-supersedes all previous AvatarPicker references, waivers, and conflicting visual
-interpretations. Only reference colors and font family
+The Product Owner made `C:\Users\Misrtech\Downloads\ERP-TABS.html`, SHA-256
+`CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`, the
+single binding visual and behavioral authority for `ErpTabs`. It supersedes the
+former Nexlink reference, the accelerated no-reference waiver, and every
+conflicting Tabs visual interpretation. Only reference colors and font family
 are translated to Honesty ERP Semantic, Typography, and Component Tokens. The
 authoritative implementation contract is
-`src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`.
+`src/app/controls/tabs/ERP_TABS_REFERENCE_EXACT_V1.md`.
 
-The `2xl` geometry is corrected and `ErpAvatarSize` now extends through `3xl`,
-`4xl`, and `5xl`. Avatar owns the large frame/content/presence/ring/shape law;
-AvatarPicker forwards size and shape to `ErpAvatar` and owns only responsive
-tile/grid/selection geometry. The candidate is technically green at 133/133
-test files and 889/889
-tests, all lint/governance gates, both typechecks, production build, and zero
-warnings. Initial bundle is 376.12 kB / 85.63 kB estimated transfer; Core Batch
-lazy chunk is 96.67 kB / 17.02 kB.
+The candidate implements the four reference variants, all reference header
+anatomies, content/fill distribution, horizontal/vertical layouts, moving
+indicator, lazy keyed panels, reference transitions, reduced motion, automatic
+orientation-aware keyboard navigation, collision-free ARIA IDs, and narrow
+Query-API behavior. Compatibility-only shapes, legacy transitions, `pills`,
+`count`, and `renderPanels=false` remain isolated for current consumers. The
+candidate is technically green at 133/133 test files and 893/893 tests, all
+lint/governance gates, both typechecks, production build, and zero warnings.
+Initial bundle is 376.12 kB / 85.66 kB estimated transfer; Core Batch lazy chunk
+is 114.10 kB / 19.53 kB.
 
 The exact next action is Product Owner runtime/Light/Dark/RTL/LTR/narrow review
-of large Avatar/AvatarPicker size compatibility at `/controls/core-batch`
-against both binding references. Browser runtime evidence is implementation
-evidence only, not Product Owner visual acceptance. `ErpSelect`,
-`ErpStatusBadge`, and every other Core owner remain closed to implementation.
-The Data/Table Visual Correction Wave is not opened.
-Technical PASS never equals visual acceptance.
+of `ErpTabs` at `/controls/core-batch` against the binding reference. Browser
+runtime evidence is implementation evidence only, not Product Owner visual
+acceptance. `ErpStepper` and `ErpAvatarPicker` regressions are technically green;
+all other Core owners remain closed to implementation. The Data/Table Visual
+Correction Wave is not opened. Technical PASS never equals visual acceptance.
 Standalone EntityReview, Entity Wizard, workflow engine, DataPage,
 EntityDirectory, EntityDetail, CRUD/transaction patterns, Feature/Page
 migration, and every subsequent wave remain unopened.

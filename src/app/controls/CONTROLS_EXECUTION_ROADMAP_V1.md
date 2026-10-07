@@ -15,26 +15,26 @@ family. Those decisions remain with the Product Owner and ChatGPT after review.
 
 ## Current exact-reference execution state — 2026-10-07
 
-The Product Owner opened only the bounded Avatar/AvatarPicker large-size
-compatibility correction from
-`478cd171c974ea2ba5f360b3e345597b2ea49d0a`.
-`ERP-AVATAR-PICKER.html`, SHA-256
-`24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`, is the
-single binding AvatarPicker visual and behavioral authority. It supersedes all prior
-AvatarPicker visual references, waivers, and interpretations. Only reference colors and font families are
-translated to Honesty ERP system contracts.
+The Product Owner opened only the strict ErpTabs exact-reference rebuild from
+`f76f63d88ba600381ddab6cc59bb67ce276a22ab`.
+`ERP-TABS.html`, SHA-256
+`CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`, is the
+single binding Tabs visual and behavioral authority. It supersedes the Nexlink
+reference, the accelerated no-reference waiver, and conflicting
+interpretations. Only reference colors and font families are translated to
+Honesty ERP system contracts.
 
-The authoritative contracts are the Avatar and AvatarPicker exact-reference
-contracts. The correction fixes `2xl` and adds responsive `3xl`, `4xl`, and
-`5xl` compatibility for all three supported shapes. The rebuilt candidate
-passes 133/133 test files and 889/889 tests, both typechecks, production build,
-all governance, and zero warnings.
+The authoritative contract is `tabs/ERP_TABS_REFERENCE_EXACT_V1.md`. The
+rebuilt candidate implements the reference variants, anatomy, orientations,
+distribution, panels, motion, responsive behavior, keyboard, and ARIA while
+preserving bounded Stepper and AvatarPicker compatibility. It passes 133/133
+test files and 893/893 tests, both typechecks, production build, all governance,
+and zero warnings.
 
-The exact next action is Product Owner runtime/Light/Dark/RTL/LTR/narrow
-review of large Avatar/AvatarPicker size compatibility at
-`/controls/core-batch`. `ErpSelect`, `ErpStatusBadge`, and every other Core
-owner remain closed to implementation. Browser
-evidence does not claim visual approval. The
+The exact next action is Product Owner runtime/Light/Dark/RTL/LTR/narrow review
+of ErpTabs at `/controls/core-batch`. `ErpSelect`, `ErpStatusBadge`, `ErpAvatar`,
+`ErpAvatarPicker`, and every other Core owner remain closed to implementation.
+Browser evidence does not claim visual approval. The
 Data/Table Visual Correction Wave, DataPage, Entity patterns, Feature/Page
 migration, and every unlisted family remain unopened.
 

@@ -106,6 +106,23 @@ describe('CoreBatch', () => {
         '[data-row-activation-evidence]',
       ).textContent,
     ).toContain('لم يتم تفعيل صف');
+    const tabsEvidence = fixture.nativeElement.querySelector(
+      '.tabs-reference-parity-matrix[data-tabs-reference="ERP-TABS.html"]',
+    ) as HTMLElement;
+    expect(tabsEvidence.querySelector('erp-tabs[data-tabs-variant="underline"]')).not.toBeNull();
+    expect(tabsEvidence.querySelector('erp-tabs[data-tabs-variant="pill"]')).not.toBeNull();
+    expect(tabsEvidence.querySelector('erp-tabs[data-tabs-variant="solid"]')).not.toBeNull();
+    expect(tabsEvidence.querySelector('erp-tabs[data-tabs-variant="ghost"]')).not.toBeNull();
+    expect(tabsEvidence.querySelectorAll(
+      'erp-tabs[data-tabs-orientation="vertical"]:not([data-tabs-variant="pills"])',
+    ))
+      .toHaveLength(2);
+    expect(tabsEvidence.querySelector('erp-tabs[data-tabs-distribution="fill"]')).not.toBeNull();
+    expect(tabsEvidence.querySelector('erp-tabs[data-tabs-variant="ghost"] erp-avatar'))
+      .not.toBeNull();
+    expect(tabsEvidence.querySelector('erp-tabs[data-tabs-variant="pills"]')).not.toBeNull();
+    expect(tabsEvidence.querySelector('[data-tabs-direction-evidence="rtl"]')).not.toBeNull();
+    expect(tabsEvidence.querySelector('[data-tabs-direction-evidence="ltr"]')).not.toBeNull();
   });
 
   it('exposes controlled StatusBadge selection and independent remove evidence', () => {

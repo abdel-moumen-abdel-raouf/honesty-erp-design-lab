@@ -8,27 +8,26 @@ It records Product Owner decisions, externally reviewed Git state, execution bou
 
 ## Authoritative current review transition — 2026-10-07
 
-The Product Owner opened only the bounded Avatar/AvatarPicker large-size
-compatibility correction from
-`478cd171c974ea2ba5f360b3e345597b2ea49d0a`. Resolve the final implementation
+The Product Owner opened only the strict ErpTabs exact-reference rebuild from
+`f76f63d88ba600381ddab6cc59bb67ce276a22ab`. Resolve the final implementation
 SHA directly from live Git.
 
-`ERP-AVATAR-PICKER.html`, SHA-256
-`24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`, is the
-single binding AvatarPicker visual and behavioral authority. It supersedes all
-previous AvatarPicker references, waivers, and conflicting visual interpretations.
-Only palette and font-family values map to
-Honesty ERP system contracts. The authoritative implementation contract is
-`avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`. The correction fixes
-`2xl` and adds responsive `3xl`, `4xl`, and `5xl` compatibility for `circle`,
-`rounded`, and `square`. Its technical gate passes 133/133 test files and
-889/889 tests, all governance, both typechecks, production
+`ERP-TABS.html`, SHA-256
+`CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`, is the
+single binding Tabs visual and behavioral authority. It supersedes the Nexlink
+reference, the accelerated no-reference waiver, and conflicting visual
+interpretations. Only palette and font-family values map to Honesty ERP system
+contracts. The authoritative implementation contract is
+`tabs/ERP_TABS_REFERENCE_EXACT_V1.md`. The rebuild implements reference
+variants, anatomy, orientations, distribution, panels, motion, responsive
+behavior, keyboard, and ARIA. Its technical gate passes 133/133 test files and
+893/893 tests, all governance, both typechecks, production
 build, and zero warnings.
 
 The exact next gate is Product Owner runtime/Light/Dark/RTL/LTR/narrow review of
-large Avatar/AvatarPicker size compatibility at `/controls/core-batch`.
-`ErpSelect`, `ErpStatusBadge`, and every other Core owner remain closed to
-implementation. Browser runtime evidence does not claim visual approval. The
+ErpTabs at `/controls/core-batch`. `ErpSelect`, `ErpStatusBadge`, `ErpAvatar`,
+`ErpAvatarPicker`, and every other Core owner remain closed to implementation.
+Browser runtime evidence does not claim visual approval. The
 Data/Table Visual Correction Wave and every later implementation wave remain
 unopened. Technical PASS never equals visual approval.
 
