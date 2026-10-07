@@ -32,6 +32,7 @@ export type ErpTableOverflow = 'wrap' | 'ellipsis' | 'clip';
 export type ErpTableDigitSet = 'system' | DigitSet;
 export type ErpTableDensity = 'compact' | 'normal' | 'comfortable';
 export type ErpTableLayout = 'horizontal' | 'vertical';
+export type ErpTablePresentation = 'standalone' | 'reference-experience';
 
 export interface ErpTableColumn {
   readonly key: string;
@@ -118,6 +119,7 @@ export class ErpTableFooter {
     '[attr.data-table-compact]': 'compact()',
     '[attr.data-table-density]': 'effectiveDensity()',
     '[attr.data-table-layout]': 'layout()',
+    '[attr.data-table-presentation]': 'presentation()',
     '[attr.data-table-fixed]': 'fixedHeight() !== null',
     '[attr.data-table-selectable]': 'selectable()',
     '[attr.data-table-striped]': 'striped()',
@@ -137,6 +139,7 @@ export class ErpTable implements OnDestroy {
   readonly compact = input(false, {transform: booleanAttribute});
   readonly density = input<ErpTableDensity>('normal');
   readonly layout = input<ErpTableLayout>('horizontal');
+  readonly presentation = input<ErpTablePresentation>('standalone');
   readonly fixedHeight = input<number | null>(null);
   readonly selectable = input(false, {transform: booleanAttribute});
   readonly showHeaderSelection = input(true, {transform: booleanAttribute});

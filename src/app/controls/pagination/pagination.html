@@ -1,3 +1,41 @@
+@if (presentation() === 'table-reference') {
+  <div class="pagination__summary pagination__summary--table-reference">
+    <erp-text type="caption" tone="secondary">
+      عرض {{ visibleItems() ?? totalItems() ?? 0 }} من {{ totalItems() ?? visibleItems() ?? 0 }}
+      @if (selectedItems() > 0) { · {{ selectedItems() }} محدد }
+    </erp-text>
+  </div>
+  <div class="pagination__controls pagination__controls--table-reference" aria-label="التنقل بين الصفحات">
+    <erp-icon-button
+      icon="chevron-start"
+      label="الصفحة السابقة"
+      variant="outline"
+      size="sm"
+      presentation="table-reference-page"
+      [disabled]="effectivePage() <= 1"
+      (pressed)="go(effectivePage() - 1)"
+    />
+    @for (candidate of visiblePages(); track candidate) {
+      <erp-button
+        [label]="candidate.toString()"
+        [variant]="candidate === effectivePage() ? 'solid' : 'outline'"
+        tone="neutral"
+        size="sm"
+        presentation="table-reference-page"
+        (pressed)="go(candidate)"
+      />
+    }
+    <erp-icon-button
+      icon="chevron-end"
+      label="الصفحة التالية"
+      variant="outline"
+      size="sm"
+      presentation="table-reference-page"
+      [disabled]="effectivePage() >= effectivePageCount()"
+      (pressed)="go(effectivePage() + 1)"
+    />
+  </div>
+} @else {
 @if (showSummary()) {
   <div class="pagination__summary">
     <erp-text type="caption" tone="secondary">
@@ -42,4 +80,5 @@
       [ngModelOptions]="{standalone: true}"
     />
   </erp-inline>
+}
 }

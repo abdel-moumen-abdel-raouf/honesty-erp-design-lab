@@ -1,28 +1,29 @@
 # Honesty ERP Design Lab — Codex Instructions
 
-## Current Product Owner ErpTable Exact Reference State
+## Current Product Owner ERP-TABLE Full Reference Experience State
 
-The current two-phase task entered from
-`0add01a6d342d8056ce026ba9c0d7015faff1c7f`. Phase A is commit `a5b272c` and
-Arabicizes primary ErpTabs review evidence under RTL while retaining separate
-LTR compatibility evidence; it changes no exact Tabs geometry token.
+The Product Owner rejected
+`eddac4a8e8a3460f346bb579fdd5ca0074296e7a` because the prior Table candidate
+omitted visible owners from the binding reference and retained known geometry
+deltas. That checkpoint is not a successful visual result.
 
 `C:\Users\Misrtech\Downloads\ERP-TABLE.html`, SHA-256
-`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`, is the
-single binding visual and behavioral authority for `ErpTable`. It supersedes
-the accelerated Table visual interpretation. Only Honesty colors, system font
-families, invisible accessibility semantics, reduced motion, and ERP component
-hierarchy may differ. The contract is
-`src/app/controls/table/ERP_TABLE_REFERENCE_EXACT_V1.md`.
+`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`, remains
+the single authority. The current contract is
+`src/app/controls/table/ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md`; its rule is
+that separate ownership never permits visible reference evidence to be skipped.
 
-ErpTable retains native table semantics and composes `ErpText`, `ErpCheckBox`,
-`ErpSortHeader`, `ErpTableResizeHandle`, and projected ERP cells. Selection and
-activation remain independent. Higher Data/Table composition stays outside
-base Table. The candidate passes 133/133 files and 897/897 tests; final
-canonical verification passes all lint/governance, both typechecks, production
-build, and zero warnings. Runtime evidence does not declare visual acceptance.
-The current gate is Product Owner review of
-ErpTable at `/controls/core-batch`; no later Data/Table wave is opened.
+The exact review experience composes `ErpTableToolbar`, `ErpSearchBox`,
+`ErpColumnChooser`, `ErpTable`, and `ErpPagination`. Base Table retains native
+table semantics and composes `ErpText`, `ErpCheckBox`, `ErpSortHeader`,
+`ErpTableResizeHandle`, and projected ERP cells. Selection and activation remain
+independent. Canonical verification passes 134/134 files and 904/904 tests,
+all lint/governance, both typechecks, production build, and zero warnings.
+Runtime evidence records 0 px geometry delta across all six specimens and no
+390 px page overflow. This is technical evidence, not Product Owner approval.
+
+The current gate is Product Owner review of the full experience at
+`/controls/core-batch`. No later Data/Table wave or visual owner is opened.
 
 ## Working Scope
 

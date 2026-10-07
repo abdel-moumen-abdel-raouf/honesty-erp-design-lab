@@ -15,6 +15,8 @@
   --honesty-button-border-width: 0;
   --honesty-button-border-style: var(--honesty-border-style-default);
   --honesty-button-height: #{spacing.$honesty-ref-space-40};
+  --honesty-button-min-inline-size: 0;
+  --honesty-button-padding-block: 0;
   --honesty-button-padding-inline: #{spacing.$honesty-ref-space-16};
   --honesty-button-gap: #{spacing.$honesty-ref-space-8};
   --honesty-button-radius: var(--honesty-radius-control);
@@ -42,6 +44,43 @@
   --honesty-button-cursor: pointer;
   --honesty-button-transition-duration: var(--honesty-motion-duration-default);
   --honesty-button-transition-easing: var(--honesty-motion-easing-standard);
+}
+
+@mixin presentation-table-reference-tool {
+  --honesty-button-height: 29px;
+  --honesty-button-min-inline-size: 0;
+  --honesty-button-padding-block: 6px;
+  --honesty-button-padding-inline: 12px;
+  --honesty-button-gap: 8px;
+  --honesty-button-radius: 6px;
+  --honesty-button-font-size: 12px;
+  --honesty-button-font-weight: 500;
+  --honesty-button-line-height: normal;
+  --honesty-button-icon-size: 14px;
+}
+
+@mixin presentation-table-reference-page {
+  --honesty-button-height: 30px;
+  --honesty-button-min-inline-size: 30px;
+  --honesty-button-padding-inline: 8px;
+  --honesty-button-gap: 0;
+  --honesty-button-radius: 6px;
+  --honesty-button-font-size: 12px;
+  --honesty-button-font-weight: 500;
+  --honesty-button-line-height: normal;
+  --honesty-button-icon-size: 12px;
+}
+
+@mixin presentation-table-reference-cell {
+  --honesty-button-height: 28px;
+  --honesty-button-min-inline-size: 0;
+  --honesty-button-padding-inline: 12px;
+  --honesty-button-gap: 6px;
+  --honesty-button-radius: 6px;
+  --honesty-button-font-size: 12px;
+  --honesty-button-font-weight: 500;
+  --honesty-button-line-height: normal;
+  --honesty-button-icon-size: 14px;
 }
 
 @mixin size-sm {

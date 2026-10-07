@@ -21,6 +21,11 @@ import {
 } from '../button-family/button-contracts';
 import {PressRippleController} from '../button-family/internal/press-ripple';
 
+export type ErpIconButtonPresentation =
+  | 'default'
+  | 'table-reference-cell'
+  | 'table-reference-page';
+
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -37,6 +42,7 @@ import {PressRippleController} from '../button-family/internal/press-ripple';
     '[attr.data-icon-button-state]': 'state()',
     '[attr.data-icon-button-cursor]': 'cursor()',
     '[attr.data-icon-button-ripple-speed]': 'rippleSpeed()',
+    '[attr.data-icon-button-presentation]': 'presentation()',
   },
 })
 export class ErpIconButton {
@@ -58,6 +64,7 @@ export class ErpIconButton {
   readonly loading = input(false, {transform: booleanAttribute});
   readonly cursor = input<ErpPressableCursor>('pointer');
   readonly rippleSpeed = input<ErpRippleSpeed>('normal');
+  readonly presentation = input<ErpIconButtonPresentation>('default');
   readonly pressed = output<void>();
 
   private readonly ripple = new PressRippleController();

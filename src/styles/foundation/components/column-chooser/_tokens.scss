@@ -1,3 +1,22 @@
 @mixin base {
   --honesty-column-chooser-gap: var(--honesty-space-inline-default);
+  --honesty-column-chooser-reference-bg: var(--honesty-color-surface-elevated);
+  --honesty-column-chooser-reference-fg: var(--honesty-color-text-primary);
+  --honesty-column-chooser-reference-border-color: var(--honesty-border-default);
+  --honesty-column-chooser-reference-hover-bg: var(--honesty-color-surface-hover);
+  --honesty-column-chooser-reference-shadow: var(--honesty-elevation-overlay);
+  --honesty-column-chooser-reference-layer: var(--honesty-layer-overlay);
+  --honesty-column-chooser-reference-width: 240px;
+  --honesty-column-chooser-reference-max-height: 340px;
+  --honesty-column-chooser-reference-padding: 8px;
+  --honesty-column-chooser-reference-border-width: 1px;
+  --honesty-column-chooser-reference-radius: 8px;
+  --honesty-column-chooser-reference-title-margin: 4px;
+  --honesty-column-chooser-reference-title-padding: 4px 8px 8px;
+  --honesty-column-chooser-reference-title-font-size: 10px;
+  --honesty-column-chooser-reference-title-line-height: 12px;
+  --honesty-column-chooser-reference-item-height: 32px;
+  --honesty-column-chooser-reference-item-padding: 8px;
+  --honesty-column-chooser-reference-item-radius: 6px;
+  --honesty-column-chooser-reference-item-font-size: 12px;
 }

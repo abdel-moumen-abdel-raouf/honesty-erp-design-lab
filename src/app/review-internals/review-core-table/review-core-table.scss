@@ -8,8 +8,27 @@
   gap: 4px;
 }
 
-.table-review__specimen erp-table { margin-block-start: 12px; }
+.table-review__specimen > erp-table { margin-block-start: 12px; }
 .table-review--compatibility { margin-block-start: 32px; }
+
+.table-review__reference-frame {
+  overflow: hidden;
+  margin-block-start: 12px;
+  border: 1px solid var(--honesty-border-subtle);
+  border-radius: 12px;
+  background: var(--honesty-color-surface-default);
+  box-shadow: var(--honesty-elevation-raised);
+}
+
+.table-review__photo-cell,
+.table-review__money {
+  align-items: center;
+  min-inline-size: 0;
+}
+
+.table-review__photo-cell { display: flex; gap: 10px; }
+.table-review__money { display: inline-flex; gap: 3px; }
+.table-review__money { min-block-size: 17px; }
 
 .table-review__identity {
   display: grid;

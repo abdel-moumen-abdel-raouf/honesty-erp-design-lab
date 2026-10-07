@@ -1,4 +1,7 @@
-@if (mode() === 'inline' && presentation() === 'select-panel') {
+@if (
+  mode() === 'inline' &&
+  (presentation() === 'select-panel' || presentation() === 'table-reference')
+) {
   <span class="search-box__select-panel-editor">
     @if (effectiveLeadingIcon()) {
       <erp-icon

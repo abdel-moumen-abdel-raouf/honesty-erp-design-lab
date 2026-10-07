@@ -1,31 +1,36 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
-## Authoritative current handoff — 2026-10-07 — ErpTable exact-reference candidate
+## Authoritative current handoff — 2026-10-08 — full ERP-TABLE reference experience
 
-Start from live `main`; the two-phase work entered from
-`0add01a6d342d8056ce026ba9c0d7015faff1c7f`. Phase A is commit `a5b272c`:
-primary Tabs review content is Arabic/RTL and LTR compatibility remains, with no
-Tabs geometry-token change.
+Start from live `main`. The Product Owner rejected
+`eddac4a8e8a3460f346bb579fdd5ca0074296e7a` because the earlier candidate
+excluded visible reference features owned outside base Table and retained known
+geometry deltas. Do not describe that checkpoint as visually successful.
 
-`C:\Users\Misrtech\Downloads\ERP-TABLE.html`, SHA-256
-`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`, is the
-single binding ErpTable visual/behavioral authority. The contract is
-`src/app/controls/table/ERP_TABLE_REFERENCE_EXACT_V1.md`. The candidate retains
-native table semantics and composes approved CheckBox, SortHeader, resize,
-text, and projected rich-cell owners. Higher Data/Table owners remain separate.
+`ERP-TABLE.html`, SHA-256
+`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`, remains
+the sole authority. Read
+`src/app/controls/table/ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md` and
+`docs/review-evidence/erp-table/ERP_TABLE_RUNTIME_EVIDENCE.md`.
 
-Canonical verification passes all lint/governance gates, 133/133 test files and
-897/897 tests, both typechecks, production build, and zero warnings. Initial
-bundle is 376.16 kB / 85.69 kB estimated transfer; Core Batch is 148.92 kB /
-23.72 kB estimated transfer. Requested Core/Data governance self-tests also
-pass. Runtime evidence covers Light/Dark, RTL/LTR,
-wide and narrow internal scrolling without page overflow. This is evidence
-only, never visual approval.
+The current exact experience composes `ErpTableToolbar`, `ErpSearchBox`,
+`ErpColumnChooser`, `ErpTable`, and `ErpPagination`; it does not collapse their
+ownership into base Table. Base Table still reuses CheckBox, SortHeader,
+TableResizeHandle, Text, and keyed rich-cell owners. Search, column visibility,
+selection, sorting, resizing, footer counter, and pagination are live.
 
-The exact next action is Product Owner review of ErpTable at
-`/controls/core-batch`. Do not begin SmartTable, ColumnChooser, FilterBar,
-FilterDrawer, TableToolbar, BulkActionBar, ViewSwitcher, or a later Data/Table
-visual correction without new authorization.
+Canonical verification passes all lint/governance gates, 134/134 test files,
+904/904 tests, both typechecks, production build, and zero warnings. Initial
+bundle is 376.16 kB / 85.65 kB; Core Batch is 160.50 kB / 25.32 kB estimated
+transfer. Runtime comparison records 0 px delta across all six specimen boxes,
+Light/Dark geometry invariance, primary RTL plus LTR evidence, and no 390 px
+page overflow.
+
+The exact next action is Product Owner visual/runtime review of the full
+ERP-TABLE experience at `/controls/core-batch`. This bounded compatibility
+composition does not open a Data/Table wave or authorize redesign of
+ColumnChooser, FilterBar, FilterDrawer, TableToolbar, BulkActionBar,
+ViewSwitcher, SmartTable, or any later owner.
 
 ## Historical ErpTabs-only handoff — superseded 2026-10-07
 

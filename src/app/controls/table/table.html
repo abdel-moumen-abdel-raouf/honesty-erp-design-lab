@@ -3,6 +3,7 @@
   [density]="effectiveDensity()"
   [fixedHeight]="fixedHeight()"
   [vertical]="layout() === 'vertical'"
+  [presentation]="presentation()"
 >
   <table class="table">
     <caption>
@@ -39,11 +40,12 @@
             scope="col"
             [class.sortable]="column.sortable"
             [attr.data-sorted]="sortDirection(column) === 'none' ? null : sortDirection(column)"
+            [attr.data-header-icon]="column.headerIcon ? 'true' : null"
             [attr.data-align]="column.headerAlign ?? column.align ?? 'start'"
           >
             <span class="content">
               @if (column.headerIcon) {
-                <erp-icon [name]="column.headerIcon" size="sm" tone="inherit" />
+                <erp-icon [name]="column.headerIcon" size="inherit" tone="inherit" />
               }
               @if (column.sortable) {
                 <erp-sort-header
@@ -148,14 +150,12 @@
       } @empty {
         <tr>
           <td [attr.colspan]="effectiveColumns().length + (selectable() ? 1 : 0)">
-            <erp-text
-              class="empty"
-              type="paragraph"
-              tone="secondary"
-              align="center"
-            >
-              {{ emptyText() }}
-            </erp-text>
+            <span class="empty">
+              <erp-icon name="menu" size="2xl" tone="muted" aria-hidden="true" />
+              <erp-text type="paragraph" tone="secondary" align="center">
+                {{ emptyText() }}
+              </erp-text>
+            </span>
           </td>
         </tr>
       }

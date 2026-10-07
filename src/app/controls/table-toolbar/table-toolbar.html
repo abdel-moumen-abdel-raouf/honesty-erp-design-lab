@@ -1,4 +1,6 @@
-<erp-text class="table-toolbar__label" type="strong" weight="bold">{{ label() }}</erp-text>
+@if (presentation() !== 'table-reference') {
+  <erp-text class="table-toolbar__label" type="strong" weight="bold">{{ label() }}</erp-text>
+}
 <div class="table-toolbar__search"><ng-content select="[erpTableToolbarSearch]" /></div>
 <div class="table-toolbar__filters"><ng-content select="[erpTableToolbarFilters]" /></div>
 <div class="table-toolbar__columns"><ng-content select="[erpTableToolbarColumns]" /></div>

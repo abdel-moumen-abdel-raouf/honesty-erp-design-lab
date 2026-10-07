@@ -1,1 +1,14 @@
-@mixin base { --honesty-pagination-gap: var(--honesty-space-stack-default); --honesty-pagination-control-gap: var(--honesty-space-inline-tight); --honesty-pagination-size-width: 12rem; }
+@mixin base {
+  --honesty-pagination-gap: var(--honesty-space-stack-default);
+  --honesty-pagination-control-gap: var(--honesty-space-inline-tight);
+  --honesty-pagination-size-width: 12rem;
+  --honesty-pagination-reference-bg: var(--honesty-color-surface-canvas);
+  --honesty-pagination-reference-border-color: var(--honesty-border-subtle);
+  --honesty-pagination-reference-padding: 12px 16px;
+  --honesty-pagination-reference-border-width: 1px;
+  --honesty-pagination-reference-control-gap: 4px;
+}
+
+@mixin presentation-table-reference {
+  --honesty-pagination-gap: 12px;
+}

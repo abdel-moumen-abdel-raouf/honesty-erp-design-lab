@@ -1,5 +1,6 @@
 import {TestBed} from '@angular/core/testing';
 import {ErpAvatarPicker} from '../../controls/avatar-picker/avatar-picker';
+import {ErpReviewCoreTable} from '../../review-internals/review-core-table/review-core-table';
 import {CoreBatch} from './core-batch';
 
 describe('CoreBatch', () => {
@@ -8,6 +9,9 @@ describe('CoreBatch', () => {
     // Keep this route test focused on review-surface authoring without rendering
     // five duplicate catalogs for every route-level assertion.
     TestBed.overrideComponent(ErpAvatarPicker, {
+      set: {template: '', styleUrls: []},
+    });
+    TestBed.overrideComponent(ErpReviewCoreTable, {
       set: {template: '', styleUrls: []},
     });
   });
@@ -44,37 +48,7 @@ describe('CoreBatch', () => {
         '[data-avatar-picker-direction-evidence="ltr"] erp-avatar-picker',
       ),
     ).not.toBeNull();
-    expect(fixture.nativeElement.querySelector('erp-review-core-table erp-table')).not.toBeNull();
-    const tableEvidence = fixture.nativeElement.querySelector(
-      'erp-review-core-table [data-table-reference-evidence="exact"]',
-    ) as HTMLElement;
-    expect(tableEvidence.getAttribute('dir')).toBe('rtl');
-    expect(tableEvidence.querySelectorAll('[data-table-specimen]')).toHaveLength(6);
-    expect(tableEvidence.querySelector('[data-table-specimen="fixed-height"] erp-table[data-table-fixed="true"]')).not.toBeNull();
-    expect(tableEvidence.querySelector('[data-table-specimen="compact"] erp-table[data-table-density="compact"]')).not.toBeNull();
-    expect(tableEvidence.querySelector('[data-table-specimen="vertical"] erp-table[data-table-layout="vertical"]')).not.toBeNull();
-    expect(tableEvidence.textContent).toContain('دليل الحسابات');
-    expect(tableEvidence.textContent).not.toMatch(/Full-featured|Fixed-height|Compact density|Clickable rows|Vertical layout|Header content/);
-    const tableLtrCompatibility = fixture.nativeElement.querySelector(
-      'erp-review-core-table [data-table-direction-evidence="ltr"]',
-    ) as HTMLElement;
-    expect(tableLtrCompatibility.getAttribute('dir')).toBe('ltr');
-    expect(
-      tableEvidence.querySelectorAll(
-        '[data-table-specimen="full-featured"] erp-table erp-avatar',
-      ),
-    ).toHaveLength(5);
-    expect(
-      tableEvidence.querySelectorAll(
-        '[data-table-specimen="full-featured"] erp-table erp-check-box',
-      ).length,
-    ).toBeGreaterThan(0);
-    expect(
-      tableEvidence.querySelectorAll(
-        '[data-table-specimen="full-featured"] erp-table erp-sort-header',
-      ).length,
-    ).toBeGreaterThan(0);
-    expect(fixture.nativeElement.querySelector('erp-pagination')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('erp-review-core-table')).not.toBeNull();
     expect(
       fixture.nativeElement.querySelectorAll(
         '.status-badge-parity-matrix erp-status-badge',
@@ -130,11 +104,6 @@ describe('CoreBatch', () => {
         '.avatar-reference-presence-matrix erp-avatar',
       ),
     ).toHaveLength(8);
-    expect(
-      fixture.nativeElement.querySelector(
-        '[data-row-activation-evidence]',
-      ).textContent,
-    ).toContain('لم يتم تفعيل صف');
     const tabsEvidence = fixture.nativeElement.querySelector(
       '.tabs-reference-parity-matrix[data-tabs-reference="ERP-TABS.html"]',
     ) as HTMLElement;

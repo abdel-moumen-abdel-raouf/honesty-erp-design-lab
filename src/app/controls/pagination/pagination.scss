@@ -4,4 +4,21 @@
 .pagination__controls { display: flex; align-items: center; gap: var(--honesty-pagination-control-gap); overflow-x: auto; }
 .pagination__size-row { min-inline-size: max-content; }
 .pagination__size { inline-size: var(--honesty-pagination-size-width); }
+
+:host([data-pagination-presentation='table-reference']) {
+  @include tokens.presentation-table-reference;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: var(--honesty-pagination-reference-padding);
+  border-block-start: var(--honesty-pagination-reference-border-width) solid
+    var(--honesty-pagination-reference-border-color);
+  background: var(--honesty-pagination-reference-bg);
+}
+
+.pagination__controls--table-reference {
+  gap: var(--honesty-pagination-reference-control-gap);
+  overflow: visible;
+}
+
 @include query.viewport-down('sm') { :host { grid-template-columns: 1fr; } .pagination__controls { justify-content: start; } }

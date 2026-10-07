@@ -61,6 +61,7 @@ export type ErpAvatarPresenceMotion =
   | 'breathe';
 export type ErpAvatarHoverMotion = 'none' | 'scale' | 'lift';
 export type ErpAvatarCursor = 'default' | 'pointer';
+export type ErpAvatarPresentation = 'default' | 'table-reference-photo';
 
 const PRESENCE_LABELS: Readonly<Record<ErpAvatarPresence, string>> = {
   online: 'متصل',
@@ -93,6 +94,7 @@ const PRESENCE_LABELS: Readonly<Record<ErpAvatarPresence, string>> = {
     '[attr.data-avatar-presence-motion]': 'presenceMotion()',
     '[attr.data-avatar-hover-motion]': 'hoverMotion()',
     '[attr.data-avatar-cursor]': 'cursor()',
+    '[attr.data-avatar-presentation]': 'presentation()',
     '[attr.role]': "interactive() ? null : 'img'",
     '[attr.aria-label]': 'interactive() ? null : accessibleLabel()',
   },
@@ -115,6 +117,7 @@ export class ErpAvatar {
   readonly presenceMotion = input<ErpAvatarPresenceMotion>('none');
   readonly hoverMotion = input<ErpAvatarHoverMotion>('none');
   readonly cursor = input<ErpAvatarCursor>('default');
+  readonly presentation = input<ErpAvatarPresentation>('default');
   readonly avatarClick = output<MouseEvent>();
 
   private readonly failedSrc = signal<string | null>(null);

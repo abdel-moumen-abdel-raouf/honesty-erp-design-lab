@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {ErpAvatar} from '../../controls/avatar/avatar';
 import {ErpCheckBox} from '../../controls/check-box/check-box';
@@ -6,6 +6,8 @@ import {ErpColumnChooser} from '../../controls/column-chooser/column-chooser';
 import {ErpDataColumn} from '../../controls/data-table/data-table-contracts';
 import {ErpIconButton} from '../../controls/icon-button/icon-button';
 import {ErpStatusBadge} from '../../controls/status-badge/status-badge';
+import {ErpPagination} from '../../controls/pagination/pagination';
+import {ErpSearchBox} from '../../controls/search-box/search-box';
 import {
   ErpTable,
   ErpTableCell,
@@ -14,6 +16,7 @@ import {
   ErpTableSort,
 } from '../../controls/table/table';
 import {ErpTooltip} from '../../controls/tooltip/tooltip';
+import {ErpTableToolbar} from '../../controls/table-toolbar/table-toolbar';
 import {ErpInline} from '../../primitives/inline/inline';
 import {ErpText} from '../../primitives/text/text';
 
@@ -27,9 +30,12 @@ import {ErpText} from '../../primitives/text/text';
     ErpColumnChooser,
     ErpIconButton,
     ErpInline,
+    ErpPagination,
+    ErpSearchBox,
     ErpStatusBadge,
     ErpTable,
     ErpTableCell,
+    ErpTableToolbar,
     ErpText,
     ErpTooltip,
     FormsModule,
@@ -38,7 +44,9 @@ import {ErpText} from '../../primitives/text/text';
   styleUrl: './review-core-table.scss',
 })
 export class ErpReviewCoreTable {
-  readonly selectedRows = signal<readonly string[]>(['2']);
+  readonly referenceQuery = signal('');
+  readonly referencePage = signal(1);
+  readonly selectedRows = signal<readonly string[]>(['employee-2']);
   readonly rowActivatable = signal(false);
   readonly striped = signal(true);
   readonly hoverMotion = signal(true);
@@ -57,6 +65,15 @@ export class ErpReviewCoreTable {
     'iconAction',
   ]);
   readonly columnWidths = signal<Readonly<Record<string, number>>>({});
+  readonly visibleReferenceKeys = signal<readonly string[]>([
+    'employee',
+    'department',
+    'role',
+    'salary',
+    'joinedAt',
+    'status',
+    'actions',
+  ]);
 
   readonly columns: readonly ErpTableColumn[] = [
     {
@@ -131,6 +148,14 @@ export class ErpReviewCoreTable {
     key: column.key,
     label: column.header,
   }));
+  readonly referenceChooserColumns: readonly ErpDataColumn[] = this.referenceColumns.map(
+    (column) => ({
+      key: column.key,
+      label: column.header,
+      required: column.key === 'actions',
+      hideable: column.key !== 'actions',
+    }),
+  );
 
   readonly rows: readonly ErpTableRow[] = [
     {
@@ -244,7 +269,92 @@ export class ErpReviewCoreTable {
       status: 'قيد المراجعة',
       actions: 'open',
     },
+    {
+      id: 'employee-6',
+      employee: 'طارق عزيز',
+      employeePhoto: '/assets/honesty-erp-avatars/users/male/avatar-03.png',
+      employeeCode: 'EMP-1201',
+      department: 'الأمان',
+      role: 'محلل أمان',
+      salary: '13200.00',
+      joinedAt: '2024-10-11',
+      status: 'موقوف',
+      actions: 'open',
+    },
+    {
+      id: 'employee-7',
+      employee: 'هناء صلاح',
+      employeePhoto: '/assets/honesty-erp-avatars/users/female/avatar-24.png',
+      employeeCode: 'EMP-1225',
+      department: 'المبيعات',
+      role: 'مسؤولة حسابات',
+      salary: '11900.00',
+      joinedAt: '2025-01-06',
+      status: 'نشط',
+      actions: 'open',
+    },
+    {
+      id: 'employee-8',
+      employee: 'محمود كمال',
+      employeePhoto: '/assets/honesty-erp-avatars/users/male/avatar-04.png',
+      employeeCode: 'EMP-1249',
+      department: 'المالية',
+      role: 'محاسب',
+      salary: '10800.00',
+      joinedAt: '2025-03-19',
+      status: 'نشط',
+      actions: 'open',
+    },
+    {
+      id: 'employee-9',
+      employee: 'سارة جابر',
+      employeePhoto: '/assets/honesty-erp-avatars/users/female/avatar-25.png',
+      employeeCode: 'EMP-1274',
+      department: 'التقنية',
+      role: 'مهندسة جودة',
+      salary: '12800.00',
+      joinedAt: '2025-05-27',
+      status: 'تجربة',
+      actions: 'open',
+    },
+    {
+      id: 'employee-10',
+      employee: 'فيصل أنور',
+      employeePhoto: '/assets/honesty-erp-avatars/users/male/avatar-05.png',
+      employeeCode: 'EMP-1302',
+      department: 'الخدمات اللوجستية',
+      role: 'سائق',
+      salary: '8600.00',
+      joinedAt: '2025-07-14',
+      status: 'نشط',
+      actions: 'open',
+    },
   ];
+
+  readonly filteredReferenceRows = computed(() => {
+    const query = this.referenceQuery().trim().toLocaleLowerCase();
+    const matchingRows = query
+      ? this.referenceEmployeeRows.filter((row) =>
+          Object.values(row).some((value) =>
+            String(value ?? '').toLocaleLowerCase().includes(query),
+          ),
+        )
+      : this.referenceEmployeeRows;
+    const sort = this.tableSort();
+    if (!sort) return matchingRows;
+
+    const direction = sort.direction === 'ascending' ? 1 : -1;
+    return [...matchingRows].sort((left, right) => {
+      const leftValue = left[sort.key];
+      const rightValue = right[sort.key];
+      const leftNumber = Number(leftValue);
+      const rightNumber = Number(rightValue);
+      if (Number.isFinite(leftNumber) && Number.isFinite(rightNumber)) {
+        return (leftNumber - rightNumber) * direction;
+      }
+      return String(leftValue ?? '').localeCompare(String(rightValue ?? ''), 'ar') * direction;
+    });
+  });
 
   readonly plainColumns: readonly ErpTableColumn[] = [
     {key: 'code', header: 'رقم الحساب', sortable: true, resizable: true, digitSet: 'latin', initialWidth: 130},
@@ -256,25 +366,36 @@ export class ErpReviewCoreTable {
   ];
 
   readonly headerTypeColumns: readonly ErpTableColumn[] = [
-    {key: 'account', header: 'الحساب', headerIcon: 'wallet', resizable: true, minWidth: 240},
-    {key: 'balanceArabic', header: 'الرصيد', headerIcon: 'money', sortable: true, resizable: true, align: 'end', initialWidth: 180},
-    {key: 'branch', header: 'الفرع', headerIcon: 'inventory', resizable: true, align: 'center', initialWidth: 180},
-    {key: 'updatedAt', header: 'آخر تحديث', headerIcon: 'calendar', resizable: true, align: 'end', initialWidth: 180},
+    {key: 'id', header: '#', headerIcon: 'file', sortable: true, resizable: true, initialWidth: 150},
+    {key: 'customer', header: 'العميل', headerIcon: 'people', sortable: true, resizable: true, initialWidth: 220},
+    {key: 'items', header: 'العناصر', headerIcon: 'inventory', sortable: true, resizable: true, align: 'end', initialWidth: 110},
+    {key: 'amount', header: 'القيمة', headerIcon: 'money', sortable: true, resizable: true, align: 'end', initialWidth: 180},
+    {key: 'date', header: 'التاريخ', headerIcon: 'calendar', sortable: true, resizable: true, align: 'center', initialWidth: 150},
+    {key: 'status', header: 'الحالة', resizable: true, align: 'center', initialWidth: 150},
   ];
+  readonly headerChooserColumns: readonly ErpDataColumn[] = this.headerTypeColumns.map(
+    (column) => ({key: column.key, label: column.header}),
+  );
+  readonly headerColumnKeys = this.headerTypeColumns.map((column) => column.key);
 
   readonly compactColumns: readonly ErpTableColumn[] = [
-    {key: 'code', header: 'رقم الحساب', sortable: true, resizable: true, digitSet: 'latin', initialWidth: 130},
-    {key: 'account', header: 'اسم الحساب', sortable: true, resizable: true, minWidth: 230},
-    {key: 'balanceArabic', header: 'الرصيد', sortable: true, resizable: true, digitSet: 'arabic-indic', align: 'end', initialWidth: 160},
-    {key: 'status', header: 'الحالة', resizable: true, align: 'center', initialWidth: 130},
-    {key: 'branch', header: 'الفرع', resizable: true, initialWidth: 160},
-    {key: 'updatedAt', header: 'آخر تحديث', resizable: true, digitSet: 'arabic-indic', initialWidth: 150},
+    {key: 'id', header: '#', sortable: true, resizable: true, digitSet: 'latin', align: 'end', initialWidth: 80},
+    {key: 'customer', header: 'العميل', sortable: true, resizable: true, initialWidth: 200},
+    {key: 'items', header: 'العناصر', sortable: true, resizable: true, digitSet: 'latin', align: 'end', initialWidth: 90},
+    {key: 'amount', header: 'القيمة', sortable: true, resizable: true, digitSet: 'latin', align: 'end', initialWidth: 160},
+    {key: 'date', header: 'التاريخ', sortable: true, resizable: true, align: 'center', initialWidth: 130},
+    {key: 'status', header: 'الحالة', sortable: true, resizable: true, align: 'center', initialWidth: 130},
   ];
 
-  readonly verticalColumns: readonly ErpTableColumn[] = [
-    {key: 'employee', header: 'الموظف', initialWidth: 280},
-    ...this.compactColumns.slice(1, 5),
+  readonly clickableColumns: readonly ErpTableColumn[] = [
+    {key: 'id', header: 'الطلب', sortable: true, resizable: true, initialWidth: 130},
+    {key: 'customer', header: 'العميل', sortable: true, resizable: true, initialWidth: 200},
+    {key: 'items', header: 'العناصر', sortable: true, resizable: true, digitSet: 'latin', align: 'end', initialWidth: 90},
+    {key: 'amount', header: 'القيمة', sortable: true, resizable: true, digitSet: 'latin', align: 'end', initialWidth: 170},
+    {key: 'status', header: 'الحالة', align: 'center', initialWidth: 130},
   ];
+
+  readonly verticalColumns: readonly ErpTableColumn[] = this.referenceColumns.slice(0, 6);
 
   readonly referenceRows: readonly ErpTableRow[] = [
     {id: 'r1', code: '1101', account: 'النقدية بالخزينة', description: 'أصل متداول', balanceArabic: '125400.00', status: 'نشط', branch: 'القاهرة', updatedAt: '2026-10-07'},
@@ -285,7 +406,18 @@ export class ErpReviewCoreTable {
     {id: 'r6', code: '5103', account: 'تكلفة المبيعات', description: 'مصروفات النشاط', balanceArabic: '119800.00', status: 'موقوف', branch: 'طنطا', updatedAt: '2026-10-02'},
   ];
 
-  readonly fixedRows: readonly ErpTableRow[] = Array.from({length: 6}, (_, index) => {
+  readonly referenceOrderRows: readonly ErpTableRow[] = [
+    {id: 'SO-20481', customer: 'شركة الأفق', items: 12, amount: '12480.50', date: '2024-03-12', status: 'مدفوع'},
+    {id: 'SO-20482', customer: 'مؤسسة المسار', items: 5, amount: '8420.00', date: '2024-03-13', status: 'معلق'},
+    {id: 'SO-20483', customer: 'إنجاز للتوريد', items: 23, amount: '24100.75', date: '2024-03-14', status: 'مدفوع'},
+    {id: 'SO-20484', customer: 'مجموعة المدى', items: 2, amount: '3100.00', date: '2024-03-15', status: 'متأخر'},
+    {id: 'SO-20485', customer: 'الصرح الصناعي', items: 41, amount: '45600.00', date: '2024-03-16', status: 'مدفوع'},
+    {id: 'SO-20486', customer: 'بيت التجارة', items: 18, amount: '18900.25', date: '2024-03-17', status: 'معلق'},
+    {id: 'SO-20487', customer: 'تقنيات المستقبل', items: 9, amount: '6700.00', date: '2024-03-18', status: 'مدفوع'},
+    {id: 'SO-20488', customer: 'الغذاء المتكامل', items: 3, amount: '2350.00', date: '2024-03-19', status: 'ملغى'},
+  ];
+
+  readonly fixedRows: readonly ErpTableRow[] = Array.from({length: 20}, (_, index) => {
     const source = this.referenceEmployeeRows[index % this.referenceEmployeeRows.length];
     return {...source, id: `fixed-${index + 1}`, employeeCode: `EMP-${1200 + index}`};
   });
@@ -298,18 +430,20 @@ export class ErpReviewCoreTable {
     return String(row['employee'] ?? 'موظف');
   }
 
-  protected statusTone(value: unknown): 'success' | 'warning' | 'neutral' {
-    if (value === 'نشط') {
+  protected statusTone(value: unknown): 'success' | 'warning' | 'danger' | 'info' | 'neutral' {
+    if (value === 'نشط' || value === 'مدفوع') {
       return 'success';
     }
-    if (value === 'إجازة' || value === 'قيد المراجعة') {
+    if (value === 'إجازة' || value === 'قيد المراجعة' || value === 'معلق') {
       return 'warning';
     }
+    if (value === 'موقوف' || value === 'متأخر') return 'danger';
+    if (value === 'تجربة') return 'info';
     return 'neutral';
   }
 
   protected activateRow(row: ErpTableRow): void {
-    this.activatedRowCode.set(String(row['code'] ?? '—'));
+    this.activatedRowCode.set(String(row['id'] ?? row['code'] ?? '—'));
   }
 
   protected resetColumns(): void {

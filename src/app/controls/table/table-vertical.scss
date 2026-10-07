@@ -36,6 +36,11 @@
 
 :host([data-table-layout='vertical']) td:last-child { border-block-end: 0; }
 
+:host([data-table-layout='vertical']) .row:last-child td:not(:last-child) {
+  border-block-end: var(--honesty-table-border-width) dashed
+    var(--honesty-table-line);
+}
+
 @include query.container-down('md') {
   th,
   td { @include tokens.layout-narrow; }

@@ -1,13 +1,56 @@
-<erp-select
-  label="الأعمدة الظاهرة"
-  multiple
-  [options]="options()"
-  [disabled]="disabled()"
-  [searchable]="false"
-  [filterable]="false"
-  [sortable]="false"
-  [ngModel]="effectiveVisible()"
-  (ngModelChange)="updateVisible($event)"
-  [ngModelOptions]="{standalone: true}"
-/>
+@if (presentation() === 'table-reference') {
+  <erp-button
+    #referenceTrigger
+    label="الأعمدة"
+    icon="dashboard"
+    variant="outline"
+    tone="neutral"
+    size="sm"
+    presentation="table-reference-tool"
+    ariaHasPopup="dialog"
+    [ariaControls]="surfaceId"
+    [ariaExpanded]="open()"
+    [disabled]="disabled()"
+    (pressed)="toggleReference()"
+  />
+  <section
+    #referenceSurface
+    class="column-chooser__reference-surface"
+    popover="manual"
+    role="dialog"
+    [id]="surfaceId"
+    aria-label="إظهار أو إخفاء الأعمدة"
+  >
+    <erp-text class="column-chooser__reference-title" type="caption" tone="secondary" weight="bold">
+      إظهار أو إخفاء الأعمدة
+    </erp-text>
+    <div class="column-chooser__reference-list">
+      @for (column of columns(); track column.key) {
+        @if (!column.required && column.hideable !== false) {
+          <erp-check-box
+            [label]="column.label"
+            size="sm"
+            presentation="table-reference"
+            [ngModel]="isVisible(column.key)"
+            (ngModelChange)="toggleColumn(column, $event)"
+            [ngModelOptions]="{standalone: true}"
+          />
+        }
+      }
+    </div>
+  </section>
+} @else {
+  <erp-select
+    label="الأعمدة الظاهرة"
+    multiple
+    [options]="options()"
+    [disabled]="disabled()"
+    [searchable]="false"
+    [filterable]="false"
+    [sortable]="false"
+    [ngModel]="effectiveVisible()"
+    (ngModelChange)="updateVisible($event)"
+    [ngModelOptions]="{standalone: true}"
+  />
   <erp-button label="إعادة ضبط الأعمدة" icon="refresh" variant="ghost" size="sm" [disabled]="disabled()" (pressed)="resetRequested.emit()" />
+}

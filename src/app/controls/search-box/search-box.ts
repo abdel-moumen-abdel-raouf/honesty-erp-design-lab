@@ -43,7 +43,10 @@ let nextSearchBoxId = 0;
 type ErpSearchBoxPopupPhase = 'closed' | 'entering' | 'open' | 'leaving';
 
 export type ErpSearchBoxMode = 'modal' | 'dropdown' | 'inline';
-export type ErpSearchBoxPresentation = 'field' | 'select-panel';
+export type ErpSearchBoxPresentation =
+  | 'field'
+  | 'select-panel'
+  | 'table-reference';
 
 export type ErpSearchBoxOption = ErpItemPickerOption;
 

@@ -1,21 +1,23 @@
 # Inputs Product Owner Review Findings V1
 
-## Authoritative current Product Owner finding — 2026-10-07
+## Authoritative current Product Owner finding — 2026-10-08
 
-Phase A requires Arabic/RTL primary ErpTabs evidence while preserving exact
-geometry; it is commit `a5b272c`. Phase B makes
-`C:\Users\Misrtech\Downloads\ERP-TABLE.html`, SHA-256
-`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`, the
-single binding ErpTable authority. The former accelerated Table visual
-interpretation is superseded. Only system colors/font family, invisible
-accessibility semantics, reduced motion, and ERP hierarchy may differ.
+The Product Owner rejected the technically green Table checkpoint
+`eddac4a8e8a3460f346bb579fdd5ca0074296e7a`: the design and full visible
+experience in `ERP-TABLE.html` had not been reconstructed, because separately
+owned Toolbar, Search, ColumnChooser, footer, and Pagination were skipped.
 
-The candidate passes all lint/governance, 133/133 test files and 897/897 tests,
-both typechecks, production build, and zero warnings. Runtime evidence covers
-wide/narrow, RTL/LTR, and Light/Dark. The exact next action is Product Owner
-review of ErpTable at
-`/controls/core-batch`. This task does not open any other Data/Table owner.
-Technical evidence is not visual acceptance.
+The binding SHA remains
+`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`. The V2
+contract now requires every visible reference feature to appear through its
+correct ERP owner. The reconstructed candidate passes all lint/governance,
+134/134 test files and 904/904 tests, both typechecks, production build, and
+zero warnings. Measured wide/narrow, RTL/LTR, and Light/Dark evidence is stored
+under `docs/review-evidence/erp-table/`.
+
+The exact next action is Product Owner review of the full reference experience
+at `/controls/core-batch`. This compatibility composition does not open any
+independent Data/Table visual wave. Technical evidence is not visual acceptance.
 
 ## Historical ErpTabs-only continuity notice — superseded 2026-10-07
 

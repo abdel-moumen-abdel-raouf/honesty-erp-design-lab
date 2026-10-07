@@ -6,6 +6,11 @@
   min-width: 0;
 }
 
+:host([data-search-box-presentation='table-reference']) {
+  @include tokens.presentation-table-reference;
+  inline-size: 100%;
+}
+
 .search-box__trigger {
   min-width: 0;
 }

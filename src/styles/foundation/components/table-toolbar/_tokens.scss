@@ -1,1 +1,23 @@
-@mixin base { --honesty-table-toolbar-bg: var(--honesty-color-surface-default); --honesty-table-toolbar-border-color: var(--honesty-border-subtle); --honesty-table-toolbar-border-width: var(--honesty-border-width-default); --honesty-table-toolbar-padding: var(--honesty-space-inset-default); --honesty-table-toolbar-gap: var(--honesty-space-inline-default); --honesty-table-toolbar-item-gap: var(--honesty-space-inline-tight); }
+@mixin base {
+  --honesty-table-toolbar-bg: var(--honesty-color-surface-default);
+  --honesty-table-toolbar-border-color: var(--honesty-border-subtle);
+  --honesty-table-toolbar-border-width: var(--honesty-border-width-default);
+  --honesty-table-toolbar-padding: var(--honesty-space-inset-default);
+  --honesty-table-toolbar-gap: var(--honesty-space-inline-default);
+  --honesty-table-toolbar-item-gap: var(--honesty-space-inline-tight);
+  --honesty-table-toolbar-search-basis: 220px;
+  --honesty-table-toolbar-search-max-width: 340px;
+}
+
+@mixin presentation-table-reference {
+  --honesty-table-toolbar-bg: var(--honesty-color-surface-canvas);
+  --honesty-table-toolbar-border-color: var(--honesty-border-subtle);
+  --honesty-table-toolbar-border-width: 1px;
+  --honesty-table-toolbar-padding: 12px 16px;
+  --honesty-table-toolbar-gap: 8px;
+  --honesty-table-toolbar-item-gap: 8px;
+}
+
+@mixin presentation-table-reference-narrow {
+  --honesty-table-toolbar-padding: 8px;
+}

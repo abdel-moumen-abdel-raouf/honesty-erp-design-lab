@@ -147,6 +147,16 @@
   --honesty-avatar-ring-offset: 0.125rem;
 }
 
+@mixin presentation-table-reference-photo {
+  --honesty-avatar-size: 32px;
+  --honesty-avatar-font-size: 11px;
+  --honesty-avatar-icon-size: 16px;
+  --honesty-avatar-presence-size: 8px;
+  --honesty-avatar-presence-border-width: 2px;
+  --honesty-avatar-ring-width: 2px;
+  --honesty-avatar-ring-offset: 1px;
+}
+
 @mixin size-lg {
   --honesty-avatar-size: 3.125rem;
   --honesty-avatar-font-size: 1rem;

@@ -146,6 +146,21 @@ describe('ErpSearchBox', () => {
     expect(document.activeElement).toBe(input);
   });
 
+  it('exposes the bounded exact Table reference inline presentation', () => {
+    const fixture = create();
+    fixture.componentRef.setInput('mode', 'inline');
+    fixture.componentRef.setInput('presentation', 'table-reference');
+    fixture.componentRef.setInput('placeholder', 'بحث…');
+    fixture.detectChanges();
+
+    const host = fixture.nativeElement as HTMLElement;
+    const input = host.querySelector('input') as HTMLInputElement;
+    expect(host.getAttribute('data-search-box-presentation')).toBe('table-reference');
+    expect(input.type).toBe('search');
+    expect(input.placeholder).toBe('بحث…');
+    expect(host.querySelector('erp-field-trigger')).toBeNull();
+  });
+
   it('opens dropdown on focus and filters without committing the transient query', () => {
     const fixture = create();
     const host = fixture.nativeElement as HTMLElement;

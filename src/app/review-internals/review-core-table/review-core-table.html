@@ -1,5 +1,5 @@
 <div class="table-review" data-table-reference-evidence="exact" dir="rtl">
-  <erp-text type="heading-3" weight="bold">مرجع ERP-TABLE الدقيق</erp-text>
+  <erp-text type="heading-3" weight="bold">ERP-TABLE EXACT REFERENCE EXPERIENCE</erp-text>
   <erp-text type="paragraph" tone="secondary">
     بيانات عربية لنظام تخطيط الموارد مع هندسة الصفوف والرؤوس والحالات المأخوذة من المرجع الملزم.
   </erp-text>
@@ -7,103 +7,195 @@
   <section class="table-review__specimen" data-table-specimen="full-featured">
     <erp-text type="label" weight="bold">١ · جميع أنواع الخلايا والخصائص الأساسية</erp-text>
     <erp-text type="caption" tone="secondary">تحديد وصفوف متعاقبة وتحويم وفرز وتغيير عرض وخلايا غنية.</erp-text>
-    <erp-table
-      caption="دليل الحسابات — جميع أنواع الخلايا"
-      [columns]="referenceColumns"
-      [rows]="referenceEmployeeRows"
-      selectable
-      striped
-      [selectedKeys]="selectedRows()"
-      [sort]="tableSort()"
-      [columnWidths]="columnWidths()"
-      (selectedKeysChange)="selectedRows.set($event)"
-      (sortChange)="tableSort.set($event)"
-      (columnWidthsChange)="columnWidths.set($event)"
-    >
+    <div class="table-review__reference-frame" data-table-reference-experience="complete">
+      <erp-table-toolbar presentation="table-reference" [showRefresh]="false">
+        <erp-search-box
+          erpTableToolbarSearch
+          label="البحث"
+          mode="inline"
+          presentation="table-reference"
+          placeholder="بحث…"
+          [ngModel]="referenceQuery()"
+          (ngModelChange)="referenceQuery.set($event)"
+          [ngModelOptions]="{standalone: true}"
+        />
+        <erp-column-chooser
+          erpTableToolbarColumns
+          presentation="table-reference"
+          [columns]="referenceChooserColumns"
+          [visibleKeys]="visibleReferenceKeys()"
+          (visibilityChange)="visibleReferenceKeys.set($event)"
+        />
+      </erp-table-toolbar>
+      <erp-table
+        presentation="reference-experience"
+        caption="دليل الموظفين — جميع أنواع الخلايا"
+        [columns]="referenceColumns"
+        [visibleColumnKeys]="visibleReferenceKeys()"
+        [rows]="filteredReferenceRows()"
+        selectable
+        striped
+        [selectedKeys]="selectedRows()"
+        [sort]="tableSort()"
+        [columnWidths]="columnWidths()"
+        (selectedKeysChange)="selectedRows.set($event)"
+        (sortChange)="tableSort.set($event)"
+        (columnWidthsChange)="columnWidths.set($event)"
+      >
       <ng-template erpTableCell="employee" let-row>
-        <erp-inline gap="tight" align="center" wrap="nowrap">
-          <erp-avatar [name]="employeeName(row)" [src]="row['employeePhoto']?.toString() ?? null" size="sm" />
+        <span class="table-review__photo-cell">
+          <erp-avatar
+            [name]="employeeName(row)"
+            [src]="row['employeePhoto']?.toString() ?? null"
+            size="sm"
+            presentation="table-reference-photo"
+          />
           <span class="table-review__identity">
-            <erp-text type="table-cell" weight="medium" lineHeight="tight">{{ employeeName(row) }}</erp-text>
-            <erp-text type="caption" tone="secondary" lineHeight="tight">{{ row['employeeCode'] }}</erp-text>
+            <erp-text type="table-cell" size="xs" weight="medium" lineHeight="inherit">{{ employeeName(row) }}</erp-text>
+            <erp-text type="caption" size="2xs" tone="secondary" lineHeight="tight">{{ row['employeeCode'] }}</erp-text>
           </span>
-        </erp-inline>
+        </span>
       </ng-template>
       <ng-template erpTableCell="department" let-value="value">
         <erp-status-badge [label]="value?.toString() ?? 'غير محدد'" tone="neutral" size="md" />
+      </ng-template>
+      <ng-template erpTableCell="salary" let-value="value">
+        <span class="table-review__money">
+          <erp-text type="table-cell" size="xs" family="latin" direction="ltr" weight="medium" lineHeight="tight">{{ value }}</erp-text>
+          <erp-text type="caption" size="2xs" tone="secondary" lineHeight="tight">ر.س</erp-text>
+        </span>
       </ng-template>
       <ng-template erpTableCell="status" let-value="value">
         <erp-status-badge [label]="value?.toString() ?? 'غير محدد'" [tone]="statusTone(value)" size="md" />
       </ng-template>
       <ng-template erpTableCell="actions">
         <erp-inline gap="tight" align="center" justify="center" wrap="nowrap">
-          <erp-tooltip text="عرض الموظف"><erp-icon-button icon="eye" label="عرض الموظف" size="sm" /></erp-tooltip>
-          <erp-tooltip text="تعديل الموظف"><erp-icon-button icon="edit" label="تعديل الموظف" size="sm" /></erp-tooltip>
+          <erp-tooltip text="عرض الموظف"><erp-icon-button icon="eye" label="عرض الموظف" size="sm" presentation="table-reference-cell" /></erp-tooltip>
+          <erp-tooltip text="تعديل الموظف"><erp-icon-button icon="edit" label="تعديل الموظف" size="sm" presentation="table-reference-cell" /></erp-tooltip>
+          <erp-tooltip text="حذف الموظف"><erp-icon-button icon="delete" label="حذف الموظف" size="sm" tone="danger" presentation="table-reference-cell" /></erp-tooltip>
         </erp-inline>
       </ng-template>
-    </erp-table>
+      </erp-table>
+      <erp-pagination
+        presentation="table-reference"
+        [page]="referencePage()"
+        [pageCount]="3"
+        [visibleItems]="filteredReferenceRows().length"
+        [totalItems]="referenceEmployeeRows.length"
+        [selectedItems]="selectedRows().length"
+        (pageChange)="referencePage.set($event)"
+      />
+    </div>
   </section>
+
+  <erp-text type="heading-3" weight="bold">STATE / FEATURE EVIDENCE</erp-text>
 
   <section class="table-review__specimen" data-table-specimen="fixed-height">
     <erp-text type="label" weight="bold">٢ · جسم ثابت الارتفاع وقابل للتمرير</erp-text>
     <erp-text type="caption" tone="secondary">ارتفاع داخلي ٣٨٠ بكسل مع تمرير داخل حدود الجدول.</erp-text>
-    <erp-table caption="حركة الموظفين داخل ارتفاع ثابت" [columns]="referenceColumns" [rows]="fixedRows" [fixedHeight]="380" selectable striped>
+    <div class="table-review__reference-frame">
+      <erp-table-toolbar presentation="table-reference" [showRefresh]="false">
+        <erp-search-box
+          erpTableToolbarSearch
+          label="البحث"
+          mode="inline"
+          presentation="table-reference"
+          placeholder="بحث…"
+          [ngModel]="referenceQuery()"
+          (ngModelChange)="referenceQuery.set($event)"
+          [ngModelOptions]="{standalone: true}"
+        />
+        <erp-column-chooser
+          erpTableToolbarColumns
+          presentation="table-reference"
+          [columns]="referenceChooserColumns"
+          [visibleKeys]="visibleReferenceKeys()"
+          (visibilityChange)="visibleReferenceKeys.set($event)"
+        />
+      </erp-table-toolbar>
+    <erp-table presentation="reference-experience" caption="حركة الموظفين داخل ارتفاع ثابت" [columns]="referenceColumns" [visibleColumnKeys]="visibleReferenceKeys()" [rows]="fixedRows" [fixedHeight]="380" selectable striped>
       <ng-template erpTableCell="employee" let-row>
         <erp-inline gap="tight" align="center" wrap="nowrap">
-          <erp-avatar [name]="employeeName(row)" [src]="row['employeePhoto']?.toString() ?? null" size="sm" />
+          <erp-avatar [name]="employeeName(row)" [src]="row['employeePhoto']?.toString() ?? null" size="sm" presentation="table-reference-photo" />
           <span class="table-review__identity">
-            <erp-text type="table-cell" weight="medium" lineHeight="tight">{{ employeeName(row) }}</erp-text>
-            <erp-text type="caption" tone="secondary" lineHeight="tight">{{ row['employeeCode'] }}</erp-text>
+            <erp-text type="table-cell" size="xs" weight="medium" lineHeight="inherit">{{ employeeName(row) }}</erp-text>
+            <erp-text type="caption" size="2xs" tone="secondary" lineHeight="tight">{{ row['employeeCode'] }}</erp-text>
           </span>
         </erp-inline>
       </ng-template>
       <ng-template erpTableCell="department" let-value="value">
         <erp-status-badge [label]="value?.toString() ?? 'غير محدد'" tone="neutral" size="md" />
       </ng-template>
+      <ng-template erpTableCell="salary" let-value="value">
+        <span class="table-review__money"><erp-text type="table-cell" size="xs" family="latin" direction="ltr" weight="medium" lineHeight="tight">{{ value }}</erp-text><erp-text type="caption" size="2xs" tone="secondary" lineHeight="tight">ر.س</erp-text></span>
+      </ng-template>
       <ng-template erpTableCell="status" let-value="value">
         <erp-status-badge [label]="value?.toString() ?? 'غير محدد'" [tone]="statusTone(value)" size="md" />
       </ng-template>
       <ng-template erpTableCell="actions">
         <erp-inline gap="tight" align="center" justify="center" wrap="nowrap">
-          <erp-tooltip text="عرض الموظف"><erp-icon-button icon="eye" label="عرض الموظف" size="sm" /></erp-tooltip>
-          <erp-tooltip text="تعديل الموظف"><erp-icon-button icon="edit" label="تعديل الموظف" size="sm" /></erp-tooltip>
+          <erp-tooltip text="عرض الموظف"><erp-icon-button icon="eye" label="عرض الموظف" size="sm" presentation="table-reference-cell" /></erp-tooltip>
+          <erp-tooltip text="تعديل الموظف"><erp-icon-button icon="edit" label="تعديل الموظف" size="sm" presentation="table-reference-cell" /></erp-tooltip>
+          <erp-tooltip text="حذف الموظف"><erp-icon-button icon="delete" label="حذف الموظف" size="sm" tone="danger" presentation="table-reference-cell" /></erp-tooltip>
         </erp-inline>
       </ng-template>
     </erp-table>
+      <erp-pagination presentation="table-reference" [page]="1" [pageCount]="3" [visibleItems]="20" [totalItems]="20" />
+    </div>
   </section>
 
   <section class="table-review__specimen" data-table-specimen="compact">
     <erp-text type="label" weight="bold">٣ · كثافة مضغوطة وصفوف متعاقبة</erp-text>
     <erp-text type="caption" tone="secondary">حشوة رأسية ٨ بكسل وحشوة أفقية ١٢ بكسل.</erp-text>
-    <erp-table caption="الحسابات بالكثافة المضغوطة" [columns]="compactColumns" [rows]="referenceRows" density="compact" striped>
+    <div class="table-review__reference-frame">
+    <erp-table presentation="reference-experience" caption="طلبات المبيعات بالكثافة المضغوطة" [columns]="compactColumns" [rows]="referenceOrderRows" density="compact" striped>
+      <ng-template erpTableCell="amount" let-value="value">
+        <span class="table-review__money"><erp-text type="table-cell" size="xs" family="latin" direction="ltr" weight="medium" lineHeight="tight">{{ value }}</erp-text><erp-text type="caption" size="2xs" tone="secondary" lineHeight="tight">$</erp-text></span>
+      </ng-template>
       <ng-template erpTableCell="status" let-value="value">
         <erp-status-badge [label]="value?.toString() ?? 'غير محدد'" [tone]="statusTone(value)" size="md" />
       </ng-template>
     </erp-table>
+    </div>
   </section>
 
   <section class="table-review__specimen" data-table-specimen="clickable">
     <erp-text type="label" weight="bold">٤ · صفوف قابلة للتفعيل</erp-text>
     <erp-text type="caption" tone="secondary">التفعيل مستقل تمامًا عن تحديد مربعات الاختيار.</erp-text>
-    <erp-table caption="سجلات قابلة للتفعيل" [columns]="compactColumns" [rows]="referenceRows" rowActivatable (rowActivated)="activateRow($event)">
+    <div class="table-review__reference-frame">
+    <erp-table presentation="reference-experience" caption="سجلات قابلة للتفعيل" [columns]="clickableColumns" [rows]="referenceOrderRows" rowActivatable striped (rowActivated)="activateRow($event)">
+      <ng-template erpTableCell="amount" let-value="value">
+        <span class="table-review__money"><erp-text type="table-cell" size="xs" family="latin" direction="ltr" weight="medium" lineHeight="tight">{{ value }}</erp-text><erp-text type="caption" size="2xs" tone="secondary" lineHeight="tight">$</erp-text></span>
+      </ng-template>
       <ng-template erpTableCell="status" let-value="value">
         <erp-status-badge [label]="value?.toString() ?? 'غير محدد'" [tone]="statusTone(value)" size="md" />
       </ng-template>
     </erp-table>
+      <erp-pagination presentation="table-reference" [page]="1" [pageCount]="3" [visibleItems]="referenceOrderRows.length" [totalItems]="referenceOrderRows.length" />
+    </div>
   </section>
 
   <section class="table-review__specimen" data-table-specimen="vertical">
     <erp-text type="label" weight="bold">٥ · تخطيط بطاقات رأسي</erp-text>
     <erp-text type="caption" tone="secondary">عناوين الحقول داخل كل سجل وفق تخطيط المرجع الرأسي.</erp-text>
-    <erp-table caption="الموظفون في تخطيط رأسي" [columns]="verticalColumns" [rows]="referenceEmployeeRows.slice(0, 3)" layout="vertical">
+    <erp-table caption="الموظفون في تخطيط رأسي" [columns]="verticalColumns" [rows]="referenceEmployeeRows.slice(0, 4)" layout="vertical">
       <ng-template erpTableCell="employee" let-row>
         <erp-inline gap="tight" align="center" wrap="nowrap">
-          <erp-avatar [name]="employeeName(row)" [src]="row['employeePhoto']?.toString() ?? null" size="sm" />
+          <erp-avatar [name]="employeeName(row)" [src]="row['employeePhoto']?.toString() ?? null" size="sm" presentation="table-reference-photo" />
           <span class="table-review__identity">
-            <erp-text type="table-cell" weight="medium" lineHeight="tight">{{ employeeName(row) }}</erp-text>
-            <erp-text type="caption" tone="secondary" lineHeight="tight">{{ row['employeeCode'] }}</erp-text>
+            <erp-text type="table-cell" size="xs" weight="medium" lineHeight="inherit">{{ employeeName(row) }}</erp-text>
+            <erp-text type="caption" size="2xs" tone="secondary" lineHeight="tight">{{ row['employeeCode'] }}</erp-text>
           </span>
         </erp-inline>
+      </ng-template>
+      <ng-template erpTableCell="department" let-value="value">
+        <erp-status-badge [label]="value?.toString() ?? 'غير محدد'" tone="neutral" size="md" />
+      </ng-template>
+      <ng-template erpTableCell="salary" let-value="value">
+        <span class="table-review__money"><erp-text type="table-cell" size="xs" family="latin" direction="ltr" weight="medium" lineHeight="tight">{{ value }}</erp-text><erp-text type="caption" size="2xs" tone="secondary" lineHeight="tight">$</erp-text></span>
+      </ng-template>
+      <ng-template erpTableCell="status" let-value="value">
+        <erp-status-badge [label]="value?.toString() ?? 'غير محدد'" [tone]="statusTone(value)" size="md" />
       </ng-template>
     </erp-table>
   </section>
@@ -111,11 +203,27 @@
   <section class="table-review__specimen" data-table-specimen="header-types">
     <erp-text type="label" weight="bold">٦ · أيقونات الرأس والمحاذاة</erp-text>
     <erp-text type="caption" tone="secondary">أيقونة مع نص وفرز ومحاذاة بدء ووسط ونهاية.</erp-text>
-    <erp-table caption="أنواع محتوى رأس الجدول" [columns]="headerTypeColumns" [rows]="referenceRows" striped>
+    <div class="table-review__reference-frame">
+      <erp-table-toolbar presentation="table-reference" [showRefresh]="false">
+        <erp-search-box erpTableToolbarSearch label="البحث" mode="inline" presentation="table-reference" placeholder="بحث…" />
+        <erp-column-chooser erpTableToolbarColumns presentation="table-reference" [columns]="headerChooserColumns" [visibleKeys]="headerColumnKeys" />
+      </erp-table-toolbar>
+    <erp-table presentation="reference-experience" caption="أنواع محتوى رأس الجدول" [columns]="headerTypeColumns" [rows]="referenceOrderRows" striped>
+      <ng-template erpTableCell="amount" let-value="value">
+        <span class="table-review__money"><erp-text type="table-cell" size="xs" family="latin" direction="ltr" weight="medium" lineHeight="tight">{{ value }}</erp-text><erp-text type="caption" size="2xs" tone="secondary" lineHeight="tight">$</erp-text></span>
+      </ng-template>
       <ng-template erpTableCell="status" let-value="value">
         <erp-status-badge [label]="value?.toString() ?? 'غير محدد'" [tone]="statusTone(value)" size="md" />
       </ng-template>
     </erp-table>
+      <erp-pagination presentation="table-reference" [page]="1" [pageCount]="3" [visibleItems]="referenceOrderRows.length" [totalItems]="referenceOrderRows.length" />
+    </div>
+  </section>
+
+  <section class="table-review__specimen" data-table-specimen="empty">
+    <erp-text type="label" weight="bold">٧ · الحالة الفارغة</erp-text>
+    <erp-text type="caption" tone="secondary">حالة المصدر المرجعية دون إنشاء نظام تحميل أو بيانات وهمية.</erp-text>
+    <erp-table caption="جدول بلا نتائج" [columns]="compactColumns" [rows]="[]" emptyText="لا توجد نتائج مطابقة" />
   </section>
 </div>
 
@@ -125,7 +233,7 @@
   data-table-direction-evidence="ltr"
   dir="ltr"
 >
-  <erp-text type="heading-3" weight="bold">دليل التوافق مع المالكين الأعلى</erp-text>
+  <erp-text type="heading-3" weight="bold">COMPATIBILITY EVIDENCE</erp-text>
   <erp-text type="paragraph" tone="secondary">اختيار الأعمدة وتذييل القيم وواجهات التحكم القديمة تبقى منفصلة عن العقد المرئي الأساسي.</erp-text>
   <erp-inline gap="default" align="center" wrap="wrap">
     <erp-check-box label="تفعيل فتح الصف بالنقر" [ngModel]="rowActivatable()" (ngModelChange)="rowActivatable.set($event)" [ngModelOptions]="{standalone: true}" />

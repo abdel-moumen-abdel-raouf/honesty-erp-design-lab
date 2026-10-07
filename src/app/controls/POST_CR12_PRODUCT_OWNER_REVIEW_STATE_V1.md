@@ -1,22 +1,24 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
-## Authoritative current review state — 2026-10-07 — ErpTable
+## Authoritative current review state — 2026-10-08 — full ERP-TABLE experience
 
-Phase A Arabicized exact Tabs evidence without changing geometry and is commit
-`a5b272c`. Phase B makes `ERP-TABLE.html`, SHA-256
-`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`, the
-single binding ErpTable authority. The implementation contract is
-`table/ERP_TABLE_REFERENCE_EXACT_V1.md`.
+The Product Owner rejected Table candidate
+`eddac4a8e8a3460f346bb579fdd5ca0074296e7a` for incomplete visual/functional
+coverage of the reference. `ERP-TABLE.html`, SHA-256
+`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`, remains
+binding under `table/ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md`.
 
-The candidate passes all lint/governance, 133/133 test files and 897/897 tests,
-both typechecks, production build, and zero warnings. Runtime captures and
-measurements cover Light/Dark, RTL/LTR, wide,
-480 px, and 390 px. Product Owner visual acceptance remains separate.
+The rebuilt evidence composes Toolbar, SearchBox, ColumnChooser, Table, footer
+counter, and Pagination in the reference order while preserving bounded owner
+responsibilities. The candidate passes all lint/governance, 134/134 test files,
+904/904 tests, both typechecks, production build, and zero warnings. Runtime
+measurements cover Light/Dark, RTL/LTR, wide and 390 px with 0 page overflow and
+0 px specimen-box deltas. Product Owner visual acceptance remains separate.
 
-The exact next gate is Product Owner review of ErpTable at
-`/controls/core-batch`. No SmartTable, ColumnChooser, FilterBar, FilterDrawer,
-TableToolbar, BulkActionBar, ViewSwitcher, or later Data/Table visual work is
-authorized.
+The exact next gate is Product Owner review of the full ERP-TABLE experience at
+`/controls/core-batch`. No independent SmartTable, ColumnChooser, FilterBar,
+FilterDrawer, TableToolbar, BulkActionBar, ViewSwitcher, or later Data/Table
+visual work is authorized.
 
 ## Authority
 

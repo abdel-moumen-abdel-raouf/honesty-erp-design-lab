@@ -1,40 +1,39 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
-## Authoritative current execution state — 2026-10-07 — Tabs Arabic evidence + ErpTable exact reconstruction
+## Authoritative current execution state — 2026-10-08 — full ERP-TABLE reference experience
 
-Live work entered from `0add01a6d342d8056ce026ba9c0d7015faff1c7f` on `main`.
-Phase A is committed as `a5b272c` (`fix(tabs): arabicize exact-reference
-evidence`): exact Tabs geometry and motion tokens are unchanged, the primary
-review evidence is Arabic/RTL, and a separate LTR compatibility specimen remains.
+The Product Owner rejected checkpoint
+`eddac4a8e8a3460f346bb579fdd5ca0074296e7a` because the Table candidate omitted
+visible higher owners from `ERP-TABLE.html` and retained known geometry deltas.
+That checkpoint remains technical history, not a visually accepted result.
 
 `C:\Users\Misrtech\Downloads\ERP-TABLE.html`, SHA-256
-`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`, is the
-single binding visual and behavioral authority for `ErpTable`. It supersedes
-the accelerated visual interpretation. Only palette, font family, invisible
-accessibility semantics, reduced motion, and ERP ownership under the rendered
-output may differ. The authoritative contract is
-`src/app/controls/table/ERP_TABLE_REFERENCE_EXACT_V1.md`.
+`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`, remains
+the single binding authority. The current contract is
+`src/app/controls/table/ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md`; V1 is
+explicitly superseded. A feature may retain its bounded ERP owner, but every
+feature visible in the reference must be composed into the exact experience.
 
-The candidate reconstructs the reference frame, horizontal/vertical layouts,
-normal/compact/comfortable density, exact padding, row states, fixed-height
-internal scroll, sorting, selection, resizing, rich projected cells, footer
-compatibility, and Query-API narrow behavior. Table continues to compose
+The primary `/controls/core-batch` evidence now composes `ErpTableToolbar`,
+`ErpSearchBox`, `ErpColumnChooser`, `ErpTable`, and `ErpPagination` in one
+reference frame. Base Table continues to own native table semantics and reuse
 `ErpCheckBox`, `ErpSortHeader`, `ErpTableResizeHandle`, `ErpText`, and projected
-ERP cells. Selection remains independent from row activation. Higher
-toolbar/search/chooser/pagination/bulk/view composition remains separate.
+ERP cells. Search, controlled column visibility, selection, sorting, resizing,
+footer counts, and pagination operate in the live specimen. FilterBar,
+FilterDrawer, BulkActionBar, ViewSwitcher, loading, and SmartTable orchestration
+were audited as absent from the binding reference and were not invented.
 
-Canonical `npm run verify:clean` passes all lint/governance gates, 133/133 test
-files and 897/897 tests, both typechecks, production build, and the zero-warning
-gate. Initial bundle is 376.16 kB / 85.69 kB estimated transfer; Core Batch is
-148.92 kB / 23.72 kB estimated transfer. Requested Core/Data governance and
-self-tests pass. Runtime evidence covers
-Light/Dark, RTL/LTR, 1440, 480, and 390 px, with internal Table scrolling and no
-page horizontal overflow. These facts do not declare Product Owner acceptance.
+Canonical verification passes every lint/governance gate, 134/134 test files
+and 904/904 tests, both typechecks, production build, and the zero-warning gate.
+Initial bundle is 376.16 kB / 85.65 kB estimated transfer; Core Batch is 160.50
+kB / 25.32 kB estimated transfer. Direct browser comparison records 0 px delta
+for all six reference specimen boxes, 390 px page overflow of 0, and internal
+Table overflow containment. Durable measurements are in
+`docs/review-evidence/erp-table/ERP_TABLE_RUNTIME_EVIDENCE.md`.
 
-The exact next action is Product Owner visual/runtime review of `ErpTable` at
-`/controls/core-batch`. `ErpTabs` remains an Arabic exact-reference candidate.
-No later Data/Table visual owner or wave is opened. Technical PASS does not
-equal visual approval.
+The exact next action is Product Owner visual/runtime review of the full
+ERP-TABLE experience at `/controls/core-batch`. No later Data/Table visual wave
+or owner is opened. Technical PASS does not equal Product Owner approval.
 
 ## Repository
 

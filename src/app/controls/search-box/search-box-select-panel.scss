@@ -31,6 +31,7 @@
   caret-color: var(--honesty-search-box-caret-color);
   font: inherit;
   font-size: var(--honesty-search-box-select-font-size);
+  line-height: var(--honesty-search-box-select-line-height);
   transition:
     border-color var(--honesty-search-box-select-transition-duration),
     background-color var(--honesty-search-box-select-transition-duration),

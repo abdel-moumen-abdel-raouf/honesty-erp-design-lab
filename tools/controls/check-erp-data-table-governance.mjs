@@ -8,8 +8,9 @@ const SMART_TABLE_TEMPLATE = 'src/app/controls/smart-table/smart-table.html';
 const CONTRACTS = 'src/app/controls/data-table/data-table-contracts.ts';
 const ROUTES = 'src/app/app.routes.ts';
 const REVIEW = 'src/app/showcase/data-batch/data-batch.html';
+const REFERENCE_REVIEW = 'src/app/review-internals/review-core-table/review-core-table.html';
 const TABLE_TEMPLATE = 'src/app/controls/table/table.html';
-const TABLE_CONTRACT = 'src/app/controls/table/ERP_TABLE_REFERENCE_EXACT_V1.md';
+const TABLE_CONTRACT = 'src/app/controls/table/ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md';
 const TABLE_REFERENCE_SHA = '292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1';
 const COMPONENTS = [
   'sort-header',
@@ -33,6 +34,7 @@ export function validateDataTableContracts(files) {
   const contracts = files.get(CONTRACTS) ?? '';
   const routes = files.get(ROUTES) ?? '';
   const review = files.get(REVIEW) ?? '';
+  const referenceReview = files.get(REFERENCE_REVIEW) ?? '';
   const tableTemplate = files.get(TABLE_TEMPLATE) ?? '';
   const tableContract = files.get(TABLE_CONTRACT) ?? '';
 
@@ -90,6 +92,22 @@ export function validateDataTableContracts(files) {
   if (/<\/?(?:table|thead|tbody|tr|th|td|button|input|select|form)\b/i.test(review)) {
     errors.push('The routed data-table review must remain ERP-only authored');
   }
+  if (/<\/?(?:table|thead|tbody|tr|th|td|button|input|select|form)\b/i.test(referenceReview)) {
+    errors.push('The exact ERP-TABLE reference experience must remain ERP-only authored');
+  }
+
+  for (const owner of [
+    'data-table-reference-experience="complete"',
+    '<erp-table-toolbar',
+    '<erp-search-box',
+    '<erp-column-chooser',
+    '<erp-table',
+    '<erp-pagination',
+  ]) {
+    if (!referenceReview.includes(owner)) {
+      errors.push(`The exact ERP-TABLE reference experience must compose ${owner}`);
+    }
+  }
 
   for (const owner of ['<erp-check-box', '<erp-sort-header', '<erp-table-resize-handle']) {
     if (!tableTemplate.includes(owner)) {
@@ -97,8 +115,8 @@ export function validateDataTableContracts(files) {
     }
   }
   if (!tableContract.includes(TABLE_REFERENCE_SHA) ||
-      !tableContract.includes('supersedes every previous `ErpTable` visual interpretation')) {
-    errors.push('ErpTable must retain the binding ERP-TABLE.html exact-reference contract');
+      !tableContract.includes('Separate ownership never means skipped visual evidence')) {
+    errors.push('ErpTable must retain the binding full-experience contract and no-skipped-owner rule');
   }
 
   for (const component of COMPONENTS) {
@@ -119,8 +137,9 @@ function fixture(overrides = new Map()) {
     [CONTRACTS, "export type ErpSmartTableMode = 'local' | 'remote'; readonly revision: number; readonly filters: readonly ErpDataFilter[]; readonly visibleColumns: readonly string[];"],
     [ROUTES, "path: 'controls/data-batch'"],
     [REVIEW, '<erp-smart-table/>'],
+    [REFERENCE_REVIEW, '<div data-table-reference-experience="complete"><erp-table-toolbar/><erp-search-box/><erp-column-chooser/><erp-table/><erp-pagination/></div>'],
     [TABLE_TEMPLATE, '<erp-check-box/><erp-sort-header/><erp-table-resize-handle/>'],
-    [TABLE_CONTRACT, `${TABLE_REFERENCE_SHA}; supersedes every previous \`ErpTable\` visual interpretation`],
+    [TABLE_CONTRACT, `${TABLE_REFERENCE_SHA}; Separate ownership never means skipped visual evidence`],
   ]);
   for (const component of COMPONENTS) {
     files.set(`src/styles/foundation/components/${component}/_tokens.scss`, '@mixin base {}');
@@ -136,8 +155,10 @@ function runSelfTest() {
     ['HTTP ownership', fixture(new Map([[SMART_TABLE, 'inject(HttpClient); fetch("/api")']])), 'transport-agnostic'],
     ['missing composition owner', fixture(new Map([[SMART_TABLE_TEMPLATE, '<erp-table><ng-content /></erp-table>']])), 'compose <erp-pagination'],
     ['raw routed table', fixture(new Map([[REVIEW, '<table></table>']])), 'ERP-only'],
+    ['raw exact reference control', fixture(new Map([[REFERENCE_REVIEW, '<input/><div data-table-reference-experience="complete"><erp-table-toolbar/><erp-search-box/><erp-column-chooser/><erp-table/><erp-pagination/></div>']])), 'ERP-only'],
+    ['missing exact reference owner', fixture(new Map([[REFERENCE_REVIEW, '<div data-table-reference-experience="complete"><erp-table-toolbar/><erp-search-box/><erp-column-chooser/><erp-table/></div>']])), 'erp-pagination'],
     ['missing token base', fixture(new Map([['src/styles/foundation/components/smart-table/_tokens.scss', '']])), 'base mixin'],
-    ['missing exact Table reference', fixture(new Map([[TABLE_CONTRACT, 'old table reference']])), 'binding ERP-TABLE.html'],
+    ['missing exact Table reference', fixture(new Map([[TABLE_CONTRACT, 'old table reference']])), 'binding full-experience contract'],
   ]) {
     const errors = validateDataTableContracts(files);
     if (!errors.some((error) => error.includes(expected))) failures.push(`${label} fixture was accepted`);
@@ -156,6 +177,7 @@ function runCheck() {
     [CONTRACTS, read(CONTRACTS)],
     [ROUTES, read(ROUTES)],
     [REVIEW, read(REVIEW)],
+    [REFERENCE_REVIEW, read(REFERENCE_REVIEW)],
     [TABLE_TEMPLATE, read(TABLE_TEMPLATE)],
     [TABLE_CONTRACT, read(TABLE_CONTRACT)],
   ]);

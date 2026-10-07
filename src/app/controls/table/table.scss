@@ -77,12 +77,30 @@ tfoot td {
   text-align: center;
 }
 
+.selection erp-check-box {
+  display: block;
+  inline-size: var(--honesty-table-selection-control-size);
+  block-size: var(--honesty-table-selection-control-size);
+  margin-inline: auto;
+}
+
 .content {
   display: flex;
   align-items: center;
   gap: var(--honesty-table-head-gap);
   inline-size: 100%;
   min-inline-size: 0;
+}
+
+.content > erp-icon {
+  inline-size: var(--honesty-table-head-icon-size);
+  block-size: var(--honesty-table-head-icon-size);
+  overflow: hidden;
+  font-size: var(--honesty-table-head-icon-size);
+}
+
+th[data-header-icon='true'] > .content {
+  min-block-size: var(--honesty-table-head-icon-row-content-height);
 }
 
 .copy {

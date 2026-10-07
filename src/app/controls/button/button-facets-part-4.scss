@@ -1,3 +1,19 @@
 @use '../../../styles/foundation/components/button' as tokens;
 
 :host([data-button-ripple-speed='slow']) { @include tokens.ripple-speed-slow; }
+
+:host([data-button-presentation='table-reference-tool']) {
+  @include tokens.presentation-table-reference-tool;
+}
+
+:host([data-button-presentation='table-reference-tool']) .n {
+  padding-block: var(--honesty-button-padding-block);
+}
+
+:host([data-button-presentation='table-reference-page']) {
+  @include tokens.presentation-table-reference-page;
+}
+
+:host([data-button-presentation='table-reference-cell']) {
+  @include tokens.presentation-table-reference-cell;
+}

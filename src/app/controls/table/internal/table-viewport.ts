@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, input} from '@angular/core';
-import type {ErpTableDensity} from '../table';
+import type {ErpTableDensity, ErpTablePresentation} from '../table';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -11,6 +11,7 @@ import type {ErpTableDensity} from '../table';
     '[attr.data-density]': 'density()',
     '[attr.data-fixed]': 'fixedHeight() !== null',
     '[attr.data-vertical]': 'vertical()',
+    '[attr.data-presentation]': 'presentation()',
     '[style.--honesty-table-fixed-height.px]': 'fixedHeight()',
   },
 })
@@ -19,4 +20,5 @@ export class ErpTableViewport {
   readonly density = input<ErpTableDensity>('normal');
   readonly fixedHeight = input<number | null>(null);
   readonly vertical = input(false);
+  readonly presentation = input<ErpTablePresentation>('standalone');
 }

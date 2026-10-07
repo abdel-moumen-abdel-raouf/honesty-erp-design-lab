@@ -3,3 +3,11 @@
 :host([data-icon-button-ripple-speed='fast']) { @include tokens.ripple-speed-fast; }
 
 :host([data-icon-button-ripple-speed='slow']) { @include tokens.ripple-speed-slow; }
+
+:host([data-icon-button-presentation='table-reference-cell']) {
+  @include tokens.presentation-table-reference-cell;
+}
+
+:host([data-icon-button-presentation='table-reference-page']) {
+  @include tokens.presentation-table-reference-page;
+}

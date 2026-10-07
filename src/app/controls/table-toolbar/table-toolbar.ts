@@ -9,8 +9,12 @@ import {ErpButton} from '../button/button';
   imports: [ErpButton, ErpText],
   templateUrl: './table-toolbar.html',
   styleUrl: './table-toolbar.scss',
+  host: {
+    '[attr.data-table-toolbar-presentation]': 'presentation()',
+  },
 })
 export class ErpTableToolbar {
+  readonly presentation = input<'default' | 'table-reference'>('default');
   readonly label = input('أدوات الجدول');
   readonly showRefresh = input(true, {transform: booleanAttribute});
   readonly showExport = input(false, {transform: booleanAttribute});

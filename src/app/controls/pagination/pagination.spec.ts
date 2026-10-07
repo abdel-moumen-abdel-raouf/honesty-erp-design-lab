@@ -100,4 +100,27 @@ describe('ErpPagination', () => {
     expect(nativeButtons(fixture)).toHaveLength(0);
     expect(fixture.nativeElement.querySelector('erp-select')).not.toBeNull();
   });
+
+  it('renders the exact Table reference footer and emits controlled page intent', () => {
+    const fixture = create(3, 2);
+    fixture.componentRef.setInput('presentation', 'table-reference');
+    fixture.componentRef.setInput('visibleItems', 10);
+    fixture.componentRef.setInput('totalItems', 24);
+    fixture.componentRef.setInput('selectedItems', 2);
+    const spy = vi.fn();
+    fixture.componentInstance.pageChange.subscribe(spy);
+    fixture.detectChanges();
+
+    const host = fixture.nativeElement as HTMLElement;
+    expect(host.getAttribute('data-pagination-presentation')).toBe('table-reference');
+    expect(host.textContent).toContain('عرض 10 من 24');
+    expect(host.textContent).toContain('2 محدد');
+    expect(host.querySelector('erp-select')).toBeNull();
+    expect(host.querySelectorAll('erp-icon-button')).toHaveLength(2);
+    expect(host.querySelectorAll('erp-button')).toHaveLength(3);
+
+    const pages = [...host.querySelectorAll<HTMLButtonElement>('erp-button button')];
+    pages[2].click();
+    expect(spy).toHaveBeenCalledWith(3);
+  });
 });

@@ -64,7 +64,7 @@ const TABLE_TS = 'src/app/controls/table/table.ts';
 const TABLE_SCSS = 'src/app/controls/table/table.scss';
 const TABLE_STATES = 'src/app/controls/table/table-states.scss';
 const TABLE_TOKENS = 'src/styles/foundation/components/table/_tokens.scss';
-const TABLE_CONTRACT = 'src/app/controls/table/ERP_TABLE_REFERENCE_EXACT_V1.md';
+const TABLE_CONTRACT = 'src/app/controls/table/ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md';
 const TABLE_LEGACY_CONTRACT = 'src/app/controls/table/TABLE_V1.md';
 const TABLE_REFERENCE_SHA = '292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1';
 const PAGINATION = 'src/app/controls/pagination/pagination.html';
@@ -176,6 +176,9 @@ export function validateCoreComponents(files) {
   }
   if (/<\/?(?:form|button|input|select|textarea|table|svg)\b/i.test(review)) {
     errors.push('The routed core-component review must remain ERP-only authored');
+  }
+  if (/<\/?(?:form|button|input|select|textarea|table|svg)\b/i.test(files.get(REVIEW_TABLE) ?? '')) {
+    errors.push('The exact Table reference experience must remain ERP-only authored');
   }
   for (const owner of [
     '<erp-select', '<erp-status-badge', '<erp-alert', '<erp-skeleton',
@@ -626,14 +629,20 @@ export function validateCoreComponents(files) {
     errors.push('ErpTable must not copy raw reference colors');
   }
   if (!tableContract.includes(TABLE_REFERENCE_SHA) ||
-      !tableContract.includes('supersedes every previous `ErpTable` visual interpretation')) {
-    errors.push('ErpTable exact-reference contract must record the binding ERP-TABLE.html SHA and supersession');
+      !tableContract.includes('Separate ownership never means skipped visual evidence')) {
+    errors.push('ErpTable full-experience contract must record the binding SHA and no-skipped-owner rule');
   }
   if (!tableLegacyContract.includes('SUPERSEDED') || !tableLegacyContract.includes(TABLE_REFERENCE_SHA)) {
     errors.push('The former ErpTable visual contract must remain explicitly superseded');
   }
   for (const evidence of [
     'data-table-reference-evidence="exact"',
+    'data-table-reference-experience="complete"',
+    '<erp-table-toolbar',
+    '<erp-search-box',
+    '<erp-column-chooser',
+    '<erp-table',
+    '<erp-pagination',
     'data-table-specimen="fixed-height"',
     'data-table-specimen="compact"',
     'data-table-specimen="vertical"',
@@ -765,7 +774,7 @@ function fixture(overrides = new Map()) {
   const files = new Map([
     [ROUTES, "path: 'controls/core-batch'"],
     [REVIEW, '<erp-select/><erp-status-badge/><erp-alert/><erp-skeleton/><erp-avatar/><erp-tabs/><erp-avatar-picker/><erp-table/><erp-pagination/><div class="select-parity-matrix" sortMode="label" label="نتيجة فارغة" label="حالة غير صالحة"></div><div class="status-badge-parity-matrix"></div><div class="status-badge-size-matrix"></div><div class="status-badge-anatomy-matrix"></div><div data-status-badge-direction-evidence="rtl"></div><div data-status-badge-direction-evidence="ltr"></div><div class="avatar-reference-size-matrix"></div><div class="avatar-large-size-matrix"></div><div data-avatar-picker-large-size-evidence></div><div class="avatar-reference-content-types"></div><div class="avatar-reference-motion-matrix"></div><div class="avatar-reference-presence-matrix"></div><div data-avatar-direction-evidence="rtl"></div><div data-avatar-direction-evidence="ltr"></div><div class="tabs-reference-parity-matrix" data-tabs-reference="ERP-TABS.html"><erp-tabs variant="pill" data-tabs-direction-evidence="rtl"/><erp-tabs variant="solid" distribution="fill"/><erp-tabs variant="ghost" orientation="vertical" data-tabs-direction-evidence="ltr"/></div>'],
-    [REVIEW_TABLE, '<erp-column-chooser/><div data-table-reference-evidence="exact" data-table-specimen="fixed-height"></div><div data-table-specimen="compact"></div><div data-table-specimen="vertical"></div><div data-table-specimen="header-types"></div>'],
+    [REVIEW_TABLE, '<div data-table-reference-evidence="exact"><div data-table-reference-experience="complete"><erp-table-toolbar/><erp-search-box/><erp-column-chooser/><erp-table/><erp-pagination/></div><div data-table-specimen="fixed-height"></div><div data-table-specimen="compact"></div><div data-table-specimen="vertical"></div><div data-table-specimen="header-types"></div></div>'],
     [REVIEW_TABS, '<div data-tabs-reference="ERP-TABS.html" data-tabs-direction-evidence="ltr"><div data-tabs-specimen="demo-h1"></div><div data-tabs-specimen="demo-h2"></div><div data-tabs-specimen="demo-h3" distribution="fill"></div><div data-tabs-specimen="demo-h4"></div><div data-tabs-specimen="demo-h5"></div><div data-tabs-specimen="demo-h6" variant="pill"></div><div data-tabs-specimen="demo-h7" variant="solid"></div><div data-tabs-specimen="demo-v1" orientation="vertical"></div><div data-tabs-specimen="demo-v2"></div><div data-tabs-specimen="demo-anim"></div><div data-tabs-direction-evidence="rtl"></div></div>'],
     [SELECT, '<div class="select__control"></div><erp-field-trigger semanticRole="combobox" (blurred)="handleTriggerBlur()"/><erp-search-box presentation="select-panel"/><erp-selection-tile presentation="select-option"/><div class="select__group-label"></div><div class="select__footer"></div><erp-avatar/><erp-select-action icon="dismiss"/><erp-icon name="check-mark"/>'],
     [SELECT_TS, "this.controlSurface()?.nativeElement; Math.min(control.getBoundingClientRect().width, availableWidth); event.target.matches(':focus-visible'); this.triggerFocusVisible.set(false); readonly searchLabel = input('البحث'); readonly sortMode = input<ErpSelectSortMode>('none'); readonly groupBy = input<keyof ErpSelectOption | null>(null); readonly selectSize = input<ErpSelectSize>('md'); readonly selectAppearance = input<ErpSelectAppearance | null>(null)"],
@@ -820,7 +829,7 @@ function fixture(overrides = new Map()) {
     [TABLE_SCSS, '@media (prefers-reduced-motion: reduce) {}'],
     [TABLE_STATES, ''],
     [TABLE_TOKENS, '@mixin base {}; --honesty-table-radius: 12px; --honesty-table-cell-padding-block: 12px; --honesty-table-cell-padding-inline: 16px; --honesty-table-header-padding-block: 8px; --honesty-table-selection-size: 44px; --honesty-table-resize-hit-size: 8px; --honesty-table-resize-indicator-width: 2px; --honesty-table-row-motion-duration: 140ms; --honesty-table-row-motion-easing: cubic-bezier(0.2, 0, 0, 1); --honesty-table-vertical-label-width: 110px;'],
-    [TABLE_CONTRACT, `${TABLE_REFERENCE_SHA}; supersedes every previous \`ErpTable\` visual interpretation`],
+    [TABLE_CONTRACT, `${TABLE_REFERENCE_SHA}; Separate ownership never means skipped visual evidence`],
     [TABLE_LEGACY_CONTRACT, `SUPERSEDED; ${TABLE_REFERENCE_SHA}`],
     [PAGINATION, '<erp-inline class="pagination__size-row"><erp-select label="عدد السجلات" labelMode="visually-hidden"/></erp-inline>'],
     [PAGINATION_TS, ['showSummary', 'showPageSize', 'showFirst', 'showPrevious', 'showPageNumbers', 'showNext', 'showLast'].map((name) => `readonly ${name} = input(true`).join(';')],
@@ -891,7 +900,9 @@ function runSelfTest() {
     ['missing avatar-picker exact geometry', fixture(new Map([[AVATAR_PICKER_TOKENS, '@mixin base {}']])), 'exact-reference geometry'],
     ['missing table selection owner', fixture(new Map([[TABLE, '<erp-sort-header/><erp-table-resize-handle/><tfoot></tfoot> descriptionKey data-overflow']])), 'erp-check-box'],
     ['selection activates table rows', fixture(new Map([[TABLE_TS, 'if (this.rowActivatable() || this.selectable()) this.rowActivated.emit(row);']])), 'independent from checkbox selection'],
-    ['missing table reference SHA', fixture(new Map([[TABLE_CONTRACT, 'old table reference']])), 'binding ERP-TABLE.html SHA'],
+    ['missing table reference SHA', fixture(new Map([[TABLE_CONTRACT, 'old table reference']])), 'full-experience contract'],
+    ['missing exact reference composition owner', fixture(new Map([[REVIEW_TABLE, '<div data-table-reference-evidence="exact"><div data-table-reference-experience="complete"><erp-table-toolbar/><erp-search-box/><erp-column-chooser/><erp-table/></div><div data-table-specimen="fixed-height"></div><div data-table-specimen="compact"></div><div data-table-specimen="vertical"></div><div data-table-specimen="header-types"></div></div>']])), 'erp-pagination'],
+    ['raw control inside exact reference composition', fixture(new Map([[REVIEW_TABLE, '<div data-table-reference-evidence="exact"><div data-table-reference-experience="complete"><input/><erp-table-toolbar/><erp-search-box/><erp-column-chooser/><erp-table/><erp-pagination/></div><div data-table-specimen="fixed-height"></div><div data-table-specimen="compact"></div><div data-table-specimen="vertical"></div><div data-table-specimen="header-types"></div></div>']])), 'ERP-only'],
     ['missing table exact geometry', fixture(new Map([[TABLE_TOKENS, '@mixin base {}']])), 'exact-reference geometry'],
     ['pagination duplicates visible labels', fixture(new Map([[PAGINATION, '<erp-inline class="pagination__size-row"><erp-select label="حجم الصفحة"/></erp-inline>']])), 'hidden accessible Select label'],
     ['missing avatar asset', fixture(new Map([[AVATAR_ASSET_ROOT, ['manifest.json']]])), '40 Product Owner'],

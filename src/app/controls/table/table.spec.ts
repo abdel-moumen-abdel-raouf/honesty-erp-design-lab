@@ -72,6 +72,21 @@ describe('ErpTable', () => {
     expect(fixture.nativeElement.querySelector('tbody td erp-text').textContent).toContain('النقدية');
   });
 
+  it('exposes the bounded full-reference frame presentation and reference empty anatomy', () => {
+    const fixture = TestBed.createComponent(ErpTable);
+    fixture.componentRef.setInput('caption', 'الموظفون');
+    fixture.componentRef.setInput('columns', [{key: 'name', header: 'الاسم'}]);
+    fixture.componentRef.setInput('presentation', 'reference-experience');
+    fixture.detectChanges();
+
+    const host = fixture.nativeElement as HTMLElement;
+    const viewport = host.querySelector('erp-table-viewport') as HTMLElement;
+    expect(host.getAttribute('data-table-presentation')).toBe('reference-experience');
+    expect(viewport.getAttribute('data-presentation')).toBe('reference-experience');
+    expect(host.querySelector('tbody .empty erp-icon')).not.toBeNull();
+    expect(host.querySelector('tbody .empty erp-text')?.textContent).toContain('لا توجد بيانات');
+  });
+
   it('renders a keyed rich-cell template with row/value/column/index context', () => {
     const fixture = TestBed.createComponent(TableHost);
     fixture.detectChanges();

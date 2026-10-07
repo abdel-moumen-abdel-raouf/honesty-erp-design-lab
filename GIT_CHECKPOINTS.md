@@ -1,25 +1,27 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
-## Current two-phase Tabs/Table checkpoint — 2026-10-07
+## Current full ERP-TABLE experience checkpoint — 2026-10-08
 
-Entry checkpoint: `0add01a6d342d8056ce026ba9c0d7015faff1c7f`.
+Entry checkpoint:
 
-Bounded commits:
+- `eddac4a8e8a3460f346bb579fdd5ca0074296e7a` — technically green but rejected
+  by the Product Owner for omitted visible reference owners and known geometry
+  mismatches.
 
-- `a5b272c` — `fix(tabs): arabicize exact-reference evidence`
-- `fix(table): reconstruct exact Product Owner reference` — resolve its final
-  SHA from live `main` after the final technical gate.
+Bounded commit: `fix(table): reconstruct full Product Owner reference
+experience`; resolve its final SHA from live `main` because this file is part of
+that commit.
 
-Phase A changes only visible Tabs review copy and primary direction; exact Tabs
-geometry remains unchanged. Phase B uses `ERP-TABLE.html`, SHA-256
-`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`, as the
-single Table visual/behavioral authority. Its contract is
-`src/app/controls/table/ERP_TABLE_REFERENCE_EXACT_V1.md`. The candidate passes
-all governance/lint, 133/133 test files and 897/897 tests, both typechecks,
-production build, and zero warnings. Initial bundle is 376.16 kB / 85.69 kB;
-Core Batch is 148.92 kB / 23.72 kB estimated transfer. Product Owner visual
-approval remains pending. The next action is
-ErpTable review at `/controls/core-batch`; no later Data/Table wave is opened.
+The binding reference remains `ERP-TABLE.html`, SHA-256
+`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`. The V2
+contract composes Toolbar, SearchBox, ColumnChooser, Table, footer information,
+and Pagination while retaining their bounded owners. Canonical verification
+passes all governance/lint, 134/134 test files and 904/904 tests, both
+typechecks, production build, and zero warnings. Initial bundle is 376.16 kB /
+85.65 kB; Core Batch is 160.50 kB / 25.32 kB estimated transfer.
+
+Product Owner visual approval remains pending. The next action is full
+ERP-TABLE review at `/controls/core-batch`; no later Data/Table wave is opened.
 
 These are technical/history checkpoints. They are **not** Product Owner visual
 approvals unless explicitly stated.

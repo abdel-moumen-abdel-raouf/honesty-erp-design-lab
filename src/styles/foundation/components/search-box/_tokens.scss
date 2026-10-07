@@ -53,6 +53,7 @@
     var(--honesty-color-action-focus-ring);
   --honesty-search-box-select-radius: 0.375rem;
   --honesty-search-box-select-font-size: 0.75rem;
+  --honesty-search-box-select-line-height: normal;
   --honesty-search-box-select-padding-block: 0.5rem;
   --honesty-search-box-select-padding-inline-start: 2.125rem;
   --honesty-search-box-select-padding-inline-end: 2rem;
@@ -60,6 +61,23 @@
   --honesty-search-box-select-icon-offset: 0.75rem;
   --honesty-search-box-select-transition-duration:
     var(--honesty-motion-duration-fast);
+}
+
+@mixin presentation-table-reference {
+  --honesty-search-box-select-bg: var(--honesty-color-surface-default);
+  --honesty-search-box-select-bg-focus: var(--honesty-color-surface-default);
+  --honesty-search-box-select-border: var(--honesty-border-default);
+  --honesty-search-box-select-border-focus:
+    var(--honesty-color-action-primary-bg);
+  --honesty-search-box-select-radius: 6px;
+  --honesty-search-box-select-font-size: 12px;
+  --honesty-search-box-select-line-height: 15px;
+  --honesty-search-box-select-padding-block: 6px;
+  --honesty-search-box-select-padding-inline-start: 34px;
+  --honesty-search-box-select-padding-inline-end: 12px;
+  --honesty-search-box-select-icon-size: 14px;
+  --honesty-search-box-select-icon-offset: 12px;
+  --honesty-search-box-select-transition-duration: 140ms;
 }
 
 @mixin animation-fade {

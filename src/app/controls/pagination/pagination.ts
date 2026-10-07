@@ -10,6 +10,7 @@ import {FormsModule} from '@angular/forms';
 import {ErpInline} from '../../primitives/inline/inline';
 import {ErpText} from '../../primitives/text/text';
 import {ErpButton} from '../button/button';
+import {ErpIconButton} from '../icon-button/icon-button';
 import {ErpSelect} from '../select/select';
 import {ErpSelectOption} from '../select/select-contracts';
 
@@ -17,12 +18,13 @@ import {ErpSelectOption} from '../select/select-contracts';
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector -- ERP production components intentionally use the erp prefix.
   selector: 'erp-pagination',
-  imports: [ErpButton, ErpInline, ErpSelect, ErpText, FormsModule],
+  imports: [ErpButton, ErpIconButton, ErpInline, ErpSelect, ErpText, FormsModule],
   templateUrl: './pagination.html',
   styleUrl: './pagination.scss',
   host: {
     '[attr.data-pagination-page]': 'effectivePage()',
     '[attr.data-pagination-page-count]': 'effectivePageCount()',
+    '[attr.data-pagination-presentation]': 'presentation()',
   },
 })
 export class ErpPagination {
@@ -31,6 +33,9 @@ export class ErpPagination {
   readonly totalItems = input<number | null>(null);
   readonly pageSize = input(25);
   readonly pageSizeOptions = input<readonly number[]>([10, 25, 50, 100]);
+  readonly presentation = input<'default' | 'table-reference'>('default');
+  readonly visibleItems = input<number | null>(null);
+  readonly selectedItems = input(0);
   readonly showSummary = input(true, {transform: booleanAttribute});
   readonly showPageSize = input(true, {transform: booleanAttribute});
   readonly showFirst = input(true, {transform: booleanAttribute});

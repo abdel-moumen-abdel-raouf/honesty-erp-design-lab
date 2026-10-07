@@ -46,7 +46,11 @@ th[data-sorted] { color: var(--honesty-table-head-sort-fg); }
 }
 
 .empty {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--honesty-table-empty-gap);
   padding: var(--honesty-table-empty-py) var(--honesty-table-empty-px);
 }
 

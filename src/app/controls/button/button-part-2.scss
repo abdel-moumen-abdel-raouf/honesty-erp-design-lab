@@ -10,6 +10,7 @@
   align-items: center;
   justify-content: center;
   height: var(--honesty-button-height);
+  min-inline-size: var(--honesty-button-min-inline-size);
   padding-inline: var(--honesty-button-padding-inline);
   border-width: var(--honesty-button-border-width);
   border-style: var(--honesty-button-border-style);

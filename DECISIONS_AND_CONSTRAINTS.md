@@ -30,23 +30,27 @@ Binding Product Owner law:
 4. the next item is the lowest unresolved dependency, not simply the next row
    in historical planning.
 
-Current authorization supersedes the ErpTabs-only gate below. Phase A
-Arabicized exact Tabs review evidence without changing geometry and is commit
-`a5b272c`. Phase B authorizes only literal ErpTable reconstruction from
-`ERP-TABLE.html`, SHA-256
-`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`.
-The contract is `src/app/controls/table/ERP_TABLE_REFERENCE_EXACT_V1.md`.
-Only colors, font family, invisible accessibility semantics, reduced motion,
-and ERP hierarchy may differ from the rendered reference.
+The current authorization supersedes the earlier Table-candidate wording.
+Phase A Arabicized exact Tabs evidence without geometry change. The Product
+Owner subsequently rejected Table checkpoint
+`eddac4a8e8a3460f346bb579fdd5ca0074296e7a` because architecture boundaries
+had been used to omit visible reference features. `ERP-TABLE.html`, SHA-256
+`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`, remains
+binding under `table/ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md`.
 
-ErpTable retains native table ownership and composes `ErpCheckBox`,
-`ErpSortHeader`, `ErpTableResizeHandle`, `ErpText`, and projected rich cells.
-Selection does not imply row activation. Higher toolbar/search/chooser/
-pagination/bulk/view/SmartTable composition is outside base Table. The current
-canonical gate passes all governance/lint, 133/133 test files and 897/897
-tests, both typechecks, production build, and zero warnings. The current
-gate is Product Owner review at `/controls/core-batch`; technical green never
-confers acceptance. No subsequent Data/Table visual owner is authorized.
+Ownership and visual scope are now explicit: base `ErpTable` owns the native
+table, selection, sorting, resizing, rows, cells, and rich projections; the
+exact experience composes Toolbar, SearchBox, ColumnChooser, Table, footer
+counter, and Pagination. A separate ERP owner must be reused, not skipped.
+Selection still never implies row activation. Features absent from the rendered
+reference—FilterBar, FilterDrawer, BulkActionBar, ViewSwitcher, loading, and
+SmartTable orchestration—remain absent rather than being invented.
+
+The current canonical gate passes every governance/lint check, 134/134 test
+files and 904/904 tests, both typechecks, production build, and zero warnings.
+The current gate is Product Owner review of the full experience at
+`/controls/core-batch`; technical green never confers acceptance or authorize a
+subsequent Data/Table visual wave.
 
 ### Historical ErpTabs-only authorization — superseded
 

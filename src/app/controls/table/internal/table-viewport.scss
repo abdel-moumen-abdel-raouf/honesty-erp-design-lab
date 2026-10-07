@@ -6,7 +6,7 @@
   min-inline-size: 0;
   inline-size: 100%;
   overflow: hidden;
-  border: var(--honesty-table-border-width) solid var(--honesty-table-line);
+  border: var(--honesty-table-frame-border-width) solid var(--honesty-table-line);
   border-radius: var(--honesty-table-radius);
   background: var(--honesty-table-bg);
   color: var(--honesty-table-fg);
@@ -16,6 +16,14 @@
 
 :host([data-density='compact']) { @include tokens.density-compact; }
 :host([data-density='comfortable']) { @include tokens.density-comfortable; }
+
+:host([data-presentation='reference-experience']) {
+  @include tokens.presentation-reference-experience;
+}
+
+:host([data-presentation='reference-experience']:not([data-vertical='true'])) .scroll {
+  overflow-x: scroll;
+}
 
 .scroll {
   inline-size: 100%;

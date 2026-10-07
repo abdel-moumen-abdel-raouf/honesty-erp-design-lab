@@ -1,19 +1,22 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
-## Authoritative current gate — 2026-10-07 — ErpTable exact reconstruction
+## Authoritative current gate — 2026-10-08 — full ERP-TABLE reference experience
 
-Phase A is commit `a5b272c`: exact Tabs evidence is Arabic/RTL by default with
-separate LTR evidence and unchanged geometry. Phase B reconstructs ErpTable
-from `ERP-TABLE.html`, SHA-256
-`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`, under
-`table/ERP_TABLE_REFERENCE_EXACT_V1.md`. The candidate passes 133/133 test files
-and 897/897 tests; all lint/governance, both typechecks, production build, and
-zero-warning gates pass.
+The Product Owner rejected `eddac4a8e8a3460f346bb579fdd5ca0074296e7a` for
+skipping visible reference owners and retaining geometry deltas. The current
+contract is `table/ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md`, backed by the
+same binding `ERP-TABLE.html` SHA-256
+`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`.
 
-The exact next action is Product Owner review of ErpTable at
-`/controls/core-batch`. SmartTable, ColumnChooser, FilterBar, FilterDrawer,
-TableToolbar, BulkActionBar, ViewSwitcher, and every later Data/Table visual
-correction remain unopened. Technical PASS is not visual acceptance.
+The exact reference experience now composes TableToolbar, SearchBox,
+ColumnChooser, Table, footer information, and Pagination without moving their
+ownership into base Table. It passes 134/134 test files and 904/904 tests, all
+lint/governance, both typechecks, production build, and the zero-warning gate.
+
+The exact next action is Product Owner review of the full experience at
+`/controls/core-batch`. The compatibility work here does not open an independent
+SmartTable, ColumnChooser, FilterBar, FilterDrawer, TableToolbar, BulkActionBar,
+ViewSwitcher, or later Data/Table visual wave. Technical PASS is not approval.
 
 ## Authority
 

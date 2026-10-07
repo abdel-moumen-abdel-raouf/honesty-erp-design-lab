@@ -38,6 +38,20 @@
   --honesty-icon-button-transition-easing: var(--honesty-motion-easing-standard);
 }
 
+@mixin presentation-table-reference-cell {
+  --honesty-icon-button-size: 28px;
+  --honesty-icon-button-padding: 0;
+  --honesty-icon-button-radius: 6px;
+  --honesty-icon-button-icon-size: 14px;
+}
+
+@mixin presentation-table-reference-page {
+  --honesty-icon-button-size: 30px;
+  --honesty-icon-button-padding: 0;
+  --honesty-icon-button-radius: 6px;
+  --honesty-icon-button-icon-size: 12px;
+}
+
 @mixin size-sm {
   --honesty-icon-button-size: #{spacing.$honesty-ref-space-32};
   --honesty-icon-button-icon-size: #{spacing.$honesty-ref-space-16};

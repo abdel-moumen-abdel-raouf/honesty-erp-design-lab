@@ -31,8 +31,8 @@ in this order:
     `src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`
 19. current exact ErpTabs reference contract:
     `src/app/controls/tabs/ERP_TABS_REFERENCE_EXACT_V1.md`
-20. current exact ErpTable reference contract:
-    `src/app/controls/table/ERP_TABLE_REFERENCE_EXACT_V1.md`
+20. current full ErpTable reference-experience contract:
+    `src/app/controls/table/ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md`
 
 Then verify live GitHub `main` before making any current-state claim.
 
@@ -68,23 +68,26 @@ This file intentionally preserves project history. Older "Current state",
 restated by the newest dated continuity blocks or by
 `CURRENT_EXECUTION_STATE.md`.
 
-## Authoritative current state — 2026-10-07 — Tabs Arabic evidence + ErpTable exact reconstruction
+## Authoritative current state — 2026-10-08 — full ERP-TABLE reference experience
 
-Phase A is commit `a5b272c`: primary Tabs review/example copy is Arabic ERP copy
-under RTL without changing exact Tabs geometry; separate LTR compatibility
-evidence remains.
+The Product Owner rejected `eddac4a8e8a3460f346bb579fdd5ca0074296e7a` for
+omitting visible owners and retaining geometry mismatches. The binding file and
+SHA remain `ERP-TABLE.html` / `292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`.
+The authoritative contract is now
+`src/app/controls/table/ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md`.
 
-Phase B entered from `0add01a6d342d8056ce026ba9c0d7015faff1c7f`.
-`ERP-TABLE.html`, SHA-256
-`292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`, is the
-single binding ErpTable authority. Its contract is
-`src/app/controls/table/ERP_TABLE_REFERENCE_EXACT_V1.md`. Canonical verification
-passes all lint/governance gates, 133/133 test files and 897/897 tests, both
-typechecks, production build, and zero warnings. Initial bundle is 376.16 kB /
-85.69 kB estimated transfer; Core Batch is 148.92 kB / 23.72 kB estimated
-transfer. Runtime evidence covers Light/Dark, RTL/LTR, 1440, 480, and 390 px.
-The exact next action is Product Owner review of ErpTable at
-`/controls/core-batch`. No later Data/Table visual owner or wave is opened.
+The primary evidence composes Toolbar, SearchBox, ColumnChooser, Table, footer
+information, and Pagination in one frame; separate ownership no longer means a
+visible reference feature may be skipped. Canonical verification passes every
+lint/governance gate, 134/134 test files and 904/904 tests, both typechecks,
+production build, and zero warnings. Initial bundle is 376.16 kB / 85.65 kB;
+Core Batch is 160.50 kB / 25.32 kB estimated transfer. Measured geometry for
+all six specimens has 0 px delta; the durable runtime record is
+`docs/review-evidence/erp-table/ERP_TABLE_RUNTIME_EVIDENCE.md`.
+
+The exact next action is Product Owner review of the full Table reference
+experience at `/controls/core-batch`. No later Data/Table visual wave is opened,
+and technical green is not visual acceptance.
 
 ## Historical ErpTabs-only authoritative state — superseded 2026-10-07
 

@@ -1,18 +1,20 @@
 # Next Component Reference Batch V1
 
-## Authoritative current reference gate — 2026-10-07
+## Authoritative current reference gate — 2026-10-08
 
-No next component is authorized. The active candidate is the bounded ErpTable
-literal reconstruction after Phase A Tabs Arabicization. Its sole authority is
-`ERP-TABLE.html`, SHA-256
+No next component is authorized. The current candidate closes the Product
+Owner rejection of `eddac4a8e8a3460f346bb579fdd5ca0074296e7a` by reconstructing
+the complete visible `ERP-TABLE.html` experience through its existing ERP
+owners. The binding SHA is
 `292E6D4A7A6D7BABCD8349AA69A346EB6A75656A2ED63380176AD1E22E2ECED1`; the
-contract is `table/ERP_TABLE_REFERENCE_EXACT_V1.md`.
+contract is `table/ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md`.
 
 Canonical technical verification passes. The exact next action is Product
-Owner review of ErpTable at `/controls/core-batch`. SmartTable, ColumnChooser,
-FilterBar, FilterDrawer, TableToolbar, BulkActionBar, ViewSwitcher, and the rest
-of the Data/Table Visual Correction Wave remain unopened. Technical green
-cannot authorize the next component.
+Owner review of the full experience at `/controls/core-batch`. Reusing
+ColumnChooser, TableToolbar, and Pagination here is bounded reference
+composition; it does not open their independent visual correction, SmartTable,
+FilterBar, FilterDrawer, BulkActionBar, ViewSwitcher, or a later Data/Table
+wave. Technical green cannot authorize the next component.
 
 ## Historical ErpTabs-only transition — superseded 2026-10-07
 

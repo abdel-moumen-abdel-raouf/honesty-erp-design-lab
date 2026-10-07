@@ -20,6 +20,7 @@
   --honesty-table-shadow: var(--honesty-elevation-raised);
 
   --honesty-table-border-width: 1px;
+  --honesty-table-frame-border-width: 1px;
   --honesty-table-radius: 12px;
   --honesty-table-cell-padding-block: 12px;
   --honesty-table-cell-padding-inline: 16px;
@@ -34,9 +35,13 @@
   --honesty-table-head-lh: 14px;
   --honesty-table-head-ls: 0.03em;
   --honesty-table-head-gap: 8px;
+  --honesty-table-head-icon-size: 14px;
+  --honesty-table-head-icon-row-content-height: 17px;
   --honesty-table-selection-size: 44px;
+  --honesty-table-selection-control-size: 16px;
   --honesty-table-empty-py: 40px;
   --honesty-table-empty-px: 16px;
+  --honesty-table-empty-gap: 12px;
   --honesty-table-scroll-size: 10px;
   --honesty-table-scroll-border: 3px;
   --honesty-table-resize-hit-size: 8px;
@@ -55,6 +60,12 @@
   --honesty-table-vcell-gap: 12px;
   --honesty-table-vcell-py: 8px;
   --honesty-table-vlabel-fs: 10px;
+}
+
+@mixin presentation-reference-experience {
+  --honesty-table-frame-border-width: 0;
+  --honesty-table-radius: 0;
+  --honesty-table-shadow: none;
 }
 
 @mixin density-compact {

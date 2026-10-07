@@ -23,6 +23,12 @@ import {
 } from '../button-family/button-contracts';
 import {PressRippleController} from '../button-family/internal/press-ripple';
 
+export type ErpButtonPresentation =
+  | 'default'
+  | 'table-reference-tool'
+  | 'table-reference-page'
+  | 'table-reference-cell';
+
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -41,6 +47,7 @@ import {PressRippleController} from '../button-family/internal/press-ripple';
     '[attr.data-button-full-width]': 'fullWidth()',
     '[attr.data-button-cursor]': 'cursor()',
     '[attr.data-button-ripple-speed]': 'rippleSpeed()',
+    '[attr.data-button-presentation]': 'presentation()',
   },
 })
 export class ErpButton {
@@ -66,6 +73,7 @@ export class ErpButton {
   readonly fullWidth = input(false, {transform: booleanAttribute});
   readonly cursor = input<ErpPressableCursor>('pointer');
   readonly rippleSpeed = input<ErpRippleSpeed>('normal');
+  readonly presentation = input<ErpButtonPresentation>('default');
   readonly pressed = output<void>();
 
   private readonly ripple = new PressRippleController();

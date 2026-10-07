@@ -1,4 +1,11 @@
-# ErpTable exact-reference contract V1
+# ErpTable exact-reference contract V1 — SUPERSEDED CANDIDATE
+
+> The Product Owner rejected the candidate at `eddac4a8` because the visible
+> reference experience omitted separately owned toolbar, search, column
+> chooser, footer, and pagination surfaces and retained known geometry deltas.
+> The current exhaustive contract is
+> `ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md`. This file remains as the audit
+> record for the rejected base-table-only interpretation.
 
 ## Authority
 
