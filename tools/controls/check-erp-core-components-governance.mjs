@@ -33,6 +33,7 @@ const STATUS_BADGE_REFERENCE_SHA = '654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD
 const AVATAR_TS = 'src/app/controls/avatar/avatar.ts';
 const AVATAR_TEMPLATE = 'src/app/controls/avatar/avatar.html';
 const AVATAR_SCSS = 'src/app/controls/avatar/avatar.scss';
+const AVATAR_SIZES = 'src/app/controls/avatar/avatar-sizes.scss';
 const AVATAR_FRAME_TEMPLATE = 'src/app/controls/avatar/internal/avatar-frame.html';
 const AVATAR_PRESENCE_TEMPLATE = 'src/app/controls/avatar/internal/avatar-presence-indicator.html';
 const AVATAR_TONES = 'src/app/controls/avatar/internal/avatar-frame.scss';
@@ -123,7 +124,7 @@ export function validateCoreComponents(files) {
   const avatarPresence = files.get(AVATAR_SCSS) ?? '';
   const avatarMotion = files.get(AVATAR_MOTION) ?? '';
   const avatarScss = [
-    AVATAR_SCSS, AVATAR_TONES, AVATAR_PRESENCE, AVATAR_MOTION,
+    AVATAR_SCSS, AVATAR_SIZES, AVATAR_TONES, AVATAR_PRESENCE, AVATAR_MOTION,
     AVATAR_FRAME_MOTION, AVATAR_RESPONSIVE,
   ].map((file) => files.get(file) ?? '').join('\n');
   const avatarTokens = files.get(AVATAR_TOKENS) ?? '';
@@ -333,7 +334,7 @@ export function validateCoreComponents(files) {
   }
 
   for (const contract of [
-    "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'",
+    "'xs'", "'sm'", "'md'", "'lg'", "'xl'", "'2xl'", "'3xl'", "'4xl'", "'5xl'",
     "'circle' | 'rounded' | 'square'",
     "'neutral'",
     "'purple'",
@@ -404,6 +405,9 @@ export function validateCoreComponents(files) {
     '--honesty-avatar-size: 3.125rem',
     '--honesty-avatar-size: 4.25rem',
     '--honesty-avatar-size: 5.5rem',
+    '--honesty-avatar-size: 7rem',
+    '--honesty-avatar-size: 9rem',
+    '--honesty-avatar-size: 11.5rem',
     '--honesty-avatar-rounded-radius: 26%',
     '--honesty-avatar-square-radius: 0.25rem',
     '--honesty-avatar-hover-scale: 1.06',
@@ -444,6 +448,8 @@ export function validateCoreComponents(files) {
     'class="avatar-reference-presence-matrix"',
     'data-avatar-direction-evidence="rtl"',
     'data-avatar-direction-evidence="ltr"',
+    'avatar-large-size-matrix',
+    'data-avatar-picker-large-size-evidence',
   ]) {
     if (!review.includes(evidence)) {
       errors.push(`Core review is missing Avatar exact-reference evidence ${evidence}`);
@@ -541,6 +547,14 @@ export function validateCoreComponents(files) {
     '@mixin base', '@mixin root-base', '@mixin tile-base', '@mixin size-compact',
     '@mixin layout-narrow', '--honesty-avatar-picker-max-inline-size: 32.5rem',
     '--honesty-avatar-picker-tile-size: 4.75rem',
+    '@mixin avatar-size-2xl', '@mixin avatar-size-3xl',
+    '@mixin avatar-size-4xl', '@mixin avatar-size-5xl',
+    '@mixin narrow-avatar-size-2xl', '@mixin narrow-avatar-size-3xl',
+    '@mixin narrow-avatar-size-4xl', '@mixin narrow-avatar-size-5xl',
+    '--honesty-avatar-picker-tile-size: 6.125rem',
+    '--honesty-avatar-picker-tile-size: 7.625rem',
+    '--honesty-avatar-picker-tile-size: 9.625rem',
+    '--honesty-avatar-picker-tile-size: 12.125rem',
     '--honesty-avatar-picker-grid-gap: 0.75rem',
     '--honesty-avatar-picker-grid-max-block-size: 27.5rem',
     '--honesty-avatar-picker-check-size: 1.375rem',
@@ -591,7 +605,7 @@ export function validateCoreComponents(files) {
 function fixture(overrides = new Map()) {
   const files = new Map([
     [ROUTES, "path: 'controls/core-batch'"],
-    [REVIEW, '<erp-select/><erp-status-badge/><erp-alert/><erp-skeleton/><erp-avatar/><erp-tabs/><erp-avatar-picker/><erp-table/><erp-pagination/><div class="select-parity-matrix" sortMode="label" label="نتيجة فارغة" label="حالة غير صالحة"></div><div class="status-badge-parity-matrix"></div><div class="status-badge-size-matrix"></div><div class="status-badge-anatomy-matrix"></div><div data-status-badge-direction-evidence="rtl"></div><div data-status-badge-direction-evidence="ltr"></div><div class="avatar-reference-size-matrix"></div><div class="avatar-reference-content-types"></div><div class="avatar-reference-motion-matrix"></div><div class="avatar-reference-presence-matrix"></div><div data-avatar-direction-evidence="rtl"></div><div data-avatar-direction-evidence="ltr"></div>'],
+    [REVIEW, '<erp-select/><erp-status-badge/><erp-alert/><erp-skeleton/><erp-avatar/><erp-tabs/><erp-avatar-picker/><erp-table/><erp-pagination/><div class="select-parity-matrix" sortMode="label" label="نتيجة فارغة" label="حالة غير صالحة"></div><div class="status-badge-parity-matrix"></div><div class="status-badge-size-matrix"></div><div class="status-badge-anatomy-matrix"></div><div data-status-badge-direction-evidence="rtl"></div><div data-status-badge-direction-evidence="ltr"></div><div class="avatar-reference-size-matrix"></div><div class="avatar-large-size-matrix"></div><div data-avatar-picker-large-size-evidence></div><div class="avatar-reference-content-types"></div><div class="avatar-reference-motion-matrix"></div><div class="avatar-reference-presence-matrix"></div><div data-avatar-direction-evidence="rtl"></div><div data-avatar-direction-evidence="ltr"></div>'],
     [REVIEW_TABLE, '<erp-column-chooser/>'],
     [SELECT, '<div class="select__control"></div><erp-field-trigger semanticRole="combobox" (blurred)="handleTriggerBlur()"/><erp-search-box presentation="select-panel"/><erp-selection-tile presentation="select-option"/><div class="select__group-label"></div><div class="select__footer"></div><erp-avatar/><erp-select-action icon="dismiss"/><erp-icon name="check-mark"/>'],
     [SELECT_TS, "this.controlSurface()?.nativeElement; Math.min(control.getBoundingClientRect().width, availableWidth); event.target.matches(':focus-visible'); this.triggerFocusVisible.set(false); readonly searchLabel = input('البحث'); readonly sortMode = input<ErpSelectSortMode>('none'); readonly groupBy = input<keyof ErpSelectOption | null>(null); readonly selectSize = input<ErpSelectSize>('md'); readonly selectAppearance = input<ErpSelectAppearance | null>(null)"],
@@ -615,17 +629,18 @@ function fixture(overrides = new Map()) {
     [STATUS_BADGE_TOKENS, '@mixin base {}; @mixin tone-success {}; @mixin tone-warning {}; @mixin tone-danger {}; @mixin tone-info {}; @mixin tone-brand {}; @mixin tone-pending {}; @mixin tone-archived {}; @mixin variant-soft {}; @mixin variant-solid {}; @mixin variant-outline {}; @mixin variant-ghost {}; @mixin size-sm {}; @mixin size-lg {}; @mixin size-xl {}; @mixin shape-square {}; @mixin shape-pill {}; --honesty-status-badge-height: 1.125rem; --honesty-status-badge-height: 1.375rem; --honesty-status-badge-height: 1.625rem; --honesty-status-badge-height: 2rem; --honesty-status-badge-padding-inline: 0.4375rem; --honesty-status-badge-padding-inline: 0.5625rem; --honesty-status-badge-padding-inline: 0.6875rem; --honesty-status-badge-padding-inline: 0.875rem; --honesty-status-badge-label-max-width: 11.25rem; --honesty-status-badge-focus-ring-width: 0.1875rem;'],
     [STATUS_BADGE_CONTRACT, `${STATUS_BADGE_REFERENCE_SHA}; supersedes every earlier \`ErpStatusBadge\` visual interpretation`],
     [STATUS_BADGE_LEGACY_REFERENCE, `SUPERSEDED; ${STATUS_BADGE_REFERENCE_SHA}`],
-    [AVATAR_TS, "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'; 'circle' | 'rounded' | 'square'; 'neutral'; 'purple'; 'slate'; 'vacation'; 'top-left'; 'bottom-right'; 'bounce'; 'blink'; 'breathe'; readonly initials = input<string | null>(null); readonly alt = input(''); readonly ring = input(false; readonly loading = input(false; readonly interactive = input(false; readonly avatarClick = output<MouseEvent>()"],
+    [AVATAR_TS, "'xs'; 'sm'; 'md'; 'lg'; 'xl'; '2xl'; '3xl'; '4xl'; '5xl'; 'circle' | 'rounded' | 'square'; 'neutral'; 'purple'; 'slate'; 'vacation'; 'top-left'; 'bottom-right'; 'bounce'; 'blink'; 'breathe'; readonly initials = input<string | null>(null); readonly alt = input(''); readonly ring = input(false; readonly loading = input(false; readonly interactive = input(false; readonly avatarClick = output<MouseEvent>()"],
     [AVATAR_TEMPLATE, '<erp-avatar-action/><erp-text/><erp-icon/><span class="avatar__frame"></span><img class="avatar__image"><erp-text class="avatar__initials"/><span class="avatar__presence-indicator"></span>'],
     [AVATAR_FRAME_TEMPLATE, '<span class="avatar__frame"></span>'],
     [AVATAR_PRESENCE_TEMPLATE, '<span class="avatar__presence-indicator"></span>'],
     [AVATAR_SCSS, "@include query.viewport-down('sm') {} position='left']) erp-avatar-presence { top: 50%; left: 0; } position='right']) erp-avatar-presence { top: 50%; right: 0; } position='top-left']) erp-avatar-presence { top: 0; left: 0; } position='bottom-right']) erp-avatar-presence { right: 0; bottom: 0; }"],
+    [AVATAR_SIZES, "@include tokens.size-xs; @include tokens.size-sm; @include tokens.size-lg; @include tokens.size-xl; @include tokens.size-2xl; @include tokens.size-3xl; @include tokens.size-4xl; @include tokens.size-5xl;"],
     [AVATAR_TONES, ''],
     [AVATAR_PRESENCE, 'class="avatar__presence-indicator"'],
     [AVATAR_MOTION, '@media (prefers-reduced-motion: reduce) {} .avatar__presence-indicator {}'],
     [AVATAR_FRAME_MOTION, '@media (prefers-reduced-motion: reduce) {} .avatar__frame {}'],
     [AVATAR_RESPONSIVE, ''],
-    [AVATAR_TOKENS, '@mixin base {}; @mixin root-base {}; @mixin frame-base {}; @mixin action-base {}; @mixin presence-base {}; @mixin tone-brand {}; @mixin tone-success {}; @mixin tone-warning {}; @mixin tone-danger {}; @mixin tone-info {}; @mixin tone-purple {}; @mixin tone-slate {}; @mixin presence-info {}; @mixin presence-brand {}; @mixin presence-pending {}; @mixin presence-vacation {}; --honesty-avatar-size: 1.5rem; --honesty-avatar-size: 1.875rem; --honesty-avatar-size: 2.375rem; --honesty-avatar-size: 3.125rem; --honesty-avatar-size: 4.25rem; --honesty-avatar-size: 5.5rem; --honesty-avatar-rounded-radius: 26%; --honesty-avatar-square-radius: 0.25rem; --honesty-avatar-hover-scale: 1.06; --honesty-avatar-active-scale: 0.96;'],
+    [AVATAR_TOKENS, '@mixin base {}; @mixin root-base {}; @mixin frame-base {}; @mixin action-base {}; @mixin presence-base {}; @mixin tone-brand {}; @mixin tone-success {}; @mixin tone-warning {}; @mixin tone-danger {}; @mixin tone-info {}; @mixin tone-purple {}; @mixin tone-slate {}; @mixin presence-info {}; @mixin presence-brand {}; @mixin presence-pending {}; @mixin presence-vacation {}; --honesty-avatar-size: 1.5rem; --honesty-avatar-size: 1.875rem; --honesty-avatar-size: 2.375rem; --honesty-avatar-size: 3.125rem; --honesty-avatar-size: 4.25rem; --honesty-avatar-size: 5.5rem; --honesty-avatar-size: 7rem; --honesty-avatar-size: 9rem; --honesty-avatar-size: 11.5rem; --honesty-avatar-rounded-radius: 26%; --honesty-avatar-square-radius: 0.25rem; --honesty-avatar-hover-scale: 1.06; --honesty-avatar-active-scale: 0.96;'],
     [AVATAR_CONTRACT, `${AVATAR_REFERENCE_SHA}; ERP-AVATAR.html supersedes every earlier \`ErpAvatar\` visual reference`],
     [AVATAR_LEGACY_REFERENCE, `SUPERSEDED; ${AVATAR_REFERENCE_SHA}`],
     [TABS_TS, "'horizontal' | 'vertical'; 'start' | 'end'; 'content' | 'fill'; 'underline' | 'pills'; 'fade-start'; 'fade-end'; 'rectangle' | 'rounded' | 'circle'"],
@@ -641,7 +656,7 @@ function fixture(overrides = new Map()) {
     [AVATAR_PICKER_TEMPLATE, '<erp-tabs [renderPanels]="false"/><erp-search-box/><erp-avatar-picker-tile/><erp-avatar/><erp-empty-state/><erp-button/><erp-tooltip/>'],
     [AVATAR_PICKER_TILE, '<button><erp-avatar/><erp-icon name="check-mark"/></button>'],
     ...AVATAR_PICKER_SCSS.map((file) => [file, file.endsWith('responsive.scss') ? "query.viewport-down('sm')" : '']),
-    [AVATAR_PICKER_TOKENS, '@mixin base {}; @mixin root-base {}; @mixin tile-base {}; @mixin size-compact {}; @mixin layout-narrow {}; --honesty-avatar-picker-max-inline-size: 32.5rem; --honesty-avatar-picker-tile-size: 4.75rem; --honesty-avatar-picker-grid-gap: 0.75rem; --honesty-avatar-picker-grid-max-block-size: 27.5rem; --honesty-avatar-picker-check-size: 1.375rem;'],
+    [AVATAR_PICKER_TOKENS, '@mixin base {}; @mixin root-base {}; @mixin tile-base {}; @mixin size-compact {}; @mixin layout-narrow {}; @mixin avatar-size-2xl {}; @mixin avatar-size-3xl {}; @mixin avatar-size-4xl {}; @mixin avatar-size-5xl {}; @mixin narrow-avatar-size-2xl {}; @mixin narrow-avatar-size-3xl {}; @mixin narrow-avatar-size-4xl {}; @mixin narrow-avatar-size-5xl {}; --honesty-avatar-picker-max-inline-size: 32.5rem; --honesty-avatar-picker-tile-size: 4.75rem; --honesty-avatar-picker-tile-size: 6.125rem; --honesty-avatar-picker-tile-size: 7.625rem; --honesty-avatar-picker-tile-size: 9.625rem; --honesty-avatar-picker-tile-size: 12.125rem; --honesty-avatar-picker-grid-gap: 0.75rem; --honesty-avatar-picker-grid-max-block-size: 27.5rem; --honesty-avatar-picker-check-size: 1.375rem;'],
     [AVATAR_PICKER_CONTRACT, `${AVATAR_PICKER_REFERENCE_SHA}; exact visual and behavioral replication`],
     [AVATAR_PICKER_LEGACY_REFERENCE, `SUPERSEDED; ${AVATAR_PICKER_REFERENCE_SHA}`],
     [AVATAR_CATALOG, "avatarItems('male', 1, 20); avatarItems('female', 21, 40); /assets/honesty-erp-avatars/users/"],
@@ -742,6 +757,7 @@ function runCheck() {
     [AVATAR_FRAME_TEMPLATE, read(AVATAR_FRAME_TEMPLATE)],
     [AVATAR_PRESENCE_TEMPLATE, read(AVATAR_PRESENCE_TEMPLATE)],
     [AVATAR_SCSS, read(AVATAR_SCSS)],
+    [AVATAR_SIZES, read(AVATAR_SIZES)],
     [AVATAR_TONES, read(AVATAR_TONES)],
     [AVATAR_PRESENCE, read(AVATAR_PRESENCE)],
     [AVATAR_MOTION, read(AVATAR_MOTION)],

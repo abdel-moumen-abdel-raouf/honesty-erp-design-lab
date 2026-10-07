@@ -62,6 +62,8 @@ import {ErpAvatarPickerTile} from './internal/avatar-picker-tile';
     '[attr.data-avatar-picker-draft]': 'draft()',
     '[attr.data-avatar-picker-gender]': 'gender()',
     '[attr.data-avatar-picker-size]': 'size()',
+    '[attr.data-avatar-picker-avatar-size]': 'effectiveAvatarSize()',
+    '[attr.data-avatar-picker-avatar-shape]': 'avatarShape()',
     '[attr.data-avatar-picker-disabled]': 'disabled()',
   },
 })

@@ -30,9 +30,9 @@ Binding Product Owner law:
 4. the next item is the lowest unresolved dependency, not simply the next row
    in historical planning.
 
-Latest authorized implementation is the bounded `ErpAvatarPicker Exact
-Reference Rebuild`, entered from
-`4a3e65ab5f8bc5d38b3ea25dd8b77045c6a6b53c`.
+Latest authorized implementation is the bounded large-size compatibility
+correction for `ErpAvatar` and `ErpAvatarPicker`, entered from
+`478cd171c974ea2ba5f360b3e345597b2ea49d0a`.
 
 `ERP-AVATAR-PICKER.html`, SHA-256
 `24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`, is the
@@ -44,12 +44,18 @@ and font-family values alone map through Honesty ERP system contracts.
 The authoritative implementation contract is
 `src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`.
 
-The rebuilt candidate passes 133/133 test files and 887/887 tests, both
+The correction fixes `2xl`, adds `3xl`, `4xl`, and `5xl`, and keeps Avatar as
+the sole owner of avatar geometry while AvatarPicker owns only responsive
+tile/grid/selection composition. The three supported shapes remain physically
+correct at every large size.
+
+The rebuilt candidate passes 133/133 test files and 889/889 tests, both
 typechecks, production build, all governance, and zero warnings.
 
-Current active gate is Product Owner runtime/Light/Dark/RTL/LTR/narrow comparison of
-the rebuilt AvatarPicker at `/controls/core-batch` against the binding reference.
-The previous Avatar, Select and StatusBadge candidates are not reopened. Browser runtime evidence does
+Current active gate is Product Owner runtime/Light/Dark/RTL/LTR/narrow review of
+large Avatar/AvatarPicker size compatibility at `/controls/core-batch` against
+both binding references. Select, StatusBadge, and every other Core candidate
+remain closed to implementation. Browser runtime evidence does
 not confer visual acceptance. The Data/Table
 Visual Correction Wave remains unopened. Technical PASS is not visual freeze.
 Standalone EntityReview, Entity Wizard, workflow engine, DataPage,

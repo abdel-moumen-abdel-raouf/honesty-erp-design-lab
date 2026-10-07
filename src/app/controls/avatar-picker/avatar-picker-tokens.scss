@@ -7,3 +7,19 @@
 :host([data-avatar-picker-size='compact']) {
   @include tokens.size-compact;
 }
+
+:host([data-avatar-picker-avatar-size='2xl']) {
+  @include tokens.avatar-size-2xl;
+}
+
+:host([data-avatar-picker-avatar-size='3xl']) {
+  @include tokens.avatar-size-3xl;
+}
+
+:host([data-avatar-picker-avatar-size='4xl']) {
+  @include tokens.avatar-size-4xl;
+}
+
+:host([data-avatar-picker-avatar-size='5xl']) {
+  @include tokens.avatar-size-5xl;
+}

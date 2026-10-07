@@ -286,11 +286,11 @@
           <erp-select label="حركة الحضور" [options]="avatarMotionOptions" [ngModel]="avatarPresenceMotion()" (ngModelChange)="avatarPresenceMotion.set($event)" />
           <erp-select label="حركة التحويم" [options]="avatarHoverOptions" [ngModel]="avatarHoverMotion()" (ngModelChange)="avatarHoverMotion.set($event)" />
         </erp-grid>
-        <erp-stack class="avatar-reference-preview" gap="tight">
+        <erp-stack class="avatar-reference-preview avatar-large-size-matrix" gap="tight">
           <erp-avatar
             name="معاينة تفاعلية"
             src="/assets/honesty-erp-avatars/users/male/avatar-01.png"
-            size="xl"
+            [size]="pickerSize()"
             [shape]="avatarShape()"
             [tone]="avatarTone()"
             [cursor]="avatarCursor()"
@@ -529,6 +529,7 @@
           <erp-select label="شكل الصور" [options]="avatarShapeOptions" [ngModel]="pickerShape()" (ngModelChange)="pickerShape.set($event)" />
         </erp-grid>
         <erp-avatar-picker
+          data-avatar-picker-large-size-evidence
           title="دليل توافق API"
           subtitle="تمرير شكل وحجم ErpAvatar دون إعادة رسمه"
           [value]="selectedAvatar()"

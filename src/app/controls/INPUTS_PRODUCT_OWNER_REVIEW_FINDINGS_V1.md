@@ -5,19 +5,22 @@
 The findings below remain an auditable historical Product Owner review record;
 they are not current implementation authorization.
 
-The latest Product Owner decision is the bounded AvatarPicker exact-reference
-rebuild. `ERP-AVATAR-PICKER.html`, SHA-256
+The latest Product Owner decision is the bounded Avatar/AvatarPicker large-size
+compatibility correction entered from
+`478cd171c974ea2ba5f360b3e345597b2ea49d0a`. `ERP-AVATAR-PICKER.html`, SHA-256
 `24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`, is the
 single binding visual and behavioral authority for `ErpAvatarPicker`; its exact
 contract is `avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`. The prior
-Avatar, Select and StatusBadge contracts remain technically implemented and are
-not reopened.
+Select and StatusBadge contracts remain technically implemented and are not
+reopened. The Avatar and AvatarPicker contracts were reopened only for the
+authorized `2xl` correction and `3xl`/`4xl`/`5xl` extension.
 
-The rebuilt candidate passes 133/133 test files and 887/887 tests, all
+The rebuilt candidate passes 133/133 test files and 889/889 tests, all
 governance, both typechecks, production build, and zero warnings.
 
 The exact next action is Product Owner runtime/Light/Dark/RTL/LTR/narrow
-comparison of the rebuilt AvatarPicker at `/controls/core-batch`. Runtime browser
+review of large Avatar/AvatarPicker size compatibility at
+`/controls/core-batch`. Runtime browser
 evidence does not confer Product Owner visual acceptance. The Data/Table Visual
 Correction Wave and all later unlisted work remain unopened.
 

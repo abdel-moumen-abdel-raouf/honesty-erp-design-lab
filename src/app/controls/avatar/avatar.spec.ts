@@ -61,12 +61,13 @@ describe('ErpAvatar', () => {
     expect(fixture.nativeElement.querySelector('img')?.getAttribute('src')).toBe('/avatar-b.png');
   });
 
-  it('maps all six reference sizes to their exact desktop geometry tokens', () => {
+  it('maps the six reference sizes and the three authorized large extensions to desktop geometry tokens', () => {
     const fixture = TestBed.createComponent(ErpAvatar);
     fixture.componentRef.setInput('name', 'User');
     const expected = {
       xs: '1.5rem', sm: '1.875rem', md: '2.375rem',
       lg: '3.125rem', xl: '4.25rem', '2xl': '5.5rem',
+      '3xl': '7rem', '4xl': '9rem', '5xl': '11.5rem',
     } as const;
 
     for (const [size, pixels] of Object.entries(expected)) {
@@ -74,6 +75,26 @@ describe('ErpAvatar', () => {
       fixture.detectChanges();
       const style = getComputedStyle(fixture.nativeElement);
       expect(style.getPropertyValue('--honesty-avatar-size').trim()).toBe(pixels);
+    }
+  });
+
+  it('keeps every large size compatible with circle, rounded, and square geometry', () => {
+    const fixture = TestBed.createComponent(ErpAvatar);
+    fixture.componentRef.setInput('name', 'Large Avatar');
+
+    for (const size of ['2xl', '3xl', '4xl', '5xl'] as const) {
+      for (const shape of ['circle', 'rounded', 'square'] as const) {
+        fixture.componentRef.setInput('size', size);
+        fixture.componentRef.setInput('shape', shape);
+        fixture.detectChanges();
+
+        const host = fixture.nativeElement as HTMLElement;
+        const style = getComputedStyle(host);
+        expect(host.getAttribute('data-avatar-size')).toBe(size);
+        expect(host.getAttribute('data-avatar-shape')).toBe(shape);
+        expect(style.inlineSize).toBe(style.blockSize);
+        expect(host.querySelector('.avatar__frame')).not.toBeNull();
+      }
     }
   });
 

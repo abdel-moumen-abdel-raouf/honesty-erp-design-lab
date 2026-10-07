@@ -192,10 +192,46 @@
   --honesty-avatar-picker-tile-size: 3.875rem;
 }
 
+// Tile geometry is owned by the Picker, while the rendered identity remains
+// wholly owned by ErpAvatar. Each cell equals the Avatar frame plus the exact
+// Picker padding and border allowance (10px), eliminating the former 2xl
+// frame/cell collision and extending the same law through 5xl.
+@mixin avatar-size-2xl {
+  --honesty-avatar-picker-tile-size: 6.125rem;
+}
+
+@mixin avatar-size-3xl {
+  --honesty-avatar-picker-tile-size: 7.625rem;
+}
+
+@mixin avatar-size-4xl {
+  --honesty-avatar-picker-tile-size: 9.625rem;
+}
+
+@mixin avatar-size-5xl {
+  --honesty-avatar-picker-tile-size: 12.125rem;
+}
+
 @mixin layout-narrow {
   --honesty-avatar-picker-padding: 1rem;
   --honesty-avatar-picker-radius: 0.75rem;
   --honesty-avatar-picker-grid-gap: 0.5rem;
   --honesty-avatar-picker-grid-max-block-size: 56vh;
   --honesty-avatar-picker-tile-size: 4rem;
+}
+
+@mixin narrow-avatar-size-2xl {
+  --honesty-avatar-picker-tile-size: 5.125rem;
+}
+
+@mixin narrow-avatar-size-3xl {
+  --honesty-avatar-picker-tile-size: 6.125rem;
+}
+
+@mixin narrow-avatar-size-4xl {
+  --honesty-avatar-picker-tile-size: 7.625rem;
+}
+
+@mixin narrow-avatar-size-5xl {
+  --honesty-avatar-picker-tile-size: 9.625rem;
 }

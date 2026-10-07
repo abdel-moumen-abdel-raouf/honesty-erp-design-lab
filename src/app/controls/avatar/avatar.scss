@@ -21,12 +21,6 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-:host([data-avatar-size='xs']) { @include tokens.size-xs; }
-:host([data-avatar-size='sm']) { @include tokens.size-sm; }
-:host([data-avatar-size='lg']) { @include tokens.size-lg; }
-:host([data-avatar-size='xl']) { @include tokens.size-xl; }
-:host([data-avatar-size='2xl']) { @include tokens.size-2xl; }
-
 :host([data-avatar-shape='rounded']) {
   --honesty-avatar-radius: var(--honesty-avatar-rounded-radius);
 }

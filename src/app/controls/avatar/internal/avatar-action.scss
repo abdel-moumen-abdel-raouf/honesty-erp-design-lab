@@ -49,4 +49,7 @@ erp-avatar[data-avatar-cursor='pointer'] {
 @include query.viewport-down('sm') {
   erp-avatar[data-avatar-size='xl'][data-avatar-size] { @include tokens.narrow-xl; }
   erp-avatar[data-avatar-size='2xl'][data-avatar-size] { @include tokens.narrow-2xl; }
+  erp-avatar[data-avatar-size='3xl'][data-avatar-size] { @include tokens.narrow-3xl; }
+  erp-avatar[data-avatar-size='4xl'][data-avatar-size] { @include tokens.narrow-4xl; }
+  erp-avatar[data-avatar-size='5xl'][data-avatar-size] { @include tokens.narrow-5xl; }
 }

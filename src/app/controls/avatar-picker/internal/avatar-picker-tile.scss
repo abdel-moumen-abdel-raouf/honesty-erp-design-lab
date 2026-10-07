@@ -19,6 +19,7 @@ button {
   cursor: pointer;
   opacity: var(--honesty-avatar-picker-tile-opacity);
   outline: 0;
+  overflow: hidden;
   transition:
     transform var(--honesty-avatar-picker-motion-duration)
       var(--honesty-avatar-picker-motion-easing),

@@ -66,8 +66,9 @@ restated by the newest dated continuity blocks or by
 
 ## Authoritative current state — 2026-10-07
 
-The bounded `ErpAvatarPicker Exact Reference Rebuild` started from
-`4a3e65ab5f8bc5d38b3ea25dd8b77045c6a6b53c`. Resolve the final live SHA from Git.
+The bounded large-size compatibility correction for `ErpAvatar` and
+`ErpAvatarPicker` started from
+`478cd171c974ea2ba5f360b3e345597b2ea49d0a`. Resolve the final live SHA from Git.
 
 - `ERP-AVATAR-PICKER.html`, SHA-256
   `24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`, is the
@@ -78,15 +79,19 @@ The bounded `ErpAvatarPicker Exact Reference Rebuild` started from
   approved ERP owners. Colors and font families alone map through system contracts.
 - The authoritative contract is
   `src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`.
-- Verification passes 133/133 test files, 887/887 tests, every lint/governance
+- `2xl` is corrected and the public size vocabulary now includes `3xl`, `4xl`,
+  and `5xl`, with proportional Avatar geometry and responsive Picker tile/grid
+  composition for `circle`, `rounded`, and `square`.
+- Verification passes 133/133 test files, 889/889 tests, every lint/governance
   gate, both typechecks, production build, and zero warnings.
-- Initial bundle: 376.12 kB / 85.65 kB estimated transfer. Core Batch lazy
-  chunk: 95.63 kB / 16.94 kB estimated transfer.
-- Product Owner runtime/Light/Dark/RTL/LTR/narrow acceptance for AvatarPicker
-  remains pending at `/controls/core-batch`; technical PASS is not visual
-  approval or freeze.
-- `ErpAvatar`, `ErpSelect`, and `ErpStatusBadge` remain prior technical
-  candidates and are not reopened.
+- Initial bundle: 376.12 kB / 85.63 kB estimated transfer. Core Batch lazy
+  chunk: 96.67 kB / 17.02 kB estimated transfer.
+- Product Owner runtime/Light/Dark/RTL/LTR/narrow acceptance for large
+  Avatar/AvatarPicker size compatibility remains pending at
+  `/controls/core-batch`; technical PASS is not visual approval or freeze.
+- `ErpAvatar` and `ErpAvatarPicker` were reopened only for large-size
+  compatibility. `ErpSelect`, `ErpStatusBadge`, and all other Core owners remain
+  closed to implementation.
 - The Data/Table Visual Correction Wave and every later unlisted scope remain
   unopened.
 

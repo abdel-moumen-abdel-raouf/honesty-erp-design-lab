@@ -14,7 +14,16 @@ import {ErpAvatarAction} from './internal/avatar-action';
 import {ErpAvatarFrame} from './internal/avatar-frame';
 import {ErpAvatarPresenceIndicator} from './internal/avatar-presence-indicator';
 
-export type ErpAvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export type ErpAvatarSize =
+  | 'xs'
+  | 'sm'
+  | 'md'
+  | 'lg'
+  | 'xl'
+  | '2xl'
+  | '3xl'
+  | '4xl'
+  | '5xl';
 export type ErpAvatarShape = 'circle' | 'rounded' | 'square';
 export type ErpAvatarTone =
   | 'neutral'
@@ -70,7 +79,7 @@ const PRESENCE_LABELS: Readonly<Record<ErpAvatarPresence, string>> = {
   selector: 'erp-avatar',
   imports: [ErpAvatarAction, ErpAvatarFrame, ErpAvatarPresenceIndicator, ErpIcon, ErpText],
   templateUrl: './avatar.html',
-  styleUrl: './avatar.scss',
+  styleUrls: ['./avatar.scss', './avatar-sizes.scss'],
   host: {
     '[attr.data-avatar-size]': 'size()',
     '[attr.data-avatar-shape]': 'shape()',

@@ -2,8 +2,9 @@
 
 ## 0. Authoritative current handoff — 2026-10-07
 
-The bounded `ErpAvatarPicker Exact Reference Rebuild` started from
-`4a3e65ab5f8bc5d38b3ea25dd8b77045c6a6b53c`. Resolve final local and remote SHAs
+The bounded large-size compatibility correction for `ErpAvatar` and
+`ErpAvatarPicker` started from
+`478cd171c974ea2ba5f360b3e345597b2ea49d0a`. Resolve final local and remote SHAs
 at session start.
 
 The Product Owner made
@@ -16,16 +17,21 @@ are translated to Honesty ERP Semantic, Typography, and Component Tokens. The
 authoritative implementation contract is
 `src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`.
 
-The rebuilt AvatarPicker is technically green at 133/133 test files and 887/887
+The `2xl` geometry is corrected and `ErpAvatarSize` now extends through `3xl`,
+`4xl`, and `5xl`. Avatar owns the large frame/content/presence/ring/shape law;
+AvatarPicker forwards size and shape to `ErpAvatar` and owns only responsive
+tile/grid/selection geometry. The candidate is technically green at 133/133
+test files and 889/889
 tests, all lint/governance gates, both typechecks, production build, and zero
-warnings. Initial bundle is 376.12 kB / 85.65 kB estimated transfer; Core Batch
-lazy chunk is 95.63 kB / 16.94 kB.
+warnings. Initial bundle is 376.12 kB / 85.63 kB estimated transfer; Core Batch
+lazy chunk is 96.67 kB / 17.02 kB.
 
-The exact next action is Product Owner runtime/Light/Dark/RTL/LTR/narrow
-comparison of the rebuilt AvatarPicker at `/controls/core-batch` against
-`ERP-AVATAR-PICKER.html`. Browser runtime evidence is implementation evidence
-only, not Product Owner visual acceptance. `ErpAvatar`, `ErpSelect`, and
-`ErpStatusBadge` are not reopened. The Data/Table Visual Correction Wave is not opened.
+The exact next action is Product Owner runtime/Light/Dark/RTL/LTR/narrow review
+of large Avatar/AvatarPicker size compatibility at `/controls/core-batch`
+against both binding references. Browser runtime evidence is implementation
+evidence only, not Product Owner visual acceptance. `ErpSelect`,
+`ErpStatusBadge`, and every other Core owner remain closed to implementation.
+The Data/Table Visual Correction Wave is not opened.
 Technical PASS never equals visual acceptance.
 Standalone EntityReview, Entity Wizard, workflow engine, DataPage,
 EntityDirectory, EntityDetail, CRUD/transaction patterns, Feature/Page

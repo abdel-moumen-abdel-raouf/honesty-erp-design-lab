@@ -98,7 +98,7 @@ export class CoreBatch {
   readonly avatarHoverMotion = signal<ErpAvatarHoverMotion>('scale');
   readonly avatarTone = signal<ErpAvatarTone>('brand');
   readonly avatarInteractionEvidence = signal('لم يحدث تفاعل بعد');
-  readonly pickerSize = signal<ErpAvatarSize>('lg');
+  readonly pickerSize = signal<ErpAvatarSize>('2xl');
   readonly pickerShape = signal<ErpAvatarShape>('circle');
   readonly tabsOrientation = signal<ErpTabsOrientation>('horizontal');
   readonly tabsDistribution = signal<ErpTabsDistribution>('content');
@@ -153,7 +153,9 @@ export class CoreBatch {
     'none', 'pulse', 'ping', 'bounce', 'blink', 'breathe',
   ]);
   readonly avatarHoverOptions = this.options(['none', 'scale', 'lift']);
-  readonly avatarSizeOptions = this.options(['xs', 'sm', 'md', 'lg', 'xl', '2xl']);
+  readonly avatarSizeOptions = this.options([
+    'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl',
+  ]);
   readonly tabsOrientationOptions = this.options(['horizontal', 'vertical']);
   readonly tabsDistributionOptions = this.options(['content', 'fill']);
   readonly tabsVariantOptions = this.options(['underline', 'pills']);

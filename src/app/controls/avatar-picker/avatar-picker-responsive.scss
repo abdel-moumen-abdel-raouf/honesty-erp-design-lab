@@ -6,6 +6,22 @@
     @include tokens.layout-narrow;
   }
 
+  :host([data-avatar-picker-avatar-size='2xl']) {
+    @include tokens.narrow-avatar-size-2xl;
+  }
+
+  :host([data-avatar-picker-avatar-size='3xl']) {
+    @include tokens.narrow-avatar-size-3xl;
+  }
+
+  :host([data-avatar-picker-avatar-size='4xl']) {
+    @include tokens.narrow-avatar-size-4xl;
+  }
+
+  :host([data-avatar-picker-avatar-size='5xl']) {
+    @include tokens.narrow-avatar-size-5xl;
+  }
+
   .avatar-picker__footer {
     align-items: stretch;
     flex-direction: column;

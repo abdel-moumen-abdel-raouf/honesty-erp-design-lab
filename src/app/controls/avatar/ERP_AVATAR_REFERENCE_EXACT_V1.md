@@ -20,7 +20,10 @@ The base Avatar reference owns:
 
 - image, explicit initials, semantic icon, derived initials, and default-icon
   content;
-- six sizes: `xs | sm | md | lg | xl | 2xl`;
+- six exact-reference sizes: `xs | sm | md | lg | xl | 2xl`;
+- Product Owner large-size compatibility extension: `3xl | 4xl | 5xl`,
+  derived from the anchored `2xl` proportions without changing the six
+  reference sizes;
 - three shapes: `circle | rounded | square`;
 - eight tones: `neutral | brand | success | warning | danger | info | purple |
   slate`;
@@ -50,6 +53,9 @@ appearance.
 | `lg` | 50px | 16px | 26px | 13px | 3px | 2px | 3px |
 | `xl` | 68px | 22px | 36px | 17px | 3px | 3px | 3px |
 | `2xl` | 88px | 28px | 46px | 22px | 4px | 3px | 4px |
+| `3xl` | 112px | 36px | 58px | 28px | 4px | 4px | 4px |
+| `4xl` | 144px | 46px | 75px | 36px | 5px | 4px | 5px |
+| `5xl` | 184px | 59px | 96px | 46px | 6px | 5px | 6px |
 
 - Circle radius: `50%`.
 - Rounded radius: `26%`.
@@ -58,9 +64,21 @@ appearance.
 - Interactive hover scale: `1.06`.
 - Interactive active scale: `0.96`.
 - Focus-visible ring: `3px`.
-- Large narrow sizes: `xl` becomes 58px and `2xl` becomes 72px. The production
-  implementation reaches the narrow state through the Foundation Query API;
-  it does not author the reference's raw 520px breakpoint.
+- Large narrow sizes: `xl` becomes 58px, `2xl` becomes 72px, `3xl` becomes
+  88px, `4xl` becomes 112px, and `5xl` becomes 144px. The extension follows a
+  deterministic one-step-down large-size rule after `2xl`; all font, icon,
+  presence, presence-border, ring-width, and ring-offset metrics remap with the
+  frame. The production implementation reaches the narrow state through the
+  Foundation Query API; it does not author the reference's raw breakpoint.
+
+### Product Owner large-size scale law
+
+`2xl` remains the exact 88px reference anchor. The added desktop frames are
+112px, 144px, and 184px. Initials remain approximately 32% of the frame, icons
+approximately 52%, and presence indicators 25%, with whole-pixel metrics.
+Picker cells add exactly 10px around the current Avatar frame for the Picker's
+3px-per-side padding and 2px-per-side border. Shape radii remain owned by
+`ErpAvatar`, so the same scale law applies to circle, rounded, and square.
 
 ## Content and accessibility
 

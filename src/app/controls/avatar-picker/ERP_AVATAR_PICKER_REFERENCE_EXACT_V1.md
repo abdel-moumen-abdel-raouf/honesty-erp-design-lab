@@ -98,6 +98,26 @@ and fallback are forwarded to the exact-reference `ErpAvatar` owner.
 | `2px` tile border | `--honesty-avatar-picker-tile-border-width: 0.125rem` |
 | `22px` selected marker | `--honesty-avatar-picker-check-size: 1.375rem` |
 
+### Large Avatar compatibility extension
+
+The Product Owner reopened only large-size compatibility. `ErpAvatarPicker`
+continues to render every cell through `ErpAvatar`; it does not own Avatar
+frames, images, shapes, radii, initials, icons, presence, or rings.
+
+| Avatar size | Desktop Avatar | Desktop tile | Narrow Avatar | Narrow tile |
+|---|---:|---:|---:|---:|
+| `2xl` | 88px | 98px | 72px | 82px |
+| `3xl` | 112px | 122px | 88px | 98px |
+| `4xl` | 144px | 154px | 112px | 122px |
+| `5xl` | 184px | 194px | 144px | 154px |
+
+The 10px cell allowance is the Picker-owned sum of 3px padding and 2px border
+on each side. The grid uses the reference auto-fill law with a `100%` cap on
+its minimum cell so a large configured size cannot create horizontal overflow
+inside a narrower Picker. Narrow remapping uses the Foundation Query API.
+Circle, rounded, and square continue to be forwarded without private Picker
+shape styling.
+
 ## Reference parity ledger
 
 | Reference feature | Implementation owner | Status |

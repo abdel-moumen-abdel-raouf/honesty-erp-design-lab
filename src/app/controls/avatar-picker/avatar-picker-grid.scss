@@ -7,7 +7,7 @@
   display: grid;
   grid-template-columns: repeat(
     auto-fill,
-    minmax(var(--honesty-avatar-picker-tile-size), 1fr)
+    minmax(min(var(--honesty-avatar-picker-tile-size), 100%), 1fr)
   );
   gap: var(--honesty-avatar-picker-grid-gap);
   max-block-size: var(--honesty-avatar-picker-grid-max-block-size);

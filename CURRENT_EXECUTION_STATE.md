@@ -14,9 +14,10 @@ Branch:
 
 ## Authoritative current execution state — 2026-10-07
 
-The Product Owner's bounded `ErpAvatarPicker Exact Reference Rebuild` started
-from `4a3e65ab5f8bc5d38b3ea25dd8b77045c6a6b53c`. Resolve live local and remote
-SHAs directly; source and continuity are synchronized in the same implementation
+The Product Owner's bounded large-size compatibility correction for
+`ErpAvatar` and `ErpAvatarPicker` started from
+`478cd171c974ea2ba5f360b3e345597b2ea49d0a`. Resolve live local and remote SHAs
+directly; source and continuity are synchronized in the same implementation
 commit.
 
 `C:\Users\Misrtech\Downloads\ERP-AVATAR-PICKER.html`, SHA-256
@@ -30,24 +31,33 @@ selection action; it owns no private Avatar or Tabs implementation. The
 authoritative contract is
 `src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`.
 
-Technical verification passes 133/133 test files and 887/887 tests, all
+The public Avatar size vocabulary now extends the exact-reference progression
+from `2xl` through `3xl`, `4xl`, and `5xl`. Avatar owns the proportional frame,
+content, presence, ring, shape, and narrow size law. AvatarPicker continues to
+render every catalog cell through `ErpAvatar` and owns only the corresponding
+tile/grid/selection composition law. The three shapes remain `circle`,
+`rounded`, and `square` at every large size.
+
+Technical verification passes 133/133 test files and 889/889 tests, all
 lint/governance checks, both TypeScript typechecks, production build, and zero
-Angular/build warnings. The production initial bundle is 376.12 kB / 85.65 kB
-estimated transfer; the Core Batch lazy chunk is 95.63 kB / 16.94 kB estimated
+Angular/build warnings. The production initial bundle is 376.12 kB / 85.63 kB
+estimated transfer; the Core Batch lazy chunk is 96.67 kB / 17.02 kB estimated
 transfer.
 
 Product Owner visual state and immediate next action:
 
-- `ErpAvatarPicker` remains pending Product Owner runtime/Light/Dark/RTL/LTR/
-  narrow review at `/controls/core-batch` against `ERP-AVATAR-PICKER.html`;
+- the `2xl` correction and the new `3xl`, `4xl`, and `5xl` Avatar/AvatarPicker
+  compatibility remain pending Product Owner runtime/Light/Dark/RTL/LTR/narrow
+  review at `/controls/core-batch` against both binding references;
 - the 20 male / 20 female / 40 total asset catalog and manifest remain intact;
 - every tile and the preview render through `ErpAvatar`; the Picker template
   authors no raw avatar image and no private Tabs implementation;
-- `ErpAvatar`, `ErpSelect`, and `ErpStatusBadge` remain prior rebuilt technical
-  candidates and are not visually reopened by this task;
+- `ErpAvatar` and `ErpAvatarPicker` were reopened only for the authorized
+  large-size compatibility correction; `ErpSelect`, `ErpStatusBadge`, and all
+  other Core owners remain closed to implementation;
 - technical green does not equal Product Owner visual approval or freeze;
-- the exact next action is Product Owner visual/runtime review of the rebuilt
-  `ErpAvatarPicker` at `/controls/core-batch`;
+- the exact next action is Product Owner visual/runtime review of large
+  Avatar/AvatarPicker size compatibility at `/controls/core-batch`;
 - the Data/Table Visual Correction Wave is not opened and no other Core owner is
   redesigned by this bounded task.
 

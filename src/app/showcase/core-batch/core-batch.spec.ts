@@ -1,7 +1,17 @@
 import {TestBed} from '@angular/core/testing';
+import {ErpAvatarPicker} from '../../controls/avatar-picker/avatar-picker';
 import {CoreBatch} from './core-batch';
 
 describe('CoreBatch', () => {
+  beforeEach(() => {
+    // AvatarPicker owns and tests its 40-item Avatar composition independently.
+    // Keep this route test focused on review-surface authoring without rendering
+    // five duplicate catalogs for every route-level assertion.
+    TestBed.overrideComponent(ErpAvatarPicker, {
+      set: {template: '', styleUrls: []},
+    });
+  });
+
   it('renders the nine corrected owners on the grouped review surface', () => {
     const fixture = TestBed.createComponent(CoreBatch);
     fixture.detectChanges();
@@ -68,6 +78,16 @@ describe('CoreBatch', () => {
     ).toHaveLength(18);
     expect(
       fixture.nativeElement.querySelectorAll(
+        '.avatar-large-size-matrix erp-avatar',
+      ),
+    ).toHaveLength(1);
+    expect(
+      fixture.nativeElement.querySelector(
+        'erp-avatar-picker[data-avatar-picker-large-size-evidence]',
+      ),
+    ).not.toBeNull();
+    expect(
+      fixture.nativeElement.querySelectorAll(
         '.avatar-reference-content-types erp-avatar',
       ),
     ).toHaveLength(14);
@@ -130,6 +150,6 @@ describe('CoreBatch', () => {
     const host = fixture.nativeElement as HTMLElement;
 
     expect([...host.children].map((element) => element.tagName)).toEqual(['ERP-CONTAINER']);
-    expect(host.querySelector('erp-avatar-picker erp-avatar')).not.toBeNull();
+    expect(host.querySelector('erp-avatar-picker')).not.toBeNull();
   });
 });

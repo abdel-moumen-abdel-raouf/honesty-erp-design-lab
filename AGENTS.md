@@ -17,7 +17,7 @@ requested.
 The Product Owner is the final authority for visual approval.
 Technical success, green tests, or Codex judgment do not equal visual approval.
 
-## Current Product Owner ErpAvatarPicker Exact Reference State
+## Current Product Owner Avatar/AvatarPicker Large-Size State
 
 The Product Owner made
 `C:\Users\Misrtech\Downloads\ERP-AVATAR-PICKER.html`, SHA-256
@@ -27,17 +27,23 @@ supersedes all previous AvatarPicker references, waivers, and conflicting visual
 interpretations. Only colors and font families are mapped
 to Honesty ERP system contracts.
 
-The exact-reference candidate entered from
-`4a3e65ab5f8bc5d38b3ea25dd8b77045c6a6b53c`.
-Its canonical gate passes 133/133 test files and 887/887 tests, both typechecks,
+The bounded large-size compatibility correction entered from
+`478cd171c974ea2ba5f360b3e345597b2ea49d0a`. It corrects `2xl` and extends
+`ErpAvatarSize` through `3xl`, `4xl`, and `5xl`. Avatar owns the proportional
+frame, content, presence, ring, shape, and narrow-size law. AvatarPicker
+continues to render every catalog cell through Avatar and owns only the
+responsive tile/grid/selection composition law.
+
+Its canonical gate passes 133/133 test files and 889/889 tests, both typechecks,
 production build, all governance, and zero warnings.
 
 The authoritative implementation contract is
 `src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`.
 
-The current gate is Product Owner runtime/Light/Dark/RTL/LTR/narrow comparison
-of the rebuilt AvatarPicker at `/controls/core-batch` against the exact reference.
-`ErpAvatar`, `ErpSelect` and `ErpStatusBadge` remain prior candidates and are not reopened. The
+The current gate is Product Owner runtime/Light/Dark/RTL/LTR/narrow review of
+large Avatar/AvatarPicker size compatibility at `/controls/core-batch` against
+both exact references. `ErpSelect`, `ErpStatusBadge`, and every other Core owner
+remain closed to implementation. The
 Data/Table Visual Correction Wave is not opened. Technical PASS does not equal
 Product Owner visual approval or freeze.
 
@@ -70,6 +76,14 @@ migration, and every unlisted owner remain unopened.
   author `role=status` or a live region.
 - `ErpAvatarPicker` composes `ErpTabs` and `ErpAvatar`; it does not own upload,
   cropping, camera, transport, or a second tabs/avatar engine.
+- `ErpAvatarSize` is `xs | sm | md | lg | xl | 2xl | 3xl | 4xl | 5xl`.
+  The Product Owner-authorized large-size extension preserves the exact
+  reference at `2xl`, uses a proportional 112/144/184 px desktop progression,
+  and maps each large size down exactly one tier through the Foundation Query
+  API at narrow widths.
+- AvatarPicker forwards the selected size and shape to `ErpAvatar`; its large
+  tile minimum is always the corresponding Avatar size plus the reference-owned
+  10 px selection allowance. It must not introduce a private avatar renderer.
 - `ErpAvatarPicker` exact surface, header, counted gender tabs, search, grid,
   staged selection, preview, footer, and motion come only from
   `ERP-AVATAR-PICKER.html` at SHA-256

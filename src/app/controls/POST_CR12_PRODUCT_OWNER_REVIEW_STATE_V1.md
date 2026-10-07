@@ -8,9 +8,10 @@ It records Product Owner decisions, externally reviewed Git state, execution bou
 
 ## Authoritative current review transition — 2026-10-07
 
-The Product Owner opened only the bounded `ErpAvatarPicker Exact Reference Rebuild`
-from `4a3e65ab5f8bc5d38b3ea25dd8b77045c6a6b53c`. Resolve the final
-implementation SHA directly from live Git.
+The Product Owner opened only the bounded Avatar/AvatarPicker large-size
+compatibility correction from
+`478cd171c974ea2ba5f360b3e345597b2ea49d0a`. Resolve the final implementation
+SHA directly from live Git.
 
 `ERP-AVATAR-PICKER.html`, SHA-256
 `24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`, is the
@@ -18,13 +19,16 @@ single binding AvatarPicker visual and behavioral authority. It supersedes all
 previous AvatarPicker references, waivers, and conflicting visual interpretations.
 Only palette and font-family values map to
 Honesty ERP system contracts. The authoritative implementation contract is
-`avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`. Its technical gate passes
-133/133 test files and 887/887 tests, all governance, both typechecks, production
+`avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`. The correction fixes
+`2xl` and adds responsive `3xl`, `4xl`, and `5xl` compatibility for `circle`,
+`rounded`, and `square`. Its technical gate passes 133/133 test files and
+889/889 tests, all governance, both typechecks, production
 build, and zero warnings.
 
-The exact next gate is Product Owner runtime/Light/Dark/RTL/LTR/narrow comparison
-of the rebuilt AvatarPicker at `/controls/core-batch`. `ErpAvatar`, `ErpSelect`
-and `ErpStatusBadge` are not reopened. Browser runtime evidence does not claim visual approval. The
+The exact next gate is Product Owner runtime/Light/Dark/RTL/LTR/narrow review of
+large Avatar/AvatarPicker size compatibility at `/controls/core-batch`.
+`ErpSelect`, `ErpStatusBadge`, and every other Core owner remain closed to
+implementation. Browser runtime evidence does not claim visual approval. The
 Data/Table Visual Correction Wave and every later implementation wave remain
 unopened. Technical PASS never equals visual approval.
 

@@ -1,0 +1,10 @@
+@use '../../../styles/foundation/components/avatar' as tokens;
+
+:host([data-avatar-size='xs']) { @include tokens.size-xs; }
+:host([data-avatar-size='sm']) { @include tokens.size-sm; }
+:host([data-avatar-size='lg']) { @include tokens.size-lg; }
+:host([data-avatar-size='xl']) { @include tokens.size-xl; }
+:host([data-avatar-size='2xl']) { @include tokens.size-2xl; }
+:host([data-avatar-size='3xl']) { @include tokens.size-3xl; }
+:host([data-avatar-size='4xl']) { @include tokens.size-4xl; }
+:host([data-avatar-size='5xl']) { @include tokens.size-5xl; }

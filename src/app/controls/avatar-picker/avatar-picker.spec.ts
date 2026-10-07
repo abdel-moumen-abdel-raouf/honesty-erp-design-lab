@@ -118,6 +118,35 @@ describe('ErpAvatarPicker', () => {
       .toBe(true);
   });
 
+  it('applies the proportional Picker tile law to every large Avatar size and shape', () => {
+    const fixture = TestBed.createComponent(ErpAvatarPicker);
+    const tileSizes = {
+      '2xl': '6.125rem',
+      '3xl': '7.625rem',
+      '4xl': '9.625rem',
+      '5xl': '12.125rem',
+    } as const;
+
+    for (const [size, tileSize] of Object.entries(tileSizes)) {
+      for (const shape of ['circle', 'rounded', 'square'] as const) {
+        fixture.componentRef.setInput('avatarSize', size);
+        fixture.componentRef.setInput('avatarShape', shape);
+        fixture.detectChanges();
+
+        const host = fixture.nativeElement as HTMLElement;
+        const avatars = host.querySelectorAll('erp-avatar-picker-tile erp-avatar');
+        expect(host.getAttribute('data-avatar-picker-avatar-size')).toBe(size);
+        expect(host.getAttribute('data-avatar-picker-avatar-shape')).toBe(shape);
+        expect(getComputedStyle(host).getPropertyValue('--honesty-avatar-picker-tile-size').trim())
+          .toBe(tileSize);
+        expect([...avatars].every((avatar) => avatar.getAttribute('data-avatar-size') === size))
+          .toBe(true);
+        expect([...avatars].every((avatar) => avatar.getAttribute('data-avatar-shape') === shape))
+          .toBe(true);
+      }
+    }
+  });
+
   it('blocks tabs, search mutation, tiles and footer commits while disabled', () => {
     const fixture = TestBed.createComponent(ErpAvatarPicker);
     fixture.componentRef.setInput('disabled', true);

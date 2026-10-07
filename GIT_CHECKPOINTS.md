@@ -9,25 +9,34 @@ Always resolve live `origin/main` directly at session start. This file records
 named checkpoints; it does not claim that its own latest docs SHA is an eternal
 repository HEAD.
 
-## Current ErpAvatarPicker exact-reference checkpoint — 2026-10-07
+## Current Avatar/AvatarPicker large-size compatibility checkpoint — 2026-10-07
 
 Entry checkpoint:
 
-- `4a3e65ab5f8bc5d38b3ea25dd8b77045c6a6b53c`
+- `478cd171c974ea2ba5f360b3e345597b2ea49d0a`
 
-The bounded implementation commit is `fix(avatar-picker): rebuild from exact
-Product Owner reference`; resolve its final SHA from live `main` because this
-file is committed with it.
+The bounded implementation commit is `fix(avatar-picker): add responsive large
+avatar sizes`; resolve its final SHA from live `main` because this file is
+committed with it.
 
 Binding reference: `ERP-AVATAR-PICKER.html`, SHA-256
 `24DADFE5D5EBE5F9A23E9ACF9D29FC52B53E38D44BEE60A2AA9456532CC10B66`.
-Product Owner visual acceptance remains pending and the Data/Table Visual
-Correction Wave remains unopened. The authoritative implementation contract is
-`src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md`.
-The canonical gate passes 133/133 test files, 887/887 tests, both typechecks,
+Both Avatar and AvatarPicker exact-reference contracts remain authoritative.
+This checkpoint corrects `2xl` and adds responsive `3xl`, `4xl`, and `5xl`
+compatibility for `circle`, `rounded`, and `square`. Product Owner visual
+acceptance remains pending and the Data/Table Visual Correction Wave remains
+unopened. The canonical gate passes 133/133 test files, 889/889 tests, both typechecks,
 production build, every governance check, and zero warnings. Initial bundle:
-376.12 kB / 85.65 kB estimated transfer. Core Batch lazy chunk: 95.63 kB /
-16.94 kB estimated transfer.
+376.12 kB / 85.63 kB estimated transfer. Core Batch lazy chunk: 96.67 kB /
+17.02 kB estimated transfer.
+
+## Historical ErpAvatarPicker exact-reference checkpoint — superseded current gate
+
+Entry checkpoint: `4a3e65ab5f8bc5d38b3ea25dd8b77045c6a6b53c`.
+The exact-reference rebuild commit is `478cd171c974ea2ba5f360b3e345597b2ea49d0a`
+— `fix(avatar-picker): rebuild from exact Product Owner reference`. Its
+technical gate passed 133/133 test files and 887/887 tests. This remains useful
+history, but the later large-size compatibility checkpoint is current.
 
 ## Historical ErpAvatar exact-reference checkpoint — superseded current gate
 
