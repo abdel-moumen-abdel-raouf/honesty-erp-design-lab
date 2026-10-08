@@ -1,5 +1,21 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Authoritative current review state — 2026-10-08 — Shell Phase S1 UserMenu
+
+The existing `ErpUserMenu` is reopened as the sole bounded Shell S1 visual
+candidate from entry checkpoint
+`7b0aab52ae5fd4ac5aaa319e586e829f7f98f6bd`. Its binding reference, verified
+source hashes, measured geometry, interaction contract, and limitations are in
+`user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md`. All other Product Owner review
+states remain unchanged. UserMenu visual acceptance is pending external review;
+technical gates cannot promote it to accepted.
+
+The candidate passes 3/3 focused files and 30/30 tests, the full 122/122-file
+and 753/753-test canonical gate, both typechecks, production build, and zero
+warnings. Saved browser evidence covers Light/Dark, RTL/LTR, desktop and 390 px,
+keyboard/dismissal/focus return, reduced motion, zero overflow, and zero console
+findings. Acceptance remains pending.
+
 ## Authoritative current review state — 2026-10-08 — bounded live workbench correction
 
 The bounded correction entered at

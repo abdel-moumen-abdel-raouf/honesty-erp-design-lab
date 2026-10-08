@@ -1,5 +1,16 @@
 # Inputs Product Owner Review Findings V1
 
+## Authoritative continuity note — 2026-10-08 — Shell Phase S1
+
+This phase changes no Input visual contract. It authorizes only the existing
+`ErpUserMenu`, which continues to use ERP-owned actions and shared anchored
+overlay infrastructure. Input findings and acceptance states remain unchanged;
+the Shell S1 candidate is separately pending Product Owner visual review.
+
+Shell S1 technical verification passes 30/30 focused tests and 753/753 tests in
+the canonical 122-file gate, with both typechecks, production build, and zero
+warnings. No Input implementation was modified by that visual reconstruction.
+
 ## Authoritative current continuity finding — 2026-10-08 — bounded live workbench correction
 
 No Input or exact-reference visual implementation was reopened. Each public

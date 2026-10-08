@@ -1,5 +1,27 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Authoritative current execution state — 2026-10-08 — Shell Phase S1 UserMenu
+
+Shell Phase S1 entered from clean `main` at
+`7b0aab52ae5fd4ac5aaa319e586e829f7f98f6bd` and authorizes only the existing
+`ErpUserMenu`. The live Skodash RTL dropdown is its binding reference; verified
+source hashes, selectors, geometry, motion, responsive thresholds, and evidence
+limits are recorded in `ERP_USER_MENU_REFERENCE_EXACT_V1.md`.
+
+The candidate retains one shared anchored-overlay engine, one App-owned theme,
+and existing Avatar/Button/Text ownership. It adds logical-end popup alignment,
+viewport containment, keyboard traversal, optional item dividers, and the
+reference workbench sample. All other Shell and component visual owners remain
+closed. Product Owner visual acceptance remains pending.
+
+Focused verification passes 3/3 files and 30/30 tests plus Shell and catalog
+governance. Canonical verification passes every lint/governance gate, 122/122
+test files and 753/753 tests, both typechecks, production build, and the
+zero-warning gate. The production initial bundle is 490.24 kB / 105.58 kB
+estimated transfer. Browser evidence covers Light/Dark, RTL/LTR, desktop and
+390 px, keyboard traversal, Escape, outside dismissal, focus return, reduced
+motion, zero horizontal overflow, and zero console findings.
+
 ## Authoritative current execution state — 2026-10-08 — bounded live workbench correction
 
 This bounded correction entered from clean live `main` at

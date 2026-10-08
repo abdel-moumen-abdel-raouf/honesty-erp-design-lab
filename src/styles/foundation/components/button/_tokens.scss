@@ -25,6 +25,8 @@
   --honesty-button-font-weight: #{type.$honesty-ref-font-weight-medium};
   --honesty-button-line-height: #{type.$honesty-ref-line-height-145};
   --honesty-button-icon-size: #{spacing.$honesty-ref-space-20};
+  --honesty-button-icon-container-size: var(--honesty-button-icon-size);
+  --honesty-button-icon-container-bg: transparent;
   --honesty-button-elevation: var(--honesty-elevation-none);
   --honesty-button-focus-width: var(--honesty-focus-ring-width);
   --honesty-button-focus-style: var(--honesty-focus-ring-style);
@@ -81,6 +83,32 @@
   --honesty-button-font-weight: 500;
   --honesty-button-line-height: normal;
   --honesty-button-icon-size: 14px;
+}
+
+@mixin presentation-user-menu-trigger {
+  --honesty-button-height: 40px;
+  --honesty-button-min-inline-size: 40px;
+  --honesty-button-padding-inline: 0;
+  --honesty-button-gap: 0;
+  --honesty-button-radius: 30px;
+  --honesty-button-bg: transparent;
+  --honesty-button-fg: var(--honesty-color-text-primary);
+  --honesty-button-border-width: 0;
+}
+
+@mixin presentation-user-menu-action {
+  --honesty-button-height: 56px;
+  --honesty-button-min-inline-size: 0;
+  --honesty-button-padding-block: 8px;
+  --honesty-button-padding-inline: 8px;
+  --honesty-button-gap: 16px;
+  --honesty-button-radius: 10px;
+  --honesty-button-font-size: 16px;
+  --honesty-button-font-weight: 500;
+  --honesty-button-line-height: normal;
+  --honesty-button-icon-size: 18px;
+  --honesty-button-icon-container-size: 40px;
+  --honesty-button-icon-container-bg: var(--honesty-color-surface-canvas);
 }
 
 @mixin size-sm {

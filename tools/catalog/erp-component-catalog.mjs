@@ -30,6 +30,7 @@ const EXACT_REFERENCES = new Map([
   ['ErpStatusBadge', 'src/app/controls/status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md'],
   ['ErpTable', 'src/app/controls/table/ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md'],
   ['ErpTabs', 'src/app/controls/tabs/ERP_TABS_REFERENCE_EXACT_V1.md'],
+  ['ErpUserMenu', 'src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md'],
 ]);
 
 const EXACT_CORE_FOCUS = new Map([
@@ -318,7 +319,18 @@ const FIXTURE_INPUTS = new Map([
   }],
   ['ErpTabs', {items: [{id: 'overview', label: 'نظرة عامة', content: 'محتوى النظرة العامة'}]}],
   ['ErpTooltip', {text: 'توضيح الإجراء للمستخدم'}],
-  ['ErpUserMenu', {user: {displayName: 'أميرة حداد', secondaryText: 'مديرة المالية'}}],
+  ['ErpUserMenu', {
+    user: {displayName: 'أميرة حداد', secondaryText: 'مديرة المالية'},
+    items: [
+      {id: 'profile', label: 'الملف الشخصي', icon: 'user'},
+      {id: 'settings', label: 'الإعدادات', icon: 'settings'},
+      {id: 'dashboard', label: 'لوحة التحكم', icon: 'dashboard'},
+      {id: 'earnings', label: 'الأرباح', icon: 'wallet'},
+      {id: 'downloads', label: 'التنزيلات', icon: 'download'},
+      {id: 'logout', label: 'تسجيل الخروج', icon: 'logout', tone: 'danger', dividerBefore: true},
+    ],
+    open: true,
+  }],
   ['ErpValidationSummary', {issues: [
     {key: 'account-name', fieldLabel: 'اسم الحساب', message: 'اسم الحساب مطلوب.'},
     {key: 'branch', fieldLabel: 'الفرع', message: 'يجب اختيار الفرع.'},
@@ -650,6 +662,18 @@ function showcaseControlsFor(entry) {
       {name: '$previewDirection', label: 'اتجاه مساحة المعاينة', source: 'preview', kind: 'select', required: true, type: "'rtl' | 'ltr'", options: ['rtl', 'ltr'], initialValue: 'rtl'},
     );
   }
+  if (entry.className === 'ErpUserMenu') {
+    controls.push({
+      name: '$previewDirection',
+      label: 'اتجاه مساحة المعاينة',
+      source: 'preview',
+      kind: 'select',
+      required: true,
+      type: "'rtl' | 'ltr'",
+      options: ['rtl', 'ltr'],
+      initialValue: 'rtl',
+    });
+  }
   return controls;
 }
 
@@ -953,6 +977,7 @@ function generatedShowcaseOwner(entry) {
   const isCva = CVA_COMPONENTS.has(entry.className);
   const hasCvaDisabled = isCva && entry.publicApi.inputs.some((inputApi) => inputApi.name === 'disabled');
   const isFloatingPreview = ['ErpFab', 'ErpExtendedFab', 'ErpFabMenu'].includes(entry.className);
+  const hasDirectionalPreview = isFloatingPreview || entry.className === 'ErpUserMenu';
   const exactCoreFocus = EXACT_CORE_FOCUS.get(entry.className) ?? null;
   const projection = projectionMarkup(entry);
   const imports = new Set([
@@ -1012,8 +1037,11 @@ function generatedShowcaseOwner(entry) {
   }
   if (isCva) inputBindings.push('[formControl]="control"');
   if (hasCvaDisabled) inputBindings.push('data-showcase-cva-disabled-control');
+  const directionBinding = entry.className === 'ErpUserMenu'
+    ? '\n          [attr.dir]="previewDirection()"'
+    : '';
   const ownerMarkup = `<${entry.selector}
-          data-showcase-target
+          data-showcase-target${directionBinding}
           ${inputBindings.join('\n          ')}
         >${projection}</${entry.selector}>`;
   let renderedOwner = ['ErpIconButton', 'ErpFab'].includes(entry.className)
@@ -1039,13 +1067,20 @@ function generatedShowcaseOwner(entry) {
   const initialCvaValue = entry.showcaseControls.find((control) => control.source === 'cva')?.initialValue ?? null;
   const source = `${importLines.join('\n')}\n\nconst ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === '${entry.id}')!;\n\n@Component({\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  selector: 'app-${entry.id}-showcase',\n  imports: [${[...imports].join(', ')}],\n  templateUrl: './${entry.id}-showcase.html',\n  styleUrl: './${entry.id}-showcase.scss',\n})\nexport class ${className} {\n  readonly entry = ENTRY;\n  readonly controls = ENTRY.showcaseControls;\n  readonly lastEvent = signal('لم يحدث تفاعل بعد');\n  readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});\n  readonly cvaValue = signal<unknown>(${JSON.stringify(initialCvaValue)});\n  readonly controlValues = computed<Readonly<Record<string, unknown>>>(() => ({\n    ...this.liveValues(),\n    '$value': this.cvaValue(),\n  }));\n${isCva ? `  readonly control = new FormControl<unknown>(${JSON.stringify({value: initialCvaValue, disabled: Boolean(entry.showcaseInitialValues?.disabled)})});\n\n  constructor() {\n    this.control.valueChanges.pipe(takeUntilDestroyed()).subscribe((value) => {\n      this.cvaValue.set(value);\n      this.recordEvent('valueChange', value);\n    });\n  }\n` : ''}\n  readonly previewInline = computed(() => Number(this.liveValues()['$previewInline'] ?? 80));\n  readonly previewBlock = computed(() => Number(this.liveValues()['$previewBlock'] ?? 75));\n  readonly previewDirection = computed(() => this.liveValues()['$previewDirection'] === 'ltr' ? 'ltr' : 'rtl');\n\n  value(name: string): unknown {\n    return this.liveValues()[name];\n  }\n\n  applyControl(change: ErpShowcaseControlChange): void {\n    if (change.control.source === 'cva') {\n${isCva ? `      this.control.setValue(change.value);` : `      this.cvaValue.set(change.value);`}\n      return;\n    }\n${hasCvaDisabled ? `    if (change.control.name === 'disabled') {\n      this.liveValues.update((current) => ({...current, disabled: change.value}));\n      if (change.value) this.control.disable();\n      else this.control.enable();\n      return;\n    }\n` : ''}    const value = change.control.kind === 'function'\n      ? this.functionPreset(change.control.name, change.value)\n      : change.value;\n    this.liveValues.update((current) => ({...current, [change.control.name]: value}));\n  }\n\n  recordModel(name: string, value: unknown): void {\n    this.liveValues.update((current) => ({...current, [name]: value}));\n    this.recordEvent(\`${'${name}'}Change\`, value);\n  }\n\n  recordEvent(name: string, value: unknown): void {\n    let rendered = '';\n    try { rendered = typeof value === 'string' ? value : JSON.stringify(value); }\n    catch { rendered = String(value); }\n    this.lastEvent.set(\`${'${name}'}: ${'${rendered}'}\`);\n  }\n\n  private functionPreset(name: string, value: unknown): unknown {\n    if (value !== 'sample') return null;\n    if (/comparator/i.test(name)) return () => 0;\n    if (/formatter/i.test(name)) return (candidate: unknown) => String(candidate ?? '');\n    if (/disabled/i.test(name)) return () => false;\n    if (/filter|predicate/i.test(name)) return () => true;\n    return (candidate: unknown) => candidate;\n  }\n}\n`;
   const html = `<erp-stack gap="default" data-dedicated-showcase="${entry.id}" data-showcase-sections="1">\n  <erp-text type="heading-2">${entry.displayNameAr}</erp-text>\n  <erp-text type="paragraph" tone="secondary">${entry.descriptionAr}</erp-text>\n${referenceLabel}  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="${livePreviewClass}">\n    <erp-stack gap="tight">\n      <erp-text type="heading-3">المعاينة الحية</erp-text>\n      ${renderedOwner}\n    </erp-stack>\n  </erp-surface>\n  <app-review-showcase-control-panel\n    [controls]="controls"\n    [values]="controlValues()"\n    (controlChanged)="applyControl($event)"\n  />\n  <erp-surface padding="default" border="subtle" data-showcase-event-log>\n    <erp-stack gap="tight">\n      <erp-text type="heading-3">آخر تفاعل</erp-text>\n      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>\n${isCva ? '      <erp-text type="caption" selectable>القيمة الحالية: {{ cvaValue() }}</erp-text>\n' : ''}    </erp-stack>\n  </erp-surface>\n${exactReferenceEvidence}</erp-stack>\n`;
-  const scss = `:host { display: block; min-inline-size: 0; }\n\n.showcase-reference { overflow-wrap: anywhere; }\n\n.showcase-live-preview { min-block-size: 12rem; }\n${isFloatingPreview ? '' : '\n.showcase-live-preview--floating { position: relative; min-block-size: 30rem; overflow: clip; }\n'}`;
-  const generatedSource = isFloatingPreview
+  const previewMinBlockSize = entry.className === 'ErpUserMenu' ? '32rem' : '12rem';
+  const scss = `:host { display: block; min-inline-size: 0; }\n\n.showcase-reference { overflow-wrap: anywhere; }\n\n.showcase-live-preview { min-block-size: ${previewMinBlockSize}; }\n${isFloatingPreview ? '' : '\n.showcase-live-preview--floating { position: relative; min-block-size: 30rem; overflow: clip; }\n'}`;
+  let generatedSource = hasDirectionalPreview
     ? source
     : source.replace(
       "  readonly previewDirection = computed(() => this.liveValues()['$previewDirection'] === 'ltr' ? 'ltr' : 'rtl');\n",
       '',
     );
+  if (entry.className === 'ErpUserMenu') {
+    generatedSource = generatedSource.replace(
+      "    this.recordEvent(`${name}Change`, value);",
+      "    if (name === 'open' && value === false && this.lastEvent().startsWith('actionActivated:')) {\n      this.lastEvent.update((current) => `${current} · openChange: false`);\n      return;\n    }\n    this.recordEvent(`${name}Change`, value);",
+    );
+  }
   return new Map([
     [ownerPath, generatedSource],
     [ownerPath.replace(/\.ts$/, '.html'), html],

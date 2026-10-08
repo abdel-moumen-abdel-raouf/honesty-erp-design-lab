@@ -39,8 +39,10 @@ erp-avatar .avatar__frame {
 
 erp-avatar .avatar__image {
   display: block;
+  box-sizing: border-box;
   inline-size: 100%;
   block-size: 100%;
+  padding: var(--honesty-avatar-image-inset);
   border-radius: inherit;
   object-fit: var(--honesty-avatar-image-fit);
   transition:

@@ -17,7 +17,7 @@ describe('ErpUserMenu', () => {
     });
     fixture.componentRef.setInput('items', [
       {id: 'profile', label: 'الملف الشخصي', icon: 'user'},
-      {id: 'blocked', label: 'غير متاح', disabled: true},
+      {id: 'blocked', label: 'غير متاح', disabled: true, dividerBefore: true},
     ]);
     const activated = vi.fn();
     fixture.componentInstance.actionActivated.subscribe(activated);
@@ -28,6 +28,22 @@ describe('ErpUserMenu', () => {
     expect(
       fixture.nativeElement.querySelector('erp-avatar .avatar__frame'),
     ).not.toBeNull();
+    expect(
+      fixture.nativeElement.querySelector(
+        'erp-avatar[data-avatar-presentation="user-menu-trigger"]',
+      ),
+    ).not.toBeNull();
+    expect(
+      fixture.nativeElement.querySelector(
+        'header erp-avatar[data-avatar-presentation="user-menu-identity"]',
+      ),
+    ).not.toBeNull();
+    expect(fixture.nativeElement.querySelectorAll('erp-divider')).toHaveLength(2);
+    expect(
+      fixture.nativeElement.querySelectorAll(
+        'erp-button[data-button-presentation="user-menu-action"]',
+      ),
+    ).toHaveLength(2);
     const trigger = fixture.nativeElement.querySelector(
       '.user-menu__trigger erp-button button',
     ) as HTMLButtonElement;
@@ -75,5 +91,59 @@ describe('ErpUserMenu', () => {
     document.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape'}));
     expect(fixture.componentInstance.open()).toBe(false);
     expect(document.activeElement).toBe(trigger);
+  });
+
+  it('opens with ArrowDown and moves focus to the first enabled action', async () => {
+    const fixture = TestBed.createComponent(ErpUserMenu);
+    fixture.componentRef.setInput('user', {displayName: 'أحمد علي'});
+    fixture.componentRef.setInput('items', [
+      {id: 'blocked', label: 'غير متاح', disabled: true},
+      {id: 'profile', label: 'الملف الشخصي', icon: 'user'},
+    ]);
+    fixture.detectChanges();
+    installPopover(fixture.nativeElement.querySelector('.user-menu__surface'));
+    const trigger = fixture.nativeElement.querySelector(
+      '.user-menu__trigger button',
+    ) as HTMLButtonElement;
+    const enabledAction = fixture.nativeElement.querySelectorAll(
+      '.user-menu__items button',
+    )[1] as HTMLButtonElement;
+
+    trigger.dispatchEvent(
+      new KeyboardEvent('keydown', {key: 'ArrowDown', bubbles: true}),
+    );
+    await Promise.resolve();
+
+    expect(fixture.componentInstance.open()).toBe(true);
+    expect(document.activeElement).toBe(enabledAction);
+  });
+
+  it('cycles keyboard focus across enabled action rows', async () => {
+    const fixture = TestBed.createComponent(ErpUserMenu);
+    fixture.componentRef.setInput('user', {displayName: 'أحمد علي'});
+    fixture.componentRef.setInput('items', [
+      {id: 'profile', label: 'الملف الشخصي', icon: 'user'},
+      {id: 'blocked', label: 'غير متاح', disabled: true},
+      {id: 'logout', label: 'تسجيل الخروج', icon: 'logout'},
+    ]);
+    fixture.detectChanges();
+    installPopover(fixture.nativeElement.querySelector('.user-menu__surface'));
+    const trigger = fixture.nativeElement.querySelector(
+      '.user-menu__trigger button',
+    ) as HTMLButtonElement;
+    const enabledActions = fixture.nativeElement.querySelectorAll(
+      '.user-menu__items button:not(:disabled)',
+    ) as NodeListOf<HTMLButtonElement>;
+
+    trigger.dispatchEvent(
+      new KeyboardEvent('keydown', {key: 'ArrowUp', bubbles: true}),
+    );
+    await Promise.resolve();
+    expect(document.activeElement).toBe(enabledActions[1]);
+
+    enabledActions[1].dispatchEvent(
+      new KeyboardEvent('keydown', {key: 'ArrowDown', bubbles: true}),
+    );
+    expect(document.activeElement).toBe(enabledActions[0]);
   });
 });

@@ -12,7 +12,7 @@
 // Private exclusive upper-bound epsilon (technical media query detail; not a design token)
 $epsilon: 0.02px;
 
-$allowed-keys-list: 'xxs, xs, sm, md, lg, xl, xxl';
+$allowed-keys-list: 'xxs, xs, compact, sm, md, lg, xl, xxl';
 
 @function resolve-threshold($map, $key, $domain) {
   $key-str: '#{$key}';

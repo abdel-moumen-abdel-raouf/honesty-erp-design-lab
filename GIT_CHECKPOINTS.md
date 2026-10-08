@@ -1,5 +1,22 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Shell Phase S1 ErpUserMenu checkpoint — 2026-10-08
+
+Entry checkpoint:
+
+- `7b0aab52ae5fd4ac5aaa319e586e829f7f98f6bd` — clean live `main` and
+  `origin/main` before the bounded exact-reference UserMenu reconstruction.
+
+Single task commit message:
+
+- `feat(shell): reconstruct exact ErpUserMenu reference`
+
+Resolve the commit SHA from live `main` because this file is part of that
+commit. The final candidate passes 3/3 focused files and 30/30 tests, 122/122
+canonical files and 753/753 tests, all lint/governance, both typechecks,
+production build, and zero warnings. Its production initial bundle is 490.24
+kB / 105.58 kB estimated transfer. Product Owner visual review remains pending.
+
 ## Current bounded live workbench correction checkpoint — 2026-10-08
 
 Entry checkpoint:

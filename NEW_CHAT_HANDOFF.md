@@ -1,5 +1,23 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Authoritative current handoff — 2026-10-08 — Shell Phase S1 UserMenu
+
+Start from live `main`. Shell Phase S1 entered at
+`7b0aab52ae5fd4ac5aaa319e586e829f7f98f6bd` and reconstructs only the existing
+`ErpUserMenu` from the source-verified Skodash RTL user dropdown. Read
+`src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md`, the UserMenu
+owner, its Component Tokens, and the shared anchored-surface controller first.
+Do not open Sidebar, Topbar, Applications/Messages, NotificationBell, footer,
+quick actions, AppShell layout, or root layout. The next action is external
+Product Owner review; technical PASS does not declare visual acceptance.
+
+The S1 candidate passes 3/3 focused files and 30/30 tests and the full 122/122
+file, 753/753-test canonical gate, both typechecks, production build, and zero
+warnings. The initial bundle is 490.24 kB / 105.58 kB estimated transfer.
+Review the saved runtime record under `docs/review-evidence/erp-user-menu/`;
+Light/Dark, RTL/LTR, desktop/390 px, keyboard, dismissal, focus return, reduced
+motion, overflow, and console diagnostics are covered.
+
 ## Authoritative current handoff — 2026-10-08 — bounded live workbench correction
 
 Start from live `main`. This correction entered at

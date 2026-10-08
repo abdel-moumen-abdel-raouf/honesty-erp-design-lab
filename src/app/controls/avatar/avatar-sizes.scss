@@ -12,3 +12,11 @@
 :host([data-avatar-presentation='table-reference-photo']) {
   @include tokens.presentation-table-reference-photo;
 }
+
+:host([data-avatar-presentation='user-menu-trigger']) {
+  @include tokens.presentation-user-menu-trigger;
+}
+
+:host([data-avatar-presentation='user-menu-identity']) {
+  @include tokens.presentation-user-menu-identity;
+}

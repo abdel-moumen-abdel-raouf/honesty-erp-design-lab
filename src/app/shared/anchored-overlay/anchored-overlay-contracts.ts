@@ -1,5 +1,6 @@
 export type AnchoredOverlayLogicalPlacement = 'top' | 'bottom' | 'start' | 'end';
 export type AnchoredOverlayPhysicalPlacement = 'top' | 'bottom' | 'left' | 'right';
+export type AnchoredOverlayCrossAxisAlignment = 'center' | 'start' | 'end';
 
 export interface OverlayRect { readonly left: number; readonly top: number; readonly right: number; readonly bottom: number; readonly width: number; readonly height: number; }
 export interface AnchoredOverlayGeometryInput {
@@ -15,6 +16,7 @@ export interface AnchoredOverlayGeometryInput {
   readonly arrowWidth: number;
   readonly arrowHeight: number;
   readonly arrowSafeInset: number;
+  readonly crossAxisAlignment?: AnchoredOverlayCrossAxisAlignment;
 }
 export interface AnchoredOverlayGeometryResult {
   readonly x: number;

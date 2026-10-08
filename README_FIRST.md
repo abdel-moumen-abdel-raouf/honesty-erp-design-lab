@@ -1,5 +1,21 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Current gate — Shell Phase S1 ErpUserMenu
+
+The current bounded implementation entered from clean live `main` at
+`7b0aab52ae5fd4ac5aaa319e586e829f7f98f6bd`. Read
+`src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md` before working
+on Shell UI. Only `ErpUserMenu` is open; the Skodash RTL dropdown controls its
+authorized geometry and behavior while Honesty ERP colors and typography remain
+system-owned. The stop point is external Product Owner review of
+`/components/user-menu`, not the next Shell owner.
+
+The current technical checkpoint passes 3/3 focused files and 30/30 focused
+tests, 122/122 canonical files and 753/753 tests, both typechecks, production
+build, and zero warnings. Runtime evidence is stored under
+`docs/review-evidence/erp-user-menu/`. Product Owner visual acceptance remains
+pending.
+
 Start every new ChatGPT or implementation-agent session by reading these files
 in this order:
 

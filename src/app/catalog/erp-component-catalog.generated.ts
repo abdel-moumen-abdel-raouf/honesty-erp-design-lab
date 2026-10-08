@@ -330,7 +330,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "table-reference-tool",
             "table-reference-page",
-            "table-reference-cell"
+            "table-reference-cell",
+            "user-menu-trigger",
+            "user-menu-action"
           ],
           "type": "ErpButtonPresentation",
           "hasDefault": true,
@@ -922,7 +924,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "default",
           "table-reference-tool",
           "table-reference-page",
-          "table-reference-cell"
+          "table-reference-cell",
+          "user-menu-trigger",
+          "user-menu-action"
         ],
         "initialValue": "default"
       }
@@ -1031,7 +1035,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "default",
           "table-reference-tool",
           "table-reference-page",
-          "table-reference-cell"
+          "table-reference-cell",
+          "user-menu-trigger",
+          "user-menu-action"
         ]
       },
       "coveredStates": [
@@ -4926,11 +4932,13 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "lowerLevelOwners": [
       "ErpAvatar",
       "ErpButton",
+      "ErpDivider",
       "ErpShellUserSummary",
       "ErpText",
       "ErpUserMenuItem",
       "erp-avatar",
       "erp-button",
+      "erp-divider",
       "erp-text"
     ],
     "nativeElementsOwned": [
@@ -4944,7 +4952,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/user-menu",
     "showcaseOwnerPath": "src/app/showcase/components/user-menu/user-menu-showcase.ts",
     "showcaseLoader": "user-menu",
-    "visualReference": null,
+    "visualReference": "src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md",
     "visualStatus": "PENDING",
     "showcaseFacets": [],
     "showcaseCases": [
@@ -4956,7 +4964,41 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "displayName": "أميرة حداد",
             "secondaryText": "مديرة المالية"
           },
-          "open": false
+          "items": [
+            {
+              "id": "profile",
+              "label": "الملف الشخصي",
+              "icon": "user"
+            },
+            {
+              "id": "settings",
+              "label": "الإعدادات",
+              "icon": "settings"
+            },
+            {
+              "id": "dashboard",
+              "label": "لوحة التحكم",
+              "icon": "dashboard"
+            },
+            {
+              "id": "earnings",
+              "label": "الأرباح",
+              "icon": "wallet"
+            },
+            {
+              "id": "downloads",
+              "label": "التنزيلات",
+              "icon": "download"
+            },
+            {
+              "id": "logout",
+              "label": "تسجيل الخروج",
+              "icon": "logout",
+              "tone": "danger",
+              "dividerBefore": true
+            }
+          ],
+          "open": true
         }
       },
       {
@@ -4967,6 +5009,40 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "displayName": "أميرة حداد",
             "secondaryText": "مديرة المالية"
           },
+          "items": [
+            {
+              "id": "profile",
+              "label": "الملف الشخصي",
+              "icon": "user"
+            },
+            {
+              "id": "settings",
+              "label": "الإعدادات",
+              "icon": "settings"
+            },
+            {
+              "id": "dashboard",
+              "label": "لوحة التحكم",
+              "icon": "dashboard"
+            },
+            {
+              "id": "earnings",
+              "label": "الأرباح",
+              "icon": "wallet"
+            },
+            {
+              "id": "downloads",
+              "label": "التنزيلات",
+              "icon": "download"
+            },
+            {
+              "id": "logout",
+              "label": "تسجيل الخروج",
+              "icon": "logout",
+              "tone": "danger",
+              "dividerBefore": true
+            }
+          ],
           "open": false
         }
       },
@@ -4978,6 +5054,40 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "displayName": "أميرة حداد",
             "secondaryText": "مديرة المالية"
           },
+          "items": [
+            {
+              "id": "profile",
+              "label": "الملف الشخصي",
+              "icon": "user"
+            },
+            {
+              "id": "settings",
+              "label": "الإعدادات",
+              "icon": "settings"
+            },
+            {
+              "id": "dashboard",
+              "label": "لوحة التحكم",
+              "icon": "dashboard"
+            },
+            {
+              "id": "earnings",
+              "label": "الأرباح",
+              "icon": "wallet"
+            },
+            {
+              "id": "downloads",
+              "label": "التنزيلات",
+              "icon": "download"
+            },
+            {
+              "id": "logout",
+              "label": "تسجيل الخروج",
+              "icon": "logout",
+              "tone": "danger",
+              "dividerBefore": true
+            }
+          ],
           "open": true
         }
       }
@@ -4985,9 +5095,42 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "displayNameAr": "قائمة المستخدم",
     "descriptionAr": "هوية المستخدم وإجراءات الحساب ضمن سطح مثبت.",
     "showcaseInitialValues": {
-      "items": [],
+      "items": [
+        {
+          "id": "profile",
+          "label": "الملف الشخصي",
+          "icon": "user"
+        },
+        {
+          "id": "settings",
+          "label": "الإعدادات",
+          "icon": "settings"
+        },
+        {
+          "id": "dashboard",
+          "label": "لوحة التحكم",
+          "icon": "dashboard"
+        },
+        {
+          "id": "earnings",
+          "label": "الأرباح",
+          "icon": "wallet"
+        },
+        {
+          "id": "downloads",
+          "label": "التنزيلات",
+          "icon": "download"
+        },
+        {
+          "id": "logout",
+          "label": "تسجيل الخروج",
+          "icon": "logout",
+          "tone": "danger",
+          "dividerBefore": true
+        }
+      ],
       "label": "قائمة المستخدم",
-      "open": false,
+      "open": true,
       "user": {
         "displayName": "أميرة حداد",
         "secondaryText": "مديرة المالية"
@@ -5015,7 +5158,40 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "readonly ErpUserMenuItem[]",
         "options": [],
-        "initialValue": []
+        "initialValue": [
+          {
+            "id": "profile",
+            "label": "الملف الشخصي",
+            "icon": "user"
+          },
+          {
+            "id": "settings",
+            "label": "الإعدادات",
+            "icon": "settings"
+          },
+          {
+            "id": "dashboard",
+            "label": "لوحة التحكم",
+            "icon": "dashboard"
+          },
+          {
+            "id": "earnings",
+            "label": "الأرباح",
+            "icon": "wallet"
+          },
+          {
+            "id": "downloads",
+            "label": "التنزيلات",
+            "icon": "download"
+          },
+          {
+            "id": "logout",
+            "label": "تسجيل الخروج",
+            "icon": "logout",
+            "tone": "danger",
+            "dividerBefore": true
+          }
+        ]
       },
       {
         "name": "label",
@@ -5038,7 +5214,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "false",
           "true"
         ],
-        "initialValue": false
+        "initialValue": true
+      },
+      {
+        "name": "$previewDirection",
+        "label": "اتجاه مساحة المعاينة",
+        "source": "preview",
+        "kind": "select",
+        "required": true,
+        "type": "'rtl' | 'ltr'",
+        "options": [
+          "rtl",
+          "ltr"
+        ],
+        "initialValue": "rtl"
       }
     ],
     "showcaseCoverage": {
@@ -5056,7 +5245,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredValues": {},
       "coveredStates": [],
       "coveredProjectionSlots": [],
-      "coveredReferenceCases": [],
+      "coveredReferenceCases": [
+        "default",
+        "open-false",
+        "open-true"
+      ],
       "evidenceKind": "INTERACTIVE_OUTPUT"
     }
   },
@@ -33190,7 +33383,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "required": false,
           "values": [
             "default",
-            "table-reference-photo"
+            "table-reference-photo",
+            "user-menu-trigger",
+            "user-menu-identity"
           ],
           "type": "ErpAvatarPresentation",
           "hasDefault": true,
@@ -33853,7 +34048,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "type": "ErpAvatarPresentation",
         "options": [
           "default",
-          "table-reference-photo"
+          "table-reference-photo",
+          "user-menu-trigger",
+          "user-menu-identity"
         ],
         "initialValue": "default"
       }
@@ -33955,7 +34152,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         ],
         "presentation": [
           "default",
-          "table-reference-photo"
+          "table-reference-photo",
+          "user-menu-trigger",
+          "user-menu-identity"
         ]
       },
       "coveredStates": [

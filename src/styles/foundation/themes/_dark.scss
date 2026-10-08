@@ -128,4 +128,6 @@
   --honesty-elevation-none: #{ref-elevation.$honesty-ref-elevation-shadow-none};
   --honesty-elevation-raised: #{ref-elevation.$honesty-ref-elevation-shadow-geometry-1} #{rgba(ref-elevation.$honesty-ref-elevation-shadow-color-black, ref-elevation.$honesty-ref-elevation-shadow-alpha-28)};
   --honesty-elevation-overlay: #{ref-elevation.$honesty-ref-elevation-shadow-geometry-2} #{rgba(ref-elevation.$honesty-ref-elevation-shadow-color-black, ref-elevation.$honesty-ref-elevation-shadow-alpha-40)};
+  --honesty-color-shadow-subtle: #{rgba(ref-elevation.$honesty-ref-elevation-shadow-color-black, ref-elevation.$honesty-ref-elevation-shadow-alpha-28)};
+  --honesty-color-shadow-overlay: #{rgba(ref-elevation.$honesty-ref-elevation-shadow-color-black, ref-elevation.$honesty-ref-elevation-shadow-alpha-40)};
 }

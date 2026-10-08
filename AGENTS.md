@@ -1,5 +1,28 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Shell Phase S1 — ErpUserMenu exact-reference candidate
+
+Shell Phase S1 entered from clean live `main` at
+`7b0aab52ae5fd4ac5aaa319e586e829f7f98f6bd`. The Skodash RTL user dropdown is
+the binding visual and behavioral reference for `ErpUserMenu`; its verified
+source evidence is recorded in
+`src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md`.
+
+The bounded candidate preserves the controlled `open` model, typed consumer
+items, disabled semantics, action output, `ErpAvatar`, `ErpButton`, `ErpText`,
+and the shared anchored-surface controller. It adds only optional
+`dividerBefore` metadata and bounded lower-owner presentations needed for the
+verified 40/60 px anatomy. Sidebar, Topbar, the remaining Shell owners, and the
+Design Lab root were not opened. Technical success is not Product Owner visual
+acceptance; the next gate is external review of `/components/user-menu`.
+
+Focused verification passes 3/3 files and 30/30 tests. Canonical verification
+passes all lint/governance, 122/122 test files and 753/753 tests, both
+typechecks, production build, and zero warnings. Initial production bundle is
+490.24 kB / 105.58 kB estimated transfer. Desktop and 390 px runtime evidence
+covers Light/Dark, RTL/LTR, keyboard/dismissal/focus return, reduced motion,
+zero overflow, and zero console findings.
+
 ## Current Bounded Live API Workbench Correction State
 
 The current bounded correction entered from clean live `main` at

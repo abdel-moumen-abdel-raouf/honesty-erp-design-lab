@@ -98,8 +98,23 @@ export function calculateAnchoredOverlayGeometry(
 
   const anchorCenterX = input.anchor.left + input.anchor.width / 2;
   const anchorCenterY = input.anchor.top + input.anchor.height / 2;
-  let left = anchorCenterX - input.surfaceWidth / 2;
-  let top = anchorCenterY - input.surfaceHeight / 2;
+  const crossAxisAlignment = input.crossAxisAlignment ?? 'center';
+  const logicalStartX = input.direction === 'rtl'
+    ? input.anchor.right - input.surfaceWidth
+    : input.anchor.left;
+  const logicalEndX = input.direction === 'rtl'
+    ? input.anchor.left
+    : input.anchor.right - input.surfaceWidth;
+  let left = crossAxisAlignment === 'start'
+    ? logicalStartX
+    : crossAxisAlignment === 'end'
+      ? logicalEndX
+      : anchorCenterX - input.surfaceWidth / 2;
+  let top = crossAxisAlignment === 'start'
+    ? input.anchor.top
+    : crossAxisAlignment === 'end'
+      ? input.anchor.bottom - input.surfaceHeight
+      : anchorCenterY - input.surfaceHeight / 2;
 
   if (placement === 'top') {
     top = input.anchor.top - gap - input.surfaceHeight;

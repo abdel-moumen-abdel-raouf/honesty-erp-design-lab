@@ -99,4 +99,36 @@ describe('calculateAnchoredOverlayGeometry', () => {
     expect(result.arrowCrossAxisCenter).toBe(12);
   });
 
+  it('aligns a bottom surface to logical end in LTR and RTL', () => {
+    const ltr = calculateAnchoredOverlayGeometry({
+      ...base,
+      preferredPlacement: 'bottom',
+      crossAxisAlignment: 'end',
+    });
+    const rtl = calculateAnchoredOverlayGeometry({
+      ...base,
+      preferredPlacement: 'bottom',
+      direction: 'rtl',
+      crossAxisAlignment: 'end',
+    });
+
+    expect(ltr.x).toBe(60);
+    expect(rtl.x).toBe(100);
+    expect(ltr.y).toBe(152);
+    expect(rtl.y).toBe(152);
+  });
+
+  it('viewport-clamps a logical-end aligned surface', () => {
+    const result = calculateAnchoredOverlayGeometry({
+      ...base,
+      preferredPlacement: 'bottom',
+      crossAxisAlignment: 'end',
+      surfaceWidth: 360,
+      anchor: {left: 4, top: 100, right: 44, bottom: 140, width: 40, height: 40},
+    });
+
+    expect(result.x).toBe(8);
+    expect(result.x + 360).toBeLessThanOrEqual(392);
+  });
+
 });

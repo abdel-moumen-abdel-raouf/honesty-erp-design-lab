@@ -61,7 +61,11 @@ export type ErpAvatarPresenceMotion =
   | 'breathe';
 export type ErpAvatarHoverMotion = 'none' | 'scale' | 'lift';
 export type ErpAvatarCursor = 'default' | 'pointer';
-export type ErpAvatarPresentation = 'default' | 'table-reference-photo';
+export type ErpAvatarPresentation =
+  | 'default'
+  | 'table-reference-photo'
+  | 'user-menu-trigger'
+  | 'user-menu-identity';
 
 const PRESENCE_LABELS: Readonly<Record<ErpAvatarPresence, string>> = {
   online: 'متصل',

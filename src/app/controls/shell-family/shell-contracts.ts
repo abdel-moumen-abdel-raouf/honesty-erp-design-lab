@@ -61,4 +61,5 @@ export interface ErpUserMenuItem {
   readonly icon?: ErpIconName;
   readonly disabled?: boolean;
   readonly tone?: 'neutral' | 'danger';
+  readonly dividerBefore?: boolean;
 }

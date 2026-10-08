@@ -6,6 +6,7 @@ const ROOT = process.cwd();
 const ROUTES = 'src/app/app.routes.ts';
 const REVIEW = 'src/app/review-internals/legacy-shell-batch/shell-batch.html';
 const CONTRACTS = 'src/app/controls/shell-family/shell-contracts.ts';
+const USER_MENU_REFERENCE = 'src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md';
 const OWNERS = [
   'breadcrumbs',
   'page-header',
@@ -92,7 +93,7 @@ export function validateShellNavigation(files) {
     errors.push('Shell owners must not create local theme authority');
   }
 
-  if (/@media\s*\(|@container\s*\(/.test(styles)) {
+  if (/@media\s*\(\s*(?:min|max)-width|@container\s*\([^)]*(?:min|max)-width/.test(styles)) {
     errors.push('Shell owner styles must use the Foundation Query API');
   }
 
@@ -114,6 +115,32 @@ export function validateShellNavigation(files) {
   const userMenu = `${files.get('src/app/controls/user-menu/user-menu.ts') ?? ''}\n${files.get('src/app/controls/user-menu/user-menu.html') ?? ''}`;
   if (!userMenu.includes('ErpAvatar') || !userMenu.includes('ShellAnchoredSurfaceController')) {
     errors.push('ErpUserMenu must reuse Avatar and anchored surface infrastructure');
+  }
+  if (!userMenu.includes('ErpDivider') || !userMenu.includes('crossAxisAlignment: \'end\'')) {
+    errors.push('ErpUserMenu must compose dividers and use logical-end anchored placement');
+  }
+
+  const userMenuReference = files.get(USER_MENU_REFERENCE) ?? '';
+  if (
+    !userMenuReference.includes('75F64AE955800ABE9FCBE27D7B09161D95E2DE2C77B6106C337AA4841D39D399') ||
+    !userMenuReference.includes('1EFFE6A3ADC2613EC19612699E567C38E5457997E342333B0686F70D63A3AFEA')
+  ) {
+    errors.push('ErpUserMenu exact-reference contract and verified source hashes must remain current');
+  }
+
+  const userMenuStyles = files.get('src/app/controls/user-menu/user-menu.scss') ?? '';
+  const userMenuTokens =
+    files.get('src/styles/foundation/components/user-menu/_tokens.scss') ?? '';
+  if (
+    !userMenuStyles.includes('@media (prefers-reduced-motion: reduce)') ||
+    !userMenuStyles.includes('animation: none')
+  ) {
+    errors.push('ErpUserMenu must preserve an explicit reduced-motion override');
+  }
+  for (const referenceValue of ['360px', '8px', '10px', '600ms', 'cubic-bezier(0.25, 0.8, 0.25, 1)']) {
+    if (!userMenuTokens.includes(referenceValue)) {
+      errors.push(`ErpUserMenu reference geometry or motion token is missing: ${referenceValue}`);
+    }
   }
 
   const anchoredOwners = [
@@ -144,6 +171,7 @@ function validFixture(overrides = new Map()) {
     [ROUTES, "path: 'controls/shell-batch'"],
     [REVIEW, '<erp-app-shell></erp-app-shell>'],
     [CONTRACTS, 'export interface ErpNavigationItem {} export interface ErpBreadcrumbItem {} export interface ErpShellUserSummary {} export interface ErpBranchOption {} export interface ErpNotificationSummary {}'],
+    [USER_MENU_REFERENCE, '75F64AE955800ABE9FCBE27D7B09161D95E2DE2C77B6106C337AA4841D39D399 1EFFE6A3ADC2613EC19612699E567C38E5457997E342333B0686F70D63A3AFEA'],
   ]);
 
   for (const owner of OWNERS) {
@@ -182,7 +210,15 @@ function validFixture(overrides = new Map()) {
   );
   files.set(
     'src/app/controls/user-menu/user-menu.ts',
-    'import {ErpAvatar} from "x"; import {ShellAnchoredSurfaceController} from "y"; export class ErpUserMenu {}',
+    "import {ErpAvatar} from 'x'; import {ErpDivider} from 'z'; import {ShellAnchoredSurfaceController} from 'y'; const options = {crossAxisAlignment: 'end'}; export class ErpUserMenu {}",
+  );
+  files.set(
+    'src/app/controls/user-menu/user-menu.scss',
+    '@media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }',
+  );
+  files.set(
+    'src/styles/foundation/components/user-menu/_tokens.scss',
+    '@mixin base { --honesty-user-menu-popup-width: 360px; --honesty-user-menu-popup-padding: 8px; --honesty-user-menu-popup-radius: 10px; --honesty-user-menu-motion-duration: 600ms; --honesty-user-menu-motion-easing: cubic-bezier(0.25, 0.8, 0.25, 1); }',
   );
 
   for (const [key, value] of overrides) {
@@ -207,6 +243,8 @@ function runSelfTest() {
     ['raw breakpoint', new Map([['src/app/controls/sidebar/sidebar.scss', '@media (max-width: 40rem) {}']]), 'Query API'],
     ['missing owner', new Map([['src/app/controls/page-shell/page-shell.ts', '']]), 'Missing authorized'],
     ['manual popover', new Map([['src/app/controls/notification-bell/notification-bell.ts', 'export class ErpNotificationBell { open(){ this.surface.showPopover(); } }']]), 'overlay engine'],
+    ['missing UserMenu reference', new Map([[USER_MENU_REFERENCE, 'missing']]), 'exact-reference contract'],
+    ['missing UserMenu reduced motion', new Map([['src/app/controls/user-menu/user-menu.scss', '']]), 'reduced-motion'],
   ];
 
   for (const [label, overrides, expected] of invalidFixtures) {
@@ -222,12 +260,12 @@ function runSelfTest() {
   }
 
   console.log('ERP Shell navigation governance self-test: PASS');
-  console.log('Invalid transport, theme, breakpoint, missing-owner, and manual-popover fixtures rejected.');
+  console.log('Invalid transport, theme, breakpoint, missing-owner, manual-popover, reference, and reduced-motion fixtures rejected.');
 }
 
 function runCheck() {
   const files = new Map();
-  const fixed = [ROUTES, REVIEW, CONTRACTS];
+  const fixed = [ROUTES, REVIEW, CONTRACTS, USER_MENU_REFERENCE];
 
   for (const owner of OWNERS) {
     fixed.push(

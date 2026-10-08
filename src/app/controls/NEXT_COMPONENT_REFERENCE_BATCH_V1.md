@@ -1,5 +1,18 @@
 # Next Component Reference Batch V1
 
+## Authoritative current reference gate — 2026-10-08 — Shell Phase S1 only
+
+`ErpUserMenu` is the sole open production visual owner. Its binding Skodash RTL
+evidence is recorded in `user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md`. No
+other Shell owner, exact-reference component, Data/Table wave, or showcase
+redesign is authorized. Stop after technical delivery for external Product Owner
+review of `/components/user-menu`.
+
+The delivered candidate passes 30/30 focused tests and the full 122/122-file,
+753/753-test canonical gate, all governance/lint, both typechecks, production
+build, and zero warnings. This technical state does not open the next Shell
+component.
+
 ## Authoritative current reference gate — 2026-10-08 — bounded workbench review only
 
 No next component or visual reference is authorized. The bounded correction

@@ -8,6 +8,7 @@ export interface ShellAnchoredSurfaceOptions {
   readonly anchorGap: () => number;
   readonly viewportInset: () => number;
   readonly onOpenChange: (open: boolean) => void;
+  readonly crossAxisAlignment?: 'center' | 'start' | 'end';
 }
 
 export class ShellAnchoredSurfaceController {
@@ -27,6 +28,7 @@ export class ShellAnchoredSurfaceController {
         arrowWidth: 0,
         arrowHeight: 0,
         arrowSafeInset: 0,
+        crossAxisAlignment: options.crossAxisAlignment ?? 'center',
       }),
       applyGeometry: (result) => this.applyGeometry(result),
     });
@@ -114,6 +116,7 @@ export class ShellAnchoredSurfaceController {
     this.options.surface.style.top = `${result.y}px`;
     this.options.surface.style.transformOrigin =
       result.placement === 'top' ? 'center bottom' : 'center top';
+    this.options.surface.dataset['overlayPlacement'] = result.placement;
   }
 }
 

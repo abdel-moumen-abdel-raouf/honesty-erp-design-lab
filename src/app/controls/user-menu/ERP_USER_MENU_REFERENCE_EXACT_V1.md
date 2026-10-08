@@ -1,0 +1,67 @@
+# ErpUserMenu Exact Reference Contract V1
+
+## Authority
+
+- Product Owner scope: `ErpUserMenu` only.
+- Live reference: `https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-media-object.html`.
+- Reference HTML SHA-256: `75F64AE955800ABE9FCBE27D7B09161D95E2DE2C77B6106C337AA4841D39D399`.
+- Reference `assets/css/style.css` SHA-256: `1EFFE6A3ADC2613EC19612699E567C38E5457997E342333B0686F70D63A3AFEA`.
+- Reference `assets/js/app.js` SHA-256: `4C6FF8886FDC78096852B9405117D7EC3061201E4226D76DF011715819633190`.
+- Supporting Bootstrap CSS SHA-256: `9D5353D59077C56901E5CCDB1B70C562735743F87EB5A22F9A8A22FCCEEE964A`.
+- Supporting Bootstrap bundle SHA-256: `C0C09020ADB6F602B16D48374166B9E38CA92383A81650B6A9097C43CC43F31F`.
+- Evidence date: 2026-10-08.
+
+The Skodash presentation is binding for the authorized UserMenu anatomy,
+geometry, states, and motion. Honesty ERP semantic colors and system typography
+replace the reference palette and font family. Bootstrap, jQuery, and vendor
+runtime code are evidence only and are not production dependencies.
+
+## Source-verified anatomy and measurements
+
+| Reference selector/anatomy | Verified value or behavior | ERP owner |
+|---|---|---|
+| `.user-setting` | 40 px height, 30 px radius, surface, 0 2 px 4 px / 8% shadow | `ErpUserMenu` trigger frame |
+| `.user-img` | 40 x 40 px; reference image padding is 4 px | `ErpAvatar` bounded trigger presentation |
+| `.user-name` + `.gap-1` | 15 px/500 label; effective 14 px image-to-label separation | `ErpText` in trigger |
+| `.dropdown-large .dropdown-menu` | 360 px desktop width, zero outer border, 8 px padding, 10 px radius, 0 8 px 16 px / 15% shadow | anchored UserMenu surface |
+| dropdown arrow | 13 x 13 px, 16 px from logical end, -6 px block offset | UserMenu surface pseudo-element |
+| identity media object | 60 x 60 px avatar with adjacent name/designation | `ErpAvatar` + `ErpText` |
+| `.dropdown-item` | 8 px padding, 10 px hover radius | `ErpButton` bounded action presentation |
+| `.setting-icon` | 40 x 40 px circular icon surface, 18 px icon | `ErpButton` + `ErpIcon` |
+| `.setting-text` | 16 px, weight 500 | `ErpText` through `ErpButton` |
+| `animdropdown` | 600 ms, `cubic-bezier(.25,.8,.25,1)`, opacity 0 to 1, translateY 6 px to 0 | UserMenu component tokens |
+| `max-width: 767px` | arrow hidden and dropdown becomes viewport-width presentation | Foundation `viewport-down(md)` |
+| Bootstrap `d-sm-block` | visible user name from 576 px upward | Foundation `viewport-down(compact)` |
+
+## Interaction contract
+
+- Consumer controls `open`; the surface uses the existing
+  `ShellAnchoredSurfaceController` and shared anchored-overlay engine.
+- Logical-end alignment mirrors between RTL and LTR and clamps to the viewport.
+- Outside pointer dismissal closes without stealing focus.
+- Escape closes and restores focus to the trigger.
+- ArrowDown opens and focuses the first enabled action.
+- Disabled actions neither activate nor close the menu.
+- Action activation emits the typed item and returns focus to the trigger.
+- Reduced motion removes the entrance animation without changing visibility or
+  interaction.
+
+## Ownership and compatibility
+
+- `ErpUserMenu` composes `ErpAvatar`, `ErpButton`, `ErpDivider`, and `ErpText`.
+- `ShellAnchoredSurfaceController` remains the single overlay owner.
+- `dividerBefore` is the only added action metadata and is optional, preserving
+  all existing consumers.
+- App root remains the sole theme authority. UserMenu owns no session, logout,
+  navigation, transport, or permission behavior.
+- The `/components/user-menu` workbench retains one primary live target, live
+  Public API controls, and action-event evidence.
+
+## Evidence limitations and acceptance
+
+The reference source and runtime were live and accessible during this phase.
+Vendor Bootstrap behavior was inspected only to establish the verified
+responsive thresholds and dropdown interaction contract; vendor code was not
+copied into production. Technical verification and runtime screenshots are not
+Product Owner visual acceptance. The acceptance state remains pending external
+Product Owner review.

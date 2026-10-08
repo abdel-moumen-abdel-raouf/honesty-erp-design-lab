@@ -1,5 +1,21 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Authoritative current gate — 2026-10-08 — Shell Phase S1 UserMenu
+
+Only `ErpUserMenu` is authorized in this phase. Its binding Skodash RTL source
+evidence and exact measurements are recorded in
+`user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md`. The candidate reuses the
+existing lower owners and anchored overlay, preserves all controlled contracts,
+and adds bounded divider/presentation support. The next gate is Product Owner
+review of `/components/user-menu`; no subsequent Shell unit or component visual
+review is automatically opened.
+
+The bounded candidate passes 30/30 focused tests and the complete 122/122-file,
+753/753-test canonical gate, all governance/lint, both typechecks, production
+build, and zero warnings. Browser evidence covers desktop/390 px,
+Light/Dark, RTL/LTR, keyboard and dismissal paths, focus return, reduced motion,
+zero overflow, and zero console findings.
+
 ## Authoritative current gate — 2026-10-08 — bounded live workbench correction
 
 The bounded correction entered at `f0450d76a6ef523158036ba9b5bb66a9127519dd`.

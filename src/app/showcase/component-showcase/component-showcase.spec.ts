@@ -201,4 +201,40 @@ describe('ComponentShowcase', () => {
     expect(exact?.querySelector('erp-pagination')).not.toBeNull();
     expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
   }, 20000);
+
+  it('keeps one UserMenu target with reference actions and durable action evidence', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/components/user-menu', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+
+    const root = harness.routeNativeElement as HTMLElement;
+    const surface = root.querySelector<HTMLElement>('.user-menu__surface')!;
+    Object.defineProperties(surface, {
+      hidePopover: {configurable: true, value: vi.fn()},
+      showPopover: {configurable: true, value: vi.fn()},
+    });
+    const trigger = root.querySelector<HTMLButtonElement>(
+      '[data-showcase-target] .user-menu__trigger button',
+    )!;
+
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect(root.querySelectorAll('.user-menu__items erp-button')).toHaveLength(6);
+    expect(root.querySelectorAll('.user-menu__divider')).toHaveLength(2);
+
+    trigger.click();
+    root.querySelector<HTMLButtonElement>(
+      '.user-menu__items erp-button button',
+    )!.click();
+    harness.fixture.detectChanges();
+
+    expect(root.querySelector('[data-showcase-event-log]')?.textContent).toContain(
+      'actionActivated:',
+    );
+    expect(root.querySelector('[data-showcase-event-log]')?.textContent).toContain(
+      'openChange: false',
+    );
+  });
 });

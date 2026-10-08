@@ -17,3 +17,45 @@
 :host([data-button-presentation='table-reference-cell']) {
   @include tokens.presentation-table-reference-cell;
 }
+
+:host([data-button-presentation='user-menu-trigger']) {
+  @include tokens.presentation-user-menu-trigger;
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+:host([data-button-presentation='user-menu-trigger']) .n {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+:host([data-button-presentation='user-menu-trigger']) .c {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+:host([data-button-presentation='user-menu-action']) {
+  @include tokens.presentation-user-menu-action;
+}
+
+:host([data-button-presentation='user-menu-action']) .n {
+  padding-block: var(--honesty-button-padding-block);
+  justify-content: flex-start;
+}
+
+:host([data-button-presentation='user-menu-action']) .c {
+  inline-size: 100%;
+}
+
+:host([data-button-presentation='user-menu-action']) .i {
+  inline-size: var(--honesty-button-icon-container-size);
+  block-size: var(--honesty-button-icon-container-size);
+  border-radius: 50%;
+  background: var(--honesty-button-icon-container-bg);
+}

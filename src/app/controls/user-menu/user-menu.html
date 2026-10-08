@@ -1,20 +1,26 @@
 <div class="user-menu__trigger">
   <erp-avatar
+    class="user-menu__trigger-avatar"
     [name]="user().displayName"
     [src]="user().avatarSrc ?? null"
     [fallbackIcon]="user().fallbackIcon ?? 'user'"
-    size="sm"
+    presentation="user-menu-trigger"
+    [bordered]="false"
   />
+  <erp-text class="user-menu__trigger-name" type="span" weight="medium">
+    {{ user().displayName }}
+  </erp-text>
   <erp-button
     #trigger
-    [label]="user().displayName"
-    icon="chevron-down"
-    iconPosition="end"
+    class="user-menu__trigger-action"
+    [label]="label()"
     variant="ghost"
     tone="neutral"
+    presentation="user-menu-trigger"
     ariaHasPopup="menu"
     [ariaControls]="surfaceId"
     [ariaExpanded]="open()"
+    (keydown)="handleTriggerKeydown($event)"
     (pressed)="toggle()"
   />
 </div>
@@ -24,15 +30,18 @@
   class="user-menu__surface"
   popover="manual"
   role="menu"
+  tabindex="-1"
   [id]="surfaceId"
   [attr.aria-label]="label()"
+  (keydown)="handleMenuKeydown($event)"
 >
-  <header>
+  <header class="user-menu__identity-header">
     <erp-avatar
       [name]="user().displayName"
       [src]="user().avatarSrc ?? null"
       [fallbackIcon]="user().fallbackIcon ?? 'user'"
-      size="md"
+      presentation="user-menu-identity"
+      [bordered]="false"
     />
     <span class="user-menu__identity">
       <erp-text type="span" weight="medium">{{ user().displayName }}</erp-text>
@@ -44,14 +53,20 @@
     </span>
   </header>
 
+  <erp-divider class="user-menu__divider" />
+
   <div class="user-menu__items">
     @for (item of items(); track item.id) {
+      @if (item.dividerBefore) {
+        <erp-divider class="user-menu__divider" />
+      }
       <erp-button
-        role="menuitem"
+        [role]="'menuitem'"
         [label]="item.label"
         [icon]="item.icon ?? null"
         variant="ghost"
         [tone]="item.tone ?? 'neutral'"
+        presentation="user-menu-action"
         fullWidth
         [disabled]="item.disabled ?? false"
         (pressed)="activate(item)"

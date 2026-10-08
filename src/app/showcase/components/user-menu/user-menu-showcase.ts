@@ -28,6 +28,7 @@ export class ErpUserMenuShowcase {
 
   readonly previewInline = computed(() => Number(this.liveValues()['$previewInline'] ?? 80));
   readonly previewBlock = computed(() => Number(this.liveValues()['$previewBlock'] ?? 75));
+  readonly previewDirection = computed(() => this.liveValues()['$previewDirection'] === 'ltr' ? 'ltr' : 'rtl');
 
   value(name: string): unknown {
     return this.liveValues()[name];
@@ -46,6 +47,10 @@ export class ErpUserMenuShowcase {
 
   recordModel(name: string, value: unknown): void {
     this.liveValues.update((current) => ({...current, [name]: value}));
+    if (name === 'open' && value === false && this.lastEvent().startsWith('actionActivated:')) {
+      this.lastEvent.update((current) => `${current} · openChange: false`);
+      return;
+    }
     this.recordEvent(`${name}Change`, value);
   }
 

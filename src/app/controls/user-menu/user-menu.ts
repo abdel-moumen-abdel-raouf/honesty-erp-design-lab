@@ -13,6 +13,7 @@ import {
 import {ErpAvatar} from '../avatar/avatar';
 import {ErpButton} from '../button/button';
 import {ErpText} from '../../primitives/text/text';
+import {ErpDivider} from '../../primitives/divider/divider';
 import {
   ErpShellUserSummary,
   ErpUserMenuItem,
@@ -28,7 +29,7 @@ let nextUserMenuId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector -- ERP production components intentionally use the erp prefix.
   selector: 'erp-user-menu',
-  imports: [ErpAvatar, ErpButton, ErpText],
+  imports: [ErpAvatar, ErpButton, ErpDivider, ErpText],
   templateUrl: './user-menu.html',
   styleUrl: './user-menu.scss',
   host: {'[attr.data-user-menu-open]': 'open()'},
@@ -81,6 +82,7 @@ export class ErpUserMenu implements AfterViewInit, OnDestroy {
         readShellCssLength(surface, '--honesty-user-menu-anchor-gap'),
       viewportInset: () =>
         readShellCssLength(surface, '--honesty-user-menu-viewport-inset'),
+      crossAxisAlignment: 'end',
       onOpenChange: (open) => this.open.set(open),
     });
     this.viewReady = true;
@@ -98,6 +100,39 @@ export class ErpUserMenu implements AfterViewInit, OnDestroy {
     this.controller?.toggle();
   }
 
+  protected handleTriggerKeydown(event: KeyboardEvent): void {
+    if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') {
+      return;
+    }
+
+    event.preventDefault();
+    if (this.controller?.show()) {
+      this.focusMenuBoundary(event.key === 'ArrowUp');
+    }
+  }
+
+  protected handleMenuKeydown(event: KeyboardEvent): void {
+    if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
+      return;
+    }
+
+    const actions = this.enabledActions();
+    if (actions.length === 0) {
+      return;
+    }
+
+    event.preventDefault();
+    const currentIndex = actions.indexOf(document.activeElement as HTMLButtonElement);
+    const targetIndex = event.key === 'Home'
+      ? 0
+      : event.key === 'End'
+        ? actions.length - 1
+        : event.key === 'ArrowUp'
+          ? (currentIndex <= 0 ? actions.length : currentIndex) - 1
+          : (currentIndex + 1) % actions.length;
+    actions[targetIndex]?.focus();
+  }
+
   protected activate(item: ErpUserMenuItem): void {
     if (item.disabled) {
       return;
@@ -105,5 +140,20 @@ export class ErpUserMenu implements AfterViewInit, OnDestroy {
 
     this.actionActivated.emit(item);
     this.controller?.hide(true);
+  }
+
+  private focusMenuBoundary(last: boolean): void {
+    queueMicrotask(() => {
+      const actions = this.enabledActions();
+      actions[last ? actions.length - 1 : 0]?.focus();
+    });
+  }
+
+  private enabledActions(): HTMLButtonElement[] {
+    return Array.from(
+      this.surface().nativeElement.querySelectorAll<HTMLButtonElement>(
+        'button[role="menuitem"]:not(:disabled)',
+      ),
+    );
   }
 }

@@ -27,7 +27,9 @@ export type ErpButtonPresentation =
   | 'default'
   | 'table-reference-tool'
   | 'table-reference-page'
-  | 'table-reference-cell';
+  | 'table-reference-cell'
+  | 'user-menu-trigger'
+  | 'user-menu-action';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

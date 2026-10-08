@@ -1,11 +1,13 @@
 <erp-stack gap="default" data-dedicated-showcase="user-menu" data-showcase-sections="1">
   <erp-text type="heading-2">قائمة المستخدم</erp-text>
   <erp-text type="paragraph" tone="secondary">هوية المستخدم وإجراءات الحساب ضمن سطح مثبت.</erp-text>
+  <erp-text class="showcase-reference" type="caption" tone="secondary" selectable>مرجع Product Owner: src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md</erp-text>
   <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
     <erp-stack gap="tight">
       <erp-text type="heading-3">المعاينة الحية</erp-text>
       <erp-user-menu
           data-showcase-target
+          [attr.dir]="previewDirection()"
           [user]="$any(value('user'))"
           [items]="$any(value('items'))"
           [label]="$any(value('label'))"
