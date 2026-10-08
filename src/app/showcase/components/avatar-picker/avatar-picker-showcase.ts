@@ -5,13 +5,14 @@ import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
+import {ErpReviewShowcaseExactReference} from '../../../review-internals/showcase-exact-reference/showcase-exact-reference';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'avatar-picker')!;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-avatar-picker-showcase',
-  imports: [ErpAvatarPicker, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpAvatarPicker, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpReviewShowcaseExactReference],
   templateUrl: './avatar-picker-showcase.html',
   styleUrl: './avatar-picker-showcase.scss',
 })

@@ -6,6 +6,34 @@ import {
   generatedArtifacts,
 } from '../catalog/erp-component-catalog.mjs';
 
+const EXACT_CORE_FOCUS = new Map([
+  ['ErpAvatar', 'avatar'],
+  ['ErpAvatarPicker', 'avatar-picker'],
+  ['ErpSelect', 'select'],
+  ['ErpStatusBadge', 'status-badge'],
+  ['ErpTable', 'table'],
+  ['ErpTabs', 'tabs'],
+]);
+
+function validateWorkbenchContracts({controlPanel, floatingSource, floatingStyles, exactSource, exactTemplate}) {
+  const errors = [];
+  for (const marker of ['invalidDrafts', 'structuredValueError', 'Array.isArray(value)']) {
+    if (!controlPanel.includes(marker)) errors.push(`structured editor is missing ${marker}`);
+  }
+  for (const marker of ['resolveReviewFloatingPosition', 'availableWidth', "direction === 'rtl'"]) {
+    if (!floatingSource.includes(marker)) errors.push(`floating preview is missing ${marker}`);
+  }
+  if (!floatingStyles.includes('left: 0') || floatingStyles.includes('overflow: clip')) {
+    errors.push('floating preview does not use an unclipped physical positioning origin');
+  }
+  if (!exactSource.includes('CoreBatch') ||
+      !exactTemplate.includes('data-showcase-exact-reference-toggle') ||
+      !exactTemplate.includes('@if (expanded())')) {
+    errors.push('on-demand exact-reference owner is incomplete');
+  }
+  return errors;
+}
+
 function validateCatalog(catalog) {
   const errors = [];
   const publicEntries = catalog.filter(
@@ -243,6 +271,15 @@ function validateRepository() {
     if ((html.match(/data-showcase-target/g) ?? []).length !== 1) {
       errors.push(`${entry.className} does not identify exactly one live showcase target`);
     }
+    const exactFocus = EXACT_CORE_FOCUS.get(entry.className);
+    if (exactFocus && !html.includes(`<app-review-showcase-exact-reference focus="${exactFocus}" />`)) {
+      errors.push(`${entry.className} does not preserve its on-demand exact-reference evidence`);
+    }
+    if (['ErpFab', 'ErpExtendedFab', 'ErpFabMenu'].includes(entry.className) &&
+        (!html.includes('<app-review-showcase-floating-preview') ||
+          html.includes('translate(-50%, -50%)'))) {
+      errors.push(`${entry.className} does not use the bounded floating preview owner`);
+    }
     for (const inputApi of entry.publicApi.inputs) {
       const bindingName = inputApi.name === 'forId' ? 'for' : inputApi.name;
       const cvaDisabled = inputApi.name === 'disabled' &&
@@ -267,6 +304,39 @@ function validateRepository() {
     }
     if (entry.className === 'ErpText' && !html.includes('نص تجريبي مباشر')) {
       errors.push('ErpText projection showcase has no visible authored text');
+    }
+  }
+  errors.push(...validateWorkbenchContracts({
+    controlPanel: fs.readFileSync(path.join(
+      REPO_ROOT,
+      'src/app/review-internals/showcase-control-panel/showcase-control-panel.ts',
+    ), 'utf8'),
+    floatingSource: fs.readFileSync(path.join(
+      REPO_ROOT,
+      'src/app/review-internals/showcase-floating-preview/showcase-floating-preview.ts',
+    ), 'utf8'),
+    floatingStyles: fs.readFileSync(path.join(
+      REPO_ROOT,
+      'src/app/review-internals/showcase-floating-preview/showcase-floating-preview.scss',
+    ), 'utf8'),
+    exactSource: fs.readFileSync(path.join(
+      REPO_ROOT,
+      'src/app/review-internals/showcase-exact-reference/showcase-exact-reference.ts',
+    ), 'utf8'),
+    exactTemplate: fs.readFileSync(path.join(
+      REPO_ROOT,
+      'src/app/review-internals/showcase-exact-reference/showcase-exact-reference.html',
+    ), 'utf8'),
+  }));
+  const tableReference = fs.readFileSync(path.join(
+    REPO_ROOT,
+    'src/app/review-internals/review-core-table/review-core-table.html',
+  ), 'utf8');
+  for (const owner of [
+    'erp-table-toolbar', 'erp-search-box', 'erp-column-chooser', 'erp-table', 'erp-pagination',
+  ]) {
+    if (!tableReference.includes(`<${owner}`)) {
+      errors.push(`Table exact-reference experience is missing ${owner}`);
     }
   }
   errors.push(...validatePageOwner({
@@ -373,6 +443,28 @@ function selfTest() {
   for (const fixture of invalidPages) {
     if (validatePageOwner(fixture).length === 0) {
       throw new Error('invalid ErpPage fixture was accepted');
+    }
+  }
+
+  const validWorkbench = {
+    controlPanel: 'invalidDrafts structuredValueError Array.isArray(value)',
+    floatingSource: "resolveReviewFloatingPosition availableWidth direction === 'rtl'",
+    floatingStyles: 'left: 0;',
+    exactSource: 'CoreBatch',
+    exactTemplate: 'data-showcase-exact-reference-toggle @if (expanded())',
+  };
+  if (validateWorkbenchContracts(validWorkbench).length !== 0) {
+    throw new Error('valid workbench fixture failed');
+  }
+  const invalidWorkbenches = [
+    {...validWorkbench, controlPanel: 'JSON.parse(value)'},
+    {...validWorkbench, floatingSource: 'translate(-50%, -50%)'},
+    {...validWorkbench, floatingStyles: 'left: 0; overflow: clip;'},
+    {...validWorkbench, exactTemplate: '<app-review-exact-core-showcase />'},
+  ];
+  for (const fixture of invalidWorkbenches) {
+    if (validateWorkbenchContracts(fixture).length === 0) {
+      throw new Error('invalid workbench fixture was accepted');
     }
   }
   console.log('ERP component catalog governance self-test PASS');

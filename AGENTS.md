@@ -1,29 +1,30 @@
 # Honesty ERP Design Lab — Codex Instructions
 
-## Current Live API Component Workbench State
+## Current Bounded Live API Workbench Correction State
 
 The current bounded correction entered from clean live `main` at
-`fce028a2e080714a5759c649746656a3f36da524`. All 77 public ERP component pages
-render exactly one primary target and one shared live API control panel. The
-generated catalog exposes 990 inputs, 20 models, and 67 outputs through 1,040
-immediately applied editors, including 24 CVA owners and output event evidence.
+`f0450d76a6ef523158036ba9b5bb66a9127519dd`. All 77 public ERP component pages
+retain exactly one primary target and the shared live API control panel.
 
-ButtonGroup renders three buttons. Fab, ExtendedFab, and FabMenu use bounded
-floating previews with inline/block range controls. FabMenu and SplitButton
-each expose five text-only, icon-only, and icon-plus-text actions. The existing
-production FAB owners remain separate; this task did not authorize a public API
-merge or any exact-reference visual redesign.
+Select, StatusBadge, Avatar, AvatarPicker, Tabs, and Table restore their existing
+exact Core evidence behind an on-demand secondary control. Table continues to
+render the complete TableToolbar, SearchBox, ColumnChooser, Table, and Pagination
+reference experience. Structured editors reject incompatible JSON value kinds,
+preserve invalid drafts, and keep the last valid live value through unrelated
+changes. Model and CVA editors remain synchronized.
 
-Runtime audit covers all 77 routes in Light and Dark RTL plus 390 px narrow
-review. Missing targets/control panels, empty visible output, console errors,
-console warnings, broken images, and overflow are zero. Canonical verification
-passes 120/120 test files and 737/737 tests, all lint/governance, both
-typechecks, production build, and zero warnings. Initial bundle is 488.18 kB /
-105.32 kB estimated transfer.
+Fab, ExtendedFab, and FabMenu use a measured, unclipped preview owner with both
+position controls and a review-direction control. Runtime measurements at 390
+px pass both physical boundaries in RTL and LTR for all three owners with zero
+page overflow, console errors, or warnings. Focused verification passes 6/6
+files and 28/28 tests. Canonical verification passes every lint/governance
+gate, 122/122 test files and 748/748 tests, both typechecks, production build,
+and zero warnings. The initial bundle remains 488.18 kB / 105.32 kB estimated
+transfer.
 
-The exact next action is Product Owner review of the live API workbenches.
-Existing component visuals remain unaccepted unless separately approved, no
-later wave is opened, and technical PASS is not Product Owner visual acceptance.
+The exact next action is Product Owner external review. Existing component
+visuals remain unaccepted unless separately approved, no later wave is opened,
+and technical PASS is not Product Owner visual acceptance.
 
 ## Historical Dedicated Component Showcase State — superseded 2026-10-08
 

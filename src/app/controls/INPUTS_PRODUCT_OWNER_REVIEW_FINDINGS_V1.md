@@ -1,18 +1,25 @@
 # Inputs Product Owner Review Findings V1
 
-## Authoritative current continuity finding — 2026-10-08 — live API workbenches
+## Authoritative current continuity finding — 2026-10-08 — bounded live workbench correction
 
 No Input or exact-reference visual implementation was reopened. Each public
-component page now has one target and live controls for every public input and
-model, including CVA value and disabled-state handling without conflicting
-Angular bindings. Meaningful outputs appear in a live event log.
+page retains one target and its live controls. Select and the other exact Core
+owners restore their existing full evidence on demand rather than replacing it
+with the primary workbench target.
 
-The catalog extracts 990 inputs, 20 models, and 67 outputs across 77 owners and
-generates 1,040 controls. Runtime audit in Light/Dark RTL and at 390 px found
-zero missing targets/panels, empty visible output, console errors/warnings,
-broken assets, or overflow. The next action is Product Owner review of these
-workbenches. No Input correction, FAB-owner merge, or later visual wave is
+JSON syntax alone is no longer accepted: structured editors validate the
+expected public value kind before emission, retain invalid drafts, and preserve
+the last valid live value during unrelated changes. Model and CVA synchronization
+were verified in unit/integration tests and in the browser. Runtime evidence at
+390 px also passes the corrected FAB-family preview boundaries in RTL and LTR
+with zero overflow or console findings. The next action is Product Owner
+external review. No Input correction, FAB-owner merge, or later visual wave is
 opened.
+
+Focused verification passes 6/6 files and 28/28 tests. Canonical verification
+passes every lint/governance gate, 122/122 test files and 748/748 tests, both
+typechecks, production build, and zero warnings. The initial bundle remains
+488.18 kB / 105.32 kB estimated transfer.
 
 ## Historical showcase reconstruction continuity finding — superseded 2026-10-08
 

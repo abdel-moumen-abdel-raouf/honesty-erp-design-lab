@@ -1,25 +1,25 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
-## Authoritative current gate — 2026-10-08 — live API showcase workbenches
+## Authoritative current gate — 2026-10-08 — bounded live workbench correction
 
-The bounded correction entered at `fce028a2e080714a5759c649746656a3f36da524`.
-All 77 public owners render one primary target and a complete live API control
-panel: 990 inputs, 20 models, 67 outputs, 24 CVA owners, and 1,040 immediately
-applied editors. Governance rejects missing controls/bindings, multiple targets,
-or incomplete interaction evidence.
+The bounded correction entered at `f0450d76a6ef523158036ba9b5bb66a9127519dd`.
+All 77 public owners retain one primary target and their live API controls.
+Select, StatusBadge, Avatar, AvatarPicker, Tabs, and Table restore existing exact
+Core evidence on demand; Table retains the complete multi-owner reference
+experience rather than an isolated table.
 
-ButtonGroup now renders a real three-button group. Fab, ExtendedFab, and
-FabMenu use bounded floating canvases with live inline/block position controls.
-FabMenu and SplitButton each provide five actions covering text-only,
-icon-only, and icon-plus-text. Production FAB owners remain separate because no
-merge was authorized.
+Structured editors reject incompatible JSON value kinds while retaining invalid
+drafts and the last valid target value across unrelated changes. Model/CVA
+synchronization remains live. Fab, ExtendedFab, and FabMenu now use measured,
+unclipped containment while preserving both position controls and exposing the
+review direction. Browser measurements at 390 px passed both boundaries in RTL
+and LTR for all three, with zero overflow or console findings.
 
-Runtime review passed all 77 component routes in Light/Dark RTL and at 390 px
-with zero missing targets/control panels, empty visible output, console
-errors/warnings, broken assets, or overflow. Canonical verification passes
-120/120 files and 737/737 tests, all lint/governance, both typechecks,
-production build, and zero warnings. Initial bundle is 488.18 kB / 105.32 kB.
-The next gate is Product Owner review of the live workbenches; no later
+Focused verification passes 6/6 files and 28/28 tests plus catalog governance
+and both typechecks. Canonical verification passes every lint/governance gate,
+122/122 test files and 748/748 tests, both typechecks, production build, and
+zero warnings. The initial bundle remains 488.18 kB / 105.32 kB estimated
+transfer. The next gate remains Product Owner external review. No
 component/page/feature wave is authorized.
 
 ## Historical dedicated showcase gate — superseded 2026-10-08

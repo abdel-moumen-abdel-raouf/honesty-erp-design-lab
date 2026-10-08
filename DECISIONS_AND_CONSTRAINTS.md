@@ -40,6 +40,20 @@ authorization to merge `ErpFab`, `ErpExtendedFab`, and `ErpFabMenu` production
 owners or redesign any exact-reference component. Technical PASS does not grant
 Product Owner visual acceptance or open a later wave.
 
+Exact-reference evidence is never replaced by the single live target. Select,
+StatusBadge, Avatar, AvatarPicker, Tabs, and Table expose the existing exact Core
+evidence as an on-demand secondary experience; Table remains a complete
+multi-owner composition. Structured editors validate expected top-level and
+array-item value kinds, preserve invalid drafts, and keep the last valid live
+value during unrelated changes. Floating preview placement is measured from a
+physical origin, never hidden by clipping, and must contain the target at both
+axis boundaries in RTL and LTR, including 390 px review.
+
+The bounded correction passes every lint/governance gate, 122/122 test files
+and 748/748 tests, both typechecks, production build, and zero warnings. The
+initial bundle remains 488.18 kB / 105.32 kB estimated transfer. This technical
+result does not confer Product Owner visual acceptance.
+
 ## Historical dedicated showcase-system decision — superseded 2026-10-08
 
 The preceding decision established dedicated owners, legacy migration, compact

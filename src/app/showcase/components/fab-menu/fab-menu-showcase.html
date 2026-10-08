@@ -1,10 +1,14 @@
 <erp-stack gap="default" data-dedicated-showcase="fab-menu" data-showcase-sections="1">
   <erp-text type="heading-2">قائمة إجراءات عائمة</erp-text>
   <erp-text type="paragraph" tone="secondary">مجموعة إجراءات عائمة قابلة للفتح والإغلاق.</erp-text>
-  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview showcase-live-preview--floating">
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
     <erp-stack gap="tight">
       <erp-text type="heading-3">المعاينة الحية</erp-text>
-      <erp-fab-menu
+      <app-review-showcase-floating-preview
+        [inlinePosition]="previewInline()"
+        [blockPosition]="previewBlock()"
+        [direction]="previewDirection()"
+      ><erp-fab-menu
           data-showcase-target
           [label]="$any(value('label'))"
           [icon]="$any(value('icon'))"
@@ -12,11 +16,7 @@
           [placement]="$any(value('placement'))"
           [disabled]="$any(value('disabled'))"
           (itemSelected)="recordEvent('itemSelected', $event)"
-          [style.position]="'absolute'"
-          [style.inset-inline-start.%]="previewInline()"
-          [style.inset-block-start.%]="previewBlock()"
-          [style.transform]="'translate(-50%, -50%)'"
-        ></erp-fab-menu>
+        ></erp-fab-menu></app-review-showcase-floating-preview>
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel

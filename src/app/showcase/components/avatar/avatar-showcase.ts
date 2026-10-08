@@ -5,13 +5,14 @@ import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
+import {ErpReviewShowcaseExactReference} from '../../../review-internals/showcase-exact-reference/showcase-exact-reference';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'avatar')!;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-avatar-showcase',
-  imports: [ErpAvatar, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpAvatar, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpReviewShowcaseExactReference],
   templateUrl: './avatar-showcase.html',
   styleUrl: './avatar-showcase.scss',
 })

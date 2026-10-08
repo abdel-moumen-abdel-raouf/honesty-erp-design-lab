@@ -1,4 +1,5 @@
 import {TestBed} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
 import {provideRouter} from '@angular/router';
 import {RouterTestingHarness} from '@angular/router/testing';
 import {
@@ -6,6 +7,7 @@ import {
   ERP_PUBLIC_SHOWCASE_LOADERS,
 } from '../../catalog/erp-component-catalog.generated';
 import {ComponentShowcase} from './component-showcase';
+import {ErpReviewShowcaseControlPanel} from '../../review-internals/showcase-control-panel/showcase-control-panel';
 
 describe('ComponentShowcase', () => {
   beforeEach(async () => {
@@ -96,4 +98,107 @@ describe('ComponentShowcase', () => {
     expect(root.querySelector('[data-showcase-control="orientation"]')).not.toBeNull();
     expect(root.querySelector('[data-showcase-control="attached"]')).not.toBeNull();
   });
+
+  it('applies valid structured values and preserves an invalid draft and live value', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/components/button-group', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+
+    const panel = harness.fixture.debugElement
+      .query(By.directive(ErpReviewShowcaseControlPanel))
+      .componentInstance as ErpReviewShowcaseControlPanel;
+    const items = panel.controls().find((control) => control.name === 'items')!;
+    const orientation = panel.controls().find((control) => control.name === 'orientation')!;
+
+    panel.editor(items).setValue('[{"value":"one","label":"واحد"},{"value":"two","label":"اثنان"}]');
+    harness.fixture.detectChanges();
+    expect(harness.routeNativeElement?.querySelectorAll('[data-showcase-target] erp-button')).toHaveLength(2);
+
+    panel.editor(items).setValue('42');
+    panel.editor(orientation).setValue('vertical');
+    harness.fixture.detectChanges();
+
+    const target = harness.routeNativeElement?.querySelector('[data-showcase-target]');
+    expect(target?.getAttribute('data-button-group-orientation')).toBe('vertical');
+    expect(target?.querySelectorAll('erp-button')).toHaveLength(2);
+    expect(panel.editor(items).value).toBe('42');
+    expect(panel.error('items')).toContain('يجب أن تكون مصفوفة');
+  });
+
+  it('synchronizes model and CVA editors with their live targets', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/components/view-switcher', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+
+    let panel = harness.fixture.debugElement
+      .query(By.directive(ErpReviewShowcaseControlPanel))
+      .componentInstance as ErpReviewShowcaseControlPanel;
+    const view = panel.controls().find((control) => control.name === 'value')!;
+    panel.editor(view).setValue('cards');
+    harness.fixture.detectChanges();
+    expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')
+      ?.getAttribute('data-view-mode')).toBe('cards');
+
+    await harness.navigateByUrl('/components/check-box', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target] input')).not.toBeNull();
+    });
+    panel = harness.fixture.debugElement
+      .query(By.directive(ErpReviewShowcaseControlPanel))
+      .componentInstance as ErpReviewShowcaseControlPanel;
+    const cva = panel.controls().find((control) => control.source === 'cva')!;
+    panel.editor(cva).setValue(true);
+    harness.fixture.detectChanges();
+    expect((harness.routeNativeElement?.querySelector(
+      '[data-showcase-target] input',
+    ) as HTMLInputElement).checked).toBe(true);
+  });
+
+  it('restores exact-reference evidence on demand without adding another primary target', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/components/select', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+
+    const root = harness.routeNativeElement as HTMLElement;
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect(root.querySelector('app-review-exact-core-showcase')).toBeNull();
+
+    (root.querySelector('[data-showcase-exact-reference-toggle] button') as HTMLButtonElement).click();
+    harness.fixture.detectChanges();
+
+    expect(root.querySelector('app-review-exact-core-showcase')).not.toBeNull();
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+  }, 20000);
+
+  it('restores the complete multi-owner Table reference experience on demand', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/components/table', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+
+    const root = harness.routeNativeElement as HTMLElement;
+    (root.querySelector('[data-showcase-exact-reference-toggle] button') as HTMLButtonElement).click();
+    harness.fixture.detectChanges();
+
+    const exact = root.querySelector('[data-table-reference-experience="complete"]');
+    expect(exact).not.toBeNull();
+    expect(exact?.querySelector('erp-table-toolbar')).not.toBeNull();
+    expect(exact?.querySelector('erp-search-box')).not.toBeNull();
+    expect(exact?.querySelector('erp-column-chooser')).not.toBeNull();
+    expect(exact?.querySelector('erp-table')).not.toBeNull();
+    expect(exact?.querySelector('erp-pagination')).not.toBeNull();
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+  }, 20000);
 });

@@ -1,27 +1,27 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
-## Current live API showcase workbench checkpoint — 2026-10-08
+## Current bounded live workbench correction checkpoint — 2026-10-08
 
 Entry checkpoint:
 
-- `fce028a2e080714a5759c649746656a3f36da524` — clean live `main` and
-  `origin/main` before the workbench correction.
+- `f0450d76a6ef523158036ba9b5bb66a9127519dd` — clean live `main` and
+  `origin/main` before the bounded workbench correction.
 
-The bounded implementation commit is `fix(showcase): add live API control
-workbenches`; resolve its final SHA from live `main` because this file is part
-of that commit.
+The bounded implementation commit is `fix(showcase): harden live workbench
+evidence`; resolve its final SHA from live `main` because this file is part of
+that commit.
 
-The checkpoint contains 77 one-target workbenches, 1,040 live controls for 990
-inputs, 20 models, 67 outputs, and 24 CVA owners, plus the specific ButtonGroup,
-FAB positioning, FabMenu, and SplitButton corrections. Runtime audit covers all
-77 component routes in Light/Dark RTL and at 390 px with zero console
-errors/warnings, broken assets, empty output, or overflow. Canonical
-verification passes 120/120 test files and 737/737 tests, all lint/governance,
-both typechecks, production build, and zero warnings. Initial bundle is 488.18
-kB / 105.32 kB.
+The checkpoint preserves 77 one-target workbenches while restoring the six
+exact Core reference experiences on demand, including the complete multi-owner
+Table evidence. It adds structured value-kind validation with invalid-draft and
+last-valid-value retention, plus measured FAB preview containment in RTL/LTR at
+390 px. Focused verification passes 6/6 files and 28/28 tests. Canonical
+verification passes every lint/governance gate, 122/122 test files and 748/748
+tests, both typechecks, production build, and zero warnings. The initial bundle
+remains 488.18 kB / 105.32 kB estimated transfer.
 
-Product Owner visual approval is not inferred. The next gate is review of the
-live API workbenches; no production FAB merge or later wave is opened.
+Product Owner visual approval is not inferred. The next gate is external review
+of this bounded correction; no production FAB merge or later wave is opened.
 
 ## Historical dedicated showcase reconstruction checkpoint — superseded 2026-10-08
 

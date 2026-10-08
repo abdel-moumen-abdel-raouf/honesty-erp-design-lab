@@ -1,0 +1,19 @@
+<erp-surface padding="default" border="subtle" data-showcase-exact-reference-section>
+  <erp-stack gap="tight">
+    <erp-text type="heading-3">مرجع Product Owner الدقيق</erp-text>
+    <erp-text type="paragraph" tone="secondary">
+      دليل المقارنة الكامل متاح عند الطلب دون تكرار المصفوفة داخل المعاينة الحية.
+    </erp-text>
+    <erp-button
+      data-showcase-exact-reference-toggle
+      [label]="expanded() ? 'إخفاء دليل المرجع' : 'عرض دليل المرجع'"
+      (pressed)="toggle()"
+    />
+    @if (expanded()) {
+      <app-review-exact-core-showcase
+        data-showcase-exact-reference
+        [focus]="focus()"
+      />
+    }
+  </erp-stack>
+</erp-surface>

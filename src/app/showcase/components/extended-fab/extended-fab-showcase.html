@@ -1,10 +1,14 @@
 <erp-stack gap="default" data-dedicated-showcase="extended-fab" data-showcase-sections="1">
   <erp-text type="heading-2">زر إجراء عائم ممتد</erp-text>
   <erp-text type="paragraph" tone="secondary">إجراء عائم يجمع الأيقونة والتسمية.</erp-text>
-  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview showcase-live-preview--floating">
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
     <erp-stack gap="tight">
       <erp-text type="heading-3">المعاينة الحية</erp-text>
-      <erp-extended-fab
+      <app-review-showcase-floating-preview
+        [inlinePosition]="previewInline()"
+        [blockPosition]="previewBlock()"
+        [direction]="previewDirection()"
+      ><erp-extended-fab
           data-showcase-target
           [label]="$any(value('label'))"
           [icon]="$any(value('icon'))"
@@ -15,11 +19,7 @@
           [cursor]="$any(value('cursor'))"
           [rippleSpeed]="$any(value('rippleSpeed'))"
           (pressed)="recordEvent('pressed', $event)"
-          [style.position]="'absolute'"
-          [style.inset-inline-start.%]="previewInline()"
-          [style.inset-block-start.%]="previewBlock()"
-          [style.transform]="'translate(-50%, -50%)'"
-        ></erp-extended-fab>
+        ></erp-extended-fab></app-review-showcase-floating-preview>
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel

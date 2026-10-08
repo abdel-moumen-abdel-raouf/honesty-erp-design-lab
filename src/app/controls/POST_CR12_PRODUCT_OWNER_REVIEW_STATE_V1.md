@@ -1,25 +1,25 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
-## Authoritative current review state — 2026-10-08 — live API workbenches
+## Authoritative current review state — 2026-10-08 — bounded live workbench correction
 
-The Product Owner required one visible component plus controls for every public
-API property, applied immediately. The bounded correction entered at
-`fce028a2e080714a5759c649746656a3f36da524`; all 77 public component pages now
-render one primary target and one shared live control panel.
+The bounded correction entered at
+`f0450d76a6ef523158036ba9b5bb66a9127519dd`. All 77 public component pages
+retain one primary target and the shared live API panel. Existing exact Core
+evidence is restored on demand for Select, StatusBadge, Avatar, AvatarPicker,
+Tabs, and Table; Table remains the complete multi-owner reference experience.
 
-The catalog covers 990 inputs, 20 models, 67 outputs, and 24 CVA owners through
-1,040 controls. ButtonGroup renders three buttons; Fab, ExtendedFab, and
-FabMenu provide bounded live positioning; FabMenu and SplitButton provide five
-mixed text/icon action presentations. Existing production FAB owners were not
-merged because that architecture change was not authorized.
+Structured JSON controls now reject incompatible value kinds and preserve both
+the invalid draft and last valid live value through unrelated changes. Model
+and CVA controls remain synchronized. Fab, ExtendedFab, and FabMenu use measured
+physical placement without clipping; 390 px browser checks pass both axis
+boundaries in RTL and LTR with zero overflow, errors, or warnings.
 
-Runtime audit passed all 77 routes in Light/Dark RTL and at 390 px with zero
-missing targets/panels, empty visible output, console errors/warnings, broken
-assets, or overflow. Canonical verification passes 120/120 files and 737/737
-tests, all lint/governance, both typechecks, production build, and zero
-warnings. Initial bundle is 488.18 kB / 105.32 kB. Product Owner review of the
-live workbenches is the only next action; no later visual or feature wave is
-authorized.
+Focused verification passes 6/6 files and 28/28 tests plus catalog governance
+and both typechecks. Canonical verification passes every lint/governance gate,
+122/122 test files and 748/748 tests, both typechecks, production build, and
+zero warnings. The initial bundle remains 488.18 kB / 105.32 kB estimated
+transfer. Product Owner external review is the only next action; no visual
+acceptance or later visual/feature wave is authorized.
 
 ## Historical dedicated showcase review state — superseded 2026-10-08
 

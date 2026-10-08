@@ -1,35 +1,34 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
-## Authoritative current execution state — 2026-10-08 — live API showcase workbenches
+## Authoritative current execution state — 2026-10-08 — bounded live workbench correction
 
 This bounded correction entered from clean live `main` at
-`fce028a2e080714a5759c649746656a3f36da524`. Every one of the 77 public ERP
-component pages now renders exactly one primary target plus a shared live API
-control panel. The generated catalog extracts 990 public inputs, 20 models, and
-67 outputs; 1,040 live editors apply input, model, CVA, and bounded preview
-changes immediately while meaningful outputs are shown in an event log.
+`f0450d76a6ef523158036ba9b5bb66a9127519dd`. Every public page retains exactly
+one primary `data-showcase-target`. Select, StatusBadge, Avatar, AvatarPicker,
+Tabs, and Table restore their existing exact-reference evidence behind an
+on-demand secondary control. Table restores the complete multi-owner reference
+experience with TableToolbar, SearchBox, ColumnChooser, Table, and Pagination.
 
-`ErpButtonGroup` now renders three real buttons. `ErpFab`, `ErpExtendedFab`, and
-`ErpFabMenu` render inside a bounded floating preview with live inline/block
-position controls. `ErpFabMenu` and `ErpSplitButton` each expose five actions
-covering text-only, icon-only, and icon-plus-text presentations. The production
-FAB owners remain separate because this task did not authorize an API-family
-merge; their actual public APIs are exposed without a visual redesign.
+Structured editors now reject incompatible JSON value kinds before applying
+them to a public input. Invalid drafts remain visible and the last valid live
+value survives unrelated control changes. Model and CVA values remain
+immediately synchronized with their primary targets.
 
-Governance rejects a missing public-API control, multiple target instances, an
-unbound input/model/output, incomplete action-menu presentations, or missing
-floating-position controls. Runtime audit covered all 77 routes in Light and
-Dark RTL and at 390 px: target count, control panel, visible content, console
-errors/warnings, broken assets, and horizontal overflow all pass with zero
-failures. Direct interaction checks passed ButtonGroup orientation, FAB
-positioning, and the FabMenu/SplitButton mixed action menus.
+Fab, ExtendedFab, and FabMenu now use a measured, unclipped floating-preview
+owner. Inline and block controls remain, and a review-only direction control
+proves physical containment at both 0% and 100% boundaries. Browser measurements
+at 390 px passed for all three owners in RTL and LTR with zero page overflow.
+Runtime checks also passed on-demand exact evidence, the full Table composition,
+structured-draft retention, model/CVA synchronization, mixed menu presentations,
+and zero console errors or warnings.
 
-Canonical verification passes all lint/governance, 120/120 test files and
-737/737 tests, both typechecks, production build, and zero warnings. The initial
-bundle is 488.18 kB / 105.32 kB estimated transfer; component workbenches remain
-independently lazy-loaded. Product Owner review of the live API workbenches is
-the exact next gate. No component visual acceptance, FAB owner merge, later
-visual wave, page pattern, or feature migration is inferred or opened.
+Focused verification passes 6/6 files and 28/28 tests plus catalog governance,
+both typechecks, and the browser checks above. Canonical verification passes
+all lint/governance gates, 122/122 test files and 748/748 tests, both
+typechecks, production build, and zero warnings. The initial bundle remains
+488.18 kB / 105.32 kB estimated transfer. Product Owner review remains the next
+gate; no visual acceptance, production-owner merge, later component review, or
+new wave is inferred or opened.
 
 ## Historical dedicated showcase reconstruction — superseded 2026-10-08
 

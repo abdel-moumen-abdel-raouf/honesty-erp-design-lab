@@ -51,28 +51,30 @@ For long-range inventory/dependency context only, read when needed:
 
 The blueprint is planning context only, not implementation authorization.
 
-## Authoritative current state — 2026-10-08 — live API showcase workbenches
+## Authoritative current state — 2026-10-08 — bounded live workbench correction
 
 The current correction entered from clean `main` at
-`fce028a2e080714a5759c649746656a3f36da524`. All 77 public component routes now
-render one primary component target and one shared live API control panel. The
-catalog records and controls 990 inputs, 20 models, 67 outputs, and 24 CVA
-values through 1,040 live editors; changes apply immediately and outputs appear
-in an event log.
+`f0450d76a6ef523158036ba9b5bb66a9127519dd`. All 77 public component routes
+retain one primary target and the shared live API panel. Exact-reference pages
+for Select, StatusBadge, Avatar, AvatarPicker, Tabs, and Table now provide their
+existing rich evidence on demand; the Table evidence remains the complete
+TableToolbar/SearchBox/ColumnChooser/Table/Pagination composition.
 
-ButtonGroup renders a real three-button group. Fab, ExtendedFab, and FabMenu
-use bounded floating canvases with two-axis live controls. FabMenu and
-SplitButton provide five actions spanning text-only, icon-only, and
-icon-plus-text. Existing production FAB owners remain distinct; this showcase
-correction does not authorize an owner/API merge or visual redesign.
+Structured JSON controls validate the expected public value kind before applying
+it. Invalid drafts and their messages persist through unrelated changes while
+the last valid target value remains intact. Model and CVA controls continue to
+synchronize immediately.
 
-Runtime verification covered every route in Light and Dark RTL and at 390 px.
-Missing targets/control panels, empty output, console errors/warnings, broken
-assets, and overflow are zero. Canonical verification passes 120/120 test
-files, 737/737 tests, all lint/governance, both typechecks, production build,
-and the zero-warning gate. Initial bundle is 488.18 kB / 105.32 kB estimated
-transfer. The next action is Product Owner review of the live API workbenches;
-technical PASS is not visual approval and no later wave is authorized.
+Fab, ExtendedFab, and FabMenu use a measured floating-preview boundary without
+clipping. Both position controls remain and review direction is selectable.
+Runtime measurements at 390 px passed both physical boundaries in RTL and LTR,
+with zero page overflow, console errors, or warnings. Focused verification
+passes 6/6 files and 28/28 tests. Canonical verification passes every
+lint/governance gate, 122/122 test files and 748/748 tests, both typechecks,
+production build, and zero warnings; the initial bundle remains 488.18 kB /
+105.32 kB estimated transfer. The next action remains external Product Owner
+review. Technical PASS is not visual acceptance and no later component review
+or wave is authorized.
 
 ## Historical dedicated showcase state — superseded 2026-10-08
 

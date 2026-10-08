@@ -74,6 +74,7 @@ export class ErpReviewShowcaseControlPanel {
   private readonly destroyRef = inject(DestroyRef);
   private readonly editors = new Map<string, UntypedFormControl>();
   private readonly optionSets = new Map<string, readonly ErpSelectOption[]>();
+  private readonly invalidDrafts = new Set<string>();
   readonly errors = signal<Readonly<Record<string, string>>>({});
 
   constructor() {
@@ -81,7 +82,7 @@ export class ErpReviewShowcaseControlPanel {
       const values = this.values();
       for (const definition of this.controls()) {
         const editor = this.editors.get(definition.name);
-        if (!editor) continue;
+        if (!editor || this.invalidDrafts.has(definition.name)) continue;
         const nextValue = this.toEditorValue(definition, values[definition.name]);
         if (!this.sameEditorValue(definition, editor.value, nextValue)) {
           editor.setValue(nextValue, {emitEvent: false});
@@ -134,9 +135,20 @@ export class ErpReviewShowcaseControlPanel {
     if (definition.kind === 'json') {
       try {
         const value = JSON.parse(String(editorValue));
+        const structureError = this.structuredValueError(definition, value);
+        if (structureError) {
+          this.invalidDrafts.add(definition.name);
+          this.errors.update((current) => ({
+            ...current,
+            [definition.name]: structureError,
+          }));
+          return;
+        }
+        this.invalidDrafts.delete(definition.name);
         this.clearError(definition.name);
         this.controlChanged.emit({control: definition, value});
       } catch {
+        this.invalidDrafts.add(definition.name);
         this.errors.update((current) => ({
           ...current,
           [definition.name]: 'JSON غير صالح؛ لم يُطبق التغيير.',
@@ -178,6 +190,67 @@ export class ErpReviewShowcaseControlPanel {
       delete next[name];
       return next;
     });
+  }
+
+  private structuredValueError(
+    definition: ErpShowcaseControlDefinition,
+    value: unknown,
+  ): string | null {
+    const type = definition.type.replaceAll(/\s+/g, ' ').trim();
+    if (type === 'ControlValueAccessor value' || /\bunknown\b|\bany\b/.test(type)) {
+      return null;
+    }
+    if (value === null) {
+      return definition.required && !/\bnull\b|\bundefined\b/.test(type)
+        ? `القيمة ${definition.name} مطلوبة ولا تقبل null.`
+        : null;
+    }
+
+    const expectsArray = /\[\]|\b(?:Readonly)?Array\s*</.test(type);
+    if (expectsArray) {
+      if (!Array.isArray(value)) {
+        return `القيمة ${definition.name} يجب أن تكون مصفوفة توافق ${type}.`;
+      }
+      if (/\bstring\s*\[\]/.test(type) && value.some((item) => typeof item !== 'string')) {
+        return `كل عناصر ${definition.name} يجب أن تكون نصوصًا.`;
+      }
+      if (/\bnumber\s*\[\]/.test(type) &&
+          value.some((item) => typeof item !== 'number' || !Number.isFinite(item))) {
+        return `كل عناصر ${definition.name} يجب أن تكون أرقامًا صالحة.`;
+      }
+      if (!/\b(?:string|number|boolean|unknown|any)\s*\[\]/.test(type) &&
+          value.some((item) => item === null || typeof item !== 'object' || Array.isArray(item))) {
+        return `كل عناصر ${definition.name} يجب أن تكون كائنات توافق ${type}.`;
+      }
+      return null;
+    }
+
+    if (/\bboolean\b/.test(type) || typeof definition.initialValue === 'boolean') {
+      return typeof value === 'boolean'
+        ? null
+        : `القيمة ${definition.name} يجب أن تكون منطقية.`;
+    }
+    if (/\bnumber\b/.test(type) || typeof definition.initialValue === 'number') {
+      return typeof value === 'number' && Number.isFinite(value)
+        ? null
+        : `القيمة ${definition.name} يجب أن تكون رقمًا صالحًا.`;
+    }
+    if (/\bstring\b|\bkeyof\b|(?:Name|Size|Tone|Variant|Motion|Animation)$/.test(type) ||
+        typeof definition.initialValue === 'string') {
+      return typeof value === 'string'
+        ? null
+        : `القيمة ${definition.name} يجب أن تكون نصًا.`;
+    }
+
+    const expectsObject = /\bRecord\s*<|\bPartial\s*<|\{/.test(type) ||
+      (definition.initialValue !== null &&
+        typeof definition.initialValue === 'object' &&
+        !Array.isArray(definition.initialValue)) ||
+      /^Erp[A-Z].*(?:Config|Definition|Issue|Option|Row|Sort|Value|Values|Schema|Section)$/.test(type);
+    if (expectsObject && (typeof value !== 'object' || Array.isArray(value))) {
+      return `القيمة ${definition.name} يجب أن تكون كائنًا يوافق ${type}.`;
+    }
+    return null;
   }
 
   private sameEditorValue(

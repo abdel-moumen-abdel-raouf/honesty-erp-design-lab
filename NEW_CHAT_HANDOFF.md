@@ -1,25 +1,28 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
-## Authoritative current handoff — 2026-10-08 — live API showcase workbenches
+## Authoritative current handoff — 2026-10-08 — bounded live workbench correction
 
-Start from live `main`. This bounded correction entered at
-`fce028a2e080714a5759c649746656a3f36da524`. Read the generated component
-catalog, the shared showcase control panel, and the dedicated showcase tree
-before changing review architecture.
+Start from live `main`. This correction entered at
+`f0450d76a6ef523158036ba9b5bb66a9127519dd`. Read the generated component
+catalog, shared showcase control panel, and the two review-only owners under
+`showcase-exact-reference` and `showcase-floating-preview` before changing the
+workbench architecture.
 
-All 77 public ERP pages render one primary target. Their generated workbenches
-cover 990 public inputs, 20 models, 67 outputs, and 24 CVA values with 1,040
-immediately applied controls and an output event log. ButtonGroup shows three
-buttons; Fab, ExtendedFab, and FabMenu have bounded two-axis positioning;
-FabMenu and SplitButton expose five mixed text/icon action presentations.
+All 77 public ERP pages retain one primary target. Six exact Core owners expose
+their existing full evidence on demand, and Table retains its complete
+multi-owner reference composition. JSON editors reject incompatible public
+value kinds without replacing an invalid draft or the last valid target value.
+Model/CVA synchronization remains live.
 
-Runtime audit passed all 77 routes in Light/Dark RTL and at 390 px with zero
-missing targets/control panels, empty visible output, console errors/warnings,
-broken images, or overflow. Canonical verification passes 120/120 test files,
-737/737 tests, all lint/governance, both typechecks, production build, and zero
-warnings. Initial bundle is 488.18 kB / 105.32 kB. The exact next action is
-Product Owner review of the live API workbenches. Existing visual contracts and
-separate production FAB owners were not reopened; no later wave is authorized.
+Fab, ExtendedFab, and FabMenu use measured, unclipped containment with inline,
+block, and review-direction controls. Runtime measurements at 390 px passed 0%
+and 100% boundaries for all three in RTL and LTR, with zero overflow and zero
+console errors/warnings. Focused verification passes 6/6 files and 28/28 tests.
+Canonical verification passes every lint/governance gate, 122/122 test files
+and 748/748 tests, both typechecks, production build, and zero warnings. The
+initial bundle remains 488.18 kB / 105.32 kB estimated transfer. The exact next
+action remains Product Owner external review; no visual acceptance or later
+wave is opened.
 
 ## Historical dedicated showcase handoff — superseded 2026-10-08
 

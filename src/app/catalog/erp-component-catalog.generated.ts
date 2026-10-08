@@ -1693,6 +1693,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "type": "number",
         "options": [],
         "initialValue": 75
+      },
+      {
+        "name": "$previewDirection",
+        "label": "اتجاه مساحة المعاينة",
+        "source": "preview",
+        "kind": "select",
+        "required": true,
+        "type": "'rtl' | 'ltr'",
+        "options": [
+          "rtl",
+          "ltr"
+        ],
+        "initialValue": "rtl"
       }
     ],
     "showcaseCoverage": {
@@ -2168,6 +2181,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "type": "number",
         "options": [],
         "initialValue": 75
+      },
+      {
+        "name": "$previewDirection",
+        "label": "اتجاه مساحة المعاينة",
+        "source": "preview",
+        "kind": "select",
+        "required": true,
+        "type": "'rtl' | 'ltr'",
+        "options": [
+          "rtl",
+          "ltr"
+        ],
+        "initialValue": "rtl"
       }
     ],
     "showcaseCoverage": {
@@ -2704,6 +2730,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "type": "number",
         "options": [],
         "initialValue": 75
+      },
+      {
+        "name": "$previewDirection",
+        "label": "اتجاه مساحة المعاينة",
+        "source": "preview",
+        "kind": "select",
+        "required": true,
+        "type": "'rtl' | 'ltr'",
+        "options": [
+          "rtl",
+          "ltr"
+        ],
+        "initialValue": "rtl"
       }
     ],
     "showcaseCoverage": {

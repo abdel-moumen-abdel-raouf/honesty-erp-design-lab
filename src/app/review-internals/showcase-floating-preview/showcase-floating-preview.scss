@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  position: relative;
+  min-inline-size: 0;
+  min-block-size: 26rem;
+}
+
+[data-showcase-floating-positioner] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  inline-size: max-content;
+  max-inline-size: 100%;
+  will-change: transform;
+}

@@ -6,13 +6,14 @@ import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
 import {ErpTooltip} from '../../../controls/tooltip/tooltip';
+import {ErpReviewShowcaseFloatingPreview} from '../../../review-internals/showcase-floating-preview/showcase-floating-preview';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'fab')!;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-fab-showcase',
-  imports: [ErpFab, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpTooltip],
+  imports: [ErpFab, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpTooltip, ErpReviewShowcaseFloatingPreview],
   templateUrl: './fab-showcase.html',
   styleUrl: './fab-showcase.scss',
 })
@@ -29,6 +30,7 @@ export class ErpFabShowcase {
 
   readonly previewInline = computed(() => Number(this.liveValues()['$previewInline'] ?? 80));
   readonly previewBlock = computed(() => Number(this.liveValues()['$previewBlock'] ?? 75));
+  readonly previewDirection = computed(() => this.liveValues()['$previewDirection'] === 'ltr' ? 'ltr' : 'rtl');
 
   value(name: string): unknown {
     return this.liveValues()[name];

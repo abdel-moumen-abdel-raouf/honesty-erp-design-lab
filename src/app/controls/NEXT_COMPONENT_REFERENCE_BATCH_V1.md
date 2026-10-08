@@ -1,17 +1,22 @@
 # Next Component Reference Batch V1
 
-## Authoritative current reference gate — 2026-10-08 — live workbench review only
+## Authoritative current reference gate — 2026-10-08 — bounded workbench review only
 
 No next component or visual reference is authorized. The bounded correction
-entered at `fce028a2e080714a5759c649746656a3f36da524` and gives all 77 public
-owners one live target plus complete controls for their public inputs/models
-and event evidence for outputs. Existing exact references remain unchanged.
+entered at `f0450d76a6ef523158036ba9b5bb66a9127519dd` and preserves all 77
+one-target live workbenches while restoring existing exact-reference evidence
+on demand. No exact component implementation or authority changed.
 
-The exact next action is Product Owner review of the live API workbenches,
-especially ButtonGroup, Fab, ExtendedFab, FabMenu, IconButton, and SplitButton.
-Technical green does not authorize merging the separate production FAB owners,
-redesigning components, opening Data/Table correction, page patterns, feature
-migration, or any later owner.
+The exact next action is Product Owner external review of the corrected
+workbenches: structured-value rejection and draft retention, Model/CVA sync,
+the six restored exact-reference surfaces, the complete multi-owner Table
+experience, mixed action menus, and FAB-family containment in RTL/LTR at 390 px.
+Technical green does not authorize merging production FAB owners, redesigning
+components, opening remaining reviews, or starting any later wave.
+
+Canonical verification passes every lint/governance gate, 122/122 test files
+and 748/748 tests, both typechecks, production build, and zero warnings. The
+initial bundle remains 488.18 kB / 105.32 kB estimated transfer.
 
 ## Historical reconstructed-showcase reference gate — superseded 2026-10-08
 
