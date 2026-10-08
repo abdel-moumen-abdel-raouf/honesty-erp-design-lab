@@ -1,5 +1,18 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Authoritative current handoff — 2026-10-08 — Shell S1 dark contrast and scroll ownership
+
+Start from live `main`. This bounded correction entered at
+`415298b7921719747efcc17dc82f9e889ccac64c` and affects only `ErpUserMenu`.
+Read the exact contract and
+`docs/review-evidence/erp-user-menu/s1-final-dark-contrast-scroll.json` first.
+Dark foreground inheritance and duplicate popup scrolling are closed: the
+surface consumes the existing foreground token and remains non-scrolling,
+while actions alone scroll with identity position unchanged. Product Owner
+review is pending; S2 remains closed. Focused verification passes 58/58 tests;
+the canonical gate passes 122/122 files and 776/776 tests, both typechecks,
+production build, and zero warnings.
+
 ## Authoritative current handoff — 2026-10-08 — Shell S1 popup geometry gate
 
 Start from live `main`. This bounded gate entered at

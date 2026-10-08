@@ -171,6 +171,8 @@ export function validateShellNavigation(files) {
   }
   if (
     !userMenuStyles.includes('min-inline-size: 0') ||
+    !/user-menu__surface[^}]*overflow:\s*visible/s.test(userMenuStyles) ||
+    !/user-menu__surface[^}]*color:\s*var\(--honesty-user-menu-fg\)/s.test(userMenuStyles) ||
     !/user-menu__items[^}]*overflow(?:-y)?:\s*auto/s.test(userMenuStyles) ||
     !(
       /user-menu__identity-header[^}]*flex:\s*0 0 auto/s.test(userMenuStyles) ||
@@ -263,7 +265,7 @@ function validFixture(overrides = new Map()) {
   );
   files.set(
     'src/app/controls/user-menu/user-menu.scss',
-    '.user-menu { min-inline-size: 0; } .user-menu__identity-header { flex: 0 0 auto; } .user-menu__items { flex: 1 1 auto; overflow-y: auto; } .user-menu__surface:popover-open { display: flex; } .user-menu__surface::before { left: var(--honesty-anchored-surface-arrow-cross-axis-center); } @media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }',
+    '.user-menu { min-inline-size: 0; } .user-menu__surface { overflow: visible; color: var(--honesty-user-menu-fg); } .user-menu__identity-header { flex: 0 0 auto; } .user-menu__items { flex: 1 1 auto; overflow-y: auto; } .user-menu__surface:popover-open { display: flex; } .user-menu__surface::before { left: var(--honesty-anchored-surface-arrow-cross-axis-center); } @media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }',
   );
   files.set(
     'src/styles/foundation/components/user-menu/_tokens.scss',

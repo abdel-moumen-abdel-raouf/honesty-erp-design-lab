@@ -136,6 +136,25 @@ force.
   `/assets/honesty-erp-avatars/users/female/avatar-21.png`; Avatar's image-error
   fallback hierarchy and tests remain unchanged.
 
+## Final dark contrast and scroll ownership closure
+
+The final external review confirmed two bounded defects. The native popover
+surface inherited a black foreground in Dark mode and retained the user-agent
+`overflow: auto`, creating a second popup scroll owner. UserMenu now consumes
+its existing `--honesty-user-menu-fg` token on the surface and sets the surface
+overflow to visible. Only `.user-menu__items` owns vertical scrolling; the
+identity region remains fixed and readable.
+
+The current browser record is
+`docs/review-evidence/erp-user-menu/s1-final-dark-contrast-scroll.json`. Dark
+RTL/LTR surface foreground/background resolve to `rgb(248, 249, 251)` /
+`rgb(39, 42, 50)`, while email and secondary text resolve to
+`rgb(201, 206, 216)`. In the constrained 320 x 568 case the surface stays at
+scrollTop 0, actions move to scrollTop 96, and identity top delta is 0 px. The
+page scrollbar remains a separate Design Lab document concern. Existing
+top/bottom placement, arrow calculation, viewport containment, keyboard/focus
+behavior, six visibility inputs, and all public APIs remain unchanged.
+
 ## Evidence limitations and acceptance
 
 The reference source and runtime were live and accessible during this phase.

@@ -1,5 +1,15 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Shell S1 final contrast and scroll-ownership binding decision — 2026-10-08
+
+`ErpUserMenu` surface foreground must resolve through its existing semantic
+Component Token in both themes and directions. Native `[popover]` overflow must
+not create a second scroll container: the surface remains non-scrolling, the
+identity card stays fixed, and only the action list may scroll. Existing public
+APIs, top/bottom placement, arrow calculations, shared overlay ownership, and
+all six visibility controls remain unchanged. Technical closure does not imply
+Product Owner visual acceptance or authorize S2.
+
 ## Shell S1 final popup-geometry binding decision — 2026-10-08
 
 `ErpUserMenu` is a vertical dropdown. Its allowed placements are bottom and

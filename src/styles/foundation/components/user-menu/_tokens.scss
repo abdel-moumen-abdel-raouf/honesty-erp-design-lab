@@ -19,9 +19,9 @@
   --honesty-user-menu-divider-margin-block: 8px;
   --honesty-user-menu-arrow-size: 13px;
   --honesty-user-menu-arrow-offset: 16px;
-  --honesty-user-menu-motion-duration: 600ms;
-  --honesty-user-menu-motion-easing: cubic-bezier(0.25, 0.8, 0.25, 1);
-  --honesty-user-menu-motion-distance: 6px;
+  --honesty-user-menu-duration: 600ms;
+  --honesty-user-menu-easing: cubic-bezier(0.25, 0.8, 0.25, 1);
+  --honesty-user-menu-enter-distance: 6px;
   --honesty-user-menu-max-block-size: calc(
     100dvh - 2 * var(--honesty-user-menu-viewport-inset)
   );

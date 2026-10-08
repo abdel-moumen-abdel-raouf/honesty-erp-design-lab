@@ -1,5 +1,14 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Authoritative current gate — 2026-10-08 — UserMenu contrast and scroll review
+
+Only `ErpUserMenu` is authorized. Dark foreground inheritance and popup scroll
+ownership have bounded current evidence: the surface uses the existing
+semantic foreground, the action list is the sole popup scroll region, and the
+identity stays fixed. Focused verification passes 58/58 tests and the canonical
+gate passes 122/122 files and 776/776 tests with zero warnings. Stop for Product
+Owner review; S2 and adjacent owners remain unopened.
+
 ## Authoritative current gate — 2026-10-08 — UserMenu popup geometry review
 
 Only the existing `ErpUserMenu` is authorized. It now uses bottom/top placement

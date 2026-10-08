@@ -1,0 +1,837 @@
+{
+  "capturedAt": "2026-10-08T19:27:38.934Z",
+  "measurements": [
+    {
+      "file": "s1-contrast-light-rtl-desktop-open.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "preset": "صورة محلية — متصل",
+      "open": true,
+      "placement": "top",
+      "targetCount": 1,
+      "trigger": {
+        "left": 1016,
+        "top": 398.359375,
+        "right": 1376,
+        "bottom": 502.359375,
+        "width": 360,
+        "height": 104
+      },
+      "surface": {
+        "left": 1016,
+        "top": 8,
+        "right": 1376,
+        "bottom": 396.359375,
+        "width": 360,
+        "height": 388.359375
+      },
+      "identity": {
+        "left": 1024,
+        "top": 16,
+        "right": 1368,
+        "bottom": 120,
+        "width": 344,
+        "height": 104
+      },
+      "colors": {
+        "surface": {
+          "color": "rgb(24, 26, 32)",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "overflowX": "visible",
+          "overflowY": "visible"
+        },
+        "identityName": {
+          "color": "rgb(24, 26, 32)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "overflowX": "visible",
+          "overflowY": "visible"
+        },
+        "email": {
+          "color": "rgb(84, 89, 102)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "overflowX": "visible",
+          "overflowY": "visible"
+        },
+        "secondary": {
+          "color": "rgb(84, 89, 102)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "overflowX": "visible",
+          "overflowY": "visible"
+        },
+        "badges": [
+          {
+            "color": "rgb(59, 59, 164)",
+            "backgroundColor": "rgb(238, 240, 253)",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          {
+            "color": "rgb(84, 89, 102)",
+            "backgroundColor": "rgb(255, 255, 255)",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          }
+        ],
+        "actions": [
+          {
+            "color": "rgb(24, 26, 32)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(24, 26, 32)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(24, 26, 32)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(24, 26, 32)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(24, 26, 32)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(165, 46, 42)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          }
+        ]
+      },
+      "surfaceScroll": {
+        "clientHeight": 388,
+        "scrollHeight": 398,
+        "overflowY": "visible",
+        "scrollTopBefore": 0,
+        "scrollTopAfter": 0,
+        "scrollable": false
+      },
+      "actions": {
+        "left": 1024,
+        "top": 137,
+        "right": 1368,
+        "bottom": 388.359375,
+        "width": 344,
+        "height": 251.359375,
+        "clientHeight": 251,
+        "scrollHeight": 353,
+        "overflowY": "auto",
+        "scrollTop": 0,
+        "scrollable": true
+      },
+      "identityScrollStability": {
+        "topBefore": 16,
+        "topAfter": 16,
+        "delta": 0
+      },
+      "pageScroll": {
+        "clientHeight": 900,
+        "scrollHeight": 1856,
+        "overflowY": "visible",
+        "scrollTop": 82
+      },
+      "overlap": false,
+      "arrowDelta": 0,
+      "pageHorizontalOverflow": 0,
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "brokenImages": 0,
+      "visualOrder": [
+        "user-menu__identity-name",
+        "user-menu__email",
+        "user-menu__badges",
+        "secondaryText"
+      ]
+    },
+    {
+      "file": "s1-contrast-dark-rtl-desktop-open.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "rtl",
+      "preset": "اسم عربي طويل — غير متصل",
+      "open": true,
+      "placement": "top",
+      "targetCount": 1,
+      "trigger": {
+        "left": 1016,
+        "top": 398.359375,
+        "right": 1376,
+        "bottom": 502.359375,
+        "width": 360,
+        "height": 104
+      },
+      "surface": {
+        "left": 1016,
+        "top": 8,
+        "right": 1376,
+        "bottom": 396.359375,
+        "width": 360,
+        "height": 388.359375
+      },
+      "identity": {
+        "left": 1024,
+        "top": 16,
+        "right": 1368,
+        "bottom": 142,
+        "width": 344,
+        "height": 126
+      },
+      "colors": {
+        "surface": {
+          "color": "rgb(248, 249, 251)",
+          "backgroundColor": "rgb(39, 42, 50)",
+          "overflowX": "visible",
+          "overflowY": "visible"
+        },
+        "identityName": {
+          "color": "rgb(248, 249, 251)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "overflowX": "visible",
+          "overflowY": "visible"
+        },
+        "email": {
+          "color": "rgb(201, 206, 216)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "overflowX": "visible",
+          "overflowY": "visible"
+        },
+        "secondary": {
+          "color": "rgb(201, 206, 216)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "overflowX": "visible",
+          "overflowY": "visible"
+        },
+        "badges": [
+          {
+            "color": "rgb(188, 196, 246)",
+            "backgroundColor": "rgb(35, 34, 101)",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          {
+            "color": "rgb(201, 206, 216)",
+            "backgroundColor": "rgb(24, 26, 32)",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          }
+        ],
+        "actions": [
+          {
+            "color": "rgb(248, 249, 251)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(248, 249, 251)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(248, 249, 251)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(248, 249, 251)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(248, 249, 251)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(255, 196, 194)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          }
+        ]
+      },
+      "surfaceScroll": {
+        "clientHeight": 388,
+        "scrollHeight": 398,
+        "overflowY": "visible",
+        "scrollTopBefore": 0,
+        "scrollTopAfter": 0,
+        "scrollable": false
+      },
+      "actions": {
+        "left": 1024,
+        "top": 159,
+        "right": 1368,
+        "bottom": 388.359375,
+        "width": 344,
+        "height": 229.359375,
+        "clientHeight": 229,
+        "scrollHeight": 353,
+        "overflowY": "auto",
+        "scrollTop": 0,
+        "scrollable": true
+      },
+      "identityScrollStability": {
+        "topBefore": 16,
+        "topAfter": 16,
+        "delta": 0
+      },
+      "pageScroll": {
+        "clientHeight": 900,
+        "scrollHeight": 1856,
+        "overflowY": "visible",
+        "scrollTop": 82
+      },
+      "overlap": false,
+      "arrowDelta": 0,
+      "pageHorizontalOverflow": 0,
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "brokenImages": 0,
+      "visualOrder": [
+        "user-menu__identity-name",
+        "user-menu__email",
+        "user-menu__badges",
+        "secondaryText"
+      ]
+    },
+    {
+      "file": "s1-contrast-dark-ltr-desktop-open.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "preset": "اسم إنجليزي طويل — متصل",
+      "open": true,
+      "placement": "bottom",
+      "targetCount": 1,
+      "trigger": {
+        "left": 49,
+        "top": 398.359375,
+        "right": 409,
+        "bottom": 501.359375,
+        "width": 360,
+        "height": 103
+      },
+      "surface": {
+        "left": 49,
+        "top": 503.359375,
+        "right": 409,
+        "bottom": 892,
+        "width": 360,
+        "height": 388.640625
+      },
+      "identity": {
+        "left": 57,
+        "top": 511.359375,
+        "right": 401,
+        "bottom": 653.359375,
+        "width": 344,
+        "height": 142
+      },
+      "colors": {
+        "surface": {
+          "color": "rgb(248, 249, 251)",
+          "backgroundColor": "rgb(39, 42, 50)",
+          "overflowX": "visible",
+          "overflowY": "visible"
+        },
+        "identityName": {
+          "color": "rgb(248, 249, 251)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "overflowX": "visible",
+          "overflowY": "visible"
+        },
+        "email": {
+          "color": "rgb(201, 206, 216)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "overflowX": "visible",
+          "overflowY": "visible"
+        },
+        "secondary": {
+          "color": "rgb(201, 206, 216)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "overflowX": "visible",
+          "overflowY": "visible"
+        },
+        "badges": [
+          {
+            "color": "rgb(188, 196, 246)",
+            "backgroundColor": "rgb(35, 34, 101)",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          {
+            "color": "rgb(201, 206, 216)",
+            "backgroundColor": "rgb(24, 26, 32)",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          }
+        ],
+        "actions": [
+          {
+            "color": "rgb(248, 249, 251)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(248, 249, 251)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(248, 249, 251)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(248, 249, 251)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(248, 249, 251)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(255, 196, 194)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          }
+        ]
+      },
+      "surfaceScroll": {
+        "clientHeight": 389,
+        "scrollHeight": 389,
+        "overflowY": "visible",
+        "scrollTopBefore": 0,
+        "scrollTopAfter": 0,
+        "scrollable": false
+      },
+      "actions": {
+        "left": 57,
+        "top": 670.359375,
+        "right": 401,
+        "bottom": 884,
+        "width": 344,
+        "height": 213.640625,
+        "clientHeight": 214,
+        "scrollHeight": 353,
+        "overflowY": "auto",
+        "scrollTop": 0,
+        "scrollable": true
+      },
+      "identityScrollStability": {
+        "topBefore": 511.359375,
+        "topAfter": 511.359375,
+        "delta": 0
+      },
+      "pageScroll": {
+        "clientHeight": 900,
+        "scrollHeight": 1856,
+        "overflowY": "visible",
+        "scrollTop": 82
+      },
+      "overlap": false,
+      "arrowDelta": 0,
+      "pageHorizontalOverflow": 0,
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "brokenImages": 0,
+      "visualOrder": [
+        "user-menu__identity-name",
+        "user-menu__email",
+        "user-menu__badges",
+        "secondaryText"
+      ]
+    },
+    {
+      "file": "s1-contrast-dark-rtl-390-open.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "rtl",
+      "preset": "أحرف أولى — بعيد",
+      "open": true,
+      "placement": "bottom",
+      "targetCount": 1,
+      "trigger": {
+        "left": 33,
+        "top": 369.734375,
+        "right": 342,
+        "bottom": 473.734375,
+        "width": 309,
+        "height": 104
+      },
+      "surface": {
+        "left": 8,
+        "top": 475.734375,
+        "right": 368,
+        "bottom": 836,
+        "width": 360,
+        "height": 360.265625
+      },
+      "identity": {
+        "left": 16,
+        "top": 483.734375,
+        "right": 360,
+        "bottom": 587.734375,
+        "width": 344,
+        "height": 104
+      },
+      "colors": {
+        "surface": {
+          "color": "rgb(248, 249, 251)",
+          "backgroundColor": "rgb(39, 42, 50)",
+          "overflowX": "visible",
+          "overflowY": "visible"
+        },
+        "identityName": {
+          "color": "rgb(248, 249, 251)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "overflowX": "visible",
+          "overflowY": "visible"
+        },
+        "email": {
+          "color": "rgb(201, 206, 216)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "overflowX": "visible",
+          "overflowY": "visible"
+        },
+        "secondary": {
+          "color": "rgb(201, 206, 216)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "overflowX": "visible",
+          "overflowY": "visible"
+        },
+        "badges": [
+          {
+            "color": "rgb(188, 196, 246)",
+            "backgroundColor": "rgb(35, 34, 101)",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          {
+            "color": "rgb(201, 206, 216)",
+            "backgroundColor": "rgb(24, 26, 32)",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          }
+        ],
+        "actions": [
+          {
+            "color": "rgb(248, 249, 251)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(248, 249, 251)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(248, 249, 251)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(248, 249, 251)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(248, 249, 251)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(255, 196, 194)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          }
+        ]
+      },
+      "surfaceScroll": {
+        "clientHeight": 360,
+        "scrollHeight": 360,
+        "overflowY": "visible",
+        "scrollTopBefore": 0,
+        "scrollTopAfter": 0,
+        "scrollable": false
+      },
+      "actions": {
+        "left": 16,
+        "top": 604.734375,
+        "right": 360,
+        "bottom": 828,
+        "width": 344,
+        "height": 223.265625,
+        "clientHeight": 223,
+        "scrollHeight": 353,
+        "overflowY": "auto",
+        "scrollTop": 0,
+        "scrollable": true
+      },
+      "identityScrollStability": {
+        "topBefore": 483.734375,
+        "topAfter": 483.734375,
+        "delta": 0
+      },
+      "pageScroll": {
+        "clientHeight": 844,
+        "scrollHeight": 2998,
+        "overflowY": "visible",
+        "scrollTop": 275
+      },
+      "overlap": false,
+      "arrowDelta": null,
+      "pageHorizontalOverflow": 0,
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "brokenImages": 0,
+      "visualOrder": [
+        "user-menu__identity-name",
+        "user-menu__email",
+        "user-menu__badges",
+        "secondaryText"
+      ]
+    },
+    {
+      "file": "s1-contrast-light-rtl-320x568-open-scroll.png",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "preset": "اسم عربي طويل — غير متصل",
+      "open": true,
+      "placement": "bottom",
+      "targetCount": 1,
+      "trigger": {
+        "left": 33,
+        "top": 0.734375,
+        "right": 272,
+        "bottom": 126.734375,
+        "width": 239,
+        "height": 126
+      },
+      "surface": {
+        "left": 8,
+        "top": 128.734375,
+        "right": 312,
+        "bottom": 560,
+        "width": 304,
+        "height": 431.265625
+      },
+      "identity": {
+        "left": 16,
+        "top": 136.734375,
+        "right": 304,
+        "bottom": 302.734375,
+        "width": 288,
+        "height": 166
+      },
+      "colors": {
+        "surface": {
+          "color": "rgb(24, 26, 32)",
+          "backgroundColor": "rgb(255, 255, 255)",
+          "overflowX": "visible",
+          "overflowY": "visible"
+        },
+        "identityName": {
+          "color": "rgb(24, 26, 32)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "overflowX": "visible",
+          "overflowY": "visible"
+        },
+        "email": {
+          "color": "rgb(84, 89, 102)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "overflowX": "visible",
+          "overflowY": "visible"
+        },
+        "secondary": {
+          "color": "rgb(84, 89, 102)",
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "overflowX": "visible",
+          "overflowY": "visible"
+        },
+        "badges": [
+          {
+            "color": "rgb(59, 59, 164)",
+            "backgroundColor": "rgb(238, 240, 253)",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          },
+          {
+            "color": "rgb(84, 89, 102)",
+            "backgroundColor": "rgb(255, 255, 255)",
+            "overflowX": "visible",
+            "overflowY": "visible"
+          }
+        ],
+        "actions": [
+          {
+            "color": "rgb(24, 26, 32)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(24, 26, 32)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(24, 26, 32)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(24, 26, 32)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(24, 26, 32)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          },
+          {
+            "color": "rgb(165, 46, 42)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "overflowX": "hidden",
+            "overflowY": "hidden"
+          }
+        ]
+      },
+      "surfaceScroll": {
+        "clientHeight": 431,
+        "scrollHeight": 431,
+        "overflowY": "visible",
+        "scrollTopBefore": 0,
+        "scrollTopAfter": 0,
+        "scrollable": false
+      },
+      "actions": {
+        "left": 16,
+        "top": 319.734375,
+        "right": 304,
+        "bottom": 552,
+        "width": 288,
+        "height": 232.265625,
+        "clientHeight": 232,
+        "scrollHeight": 353,
+        "overflowY": "auto",
+        "scrollTop": 96,
+        "scrollable": true
+      },
+      "identityScrollStability": {
+        "topBefore": 136.734375,
+        "topAfter": 136.734375,
+        "delta": 0
+      },
+      "pageScroll": {
+        "clientHeight": 568,
+        "scrollHeight": 3108,
+        "overflowY": "visible",
+        "scrollTop": 728
+      },
+      "overlap": false,
+      "arrowDelta": null,
+      "pageHorizontalOverflow": 0,
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "brokenImages": 0,
+      "visualOrder": [
+        "user-menu__identity-name",
+        "user-menu__email",
+        "user-menu__badges",
+        "secondaryText"
+      ]
+    }
+  ],
+  "dynamicGeometry": {
+    "before": {
+      "placement": "top",
+      "triggerHeight": 104,
+      "surfaceHeight": 388.359375,
+      "gap": 2,
+      "overlap": false
+    },
+    "after": {
+      "placement": "top",
+      "triggerHeight": 104,
+      "surfaceHeight": 388.359375,
+      "gap": 2,
+      "overlap": false
+    }
+  },
+  "diagnostics": []
+}

@@ -62,16 +62,7 @@ const users = {
 
 const states = [
   {
-    file: 's1-final-default-rich-light-rtl-desktop-closed.png',
-    width: 1440,
-    height: 900,
-    theme: 'light',
-    direction: 'rtl',
-    preset: 'صورة محلية — متصل',
-    open: false,
-  },
-  {
-    file: 's1-final-default-rich-light-rtl-desktop-open.png',
+    file: 's1-contrast-light-rtl-desktop-open.png',
     width: 1440,
     height: 900,
     theme: 'light',
@@ -80,7 +71,7 @@ const states = [
     open: true,
   },
   {
-    file: 's1-final-long-arabic-dark-rtl-desktop-open.png',
+    file: 's1-contrast-dark-rtl-desktop-open.png',
     width: 1440,
     height: 900,
     theme: 'dark',
@@ -89,7 +80,7 @@ const states = [
     open: true,
   },
   {
-    file: 's1-final-long-english-dark-ltr-desktop-open.png',
+    file: 's1-contrast-dark-ltr-desktop-open.png',
     width: 1440,
     height: 900,
     theme: 'dark',
@@ -98,25 +89,16 @@ const states = [
     open: true,
   },
   {
-    file: 's1-final-initials-light-rtl-390-open.png',
+    file: 's1-contrast-dark-rtl-390-open.png',
     width: 390,
     height: 844,
-    theme: 'light',
+    theme: 'dark',
     direction: 'rtl',
     preset: 'أحرف أولى — بعيد',
     open: true,
   },
   {
-    file: 's1-final-icon-dark-ltr-390-open.png',
-    width: 390,
-    height: 844,
-    theme: 'dark',
-    direction: 'ltr',
-    preset: 'أيقونة صريحة — مشغول',
-    open: true,
-  },
-  {
-    file: 's1-final-long-arabic-light-rtl-320x568-open-scroll.png',
+    file: 's1-contrast-light-rtl-320x568-open-scroll.png',
     width: 320,
     height: 568,
     theme: 'light',
@@ -124,33 +106,7 @@ const states = [
     preset: 'اسم عربي طويل — غير متصل',
     open: true,
     scrollBlock: 'start',
-  },
-  {
-    file: 's1-final-long-english-dark-ltr-320x568-closed.png',
-    width: 320,
-    height: 568,
-    theme: 'dark',
-    direction: 'ltr',
-    preset: 'اسم إنجليزي طويل — متصل',
-    open: false,
-  },
-  {
-    file: 's1-final-default-dark-ltr-320x844-open.png',
-    width: 320,
-    height: 844,
-    theme: 'dark',
-    direction: 'ltr',
-    preset: 'صورة محلية — متصل',
-    open: true,
-  },
-  {
-    file: 's1-final-mixed-light-rtl-768-open.png',
-    width: 768,
-    height: 900,
-    theme: 'light',
-    direction: 'rtl',
-    preset: 'اسم مختلط الاتجاه — بعيد',
-    open: true,
+    scrollActions: 96,
   },
 ];
 
@@ -293,6 +249,11 @@ function stateExpression(state) {
     const trigger = target.querySelector('.user-menu__trigger');
     const identity = surface.querySelector('.user-menu__identity-header');
     const actions = surface.querySelector('.user-menu__items');
+    const identityName = surface.querySelector('.user-menu__identity-name');
+    const email = surface.querySelector('.user-menu__email');
+    const secondary = surface.querySelector('.user-menu__identity > erp-text:last-child');
+    const badges = Array.from(surface.querySelectorAll('erp-status-badge'));
+    const actionButtons = Array.from(actions.querySelectorAll('erp-button button'));
     const rect = (element) => {
       const value = element?.getBoundingClientRect();
       return value ? {
@@ -306,6 +267,23 @@ function stateExpression(state) {
     };
     const triggerRect = rect(trigger);
     const surfaceRect = rect(surface);
+    const identityTopBeforeScroll = identity.getBoundingClientRect().top;
+    const surfaceScrollTopBefore = surface.scrollTop;
+    if (${state.scrollActions ?? 0} > 0) {
+      actions.scrollTop = ${state.scrollActions ?? 0};
+      actions.dispatchEvent(new Event('scroll'));
+      await new Promise((resolve) => setTimeout(resolve, 80));
+    }
+    const identityTopAfterScroll = identity.getBoundingClientRect().top;
+    const computed = (element) => {
+      const style = getComputedStyle(element);
+      return {
+        color: style.color,
+        backgroundColor: style.backgroundColor,
+        overflowX: style.overflowX,
+        overflowY: style.overflowY,
+      };
+    };
     const overlap = Boolean(
       surfaceRect && triggerRect &&
       surfaceRect.left < triggerRect.right &&
@@ -346,11 +324,44 @@ function stateExpression(state) {
       trigger: triggerRect,
       surface: surfaceRect,
       identity: rect(identity),
+      colors: {
+        surface: computed(surface),
+        identityName: computed(identityName),
+        email: computed(email),
+        secondary: computed(secondary),
+        badges: badges.map(computed),
+        actions: actionButtons.map(computed),
+      },
+      surfaceScroll: {
+        clientHeight: surface.clientHeight,
+        scrollHeight: surface.scrollHeight,
+        overflowY: getComputedStyle(surface).overflowY,
+        scrollTopBefore: surfaceScrollTopBefore,
+        scrollTopAfter: surface.scrollTop,
+        scrollable:
+          ['auto', 'scroll'].includes(getComputedStyle(surface).overflowY) &&
+          surface.scrollHeight > surface.clientHeight,
+      },
       actions: {
         ...rect(actions),
         clientHeight: actions.clientHeight,
         scrollHeight: actions.scrollHeight,
-        scrollable: actions.scrollHeight > actions.clientHeight,
+        overflowY: getComputedStyle(actions).overflowY,
+        scrollTop: actions.scrollTop,
+        scrollable:
+          ['auto', 'scroll'].includes(getComputedStyle(actions).overflowY) &&
+          actions.scrollHeight > actions.clientHeight,
+      },
+      identityScrollStability: {
+        topBefore: identityTopBeforeScroll,
+        topAfter: identityTopAfterScroll,
+        delta: identityTopAfterScroll - identityTopBeforeScroll,
+      },
+      pageScroll: {
+        clientHeight: document.documentElement.clientHeight,
+        scrollHeight: document.documentElement.scrollHeight,
+        overflowY: getComputedStyle(document.documentElement).overflowY,
+        scrollTop: document.documentElement.scrollTop,
       },
       overlap,
       arrowDelta: arrowCenter === null || triggerCenter === null
@@ -379,7 +390,7 @@ await send('Page.enable');
 await send('Runtime.enable');
 await send('Log.enable');
 await send('Page.navigate', {
-  url: 'http://127.0.0.1:4999/components/user-menu',
+  url: 'http://localhost:4999/components/user-menu',
 });
 await waitForShowcase(send);
 
@@ -475,7 +486,7 @@ const report = {
   diagnostics,
 };
 await writeFile(
-  path.join(outputDirectory, 's1-final-popup-geometry.json'),
+  path.join(outputDirectory, 's1-final-dark-contrast-scroll.json'),
   `${JSON.stringify(report, null, 2)}\n`,
 );
 

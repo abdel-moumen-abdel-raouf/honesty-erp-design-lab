@@ -177,6 +177,56 @@ describe('ErpUserMenu', () => {
     },
   );
 
+  it('assigns vertical scrolling only to actions and keeps identity fixed', () => {
+    const fixture = TestBed.createComponent(ErpUserMenu);
+    fixture.componentRef.setInput('user', {
+      displayName: 'نادية عبد الرحمن',
+      email: 'nadia@honesty.example',
+    });
+    fixture.componentRef.setInput('items', Array.from({length: 12}, (_, index) => ({
+      id: `action-${index}`,
+      label: `الإجراء ${index + 1}`,
+    })));
+    fixture.detectChanges();
+
+    const surface = fixture.nativeElement.querySelector(
+      '.user-menu__surface',
+    ) as HTMLElement;
+    const identity = surface.querySelector(
+      '.user-menu__identity-header',
+    ) as HTMLElement;
+    const actions = surface.querySelector(
+      '.user-menu__items',
+    ) as HTMLElement;
+    vi.spyOn(identity, 'getBoundingClientRect').mockReturnValue({
+      left: 0,
+      top: 24,
+      right: 300,
+      bottom: 124,
+      width: 300,
+      height: 100,
+      x: 0,
+      y: 24,
+      toJSON: () => ({}),
+    } as DOMRect);
+
+    const identityTopBefore = identity.getBoundingClientRect().top;
+    actions.scrollTop = 48;
+
+    const compiledStyles = (
+      ErpUserMenu as unknown as {ɵcmp: {styles: readonly string[]}}
+    ).ɵcmp.styles.join(' ');
+    expect(compiledStyles).toMatch(
+      /user-menu__surface[^}]*overflow:\s*visible/,
+    );
+    expect(compiledStyles).toMatch(
+      /user-menu__items[^}]*overflow:\s*auto/,
+    );
+    expect(actions.scrollTop).toBe(48);
+    expect(surface.scrollTop).toBe(0);
+    expect(identity.getBoundingClientRect().top).toBe(identityTopBefore);
+  });
+
   it('applies all visibility inputs to the same trigger and identity card without placeholders', () => {
     const fixture = TestBed.createComponent(ErpUserMenu);
     fixture.componentRef.setInput('user', {

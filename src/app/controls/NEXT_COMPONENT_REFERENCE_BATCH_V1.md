@@ -1,5 +1,13 @@
 # Next Component Reference Batch V1
 
+## Authoritative current reference gate — 2026-10-08 — UserMenu final contrast review only
+
+No next component is authorized. `ErpUserMenu` is the sole visual candidate;
+the current evidence closes Dark foreground inheritance and duplicate popup
+scroll ownership technically. Focused verification passes 58/58 tests and the
+canonical 122-file/776-test zero-warning gate passes. Stop for external Product
+Owner review. S2 and every other component wave remain closed.
+
 ## Authoritative current reference gate — 2026-10-08 — UserMenu final review only
 
 No next component is authorized. The sole candidate is `ErpUserMenu` at the

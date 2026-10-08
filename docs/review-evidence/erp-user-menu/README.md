@@ -4,6 +4,48 @@ Evidence date: 2026-10-08. This directory records implementation runtime
 evidence for the Product Owner review candidate. It does not record or imply
 Product Owner visual acceptance.
 
+## S1 final dark contrast and scroll ownership correction
+
+The current authoritative runtime record is
+`s1-final-dark-contrast-scroll.json`. It supersedes
+`s1-final-popup-geometry.json` only for current foreground, scroll ownership,
+and the five captures listed below; the earlier file remains historical
+placement evidence.
+
+Browser inspection confirmed both reported defects before the correction. The
+Dark surface was `rgb(39, 42, 50)` while its inherited foreground and primary
+identity name were `rgb(0, 0, 0)`. Native `[popover]` user-agent styling also
+resolved the surface to `overflow-y: auto`, which made the surface a second
+vertical scroll owner in addition to the intended actions region.
+
+The corrected surface explicitly consumes the existing
+`--honesty-user-menu-fg` Component Token and explicitly neutralizes native
+popover scrolling with `overflow: visible`. Only `.user-menu__items` retains
+`overflow: auto`. No Light/Dark literal, local theme branch, overlay engine, or
+public API was added.
+
+| Current capture | Exact condition | Measured result |
+|---|---|---|
+| `s1-contrast-light-rtl-desktop-open.png` | 1440 x 900, Light, RTL, local image, Online | surface foreground/background `rgb(24, 26, 32)` / `rgb(255, 255, 255)`; surface scrollTop 0; actions 251/353 px |
+| `s1-contrast-dark-rtl-desktop-open.png` | 1440 x 900, Dark, RTL, long Arabic, Offline | name `rgb(248, 249, 251)`; email/secondary `rgb(201, 206, 216)`; surface `overflow-y: visible`; actions 229/353 px |
+| `s1-contrast-dark-ltr-desktop-open.png` | 1440 x 900, Dark, LTR, long English, Online | same readable Dark foregrounds; bottom placement; arrow delta 0 px |
+| `s1-contrast-dark-rtl-390-open.png` | 390 x 844, Dark, RTL, initials fallback | surface 360 x 360.266 px; actions 223/353 px; zero horizontal overflow |
+| `s1-contrast-light-rtl-320x568-open-scroll.png` | 320 x 568, Light, RTL, constrained height, actions scrolled | surface 304 x 431.266 px and scrollTop 0; actions 232/353 px and scrollTop 96; identity top delta 0 px |
+
+The desktop top-placement surface reports `scrollHeight: 398` and
+`clientHeight: 388` because its visible arrow pseudo-element extends outside
+the surface box. That is not a scroll region: computed `overflow-y` is
+`visible`, programmatic surface `scrollTop` remains 0, and the browser reports
+no surface scrollbar. The separate page scrollbar belongs to the long Design
+Lab document. In the constrained capture its document metrics are
+`3108/568 px` at `scrollTop: 728`; the inner popup scrollbar belongs only to
+the action list.
+
+All five captures retain one primary target, top/bottom placement only, zero
+trigger overlap, zero surface overflow, zero page horizontal overflow, zero
+broken images, and zero browser diagnostics. These results are implementation
+evidence only and do not declare Product Owner visual acceptance.
+
 ## S1 final popup geometry gate
 
 The current authoritative runtime record is

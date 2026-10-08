@@ -1,5 +1,21 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Authoritative current execution state — 2026-10-08 — Shell S1 dark contrast and scroll ownership
+
+This bounded correction entered from clean `main` at
+`415298b7921719747efcc17dc82f9e889ccac64c`. `ErpUserMenu` now consumes its
+existing semantic foreground on the popup surface, so Dark identity and action
+content no longer inherit black. The native popover surface is explicitly
+non-scrolling; only the action list scrolls and the identity card remains fixed.
+
+The current PNG/JSON evidence covers the five requested Light/Dark, RTL/LTR,
+desktop/narrow/constrained cases. It records zero overlap, horizontal overflow,
+broken images, or browser diagnostics. Focused verification passes 4/4 files
+and 58/58 tests plus Shell governance. Canonical verification passes 122/122
+files and 776/776 tests, all lint/governance, both typechecks, production build,
+and zero warnings. Initial bundle is 490.24 kB / 105.57 kB estimated transfer.
+Product Owner acceptance remains pending, and S2 is not open.
+
 ## Authoritative current execution state — 2026-10-08 — Shell S1 popup geometry gate
 
 This bounded follow-up entered from clean `main` at

@@ -1,5 +1,24 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Shell S1 UserMenu Dark Contrast and Scroll Ownership Gate
+
+This bounded correction entered from clean live `main` at
+`415298b7921719747efcc17dc82f9e889ccac64c` and changes only the existing
+`ErpUserMenu` foreground inheritance, popup scroll ownership, direct tests,
+governance, and review evidence. The surface consumes its existing semantic
+foreground and explicitly defeats native popover scrolling; only the action
+list scrolls while the identity card remains fixed.
+
+Current browser evidence is
+`docs/review-evidence/erp-user-menu/s1-final-dark-contrast-scroll.json` plus five
+current PNGs. It covers Light RTL desktop, Dark RTL/LTR desktop, Dark RTL at
+390 px, and constrained Light RTL at 320 x 568. Focused verification passes
+4/4 files and 58/58 tests plus Shell governance. Canonical verification passes
+122/122 files and 776/776 tests, all lint/governance, both typechecks,
+production build, and zero warnings. Initial bundle is 490.24 kB / 105.57 kB
+estimated transfer. Product Owner visual review remains pending; S2 and every
+other Shell owner remain closed.
+
 ## Current Shell S1 UserMenu Popup Geometry Gate
 
 The bounded final gate entered from clean live `main` at

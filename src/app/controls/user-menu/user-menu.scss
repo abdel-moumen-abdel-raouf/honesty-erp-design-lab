@@ -11,9 +11,6 @@
 .user-menu__trigger {
   display: flex;
   align-items: center;
-}
-
-.user-menu__trigger {
   position: relative;
   min-inline-size: var(--honesty-user-menu-trigger-min-size);
   min-block-size: var(--honesty-user-menu-trigger-min-size);
@@ -48,7 +45,9 @@
   );
   margin: 0;
   max-block-size: var(--honesty-user-menu-max-block-size);
+  overflow: visible;
   padding: var(--honesty-user-menu-padding);
+  color: var(--honesty-user-menu-fg);
   background: var(--honesty-user-menu-bg);
   border: 0;
   border-radius: var(--honesty-user-menu-radius);
@@ -79,8 +78,8 @@
 
 .user-menu__surface:popover-open {
   display: flex;
-  animation: erp-user-menu-enter var(--honesty-user-menu-motion-duration)
-    var(--honesty-user-menu-motion-easing);
+  animation: erp-user-menu-enter var(--honesty-user-menu-duration)
+    var(--honesty-user-menu-easing);
 }
 
 .user-menu__surface > * {
@@ -121,7 +120,7 @@
 @keyframes erp-user-menu-enter {
   from {
     opacity: 0;
-    transform: translateY(var(--honesty-user-menu-motion-distance));
+    transform: translateY(var(--honesty-user-menu-enter-distance));
   }
 }
 

@@ -1,5 +1,16 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Current gate — Shell S1 UserMenu dark contrast and scroll ownership
+
+Start from live `main` and read
+`src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md` plus
+`docs/review-evidence/erp-user-menu/s1-final-dark-contrast-scroll.json`. Only
+`ErpUserMenu` is open. Its popup surface now owns semantic foreground
+inheritance but no scroll; `.user-menu__items` is the sole popup scroll region.
+Focused verification passes 58/58 tests; the canonical gate passes 122/122
+files and 776/776 tests, both typechecks, production build, and zero warnings.
+The current gate is external Product Owner review. Do not open S2.
+
 ## Current gate — Shell S1 UserMenu final popup geometry
 
 The current bounded candidate entered at

@@ -1,5 +1,14 @@
 # Inputs Product Owner Review Findings V1
 
+## Authoritative continuity note — 2026-10-08 — UserMenu contrast and scroll gate
+
+No Input contract changed. This bounded Shell correction changes only
+`ErpUserMenu` foreground inheritance, popover surface overflow ownership,
+direct evidence, tests, and governance. Input findings remain unchanged;
+focused verification passes 58/58 tests and the canonical 122-file/776-test
+zero-warning gate passes. Product Owner UserMenu review is pending and S2 is
+not authorized.
+
 ## Authoritative continuity note — 2026-10-08 — UserMenu popup geometry gate
 
 No Input visual or behavioral contract changed. This bounded Shell follow-up

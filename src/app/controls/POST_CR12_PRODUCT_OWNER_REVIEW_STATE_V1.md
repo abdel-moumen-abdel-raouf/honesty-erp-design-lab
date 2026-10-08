@@ -1,5 +1,14 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Authoritative current review state — 2026-10-08 — UserMenu contrast and scroll correction
+
+`ErpUserMenu` remains the sole Shell S1 visual candidate. Current computed
+evidence shows readable Light/Dark foregrounds, a non-scrolling popup surface,
+actions-only scrolling, fixed identity position, and zero overlap or horizontal
+overflow in the requested capture set. Focused verification passes 58/58 tests
+and the canonical 122-file/776-test zero-warning gate passes. This is technical
+evidence only; Product Owner acceptance remains pending and S2 is not open.
+
 ## Authoritative current review state — 2026-10-08 — UserMenu popup geometry gate
 
 `ErpUserMenu` remains the sole Shell S1 visual candidate. Current runtime

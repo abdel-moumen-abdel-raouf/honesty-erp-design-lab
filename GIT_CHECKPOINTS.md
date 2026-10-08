@@ -1,5 +1,23 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Shell S1 UserMenu dark-contrast and scroll-ownership checkpoint — 2026-10-08
+
+Entry checkpoint:
+
+- `415298b7921719747efcc17dc82f9e889ccac64c` — clean live `main` and
+  `origin/main` before this bounded correction.
+
+Single task commit message:
+
+- `fix(shell): correct UserMenu dark contrast and scroll ownership`
+
+Resolve the final commit SHA from live `main` because this file is part of that
+commit. Focused verification passes 4/4 files and 58/58 tests plus Shell
+governance. Canonical verification passes 122/122 files and 776/776 tests, all
+lint/governance, both typechecks, production build, and zero warnings. Initial
+bundle is 490.24 kB / 105.57 kB estimated transfer. Product Owner visual review
+remains pending; S2 is not open.
+
 ## Shell S1 UserMenu final popup-geometry checkpoint — 2026-10-08
 
 Entry checkpoint:
