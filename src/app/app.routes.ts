@@ -2,6 +2,13 @@ import {Routes} from '@angular/router';
 
 export const routes: Routes = [
   {
+    path: 'components/:componentId',
+    loadComponent: () =>
+      import('./showcase/component-showcase/component-showcase').then(
+        (m) => m.ComponentShowcase,
+      ),
+  },
+  {
     path: 'foundation/overview',
     loadComponent: () =>
       import('./foundation/overview/overview').then((m) => m.Overview),

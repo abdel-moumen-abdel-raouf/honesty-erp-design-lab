@@ -241,36 +241,47 @@
 
     <div id="lab-actions" class="lab-actions">
       @if (statusMessage()) {
-        <span id="lab-screenshot-status" class="lab-screenshot-status" [class.is-error]="hasError()">
+        <erp-text id="lab-screenshot-status" class="lab-screenshot-status" type="caption" [tone]="hasError() ? 'danger' : 'secondary'">
           {{ statusMessage() }}
-        </span>
+        </erp-text>
       }
-      <button
+      <erp-button
         id="btn-lab-theme"
         data-wave-a-theme-evidence
-        type="button"
         class="btn-theme"
-        [attr.aria-pressed]="theme() === 'dark'"
-        (click)="toggleTheme()"
-      >
-        {{ theme() === 'light' ? 'السمة الداكنة' : 'السمة الفاتحة' }}
-      </button>
-      <button
+        size="sm"
+        variant="outline"
+        [label]="theme() === 'light' ? 'السمة الداكنة' : 'السمة الفاتحة'"
+        (pressed)="toggleTheme()"
+      />
+      <erp-button
         id="btn-full-page-screenshot"
         data-wave-a-screenshot-evidence
-        type="button"
         class="btn-screenshot"
         [disabled]="isCapturing()"
-        (click)="captureScreenshot()"
-      >
-        @if (isCapturing()) {
-          جاري الالتقاط...
-        } @else {
-          لقطة كاملة
-        }
-      </button>
+        [loading]="isCapturing()"
+        size="sm"
+        variant="outline"
+        [label]="isCapturing() ? 'جاري الالتقاط...' : 'لقطة كاملة'"
+        (pressed)="captureScreenshot()"
+      />
     </div>
   </header>
+
+  <nav id="lab-component-catalog" class="lab-component-catalog" aria-label="فهرس مكوّنات ERP">
+    @for (group of componentGroups(); track group.category) {
+      <div class="lab-component-group">
+        <erp-text type="caption" weight="bold">{{ group.category }}</erp-text>
+        <div class="lab-component-links">
+          @for (entry of group.entries; track entry.id) {
+            <a class="lab-nav-link" [routerLink]="entry.showcaseRoute" routerLinkActive="active">
+              {{ entry.className }}
+            </a>
+          }
+        </div>
+      </div>
+    }
+  </nav>
 
   <main
     id="routed-review-content"

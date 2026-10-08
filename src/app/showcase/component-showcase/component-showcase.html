@@ -1,0 +1,84 @@
+<erp-page widthMode="fluid" scrollMode="document">
+  @if (entry(); as component) {
+    <erp-stack gap="loose">
+      <erp-section>
+        <erp-stack gap="tight">
+          <erp-text type="small" tone="secondary">{{ component.category }}</erp-text>
+          <erp-text type="heading-1">{{ component.className }}</erp-text>
+          <erp-text type="paragraph" tone="secondary" selectable>{{ component.purpose }}</erp-text>
+          <erp-inline gap="tight" wrap="wrap">
+            <erp-text type="caption" tone="secondary" selectable>{{ component.selector }}</erp-text>
+            <erp-text type="caption" tone="secondary" selectable>{{ component.sourcePath }}</erp-text>
+          </erp-inline>
+        </erp-stack>
+      </erp-section>
+
+      <erp-section>
+        <erp-stack gap="default">
+          <erp-text type="heading-2">
+            {{ component.visualReference ? 'مرجع Product Owner الدقيق' : 'العرض الحي للمكوّن' }}
+          </erp-text>
+          @if (component.visualReference) {
+            <erp-text type="paragraph" selectable>{{ component.visualReference }}</erp-text>
+          }
+          @for (showcaseCase of component.showcaseCases; track showcaseCase.id) {
+            <erp-surface padding="loose" border="subtle">
+              <erp-stack gap="default">
+                <erp-text type="heading-3">{{ showcaseCase.label }}</erp-text>
+                @if (componentType(); as liveComponent) {
+                  <erp-review-component-host
+                    [componentType]="liveComponent"
+                    [componentInputs]="showcaseCase.inputs"
+                  />
+                }
+              </erp-stack>
+            </erp-surface>
+          }
+        </erp-stack>
+      </erp-section>
+
+      <erp-section>
+        <erp-stack gap="tight">
+          <erp-text type="heading-2">واجهة المكوّن والتوافق</erp-text>
+          <erp-text type="paragraph" tone="secondary">
+            الحالات المعروضة: {{ component.showcaseFacets.join('، ') || 'الحالة الافتراضية' }}
+          </erp-text>
+          <erp-inline gap="tight" wrap="wrap">
+            <erp-text type="paragraph" tone="secondary">المدخلات:</erp-text>
+            @for (input of component.publicApi.inputs; track input.name) {
+              <erp-text type="caption" selectable>{{ input.name }}</erp-text>
+            } @empty {
+              <erp-text type="caption">لا يوجد</erp-text>
+            }
+          </erp-inline>
+          <erp-inline gap="tight" wrap="wrap">
+            <erp-text type="paragraph" tone="secondary">النماذج:</erp-text>
+            @for (model of component.publicApi.models; track model.name) {
+              <erp-text type="caption" selectable>{{ model.name }}</erp-text>
+            } @empty {
+              <erp-text type="caption">لا يوجد</erp-text>
+            }
+          </erp-inline>
+          <erp-inline gap="tight" wrap="wrap">
+            <erp-text type="paragraph" tone="secondary">الأحداث:</erp-text>
+            @for (eventName of component.publicApi.outputs; track eventName) {
+              <erp-text type="caption" selectable>{{ eventName }}</erp-text>
+            } @empty {
+              <erp-text type="caption">لا يوجد</erp-text>
+            }
+          </erp-inline>
+          <erp-text type="caption" tone="secondary">
+            القبول البصري: {{ component.visualStatus }}
+          </erp-text>
+        </erp-stack>
+      </erp-section>
+    </erp-stack>
+  } @else {
+    <erp-section>
+      <erp-stack gap="tight">
+        <erp-text type="heading-1">المكوّن غير مسجل</erp-text>
+        <erp-text type="paragraph" tone="secondary">لا يوجد مكوّن ERP عام مطابق لمعرف المسار الحالي.</erp-text>
+      </erp-stack>
+    </erp-section>
+  }
+</erp-page>

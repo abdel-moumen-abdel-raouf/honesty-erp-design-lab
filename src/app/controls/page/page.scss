@@ -1,0 +1,45 @@
+@use '../../../styles/foundation/components/page' as tokens;
+
+:host {
+  @include tokens.base;
+  display: block;
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-inline-size: 0;
+  min-block-size: var(--honesty-page-min-block-size);
+  color: var(--honesty-page-color);
+  background: var(--honesty-page-background);
+}
+
+:host([data-page-width='fluid']),
+:host([data-page-width='boxed']) {
+  padding-inline: var(--honesty-page-gutter-inline);
+}
+
+:host([data-page-width='boxed']) {
+  max-inline-size: var(--honesty-page-boxed-max-inline-size);
+  margin-inline: auto;
+}
+
+:host([data-page-width='full']) {
+  max-inline-size: none;
+  padding-inline: 0;
+}
+
+:host([data-page-scroll='document']) {
+  block-size: auto;
+  overflow: visible;
+}
+
+:host([data-page-scroll='page']) {
+  block-size: var(--honesty-page-scroll-block-size);
+  min-block-size: 0;
+  overflow-block: auto;
+  overscroll-behavior-block: contain;
+}
+
+:host([data-page-scroll='free']) {
+  block-size: auto;
+  min-block-size: 0;
+  overflow: visible;
+}

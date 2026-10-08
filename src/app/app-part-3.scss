@@ -22,36 +22,25 @@
   }
 }
 
-.btn-screenshot,
-.btn-theme {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.4rem 0.85rem;
-  font-size: 0.825rem;
-  font-weight: 600;
+.lab-component-catalog {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
   color: var(--honesty-color-text-primary);
-  background-color: var(--honesty-color-surface-default);
-  border: 1px solid var(--honesty-border-default);
-  border-radius: var(--honesty-radius-control);
-  cursor: pointer;
-  transition:
-    background-color var(--honesty-motion-duration-fast) ease,
-    border-color var(--honesty-motion-duration-fast) ease;
+  background: var(--honesty-color-surface-default);
+  border-block-end: 1px solid var(--honesty-border-subtle);
+}
 
-  &:hover:not(:disabled) {
-    background-color: var(--honesty-color-action-primary-subtle-bg-hover);
-    border-color: var(--honesty-border-strong);
-  }
+.lab-component-group,
+.lab-component-links {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-inline-size: 0;
+}
 
-  &:active:not(:disabled) {
-    background-color: var(--honesty-color-action-primary-subtle-bg);
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
+.lab-component-links {
+  overflow-x: auto;
 }
 
 .routed-content-wrapper {

@@ -4,42 +4,6 @@
   max-width: 100%;
 }
 
-.review-select__field {
-  display: grid;
-  gap: var(--honesty-space-stack-tight);
-  min-width: 0;
-  max-width: 100%;
-}
-
-.review-select__label {
-  color: var(--honesty-color-text-secondary);
-  font-size: var(--honesty-type-caption-font-size);
-  font-weight: var(--honesty-type-label-font-weight);
-  line-height: var(--honesty-type-caption-line-height);
-  overflow-wrap: anywhere;
-}
-
-.review-select__native {
-  width: 100%;
-  min-width: 0;
-  max-width: 100%;
-  padding-block: 0.6rem;
-  padding-inline: 0.75rem;
-  border: var(--honesty-border-width-default)
-    var(--honesty-border-style-default) var(--honesty-border-default);
-  border-radius: var(--honesty-radius-control);
-  background: var(--honesty-color-surface-default);
-  color: var(--honesty-color-text-primary);
-  font: inherit;
-}
-
-.review-select__native:focus-visible {
-  outline: var(--honesty-focus-ring-width)
-    var(--honesty-focus-ring-style)
-    var(--honesty-color-action-focus-ring);
-  outline-offset: var(--honesty-focus-ring-offset);
-}
-
 .review-select__choices {
   display: none;
 }

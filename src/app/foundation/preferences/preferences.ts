@@ -63,8 +63,7 @@ export class Preferences {
   readonly timeFormat = this.store.get('timeFormat').valueSignal;
 
 
-  setScalar<K extends ScalarSettingKey>(key: K, event: Event): void {
-    const candidate = this.selectValue(event);
+  setScalar<K extends ScalarSettingKey>(key: K, candidate: string): void {
     const definition: SettingDefinition<K> = this.registry[key];
 
     if (definition.validate(candidate)) {
@@ -72,13 +71,12 @@ export class Preferences {
     }
   }
 
-  setDigitBase(event: Event): void {
-    const base = this.selectValue(event) as DigitSet;
+  setDigitBase(value: string): void {
+    const base = value as DigitSet;
     this.store.set('digits', replaceContextualBase(this.digits(), base));
   }
 
-  setDigitOverride(context: DigitContext, event: Event): void {
-    const selected = this.selectValue(event);
+  setDigitOverride(context: DigitContext, selected: string): void {
     const override = selected === 'inherit' ? undefined : (selected as DigitSet);
     this.store.set(
       'digits',
@@ -86,16 +84,15 @@ export class Preferences {
     );
   }
 
-  setSeparatorBase(event: Event): void {
-    const base = this.selectValue(event) as NumberSeparatorProfile;
+  setSeparatorBase(value: string): void {
+    const base = value as NumberSeparatorProfile;
     this.store.set(
       'numberSeparators',
       replaceContextualBase(this.numberSeparators(), base)
     );
   }
 
-  setSeparatorOverride(context: DigitContext, event: Event): void {
-    const selected = this.selectValue(event);
+  setSeparatorOverride(context: DigitContext, selected: string): void {
     const override =
       selected === 'inherit' ? undefined : (selected as NumberSeparatorProfile);
     this.store.set(
@@ -104,13 +101,12 @@ export class Preferences {
     );
   }
 
-  setDateBase(event: Event): void {
-    const base = this.selectValue(event) as DateFormat;
+  setDateBase(value: string): void {
+    const base = value as DateFormat;
     this.store.set('dateFormat', replaceContextualBase(this.dateFormat(), base));
   }
 
-  setDateOverride(context: DateContext, event: Event): void {
-    const selected = this.selectValue(event);
+  setDateOverride(context: DateContext, selected: string): void {
     const override = selected === 'inherit' ? undefined : (selected as DateFormat);
     this.store.set(
       'dateFormat',
@@ -193,7 +189,4 @@ export class Preferences {
     this.store.resetAll();
   }
 
-  private selectValue(event: Event): string {
-    return (event.target as HTMLSelectElement).value;
-  }
 }

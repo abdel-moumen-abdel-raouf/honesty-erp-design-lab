@@ -1,6 +1,21 @@
 # Inputs Product Owner Review Findings V1
 
-## Authoritative current Product Owner finding — 2026-10-08
+## Authoritative current continuity finding — 2026-10-08 — ownership and Page foundation
+
+No Input visual family was reopened by this wave. The repository-wide ownership
+audit now records 77 public ERP components, 41 supporting entries, 42 native
+tag contracts, and 336 dedicated live showcase cases. Raw review Select
+authoring was corrected to compose `ErpSelect`; the Lab chrome now composes
+`ErpButton` for its actions. These are hierarchy corrections, not visual
+redesigns of Select, Button, or any other Input/Core owner.
+
+The new `ErpPage` defines the future production route width/scroll boundary,
+but this wave does not migrate existing Lab/showcase routes. All prior visual
+acceptance gates remain separate. The exact next action is Product Owner
+runtime/technical review of the ownership catalog, native checker, dedicated
+component pages, and ErpPage. No Input or later visual wave is opened.
+
+## Historical authoritative Product Owner Table finding — superseded current gate
 
 The Product Owner rejected the technically green Table checkpoint
 `eddac4a8e8a3460f346bb579fdd5ca0074296e7a`: the design and full visible

@@ -1,6 +1,35 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
-## Authoritative current handoff — 2026-10-08 — full ERP-TABLE reference experience
+## Authoritative current handoff — 2026-10-08 — ERP ownership catalog and Page foundation
+
+Start from live `main`; this wave entered from
+`895f985994ef2c28eae703f60d5911a5314af338`. Read
+`ERP_COMPONENT_CATALOG_V1.md`, `ERP_NATIVE_ELEMENT_COVERAGE_V1.md`,
+`page/PAGE_V1.md`, and the two governance audits before changing component or
+page ownership.
+
+The generated inventory has 77 public ERP components and 41 supporting
+entries. It classifies public/internal components, directives, services, and
+contracts; records public APIs, native ownership, dependencies, references,
+status, and dedicated routes; and supplies 336 live component cases. Every
+public component is reachable through `/components/<id>` while the batch routes
+remain intact.
+
+Native HTML policy is now enforced against all production HTML and inline
+templates with 42 tag contracts. Covered global semantics remain inside their
+approved ERP owners; contextual structures and genuine uncovered gaps are
+explicit rather than silently treated as violations. `ErpPage` is the public
+page width/scroll boundary with `fluid/document` defaults. It does not replace
+`ErpPageShell` regions or `ErpAppShell` application-frame composition.
+
+Canonical verification passes all lint/governance, 136/136 test files and
+909/909 tests, both typechecks, production build, and zero warnings. Initial
+bundle is 497.84 kB / 108.38 kB; component-showcase is lazy at 168.97 kB /
+17.40 kB estimated transfer. The next action is Product Owner runtime/technical review of the catalog,
+ownership checker, dedicated pages, and `ErpPage`; technical green is not
+visual acceptance and no later wave is authorized.
+
+## Historical full ERP-TABLE handoff — superseded 2026-10-08
 
 Start from live `main`. The Product Owner rejected
 `eddac4a8e8a3460f346bb579fdd5ca0074296e7a` because the earlier candidate

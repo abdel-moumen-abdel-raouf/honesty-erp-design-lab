@@ -33,6 +33,15 @@ in this order:
     `src/app/controls/tabs/ERP_TABS_REFERENCE_EXACT_V1.md`
 20. current full ErpTable reference-experience contract:
     `src/app/controls/table/ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md`
+21. generated ERP ownership catalog:
+    `src/app/controls/ERP_COMPONENT_CATALOG_V1.md`
+22. generated native-element ownership registry:
+    `src/app/controls/ERP_NATIVE_ELEMENT_COVERAGE_V1.md`
+23. current Page foundation contract:
+    `src/app/controls/page/PAGE_V1.md`
+24. native-template and batch architecture audits:
+    `docs/governance/ERP_NATIVE_HTML_AUDIT_V1.md` and
+    `docs/governance/ERP_BATCH_ARCHITECTURE_AUDIT_V1.md`
 
 Then verify live GitHub `main` before making any current-state claim.
 
@@ -41,6 +50,28 @@ For long-range inventory/dependency context only, read when needed:
 `docs/project-history/derived/PROJECT_ORIGIN_COMPONENTS_AND_EXECUTION_BLUEPRINT_V1.md`
 
 The blueprint is planning context only, not implementation authorization.
+
+## Authoritative current state — 2026-10-08 — ownership, dedicated showcases, and ErpPage
+
+The current bounded implementation entered from clean live `main` at
+`895f985994ef2c28eae703f60d5911a5314af338`. The generated catalog contains 77
+public ERP components and 41 supporting entries, with 336 live review cases and
+one `/components/<id>` route per public component. The native registry contains
+42 governed native-element contracts and is enforced across production HTML
+and inline templates.
+
+The new public `ErpPage` owns the production page width/scroll boundary through
+`boxed | fluid | full` and `document | page | free`. It owns no router, theme,
+transport, or business state. Existing Data/Table, Forms, Entity Form, and
+Shell batch architecture remains bounded and was audited without reopening
+their visual contracts.
+
+Canonical verification passes all lint/governance, 136/136 test files and
+909/909 tests, both typechecks, production build, and zero warnings. Initial
+bundle is 497.84 kB / 108.38 kB estimated transfer; component showcase remains
+lazy at 168.97 kB / 17.40 kB. Product Owner visual acceptance remains separate.
+The next action is review of this ownership/catalog/Page wave; no later wave is
+authorized.
 
 ## Repository
 

@@ -39,8 +39,10 @@
 .app-shell__content {
   grid-area: content;
   min-inline-size: 0;
+  min-block-size: 0;
   padding: var(--honesty-app-shell-content-padding);
   overflow: auto;
+  --honesty-layout-available-block-size: 100%;
 }
 
 @include query.viewport-down('md') {

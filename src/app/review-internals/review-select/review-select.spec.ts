@@ -9,7 +9,7 @@ import {ErpReviewSelect} from './review-select';
     <erp-review-select
       label="Density"
       value="compact"
-      (selectionChanged)="lastEvent = $event"
+      (selectionChanged)="lastValue = $event"
     >
       <erp-review-choice value="comfortable" label="Comfortable"></erp-review-choice>
       <erp-review-choice value="compact" label="Compact"></erp-review-choice>
@@ -17,11 +17,11 @@ import {ErpReviewSelect} from './review-select';
   `,
 })
 class ReviewSelectHost {
-  lastEvent: Event | null = null;
+  lastValue: string | null = null;
 }
 
 describe('ErpReviewSelect', () => {
-  it('governs visible field text through ErpText and exposes native option labels without raw text nodes', async () => {
+  it('delegates selection rendering and interaction to ErpSelect', async () => {
     await TestBed.configureTestingModule({
       imports: [ReviewSelectHost],
     }).compileComponents();
@@ -30,26 +30,15 @@ describe('ErpReviewSelect', () => {
     fixture.detectChanges();
 
     const root = fixture.nativeElement as HTMLElement;
-    const governedLabel = root.querySelector('erp-text.review-select__label');
-    const select = root.querySelector('select') as HTMLSelectElement | null;
-    const options = Array.from(root.querySelectorAll('option'));
+    const select = root.querySelector('erp-select');
+    const component = fixture.debugElement.children[0].componentInstance as ErpReviewSelect;
 
-    expect(governedLabel?.textContent?.trim()).toBe('Density');
-    expect(select?.value).toBe('compact');
-    expect(options.map((option) => option.label)).toEqual(['Comfortable', 'Compact']);
-    expect(options.every((option) => option.textContent === '')).toBe(true);
+    expect(select).not.toBeNull();
+    expect(root.querySelector('select')).toBeNull();
+    expect(root.querySelector('option')).toBeNull();
 
-    if (select === null) {
-      throw new Error('Expected native review select.');
-    }
-
-    select.value = 'comfortable';
-    select.dispatchEvent(new Event('change', {bubbles: true}));
+    component['updateValue']('comfortable');
     fixture.detectChanges();
-
-    expect(fixture.componentInstance.lastEvent).toBeInstanceOf(Event);
-    expect((fixture.componentInstance.lastEvent?.target as HTMLSelectElement).value).toBe(
-      'comfortable'
-    );
+    expect(fixture.componentInstance.lastValue).toBe('comfortable');
   });
 });

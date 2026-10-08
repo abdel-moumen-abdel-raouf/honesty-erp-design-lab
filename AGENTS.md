@@ -1,6 +1,34 @@
 # Honesty ERP Design Lab — Codex Instructions
 
-## Current Product Owner ERP-TABLE Full Reference Experience State
+## Current ERP Ownership Catalog and Page Foundation State
+
+The current bounded implementation entered from clean live `main` at
+`895f985994ef2c28eae703f60d5911a5314af338`. The generated authoritative
+inventory contains 77 public ERP components and 41 supporting entries. Every
+public owner has a unique `/components/<id>` route and the catalog supplies 336
+live cases. The generated native-element registry contains 42 tag contracts
+and its checker scans production HTML plus inline templates.
+
+Covered native elements remain inside their registered ERP owner. Consumer and
+page bypasses are forbidden; contextual structure and genuinely uncovered
+semantics stay explicitly classified. Dedicated component pages are review
+surfaces, not Product Owner visual approval.
+
+`ErpPage` is the public page width/scroll boundary with `boxed | fluid | full`
+and `document | page | free`; defaults are `fluid` and `document`. It owns no
+theme, router, transport, session, global body, or business state.
+`ErpPageShell` continues to own page regions and `ErpAppShell` the application
+frame. Existing batch routes remain technical candidates and were not visually
+reopened.
+
+Canonical verification passes all lint/governance, 136/136 test files and
+909/909 tests, both typechecks, production build, and zero warnings. Initial
+bundle is 497.84 kB / 108.38 kB and component-showcase remains lazy. The exact
+next action is Product Owner runtime/technical review of the catalog, ownership
+registry, dedicated component pages, and `ErpPage`. The existing full ERP-TABLE
+visual gate remains pending separately. No later wave is opened.
+
+## Historical Product Owner ERP-TABLE Full Reference Experience State — superseded current gate
 
 The Product Owner rejected
 `eddac4a8e8a3460f346bb579fdd5ca0074296e7a` because the prior Table candidate

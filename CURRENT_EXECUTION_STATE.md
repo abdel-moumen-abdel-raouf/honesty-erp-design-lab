@@ -1,6 +1,48 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
-## Authoritative current execution state — 2026-10-08 — full ERP-TABLE reference experience
+## Authoritative current execution state — 2026-10-08 — ERP ownership catalog and Page foundation
+
+This bounded wave entered from clean live `main` at
+`895f985994ef2c28eae703f60d5911a5314af338`. It establishes one generated,
+machine-readable ownership catalog for 77 public ERP components and 41
+supporting owners, directives, services, and contracts. The catalog records
+selectors/classes, categories, source paths, purposes, dependencies, native
+ownership, replacement coverage, public APIs, reference state, and the unique
+`/components/<id>` review route. It currently generates 336 live showcase
+cases.
+
+`ERP_NATIVE_ELEMENT_COVERAGE_V1.md` defines 42 governed native-element
+contracts under `GLOBAL_OWNER_ONLY`, `PAGE_AND_CONSUMER_BANNED`, `CONTEXTUAL`,
+and `NOT_YET_COVERED`. The repository checker audits production HTML and inline
+templates, excludes tests, rejects covered raw-native bypasses, and preserves
+only documented Design Lab measurement/tooling exceptions. The Lab theme and
+screenshot actions now use `ErpButton`; review Select composition now uses
+`ErpSelect`.
+
+Every public catalog entry has a dedicated live route under
+`/components/:componentId`, grouped catalog navigation, public-API evidence,
+and exact-reference-first ordering where an exact contract exists. Existing
+batch routes remain available. The new public `ErpPage` owns only the page
+width/scroll boundary: `widthMode = boxed | fluid | full` (default `fluid`) and
+`scrollMode = document | page | free` (default `document`). `ErpPageShell`
+continues to own page regions, and `ErpAppShell` owns only application-frame
+composition; neither duplicates `ErpPage` width ownership.
+
+Architecture audits for `/controls/data-batch`, `/controls/forms-batch`,
+`/controls/entity-form-batch`, and `/controls/shell-batch` found no ownership
+reopen requirement. Canonical verification passes all lint/governance gates,
+136/136 test files and 909/909 tests, both typechecks, production build, and
+zero warnings. Initial bundle is 497.84 kB / 108.38 kB estimated transfer; the
+dedicated component-showcase lazy chunk is 168.97 kB / 17.40 kB estimated
+transfer.
+
+The exact next action is Product Owner runtime/technical review of the catalog,
+native-ownership registry, dedicated component pages, and `ErpPage`. The prior
+full ERP-TABLE visual review gate remains pending separately. No later component
+or migration wave is opened, and technical PASS does not equal Product Owner
+visual approval.
+
+## Historical full ERP-TABLE current state — superseded 2026-10-08
 
 The Product Owner rejected checkpoint
 `eddac4a8e8a3460f346bb579fdd5ca0074296e7a` because the Table candidate omitted

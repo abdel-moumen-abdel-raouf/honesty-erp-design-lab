@@ -178,9 +178,14 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(bordersRadiusLink?.textContent?.trim()).toBe('الحدود والزوايا');
   });
 
-  it('should bind the correct RouterLink routes to the navigation links', () => {
+  it('should bind the correct RouterLink routes to the navigation links', async () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
+
+    await vi.waitFor(() => {
+      fixture.detectChanges();
+      expect(fixture.componentInstance.componentGroups().length).toBeGreaterThan(0);
+    });
 
     const linkDebugElements = fixture.debugElement.queryAll(By.directive(RouterLink));
     const linkPaths = linkDebugElements.map((de) => {
@@ -210,10 +215,14 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(linkPaths).toContain('/foundation/preferences');
     expect(linkPaths).toContain('/foundation/spacing');
     expect(linkPaths).toContain('/foundation/borders-radius');
+    expect(linkPaths).toContain('/components/page');
+    expect(linkPaths.filter((path) => path?.startsWith('/components/')).length)
+      .toBe(77);
   });
 
   it('should define the Overview route, preserve existing routes, and redirect root to Overview', () => {
     expect(routes.map((route) => route.path)).toEqual([
+      'components/:componentId',
       'foundation/overview',
       'primitives/structural',
       'primitives/typography',
@@ -265,13 +274,14 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
 
-    const screenshotBtn = compiled.querySelector('#btn-full-page-screenshot') as HTMLButtonElement | null;
-    expect(screenshotBtn).toBeTruthy();
-    expect(screenshotBtn?.hasAttribute('data-wave-a-screenshot-evidence')).toBe(
+    const screenshotControl = compiled.querySelector('#btn-full-page-screenshot');
+    const screenshotButton = screenshotControl?.querySelector('button');
+    expect(screenshotControl).toBeTruthy();
+    expect(screenshotControl?.hasAttribute('data-wave-a-screenshot-evidence')).toBe(
       true,
     );
-    expect(screenshotBtn?.textContent?.trim()).toContain('لقطة كاملة');
-    expect(screenshotBtn?.disabled).toBe(false);
+    expect(screenshotControl?.textContent?.trim()).toContain('لقطة كاملة');
+    expect(screenshotButton?.disabled).toBe(false);
   });
 
   it('applies and persists one global Lab theme across route navigation and app recreation', async () => {
@@ -279,9 +289,10 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     const router = TestBed.inject(Router);
     fixture.detectChanges();
     const root = fixture.nativeElement as HTMLElement;
-    const themeButton = root.querySelector('#btn-lab-theme') as HTMLButtonElement;
+    const themeControl = root.querySelector('#btn-lab-theme');
+    const themeButton = themeControl?.querySelector('button') as HTMLButtonElement;
 
-    expect(themeButton.hasAttribute('data-wave-a-theme-evidence')).toBe(true);
+    expect(themeControl?.hasAttribute('data-wave-a-theme-evidence')).toBe(true);
 
     expect(root.querySelector('#lab-capture-root')?.getAttribute('data-theme')).toBe(
       'light',

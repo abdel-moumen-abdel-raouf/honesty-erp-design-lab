@@ -25,6 +25,7 @@ const SEMANTIC_PREFIXES = [
   '--honesty-color-',
   '--honesty-type-',
   '--honesty-space-',
+  '--honesty-layout-',
   '--honesty-radius-',
   '--honesty-border-',
   '--honesty-focus-',

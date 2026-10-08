@@ -1,20 +1,18 @@
-<erp-container width="wide">
-  <div class="page-shell__layout">
-    <div class="page-shell__header">
-      <ng-content select="[erpPageShellHeader]" />
-    </div>
-
-    <div class="page-shell__body">
-      <main class="page-shell__main">
-        <ng-content />
-      </main>
-      <aside class="page-shell__side">
-        <ng-content select="[erpPageShellSide]" />
-      </aside>
-    </div>
-
-    <footer class="page-shell__footer">
-      <ng-content select="[erpPageShellFooter]" />
-    </footer>
+<div class="page-shell__layout">
+  <div class="page-shell__header">
+    <ng-content select="[erpPageShellHeader]" />
   </div>
-</erp-container>
+
+  <div class="page-shell__body">
+    <main class="page-shell__main">
+      <ng-content />
+    </main>
+    <aside class="page-shell__side">
+      <ng-content select="[erpPageShellSide]" />
+    </aside>
+  </div>
+
+  <footer class="page-shell__footer">
+    <ng-content select="[erpPageShellFooter]" />
+  </footer>
+</div>

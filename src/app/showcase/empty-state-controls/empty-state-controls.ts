@@ -91,29 +91,20 @@ export class EmptyStateControls {
     this.preview()?.replayEntrance();
   }
 
-  setVariantFromEvent(event: Event): void {
-    this.applyScenario(
-      (event.target as HTMLSelectElement).value as ErpEmptyStateVariant,
-    );
+  setVariantFromEvent(value: string): void {
+    this.applyScenario(value as ErpEmptyStateVariant);
   }
 
-  setDirectionFromEvent(event: Event): void {
-    this.direction.set(
-      (event.target as HTMLSelectElement).value as 'rtl' | 'ltr',
-    );
+  setDirectionFromEvent(value: string): void {
+    this.direction.set(value as 'rtl' | 'ltr');
   }
 
-  setMotionFromEvent(event: Event): void {
-    this.motion.set(
-      (event.target as HTMLSelectElement)
-        .value as ErpEmptyStateIllustrationMotion,
-    );
+  setMotionFromEvent(value: string): void {
+    this.motion.set(value as ErpEmptyStateIllustrationMotion);
   }
 
-  setSpeedFromEvent(event: Event): void {
-    this.motionSpeed.set(
-      Number((event.target as HTMLSelectElement).value) as ErpEmptyStateMotionSpeed,
-    );
+  setSpeedFromEvent(value: string): void {
+    this.motionSpeed.set(Number(value) as ErpEmptyStateMotionSpeed);
   }
 
   replay(): void {

@@ -1,6 +1,26 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
-## Authoritative current review state — 2026-10-08 — full ERP-TABLE experience
+## Authoritative current review state — 2026-10-08 — ownership catalog and ErpPage
+
+The current bounded foundation entered from clean live `main` at
+`895f985994ef2c28eae703f60d5911a5314af338`. It provides one generated catalog
+for 77 public and 41 supporting ERP entries, 42 governed native-element
+contracts, dedicated `/components/<id>` routes with 336 live cases, and the new
+public `ErpPage` width/scroll boundary.
+
+Architecture audits confirm that Data/Table, Forms Composition, Entity Form,
+and Shell batch routes retain their existing bounded owners. No visual family
+was reopened. Canonical verification passes all lint/governance, 136/136 test
+files and 909/909 tests, both typechecks, production build, and zero warnings.
+Initial bundle is 497.84 kB / 108.38 kB; component-showcase is lazy at 168.97
+kB / 17.40 kB estimated transfer.
+
+The exact next review is Product Owner runtime/technical inspection of the
+catalog, native-ownership enforcement, dedicated component pages, and
+`ErpPage`. The full ERP-TABLE visual review remains separately pending.
+Technical evidence is not visual acceptance and no later wave is authorized.
+
+## Historical authoritative review state — full ERP-TABLE experience — superseded 2026-10-08
 
 The Product Owner rejected Table candidate
 `eddac4a8e8a3460f346bb579fdd5ca0074296e7a` for incomplete visual/functional

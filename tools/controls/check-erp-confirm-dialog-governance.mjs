@@ -235,7 +235,7 @@ export function validateExclusiveConfirmUsage(files) {
     const spec = normalized.endsWith('.spec.ts');
     const confirmInternal = normalized.startsWith(CONFIRM_ROOT);
 
-    if (spec) {
+    if (spec || normalized === 'src/app/catalog/erp-component-catalog.generated.ts') {
       continue;
     }
 

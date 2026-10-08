@@ -98,6 +98,7 @@ export function validate(files) {
   for (const [file, source] of files) {
     const normalized = normalize(file);
     const spec = normalized.endsWith('.spec.ts');
+    const generatedCatalog = normalized === 'src/app/catalog/erp-component-catalog.generated.ts';
     const overlayInternal = normalized.startsWith(OVERLAY_ROOT);
     const motionAdapter = normalized === MOTION_ADAPTER;
     const consumer =
@@ -117,6 +118,7 @@ export function validate(files) {
       !overlayInternal &&
       normalized !== APP_SOURCE &&
       !spec &&
+      !generatedCatalog &&
       /\bErpOverlayHost\b/.test(source)
     ) {
       errors.push(

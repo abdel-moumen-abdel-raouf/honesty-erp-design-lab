@@ -19,7 +19,36 @@ Implementation agent:
 - execution only;
 - must not invent design decisions or widen scope.
 
-## Execution order
+## Authoritative current ownership and Page decision — 2026-10-08
+
+The current bounded authorization entered at
+`895f985994ef2c28eae703f60d5911a5314af338`. The repository now has one
+generated ERP component catalog (77 public and 41 supporting entries), one
+generated native-element registry (42 tag contracts), and one live dedicated
+route `/components/<id>` for each public component. Catalog generation and
+governance are the single inventory mechanism; manually maintained competing
+lists are not authoritative.
+
+Covered native controls and semantics may be authored only by their registered
+ERP owner. Consumer/page templates must use that owner. Contextual structural
+HTML remains allowed only where the registry says so; uncovered gaps remain
+explicit and do not authorize inventing a component. Tests are excluded from
+the production-template scan, while inline production templates are included.
+
+`ErpPage` is the public Page foundation owner. It owns only width (`boxed`,
+`fluid`, `full`) and scrolling (`document`, `page`, `free`) composition, with
+`fluid/document` defaults. It owns no theme, router, transport, body, session,
+or business state. `ErpPageShell` owns optional page regions; `ErpAppShell`
+owns the application frame. Future production routes use `ErpPage`, but the
+current Lab/showcase routes are not migrated by this wave.
+
+The exact next action is Product Owner runtime/technical review of this wave.
+The ERP-TABLE visual review gate remains pending separately, technical PASS is
+not visual approval, and no later component/page/feature migration is opened.
+Canonical verification for the wave passes all governance/lint, 136/136 test
+files and 909/909 tests, both typechecks, production build, and zero warnings.
+
+## Historical execution-order context — retained for audit
 
 Binding Product Owner law:
 

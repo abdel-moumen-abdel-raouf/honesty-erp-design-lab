@@ -43,6 +43,7 @@ describe('ErpPageShell', () => {
       expect(fixture.nativeElement.querySelector(selector)?.children.length)
         .toBe(0);
     }
-    expect(fixture.nativeElement.querySelector('erp-container')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('erp-container')).toBeNull();
+    expect(fixture.nativeElement.querySelector('.page-shell__layout')).not.toBeNull();
   });
 });

@@ -1,0 +1,8 @@
+@mixin base {
+  --honesty-page-background: var(--honesty-color-surface-canvas);
+  --honesty-page-color: var(--honesty-color-text-primary);
+  --honesty-page-gutter-inline: var(--honesty-space-layout-page-gutter-inline);
+  --honesty-page-boxed-max-inline-size: 75rem;
+  --honesty-page-min-block-size: 100%;
+  --honesty-page-scroll-block-size: var(--honesty-layout-available-block-size);
+}

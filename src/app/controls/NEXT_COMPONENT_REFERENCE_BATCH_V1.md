@@ -1,6 +1,19 @@
 # Next Component Reference Batch V1
 
-## Authoritative current reference gate — 2026-10-08
+## Authoritative current reference gate — 2026-10-08 — no next component authorized
+
+No next component is authorized. The bounded ownership/Page wave entered from
+`895f985994ef2c28eae703f60d5911a5314af338` and produces the generated ERP
+catalog (77 public, 41 supporting), 42 native-element contracts, 336 dedicated
+live showcase cases, and the public `ErpPage` width/scroll owner.
+
+This work does not create or select a new visual reference. Exact-reference
+components keep their existing authorities, and the full ERP-TABLE Product
+Owner visual gate remains pending. The exact next action is Product Owner
+runtime/technical review of the catalog, dedicated routes, native ownership,
+and `ErpPage`. Technical green cannot authorize the next owner or wave.
+
+## Historical full ERP-TABLE reference gate — superseded current gate
 
 No next component is authorized. The current candidate closes the Product
 Owner rejection of `eddac4a8e8a3460f346bb579fdd5ca0074296e7a` by reconstructing

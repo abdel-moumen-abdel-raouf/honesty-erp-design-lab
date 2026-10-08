@@ -1,6 +1,27 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
-## Authoritative current gate — 2026-10-08 — full ERP-TABLE reference experience
+## Authoritative current gate — 2026-10-08 — ownership catalog and ErpPage
+
+The bounded wave entered at
+`895f985994ef2c28eae703f60d5911a5314af338`. It adds one generated catalog for
+77 public and 41 supporting ERP entries, 42 governed native-element contracts,
+one dedicated `/components/<id>` page for every public owner, and the new public
+`ErpPage` width/scroll boundary. The catalog generates 336 live review cases
+while retaining all existing batch routes.
+
+`ErpPage` owns `boxed | fluid | full` width and `document | page | free`
+scrolling only. `ErpPageShell` and `ErpAppShell` retain their bounded region and
+application-frame responsibilities. Data/Table, Forms, Entity Form, and Shell
+routes were audited and require no architectural reopen.
+
+Canonical verification passes all lint/governance, 136/136 test files and
+909/909 tests, both typechecks, production build, and zero warnings. Initial
+bundle is 497.84 kB / 108.38 kB; component-showcase is lazy at 168.97 kB /
+17.40 kB estimated transfer. The next action is Product Owner runtime/technical
+review of this bounded foundation; no component/page/feature migration wave is
+authorized and technical PASS is not visual approval.
+
+## Historical authoritative gate — full ERP-TABLE reference experience — superseded 2026-10-08
 
 The Product Owner rejected `eddac4a8e8a3460f346bb579fdd5ca0074296e7a` for
 skipping visible reference owners and retaining geometry deltas. The current

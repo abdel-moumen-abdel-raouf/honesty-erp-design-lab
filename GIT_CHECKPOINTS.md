@@ -1,6 +1,28 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
-## Current full ERP-TABLE experience checkpoint — 2026-10-08
+## Current ownership catalog and Page foundation checkpoint — 2026-10-08
+
+Entry checkpoint:
+
+- `895f985994ef2c28eae703f60d5911a5314af338` — clean live `main` and
+  `origin/main` before the bounded ownership/catalog/Page work.
+
+The implementation commit is `feat(governance): add ERP ownership catalog and
+page foundation`; resolve its final SHA from live `main` because this file is
+part of that commit.
+
+The checkpoint contains the generated 77-public/41-supporting ERP catalog, 42
+native-element contracts, dedicated `/components/<id>` live routes with 336
+cases, and the new public `ErpPage`. Canonical verification passes all
+lint/governance, 136/136 test files and 909/909 tests, both typechecks,
+production build, and zero warnings. Initial bundle is 497.84 kB / 108.38 kB;
+component-showcase is lazy at 168.97 kB / 17.40 kB estimated transfer.
+
+Product Owner visual approval is not inferred. The next gate is review of this
+bounded foundation wave; the full ERP-TABLE visual gate remains separately
+pending and no later wave is opened.
+
+## Historical full ERP-TABLE experience checkpoint — superseded current gate
 
 Entry checkpoint:
 
