@@ -339,6 +339,35 @@ function publicApi(classDeclaration, sourceFile, aliases) {
   return {inputs, outputs, models};
 }
 
+function inheritedPublicApi(className, classDefinitions, aliases, visiting = new Set()) {
+  if (visiting.has(className)) return {inputs: [], outputs: [], models: []};
+  const definition = classDefinitions.get(className);
+  if (!definition) return {inputs: [], outputs: [], models: []};
+
+  visiting.add(className);
+  const extendsClause = definition.declaration.heritageClauses?.find(
+    (clause) => clause.token === ts.SyntaxKind.ExtendsKeyword,
+  );
+  const baseName = extendsClause?.types[0]?.expression.getText(definition.sourceFile) ?? null;
+  const inherited = baseName
+    ? inheritedPublicApi(baseName, classDefinitions, aliases, visiting)
+    : {inputs: [], outputs: [], models: []};
+  const own = publicApi(definition.declaration, definition.sourceFile, aliases);
+  visiting.delete(className);
+
+  const mergeNamed = (baseValues, ownValues) => {
+    const merged = new Map(baseValues.map((value) => [value.name, value]));
+    for (const value of ownValues) merged.set(value.name, value);
+    return [...merged.values()];
+  };
+
+  return {
+    inputs: mergeNamed(inherited.inputs, own.inputs),
+    outputs: [...new Set([...inherited.outputs, ...own.outputs])],
+    models: mergeNamed(inherited.models, own.models),
+  };
+}
+
 function classify(className, decoratorName, sourcePath) {
   if (decoratorName === 'Directive') return 'DIRECTIVE / TEMPLATE EXTENSION';
   if (sourcePath.includes('/internal/') || INTERNAL_COMPONENTS.has(className)) return 'INTERNAL SEMANTIC OWNER';
@@ -362,9 +391,20 @@ function purposeFor(className, selector, classification) {
 }
 
 function fixtureCases(entry, sourceText) {
-  const baseInputs = FIXTURE_INPUTS.get(entry.className) ?? {};
+  const requiredDefaults = Object.fromEntries(
+    entry.publicApi.inputs
+      .filter((inputApi) => inputApi.required && inputApi.name === 'label')
+      .map(() => ['label', 'حقل تجريبي']),
+  );
+  const baseInputs = {...requiredDefaults, ...(FIXTURE_INPUTS.get(entry.className) ?? {})};
+  const missingRequired = entry.publicApi.inputs
+    .filter((inputApi) => inputApi.required && !(inputApi.name in baseInputs))
+    .map((inputApi) => inputApi.name);
+  if (missingRequired.length) {
+    throw new Error(`${entry.className} showcase fixture is missing required inputs: ${missingRequired.join(', ')}`);
+  }
   const cases = [{id: 'default', label: 'الحالة الافتراضية', inputs: baseInputs}];
-  for (const inputApi of entry.publicApi.inputs) {
+  for (const inputApi of entry.ownPublicApi.inputs) {
     if (!FACET_NAMES.includes(inputApi.name)) continue;
     for (const value of inputApi.values) {
       cases.push({
@@ -389,6 +429,17 @@ function fixtureCases(entry, sourceText) {
 function scanDecoratedEntries() {
   const files = SOURCE_ROOTS.flatMap((root) => walk(path.join(REPO_ROOT, root)));
   const aliases = unionLiteralAliases(files);
+  const classDefinitions = new Map();
+  for (const absolutePath of files) {
+    const sourcePath = posix(path.relative(REPO_ROOT, absolutePath));
+    const sourceText = fs.readFileSync(absolutePath, 'utf8');
+    const sourceFile = ts.createSourceFile(sourcePath, sourceText, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+    for (const statement of sourceFile.statements) {
+      if (ts.isClassDeclaration(statement) && statement.name) {
+        classDefinitions.set(statement.name.text, {declaration: statement, sourceFile});
+      }
+    }
+  }
   const entries = [];
   for (const absolutePath of files) {
     const sourcePath = posix(path.relative(REPO_ROOT, absolutePath));
@@ -410,6 +461,8 @@ function scanDecoratedEntries() {
         const component = {metadata};
         const template = templateFor(component, sourceFile, sourcePath);
         const id = selector.startsWith('erp-') ? selector.slice(4) : className.replace(/^Erp/, '').replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+        const ownPublicApi = publicApi(statement, sourceFile, aliases);
+        const completePublicApi = inheritedPublicApi(className, classDefinitions, aliases);
         const entry = {
           id,
           selector,
@@ -418,7 +471,7 @@ function scanDecoratedEntries() {
           classification,
           sourcePath,
           purpose: purposeFor(className, selector, classification),
-          publicApi: publicApi(statement, sourceFile, aliases),
+          publicApi: completePublicApi,
           lowerLevelOwners: dependencies(sourceText, template).filter((dependency) => dependency !== className),
           nativeElementsOwned: nativeTags(template),
           nativeCoverage: NATIVE_REPLACEMENTS.get(className) ?? [],
@@ -426,9 +479,9 @@ function scanDecoratedEntries() {
           showcaseRoute: classification === 'PUBLIC ERP COMPONENT' ? `/components/${id}` : null,
           visualReference: EXACT_REFERENCES.get(className) ?? null,
           visualStatus: ACCEPTED_COMPONENTS.has(className) ? 'ACCEPTED' : 'PENDING',
-          showcaseFacets: FACET_NAMES.filter((facet) => new RegExp(`readonly\\s+${facet}\\s*=\\s*input`).test(sourceText)),
+          showcaseFacets: FACET_NAMES.filter((facet) => completePublicApi.inputs.some((inputApi) => inputApi.name === facet)),
           showcaseCases: classification === 'PUBLIC ERP COMPONENT'
-            ? fixtureCases({className, publicApi: publicApi(statement, sourceFile, aliases)}, sourceText)
+            ? fixtureCases({className, publicApi: completePublicApi, ownPublicApi}, sourceText)
             : [],
         };
         entries.push(entry);
@@ -555,7 +608,7 @@ function markdownCatalog(catalog) {
     }
     lines.push('');
   }
-  return `${lines.join('\n')}\n`;
+  return `${lines.join('\n').replace(/\n+$/, '')}\n`;
 }
 
 function markdownCoverage() {
@@ -571,7 +624,7 @@ function markdownCoverage() {
     lines.push(`| \`${entry.tag}\` | ${entry.policy} | ${entry.owners.map((owner) => `\`${owner}\``).join(', ')} | ${entry.allowedPaths.length ? entry.allowedPaths.map((ownerPath) => `\`${ownerPath}\``).join('<br>') : 'none'} |`);
   }
   lines.push('');
-  return `${lines.join('\n')}\n`;
+  return `${lines.join('\n').replace(/\n+$/, '')}\n`;
 }
 
 export function generatedArtifacts() {

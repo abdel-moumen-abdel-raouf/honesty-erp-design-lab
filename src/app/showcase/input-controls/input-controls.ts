@@ -175,8 +175,14 @@ export class InputControls {
     new File(['invoice'], 'invoice-2026.pdf', {type: 'application/pdf'}),
     new File(['notes'], 'notes.txt', {type: 'text/plain'}),
   ]);
+  private readonly reviewImageBytes = new Uint8Array([
+    137, 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82,
+    0, 0, 0, 1, 0, 0, 0, 1, 8, 4, 0, 0, 0, 181, 28, 12, 2, 0, 0,
+    0, 11, 73, 68, 65, 84, 120, 218, 99, 100, 248, 15, 0, 1, 5, 1, 1,
+    39, 24, 227, 102, 0, 0, 0, 0, 73, 69, 78, 68, 174, 66, 96, 130,
+  ]);
   readonly imageEvidence = Object.freeze([
-    new File(['image-a'], 'product-a.png', {type: 'image/png'}),
-    new File(['image-b'], 'product-b.jpg', {type: 'image/jpeg'}),
+    new File([this.reviewImageBytes], 'product-a.png', {type: 'image/png'}),
+    new File([this.reviewImageBytes], 'product-b.png', {type: 'image/png'}),
   ]);
 }

@@ -314,6 +314,17 @@ describe('InputControls showcase', () => {
     expect(group?.querySelectorAll('[data-file-image-rtl-evidence]').length).toBe(1);
   });
 
+  it('uses decodable PNG evidence instead of extension-only image fixtures', async () => {
+    const fixture = create();
+    const files = fixture.componentInstance.imageEvidence;
+
+    expect(files.map((file) => file.type)).toEqual(['image/png', 'image/png']);
+    for (const file of files) {
+      const signature = [...new Uint8Array(await file.slice(0, 8).arrayBuffer())];
+      expect(signature).toEqual([137, 80, 78, 71, 13, 10, 26, 10]);
+    }
+  });
+
   it('contains every text-entry control and complete variant/size evidence', () => {
     const root = create().nativeElement as HTMLElement;
     for (const selector of [

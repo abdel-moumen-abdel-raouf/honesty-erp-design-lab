@@ -46,4 +46,3 @@
 | `ul` | PAGE_AND_CONSUMER_BANNED | `ERP structural owner or bounded component anatomy` | none |
 | `ol` | PAGE_AND_CONSUMER_BANNED | `ERP structural owner or bounded component anatomy` | none |
 | `li` | PAGE_AND_CONSUMER_BANNED | `ERP structural owner or bounded component anatomy` | none |
-

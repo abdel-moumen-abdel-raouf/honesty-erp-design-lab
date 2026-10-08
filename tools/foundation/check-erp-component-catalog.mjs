@@ -37,6 +37,20 @@ function validateCatalog(catalog) {
       !Array.isArray(entry.publicApi.outputs) || !Array.isArray(entry.publicApi.models)) {
       errors.push(`${entry.className} has no public API inventory`);
     }
+    if (!Array.isArray(entry.showcaseCases) || entry.showcaseCases.length === 0) {
+      errors.push(`${entry.className} has no live showcase cases`);
+    } else {
+      const requiredInputs = entry.publicApi.inputs.filter((input) => input.required);
+      for (const showcaseCase of entry.showcaseCases) {
+        for (const requiredInput of requiredInputs) {
+          if (!Object.prototype.hasOwnProperty.call(showcaseCase.inputs, requiredInput.name)) {
+            errors.push(
+              `${entry.className} showcase case ${showcaseCase.id} omits required input ${requiredInput.name}`,
+            );
+          }
+        }
+      }
+    }
   }
 
   if (!publicEntries.some((entry) => entry.className === 'ErpPage')) {
@@ -135,6 +149,7 @@ function selfTest() {
     publicApi: {inputs: [], outputs: [], models: []},
     nativeCoverage: ['button'],
     showcaseRoute: '/components/button',
+    showcaseCases: [{id: 'default', label: 'default', inputs: {}}],
   }, {
     id: 'page',
     selector: 'erp-page',
@@ -146,6 +161,7 @@ function selfTest() {
     publicApi: {inputs: [], outputs: [], models: []},
     nativeCoverage: [],
     showcaseRoute: '/components/page',
+    showcaseCases: [{id: 'default', label: 'default', inputs: {}}],
   }];
   if (validateCatalog(valid).length !== 0) throw new Error('valid catalog fixture failed');
 
@@ -154,6 +170,13 @@ function selfTest() {
     [...valid, {...valid[0]}],
     valid.map((entry) => entry.className === 'ErpButton' ? {...entry, showcaseRoute: null} : entry),
     valid.map((entry) => entry.className === 'ErpButton' ? {...entry, nativeCoverage: null} : entry),
+    valid.map((entry) => entry.className === 'ErpButton'
+      ? {
+          ...entry,
+          publicApi: {inputs: [{name: 'label', required: true, values: []}], outputs: [], models: []},
+          showcaseCases: [{id: 'default', label: 'default', inputs: {}}],
+        }
+      : entry),
   ];
   for (const fixture of fixtures) {
     if (validateCatalog(fixture).length === 0) {

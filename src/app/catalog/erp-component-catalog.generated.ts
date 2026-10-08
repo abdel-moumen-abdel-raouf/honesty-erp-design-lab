@@ -809,16 +809,16 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "icon": "add",
-          "label": "إضافة"
+          "label": "إضافة",
+          "icon": "add"
         }
       },
       {
         "id": "size-sm",
         "label": "size: sm",
         "inputs": {
-          "icon": "add",
           "label": "إضافة",
+          "icon": "add",
           "size": "sm"
         }
       },
@@ -826,8 +826,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-md",
         "label": "size: md",
         "inputs": {
-          "icon": "add",
           "label": "إضافة",
+          "icon": "add",
           "size": "md"
         }
       },
@@ -835,8 +835,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-lg",
         "label": "size: lg",
         "inputs": {
-          "icon": "add",
           "label": "إضافة",
+          "icon": "add",
           "size": "lg"
         }
       },
@@ -844,8 +844,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-primary",
         "label": "tone: primary",
         "inputs": {
-          "icon": "add",
           "label": "إضافة",
+          "icon": "add",
           "tone": "primary"
         }
       },
@@ -853,8 +853,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-secondary",
         "label": "tone: secondary",
         "inputs": {
-          "icon": "add",
           "label": "إضافة",
+          "icon": "add",
           "tone": "secondary"
         }
       },
@@ -862,8 +862,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-accent",
         "label": "tone: accent",
         "inputs": {
-          "icon": "add",
           "label": "إضافة",
+          "icon": "add",
           "tone": "accent"
         }
       },
@@ -871,8 +871,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-surface",
         "label": "tone: surface",
         "inputs": {
-          "icon": "add",
           "label": "إضافة",
+          "icon": "add",
           "tone": "surface"
         }
       },
@@ -880,8 +880,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
-          "icon": "add",
           "label": "إضافة",
+          "icon": "add",
           "disabled": true
         }
       },
@@ -889,8 +889,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "loading",
         "label": "حالة تحميل",
         "inputs": {
-          "icon": "add",
           "label": "إضافة",
+          "icon": "add",
           "loading": true
         }
       }
@@ -1184,16 +1184,16 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "icon": "settings",
-          "label": "الإعدادات"
+          "label": "الإعدادات",
+          "icon": "settings"
         }
       },
       {
         "id": "variant-solid",
         "label": "variant: solid",
         "inputs": {
-          "icon": "settings",
           "label": "الإعدادات",
+          "icon": "settings",
           "variant": "solid"
         }
       },
@@ -1201,8 +1201,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-outline",
         "label": "variant: outline",
         "inputs": {
-          "icon": "settings",
           "label": "الإعدادات",
+          "icon": "settings",
           "variant": "outline"
         }
       },
@@ -1210,8 +1210,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-subtle",
         "label": "variant: subtle",
         "inputs": {
-          "icon": "settings",
           "label": "الإعدادات",
+          "icon": "settings",
           "variant": "subtle"
         }
       },
@@ -1219,8 +1219,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-ghost",
         "label": "variant: ghost",
         "inputs": {
-          "icon": "settings",
           "label": "الإعدادات",
+          "icon": "settings",
           "variant": "ghost"
         }
       },
@@ -1228,8 +1228,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-primary",
         "label": "tone: primary",
         "inputs": {
-          "icon": "settings",
           "label": "الإعدادات",
+          "icon": "settings",
           "tone": "primary"
         }
       },
@@ -1237,8 +1237,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-secondary",
         "label": "tone: secondary",
         "inputs": {
-          "icon": "settings",
           "label": "الإعدادات",
+          "icon": "settings",
           "tone": "secondary"
         }
       },
@@ -1246,8 +1246,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-accent",
         "label": "tone: accent",
         "inputs": {
-          "icon": "settings",
           "label": "الإعدادات",
+          "icon": "settings",
           "tone": "accent"
         }
       },
@@ -1255,8 +1255,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-success",
         "label": "tone: success",
         "inputs": {
-          "icon": "settings",
           "label": "الإعدادات",
+          "icon": "settings",
           "tone": "success"
         }
       },
@@ -1264,8 +1264,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-warning",
         "label": "tone: warning",
         "inputs": {
-          "icon": "settings",
           "label": "الإعدادات",
+          "icon": "settings",
           "tone": "warning"
         }
       },
@@ -1273,8 +1273,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-danger",
         "label": "tone: danger",
         "inputs": {
-          "icon": "settings",
           "label": "الإعدادات",
+          "icon": "settings",
           "tone": "danger"
         }
       },
@@ -1282,8 +1282,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-info",
         "label": "tone: info",
         "inputs": {
-          "icon": "settings",
           "label": "الإعدادات",
+          "icon": "settings",
           "tone": "info"
         }
       },
@@ -1291,8 +1291,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-neutral",
         "label": "tone: neutral",
         "inputs": {
-          "icon": "settings",
           "label": "الإعدادات",
+          "icon": "settings",
           "tone": "neutral"
         }
       },
@@ -1300,8 +1300,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-sm",
         "label": "size: sm",
         "inputs": {
-          "icon": "settings",
           "label": "الإعدادات",
+          "icon": "settings",
           "size": "sm"
         }
       },
@@ -1309,8 +1309,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-md",
         "label": "size: md",
         "inputs": {
-          "icon": "settings",
           "label": "الإعدادات",
+          "icon": "settings",
           "size": "md"
         }
       },
@@ -1318,8 +1318,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-lg",
         "label": "size: lg",
         "inputs": {
-          "icon": "settings",
           "label": "الإعدادات",
+          "icon": "settings",
           "size": "lg"
         }
       },
@@ -1327,8 +1327,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "shape-default",
         "label": "shape: default",
         "inputs": {
-          "icon": "settings",
           "label": "الإعدادات",
+          "icon": "settings",
           "shape": "default"
         }
       },
@@ -1336,8 +1336,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "shape-rounded",
         "label": "shape: rounded",
         "inputs": {
-          "icon": "settings",
           "label": "الإعدادات",
+          "icon": "settings",
           "shape": "rounded"
         }
       },
@@ -1345,8 +1345,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "shape-pill",
         "label": "shape: pill",
         "inputs": {
-          "icon": "settings",
           "label": "الإعدادات",
+          "icon": "settings",
           "shape": "pill"
         }
       },
@@ -1354,8 +1354,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
-          "icon": "settings",
           "label": "الإعدادات",
+          "icon": "settings",
           "disabled": true
         }
       },
@@ -1363,8 +1363,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "loading",
         "label": "حالة تحميل",
         "inputs": {
-          "icon": "settings",
           "label": "الإعدادات",
+          "icon": "settings",
           "loading": true
         }
       }
@@ -3951,6 +3951,162 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "publicApi": {
       "inputs": [
         {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "tone",
+          "required": false,
+          "values": [
+            "neutral",
+            "primary",
+            "secondary",
+            "accent"
+          ]
+        },
+        {
+          "name": "status",
+          "required": false,
+          "values": [
+            "none",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "values": [
+            "solid",
+            "outline",
+            "subtle",
+            "ghost",
+            "text"
+          ]
+        },
+        {
+          "name": "borderMode",
+          "required": false,
+          "values": [
+            "solid",
+            "dashed",
+            "underline"
+          ]
+        },
+        {
+          "name": "shape",
+          "required": false,
+          "values": [
+            "default",
+            "rounded",
+            "pill"
+          ]
+        },
+        {
+          "name": "size",
+          "required": false,
+          "values": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl"
+          ]
+        },
+        {
+          "name": "appearance",
+          "required": false,
+          "values": [
+            "standard",
+            "glass"
+          ]
+        },
+        {
+          "name": "labelMode",
+          "required": false,
+          "values": [
+            "static",
+            "floating",
+            "visually-hidden"
+          ]
+        },
+        {
+          "name": "floatingPosition",
+          "required": false,
+          "values": [
+            "top",
+            "bottom"
+          ]
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "helperPosition",
+          "required": false,
+          "values": [
+            "above",
+            "below"
+          ]
+        },
+        {
+          "name": "leadingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "trailingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "clearable",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackDismissible",
+          "required": false,
+          "values": []
+        },
+        {
           "name": "mode",
           "required": false,
           "values": [
@@ -3960,11 +4116,6 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         },
         {
           "name": "overlayConfig",
-          "required": false,
-          "values": []
-        },
-        {
-          "name": "trailingIcon",
           "required": false,
           "values": []
         }
@@ -3997,12 +4148,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/color-picker",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "variant",
+      "size",
+      "shape",
+      "tone",
+      "disabled",
+      "appearance"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "label": "حقل تجريبي"
+        }
       }
     ]
   },
@@ -4017,6 +4177,162 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "publicApi": {
       "inputs": [
         {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "tone",
+          "required": false,
+          "values": [
+            "neutral",
+            "primary",
+            "secondary",
+            "accent"
+          ]
+        },
+        {
+          "name": "status",
+          "required": false,
+          "values": [
+            "none",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "values": [
+            "solid",
+            "outline",
+            "subtle",
+            "ghost",
+            "text"
+          ]
+        },
+        {
+          "name": "borderMode",
+          "required": false,
+          "values": [
+            "solid",
+            "dashed",
+            "underline"
+          ]
+        },
+        {
+          "name": "shape",
+          "required": false,
+          "values": [
+            "default",
+            "rounded",
+            "pill"
+          ]
+        },
+        {
+          "name": "size",
+          "required": false,
+          "values": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl"
+          ]
+        },
+        {
+          "name": "appearance",
+          "required": false,
+          "values": [
+            "standard",
+            "glass"
+          ]
+        },
+        {
+          "name": "labelMode",
+          "required": false,
+          "values": [
+            "static",
+            "floating",
+            "visually-hidden"
+          ]
+        },
+        {
+          "name": "floatingPosition",
+          "required": false,
+          "values": [
+            "top",
+            "bottom"
+          ]
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "helperPosition",
+          "required": false,
+          "values": [
+            "above",
+            "below"
+          ]
+        },
+        {
+          "name": "leadingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "trailingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "clearable",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackDismissible",
+          "required": false,
+          "values": []
+        },
+        {
           "name": "items",
           "required": true,
           "values": []
@@ -4028,11 +4344,6 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         },
         {
           "name": "overlayConfig",
-          "required": false,
-          "values": []
-        },
-        {
-          "name": "trailingIcon",
           "required": false,
           "values": []
         }
@@ -4061,12 +4372,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/combo-box",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "variant",
+      "size",
+      "shape",
+      "tone",
+      "disabled",
+      "appearance"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
+          "label": "حقل تجريبي",
           "items": [
             {
               "value": "customer",
@@ -4087,6 +4406,162 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "purpose": "Owns the public ERP date box semantic and presentation contract.",
     "publicApi": {
       "inputs": [
+        {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "tone",
+          "required": false,
+          "values": [
+            "neutral",
+            "primary",
+            "secondary",
+            "accent"
+          ]
+        },
+        {
+          "name": "status",
+          "required": false,
+          "values": [
+            "none",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "values": [
+            "solid",
+            "outline",
+            "subtle",
+            "ghost",
+            "text"
+          ]
+        },
+        {
+          "name": "borderMode",
+          "required": false,
+          "values": [
+            "solid",
+            "dashed",
+            "underline"
+          ]
+        },
+        {
+          "name": "shape",
+          "required": false,
+          "values": [
+            "default",
+            "rounded",
+            "pill"
+          ]
+        },
+        {
+          "name": "size",
+          "required": false,
+          "values": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl"
+          ]
+        },
+        {
+          "name": "appearance",
+          "required": false,
+          "values": [
+            "standard",
+            "glass"
+          ]
+        },
+        {
+          "name": "labelMode",
+          "required": false,
+          "values": [
+            "static",
+            "floating",
+            "visually-hidden"
+          ]
+        },
+        {
+          "name": "floatingPosition",
+          "required": false,
+          "values": [
+            "top",
+            "bottom"
+          ]
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "helperPosition",
+          "required": false,
+          "values": [
+            "above",
+            "below"
+          ]
+        },
+        {
+          "name": "leadingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "trailingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "clearable",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackDismissible",
+          "required": false,
+          "values": []
+        },
         {
           "name": "min",
           "required": false,
@@ -4121,11 +4596,6 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "name": "overlayConfig",
           "required": false,
           "values": []
-        },
-        {
-          "name": "trailingIcon",
-          "required": false,
-          "values": []
         }
       ],
       "outputs": [],
@@ -4157,12 +4627,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/date-box",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "variant",
+      "size",
+      "shape",
+      "tone",
+      "disabled",
+      "appearance"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "label": "حقل تجريبي"
+        }
       }
     ]
   },
@@ -4176,6 +4655,162 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "purpose": "Owns the public ERP date range box semantic and presentation contract.",
     "publicApi": {
       "inputs": [
+        {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "tone",
+          "required": false,
+          "values": [
+            "neutral",
+            "primary",
+            "secondary",
+            "accent"
+          ]
+        },
+        {
+          "name": "status",
+          "required": false,
+          "values": [
+            "none",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "values": [
+            "solid",
+            "outline",
+            "subtle",
+            "ghost",
+            "text"
+          ]
+        },
+        {
+          "name": "borderMode",
+          "required": false,
+          "values": [
+            "solid",
+            "dashed",
+            "underline"
+          ]
+        },
+        {
+          "name": "shape",
+          "required": false,
+          "values": [
+            "default",
+            "rounded",
+            "pill"
+          ]
+        },
+        {
+          "name": "size",
+          "required": false,
+          "values": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl"
+          ]
+        },
+        {
+          "name": "appearance",
+          "required": false,
+          "values": [
+            "standard",
+            "glass"
+          ]
+        },
+        {
+          "name": "labelMode",
+          "required": false,
+          "values": [
+            "static",
+            "floating",
+            "visually-hidden"
+          ]
+        },
+        {
+          "name": "floatingPosition",
+          "required": false,
+          "values": [
+            "top",
+            "bottom"
+          ]
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "helperPosition",
+          "required": false,
+          "values": [
+            "above",
+            "below"
+          ]
+        },
+        {
+          "name": "leadingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "trailingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "clearable",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackDismissible",
+          "required": false,
+          "values": []
+        },
         {
           "name": "min",
           "required": false,
@@ -4203,11 +4838,6 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         },
         {
           "name": "overlayConfig",
-          "required": false,
-          "values": []
-        },
-        {
-          "name": "trailingIcon",
           "required": false,
           "values": []
         }
@@ -4240,12 +4870,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/date-range-box",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "variant",
+      "size",
+      "shape",
+      "tone",
+      "disabled",
+      "appearance"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "label": "حقل تجريبي"
+        }
       }
     ]
   },
@@ -4259,6 +4898,162 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "purpose": "Owns the public ERP date time box semantic and presentation contract.",
     "publicApi": {
       "inputs": [
+        {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "tone",
+          "required": false,
+          "values": [
+            "neutral",
+            "primary",
+            "secondary",
+            "accent"
+          ]
+        },
+        {
+          "name": "status",
+          "required": false,
+          "values": [
+            "none",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "values": [
+            "solid",
+            "outline",
+            "subtle",
+            "ghost",
+            "text"
+          ]
+        },
+        {
+          "name": "borderMode",
+          "required": false,
+          "values": [
+            "solid",
+            "dashed",
+            "underline"
+          ]
+        },
+        {
+          "name": "shape",
+          "required": false,
+          "values": [
+            "default",
+            "rounded",
+            "pill"
+          ]
+        },
+        {
+          "name": "size",
+          "required": false,
+          "values": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl"
+          ]
+        },
+        {
+          "name": "appearance",
+          "required": false,
+          "values": [
+            "standard",
+            "glass"
+          ]
+        },
+        {
+          "name": "labelMode",
+          "required": false,
+          "values": [
+            "static",
+            "floating",
+            "visually-hidden"
+          ]
+        },
+        {
+          "name": "floatingPosition",
+          "required": false,
+          "values": [
+            "top",
+            "bottom"
+          ]
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "helperPosition",
+          "required": false,
+          "values": [
+            "above",
+            "below"
+          ]
+        },
+        {
+          "name": "leadingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "trailingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "clearable",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackDismissible",
+          "required": false,
+          "values": []
+        },
         {
           "name": "min",
           "required": false,
@@ -4286,11 +5081,6 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         },
         {
           "name": "overlayConfig",
-          "required": false,
-          "values": []
-        },
-        {
-          "name": "trailingIcon",
           "required": false,
           "values": []
         }
@@ -4324,12 +5114,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/date-time-box",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "variant",
+      "size",
+      "shape",
+      "tone",
+      "disabled",
+      "appearance"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "label": "حقل تجريبي"
+        }
       }
     ]
   },
@@ -4342,7 +5141,184 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "sourcePath": "src/app/controls/file-picker/file-picker.ts",
     "purpose": "Owns the public ERP file picker semantic and presentation contract.",
     "publicApi": {
-      "inputs": [],
+      "inputs": [
+        {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "tone",
+          "required": false,
+          "values": [
+            "neutral",
+            "primary",
+            "secondary",
+            "accent"
+          ]
+        },
+        {
+          "name": "status",
+          "required": false,
+          "values": [
+            "none",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "values": [
+            "solid",
+            "outline",
+            "subtle",
+            "ghost",
+            "text"
+          ]
+        },
+        {
+          "name": "borderMode",
+          "required": false,
+          "values": [
+            "solid",
+            "dashed",
+            "underline"
+          ]
+        },
+        {
+          "name": "shape",
+          "required": false,
+          "values": [
+            "default",
+            "rounded",
+            "pill"
+          ]
+        },
+        {
+          "name": "size",
+          "required": false,
+          "values": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl"
+          ]
+        },
+        {
+          "name": "appearance",
+          "required": false,
+          "values": [
+            "standard",
+            "glass"
+          ]
+        },
+        {
+          "name": "labelMode",
+          "required": false,
+          "values": [
+            "static",
+            "floating",
+            "visually-hidden"
+          ]
+        },
+        {
+          "name": "floatingPosition",
+          "required": false,
+          "values": [
+            "top",
+            "bottom"
+          ]
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "helperPosition",
+          "required": false,
+          "values": [
+            "above",
+            "below"
+          ]
+        },
+        {
+          "name": "leadingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "trailingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "clearable",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackDismissible",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "accept",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "maxFileSize",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "minFiles",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "maxFiles",
+          "required": false,
+          "values": []
+        }
+      ],
       "outputs": [],
       "models": []
     },
@@ -4372,12 +5348,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/file-picker",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "variant",
+      "size",
+      "shape",
+      "tone",
+      "disabled",
+      "appearance"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "label": "حقل تجريبي"
+        }
       }
     ]
   },
@@ -4392,12 +5377,163 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "publicApi": {
       "inputs": [
         {
-          "name": "overlayConfig",
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "tone",
+          "required": false,
+          "values": [
+            "neutral",
+            "primary",
+            "secondary",
+            "accent"
+          ]
+        },
+        {
+          "name": "status",
+          "required": false,
+          "values": [
+            "none",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "values": [
+            "solid",
+            "outline",
+            "subtle",
+            "ghost",
+            "text"
+          ]
+        },
+        {
+          "name": "borderMode",
+          "required": false,
+          "values": [
+            "solid",
+            "dashed",
+            "underline"
+          ]
+        },
+        {
+          "name": "shape",
+          "required": false,
+          "values": [
+            "default",
+            "rounded",
+            "pill"
+          ]
+        },
+        {
+          "name": "size",
+          "required": false,
+          "values": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl"
+          ]
+        },
+        {
+          "name": "appearance",
+          "required": false,
+          "values": [
+            "standard",
+            "glass"
+          ]
+        },
+        {
+          "name": "labelMode",
+          "required": false,
+          "values": [
+            "static",
+            "floating",
+            "visually-hidden"
+          ]
+        },
+        {
+          "name": "floatingPosition",
+          "required": false,
+          "values": [
+            "top",
+            "bottom"
+          ]
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "helperPosition",
+          "required": false,
+          "values": [
+            "above",
+            "below"
+          ]
+        },
+        {
+          "name": "leadingIcon",
           "required": false,
           "values": []
         },
         {
           "name": "trailingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "clearable",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackDismissible",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "overlayConfig",
           "required": false,
           "values": []
         }
@@ -4428,12 +5564,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/icon-picker",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "variant",
+      "size",
+      "shape",
+      "tone",
+      "disabled",
+      "appearance"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "label": "حقل تجريبي"
+        }
       }
     ]
   },
@@ -4448,7 +5593,178 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "publicApi": {
       "inputs": [
         {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "tone",
+          "required": false,
+          "values": [
+            "neutral",
+            "primary",
+            "secondary",
+            "accent"
+          ]
+        },
+        {
+          "name": "status",
+          "required": false,
+          "values": [
+            "none",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "values": [
+            "solid",
+            "outline",
+            "subtle",
+            "ghost",
+            "text"
+          ]
+        },
+        {
+          "name": "borderMode",
+          "required": false,
+          "values": [
+            "solid",
+            "dashed",
+            "underline"
+          ]
+        },
+        {
+          "name": "shape",
+          "required": false,
+          "values": [
+            "default",
+            "rounded",
+            "pill"
+          ]
+        },
+        {
+          "name": "size",
+          "required": false,
+          "values": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl"
+          ]
+        },
+        {
+          "name": "appearance",
+          "required": false,
+          "values": [
+            "standard",
+            "glass"
+          ]
+        },
+        {
+          "name": "labelMode",
+          "required": false,
+          "values": [
+            "static",
+            "floating",
+            "visually-hidden"
+          ]
+        },
+        {
+          "name": "floatingPosition",
+          "required": false,
+          "values": [
+            "top",
+            "bottom"
+          ]
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "helperPosition",
+          "required": false,
+          "values": [
+            "above",
+            "below"
+          ]
+        },
+        {
+          "name": "leadingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "trailingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "clearable",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackDismissible",
+          "required": false,
+          "values": []
+        },
+        {
           "name": "accept",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "maxFileSize",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "minFiles",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "maxFiles",
           "required": false,
           "values": []
         },
@@ -4494,12 +5810,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/image-picker",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "variant",
+      "size",
+      "shape",
+      "tone",
+      "disabled",
+      "appearance"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "label": "حقل تجريبي"
+        }
       }
     ]
   },
@@ -4513,6 +5838,162 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "purpose": "Owns the public ERP item picker semantic and presentation contract.",
     "publicApi": {
       "inputs": [
+        {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "tone",
+          "required": false,
+          "values": [
+            "neutral",
+            "primary",
+            "secondary",
+            "accent"
+          ]
+        },
+        {
+          "name": "status",
+          "required": false,
+          "values": [
+            "none",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "values": [
+            "solid",
+            "outline",
+            "subtle",
+            "ghost",
+            "text"
+          ]
+        },
+        {
+          "name": "borderMode",
+          "required": false,
+          "values": [
+            "solid",
+            "dashed",
+            "underline"
+          ]
+        },
+        {
+          "name": "shape",
+          "required": false,
+          "values": [
+            "default",
+            "rounded",
+            "pill"
+          ]
+        },
+        {
+          "name": "size",
+          "required": false,
+          "values": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl"
+          ]
+        },
+        {
+          "name": "appearance",
+          "required": false,
+          "values": [
+            "standard",
+            "glass"
+          ]
+        },
+        {
+          "name": "labelMode",
+          "required": false,
+          "values": [
+            "static",
+            "floating",
+            "visually-hidden"
+          ]
+        },
+        {
+          "name": "floatingPosition",
+          "required": false,
+          "values": [
+            "top",
+            "bottom"
+          ]
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "helperPosition",
+          "required": false,
+          "values": [
+            "above",
+            "below"
+          ]
+        },
+        {
+          "name": "leadingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "trailingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "clearable",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackDismissible",
+          "required": false,
+          "values": []
+        },
         {
           "name": "items",
           "required": true,
@@ -4530,11 +6011,6 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         },
         {
           "name": "overlayConfig",
-          "required": false,
-          "values": []
-        },
-        {
-          "name": "trailingIcon",
           "required": false,
           "values": []
         }
@@ -4564,12 +6040,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/item-picker",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "variant",
+      "size",
+      "shape",
+      "tone",
+      "disabled",
+      "appearance"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
+          "label": "حقل تجريبي",
           "items": [
             {
               "value": "item-1",
@@ -4590,6 +6074,162 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "purpose": "Owns the public ERP money box semantic and presentation contract.",
     "publicApi": {
       "inputs": [
+        {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "tone",
+          "required": false,
+          "values": [
+            "neutral",
+            "primary",
+            "secondary",
+            "accent"
+          ]
+        },
+        {
+          "name": "status",
+          "required": false,
+          "values": [
+            "none",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "values": [
+            "solid",
+            "outline",
+            "subtle",
+            "ghost",
+            "text"
+          ]
+        },
+        {
+          "name": "borderMode",
+          "required": false,
+          "values": [
+            "solid",
+            "dashed",
+            "underline"
+          ]
+        },
+        {
+          "name": "shape",
+          "required": false,
+          "values": [
+            "default",
+            "rounded",
+            "pill"
+          ]
+        },
+        {
+          "name": "size",
+          "required": false,
+          "values": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl"
+          ]
+        },
+        {
+          "name": "appearance",
+          "required": false,
+          "values": [
+            "standard",
+            "glass"
+          ]
+        },
+        {
+          "name": "labelMode",
+          "required": false,
+          "values": [
+            "static",
+            "floating",
+            "visually-hidden"
+          ]
+        },
+        {
+          "name": "floatingPosition",
+          "required": false,
+          "values": [
+            "top",
+            "bottom"
+          ]
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "helperPosition",
+          "required": false,
+          "values": [
+            "above",
+            "below"
+          ]
+        },
+        {
+          "name": "leadingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "trailingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "clearable",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackDismissible",
+          "required": false,
+          "values": []
+        },
         {
           "name": "currency",
           "required": true,
@@ -4671,12 +6311,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/money-box",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "variant",
+      "size",
+      "shape",
+      "tone",
+      "disabled",
+      "appearance"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
+          "label": "حقل تجريبي",
           "currency": "EGP"
         }
       }
@@ -4692,6 +6340,162 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "purpose": "Owns the public ERP number box semantic and presentation contract.",
     "publicApi": {
       "inputs": [
+        {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "tone",
+          "required": false,
+          "values": [
+            "neutral",
+            "primary",
+            "secondary",
+            "accent"
+          ]
+        },
+        {
+          "name": "status",
+          "required": false,
+          "values": [
+            "none",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "values": [
+            "solid",
+            "outline",
+            "subtle",
+            "ghost",
+            "text"
+          ]
+        },
+        {
+          "name": "borderMode",
+          "required": false,
+          "values": [
+            "solid",
+            "dashed",
+            "underline"
+          ]
+        },
+        {
+          "name": "shape",
+          "required": false,
+          "values": [
+            "default",
+            "rounded",
+            "pill"
+          ]
+        },
+        {
+          "name": "size",
+          "required": false,
+          "values": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl"
+          ]
+        },
+        {
+          "name": "appearance",
+          "required": false,
+          "values": [
+            "standard",
+            "glass"
+          ]
+        },
+        {
+          "name": "labelMode",
+          "required": false,
+          "values": [
+            "static",
+            "floating",
+            "visually-hidden"
+          ]
+        },
+        {
+          "name": "floatingPosition",
+          "required": false,
+          "values": [
+            "top",
+            "bottom"
+          ]
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "helperPosition",
+          "required": false,
+          "values": [
+            "above",
+            "below"
+          ]
+        },
+        {
+          "name": "leadingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "trailingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "clearable",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackDismissible",
+          "required": false,
+          "values": []
+        },
         {
           "name": "placeholder",
           "required": false,
@@ -4748,12 +6552,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/number-box",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "variant",
+      "size",
+      "shape",
+      "tone",
+      "disabled",
+      "appearance"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "label": "حقل تجريبي"
+        }
       }
     ]
   },
@@ -4767,6 +6580,162 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "purpose": "Owns the public ERP number stepper semantic and presentation contract.",
     "publicApi": {
       "inputs": [
+        {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "tone",
+          "required": false,
+          "values": [
+            "neutral",
+            "primary",
+            "secondary",
+            "accent"
+          ]
+        },
+        {
+          "name": "status",
+          "required": false,
+          "values": [
+            "none",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "values": [
+            "solid",
+            "outline",
+            "subtle",
+            "ghost",
+            "text"
+          ]
+        },
+        {
+          "name": "borderMode",
+          "required": false,
+          "values": [
+            "solid",
+            "dashed",
+            "underline"
+          ]
+        },
+        {
+          "name": "shape",
+          "required": false,
+          "values": [
+            "default",
+            "rounded",
+            "pill"
+          ]
+        },
+        {
+          "name": "size",
+          "required": false,
+          "values": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl"
+          ]
+        },
+        {
+          "name": "appearance",
+          "required": false,
+          "values": [
+            "standard",
+            "glass"
+          ]
+        },
+        {
+          "name": "labelMode",
+          "required": false,
+          "values": [
+            "static",
+            "floating",
+            "visually-hidden"
+          ]
+        },
+        {
+          "name": "floatingPosition",
+          "required": false,
+          "values": [
+            "top",
+            "bottom"
+          ]
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "helperPosition",
+          "required": false,
+          "values": [
+            "above",
+            "below"
+          ]
+        },
+        {
+          "name": "leadingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "trailingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "clearable",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackDismissible",
+          "required": false,
+          "values": []
+        },
         {
           "name": "placeholder",
           "required": false,
@@ -4825,12 +6794,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/number-stepper",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "variant",
+      "size",
+      "shape",
+      "tone",
+      "disabled",
+      "appearance"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "label": "حقل تجريبي"
+        }
       }
     ]
   },
@@ -4844,6 +6822,162 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "purpose": "Owns the public ERP password box semantic and presentation contract.",
     "publicApi": {
       "inputs": [
+        {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "tone",
+          "required": false,
+          "values": [
+            "neutral",
+            "primary",
+            "secondary",
+            "accent"
+          ]
+        },
+        {
+          "name": "status",
+          "required": false,
+          "values": [
+            "none",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "values": [
+            "solid",
+            "outline",
+            "subtle",
+            "ghost",
+            "text"
+          ]
+        },
+        {
+          "name": "borderMode",
+          "required": false,
+          "values": [
+            "solid",
+            "dashed",
+            "underline"
+          ]
+        },
+        {
+          "name": "shape",
+          "required": false,
+          "values": [
+            "default",
+            "rounded",
+            "pill"
+          ]
+        },
+        {
+          "name": "size",
+          "required": false,
+          "values": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl"
+          ]
+        },
+        {
+          "name": "appearance",
+          "required": false,
+          "values": [
+            "standard",
+            "glass"
+          ]
+        },
+        {
+          "name": "labelMode",
+          "required": false,
+          "values": [
+            "static",
+            "floating",
+            "visually-hidden"
+          ]
+        },
+        {
+          "name": "floatingPosition",
+          "required": false,
+          "values": [
+            "top",
+            "bottom"
+          ]
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "helperPosition",
+          "required": false,
+          "values": [
+            "above",
+            "below"
+          ]
+        },
+        {
+          "name": "leadingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "trailingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "clearable",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackDismissible",
+          "required": false,
+          "values": []
+        },
         {
           "name": "placeholder",
           "required": false,
@@ -4903,12 +7037,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/password-box",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "variant",
+      "size",
+      "shape",
+      "tone",
+      "disabled",
+      "appearance"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "label": "حقل تجريبي"
+        }
       }
     ]
   },
@@ -4922,6 +7065,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "purpose": "Owns the public ERP range slider semantic and presentation contract.",
     "publicApi": {
       "inputs": [
+        {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
         {
           "name": "min",
           "required": false,
@@ -5062,18 +7235,22 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseFacets": [
       "size",
       "tone",
+      "disabled",
       "appearance"
     ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "label": "حقل تجريبي"
+        }
       },
       {
         "id": "tone-neutral",
         "label": "tone: neutral",
         "inputs": {
+          "label": "حقل تجريبي",
           "tone": "neutral"
         }
       },
@@ -5081,6 +7258,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-primary",
         "label": "tone: primary",
         "inputs": {
+          "label": "حقل تجريبي",
           "tone": "primary"
         }
       },
@@ -5088,6 +7266,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-secondary",
         "label": "tone: secondary",
         "inputs": {
+          "label": "حقل تجريبي",
           "tone": "secondary"
         }
       },
@@ -5095,6 +7274,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-accent",
         "label": "tone: accent",
         "inputs": {
+          "label": "حقل تجريبي",
           "tone": "accent"
         }
       },
@@ -5102,6 +7282,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-sm",
         "label": "size: sm",
         "inputs": {
+          "label": "حقل تجريبي",
           "size": "sm"
         }
       },
@@ -5109,6 +7290,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-md",
         "label": "size: md",
         "inputs": {
+          "label": "حقل تجريبي",
           "size": "md"
         }
       },
@@ -5116,6 +7298,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-lg",
         "label": "size: lg",
         "inputs": {
+          "label": "حقل تجريبي",
           "size": "lg"
         }
       },
@@ -5123,6 +7306,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-xl",
         "label": "size: xl",
         "inputs": {
+          "label": "حقل تجريبي",
           "size": "xl"
         }
       },
@@ -5130,6 +7314,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-xxl",
         "label": "size: xxl",
         "inputs": {
+          "label": "حقل تجريبي",
           "size": "xxl"
         }
       },
@@ -5137,6 +7322,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-xxxl",
         "label": "size: xxxl",
         "inputs": {
+          "label": "حقل تجريبي",
           "size": "xxxl"
         }
       },
@@ -5144,6 +7330,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-xxxxl",
         "label": "size: xxxxl",
         "inputs": {
+          "label": "حقل تجريبي",
           "size": "xxxxl"
         }
       },
@@ -5151,6 +7338,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "appearance-standard",
         "label": "appearance: standard",
         "inputs": {
+          "label": "حقل تجريبي",
           "appearance": "standard"
         }
       },
@@ -5158,6 +7346,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "appearance-glass",
         "label": "appearance: glass",
         "inputs": {
+          "label": "حقل تجريبي",
           "appearance": "glass"
         }
       }
@@ -5173,6 +7362,162 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "purpose": "Owns the public ERP search box semantic and presentation contract.",
     "publicApi": {
       "inputs": [
+        {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "tone",
+          "required": false,
+          "values": [
+            "neutral",
+            "primary",
+            "secondary",
+            "accent"
+          ]
+        },
+        {
+          "name": "status",
+          "required": false,
+          "values": [
+            "none",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "values": [
+            "solid",
+            "outline",
+            "subtle",
+            "ghost",
+            "text"
+          ]
+        },
+        {
+          "name": "borderMode",
+          "required": false,
+          "values": [
+            "solid",
+            "dashed",
+            "underline"
+          ]
+        },
+        {
+          "name": "shape",
+          "required": false,
+          "values": [
+            "default",
+            "rounded",
+            "pill"
+          ]
+        },
+        {
+          "name": "size",
+          "required": false,
+          "values": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl"
+          ]
+        },
+        {
+          "name": "appearance",
+          "required": false,
+          "values": [
+            "standard",
+            "glass"
+          ]
+        },
+        {
+          "name": "labelMode",
+          "required": false,
+          "values": [
+            "static",
+            "floating",
+            "visually-hidden"
+          ]
+        },
+        {
+          "name": "floatingPosition",
+          "required": false,
+          "values": [
+            "top",
+            "bottom"
+          ]
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "helperPosition",
+          "required": false,
+          "values": [
+            "above",
+            "below"
+          ]
+        },
+        {
+          "name": "leadingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "trailingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "clearable",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackDismissible",
+          "required": false,
+          "values": []
+        },
         {
           "name": "mode",
           "required": false,
@@ -5295,12 +7640,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/search-box",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "variant",
+      "size",
+      "shape",
+      "tone",
+      "disabled",
+      "appearance"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "label": "حقل تجريبي"
+        }
       }
     ]
   },
@@ -5314,6 +7668,162 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "purpose": "Owns the public ERP select semantic and presentation contract.",
     "publicApi": {
       "inputs": [
+        {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "tone",
+          "required": false,
+          "values": [
+            "neutral",
+            "primary",
+            "secondary",
+            "accent"
+          ]
+        },
+        {
+          "name": "status",
+          "required": false,
+          "values": [
+            "none",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "values": [
+            "solid",
+            "outline",
+            "subtle",
+            "ghost",
+            "text"
+          ]
+        },
+        {
+          "name": "borderMode",
+          "required": false,
+          "values": [
+            "solid",
+            "dashed",
+            "underline"
+          ]
+        },
+        {
+          "name": "shape",
+          "required": false,
+          "values": [
+            "default",
+            "rounded",
+            "pill"
+          ]
+        },
+        {
+          "name": "size",
+          "required": false,
+          "values": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl"
+          ]
+        },
+        {
+          "name": "appearance",
+          "required": false,
+          "values": [
+            "standard",
+            "glass"
+          ]
+        },
+        {
+          "name": "labelMode",
+          "required": false,
+          "values": [
+            "static",
+            "floating",
+            "visually-hidden"
+          ]
+        },
+        {
+          "name": "floatingPosition",
+          "required": false,
+          "values": [
+            "top",
+            "bottom"
+          ]
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "helperPosition",
+          "required": false,
+          "values": [
+            "above",
+            "below"
+          ]
+        },
+        {
+          "name": "leadingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "trailingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "clearable",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackDismissible",
+          "required": false,
+          "values": []
+        },
         {
           "name": "options",
           "required": false,
@@ -5500,13 +8010,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "visualReference": "src/app/controls/select/ERP_SELECT_REFERENCE_EXACT_V3.md",
     "visualStatus": "PENDING",
     "showcaseFacets": [
-      "multiple"
+      "variant",
+      "size",
+      "shape",
+      "tone",
+      "disabled",
+      "multiple",
+      "appearance"
     ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "label": "حقل تجريبي"
+        }
       }
     ]
   },
@@ -5520,6 +8038,162 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "purpose": "Owns the public ERP tel box semantic and presentation contract.",
     "publicApi": {
       "inputs": [
+        {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "tone",
+          "required": false,
+          "values": [
+            "neutral",
+            "primary",
+            "secondary",
+            "accent"
+          ]
+        },
+        {
+          "name": "status",
+          "required": false,
+          "values": [
+            "none",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "values": [
+            "solid",
+            "outline",
+            "subtle",
+            "ghost",
+            "text"
+          ]
+        },
+        {
+          "name": "borderMode",
+          "required": false,
+          "values": [
+            "solid",
+            "dashed",
+            "underline"
+          ]
+        },
+        {
+          "name": "shape",
+          "required": false,
+          "values": [
+            "default",
+            "rounded",
+            "pill"
+          ]
+        },
+        {
+          "name": "size",
+          "required": false,
+          "values": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl"
+          ]
+        },
+        {
+          "name": "appearance",
+          "required": false,
+          "values": [
+            "standard",
+            "glass"
+          ]
+        },
+        {
+          "name": "labelMode",
+          "required": false,
+          "values": [
+            "static",
+            "floating",
+            "visually-hidden"
+          ]
+        },
+        {
+          "name": "floatingPosition",
+          "required": false,
+          "values": [
+            "top",
+            "bottom"
+          ]
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "helperPosition",
+          "required": false,
+          "values": [
+            "above",
+            "below"
+          ]
+        },
+        {
+          "name": "leadingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "trailingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "clearable",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackDismissible",
+          "required": false,
+          "values": []
+        },
         {
           "name": "placeholder",
           "required": false,
@@ -5571,12 +8245,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/tel-box",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "variant",
+      "size",
+      "shape",
+      "tone",
+      "disabled",
+      "appearance"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "label": "حقل تجريبي"
+        }
       }
     ]
   },
@@ -5590,6 +8273,162 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "purpose": "Owns the public ERP text area box semantic and presentation contract.",
     "publicApi": {
       "inputs": [
+        {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "tone",
+          "required": false,
+          "values": [
+            "neutral",
+            "primary",
+            "secondary",
+            "accent"
+          ]
+        },
+        {
+          "name": "status",
+          "required": false,
+          "values": [
+            "none",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "values": [
+            "solid",
+            "outline",
+            "subtle",
+            "ghost",
+            "text"
+          ]
+        },
+        {
+          "name": "borderMode",
+          "required": false,
+          "values": [
+            "solid",
+            "dashed",
+            "underline"
+          ]
+        },
+        {
+          "name": "shape",
+          "required": false,
+          "values": [
+            "default",
+            "rounded",
+            "pill"
+          ]
+        },
+        {
+          "name": "size",
+          "required": false,
+          "values": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl"
+          ]
+        },
+        {
+          "name": "appearance",
+          "required": false,
+          "values": [
+            "standard",
+            "glass"
+          ]
+        },
+        {
+          "name": "labelMode",
+          "required": false,
+          "values": [
+            "static",
+            "floating",
+            "visually-hidden"
+          ]
+        },
+        {
+          "name": "floatingPosition",
+          "required": false,
+          "values": [
+            "top",
+            "bottom"
+          ]
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "helperPosition",
+          "required": false,
+          "values": [
+            "above",
+            "below"
+          ]
+        },
+        {
+          "name": "leadingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "trailingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "clearable",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackDismissible",
+          "required": false,
+          "values": []
+        },
         {
           "name": "placeholder",
           "required": false,
@@ -5652,12 +8491,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/text-area-box",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "variant",
+      "size",
+      "shape",
+      "tone",
+      "disabled",
+      "appearance"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "label": "حقل تجريبي"
+        }
       }
     ]
   },
@@ -5671,6 +8519,162 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "purpose": "Owns the public ERP text box semantic and presentation contract.",
     "publicApi": {
       "inputs": [
+        {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "tone",
+          "required": false,
+          "values": [
+            "neutral",
+            "primary",
+            "secondary",
+            "accent"
+          ]
+        },
+        {
+          "name": "status",
+          "required": false,
+          "values": [
+            "none",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "values": [
+            "solid",
+            "outline",
+            "subtle",
+            "ghost",
+            "text"
+          ]
+        },
+        {
+          "name": "borderMode",
+          "required": false,
+          "values": [
+            "solid",
+            "dashed",
+            "underline"
+          ]
+        },
+        {
+          "name": "shape",
+          "required": false,
+          "values": [
+            "default",
+            "rounded",
+            "pill"
+          ]
+        },
+        {
+          "name": "size",
+          "required": false,
+          "values": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl"
+          ]
+        },
+        {
+          "name": "appearance",
+          "required": false,
+          "values": [
+            "standard",
+            "glass"
+          ]
+        },
+        {
+          "name": "labelMode",
+          "required": false,
+          "values": [
+            "static",
+            "floating",
+            "visually-hidden"
+          ]
+        },
+        {
+          "name": "floatingPosition",
+          "required": false,
+          "values": [
+            "top",
+            "bottom"
+          ]
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "helperPosition",
+          "required": false,
+          "values": [
+            "above",
+            "below"
+          ]
+        },
+        {
+          "name": "leadingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "trailingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "clearable",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackDismissible",
+          "required": false,
+          "values": []
+        },
         {
           "name": "placeholder",
           "required": false,
@@ -5731,12 +8735,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/text-box",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "variant",
+      "size",
+      "shape",
+      "tone",
+      "disabled",
+      "appearance"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "label": "حقل تجريبي"
+        }
       }
     ]
   },
@@ -5750,6 +8763,162 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "purpose": "Owns the public ERP time box semantic and presentation contract.",
     "publicApi": {
       "inputs": [
+        {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "tone",
+          "required": false,
+          "values": [
+            "neutral",
+            "primary",
+            "secondary",
+            "accent"
+          ]
+        },
+        {
+          "name": "status",
+          "required": false,
+          "values": [
+            "none",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "values": [
+            "solid",
+            "outline",
+            "subtle",
+            "ghost",
+            "text"
+          ]
+        },
+        {
+          "name": "borderMode",
+          "required": false,
+          "values": [
+            "solid",
+            "dashed",
+            "underline"
+          ]
+        },
+        {
+          "name": "shape",
+          "required": false,
+          "values": [
+            "default",
+            "rounded",
+            "pill"
+          ]
+        },
+        {
+          "name": "size",
+          "required": false,
+          "values": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl"
+          ]
+        },
+        {
+          "name": "appearance",
+          "required": false,
+          "values": [
+            "standard",
+            "glass"
+          ]
+        },
+        {
+          "name": "labelMode",
+          "required": false,
+          "values": [
+            "static",
+            "floating",
+            "visually-hidden"
+          ]
+        },
+        {
+          "name": "floatingPosition",
+          "required": false,
+          "values": [
+            "top",
+            "bottom"
+          ]
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "helperPosition",
+          "required": false,
+          "values": [
+            "above",
+            "below"
+          ]
+        },
+        {
+          "name": "leadingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "trailingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "clearable",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackDismissible",
+          "required": false,
+          "values": []
+        },
         {
           "name": "minuteStep",
           "required": false,
@@ -5784,11 +8953,6 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "name": "overlayConfig",
           "required": false,
           "values": []
-        },
-        {
-          "name": "trailingIcon",
-          "required": false,
-          "values": []
         }
       ],
       "outputs": [],
@@ -5820,12 +8984,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/time-box",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "variant",
+      "size",
+      "shape",
+      "tone",
+      "disabled",
+      "appearance"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "label": "حقل تجريبي"
+        }
       }
     ]
   },
@@ -5839,6 +9012,162 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "purpose": "Owns the public ERP url box semantic and presentation contract.",
     "publicApi": {
       "inputs": [
+        {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "tone",
+          "required": false,
+          "values": [
+            "neutral",
+            "primary",
+            "secondary",
+            "accent"
+          ]
+        },
+        {
+          "name": "status",
+          "required": false,
+          "values": [
+            "none",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        {
+          "name": "variant",
+          "required": false,
+          "values": [
+            "solid",
+            "outline",
+            "subtle",
+            "ghost",
+            "text"
+          ]
+        },
+        {
+          "name": "borderMode",
+          "required": false,
+          "values": [
+            "solid",
+            "dashed",
+            "underline"
+          ]
+        },
+        {
+          "name": "shape",
+          "required": false,
+          "values": [
+            "default",
+            "rounded",
+            "pill"
+          ]
+        },
+        {
+          "name": "size",
+          "required": false,
+          "values": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "xxl",
+            "xxxl",
+            "xxxxl"
+          ]
+        },
+        {
+          "name": "appearance",
+          "required": false,
+          "values": [
+            "standard",
+            "glass"
+          ]
+        },
+        {
+          "name": "labelMode",
+          "required": false,
+          "values": [
+            "static",
+            "floating",
+            "visually-hidden"
+          ]
+        },
+        {
+          "name": "floatingPosition",
+          "required": false,
+          "values": [
+            "top",
+            "bottom"
+          ]
+        },
+        {
+          "name": "helperText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "helperPosition",
+          "required": false,
+          "values": [
+            "above",
+            "below"
+          ]
+        },
+        {
+          "name": "leadingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "trailingIcon",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "clearable",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackText",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "feedbackDismissible",
+          "required": false,
+          "values": []
+        },
         {
           "name": "placeholder",
           "required": false,
@@ -5890,12 +9219,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/url-box",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "variant",
+      "size",
+      "shape",
+      "tone",
+      "disabled",
+      "appearance"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "label": "حقل تجريبي"
+        }
       }
     ]
   },
@@ -6223,9 +9561,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": null,
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [
-      "variant"
-    ],
+    "showcaseFacets": [],
     "showcaseCases": []
   },
   {
@@ -6260,9 +9596,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": null,
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [
-      "variant"
-    ],
+    "showcaseFacets": [],
     "showcaseCases": []
   },
   {
@@ -7089,9 +10423,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": null,
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [
-      "disabled"
-    ],
+    "showcaseFacets": [],
     "showcaseCases": []
   },
   {
@@ -7662,11 +10994,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": null,
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [
-      "variant",
-      "orientation",
-      "distribution"
-    ],
+    "showcaseFacets": [],
     "showcaseCases": []
   },
   {
@@ -10578,6 +13906,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "publicApi": {
       "inputs": [
         {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
           "name": "description",
           "required": false,
           "values": []
@@ -10689,18 +14047,22 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "variant",
       "size",
       "tone",
+      "disabled",
       "readOnly"
     ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "label": "حقل تجريبي"
+        }
       },
       {
         "id": "tone-neutral",
         "label": "tone: neutral",
         "inputs": {
+          "label": "حقل تجريبي",
           "tone": "neutral"
         }
       },
@@ -10708,6 +14070,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-primary",
         "label": "tone: primary",
         "inputs": {
+          "label": "حقل تجريبي",
           "tone": "primary"
         }
       },
@@ -10715,6 +14078,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-secondary",
         "label": "tone: secondary",
         "inputs": {
+          "label": "حقل تجريبي",
           "tone": "secondary"
         }
       },
@@ -10722,6 +14086,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-accent",
         "label": "tone: accent",
         "inputs": {
+          "label": "حقل تجريبي",
           "tone": "accent"
         }
       },
@@ -10729,6 +14094,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-sm",
         "label": "size: sm",
         "inputs": {
+          "label": "حقل تجريبي",
           "size": "sm"
         }
       },
@@ -10736,6 +14102,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-md",
         "label": "size: md",
         "inputs": {
+          "label": "حقل تجريبي",
           "size": "md"
         }
       },
@@ -10743,6 +14110,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-lg",
         "label": "size: lg",
         "inputs": {
+          "label": "حقل تجريبي",
           "size": "lg"
         }
       },
@@ -10750,6 +14118,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-xl",
         "label": "size: xl",
         "inputs": {
+          "label": "حقل تجريبي",
           "size": "xl"
         }
       },
@@ -10757,6 +14126,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-xxl",
         "label": "size: xxl",
         "inputs": {
+          "label": "حقل تجريبي",
           "size": "xxl"
         }
       },
@@ -10764,6 +14134,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-xxxl",
         "label": "size: xxxl",
         "inputs": {
+          "label": "حقل تجريبي",
           "size": "xxxl"
         }
       },
@@ -10771,6 +14142,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-xxxxl",
         "label": "size: xxxxl",
         "inputs": {
+          "label": "حقل تجريبي",
           "size": "xxxxl"
         }
       },
@@ -10778,6 +14150,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-outline",
         "label": "variant: outline",
         "inputs": {
+          "label": "حقل تجريبي",
           "variant": "outline"
         }
       },
@@ -10785,6 +14158,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-filled",
         "label": "variant: filled",
         "inputs": {
+          "label": "حقل تجريبي",
           "variant": "filled"
         }
       },
@@ -10792,6 +14166,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-soft",
         "label": "variant: soft",
         "inputs": {
+          "label": "حقل تجريبي",
           "variant": "soft"
         }
       },
@@ -10799,6 +14174,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "readonly",
         "label": "للقراءة فقط",
         "inputs": {
+          "label": "حقل تجريبي",
           "readOnly": true
         }
       }
@@ -10910,6 +14286,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "publicApi": {
       "inputs": [
         {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
+        {
           "name": "description",
           "required": false,
           "values": []
@@ -11005,18 +14411,22 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "variant",
       "size",
       "tone",
+      "disabled",
       "readOnly"
     ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "label": "حقل تجريبي"
+        }
       },
       {
         "id": "tone-neutral",
         "label": "tone: neutral",
         "inputs": {
+          "label": "حقل تجريبي",
           "tone": "neutral"
         }
       },
@@ -11024,6 +14434,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-primary",
         "label": "tone: primary",
         "inputs": {
+          "label": "حقل تجريبي",
           "tone": "primary"
         }
       },
@@ -11031,6 +14442,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-secondary",
         "label": "tone: secondary",
         "inputs": {
+          "label": "حقل تجريبي",
           "tone": "secondary"
         }
       },
@@ -11038,6 +14450,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-accent",
         "label": "tone: accent",
         "inputs": {
+          "label": "حقل تجريبي",
           "tone": "accent"
         }
       },
@@ -11045,6 +14458,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-sm",
         "label": "size: sm",
         "inputs": {
+          "label": "حقل تجريبي",
           "size": "sm"
         }
       },
@@ -11052,6 +14466,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-md",
         "label": "size: md",
         "inputs": {
+          "label": "حقل تجريبي",
           "size": "md"
         }
       },
@@ -11059,6 +14474,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-lg",
         "label": "size: lg",
         "inputs": {
+          "label": "حقل تجريبي",
           "size": "lg"
         }
       },
@@ -11066,6 +14482,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-xl",
         "label": "size: xl",
         "inputs": {
+          "label": "حقل تجريبي",
           "size": "xl"
         }
       },
@@ -11073,6 +14490,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-xxl",
         "label": "size: xxl",
         "inputs": {
+          "label": "حقل تجريبي",
           "size": "xxl"
         }
       },
@@ -11080,6 +14498,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-xxxl",
         "label": "size: xxxl",
         "inputs": {
+          "label": "حقل تجريبي",
           "size": "xxxl"
         }
       },
@@ -11087,6 +14506,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-xxxxl",
         "label": "size: xxxxl",
         "inputs": {
+          "label": "حقل تجريبي",
           "size": "xxxxl"
         }
       },
@@ -11094,6 +14514,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-outline",
         "label": "variant: outline",
         "inputs": {
+          "label": "حقل تجريبي",
           "variant": "outline"
         }
       },
@@ -11101,6 +14522,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-filled",
         "label": "variant: filled",
         "inputs": {
+          "label": "حقل تجريبي",
           "variant": "filled"
         }
       },
@@ -11108,6 +14530,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-soft",
         "label": "variant: soft",
         "inputs": {
+          "label": "حقل تجريبي",
           "variant": "soft"
         }
       },
@@ -11115,6 +14538,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "readonly",
         "label": "للقراءة فقط",
         "inputs": {
+          "label": "حقل تجريبي",
           "readOnly": true
         }
       }
@@ -11130,6 +14554,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "purpose": "Owns the public ERP radio group semantic and presentation contract.",
     "publicApi": {
       "inputs": [
+        {
+          "name": "label",
+          "required": true,
+          "values": []
+        },
+        {
+          "name": "name",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "form",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "required",
+          "required": false,
+          "values": []
+        },
+        {
+          "name": "externalValidationIssues",
+          "required": false,
+          "values": []
+        },
         {
           "name": "options",
           "required": true,
@@ -11222,6 +14676,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "variant",
       "size",
       "tone",
+      "disabled",
       "readOnly"
     ],
     "showcaseCases": [
@@ -11229,6 +14684,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
+          "label": "حقل تجريبي",
           "options": [
             {
               "value": "active",
@@ -11241,6 +14697,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-outline",
         "label": "variant: outline",
         "inputs": {
+          "label": "حقل تجريبي",
           "options": [
             {
               "value": "active",
@@ -11254,6 +14711,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-filled",
         "label": "variant: filled",
         "inputs": {
+          "label": "حقل تجريبي",
           "options": [
             {
               "value": "active",
@@ -11267,6 +14725,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-soft",
         "label": "variant: soft",
         "inputs": {
+          "label": "حقل تجريبي",
           "options": [
             {
               "value": "active",
@@ -11280,6 +14739,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-neutral",
         "label": "tone: neutral",
         "inputs": {
+          "label": "حقل تجريبي",
           "options": [
             {
               "value": "active",
@@ -11293,6 +14753,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-primary",
         "label": "tone: primary",
         "inputs": {
+          "label": "حقل تجريبي",
           "options": [
             {
               "value": "active",
@@ -11306,6 +14767,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-secondary",
         "label": "tone: secondary",
         "inputs": {
+          "label": "حقل تجريبي",
           "options": [
             {
               "value": "active",
@@ -11319,6 +14781,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-accent",
         "label": "tone: accent",
         "inputs": {
+          "label": "حقل تجريبي",
           "options": [
             {
               "value": "active",
@@ -11332,6 +14795,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-sm",
         "label": "size: sm",
         "inputs": {
+          "label": "حقل تجريبي",
           "options": [
             {
               "value": "active",
@@ -11345,6 +14809,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-md",
         "label": "size: md",
         "inputs": {
+          "label": "حقل تجريبي",
           "options": [
             {
               "value": "active",
@@ -11358,6 +14823,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-lg",
         "label": "size: lg",
         "inputs": {
+          "label": "حقل تجريبي",
           "options": [
             {
               "value": "active",
@@ -11371,6 +14837,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-xl",
         "label": "size: xl",
         "inputs": {
+          "label": "حقل تجريبي",
           "options": [
             {
               "value": "active",
@@ -11384,6 +14851,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-xxl",
         "label": "size: xxl",
         "inputs": {
+          "label": "حقل تجريبي",
           "options": [
             {
               "value": "active",
@@ -11397,6 +14865,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-xxxl",
         "label": "size: xxxl",
         "inputs": {
+          "label": "حقل تجريبي",
           "options": [
             {
               "value": "active",
@@ -11410,6 +14879,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-xxxxl",
         "label": "size: xxxxl",
         "inputs": {
+          "label": "حقل تجريبي",
           "options": [
             {
               "value": "active",
@@ -11423,6 +14893,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "readonly",
         "label": "للقراءة فقط",
         "inputs": {
+          "label": "حقل تجريبي",
           "options": [
             {
               "value": "active",
