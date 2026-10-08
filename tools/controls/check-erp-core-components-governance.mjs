@@ -695,8 +695,9 @@ export function validateCoreComponents(files) {
   }
   if (!avatarPickerTile.includes('<erp-avatar') ||
       !avatarPickerTile.includes('<erp-icon name="check-mark"') ||
+      !avatarPickerTile.includes('imageLoading="lazy"') ||
       /<img\b/i.test(`${avatarPickerTemplate}\n${avatarPickerTile}`)) {
-    errors.push('ErpAvatarPicker tiles must render only through ErpAvatar and the semantic selected marker, never raw avatar images');
+    errors.push('ErpAvatarPicker tiles must lazily render only through ErpAvatar and the semantic selected marker, never raw avatar images');
   }
   if (/role=["']tab["']/i.test(`${avatarPickerTemplate}\n${avatarPickerTile}`)) {
     errors.push('ErpAvatarPicker must not create a private Tabs implementation');
@@ -737,16 +738,17 @@ export function validateCoreComponents(files) {
 
   const assetPaths = files.get(AVATAR_ASSET_ROOT) ?? [];
   const pngs = assetPaths.filter((entry) => entry.endsWith('.png'));
-  if (pngs.length !== 40 || !assetPaths.includes('manifest.json')) {
-    errors.push('ErpAvatarPicker requires exactly 40 Product Owner PNG assets plus manifest.json');
+  if (pngs.length !== 116 || !assetPaths.includes('manifest.json')) {
+    errors.push('ErpAvatarPicker requires exactly 116 Product Owner PNG assets plus manifest.json');
   }
   try {
     const manifest = JSON.parse((files.get(AVATAR_MANIFEST) ?? '{}').replace(/^\uFEFF/u, ''));
     const manifestPaths = manifest.items?.map((item) => item.imageUrl.replace('/assets/honesty-erp-avatars/users/', '')) ?? [];
     const manifestIds = manifest.items?.map((item) => item.id) ?? [];
-    if (manifest.total !== 40 || manifest.male !== 20 || manifest.female !== 20 || manifestPaths.length !== 40 ||
-        new Set(manifestIds).size !== 40 || new Set(manifestPaths).size !== 40) {
-      errors.push('Avatar manifest must describe exactly 20 male and 20 female assets');
+    if (manifest.version !== 2 || manifest.total !== 116 || manifest.male !== 60 || manifest.female !== 56 ||
+        manifestPaths.length !== 116 || new Set(manifestIds).size !== 116 ||
+        new Set(manifestPaths).size !== 116 || manifest.compatibility?.crosswalk?.length !== 40) {
+      errors.push('Avatar manifest must describe exactly 60 male and 56 female 3D assets with the 40-ID compatibility crosswalk');
     }
     for (const relative of manifestPaths) {
       if (!assetPaths.includes(relative.replaceAll('/', path.sep)) && !assetPaths.includes(relative)) {
@@ -756,7 +758,7 @@ export function validateCoreComponents(files) {
   } catch {
     errors.push('Avatar manifest must remain valid JSON');
   }
-  for (const required of ["avatarItems('male', 1, 20)", "avatarItems('female', 21, 40)", '/assets/honesty-erp-avatars/users/']) {
+  for (const required of ['ERP_AVATAR_CATALOG_GENERATED']) {
     if (!avatarCatalog.includes(required)) errors.push(`Avatar catalog is missing ${required}`);
   }
 
@@ -835,14 +837,24 @@ function fixture(overrides = new Map()) {
     [PAGINATION_TS, ['showSummary', 'showPageSize', 'showFirst', 'showPrevious', 'showPageNumbers', 'showNext', 'showLast'].map((name) => `readonly ${name} = input(true`).join(';')],
     [AVATAR_PICKER, 'ERP_AVATAR_CATALOG; readonly avatarShape; readonly avatarSize; readonly pick = output; readonly confirm = output; readonly cancelRequested = output'],
     [AVATAR_PICKER_TEMPLATE, '<erp-tabs [renderPanels]="false"/><erp-search-box/><erp-avatar-picker-tile/><erp-avatar/><erp-empty-state/><erp-button/><erp-tooltip/>'],
-    [AVATAR_PICKER_TILE, '<button><erp-avatar/><erp-icon name="check-mark"/></button>'],
+    [AVATAR_PICKER_TILE, '<button><erp-avatar imageLoading="lazy"/><erp-icon name="check-mark"/></button>'],
     ...AVATAR_PICKER_SCSS.map((file) => [file, file.endsWith('responsive.scss') ? "query.viewport-down('sm')" : '']),
     [AVATAR_PICKER_TOKENS, '@mixin base {}; @mixin root-base {}; @mixin tile-base {}; @mixin size-compact {}; @mixin layout-narrow {}; @mixin avatar-size-2xl {}; @mixin avatar-size-3xl {}; @mixin avatar-size-4xl {}; @mixin avatar-size-5xl {}; @mixin narrow-avatar-size-2xl {}; @mixin narrow-avatar-size-3xl {}; @mixin narrow-avatar-size-4xl {}; @mixin narrow-avatar-size-5xl {}; --honesty-avatar-picker-max-inline-size: 32.5rem; --honesty-avatar-picker-tile-size: 4.75rem; --honesty-avatar-picker-tile-size: 6.125rem; --honesty-avatar-picker-tile-size: 7.625rem; --honesty-avatar-picker-tile-size: 9.625rem; --honesty-avatar-picker-tile-size: 12.125rem; --honesty-avatar-picker-grid-gap: 0.75rem; --honesty-avatar-picker-grid-max-block-size: 27.5rem; --honesty-avatar-picker-check-size: 1.375rem;'],
     [AVATAR_PICKER_CONTRACT, `${AVATAR_PICKER_REFERENCE_SHA}; exact visual and behavioral replication`],
     [AVATAR_PICKER_LEGACY_REFERENCE, `SUPERSEDED; ${AVATAR_PICKER_REFERENCE_SHA}`],
-    [AVATAR_CATALOG, "avatarItems('male', 1, 20); avatarItems('female', 21, 40); /assets/honesty-erp-avatars/users/"],
-    [AVATAR_ASSET_ROOT, ['manifest.json', ...Array.from({length: 40}, (_, index) => `avatar-${index + 1}.png`)]],
-    [AVATAR_MANIFEST, JSON.stringify({total: 40, male: 20, female: 20, items: Array.from({length: 40}, (_, index) => ({id: `avatar-${index + 1}`, imageUrl: `/assets/honesty-erp-avatars/users/avatar-${index + 1}.png`}))})],
+    [AVATAR_CATALOG, 'ERP_AVATAR_CATALOG_GENERATED'],
+    [AVATAR_ASSET_ROOT, ['manifest.json', ...Array.from({length: 116}, (_, index) => `${index < 60 ? 'male' : 'female'}/avatar-${index + 1}.png`)]],
+    [AVATAR_MANIFEST, JSON.stringify({
+      version: 2,
+      total: 116,
+      male: 60,
+      female: 56,
+      compatibility: {crosswalk: Array.from({length: 40}, (_, index) => ({legacyId: `avatar-${index + 1}`}))},
+      items: Array.from({length: 116}, (_, index) => ({
+        id: `avatar-${index + 1}`,
+        imageUrl: `/assets/honesty-erp-avatars/users/${index < 60 ? 'male' : 'female'}/avatar-${index + 1}.png`,
+      })),
+    })],
   ]);
   for (const owner of TOKEN_OWNERS) {
     const tokenPath = `src/styles/foundation/components/${owner}/_tokens.scss`;
@@ -905,7 +917,7 @@ function runSelfTest() {
     ['raw control inside exact reference composition', fixture(new Map([[REVIEW_TABLE, '<div data-table-reference-evidence="exact"><div data-table-reference-experience="complete"><input/><erp-table-toolbar/><erp-search-box/><erp-column-chooser/><erp-table/><erp-pagination/></div><div data-table-specimen="fixed-height"></div><div data-table-specimen="compact"></div><div data-table-specimen="vertical"></div><div data-table-specimen="header-types"></div></div>']])), 'ERP-only'],
     ['missing table exact geometry', fixture(new Map([[TABLE_TOKENS, '@mixin base {}']])), 'exact-reference geometry'],
     ['pagination duplicates visible labels', fixture(new Map([[PAGINATION, '<erp-inline class="pagination__size-row"><erp-select label="حجم الصفحة"/></erp-inline>']])), 'hidden accessible Select label'],
-    ['missing avatar asset', fixture(new Map([[AVATAR_ASSET_ROOT, ['manifest.json']]])), '40 Product Owner'],
+    ['missing avatar asset', fixture(new Map([[AVATAR_ASSET_ROOT, ['manifest.json']]])), '116 Product Owner'],
     ['missing token base', fixture(new Map([['src/styles/foundation/components/avatar-picker/_tokens.scss', '']])), 'base mixin'],
   ]) {
     const errors = validateCoreComponents(files);
@@ -1003,7 +1015,7 @@ function runCheck() {
     process.exit(1);
   }
   console.log('ERP core-components governance: PASS');
-  console.log('9 corrected core owners and 40 avatar assets verified.');
+  console.log('9 corrected core owners and 116 avatar assets verified.');
 }
 
 if (process.argv.includes('--self-test')) runSelfTest();

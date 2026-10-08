@@ -1,5 +1,13 @@
 # Next Component Reference Batch V1
 
+## Authoritative current reference gate — 2026-10-08 — Avatar library review only
+
+No next component is authorized. The current candidate is the Product Owner's
+116-image 3D system avatar collection, its compatibility mapping, complete
+AvatarPicker gallery, and browser evidence. Technical verification does not
+approve the assets visually. Stop for external Product Owner review; Shell S2
+and every other component wave remain closed.
+
 ## Authoritative current reference gate — 2026-10-08 — UserMenu final contrast review only
 
 No next component is authorized. `ErpUserMenu` is the sole visual candidate;

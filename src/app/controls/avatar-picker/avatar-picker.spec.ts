@@ -3,12 +3,15 @@ import {ERP_AVATAR_CATALOG} from './avatar-picker-contracts';
 import {ErpAvatarPicker} from './avatar-picker';
 
 describe('ErpAvatarPicker', () => {
-  it('keeps the checked-in catalog at twenty male and twenty female unique assets', () => {
-    expect(ERP_AVATAR_CATALOG).toHaveLength(40);
-    expect(ERP_AVATAR_CATALOG.filter(({gender}) => gender === 'male')).toHaveLength(20);
-    expect(ERP_AVATAR_CATALOG.filter(({gender}) => gender === 'female')).toHaveLength(20);
-    expect(new Set(ERP_AVATAR_CATALOG.map(({id}) => id)).size).toBe(40);
-    expect(new Set(ERP_AVATAR_CATALOG.map(({imageUrl}) => imageUrl)).size).toBe(40);
+  it('keeps the checked-in catalog at sixty male and fifty-six female unique assets', () => {
+    expect(ERP_AVATAR_CATALOG).toHaveLength(116);
+    expect(ERP_AVATAR_CATALOG.filter(({gender}) => gender === 'male')).toHaveLength(60);
+    expect(ERP_AVATAR_CATALOG.filter(({gender}) => gender === 'female')).toHaveLength(56);
+    expect(new Set(ERP_AVATAR_CATALOG.map(({id}) => id)).size).toBe(116);
+    expect(new Set(ERP_AVATAR_CATALOG.map(({imageUrl}) => imageUrl)).size).toBe(116);
+    expect(ERP_AVATAR_CATALOG.find(({id}) => id === 'avatar-21')?.gender).toBe('female');
+    expect(ERP_AVATAR_CATALOG.find(({id}) => id === 'avatar-21')?.imageUrl)
+      .toBe('/assets/honesty-erp-avatars/users/female/avatar-21.png');
   });
 
   it('composes one ErpTabs owner and renders every active-gender tile through ErpAvatar', () => {
@@ -19,15 +22,19 @@ describe('ErpAvatarPicker', () => {
       .toHaveLength(1);
     expect(fixture.nativeElement.querySelectorAll('[role="tab"]')).toHaveLength(2);
     expect(fixture.nativeElement.querySelectorAll('[role="tab"] erp-text')).toHaveLength(4);
-    expect(fixture.nativeElement.querySelectorAll('erp-avatar-picker-tile')).toHaveLength(20);
+    expect(fixture.nativeElement.querySelectorAll('erp-avatar-picker-tile')).toHaveLength(60);
     expect(fixture.nativeElement.querySelectorAll('erp-avatar-picker-tile erp-avatar'))
-      .toHaveLength(20);
+      .toHaveLength(60);
     expect(fixture.nativeElement.querySelector('erp-avatar-picker-tile img')).not.toBeNull();
+    expect(
+      [...fixture.nativeElement.querySelectorAll('erp-avatar-picker-tile img')]
+        .every((image) => image.getAttribute('loading') === 'lazy'),
+    ).toBe(true);
 
     (fixture.nativeElement.querySelectorAll('[role="tab"]')[1] as HTMLButtonElement).click();
     fixture.detectChanges();
     expect(fixture.componentInstance.gender()).toBe('female');
-    expect(fixture.nativeElement.querySelectorAll('erp-avatar-picker-tile')).toHaveLength(20);
+    expect(fixture.nativeElement.querySelectorAll('erp-avatar-picker-tile')).toHaveLength(56);
   });
 
   it('stages selection and commits the controlled value only through Confirm', () => {
@@ -103,6 +110,23 @@ describe('ErpAvatarPicker', () => {
       .not.toBeNull();
   });
 
+  it('searches the complete female collection by accessible source label', () => {
+    const fixture = TestBed.createComponent(ErpAvatarPicker);
+    fixture.componentRef.setInput('gender', 'female');
+    fixture.detectChanges();
+    const input = fixture.nativeElement.querySelector(
+      'erp-search-box input[type="search"]',
+    ) as HTMLInputElement;
+    input.value = 'رقم 116';
+    input.dispatchEvent(new Event('input', {bubbles: true}));
+    fixture.detectChanges();
+
+    const tiles = fixture.nativeElement.querySelectorAll('erp-avatar-picker-tile');
+    expect(tiles).toHaveLength(1);
+    expect(tiles[0].querySelector('button')?.getAttribute('aria-label'))
+      .toContain('116');
+  });
+
   it('forwards bounded Avatar shape and size without private avatar rendering', () => {
     const fixture = TestBed.createComponent(ErpAvatarPicker);
     fixture.componentRef.setInput('avatarSize', 'sm');
@@ -111,7 +135,7 @@ describe('ErpAvatarPicker', () => {
     const avatars = fixture.nativeElement.querySelectorAll(
       'erp-avatar-picker-tile erp-avatar',
     );
-    expect(avatars).toHaveLength(20);
+    expect(avatars).toHaveLength(60);
     expect([...avatars].every((avatar) => avatar.getAttribute('data-avatar-size') === 'sm'))
       .toBe(true);
     expect([...avatars].every((avatar) => avatar.getAttribute('data-avatar-shape') === 'square'))

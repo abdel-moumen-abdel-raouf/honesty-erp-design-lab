@@ -5,6 +5,7 @@ import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
+import {ERP_AVATAR_CATALOG} from '../../../controls/avatar-picker/avatar-picker-contracts';
 import {ErpReviewShowcaseExactReference} from '../../../review-internals/showcase-exact-reference/showcase-exact-reference';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'avatar-picker')!;
@@ -26,6 +27,13 @@ export class ErpAvatarPickerShowcase {
     ...this.liveValues(),
     '$value': this.cvaValue(),
   }));
+  readonly defaultAvatars = ERP_AVATAR_CATALOG;
+
+  effectiveAvatars(): unknown {
+    const avatars = this.value('avatars');
+    return Array.isArray(avatars) ? avatars : this.defaultAvatars;
+  }
+
 
   readonly previewInline = computed(() => Number(this.liveValues()['$previewInline'] ?? 80));
   readonly previewBlock = computed(() => Number(this.liveValues()['$previewBlock'] ?? 75));

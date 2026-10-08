@@ -1,5 +1,28 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Global 3D Avatar Asset Library Gate
+
+The Product Owner supplied 116 standalone 3D PNGs now supersede the former
+40-image system avatar collection. The bounded replacement entered from clean
+live `main` at `30d6bd942015743fb3f02c7faeb563961fa978ac`. The canonical
+manifest records 60 male and 56 female assets, complete source numbers 1..116,
+per-file PNG integrity/size/transparency/SHA-256 evidence, and aggregate
+library SHA-256
+`39DA4F26B504C58C39B5073809479EC9FE916D9E3995AC510BAC58432977C4E8`.
+
+Legacy IDs, genders, and published URLs remain stable for `avatar-01..40`.
+`ErpAvatarPicker` uses the complete catalog by default and continues to render
+only through `ErpAvatar`; Picker tiles opt into browser lazy loading while the
+Avatar default remains eager for compatibility. Current browser evidence under
+`docs/review-evidence/erp-avatar-library/` covers 320/390/768/1440, Light/Dark,
+RTL/LTR, circle/rounded/square, large sizes, presence indicators, zero broken
+loaded images, zero horizontal overflow, and one live workbench target.
+Canonical verification passes 122/122 test files and 779/779 tests, all
+lint/governance, both typechecks, production build, and zero warnings. The
+initial bundle is 490.24 kB / 105.56 kB estimated transfer.
+Product Owner visual review is pending. No Shell phase or component visual
+contract is reopened.
+
 ## Current Shell S1 UserMenu Dark Contrast and Scroll Ownership Gate
 
 This bounded correction entered from clean live `main` at

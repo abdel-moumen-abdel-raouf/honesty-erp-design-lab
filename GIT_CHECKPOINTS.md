@@ -1,5 +1,25 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Global 3D avatar asset-library checkpoint — 2026-10-08
+
+Entry checkpoint:
+
+- `30d6bd942015743fb3f02c7faeb563961fa978ac` — clean live `main` and
+  `origin/main` before the Product Owner asset replacement.
+
+Single task commit message:
+
+- `feat(avatar): replace system library with 3D collection`
+
+Resolve the final commit SHA from live `main` because this file is part of that
+commit. The canonical manifest records 116 total, 60 male, 56 female, 40
+preserved legacy IDs/URLs, and aggregate SHA-256
+`39DA4F26B504C58C39B5073809479EC9FE916D9E3995AC510BAC58432977C4E8`.
+Canonical verification passes 122/122 test files and 779/779 tests, all
+lint/governance, both typechecks, production build, and zero warnings. Initial
+bundle is 490.24 kB / 105.56 kB estimated transfer. Product Owner visual review
+remains pending after technical verification.
+
 ## Shell S1 UserMenu dark-contrast and scroll-ownership checkpoint — 2026-10-08
 
 Entry checkpoint:

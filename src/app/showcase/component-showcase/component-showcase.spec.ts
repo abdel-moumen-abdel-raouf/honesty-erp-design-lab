@@ -180,6 +180,30 @@ describe('ComponentShowcase', () => {
     expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
   }, 20000);
 
+  it('uses the complete canonical AvatarPicker gallery in the live workbench', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/components/avatar-picker', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]'))
+        .not.toBeNull();
+    });
+
+    const root = harness.routeNativeElement as HTMLElement;
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect(root.querySelectorAll('[data-showcase-target] erp-avatar-picker-tile'))
+      .toHaveLength(60);
+    expect(
+      [...root.querySelectorAll('[data-showcase-target] erp-avatar-picker-tile img')]
+        .every((image) => image.getAttribute('loading') === 'lazy'),
+    ).toBe(true);
+
+    (root.querySelectorAll<HTMLButtonElement>('[data-showcase-target] [role="tab"]')[1]).click();
+    harness.fixture.detectChanges();
+    expect(root.querySelectorAll('[data-showcase-target] erp-avatar-picker-tile'))
+      .toHaveLength(56);
+  }, 20000);
+
   it('restores the complete multi-owner Table reference experience on demand', async () => {
     const harness = await RouterTestingHarness.create();
     await harness.navigateByUrl('/components/table', ComponentShowcase);

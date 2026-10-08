@@ -1,0 +1,497 @@
+{
+  "capturedAt": "2026-10-08T19:58:13.930Z",
+  "aggregateAssetSha256": "39DA4F26B504C58C39B5073809479EC9FE916D9E3995AC510BAC58432977C4E8",
+  "pickerMeasurements": [
+    {
+      "file": "picker-light-rtl-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "gender": "male",
+      "shape": "circle",
+      "size": "md",
+      "targetCount": 1,
+      "tabText": [
+        "ذكر60",
+        "أنثى56"
+      ],
+      "tileCount": 60,
+      "imageCount": 60,
+      "loadedImages": 60,
+      "brokenImages": 0,
+      "lazyImages": 60,
+      "picker": {
+        "left": 856,
+        "top": 65.359375,
+        "right": 1376,
+        "bottom": 790.953125,
+        "width": 520,
+        "height": 725.59375
+      },
+      "grid": {
+        "left": 877,
+        "top": 256.65625,
+        "right": 1355,
+        "bottom": 696.65625,
+        "width": 478,
+        "height": 440,
+        "columns": 5,
+        "gap": "12px",
+        "scrollWidth": 468,
+        "clientWidth": 468
+      },
+      "tile": {
+        "left": 1269.8125,
+        "top": 268.65625,
+        "right": 1353,
+        "bottom": 351.84375,
+        "width": 83.1875,
+        "height": 83.1875
+      },
+      "avatar": {
+        "left": 1292.40625,
+        "top": 291.25,
+        "right": 1330.40625,
+        "bottom": 329.25,
+        "width": 38,
+        "height": 38
+      },
+      "selectedIndicator": {
+        "left": 1275.7855224609375,
+        "top": 274.6292724609375,
+        "right": 1297.8394775390625,
+        "bottom": 296.6832275390625,
+        "width": 22.053955078125,
+        "height": 22.053955078125
+      },
+      "staged": {
+        "selectedTiles": 1,
+        "confirmEnabled": true,
+        "previewSource": "/assets/honesty-erp-avatars/users/male/avatar-01.png"
+      },
+      "confirmEvent": true,
+      "pageHorizontalOverflow": 0
+    },
+    {
+      "file": "picker-dark-ltr-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "gender": "female",
+      "shape": "rounded",
+      "size": "lg",
+      "targetCount": 1,
+      "tabText": [
+        "ذكر60",
+        "أنثى56"
+      ],
+      "tileCount": 56,
+      "imageCount": 56,
+      "loadedImages": 56,
+      "brokenImages": 0,
+      "lazyImages": 56,
+      "picker": {
+        "left": 856,
+        "top": 65.359375,
+        "right": 1376,
+        "bottom": 790.953125,
+        "width": 520,
+        "height": 725.59375
+      },
+      "grid": {
+        "left": 877,
+        "top": 256.65625,
+        "right": 1355,
+        "bottom": 696.65625,
+        "width": 478,
+        "height": 440,
+        "columns": 5,
+        "gap": "12px",
+        "scrollWidth": 468,
+        "clientWidth": 468
+      },
+      "tile": {
+        "left": 879,
+        "top": 268.65625,
+        "right": 962.1875,
+        "bottom": 351.84375,
+        "width": 83.1875,
+        "height": 83.1875
+      },
+      "avatar": {
+        "left": 895.59375,
+        "top": 285.25,
+        "right": 945.59375,
+        "bottom": 335.25,
+        "width": 50,
+        "height": 50
+      },
+      "selectedIndicator": {
+        "left": 934.1875,
+        "top": 274.65625,
+        "right": 956.1875,
+        "bottom": 296.65625,
+        "width": 22,
+        "height": 22
+      },
+      "staged": {
+        "selectedTiles": 1,
+        "confirmEnabled": true,
+        "previewSource": "/assets/honesty-erp-avatars/users/female/avatar-21.png"
+      },
+      "confirmEvent": true,
+      "pageHorizontalOverflow": 0
+    },
+    {
+      "file": "picker-light-rtl-768.png",
+      "viewport": {
+        "width": 768,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "gender": "male",
+      "shape": "square",
+      "size": "xl",
+      "targetCount": 1,
+      "tabText": [
+        "ذكر60",
+        "أنثى56"
+      ],
+      "tileCount": 60,
+      "imageCount": 60,
+      "loadedImages": 60,
+      "brokenImages": 0,
+      "lazyImages": 60,
+      "picker": {
+        "left": 192,
+        "top": 65.359375,
+        "right": 712,
+        "bottom": 790.953125,
+        "width": 520,
+        "height": 725.59375
+      },
+      "grid": {
+        "left": 213,
+        "top": 256.65625,
+        "right": 691,
+        "bottom": 696.65625,
+        "width": 478,
+        "height": 440,
+        "columns": 5,
+        "gap": "12px",
+        "scrollWidth": 468,
+        "clientWidth": 468
+      },
+      "tile": {
+        "left": 605.8125,
+        "top": 268.65625,
+        "right": 689,
+        "bottom": 351.84375,
+        "width": 83.1875,
+        "height": 83.1875
+      },
+      "avatar": {
+        "left": 613.40625,
+        "top": 276.25,
+        "right": 681.40625,
+        "bottom": 344.25,
+        "width": 68,
+        "height": 68
+      },
+      "selectedIndicator": {
+        "left": 611.8125,
+        "top": 274.65625,
+        "right": 633.8125,
+        "bottom": 296.65625,
+        "width": 22,
+        "height": 22
+      },
+      "staged": {
+        "selectedTiles": 1,
+        "confirmEnabled": true,
+        "previewSource": "/assets/honesty-erp-avatars/users/male/avatar-01.png"
+      },
+      "confirmEvent": true,
+      "pageHorizontalOverflow": 0
+    },
+    {
+      "file": "picker-dark-rtl-390.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "rtl",
+      "gender": "female",
+      "shape": "circle",
+      "size": "2xl",
+      "targetCount": 1,
+      "tabText": [
+        "ذكر60",
+        "أنثى56"
+      ],
+      "tileCount": 56,
+      "imageCount": 56,
+      "loadedImages": 56,
+      "brokenImages": 0,
+      "lazyImages": 56,
+      "picker": {
+        "left": 33,
+        "top": 108.546875,
+        "right": 342,
+        "bottom": 918.765625,
+        "width": 309,
+        "height": 810.21875
+      },
+      "grid": {
+        "left": 50,
+        "top": 299.84375,
+        "right": 325,
+        "bottom": 772.46875,
+        "width": 275,
+        "height": 472.625,
+        "columns": 2,
+        "gap": "8px",
+        "scrollWidth": 265,
+        "clientWidth": 265
+      },
+      "tile": {
+        "left": 196.5,
+        "top": 307.84375,
+        "right": 323,
+        "bottom": 434.34375,
+        "width": 126.5,
+        "height": 126.5
+      },
+      "avatar": {
+        "left": 223.75,
+        "top": 335.09375,
+        "right": 295.75,
+        "bottom": 407.09375,
+        "width": 72,
+        "height": 72
+      },
+      "selectedIndicator": {
+        "left": 202.5,
+        "top": 313.84375,
+        "right": 224.5,
+        "bottom": 335.84375,
+        "width": 22,
+        "height": 22
+      },
+      "staged": {
+        "selectedTiles": 1,
+        "confirmEnabled": true,
+        "previewSource": "/assets/honesty-erp-avatars/users/female/avatar-21.png"
+      },
+      "confirmEvent": true,
+      "pageHorizontalOverflow": 0
+    },
+    {
+      "file": "picker-light-ltr-320.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "theme": "light",
+      "direction": "ltr",
+      "gender": "male",
+      "shape": "square",
+      "size": "5xl",
+      "targetCount": 1,
+      "tabText": [
+        "ذكر60",
+        "أنثى56"
+      ],
+      "tileCount": 60,
+      "imageCount": 60,
+      "loadedImages": 60,
+      "brokenImages": 0,
+      "lazyImages": 60,
+      "picker": {
+        "left": 33,
+        "top": 152.546875,
+        "right": 272,
+        "bottom": 962.765625,
+        "width": 239,
+        "height": 810.21875
+      },
+      "grid": {
+        "left": 50,
+        "top": 343.84375,
+        "right": 255,
+        "bottom": 816.46875,
+        "width": 205,
+        "height": 472.625,
+        "columns": 1,
+        "gap": "8px",
+        "scrollWidth": 195,
+        "clientWidth": 195
+      },
+      "tile": {
+        "left": 52,
+        "top": 351.84375,
+        "right": 243,
+        "bottom": 542.84375,
+        "width": 191,
+        "height": 191
+      },
+      "avatar": {
+        "left": 75.5,
+        "top": 375.34375,
+        "right": 219.5,
+        "bottom": 519.34375,
+        "width": 144,
+        "height": 144
+      },
+      "selectedIndicator": {
+        "left": 215,
+        "top": 357.84375,
+        "right": 237,
+        "bottom": 379.84375,
+        "width": 22,
+        "height": 22
+      },
+      "staged": {
+        "selectedTiles": 1,
+        "confirmEnabled": true,
+        "previewSource": "/assets/honesty-erp-avatars/users/male/avatar-01.png"
+      },
+      "confirmEvent": true,
+      "pageHorizontalOverflow": 0
+    }
+  ],
+  "avatarMeasurements": [
+    {
+      "file": "avatar-circle-online-light-rtl.png",
+      "viewport": {
+        "width": 768,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "shape": "circle",
+      "size": "2xl",
+      "presence": "online",
+      "targetCount": 1,
+      "avatar": {
+        "left": 624,
+        "top": 65.359375,
+        "right": 712,
+        "bottom": 153.359375,
+        "width": 88,
+        "height": 88
+      },
+      "image": {
+        "left": 625,
+        "top": 66.359375,
+        "right": 711,
+        "bottom": 152.359375,
+        "width": 86,
+        "height": 86
+      },
+      "presenceIndicator": {
+        "left": 697.7000122070312,
+        "top": 139.0593719482422,
+        "right": 719.7000122070312,
+        "bottom": 161.0593719482422,
+        "width": 22,
+        "height": 22
+      },
+      "imageSource": "/assets/honesty-erp-avatars/users/male/avatar-male-115.png",
+      "imageLoaded": true,
+      "brokenImages": 0,
+      "pageHorizontalOverflow": 0
+    },
+    {
+      "file": "avatar-rounded-away-dark-ltr.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "shape": "rounded",
+      "size": "4xl",
+      "presence": "away",
+      "targetCount": 1,
+      "avatar": {
+        "left": 230,
+        "top": 108.953125,
+        "right": 342,
+        "bottom": 220.953125,
+        "width": 112,
+        "height": 112
+      },
+      "image": {
+        "left": 231,
+        "top": 109.953125,
+        "right": 341,
+        "bottom": 219.953125,
+        "width": 110,
+        "height": 110
+      },
+      "presenceIndicator": {
+        "left": 323.79998779296875,
+        "top": 202.7531280517578,
+        "right": 351.79998779296875,
+        "bottom": 230.7531280517578,
+        "width": 28,
+        "height": 28
+      },
+      "imageSource": "/assets/honesty-erp-avatars/users/female/avatar-female-116.png",
+      "imageLoaded": true,
+      "brokenImages": 0,
+      "pageHorizontalOverflow": 0
+    },
+    {
+      "file": "avatar-square-busy-light-rtl.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "shape": "square",
+      "size": "5xl",
+      "presence": "busy",
+      "targetCount": 1,
+      "avatar": {
+        "left": 128,
+        "top": 153.140625,
+        "right": 272,
+        "bottom": 297.140625,
+        "width": 144,
+        "height": 144
+      },
+      "image": {
+        "left": 129,
+        "top": 154.140625,
+        "right": 271,
+        "bottom": 296.140625,
+        "width": 142,
+        "height": 142
+      },
+      "presenceIndicator": {
+        "left": 248.60000610351562,
+        "top": 273.7406311035156,
+        "right": 284.6000061035156,
+        "bottom": 309.7406311035156,
+        "width": 36,
+        "height": 36
+      },
+      "imageSource": "/assets/honesty-erp-avatars/users/male/avatar-male-102.png",
+      "imageLoaded": true,
+      "brokenImages": 0,
+      "pageHorizontalOverflow": 0
+    }
+  ],
+  "diagnostics": []
+}

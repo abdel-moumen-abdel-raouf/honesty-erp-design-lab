@@ -1,5 +1,23 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Global 3D avatar asset-library binding decision — 2026-10-08
+
+The 116 Product Owner-supplied PNGs under the import-time provenance directory
+`C:\Users\Misrtech\Downloads\3d-avatars\` supersede the previous system
+avatar collection. Production owns the copied assets and manifest under
+`public/assets/honesty-erp-avatars/users/` and never depends on that Windows
+path. The catalog must remain exactly 116/60/56 with unique IDs, URLs and source
+numbers 1..116, verified PNG structure/CRC/inflation, 512 x 512 dimensions,
+transparency, byte sizes, and SHA-256 checksums.
+
+Compatibility is binding: `avatar-01..20` remain male with the same URLs and
+map to male sources 1..20; `avatar-21..40` remain female with the same URLs and
+map to female sources 26..45. Remaining IDs include gender and three-digit
+source number. AvatarPicker consumes the canonical catalog and ErpAvatar remains
+the sole image owner. Picker tiles may request lazy browser loading; ErpAvatar's
+default stays eager. No image transformation, dependency, visual redesign,
+Shell phase, budget, timeout, retry, or theme/overlay change is authorized.
+
 ## Shell S1 final contrast and scroll-ownership binding decision — 2026-10-08
 
 `ErpUserMenu` surface foreground must resolve through its existing semantic

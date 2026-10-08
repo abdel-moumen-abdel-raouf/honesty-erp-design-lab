@@ -321,12 +321,6 @@ const FIXTURE_INPUTS = new Map([
   ['ErpAlert', {title: 'تنبيه تشغيلي'}],
   ['ErpAppShell', {navigationItems: [{id: 'finance', label: 'المالية', icon: 'wallet'}]}],
   ['ErpAvatar', {name: 'أميرة حداد'}],
-  ['ErpAvatarPicker', {avatars: [
-    {id: 'avatar-01', gender: 'male', imageUrl: '/assets/honesty-erp-avatars/users/male/avatar-01.png', label: 'صورة ١'},
-    {id: 'avatar-02', gender: 'male', imageUrl: '/assets/honesty-erp-avatars/users/male/avatar-02.png', label: 'صورة ٢'},
-    {id: 'avatar-21', gender: 'female', imageUrl: '/assets/honesty-erp-avatars/users/female/avatar-21.png', label: 'صورة ٢١'},
-    {id: 'avatar-22', gender: 'female', imageUrl: '/assets/honesty-erp-avatars/users/female/avatar-22.png', label: 'صورة ٢٢'},
-  ]}],
   ['ErpBranchSelector', {branches: [{id: 'cairo', label: 'فرع القاهرة'}]}],
   ['ErpBreadcrumbs', {items: [{id: 'home', label: 'الرئيسية', href: '/'}]}],
   ['ErpButton', {label: 'تنفيذ الإجراء'}],
@@ -1079,6 +1073,7 @@ function generatedShowcaseOwner(entry) {
   const ownerPath = entry.showcaseOwnerPath;
   const componentImport = relativeShowcaseImport(ownerPath, entry.sourcePath);
   const isCva = CVA_COMPONENTS.has(entry.className);
+  const isAvatarPicker = entry.className === 'ErpAvatarPicker';
   const hasCvaDisabled = isCva && entry.publicApi.inputs.some((inputApi) => inputApi.name === 'disabled');
   const isFloatingPreview = ['ErpFab', 'ErpExtendedFab', 'ErpFabMenu'].includes(entry.className);
   const hasDirectionalPreview = isFloatingPreview || entry.className === 'ErpUserMenu';
@@ -1105,6 +1100,9 @@ function generatedShowcaseOwner(entry) {
     importLines.push(`import {takeUntilDestroyed} from '@angular/core/rxjs-interop';`);
     imports.add('ReactiveFormsModule');
   }
+  if (isAvatarPicker) {
+    importLines.push(`import {ERP_AVATAR_CATALOG} from '../../../controls/avatar-picker/avatar-picker-contracts';`);
+  }
   if (projection.includes('<erp-button')) {
     if (entry.className !== 'ErpButton') importLines.push(`import {ErpButton} from '../../../controls/button/button';`);
     imports.add('ErpButton');
@@ -1129,9 +1127,10 @@ function generatedShowcaseOwner(entry) {
   const className = `${entry.className}Showcase`;
   const inputBindings = entry.publicApi.inputs
     .filter((inputApi) => !(hasCvaDisabled && inputApi.name === 'disabled'))
-    .map((inputApi) =>
-    `[${inputApi.name === 'forId' ? 'for' : inputApi.name}]="$any(value('${inputApi.name}'))"`,
-  );
+    .map((inputApi) => inputApi.name === 'avatars' && isAvatarPicker
+      ? `[avatars]="$any(effectiveAvatars())"`
+      : `[${inputApi.name === 'forId' ? 'for' : inputApi.name}]="$any(value('${inputApi.name}'))"`,
+    );
   for (const modelApi of entry.publicApi.models) {
     inputBindings.push(`[${modelApi.name}]="$any(value('${modelApi.name}'))"`);
     inputBindings.push(`(${modelApi.name}Change)="recordModel('${modelApi.name}', $event)"`);
@@ -1175,7 +1174,7 @@ function generatedShowcaseOwner(entry) {
   const userMenuPresetHandler = entry.className === 'ErpUserMenu'
     ? `    if (change.control.name === '$userPreset') {\n      this.liveValues.update((current) => ({\n        ...current,\n        '$userPreset': change.value,\n        user: USER_MENU_PRESETS[String(change.value)] ?? current['user'],\n      }));\n      return;\n    }\n`
     : '';
-  const source = `${importLines.join('\n')}\n\nconst ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === '${entry.id}')!;${userMenuPresetSource}\n@Component({\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  selector: 'app-${entry.id}-showcase',\n  imports: [${[...imports].join(', ')}],\n  templateUrl: './${entry.id}-showcase.html',\n  styleUrl: './${entry.id}-showcase.scss',\n})\nexport class ${className} {\n  readonly entry = ENTRY;\n  readonly controls = ENTRY.showcaseControls;\n  readonly lastEvent = signal('لم يحدث تفاعل بعد');\n  readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});\n  readonly cvaValue = signal<unknown>(${JSON.stringify(initialCvaValue)});\n  readonly controlValues = computed<Readonly<Record<string, unknown>>>(() => ({\n    ...this.liveValues(),\n    '$value': this.cvaValue(),\n  }));\n${isCva ? `  readonly control = new FormControl<unknown>(${JSON.stringify({value: initialCvaValue, disabled: Boolean(entry.showcaseInitialValues?.disabled)})});\n\n  constructor() {\n    this.control.valueChanges.pipe(takeUntilDestroyed()).subscribe((value) => {\n      this.cvaValue.set(value);\n      this.recordEvent('valueChange', value);\n    });\n  }\n` : ''}\n  readonly previewInline = computed(() => Number(this.liveValues()['$previewInline'] ?? 80));\n  readonly previewBlock = computed(() => Number(this.liveValues()['$previewBlock'] ?? 75));\n  readonly previewDirection = computed(() => this.liveValues()['$previewDirection'] === 'ltr' ? 'ltr' : 'rtl');\n\n  value(name: string): unknown {\n    return this.liveValues()[name];\n  }\n\n  applyControl(change: ErpShowcaseControlChange): void {\n    if (change.control.source === 'cva') {\n${isCva ? `      this.control.setValue(change.value);` : `      this.cvaValue.set(change.value);`}\n      return;\n    }\n${userMenuPresetHandler}${hasCvaDisabled ? `    if (change.control.name === 'disabled') {\n      this.liveValues.update((current) => ({...current, disabled: change.value}));\n      if (change.value) this.control.disable();\n      else this.control.enable();\n      return;\n    }\n` : ''}    const value = change.control.kind === 'function'\n+      ? this.functionPreset(change.control.name, change.value)\n+      : change.value;\n+    this.liveValues.update((current) => ({...current, [change.control.name]: value}));\n+  }\n\n  recordModel(name: string, value: unknown): void {\n    this.liveValues.update((current) => ({...current, [name]: value}));\n    this.recordEvent(\`${'${name}'}Change\`, value);\n  }\n\n  recordEvent(name: string, value: unknown): void {\n    let rendered = '';\n    try { rendered = typeof value === 'string' ? value : JSON.stringify(value); }\n    catch { rendered = String(value); }\n    this.lastEvent.set(\`${'${name}'}: ${'${rendered}'}\`);\n  }\n\n  private functionPreset(name: string, value: unknown): unknown {\n    if (value !== 'sample') return null;\n    if (/comparator/i.test(name)) return () => 0;\n    if (/formatter/i.test(name)) return (candidate: unknown) => String(candidate ?? '');\n    if (/disabled/i.test(name)) return () => false;\n    if (/filter|predicate/i.test(name)) return () => true;\n    return (candidate: unknown) => candidate;\n  }\n}\n`;
+  const source = `${importLines.join('\n')}\n\nconst ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === '${entry.id}')!;${userMenuPresetSource}\n@Component({\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  selector: 'app-${entry.id}-showcase',\n  imports: [${[...imports].join(', ')}],\n  templateUrl: './${entry.id}-showcase.html',\n  styleUrl: './${entry.id}-showcase.scss',\n})\nexport class ${className} {\n  readonly entry = ENTRY;\n  readonly controls = ENTRY.showcaseControls;\n  readonly lastEvent = signal('لم يحدث تفاعل بعد');\n  readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});\n  readonly cvaValue = signal<unknown>(${JSON.stringify(initialCvaValue)});\n  readonly controlValues = computed<Readonly<Record<string, unknown>>>(() => ({\n    ...this.liveValues(),\n    '$value': this.cvaValue(),\n  }));\n${isCva ? `  readonly control = new FormControl<unknown>(${JSON.stringify({value: initialCvaValue, disabled: Boolean(entry.showcaseInitialValues?.disabled)})});\n\n  constructor() {\n    this.control.valueChanges.pipe(takeUntilDestroyed()).subscribe((value) => {\n      this.cvaValue.set(value);\n      this.recordEvent('valueChange', value);\n    });\n  }\n` : ''}${isAvatarPicker ? `  readonly defaultAvatars = ERP_AVATAR_CATALOG;\n\n  effectiveAvatars(): unknown {\n    const avatars = this.value('avatars');\n    return Array.isArray(avatars) ? avatars : this.defaultAvatars;\n  }\n\n` : ''}\n  readonly previewInline = computed(() => Number(this.liveValues()['$previewInline'] ?? 80));\n  readonly previewBlock = computed(() => Number(this.liveValues()['$previewBlock'] ?? 75));\n  readonly previewDirection = computed(() => this.liveValues()['$previewDirection'] === 'ltr' ? 'ltr' : 'rtl');\n\n  value(name: string): unknown {\n    return this.liveValues()[name];\n  }\n\n  applyControl(change: ErpShowcaseControlChange): void {\n    if (change.control.source === 'cva') {\n${isCva ? `      this.control.setValue(change.value);` : `      this.cvaValue.set(change.value);`}\n      return;\n    }\n${userMenuPresetHandler}${hasCvaDisabled ? `    if (change.control.name === 'disabled') {\n      this.liveValues.update((current) => ({...current, disabled: change.value}));\n      if (change.value) this.control.disable();\n      else this.control.enable();\n      return;\n    }\n` : ''}    const value = change.control.kind === 'function'\n+      ? this.functionPreset(change.control.name, change.value)\n+      : change.value;\n+    this.liveValues.update((current) => ({...current, [change.control.name]: value}));\n+  }\n\n  recordModel(name: string, value: unknown): void {\n    this.liveValues.update((current) => ({...current, [name]: value}));\n    this.recordEvent(\`${'${name}'}Change\`, value);\n  }\n\n  recordEvent(name: string, value: unknown): void {\n    let rendered = '';\n    try { rendered = typeof value === 'string' ? value : JSON.stringify(value); }\n    catch { rendered = String(value); }\n    this.lastEvent.set(\`${'${name}'}: ${'${rendered}'}\`);\n  }\n\n  private functionPreset(name: string, value: unknown): unknown {\n    if (value !== 'sample') return null;\n    if (/comparator/i.test(name)) return () => 0;\n    if (/formatter/i.test(name)) return (candidate: unknown) => String(candidate ?? '');\n    if (/disabled/i.test(name)) return () => false;\n    if (/filter|predicate/i.test(name)) return () => true;\n    return (candidate: unknown) => candidate;\n  }\n}\n`;
   const normalizedSource = source
     .replaceAll('\n+', '\n')
     .replace('!;\n@Component', '!;\n\n@Component');

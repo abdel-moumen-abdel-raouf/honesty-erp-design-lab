@@ -1,5 +1,13 @@
 # Inputs Product Owner Review Findings V1
 
+## Authoritative continuity note — 2026-10-08 — Avatar asset replacement
+
+No Input visual or behavioral contract changed. The bounded task replaces only
+the system-owned avatar asset collection, generates the AvatarPicker catalog
+from its canonical manifest, and adds an ErpAvatar-owned loading hint used by
+Picker tiles. Existing Input findings remain unchanged. Product Owner review of
+the new 116-image library is pending; no Input or Shell phase is authorized.
+
 ## Authoritative continuity note — 2026-10-08 — UserMenu contrast and scroll gate
 
 No Input contract changed. This bounded Shell correction changes only

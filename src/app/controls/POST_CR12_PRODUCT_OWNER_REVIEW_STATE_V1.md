@@ -1,5 +1,15 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Authoritative current review state — 2026-10-08 — 3D avatar asset collection
+
+The Product Owner's 116 supplied 3D PNGs supersede the previous system avatar
+collection. Current technical evidence records exact 116/60/56 inventory,
+source numbers 1..116, 40 compatible legacy IDs/URLs, complete default
+AvatarPicker tabs, ErpAvatar-only rendering, lazy tile loading, zero broken
+loaded images, and zero horizontal overflow across 320/390/768/1440 in both
+system themes and directions. This is technical evidence only; Product Owner
+visual acceptance remains pending and no Shell S2 or adjacent wave is open.
+
 ## Authoritative current review state — 2026-10-08 — UserMenu contrast and scroll correction
 
 `ErpUserMenu` remains the sole Shell S1 visual candidate. Current computed

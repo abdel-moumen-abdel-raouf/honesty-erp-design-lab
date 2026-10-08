@@ -33659,6 +33659,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "defaultExpression": "null"
         },
         {
+          "name": "imageLoading",
+          "required": false,
+          "values": [
+            "eager",
+            "lazy"
+          ],
+          "type": "ErpAvatarImageLoading",
+          "hasDefault": true,
+          "defaultValue": "eager",
+          "defaultExpression": "'eager'"
+        },
+        {
           "name": "initials",
           "required": false,
           "values": [],
@@ -33876,6 +33888,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "ErpAvatarCursor",
       "ErpAvatarFrame",
       "ErpAvatarHoverMotion",
+      "ErpAvatarImageLoading",
       "ErpAvatarPresence",
       "ErpAvatarPresenceIndicator",
       "ErpAvatarPresenceMotion",
@@ -34265,6 +34278,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "هوية بصرية بصورة أو أحرف أو أيقونة وحضور.",
     "showcaseInitialValues": {
       "src": null,
+      "imageLoading": "eager",
       "initials": null,
       "alt": "",
       "size": "md",
@@ -34303,6 +34317,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "type": "string | null",
         "options": [],
         "initialValue": null
+      },
+      {
+        "name": "imageLoading",
+        "label": "imageLoading",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpAvatarImageLoading",
+        "options": [
+          "eager",
+          "lazy"
+        ],
+        "initialValue": "eager"
       },
       {
         "name": "initials",
@@ -34532,6 +34559,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredInputs": [
         "name",
         "src",
+        "imageLoading",
         "initials",
         "alt",
         "size",
@@ -34554,6 +34582,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "avatarClick"
       ],
       "coveredValues": {
+        "imageLoading": [
+          "eager",
+          "lazy"
+        ],
         "size": [
           "xs",
           "sm",
@@ -40561,32 +40593,6 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "avatars": [
-            {
-              "id": "avatar-01",
-              "gender": "male",
-              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
-              "label": "صورة ١"
-            },
-            {
-              "id": "avatar-02",
-              "gender": "male",
-              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-02.png",
-              "label": "صورة ٢"
-            },
-            {
-              "id": "avatar-21",
-              "gender": "female",
-              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
-              "label": "صورة ٢١"
-            },
-            {
-              "id": "avatar-22",
-              "gender": "female",
-              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
-              "label": "صورة ٢٢"
-            }
-          ],
           "value": null,
           "gender": null
         }
@@ -40595,32 +40601,6 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled-false",
         "label": "disabled: false",
         "inputs": {
-          "avatars": [
-            {
-              "id": "avatar-01",
-              "gender": "male",
-              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
-              "label": "صورة ١"
-            },
-            {
-              "id": "avatar-02",
-              "gender": "male",
-              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-02.png",
-              "label": "صورة ٢"
-            },
-            {
-              "id": "avatar-21",
-              "gender": "female",
-              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
-              "label": "صورة ٢١"
-            },
-            {
-              "id": "avatar-22",
-              "gender": "female",
-              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
-              "label": "صورة ٢٢"
-            }
-          ],
           "value": null,
           "gender": null,
           "disabled": false
@@ -40630,32 +40610,6 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled-true",
         "label": "disabled: true",
         "inputs": {
-          "avatars": [
-            {
-              "id": "avatar-01",
-              "gender": "male",
-              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
-              "label": "صورة ١"
-            },
-            {
-              "id": "avatar-02",
-              "gender": "male",
-              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-02.png",
-              "label": "صورة ٢"
-            },
-            {
-              "id": "avatar-21",
-              "gender": "female",
-              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
-              "label": "صورة ٢١"
-            },
-            {
-              "id": "avatar-22",
-              "gender": "female",
-              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
-              "label": "صورة ٢٢"
-            }
-          ],
           "value": null,
           "gender": null,
           "disabled": true
@@ -40665,32 +40619,6 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-default",
         "label": "size: default",
         "inputs": {
-          "avatars": [
-            {
-              "id": "avatar-01",
-              "gender": "male",
-              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
-              "label": "صورة ١"
-            },
-            {
-              "id": "avatar-02",
-              "gender": "male",
-              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-02.png",
-              "label": "صورة ٢"
-            },
-            {
-              "id": "avatar-21",
-              "gender": "female",
-              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
-              "label": "صورة ٢١"
-            },
-            {
-              "id": "avatar-22",
-              "gender": "female",
-              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
-              "label": "صورة ٢٢"
-            }
-          ],
           "value": null,
           "gender": null,
           "size": "default"
@@ -40700,32 +40628,6 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-compact",
         "label": "size: compact",
         "inputs": {
-          "avatars": [
-            {
-              "id": "avatar-01",
-              "gender": "male",
-              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
-              "label": "صورة ١"
-            },
-            {
-              "id": "avatar-02",
-              "gender": "male",
-              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-02.png",
-              "label": "صورة ٢"
-            },
-            {
-              "id": "avatar-21",
-              "gender": "female",
-              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
-              "label": "صورة ٢١"
-            },
-            {
-              "id": "avatar-22",
-              "gender": "female",
-              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
-              "label": "صورة ٢٢"
-            }
-          ],
           "value": null,
           "gender": null,
           "size": "compact"
@@ -40735,32 +40637,6 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "gender-male",
         "label": "gender: male",
         "inputs": {
-          "avatars": [
-            {
-              "id": "avatar-01",
-              "gender": "male",
-              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
-              "label": "صورة ١"
-            },
-            {
-              "id": "avatar-02",
-              "gender": "male",
-              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-02.png",
-              "label": "صورة ٢"
-            },
-            {
-              "id": "avatar-21",
-              "gender": "female",
-              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
-              "label": "صورة ٢١"
-            },
-            {
-              "id": "avatar-22",
-              "gender": "female",
-              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
-              "label": "صورة ٢٢"
-            }
-          ],
           "value": null,
           "gender": "male"
         }
@@ -40769,32 +40645,6 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "gender-female",
         "label": "gender: female",
         "inputs": {
-          "avatars": [
-            {
-              "id": "avatar-01",
-              "gender": "male",
-              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
-              "label": "صورة ١"
-            },
-            {
-              "id": "avatar-02",
-              "gender": "male",
-              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-02.png",
-              "label": "صورة ٢"
-            },
-            {
-              "id": "avatar-21",
-              "gender": "female",
-              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
-              "label": "صورة ٢١"
-            },
-            {
-              "id": "avatar-22",
-              "gender": "female",
-              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
-              "label": "صورة ٢٢"
-            }
-          ],
           "value": null,
           "gender": "female"
         }
@@ -40803,32 +40653,6 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
-          "avatars": [
-            {
-              "id": "avatar-01",
-              "gender": "male",
-              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
-              "label": "صورة ١"
-            },
-            {
-              "id": "avatar-02",
-              "gender": "male",
-              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-02.png",
-              "label": "صورة ٢"
-            },
-            {
-              "id": "avatar-21",
-              "gender": "female",
-              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
-              "label": "صورة ٢١"
-            },
-            {
-              "id": "avatar-22",
-              "gender": "female",
-              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
-              "label": "صورة ٢٢"
-            }
-          ],
           "value": null,
           "gender": null,
           "disabled": true
@@ -40854,33 +40678,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "avatarShape": "circle",
       "avatarSize": null,
       "value": null,
-      "gender": "male",
-      "avatars": [
-        {
-          "id": "avatar-01",
-          "gender": "male",
-          "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
-          "label": "صورة ١"
-        },
-        {
-          "id": "avatar-02",
-          "gender": "male",
-          "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-02.png",
-          "label": "صورة ٢"
-        },
-        {
-          "id": "avatar-21",
-          "gender": "female",
-          "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
-          "label": "صورة ٢١"
-        },
-        {
-          "id": "avatar-22",
-          "gender": "female",
-          "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
-          "label": "صورة ٢٢"
-        }
-      ]
+      "gender": "male"
     },
     "showcaseControls": [
       {
@@ -40891,32 +40689,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "readonly ErpAvatarCatalogItem[]",
         "options": [],
-        "initialValue": [
-          {
-            "id": "avatar-01",
-            "gender": "male",
-            "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
-            "label": "صورة ١"
-          },
-          {
-            "id": "avatar-02",
-            "gender": "male",
-            "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-02.png",
-            "label": "صورة ٢"
-          },
-          {
-            "id": "avatar-21",
-            "gender": "female",
-            "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
-            "label": "صورة ٢١"
-          },
-          {
-            "id": "avatar-22",
-            "gender": "female",
-            "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
-            "label": "صورة ٢٢"
-          }
-        ]
+        "initialValue": null
       },
       {
         "name": "title",

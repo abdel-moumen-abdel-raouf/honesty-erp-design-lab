@@ -1,5 +1,15 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Authoritative current gate — 2026-10-08 — global Avatar asset review
+
+Only the Product Owner-authorized 116-image asset replacement and bounded
+Avatar/AvatarPicker loading integration are open. The complete 60-male/56-female
+catalog is checked in, legacy selections remain compatible, AvatarPicker uses
+the full catalog by default, and all tile images continue through ErpAvatar.
+Runtime evidence covers the required responsive/theme/direction matrix with
+zero broken loaded images or horizontal overflow. Stop for Product Owner visual
+review; no visual owner, Shell S2, or later wave is authorized.
+
 ## Authoritative current gate — 2026-10-08 — UserMenu contrast and scroll review
 
 Only `ErpUserMenu` is authorized. Dark foreground inheritance and popup scroll

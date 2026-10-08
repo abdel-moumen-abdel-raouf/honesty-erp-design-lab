@@ -259,6 +259,7 @@ function validateRepository() {
   for (const entry of buildCatalog().filter((candidate) => candidate.classification === 'PUBLIC ERP COMPONENT')) {
     const htmlPath = entry.showcaseOwnerPath.replace(/\.ts$/, '.html');
     const html = fs.readFileSync(path.join(REPO_ROOT, htmlPath), 'utf8');
+    const source = fs.readFileSync(path.join(REPO_ROOT, entry.showcaseOwnerPath), 'utf8');
     if (!html.includes(`data-dedicated-showcase="${entry.id}"`) ||
         !html.includes('data-showcase-case="live"') ||
         !html.includes(`<${entry.selector}`)) {
@@ -285,7 +286,14 @@ function validateRepository() {
       const cvaDisabled = inputApi.name === 'disabled' &&
         html.includes('[formControl]="control"') &&
         html.includes('data-showcase-cva-disabled-control');
-      if (!cvaDisabled && !html.includes(`[${bindingName}]="$any(value('${inputApi.name}'))"`)) {
+      const avatarPickerCatalogFallback = entry.className === 'ErpAvatarPicker' &&
+        inputApi.name === 'avatars' &&
+        html.includes('[avatars]="$any(effectiveAvatars())"') &&
+        source.includes("import {ERP_AVATAR_CATALOG} from '../../../controls/avatar-picker/avatar-picker-contracts';") &&
+        source.includes('readonly defaultAvatars = ERP_AVATAR_CATALOG;') &&
+        source.includes('return Array.isArray(avatars) ? avatars : this.defaultAvatars;');
+      if (!cvaDisabled && !avatarPickerCatalogFallback &&
+          !html.includes(`[${bindingName}]="$any(value('${inputApi.name}'))"`)) {
         errors.push(`${entry.className} live target is not bound to input ${inputApi.name}`);
       }
     }

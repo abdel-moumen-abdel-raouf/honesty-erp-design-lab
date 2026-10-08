@@ -258,6 +258,22 @@ describe('ErpAvatar', () => {
     expect(image.getAttribute('aria-hidden')).toBe('true');
   });
 
+  it('keeps eager loading by default and allows AvatarPicker to request native lazy loading', () => {
+    const fixture = TestBed.createComponent(ErpAvatar);
+    fixture.componentRef.setInput('name', 'System avatar');
+    fixture.componentRef.setInput('src', '/avatar.png');
+    fixture.detectChanges();
+
+    let image = fixture.nativeElement.querySelector('img') as HTMLImageElement;
+    expect(image.getAttribute('loading')).toBe('eager');
+    expect(image.getAttribute('decoding')).toBe('async');
+
+    fixture.componentRef.setInput('imageLoading', 'lazy');
+    fixture.detectChanges();
+    image = fixture.nativeElement.querySelector('img') as HTMLImageElement;
+    expect(image.getAttribute('loading')).toBe('lazy');
+  });
+
   it('renders loading as a visible frame without duplicate content', () => {
     const fixture = TestBed.createComponent(ErpAvatar);
     fixture.componentRef.setInput('name', 'User');

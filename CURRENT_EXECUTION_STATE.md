@@ -1,5 +1,24 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Authoritative current execution state — 2026-10-08 — 116-image 3D avatar library
+
+The Product Owner-authorized asset replacement entered from clean live
+`main` at `30d6bd942015743fb3f02c7faeb563961fa978ac`. The canonical system
+avatar library now contains 116 verified 512 x 512 transparent PNGs: 60 male
+and 56 female, covering source numbers 1..116 exactly once. The aggregate
+library SHA-256 is
+`39DA4F26B504C58C39B5073809479EC9FE916D9E3995AC510BAC58432977C4E8`.
+
+The 40 existing IDs, gender associations, and URLs remain compatible; the
+remaining IDs are source-traceable. AvatarPicker exposes the full catalog by
+default and lazy-loads tile images through ErpAvatar. Runtime evidence covers
+the required viewports, themes, directions, shapes, sizes, presence, selection,
+preview, confirm, broken-image, and overflow checks. Product Owner visual
+review remains pending. Canonical verification passes 122/122 test files and
+779/779 tests, all lint/governance, both typechecks, production build, and zero
+warnings. The initial bundle is 490.24 kB / 105.56 kB estimated transfer. No
+Shell S2 or adjacent visual wave is open.
+
 ## Authoritative current execution state — 2026-10-08 — Shell S1 dark contrast and scroll ownership
 
 This bounded correction entered from clean `main` at

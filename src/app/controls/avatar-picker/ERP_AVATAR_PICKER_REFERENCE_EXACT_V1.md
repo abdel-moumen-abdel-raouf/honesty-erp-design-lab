@@ -77,8 +77,16 @@ and fallback are forwarded to the exact-reference `ErpAvatar` owner.
 
 ## Asset contract
 
-- The current bounded catalog remains `20 male + 20 female = 40` PNG assets.
-- `ERP_AVATAR_CATALOG` and the checked-in manifest remain the source of truth.
+- The Product Owner's 116-image 3D library supersedes the former 40-image
+  collection: `60 male + 56 female = 116` PNG assets.
+- The checked-in manifest is the canonical source of truth;
+  `ERP_AVATAR_CATALOG` is generated and validated from it.
+- The former 40 IDs and URLs retain their gender and path through the explicit
+  compatibility crosswalk. New IDs encode gender and source number.
+- Picker tiles request native lazy loading through `ErpAvatar`; AvatarPicker
+  still owns no native image renderer.
+- The complete asset and migration contract is
+  `ERP_AVATAR_ASSET_LIBRARY_V2.md`.
 - No image is duplicated, recolored, copied, or loaded from a local Windows path.
 - Searchable labels are derived for accessible presentation; no unsupported
   domain category metadata is invented.

@@ -1,5 +1,19 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Current gate — Product Owner 116-image 3D avatar library
+
+Start from live `main`. Read
+`src/app/controls/avatar-picker/ERP_AVATAR_ASSET_LIBRARY_V2.md`, the canonical
+`public/assets/honesty-erp-avatars/users/manifest.json`, and
+`docs/review-evidence/erp-avatar-library/README.md`. The former 40-image
+system collection is superseded by 116 Product Owner PNGs: 60 male and 56
+female. Legacy `avatar-01..40` IDs/genders/URLs are preserved, while the full
+catalog is the AvatarPicker workbench default. This is an asset replacement and
+bounded loading integration only; visual contracts and Shell phases remain
+closed. Canonical verification passes 122/122 test files and 779/779 tests,
+all lint/governance, both typechecks, production build, and zero warnings.
+Stop for external Product Owner visual review.
+
 ## Current gate — Shell S1 UserMenu dark contrast and scroll ownership
 
 Start from live `main` and read

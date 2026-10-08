@@ -9,6 +9,8 @@
         <img
           class="avatar__image"
           [src]="src()!"
+          [attr.loading]="imageLoading()"
+          decoding="async"
           alt=""
           aria-hidden="true"
           (error)="failImage()"

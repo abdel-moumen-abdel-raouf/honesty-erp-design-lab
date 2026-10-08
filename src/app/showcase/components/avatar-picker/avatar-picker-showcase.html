@@ -7,7 +7,7 @@
       <erp-text type="heading-3">المعاينة الحية</erp-text>
       <erp-avatar-picker
           data-showcase-target
-          [avatars]="$any(value('avatars'))"
+          [avatars]="$any(effectiveAvatars())"
           [title]="$any(value('title'))"
           [label]="$any(value('label'))"
           [subtitle]="$any(value('subtitle'))"

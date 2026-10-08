@@ -1,5 +1,21 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Authoritative current handoff — 2026-10-08 — 3D avatar collection review
+
+Start from live `main`. This bounded asset task entered at
+`30d6bd942015743fb3f02c7faeb563961fa978ac` and replaces the former 40-image
+system library with 116 Product Owner-supplied 512 x 512 transparent PNGs.
+Read `src/app/controls/avatar-picker/ERP_AVATAR_ASSET_LIBRARY_V2.md`, the
+manifest, and `docs/review-evidence/erp-avatar-library/` first. Counts are
+116 total, 60 male, and 56 female; source numbers 1..116 are complete and
+unique; aggregate SHA-256 is
+`39DA4F26B504C58C39B5073809479EC9FE916D9E3995AC510BAC58432977C4E8`.
+Legacy IDs/genders/URLs remain compatible, AvatarPicker defaults to the entire
+catalog, and its images still render through ErpAvatar. Product Owner visual
+review is pending. Canonical verification passes 122/122 test files and
+779/779 tests, all lint/governance, both typechecks, production build, and zero
+warnings. Do not open another Shell phase or redesign a component.
+
 ## Authoritative current handoff — 2026-10-08 — Shell S1 dark contrast and scroll ownership
 
 Start from live `main`. This bounded correction entered at
