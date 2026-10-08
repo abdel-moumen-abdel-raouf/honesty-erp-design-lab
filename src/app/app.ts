@@ -1,20 +1,12 @@
 import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
 import {
   Router,
-  RouterLink,
-  RouterLinkActive,
   RouterOutlet,
 } from '@angular/router';
 import {ErpOverlayHost} from './shared/overlay/overlay-host';
 import {ErpButton} from './controls/button/button';
 import {ErpText} from './primitives/text/text';
-
-interface ErpComponentNavigationEntry {
-  readonly id: string;
-  readonly className: string;
-  readonly category: string;
-  readonly showcaseRoute: string;
-}
+import {ErpReviewCatalogNavigation} from './review-internals/review-catalog-navigation/review-catalog-navigation';
 
 export type LabTheme = 'light' | 'dark';
 
@@ -173,7 +165,7 @@ export function normalizeScreenshotCloneColors(root: HTMLElement): void {
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, ErpButton, ErpOverlayHost, ErpText],
+  imports: [RouterOutlet, ErpButton, ErpOverlayHost, ErpText, ErpReviewCatalogNavigation],
   templateUrl: './app.html',
   styleUrls: ['./app.scss', './app-part-2.scss', './app-part-3.scss', './app-part-4.scss'],
 })
@@ -185,13 +177,7 @@ export class App {
   readonly isCapturing = signal(false);
   readonly statusMessage = signal<string | null>(null);
   readonly hasError = signal(false);
-  readonly componentGroups = signal<
-    readonly {readonly category: string; readonly entries: readonly ErpComponentNavigationEntry[]}[]
-  >([]);
-
-  constructor() {
-    void this.loadComponentNavigation();
-  }
+  readonly catalogOpen = signal(false);
 
   toggleTheme(): void {
     const theme = this.theme() === 'light' ? 'dark' : 'light';
@@ -199,20 +185,12 @@ export class App {
     persistLabTheme(theme, this.storage);
   }
 
-  private async loadComponentNavigation(): Promise<void> {
-    const {ERP_COMPONENT_NAVIGATION} = await import(
-      './catalog/erp-component-navigation.generated'
-    );
-    const grouped = ERP_COMPONENT_NAVIGATION.reduce<Record<string, ErpComponentNavigationEntry[]>>(
-      (groups, entry) => {
-        (groups[entry.category] ??= []).push(entry);
-        return groups;
-      },
-      {},
-    );
-    this.componentGroups.set(
-      Object.entries(grouped).map(([category, entries]) => ({category, entries})),
-    );
+  toggleCatalog(): void {
+    this.catalogOpen.update((open) => !open);
+  }
+
+  closeCatalog(): void {
+    this.catalogOpen.set(false);
   }
 
   async captureScreenshot(): Promise<void> {

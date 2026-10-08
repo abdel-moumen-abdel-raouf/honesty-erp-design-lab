@@ -35,7 +35,7 @@ const APPROVED_MANUAL_POPOVER_TEMPLATES = new Set([
   USER_MENU_TEMPLATE,
   COLUMN_CHOOSER_TEMPLATE,
 ]);
-const SHOWCASE = 'src/app/showcase/tooltip-controls/tooltip-controls.html';
+const SHOWCASE = 'src/app/review-internals/legacy-tooltip-controls/tooltip-controls.html';
 const TOKEN_FILE = path.join(ROOT, 'src', 'styles', 'foundation', 'components', 'tooltip', '_tokens.scss');
 const TOOLTIP_STYLE_FILES = [
   'tooltip.scss',

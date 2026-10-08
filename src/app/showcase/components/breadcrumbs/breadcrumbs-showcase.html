@@ -1,0 +1,19 @@
+<erp-stack gap="default" data-dedicated-showcase="breadcrumbs" data-showcase-sections="1">
+  <erp-text type="heading-2">مسار التنقل</erp-text>
+  <erp-text type="paragraph" tone="secondary">مسار موقع منطقي مع العنصر الحالي.</erp-text>
+    <erp-surface padding="default" border="subtle" data-showcase-case="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
+        <erp-breadcrumbs
+          [items]="$any(cases[0].inputs['items'])"
+          (activated)="recordEvent('activated', $event)"
+        ></erp-breadcrumbs>
+      </erp-stack>
+    </erp-surface>
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

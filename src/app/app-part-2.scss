@@ -12,31 +12,6 @@
 // do NOT represent Foundation tokens or production design decisions.
 // =============================================================================
 
-.lab-nav-link {
-  display: inline-block;
-  flex: 0 0 auto;
-  padding: 0.35rem 0.75rem;
-  color: var(--honesty-color-text-secondary);
-  text-decoration: none;
-  border-radius: var(--honesty-radius-control);
-  font-weight: 500;
-  white-space: nowrap;
-  transition:
-    color var(--honesty-motion-duration-fast) ease,
-    background-color var(--honesty-motion-duration-fast) ease;
-
-  &:hover {
-    color: var(--honesty-color-text-primary);
-    background-color: var(--honesty-color-action-primary-subtle-bg-hover);
-  }
-
-  &.active {
-    color: var(--honesty-color-action-primary-subtle-fg);
-    background-color: var(--honesty-color-action-primary-subtle-bg);
-    font-weight: 600;
-  }
-}
-
 .lab-actions {
   display: flex;
   align-items: center;

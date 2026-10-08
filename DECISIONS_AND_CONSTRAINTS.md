@@ -19,7 +19,30 @@ Implementation agent:
 - execution only;
 - must not invent design decisions or widen scope.
 
-## Authoritative current ownership and Page decision — 2026-10-08
+## Authoritative current showcase-system decision — 2026-10-08
+
+The Product Owner rejected route existence plus generic input-only instantiation
+as sufficient showcase evidence. The current binding decision is that every
+public ERP component must have a dedicated Design-Lab-only showcase owner,
+loader, and machine-readable coverage. Missing ownership, empty hosts, missing
+projection, unexercised controlled state/outputs, or absent exact-reference
+cases are governance failures.
+
+The 77 component pages retain `ErpPage`, the native ownership registry, and the
+existing production ERP owners. Showcases do not redesign those owners. Legacy
+showcase content is migrated rather than duplicated; the migration ledger must
+remain at zero unmapped meaningful sections. Old runtime pages are redirects
+only, and the application may not restore the former navigation rows or a
+full-width link matrix.
+
+The Design Lab catalog navigation is an internal compact owner using
+`ErpSearchBox`, Arabic categories, active state, keyboard dismissal, and a
+closed-by-default narrow drawer. Runtime evidence covers all 77 routes in Light
+and Dark RTL, all redirects, and narrow layout with zero empty showcases,
+console errors/warnings, broken images, and page overflow. Technical PASS does
+not grant Product Owner visual acceptance or open a later wave.
+
+## Historical ownership and Page decision — superseded 2026-10-08
 
 The current bounded authorization entered at
 `895f985994ef2c28eae703f60d5911a5314af338`. The repository now has one

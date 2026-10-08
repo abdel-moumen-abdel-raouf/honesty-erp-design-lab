@@ -1,0 +1,75 @@
+<erp-stack gap="default" data-dedicated-showcase="empty-state" data-showcase-sections="6">
+  <erp-text type="heading-2">الحالة الفارغة</erp-text>
+  <erp-text type="paragraph" tone="secondary">حالة فارغة بعنوان ووصف وإجراءات ورسوم اختيارية.</erp-text>
+    <erp-surface padding="default" border="subtle" data-showcase-case="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
+        <erp-empty-state
+          (primaryAction)="recordEvent('primaryAction', $event)"
+          (secondaryAction)="recordEvent('secondaryAction', $event)"
+          (tertiaryAction)="recordEvent('tertiaryAction', $event)"
+        ></erp-empty-state>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="variant-no-data">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">variant: no-data</erp-text>
+        <erp-empty-state
+          [variant]="$any(cases[1].inputs['variant'])"
+          (primaryAction)="recordEvent('primaryAction', $event)"
+          (secondaryAction)="recordEvent('secondaryAction', $event)"
+          (tertiaryAction)="recordEvent('tertiaryAction', $event)"
+        ></erp-empty-state>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="variant-no-search">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">variant: no-search</erp-text>
+        <erp-empty-state
+          [variant]="$any(cases[2].inputs['variant'])"
+          (primaryAction)="recordEvent('primaryAction', $event)"
+          (secondaryAction)="recordEvent('secondaryAction', $event)"
+          (tertiaryAction)="recordEvent('tertiaryAction', $event)"
+        ></erp-empty-state>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="variant-error">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">variant: error</erp-text>
+        <erp-empty-state
+          [variant]="$any(cases[3].inputs['variant'])"
+          (primaryAction)="recordEvent('primaryAction', $event)"
+          (secondaryAction)="recordEvent('secondaryAction', $event)"
+          (tertiaryAction)="recordEvent('tertiaryAction', $event)"
+        ></erp-empty-state>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="variant-forbidden">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">variant: forbidden</erp-text>
+        <erp-empty-state
+          [variant]="$any(cases[4].inputs['variant'])"
+          (primaryAction)="recordEvent('primaryAction', $event)"
+          (secondaryAction)="recordEvent('secondaryAction', $event)"
+          (tertiaryAction)="recordEvent('tertiaryAction', $event)"
+        ></erp-empty-state>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="variant-custom">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">variant: custom</erp-text>
+        <erp-empty-state
+          [variant]="$any(cases[5].inputs['variant'])"
+          (primaryAction)="recordEvent('primaryAction', $event)"
+          (secondaryAction)="recordEvent('secondaryAction', $event)"
+          (tertiaryAction)="recordEvent('tertiaryAction', $event)"
+        ></erp-empty-state>
+      </erp-stack>
+    </erp-surface>
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

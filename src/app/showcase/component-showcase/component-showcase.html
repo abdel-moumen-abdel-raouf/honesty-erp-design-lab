@@ -4,11 +4,11 @@
       <erp-section>
         <erp-stack gap="tight">
           <erp-text type="small" tone="secondary">{{ component.category }}</erp-text>
-          <erp-text type="heading-1">{{ component.className }}</erp-text>
-          <erp-text type="paragraph" tone="secondary" selectable>{{ component.purpose }}</erp-text>
+          <erp-text type="heading-1">{{ component.displayNameAr }}</erp-text>
+          <erp-text type="paragraph" tone="secondary">{{ component.descriptionAr }}</erp-text>
           <erp-inline gap="tight" wrap="wrap">
-            <erp-text type="caption" tone="secondary" selectable>{{ component.selector }}</erp-text>
-            <erp-text type="caption" tone="secondary" selectable>{{ component.sourcePath }}</erp-text>
+            <erp-text class="component-showcase__technical-value" type="caption" tone="secondary" selectable>{{ component.selector }}</erp-text>
+            <erp-text class="component-showcase__technical-value" type="caption" tone="secondary" selectable>{{ component.sourcePath }}</erp-text>
           </erp-inline>
         </erp-stack>
       </erp-section>
@@ -19,20 +19,12 @@
             {{ component.visualReference ? 'مرجع Product Owner الدقيق' : 'العرض الحي للمكوّن' }}
           </erp-text>
           @if (component.visualReference) {
-            <erp-text type="paragraph" selectable>{{ component.visualReference }}</erp-text>
+            <erp-text class="component-showcase__technical-value" type="paragraph" selectable>{{ component.visualReference }}</erp-text>
           }
-          @for (showcaseCase of component.showcaseCases; track showcaseCase.id) {
-            <erp-surface padding="loose" border="subtle">
-              <erp-stack gap="default">
-                <erp-text type="heading-3">{{ showcaseCase.label }}</erp-text>
-                @if (componentType(); as liveComponent) {
-                  <erp-review-component-host
-                    [componentType]="liveComponent"
-                    [componentInputs]="showcaseCase.inputs"
-                  />
-                }
-              </erp-stack>
-            </erp-surface>
+          @if (showcaseType(); as dedicatedShowcase) {
+            <ng-container *ngComponentOutlet="dedicatedShowcase" />
+          } @else {
+            <erp-text type="paragraph" tone="secondary">جارٍ تحميل العرض المخصص…</erp-text>
           }
         </erp-stack>
       </erp-section>

@@ -1,0 +1,19 @@
+<erp-stack gap="default" data-dedicated-showcase="app-shell" data-showcase-sections="1">
+  <erp-text type="heading-2">إطار تطبيق ERP</erp-text>
+  <erp-text type="paragraph" tone="secondary">تكوين إطار التطبيق من الشريط العلوي والشريط الجانبي والمحتوى.</erp-text>
+    <erp-surface padding="default" border="subtle" data-showcase-case="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
+        <erp-app-shell
+          [navigationItems]="$any(cases[0].inputs['navigationItems'])"
+          (navigationActivated)="recordEvent('navigationActivated', $event)"
+        ><erp-text erpAppShellTopbarStart type="heading-3">Honesty ERP</erp-text><erp-text type="heading-3">محتوى التطبيق</erp-text><erp-text type="paragraph">ملخص العمليات اليومية</erp-text></erp-app-shell>
+      </erp-stack>
+    </erp-surface>
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

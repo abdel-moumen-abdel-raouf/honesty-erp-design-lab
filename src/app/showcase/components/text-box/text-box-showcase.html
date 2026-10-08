@@ -1,0 +1,20 @@
+<erp-stack gap="default" data-dedicated-showcase="text-box" data-showcase-sections="1">
+  <erp-text type="heading-2">حقل النص</erp-text>
+  <erp-text type="paragraph" tone="secondary">تحرير نص قياسي مع حالات الحقل.</erp-text>
+    <erp-surface padding="default" border="subtle" data-showcase-case="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
+        <erp-text-box
+          [label]="$any(cases[0].inputs['label'])"
+          [formControl]="control"
+        ></erp-text-box>
+      </erp-stack>
+    </erp-surface>
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+      <erp-text type="caption" selectable>القيمة الحالية: {{ control.value }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

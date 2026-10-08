@@ -1,0 +1,50 @@
+<nav
+  class="catalog-navigation"
+  aria-label="فهرس مكوّنات ERP"
+  tabindex="-1"
+  (keydown)="handleKeydown($event)"
+>
+  <a class="catalog-navigation__home" routerLink="/components" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    <erp-text type="heading-3">فهرس المكوّنات</erp-text>
+  </a>
+  <erp-search-box
+    mode="inline"
+    presentation="field"
+    label="بحث المكوّنات"
+    labelMode="visually-hidden"
+    placeholder="ابحث بالاسم أو الغرض"
+    [formControl]="searchControl"
+  />
+
+  <div class="catalog-navigation__groups">
+    @for (group of groups(); track group.category) {
+      <section class="catalog-navigation__group">
+        <erp-button
+          class="catalog-navigation__category"
+          size="sm"
+          variant="ghost"
+          [fullWidth]="true"
+          [label]="group.label + ' (' + group.entries.length + ')'"
+          [ariaExpanded]="categoryExpanded(group.category)"
+          (pressed)="toggleCategory(group.category)"
+        />
+        @if (categoryExpanded(group.category)) {
+          <div class="catalog-navigation__links">
+            @for (entry of group.entries; track entry.id) {
+              <a
+                class="catalog-navigation__link"
+                [routerLink]="entry.showcaseRoute"
+                routerLinkActive="active"
+              >
+                <erp-text type="small">{{ entry.displayNameAr }}</erp-text>
+                <erp-text type="caption" tone="secondary" selectable>{{ entry.className }}</erp-text>
+              </a>
+            }
+          </div>
+        }
+      </section>
+    } @empty {
+      <erp-text type="paragraph" tone="secondary">لا توجد مكوّنات مطابقة.</erp-text>
+    }
+  </div>
+</nav>

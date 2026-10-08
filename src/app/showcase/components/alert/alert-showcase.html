@@ -1,0 +1,62 @@
+<erp-stack gap="default" data-dedicated-showcase="alert" data-showcase-sections="5">
+  <erp-text type="heading-2">تنبيه</erp-text>
+  <erp-text type="paragraph" tone="secondary">رسالة ملاحظات قابلة للإغلاق عند السماح بذلك.</erp-text>
+  <erp-text type="heading-2">مرجع Product Owner الدقيق</erp-text>
+  <app-review-exact-core-showcase [focus]="'alert'" />
+  <erp-text type="heading-2">واجهة API والتوافق</erp-text>
+    <erp-surface padding="default" border="subtle" data-showcase-case="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
+        <erp-alert
+          [title]="$any(cases[0].inputs['title'])"
+          (dismissed)="recordEvent('dismissed', $event)"
+        ></erp-alert>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-info">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: info</erp-text>
+        <erp-alert
+          [title]="$any(cases[1].inputs['title'])"
+          [tone]="$any(cases[1].inputs['tone'])"
+          (dismissed)="recordEvent('dismissed', $event)"
+        ></erp-alert>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-success">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: success</erp-text>
+        <erp-alert
+          [title]="$any(cases[2].inputs['title'])"
+          [tone]="$any(cases[2].inputs['tone'])"
+          (dismissed)="recordEvent('dismissed', $event)"
+        ></erp-alert>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-warning">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: warning</erp-text>
+        <erp-alert
+          [title]="$any(cases[3].inputs['title'])"
+          [tone]="$any(cases[3].inputs['tone'])"
+          (dismissed)="recordEvent('dismissed', $event)"
+        ></erp-alert>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-danger">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: danger</erp-text>
+        <erp-alert
+          [title]="$any(cases[4].inputs['title'])"
+          [tone]="$any(cases[4].inputs['tone'])"
+          (dismissed)="recordEvent('dismissed', $event)"
+        ></erp-alert>
+      </erp-stack>
+    </erp-surface>
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

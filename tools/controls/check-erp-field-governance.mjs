@@ -8,15 +8,15 @@ const INTERNAL_ROOT = 'src/app/controls/input-family/internal/';
 const CONTROLS_ROOT = 'src/app/controls/';
 const TOKEN_ROOT = 'src/styles/foundation/components/';
 const INPUT_SHOWCASE =
-  'src/app/showcase/input-controls/input-controls.html';
+  'src/app/review-internals/legacy-input-controls/input-controls.html';
 const INPUT_SHOWCASE_SOURCE =
-  'src/app/showcase/input-controls/input-controls.ts';
+  'src/app/review-internals/legacy-input-controls/input-controls.ts';
 const INPUT_SHOWCASE_STYLE =
-  'src/app/showcase/input-controls/input-controls.scss';
+  'src/app/review-internals/legacy-input-controls/input-controls.scss';
 const OVERLAY_SHOWCASE =
-  'src/app/showcase/overlay-controls/overlay-controls.html';
+  'src/app/review-internals/legacy-overlay-controls/overlay-controls.html';
 const BUTTON_SHOWCASE =
-  'src/app/showcase/button-controls/button-controls.html';
+  'src/app/review-internals/legacy-button-controls/button-controls.html';
 const FIELD_CONTRACT = 'src/app/controls/FIELD_FAMILY_V1.md';
 const BUTTON_CONTRACT = 'src/app/controls/BUTTON_FAMILY_V1.md';
 const FIELD_FRAME_SOURCE =

@@ -1,6 +1,27 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
-## Authoritative current review state — 2026-10-08 — ownership catalog and ErpPage
+## Authoritative current review state — 2026-10-08 — dedicated showcase system
+
+The Product Owner rejected the catalog checkpoint as a complete showcase
+system because generic input-only hosts could be empty or incomplete and the
+legacy pages/navigation remained duplicated. The bounded reconstruction entered
+at `54451b1fdca8da0f03096d16df20adc6100a5c11` and now gives all 77 public ERP
+components a dedicated authored showcase owner, loader, and coverage contract.
+
+Missing owners, empty showcases, and unmapped meaningful legacy sections are
+zero. Former runtime pages are redirect-only, the legacy navigation is removed,
+and the compact Arabic catalog consumes 280 px / 21.875% at 1280 px and zero
+permanent width when closed at 390 px. Runtime audit passed every component
+route in Light/Dark RTL, all redirects, and representative interactions with
+zero console errors/warnings, broken assets, or page overflow.
+
+Canonical verification passes 119/119 test files and 730/730 tests, all
+lint/governance, both typechecks, production build, and zero warnings. Initial
+bundle is 488.33 kB / 106.12 kB. Product Owner review of the reconstructed
+showcase system is the only next action. No later visual or feature wave is
+authorized.
+
+## Historical ownership catalog and ErpPage review state — superseded 2026-10-08
 
 The current bounded foundation entered from clean live `main` at
 `895f985994ef2c28eae703f60d5911a5314af338`. It provides one generated catalog

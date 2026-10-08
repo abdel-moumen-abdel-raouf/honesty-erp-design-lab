@@ -1,0 +1,18 @@
+<erp-stack gap="default" data-dedicated-showcase="form-actions" data-showcase-sections="1">
+  <erp-text type="heading-2">إجراءات النموذج</erp-text>
+  <erp-text type="paragraph" tone="secondary">تخطيط الإجراءات الأساسية والثانوية للنموذج.</erp-text>
+    <erp-surface padding="default" border="subtle" data-showcase-case="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
+        <erp-form-actions
+          
+        ><erp-button erpFormActionsSecondary label="إلغاء" variant="ghost" /><erp-button erpFormActionsPrimary label="حفظ" /></erp-form-actions>
+      </erp-stack>
+    </erp-surface>
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

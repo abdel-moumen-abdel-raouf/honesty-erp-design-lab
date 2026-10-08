@@ -34,6 +34,107 @@ const EXACT_REFERENCES = new Map([
 
 const ACCEPTED_COMPONENTS = new Set(['ErpCheckBox']);
 
+const ARABIC_COMPONENT_METADATA = new Map([
+  ['button', ['زر', 'إجراء نصي قياسي بحالاته وأحجامه وأنماطه.']],
+  ['button-group', ['مجموعة أزرار', 'اختيار إجراء واحد من مجموعة مترابطة.']],
+  ['extended-fab', ['زر إجراء عائم ممتد', 'إجراء عائم يجمع الأيقونة والتسمية.']],
+  ['fab', ['زر إجراء عائم', 'إجراء عائم بأيقونة ودلالة وصول واضحة.']],
+  ['fab-menu', ['قائمة إجراءات عائمة', 'مجموعة إجراءات عائمة قابلة للفتح والإغلاق.']],
+  ['icon-button', ['زر أيقونة', 'إجراء مختصر بأيقونة وتسمية وصول.']],
+  ['split-button', ['زر منقسم', 'إجراء أساسي مع قائمة إجراءات إضافية.']],
+  ['app-shell', ['إطار تطبيق ERP', 'تكوين إطار التطبيق من الشريط العلوي والشريط الجانبي والمحتوى.']],
+  ['branch-selector', ['محدد الفرع', 'اختيار فرع مضبوط يتحكم فيه المستهلك.']],
+  ['global-search', ['البحث العام', 'بحث عام داخل إطار التطبيق مع نتائج مصنفة.']],
+  ['notification-bell', ['جرس الإشعارات', 'مدخل إشعارات قابل للفتح مع عدد غير المقروء.']],
+  ['topbar', ['الشريط العلوي', 'تخطيط مناطق السياق والبحث والإشعارات والمستخدم.']],
+  ['user-menu', ['قائمة المستخدم', 'هوية المستخدم وإجراءات الحساب ضمن سطح مثبت.']],
+  ['bulk-action-bar', ['شريط الإجراءات الجماعية', 'إجراءات مرتبطة بالصفوف المحددة.']],
+  ['filter-bar', ['شريط التصفية', 'عرض المرشحات النشطة وإصدار نوايا تعديلها.']],
+  ['filter-drawer', ['درج التصفية', 'سطح حاجب لتكوين المرشحات وتطبيقها.']],
+  ['smart-table', ['الجدول الذكي', 'تركيب مضبوط للجدول والأدوات والصفحات والحالات.']],
+  ['table', ['الجدول', 'دلالات الجدول والصفوف والخلايا والاختيار والفرز والتحجيم.']],
+  ['table-toolbar', ['شريط أدوات الجدول', 'تخطيط البحث والإجراءات وأدوات العرض للجدول.']],
+  ['alert', ['تنبيه', 'رسالة ملاحظات قابلة للإغلاق عند السماح بذلك.']],
+  ['empty-state', ['الحالة الفارغة', 'حالة فارغة بعنوان ووصف وإجراءات ورسوم اختيارية.']],
+  ['skeleton', ['هيكل التحميل', 'تمثيل مؤقت للمحتوى أثناء التحميل.']],
+  ['status-badge', ['شارة الحالة', 'مؤشر حالة غير تفاعلي أو تفاعلي حسب العقد.']],
+  ['tooltip', ['تلميح', 'شرح مثبت على محفز مرئي مع مواضع وسلوك فتح متعددة.']],
+  ['entity-schema-fields', ['حقول مخطط الكيان', 'عرض حقول المخطط من خلال مدخلات ERP المعتمدة.']],
+  ['form', ['نموذج', 'حد form الدلالي مع نوايا الإرسال وإعادة الضبط.']],
+  ['form-actions', ['إجراءات النموذج', 'تخطيط الإجراءات الأساسية والثانوية للنموذج.']],
+  ['form-section', ['قسم النموذج', 'تجميع دلالي لحقول النموذج مع عنوان وإجراءات.']],
+  ['repeater', ['مكرر', 'قائمة عناصر مضبوطة مع نوايا الإضافة والحذف.']],
+  ['standard-entity-form', ['نموذج الكيان القياسي', 'تكوين CRUD محدود بمخطط وقيم مضبوطة.']],
+  ['validation-summary', ['ملخص التحقق', 'عرض مشكلات التحقق المشتركة ونية تنشيط الحقل.']],
+  ['color-picker', ['منتقي اللون', 'اختيار لون من سجل ألوان النظام.']],
+  ['combo-box', ['صندوق التحرير والاختيار', 'تحرير نصي مع اقتراحات واختيار مضبوط.']],
+  ['date-box', ['حقل التاريخ', 'تحرير تاريخ من خلال عقد الإدخال المعتمد.']],
+  ['date-range-box', ['حقل نطاق التاريخ', 'اختيار نطاق زمني مضبوط.']],
+  ['date-time-box', ['حقل التاريخ والوقت', 'تحرير تاريخ ووقت ضمن عقد واحد.']],
+  ['file-picker', ['منتقي الملفات', 'اختيار ملفات محلية متعدد دون نقل شبكي.']],
+  ['icon-picker', ['منتقي الأيقونة', 'اختيار أيقونة دلالية من سجل النظام.']],
+  ['image-picker', ['منتقي الصور', 'اختيار صور محلية مع معاينات مضبوطة.']],
+  ['item-picker', ['منتقي العناصر', 'اختيار عناصر من قائمة يملكها المستهلك.']],
+  ['money-box', ['حقل المال', 'تحرير قيمة مالية وعملة وفق التفضيلات.']],
+  ['number-box', ['حقل الرقم', 'تحرير قيمة رقمية نصية بلا spinner متصفح.']],
+  ['number-stepper', ['مغيّر الرقم', 'زيادة وإنقاص قيمة عددية ضمن حدود مضبوطة.']],
+  ['password-box', ['حقل كلمة المرور', 'تحرير قيمة سرية مع إظهار مضبوط.']],
+  ['range-slider', ['منزلق النطاق', 'اختيار حدين عدديين من نطاق.']],
+  ['search-box', ['صندوق البحث', 'تحرير استعلام وعرض نتائج inline أو popup.']],
+  ['select', ['قائمة الاختيار', 'اختيار مفرد أو متعدد مع بحث وتجميع.']],
+  ['tel-box', ['حقل الهاتف', 'تحرير رقم هاتف وفق عقد الحقول.']],
+  ['text-area-box', ['منطقة النص', 'تحرير نص متعدد الأسطر.']],
+  ['text-box', ['حقل النص', 'تحرير نص قياسي مع حالات الحقل.']],
+  ['time-box', ['حقل الوقت', 'تحرير وقت وفق عقد الحقول.']],
+  ['url-box', ['حقل الرابط', 'تحرير عنوان URL مع تحقق الحقل.']],
+  ['avatar', ['الصورة الرمزية', 'هوية بصرية بصورة أو أحرف أو أيقونة وحضور.']],
+  ['breadcrumbs', ['مسار التنقل', 'مسار موقع منطقي مع العنصر الحالي.']],
+  ['pagination', ['ترقيم الصفحات', 'تنقل مضبوط بين الصفحات وحجم الصفحة.']],
+  ['sidebar', ['الشريط الجانبي', 'تنقل هرمي مضبوط بعناصر يقدمها المستهلك.']],
+  ['sort-header', ['رأس الفرز', 'رأس تفاعلي يبدل اتجاه الفرز.']],
+  ['stepper', ['الخطوات', 'تنقل مضبوط بين خطوات ومحتوى مسمى.']],
+  ['tabs', ['علامات التبويب', 'تبديل دلالي بين رؤوس ولوحات محتوى.']],
+  ['page', ['الصفحة', 'حد عرض وتمرير واستجابة لمحتوى صفحة واحدة.']],
+  ['page-header', ['رأس الصفحة', 'عنوان الصفحة والوصف والبيانات والإجراءات المسقطة.']],
+  ['page-shell', ['تكوين الصفحة', 'تنظيم الرأس والمحتوى والسياق والتذييل.']],
+  ['container', ['الحاوية', 'حد عرض أفقي للمحتوى.']],
+  ['divider', ['الفاصل', 'فاصل دلالي أفقي أو رأسي.']],
+  ['grid', ['الشبكة', 'تخطيط شبكي بأعمدة وفجوات مضبوطة.']],
+  ['icon', ['الأيقونة', 'عرض أيقونة دلالية من السجل المعتمد.']],
+  ['inline', ['التخطيط السطري', 'ترتيب عناصر على المحور السطري مع التفاف مضبوط.']],
+  ['section', ['القسم', 'حد section دلالي وفجوة داخلية.']],
+  ['stack', ['التكديس', 'ترتيب عناصر رأسيًا مع محاذاة وفجوات مضبوطة.']],
+  ['surface', ['السطح', 'سطح مرئي يملك الحشو والحدود والارتفاع.']],
+  ['text', ['النص', 'بوابة النصوص الإنتاجية وأدوارها الدلالية.']],
+  ['avatar-picker', ['منتقي الصورة الرمزية', 'اختيار صورة رمزية مضبوطة من الفهرس.']],
+  ['check-box', ['مربع الاختيار', 'اختيار منطقي مستقل أو ضمن مجموعة.']],
+  ['column-chooser', ['محدد الأعمدة', 'ضبط الأعمدة المرئية للجدول.']],
+  ['radio-box', ['زر الاختيار', 'اختيار قيمة واحدة ضمن سياق.']],
+  ['radio-group', ['مجموعة الاختيار', 'مجموعة خيارات أحادية مضبوطة.']],
+  ['view-switcher', ['مبدل العرض', 'اختيار وضع عرض واحد من أوضاع محددة.']],
+]);
+
+const CVA_COMPONENTS = new Set([
+  'ErpCheckBox', 'ErpColorPicker',
+  'ErpComboBox', 'ErpDateBox', 'ErpDateRangeBox', 'ErpDateTimeBox',
+  'ErpFilePicker', 'ErpIconPicker', 'ErpImagePicker',
+  'ErpItemPicker', 'ErpMoneyBox', 'ErpNumberBox', 'ErpNumberStepper',
+  'ErpPasswordBox', 'ErpRadioBox', 'ErpRadioGroup', 'ErpRangeSlider',
+  'ErpSearchBox', 'ErpSelect', 'ErpTelBox', 'ErpTextAreaBox', 'ErpTextBox',
+  'ErpTimeBox', 'ErpUrlBox',
+]);
+
+const PROJECTION_COMPONENTS = new Set([
+  'ErpAppShell', 'ErpContainer', 'ErpForm', 'ErpFormActions', 'ErpFormSection',
+  'ErpGrid', 'ErpInline', 'ErpPage', 'ErpPageHeader', 'ErpPageShell',
+  'ErpSection', 'ErpStack', 'ErpSurface', 'ErpTooltip', 'ErpTopbar',
+]);
+
+const EXACT_CORE_SHOWCASE_IDS = new Set([
+  'select', 'status-badge', 'alert', 'skeleton', 'avatar',
+  'tabs', 'avatar-picker', 'table', 'pagination',
+]);
+
 const CATEGORY_GROUPS = [
   ['Primitives', new Set([
     'erp-container', 'erp-divider', 'erp-grid', 'erp-icon', 'erp-inline',
@@ -139,7 +240,10 @@ const FIXTURE_INPUTS = new Map([
   ['ErpButtonGroup', {items: [{value: 'save', label: 'حفظ'}]}],
   ['ErpColumnChooser', {columns: [{key: 'name', label: 'الاسم', hideable: true}]}],
   ['ErpComboBox', {items: [{value: 'customer', label: 'عميل'}]}],
-  ['ErpEntitySchemaFields', {fields: [], values: {}}],
+  ['ErpEntitySchemaFields', {
+    fields: [{key: 'name', kind: 'text', label: 'اسم السجل'}],
+    values: {name: 'حساب المبيعات'},
+  }],
   ['ErpExtendedFab', {label: 'إضافة سجل'}],
   ['ErpFab', {icon: 'add', label: 'إضافة'}],
   ['ErpFabMenu', {label: 'إجراءات سريعة', items: [{value: 'add', label: 'إضافة'}]}],
@@ -154,7 +258,17 @@ const FIXTURE_INPUTS = new Map([
   ['ErpPagination', {pageCount: 3}],
   ['ErpRadioGroup', {options: [{value: 'active', label: 'نشط'}]}],
   ['ErpSidebar', {items: [{id: 'finance', label: 'المالية', icon: 'wallet'}]}],
-  ['ErpSmartTable', {caption: 'سجل الحسابات', columns: [{key: 'name', label: 'اسم الحساب'}]}],
+  ['ErpSmartTable', {
+    caption: 'سجل الحسابات',
+    columns: [{key: 'name', label: 'اسم الحساب'}, {key: 'balance', label: 'الرصيد'}],
+    rows: [{id: '1', name: 'حساب المبيعات', balance: '125,000 ج.م'}],
+    page: 1,
+    pageSize: 25,
+    sort: null,
+    filters: [],
+    visibleColumns: [],
+    selectedKeys: [],
+  }],
   ['ErpSortHeader', {label: 'اسم الحساب'}],
   ['ErpSplitButton', {label: 'حفظ', items: [{value: 'save-close', label: 'حفظ وإغلاق'}]}],
   ['ErpStandardEntityForm', {
@@ -163,15 +277,25 @@ const FIXTURE_INPUTS = new Map([
   }],
   ['ErpStatusBadge', {label: 'نشط'}],
   ['ErpStepper', {steps: [{id: 'details', label: 'البيانات'}]}],
-  ['ErpTable', {caption: 'سجل الحسابات', columns: [{key: 'name', label: 'اسم الحساب'}]}],
+  ['ErpTable', {
+    caption: 'سجل الحسابات',
+    columns: [{key: 'name', label: 'اسم الحساب'}, {key: 'balance', label: 'الرصيد'}],
+    rows: [{id: '1', name: 'حساب المبيعات', balance: '125,000 ج.م'}],
+    selectedKeys: [],
+    columnWidths: {},
+  }],
   ['ErpTabs', {items: [{id: 'overview', label: 'نظرة عامة', content: 'محتوى النظرة العامة'}]}],
+  ['ErpTooltip', {text: 'توضيح الإجراء للمستخدم'}],
   ['ErpUserMenu', {user: {displayName: 'أميرة حداد', secondaryText: 'مديرة المالية'}}],
 ]);
 
 const FACET_NAMES = [
   'variant', 'size', 'shape', 'tone', 'orientation', 'distribution',
   'widthMode', 'scrollMode', 'disabled', 'readOnly', 'loading', 'selected',
-  'multiple', 'motion', 'appearance',
+  'multiple', 'motion', 'appearance', 'placement', 'activation', 'mode',
+  'position', 'align', 'justify', 'gap', 'wrap', 'density', 'headerShape',
+  'verticalPlacement', 'selectSize', 'presence', 'presencePosition',
+  'presenceMotion', 'hoverMotion', 'cursor', 'transition', 'direction',
 ];
 
 export const NATIVE_ELEMENT_COVERAGE = [
@@ -303,10 +427,19 @@ function unionLiteralAliases(files) {
 
 function inputValues(member, sourceFile, aliases) {
   const typeArgument = member.initializer.typeArguments?.[0];
-  if (!typeArgument) return [];
-  const typeText = typeArgument.getText(sourceFile);
-  if (aliases.has(typeText)) return aliases.get(typeText);
-  return [...typeText.matchAll(/['"]([^'"]+)['"]/g)].map((value) => value[1]);
+  if (typeArgument) {
+    const typeText = typeArgument.getText(sourceFile);
+    if (typeText === 'boolean') return ['false', 'true'];
+    if (aliases.has(typeText)) return aliases.get(typeText);
+    const literals = [...typeText.matchAll(/['"]([^'"]+)['"]/g)].map((value) => value[1]);
+    if (literals.length) return literals;
+  }
+  const firstArgument = member.initializer.arguments[0];
+  if (firstArgument?.kind === ts.SyntaxKind.TrueKeyword ||
+      firstArgument?.kind === ts.SyntaxKind.FalseKeyword) {
+    return ['false', 'true'];
+  }
+  return [];
 }
 
 function publicApi(classDeclaration, sourceFile, aliases) {
@@ -390,6 +523,33 @@ function purposeFor(className, selector, classification) {
   return `Owns bounded internal ${label} semantics for its parent ERP component.`;
 }
 
+function showcaseCoverageFor(entry) {
+  const values = Object.fromEntries(
+    entry.publicApi.inputs
+      .filter((inputApi) => inputApi.values.length > 0)
+      .map((inputApi) => [inputApi.name, inputApi.values]),
+  );
+  const stateNames = entry.publicApi.inputs
+    .filter((inputApi) => inputApi.values.includes('true') && inputApi.values.includes('false'))
+    .map((inputApi) => inputApi.name);
+  return {
+    coveredInputs: entry.publicApi.inputs.map((inputApi) => inputApi.name),
+    coveredModels: entry.publicApi.models.map((modelApi) => modelApi.name),
+    coveredOutputs: entry.publicApi.outputs,
+    coveredValues: values,
+    coveredStates: stateNames,
+    coveredProjectionSlots: PROJECTION_COMPONENTS.has(entry.className) ? ['default-authored-content'] : [],
+    coveredReferenceCases: entry.visualReference ? entry.showcaseCases.map((showcaseCase) => showcaseCase.id) : [],
+    evidenceKind: PROJECTION_COMPONENTS.has(entry.className)
+      ? 'AUTHORED_PROJECTION'
+      : CVA_COMPONENTS.has(entry.className)
+        ? 'CONTROLLED_MODEL'
+        : entry.publicApi.outputs.length
+          ? 'INTERACTIVE_OUTPUT'
+          : 'STATIC_COMPONENT',
+  };
+}
+
 function fixtureCases(entry, sourceText) {
   const requiredDefaults = Object.fromEntries(
     entry.publicApi.inputs
@@ -397,6 +557,10 @@ function fixtureCases(entry, sourceText) {
       .map(() => ['label', 'حقل تجريبي']),
   );
   const baseInputs = {...requiredDefaults, ...(FIXTURE_INPUTS.get(entry.className) ?? {})};
+  for (const modelApi of entry.publicApi.models) {
+    if (modelApi.name in baseInputs) continue;
+    baseInputs[modelApi.name] = modelApi.values.includes('false') ? false : null;
+  }
   const missingRequired = entry.publicApi.inputs
     .filter((inputApi) => inputApi.required && !(inputApi.name in baseInputs))
     .map((inputApi) => inputApi.name);
@@ -407,10 +571,21 @@ function fixtureCases(entry, sourceText) {
   for (const inputApi of entry.ownPublicApi.inputs) {
     if (!FACET_NAMES.includes(inputApi.name)) continue;
     for (const value of inputApi.values) {
+      const resolvedValue = value === 'true' ? true : value === 'false' ? false : value;
       cases.push({
         id: `${inputApi.name}-${value}`,
         label: `${inputApi.name}: ${value}`,
-        inputs: {...baseInputs, [inputApi.name]: value},
+        inputs: {...baseInputs, [inputApi.name]: resolvedValue},
+      });
+    }
+  }
+  for (const modelApi of entry.publicApi.models) {
+    for (const value of modelApi.values) {
+      const resolvedValue = value === 'true' ? true : value === 'false' ? false : value;
+      cases.push({
+        id: `${modelApi.name}-${value}`,
+        label: `${modelApi.name}: ${value}`,
+        inputs: {...baseInputs, [modelApi.name]: resolvedValue},
       });
     }
   }
@@ -477,6 +652,10 @@ function scanDecoratedEntries() {
           nativeCoverage: NATIVE_REPLACEMENTS.get(className) ?? [],
           coverageScope: classification === 'PUBLIC ERP COMPONENT' ? 'public-consumer' : 'parent-owner-only',
           showcaseRoute: classification === 'PUBLIC ERP COMPONENT' ? `/components/${id}` : null,
+          showcaseOwnerPath: classification === 'PUBLIC ERP COMPONENT'
+            ? `src/app/showcase/components/${id}/${id}-showcase.ts`
+            : null,
+          showcaseLoader: classification === 'PUBLIC ERP COMPONENT' ? id : null,
           visualReference: EXACT_REFERENCES.get(className) ?? null,
           visualStatus: ACCEPTED_COMPONENTS.has(className) ? 'ACCEPTED' : 'PENDING',
           showcaseFacets: FACET_NAMES.filter((facet) => completePublicApi.inputs.some((inputApi) => inputApi.name === facet)),
@@ -484,6 +663,11 @@ function scanDecoratedEntries() {
             ? fixtureCases({className, publicApi: completePublicApi, ownPublicApi}, sourceText)
             : [],
         };
+        entry.displayNameAr = ARABIC_COMPONENT_METADATA.get(id)?.[0] ?? className;
+        entry.descriptionAr = ARABIC_COMPONENT_METADATA.get(id)?.[1] ?? purposeFor(className, selector, classification);
+        entry.showcaseCoverage = classification === 'PUBLIC ERP COMPONENT'
+          ? showcaseCoverageFor(entry)
+          : null;
         entries.push(entry);
       }
     }
@@ -508,10 +692,15 @@ export function buildCatalog() {
       nativeCoverage: [],
       coverageScope: 'parent-owner-only',
       showcaseRoute: null,
+      showcaseOwnerPath: null,
+      showcaseLoader: null,
       visualReference: null,
       visualStatus: 'PENDING',
       showcaseFacets: [],
       showcaseCases: [],
+      displayNameAr: className,
+      descriptionAr: purpose,
+      showcaseCoverage: null,
     });
   }
   return entries.sort((left, right) => left.category.localeCompare(right.category) || left.className.localeCompare(right.className));
@@ -522,11 +711,133 @@ function relativeImportPath(sourcePath) {
   return withoutExtension;
 }
 
+function relativeShowcaseImport(ownerPath, sourcePath) {
+  const relative = posix(path.relative(
+    path.dirname(ownerPath),
+    sourcePath.replace(/\.ts$/, ''),
+  ));
+  return relative.startsWith('.') ? relative : `./${relative}`;
+}
+
+function projectionMarkup(entry) {
+  if (entry.className === 'ErpTooltip') {
+    return '<erp-button label="اعرض التلميح" variant="outline" />';
+  }
+  if (['ErpStack', 'ErpInline', 'ErpGrid'].includes(entry.className)) {
+    return [1, 2, 3]
+      .map((index) => `<erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي ${index}</erp-text></erp-surface>`)
+      .join('');
+  }
+  if (entry.className === 'ErpForm') {
+    return '<erp-text-box label="اسم السجل" /><erp-button label="حفظ السجل" type="submit" /><erp-button label="إعادة الضبط" type="reset" variant="outline" />';
+  }
+  if (entry.className === 'ErpFormActions') {
+    return '<erp-button erpFormActionsSecondary label="إلغاء" variant="ghost" /><erp-button erpFormActionsPrimary label="حفظ" />';
+  }
+  if (entry.className === 'ErpFormSection') {
+    return '<erp-button erpFormSectionActions label="إجراء القسم" variant="outline" /><erp-text-box label="اسم الحساب" />';
+  }
+  if (entry.className === 'ErpPageHeader') {
+    return '<erp-text erpPageHeaderBreadcrumbs type="caption">الرئيسية / الحسابات</erp-text><erp-text erpPageHeaderMeta type="caption">حالة السجل: نشط</erp-text><erp-button erpPageHeaderPrimaryAction label="حفظ" />';
+  }
+  if (entry.className === 'ErpPageShell') {
+    return '<erp-text erpPageShellHeader type="heading-3">رأس الصفحة</erp-text><erp-text type="paragraph">محتوى الصفحة الرئيسي</erp-text><erp-text erpPageShellSide type="paragraph">سياق جانبي</erp-text><erp-text erpPageShellFooter type="caption">تذييل الصفحة</erp-text>';
+  }
+  if (entry.className === 'ErpTopbar') {
+    return '<erp-text erpTopbarStart type="heading-3">Honesty ERP</erp-text><erp-text erpTopbarContext type="paragraph">فرع القاهرة</erp-text><erp-text erpTopbarSearch type="paragraph">البحث العام</erp-text><erp-text erpTopbarNotifications type="paragraph">الإشعارات</erp-text><erp-text erpTopbarUser type="paragraph">أميرة حداد</erp-text>';
+  }
+  if (entry.className === 'ErpAppShell') {
+    return '<erp-text erpAppShellTopbarStart type="heading-3">Honesty ERP</erp-text><erp-text type="heading-3">محتوى التطبيق</erp-text><erp-text type="paragraph">ملخص العمليات اليومية</erp-text>';
+  }
+  if (PROJECTION_COMPONENTS.has(entry.className)) {
+    return '<erp-text type="paragraph">محتوى مسقط مرئي داخل المكوّن</erp-text>';
+  }
+  return '';
+}
+
+function generatedShowcaseOwner(entry) {
+  const ownerPath = entry.showcaseOwnerPath;
+  const componentImport = relativeShowcaseImport(ownerPath, entry.sourcePath);
+  const isCva = CVA_COMPONENTS.has(entry.className);
+  const projection = projectionMarkup(entry);
+  const imports = new Set([entry.className, 'ErpStack', 'ErpSurface', 'ErpText']);
+  const importLines = [
+    `import {ChangeDetectionStrategy, Component, signal} from '@angular/core';`,
+    `import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';`,
+    `import {${entry.className}} from '${componentImport}';`,
+  ];
+  if (entry.className !== 'ErpStack') importLines.push(`import {ErpStack} from '../../../primitives/stack/stack';`);
+  if (entry.className !== 'ErpSurface') importLines.push(`import {ErpSurface} from '../../../primitives/surface/surface';`);
+  if (entry.className !== 'ErpText') importLines.push(`import {ErpText} from '../../../primitives/text/text';`);
+  if (isCva) {
+    importLines.push(`import {FormControl, ReactiveFormsModule} from '@angular/forms';`);
+    importLines.push(`import {takeUntilDestroyed} from '@angular/core/rxjs-interop';`);
+    imports.add('ReactiveFormsModule');
+  }
+  if (projection.includes('<erp-button')) {
+    if (entry.className !== 'ErpButton') importLines.push(`import {ErpButton} from '../../../controls/button/button';`);
+    imports.add('ErpButton');
+  }
+  if (projection.includes('<erp-text-box')) {
+    if (entry.className !== 'ErpTextBox') importLines.push(`import {ErpTextBox} from '../../../controls/text-box/text-box';`);
+    imports.add('ErpTextBox');
+  }
+  if (entry.className === 'ErpTooltip') {
+    importLines.push(`import {ErpTooltipContent} from '../../../controls/tooltip/tooltip-content';`);
+    imports.add('ErpTooltipContent');
+  }
+  if (EXACT_CORE_SHOWCASE_IDS.has(entry.id)) {
+    importLines.push(`import {CoreBatch as ErpReviewExactCoreShowcase} from '../../../review-internals/exact-core-showcase/core-batch';`);
+    imports.add('ErpReviewExactCoreShowcase');
+  }
+  if (['ErpIconButton', 'ErpFab'].includes(entry.className)) {
+    importLines.push(`import {ErpTooltip} from '../../../controls/tooltip/tooltip';`);
+    imports.add('ErpTooltip');
+  }
+
+  const className = `${entry.className}Showcase`;
+  let cases = entry.showcaseCases.map((showcaseCase, index) => {
+    const modelNames = new Set(entry.publicApi.models.map((modelApi) => modelApi.name));
+    const inputBindings = Object.keys(showcaseCase.inputs)
+      .filter((name) => !modelNames.has(name))
+      .map((name) => `[${name}]="$any(cases[${index}].inputs['${name}'])"`);
+    for (const modelApi of entry.publicApi.models) {
+      const modelKey = `${showcaseCase.id}:${modelApi.name}`;
+      inputBindings.push(`[${modelApi.name}]="$any(modelValue('${modelKey}', cases[${index}].inputs['${modelApi.name}']))"`);
+      inputBindings.push(`(${modelApi.name}Change)="recordModel('${modelKey}', $event)"`);
+    }
+    for (const outputName of entry.publicApi.outputs) {
+      inputBindings.push(`(${outputName})="recordEvent('${outputName}', $event)"`);
+    }
+    if (isCva) inputBindings.push('[formControl]="control"');
+    const caseProjection = entry.className === 'ErpTooltip' && showcaseCase.inputs.variant === 'rich'
+      ? '<erp-button label="اعرض التلميح الغني" variant="outline" /><erp-tooltip-content><erp-text type="paragraph">تفاصيل اعتماد الفاتورة وحالتها الحالية</erp-text></erp-tooltip-content>'
+      : projection;
+    const ownerMarkup = `<${entry.selector}\n          ${inputBindings.join('\n          ')}\n        >${caseProjection}</${entry.selector}>`;
+    const renderedOwner = ['ErpIconButton', 'ErpFab'].includes(entry.className)
+      ? `<erp-tooltip text="${showcaseCase.label}">${ownerMarkup}</erp-tooltip>`
+      : ownerMarkup;
+    return `    <erp-surface padding="default" border="subtle" data-showcase-case="${showcaseCase.id}">\n      <erp-stack gap="tight">\n        <erp-text type="heading-3">${showcaseCase.label}</erp-text>\n        ${renderedOwner}\n      </erp-stack>\n    </erp-surface>`;
+  }).join('\n');
+  if (EXACT_CORE_SHOWCASE_IDS.has(entry.id)) {
+    cases = `  <erp-text type="heading-2">مرجع Product Owner الدقيق</erp-text>\n  <app-review-exact-core-showcase [focus]="'${entry.id}'" />\n  <erp-text type="heading-2">واجهة API والتوافق</erp-text>\n${cases}`;
+  }
+
+  const source = `${importLines.join('\n')}\n\nconst ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === '${entry.id}')!;\n\n@Component({\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  selector: 'app-${entry.id}-showcase',\n  imports: [${[...imports].join(', ')}],\n  templateUrl: './${entry.id}-showcase.html',\n  styleUrl: './${entry.id}-showcase.scss',\n})\nexport class ${className} {\n  readonly entry = ENTRY;\n  readonly cases = ENTRY.showcaseCases;\n  readonly lastEvent = signal('لم يحدث تفاعل بعد');\n  private readonly modelValues = signal<Readonly<Record<string, unknown>>>({});\n${isCva ? `  readonly control = new FormControl<unknown>(null);\n\n  constructor() {\n    this.control.valueChanges.pipe(takeUntilDestroyed()).subscribe((value) => {\n      this.recordEvent('valueChange', value);\n    });\n  }\n` : ''}\n  modelValue(name: string, fallback: unknown): unknown {\n    return this.modelValues()[name] ?? fallback;\n  }\n\n  recordModel(name: string, value: unknown): void {\n    this.modelValues.update((current) => ({...current, [name]: value}));\n    this.recordEvent(\`${'${name}'}Change\`, value);\n  }\n\n  recordEvent(name: string, value: unknown): void {\n    let rendered = '';\n    try { rendered = typeof value === 'string' ? value : JSON.stringify(value); }\n    catch { rendered = String(value); }\n    this.lastEvent.set(\`${'${name}'}: ${'${rendered}'}\`);\n  }\n}\n`;
+  const html = `<erp-stack gap="default" data-dedicated-showcase="${entry.id}" data-showcase-sections="${entry.showcaseCases.length}">\n  <erp-text type="heading-2">${entry.displayNameAr}</erp-text>\n  <erp-text type="paragraph" tone="secondary">${entry.descriptionAr}</erp-text>\n${cases}\n  <erp-surface padding="default" border="subtle" data-showcase-event-log>\n    <erp-stack gap="tight">\n      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>\n      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>\n${isCva ? '      <erp-text type="caption" selectable>القيمة الحالية: {{ control.value }}</erp-text>\n' : ''}    </erp-stack>\n  </erp-surface>\n</erp-stack>\n`;
+  const scss = `:host { display: block; min-inline-size: 0; }\n`;
+  return new Map([
+    [ownerPath, source],
+    [ownerPath.replace(/\.ts$/, '.html'), html],
+    [ownerPath.replace(/\.ts$/, '.scss'), scss],
+  ]);
+}
+
 function generatedTypeScript(catalog) {
   const publicEntries = catalog.filter((entry) => entry.classification === 'PUBLIC ERP COMPONENT');
   const data = JSON.stringify(catalog, null, 2);
   const loaders = publicEntries.map((entry) =>
-    `  ${JSON.stringify(entry.id)}: () => import(${JSON.stringify(relativeImportPath(entry.sourcePath))}).then((module) => module.${entry.className}),`,
+    `  ${JSON.stringify(entry.id)}: () => import(${JSON.stringify(relativeImportPath(entry.showcaseOwnerPath))}).then((module) => module.${entry.className}Showcase),`,
   ).join('\n');
   return `// GENERATED by tools/catalog/erp-component-catalog.mjs. Do not edit by hand.
 import {Type} from '@angular/core';
@@ -558,15 +869,29 @@ export interface ErpComponentCatalogEntry {
   readonly nativeCoverage: readonly string[];
   readonly coverageScope: string;
   readonly showcaseRoute: string | null;
+  readonly showcaseOwnerPath: string | null;
+  readonly showcaseLoader: string | null;
+  readonly displayNameAr: string;
+  readonly descriptionAr: string;
   readonly visualReference: string | null;
   readonly visualStatus: ErpCatalogVisualStatus;
   readonly showcaseFacets: readonly string[];
   readonly showcaseCases: readonly ErpComponentShowcaseCase[];
+  readonly showcaseCoverage: {
+    readonly coveredInputs: readonly string[];
+    readonly coveredModels: readonly string[];
+    readonly coveredOutputs: readonly string[];
+    readonly coveredValues: Readonly<Record<string, readonly string[]>>;
+    readonly coveredStates: readonly string[];
+    readonly coveredProjectionSlots: readonly string[];
+    readonly coveredReferenceCases: readonly string[];
+    readonly evidenceKind: string;
+  } | null;
 }
 
 export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = ${data};
 
-export const ERP_PUBLIC_COMPONENT_LOADERS: Readonly<Record<string, () => Promise<Type<unknown>>>> = {
+export const ERP_PUBLIC_SHOWCASE_LOADERS: Readonly<Record<string, () => Promise<Type<unknown>>>> = {
 ${loaders}
 };
 `;
@@ -575,18 +900,26 @@ ${loaders}
 function generatedNavigationTypeScript(catalog) {
   const entries = catalog
     .filter((entry) => entry.classification === 'PUBLIC ERP COMPONENT')
-    .map(({id, className, category, showcaseRoute}) => ({
+    .map(({id, className, selector, category, showcaseRoute, displayNameAr, descriptionAr, purpose}) => ({
       id,
       className,
+      selector,
       category,
       showcaseRoute,
+      displayNameAr,
+      descriptionAr,
+      purpose,
     }));
   return `// GENERATED by tools/catalog/erp-component-catalog.mjs. Do not edit by hand.
 export interface ErpComponentNavigationEntry {
   readonly id: string;
   readonly className: string;
+  readonly selector: string;
   readonly category: string;
   readonly showcaseRoute: string;
+  readonly displayNameAr: string;
+  readonly descriptionAr: string;
+  readonly purpose: string;
 }
 
 export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = ${JSON.stringify(entries, null, 2)};
@@ -629,12 +962,18 @@ function markdownCoverage() {
 
 export function generatedArtifacts() {
   const catalog = buildCatalog();
-  return new Map([
+  const artifacts = new Map([
     ['src/app/catalog/erp-component-catalog.generated.ts', generatedTypeScript(catalog)],
     ['src/app/catalog/erp-component-navigation.generated.ts', generatedNavigationTypeScript(catalog)],
     ['src/app/controls/ERP_COMPONENT_CATALOG_V1.md', markdownCatalog(catalog)],
     ['src/app/controls/ERP_NATIVE_ELEMENT_COVERAGE_V1.md', markdownCoverage()],
   ]);
+  for (const entry of catalog.filter((candidate) => candidate.classification === 'PUBLIC ERP COMPONENT')) {
+    for (const [relativePath, contents] of generatedShowcaseOwner(entry)) {
+      artifacts.set(relativePath, contents);
+    }
+  }
+  return artifacts;
 }
 
 export function writeArtifacts() {

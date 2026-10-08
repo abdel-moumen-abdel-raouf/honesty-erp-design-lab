@@ -1,0 +1,18 @@
+<erp-stack gap="default" data-dedicated-showcase="form-section" data-showcase-sections="1">
+  <erp-text type="heading-2">قسم النموذج</erp-text>
+  <erp-text type="paragraph" tone="secondary">تجميع دلالي لحقول النموذج مع عنوان وإجراءات.</erp-text>
+    <erp-surface padding="default" border="subtle" data-showcase-case="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
+        <erp-form-section
+          [title]="$any(cases[0].inputs['title'])"
+        ><erp-button erpFormSectionActions label="إجراء القسم" variant="outline" /><erp-text-box label="اسم الحساب" /></erp-form-section>
+      </erp-stack>
+    </erp-surface>
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

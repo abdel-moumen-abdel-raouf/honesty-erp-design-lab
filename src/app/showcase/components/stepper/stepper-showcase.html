@@ -1,0 +1,21 @@
+<erp-stack gap="default" data-dedicated-showcase="stepper" data-showcase-sections="1">
+  <erp-text type="heading-2">الخطوات</erp-text>
+  <erp-text type="paragraph" tone="secondary">تنقل مضبوط بين خطوات ومحتوى مسمى.</erp-text>
+    <erp-surface padding="default" border="subtle" data-showcase-case="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
+        <erp-stepper
+          [steps]="$any(cases[0].inputs['steps'])"
+          [activeId]="$any(modelValue('default:activeId', cases[0].inputs['activeId']))"
+          (activeIdChange)="recordModel('default:activeId', $event)"
+          (changed)="recordEvent('changed', $event)"
+        ></erp-stepper>
+      </erp-stack>
+    </erp-surface>
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

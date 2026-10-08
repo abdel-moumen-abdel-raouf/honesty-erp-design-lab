@@ -1,0 +1,39 @@
+<erp-stack gap="default" data-dedicated-showcase="button-group" data-showcase-sections="3">
+  <erp-text type="heading-2">مجموعة أزرار</erp-text>
+  <erp-text type="paragraph" tone="secondary">اختيار إجراء واحد من مجموعة مترابطة.</erp-text>
+    <erp-surface padding="default" border="subtle" data-showcase-case="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
+        <erp-button-group
+          [items]="$any(cases[0].inputs['items'])"
+          (itemPressed)="recordEvent('itemPressed', $event)"
+        ></erp-button-group>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="orientation-horizontal">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">orientation: horizontal</erp-text>
+        <erp-button-group
+          [items]="$any(cases[1].inputs['items'])"
+          [orientation]="$any(cases[1].inputs['orientation'])"
+          (itemPressed)="recordEvent('itemPressed', $event)"
+        ></erp-button-group>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="orientation-vertical">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">orientation: vertical</erp-text>
+        <erp-button-group
+          [items]="$any(cases[2].inputs['items'])"
+          [orientation]="$any(cases[2].inputs['orientation'])"
+          (itemPressed)="recordEvent('itemPressed', $event)"
+        ></erp-button-group>
+      </erp-stack>
+    </erp-surface>
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

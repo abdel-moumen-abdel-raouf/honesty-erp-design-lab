@@ -1,6 +1,20 @@
 # Next Component Reference Batch V1
 
-## Authoritative current reference gate — 2026-10-08 — no next component authorized
+## Authoritative current reference gate — 2026-10-08 — showcase review only
+
+No next component or visual reference is authorized. The bounded showcase
+reconstruction entered at `54451b1fdca8da0f03096d16df20adc6100a5c11` and
+supplies dedicated authored pages for all 77 public ERP owners, zero missing or
+empty showcases, complete legacy mapping, compact navigation, and runtime audit
+across Light/Dark RTL and narrow review.
+
+Existing exact references remain unchanged and are reused by their dedicated
+pages. The exact next action is Product Owner review of the reconstructed
+showcase system. Technical green does not authorize a component redesign,
+Data/Table correction wave, page pattern, feature migration, or any later
+owner.
+
+## Historical no-next-component gate — superseded 2026-10-08
 
 No next component is authorized. The bounded ownership/Page wave entered from
 `895f985994ef2c28eae703f60d5911a5314af338` and produces the generated ERP

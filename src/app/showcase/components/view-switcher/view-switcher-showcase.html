@@ -1,0 +1,73 @@
+<erp-stack gap="default" data-dedicated-showcase="view-switcher" data-showcase-sections="6">
+  <erp-text type="heading-2">مبدل العرض</erp-text>
+  <erp-text type="paragraph" tone="secondary">اختيار وضع عرض واحد من أوضاع محددة.</erp-text>
+    <erp-surface padding="default" border="subtle" data-showcase-case="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
+        <erp-view-switcher
+          [value]="$any(modelValue('default:value', cases[0].inputs['value']))"
+          (valueChange)="recordModel('default:value', $event)"
+          (changed)="recordEvent('changed', $event)"
+        ></erp-view-switcher>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-false">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">disabled: false</erp-text>
+        <erp-view-switcher
+          [disabled]="$any(cases[1].inputs['disabled'])"
+          [value]="$any(modelValue('disabled-false:value', cases[1].inputs['value']))"
+          (valueChange)="recordModel('disabled-false:value', $event)"
+          (changed)="recordEvent('changed', $event)"
+        ></erp-view-switcher>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-true">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">disabled: true</erp-text>
+        <erp-view-switcher
+          [disabled]="$any(cases[2].inputs['disabled'])"
+          [value]="$any(modelValue('disabled-true:value', cases[2].inputs['value']))"
+          (valueChange)="recordModel('disabled-true:value', $event)"
+          (changed)="recordEvent('changed', $event)"
+        ></erp-view-switcher>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="value-table">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">value: table</erp-text>
+        <erp-view-switcher
+          [value]="$any(modelValue('value-table:value', cases[3].inputs['value']))"
+          (valueChange)="recordModel('value-table:value', $event)"
+          (changed)="recordEvent('changed', $event)"
+        ></erp-view-switcher>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="value-cards">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">value: cards</erp-text>
+        <erp-view-switcher
+          [value]="$any(modelValue('value-cards:value', cases[4].inputs['value']))"
+          (valueChange)="recordModel('value-cards:value', $event)"
+          (changed)="recordEvent('changed', $event)"
+        ></erp-view-switcher>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="disabled">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">حالة معطلة</erp-text>
+        <erp-view-switcher
+          [disabled]="$any(cases[5].inputs['disabled'])"
+          [value]="$any(modelValue('disabled:value', cases[5].inputs['value']))"
+          (valueChange)="recordModel('disabled:value', $event)"
+          (changed)="recordEvent('changed', $event)"
+        ></erp-view-switcher>
+      </erp-stack>
+    </erp-surface>
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

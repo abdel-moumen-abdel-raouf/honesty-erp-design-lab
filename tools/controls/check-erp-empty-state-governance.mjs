@@ -11,7 +11,7 @@ const LOTTIE_STYLE =
   'src/app/controls/empty-state/empty-state-lottie.scss';
 const TOKENS = 'src/styles/foundation/components/empty-state/_tokens.scss';
 const SHOWCASE =
-  'src/app/showcase/empty-state-controls/empty-state-controls.html';
+  'src/app/review-internals/legacy-empty-state-controls/empty-state-controls.html';
 const ROUTES = 'src/app/app.routes.ts';
 const CONTRACT =
   'src/app/controls/empty-state/EMPTY_STATE_REFERENCE_EXACT_V1.md';

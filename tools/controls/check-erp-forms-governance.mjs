@@ -4,7 +4,7 @@ import process from 'node:process';
 
 const ROOT = process.cwd();
 const ROUTES = 'src/app/app.routes.ts';
-const REVIEW = 'src/app/showcase/forms-batch/forms-batch.html';
+const REVIEW = 'src/app/review-internals/legacy-forms-batch/forms-batch.html';
 const CONTRACTS = 'src/app/controls/forms-family/forms-contracts.ts';
 const COMPONENTS = ['form', 'form-section', 'form-actions', 'validation-summary', 'repeater', 'stepper'];
 const SOURCES = COMPONENTS.map((component) => `src/app/controls/${component}/${component}.ts`);

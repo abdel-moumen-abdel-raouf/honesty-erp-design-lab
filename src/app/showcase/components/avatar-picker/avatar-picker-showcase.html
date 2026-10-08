@@ -1,0 +1,138 @@
+<erp-stack gap="default" data-dedicated-showcase="avatar-picker" data-showcase-sections="8">
+  <erp-text type="heading-2">منتقي الصورة الرمزية</erp-text>
+  <erp-text type="paragraph" tone="secondary">اختيار صورة رمزية مضبوطة من الفهرس.</erp-text>
+  <erp-text type="heading-2">مرجع Product Owner الدقيق</erp-text>
+  <app-review-exact-core-showcase [focus]="'avatar-picker'" />
+  <erp-text type="heading-2">واجهة API والتوافق</erp-text>
+    <erp-surface padding="default" border="subtle" data-showcase-case="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
+        <erp-avatar-picker
+          [value]="$any(modelValue('default:value', cases[0].inputs['value']))"
+          (valueChange)="recordModel('default:value', $event)"
+          [gender]="$any(modelValue('default:gender', cases[0].inputs['gender']))"
+          (genderChange)="recordModel('default:gender', $event)"
+          (changed)="recordEvent('changed', $event)"
+          (pick)="recordEvent('pick', $event)"
+          (confirm)="recordEvent('confirm', $event)"
+          (cancelRequested)="recordEvent('cancelRequested', $event)"
+        ></erp-avatar-picker>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-false">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">disabled: false</erp-text>
+        <erp-avatar-picker
+          [disabled]="$any(cases[1].inputs['disabled'])"
+          [value]="$any(modelValue('disabled-false:value', cases[1].inputs['value']))"
+          (valueChange)="recordModel('disabled-false:value', $event)"
+          [gender]="$any(modelValue('disabled-false:gender', cases[1].inputs['gender']))"
+          (genderChange)="recordModel('disabled-false:gender', $event)"
+          (changed)="recordEvent('changed', $event)"
+          (pick)="recordEvent('pick', $event)"
+          (confirm)="recordEvent('confirm', $event)"
+          (cancelRequested)="recordEvent('cancelRequested', $event)"
+        ></erp-avatar-picker>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-true">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">disabled: true</erp-text>
+        <erp-avatar-picker
+          [disabled]="$any(cases[2].inputs['disabled'])"
+          [value]="$any(modelValue('disabled-true:value', cases[2].inputs['value']))"
+          (valueChange)="recordModel('disabled-true:value', $event)"
+          [gender]="$any(modelValue('disabled-true:gender', cases[2].inputs['gender']))"
+          (genderChange)="recordModel('disabled-true:gender', $event)"
+          (changed)="recordEvent('changed', $event)"
+          (pick)="recordEvent('pick', $event)"
+          (confirm)="recordEvent('confirm', $event)"
+          (cancelRequested)="recordEvent('cancelRequested', $event)"
+        ></erp-avatar-picker>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="size-default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">size: default</erp-text>
+        <erp-avatar-picker
+          [size]="$any(cases[3].inputs['size'])"
+          [value]="$any(modelValue('size-default:value', cases[3].inputs['value']))"
+          (valueChange)="recordModel('size-default:value', $event)"
+          [gender]="$any(modelValue('size-default:gender', cases[3].inputs['gender']))"
+          (genderChange)="recordModel('size-default:gender', $event)"
+          (changed)="recordEvent('changed', $event)"
+          (pick)="recordEvent('pick', $event)"
+          (confirm)="recordEvent('confirm', $event)"
+          (cancelRequested)="recordEvent('cancelRequested', $event)"
+        ></erp-avatar-picker>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="size-compact">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">size: compact</erp-text>
+        <erp-avatar-picker
+          [size]="$any(cases[4].inputs['size'])"
+          [value]="$any(modelValue('size-compact:value', cases[4].inputs['value']))"
+          (valueChange)="recordModel('size-compact:value', $event)"
+          [gender]="$any(modelValue('size-compact:gender', cases[4].inputs['gender']))"
+          (genderChange)="recordModel('size-compact:gender', $event)"
+          (changed)="recordEvent('changed', $event)"
+          (pick)="recordEvent('pick', $event)"
+          (confirm)="recordEvent('confirm', $event)"
+          (cancelRequested)="recordEvent('cancelRequested', $event)"
+        ></erp-avatar-picker>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="gender-male">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">gender: male</erp-text>
+        <erp-avatar-picker
+          [value]="$any(modelValue('gender-male:value', cases[5].inputs['value']))"
+          (valueChange)="recordModel('gender-male:value', $event)"
+          [gender]="$any(modelValue('gender-male:gender', cases[5].inputs['gender']))"
+          (genderChange)="recordModel('gender-male:gender', $event)"
+          (changed)="recordEvent('changed', $event)"
+          (pick)="recordEvent('pick', $event)"
+          (confirm)="recordEvent('confirm', $event)"
+          (cancelRequested)="recordEvent('cancelRequested', $event)"
+        ></erp-avatar-picker>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="gender-female">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">gender: female</erp-text>
+        <erp-avatar-picker
+          [value]="$any(modelValue('gender-female:value', cases[6].inputs['value']))"
+          (valueChange)="recordModel('gender-female:value', $event)"
+          [gender]="$any(modelValue('gender-female:gender', cases[6].inputs['gender']))"
+          (genderChange)="recordModel('gender-female:gender', $event)"
+          (changed)="recordEvent('changed', $event)"
+          (pick)="recordEvent('pick', $event)"
+          (confirm)="recordEvent('confirm', $event)"
+          (cancelRequested)="recordEvent('cancelRequested', $event)"
+        ></erp-avatar-picker>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="disabled">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">حالة معطلة</erp-text>
+        <erp-avatar-picker
+          [disabled]="$any(cases[7].inputs['disabled'])"
+          [value]="$any(modelValue('disabled:value', cases[7].inputs['value']))"
+          (valueChange)="recordModel('disabled:value', $event)"
+          [gender]="$any(modelValue('disabled:gender', cases[7].inputs['gender']))"
+          (genderChange)="recordModel('disabled:gender', $event)"
+          (changed)="recordEvent('changed', $event)"
+          (pick)="recordEvent('pick', $event)"
+          (confirm)="recordEvent('confirm', $event)"
+          (cancelRequested)="recordEvent('cancelRequested', $event)"
+        ></erp-avatar-picker>
+      </erp-stack>
+    </erp-surface>
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

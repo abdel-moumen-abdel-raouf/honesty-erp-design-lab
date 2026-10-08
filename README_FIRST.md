@@ -51,7 +51,31 @@ For long-range inventory/dependency context only, read when needed:
 
 The blueprint is planning context only, not implementation authorization.
 
-## Authoritative current state — 2026-10-08 — ownership, dedicated showcases, and ErpPage
+## Authoritative current state — 2026-10-08 — complete dedicated showcase system
+
+The reconstruction entered from clean `main` at
+`54451b1fdca8da0f03096d16df20adc6100a5c11`. Every one of the 77 public ERP
+components now has a dedicated lazy showcase owner with authored coverage;
+there is no generic input-only fallback. Projection, controlled state, outputs,
+overlays, interactions, and exact-reference evidence are rendered through the
+appropriate component-specific harness.
+
+The legacy showcase migration ledger reports zero unmapped meaningful sections.
+Old routed showcase/Foundation implementations and duplicated navigation links
+are removed; 29 legacy URLs remain redirects only. `/components` is the compact
+Arabic catalog landing. Its navigation is 280 px / 21.875% at 1280 px and
+consumes zero permanent width when closed at 390 px.
+
+Runtime verification covered the landing, all 77 component routes, and all
+redirect aliases in Light and Dark RTL plus narrow review. Missing showcase
+owners, empty showcases, console errors, console warnings, broken assets, and
+page overflow are all zero. Canonical verification passes 119/119 test files,
+730/730 tests, all lint/governance, both typechecks, production build, and the
+zero-warning gate. Initial bundle is 488.33 kB / 106.12 kB estimated transfer.
+The next action is Product Owner review of the reconstructed showcase system;
+technical PASS is not visual approval and no later wave is authorized.
+
+## Historical ownership/catalog/Page state — superseded 2026-10-08
 
 The current bounded implementation entered from clean live `main` at
 `895f985994ef2c28eae703f60d5911a5314af338`. The generated catalog contains 77
@@ -99,7 +123,7 @@ This file intentionally preserves project history. Older "Current state",
 restated by the newest dated continuity blocks or by
 `CURRENT_EXECUTION_STATE.md`.
 
-## Authoritative current state — 2026-10-08 — full ERP-TABLE reference experience
+## Historical full ERP-TABLE reference-experience state — superseded by showcase gate
 
 The Product Owner rejected `eddac4a8e8a3460f346bb579fdd5ca0074296e7a` for
 omitting visible owners and retaining geometry mismatches. The binding file and

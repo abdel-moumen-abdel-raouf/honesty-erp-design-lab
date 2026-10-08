@@ -1,6 +1,26 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
-## Authoritative current gate — 2026-10-08 — ownership catalog and ErpPage
+## Authoritative current gate — 2026-10-08 — dedicated showcase reconstruction
+
+The bounded work entered at `54451b1fdca8da0f03096d16df20adc6100a5c11`.
+Every one of the 77 public ERP owners now has a dedicated component-specific
+showcase owner, lazy loader, and coverage contract. Missing owners and empty
+showcases are zero; generic input-only fallback is prohibited.
+
+Legacy meaningful sections are fully mapped and the old routed showcase and
+Foundation implementations are decommissioned behind 29 redirect aliases.
+Navigation is a compact Arabic catalog rather than the former duplicate rows
+and component matrix. Runtime review passed all component routes in Light/Dark
+RTL, representative interactions, 390 px narrow review, and all redirects with
+zero console errors/warnings, broken assets, or page overflow.
+
+Canonical verification passes 119/119 test files and 730/730 tests, all
+lint/governance, both typechecks, production build, and zero warnings. Initial
+bundle is 488.33 kB / 106.12 kB. The next gate is Product Owner review of the
+showcase reconstruction. Existing component visual contracts remain closed and
+no later component/page/feature wave is authorized.
+
+## Historical ownership catalog and ErpPage gate — superseded 2026-10-08
 
 The bounded wave entered at
 `895f985994ef2c28eae703f60d5911a5314af338`. It adds one generated catalog for
@@ -285,7 +305,7 @@ coverage.
 This synchronization does not perform the deferred Phase 10/11 product review,
 declare visual approval, freeze a family, or close the Basic Controls layer.
 
-## Current Post-CR12 Product Owner Review State
+## Historical Post-CR12 Product Owner Review State — superseded
 
 The current page-by-page Product Owner review/execution state is authoritative in POST_CR12_PRODUCT_OWNER_REVIEW_STATE_V1.md.
 

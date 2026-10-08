@@ -4,7 +4,7 @@ import process from 'node:process';
 
 const ROOT = process.cwd();
 const ROUTES = 'src/app/app.routes.ts';
-const REVIEW = 'src/app/showcase/entity-form-batch/entity-form-batch.html';
+const REVIEW = 'src/app/review-internals/legacy-entity-form-batch/entity-form-batch.html';
 const CONTRACTS = 'src/app/controls/entity-form/entity-form-contracts.ts';
 const SCHEMA = 'src/app/controls/entity-form/entity-form-schema.ts';
 const FIELDS_TS = 'src/app/controls/entity-form/entity-schema-fields.ts';
@@ -194,7 +194,7 @@ function runCheck() {
   }
   for (const absolute of [
     ...walk(path.join(ROOT, 'src/app/controls/entity-form')),
-    ...walk(path.join(ROOT, 'src/app/showcase/entity-form-batch')),
+    ...walk(path.join(ROOT, 'src/app/review-internals/legacy-entity-form-batch')),
     ...walk(path.join(ROOT, 'src/app/review-internals/entity-form-template-evidence')),
   ]) {
     const relative = normalize(path.relative(ROOT, absolute));

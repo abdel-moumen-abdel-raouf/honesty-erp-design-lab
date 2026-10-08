@@ -1,6 +1,21 @@
 # Inputs Product Owner Review Findings V1
 
-## Authoritative current continuity finding — 2026-10-08 — ownership and Page foundation
+## Authoritative current continuity finding — 2026-10-08 — showcase reconstruction
+
+No Input or Core visual implementation was reopened. The Product Owner finding
+was the incomplete generic showcase architecture. All 77 public owners now have
+dedicated showcase owners with authored projection, state, event, interaction,
+and exact-reference evidence as applicable. Exact Select and other exact Core
+evidence is reused unchanged.
+
+The legacy Inputs route and other old batch pages no longer render; their
+meaningful evidence is mapped to the appropriate component pages and their URLs
+redirect. Runtime audit found zero empty pages, console errors/warnings, broken
+assets, or overflow across all component routes in Light/Dark RTL and narrow
+review. The next action is Product Owner review of the reconstructed showcase
+system. No Input correction or later visual wave is opened.
+
+## Historical ownership and Page continuity finding — superseded 2026-10-08
 
 No Input visual family was reopened by this wave. The repository-wide ownership
 audit now records 77 public ERP components, 41 supporting entries, 42 native

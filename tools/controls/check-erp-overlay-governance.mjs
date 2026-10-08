@@ -27,9 +27,9 @@ const OVERLAY_FRAME_STYLE =
 const OVERLAY_FRAME_FACETS =
   'src/app/shared/overlay/overlay-frame/overlay-frame-facets.scss';
 const OVERLAY_SHOWCASE_SOURCE =
-  'src/app/showcase/overlay-controls/overlay-controls.ts';
+  'src/app/review-internals/legacy-overlay-controls/overlay-controls.ts';
 const OVERLAY_SHOWCASE_TEMPLATE =
-  'src/app/showcase/overlay-controls/overlay-controls.html';
+  'src/app/review-internals/legacy-overlay-controls/overlay-controls.html';
 const TEMPORAL_PICKER_SOURCE =
   'src/app/controls/temporal-family/internal/temporal-picker-content.ts';
 const TEMPORAL_PICKER_TEMPLATE =

@@ -1,0 +1,75 @@
+<erp-stack gap="default" data-dedicated-showcase="fab-menu" data-showcase-sections="6">
+  <erp-text type="heading-2">قائمة إجراءات عائمة</erp-text>
+  <erp-text type="paragraph" tone="secondary">مجموعة إجراءات عائمة قابلة للفتح والإغلاق.</erp-text>
+    <erp-surface padding="default" border="subtle" data-showcase-case="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
+        <erp-fab-menu
+          [label]="$any(cases[0].inputs['label'])"
+          [items]="$any(cases[0].inputs['items'])"
+          (itemSelected)="recordEvent('itemSelected', $event)"
+        ></erp-fab-menu>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="placement-block-start">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">placement: block-start</erp-text>
+        <erp-fab-menu
+          [label]="$any(cases[1].inputs['label'])"
+          [items]="$any(cases[1].inputs['items'])"
+          [placement]="$any(cases[1].inputs['placement'])"
+          (itemSelected)="recordEvent('itemSelected', $event)"
+        ></erp-fab-menu>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="placement-block-end">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">placement: block-end</erp-text>
+        <erp-fab-menu
+          [label]="$any(cases[2].inputs['label'])"
+          [items]="$any(cases[2].inputs['items'])"
+          [placement]="$any(cases[2].inputs['placement'])"
+          (itemSelected)="recordEvent('itemSelected', $event)"
+        ></erp-fab-menu>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-false">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">disabled: false</erp-text>
+        <erp-fab-menu
+          [label]="$any(cases[3].inputs['label'])"
+          [items]="$any(cases[3].inputs['items'])"
+          [disabled]="$any(cases[3].inputs['disabled'])"
+          (itemSelected)="recordEvent('itemSelected', $event)"
+        ></erp-fab-menu>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-true">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">disabled: true</erp-text>
+        <erp-fab-menu
+          [label]="$any(cases[4].inputs['label'])"
+          [items]="$any(cases[4].inputs['items'])"
+          [disabled]="$any(cases[4].inputs['disabled'])"
+          (itemSelected)="recordEvent('itemSelected', $event)"
+        ></erp-fab-menu>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="disabled">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">حالة معطلة</erp-text>
+        <erp-fab-menu
+          [label]="$any(cases[5].inputs['label'])"
+          [items]="$any(cases[5].inputs['items'])"
+          [disabled]="$any(cases[5].inputs['disabled'])"
+          (itemSelected)="recordEvent('itemSelected', $event)"
+        ></erp-fab-menu>
+      </erp-stack>
+    </erp-surface>
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

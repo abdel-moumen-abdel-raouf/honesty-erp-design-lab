@@ -28,10 +28,24 @@ export interface ErpComponentCatalogEntry {
   readonly nativeCoverage: readonly string[];
   readonly coverageScope: string;
   readonly showcaseRoute: string | null;
+  readonly showcaseOwnerPath: string | null;
+  readonly showcaseLoader: string | null;
+  readonly displayNameAr: string;
+  readonly descriptionAr: string;
   readonly visualReference: string | null;
   readonly visualStatus: ErpCatalogVisualStatus;
   readonly showcaseFacets: readonly string[];
   readonly showcaseCases: readonly ErpComponentShowcaseCase[];
+  readonly showcaseCoverage: {
+    readonly coveredInputs: readonly string[];
+    readonly coveredModels: readonly string[];
+    readonly coveredOutputs: readonly string[];
+    readonly coveredValues: Readonly<Record<string, readonly string[]>>;
+    readonly coveredStates: readonly string[];
+    readonly coveredProjectionSlots: readonly string[];
+    readonly coveredReferenceCases: readonly string[];
+    readonly evidenceKind: string;
+  } | null;
 }
 
 export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
@@ -167,12 +181,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "loading",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "loadingLabel",
@@ -182,7 +202,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "fullWidth",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "cursor",
@@ -244,6 +267,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/button",
+    "showcaseOwnerPath": "src/app/showcase/components/button/button-showcase.ts",
+    "showcaseLoader": "button",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -252,7 +277,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "shape",
       "tone",
       "disabled",
-      "loading"
+      "loading",
+      "cursor"
     ],
     "showcaseCases": [
       {
@@ -415,6 +441,54 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         }
       },
       {
+        "id": "disabled-false",
+        "label": "disabled: false",
+        "inputs": {
+          "label": "تنفيذ الإجراء",
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "disabled: true",
+        "inputs": {
+          "label": "تنفيذ الإجراء",
+          "disabled": true
+        }
+      },
+      {
+        "id": "loading-false",
+        "label": "loading: false",
+        "inputs": {
+          "label": "تنفيذ الإجراء",
+          "loading": false
+        }
+      },
+      {
+        "id": "loading-true",
+        "label": "loading: true",
+        "inputs": {
+          "label": "تنفيذ الإجراء",
+          "loading": true
+        }
+      },
+      {
+        "id": "cursor-pointer",
+        "label": "cursor: pointer",
+        "inputs": {
+          "label": "تنفيذ الإجراء",
+          "cursor": "pointer"
+        }
+      },
+      {
+        "id": "cursor-default",
+        "label": "cursor: default",
+        "inputs": {
+          "label": "تنفيذ الإجراء",
+          "cursor": "default"
+        }
+      },
+      {
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
@@ -430,7 +504,125 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "loading": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "زر",
+    "descriptionAr": "إجراء نصي قياسي بحالاته وأحجامه وأنماطه.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "variant",
+        "tone",
+        "size",
+        "shape",
+        "borderStyle",
+        "icon",
+        "iconPosition",
+        "type",
+        "name",
+        "value",
+        "form",
+        "ariaHasPopup",
+        "ariaControls",
+        "ariaExpanded",
+        "role",
+        "disabled",
+        "loading",
+        "loadingLabel",
+        "fullWidth",
+        "cursor",
+        "rippleSpeed",
+        "presentation"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "pressed"
+      ],
+      "coveredValues": {
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "tone": [
+          "primary",
+          "secondary",
+          "accent",
+          "success",
+          "warning",
+          "danger",
+          "info",
+          "neutral"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "borderStyle": [
+          "solid",
+          "dashed"
+        ],
+        "iconPosition": [
+          "start",
+          "end"
+        ],
+        "type": [
+          "button",
+          "submit",
+          "reset"
+        ],
+        "ariaHasPopup": [
+          "menu",
+          "dialog",
+          "listbox"
+        ],
+        "role": [
+          "menuitem"
+        ],
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "loading": [
+          "false",
+          "true"
+        ],
+        "fullWidth": [
+          "false",
+          "true"
+        ],
+        "cursor": [
+          "pointer",
+          "default"
+        ],
+        "rippleSpeed": [
+          "fast",
+          "normal",
+          "slow"
+        ],
+        "presentation": [
+          "default",
+          "table-reference-tool",
+          "table-reference-page",
+          "table-reference-cell"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "loading",
+        "fullWidth"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "button-group",
@@ -458,7 +650,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "attached",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [
@@ -478,6 +673,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/button-group",
+    "showcaseOwnerPath": "src/app/showcase/components/button-group/button-group-showcase.ts",
+    "showcaseLoader": "button-group",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -522,7 +719,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "orientation": "vertical"
         }
       }
-    ]
+    ],
+    "displayNameAr": "مجموعة أزرار",
+    "descriptionAr": "اختيار إجراء واحد من مجموعة مترابطة.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "items",
+        "orientation",
+        "attached"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "itemPressed"
+      ],
+      "coveredValues": {
+        "orientation": [
+          "horizontal",
+          "vertical"
+        ],
+        "attached": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "attached"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "extended-fab",
@@ -566,12 +792,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "loading",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "cursor",
@@ -615,13 +847,16 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/extended-fab",
+    "showcaseOwnerPath": "src/app/showcase/components/extended-fab/extended-fab-showcase.ts",
+    "showcaseLoader": "extended-fab",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
       "size",
       "tone",
       "disabled",
-      "loading"
+      "loading",
+      "cursor"
     ],
     "showcaseCases": [
       {
@@ -688,6 +923,54 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         }
       },
       {
+        "id": "disabled-false",
+        "label": "disabled: false",
+        "inputs": {
+          "label": "إضافة سجل",
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "disabled: true",
+        "inputs": {
+          "label": "إضافة سجل",
+          "disabled": true
+        }
+      },
+      {
+        "id": "loading-false",
+        "label": "loading: false",
+        "inputs": {
+          "label": "إضافة سجل",
+          "loading": false
+        }
+      },
+      {
+        "id": "loading-true",
+        "label": "loading: true",
+        "inputs": {
+          "label": "إضافة سجل",
+          "loading": true
+        }
+      },
+      {
+        "id": "cursor-pointer",
+        "label": "cursor: pointer",
+        "inputs": {
+          "label": "إضافة سجل",
+          "cursor": "pointer"
+        }
+      },
+      {
+        "id": "cursor-default",
+        "label": "cursor: default",
+        "inputs": {
+          "label": "إضافة سجل",
+          "cursor": "default"
+        }
+      },
+      {
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
@@ -703,7 +986,62 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "loading": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "زر إجراء عائم ممتد",
+    "descriptionAr": "إجراء عائم يجمع الأيقونة والتسمية.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "icon",
+        "size",
+        "tone",
+        "disabled",
+        "loading",
+        "cursor",
+        "rippleSpeed"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "pressed"
+      ],
+      "coveredValues": {
+        "size": [
+          "md",
+          "lg",
+          "xl"
+        ],
+        "tone": [
+          "primary",
+          "secondary",
+          "accent",
+          "surface"
+        ],
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "loading": [
+          "false",
+          "true"
+        ],
+        "cursor": [
+          "pointer",
+          "default"
+        ],
+        "rippleSpeed": [
+          "fast",
+          "normal",
+          "slow"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "loading"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "fab",
@@ -747,12 +1085,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "loading",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "cursor",
@@ -796,13 +1140,16 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/fab",
+    "showcaseOwnerPath": "src/app/showcase/components/fab/fab-showcase.ts",
+    "showcaseLoader": "fab",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
       "size",
       "tone",
       "disabled",
-      "loading"
+      "loading",
+      "cursor"
     ],
     "showcaseCases": [
       {
@@ -877,6 +1224,60 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         }
       },
       {
+        "id": "disabled-false",
+        "label": "disabled: false",
+        "inputs": {
+          "label": "إضافة",
+          "icon": "add",
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "disabled: true",
+        "inputs": {
+          "label": "إضافة",
+          "icon": "add",
+          "disabled": true
+        }
+      },
+      {
+        "id": "loading-false",
+        "label": "loading: false",
+        "inputs": {
+          "label": "إضافة",
+          "icon": "add",
+          "loading": false
+        }
+      },
+      {
+        "id": "loading-true",
+        "label": "loading: true",
+        "inputs": {
+          "label": "إضافة",
+          "icon": "add",
+          "loading": true
+        }
+      },
+      {
+        "id": "cursor-pointer",
+        "label": "cursor: pointer",
+        "inputs": {
+          "label": "إضافة",
+          "icon": "add",
+          "cursor": "pointer"
+        }
+      },
+      {
+        "id": "cursor-default",
+        "label": "cursor: default",
+        "inputs": {
+          "label": "إضافة",
+          "icon": "add",
+          "cursor": "default"
+        }
+      },
+      {
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
@@ -894,7 +1295,62 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "loading": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "زر إجراء عائم",
+    "descriptionAr": "إجراء عائم بأيقونة ودلالة وصول واضحة.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "icon",
+        "label",
+        "size",
+        "tone",
+        "disabled",
+        "loading",
+        "cursor",
+        "rippleSpeed"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "pressed"
+      ],
+      "coveredValues": {
+        "size": [
+          "sm",
+          "md",
+          "lg"
+        ],
+        "tone": [
+          "primary",
+          "secondary",
+          "accent",
+          "surface"
+        ],
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "loading": [
+          "false",
+          "true"
+        ],
+        "cursor": [
+          "pointer",
+          "default"
+        ],
+        "rippleSpeed": [
+          "fast",
+          "normal",
+          "slow"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "loading"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "fab-menu",
@@ -932,7 +1388,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [
@@ -955,10 +1414,13 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/fab-menu",
+    "showcaseOwnerPath": "src/app/showcase/components/fab-menu/fab-menu-showcase.ts",
+    "showcaseLoader": "fab-menu",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
-      "disabled"
+      "disabled",
+      "placement"
     ],
     "showcaseCases": [
       {
@@ -975,6 +1437,62 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         }
       },
       {
+        "id": "placement-block-start",
+        "label": "placement: block-start",
+        "inputs": {
+          "label": "إجراءات سريعة",
+          "items": [
+            {
+              "value": "add",
+              "label": "إضافة"
+            }
+          ],
+          "placement": "block-start"
+        }
+      },
+      {
+        "id": "placement-block-end",
+        "label": "placement: block-end",
+        "inputs": {
+          "label": "إجراءات سريعة",
+          "items": [
+            {
+              "value": "add",
+              "label": "إضافة"
+            }
+          ],
+          "placement": "block-end"
+        }
+      },
+      {
+        "id": "disabled-false",
+        "label": "disabled: false",
+        "inputs": {
+          "label": "إجراءات سريعة",
+          "items": [
+            {
+              "value": "add",
+              "label": "إضافة"
+            }
+          ],
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "disabled: true",
+        "inputs": {
+          "label": "إجراءات سريعة",
+          "items": [
+            {
+              "value": "add",
+              "label": "إضافة"
+            }
+          ],
+          "disabled": true
+        }
+      },
+      {
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
@@ -988,7 +1506,38 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "disabled": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "قائمة إجراءات عائمة",
+    "descriptionAr": "مجموعة إجراءات عائمة قابلة للفتح والإغلاق.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "icon",
+        "items",
+        "placement",
+        "disabled"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "itemSelected"
+      ],
+      "coveredValues": {
+        "placement": [
+          "block-start",
+          "block-end"
+        ],
+        "disabled": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "icon-button",
@@ -1106,12 +1655,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "loading",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "cursor",
@@ -1169,6 +1724,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/icon-button",
+    "showcaseOwnerPath": "src/app/showcase/components/icon-button/icon-button-showcase.ts",
+    "showcaseLoader": "icon-button",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -1177,7 +1734,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "shape",
       "tone",
       "disabled",
-      "loading"
+      "loading",
+      "cursor"
     ],
     "showcaseCases": [
       {
@@ -1351,6 +1909,60 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         }
       },
       {
+        "id": "disabled-false",
+        "label": "disabled: false",
+        "inputs": {
+          "label": "الإعدادات",
+          "icon": "settings",
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "disabled: true",
+        "inputs": {
+          "label": "الإعدادات",
+          "icon": "settings",
+          "disabled": true
+        }
+      },
+      {
+        "id": "loading-false",
+        "label": "loading: false",
+        "inputs": {
+          "label": "الإعدادات",
+          "icon": "settings",
+          "loading": false
+        }
+      },
+      {
+        "id": "loading-true",
+        "label": "loading: true",
+        "inputs": {
+          "label": "الإعدادات",
+          "icon": "settings",
+          "loading": true
+        }
+      },
+      {
+        "id": "cursor-pointer",
+        "label": "cursor: pointer",
+        "inputs": {
+          "label": "الإعدادات",
+          "icon": "settings",
+          "cursor": "pointer"
+        }
+      },
+      {
+        "id": "cursor-default",
+        "label": "cursor: default",
+        "inputs": {
+          "label": "الإعدادات",
+          "icon": "settings",
+          "cursor": "default"
+        }
+      },
+      {
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
@@ -1368,7 +1980,107 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "loading": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "زر أيقونة",
+    "descriptionAr": "إجراء مختصر بأيقونة وتسمية وصول.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "icon",
+        "label",
+        "variant",
+        "tone",
+        "size",
+        "shape",
+        "borderStyle",
+        "type",
+        "name",
+        "value",
+        "form",
+        "ariaHasPopup",
+        "ariaControls",
+        "ariaExpanded",
+        "disabled",
+        "loading",
+        "cursor",
+        "rippleSpeed",
+        "presentation"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "pressed"
+      ],
+      "coveredValues": {
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost"
+        ],
+        "tone": [
+          "primary",
+          "secondary",
+          "accent",
+          "success",
+          "warning",
+          "danger",
+          "info",
+          "neutral"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "borderStyle": [
+          "solid",
+          "dashed"
+        ],
+        "type": [
+          "button",
+          "submit",
+          "reset"
+        ],
+        "ariaHasPopup": [
+          "menu",
+          "dialog",
+          "listbox"
+        ],
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "loading": [
+          "false",
+          "true"
+        ],
+        "cursor": [
+          "pointer",
+          "default"
+        ],
+        "rippleSpeed": [
+          "fast",
+          "normal",
+          "slow"
+        ],
+        "presentation": [
+          "default",
+          "table-reference-cell",
+          "table-reference-page"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "loading"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "split-button",
@@ -1393,7 +2105,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [
@@ -1417,6 +2132,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/split-button",
+    "showcaseOwnerPath": "src/app/showcase/components/split-button/split-button-showcase.ts",
+    "showcaseLoader": "split-button",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -1437,6 +2154,34 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         }
       },
       {
+        "id": "disabled-false",
+        "label": "disabled: false",
+        "inputs": {
+          "label": "حفظ",
+          "items": [
+            {
+              "value": "save-close",
+              "label": "حفظ وإغلاق"
+            }
+          ],
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "disabled: true",
+        "inputs": {
+          "label": "حفظ",
+          "items": [
+            {
+              "value": "save-close",
+              "label": "حفظ وإغلاق"
+            }
+          ],
+          "disabled": true
+        }
+      },
+      {
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
@@ -1450,7 +2195,33 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "disabled": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "زر منقسم",
+    "descriptionAr": "إجراء أساسي مع قائمة إجراءات إضافية.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "items",
+        "disabled"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "primaryPressed",
+        "itemSelected"
+      ],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "app-shell",
@@ -1503,6 +2274,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/app-shell",
+    "showcaseOwnerPath": "src/app/showcase/components/app-shell/app-shell-showcase.ts",
+    "showcaseLoader": "app-shell",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
@@ -1520,7 +2293,28 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           ]
         }
       }
-    ]
+    ],
+    "displayNameAr": "إطار تطبيق ERP",
+    "descriptionAr": "تكوين إطار التطبيق من الشريط العلوي والشريط الجانبي والمحتوى.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "navigationItems",
+        "activeNavigationId",
+        "sidebarLabel",
+        "contentLabel"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "navigationActivated"
+      ],
+      "coveredValues": {},
+      "coveredStates": [],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
+      "coveredReferenceCases": [],
+      "evidenceKind": "AUTHORED_PROJECTION"
+    }
   },
   {
     "id": "branch-selector",
@@ -1550,7 +2344,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [
@@ -1575,6 +2372,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/branch-selector",
+    "showcaseOwnerPath": "src/app/showcase/components/branch-selector/branch-selector-showcase.ts",
+    "showcaseLoader": "branch-selector",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -1590,7 +2389,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "id": "cairo",
               "label": "فرع القاهرة"
             }
-          ]
+          ],
+          "value": null
+        }
+      },
+      {
+        "id": "disabled-false",
+        "label": "disabled: false",
+        "inputs": {
+          "branches": [
+            {
+              "id": "cairo",
+              "label": "فرع القاهرة"
+            }
+          ],
+          "value": null,
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "disabled: true",
+        "inputs": {
+          "branches": [
+            {
+              "id": "cairo",
+              "label": "فرع القاهرة"
+            }
+          ],
+          "value": null,
+          "disabled": true
         }
       },
       {
@@ -1603,10 +2431,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "label": "فرع القاهرة"
             }
           ],
+          "value": null,
           "disabled": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "محدد الفرع",
+    "descriptionAr": "اختيار فرع مضبوط يتحكم فيه المستهلك.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "branches",
+        "label",
+        "placeholder",
+        "disabled"
+      ],
+      "coveredModels": [
+        "value"
+      ],
+      "coveredOutputs": [
+        "changed"
+      ],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "global-search",
@@ -1665,16 +2522,73 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/global-search",
+    "showcaseOwnerPath": "src/app/showcase/components/global-search/global-search-showcase.ts",
+    "showcaseLoader": "global-search",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "mode"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "query": null
+        }
+      },
+      {
+        "id": "mode-modal",
+        "label": "mode: modal",
+        "inputs": {
+          "query": null,
+          "mode": "modal"
+        }
+      },
+      {
+        "id": "mode-dropdown",
+        "label": "mode: dropdown",
+        "inputs": {
+          "query": null,
+          "mode": "dropdown"
+        }
+      },
+      {
+        "id": "mode-inline",
+        "label": "mode: inline",
+        "inputs": {
+          "query": null,
+          "mode": "inline"
+        }
       }
-    ]
+    ],
+    "displayNameAr": "البحث العام",
+    "descriptionAr": "بحث عام داخل إطار التطبيق مع نتائج مصنفة.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "results",
+        "label",
+        "placeholder",
+        "mode"
+      ],
+      "coveredModels": [
+        "query"
+      ],
+      "coveredOutputs": [
+        "resultActivated"
+      ],
+      "coveredValues": {
+        "mode": [
+          "modal",
+          "dropdown",
+          "inline"
+        ]
+      },
+      "coveredStates": [],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "notification-bell",
@@ -1710,7 +2624,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "open",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ]
     },
@@ -1739,6 +2656,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/notification-bell",
+    "showcaseOwnerPath": "src/app/showcase/components/notification-bell/notification-bell-showcase.ts",
+    "showcaseLoader": "notification-bell",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
@@ -1746,9 +2665,46 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "open": false
+        }
+      },
+      {
+        "id": "open-false",
+        "label": "open: false",
+        "inputs": {
+          "open": false
+        }
+      },
+      {
+        "id": "open-true",
+        "label": "open: true",
+        "inputs": {
+          "open": true
+        }
       }
-    ]
+    ],
+    "displayNameAr": "جرس الإشعارات",
+    "descriptionAr": "مدخل إشعارات قابل للفتح مع عدد غير المقروء.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "notifications",
+        "unreadCount",
+        "label"
+      ],
+      "coveredModels": [
+        "open"
+      ],
+      "coveredOutputs": [
+        "notificationActivated",
+        "markAllReadRequested"
+      ],
+      "coveredValues": {},
+      "coveredStates": [],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "topbar",
@@ -1771,6 +2727,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/topbar",
+    "showcaseOwnerPath": "src/app/showcase/components/topbar/topbar-showcase.ts",
+    "showcaseLoader": "topbar",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
@@ -1780,7 +2738,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "الحالة الافتراضية",
         "inputs": {}
       }
-    ]
+    ],
+    "displayNameAr": "الشريط العلوي",
+    "descriptionAr": "تخطيط مناطق السياق والبحث والإشعارات والمستخدم.",
+    "showcaseCoverage": {
+      "coveredInputs": [],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {},
+      "coveredStates": [],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
+      "coveredReferenceCases": [],
+      "evidenceKind": "AUTHORED_PROJECTION"
+    }
   },
   {
     "id": "user-menu",
@@ -1815,7 +2787,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "open",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ]
     },
@@ -1838,6 +2813,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/user-menu",
+    "showcaseOwnerPath": "src/app/showcase/components/user-menu/user-menu-showcase.ts",
+    "showcaseLoader": "user-menu",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
@@ -1849,10 +2826,53 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "user": {
             "displayName": "أميرة حداد",
             "secondaryText": "مديرة المالية"
-          }
+          },
+          "open": false
+        }
+      },
+      {
+        "id": "open-false",
+        "label": "open: false",
+        "inputs": {
+          "user": {
+            "displayName": "أميرة حداد",
+            "secondaryText": "مديرة المالية"
+          },
+          "open": false
+        }
+      },
+      {
+        "id": "open-true",
+        "label": "open: true",
+        "inputs": {
+          "user": {
+            "displayName": "أميرة حداد",
+            "secondaryText": "مديرة المالية"
+          },
+          "open": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "قائمة المستخدم",
+    "descriptionAr": "هوية المستخدم وإجراءات الحساب ضمن سطح مثبت.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "user",
+        "items",
+        "label"
+      ],
+      "coveredModels": [
+        "open"
+      ],
+      "coveredOutputs": [
+        "actionActivated"
+      ],
+      "coveredValues": {},
+      "coveredStates": [],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "bulk-action-bar",
@@ -1887,6 +2907,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/bulk-action-bar",
+    "showcaseOwnerPath": "src/app/showcase/components/bulk-action-bar/bulk-action-bar-showcase.ts",
+    "showcaseLoader": "bulk-action-bar",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
@@ -1896,7 +2918,23 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "الحالة الافتراضية",
         "inputs": {}
       }
-    ]
+    ],
+    "displayNameAr": "شريط الإجراءات الجماعية",
+    "descriptionAr": "إجراءات مرتبطة بالصفوف المحددة.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "selectedCount"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "clearSelection"
+      ],
+      "coveredValues": {},
+      "coveredStates": [],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "filter-bar",
@@ -1916,7 +2954,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [
@@ -1940,6 +2981,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/filter-bar",
+    "showcaseOwnerPath": "src/app/showcase/components/filter-bar/filter-bar-showcase.ts",
+    "showcaseLoader": "filter-bar",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -1952,13 +2995,53 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "inputs": {}
       },
       {
+        "id": "disabled-false",
+        "label": "disabled: false",
+        "inputs": {
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "disabled: true",
+        "inputs": {
+          "disabled": true
+        }
+      },
+      {
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
           "disabled": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "شريط التصفية",
+    "descriptionAr": "عرض المرشحات النشطة وإصدار نوايا تعديلها.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "filters",
+        "disabled"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "filterRemoved",
+        "resetRequested",
+        "applyRequested"
+      ],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "filter-drawer",
@@ -1983,7 +3066,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [
@@ -2004,6 +3090,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/filter-drawer",
+    "showcaseOwnerPath": "src/app/showcase/components/filter-drawer/filter-drawer-showcase.ts",
+    "showcaseLoader": "filter-drawer",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -2018,6 +3106,22 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         }
       },
       {
+        "id": "disabled-false",
+        "label": "disabled: false",
+        "inputs": {
+          "definitions": [],
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "disabled: true",
+        "inputs": {
+          "definitions": [],
+          "disabled": true
+        }
+      },
+      {
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
@@ -2025,7 +3129,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "disabled": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "درج التصفية",
+    "descriptionAr": "سطح حاجب لتكوين المرشحات وتطبيقها.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "definitions",
+        "filters",
+        "disabled"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "applied"
+      ],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "smart-table",
@@ -2068,7 +3197,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "loading",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "error",
@@ -2083,12 +3215,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "selectable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "compact",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "filterDefinitions",
@@ -2178,10 +3316,13 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/smart-table",
+    "showcaseOwnerPath": "src/app/showcase/components/smart-table/smart-table-showcase.ts",
+    "showcaseLoader": "smart-table",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
-      "loading"
+      "loading",
+      "mode"
     ],
     "showcaseCases": [
       {
@@ -2193,8 +3334,149 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "key": "name",
               "label": "اسم الحساب"
+            },
+            {
+              "key": "balance",
+              "label": "الرصيد"
             }
-          ]
+          ],
+          "rows": [
+            {
+              "id": "1",
+              "name": "حساب المبيعات",
+              "balance": "125,000 ج.م"
+            }
+          ],
+          "page": 1,
+          "pageSize": 25,
+          "sort": null,
+          "filters": [],
+          "visibleColumns": [],
+          "selectedKeys": []
+        }
+      },
+      {
+        "id": "mode-local",
+        "label": "mode: local",
+        "inputs": {
+          "caption": "سجل الحسابات",
+          "columns": [
+            {
+              "key": "name",
+              "label": "اسم الحساب"
+            },
+            {
+              "key": "balance",
+              "label": "الرصيد"
+            }
+          ],
+          "rows": [
+            {
+              "id": "1",
+              "name": "حساب المبيعات",
+              "balance": "125,000 ج.م"
+            }
+          ],
+          "page": 1,
+          "pageSize": 25,
+          "sort": null,
+          "filters": [],
+          "visibleColumns": [],
+          "selectedKeys": [],
+          "mode": "local"
+        }
+      },
+      {
+        "id": "mode-remote",
+        "label": "mode: remote",
+        "inputs": {
+          "caption": "سجل الحسابات",
+          "columns": [
+            {
+              "key": "name",
+              "label": "اسم الحساب"
+            },
+            {
+              "key": "balance",
+              "label": "الرصيد"
+            }
+          ],
+          "rows": [
+            {
+              "id": "1",
+              "name": "حساب المبيعات",
+              "balance": "125,000 ج.م"
+            }
+          ],
+          "page": 1,
+          "pageSize": 25,
+          "sort": null,
+          "filters": [],
+          "visibleColumns": [],
+          "selectedKeys": [],
+          "mode": "remote"
+        }
+      },
+      {
+        "id": "loading-false",
+        "label": "loading: false",
+        "inputs": {
+          "caption": "سجل الحسابات",
+          "columns": [
+            {
+              "key": "name",
+              "label": "اسم الحساب"
+            },
+            {
+              "key": "balance",
+              "label": "الرصيد"
+            }
+          ],
+          "rows": [
+            {
+              "id": "1",
+              "name": "حساب المبيعات",
+              "balance": "125,000 ج.م"
+            }
+          ],
+          "page": 1,
+          "pageSize": 25,
+          "sort": null,
+          "filters": [],
+          "visibleColumns": [],
+          "selectedKeys": [],
+          "loading": false
+        }
+      },
+      {
+        "id": "loading-true",
+        "label": "loading: true",
+        "inputs": {
+          "caption": "سجل الحسابات",
+          "columns": [
+            {
+              "key": "name",
+              "label": "اسم الحساب"
+            },
+            {
+              "key": "balance",
+              "label": "الرصيد"
+            }
+          ],
+          "rows": [
+            {
+              "id": "1",
+              "name": "حساب المبيعات",
+              "balance": "125,000 ج.م"
+            }
+          ],
+          "page": 1,
+          "pageSize": 25,
+          "sort": null,
+          "filters": [],
+          "visibleColumns": [],
+          "selectedKeys": [],
+          "loading": true
         }
       },
       {
@@ -2206,12 +3488,87 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "key": "name",
               "label": "اسم الحساب"
+            },
+            {
+              "key": "balance",
+              "label": "الرصيد"
             }
           ],
+          "rows": [
+            {
+              "id": "1",
+              "name": "حساب المبيعات",
+              "balance": "125,000 ج.م"
+            }
+          ],
+          "page": 1,
+          "pageSize": 25,
+          "sort": null,
+          "filters": [],
+          "visibleColumns": [],
+          "selectedKeys": [],
           "loading": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "الجدول الذكي",
+    "descriptionAr": "تركيب مضبوط للجدول والأدوات والصفحات والحالات.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "caption",
+        "columns",
+        "rows",
+        "mode",
+        "rowKey",
+        "loading",
+        "error",
+        "totalItems",
+        "selectable",
+        "compact",
+        "filterDefinitions",
+        "pageSizeOptions"
+      ],
+      "coveredModels": [
+        "page",
+        "pageSize",
+        "sort",
+        "filters",
+        "visibleColumns",
+        "selectedKeys"
+      ],
+      "coveredOutputs": [
+        "queryChanged",
+        "rowActivated",
+        "refreshRequested",
+        "exportRequested"
+      ],
+      "coveredValues": {
+        "mode": [
+          "local",
+          "remote"
+        ],
+        "loading": [
+          "false",
+          "true"
+        ],
+        "selectable": [
+          "false",
+          "true"
+        ],
+        "compact": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "loading",
+        "selectable",
+        "compact"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "table",
@@ -2256,7 +3613,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "compact",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "density",
@@ -2291,32 +3651,50 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "selectable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "showHeaderSelection",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "rowActivatable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "striped",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "hover",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "hoverMotion",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "sort",
@@ -2416,9 +3794,14 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/table",
+    "showcaseOwnerPath": "src/app/showcase/components/table/table-showcase.ts",
+    "showcaseLoader": "table",
     "visualReference": "src/app/controls/table/ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md",
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "density",
+      "hoverMotion"
+    ],
     "showcaseCases": [
       {
         "id": "default",
@@ -2429,11 +3812,257 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "key": "name",
               "label": "اسم الحساب"
+            },
+            {
+              "key": "balance",
+              "label": "الرصيد"
             }
-          ]
+          ],
+          "rows": [
+            {
+              "id": "1",
+              "name": "حساب المبيعات",
+              "balance": "125,000 ج.م"
+            }
+          ],
+          "selectedKeys": [],
+          "columnWidths": {}
+        }
+      },
+      {
+        "id": "density-compact",
+        "label": "density: compact",
+        "inputs": {
+          "caption": "سجل الحسابات",
+          "columns": [
+            {
+              "key": "name",
+              "label": "اسم الحساب"
+            },
+            {
+              "key": "balance",
+              "label": "الرصيد"
+            }
+          ],
+          "rows": [
+            {
+              "id": "1",
+              "name": "حساب المبيعات",
+              "balance": "125,000 ج.م"
+            }
+          ],
+          "selectedKeys": [],
+          "columnWidths": {},
+          "density": "compact"
+        }
+      },
+      {
+        "id": "density-normal",
+        "label": "density: normal",
+        "inputs": {
+          "caption": "سجل الحسابات",
+          "columns": [
+            {
+              "key": "name",
+              "label": "اسم الحساب"
+            },
+            {
+              "key": "balance",
+              "label": "الرصيد"
+            }
+          ],
+          "rows": [
+            {
+              "id": "1",
+              "name": "حساب المبيعات",
+              "balance": "125,000 ج.م"
+            }
+          ],
+          "selectedKeys": [],
+          "columnWidths": {},
+          "density": "normal"
+        }
+      },
+      {
+        "id": "density-comfortable",
+        "label": "density: comfortable",
+        "inputs": {
+          "caption": "سجل الحسابات",
+          "columns": [
+            {
+              "key": "name",
+              "label": "اسم الحساب"
+            },
+            {
+              "key": "balance",
+              "label": "الرصيد"
+            }
+          ],
+          "rows": [
+            {
+              "id": "1",
+              "name": "حساب المبيعات",
+              "balance": "125,000 ج.م"
+            }
+          ],
+          "selectedKeys": [],
+          "columnWidths": {},
+          "density": "comfortable"
+        }
+      },
+      {
+        "id": "hoverMotion-false",
+        "label": "hoverMotion: false",
+        "inputs": {
+          "caption": "سجل الحسابات",
+          "columns": [
+            {
+              "key": "name",
+              "label": "اسم الحساب"
+            },
+            {
+              "key": "balance",
+              "label": "الرصيد"
+            }
+          ],
+          "rows": [
+            {
+              "id": "1",
+              "name": "حساب المبيعات",
+              "balance": "125,000 ج.م"
+            }
+          ],
+          "selectedKeys": [],
+          "columnWidths": {},
+          "hoverMotion": false
+        }
+      },
+      {
+        "id": "hoverMotion-true",
+        "label": "hoverMotion: true",
+        "inputs": {
+          "caption": "سجل الحسابات",
+          "columns": [
+            {
+              "key": "name",
+              "label": "اسم الحساب"
+            },
+            {
+              "key": "balance",
+              "label": "الرصيد"
+            }
+          ],
+          "rows": [
+            {
+              "id": "1",
+              "name": "حساب المبيعات",
+              "balance": "125,000 ج.م"
+            }
+          ],
+          "selectedKeys": [],
+          "columnWidths": {},
+          "hoverMotion": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "الجدول",
+    "descriptionAr": "دلالات الجدول والصفوف والخلايا والاختيار والفرز والتحجيم.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "caption",
+        "columns",
+        "visibleColumnKeys",
+        "rows",
+        "rowKey",
+        "emptyText",
+        "compact",
+        "density",
+        "layout",
+        "presentation",
+        "fixedHeight",
+        "selectable",
+        "showHeaderSelection",
+        "rowActivatable",
+        "striped",
+        "hover",
+        "hoverMotion",
+        "sort",
+        "footerValues",
+        "cellDefinitions",
+        "footerDefinitions"
+      ],
+      "coveredModels": [
+        "selectedKeys",
+        "columnWidths"
+      ],
+      "coveredOutputs": [
+        "rowActivated",
+        "sortChange",
+        "columnWidthChange"
+      ],
+      "coveredValues": {
+        "compact": [
+          "false",
+          "true"
+        ],
+        "density": [
+          "compact",
+          "normal",
+          "comfortable"
+        ],
+        "layout": [
+          "horizontal",
+          "vertical"
+        ],
+        "presentation": [
+          "standalone",
+          "reference-experience"
+        ],
+        "selectable": [
+          "false",
+          "true"
+        ],
+        "showHeaderSelection": [
+          "false",
+          "true"
+        ],
+        "rowActivatable": [
+          "false",
+          "true"
+        ],
+        "striped": [
+          "false",
+          "true"
+        ],
+        "hover": [
+          "false",
+          "true"
+        ],
+        "hoverMotion": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "compact",
+        "selectable",
+        "showHeaderSelection",
+        "rowActivatable",
+        "striped",
+        "hover",
+        "hoverMotion"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [
+        "default",
+        "density-compact",
+        "density-normal",
+        "density-comfortable",
+        "hoverMotion-false",
+        "hoverMotion-true"
+      ],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "table-toolbar",
@@ -2461,22 +4090,34 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "showRefresh",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "showExport",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "refreshing",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [
@@ -2497,6 +4138,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/table-toolbar",
+    "showcaseOwnerPath": "src/app/showcase/components/table-toolbar/table-toolbar-showcase.ts",
+    "showcaseLoader": "table-toolbar",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -2509,13 +4152,75 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "inputs": {}
       },
       {
+        "id": "disabled-false",
+        "label": "disabled: false",
+        "inputs": {
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "disabled: true",
+        "inputs": {
+          "disabled": true
+        }
+      },
+      {
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
           "disabled": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "شريط أدوات الجدول",
+    "descriptionAr": "تخطيط البحث والإجراءات وأدوات العرض للجدول.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "presentation",
+        "label",
+        "showRefresh",
+        "showExport",
+        "refreshing",
+        "disabled"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "refreshRequested",
+        "exportRequested"
+      ],
+      "coveredValues": {
+        "presentation": [
+          "default",
+          "table-reference"
+        ],
+        "showRefresh": [
+          "false",
+          "true"
+        ],
+        "showExport": [
+          "false",
+          "true"
+        ],
+        "refreshing": [
+          "false",
+          "true"
+        ],
+        "disabled": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "showRefresh",
+        "showExport",
+        "refreshing",
+        "disabled"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "alert",
@@ -2555,7 +4260,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "dismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "dismissLabel",
@@ -2586,6 +4294,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/alert",
+    "showcaseOwnerPath": "src/app/showcase/components/alert/alert-showcase.ts",
+    "showcaseLoader": "alert",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -2631,7 +4341,41 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "tone": "danger"
         }
       }
-    ]
+    ],
+    "displayNameAr": "تنبيه",
+    "descriptionAr": "رسالة ملاحظات قابلة للإغلاق عند السماح بذلك.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "title",
+        "description",
+        "tone",
+        "icon",
+        "dismissible",
+        "dismissLabel"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "dismissed"
+      ],
+      "coveredValues": {
+        "tone": [
+          "info",
+          "success",
+          "warning",
+          "danger"
+        ],
+        "dismissible": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "dismissible"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "empty-state",
@@ -2667,7 +4411,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "animated",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "illustrationMotion",
@@ -2691,17 +4438,26 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "showTitle",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "showDescription",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "showActions",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "showExtra",
@@ -2785,6 +4541,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/empty-state",
+    "showcaseOwnerPath": "src/app/showcase/components/empty-state/empty-state-showcase.ts",
+    "showcaseLoader": "empty-state",
     "visualReference": "src/app/controls/empty-state/EMPTY_STATE_REFERENCE_EXACT_V1.md",
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -2831,7 +4589,85 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "variant": "custom"
         }
       }
-    ]
+    ],
+    "displayNameAr": "الحالة الفارغة",
+    "descriptionAr": "حالة فارغة بعنوان ووصف وإجراءات ورسوم اختيارية.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "variant",
+        "title",
+        "description",
+        "animated",
+        "illustrationMotion",
+        "motionSpeed",
+        "showIllustration",
+        "showTitle",
+        "showDescription",
+        "showActions",
+        "showExtra",
+        "showPrimaryAction",
+        "primaryActionLabel",
+        "showSecondaryAction",
+        "secondaryActionLabel",
+        "showTertiaryAction",
+        "tertiaryActionLabel",
+        "extraPrefix",
+        "extraLinkLabel",
+        "extraLinkHref"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "primaryAction",
+        "secondaryAction",
+        "tertiaryAction"
+      ],
+      "coveredValues": {
+        "variant": [
+          "no-data",
+          "no-search",
+          "error",
+          "forbidden",
+          "custom"
+        ],
+        "animated": [
+          "false",
+          "true"
+        ],
+        "illustrationMotion": [
+          "float",
+          "pulse",
+          "none"
+        ],
+        "showTitle": [
+          "false",
+          "true"
+        ],
+        "showDescription": [
+          "false",
+          "true"
+        ],
+        "showActions": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "animated",
+        "showTitle",
+        "showDescription",
+        "showActions"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [
+        "default",
+        "variant-no-data",
+        "variant-no-search",
+        "variant-error",
+        "variant-forbidden",
+        "variant-custom"
+      ],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "skeleton",
@@ -2869,7 +4705,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "animated",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "label",
@@ -2890,6 +4729,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/skeleton",
+    "showcaseOwnerPath": "src/app/showcase/components/skeleton/skeleton-showcase.ts",
+    "showcaseLoader": "skeleton",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -2944,7 +4785,42 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "size": "lg"
         }
       }
-    ]
+    ],
+    "displayNameAr": "هيكل التحميل",
+    "descriptionAr": "تمثيل مؤقت للمحتوى أثناء التحميل.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "variant",
+        "size",
+        "lines",
+        "animated",
+        "label"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "variant": [
+          "line",
+          "block",
+          "circle"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg"
+        ],
+        "animated": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "animated"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "STATIC_COMPONENT"
+    }
   },
   {
     "id": "status-badge",
@@ -3030,37 +4906,58 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "showDot",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "pulse",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "uppercase",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "interactive",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "selected",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "removable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [
@@ -3091,6 +4988,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/status-badge",
+    "showcaseOwnerPath": "src/app/showcase/components/status-badge/status-badge-showcase.ts",
+    "showcaseLoader": "status-badge",
     "visualReference": "src/app/controls/status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md",
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -3279,6 +5178,38 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         }
       },
       {
+        "id": "selected-false",
+        "label": "selected: false",
+        "inputs": {
+          "label": "نشط",
+          "selected": false
+        }
+      },
+      {
+        "id": "selected-true",
+        "label": "selected: true",
+        "inputs": {
+          "label": "نشط",
+          "selected": true
+        }
+      },
+      {
+        "id": "disabled-false",
+        "label": "disabled: false",
+        "inputs": {
+          "label": "نشط",
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "disabled: true",
+        "inputs": {
+          "label": "نشط",
+          "disabled": true
+        }
+      },
+      {
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
@@ -3286,7 +5217,136 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "disabled": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "شارة الحالة",
+    "descriptionAr": "مؤشر حالة غير تفاعلي أو تفاعلي حسب العقد.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "tone",
+        "variant",
+        "size",
+        "shape",
+        "widthMode",
+        "icon",
+        "image",
+        "count",
+        "showDot",
+        "pulse",
+        "uppercase",
+        "interactive",
+        "selected",
+        "removable",
+        "disabled"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "badgeClick",
+        "selectedChange",
+        "remove"
+      ],
+      "coveredValues": {
+        "tone": [
+          "neutral",
+          "success",
+          "warning",
+          "danger",
+          "info",
+          "brand",
+          "pending",
+          "archived"
+        ],
+        "variant": [
+          "soft",
+          "solid",
+          "outline",
+          "ghost"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl"
+        ],
+        "shape": [
+          "square",
+          "rounded",
+          "pill"
+        ],
+        "widthMode": [
+          "content",
+          "stretch"
+        ],
+        "showDot": [
+          "false",
+          "true"
+        ],
+        "pulse": [
+          "false",
+          "true"
+        ],
+        "uppercase": [
+          "false",
+          "true"
+        ],
+        "interactive": [
+          "false",
+          "true"
+        ],
+        "selected": [
+          "false",
+          "true"
+        ],
+        "removable": [
+          "false",
+          "true"
+        ],
+        "disabled": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "showDot",
+        "pulse",
+        "uppercase",
+        "interactive",
+        "selected",
+        "removable",
+        "disabled"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [
+        "default",
+        "tone-neutral",
+        "tone-success",
+        "tone-warning",
+        "tone-danger",
+        "tone-info",
+        "tone-brand",
+        "tone-pending",
+        "tone-archived",
+        "variant-soft",
+        "variant-solid",
+        "variant-outline",
+        "variant-ghost",
+        "size-sm",
+        "size-md",
+        "size-lg",
+        "size-xl",
+        "shape-square",
+        "shape-rounded",
+        "shape-pill",
+        "widthMode-content",
+        "widthMode-stretch",
+        "selected-false",
+        "selected-true",
+        "disabled-false",
+        "disabled-true",
+        "disabled"
+      ],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "tooltip",
@@ -3314,7 +5374,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "interactive",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "placement",
@@ -3337,12 +5400,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "showArrow",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "enterAnimation",
@@ -3360,7 +5429,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "open",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ]
     },
@@ -3381,22 +5453,31 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/tooltip",
+    "showcaseOwnerPath": "src/app/showcase/components/tooltip/tooltip-showcase.ts",
+    "showcaseLoader": "tooltip",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
       "variant",
-      "disabled"
+      "disabled",
+      "placement",
+      "activation"
     ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "text": "توضيح الإجراء للمستخدم",
+          "open": false
+        }
       },
       {
         "id": "variant-plain",
         "label": "variant: plain",
         "inputs": {
+          "text": "توضيح الإجراء للمستخدم",
+          "open": false,
           "variant": "plain"
         }
       },
@@ -3404,17 +5485,166 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "variant-rich",
         "label": "variant: rich",
         "inputs": {
+          "text": "توضيح الإجراء للمستخدم",
+          "open": false,
           "variant": "rich"
+        }
+      },
+      {
+        "id": "placement-top",
+        "label": "placement: top",
+        "inputs": {
+          "text": "توضيح الإجراء للمستخدم",
+          "open": false,
+          "placement": "top"
+        }
+      },
+      {
+        "id": "placement-bottom",
+        "label": "placement: bottom",
+        "inputs": {
+          "text": "توضيح الإجراء للمستخدم",
+          "open": false,
+          "placement": "bottom"
+        }
+      },
+      {
+        "id": "placement-start",
+        "label": "placement: start",
+        "inputs": {
+          "text": "توضيح الإجراء للمستخدم",
+          "open": false,
+          "placement": "start"
+        }
+      },
+      {
+        "id": "placement-end",
+        "label": "placement: end",
+        "inputs": {
+          "text": "توضيح الإجراء للمستخدم",
+          "open": false,
+          "placement": "end"
+        }
+      },
+      {
+        "id": "activation-auto",
+        "label": "activation: auto",
+        "inputs": {
+          "text": "توضيح الإجراء للمستخدم",
+          "open": false,
+          "activation": "auto"
+        }
+      },
+      {
+        "id": "activation-press",
+        "label": "activation: press",
+        "inputs": {
+          "text": "توضيح الإجراء للمستخدم",
+          "open": false,
+          "activation": "press"
+        }
+      },
+      {
+        "id": "disabled-false",
+        "label": "disabled: false",
+        "inputs": {
+          "text": "توضيح الإجراء للمستخدم",
+          "open": false,
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "disabled: true",
+        "inputs": {
+          "text": "توضيح الإجراء للمستخدم",
+          "open": false,
+          "disabled": true
+        }
+      },
+      {
+        "id": "open-false",
+        "label": "open: false",
+        "inputs": {
+          "text": "توضيح الإجراء للمستخدم",
+          "open": false
+        }
+      },
+      {
+        "id": "open-true",
+        "label": "open: true",
+        "inputs": {
+          "text": "توضيح الإجراء للمستخدم",
+          "open": true
         }
       },
       {
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
+          "text": "توضيح الإجراء للمستخدم",
+          "open": false,
           "disabled": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "تلميح",
+    "descriptionAr": "شرح مثبت على محفز مرئي مع مواضع وسلوك فتح متعددة.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "text",
+        "variant",
+        "interactive",
+        "placement",
+        "activation",
+        "showArrow",
+        "disabled",
+        "enterAnimation",
+        "exitAnimation"
+      ],
+      "coveredModels": [
+        "open"
+      ],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "variant": [
+          "plain",
+          "rich"
+        ],
+        "interactive": [
+          "false",
+          "true"
+        ],
+        "placement": [
+          "top",
+          "bottom",
+          "start",
+          "end"
+        ],
+        "activation": [
+          "auto",
+          "press"
+        ],
+        "showArrow": [
+          "false",
+          "true"
+        ],
+        "disabled": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "interactive",
+        "showArrow",
+        "disabled"
+      ],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
+      "coveredReferenceCases": [],
+      "evidenceKind": "AUTHORED_PROJECTION"
+    }
   },
   {
     "id": "entity-schema-fields",
@@ -3501,6 +5731,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/entity-schema-fields",
+    "showcaseOwnerPath": "src/app/showcase/components/entity-schema-fields/entity-schema-fields-showcase.ts",
+    "showcaseLoader": "entity-schema-fields",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
@@ -3509,11 +5741,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "fields": [],
-          "values": {}
+          "fields": [
+            {
+              "key": "name",
+              "kind": "text",
+              "label": "اسم السجل"
+            }
+          ],
+          "values": {
+            "name": "حساب المبيعات"
+          }
         }
       }
-    ]
+    ],
+    "displayNameAr": "حقول مخطط الكيان",
+    "descriptionAr": "عرض حقول المخطط من خلال مدخلات ERP المعتمدة.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "fields",
+        "values",
+        "section",
+        "issues",
+        "customFieldOutlets"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "fieldValueChanged"
+      ],
+      "coveredValues": {},
+      "coveredStates": [],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "form",
@@ -3538,12 +5798,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "busy",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [
@@ -3565,6 +5831,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/form",
+    "showcaseOwnerPath": "src/app/showcase/components/form/form-showcase.ts",
+    "showcaseLoader": "form",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -3579,6 +5847,22 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         }
       },
       {
+        "id": "disabled-false",
+        "label": "disabled: false",
+        "inputs": {
+          "label": "نموذج السجل",
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "disabled: true",
+        "inputs": {
+          "label": "نموذج السجل",
+          "disabled": true
+        }
+      },
+      {
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
@@ -3586,7 +5870,41 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "disabled": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "نموذج",
+    "descriptionAr": "حد form الدلالي مع نوايا الإرسال وإعادة الضبط.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "description",
+        "disabled",
+        "busy"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "submitRequested",
+        "resetRequested"
+      ],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "busy": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "busy"
+      ],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
+      "coveredReferenceCases": [],
+      "evidenceKind": "AUTHORED_PROJECTION"
+    }
   },
   {
     "id": "form-actions",
@@ -3608,6 +5926,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/form-actions",
+    "showcaseOwnerPath": "src/app/showcase/components/form-actions/form-actions-showcase.ts",
+    "showcaseLoader": "form-actions",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
@@ -3617,7 +5937,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "الحالة الافتراضية",
         "inputs": {}
       }
-    ]
+    ],
+    "displayNameAr": "إجراءات النموذج",
+    "descriptionAr": "تخطيط الإجراءات الأساسية والثانوية للنموذج.",
+    "showcaseCoverage": {
+      "coveredInputs": [],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {},
+      "coveredStates": [],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
+      "coveredReferenceCases": [],
+      "evidenceKind": "AUTHORED_PROJECTION"
+    }
   },
   {
     "id": "form-section",
@@ -3642,7 +5976,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "compact",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [],
@@ -3659,6 +5996,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/form-section",
+    "showcaseOwnerPath": "src/app/showcase/components/form-section/form-section-showcase.ts",
+    "showcaseLoader": "form-section",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
@@ -3670,7 +6009,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "title": "البيانات الأساسية"
         }
       }
-    ]
+    ],
+    "displayNameAr": "قسم النموذج",
+    "descriptionAr": "تجميع دلالي لحقول النموذج مع عنوان وإجراءات.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "title",
+        "description",
+        "compact"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "compact": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "compact"
+      ],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
+      "coveredReferenceCases": [],
+      "evidenceKind": "AUTHORED_PROJECTION"
+    }
   },
   {
     "id": "repeater",
@@ -3715,7 +6079,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [
@@ -3741,6 +6108,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/repeater",
+    "showcaseOwnerPath": "src/app/showcase/components/repeater/repeater-showcase.ts",
+    "showcaseLoader": "repeater",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -3753,13 +6122,57 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "inputs": {}
       },
       {
+        "id": "disabled-false",
+        "label": "disabled: false",
+        "inputs": {
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "disabled: true",
+        "inputs": {
+          "disabled": true
+        }
+      },
+      {
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
           "disabled": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "مكرر",
+    "descriptionAr": "قائمة عناصر مضبوطة مع نوايا الإضافة والحذف.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "items",
+        "label",
+        "addLabel",
+        "removeLabel",
+        "minItems",
+        "maxItems",
+        "disabled"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "addRequested",
+        "removeRequested"
+      ],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "standard-entity-form",
@@ -3789,12 +6202,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "busy",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [
@@ -3851,6 +6270,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/standard-entity-form",
+    "showcaseOwnerPath": "src/app/showcase/components/standard-entity-form/standard-entity-form-showcase.ts",
+    "showcaseLoader": "standard-entity-form",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -3869,7 +6290,42 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "submitLabel": "حفظ"
             }
           },
-          "values": {}
+          "values": {},
+          "activeStepId": null
+        }
+      },
+      {
+        "id": "disabled-false",
+        "label": "disabled: false",
+        "inputs": {
+          "schema": {
+            "id": "record",
+            "label": "نموذج سجل",
+            "sections": [],
+            "actions": {
+              "submitLabel": "حفظ"
+            }
+          },
+          "values": {},
+          "activeStepId": null,
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "disabled: true",
+        "inputs": {
+          "schema": {
+            "id": "record",
+            "label": "نموذج سجل",
+            "sections": [],
+            "actions": {
+              "submitLabel": "حفظ"
+            }
+          },
+          "values": {},
+          "activeStepId": null,
+          "disabled": true
         }
       },
       {
@@ -3885,10 +6341,49 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             }
           },
           "values": {},
+          "activeStepId": null,
           "disabled": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "نموذج الكيان القياسي",
+    "descriptionAr": "تكوين CRUD محدود بمخطط وقيم مضبوطة.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "schema",
+        "values",
+        "issues",
+        "disabled",
+        "busy"
+      ],
+      "coveredModels": [
+        "activeStepId"
+      ],
+      "coveredOutputs": [
+        "valueChanged",
+        "submitRequested",
+        "resetRequested",
+        "cancelRequested",
+        "issueActivated"
+      ],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "busy": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "busy"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "validation-summary",
@@ -3929,6 +6424,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/validation-summary",
+    "showcaseOwnerPath": "src/app/showcase/components/validation-summary/validation-summary-showcase.ts",
+    "showcaseLoader": "validation-summary",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
@@ -3938,7 +6435,24 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "الحالة الافتراضية",
         "inputs": {}
       }
-    ]
+    ],
+    "displayNameAr": "ملخص التحقق",
+    "descriptionAr": "عرض مشكلات التحقق المشتركة ونية تنشيط الحقل.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "title",
+        "issues"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "issueActivated"
+      ],
+      "coveredValues": {},
+      "coveredStates": [],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "color-picker",
@@ -3968,12 +6482,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -4094,7 +6614,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "feedbackText",
@@ -4104,7 +6627,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackDismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "mode",
@@ -4146,6 +6672,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/color-picker",
+    "showcaseOwnerPath": "src/app/showcase/components/color-picker/color-picker-showcase.ts",
+    "showcaseLoader": "color-picker",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -4154,7 +6682,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "shape",
       "tone",
       "disabled",
-      "appearance"
+      "appearance",
+      "mode"
     ],
     "showcaseCases": [
       {
@@ -4163,8 +6692,143 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "inputs": {
           "label": "حقل تجريبي"
         }
+      },
+      {
+        "id": "mode-system",
+        "label": "mode: system",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "mode": "system"
+        }
+      },
+      {
+        "id": "mode-free",
+        "label": "mode: free",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "mode": "free"
+        }
       }
-    ]
+    ],
+    "displayNameAr": "منتقي اللون",
+    "descriptionAr": "اختيار لون من سجل ألوان النظام.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "floatingPosition",
+        "helperText",
+        "helperPosition",
+        "leadingIcon",
+        "trailingIcon",
+        "clearable",
+        "feedbackText",
+        "feedbackDismissible",
+        "mode",
+        "overlayConfig"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "borderMode": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "appearance": [
+          "standard",
+          "glass"
+        ],
+        "labelMode": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "floatingPosition": [
+          "top",
+          "bottom"
+        ],
+        "helperPosition": [
+          "above",
+          "below"
+        ],
+        "clearable": [
+          "false",
+          "true"
+        ],
+        "feedbackDismissible": [
+          "false",
+          "true"
+        ],
+        "mode": [
+          "system",
+          "free"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "clearable",
+        "feedbackDismissible"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "combo-box",
@@ -4194,12 +6858,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -4320,7 +6990,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "feedbackText",
@@ -4330,7 +7003,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackDismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "items",
@@ -4370,6 +7046,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/combo-box",
+    "showcaseOwnerPath": "src/app/showcase/components/combo-box/combo-box-showcase.ts",
+    "showcaseLoader": "combo-box",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -4394,7 +7072,123 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           ]
         }
       }
-    ]
+    ],
+    "displayNameAr": "صندوق التحرير والاختيار",
+    "descriptionAr": "تحرير نصي مع اقتراحات واختيار مضبوط.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "floatingPosition",
+        "helperText",
+        "helperPosition",
+        "leadingIcon",
+        "trailingIcon",
+        "clearable",
+        "feedbackText",
+        "feedbackDismissible",
+        "items",
+        "placeholder",
+        "overlayConfig"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "borderMode": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "appearance": [
+          "standard",
+          "glass"
+        ],
+        "labelMode": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "floatingPosition": [
+          "top",
+          "bottom"
+        ],
+        "helperPosition": [
+          "above",
+          "below"
+        ],
+        "clearable": [
+          "false",
+          "true"
+        ],
+        "feedbackDismissible": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "clearable",
+        "feedbackDismissible"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "date-box",
@@ -4424,12 +7218,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -4550,7 +7350,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "feedbackText",
@@ -4560,7 +7363,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackDismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "min",
@@ -4625,6 +7431,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/date-box",
+    "showcaseOwnerPath": "src/app/showcase/components/date-box/date-box-showcase.ts",
+    "showcaseLoader": "date-box",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -4643,7 +7451,127 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "label": "حقل تجريبي"
         }
       }
-    ]
+    ],
+    "displayNameAr": "حقل التاريخ",
+    "descriptionAr": "تحرير تاريخ من خلال عقد الإدخال المعتمد.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "floatingPosition",
+        "helperText",
+        "helperPosition",
+        "leadingIcon",
+        "trailingIcon",
+        "clearable",
+        "feedbackText",
+        "feedbackDismissible",
+        "min",
+        "max",
+        "weekStartsOn",
+        "locale",
+        "placeholder",
+        "pattern",
+        "overlayConfig"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "borderMode": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "appearance": [
+          "standard",
+          "glass"
+        ],
+        "labelMode": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "floatingPosition": [
+          "top",
+          "bottom"
+        ],
+        "helperPosition": [
+          "above",
+          "below"
+        ],
+        "clearable": [
+          "false",
+          "true"
+        ],
+        "feedbackDismissible": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "clearable",
+        "feedbackDismissible"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "date-range-box",
@@ -4673,12 +7601,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -4799,7 +7733,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "feedbackText",
@@ -4809,7 +7746,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackDismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "min",
@@ -4868,6 +7808,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/date-range-box",
+    "showcaseOwnerPath": "src/app/showcase/components/date-range-box/date-range-box-showcase.ts",
+    "showcaseLoader": "date-range-box",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -4886,7 +7828,126 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "label": "حقل تجريبي"
         }
       }
-    ]
+    ],
+    "displayNameAr": "حقل نطاق التاريخ",
+    "descriptionAr": "اختيار نطاق زمني مضبوط.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "floatingPosition",
+        "helperText",
+        "helperPosition",
+        "leadingIcon",
+        "trailingIcon",
+        "clearable",
+        "feedbackText",
+        "feedbackDismissible",
+        "min",
+        "max",
+        "locale",
+        "placeholder",
+        "pattern",
+        "overlayConfig"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "borderMode": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "appearance": [
+          "standard",
+          "glass"
+        ],
+        "labelMode": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "floatingPosition": [
+          "top",
+          "bottom"
+        ],
+        "helperPosition": [
+          "above",
+          "below"
+        ],
+        "clearable": [
+          "false",
+          "true"
+        ],
+        "feedbackDismissible": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "clearable",
+        "feedbackDismissible"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "date-time-box",
@@ -4916,12 +7977,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -5042,7 +8109,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "feedbackText",
@@ -5052,7 +8122,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackDismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "min",
@@ -5112,6 +8185,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/date-time-box",
+    "showcaseOwnerPath": "src/app/showcase/components/date-time-box/date-time-box-showcase.ts",
+    "showcaseLoader": "date-time-box",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -5130,7 +8205,126 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "label": "حقل تجريبي"
         }
       }
-    ]
+    ],
+    "displayNameAr": "حقل التاريخ والوقت",
+    "descriptionAr": "تحرير تاريخ ووقت ضمن عقد واحد.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "floatingPosition",
+        "helperText",
+        "helperPosition",
+        "leadingIcon",
+        "trailingIcon",
+        "clearable",
+        "feedbackText",
+        "feedbackDismissible",
+        "min",
+        "max",
+        "locale",
+        "placeholder",
+        "pattern",
+        "overlayConfig"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "borderMode": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "appearance": [
+          "standard",
+          "glass"
+        ],
+        "labelMode": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "floatingPosition": [
+          "top",
+          "bottom"
+        ],
+        "helperPosition": [
+          "above",
+          "below"
+        ],
+        "clearable": [
+          "false",
+          "true"
+        ],
+        "feedbackDismissible": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "clearable",
+        "feedbackDismissible"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "file-picker",
@@ -5160,12 +8354,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -5286,7 +8486,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "feedbackText",
@@ -5296,7 +8499,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackDismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "accept",
@@ -5346,6 +8552,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/file-picker",
+    "showcaseOwnerPath": "src/app/showcase/components/file-picker/file-picker-showcase.ts",
+    "showcaseLoader": "file-picker",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -5364,7 +8572,124 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "label": "حقل تجريبي"
         }
       }
-    ]
+    ],
+    "displayNameAr": "منتقي الملفات",
+    "descriptionAr": "اختيار ملفات محلية متعدد دون نقل شبكي.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "floatingPosition",
+        "helperText",
+        "helperPosition",
+        "leadingIcon",
+        "trailingIcon",
+        "clearable",
+        "feedbackText",
+        "feedbackDismissible",
+        "accept",
+        "maxFileSize",
+        "minFiles",
+        "maxFiles"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "borderMode": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "appearance": [
+          "standard",
+          "glass"
+        ],
+        "labelMode": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "floatingPosition": [
+          "top",
+          "bottom"
+        ],
+        "helperPosition": [
+          "above",
+          "below"
+        ],
+        "clearable": [
+          "false",
+          "true"
+        ],
+        "feedbackDismissible": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "clearable",
+        "feedbackDismissible"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "icon-picker",
@@ -5394,12 +8719,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -5520,7 +8851,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "feedbackText",
@@ -5530,7 +8864,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackDismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "overlayConfig",
@@ -5562,6 +8899,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/icon-picker",
+    "showcaseOwnerPath": "src/app/showcase/components/icon-picker/icon-picker-showcase.ts",
+    "showcaseLoader": "icon-picker",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -5580,7 +8919,121 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "label": "حقل تجريبي"
         }
       }
-    ]
+    ],
+    "displayNameAr": "منتقي الأيقونة",
+    "descriptionAr": "اختيار أيقونة دلالية من سجل النظام.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "floatingPosition",
+        "helperText",
+        "helperPosition",
+        "leadingIcon",
+        "trailingIcon",
+        "clearable",
+        "feedbackText",
+        "feedbackDismissible",
+        "overlayConfig"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "borderMode": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "appearance": [
+          "standard",
+          "glass"
+        ],
+        "labelMode": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "floatingPosition": [
+          "top",
+          "bottom"
+        ],
+        "helperPosition": [
+          "above",
+          "below"
+        ],
+        "clearable": [
+          "false",
+          "true"
+        ],
+        "feedbackDismissible": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "clearable",
+        "feedbackDismissible"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "image-picker",
@@ -5610,12 +9063,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -5736,7 +9195,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "feedbackText",
@@ -5746,7 +9208,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackDismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "accept",
@@ -5808,6 +9273,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/image-picker",
+    "showcaseOwnerPath": "src/app/showcase/components/image-picker/image-picker-showcase.ts",
+    "showcaseLoader": "image-picker",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -5826,7 +9293,130 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "label": "حقل تجريبي"
         }
       }
-    ]
+    ],
+    "displayNameAr": "منتقي الصور",
+    "descriptionAr": "اختيار صور محلية مع معاينات مضبوطة.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "floatingPosition",
+        "helperText",
+        "helperPosition",
+        "leadingIcon",
+        "trailingIcon",
+        "clearable",
+        "feedbackText",
+        "feedbackDismissible",
+        "accept",
+        "maxFileSize",
+        "minFiles",
+        "maxFiles",
+        "previewSize"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "borderMode": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "appearance": [
+          "standard",
+          "glass"
+        ],
+        "labelMode": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "floatingPosition": [
+          "top",
+          "bottom"
+        ],
+        "helperPosition": [
+          "above",
+          "below"
+        ],
+        "clearable": [
+          "false",
+          "true"
+        ],
+        "feedbackDismissible": [
+          "false",
+          "true"
+        ],
+        "previewSize": [
+          "sm",
+          "md",
+          "lg"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "clearable",
+        "feedbackDismissible"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "item-picker",
@@ -5856,12 +9446,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -5982,7 +9578,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "feedbackText",
@@ -5992,7 +9591,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackDismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "items",
@@ -6007,7 +9609,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "searchable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "overlayConfig",
@@ -6038,6 +9643,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/item-picker",
+    "showcaseOwnerPath": "src/app/showcase/components/item-picker/item-picker-showcase.ts",
+    "showcaseLoader": "item-picker",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -6062,7 +9669,129 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           ]
         }
       }
-    ]
+    ],
+    "displayNameAr": "منتقي العناصر",
+    "descriptionAr": "اختيار عناصر من قائمة يملكها المستهلك.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "floatingPosition",
+        "helperText",
+        "helperPosition",
+        "leadingIcon",
+        "trailingIcon",
+        "clearable",
+        "feedbackText",
+        "feedbackDismissible",
+        "items",
+        "placeholder",
+        "searchable",
+        "overlayConfig"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "borderMode": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "appearance": [
+          "standard",
+          "glass"
+        ],
+        "labelMode": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "floatingPosition": [
+          "top",
+          "bottom"
+        ],
+        "helperPosition": [
+          "above",
+          "below"
+        ],
+        "clearable": [
+          "false",
+          "true"
+        ],
+        "feedbackDismissible": [
+          "false",
+          "true"
+        ],
+        "searchable": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "clearable",
+        "feedbackDismissible",
+        "searchable"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "money-box",
@@ -6092,12 +9821,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -6218,7 +9953,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "feedbackText",
@@ -6228,7 +9966,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackDismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "currency",
@@ -6273,12 +10014,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "readonly",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "allowEmpty",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "pattern",
@@ -6309,6 +10056,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/money-box",
+    "showcaseOwnerPath": "src/app/showcase/components/money-box/money-box-showcase.ts",
+    "showcaseLoader": "money-box",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -6328,7 +10077,142 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "currency": "EGP"
         }
       }
-    ]
+    ],
+    "displayNameAr": "حقل المال",
+    "descriptionAr": "تحرير قيمة مالية وعملة وفق التفضيلات.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "floatingPosition",
+        "helperText",
+        "helperPosition",
+        "leadingIcon",
+        "trailingIcon",
+        "clearable",
+        "feedbackText",
+        "feedbackDismissible",
+        "currency",
+        "locale",
+        "min",
+        "max",
+        "step",
+        "minimumFractionDigits",
+        "maximumFractionDigits",
+        "placeholder",
+        "readonly",
+        "allowEmpty",
+        "pattern",
+        "digitSet"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "borderMode": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "appearance": [
+          "standard",
+          "glass"
+        ],
+        "labelMode": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "floatingPosition": [
+          "top",
+          "bottom"
+        ],
+        "helperPosition": [
+          "above",
+          "below"
+        ],
+        "clearable": [
+          "false",
+          "true"
+        ],
+        "feedbackDismissible": [
+          "false",
+          "true"
+        ],
+        "readonly": [
+          "false",
+          "true"
+        ],
+        "allowEmpty": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "clearable",
+        "feedbackDismissible",
+        "readonly",
+        "allowEmpty"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "number-box",
@@ -6358,12 +10242,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -6484,7 +10374,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "feedbackText",
@@ -6494,7 +10387,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackDismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "placeholder",
@@ -6504,7 +10400,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "readonly",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "min",
@@ -6524,7 +10423,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "allowEmpty",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "pattern",
@@ -6550,6 +10452,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/number-box",
+    "showcaseOwnerPath": "src/app/showcase/components/number-box/number-box-showcase.ts",
+    "showcaseLoader": "number-box",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -6568,7 +10472,137 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "label": "حقل تجريبي"
         }
       }
-    ]
+    ],
+    "displayNameAr": "حقل الرقم",
+    "descriptionAr": "تحرير قيمة رقمية نصية بلا spinner متصفح.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "floatingPosition",
+        "helperText",
+        "helperPosition",
+        "leadingIcon",
+        "trailingIcon",
+        "clearable",
+        "feedbackText",
+        "feedbackDismissible",
+        "placeholder",
+        "readonly",
+        "min",
+        "max",
+        "step",
+        "allowEmpty",
+        "pattern"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "borderMode": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "appearance": [
+          "standard",
+          "glass"
+        ],
+        "labelMode": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "floatingPosition": [
+          "top",
+          "bottom"
+        ],
+        "helperPosition": [
+          "above",
+          "below"
+        ],
+        "clearable": [
+          "false",
+          "true"
+        ],
+        "feedbackDismissible": [
+          "false",
+          "true"
+        ],
+        "readonly": [
+          "false",
+          "true"
+        ],
+        "allowEmpty": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "clearable",
+        "feedbackDismissible",
+        "readonly",
+        "allowEmpty"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "number-stepper",
@@ -6598,12 +10632,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -6724,7 +10764,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "feedbackText",
@@ -6734,7 +10777,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackDismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "placeholder",
@@ -6744,7 +10790,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "readonly",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "min",
@@ -6764,7 +10813,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "allowEmpty",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "pattern",
@@ -6792,6 +10844,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/number-stepper",
+    "showcaseOwnerPath": "src/app/showcase/components/number-stepper/number-stepper-showcase.ts",
+    "showcaseLoader": "number-stepper",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -6810,7 +10864,137 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "label": "حقل تجريبي"
         }
       }
-    ]
+    ],
+    "displayNameAr": "مغيّر الرقم",
+    "descriptionAr": "زيادة وإنقاص قيمة عددية ضمن حدود مضبوطة.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "floatingPosition",
+        "helperText",
+        "helperPosition",
+        "leadingIcon",
+        "trailingIcon",
+        "clearable",
+        "feedbackText",
+        "feedbackDismissible",
+        "placeholder",
+        "readonly",
+        "min",
+        "max",
+        "step",
+        "allowEmpty",
+        "pattern"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "borderMode": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "appearance": [
+          "standard",
+          "glass"
+        ],
+        "labelMode": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "floatingPosition": [
+          "top",
+          "bottom"
+        ],
+        "helperPosition": [
+          "above",
+          "below"
+        ],
+        "clearable": [
+          "false",
+          "true"
+        ],
+        "feedbackDismissible": [
+          "false",
+          "true"
+        ],
+        "readonly": [
+          "false",
+          "true"
+        ],
+        "allowEmpty": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "clearable",
+        "feedbackDismissible",
+        "readonly",
+        "allowEmpty"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "password-box",
@@ -6840,12 +11024,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -6966,7 +11156,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "feedbackText",
@@ -6976,7 +11169,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackDismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "placeholder",
@@ -6986,7 +11182,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "readonly",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "autocomplete",
@@ -6996,7 +11195,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "revealToggle",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "minLength",
@@ -7035,6 +11237,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/password-box",
+    "showcaseOwnerPath": "src/app/showcase/components/password-box/password-box-showcase.ts",
+    "showcaseLoader": "password-box",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -7053,7 +11257,137 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "label": "حقل تجريبي"
         }
       }
-    ]
+    ],
+    "displayNameAr": "حقل كلمة المرور",
+    "descriptionAr": "تحرير قيمة سرية مع إظهار مضبوط.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "floatingPosition",
+        "helperText",
+        "helperPosition",
+        "leadingIcon",
+        "trailingIcon",
+        "clearable",
+        "feedbackText",
+        "feedbackDismissible",
+        "placeholder",
+        "readonly",
+        "autocomplete",
+        "revealToggle",
+        "minLength",
+        "maxLength",
+        "pattern"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "borderMode": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "appearance": [
+          "standard",
+          "glass"
+        ],
+        "labelMode": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "floatingPosition": [
+          "top",
+          "bottom"
+        ],
+        "helperPosition": [
+          "above",
+          "below"
+        ],
+        "clearable": [
+          "false",
+          "true"
+        ],
+        "feedbackDismissible": [
+          "false",
+          "true"
+        ],
+        "readonly": [
+          "false",
+          "true"
+        ],
+        "revealToggle": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "clearable",
+        "feedbackDismissible",
+        "readonly",
+        "revealToggle"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "range-slider",
@@ -7083,12 +11417,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -7173,12 +11513,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "showValueTooltip",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "valueTooltipPlacement",
@@ -7230,6 +11576,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/range-slider",
+    "showcaseOwnerPath": "src/app/showcase/components/range-slider/range-slider-showcase.ts",
+    "showcaseLoader": "range-slider",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -7350,7 +11698,98 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "appearance": "glass"
         }
       }
-    ]
+    ],
+    "displayNameAr": "منزلق النطاق",
+    "descriptionAr": "اختيار حدين عدديين من نطاق.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "min",
+        "max",
+        "step",
+        "defaultRange",
+        "tone",
+        "status",
+        "size",
+        "appearance",
+        "helperText",
+        "helperPosition",
+        "clearable",
+        "showValueTooltip",
+        "valueTooltipPlacement",
+        "valueTooltipFormatter"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "appearance": [
+          "standard",
+          "glass"
+        ],
+        "helperPosition": [
+          "above",
+          "below"
+        ],
+        "clearable": [
+          "false",
+          "true"
+        ],
+        "showValueTooltip": [
+          "false",
+          "true"
+        ],
+        "valueTooltipPlacement": [
+          "top",
+          "bottom",
+          "start",
+          "end"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "clearable",
+        "showValueTooltip"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "search-box",
@@ -7380,12 +11819,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -7506,7 +11951,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "feedbackText",
@@ -7516,7 +11964,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackDismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "mode",
@@ -7549,7 +12000,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "readonly",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "autocomplete",
@@ -7569,17 +12023,26 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "dismissOnOutside",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "dismissOnEscape",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "showDefaultSearchIcon",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "enterAnimation",
@@ -7638,6 +12101,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/search-box",
+    "showcaseOwnerPath": "src/app/showcase/components/search-box/search-box-showcase.ts",
+    "showcaseLoader": "search-box",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -7646,7 +12111,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "shape",
       "tone",
       "disabled",
-      "appearance"
+      "appearance",
+      "mode"
     ],
     "showcaseCases": [
       {
@@ -7655,8 +12121,189 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "inputs": {
           "label": "حقل تجريبي"
         }
+      },
+      {
+        "id": "mode-modal",
+        "label": "mode: modal",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "mode": "modal"
+        }
+      },
+      {
+        "id": "mode-dropdown",
+        "label": "mode: dropdown",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "mode": "dropdown"
+        }
+      },
+      {
+        "id": "mode-inline",
+        "label": "mode: inline",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "mode": "inline"
+        }
       }
-    ]
+    ],
+    "displayNameAr": "صندوق البحث",
+    "descriptionAr": "تحرير استعلام وعرض نتائج inline أو popup.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "floatingPosition",
+        "helperText",
+        "helperPosition",
+        "leadingIcon",
+        "trailingIcon",
+        "clearable",
+        "feedbackText",
+        "feedbackDismissible",
+        "mode",
+        "presentation",
+        "items",
+        "placeholder",
+        "readonly",
+        "autocomplete",
+        "minLength",
+        "maxLength",
+        "dismissOnOutside",
+        "dismissOnEscape",
+        "showDefaultSearchIcon",
+        "enterAnimation",
+        "exitAnimation",
+        "modalOverlayConfig"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "borderMode": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "appearance": [
+          "standard",
+          "glass"
+        ],
+        "labelMode": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "floatingPosition": [
+          "top",
+          "bottom"
+        ],
+        "helperPosition": [
+          "above",
+          "below"
+        ],
+        "clearable": [
+          "false",
+          "true"
+        ],
+        "feedbackDismissible": [
+          "false",
+          "true"
+        ],
+        "mode": [
+          "modal",
+          "dropdown",
+          "inline"
+        ],
+        "presentation": [
+          "field",
+          "select-panel",
+          "table-reference"
+        ],
+        "readonly": [
+          "false",
+          "true"
+        ],
+        "dismissOnOutside": [
+          "false",
+          "true"
+        ],
+        "dismissOnEscape": [
+          "false",
+          "true"
+        ],
+        "showDefaultSearchIcon": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "clearable",
+        "feedbackDismissible",
+        "readonly",
+        "dismissOnOutside",
+        "dismissOnEscape",
+        "showDefaultSearchIcon"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "select",
@@ -7686,12 +12333,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -7812,7 +12465,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "feedbackText",
@@ -7822,7 +12478,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackDismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "options",
@@ -7832,37 +12491,58 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "multiple",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "searchable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "filterable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "sortable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "showIcons",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "showImages",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "selectAll",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "maxSelected",
@@ -8007,6 +12687,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/select",
+    "showcaseOwnerPath": "src/app/showcase/components/select/select-showcase.ts",
+    "showcaseLoader": "select",
     "visualReference": "src/app/controls/select/ERP_SELECT_REFERENCE_EXACT_V3.md",
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -8016,17 +12698,333 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "tone",
       "disabled",
       "multiple",
-      "appearance"
+      "appearance",
+      "placement",
+      "selectSize"
     ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي"
+          "label": "حقل تجريبي",
+          "sort": null
+        }
+      },
+      {
+        "id": "multiple-false",
+        "label": "multiple: false",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "sort": null,
+          "multiple": false
+        }
+      },
+      {
+        "id": "multiple-true",
+        "label": "multiple: true",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "sort": null,
+          "multiple": true
+        }
+      },
+      {
+        "id": "selectSize-sm",
+        "label": "selectSize: sm",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "sort": null,
+          "selectSize": "sm"
+        }
+      },
+      {
+        "id": "selectSize-md",
+        "label": "selectSize: md",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "sort": null,
+          "selectSize": "md"
+        }
+      },
+      {
+        "id": "selectSize-normal",
+        "label": "selectSize: normal",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "sort": null,
+          "selectSize": "normal"
+        }
+      },
+      {
+        "id": "selectSize-lg",
+        "label": "selectSize: lg",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "sort": null,
+          "selectSize": "lg"
+        }
+      },
+      {
+        "id": "selectSize-xlg",
+        "label": "selectSize: xlg",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "sort": null,
+          "selectSize": "xlg"
+        }
+      },
+      {
+        "id": "placement-bottom",
+        "label": "placement: bottom",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "sort": null,
+          "placement": "bottom"
+        }
+      },
+      {
+        "id": "placement-top",
+        "label": "placement: top",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "sort": null,
+          "placement": "top"
+        }
+      },
+      {
+        "id": "sort-source",
+        "label": "sort: source",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "sort": "source"
+        }
+      },
+      {
+        "id": "sort-ascending",
+        "label": "sort: ascending",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "sort": "ascending"
+        }
+      },
+      {
+        "id": "sort-descending",
+        "label": "sort: descending",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "sort": "descending"
         }
       }
-    ]
+    ],
+    "displayNameAr": "قائمة الاختيار",
+    "descriptionAr": "اختيار مفرد أو متعدد مع بحث وتجميع.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "floatingPosition",
+        "helperText",
+        "helperPosition",
+        "leadingIcon",
+        "trailingIcon",
+        "clearable",
+        "feedbackText",
+        "feedbackDismissible",
+        "options",
+        "multiple",
+        "searchable",
+        "filterable",
+        "sortable",
+        "showIcons",
+        "showImages",
+        "selectAll",
+        "maxSelected",
+        "maxChips",
+        "placeholder",
+        "searchPlaceholder",
+        "searchLabel",
+        "emptyText",
+        "selectSize",
+        "selectAppearance",
+        "placement",
+        "groupBy",
+        "sortMode",
+        "filterPredicate",
+        "filterFn",
+        "comparator"
+      ],
+      "coveredModels": [
+        "sort"
+      ],
+      "coveredOutputs": [
+        "selectionChange",
+        "opened",
+        "closed",
+        "cleared",
+        "searchChange"
+      ],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "borderMode": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "appearance": [
+          "standard",
+          "glass"
+        ],
+        "labelMode": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "floatingPosition": [
+          "top",
+          "bottom"
+        ],
+        "helperPosition": [
+          "above",
+          "below"
+        ],
+        "clearable": [
+          "false",
+          "true"
+        ],
+        "feedbackDismissible": [
+          "false",
+          "true"
+        ],
+        "multiple": [
+          "false",
+          "true"
+        ],
+        "searchable": [
+          "false",
+          "true"
+        ],
+        "filterable": [
+          "false",
+          "true"
+        ],
+        "sortable": [
+          "false",
+          "true"
+        ],
+        "showIcons": [
+          "false",
+          "true"
+        ],
+        "showImages": [
+          "false",
+          "true"
+        ],
+        "selectAll": [
+          "false",
+          "true"
+        ],
+        "selectSize": [
+          "sm",
+          "md",
+          "normal",
+          "lg",
+          "xlg"
+        ],
+        "placement": [
+          "bottom",
+          "top"
+        ],
+        "sortMode": [
+          "none",
+          "label",
+          "custom"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "clearable",
+        "feedbackDismissible",
+        "multiple",
+        "searchable",
+        "filterable",
+        "sortable",
+        "showIcons",
+        "showImages",
+        "selectAll"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [
+        "default",
+        "multiple-false",
+        "multiple-true",
+        "selectSize-sm",
+        "selectSize-md",
+        "selectSize-normal",
+        "selectSize-lg",
+        "selectSize-xlg",
+        "placement-bottom",
+        "placement-top",
+        "sort-source",
+        "sort-ascending",
+        "sort-descending"
+      ],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "tel-box",
@@ -8056,12 +13054,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -8182,7 +13186,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "feedbackText",
@@ -8192,7 +13199,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackDismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "placeholder",
@@ -8202,7 +13212,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "readonly",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "autocomplete",
@@ -8243,6 +13256,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/tel-box",
+    "showcaseOwnerPath": "src/app/showcase/components/tel-box/tel-box-showcase.ts",
+    "showcaseLoader": "tel-box",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -8261,7 +13276,131 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "label": "حقل تجريبي"
         }
       }
-    ]
+    ],
+    "displayNameAr": "حقل الهاتف",
+    "descriptionAr": "تحرير رقم هاتف وفق عقد الحقول.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "floatingPosition",
+        "helperText",
+        "helperPosition",
+        "leadingIcon",
+        "trailingIcon",
+        "clearable",
+        "feedbackText",
+        "feedbackDismissible",
+        "placeholder",
+        "readonly",
+        "autocomplete",
+        "pattern",
+        "minLength",
+        "maxLength"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "borderMode": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "appearance": [
+          "standard",
+          "glass"
+        ],
+        "labelMode": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "floatingPosition": [
+          "top",
+          "bottom"
+        ],
+        "helperPosition": [
+          "above",
+          "below"
+        ],
+        "clearable": [
+          "false",
+          "true"
+        ],
+        "feedbackDismissible": [
+          "false",
+          "true"
+        ],
+        "readonly": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "clearable",
+        "feedbackDismissible",
+        "readonly"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "text-area-box",
@@ -8291,12 +13430,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -8417,7 +13562,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "feedbackText",
@@ -8427,7 +13575,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackDismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "placeholder",
@@ -8437,7 +13588,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "readonly",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "minLength",
@@ -8466,7 +13620,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "showCounter",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [],
@@ -8489,6 +13646,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/text-area-box",
+    "showcaseOwnerPath": "src/app/showcase/components/text-area-box/text-area-box-showcase.ts",
+    "showcaseLoader": "text-area-box",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -8507,7 +13666,142 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "label": "حقل تجريبي"
         }
       }
-    ]
+    ],
+    "displayNameAr": "منطقة النص",
+    "descriptionAr": "تحرير نص متعدد الأسطر.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "floatingPosition",
+        "helperText",
+        "helperPosition",
+        "leadingIcon",
+        "trailingIcon",
+        "clearable",
+        "feedbackText",
+        "feedbackDismissible",
+        "placeholder",
+        "readonly",
+        "minLength",
+        "maxLength",
+        "rows",
+        "resize",
+        "showCounter"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "borderMode": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "appearance": [
+          "standard",
+          "glass"
+        ],
+        "labelMode": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "floatingPosition": [
+          "top",
+          "bottom"
+        ],
+        "helperPosition": [
+          "above",
+          "below"
+        ],
+        "clearable": [
+          "false",
+          "true"
+        ],
+        "feedbackDismissible": [
+          "false",
+          "true"
+        ],
+        "readonly": [
+          "false",
+          "true"
+        ],
+        "resize": [
+          "vertical",
+          "both",
+          "none"
+        ],
+        "showCounter": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "clearable",
+        "feedbackDismissible",
+        "readonly",
+        "showCounter"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "text-box",
@@ -8537,12 +13831,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -8663,7 +13963,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "feedbackText",
@@ -8673,7 +13976,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackDismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "placeholder",
@@ -8683,7 +13989,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "readonly",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "minLength",
@@ -8713,7 +14022,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "spellcheck",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [],
@@ -8733,6 +14045,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/text-box",
+    "showcaseOwnerPath": "src/app/showcase/components/text-box/text-box-showcase.ts",
+    "showcaseLoader": "text-box",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -8751,7 +14065,138 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "label": "حقل تجريبي"
         }
       }
-    ]
+    ],
+    "displayNameAr": "حقل النص",
+    "descriptionAr": "تحرير نص قياسي مع حالات الحقل.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "floatingPosition",
+        "helperText",
+        "helperPosition",
+        "leadingIcon",
+        "trailingIcon",
+        "clearable",
+        "feedbackText",
+        "feedbackDismissible",
+        "placeholder",
+        "readonly",
+        "minLength",
+        "maxLength",
+        "pattern",
+        "autocomplete",
+        "inputMode",
+        "spellcheck"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "borderMode": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "appearance": [
+          "standard",
+          "glass"
+        ],
+        "labelMode": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "floatingPosition": [
+          "top",
+          "bottom"
+        ],
+        "helperPosition": [
+          "above",
+          "below"
+        ],
+        "clearable": [
+          "false",
+          "true"
+        ],
+        "feedbackDismissible": [
+          "false",
+          "true"
+        ],
+        "readonly": [
+          "false",
+          "true"
+        ],
+        "spellcheck": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "clearable",
+        "feedbackDismissible",
+        "readonly",
+        "spellcheck"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "time-box",
@@ -8781,12 +14226,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -8907,7 +14358,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "feedbackText",
@@ -8917,7 +14371,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackDismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "minuteStep",
@@ -8982,6 +14439,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/time-box",
+    "showcaseOwnerPath": "src/app/showcase/components/time-box/time-box-showcase.ts",
+    "showcaseLoader": "time-box",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -9000,7 +14459,127 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "label": "حقل تجريبي"
         }
       }
-    ]
+    ],
+    "displayNameAr": "حقل الوقت",
+    "descriptionAr": "تحرير وقت وفق عقد الحقول.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "floatingPosition",
+        "helperText",
+        "helperPosition",
+        "leadingIcon",
+        "trailingIcon",
+        "clearable",
+        "feedbackText",
+        "feedbackDismissible",
+        "minuteStep",
+        "min",
+        "max",
+        "locale",
+        "placeholder",
+        "pattern",
+        "overlayConfig"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "borderMode": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "appearance": [
+          "standard",
+          "glass"
+        ],
+        "labelMode": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "floatingPosition": [
+          "top",
+          "bottom"
+        ],
+        "helperPosition": [
+          "above",
+          "below"
+        ],
+        "clearable": [
+          "false",
+          "true"
+        ],
+        "feedbackDismissible": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "clearable",
+        "feedbackDismissible"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "url-box",
@@ -9030,12 +14609,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -9156,7 +14741,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "feedbackText",
@@ -9166,7 +14754,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackDismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "placeholder",
@@ -9176,7 +14767,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "readonly",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "autocomplete",
@@ -9217,6 +14811,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/url-box",
+    "showcaseOwnerPath": "src/app/showcase/components/url-box/url-box-showcase.ts",
+    "showcaseLoader": "url-box",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -9235,7 +14831,131 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "label": "حقل تجريبي"
         }
       }
-    ]
+    ],
+    "displayNameAr": "حقل الرابط",
+    "descriptionAr": "تحرير عنوان URL مع تحقق الحقل.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "floatingPosition",
+        "helperText",
+        "helperPosition",
+        "leadingIcon",
+        "trailingIcon",
+        "clearable",
+        "feedbackText",
+        "feedbackDismissible",
+        "placeholder",
+        "readonly",
+        "autocomplete",
+        "pattern",
+        "minLength",
+        "maxLength"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "variant": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "borderMode": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "shape": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "appearance": [
+          "standard",
+          "glass"
+        ],
+        "labelMode": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "floatingPosition": [
+          "top",
+          "bottom"
+        ],
+        "helperPosition": [
+          "above",
+          "below"
+        ],
+        "clearable": [
+          "false",
+          "true"
+        ],
+        "feedbackDismissible": [
+          "false",
+          "true"
+        ],
+        "readonly": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "clearable",
+        "feedbackDismissible",
+        "readonly"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "anchored-overlay-controller",
@@ -9255,10 +14975,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "AnchoredOverlayController",
+    "descriptionAr": "Owns nonblocking anchored surface geometry and lifecycle.",
+    "showcaseCoverage": null
   },
   {
     "id": "action-menu-content",
@@ -9292,10 +15017,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpActionMenuContent",
+    "descriptionAr": "Owns bounded internal action menu content semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "avatar-action",
@@ -9310,7 +15040,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "interactive",
           "required": true,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "label",
@@ -9330,10 +15063,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpAvatarAction",
+    "descriptionAr": "Owns bounded internal avatar action semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "avatar-frame",
@@ -9355,10 +15093,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpAvatarFrame",
+    "descriptionAr": "Owns bounded internal avatar frame semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "avatar-picker-tile",
@@ -9378,12 +15121,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "selected",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "avatarSize",
@@ -9443,13 +15192,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
       "disabled",
       "selected"
     ],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpAvatarPickerTile",
+    "descriptionAr": "Owns bounded internal avatar picker tile semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "avatar-presence",
@@ -9471,10 +15225,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpAvatarPresenceIndicator",
+    "descriptionAr": "Owns bounded internal avatar presence semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "confirm-dialog-content",
@@ -9501,10 +15260,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpConfirmDialogContent",
+    "descriptionAr": "Owns bounded internal confirm dialog content semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "confirm-dialog-service",
@@ -9524,10 +15288,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpConfirmDialogService",
+    "descriptionAr": "Opens approved confirmation dialogs through the shared overlay system.",
+    "showcaseCoverage": null
   },
   {
     "id": "empty-state-extra",
@@ -9559,10 +15328,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpEmptyStateExtra",
+    "descriptionAr": "Extends its parent ERP owner with typed [erpEmptyStateExtra] template projection.",
+    "showcaseCoverage": null
   },
   {
     "id": "empty-state-illustration",
@@ -9594,10 +15368,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpEmptyStateIllustration",
+    "descriptionAr": "Extends its parent ERP owner with typed [erpEmptyStateIllustration] template projection.",
+    "showcaseCoverage": null
   },
   {
     "id": "empty-state-lottie",
@@ -9617,7 +15396,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "animated",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "motion",
@@ -9647,12 +15429,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
       "motion"
     ],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpEmptyStateLottie",
+    "descriptionAr": "Owns bounded internal empty state lottie semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "entity-custom-field-outlet",
@@ -9684,10 +15471,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpEntityCustomFieldOutlet",
+    "descriptionAr": "Extends its parent ERP owner with typed ng template[erpEntityCustomField] template projection.",
+    "showcaseCoverage": null
   },
   {
     "id": "entity-custom-section-outlet",
@@ -9719,10 +15511,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpEntityCustomSectionOutlet",
+    "descriptionAr": "Extends its parent ERP owner with typed ng template[erpEntityCustomSection] template projection.",
+    "showcaseCoverage": null
   },
   {
     "id": "entity-form-review-template",
@@ -9748,10 +15545,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpEntityFormReviewTemplate",
+    "descriptionAr": "Extends its parent ERP owner with typed ng template[erpEntityFormReview] template projection.",
+    "showcaseCoverage": null
   },
   {
     "id": "field-feedback",
@@ -9787,7 +15589,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "dismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "dismissLabel",
@@ -9818,10 +15623,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpFieldFeedback",
+    "descriptionAr": "Owns bounded internal field feedback semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "field-frame",
@@ -9957,7 +15767,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "clearable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "clearLabel",
@@ -9972,7 +15785,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackDismissible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "feedbackDismissLabel",
@@ -9982,17 +15798,26 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "feedbackVisible",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "focused",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "hasDisplayValue",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "placeholder",
@@ -10002,7 +15827,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "configurationState",
@@ -10015,7 +15843,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "multiline",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "controlPresentation",
@@ -10063,6 +15894,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -10073,7 +15906,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "disabled",
       "appearance"
     ],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpFieldFrame",
+    "descriptionAr": "Owns bounded internal field frame semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "field-trigger",
@@ -10103,7 +15939,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "ariaDescribedBy",
@@ -10176,12 +16015,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
       "disabled"
     ],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpFieldTrigger",
+    "descriptionAr": "Owns bounded internal field trigger semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "file-selection-base",
@@ -10201,10 +16045,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpFileSelectionBase",
+    "descriptionAr": "Shares bounded file-selection behavior for FilePicker and ImagePicker.",
+    "showcaseCoverage": null
   },
   {
     "id": "filter-drawer-content",
@@ -10233,10 +16082,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpFilterDrawerContent",
+    "descriptionAr": "Owns bounded internal filter drawer content semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "input-base",
@@ -10256,10 +16110,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpInputBase",
+    "descriptionAr": "Shares nonvisual CVA and validation behavior across concrete input owners.",
+    "showcaseCoverage": null
   },
   {
     "id": "overlay-frame",
@@ -10314,10 +16173,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpOverlayFrame",
+    "descriptionAr": "Owns bounded internal overlay frame semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "overlay-host",
@@ -10345,10 +16209,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpOverlayHost",
+    "descriptionAr": "Owns bounded internal overlay host semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "overlay-manager",
@@ -10368,10 +16237,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpOverlayManager",
+    "descriptionAr": "Owns blocking overlay lifecycle, focus, scroll, and stacking.",
+    "showcaseCoverage": null
   },
   {
     "id": "overlay-ref",
@@ -10391,10 +16265,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpOverlayRef",
+    "descriptionAr": "Represents one manager-owned blocking overlay instance.",
+    "showcaseCoverage": null
   },
   {
     "id": "repeater-item-template",
@@ -10421,10 +16300,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpRepeaterItemTemplate",
+    "descriptionAr": "Extends its parent ERP owner with typed ng template[erpRepeaterItem] template projection.",
+    "showcaseCoverage": null
   },
   {
     "id": "select-action",
@@ -10482,10 +16366,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpSelectAction",
+    "descriptionAr": "Owns bounded internal select action semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "selection-picker-content",
@@ -10529,10 +16418,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpSelectionPickerContent",
+    "descriptionAr": "Owns bounded internal selection picker content semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "selection-tile",
@@ -10552,17 +16446,26 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "selected",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "active",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "presentation",
@@ -10599,13 +16502,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
       "disabled",
       "selected"
     ],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpSelectionTile",
+    "descriptionAr": "Owns bounded internal selection tile semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "sort-trigger",
@@ -10625,7 +16533,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [
@@ -10640,12 +16551,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
       "disabled"
     ],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpSortTrigger",
+    "descriptionAr": "Owns bounded internal sort trigger semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "status-badge-action",
@@ -10673,12 +16589,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "pressed",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [
@@ -10697,12 +16619,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
       "disabled"
     ],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpStatusBadgeAction",
+    "descriptionAr": "Owns bounded internal status badge action semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "step-panel",
@@ -10735,10 +16662,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpStepPanel",
+    "descriptionAr": "Extends its parent ERP owner with typed ng template[erpStepPanel] template projection.",
+    "showcaseCoverage": null
   },
   {
     "id": "table-cell",
@@ -10789,10 +16721,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpTableCell",
+    "descriptionAr": "Extends its parent ERP owner with typed ng template[erpTableCell] template projection.",
+    "showcaseCoverage": null
   },
   {
     "id": "table-footer",
@@ -10843,10 +16780,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpTableFooter",
+    "descriptionAr": "Extends its parent ERP owner with typed ng template[erpTableFooter] template projection.",
+    "showcaseCoverage": null
   },
   {
     "id": "table-resize-handle",
@@ -10866,7 +16808,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [
@@ -10882,12 +16827,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
       "disabled"
     ],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpTableResizeHandle",
+    "descriptionAr": "Owns bounded internal table resize handle semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "table-viewport",
@@ -10921,7 +16871,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "vertical",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "presentation",
@@ -10945,10 +16898,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseFacets": [
+      "density"
+    ],
+    "showcaseCases": [],
+    "displayNameAr": "ErpTableViewport",
+    "descriptionAr": "Owns bounded internal table viewport semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "tab-panel",
@@ -10992,10 +16952,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpTabPanel",
+    "descriptionAr": "Extends its parent ERP owner with typed ng template[erpTabPanel] template projection.",
+    "showcaseCoverage": null
   },
   {
     "id": "tab-trigger",
@@ -11025,12 +16990,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "selected",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "tabIndex",
@@ -11040,7 +17011,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "fill",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [
@@ -11056,13 +17030,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
       "disabled",
       "selected"
     ],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpTabTrigger",
+    "descriptionAr": "Owns bounded internal tab trigger semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "temporal-picker-content",
@@ -11100,10 +17079,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpTemporalPickerContent",
+    "descriptionAr": "Owns bounded internal temporal picker content semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "tooltip-content",
@@ -11123,10 +17107,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ErpTooltipContent",
+    "descriptionAr": "Owns bounded internal tooltip content semantics for its parent ERP component.",
+    "showcaseCoverage": null
   },
   {
     "id": "press-ripple-controller",
@@ -11146,10 +17135,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "PressRippleController",
+    "descriptionAr": "Owns shared press-ripple interaction for the Button family.",
+    "showcaseCoverage": null
   },
   {
     "id": "shell-anchored-surface-controller",
@@ -11169,10 +17163,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "parent-owner-only",
     "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
-    "showcaseCases": []
+    "showcaseCases": [],
+    "displayNameAr": "ShellAnchoredSurfaceController",
+    "descriptionAr": "Adapts approved anchored overlays for shell entry surfaces.",
+    "showcaseCoverage": null
   },
   {
     "id": "avatar",
@@ -11250,22 +17249,34 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "ring",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "bordered",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "loading",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "interactive",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "presence",
@@ -11359,13 +17370,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/avatar",
+    "showcaseOwnerPath": "src/app/showcase/components/avatar/avatar-showcase.ts",
+    "showcaseLoader": "avatar",
     "visualReference": "src/app/controls/avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md",
     "visualStatus": "PENDING",
     "showcaseFacets": [
       "size",
       "shape",
       "tone",
-      "loading"
+      "loading",
+      "presence",
+      "presencePosition",
+      "presenceMotion",
+      "hoverMotion",
+      "cursor"
     ],
     "showcaseCases": [
       {
@@ -11536,6 +17554,174 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         }
       },
       {
+        "id": "loading-false",
+        "label": "loading: false",
+        "inputs": {
+          "name": "أميرة حداد",
+          "loading": false
+        }
+      },
+      {
+        "id": "loading-true",
+        "label": "loading: true",
+        "inputs": {
+          "name": "أميرة حداد",
+          "loading": true
+        }
+      },
+      {
+        "id": "presencePosition-top",
+        "label": "presencePosition: top",
+        "inputs": {
+          "name": "أميرة حداد",
+          "presencePosition": "top"
+        }
+      },
+      {
+        "id": "presencePosition-bottom",
+        "label": "presencePosition: bottom",
+        "inputs": {
+          "name": "أميرة حداد",
+          "presencePosition": "bottom"
+        }
+      },
+      {
+        "id": "presencePosition-left",
+        "label": "presencePosition: left",
+        "inputs": {
+          "name": "أميرة حداد",
+          "presencePosition": "left"
+        }
+      },
+      {
+        "id": "presencePosition-right",
+        "label": "presencePosition: right",
+        "inputs": {
+          "name": "أميرة حداد",
+          "presencePosition": "right"
+        }
+      },
+      {
+        "id": "presencePosition-top-left",
+        "label": "presencePosition: top-left",
+        "inputs": {
+          "name": "أميرة حداد",
+          "presencePosition": "top-left"
+        }
+      },
+      {
+        "id": "presencePosition-top-right",
+        "label": "presencePosition: top-right",
+        "inputs": {
+          "name": "أميرة حداد",
+          "presencePosition": "top-right"
+        }
+      },
+      {
+        "id": "presencePosition-bottom-left",
+        "label": "presencePosition: bottom-left",
+        "inputs": {
+          "name": "أميرة حداد",
+          "presencePosition": "bottom-left"
+        }
+      },
+      {
+        "id": "presencePosition-bottom-right",
+        "label": "presencePosition: bottom-right",
+        "inputs": {
+          "name": "أميرة حداد",
+          "presencePosition": "bottom-right"
+        }
+      },
+      {
+        "id": "presenceMotion-none",
+        "label": "presenceMotion: none",
+        "inputs": {
+          "name": "أميرة حداد",
+          "presenceMotion": "none"
+        }
+      },
+      {
+        "id": "presenceMotion-pulse",
+        "label": "presenceMotion: pulse",
+        "inputs": {
+          "name": "أميرة حداد",
+          "presenceMotion": "pulse"
+        }
+      },
+      {
+        "id": "presenceMotion-ping",
+        "label": "presenceMotion: ping",
+        "inputs": {
+          "name": "أميرة حداد",
+          "presenceMotion": "ping"
+        }
+      },
+      {
+        "id": "presenceMotion-bounce",
+        "label": "presenceMotion: bounce",
+        "inputs": {
+          "name": "أميرة حداد",
+          "presenceMotion": "bounce"
+        }
+      },
+      {
+        "id": "presenceMotion-blink",
+        "label": "presenceMotion: blink",
+        "inputs": {
+          "name": "أميرة حداد",
+          "presenceMotion": "blink"
+        }
+      },
+      {
+        "id": "presenceMotion-breathe",
+        "label": "presenceMotion: breathe",
+        "inputs": {
+          "name": "أميرة حداد",
+          "presenceMotion": "breathe"
+        }
+      },
+      {
+        "id": "hoverMotion-none",
+        "label": "hoverMotion: none",
+        "inputs": {
+          "name": "أميرة حداد",
+          "hoverMotion": "none"
+        }
+      },
+      {
+        "id": "hoverMotion-scale",
+        "label": "hoverMotion: scale",
+        "inputs": {
+          "name": "أميرة حداد",
+          "hoverMotion": "scale"
+        }
+      },
+      {
+        "id": "hoverMotion-lift",
+        "label": "hoverMotion: lift",
+        "inputs": {
+          "name": "أميرة حداد",
+          "hoverMotion": "lift"
+        }
+      },
+      {
+        "id": "cursor-default",
+        "label": "cursor: default",
+        "inputs": {
+          "name": "أميرة حداد",
+          "cursor": "default"
+        }
+      },
+      {
+        "id": "cursor-pointer",
+        "label": "cursor: pointer",
+        "inputs": {
+          "name": "أميرة حداد",
+          "cursor": "pointer"
+        }
+      },
+      {
         "id": "loading",
         "label": "حالة تحميل",
         "inputs": {
@@ -11543,7 +17729,163 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "loading": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "الصورة الرمزية",
+    "descriptionAr": "هوية بصرية بصورة أو أحرف أو أيقونة وحضور.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "name",
+        "src",
+        "initials",
+        "alt",
+        "size",
+        "shape",
+        "tone",
+        "fallbackIcon",
+        "ring",
+        "bordered",
+        "loading",
+        "interactive",
+        "presence",
+        "presencePosition",
+        "presenceMotion",
+        "hoverMotion",
+        "cursor",
+        "presentation"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "avatarClick"
+      ],
+      "coveredValues": {
+        "size": [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "2xl",
+          "3xl",
+          "4xl",
+          "5xl"
+        ],
+        "shape": [
+          "circle",
+          "rounded",
+          "square"
+        ],
+        "tone": [
+          "neutral",
+          "brand",
+          "success",
+          "warning",
+          "danger",
+          "info",
+          "purple",
+          "slate"
+        ],
+        "ring": [
+          "false",
+          "true"
+        ],
+        "bordered": [
+          "false",
+          "true"
+        ],
+        "loading": [
+          "false",
+          "true"
+        ],
+        "interactive": [
+          "false",
+          "true"
+        ],
+        "presencePosition": [
+          "top",
+          "bottom",
+          "left",
+          "right",
+          "top-left",
+          "top-right",
+          "bottom-left",
+          "bottom-right"
+        ],
+        "presenceMotion": [
+          "none",
+          "pulse",
+          "ping",
+          "bounce",
+          "blink",
+          "breathe"
+        ],
+        "hoverMotion": [
+          "none",
+          "scale",
+          "lift"
+        ],
+        "cursor": [
+          "default",
+          "pointer"
+        ],
+        "presentation": [
+          "default",
+          "table-reference-photo"
+        ]
+      },
+      "coveredStates": [
+        "ring",
+        "bordered",
+        "loading",
+        "interactive"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [
+        "default",
+        "size-xs",
+        "size-sm",
+        "size-md",
+        "size-lg",
+        "size-xl",
+        "size-2xl",
+        "size-3xl",
+        "size-4xl",
+        "size-5xl",
+        "shape-circle",
+        "shape-rounded",
+        "shape-square",
+        "tone-neutral",
+        "tone-brand",
+        "tone-success",
+        "tone-warning",
+        "tone-danger",
+        "tone-info",
+        "tone-purple",
+        "tone-slate",
+        "loading-false",
+        "loading-true",
+        "presencePosition-top",
+        "presencePosition-bottom",
+        "presencePosition-left",
+        "presencePosition-right",
+        "presencePosition-top-left",
+        "presencePosition-top-right",
+        "presencePosition-bottom-left",
+        "presencePosition-bottom-right",
+        "presenceMotion-none",
+        "presenceMotion-pulse",
+        "presenceMotion-ping",
+        "presenceMotion-bounce",
+        "presenceMotion-blink",
+        "presenceMotion-breathe",
+        "hoverMotion-none",
+        "hoverMotion-scale",
+        "hoverMotion-lift",
+        "cursor-default",
+        "cursor-pointer",
+        "loading"
+      ],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "breadcrumbs",
@@ -11598,6 +17940,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/breadcrumbs",
+    "showcaseOwnerPath": "src/app/showcase/components/breadcrumbs/breadcrumbs-showcase.ts",
+    "showcaseLoader": "breadcrumbs",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
@@ -11615,7 +17959,25 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           ]
         }
       }
-    ]
+    ],
+    "displayNameAr": "مسار التنقل",
+    "descriptionAr": "مسار موقع منطقي مع العنصر الحالي.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "items",
+        "currentId",
+        "label"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "activated"
+      ],
+      "coveredValues": {},
+      "coveredStates": [],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "pagination",
@@ -11673,37 +18035,58 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "showSummary",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "showPageSize",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "showFirst",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "showPrevious",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "showPageNumbers",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "showNext",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "showLast",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [
@@ -11731,6 +18114,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/pagination",
+    "showcaseOwnerPath": "src/app/showcase/components/pagination/pagination-showcase.ts",
+    "showcaseLoader": "pagination",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
@@ -11742,7 +18127,79 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "pageCount": 3
         }
       }
-    ]
+    ],
+    "displayNameAr": "ترقيم الصفحات",
+    "descriptionAr": "تنقل مضبوط بين الصفحات وحجم الصفحة.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "page",
+        "pageCount",
+        "totalItems",
+        "pageSize",
+        "pageSizeOptions",
+        "presentation",
+        "visibleItems",
+        "selectedItems",
+        "showSummary",
+        "showPageSize",
+        "showFirst",
+        "showPrevious",
+        "showPageNumbers",
+        "showNext",
+        "showLast"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "pageChange",
+        "pageSizeChange"
+      ],
+      "coveredValues": {
+        "presentation": [
+          "default",
+          "table-reference"
+        ],
+        "showSummary": [
+          "false",
+          "true"
+        ],
+        "showPageSize": [
+          "false",
+          "true"
+        ],
+        "showFirst": [
+          "false",
+          "true"
+        ],
+        "showPrevious": [
+          "false",
+          "true"
+        ],
+        "showPageNumbers": [
+          "false",
+          "true"
+        ],
+        "showNext": [
+          "false",
+          "true"
+        ],
+        "showLast": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "showSummary",
+        "showPageSize",
+        "showFirst",
+        "showPrevious",
+        "showPageNumbers",
+        "showNext",
+        "showLast"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "sidebar",
@@ -11800,6 +18257,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/sidebar",
+    "showcaseOwnerPath": "src/app/showcase/components/sidebar/sidebar-showcase.ts",
+    "showcaseLoader": "sidebar",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
@@ -11817,7 +18276,25 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           ]
         }
       }
-    ]
+    ],
+    "displayNameAr": "الشريط الجانبي",
+    "descriptionAr": "تنقل هرمي مضبوط بعناصر يقدمها المستهلك.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "items",
+        "activeId",
+        "label"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "navigationActivated"
+      ],
+      "coveredValues": {},
+      "coveredStates": [],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "sort-header",
@@ -11846,7 +18323,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "presentation",
@@ -11877,10 +18357,13 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/sort-header",
+    "showcaseOwnerPath": "src/app/showcase/components/sort-header/sort-header-showcase.ts",
+    "showcaseLoader": "sort-header",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
-      "disabled"
+      "disabled",
+      "direction"
     ],
     "showcaseCases": [
       {
@@ -11891,6 +18374,46 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         }
       },
       {
+        "id": "direction-none",
+        "label": "direction: none",
+        "inputs": {
+          "label": "اسم الحساب",
+          "direction": "none"
+        }
+      },
+      {
+        "id": "direction-ascending",
+        "label": "direction: ascending",
+        "inputs": {
+          "label": "اسم الحساب",
+          "direction": "ascending"
+        }
+      },
+      {
+        "id": "direction-descending",
+        "label": "direction: descending",
+        "inputs": {
+          "label": "اسم الحساب",
+          "direction": "descending"
+        }
+      },
+      {
+        "id": "disabled-false",
+        "label": "disabled: false",
+        "inputs": {
+          "label": "اسم الحساب",
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "disabled: true",
+        "inputs": {
+          "label": "اسم الحساب",
+          "disabled": true
+        }
+      },
+      {
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
@@ -11898,7 +18421,42 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "disabled": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "رأس الفرز",
+    "descriptionAr": "رأس تفاعلي يبدل اتجاه الفرز.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "direction",
+        "disabled",
+        "presentation"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "sortChange"
+      ],
+      "coveredValues": {
+        "direction": [
+          "none",
+          "ascending",
+          "descending"
+        ],
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "presentation": [
+          "default",
+          "table-reference"
+        ]
+      },
+      "coveredStates": [
+        "disabled"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "stepper",
@@ -11944,6 +18502,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/stepper",
+    "showcaseOwnerPath": "src/app/showcase/components/stepper/stepper-showcase.ts",
+    "showcaseLoader": "stepper",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
@@ -11957,10 +18517,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "id": "details",
               "label": "البيانات"
             }
-          ]
+          ],
+          "activeId": null
         }
       }
-    ]
+    ],
+    "displayNameAr": "الخطوات",
+    "descriptionAr": "تنقل مضبوط بين خطوات ومحتوى مسمى.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "steps"
+      ],
+      "coveredModels": [
+        "activeId"
+      ],
+      "coveredOutputs": [
+        "changed"
+      ],
+      "coveredValues": {},
+      "coveredStates": [],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "tabs",
@@ -12051,17 +18630,26 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "renderPanels",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "lazy",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "keepAlive",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [
@@ -12106,12 +18694,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/tabs",
+    "showcaseOwnerPath": "src/app/showcase/components/tabs/tabs-showcase.ts",
+    "showcaseLoader": "tabs",
     "visualReference": "src/app/controls/tabs/ERP_TABS_REFERENCE_EXACT_V1.md",
     "visualStatus": "PENDING",
     "showcaseFacets": [
       "variant",
       "orientation",
-      "distribution"
+      "distribution",
+      "headerShape",
+      "verticalPlacement",
+      "transition"
     ],
     "showcaseCases": [
       {
@@ -12124,7 +18717,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "label": "نظرة عامة",
               "content": "محتوى النظرة العامة"
             }
-          ]
+          ],
+          "activeId": null
         }
       },
       {
@@ -12138,6 +18732,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "content": "محتوى النظرة العامة"
             }
           ],
+          "activeId": null,
           "orientation": "horizontal"
         }
       },
@@ -12152,7 +18747,38 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "content": "محتوى النظرة العامة"
             }
           ],
+          "activeId": null,
           "orientation": "vertical"
+        }
+      },
+      {
+        "id": "verticalPlacement-start",
+        "label": "verticalPlacement: start",
+        "inputs": {
+          "items": [
+            {
+              "id": "overview",
+              "label": "نظرة عامة",
+              "content": "محتوى النظرة العامة"
+            }
+          ],
+          "activeId": null,
+          "verticalPlacement": "start"
+        }
+      },
+      {
+        "id": "verticalPlacement-end",
+        "label": "verticalPlacement: end",
+        "inputs": {
+          "items": [
+            {
+              "id": "overview",
+              "label": "نظرة عامة",
+              "content": "محتوى النظرة العامة"
+            }
+          ],
+          "activeId": null,
+          "verticalPlacement": "end"
         }
       },
       {
@@ -12166,6 +18792,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "content": "محتوى النظرة العامة"
             }
           ],
+          "activeId": null,
           "distribution": "content"
         }
       },
@@ -12180,6 +18807,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "content": "محتوى النظرة العامة"
             }
           ],
+          "activeId": null,
           "distribution": "fill"
         }
       },
@@ -12194,6 +18822,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "content": "محتوى النظرة العامة"
             }
           ],
+          "activeId": null,
           "variant": "underline"
         }
       },
@@ -12208,6 +18837,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "content": "محتوى النظرة العامة"
             }
           ],
+          "activeId": null,
           "variant": "pill"
         }
       },
@@ -12222,6 +18852,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "content": "محتوى النظرة العامة"
             }
           ],
+          "activeId": null,
           "variant": "solid"
         }
       },
@@ -12236,6 +18867,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "content": "محتوى النظرة العامة"
             }
           ],
+          "activeId": null,
           "variant": "ghost"
         }
       },
@@ -12250,10 +18882,305 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "content": "محتوى النظرة العامة"
             }
           ],
+          "activeId": null,
           "variant": "pills"
         }
+      },
+      {
+        "id": "transition-slide",
+        "label": "transition: slide",
+        "inputs": {
+          "items": [
+            {
+              "id": "overview",
+              "label": "نظرة عامة",
+              "content": "محتوى النظرة العامة"
+            }
+          ],
+          "activeId": null,
+          "transition": "slide"
+        }
+      },
+      {
+        "id": "transition-fade",
+        "label": "transition: fade",
+        "inputs": {
+          "items": [
+            {
+              "id": "overview",
+              "label": "نظرة عامة",
+              "content": "محتوى النظرة العامة"
+            }
+          ],
+          "activeId": null,
+          "transition": "fade"
+        }
+      },
+      {
+        "id": "transition-scale",
+        "label": "transition: scale",
+        "inputs": {
+          "items": [
+            {
+              "id": "overview",
+              "label": "نظرة عامة",
+              "content": "محتوى النظرة العامة"
+            }
+          ],
+          "activeId": null,
+          "transition": "scale"
+        }
+      },
+      {
+        "id": "transition-none",
+        "label": "transition: none",
+        "inputs": {
+          "items": [
+            {
+              "id": "overview",
+              "label": "نظرة عامة",
+              "content": "محتوى النظرة العامة"
+            }
+          ],
+          "activeId": null,
+          "transition": "none"
+        }
+      },
+      {
+        "id": "transition-fade-up",
+        "label": "transition: fade-up",
+        "inputs": {
+          "items": [
+            {
+              "id": "overview",
+              "label": "نظرة عامة",
+              "content": "محتوى النظرة العامة"
+            }
+          ],
+          "activeId": null,
+          "transition": "fade-up"
+        }
+      },
+      {
+        "id": "transition-fade-down",
+        "label": "transition: fade-down",
+        "inputs": {
+          "items": [
+            {
+              "id": "overview",
+              "label": "نظرة عامة",
+              "content": "محتوى النظرة العامة"
+            }
+          ],
+          "activeId": null,
+          "transition": "fade-down"
+        }
+      },
+      {
+        "id": "transition-fade-start",
+        "label": "transition: fade-start",
+        "inputs": {
+          "items": [
+            {
+              "id": "overview",
+              "label": "نظرة عامة",
+              "content": "محتوى النظرة العامة"
+            }
+          ],
+          "activeId": null,
+          "transition": "fade-start"
+        }
+      },
+      {
+        "id": "transition-fade-end",
+        "label": "transition: fade-end",
+        "inputs": {
+          "items": [
+            {
+              "id": "overview",
+              "label": "نظرة عامة",
+              "content": "محتوى النظرة العامة"
+            }
+          ],
+          "activeId": null,
+          "transition": "fade-end"
+        }
+      },
+      {
+        "id": "headerShape-reference",
+        "label": "headerShape: reference",
+        "inputs": {
+          "items": [
+            {
+              "id": "overview",
+              "label": "نظرة عامة",
+              "content": "محتوى النظرة العامة"
+            }
+          ],
+          "activeId": null,
+          "headerShape": "reference"
+        }
+      },
+      {
+        "id": "headerShape-rectangle",
+        "label": "headerShape: rectangle",
+        "inputs": {
+          "items": [
+            {
+              "id": "overview",
+              "label": "نظرة عامة",
+              "content": "محتوى النظرة العامة"
+            }
+          ],
+          "activeId": null,
+          "headerShape": "rectangle"
+        }
+      },
+      {
+        "id": "headerShape-rounded",
+        "label": "headerShape: rounded",
+        "inputs": {
+          "items": [
+            {
+              "id": "overview",
+              "label": "نظرة عامة",
+              "content": "محتوى النظرة العامة"
+            }
+          ],
+          "activeId": null,
+          "headerShape": "rounded"
+        }
+      },
+      {
+        "id": "headerShape-circle",
+        "label": "headerShape: circle",
+        "inputs": {
+          "items": [
+            {
+              "id": "overview",
+              "label": "نظرة عامة",
+              "content": "محتوى النظرة العامة"
+            }
+          ],
+          "activeId": null,
+          "headerShape": "circle"
+        }
       }
-    ]
+    ],
+    "displayNameAr": "علامات التبويب",
+    "descriptionAr": "تبديل دلالي بين رؤوس ولوحات محتوى.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "items",
+        "orientation",
+        "verticalPlacement",
+        "distribution",
+        "variant",
+        "transition",
+        "headerPresentation",
+        "headerShape",
+        "renderPanels",
+        "lazy",
+        "keepAlive"
+      ],
+      "coveredModels": [
+        "activeId"
+      ],
+      "coveredOutputs": [
+        "changed",
+        "tabClick"
+      ],
+      "coveredValues": {
+        "orientation": [
+          "horizontal",
+          "vertical"
+        ],
+        "verticalPlacement": [
+          "start",
+          "end"
+        ],
+        "distribution": [
+          "content",
+          "fill"
+        ],
+        "variant": [
+          "underline",
+          "pill",
+          "solid",
+          "ghost",
+          "pills"
+        ],
+        "transition": [
+          "slide",
+          "fade",
+          "scale",
+          "none",
+          "fade-up",
+          "fade-down",
+          "fade-start",
+          "fade-end"
+        ],
+        "headerPresentation": [
+          "text",
+          "icon",
+          "icon-text",
+          "icon-only",
+          "image",
+          "image-text"
+        ],
+        "headerShape": [
+          "reference",
+          "rectangle",
+          "rounded",
+          "circle"
+        ],
+        "renderPanels": [
+          "false",
+          "true"
+        ],
+        "lazy": [
+          "false",
+          "true"
+        ],
+        "keepAlive": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "renderPanels",
+        "lazy",
+        "keepAlive"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [
+        "default",
+        "orientation-horizontal",
+        "orientation-vertical",
+        "verticalPlacement-start",
+        "verticalPlacement-end",
+        "distribution-content",
+        "distribution-fill",
+        "variant-underline",
+        "variant-pill",
+        "variant-solid",
+        "variant-ghost",
+        "variant-pills",
+        "transition-slide",
+        "transition-fade",
+        "transition-scale",
+        "transition-none",
+        "transition-fade-up",
+        "transition-fade-down",
+        "transition-fade-start",
+        "transition-fade-end",
+        "headerShape-reference",
+        "headerShape-rectangle",
+        "headerShape-rounded",
+        "headerShape-circle"
+      ],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "page",
@@ -12295,6 +19222,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/page",
+    "showcaseOwnerPath": "src/app/showcase/components/page/page-showcase.ts",
+    "showcaseLoader": "page",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -12349,7 +19278,35 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "scrollMode": "free"
         }
       }
-    ]
+    ],
+    "displayNameAr": "الصفحة",
+    "descriptionAr": "حد عرض وتمرير واستجابة لمحتوى صفحة واحدة.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "widthMode",
+        "scrollMode"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "widthMode": [
+          "boxed",
+          "fluid",
+          "full"
+        ],
+        "scrollMode": [
+          "document",
+          "page",
+          "free"
+        ]
+      },
+      "coveredStates": [],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
+      "coveredReferenceCases": [],
+      "evidenceKind": "AUTHORED_PROJECTION"
+    }
   },
   {
     "id": "page-header",
@@ -12386,6 +19343,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/page-header",
+    "showcaseOwnerPath": "src/app/showcase/components/page-header/page-header-showcase.ts",
+    "showcaseLoader": "page-header",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
@@ -12397,7 +19356,24 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "title": "سجل الحساب"
         }
       }
-    ]
+    ],
+    "displayNameAr": "رأس الصفحة",
+    "descriptionAr": "عنوان الصفحة والوصف والبيانات والإجراءات المسقطة.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "title",
+        "subtitle"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {},
+      "coveredStates": [],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
+      "coveredReferenceCases": [],
+      "evidenceKind": "AUTHORED_PROJECTION"
+    }
   },
   {
     "id": "page-shell",
@@ -12422,6 +19398,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/page-shell",
+    "showcaseOwnerPath": "src/app/showcase/components/page-shell/page-shell-showcase.ts",
+    "showcaseLoader": "page-shell",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
@@ -12431,7 +19409,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "الحالة الافتراضية",
         "inputs": {}
       }
-    ]
+    ],
+    "displayNameAr": "تكوين الصفحة",
+    "descriptionAr": "تنظيم الرأس والمحتوى والسياق والتذييل.",
+    "showcaseCoverage": {
+      "coveredInputs": [],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {},
+      "coveredStates": [],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
+      "coveredReferenceCases": [],
+      "evidenceKind": "AUTHORED_PROJECTION"
+    }
   },
   {
     "id": "container",
@@ -12475,6 +19467,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/container",
+    "showcaseOwnerPath": "src/app/showcase/components/container/container-showcase.ts",
+    "showcaseLoader": "container",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [],
@@ -12484,7 +19478,35 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "الحالة الافتراضية",
         "inputs": {}
       }
-    ]
+    ],
+    "displayNameAr": "الحاوية",
+    "descriptionAr": "حد عرض أفقي للمحتوى.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "width",
+        "gutter"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "width": [
+          "full",
+          "narrow",
+          "content",
+          "wide"
+        ],
+        "gutter": [
+          "page",
+          "none"
+        ]
+      },
+      "coveredStates": [],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
+      "coveredReferenceCases": [],
+      "evidenceKind": "AUTHORED_PROJECTION"
+    }
   },
   {
     "id": "divider",
@@ -12545,6 +19567,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/divider",
+    "showcaseOwnerPath": "src/app/showcase/components/divider/divider-showcase.ts",
+    "showcaseLoader": "divider",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -12592,7 +19616,42 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "tone": "strong"
         }
       }
-    ]
+    ],
+    "displayNameAr": "الفاصل",
+    "descriptionAr": "فاصل دلالي أفقي أو رأسي.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "orientation",
+        "tone",
+        "stroke",
+        "weight"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "orientation": [
+          "horizontal",
+          "vertical"
+        ],
+        "tone": [
+          "subtle",
+          "default",
+          "strong"
+        ],
+        "stroke": [
+          "solid",
+          "dashed"
+        ],
+        "weight": [
+          "default",
+          "emphasis"
+        ]
+      },
+      "coveredStates": [],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "STATIC_COMPONENT"
+    }
   },
   {
     "id": "grid",
@@ -12647,16 +19706,117 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/grid",
+    "showcaseOwnerPath": "src/app/showcase/components/grid/grid-showcase.ts",
+    "showcaseLoader": "grid",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "gap"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {}
+      },
+      {
+        "id": "gap-grid",
+        "label": "gap: grid",
+        "inputs": {
+          "gap": "grid"
+        }
+      },
+      {
+        "id": "gap-none",
+        "label": "gap: none",
+        "inputs": {
+          "gap": "none"
+        }
+      },
+      {
+        "id": "gap-xxs",
+        "label": "gap: xxs",
+        "inputs": {
+          "gap": "xxs"
+        }
+      },
+      {
+        "id": "gap-xs",
+        "label": "gap: xs",
+        "inputs": {
+          "gap": "xs"
+        }
+      },
+      {
+        "id": "gap-sm",
+        "label": "gap: sm",
+        "inputs": {
+          "gap": "sm"
+        }
+      },
+      {
+        "id": "gap-md",
+        "label": "gap: md",
+        "inputs": {
+          "gap": "md"
+        }
+      },
+      {
+        "id": "gap-lg",
+        "label": "gap: lg",
+        "inputs": {
+          "gap": "lg"
+        }
+      },
+      {
+        "id": "gap-xl",
+        "label": "gap: xl",
+        "inputs": {
+          "gap": "xl"
+        }
+      },
+      {
+        "id": "gap-xxl",
+        "label": "gap: xxl",
+        "inputs": {
+          "gap": "xxl"
+        }
       }
-    ]
+    ],
+    "displayNameAr": "الشبكة",
+    "descriptionAr": "تخطيط شبكي بأعمدة وفجوات مضبوطة.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "columns",
+        "gap",
+        "responsive"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "gap": [
+          "grid",
+          "none",
+          "xxs",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl"
+        ],
+        "responsive": [
+          "auto",
+          "fixed"
+        ]
+      },
+      "coveredStates": [],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
+      "coveredReferenceCases": [],
+      "evidenceKind": "AUTHORED_PROJECTION"
+    }
   },
   {
     "id": "icon",
@@ -12710,7 +19870,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "decorative",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "label",
@@ -12738,6 +19901,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/icon",
+    "showcaseOwnerPath": "src/app/showcase/components/icon/icon-showcase.ts",
+    "showcaseLoader": "icon",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -12857,7 +20022,49 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "tone": "info"
         }
       }
-    ]
+    ],
+    "displayNameAr": "الأيقونة",
+    "descriptionAr": "عرض أيقونة دلالية من السجل المعتمد.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "name",
+        "size",
+        "tone",
+        "variant",
+        "strokeWidth",
+        "decorative",
+        "label"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "tone": [
+          "inherit",
+          "primary",
+          "secondary",
+          "muted",
+          "disabled",
+          "inverse",
+          "brand-primary",
+          "brand-secondary",
+          "brand-accent",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "decorative": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "decorative"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "STATIC_COMPONENT"
+    }
   },
   {
     "id": "inline",
@@ -12924,16 +20131,171 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/inline",
+    "showcaseOwnerPath": "src/app/showcase/components/inline/inline-showcase.ts",
+    "showcaseLoader": "inline",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "align",
+      "justify",
+      "gap",
+      "wrap"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {}
+      },
+      {
+        "id": "gap-none",
+        "label": "gap: none",
+        "inputs": {
+          "gap": "none"
+        }
+      },
+      {
+        "id": "gap-tight",
+        "label": "gap: tight",
+        "inputs": {
+          "gap": "tight"
+        }
+      },
+      {
+        "id": "gap-default",
+        "label": "gap: default",
+        "inputs": {
+          "gap": "default"
+        }
+      },
+      {
+        "id": "gap-loose",
+        "label": "gap: loose",
+        "inputs": {
+          "gap": "loose"
+        }
+      },
+      {
+        "id": "align-stretch",
+        "label": "align: stretch",
+        "inputs": {
+          "align": "stretch"
+        }
+      },
+      {
+        "id": "align-start",
+        "label": "align: start",
+        "inputs": {
+          "align": "start"
+        }
+      },
+      {
+        "id": "align-center",
+        "label": "align: center",
+        "inputs": {
+          "align": "center"
+        }
+      },
+      {
+        "id": "align-end",
+        "label": "align: end",
+        "inputs": {
+          "align": "end"
+        }
+      },
+      {
+        "id": "align-baseline",
+        "label": "align: baseline",
+        "inputs": {
+          "align": "baseline"
+        }
+      },
+      {
+        "id": "justify-start",
+        "label": "justify: start",
+        "inputs": {
+          "justify": "start"
+        }
+      },
+      {
+        "id": "justify-center",
+        "label": "justify: center",
+        "inputs": {
+          "justify": "center"
+        }
+      },
+      {
+        "id": "justify-end",
+        "label": "justify: end",
+        "inputs": {
+          "justify": "end"
+        }
+      },
+      {
+        "id": "justify-between",
+        "label": "justify: between",
+        "inputs": {
+          "justify": "between"
+        }
+      },
+      {
+        "id": "wrap-nowrap",
+        "label": "wrap: nowrap",
+        "inputs": {
+          "wrap": "nowrap"
+        }
+      },
+      {
+        "id": "wrap-wrap",
+        "label": "wrap: wrap",
+        "inputs": {
+          "wrap": "wrap"
+        }
       }
-    ]
+    ],
+    "displayNameAr": "التخطيط السطري",
+    "descriptionAr": "ترتيب عناصر على المحور السطري مع التفاف مضبوط.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "gap",
+        "align",
+        "justify",
+        "wrap"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "gap": [
+          "none",
+          "tight",
+          "default",
+          "loose"
+        ],
+        "align": [
+          "stretch",
+          "start",
+          "center",
+          "end",
+          "baseline"
+        ],
+        "justify": [
+          "start",
+          "center",
+          "end",
+          "between"
+        ],
+        "wrap": [
+          "nowrap",
+          "wrap"
+        ]
+      },
+      "coveredStates": [],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
+      "coveredReferenceCases": [],
+      "evidenceKind": "AUTHORED_PROJECTION"
+    }
   },
   {
     "id": "section",
@@ -12967,16 +20329,63 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/section",
+    "showcaseOwnerPath": "src/app/showcase/components/section/section-showcase.ts",
+    "showcaseLoader": "section",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "gap"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {}
+      },
+      {
+        "id": "gap-none",
+        "label": "gap: none",
+        "inputs": {
+          "gap": "none"
+        }
+      },
+      {
+        "id": "gap-default",
+        "label": "gap: default",
+        "inputs": {
+          "gap": "default"
+        }
+      },
+      {
+        "id": "gap-large",
+        "label": "gap: large",
+        "inputs": {
+          "gap": "large"
+        }
       }
-    ]
+    ],
+    "displayNameAr": "القسم",
+    "descriptionAr": "حد section دلالي وفجوة داخلية.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "gap"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "gap": [
+          "none",
+          "default",
+          "large"
+        ]
+      },
+      "coveredStates": [],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
+      "coveredReferenceCases": [],
+      "evidenceKind": "AUTHORED_PROJECTION"
+    }
   },
   {
     "id": "stack",
@@ -13033,16 +20442,143 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/stack",
+    "showcaseOwnerPath": "src/app/showcase/components/stack/stack-showcase.ts",
+    "showcaseLoader": "stack",
     "visualReference": null,
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "align",
+      "justify",
+      "gap"
+    ],
     "showcaseCases": [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {}
+      },
+      {
+        "id": "gap-none",
+        "label": "gap: none",
+        "inputs": {
+          "gap": "none"
+        }
+      },
+      {
+        "id": "gap-tight",
+        "label": "gap: tight",
+        "inputs": {
+          "gap": "tight"
+        }
+      },
+      {
+        "id": "gap-default",
+        "label": "gap: default",
+        "inputs": {
+          "gap": "default"
+        }
+      },
+      {
+        "id": "gap-loose",
+        "label": "gap: loose",
+        "inputs": {
+          "gap": "loose"
+        }
+      },
+      {
+        "id": "align-stretch",
+        "label": "align: stretch",
+        "inputs": {
+          "align": "stretch"
+        }
+      },
+      {
+        "id": "align-start",
+        "label": "align: start",
+        "inputs": {
+          "align": "start"
+        }
+      },
+      {
+        "id": "align-center",
+        "label": "align: center",
+        "inputs": {
+          "align": "center"
+        }
+      },
+      {
+        "id": "align-end",
+        "label": "align: end",
+        "inputs": {
+          "align": "end"
+        }
+      },
+      {
+        "id": "justify-start",
+        "label": "justify: start",
+        "inputs": {
+          "justify": "start"
+        }
+      },
+      {
+        "id": "justify-center",
+        "label": "justify: center",
+        "inputs": {
+          "justify": "center"
+        }
+      },
+      {
+        "id": "justify-end",
+        "label": "justify: end",
+        "inputs": {
+          "justify": "end"
+        }
+      },
+      {
+        "id": "justify-between",
+        "label": "justify: between",
+        "inputs": {
+          "justify": "between"
+        }
       }
-    ]
+    ],
+    "displayNameAr": "التكديس",
+    "descriptionAr": "ترتيب عناصر رأسيًا مع محاذاة وفجوات مضبوطة.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "gap",
+        "align",
+        "justify"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "gap": [
+          "none",
+          "tight",
+          "default",
+          "loose"
+        ],
+        "align": [
+          "stretch",
+          "start",
+          "center",
+          "end"
+        ],
+        "justify": [
+          "start",
+          "center",
+          "end",
+          "between"
+        ]
+      },
+      "coveredStates": [],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
+      "coveredReferenceCases": [],
+      "evidenceKind": "AUTHORED_PROJECTION"
+    }
   },
   {
     "id": "surface",
@@ -13121,6 +20657,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/surface",
+    "showcaseOwnerPath": "src/app/showcase/components/surface/surface-showcase.ts",
+    "showcaseLoader": "surface",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -13160,7 +20698,58 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "tone": "inverse"
         }
       }
-    ]
+    ],
+    "displayNameAr": "السطح",
+    "descriptionAr": "سطح مرئي يملك الحشو والحدود والارتفاع.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "tone",
+        "border",
+        "elevation",
+        "radius",
+        "padding"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "tone": [
+          "canvas",
+          "default",
+          "elevated",
+          "inverse"
+        ],
+        "border": [
+          "none",
+          "subtle",
+          "default",
+          "strong"
+        ],
+        "elevation": [
+          "none",
+          "raised",
+          "overlay"
+        ],
+        "radius": [
+          "none",
+          "control",
+          "surface",
+          "overlay",
+          "full"
+        ],
+        "padding": [
+          "none",
+          "tight",
+          "default",
+          "loose"
+        ]
+      },
+      "coveredStates": [],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
+      "coveredReferenceCases": [],
+      "evidenceKind": "AUTHORED_PROJECTION"
+    }
   },
   {
     "id": "text",
@@ -13378,7 +20967,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "selectable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "href",
@@ -13506,11 +21098,16 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/text",
+    "showcaseOwnerPath": "src/app/showcase/components/text/text-showcase.ts",
+    "showcaseLoader": "text",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
       "size",
-      "tone"
+      "tone",
+      "align",
+      "wrap",
+      "direction"
     ],
     "showcaseCases": [
       {
@@ -13699,8 +21296,312 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "inputs": {
           "tone": "info"
         }
+      },
+      {
+        "id": "align-inherit",
+        "label": "align: inherit",
+        "inputs": {
+          "align": "inherit"
+        }
+      },
+      {
+        "id": "align-start",
+        "label": "align: start",
+        "inputs": {
+          "align": "start"
+        }
+      },
+      {
+        "id": "align-center",
+        "label": "align: center",
+        "inputs": {
+          "align": "center"
+        }
+      },
+      {
+        "id": "align-end",
+        "label": "align: end",
+        "inputs": {
+          "align": "end"
+        }
+      },
+      {
+        "id": "align-justify",
+        "label": "align: justify",
+        "inputs": {
+          "align": "justify"
+        }
+      },
+      {
+        "id": "wrap-auto",
+        "label": "wrap: auto",
+        "inputs": {
+          "wrap": "auto"
+        }
+      },
+      {
+        "id": "wrap-normal",
+        "label": "wrap: normal",
+        "inputs": {
+          "wrap": "normal"
+        }
+      },
+      {
+        "id": "wrap-nowrap",
+        "label": "wrap: nowrap",
+        "inputs": {
+          "wrap": "nowrap"
+        }
+      },
+      {
+        "id": "wrap-pre",
+        "label": "wrap: pre",
+        "inputs": {
+          "wrap": "pre"
+        }
+      },
+      {
+        "id": "wrap-pre-wrap",
+        "label": "wrap: pre-wrap",
+        "inputs": {
+          "wrap": "pre-wrap"
+        }
+      },
+      {
+        "id": "wrap-break-spaces",
+        "label": "wrap: break-spaces",
+        "inputs": {
+          "wrap": "break-spaces"
+        }
+      },
+      {
+        "id": "direction-inherit",
+        "label": "direction: inherit",
+        "inputs": {
+          "direction": "inherit"
+        }
+      },
+      {
+        "id": "direction-auto",
+        "label": "direction: auto",
+        "inputs": {
+          "direction": "auto"
+        }
+      },
+      {
+        "id": "direction-rtl",
+        "label": "direction: rtl",
+        "inputs": {
+          "direction": "rtl"
+        }
+      },
+      {
+        "id": "direction-ltr",
+        "label": "direction: ltr",
+        "inputs": {
+          "direction": "ltr"
+        }
       }
-    ]
+    ],
+    "displayNameAr": "النص",
+    "descriptionAr": "بوابة النصوص الإنتاجية وأدوارها الدلالية.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "type",
+        "size",
+        "weight",
+        "tone",
+        "family",
+        "lineHeight",
+        "fontStyle",
+        "decoration",
+        "align",
+        "wrap",
+        "overflow",
+        "lineClamp",
+        "direction",
+        "selectable",
+        "href",
+        "target",
+        "rel",
+        "download",
+        "forId",
+        "datetime",
+        "value",
+        "title",
+        "cite"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "type": [
+          "text",
+          "heading-1",
+          "heading-2",
+          "heading-3",
+          "heading-4",
+          "heading-5",
+          "heading-6",
+          "paragraph",
+          "div",
+          "span",
+          "pre",
+          "blockquote",
+          "address",
+          "hgroup",
+          "figure",
+          "figcaption",
+          "strong",
+          "bold",
+          "emphasis",
+          "italic",
+          "underline",
+          "strike",
+          "deleted",
+          "inserted",
+          "mark",
+          "small",
+          "subscript",
+          "superscript",
+          "abbreviation",
+          "definition",
+          "citation",
+          "quote",
+          "time",
+          "data",
+          "bdi",
+          "bdo",
+          "ruby",
+          "ruby-text",
+          "ruby-parenthesis",
+          "code",
+          "keyboard",
+          "sample",
+          "variable",
+          "label",
+          "legend",
+          "caption",
+          "summary",
+          "output",
+          "list-item",
+          "term",
+          "description",
+          "table-header",
+          "table-cell",
+          "link"
+        ],
+        "size": [
+          "auto",
+          "inherit",
+          "2xs",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "2xl",
+          "3xl",
+          "4xl",
+          "5xl"
+        ],
+        "weight": [
+          "auto",
+          "inherit",
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "tone": [
+          "auto",
+          "inherit",
+          "primary",
+          "secondary",
+          "muted",
+          "disabled",
+          "inverse",
+          "brand-primary",
+          "brand-secondary",
+          "brand-accent",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "family": [
+          "auto",
+          "inherit",
+          "ui",
+          "arabic",
+          "latin"
+        ],
+        "lineHeight": [
+          "auto",
+          "inherit",
+          "tight",
+          "snug",
+          "compact",
+          "normal",
+          "comfortable",
+          "relaxed",
+          "loose"
+        ],
+        "fontStyle": [
+          "auto",
+          "inherit",
+          "normal",
+          "italic"
+        ],
+        "decoration": [
+          "auto",
+          "inherit",
+          "none",
+          "underline",
+          "line-through"
+        ],
+        "align": [
+          "inherit",
+          "start",
+          "center",
+          "end",
+          "justify"
+        ],
+        "wrap": [
+          "auto",
+          "normal",
+          "nowrap",
+          "pre",
+          "pre-wrap",
+          "break-spaces"
+        ],
+        "overflow": [
+          "visible",
+          "clip",
+          "ellipsis"
+        ],
+        "direction": [
+          "inherit",
+          "auto",
+          "rtl",
+          "ltr"
+        ],
+        "selectable": [
+          "false",
+          "true"
+        ],
+        "target": [
+          "_self",
+          "_blank",
+          "_parent",
+          "_top"
+        ]
+      },
+      "coveredStates": [
+        "selectable"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "STATIC_COMPONENT"
+    }
   },
   {
     "id": "avatar-picker",
@@ -13735,17 +21636,26 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "searchable",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "showConfirm",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "showCount",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "searchPlaceholder",
@@ -13775,7 +21685,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "size",
@@ -13860,6 +21773,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/avatar-picker",
+    "showcaseOwnerPath": "src/app/showcase/components/avatar-picker/avatar-picker-showcase.ts",
+    "showcaseLoader": "avatar-picker",
     "visualReference": "src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md",
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -13870,12 +21785,35 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "value": null,
+          "gender": null
+        }
+      },
+      {
+        "id": "disabled-false",
+        "label": "disabled: false",
+        "inputs": {
+          "value": null,
+          "gender": null,
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "disabled: true",
+        "inputs": {
+          "value": null,
+          "gender": null,
+          "disabled": true
+        }
       },
       {
         "id": "size-default",
         "label": "size: default",
         "inputs": {
+          "value": null,
+          "gender": null,
           "size": "default"
         }
       },
@@ -13883,17 +21821,114 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-compact",
         "label": "size: compact",
         "inputs": {
+          "value": null,
+          "gender": null,
           "size": "compact"
+        }
+      },
+      {
+        "id": "gender-male",
+        "label": "gender: male",
+        "inputs": {
+          "value": null,
+          "gender": "male"
+        }
+      },
+      {
+        "id": "gender-female",
+        "label": "gender: female",
+        "inputs": {
+          "value": null,
+          "gender": "female"
         }
       },
       {
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
+          "value": null,
+          "gender": null,
           "disabled": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "منتقي الصورة الرمزية",
+    "descriptionAr": "اختيار صورة رمزية مضبوطة من الفهرس.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "avatars",
+        "title",
+        "label",
+        "subtitle",
+        "searchable",
+        "showConfirm",
+        "showCount",
+        "searchPlaceholder",
+        "emptyText",
+        "confirmLabel",
+        "cancelLabel",
+        "savedLabel",
+        "disabled",
+        "size",
+        "avatarShape",
+        "avatarSize"
+      ],
+      "coveredModels": [
+        "value",
+        "gender"
+      ],
+      "coveredOutputs": [
+        "changed",
+        "pick",
+        "confirm",
+        "cancelRequested"
+      ],
+      "coveredValues": {
+        "searchable": [
+          "false",
+          "true"
+        ],
+        "showConfirm": [
+          "false",
+          "true"
+        ],
+        "showCount": [
+          "false",
+          "true"
+        ],
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "size": [
+          "default",
+          "compact"
+        ],
+        "avatarShape": [
+          "circle",
+          "rounded",
+          "square"
+        ]
+      },
+      "coveredStates": [
+        "searchable",
+        "showConfirm",
+        "showCount",
+        "disabled"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [
+        "default",
+        "disabled-false",
+        "disabled-true",
+        "size-default",
+        "size-compact",
+        "gender-male",
+        "gender-female",
+        "disabled"
+      ],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "check-box",
@@ -13923,12 +21958,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -13943,17 +21984,26 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "indeterminate",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "readOnly",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "hideText",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "tone",
@@ -14041,6 +22091,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/check-box",
+    "showcaseOwnerPath": "src/app/showcase/components/check-box/check-box-showcase.ts",
+    "showcaseLoader": "check-box",
     "visualReference": "src/app/controls/check-box/CHECK_BOX_REFERENCE_EXACT_V5.md",
     "visualStatus": "ACCEPTED",
     "showcaseFacets": [
@@ -14048,7 +22100,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "size",
       "tone",
       "disabled",
-      "readOnly"
+      "readOnly",
+      "mode"
     ],
     "showcaseCases": [
       {
@@ -14056,6 +22109,22 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "الحالة الافتراضية",
         "inputs": {
           "label": "حقل تجريبي"
+        }
+      },
+      {
+        "id": "readOnly-false",
+        "label": "readOnly: false",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "readOnly": false
+        }
+      },
+      {
+        "id": "readOnly-true",
+        "label": "readOnly: true",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "readOnly": true
         }
       },
       {
@@ -14147,6 +22216,30 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         }
       },
       {
+        "id": "mode-checkbox",
+        "label": "mode: checkbox",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "mode": "checkbox"
+        }
+      },
+      {
+        "id": "mode-switch",
+        "label": "mode: switch",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "mode": "switch"
+        }
+      },
+      {
+        "id": "mode-tile",
+        "label": "mode: tile",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "mode": "tile"
+        }
+      },
+      {
         "id": "variant-outline",
         "label": "variant: outline",
         "inputs": {
@@ -14178,7 +22271,121 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "readOnly": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "مربع الاختيار",
+    "descriptionAr": "اختيار منطقي مستقل أو ضمن مجموعة.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "description",
+        "indeterminate",
+        "readOnly",
+        "hideText",
+        "tone",
+        "status",
+        "size",
+        "mode",
+        "variant",
+        "presentation"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "indeterminate": [
+          "false",
+          "true"
+        ],
+        "readOnly": [
+          "false",
+          "true"
+        ],
+        "hideText": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "mode": [
+          "checkbox",
+          "switch",
+          "tile"
+        ],
+        "variant": [
+          "outline",
+          "filled",
+          "soft"
+        ],
+        "presentation": [
+          "default",
+          "table-reference"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "indeterminate",
+        "readOnly",
+        "hideText"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [
+        "default",
+        "readOnly-false",
+        "readOnly-true",
+        "tone-neutral",
+        "tone-primary",
+        "tone-secondary",
+        "tone-accent",
+        "size-sm",
+        "size-md",
+        "size-lg",
+        "size-xl",
+        "size-xxl",
+        "size-xxxl",
+        "size-xxxxl",
+        "mode-checkbox",
+        "mode-switch",
+        "mode-tile",
+        "variant-outline",
+        "variant-filled",
+        "variant-soft",
+        "readonly"
+      ],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "column-chooser",
@@ -14203,7 +22410,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "presentation",
@@ -14240,6 +22450,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/column-chooser",
+    "showcaseOwnerPath": "src/app/showcase/components/column-chooser/column-chooser-showcase.ts",
+    "showcaseLoader": "column-chooser",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -14260,6 +22472,34 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         }
       },
       {
+        "id": "disabled-false",
+        "label": "disabled: false",
+        "inputs": {
+          "columns": [
+            {
+              "key": "name",
+              "label": "الاسم",
+              "hideable": true
+            }
+          ],
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "disabled: true",
+        "inputs": {
+          "columns": [
+            {
+              "key": "name",
+              "label": "الاسم",
+              "hideable": true
+            }
+          ],
+          "disabled": true
+        }
+      },
+      {
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
@@ -14273,7 +22513,38 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "disabled": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "محدد الأعمدة",
+    "descriptionAr": "ضبط الأعمدة المرئية للجدول.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "columns",
+        "visibleKeys",
+        "disabled",
+        "presentation"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "visibilityChange",
+        "resetRequested"
+      ],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "presentation": [
+          "default",
+          "table-reference"
+        ]
+      },
+      "coveredStates": [
+        "disabled"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   },
   {
     "id": "radio-box",
@@ -14303,12 +22574,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -14323,12 +22600,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "readOnly",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "hideText",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "tone",
@@ -14405,6 +22688,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/radio-box",
+    "showcaseOwnerPath": "src/app/showcase/components/radio-box/radio-box-showcase.ts",
+    "showcaseLoader": "radio-box",
     "visualReference": "src/app/controls/radio-box/RADIO_BOX_VISUAL_CONTRACT_V1.md",
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -14412,7 +22697,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "size",
       "tone",
       "disabled",
-      "readOnly"
+      "readOnly",
+      "mode"
     ],
     "showcaseCases": [
       {
@@ -14420,6 +22706,22 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "الحالة الافتراضية",
         "inputs": {
           "label": "حقل تجريبي"
+        }
+      },
+      {
+        "id": "readOnly-false",
+        "label": "readOnly: false",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "readOnly": false
+        }
+      },
+      {
+        "id": "readOnly-true",
+        "label": "readOnly: true",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "readOnly": true
         }
       },
       {
@@ -14511,6 +22813,22 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         }
       },
       {
+        "id": "mode-radio",
+        "label": "mode: radio",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "mode": "radio"
+        }
+      },
+      {
+        "id": "mode-tile",
+        "label": "mode: tile",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "mode": "tile"
+        }
+      },
+      {
         "id": "variant-outline",
         "label": "variant: outline",
         "inputs": {
@@ -14542,7 +22860,108 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "readOnly": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "زر الاختيار",
+    "descriptionAr": "اختيار قيمة واحدة ضمن سياق.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "description",
+        "readOnly",
+        "hideText",
+        "tone",
+        "status",
+        "size",
+        "mode",
+        "variant"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "readOnly": [
+          "false",
+          "true"
+        ],
+        "hideText": [
+          "false",
+          "true"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "mode": [
+          "radio",
+          "tile"
+        ],
+        "variant": [
+          "outline",
+          "filled",
+          "soft"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "readOnly",
+        "hideText"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [
+        "default",
+        "readOnly-false",
+        "readOnly-true",
+        "tone-neutral",
+        "tone-primary",
+        "tone-secondary",
+        "tone-accent",
+        "size-sm",
+        "size-md",
+        "size-lg",
+        "size-xl",
+        "size-xxl",
+        "size-xxxl",
+        "size-xxxxl",
+        "mode-radio",
+        "mode-tile",
+        "variant-outline",
+        "variant-filled",
+        "variant-soft",
+        "readonly"
+      ],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "radio-group",
@@ -14572,12 +22991,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "required",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         },
         {
           "name": "externalValidationIssues",
@@ -14643,7 +23068,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "readOnly",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [],
@@ -14670,6 +23098,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/radio-group",
+    "showcaseOwnerPath": "src/app/showcase/components/radio-group/radio-group-showcase.ts",
+    "showcaseLoader": "radio-group",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -14677,7 +23107,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "size",
       "tone",
       "disabled",
-      "readOnly"
+      "readOnly",
+      "mode"
     ],
     "showcaseCases": [
       {
@@ -14691,6 +23122,34 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "label": "نشط"
             }
           ]
+        }
+      },
+      {
+        "id": "mode-radio",
+        "label": "mode: radio",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "mode": "radio"
+        }
+      },
+      {
+        "id": "mode-tile",
+        "label": "mode: tile",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "mode": "tile"
         }
       },
       {
@@ -14890,6 +23349,34 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         }
       },
       {
+        "id": "readOnly-false",
+        "label": "readOnly: false",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "readOnly": false
+        }
+      },
+      {
+        "id": "readOnly-true",
+        "label": "readOnly: true",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "readOnly": true
+        }
+      },
+      {
         "id": "readonly",
         "label": "للقراءة فقط",
         "inputs": {
@@ -14903,7 +23390,81 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "readOnly": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "مجموعة الاختيار",
+    "descriptionAr": "مجموعة خيارات أحادية مضبوطة.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "label",
+        "name",
+        "form",
+        "disabled",
+        "required",
+        "externalValidationIssues",
+        "options",
+        "mode",
+        "variant",
+        "tone",
+        "status",
+        "size",
+        "readOnly"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ],
+        "required": [
+          "false",
+          "true"
+        ],
+        "mode": [
+          "radio",
+          "tile"
+        ],
+        "variant": [
+          "outline",
+          "filled",
+          "soft"
+        ],
+        "tone": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "status": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "readOnly": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled",
+        "required",
+        "readOnly"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "CONTROLLED_MODEL"
+    }
   },
   {
     "id": "view-switcher",
@@ -14918,7 +23479,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "disabled",
           "required": false,
-          "values": []
+          "values": [
+            "false",
+            "true"
+          ]
         }
       ],
       "outputs": [
@@ -14945,6 +23509,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/view-switcher",
+    "showcaseOwnerPath": "src/app/showcase/components/view-switcher/view-switcher-showcase.ts",
+    "showcaseLoader": "view-switcher",
     "visualReference": null,
     "visualStatus": "PENDING",
     "showcaseFacets": [
@@ -14954,95 +23520,153 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "value": null
+        }
+      },
+      {
+        "id": "disabled-false",
+        "label": "disabled: false",
+        "inputs": {
+          "value": null,
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "disabled: true",
+        "inputs": {
+          "value": null,
+          "disabled": true
+        }
+      },
+      {
+        "id": "value-table",
+        "label": "value: table",
+        "inputs": {
+          "value": "table"
+        }
+      },
+      {
+        "id": "value-cards",
+        "label": "value: cards",
+        "inputs": {
+          "value": "cards"
+        }
       },
       {
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
+          "value": null,
           "disabled": true
         }
       }
-    ]
+    ],
+    "displayNameAr": "مبدل العرض",
+    "descriptionAr": "اختيار وضع عرض واحد من أوضاع محددة.",
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "disabled"
+      ],
+      "coveredModels": [
+        "value"
+      ],
+      "coveredOutputs": [
+        "changed"
+      ],
+      "coveredValues": {
+        "disabled": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "disabled"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
   }
 ];
 
-export const ERP_PUBLIC_COMPONENT_LOADERS: Readonly<Record<string, () => Promise<Type<unknown>>>> = {
-  "button": () => import("../controls/button/button").then((module) => module.ErpButton),
-  "button-group": () => import("../controls/button-group/button-group").then((module) => module.ErpButtonGroup),
-  "extended-fab": () => import("../controls/extended-fab/extended-fab").then((module) => module.ErpExtendedFab),
-  "fab": () => import("../controls/fab/fab").then((module) => module.ErpFab),
-  "fab-menu": () => import("../controls/fab-menu/fab-menu").then((module) => module.ErpFabMenu),
-  "icon-button": () => import("../controls/icon-button/icon-button").then((module) => module.ErpIconButton),
-  "split-button": () => import("../controls/split-button/split-button").then((module) => module.ErpSplitButton),
-  "app-shell": () => import("../controls/app-shell/app-shell").then((module) => module.ErpAppShell),
-  "branch-selector": () => import("../controls/branch-selector/branch-selector").then((module) => module.ErpBranchSelector),
-  "global-search": () => import("../controls/global-search/global-search").then((module) => module.ErpGlobalSearch),
-  "notification-bell": () => import("../controls/notification-bell/notification-bell").then((module) => module.ErpNotificationBell),
-  "topbar": () => import("../controls/topbar/topbar").then((module) => module.ErpTopbar),
-  "user-menu": () => import("../controls/user-menu/user-menu").then((module) => module.ErpUserMenu),
-  "bulk-action-bar": () => import("../controls/bulk-action-bar/bulk-action-bar").then((module) => module.ErpBulkActionBar),
-  "filter-bar": () => import("../controls/filter-bar/filter-bar").then((module) => module.ErpFilterBar),
-  "filter-drawer": () => import("../controls/filter-drawer/filter-drawer").then((module) => module.ErpFilterDrawer),
-  "smart-table": () => import("../controls/smart-table/smart-table").then((module) => module.ErpSmartTable),
-  "table": () => import("../controls/table/table").then((module) => module.ErpTable),
-  "table-toolbar": () => import("../controls/table-toolbar/table-toolbar").then((module) => module.ErpTableToolbar),
-  "alert": () => import("../controls/alert/alert").then((module) => module.ErpAlert),
-  "empty-state": () => import("../controls/empty-state/empty-state").then((module) => module.ErpEmptyState),
-  "skeleton": () => import("../controls/skeleton/skeleton").then((module) => module.ErpSkeleton),
-  "status-badge": () => import("../controls/status-badge/status-badge").then((module) => module.ErpStatusBadge),
-  "tooltip": () => import("../controls/tooltip/tooltip").then((module) => module.ErpTooltip),
-  "entity-schema-fields": () => import("../controls/entity-form/entity-schema-fields").then((module) => module.ErpEntitySchemaFields),
-  "form": () => import("../controls/form/form").then((module) => module.ErpForm),
-  "form-actions": () => import("../controls/form-actions/form-actions").then((module) => module.ErpFormActions),
-  "form-section": () => import("../controls/form-section/form-section").then((module) => module.ErpFormSection),
-  "repeater": () => import("../controls/repeater/repeater").then((module) => module.ErpRepeater),
-  "standard-entity-form": () => import("../controls/entity-form/standard-entity-form").then((module) => module.ErpStandardEntityForm),
-  "validation-summary": () => import("../controls/validation-summary/validation-summary").then((module) => module.ErpValidationSummary),
-  "color-picker": () => import("../controls/color-picker/color-picker").then((module) => module.ErpColorPicker),
-  "combo-box": () => import("../controls/combo-box/combo-box").then((module) => module.ErpComboBox),
-  "date-box": () => import("../controls/date-box/date-box").then((module) => module.ErpDateBox),
-  "date-range-box": () => import("../controls/date-range-box/date-range-box").then((module) => module.ErpDateRangeBox),
-  "date-time-box": () => import("../controls/date-time-box/date-time-box").then((module) => module.ErpDateTimeBox),
-  "file-picker": () => import("../controls/file-picker/file-picker").then((module) => module.ErpFilePicker),
-  "icon-picker": () => import("../controls/icon-picker/icon-picker").then((module) => module.ErpIconPicker),
-  "image-picker": () => import("../controls/image-picker/image-picker").then((module) => module.ErpImagePicker),
-  "item-picker": () => import("../controls/item-picker/item-picker").then((module) => module.ErpItemPicker),
-  "money-box": () => import("../controls/money-box/money-box").then((module) => module.ErpMoneyBox),
-  "number-box": () => import("../controls/number-box/number-box").then((module) => module.ErpNumberBox),
-  "number-stepper": () => import("../controls/number-stepper/number-stepper").then((module) => module.ErpNumberStepper),
-  "password-box": () => import("../controls/password-box/password-box").then((module) => module.ErpPasswordBox),
-  "range-slider": () => import("../controls/range-slider/range-slider").then((module) => module.ErpRangeSlider),
-  "search-box": () => import("../controls/search-box/search-box").then((module) => module.ErpSearchBox),
-  "select": () => import("../controls/select/select").then((module) => module.ErpSelect),
-  "tel-box": () => import("../controls/tel-box/tel-box").then((module) => module.ErpTelBox),
-  "text-area-box": () => import("../controls/text-area-box/text-area-box").then((module) => module.ErpTextAreaBox),
-  "text-box": () => import("../controls/text-box/text-box").then((module) => module.ErpTextBox),
-  "time-box": () => import("../controls/time-box/time-box").then((module) => module.ErpTimeBox),
-  "url-box": () => import("../controls/url-box/url-box").then((module) => module.ErpUrlBox),
-  "avatar": () => import("../controls/avatar/avatar").then((module) => module.ErpAvatar),
-  "breadcrumbs": () => import("../controls/breadcrumbs/breadcrumbs").then((module) => module.ErpBreadcrumbs),
-  "pagination": () => import("../controls/pagination/pagination").then((module) => module.ErpPagination),
-  "sidebar": () => import("../controls/sidebar/sidebar").then((module) => module.ErpSidebar),
-  "sort-header": () => import("../controls/sort-header/sort-header").then((module) => module.ErpSortHeader),
-  "stepper": () => import("../controls/stepper/stepper").then((module) => module.ErpStepper),
-  "tabs": () => import("../controls/tabs/tabs").then((module) => module.ErpTabs),
-  "page": () => import("../controls/page/page").then((module) => module.ErpPage),
-  "page-header": () => import("../controls/page-header/page-header").then((module) => module.ErpPageHeader),
-  "page-shell": () => import("../controls/page-shell/page-shell").then((module) => module.ErpPageShell),
-  "container": () => import("../primitives/container/container").then((module) => module.ErpContainer),
-  "divider": () => import("../primitives/divider/divider").then((module) => module.ErpDivider),
-  "grid": () => import("../primitives/grid/grid").then((module) => module.ErpGrid),
-  "icon": () => import("../primitives/icon/icon").then((module) => module.ErpIcon),
-  "inline": () => import("../primitives/inline/inline").then((module) => module.ErpInline),
-  "section": () => import("../primitives/section/section").then((module) => module.ErpSection),
-  "stack": () => import("../primitives/stack/stack").then((module) => module.ErpStack),
-  "surface": () => import("../primitives/surface/surface").then((module) => module.ErpSurface),
-  "text": () => import("../primitives/text/text").then((module) => module.ErpText),
-  "avatar-picker": () => import("../controls/avatar-picker/avatar-picker").then((module) => module.ErpAvatarPicker),
-  "check-box": () => import("../controls/check-box/check-box").then((module) => module.ErpCheckBox),
-  "column-chooser": () => import("../controls/column-chooser/column-chooser").then((module) => module.ErpColumnChooser),
-  "radio-box": () => import("../controls/radio-box/radio-box").then((module) => module.ErpRadioBox),
-  "radio-group": () => import("../controls/radio-group/radio-group").then((module) => module.ErpRadioGroup),
-  "view-switcher": () => import("../controls/view-switcher/view-switcher").then((module) => module.ErpViewSwitcher),
+export const ERP_PUBLIC_SHOWCASE_LOADERS: Readonly<Record<string, () => Promise<Type<unknown>>>> = {
+  "button": () => import("../showcase/components/button/button-showcase").then((module) => module.ErpButtonShowcase),
+  "button-group": () => import("../showcase/components/button-group/button-group-showcase").then((module) => module.ErpButtonGroupShowcase),
+  "extended-fab": () => import("../showcase/components/extended-fab/extended-fab-showcase").then((module) => module.ErpExtendedFabShowcase),
+  "fab": () => import("../showcase/components/fab/fab-showcase").then((module) => module.ErpFabShowcase),
+  "fab-menu": () => import("../showcase/components/fab-menu/fab-menu-showcase").then((module) => module.ErpFabMenuShowcase),
+  "icon-button": () => import("../showcase/components/icon-button/icon-button-showcase").then((module) => module.ErpIconButtonShowcase),
+  "split-button": () => import("../showcase/components/split-button/split-button-showcase").then((module) => module.ErpSplitButtonShowcase),
+  "app-shell": () => import("../showcase/components/app-shell/app-shell-showcase").then((module) => module.ErpAppShellShowcase),
+  "branch-selector": () => import("../showcase/components/branch-selector/branch-selector-showcase").then((module) => module.ErpBranchSelectorShowcase),
+  "global-search": () => import("../showcase/components/global-search/global-search-showcase").then((module) => module.ErpGlobalSearchShowcase),
+  "notification-bell": () => import("../showcase/components/notification-bell/notification-bell-showcase").then((module) => module.ErpNotificationBellShowcase),
+  "topbar": () => import("../showcase/components/topbar/topbar-showcase").then((module) => module.ErpTopbarShowcase),
+  "user-menu": () => import("../showcase/components/user-menu/user-menu-showcase").then((module) => module.ErpUserMenuShowcase),
+  "bulk-action-bar": () => import("../showcase/components/bulk-action-bar/bulk-action-bar-showcase").then((module) => module.ErpBulkActionBarShowcase),
+  "filter-bar": () => import("../showcase/components/filter-bar/filter-bar-showcase").then((module) => module.ErpFilterBarShowcase),
+  "filter-drawer": () => import("../showcase/components/filter-drawer/filter-drawer-showcase").then((module) => module.ErpFilterDrawerShowcase),
+  "smart-table": () => import("../showcase/components/smart-table/smart-table-showcase").then((module) => module.ErpSmartTableShowcase),
+  "table": () => import("../showcase/components/table/table-showcase").then((module) => module.ErpTableShowcase),
+  "table-toolbar": () => import("../showcase/components/table-toolbar/table-toolbar-showcase").then((module) => module.ErpTableToolbarShowcase),
+  "alert": () => import("../showcase/components/alert/alert-showcase").then((module) => module.ErpAlertShowcase),
+  "empty-state": () => import("../showcase/components/empty-state/empty-state-showcase").then((module) => module.ErpEmptyStateShowcase),
+  "skeleton": () => import("../showcase/components/skeleton/skeleton-showcase").then((module) => module.ErpSkeletonShowcase),
+  "status-badge": () => import("../showcase/components/status-badge/status-badge-showcase").then((module) => module.ErpStatusBadgeShowcase),
+  "tooltip": () => import("../showcase/components/tooltip/tooltip-showcase").then((module) => module.ErpTooltipShowcase),
+  "entity-schema-fields": () => import("../showcase/components/entity-schema-fields/entity-schema-fields-showcase").then((module) => module.ErpEntitySchemaFieldsShowcase),
+  "form": () => import("../showcase/components/form/form-showcase").then((module) => module.ErpFormShowcase),
+  "form-actions": () => import("../showcase/components/form-actions/form-actions-showcase").then((module) => module.ErpFormActionsShowcase),
+  "form-section": () => import("../showcase/components/form-section/form-section-showcase").then((module) => module.ErpFormSectionShowcase),
+  "repeater": () => import("../showcase/components/repeater/repeater-showcase").then((module) => module.ErpRepeaterShowcase),
+  "standard-entity-form": () => import("../showcase/components/standard-entity-form/standard-entity-form-showcase").then((module) => module.ErpStandardEntityFormShowcase),
+  "validation-summary": () => import("../showcase/components/validation-summary/validation-summary-showcase").then((module) => module.ErpValidationSummaryShowcase),
+  "color-picker": () => import("../showcase/components/color-picker/color-picker-showcase").then((module) => module.ErpColorPickerShowcase),
+  "combo-box": () => import("../showcase/components/combo-box/combo-box-showcase").then((module) => module.ErpComboBoxShowcase),
+  "date-box": () => import("../showcase/components/date-box/date-box-showcase").then((module) => module.ErpDateBoxShowcase),
+  "date-range-box": () => import("../showcase/components/date-range-box/date-range-box-showcase").then((module) => module.ErpDateRangeBoxShowcase),
+  "date-time-box": () => import("../showcase/components/date-time-box/date-time-box-showcase").then((module) => module.ErpDateTimeBoxShowcase),
+  "file-picker": () => import("../showcase/components/file-picker/file-picker-showcase").then((module) => module.ErpFilePickerShowcase),
+  "icon-picker": () => import("../showcase/components/icon-picker/icon-picker-showcase").then((module) => module.ErpIconPickerShowcase),
+  "image-picker": () => import("../showcase/components/image-picker/image-picker-showcase").then((module) => module.ErpImagePickerShowcase),
+  "item-picker": () => import("../showcase/components/item-picker/item-picker-showcase").then((module) => module.ErpItemPickerShowcase),
+  "money-box": () => import("../showcase/components/money-box/money-box-showcase").then((module) => module.ErpMoneyBoxShowcase),
+  "number-box": () => import("../showcase/components/number-box/number-box-showcase").then((module) => module.ErpNumberBoxShowcase),
+  "number-stepper": () => import("../showcase/components/number-stepper/number-stepper-showcase").then((module) => module.ErpNumberStepperShowcase),
+  "password-box": () => import("../showcase/components/password-box/password-box-showcase").then((module) => module.ErpPasswordBoxShowcase),
+  "range-slider": () => import("../showcase/components/range-slider/range-slider-showcase").then((module) => module.ErpRangeSliderShowcase),
+  "search-box": () => import("../showcase/components/search-box/search-box-showcase").then((module) => module.ErpSearchBoxShowcase),
+  "select": () => import("../showcase/components/select/select-showcase").then((module) => module.ErpSelectShowcase),
+  "tel-box": () => import("../showcase/components/tel-box/tel-box-showcase").then((module) => module.ErpTelBoxShowcase),
+  "text-area-box": () => import("../showcase/components/text-area-box/text-area-box-showcase").then((module) => module.ErpTextAreaBoxShowcase),
+  "text-box": () => import("../showcase/components/text-box/text-box-showcase").then((module) => module.ErpTextBoxShowcase),
+  "time-box": () => import("../showcase/components/time-box/time-box-showcase").then((module) => module.ErpTimeBoxShowcase),
+  "url-box": () => import("../showcase/components/url-box/url-box-showcase").then((module) => module.ErpUrlBoxShowcase),
+  "avatar": () => import("../showcase/components/avatar/avatar-showcase").then((module) => module.ErpAvatarShowcase),
+  "breadcrumbs": () => import("../showcase/components/breadcrumbs/breadcrumbs-showcase").then((module) => module.ErpBreadcrumbsShowcase),
+  "pagination": () => import("../showcase/components/pagination/pagination-showcase").then((module) => module.ErpPaginationShowcase),
+  "sidebar": () => import("../showcase/components/sidebar/sidebar-showcase").then((module) => module.ErpSidebarShowcase),
+  "sort-header": () => import("../showcase/components/sort-header/sort-header-showcase").then((module) => module.ErpSortHeaderShowcase),
+  "stepper": () => import("../showcase/components/stepper/stepper-showcase").then((module) => module.ErpStepperShowcase),
+  "tabs": () => import("../showcase/components/tabs/tabs-showcase").then((module) => module.ErpTabsShowcase),
+  "page": () => import("../showcase/components/page/page-showcase").then((module) => module.ErpPageShowcase),
+  "page-header": () => import("../showcase/components/page-header/page-header-showcase").then((module) => module.ErpPageHeaderShowcase),
+  "page-shell": () => import("../showcase/components/page-shell/page-shell-showcase").then((module) => module.ErpPageShellShowcase),
+  "container": () => import("../showcase/components/container/container-showcase").then((module) => module.ErpContainerShowcase),
+  "divider": () => import("../showcase/components/divider/divider-showcase").then((module) => module.ErpDividerShowcase),
+  "grid": () => import("../showcase/components/grid/grid-showcase").then((module) => module.ErpGridShowcase),
+  "icon": () => import("../showcase/components/icon/icon-showcase").then((module) => module.ErpIconShowcase),
+  "inline": () => import("../showcase/components/inline/inline-showcase").then((module) => module.ErpInlineShowcase),
+  "section": () => import("../showcase/components/section/section-showcase").then((module) => module.ErpSectionShowcase),
+  "stack": () => import("../showcase/components/stack/stack-showcase").then((module) => module.ErpStackShowcase),
+  "surface": () => import("../showcase/components/surface/surface-showcase").then((module) => module.ErpSurfaceShowcase),
+  "text": () => import("../showcase/components/text/text-showcase").then((module) => module.ErpTextShowcase),
+  "avatar-picker": () => import("../showcase/components/avatar-picker/avatar-picker-showcase").then((module) => module.ErpAvatarPickerShowcase),
+  "check-box": () => import("../showcase/components/check-box/check-box-showcase").then((module) => module.ErpCheckBoxShowcase),
+  "column-chooser": () => import("../showcase/components/column-chooser/column-chooser-showcase").then((module) => module.ErpColumnChooserShowcase),
+  "radio-box": () => import("../showcase/components/radio-box/radio-box-showcase").then((module) => module.ErpRadioBoxShowcase),
+  "radio-group": () => import("../showcase/components/radio-group/radio-group-showcase").then((module) => module.ErpRadioGroupShowcase),
+  "view-switcher": () => import("../showcase/components/view-switcher/view-switcher-showcase").then((module) => module.ErpViewSwitcherShowcase),
 };

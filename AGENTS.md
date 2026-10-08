@@ -1,6 +1,34 @@
 # Honesty ERP Design Lab — Codex Instructions
 
-## Current ERP Ownership Catalog and Page Foundation State
+## Current Dedicated Component Showcase State
+
+The current bounded reconstruction entered from clean live `main` at
+`54451b1fdca8da0f03096d16df20adc6100a5c11`. All 77 public ERP components have
+a dedicated Design-Lab-only showcase owner and lazy loader. The catalog records
+authored coverage for inputs, models, outputs, variants, sizes, states,
+projection slots, and exact-reference cases. Generic input-only fallback
+rendering is forbidden.
+
+Legacy meaningful content is fully mapped by
+`docs/governance/LEGACY_SHOWCASE_MIGRATION_LEDGER.md`; old routed showcase and
+Foundation implementations are removed, with legacy URLs retained only as 29
+redirect aliases. The old navigation rows and full-width component matrix are
+removed. The compact Arabic catalog navigation uses `ErpSearchBox`, grouped
+categories, active state, keyboard dismissal, and a closed narrow drawer.
+
+Runtime audit covers `/components`, all 77 public routes, and every redirect in
+Light and Dark RTL plus 390 px narrow review. Missing/empty showcases, console
+errors, console warnings, broken images, and page overflow are all zero.
+Canonical verification passes 119/119 test files and 730/730 tests, all
+lint/governance, both typechecks, production build, and zero warnings. Initial
+bundle is 488.33 kB / 106.12 kB estimated transfer.
+
+The exact next action is Product Owner review of the reconstructed showcase
+system. Existing component visuals were not reopened. The separate ERP-TABLE
+visual gate remains pending, no later wave is opened, and technical PASS is not
+Product Owner visual acceptance.
+
+## Historical ERP Ownership Catalog and Page Foundation State — superseded 2026-10-08
 
 The current bounded implementation entered from clean live `main` at
 `895f985994ef2c28eae703f60d5911a5314af338`. The generated authoritative

@@ -1,0 +1,605 @@
+<erp-container class="core-batch" width="wide">
+  <erp-stack gap="loose">
+    <erp-stack gap="tight">
+      <erp-text type="heading-1">مراجعة تصحيح المكوّنات الأساسية V2</erp-text>
+      <erp-text type="paragraph" tone="secondary">
+        سطح مراجعة عربي موحد للعقود المصححة، يرث ثيم التطبيق واتجاهه دون سلطة محلية.
+      </erp-text>
+    </erp-stack>
+
+    <erp-section data-showcase-owner="select">
+      <erp-stack gap="default">
+        <erp-text type="heading-2">ErpSelect</erp-text>
+        <erp-text type="paragraph" tone="secondary">
+          مصفوفة مرجعية مخصصة للحالة المغلقة والمفتوحة، والبحث، والتجميع، والاختيار
+          الفردي والمتعدد، والأحجام، والمظاهر، والتعطيل.
+        </erp-text>
+        <erp-stack gap="default">
+          <erp-select class="core-select--150" label="عرض 150" [options]="employeeOptions" searchable />
+          <erp-select class="core-select--240" label="عرض 240" [options]="employeeOptions" searchable />
+          <erp-select class="core-select--400" label="عرض 400" [options]="employeeOptions" searchable />
+          <erp-select class="core-select--full" label="عرض كامل" [options]="employeeOptions" searchable />
+        </erp-stack>
+        <erp-grid [columns]="2" gap="lg" responsive="auto">
+          <erp-select
+            label="الموظف المسؤول"
+            [options]="employeeOptions"
+            [(ngModel)]="selectedEmployee"
+            searchable
+            groupBy="group"
+            helperText="صورة أو أيقونة ووصف ومجموعة وحالة تعطيل"
+          />
+          <erp-select
+            label="فريق المراجعة"
+            [options]="employeeOptions"
+            [(ngModel)]="selectedReviewTeam"
+            multiple
+            selectSize="lg"
+            searchable
+            groupBy="group"
+            selectAll
+            [maxChips]="2"
+            placeholder="اختر أعضاء الفريق"
+          />
+          <erp-select
+            label="اختيار ممتلئ"
+            [options]="employeeOptions"
+            selectAppearance="filled"
+            placeholder="اختر من القائمة"
+          />
+          <erp-select
+            label="اختيار شفاف"
+            [options]="employeeOptions"
+            selectAppearance="ghost"
+            placement="top"
+            placeholder="تفتح القائمة إلى أعلى"
+          />
+          <erp-select label="حالة مقفلة" [options]="employeeOptions" disabled />
+          @for (size of selectSizes; track size) {
+            <erp-select
+              [label]="'حجم ' + size"
+              [options]="employeeOptions"
+              [selectSize]="size"
+              placeholder="اختر موظفًا"
+            />
+          }
+        </erp-grid>
+        <erp-grid class="select-parity-matrix" [columns]="2" gap="lg" responsive="auto">
+          <erp-select
+            label="قيمة نصية فقط"
+            [options]="employeeOptions"
+            [ngModel]="'general'"
+            placeholder="اختر إدارة"
+          />
+          <erp-select
+            label="قيمة بأيقونة"
+            [options]="employeeOptions"
+            [ngModel]="'inventory'"
+            placeholder="اختر مسؤولًا"
+          />
+          <erp-select
+            label="ترتيب أبجدي وترشيح"
+            [options]="employeeOptions"
+            [filterFn]="enabledEmployeeFilter"
+            sortMode="label"
+            searchable
+          />
+          <erp-select
+            label="نتيجة فارغة"
+            [options]="[]"
+            searchable
+            emptyText="لا توجد نتائج مطابقة"
+          />
+          <erp-select
+            label="حالة غير صالحة"
+            [options]="employeeOptions"
+            status="danger"
+            feedbackText="القيمة مطلوبة"
+            feedbackVisible
+          />
+          <erp-select
+            label="تحديد متعدد محدود"
+            [options]="employeeOptions"
+            multiple
+            searchable
+            selectAll
+            [maxSelected]="3"
+            [maxChips]="2"
+            placeholder="اختر حتى ثلاثة عناصر"
+          />
+        </erp-grid>
+        <erp-grid [columns]="2" gap="lg" responsive="auto">
+          <erp-stack data-select-direction-evidence="rtl" dir="rtl" gap="tight">
+            <erp-text type="label">RTL</erp-text>
+            <erp-select
+              label="اختيار عربي"
+              [options]="employeeOptions"
+              searchable
+              groupBy="group"
+            />
+          </erp-stack>
+          <erp-stack data-select-direction-evidence="ltr" dir="ltr" gap="tight">
+            <erp-text type="label">LTR</erp-text>
+            <erp-select
+              label="Latin direction"
+              [options]="employeeOptions"
+              searchable
+              groupBy="group"
+            />
+          </erp-stack>
+        </erp-grid>
+      </erp-stack>
+    </erp-section>
+
+    <erp-section data-showcase-owner="status-badge">
+      <erp-stack gap="default">
+        <erp-text type="heading-2">ErpStatusBadge</erp-text>
+        <erp-text type="paragraph" tone="secondary">
+          مصفوفة مطابقة مرجع ERP-STATUS-BADGE.html: ثماني حالات، وأربعة مظاهر،
+          وأربعة أحجام، وكل أنماط المحتوى والتفاعل.
+        </erp-text>
+        <erp-grid [columns]="5" gap="sm" responsive="auto">
+          <erp-select label="اللون" [options]="badgeToneOptions" [ngModel]="badgeTone()" (ngModelChange)="badgeTone.set($event)" />
+          <erp-select label="المظهر" [options]="badgeVariantOptions" [ngModel]="badgeVariant()" (ngModelChange)="badgeVariant.set($event)" />
+          <erp-select label="الحجم" [options]="badgeSizeOptions" [ngModel]="badgeSize()" (ngModelChange)="badgeSize.set($event)" />
+          <erp-select label="الشكل" [options]="badgeShapeOptions" [ngModel]="badgeShape()" (ngModelChange)="badgeShape.set($event)" />
+          <erp-select label="العرض" [options]="badgeWidthOptions" [ngModel]="badgeWidth()" (ngModelChange)="badgeWidth.set($event)" />
+        </erp-grid>
+        <erp-surface class="status-badge-reference-preview" border="subtle">
+          <erp-stack gap="tight">
+            <erp-text type="heading-4">معاينة المرجع التفاعلية</erp-text>
+            <erp-status-badge
+              label="قيد المراجعة"
+              icon="warning"
+              [tone]="badgeTone()"
+              [variant]="badgeVariant()"
+              [size]="badgeSize()"
+              [shape]="badgeShape()"
+              [widthMode]="badgeWidth()"
+              [selected]="badgeSelected()"
+              interactive
+              removable
+              showDot
+              pulse
+              [count]="12"
+              (selectedChange)="updateBadgeSelection($event)"
+              (remove)="recordBadgeRemoval()"
+            />
+            <erp-text data-status-badge-interaction-evidence type="caption" tone="secondary">
+              {{ badgeInteractionEvidence() }}
+            </erp-text>
+          </erp-stack>
+        </erp-surface>
+
+        <erp-text type="heading-4">الحالات × المظاهر</erp-text>
+        <erp-stack class="status-badge-parity-matrix" gap="tight">
+          @for (tone of badgeTones; track tone) {
+            <erp-stack class="status-badge-parity-row" gap="tight" [attr.data-status-badge-tone-row]="tone">
+              <erp-text type="label">{{ tone }}</erp-text>
+              <erp-grid [columns]="4" gap="sm" responsive="auto">
+                @for (variant of badgeVariants; track variant) {
+                  <erp-status-badge
+                    [label]="tone + ' / ' + variant"
+                    [tone]="tone"
+                    [variant]="variant"
+                    icon="info"
+                  />
+                }
+              </erp-grid>
+            </erp-stack>
+          }
+        </erp-stack>
+
+        <erp-text type="heading-4">الأحجام المرجعية</erp-text>
+        <erp-grid class="status-badge-size-matrix" [columns]="4" gap="sm" responsive="auto">
+          @for (size of badgeSizes; track size) {
+            <erp-status-badge
+              [label]="'الحجم ' + size"
+              tone="brand"
+              [size]="size"
+              icon="success"
+              [count]="8"
+            />
+          }
+        </erp-grid>
+
+        <erp-text type="heading-4">أنماط المحتوى والحالات</erp-text>
+        <erp-grid class="status-badge-anatomy-matrix" [columns]="4" gap="sm" responsive="auto">
+          <erp-status-badge label="نقطة حالة" tone="success" showDot />
+          <erp-status-badge label="نبض مباشر" tone="danger" showDot pulse />
+          <erp-status-badge label="أيقونة" tone="info" icon="info" />
+          <erp-status-badge
+            label="صورة مستخدم"
+            tone="brand"
+            image="/assets/honesty-erp-avatars/users/female/avatar-21.png"
+          />
+          <erp-status-badge label="عداد" tone="pending" [count]="24" />
+          <erp-status-badge label="قابل للإزالة" tone="warning" removable />
+          <erp-status-badge label="مختار" tone="success" interactive selected />
+          <erp-status-badge label="معطل" tone="archived" interactive disabled />
+          <erp-status-badge label="uppercase" tone="neutral" uppercase />
+          <erp-status-badge label="مربع" tone="danger" shape="square" />
+          <erp-status-badge label="دائري" tone="info" shape="pill" />
+          <erp-status-badge label="ممتد" tone="brand" widthMode="stretch" />
+        </erp-grid>
+
+        <erp-grid [columns]="2" gap="lg" responsive="auto">
+          <erp-stack data-status-badge-direction-evidence="rtl" dir="rtl" gap="tight">
+            <erp-text type="label">RTL</erp-text>
+            <erp-status-badge label="حالة عربية" tone="success" icon="success" removable />
+          </erp-stack>
+          <erp-stack data-status-badge-direction-evidence="ltr" dir="ltr" gap="tight">
+            <erp-text type="label">LTR</erp-text>
+            <erp-status-badge label="English status" tone="success" icon="success" removable />
+          </erp-stack>
+        </erp-grid>
+      </erp-stack>
+    </erp-section>
+
+    <erp-section data-showcase-owner="alert">
+      <erp-stack gap="default">
+        <erp-text type="heading-2">ErpAlert</erp-text>
+        <erp-alert title="تنبيه معلوماتي" description="هذه رسالة معلومات قصيرة." tone="info" />
+        <erp-alert title="تم حفظ القيد" description="حُفظ القيد المحاسبي بنجاح." tone="success" />
+        <erp-alert
+          title="تحتاج العملية إلى مراجعة"
+          description="تحقق من مركز التكلفة قبل الاعتماد."
+          tone="warning"
+          dismissible
+        >
+          <erp-button erpAlertAction label="فتح التفاصيل" variant="ghost" size="sm" />
+        </erp-alert>
+        <erp-alert title="تعذر تنفيذ العملية" tone="danger">
+          <erp-text type="paragraph" size="sm">
+            راجع الصلاحيات ثم أعد المحاولة. هذا وصف متعدد الأسطر يثبت محاذاة الأيقونة
+            وإجراء الإغلاق في منتصف مساحة التنبيه.
+          </erp-text>
+        </erp-alert>
+      </erp-stack>
+    </erp-section>
+
+    <erp-section data-showcase-owner="skeleton">
+      <erp-stack gap="default">
+        <erp-text type="heading-2">ErpSkeleton</erp-text>
+        <erp-grid [columns]="3" gap="lg" responsive="auto">
+          <erp-surface tone="canvas"><erp-skeleton [lines]="3" /></erp-surface>
+          <erp-surface tone="default"><erp-skeleton variant="block" /></erp-surface>
+          <erp-surface tone="elevated"><erp-skeleton variant="circle" size="lg" /></erp-surface>
+          <erp-skeleton [lines]="2" [animated]="false" label="تحميل ثابت" />
+        </erp-grid>
+      </erp-stack>
+    </erp-section>
+
+    <erp-section data-showcase-owner="avatar">
+      <erp-stack gap="default">
+        <erp-text type="heading-2">ErpAvatar</erp-text>
+        <erp-text type="paragraph" tone="secondary">
+          دليل مطابق لمرجع ERP-AVATAR.html: مصفوفة الشكل والحجم، أنواع المحتوى،
+          النغمات، الحلقة، الحضور، الحركة، والتفاعل.
+        </erp-text>
+        <erp-grid [columns]="4" gap="sm" responsive="auto">
+          <erp-select label="الشكل" [options]="avatarShapeOptions" [ngModel]="avatarShape()" (ngModelChange)="avatarShape.set($event)" />
+          <erp-select label="النغمة" [options]="avatarToneOptions" [ngModel]="avatarTone()" (ngModelChange)="avatarTone.set($event)" />
+          <erp-select label="المؤشر" [options]="avatarCursorOptions" [ngModel]="avatarCursor()" (ngModelChange)="avatarCursor.set($event)" />
+          <erp-select label="الحضور" [options]="avatarPresenceOptions" [ngModel]="avatarPresence()" (ngModelChange)="avatarPresence.set($event)" />
+          <erp-select label="الموضع" [options]="avatarPositionOptions" [ngModel]="avatarPresencePosition()" (ngModelChange)="avatarPresencePosition.set($event)" />
+          <erp-select label="حركة الحضور" [options]="avatarMotionOptions" [ngModel]="avatarPresenceMotion()" (ngModelChange)="avatarPresenceMotion.set($event)" />
+          <erp-select label="حركة التحويم" [options]="avatarHoverOptions" [ngModel]="avatarHoverMotion()" (ngModelChange)="avatarHoverMotion.set($event)" />
+        </erp-grid>
+        <erp-stack class="avatar-reference-preview avatar-large-size-matrix" gap="tight">
+          <erp-avatar
+            name="معاينة تفاعلية"
+            src="/assets/honesty-erp-avatars/users/male/avatar-01.png"
+            [size]="pickerSize()"
+            [shape]="avatarShape()"
+            [tone]="avatarTone()"
+            [cursor]="avatarCursor()"
+            [presence]="avatarPresence()"
+            [presencePosition]="avatarPresencePosition()"
+            [presenceMotion]="avatarPresenceMotion()"
+            [hoverMotion]="avatarHoverMotion()"
+            ring
+            interactive
+            (avatarClick)="recordAvatarActivation()"
+          />
+          <erp-text type="caption" data-avatar-interaction-evidence>
+            {{ avatarInteractionEvidence() }}
+          </erp-text>
+        </erp-stack>
+
+        <erp-text type="heading-4">مصفوفة الشكل × الحجم المرجعية</erp-text>
+        <erp-stack class="avatar-reference-size-matrix" gap="default">
+          @for (shape of avatarShapes; track shape) {
+            <erp-stack gap="tight">
+              <erp-text type="label">{{ shape }}</erp-text>
+              <erp-grid [columns]="6" gap="lg" responsive="auto">
+                @for (size of avatarSizes; track size) {
+                  <erp-stack gap="tight">
+                    <erp-avatar
+                      [name]="shape + ' ' + size"
+                      initials="AR"
+                      [size]="size"
+                      [shape]="shape"
+                      tone="brand"
+                    />
+                    <erp-text type="caption" tone="muted">{{ size }}</erp-text>
+                  </erp-stack>
+                }
+              </erp-grid>
+            </erp-stack>
+          }
+        </erp-stack>
+
+        <erp-text type="heading-4">أنواع المحتوى والنغمات والحلقة</erp-text>
+        <erp-grid class="avatar-reference-content-types" [columns]="4" gap="lg" responsive="auto">
+          <erp-stack gap="tight">
+            <erp-avatar name="صورة" alt="صورة موظف" src="/assets/honesty-erp-avatars/users/male/avatar-01.png" size="xl" />
+            <erp-text type="caption">صورة</erp-text>
+          </erp-stack>
+          <erp-stack gap="tight">
+            <erp-avatar name="أميرة حداد" initials="AH" size="xl" tone="brand" />
+            <erp-text type="caption">أحرف صريحة</erp-text>
+          </erp-stack>
+          <erp-stack gap="tight">
+            <erp-avatar name="مستخدم" fallbackIcon="user" size="xl" tone="slate" />
+            <erp-text type="caption">أيقونة</erp-text>
+          </erp-stack>
+          <erp-stack gap="tight">
+            <erp-avatar name="تحميل" size="xl" loading />
+            <erp-text type="caption">تحميل</erp-text>
+          </erp-stack>
+          @for (tone of avatarTones; track tone) {
+            <erp-stack gap="tight">
+              <erp-avatar [name]="'نغمة ' + tone" initials="AR" size="lg" [tone]="tone" />
+              <erp-text type="caption">{{ tone }}</erp-text>
+            </erp-stack>
+          }
+          <erp-stack gap="tight">
+            <erp-avatar name="حلقة متصل" initials="AR" size="lg" tone="brand" presence="online" ring />
+            <erp-text type="caption">حلقة مع حضور</erp-text>
+          </erp-stack>
+          <erp-stack gap="tight">
+            <erp-avatar name="تفاعلي" initials="AR" size="lg" tone="purple" interactive />
+            <erp-text type="caption">تفاعلي</erp-text>
+          </erp-stack>
+        </erp-grid>
+
+        <erp-text type="heading-4">حركات الحضور المرجعية</erp-text>
+        <erp-grid class="avatar-reference-motion-matrix" [columns]="5" gap="lg" responsive="auto">
+          @for (motion of avatarReferenceMotions; track motion) {
+            <erp-stack gap="tight">
+              <erp-avatar
+                [name]="'حركة ' + motion"
+                initials="AR"
+                size="lg"
+                tone="brand"
+                presence="online"
+                [presenceMotion]="motion"
+              />
+              <erp-text type="caption">{{ motion }}</erp-text>
+            </erp-stack>
+          }
+        </erp-grid>
+
+        <erp-text type="heading-4">ألوان الحضور المرجعية</erp-text>
+        <erp-grid class="avatar-reference-presence-matrix" [columns]="4" gap="lg" responsive="auto">
+          @for (status of avatarPresences; track status) {
+            <erp-stack gap="tight">
+              <erp-avatar
+                [name]="'حالة ' + status"
+                initials="AR"
+                size="lg"
+                tone="slate"
+                [presence]="status"
+              />
+              <erp-text type="caption">{{ status }}</erp-text>
+            </erp-stack>
+          }
+        </erp-grid>
+
+        <erp-text type="heading-4">كل المواضع الفيزيائية في RTL وLTR</erp-text>
+        <erp-stack data-avatar-direction-evidence="rtl" dir="rtl" gap="tight">
+          <erp-text type="label">RTL</erp-text>
+          <erp-grid [columns]="4" gap="lg" responsive="auto">
+            @for (example of avatarPositions; track example.position) {
+              <erp-avatar
+                [name]="'موضع ' + example.position + ' RTL'"
+                shape="rounded"
+                [presence]="example.status"
+                [presencePosition]="example.position"
+                [presenceMotion]="example.motion"
+                hoverMotion="scale"
+              />
+            }
+          </erp-grid>
+        </erp-stack>
+        <erp-stack data-avatar-direction-evidence="ltr" dir="ltr" gap="tight">
+          <erp-text type="label">LTR</erp-text>
+          <erp-grid [columns]="4" gap="lg" responsive="auto">
+            @for (example of avatarPositions; track example.position) {
+              <erp-avatar
+                [name]="'موضع ' + example.position + ' LTR'"
+                shape="rounded"
+                [presence]="example.status"
+                [presencePosition]="example.position"
+                [presenceMotion]="example.motion"
+                hoverMotion="scale"
+              />
+            }
+          </erp-grid>
+        </erp-stack>
+        <erp-text type="heading-4">قدرات التوافق غير المرجعية</erp-text>
+        <erp-grid class="avatar-compatibility-evidence" [columns]="3" gap="lg" responsive="auto">
+          <erp-avatar name="تنفس" initials="AR" size="lg" presence="online" presenceMotion="breathe" />
+          <erp-avatar name="تكبير" initials="AR" size="lg" hoverMotion="scale" cursor="pointer" />
+          <erp-avatar name="رفع" initials="AR" size="lg" hoverMotion="lift" cursor="pointer" />
+        </erp-grid>
+      </erp-stack>
+    </erp-section>
+
+    <erp-section data-showcase-owner="tabs">
+      <erp-stack class="tabs-reference-parity-matrix" gap="default" data-tabs-reference="ERP-TABS.html">
+        <erp-text type="heading-2">ErpTabs</erp-text>
+        <erp-text type="paragraph" tone="secondary">
+          إعادة بناء حرفية لنماذج ERP-TABS.html العشرة بنفس ترتيب المرجع، مع فصل قدرات التوافق.
+        </erp-text>
+        <erp-review-core-tabs />
+
+        <erp-text type="heading-4">دليل التوافق · قدرات غير مرجعية</erp-text>
+        <erp-grid [columns]="4" gap="sm" responsive="auto">
+          <erp-select label="الاتجاه" [options]="tabsOrientationOptions" [ngModel]="tabsOrientation()" (ngModelChange)="tabsOrientation.set($event)" />
+          <erp-select label="التوزيع" [options]="tabsDistributionOptions" [ngModel]="tabsDistribution()" (ngModelChange)="tabsDistribution.set($event)" />
+          <erp-select label="النمط" [options]="tabsVariantOptions" [ngModel]="tabsVariant()" (ngModelChange)="tabsVariant.set($event)" />
+          <erp-select label="الانتقال" [options]="tabsTransitionOptions" [ngModel]="tabsTransition()" (ngModelChange)="tabsTransition.set($event)" />
+        </erp-grid>
+        <erp-tabs
+          data-tabs-direction-evidence="rtl"
+          [items]="tabs"
+          activeId="summary"
+          [orientation]="tabsOrientation()"
+          [distribution]="tabsDistribution()"
+          [variant]="tabsVariant()"
+          [transition]="tabsTransition()"
+          headerPresentation="icon-text"
+        />
+        <erp-grid [columns]="2" gap="lg" responsive="auto">
+          <erp-surface border="subtle">
+            <erp-stack gap="tight">
+              <erp-select label="شكل رأس التوافق" [options]="tabsShapeOptions" [ngModel]="tabsShape()" (ngModelChange)="tabsShape.set($event)" />
+              <erp-tabs [items]="tabs" activeId="summary" variant="pills" distribution="fill" [headerShape]="tabsShape()" transition="fade-up" />
+            </erp-stack>
+          </erp-surface>
+          <erp-surface border="subtle">
+            <erp-stack gap="tight">
+              <erp-text type="label">موضع رأسي عند النهاية · انتقال توافق</erp-text>
+              <erp-tabs
+                [items]="tabs"
+                activeId="summary"
+                orientation="vertical"
+                verticalPlacement="end"
+                variant="pills"
+                transition="fade-end"
+              />
+            </erp-stack>
+          </erp-surface>
+        </erp-grid>
+      </erp-stack>
+    </erp-section>
+
+    <erp-section data-showcase-owner="avatar-picker">
+      <erp-stack gap="default">
+        <erp-text type="heading-2">ErpAvatarPicker</erp-text>
+        <erp-text type="paragraph" tone="secondary">
+          مرشح المطابقة المباشرة لـ ERP-AVATAR-PICKER.html: عنوان ووصف، تبويبا الجنس
+          مع العدادات، بحث، شبكة اختيار مرحلية، معاينة، وإجراءات حفظ وإلغاء.
+        </erp-text>
+        <erp-grid class="avatar-picker-reference-matrix" [columns]="2" gap="lg" responsive="auto">
+          <erp-stack gap="tight">
+            <erp-text type="label">الحالة المرجعية الافتراضية — RTL</erp-text>
+            <erp-avatar-picker
+              title="اختيار الصورة الشخصية"
+              subtitle="اختر الصورة التي تناسب حسابك"
+              [(value)]="selectedAvatar"
+            />
+          </erp-stack>
+          <erp-stack dir="ltr" gap="tight" data-avatar-picker-direction-evidence="ltr">
+            <erp-text type="label">Compact / Female — LTR</erp-text>
+            <erp-avatar-picker
+              title="Choose profile avatar"
+              subtitle="Select an avatar for this account"
+              size="compact"
+              gender="female"
+              [(value)]="selectedFemaleAvatar"
+            />
+          </erp-stack>
+          <erp-stack class="avatar-picker-narrow-evidence" gap="tight">
+            <erp-text type="label">عرض ضيق</erp-text>
+            <erp-avatar-picker
+              title="اختيار داخل مساحة ضيقة"
+              subtitle="دليل الاستجابة دون تمرير أفقي"
+              [value]="'avatar-03'"
+            />
+          </erp-stack>
+          <erp-stack gap="tight">
+            <erp-text type="label">حالة التعطيل</erp-text>
+            <erp-avatar-picker [value]="'avatar-04'" disabled />
+          </erp-stack>
+        </erp-grid>
+
+        <erp-text type="heading-4">قدرات توافق الشكل والحجم</erp-text>
+        <erp-grid [columns]="2" gap="sm" responsive="auto">
+          <erp-select label="حجم الصور" [options]="avatarSizeOptions" [ngModel]="pickerSize()" (ngModelChange)="pickerSize.set($event)" />
+          <erp-select label="شكل الصور" [options]="avatarShapeOptions" [ngModel]="pickerShape()" (ngModelChange)="pickerShape.set($event)" />
+        </erp-grid>
+        <erp-avatar-picker
+          data-avatar-picker-large-size-evidence
+          title="دليل توافق API"
+          subtitle="تمرير شكل وحجم ErpAvatar دون إعادة رسمه"
+          [value]="selectedAvatar()"
+          [showConfirm]="false"
+          [avatarSize]="pickerSize()"
+          [avatarShape]="pickerShape()"
+        />
+      </erp-stack>
+    </erp-section>
+
+    <erp-section data-showcase-owner="table">
+      <erp-stack gap="default">
+        <erp-text type="heading-2">ErpTable</erp-text>
+        <erp-review-core-table />
+      </erp-stack>
+    </erp-section>
+
+    <erp-section data-showcase-owner="pagination">
+      <erp-stack gap="default">
+        <erp-text type="heading-2">ErpPagination</erp-text>
+        <erp-grid [columns]="4" gap="sm" responsive="auto">
+          <erp-check-box label="الملخص" [ngModel]="showSummary()" (ngModelChange)="showSummary.set($event)" [ngModelOptions]="{standalone: true}" />
+          <erp-check-box label="حجم الصفحة" [ngModel]="showPageSize()" (ngModelChange)="showPageSize.set($event)" [ngModelOptions]="{standalone: true}" />
+          <erp-check-box label="الأولى" [ngModel]="showFirst()" (ngModelChange)="showFirst.set($event)" [ngModelOptions]="{standalone: true}" />
+          <erp-check-box label="السابقة" [ngModel]="showPrevious()" (ngModelChange)="showPrevious.set($event)" [ngModelOptions]="{standalone: true}" />
+          <erp-check-box label="أرقام الصفحات" [ngModel]="showPageNumbers()" (ngModelChange)="showPageNumbers.set($event)" [ngModelOptions]="{standalone: true}" />
+          <erp-check-box label="التالية" [ngModel]="showNext()" (ngModelChange)="showNext.set($event)" [ngModelOptions]="{standalone: true}" />
+          <erp-check-box label="الأخيرة" [ngModel]="showLast()" (ngModelChange)="showLast.set($event)" [ngModelOptions]="{standalone: true}" />
+        </erp-grid>
+        <erp-pagination
+          [page]="page()"
+          [pageCount]="12"
+          [totalItems]="286"
+          [pageSize]="pageSize()"
+          [showSummary]="showSummary()"
+          [showPageSize]="showPageSize()"
+          [showFirst]="showFirst()"
+          [showPrevious]="showPrevious()"
+          [showPageNumbers]="showPageNumbers()"
+          [showNext]="showNext()"
+          [showLast]="showLast()"
+          (pageChange)="page.set($event)"
+          (pageSizeChange)="pageSize.set($event)"
+        />
+        <erp-pagination
+          [page]="1"
+          [pageCount]="4"
+          [showSummary]="false"
+          [showFirst]="false"
+          [showLast]="false"
+          [showPageSize]="false"
+        />
+        <erp-pagination
+          [page]="2"
+          [pageCount]="6"
+          [showPageSize]="false"
+          [showPrevious]="false"
+          [showNext]="false"
+        />
+        <erp-pagination
+          [page]="2"
+          [pageCount]="6"
+          [showFirst]="false"
+          [showLast]="false"
+          [showPageNumbers]="false"
+        />
+      </erp-stack>
+    </erp-section>
+  </erp-stack>
+</erp-container>

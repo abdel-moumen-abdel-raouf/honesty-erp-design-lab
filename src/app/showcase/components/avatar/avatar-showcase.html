@@ -1,0 +1,442 @@
+<erp-stack gap="default" data-dedicated-showcase="avatar" data-showcase-sections="43">
+  <erp-text type="heading-2">الصورة الرمزية</erp-text>
+  <erp-text type="paragraph" tone="secondary">هوية بصرية بصورة أو أحرف أو أيقونة وحضور.</erp-text>
+  <erp-text type="heading-2">مرجع Product Owner الدقيق</erp-text>
+  <app-review-exact-core-showcase [focus]="'avatar'" />
+  <erp-text type="heading-2">واجهة API والتوافق</erp-text>
+    <erp-surface padding="default" border="subtle" data-showcase-case="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
+        <erp-avatar
+          [name]="$any(cases[0].inputs['name'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="size-xs">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">size: xs</erp-text>
+        <erp-avatar
+          [name]="$any(cases[1].inputs['name'])"
+          [size]="$any(cases[1].inputs['size'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="size-sm">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">size: sm</erp-text>
+        <erp-avatar
+          [name]="$any(cases[2].inputs['name'])"
+          [size]="$any(cases[2].inputs['size'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="size-md">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">size: md</erp-text>
+        <erp-avatar
+          [name]="$any(cases[3].inputs['name'])"
+          [size]="$any(cases[3].inputs['size'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="size-lg">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">size: lg</erp-text>
+        <erp-avatar
+          [name]="$any(cases[4].inputs['name'])"
+          [size]="$any(cases[4].inputs['size'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="size-xl">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">size: xl</erp-text>
+        <erp-avatar
+          [name]="$any(cases[5].inputs['name'])"
+          [size]="$any(cases[5].inputs['size'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="size-2xl">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">size: 2xl</erp-text>
+        <erp-avatar
+          [name]="$any(cases[6].inputs['name'])"
+          [size]="$any(cases[6].inputs['size'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="size-3xl">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">size: 3xl</erp-text>
+        <erp-avatar
+          [name]="$any(cases[7].inputs['name'])"
+          [size]="$any(cases[7].inputs['size'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="size-4xl">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">size: 4xl</erp-text>
+        <erp-avatar
+          [name]="$any(cases[8].inputs['name'])"
+          [size]="$any(cases[8].inputs['size'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="size-5xl">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">size: 5xl</erp-text>
+        <erp-avatar
+          [name]="$any(cases[9].inputs['name'])"
+          [size]="$any(cases[9].inputs['size'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="shape-circle">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">shape: circle</erp-text>
+        <erp-avatar
+          [name]="$any(cases[10].inputs['name'])"
+          [shape]="$any(cases[10].inputs['shape'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="shape-rounded">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">shape: rounded</erp-text>
+        <erp-avatar
+          [name]="$any(cases[11].inputs['name'])"
+          [shape]="$any(cases[11].inputs['shape'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="shape-square">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">shape: square</erp-text>
+        <erp-avatar
+          [name]="$any(cases[12].inputs['name'])"
+          [shape]="$any(cases[12].inputs['shape'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-neutral">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: neutral</erp-text>
+        <erp-avatar
+          [name]="$any(cases[13].inputs['name'])"
+          [tone]="$any(cases[13].inputs['tone'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-brand">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: brand</erp-text>
+        <erp-avatar
+          [name]="$any(cases[14].inputs['name'])"
+          [tone]="$any(cases[14].inputs['tone'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-success">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: success</erp-text>
+        <erp-avatar
+          [name]="$any(cases[15].inputs['name'])"
+          [tone]="$any(cases[15].inputs['tone'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-warning">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: warning</erp-text>
+        <erp-avatar
+          [name]="$any(cases[16].inputs['name'])"
+          [tone]="$any(cases[16].inputs['tone'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-danger">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: danger</erp-text>
+        <erp-avatar
+          [name]="$any(cases[17].inputs['name'])"
+          [tone]="$any(cases[17].inputs['tone'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-info">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: info</erp-text>
+        <erp-avatar
+          [name]="$any(cases[18].inputs['name'])"
+          [tone]="$any(cases[18].inputs['tone'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-purple">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: purple</erp-text>
+        <erp-avatar
+          [name]="$any(cases[19].inputs['name'])"
+          [tone]="$any(cases[19].inputs['tone'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-slate">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: slate</erp-text>
+        <erp-avatar
+          [name]="$any(cases[20].inputs['name'])"
+          [tone]="$any(cases[20].inputs['tone'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="loading-false">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">loading: false</erp-text>
+        <erp-avatar
+          [name]="$any(cases[21].inputs['name'])"
+          [loading]="$any(cases[21].inputs['loading'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="loading-true">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">loading: true</erp-text>
+        <erp-avatar
+          [name]="$any(cases[22].inputs['name'])"
+          [loading]="$any(cases[22].inputs['loading'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="presencePosition-top">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">presencePosition: top</erp-text>
+        <erp-avatar
+          [name]="$any(cases[23].inputs['name'])"
+          [presencePosition]="$any(cases[23].inputs['presencePosition'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="presencePosition-bottom">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">presencePosition: bottom</erp-text>
+        <erp-avatar
+          [name]="$any(cases[24].inputs['name'])"
+          [presencePosition]="$any(cases[24].inputs['presencePosition'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="presencePosition-left">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">presencePosition: left</erp-text>
+        <erp-avatar
+          [name]="$any(cases[25].inputs['name'])"
+          [presencePosition]="$any(cases[25].inputs['presencePosition'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="presencePosition-right">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">presencePosition: right</erp-text>
+        <erp-avatar
+          [name]="$any(cases[26].inputs['name'])"
+          [presencePosition]="$any(cases[26].inputs['presencePosition'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="presencePosition-top-left">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">presencePosition: top-left</erp-text>
+        <erp-avatar
+          [name]="$any(cases[27].inputs['name'])"
+          [presencePosition]="$any(cases[27].inputs['presencePosition'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="presencePosition-top-right">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">presencePosition: top-right</erp-text>
+        <erp-avatar
+          [name]="$any(cases[28].inputs['name'])"
+          [presencePosition]="$any(cases[28].inputs['presencePosition'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="presencePosition-bottom-left">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">presencePosition: bottom-left</erp-text>
+        <erp-avatar
+          [name]="$any(cases[29].inputs['name'])"
+          [presencePosition]="$any(cases[29].inputs['presencePosition'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="presencePosition-bottom-right">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">presencePosition: bottom-right</erp-text>
+        <erp-avatar
+          [name]="$any(cases[30].inputs['name'])"
+          [presencePosition]="$any(cases[30].inputs['presencePosition'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="presenceMotion-none">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">presenceMotion: none</erp-text>
+        <erp-avatar
+          [name]="$any(cases[31].inputs['name'])"
+          [presenceMotion]="$any(cases[31].inputs['presenceMotion'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="presenceMotion-pulse">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">presenceMotion: pulse</erp-text>
+        <erp-avatar
+          [name]="$any(cases[32].inputs['name'])"
+          [presenceMotion]="$any(cases[32].inputs['presenceMotion'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="presenceMotion-ping">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">presenceMotion: ping</erp-text>
+        <erp-avatar
+          [name]="$any(cases[33].inputs['name'])"
+          [presenceMotion]="$any(cases[33].inputs['presenceMotion'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="presenceMotion-bounce">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">presenceMotion: bounce</erp-text>
+        <erp-avatar
+          [name]="$any(cases[34].inputs['name'])"
+          [presenceMotion]="$any(cases[34].inputs['presenceMotion'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="presenceMotion-blink">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">presenceMotion: blink</erp-text>
+        <erp-avatar
+          [name]="$any(cases[35].inputs['name'])"
+          [presenceMotion]="$any(cases[35].inputs['presenceMotion'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="presenceMotion-breathe">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">presenceMotion: breathe</erp-text>
+        <erp-avatar
+          [name]="$any(cases[36].inputs['name'])"
+          [presenceMotion]="$any(cases[36].inputs['presenceMotion'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="hoverMotion-none">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">hoverMotion: none</erp-text>
+        <erp-avatar
+          [name]="$any(cases[37].inputs['name'])"
+          [hoverMotion]="$any(cases[37].inputs['hoverMotion'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="hoverMotion-scale">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">hoverMotion: scale</erp-text>
+        <erp-avatar
+          [name]="$any(cases[38].inputs['name'])"
+          [hoverMotion]="$any(cases[38].inputs['hoverMotion'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="hoverMotion-lift">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">hoverMotion: lift</erp-text>
+        <erp-avatar
+          [name]="$any(cases[39].inputs['name'])"
+          [hoverMotion]="$any(cases[39].inputs['hoverMotion'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="cursor-default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">cursor: default</erp-text>
+        <erp-avatar
+          [name]="$any(cases[40].inputs['name'])"
+          [cursor]="$any(cases[40].inputs['cursor'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="cursor-pointer">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">cursor: pointer</erp-text>
+        <erp-avatar
+          [name]="$any(cases[41].inputs['name'])"
+          [cursor]="$any(cases[41].inputs['cursor'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="loading">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">حالة تحميل</erp-text>
+        <erp-avatar
+          [name]="$any(cases[42].inputs['name'])"
+          [loading]="$any(cases[42].inputs['loading'])"
+          (avatarClick)="recordEvent('avatarClick', $event)"
+        ></erp-avatar>
+      </erp-stack>
+    </erp-surface>
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

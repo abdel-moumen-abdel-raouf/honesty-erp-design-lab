@@ -1,6 +1,29 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
-## Current ownership catalog and Page foundation checkpoint — 2026-10-08
+## Current dedicated showcase reconstruction checkpoint — 2026-10-08
+
+Entry checkpoint:
+
+- `54451b1fdca8da0f03096d16df20adc6100a5c11` — clean live `main` and
+  `origin/main` before the showcase-system reconstruction.
+
+The bounded implementation commit is `feat(showcase): reconstruct dedicated
+component review system`; resolve its final SHA from live `main` because this
+file is part of that commit.
+
+The checkpoint contains 77 dedicated showcase owners, zero missing or empty
+showcases, a zero-gap legacy migration ledger, redirect-only legacy URLs, and a
+compact Arabic catalog navigation. Runtime audit covers all component routes in
+Light/Dark RTL, 390 px narrow review, and 29 redirects with zero console
+errors/warnings, broken assets, or page overflow. Canonical verification passes
+119/119 test files and 730/730 tests, all lint/governance, both typechecks,
+production build, and zero warnings. Initial bundle is 488.33 kB / 106.12 kB.
+
+Product Owner visual approval is not inferred. The next gate is review of the
+reconstructed showcase system; the separate full ERP-TABLE gate remains pending
+and no later wave is opened.
+
+## Historical ownership catalog and Page foundation checkpoint — superseded 2026-10-08
 
 Entry checkpoint:
 

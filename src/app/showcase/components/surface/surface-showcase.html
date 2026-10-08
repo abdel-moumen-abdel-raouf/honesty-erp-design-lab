@@ -1,0 +1,50 @@
+<erp-stack gap="default" data-dedicated-showcase="surface" data-showcase-sections="5">
+  <erp-text type="heading-2">السطح</erp-text>
+  <erp-text type="paragraph" tone="secondary">سطح مرئي يملك الحشو والحدود والارتفاع.</erp-text>
+    <erp-surface padding="default" border="subtle" data-showcase-case="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
+        <erp-surface
+          
+        ><erp-text type="paragraph">محتوى مسقط مرئي داخل المكوّن</erp-text></erp-surface>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-canvas">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: canvas</erp-text>
+        <erp-surface
+          [tone]="$any(cases[1].inputs['tone'])"
+        ><erp-text type="paragraph">محتوى مسقط مرئي داخل المكوّن</erp-text></erp-surface>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: default</erp-text>
+        <erp-surface
+          [tone]="$any(cases[2].inputs['tone'])"
+        ><erp-text type="paragraph">محتوى مسقط مرئي داخل المكوّن</erp-text></erp-surface>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-elevated">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: elevated</erp-text>
+        <erp-surface
+          [tone]="$any(cases[3].inputs['tone'])"
+        ><erp-text type="paragraph">محتوى مسقط مرئي داخل المكوّن</erp-text></erp-surface>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-inverse">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: inverse</erp-text>
+        <erp-surface
+          [tone]="$any(cases[4].inputs['tone'])"
+        ><erp-text type="paragraph">محتوى مسقط مرئي داخل المكوّن</erp-text></erp-surface>
+      </erp-stack>
+    </erp-surface>
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

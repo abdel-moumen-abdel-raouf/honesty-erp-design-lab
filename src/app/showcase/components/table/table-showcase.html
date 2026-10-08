@@ -1,0 +1,120 @@
+<erp-stack gap="default" data-dedicated-showcase="table" data-showcase-sections="6">
+  <erp-text type="heading-2">الجدول</erp-text>
+  <erp-text type="paragraph" tone="secondary">دلالات الجدول والصفوف والخلايا والاختيار والفرز والتحجيم.</erp-text>
+  <erp-text type="heading-2">مرجع Product Owner الدقيق</erp-text>
+  <app-review-exact-core-showcase [focus]="'table'" />
+  <erp-text type="heading-2">واجهة API والتوافق</erp-text>
+    <erp-surface padding="default" border="subtle" data-showcase-case="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
+        <erp-table
+          [caption]="$any(cases[0].inputs['caption'])"
+          [columns]="$any(cases[0].inputs['columns'])"
+          [rows]="$any(cases[0].inputs['rows'])"
+          [selectedKeys]="$any(modelValue('default:selectedKeys', cases[0].inputs['selectedKeys']))"
+          (selectedKeysChange)="recordModel('default:selectedKeys', $event)"
+          [columnWidths]="$any(modelValue('default:columnWidths', cases[0].inputs['columnWidths']))"
+          (columnWidthsChange)="recordModel('default:columnWidths', $event)"
+          (rowActivated)="recordEvent('rowActivated', $event)"
+          (sortChange)="recordEvent('sortChange', $event)"
+          (columnWidthChange)="recordEvent('columnWidthChange', $event)"
+        ></erp-table>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="density-compact">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">density: compact</erp-text>
+        <erp-table
+          [caption]="$any(cases[1].inputs['caption'])"
+          [columns]="$any(cases[1].inputs['columns'])"
+          [rows]="$any(cases[1].inputs['rows'])"
+          [density]="$any(cases[1].inputs['density'])"
+          [selectedKeys]="$any(modelValue('density-compact:selectedKeys', cases[1].inputs['selectedKeys']))"
+          (selectedKeysChange)="recordModel('density-compact:selectedKeys', $event)"
+          [columnWidths]="$any(modelValue('density-compact:columnWidths', cases[1].inputs['columnWidths']))"
+          (columnWidthsChange)="recordModel('density-compact:columnWidths', $event)"
+          (rowActivated)="recordEvent('rowActivated', $event)"
+          (sortChange)="recordEvent('sortChange', $event)"
+          (columnWidthChange)="recordEvent('columnWidthChange', $event)"
+        ></erp-table>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="density-normal">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">density: normal</erp-text>
+        <erp-table
+          [caption]="$any(cases[2].inputs['caption'])"
+          [columns]="$any(cases[2].inputs['columns'])"
+          [rows]="$any(cases[2].inputs['rows'])"
+          [density]="$any(cases[2].inputs['density'])"
+          [selectedKeys]="$any(modelValue('density-normal:selectedKeys', cases[2].inputs['selectedKeys']))"
+          (selectedKeysChange)="recordModel('density-normal:selectedKeys', $event)"
+          [columnWidths]="$any(modelValue('density-normal:columnWidths', cases[2].inputs['columnWidths']))"
+          (columnWidthsChange)="recordModel('density-normal:columnWidths', $event)"
+          (rowActivated)="recordEvent('rowActivated', $event)"
+          (sortChange)="recordEvent('sortChange', $event)"
+          (columnWidthChange)="recordEvent('columnWidthChange', $event)"
+        ></erp-table>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="density-comfortable">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">density: comfortable</erp-text>
+        <erp-table
+          [caption]="$any(cases[3].inputs['caption'])"
+          [columns]="$any(cases[3].inputs['columns'])"
+          [rows]="$any(cases[3].inputs['rows'])"
+          [density]="$any(cases[3].inputs['density'])"
+          [selectedKeys]="$any(modelValue('density-comfortable:selectedKeys', cases[3].inputs['selectedKeys']))"
+          (selectedKeysChange)="recordModel('density-comfortable:selectedKeys', $event)"
+          [columnWidths]="$any(modelValue('density-comfortable:columnWidths', cases[3].inputs['columnWidths']))"
+          (columnWidthsChange)="recordModel('density-comfortable:columnWidths', $event)"
+          (rowActivated)="recordEvent('rowActivated', $event)"
+          (sortChange)="recordEvent('sortChange', $event)"
+          (columnWidthChange)="recordEvent('columnWidthChange', $event)"
+        ></erp-table>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="hoverMotion-false">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">hoverMotion: false</erp-text>
+        <erp-table
+          [caption]="$any(cases[4].inputs['caption'])"
+          [columns]="$any(cases[4].inputs['columns'])"
+          [rows]="$any(cases[4].inputs['rows'])"
+          [hoverMotion]="$any(cases[4].inputs['hoverMotion'])"
+          [selectedKeys]="$any(modelValue('hoverMotion-false:selectedKeys', cases[4].inputs['selectedKeys']))"
+          (selectedKeysChange)="recordModel('hoverMotion-false:selectedKeys', $event)"
+          [columnWidths]="$any(modelValue('hoverMotion-false:columnWidths', cases[4].inputs['columnWidths']))"
+          (columnWidthsChange)="recordModel('hoverMotion-false:columnWidths', $event)"
+          (rowActivated)="recordEvent('rowActivated', $event)"
+          (sortChange)="recordEvent('sortChange', $event)"
+          (columnWidthChange)="recordEvent('columnWidthChange', $event)"
+        ></erp-table>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="hoverMotion-true">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">hoverMotion: true</erp-text>
+        <erp-table
+          [caption]="$any(cases[5].inputs['caption'])"
+          [columns]="$any(cases[5].inputs['columns'])"
+          [rows]="$any(cases[5].inputs['rows'])"
+          [hoverMotion]="$any(cases[5].inputs['hoverMotion'])"
+          [selectedKeys]="$any(modelValue('hoverMotion-true:selectedKeys', cases[5].inputs['selectedKeys']))"
+          (selectedKeysChange)="recordModel('hoverMotion-true:selectedKeys', $event)"
+          [columnWidths]="$any(modelValue('hoverMotion-true:columnWidths', cases[5].inputs['columnWidths']))"
+          (columnWidthsChange)="recordModel('hoverMotion-true:columnWidths', $event)"
+          (rowActivated)="recordEvent('rowActivated', $event)"
+          (sortChange)="recordEvent('sortChange', $event)"
+          (columnWidthChange)="recordEvent('columnWidthChange', $event)"
+        ></erp-table>
+      </erp-stack>
+    </erp-surface>
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

@@ -16,13 +16,13 @@ const CONFIRM_TEMPLATE =
 const OVERLAY_CONTRACTS =
   'src/app/shared/overlay/overlay-contracts.ts';
 const OVERLAY_SHOWCASE_SOURCE =
-  'src/app/showcase/overlay-controls/overlay-controls.ts';
+  'src/app/review-internals/legacy-overlay-controls/overlay-controls.ts';
 const OVERLAY_SHOWCASE_TEMPLATE =
-  'src/app/showcase/overlay-controls/overlay-controls.html';
+  'src/app/review-internals/legacy-overlay-controls/overlay-controls.html';
 const OVERLAY_EVIDENCE_SOURCE =
-  'src/app/showcase/overlay-controls/overlay-evidence-content.ts';
+  'src/app/review-internals/legacy-overlay-controls/overlay-evidence-content.ts';
 const OVERLAY_EVIDENCE_TEMPLATE =
-  'src/app/showcase/overlay-controls/overlay-evidence-content.html';
+  'src/app/review-internals/legacy-overlay-controls/overlay-evidence-content.html';
 
 function walk(directory) {
   if (!fs.existsSync(directory)) {

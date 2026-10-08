@@ -1,0 +1,48 @@
+<erp-stack gap="loose">
+    <erp-stack gap="tight">
+      <erp-text type="heading-1">فهرس مكوّنات Honesty ERP</erp-text>
+      <erp-text type="paragraph" tone="secondary">
+        بوابة مراجعة مخصصة لكل مكوّن عام، تشمل الحالات والتفاعلات والمحتوى المسقط.
+      </erp-text>
+    </erp-stack>
+
+    <erp-grid [columns]="3" gap="grid">
+      <erp-surface padding="default" border="subtle">
+        <erp-stack gap="tight"><erp-text type="heading-2">{{ publicCount }}</erp-text><erp-text type="paragraph">مكوّنًا عامًا</erp-text></erp-stack>
+      </erp-surface>
+      <erp-surface padding="default" border="subtle">
+        <erp-stack gap="tight"><erp-text type="heading-2">{{ groups().length }}</erp-text><erp-text type="paragraph">فئة مراجعة</erp-text></erp-stack>
+      </erp-surface>
+      <erp-surface padding="default" border="subtle">
+        <erp-stack gap="tight"><erp-text type="heading-2">{{ exactReferenceCount }}</erp-text><erp-text type="paragraph">مراجع Product Owner دقيقة</erp-text></erp-stack>
+      </erp-surface>
+    </erp-grid>
+
+    <erp-search-box
+      mode="inline"
+      label="بحث فهرس المكوّنات"
+      placeholder="ابحث بالاسم أو المحدد أو الغرض"
+      [formControl]="searchControl"
+    />
+
+    @for (group of groups(); track group.category) {
+      <erp-stack gap="default">
+        <erp-text type="heading-2">{{ group.label }}</erp-text>
+        <div class="component-catalog__links">
+          @for (entry of group.entries; track entry.id) {
+            <a class="component-catalog__link" [routerLink]="entry.showcaseRoute">
+              <erp-surface padding="default" border="subtle">
+                <erp-stack gap="tight">
+                  <erp-text type="heading-3">{{ entry.displayNameAr }}</erp-text>
+                  <erp-text type="caption" tone="secondary" selectable>{{ entry.className }} · {{ entry.selector }}</erp-text>
+                  <erp-text type="small" tone="secondary">{{ entry.descriptionAr }}</erp-text>
+                </erp-stack>
+              </erp-surface>
+            </a>
+          }
+        </div>
+      </erp-stack>
+    } @empty {
+      <erp-text type="paragraph" tone="secondary">لا توجد نتائج مطابقة.</erp-text>
+    }
+</erp-stack>

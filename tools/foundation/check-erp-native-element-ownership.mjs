@@ -18,6 +18,14 @@ const DESIGN_LAB_NATIVE_OWNERS = new Map([
     tags: new Set(['section', 'div', 'span']),
     reason: 'Bounded exact-reference measurement harness; production output remains ERP-owned.',
   }],
+  ['src/app/review-internals/review-catalog-navigation/review-catalog-navigation.html', {
+    tags: new Set(['nav', 'a', 'div', 'section']),
+    reason: 'Design Lab catalog navigation; no public ERP link/navigation-list owner exists.',
+  }],
+  ['src/app/showcase/component-catalog/component-catalog.html', {
+    tags: new Set(['div', 'a']),
+    reason: 'Design Lab catalog landing links; no public ERP link owner exists.',
+  }],
 ]);
 
 const COVERAGE = new Map(NATIVE_ELEMENT_COVERAGE.map((entry) => [entry.tag, entry]));

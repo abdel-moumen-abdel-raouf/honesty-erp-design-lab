@@ -1,7 +1,10 @@
 import {TestBed} from '@angular/core/testing';
 import {provideRouter} from '@angular/router';
 import {RouterTestingHarness} from '@angular/router/testing';
-import {ERP_COMPONENT_CATALOG} from '../../catalog/erp-component-catalog.generated';
+import {
+  ERP_COMPONENT_CATALOG,
+  ERP_PUBLIC_SHOWCASE_LOADERS,
+} from '../../catalog/erp-component-catalog.generated';
 import {ComponentShowcase} from './component-showcase';
 
 describe('ComponentShowcase', () => {
@@ -22,7 +25,8 @@ describe('ComponentShowcase', () => {
 
     const root = harness.routeNativeElement as HTMLElement;
     expect(root.querySelector('erp-page')).not.toBeNull();
-    expect(root.textContent).toContain('ErpButton');
+    expect(root.textContent).toContain('زر');
+    expect(root.querySelector('erp-button')).not.toBeNull();
   });
 
   it('keeps unknown catalog identifiers deterministic', async () => {
@@ -44,6 +48,23 @@ describe('ComponentShowcase', () => {
           ).toBe(true);
         }
       }
+    }
+  });
+
+  it('loads one dedicated showcase owner for every public component without fallback', async () => {
+    const publicEntries = ERP_COMPONENT_CATALOG.filter(
+      (candidate) => candidate.classification === 'PUBLIC ERP COMPONENT',
+    );
+    expect(publicEntries).toHaveLength(77);
+    expect(Object.keys(ERP_PUBLIC_SHOWCASE_LOADERS)).toHaveLength(77);
+
+    for (const entry of publicEntries) {
+      expect(entry.showcaseOwnerPath).toBe(
+        `src/app/showcase/components/${entry.id}/${entry.id}-showcase.ts`,
+      );
+      const owner = await ERP_PUBLIC_SHOWCASE_LOADERS[entry.id]();
+      expect(owner).toBeTruthy();
+      expect(typeof owner).toBe('function');
     }
   });
 });

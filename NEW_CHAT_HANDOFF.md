@@ -1,6 +1,34 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
-## Authoritative current handoff — 2026-10-08 — ERP ownership catalog and Page foundation
+## Authoritative current handoff — 2026-10-08 — reconstructed component showcases
+
+Start from live `main`. This bounded reconstruction entered at
+`54451b1fdca8da0f03096d16df20adc6100a5c11`. Read the generated component
+catalog, `docs/governance/LEGACY_SHOWCASE_MIGRATION_LEDGER.md`, the compact
+catalog-navigation owner, and the component-specific showcase tree before
+changing review architecture.
+
+All 77 public ERP owners have a dedicated showcase owner, loader, and
+machine-readable coverage. Missing owners and empty showcases are zero. The
+input-only generic fallback is removed. Exact-reference content is reused from
+the authoritative review internals, while projection, model, event, overlay,
+CVA, and layout components have authored live evidence.
+
+Legacy meaningful content is fully mapped; old routed implementations are
+removed and 29 legacy URLs redirect to `/components` or the corresponding
+component. The old navigation rows/link matrix are gone. The compact Arabic
+catalog is 280 px / 21.875% at 1280 px and zero-width when closed at 390 px.
+
+Runtime audit passed `/components`, every `/components/:id`, and all redirects
+in Light/Dark RTL plus narrow review with zero console errors/warnings, broken
+images, empty pages, or page overflow. Canonical verification passes 119/119
+test files, 730/730 tests, all lint/governance, both typechecks, production
+build, and zero warnings. Initial bundle is 488.33 kB / 106.12 kB. The exact
+next action is Product Owner review of the reconstructed showcase system. No
+component visual redesign, Data/Table wave, page pattern, or feature migration
+is authorized.
+
+## Historical ownership catalog and Page handoff — superseded 2026-10-08
 
 Start from live `main`; this wave entered from
 `895f985994ef2c28eae703f60d5911a5314af338`. Read
@@ -821,7 +849,7 @@ Verified results:
 This supersedes all earlier wording that kept
 `b1b20585adcb272f17835ef8182935353a67d243` as the latest Fully Green source.
 
-## Current technical checkpoint
+## Historical technical checkpoint — superseded
 
 Fully verified repository checkout:
 `310b5afe8e6f018bb4d52f68be2986bbe2d31365`
@@ -831,7 +859,7 @@ Latest source-affecting checkpoint:
 
 Technical state: **Fully Green**.
 
-## Current Product Owner review state
+## Historical Product Owner review state — superseded
 
 Technical verification is no longer blocking.
 

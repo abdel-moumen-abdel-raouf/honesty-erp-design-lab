@@ -1,0 +1,231 @@
+<erp-stack gap="default" data-dedicated-showcase="select" data-showcase-sections="13">
+  <erp-text type="heading-2">قائمة الاختيار</erp-text>
+  <erp-text type="paragraph" tone="secondary">اختيار مفرد أو متعدد مع بحث وتجميع.</erp-text>
+  <erp-text type="heading-2">مرجع Product Owner الدقيق</erp-text>
+  <app-review-exact-core-showcase [focus]="'select'" />
+  <erp-text type="heading-2">واجهة API والتوافق</erp-text>
+    <erp-surface padding="default" border="subtle" data-showcase-case="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
+        <erp-select
+          [label]="$any(cases[0].inputs['label'])"
+          [sort]="$any(modelValue('default:sort', cases[0].inputs['sort']))"
+          (sortChange)="recordModel('default:sort', $event)"
+          (selectionChange)="recordEvent('selectionChange', $event)"
+          (opened)="recordEvent('opened', $event)"
+          (closed)="recordEvent('closed', $event)"
+          (cleared)="recordEvent('cleared', $event)"
+          (searchChange)="recordEvent('searchChange', $event)"
+          [formControl]="control"
+        ></erp-select>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="multiple-false">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">multiple: false</erp-text>
+        <erp-select
+          [label]="$any(cases[1].inputs['label'])"
+          [multiple]="$any(cases[1].inputs['multiple'])"
+          [sort]="$any(modelValue('multiple-false:sort', cases[1].inputs['sort']))"
+          (sortChange)="recordModel('multiple-false:sort', $event)"
+          (selectionChange)="recordEvent('selectionChange', $event)"
+          (opened)="recordEvent('opened', $event)"
+          (closed)="recordEvent('closed', $event)"
+          (cleared)="recordEvent('cleared', $event)"
+          (searchChange)="recordEvent('searchChange', $event)"
+          [formControl]="control"
+        ></erp-select>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="multiple-true">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">multiple: true</erp-text>
+        <erp-select
+          [label]="$any(cases[2].inputs['label'])"
+          [multiple]="$any(cases[2].inputs['multiple'])"
+          [sort]="$any(modelValue('multiple-true:sort', cases[2].inputs['sort']))"
+          (sortChange)="recordModel('multiple-true:sort', $event)"
+          (selectionChange)="recordEvent('selectionChange', $event)"
+          (opened)="recordEvent('opened', $event)"
+          (closed)="recordEvent('closed', $event)"
+          (cleared)="recordEvent('cleared', $event)"
+          (searchChange)="recordEvent('searchChange', $event)"
+          [formControl]="control"
+        ></erp-select>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="selectSize-sm">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">selectSize: sm</erp-text>
+        <erp-select
+          [label]="$any(cases[3].inputs['label'])"
+          [selectSize]="$any(cases[3].inputs['selectSize'])"
+          [sort]="$any(modelValue('selectSize-sm:sort', cases[3].inputs['sort']))"
+          (sortChange)="recordModel('selectSize-sm:sort', $event)"
+          (selectionChange)="recordEvent('selectionChange', $event)"
+          (opened)="recordEvent('opened', $event)"
+          (closed)="recordEvent('closed', $event)"
+          (cleared)="recordEvent('cleared', $event)"
+          (searchChange)="recordEvent('searchChange', $event)"
+          [formControl]="control"
+        ></erp-select>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="selectSize-md">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">selectSize: md</erp-text>
+        <erp-select
+          [label]="$any(cases[4].inputs['label'])"
+          [selectSize]="$any(cases[4].inputs['selectSize'])"
+          [sort]="$any(modelValue('selectSize-md:sort', cases[4].inputs['sort']))"
+          (sortChange)="recordModel('selectSize-md:sort', $event)"
+          (selectionChange)="recordEvent('selectionChange', $event)"
+          (opened)="recordEvent('opened', $event)"
+          (closed)="recordEvent('closed', $event)"
+          (cleared)="recordEvent('cleared', $event)"
+          (searchChange)="recordEvent('searchChange', $event)"
+          [formControl]="control"
+        ></erp-select>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="selectSize-normal">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">selectSize: normal</erp-text>
+        <erp-select
+          [label]="$any(cases[5].inputs['label'])"
+          [selectSize]="$any(cases[5].inputs['selectSize'])"
+          [sort]="$any(modelValue('selectSize-normal:sort', cases[5].inputs['sort']))"
+          (sortChange)="recordModel('selectSize-normal:sort', $event)"
+          (selectionChange)="recordEvent('selectionChange', $event)"
+          (opened)="recordEvent('opened', $event)"
+          (closed)="recordEvent('closed', $event)"
+          (cleared)="recordEvent('cleared', $event)"
+          (searchChange)="recordEvent('searchChange', $event)"
+          [formControl]="control"
+        ></erp-select>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="selectSize-lg">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">selectSize: lg</erp-text>
+        <erp-select
+          [label]="$any(cases[6].inputs['label'])"
+          [selectSize]="$any(cases[6].inputs['selectSize'])"
+          [sort]="$any(modelValue('selectSize-lg:sort', cases[6].inputs['sort']))"
+          (sortChange)="recordModel('selectSize-lg:sort', $event)"
+          (selectionChange)="recordEvent('selectionChange', $event)"
+          (opened)="recordEvent('opened', $event)"
+          (closed)="recordEvent('closed', $event)"
+          (cleared)="recordEvent('cleared', $event)"
+          (searchChange)="recordEvent('searchChange', $event)"
+          [formControl]="control"
+        ></erp-select>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="selectSize-xlg">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">selectSize: xlg</erp-text>
+        <erp-select
+          [label]="$any(cases[7].inputs['label'])"
+          [selectSize]="$any(cases[7].inputs['selectSize'])"
+          [sort]="$any(modelValue('selectSize-xlg:sort', cases[7].inputs['sort']))"
+          (sortChange)="recordModel('selectSize-xlg:sort', $event)"
+          (selectionChange)="recordEvent('selectionChange', $event)"
+          (opened)="recordEvent('opened', $event)"
+          (closed)="recordEvent('closed', $event)"
+          (cleared)="recordEvent('cleared', $event)"
+          (searchChange)="recordEvent('searchChange', $event)"
+          [formControl]="control"
+        ></erp-select>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="placement-bottom">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">placement: bottom</erp-text>
+        <erp-select
+          [label]="$any(cases[8].inputs['label'])"
+          [placement]="$any(cases[8].inputs['placement'])"
+          [sort]="$any(modelValue('placement-bottom:sort', cases[8].inputs['sort']))"
+          (sortChange)="recordModel('placement-bottom:sort', $event)"
+          (selectionChange)="recordEvent('selectionChange', $event)"
+          (opened)="recordEvent('opened', $event)"
+          (closed)="recordEvent('closed', $event)"
+          (cleared)="recordEvent('cleared', $event)"
+          (searchChange)="recordEvent('searchChange', $event)"
+          [formControl]="control"
+        ></erp-select>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="placement-top">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">placement: top</erp-text>
+        <erp-select
+          [label]="$any(cases[9].inputs['label'])"
+          [placement]="$any(cases[9].inputs['placement'])"
+          [sort]="$any(modelValue('placement-top:sort', cases[9].inputs['sort']))"
+          (sortChange)="recordModel('placement-top:sort', $event)"
+          (selectionChange)="recordEvent('selectionChange', $event)"
+          (opened)="recordEvent('opened', $event)"
+          (closed)="recordEvent('closed', $event)"
+          (cleared)="recordEvent('cleared', $event)"
+          (searchChange)="recordEvent('searchChange', $event)"
+          [formControl]="control"
+        ></erp-select>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="sort-source">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">sort: source</erp-text>
+        <erp-select
+          [label]="$any(cases[10].inputs['label'])"
+          [sort]="$any(modelValue('sort-source:sort', cases[10].inputs['sort']))"
+          (sortChange)="recordModel('sort-source:sort', $event)"
+          (selectionChange)="recordEvent('selectionChange', $event)"
+          (opened)="recordEvent('opened', $event)"
+          (closed)="recordEvent('closed', $event)"
+          (cleared)="recordEvent('cleared', $event)"
+          (searchChange)="recordEvent('searchChange', $event)"
+          [formControl]="control"
+        ></erp-select>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="sort-ascending">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">sort: ascending</erp-text>
+        <erp-select
+          [label]="$any(cases[11].inputs['label'])"
+          [sort]="$any(modelValue('sort-ascending:sort', cases[11].inputs['sort']))"
+          (sortChange)="recordModel('sort-ascending:sort', $event)"
+          (selectionChange)="recordEvent('selectionChange', $event)"
+          (opened)="recordEvent('opened', $event)"
+          (closed)="recordEvent('closed', $event)"
+          (cleared)="recordEvent('cleared', $event)"
+          (searchChange)="recordEvent('searchChange', $event)"
+          [formControl]="control"
+        ></erp-select>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="sort-descending">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">sort: descending</erp-text>
+        <erp-select
+          [label]="$any(cases[12].inputs['label'])"
+          [sort]="$any(modelValue('sort-descending:sort', cases[12].inputs['sort']))"
+          (sortChange)="recordModel('sort-descending:sort', $event)"
+          (selectionChange)="recordEvent('selectionChange', $event)"
+          (opened)="recordEvent('opened', $event)"
+          (closed)="recordEvent('closed', $event)"
+          (cleared)="recordEvent('cleared', $event)"
+          (searchChange)="recordEvent('searchChange', $event)"
+          [formControl]="control"
+        ></erp-select>
+      </erp-stack>
+    </erp-surface>
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+      <erp-text type="caption" selectable>القيمة الحالية: {{ control.value }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

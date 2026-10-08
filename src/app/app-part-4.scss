@@ -22,7 +22,16 @@
     flex-wrap: wrap;
   }
 
-  .lab-nav {
-    flex: 1 1 100%;
+  .lab-utility-bar {
+    flex-wrap: nowrap;
+    padding-inline: 0.75rem;
+  }
+
+  .lab-workspace {
+    position: relative;
+  }
+
+  .routed-content-wrapper {
+    inline-size: 100%;
   }
 }

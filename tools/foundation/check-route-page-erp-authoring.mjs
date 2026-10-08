@@ -12,7 +12,11 @@ export function findNonErpAuthoredTags(source) {
 
   for (const match of source.matchAll(pattern)) {
     const tag = match[1].toLowerCase();
-    if (!tag.startsWith('erp-')) {
+    if (
+      !tag.startsWith('erp-') &&
+      !tag.startsWith('ng-') &&
+      !tag.startsWith('app-review-')
+    ) {
       tags.add(tag);
     }
   }
@@ -53,6 +57,13 @@ function runSelfTest() {
     throw new Error('Route-page ERP-only self-test rejected ERP tags.');
   }
 
+  const designLabInternal = findNonErpAuthoredTags(
+    '<erp-page><app-review-catalog-content /></erp-page>',
+  );
+  if (designLabInternal.length !== 0) {
+    throw new Error('Route-page self-test rejected a Design Lab review owner.');
+  }
+
   const rejected = findNonErpAuthoredTags(
     '<erp-container><section><erp-text>Text</erp-text></section></erp-container>',
   );
@@ -85,7 +96,7 @@ if (process.argv.includes('--self-test')) {
 
   if (failures.length > 0) {
     throw new Error(
-      'Routed Design Lab templates must author ERP tags only.\n' +
+      'Routed Design Lab templates must author ERP or app-review tags only.\n' +
         failures.join('\n'),
     );
   }

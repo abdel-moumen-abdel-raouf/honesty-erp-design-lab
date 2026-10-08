@@ -8,8 +8,8 @@ const APP_ROOT = path.join(ROOT, 'src', 'app');
 const CONTROLS_ROOT = path.join(APP_ROOT, 'controls');
 const BUTTON_SHOWCASE_FILE = path.join(
   APP_ROOT,
-  'showcase',
-  'button-controls',
+  'review-internals',
+  'legacy-button-controls',
   'button-controls.html',
 );
 const FORBIDDEN_INPUT_TYPES = new Set(['button', 'submit', 'reset']);

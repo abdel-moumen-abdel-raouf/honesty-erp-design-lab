@@ -4,7 +4,7 @@ import process from 'node:process';
 
 const ROOT = process.cwd();
 const ROUTES = 'src/app/app.routes.ts';
-const REVIEW = 'src/app/showcase/core-batch/core-batch.html';
+const REVIEW = 'src/app/review-internals/exact-core-showcase/core-batch.html';
 const REVIEW_TABLE = 'src/app/review-internals/review-core-table/review-core-table.html';
 const REVIEW_TABS = 'src/app/review-internals/review-core-tabs/review-core-tabs.html';
 const SELECT = 'src/app/controls/select/select.html';

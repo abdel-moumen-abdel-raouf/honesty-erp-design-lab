@@ -1,0 +1,58 @@
+<erp-stack gap="default" data-dedicated-showcase="divider" data-showcase-sections="6">
+  <erp-text type="heading-2">الفاصل</erp-text>
+  <erp-text type="paragraph" tone="secondary">فاصل دلالي أفقي أو رأسي.</erp-text>
+    <erp-surface padding="default" border="subtle" data-showcase-case="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
+        <erp-divider
+          
+        ></erp-divider>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="orientation-horizontal">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">orientation: horizontal</erp-text>
+        <erp-divider
+          [orientation]="$any(cases[1].inputs['orientation'])"
+        ></erp-divider>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="orientation-vertical">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">orientation: vertical</erp-text>
+        <erp-divider
+          [orientation]="$any(cases[2].inputs['orientation'])"
+        ></erp-divider>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-subtle">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: subtle</erp-text>
+        <erp-divider
+          [tone]="$any(cases[3].inputs['tone'])"
+        ></erp-divider>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: default</erp-text>
+        <erp-divider
+          [tone]="$any(cases[4].inputs['tone'])"
+        ></erp-divider>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-strong">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: strong</erp-text>
+        <erp-divider
+          [tone]="$any(cases[5].inputs['tone'])"
+        ></erp-divider>
+      </erp-stack>
+    </erp-surface>
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

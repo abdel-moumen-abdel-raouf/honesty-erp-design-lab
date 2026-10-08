@@ -4,7 +4,7 @@ import process from 'node:process';
 
 const ROOT = process.cwd();
 const ROUTES = 'src/app/app.routes.ts';
-const REVIEW = 'src/app/showcase/shell-batch/shell-batch.html';
+const REVIEW = 'src/app/review-internals/legacy-shell-batch/shell-batch.html';
 const CONTRACTS = 'src/app/controls/shell-family/shell-contracts.ts';
 const OWNERS = [
   'breadcrumbs',
@@ -244,7 +244,7 @@ function runCheck() {
 
   for (const absolute of [
     ...walk(path.join(ROOT, 'src/app/controls/shell-family')),
-    ...walk(path.join(ROOT, 'src/app/showcase/shell-batch')),
+    ...walk(path.join(ROOT, 'src/app/review-internals/legacy-shell-batch')),
   ]) {
     const relative = normalize(path.relative(ROOT, absolute));
     files.set(relative, read(relative));

@@ -6,245 +6,22 @@
   <header id="lab-utility-bar" class="lab-utility-bar">
     <div id="lab-utility-brand" class="lab-utility-brand">
       <span id="lab-utility-title" class="lab-utility-title">مختبر تصميم Honesty ERP</span>
-      <span id="lab-utility-badge" class="lab-utility-badge">أداة مراجعة مؤقتة</span>
     </div>
-
-
-    <nav id="lab-nav" class="lab-nav" aria-label="روابط المراجعة المؤقتة">
-      <a
-        id="nav-link-overview"
-        class="lab-nav-link"
-        routerLink="/foundation/overview"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{exact: true}"
-      >
-        نظرة عامة
-      </a>
-      <a
-        id="nav-link-structural-primitives"
-        class="lab-nav-link"
-        routerLink="/primitives/structural"
-        routerLinkActive="active"
-      >
-        البدائيات الهيكلية
-      </a>
-      <a
-        id="nav-link-typography-primitives"
-        class="lab-nav-link"
-        routerLink="/primitives/typography"
-        routerLinkActive="active"
-      >
-        النصوص الإنتاجية
-      </a>
-      <a
-        id="nav-link-icon-primitives"
-        class="lab-nav-link"
-        routerLink="/primitives/icons"
-        routerLinkActive="active"
-      >
-        الأيقونات الإنتاجية
-      </a>
-      <a
-        id="nav-link-button-controls"
-        class="lab-nav-link"
-        routerLink="/controls/buttons"
-        routerLinkActive="active"
-      >
-        الأزرار الإنتاجية
-      </a>
-      <a
-        id="nav-link-tooltip-controls"
-        class="lab-nav-link"
-        routerLink="/controls/tooltips"
-        routerLinkActive="active"
-      >
-        التلميحات الإنتاجية
-      </a>
-      <a
-        id="nav-link-input-controls"
-        class="lab-nav-link"
-        routerLink="/controls/inputs"
-        routerLinkActive="active"
-      >
-        حقول الإدخال الإنتاجية
-      </a>
-      <a
-        id="nav-link-empty-state-controls"
-        class="lab-nav-link"
-        routerLink="/controls/empty-states"
-        routerLinkActive="active"
-      >
-        الحالات الفارغة
-      </a>
-      <a
-        id="nav-link-overlay-controls"
-        class="lab-nav-link"
-        routerLink="/controls/overlays"
-        routerLinkActive="active"
-      >
-        النوافذ الحاجبة
-      </a>
-      <a
-        id="nav-link-core-batch"
-        class="lab-nav-link"
-        routerLink="/controls/core-batch"
-        routerLinkActive="active"
-      >
-        دفعة المكوّنات
-      </a>
-      <a
-        id="nav-link-data-batch"
-        class="lab-nav-link"
-        routerLink="/controls/data-batch"
-        routerLinkActive="active"
-      >
-        دفعة البيانات والجداول
-      </a>
-      <a
-        id="nav-link-forms-batch"
-        class="lab-nav-link"
-        routerLink="/controls/forms-batch"
-        routerLinkActive="active"
-      >
-        دفعة تكوين النماذج
-      </a>
-      <a
-        id="nav-link-entity-form-batch"
-        class="lab-nav-link"
-        routerLink="/controls/entity-form-batch"
-        routerLinkActive="active"
-      >
-        محرك نماذج الكيانات
-      </a>
-      <a
-        id="nav-link-shell-batch"
-        class="lab-nav-link"
-        routerLink="/controls/shell-batch"
-        routerLinkActive="active"
-      >
-        دفعة التنقل وإطار ERP
-      </a>
-      <a
-        id="nav-link-colors"
-        class="lab-nav-link"
-        routerLink="/foundation/colors"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{exact: true}"
-      >
-        الألوان المرجعية
-      </a>
-      <a
-        id="nav-link-themes"
-        class="lab-nav-link"
-        routerLink="/foundation/themes"
-        routerLinkActive="active"
-      >
-        السمات الدلالية
-      </a>
-      <a
-        id="nav-link-status-hues"
-        class="lab-nav-link"
-        routerLink="/foundation/colors/status-hues"
-        routerLinkActive="active"
-      >
-        صبغات الحالات
-      </a>
-      <a
-        id="nav-link-feedback-colors"
-        class="lab-nav-link"
-        routerLink="/foundation/feedback-colors"
-        routerLinkActive="active"
-      >
-        ألوان الحالات الدلالية
-      </a>
-      <a
-        id="nav-link-typography"
-        class="lab-nav-link"
-        routerLink="/foundation/typography"
-        routerLinkActive="active"
-      >
-        الطباعة
-      </a>
-      <a
-        id="nav-link-charts"
-        class="lab-nav-link"
-        routerLink="/foundation/charts"
-        routerLinkActive="active"
-      >
-        الرسوم البيانية
-      </a>
-      <a
-        id="nav-link-preferences"
-        class="lab-nav-link"
-        routerLink="/foundation/preferences"
-        routerLinkActive="active"
-      >
-        التفضيلات
-      </a>
-      <a
-        id="nav-link-spacing"
-        class="lab-nav-link"
-        routerLink="/foundation/spacing"
-        routerLinkActive="active"
-      >
-        المسافات
-      </a>
-      <a
-        id="nav-link-borders-radius"
-        class="lab-nav-link"
-        routerLink="/foundation/borders-radius"
-        routerLinkActive="active"
-      >
-        الحدود والزوايا
-      </a>
-      <a
-        id="nav-link-elevation"
-        class="lab-nav-link"
-        routerLink="/foundation/elevation"
-        routerLinkActive="active"
-      >
-        الارتفاع والظلال
-      </a>
-      <a
-        id="nav-link-motion"
-        class="lab-nav-link"
-        routerLink="/foundation/motion"
-        routerLinkActive="active"
-      >
-        الحركة
-      </a>
-      <a
-        id="nav-link-density"
-        class="lab-nav-link"
-        routerLink="/foundation/density"
-        routerLinkActive="active"
-      >
-        الكثافة
-      </a>
-      <a
-        id="nav-link-layout-grid"
-        class="lab-nav-link"
-        routerLink="/foundation/layout-grid"
-        routerLinkActive="active"
-      >
-        التخطيط والشبكة
-      </a>
-      <a
-        id="nav-link-layers"
-        class="lab-nav-link"
-        routerLink="/foundation/layers"
-        routerLinkActive="active"
-      >
-        الطبقات
-      </a>
-    </nav>
-
     <div id="lab-actions" class="lab-actions">
       @if (statusMessage()) {
         <erp-text id="lab-screenshot-status" class="lab-screenshot-status" type="caption" [tone]="hasError() ? 'danger' : 'secondary'">
           {{ statusMessage() }}
         </erp-text>
       }
+      <erp-button
+        id="btn-component-catalog"
+        size="sm"
+        variant="outline"
+        label="فهرس المكوّنات"
+        [ariaExpanded]="catalogOpen()"
+        ariaControls="lab-component-catalog"
+        (pressed)="toggleCatalog()"
+      />
       <erp-button
         id="btn-lab-theme"
         data-wave-a-theme-evidence
@@ -267,28 +44,18 @@
       />
     </div>
   </header>
-
-  <nav id="lab-component-catalog" class="lab-component-catalog" aria-label="فهرس مكوّنات ERP">
-    @for (group of componentGroups(); track group.category) {
-      <div class="lab-component-group">
-        <erp-text type="caption" weight="bold">{{ group.category }}</erp-text>
-        <div class="lab-component-links">
-          @for (entry of group.entries; track entry.id) {
-            <a class="lab-nav-link" [routerLink]="entry.showcaseRoute" routerLinkActive="active">
-              {{ entry.className }}
-            </a>
-          }
-        </div>
-      </div>
+  <div class="lab-workspace" [class.lab-workspace--catalog-open]="catalogOpen()">
+    @defer {
+      <app-review-catalog-navigation
+        id="lab-component-catalog"
+        [open]="catalogOpen()"
+        (closeRequested)="closeCatalog()"
+      />
     }
-  </nav>
-
-  <main
-    id="routed-review-content"
-    class="routed-content-wrapper"
-  >
-    <router-outlet id="app-router-outlet"></router-outlet>
-  </main>
+    <main id="routed-review-content" class="routed-content-wrapper">
+      <router-outlet id="app-router-outlet"></router-outlet>
+    </main>
+  </div>
 
   <erp-overlay-host />
 </div>

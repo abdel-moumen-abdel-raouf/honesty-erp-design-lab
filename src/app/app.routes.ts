@@ -2,181 +2,46 @@ import {Routes} from '@angular/router';
 
 export const routes: Routes = [
   {
+    path: 'components',
+    loadComponent: () =>
+      import('./showcase/component-catalog/component-catalog-page').then(
+        (module) => module.ComponentCatalogPage,
+      ),
+  },
+  {
     path: 'components/:componentId',
     loadComponent: () =>
       import('./showcase/component-showcase/component-showcase').then(
-        (m) => m.ComponentShowcase,
+        (module) => module.ComponentShowcase,
       ),
   },
-  {
-    path: 'foundation/overview',
-    loadComponent: () =>
-      import('./foundation/overview/overview').then((m) => m.Overview),
-  },
-  {
-    path: 'primitives/structural',
-    loadComponent: () =>
-      import('./showcase/structural-primitives/structural-primitives').then(
-        (m) => m.StructuralPrimitives
-      ),
-  },
-  {
-    path: 'primitives/typography',
-    loadComponent: () =>
-      import('./showcase/typography-primitives/typography-primitives').then(
-        (m) => m.TypographyPrimitives
-      ),
-  },
-  {
-    path: 'primitives/icons',
-    loadComponent: () =>
-      import('./showcase/icon-primitives/icon-primitives').then(
-        (m) => m.IconPrimitives
-      ),
-  },
-  {
-    path: 'controls/buttons',
-    loadComponent: () =>
-      import('./showcase/button-controls/button-controls').then(
-        (m) => m.ButtonControls
-      ),
-  },
-  {
-    path: 'controls/tooltips',
-    loadComponent: () =>
-      import('./showcase/tooltip-controls/tooltip-controls').then(
-        (m) => m.TooltipControls
-      ),
-  },
-  {
-    path: 'controls/inputs',
-    loadComponent: () =>
-      import('./showcase/input-controls/input-controls').then(
-        (m) => m.InputControls
-      ),
-  },
-  {
-    path: 'controls/empty-states',
-    loadComponent: () =>
-      import('./showcase/empty-state-controls/empty-state-controls').then(
-        (m) => m.EmptyStateControls
-      ),
-  },
-  {
-    path: 'controls/overlays',
-    loadComponent: () =>
-      import('./showcase/overlay-controls/overlay-controls').then(
-        (m) => m.OverlayControls
-      ),
-  },
-  {
-    path: 'controls/core-batch',
-    loadComponent: () =>
-      import('./showcase/core-batch/core-batch').then((m) => m.CoreBatch),
-  },
-  {
-    path: 'controls/data-batch',
-    loadComponent: () =>
-      import('./showcase/data-batch/data-batch').then((m) => m.DataBatch),
-  },
-  {
-    path: 'controls/forms-batch',
-    loadComponent: () =>
-      import('./showcase/forms-batch/forms-batch').then((m) => m.FormsBatch),
-  },
-  {
-    path: 'controls/entity-form-batch',
-    loadComponent: () =>
-      import('./showcase/entity-form-batch/entity-form-batch').then(
-        (m) => m.EntityFormBatch,
-      ),
-  },
-  {
-    path: 'controls/shell-batch',
-    loadComponent: () =>
-      import('./showcase/shell-batch/shell-batch').then(
-        (m) => m.ShellBatch,
-      ),
-  },
-  {
-    path: 'foundation/colors',
-    loadComponent: () =>
-      import('./foundation/colors/colors').then((m) => m.Colors),
-  },
-  {
-    path: 'foundation/colors/status-hues',
-    loadComponent: () =>
-      import('./foundation/colors/status-hues/status-hues').then(
-        (m) => m.StatusHues
-      ),
-  },
-  {
-    path: 'foundation/themes',
-    loadComponent: () =>
-      import('./foundation/themes/themes').then((m) => m.Themes),
-  },
-  {
-    path: 'foundation/feedback-colors',
-    loadComponent: () =>
-      import('./foundation/feedback-colors/feedback-colors').then(
-        (m) => m.FeedbackColors
-      ),
-  },
-  {
-    path: 'foundation/typography',
-    loadComponent: () =>
-      import('./foundation/typography/typography').then((m) => m.Typography),
-  },
-  {
-    path: 'foundation/charts',
-    loadComponent: () =>
-      import('./foundation/charts/charts').then((m) => m.Charts),
-  },
-  {
-    path: 'foundation/preferences',
-    loadComponent: () =>
-      import('./foundation/preferences/preferences').then((m) => m.Preferences),
-  },
-  {
-    path: 'foundation/spacing',
-    loadComponent: () =>
-      import('./foundation/spacing/spacing').then((m) => m.Spacing),
-  },
-  {
-    path: 'foundation/borders-radius',
-    loadComponent: () =>
-      import('./foundation/borders-radius/borders-radius').then(
-        (m) => m.BordersRadius
-      ),
-  },
-  {
-    path: 'foundation/elevation',
-    loadComponent: () =>
-      import('./foundation/elevation/elevation').then((m) => m.Elevation),
-  },
-  {
-    path: 'foundation/motion',
-    loadComponent: () =>
-      import('./foundation/motion/motion').then((m) => m.Motion),
-  },
-  {
-    path: 'foundation/density',
-    loadComponent: () =>
-      import('./foundation/density/density').then((m) => m.Density),
-  },
-  {
-    path: 'foundation/layout-grid',
-    loadComponent: () =>
-      import('./foundation/layout-grid/layout-grid').then((m) => m.LayoutGrid),
-  },
-  {
-    path: 'foundation/layers',
-    loadComponent: () =>
-      import('./foundation/layers/layers').then((m) => m.Layers),
-  },
-  {
-    path: '',
-    redirectTo: 'foundation/overview',
-    pathMatch: 'full',
-  },
+  {path: 'foundation/overview', redirectTo: 'components', pathMatch: 'full'},
+  {path: 'primitives/structural', redirectTo: 'components', pathMatch: 'full'},
+  {path: 'primitives/typography', redirectTo: 'components/text', pathMatch: 'full'},
+  {path: 'primitives/icons', redirectTo: 'components/icon', pathMatch: 'full'},
+  {path: 'controls/buttons', redirectTo: 'components/button', pathMatch: 'full'},
+  {path: 'controls/tooltips', redirectTo: 'components/tooltip', pathMatch: 'full'},
+  {path: 'controls/inputs', redirectTo: 'components/text-box', pathMatch: 'full'},
+  {path: 'controls/empty-states', redirectTo: 'components/empty-state', pathMatch: 'full'},
+  {path: 'controls/overlays', redirectTo: 'components', pathMatch: 'full'},
+  {path: 'controls/core-batch', redirectTo: 'components', pathMatch: 'full'},
+  {path: 'controls/data-batch', redirectTo: 'components', pathMatch: 'full'},
+  {path: 'controls/forms-batch', redirectTo: 'components', pathMatch: 'full'},
+  {path: 'controls/entity-form-batch', redirectTo: 'components', pathMatch: 'full'},
+  {path: 'controls/shell-batch', redirectTo: 'components', pathMatch: 'full'},
+  {path: 'foundation/colors', redirectTo: 'components', pathMatch: 'full'},
+  {path: 'foundation/colors/status-hues', redirectTo: 'components', pathMatch: 'full'},
+  {path: 'foundation/themes', redirectTo: 'components', pathMatch: 'full'},
+  {path: 'foundation/feedback-colors', redirectTo: 'components/status-badge', pathMatch: 'full'},
+  {path: 'foundation/typography', redirectTo: 'components/text', pathMatch: 'full'},
+  {path: 'foundation/charts', redirectTo: 'components', pathMatch: 'full'},
+  {path: 'foundation/preferences', redirectTo: 'components', pathMatch: 'full'},
+  {path: 'foundation/spacing', redirectTo: 'components', pathMatch: 'full'},
+  {path: 'foundation/borders-radius', redirectTo: 'components', pathMatch: 'full'},
+  {path: 'foundation/elevation', redirectTo: 'components/surface', pathMatch: 'full'},
+  {path: 'foundation/motion', redirectTo: 'components', pathMatch: 'full'},
+  {path: 'foundation/density', redirectTo: 'components', pathMatch: 'full'},
+  {path: 'foundation/layout-grid', redirectTo: 'components/grid', pathMatch: 'full'},
+  {path: 'foundation/layers', redirectTo: 'components/surface', pathMatch: 'full'},
+  {path: '', redirectTo: 'components', pathMatch: 'full'},
 ];

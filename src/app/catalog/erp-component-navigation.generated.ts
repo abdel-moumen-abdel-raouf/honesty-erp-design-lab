@@ -2,471 +2,783 @@
 export interface ErpComponentNavigationEntry {
   readonly id: string;
   readonly className: string;
+  readonly selector: string;
   readonly category: string;
   readonly showcaseRoute: string;
+  readonly displayNameAr: string;
+  readonly descriptionAr: string;
+  readonly purpose: string;
 }
 
 export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = [
   {
     "id": "button",
     "className": "ErpButton",
+    "selector": "erp-button",
     "category": "Actions",
-    "showcaseRoute": "/components/button"
+    "showcaseRoute": "/components/button",
+    "displayNameAr": "زر",
+    "descriptionAr": "إجراء نصي قياسي بحالاته وأحجامه وأنماطه.",
+    "purpose": "Owns the public ERP button semantic and presentation contract."
   },
   {
     "id": "button-group",
     "className": "ErpButtonGroup",
+    "selector": "erp-button-group",
     "category": "Actions",
-    "showcaseRoute": "/components/button-group"
+    "showcaseRoute": "/components/button-group",
+    "displayNameAr": "مجموعة أزرار",
+    "descriptionAr": "اختيار إجراء واحد من مجموعة مترابطة.",
+    "purpose": "Owns the public ERP button group semantic and presentation contract."
   },
   {
     "id": "extended-fab",
     "className": "ErpExtendedFab",
+    "selector": "erp-extended-fab",
     "category": "Actions",
-    "showcaseRoute": "/components/extended-fab"
+    "showcaseRoute": "/components/extended-fab",
+    "displayNameAr": "زر إجراء عائم ممتد",
+    "descriptionAr": "إجراء عائم يجمع الأيقونة والتسمية.",
+    "purpose": "Owns the public ERP extended fab semantic and presentation contract."
   },
   {
     "id": "fab",
     "className": "ErpFab",
+    "selector": "erp-fab",
     "category": "Actions",
-    "showcaseRoute": "/components/fab"
+    "showcaseRoute": "/components/fab",
+    "displayNameAr": "زر إجراء عائم",
+    "descriptionAr": "إجراء عائم بأيقونة ودلالة وصول واضحة.",
+    "purpose": "Owns the public ERP fab semantic and presentation contract."
   },
   {
     "id": "fab-menu",
     "className": "ErpFabMenu",
+    "selector": "erp-fab-menu",
     "category": "Actions",
-    "showcaseRoute": "/components/fab-menu"
+    "showcaseRoute": "/components/fab-menu",
+    "displayNameAr": "قائمة إجراءات عائمة",
+    "descriptionAr": "مجموعة إجراءات عائمة قابلة للفتح والإغلاق.",
+    "purpose": "Owns the public ERP fab menu semantic and presentation contract."
   },
   {
     "id": "icon-button",
     "className": "ErpIconButton",
+    "selector": "erp-icon-button",
     "category": "Actions",
-    "showcaseRoute": "/components/icon-button"
+    "showcaseRoute": "/components/icon-button",
+    "displayNameAr": "زر أيقونة",
+    "descriptionAr": "إجراء مختصر بأيقونة وتسمية وصول.",
+    "purpose": "Owns the public ERP icon button semantic and presentation contract."
   },
   {
     "id": "split-button",
     "className": "ErpSplitButton",
+    "selector": "erp-split-button",
     "category": "Actions",
-    "showcaseRoute": "/components/split-button"
+    "showcaseRoute": "/components/split-button",
+    "displayNameAr": "زر منقسم",
+    "descriptionAr": "إجراء أساسي مع قائمة إجراءات إضافية.",
+    "purpose": "Owns the public ERP split button semantic and presentation contract."
   },
   {
     "id": "app-shell",
     "className": "ErpAppShell",
+    "selector": "erp-app-shell",
     "category": "Application Shell",
-    "showcaseRoute": "/components/app-shell"
+    "showcaseRoute": "/components/app-shell",
+    "displayNameAr": "إطار تطبيق ERP",
+    "descriptionAr": "تكوين إطار التطبيق من الشريط العلوي والشريط الجانبي والمحتوى.",
+    "purpose": "Frames the production ERP application using the approved Topbar, Sidebar, and projected routed content."
   },
   {
     "id": "branch-selector",
     "className": "ErpBranchSelector",
+    "selector": "erp-branch-selector",
     "category": "Application Shell",
-    "showcaseRoute": "/components/branch-selector"
+    "showcaseRoute": "/components/branch-selector",
+    "displayNameAr": "محدد الفرع",
+    "descriptionAr": "اختيار فرع مضبوط يتحكم فيه المستهلك.",
+    "purpose": "Owns the public ERP branch selector semantic and presentation contract."
   },
   {
     "id": "global-search",
     "className": "ErpGlobalSearch",
+    "selector": "erp-global-search",
     "category": "Application Shell",
-    "showcaseRoute": "/components/global-search"
+    "showcaseRoute": "/components/global-search",
+    "displayNameAr": "البحث العام",
+    "descriptionAr": "بحث عام داخل إطار التطبيق مع نتائج مصنفة.",
+    "purpose": "Owns the public ERP global search semantic and presentation contract."
   },
   {
     "id": "notification-bell",
     "className": "ErpNotificationBell",
+    "selector": "erp-notification-bell",
     "category": "Application Shell",
-    "showcaseRoute": "/components/notification-bell"
+    "showcaseRoute": "/components/notification-bell",
+    "displayNameAr": "جرس الإشعارات",
+    "descriptionAr": "مدخل إشعارات قابل للفتح مع عدد غير المقروء.",
+    "purpose": "Owns the public ERP notification bell semantic and presentation contract."
   },
   {
     "id": "topbar",
     "className": "ErpTopbar",
+    "selector": "erp-topbar",
     "category": "Application Shell",
-    "showcaseRoute": "/components/topbar"
+    "showcaseRoute": "/components/topbar",
+    "displayNameAr": "الشريط العلوي",
+    "descriptionAr": "تخطيط مناطق السياق والبحث والإشعارات والمستخدم.",
+    "purpose": "Owns the public ERP topbar semantic and presentation contract."
   },
   {
     "id": "user-menu",
     "className": "ErpUserMenu",
+    "selector": "erp-user-menu",
     "category": "Application Shell",
-    "showcaseRoute": "/components/user-menu"
+    "showcaseRoute": "/components/user-menu",
+    "displayNameAr": "قائمة المستخدم",
+    "descriptionAr": "هوية المستخدم وإجراءات الحساب ضمن سطح مثبت.",
+    "purpose": "Owns the public ERP user menu semantic and presentation contract."
   },
   {
     "id": "bulk-action-bar",
     "className": "ErpBulkActionBar",
+    "selector": "erp-bulk-action-bar",
     "category": "Data / Tables",
-    "showcaseRoute": "/components/bulk-action-bar"
+    "showcaseRoute": "/components/bulk-action-bar",
+    "displayNameAr": "شريط الإجراءات الجماعية",
+    "descriptionAr": "إجراءات مرتبطة بالصفوف المحددة.",
+    "purpose": "Owns the public ERP bulk action bar semantic and presentation contract."
   },
   {
     "id": "filter-bar",
     "className": "ErpFilterBar",
+    "selector": "erp-filter-bar",
     "category": "Data / Tables",
-    "showcaseRoute": "/components/filter-bar"
+    "showcaseRoute": "/components/filter-bar",
+    "displayNameAr": "شريط التصفية",
+    "descriptionAr": "عرض المرشحات النشطة وإصدار نوايا تعديلها.",
+    "purpose": "Owns the public ERP filter bar semantic and presentation contract."
   },
   {
     "id": "filter-drawer",
     "className": "ErpFilterDrawer",
+    "selector": "erp-filter-drawer",
     "category": "Data / Tables",
-    "showcaseRoute": "/components/filter-drawer"
+    "showcaseRoute": "/components/filter-drawer",
+    "displayNameAr": "درج التصفية",
+    "descriptionAr": "سطح حاجب لتكوين المرشحات وتطبيقها.",
+    "purpose": "Owns the public ERP filter drawer semantic and presentation contract."
   },
   {
     "id": "smart-table",
     "className": "ErpSmartTable",
+    "selector": "erp-smart-table",
     "category": "Data / Tables",
-    "showcaseRoute": "/components/smart-table"
+    "showcaseRoute": "/components/smart-table",
+    "displayNameAr": "الجدول الذكي",
+    "descriptionAr": "تركيب مضبوط للجدول والأدوات والصفحات والحالات.",
+    "purpose": "Owns the public ERP smart table semantic and presentation contract."
   },
   {
     "id": "table",
     "className": "ErpTable",
+    "selector": "erp-table",
     "category": "Data / Tables",
-    "showcaseRoute": "/components/table"
+    "showcaseRoute": "/components/table",
+    "displayNameAr": "الجدول",
+    "descriptionAr": "دلالات الجدول والصفوف والخلايا والاختيار والفرز والتحجيم.",
+    "purpose": "Owns native table semantics, rows, cells, selection, sorting, resizing, and rich cell projection."
   },
   {
     "id": "table-toolbar",
     "className": "ErpTableToolbar",
+    "selector": "erp-table-toolbar",
     "category": "Data / Tables",
-    "showcaseRoute": "/components/table-toolbar"
+    "showcaseRoute": "/components/table-toolbar",
+    "displayNameAr": "شريط أدوات الجدول",
+    "descriptionAr": "تخطيط البحث والإجراءات وأدوات العرض للجدول.",
+    "purpose": "Owns the public ERP table toolbar semantic and presentation contract."
   },
   {
     "id": "alert",
     "className": "ErpAlert",
+    "selector": "erp-alert",
     "category": "Feedback / Status",
-    "showcaseRoute": "/components/alert"
+    "showcaseRoute": "/components/alert",
+    "displayNameAr": "تنبيه",
+    "descriptionAr": "رسالة ملاحظات قابلة للإغلاق عند السماح بذلك.",
+    "purpose": "Owns the public ERP alert semantic and presentation contract."
   },
   {
     "id": "empty-state",
     "className": "ErpEmptyState",
+    "selector": "erp-empty-state",
     "category": "Feedback / Status",
-    "showcaseRoute": "/components/empty-state"
+    "showcaseRoute": "/components/empty-state",
+    "displayNameAr": "الحالة الفارغة",
+    "descriptionAr": "حالة فارغة بعنوان ووصف وإجراءات ورسوم اختيارية.",
+    "purpose": "Owns the public ERP empty state semantic and presentation contract."
   },
   {
     "id": "skeleton",
     "className": "ErpSkeleton",
+    "selector": "erp-skeleton",
     "category": "Feedback / Status",
-    "showcaseRoute": "/components/skeleton"
+    "showcaseRoute": "/components/skeleton",
+    "displayNameAr": "هيكل التحميل",
+    "descriptionAr": "تمثيل مؤقت للمحتوى أثناء التحميل.",
+    "purpose": "Owns the public ERP skeleton semantic and presentation contract."
   },
   {
     "id": "status-badge",
     "className": "ErpStatusBadge",
+    "selector": "erp-status-badge",
     "category": "Feedback / Status",
-    "showcaseRoute": "/components/status-badge"
+    "showcaseRoute": "/components/status-badge",
+    "displayNameAr": "شارة الحالة",
+    "descriptionAr": "مؤشر حالة غير تفاعلي أو تفاعلي حسب العقد.",
+    "purpose": "Owns the public ERP status badge semantic and presentation contract."
   },
   {
     "id": "tooltip",
     "className": "ErpTooltip",
+    "selector": "erp-tooltip",
     "category": "Feedback / Status",
-    "showcaseRoute": "/components/tooltip"
+    "showcaseRoute": "/components/tooltip",
+    "displayNameAr": "تلميح",
+    "descriptionAr": "شرح مثبت على محفز مرئي مع مواضع وسلوك فتح متعددة.",
+    "purpose": "Owns the public ERP tooltip semantic and presentation contract."
   },
   {
     "id": "entity-schema-fields",
     "className": "ErpEntitySchemaFields",
+    "selector": "erp-entity-schema-fields",
     "category": "Forms",
-    "showcaseRoute": "/components/entity-schema-fields"
+    "showcaseRoute": "/components/entity-schema-fields",
+    "displayNameAr": "حقول مخطط الكيان",
+    "descriptionAr": "عرض حقول المخطط من خلال مدخلات ERP المعتمدة.",
+    "purpose": "Owns the public ERP entity schema fields semantic and presentation contract."
   },
   {
     "id": "form",
     "className": "ErpForm",
+    "selector": "erp-form",
     "category": "Forms",
-    "showcaseRoute": "/components/form"
+    "showcaseRoute": "/components/form",
+    "displayNameAr": "نموذج",
+    "descriptionAr": "حد form الدلالي مع نوايا الإرسال وإعادة الضبط.",
+    "purpose": "Owns the public ERP form semantic and presentation contract."
   },
   {
     "id": "form-actions",
     "className": "ErpFormActions",
+    "selector": "erp-form-actions",
     "category": "Forms",
-    "showcaseRoute": "/components/form-actions"
+    "showcaseRoute": "/components/form-actions",
+    "displayNameAr": "إجراءات النموذج",
+    "descriptionAr": "تخطيط الإجراءات الأساسية والثانوية للنموذج.",
+    "purpose": "Owns the public ERP form actions semantic and presentation contract."
   },
   {
     "id": "form-section",
     "className": "ErpFormSection",
+    "selector": "erp-form-section",
     "category": "Forms",
-    "showcaseRoute": "/components/form-section"
+    "showcaseRoute": "/components/form-section",
+    "displayNameAr": "قسم النموذج",
+    "descriptionAr": "تجميع دلالي لحقول النموذج مع عنوان وإجراءات.",
+    "purpose": "Owns the public ERP form section semantic and presentation contract."
   },
   {
     "id": "repeater",
     "className": "ErpRepeater",
+    "selector": "erp-repeater",
     "category": "Forms",
-    "showcaseRoute": "/components/repeater"
+    "showcaseRoute": "/components/repeater",
+    "displayNameAr": "مكرر",
+    "descriptionAr": "قائمة عناصر مضبوطة مع نوايا الإضافة والحذف.",
+    "purpose": "Owns the public ERP repeater semantic and presentation contract."
   },
   {
     "id": "standard-entity-form",
     "className": "ErpStandardEntityForm",
+    "selector": "erp-standard-entity-form",
     "category": "Forms",
-    "showcaseRoute": "/components/standard-entity-form"
+    "showcaseRoute": "/components/standard-entity-form",
+    "displayNameAr": "نموذج الكيان القياسي",
+    "descriptionAr": "تكوين CRUD محدود بمخطط وقيم مضبوطة.",
+    "purpose": "Provides bounded schema-assisted CRUD form composition through approved ERP controls."
   },
   {
     "id": "validation-summary",
     "className": "ErpValidationSummary",
+    "selector": "erp-validation-summary",
     "category": "Forms",
-    "showcaseRoute": "/components/validation-summary"
+    "showcaseRoute": "/components/validation-summary",
+    "displayNameAr": "ملخص التحقق",
+    "descriptionAr": "عرض مشكلات التحقق المشتركة ونية تنشيط الحقل.",
+    "purpose": "Owns the public ERP validation summary semantic and presentation contract."
   },
   {
     "id": "color-picker",
     "className": "ErpColorPicker",
+    "selector": "erp-color-picker",
     "category": "Inputs / Fields",
-    "showcaseRoute": "/components/color-picker"
+    "showcaseRoute": "/components/color-picker",
+    "displayNameAr": "منتقي اللون",
+    "descriptionAr": "اختيار لون من سجل ألوان النظام.",
+    "purpose": "Owns the public ERP color picker semantic and presentation contract."
   },
   {
     "id": "combo-box",
     "className": "ErpComboBox",
+    "selector": "erp-combo-box",
     "category": "Inputs / Fields",
-    "showcaseRoute": "/components/combo-box"
+    "showcaseRoute": "/components/combo-box",
+    "displayNameAr": "صندوق التحرير والاختيار",
+    "descriptionAr": "تحرير نصي مع اقتراحات واختيار مضبوط.",
+    "purpose": "Owns the public ERP combo box semantic and presentation contract."
   },
   {
     "id": "date-box",
     "className": "ErpDateBox",
+    "selector": "erp-date-box",
     "category": "Inputs / Fields",
-    "showcaseRoute": "/components/date-box"
+    "showcaseRoute": "/components/date-box",
+    "displayNameAr": "حقل التاريخ",
+    "descriptionAr": "تحرير تاريخ من خلال عقد الإدخال المعتمد.",
+    "purpose": "Owns the public ERP date box semantic and presentation contract."
   },
   {
     "id": "date-range-box",
     "className": "ErpDateRangeBox",
+    "selector": "erp-date-range-box",
     "category": "Inputs / Fields",
-    "showcaseRoute": "/components/date-range-box"
+    "showcaseRoute": "/components/date-range-box",
+    "displayNameAr": "حقل نطاق التاريخ",
+    "descriptionAr": "اختيار نطاق زمني مضبوط.",
+    "purpose": "Owns the public ERP date range box semantic and presentation contract."
   },
   {
     "id": "date-time-box",
     "className": "ErpDateTimeBox",
+    "selector": "erp-date-time-box",
     "category": "Inputs / Fields",
-    "showcaseRoute": "/components/date-time-box"
+    "showcaseRoute": "/components/date-time-box",
+    "displayNameAr": "حقل التاريخ والوقت",
+    "descriptionAr": "تحرير تاريخ ووقت ضمن عقد واحد.",
+    "purpose": "Owns the public ERP date time box semantic and presentation contract."
   },
   {
     "id": "file-picker",
     "className": "ErpFilePicker",
+    "selector": "erp-file-picker",
     "category": "Inputs / Fields",
-    "showcaseRoute": "/components/file-picker"
+    "showcaseRoute": "/components/file-picker",
+    "displayNameAr": "منتقي الملفات",
+    "descriptionAr": "اختيار ملفات محلية متعدد دون نقل شبكي.",
+    "purpose": "Owns the public ERP file picker semantic and presentation contract."
   },
   {
     "id": "icon-picker",
     "className": "ErpIconPicker",
+    "selector": "erp-icon-picker",
     "category": "Inputs / Fields",
-    "showcaseRoute": "/components/icon-picker"
+    "showcaseRoute": "/components/icon-picker",
+    "displayNameAr": "منتقي الأيقونة",
+    "descriptionAr": "اختيار أيقونة دلالية من سجل النظام.",
+    "purpose": "Owns the public ERP icon picker semantic and presentation contract."
   },
   {
     "id": "image-picker",
     "className": "ErpImagePicker",
+    "selector": "erp-image-picker",
     "category": "Inputs / Fields",
-    "showcaseRoute": "/components/image-picker"
+    "showcaseRoute": "/components/image-picker",
+    "displayNameAr": "منتقي الصور",
+    "descriptionAr": "اختيار صور محلية مع معاينات مضبوطة.",
+    "purpose": "Owns the public ERP image picker semantic and presentation contract."
   },
   {
     "id": "item-picker",
     "className": "ErpItemPicker",
+    "selector": "erp-item-picker",
     "category": "Inputs / Fields",
-    "showcaseRoute": "/components/item-picker"
+    "showcaseRoute": "/components/item-picker",
+    "displayNameAr": "منتقي العناصر",
+    "descriptionAr": "اختيار عناصر من قائمة يملكها المستهلك.",
+    "purpose": "Owns the public ERP item picker semantic and presentation contract."
   },
   {
     "id": "money-box",
     "className": "ErpMoneyBox",
+    "selector": "erp-money-box",
     "category": "Inputs / Fields",
-    "showcaseRoute": "/components/money-box"
+    "showcaseRoute": "/components/money-box",
+    "displayNameAr": "حقل المال",
+    "descriptionAr": "تحرير قيمة مالية وعملة وفق التفضيلات.",
+    "purpose": "Owns the public ERP money box semantic and presentation contract."
   },
   {
     "id": "number-box",
     "className": "ErpNumberBox",
+    "selector": "erp-number-box",
     "category": "Inputs / Fields",
-    "showcaseRoute": "/components/number-box"
+    "showcaseRoute": "/components/number-box",
+    "displayNameAr": "حقل الرقم",
+    "descriptionAr": "تحرير قيمة رقمية نصية بلا spinner متصفح.",
+    "purpose": "Owns the public ERP number box semantic and presentation contract."
   },
   {
     "id": "number-stepper",
     "className": "ErpNumberStepper",
+    "selector": "erp-number-stepper",
     "category": "Inputs / Fields",
-    "showcaseRoute": "/components/number-stepper"
+    "showcaseRoute": "/components/number-stepper",
+    "displayNameAr": "مغيّر الرقم",
+    "descriptionAr": "زيادة وإنقاص قيمة عددية ضمن حدود مضبوطة.",
+    "purpose": "Owns the public ERP number stepper semantic and presentation contract."
   },
   {
     "id": "password-box",
     "className": "ErpPasswordBox",
+    "selector": "erp-password-box",
     "category": "Inputs / Fields",
-    "showcaseRoute": "/components/password-box"
+    "showcaseRoute": "/components/password-box",
+    "displayNameAr": "حقل كلمة المرور",
+    "descriptionAr": "تحرير قيمة سرية مع إظهار مضبوط.",
+    "purpose": "Owns the public ERP password box semantic and presentation contract."
   },
   {
     "id": "range-slider",
     "className": "ErpRangeSlider",
+    "selector": "erp-range-slider",
     "category": "Inputs / Fields",
-    "showcaseRoute": "/components/range-slider"
+    "showcaseRoute": "/components/range-slider",
+    "displayNameAr": "منزلق النطاق",
+    "descriptionAr": "اختيار حدين عدديين من نطاق.",
+    "purpose": "Owns the public ERP range slider semantic and presentation contract."
   },
   {
     "id": "search-box",
     "className": "ErpSearchBox",
+    "selector": "erp-search-box",
     "category": "Inputs / Fields",
-    "showcaseRoute": "/components/search-box"
+    "showcaseRoute": "/components/search-box",
+    "displayNameAr": "صندوق البحث",
+    "descriptionAr": "تحرير استعلام وعرض نتائج inline أو popup.",
+    "purpose": "Owns the public ERP search box semantic and presentation contract."
   },
   {
     "id": "select",
     "className": "ErpSelect",
+    "selector": "erp-select",
     "category": "Inputs / Fields",
-    "showcaseRoute": "/components/select"
+    "showcaseRoute": "/components/select",
+    "displayNameAr": "قائمة الاختيار",
+    "descriptionAr": "اختيار مفرد أو متعدد مع بحث وتجميع.",
+    "purpose": "Owns the public ERP select semantic and presentation contract."
   },
   {
     "id": "tel-box",
     "className": "ErpTelBox",
+    "selector": "erp-tel-box",
     "category": "Inputs / Fields",
-    "showcaseRoute": "/components/tel-box"
+    "showcaseRoute": "/components/tel-box",
+    "displayNameAr": "حقل الهاتف",
+    "descriptionAr": "تحرير رقم هاتف وفق عقد الحقول.",
+    "purpose": "Owns the public ERP tel box semantic and presentation contract."
   },
   {
     "id": "text-area-box",
     "className": "ErpTextAreaBox",
+    "selector": "erp-text-area-box",
     "category": "Inputs / Fields",
-    "showcaseRoute": "/components/text-area-box"
+    "showcaseRoute": "/components/text-area-box",
+    "displayNameAr": "منطقة النص",
+    "descriptionAr": "تحرير نص متعدد الأسطر.",
+    "purpose": "Owns the public ERP text area box semantic and presentation contract."
   },
   {
     "id": "text-box",
     "className": "ErpTextBox",
+    "selector": "erp-text-box",
     "category": "Inputs / Fields",
-    "showcaseRoute": "/components/text-box"
+    "showcaseRoute": "/components/text-box",
+    "displayNameAr": "حقل النص",
+    "descriptionAr": "تحرير نص قياسي مع حالات الحقل.",
+    "purpose": "Owns the public ERP text box semantic and presentation contract."
   },
   {
     "id": "time-box",
     "className": "ErpTimeBox",
+    "selector": "erp-time-box",
     "category": "Inputs / Fields",
-    "showcaseRoute": "/components/time-box"
+    "showcaseRoute": "/components/time-box",
+    "displayNameAr": "حقل الوقت",
+    "descriptionAr": "تحرير وقت وفق عقد الحقول.",
+    "purpose": "Owns the public ERP time box semantic and presentation contract."
   },
   {
     "id": "url-box",
     "className": "ErpUrlBox",
+    "selector": "erp-url-box",
     "category": "Inputs / Fields",
-    "showcaseRoute": "/components/url-box"
+    "showcaseRoute": "/components/url-box",
+    "displayNameAr": "حقل الرابط",
+    "descriptionAr": "تحرير عنوان URL مع تحقق الحقل.",
+    "purpose": "Owns the public ERP url box semantic and presentation contract."
   },
   {
     "id": "avatar",
     "className": "ErpAvatar",
+    "selector": "erp-avatar",
     "category": "Media / Identity",
-    "showcaseRoute": "/components/avatar"
+    "showcaseRoute": "/components/avatar",
+    "displayNameAr": "الصورة الرمزية",
+    "descriptionAr": "هوية بصرية بصورة أو أحرف أو أيقونة وحضور.",
+    "purpose": "Owns the public ERP avatar semantic and presentation contract."
   },
   {
     "id": "breadcrumbs",
     "className": "ErpBreadcrumbs",
+    "selector": "erp-breadcrumbs",
     "category": "Navigation",
-    "showcaseRoute": "/components/breadcrumbs"
+    "showcaseRoute": "/components/breadcrumbs",
+    "displayNameAr": "مسار التنقل",
+    "descriptionAr": "مسار موقع منطقي مع العنصر الحالي.",
+    "purpose": "Owns the public ERP breadcrumbs semantic and presentation contract."
   },
   {
     "id": "pagination",
     "className": "ErpPagination",
+    "selector": "erp-pagination",
     "category": "Navigation",
-    "showcaseRoute": "/components/pagination"
+    "showcaseRoute": "/components/pagination",
+    "displayNameAr": "ترقيم الصفحات",
+    "descriptionAr": "تنقل مضبوط بين الصفحات وحجم الصفحة.",
+    "purpose": "Owns the public ERP pagination semantic and presentation contract."
   },
   {
     "id": "sidebar",
     "className": "ErpSidebar",
+    "selector": "erp-sidebar",
     "category": "Navigation",
-    "showcaseRoute": "/components/sidebar"
+    "showcaseRoute": "/components/sidebar",
+    "displayNameAr": "الشريط الجانبي",
+    "descriptionAr": "تنقل هرمي مضبوط بعناصر يقدمها المستهلك.",
+    "purpose": "Owns the public ERP sidebar semantic and presentation contract."
   },
   {
     "id": "sort-header",
     "className": "ErpSortHeader",
+    "selector": "erp-sort-header",
     "category": "Navigation",
-    "showcaseRoute": "/components/sort-header"
+    "showcaseRoute": "/components/sort-header",
+    "displayNameAr": "رأس الفرز",
+    "descriptionAr": "رأس تفاعلي يبدل اتجاه الفرز.",
+    "purpose": "Owns the public ERP sort header semantic and presentation contract."
   },
   {
     "id": "stepper",
     "className": "ErpStepper",
+    "selector": "erp-stepper",
     "category": "Navigation",
-    "showcaseRoute": "/components/stepper"
+    "showcaseRoute": "/components/stepper",
+    "displayNameAr": "الخطوات",
+    "descriptionAr": "تنقل مضبوط بين خطوات ومحتوى مسمى.",
+    "purpose": "Owns the public ERP stepper semantic and presentation contract."
   },
   {
     "id": "tabs",
     "className": "ErpTabs",
+    "selector": "erp-tabs",
     "category": "Navigation",
-    "showcaseRoute": "/components/tabs"
+    "showcaseRoute": "/components/tabs",
+    "displayNameAr": "علامات التبويب",
+    "descriptionAr": "تبديل دلالي بين رؤوس ولوحات محتوى.",
+    "purpose": "Owns the public ERP tabs semantic and presentation contract."
   },
   {
     "id": "page",
     "className": "ErpPage",
+    "selector": "erp-page",
     "category": "Page Composition",
-    "showcaseRoute": "/components/page"
+    "showcaseRoute": "/components/page",
+    "displayNameAr": "الصفحة",
+    "descriptionAr": "حد عرض وتمرير واستجابة لمحتوى صفحة واحدة.",
+    "purpose": "Owns one production page boundary, width policy, block-size policy, scrolling, and responsive gutters."
   },
   {
     "id": "page-header",
     "className": "ErpPageHeader",
+    "selector": "erp-page-header",
     "category": "Page Composition",
-    "showcaseRoute": "/components/page-header"
+    "showcaseRoute": "/components/page-header",
+    "displayNameAr": "رأس الصفحة",
+    "descriptionAr": "عنوان الصفحة والوصف والبيانات والإجراءات المسقطة.",
+    "purpose": "Owns the public ERP page header semantic and presentation contract."
   },
   {
     "id": "page-shell",
     "className": "ErpPageShell",
+    "selector": "erp-page-shell",
     "category": "Page Composition",
-    "showcaseRoute": "/components/page-shell"
+    "showcaseRoute": "/components/page-shell",
+    "displayNameAr": "تكوين الصفحة",
+    "descriptionAr": "تنظيم الرأس والمحتوى والسياق والتذييل.",
+    "purpose": "Composes page header, main, contextual side, and footer regions inside an ErpPage boundary."
   },
   {
     "id": "container",
     "className": "ErpContainer",
+    "selector": "erp-container",
     "category": "Primitives",
-    "showcaseRoute": "/components/container"
+    "showcaseRoute": "/components/container",
+    "displayNameAr": "الحاوية",
+    "descriptionAr": "حد عرض أفقي للمحتوى.",
+    "purpose": "Owns the public ERP container semantic and presentation contract."
   },
   {
     "id": "divider",
     "className": "ErpDivider",
+    "selector": "erp-divider",
     "category": "Primitives",
-    "showcaseRoute": "/components/divider"
+    "showcaseRoute": "/components/divider",
+    "displayNameAr": "الفاصل",
+    "descriptionAr": "فاصل دلالي أفقي أو رأسي.",
+    "purpose": "Owns the public ERP divider semantic and presentation contract."
   },
   {
     "id": "grid",
     "className": "ErpGrid",
+    "selector": "erp-grid",
     "category": "Primitives",
-    "showcaseRoute": "/components/grid"
+    "showcaseRoute": "/components/grid",
+    "displayNameAr": "الشبكة",
+    "descriptionAr": "تخطيط شبكي بأعمدة وفجوات مضبوطة.",
+    "purpose": "Owns the public ERP grid semantic and presentation contract."
   },
   {
     "id": "icon",
     "className": "ErpIcon",
+    "selector": "erp-icon",
     "category": "Primitives",
-    "showcaseRoute": "/components/icon"
+    "showcaseRoute": "/components/icon",
+    "displayNameAr": "الأيقونة",
+    "descriptionAr": "عرض أيقونة دلالية من السجل المعتمد.",
+    "purpose": "Owns semantic icon registry rendering and hides vendor icon implementations."
   },
   {
     "id": "inline",
     "className": "ErpInline",
+    "selector": "erp-inline",
     "category": "Primitives",
-    "showcaseRoute": "/components/inline"
+    "showcaseRoute": "/components/inline",
+    "displayNameAr": "التخطيط السطري",
+    "descriptionAr": "ترتيب عناصر على المحور السطري مع التفاف مضبوط.",
+    "purpose": "Owns the public ERP inline semantic and presentation contract."
   },
   {
     "id": "section",
     "className": "ErpSection",
+    "selector": "erp-section",
     "category": "Primitives",
-    "showcaseRoute": "/components/section"
+    "showcaseRoute": "/components/section",
+    "displayNameAr": "القسم",
+    "descriptionAr": "حد section دلالي وفجوة داخلية.",
+    "purpose": "Owns the public ERP section semantic and presentation contract."
   },
   {
     "id": "stack",
     "className": "ErpStack",
+    "selector": "erp-stack",
     "category": "Primitives",
-    "showcaseRoute": "/components/stack"
+    "showcaseRoute": "/components/stack",
+    "displayNameAr": "التكديس",
+    "descriptionAr": "ترتيب عناصر رأسيًا مع محاذاة وفجوات مضبوطة.",
+    "purpose": "Owns the public ERP stack semantic and presentation contract."
   },
   {
     "id": "surface",
     "className": "ErpSurface",
+    "selector": "erp-surface",
     "category": "Primitives",
-    "showcaseRoute": "/components/surface"
+    "showcaseRoute": "/components/surface",
+    "displayNameAr": "السطح",
+    "descriptionAr": "سطح مرئي يملك الحشو والحدود والارتفاع.",
+    "purpose": "Owns the public ERP surface semantic and presentation contract."
   },
   {
     "id": "text",
     "className": "ErpText",
+    "selector": "erp-text",
     "category": "Primitives",
-    "showcaseRoute": "/components/text"
+    "showcaseRoute": "/components/text",
+    "displayNameAr": "النص",
+    "descriptionAr": "بوابة النصوص الإنتاجية وأدوارها الدلالية.",
+    "purpose": "Owns production text authoring and native text semantics."
   },
   {
     "id": "avatar-picker",
     "className": "ErpAvatarPicker",
+    "selector": "erp-avatar-picker",
     "category": "Selection",
-    "showcaseRoute": "/components/avatar-picker"
+    "showcaseRoute": "/components/avatar-picker",
+    "displayNameAr": "منتقي الصورة الرمزية",
+    "descriptionAr": "اختيار صورة رمزية مضبوطة من الفهرس.",
+    "purpose": "Owns the public ERP avatar picker semantic and presentation contract."
   },
   {
     "id": "check-box",
     "className": "ErpCheckBox",
+    "selector": "erp-check-box",
     "category": "Selection",
-    "showcaseRoute": "/components/check-box"
+    "showcaseRoute": "/components/check-box",
+    "displayNameAr": "مربع الاختيار",
+    "descriptionAr": "اختيار منطقي مستقل أو ضمن مجموعة.",
+    "purpose": "Owns the public ERP check box semantic and presentation contract."
   },
   {
     "id": "column-chooser",
     "className": "ErpColumnChooser",
+    "selector": "erp-column-chooser",
     "category": "Selection",
-    "showcaseRoute": "/components/column-chooser"
+    "showcaseRoute": "/components/column-chooser",
+    "displayNameAr": "محدد الأعمدة",
+    "descriptionAr": "ضبط الأعمدة المرئية للجدول.",
+    "purpose": "Owns the public ERP column chooser semantic and presentation contract."
   },
   {
     "id": "radio-box",
     "className": "ErpRadioBox",
+    "selector": "erp-radio-box",
     "category": "Selection",
-    "showcaseRoute": "/components/radio-box"
+    "showcaseRoute": "/components/radio-box",
+    "displayNameAr": "زر الاختيار",
+    "descriptionAr": "اختيار قيمة واحدة ضمن سياق.",
+    "purpose": "Owns the public ERP radio box semantic and presentation contract."
   },
   {
     "id": "radio-group",
     "className": "ErpRadioGroup",
+    "selector": "erp-radio-group",
     "category": "Selection",
-    "showcaseRoute": "/components/radio-group"
+    "showcaseRoute": "/components/radio-group",
+    "displayNameAr": "مجموعة الاختيار",
+    "descriptionAr": "مجموعة خيارات أحادية مضبوطة.",
+    "purpose": "Owns the public ERP radio group semantic and presentation contract."
   },
   {
     "id": "view-switcher",
     "className": "ErpViewSwitcher",
+    "selector": "erp-view-switcher",
     "category": "Selection",
-    "showcaseRoute": "/components/view-switcher"
+    "showcaseRoute": "/components/view-switcher",
+    "displayNameAr": "مبدل العرض",
+    "descriptionAr": "اختيار وضع عرض واحد من أوضاع محددة.",
+    "purpose": "Owns the public ERP view switcher semantic and presentation contract."
   }
 ];

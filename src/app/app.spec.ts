@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {TestBed} from '@angular/core/testing';
-import {provideRouter, Router, RouterLink} from '@angular/router';
-import {By} from '@angular/platform-browser';
+import {provideRouter, Router} from '@angular/router';
 import {
   App,
   buildScreenshotFilename,
@@ -99,163 +98,32 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render the temporary Design Lab utility navigation with all review links', () => {
+  it('renders compact catalog navigation without the legacy link rows', async () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-
-    const nav = compiled.querySelector('#lab-nav');
-    expect(nav).toBeTruthy();
-
-    const overviewLink = compiled.querySelector('#nav-link-overview');
-    const structuralPrimitivesLink = compiled.querySelector('#nav-link-structural-primitives');
-    const typographyPrimitivesLink = compiled.querySelector('#nav-link-typography-primitives');
-    const iconPrimitivesLink = compiled.querySelector('#nav-link-icon-primitives');
-    const buttonControlsLink = compiled.querySelector('#nav-link-button-controls');
-    const tooltipControlsLink = compiled.querySelector('#nav-link-tooltip-controls');
-    const inputControlsLink = compiled.querySelector('#nav-link-input-controls');
-    const emptyStateControlsLink = compiled.querySelector('#nav-link-empty-state-controls');
-    const overlayControlsLink = compiled.querySelector('#nav-link-overlay-controls');
-    const coreBatchLink = compiled.querySelector('#nav-link-core-batch');
-    const dataBatchLink = compiled.querySelector('#nav-link-data-batch');
-    const formsBatchLink = compiled.querySelector('#nav-link-forms-batch');
-    const entityFormBatchLink = compiled.querySelector('#nav-link-entity-form-batch');
-    const colorsLink = compiled.querySelector('#nav-link-colors');
-    const themesLink = compiled.querySelector('#nav-link-themes');
-    const statusHuesLink = compiled.querySelector('#nav-link-status-hues');
-    const feedbackColorsLink = compiled.querySelector('#nav-link-feedback-colors');
-    const typographyLink = compiled.querySelector('#nav-link-typography');
-    const chartsLink = compiled.querySelector('#nav-link-charts');
-    const preferencesLink = compiled.querySelector('#nav-link-preferences');
-    const spacingLink = compiled.querySelector('#nav-link-spacing');
-    const bordersRadiusLink = compiled.querySelector('#nav-link-borders-radius');
-
-    expect(overviewLink).toBeTruthy();
-    expect(structuralPrimitivesLink).toBeTruthy();
-    expect(typographyPrimitivesLink).toBeTruthy();
-    expect(iconPrimitivesLink).toBeTruthy();
-    expect(buttonControlsLink).toBeTruthy();
-    expect(tooltipControlsLink).toBeTruthy();
-    expect(inputControlsLink).toBeTruthy();
-    expect(emptyStateControlsLink).toBeTruthy();
-    expect(overlayControlsLink).toBeTruthy();
-    expect(coreBatchLink).toBeTruthy();
-    expect(dataBatchLink).toBeTruthy();
-    expect(formsBatchLink).toBeTruthy();
-    expect(entityFormBatchLink).toBeTruthy();
-    expect(colorsLink).toBeTruthy();
-    expect(themesLink).toBeTruthy();
-    expect(statusHuesLink).toBeTruthy();
-    expect(feedbackColorsLink).toBeTruthy();
-    expect(typographyLink).toBeTruthy();
-    expect(chartsLink).toBeTruthy();
-    expect(preferencesLink).toBeTruthy();
-    expect(spacingLink).toBeTruthy();
-    expect(bordersRadiusLink).toBeTruthy();
-
-    expect(overviewLink?.textContent?.trim()).toBe('نظرة عامة');
-    expect(nav?.querySelector('a')).toBe(overviewLink);
-    expect(structuralPrimitivesLink?.textContent?.trim()).toBe('البدائيات الهيكلية');
-    expect(typographyPrimitivesLink?.textContent?.trim()).toBe('النصوص الإنتاجية');
-    expect(iconPrimitivesLink?.textContent?.trim()).toBe('الأيقونات الإنتاجية');
-    expect(buttonControlsLink?.textContent?.trim()).toBe('الأزرار الإنتاجية');
-    expect(tooltipControlsLink?.textContent?.trim()).toBe('التلميحات الإنتاجية');
-    expect(inputControlsLink?.textContent?.trim()).toBe('حقول الإدخال الإنتاجية');
-    expect(emptyStateControlsLink?.textContent?.trim()).toBe('الحالات الفارغة');
-    expect(overlayControlsLink?.textContent?.trim()).toBe('النوافذ الحاجبة');
-    expect(coreBatchLink?.textContent?.trim()).toBe('دفعة المكوّنات');
-    expect(dataBatchLink?.textContent?.trim()).toBe('دفعة البيانات والجداول');
-    expect(formsBatchLink?.textContent?.trim()).toBe('دفعة تكوين النماذج');
-    expect(entityFormBatchLink?.textContent?.trim()).toBe('محرك نماذج الكيانات');
-    expect(colorsLink?.textContent?.trim()).toBe('الألوان المرجعية');
-    expect(themesLink?.textContent?.trim()).toBe('السمات الدلالية');
-    expect(statusHuesLink?.textContent?.trim()).toBe('صبغات الحالات');
-    expect(feedbackColorsLink?.textContent?.trim()).toBe('ألوان الحالات الدلالية');
-    expect(typographyLink?.textContent?.trim()).toBe('الطباعة');
-    expect(chartsLink?.textContent?.trim()).toBe('الرسوم البيانية');
-    expect(preferencesLink?.textContent?.trim()).toBe('التفضيلات');
-    expect(spacingLink?.textContent?.trim()).toBe('المسافات');
-    expect(bordersRadiusLink?.textContent?.trim()).toBe('الحدود والزوايا');
-  });
-
-  it('should bind the correct RouterLink routes to the navigation links', async () => {
-    const fixture = TestBed.createComponent(App);
+    await fixture.whenStable();
     fixture.detectChanges();
-
-    await vi.waitFor(() => {
-      fixture.detectChanges();
-      expect(fixture.componentInstance.componentGroups().length).toBeGreaterThan(0);
-    });
-
-    const linkDebugElements = fixture.debugElement.queryAll(By.directive(RouterLink));
-    const linkPaths = linkDebugElements.map((de) => {
-      const routerLink = de.injector.get(RouterLink);
-      return routerLink.href;
-    });
-
-    expect(linkPaths).toContain('/foundation/overview');
-    expect(linkPaths).toContain('/primitives/structural');
-    expect(linkPaths).toContain('/primitives/typography');
-    expect(linkPaths).toContain('/primitives/icons');
-    expect(linkPaths).toContain('/controls/buttons');
-    expect(linkPaths).toContain('/controls/tooltips');
-    expect(linkPaths).toContain('/controls/inputs');
-    expect(linkPaths).toContain('/controls/empty-states');
-    expect(linkPaths).toContain('/controls/overlays');
-    expect(linkPaths).toContain('/controls/core-batch');
-    expect(linkPaths).toContain('/controls/data-batch');
-    expect(linkPaths).toContain('/controls/forms-batch');
-    expect(linkPaths).toContain('/controls/entity-form-batch');
-    expect(linkPaths).toContain('/foundation/colors');
-    expect(linkPaths).toContain('/foundation/themes');
-    expect(linkPaths).toContain('/foundation/colors/status-hues');
-    expect(linkPaths).toContain('/foundation/feedback-colors');
-    expect(linkPaths).toContain('/foundation/typography');
-    expect(linkPaths).toContain('/foundation/charts');
-    expect(linkPaths).toContain('/foundation/preferences');
-    expect(linkPaths).toContain('/foundation/spacing');
-    expect(linkPaths).toContain('/foundation/borders-radius');
-    expect(linkPaths).toContain('/components/page');
-    expect(linkPaths.filter((path) => path?.startsWith('/components/')).length)
-      .toBe(77);
+    const root = fixture.nativeElement as HTMLElement;
+    expect(root.querySelector('#lab-nav')).toBeNull();
+    expect(root.querySelector('.lab-component-catalog')).toBeNull();
+    expect(root.querySelector('#btn-component-catalog')).not.toBeNull();
+    expect(fixture.componentInstance.catalogOpen()).toBe(false);
+    const catalogButton = root.querySelector(
+      '#btn-component-catalog button',
+    ) as HTMLButtonElement;
+    catalogButton.click();
+    fixture.detectChanges();
+    expect(fixture.componentInstance.catalogOpen()).toBe(true);
   });
 
-  it('should define the Overview route, preserve existing routes, and redirect root to Overview', () => {
-    expect(routes.map((route) => route.path)).toEqual([
-      'components/:componentId',
-      'foundation/overview',
-      'primitives/structural',
-      'primitives/typography',
-      'primitives/icons',
-      'controls/buttons',
-      'controls/tooltips',
-      'controls/inputs',
-      'controls/empty-states',
-      'controls/overlays',
-      'controls/core-batch',
-      'controls/data-batch',
-      'controls/forms-batch',
-      'controls/entity-form-batch',
-      'controls/shell-batch',
-      'foundation/colors',
-      'foundation/colors/status-hues',
-      'foundation/themes',
-      'foundation/feedback-colors',
-      'foundation/typography',
-      'foundation/charts',
-      'foundation/preferences',
-      'foundation/spacing',
-      'foundation/borders-radius',
-      'foundation/elevation',
-      'foundation/motion',
-      'foundation/density',
-      'foundation/layout-grid',
-      'foundation/layers',
-      '',
-    ]);
-    expect(routes.find((route) => route.path === 'foundation/overview')).toBeDefined();
+  it('registers catalog routes and keeps every legacy route as redirect-only', () => {
+    expect(routes.find((route) => route.path === 'components')).toBeDefined();
+    expect(routes.find((route) => route.path === 'components/:componentId')).toBeDefined();
+    const legacy = routes.filter((route) => route.path?.startsWith('foundation/') || route.path?.startsWith('controls/') || route.path?.startsWith('primitives/'));
+    expect(legacy.length).toBeGreaterThan(0);
+    expect(legacy.every((route) => typeof route.redirectTo === 'string' && !route.loadComponent)).toBe(true);
     expect(routes.find((route) => route.path === '')).toMatchObject({
-      redirectTo: 'foundation/overview',
+      redirectTo: 'components',
       pathMatch: 'full',
     });
   });
@@ -306,7 +174,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     );
     expect(window.localStorage.getItem('honesty-lab-theme')).toBe('dark');
 
-    await router.navigateByUrl('/foundation/colors');
+    await router.navigateByUrl('/components');
     fixture.detectChanges();
     expect(fixture.componentInstance.theme()).toBe('dark');
 
@@ -337,10 +205,10 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
   });
 
   for (const [url, selector] of [
-    ['/foundation/overview', 'app-foundation-overview'],
-    ['/controls/inputs', 'app-input-controls'],
-    ['/controls/empty-states', 'app-empty-state-controls'],
-    ['/controls/overlays', 'app-overlay-controls'],
+    ['/components', 'app-component-catalog-page'],
+    ['/foundation/overview', 'app-component-catalog-page'],
+    ['/controls/inputs', 'app-component-showcase'],
+    ['/controls/empty-states', 'app-component-showcase'],
   ] as const) {
     it(`renders ${url} through the direct single-document model`, async () => {
       const fixture = TestBed.createComponent(App);
@@ -368,7 +236,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     const router = TestBed.inject(Router);
     const manager = TestBed.inject(ErpOverlayManager);
 
-    await router.navigateByUrl('/controls/overlays');
+    await router.navigateByUrl('/components');
     fixture.detectChanges();
     await fixture.whenStable();
     fixture.detectChanges();

@@ -1,0 +1,69 @@
+<erp-stack gap="default" data-dedicated-showcase="skeleton" data-showcase-sections="7">
+  <erp-text type="heading-2">هيكل التحميل</erp-text>
+  <erp-text type="paragraph" tone="secondary">تمثيل مؤقت للمحتوى أثناء التحميل.</erp-text>
+  <erp-text type="heading-2">مرجع Product Owner الدقيق</erp-text>
+  <app-review-exact-core-showcase [focus]="'skeleton'" />
+  <erp-text type="heading-2">واجهة API والتوافق</erp-text>
+    <erp-surface padding="default" border="subtle" data-showcase-case="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
+        <erp-skeleton
+          
+        ></erp-skeleton>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="variant-line">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">variant: line</erp-text>
+        <erp-skeleton
+          [variant]="$any(cases[1].inputs['variant'])"
+        ></erp-skeleton>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="variant-block">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">variant: block</erp-text>
+        <erp-skeleton
+          [variant]="$any(cases[2].inputs['variant'])"
+        ></erp-skeleton>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="variant-circle">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">variant: circle</erp-text>
+        <erp-skeleton
+          [variant]="$any(cases[3].inputs['variant'])"
+        ></erp-skeleton>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="size-sm">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">size: sm</erp-text>
+        <erp-skeleton
+          [size]="$any(cases[4].inputs['size'])"
+        ></erp-skeleton>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="size-md">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">size: md</erp-text>
+        <erp-skeleton
+          [size]="$any(cases[5].inputs['size'])"
+        ></erp-skeleton>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="size-lg">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">size: lg</erp-text>
+        <erp-skeleton
+          [size]="$any(cases[6].inputs['size'])"
+        ></erp-skeleton>
+      </erp-stack>
+    </erp-surface>
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

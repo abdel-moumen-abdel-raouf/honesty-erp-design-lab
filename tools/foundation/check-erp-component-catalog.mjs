@@ -33,6 +33,15 @@ function validateCatalog(catalog) {
     if (!entry.sourcePath || !entry.purpose || !entry.category) {
       errors.push(`${entry.className} has incomplete inventory metadata`);
     }
+    if (!entry.displayNameAr || !entry.descriptionAr) {
+      errors.push(`${entry.className} has no Arabic showcase metadata`);
+    }
+    if (entry.showcaseOwnerPath !== `src/app/showcase/components/${entry.id}/${entry.id}-showcase.ts`) {
+      errors.push(`${entry.className} has no dedicated showcase owner path`);
+    }
+    if (entry.showcaseLoader !== entry.id) {
+      errors.push(`${entry.className} has no dedicated showcase loader`);
+    }
     if (!entry.publicApi || !Array.isArray(entry.publicApi.inputs) ||
       !Array.isArray(entry.publicApi.outputs) || !Array.isArray(entry.publicApi.models)) {
       errors.push(`${entry.className} has no public API inventory`);
@@ -49,6 +58,34 @@ function validateCatalog(catalog) {
             );
           }
         }
+      }
+    }
+    const coverage = entry.showcaseCoverage;
+    if (!coverage) {
+      errors.push(`${entry.className} has no machine-readable showcase coverage`);
+    } else {
+      for (const input of entry.publicApi.inputs) {
+        if (!coverage.coveredInputs.includes(input.name)) {
+          errors.push(`${entry.className} input ${input.name} has no showcase coverage`);
+        }
+        for (const value of input.values) {
+          if (!coverage.coveredValues[input.name]?.includes(value)) {
+            errors.push(`${entry.className} input ${input.name} value ${value} is uncovered`);
+          }
+        }
+      }
+      for (const model of entry.publicApi.models) {
+        if (!coverage.coveredModels.includes(model.name)) {
+          errors.push(`${entry.className} model ${model.name} has no controlled evidence`);
+        }
+      }
+      for (const output of entry.publicApi.outputs) {
+        if (!coverage.coveredOutputs.includes(output)) {
+          errors.push(`${entry.className} output ${output} has no event evidence`);
+        }
+      }
+      if (entry.visualReference && coverage.coveredReferenceCases.length === 0) {
+        errors.push(`${entry.className} exact-reference evidence is missing`);
       }
     }
   }
@@ -108,6 +145,9 @@ function validateRepository() {
   }
 
   const routes = fs.readFileSync(path.join(REPO_ROOT, 'src/app/app.routes.ts'), 'utf8');
+  if (!routes.includes("path: 'components'")) {
+    errors.push('component catalog landing route is not registered');
+  }
   if (!routes.includes("path: 'components/:componentId'")) {
     errors.push('dedicated component showcase route is not registered');
   }
@@ -115,8 +155,53 @@ function validateRepository() {
     path.join(REPO_ROOT, 'src/app/showcase/component-showcase/component-showcase.html'),
     'utf8',
   );
-  if (!showcase.includes('<erp-review-component-host')) {
-    errors.push('dedicated showcase does not render the live ERP owner');
+  if (!showcase.includes('*ngComponentOutlet="dedicatedShowcase"')) {
+    errors.push('component page does not load its dedicated showcase owner');
+  }
+  if (showcase.includes('erp-review-component-host')) {
+    errors.push('generic input-only component fallback is still active');
+  }
+  const appTemplate = fs.readFileSync(path.join(REPO_ROOT, 'src/app/app.html'), 'utf8');
+  if (!appTemplate.includes('<app-review-catalog-navigation') ||
+      appTemplate.includes('lab-component-group') ||
+      appTemplate.includes('id="lab-nav"')) {
+    errors.push('compact catalog navigation has not replaced the legacy navigation matrices');
+  }
+  const migrationLedger = fs.readFileSync(
+    path.join(REPO_ROOT, 'docs/governance/LEGACY_SHOWCASE_MIGRATION_LEDGER.md'),
+    'utf8',
+  );
+  if (!migrationLedger.includes('Unmapped meaningful legacy sections: **0**')) {
+    errors.push('legacy showcase migration ledger is incomplete');
+  }
+  for (const oldRoute of [
+    'foundation/overview', 'primitives/structural', 'primitives/typography',
+    'primitives/icons', 'controls/buttons', 'controls/tooltips', 'controls/inputs',
+    'controls/empty-states', 'controls/overlays', 'controls/core-batch',
+    'controls/data-batch', 'controls/forms-batch', 'controls/entity-form-batch',
+    'controls/shell-batch',
+  ]) {
+    const routeStart = routes.indexOf(`path: '${oldRoute}'`);
+    const routeEnd = routes.indexOf('}', routeStart);
+    if (routeStart < 0 || !routes.slice(routeStart, routeEnd).includes('redirectTo:')) {
+      errors.push(`legacy route ${oldRoute} is not a redirect alias`);
+    }
+  }
+  for (const entry of buildCatalog().filter((candidate) => candidate.classification === 'PUBLIC ERP COMPONENT')) {
+    const htmlPath = entry.showcaseOwnerPath.replace(/\.ts$/, '.html');
+    const html = fs.readFileSync(path.join(REPO_ROOT, htmlPath), 'utf8');
+    if (!html.includes(`data-dedicated-showcase="${entry.id}"`) ||
+        !html.includes('data-showcase-case=') ||
+        !html.includes(`<${entry.selector}`)) {
+      errors.push(`${entry.className} dedicated showcase is empty or does not render its owner`);
+    }
+    const projectedChildPattern = new RegExp(
+      `<${entry.selector}[\\s\\S]*?>\\s*<erp-`,
+    );
+    if (entry.showcaseCoverage.coveredProjectionSlots.length &&
+        !projectedChildPattern.test(html)) {
+      errors.push(`${entry.className} projection showcase has no visible projected content`);
+    }
   }
   errors.push(...validatePageOwner({
     source: fs.readFileSync(path.join(REPO_ROOT, 'src/app/controls/page/page.ts'), 'utf8'),
@@ -149,7 +234,12 @@ function selfTest() {
     publicApi: {inputs: [], outputs: [], models: []},
     nativeCoverage: ['button'],
     showcaseRoute: '/components/button',
+    showcaseOwnerPath: 'src/app/showcase/components/button/button-showcase.ts',
+    showcaseLoader: 'button',
+    displayNameAr: 'زر',
+    descriptionAr: 'وصف',
     showcaseCases: [{id: 'default', label: 'default', inputs: {}}],
+    showcaseCoverage: {coveredInputs: [], coveredModels: [], coveredOutputs: [], coveredValues: {}, coveredStates: [], coveredProjectionSlots: [], coveredReferenceCases: [], evidenceKind: 'STATIC_COMPONENT'},
   }, {
     id: 'page',
     selector: 'erp-page',
@@ -161,7 +251,12 @@ function selfTest() {
     publicApi: {inputs: [], outputs: [], models: []},
     nativeCoverage: [],
     showcaseRoute: '/components/page',
+    showcaseOwnerPath: 'src/app/showcase/components/page/page-showcase.ts',
+    showcaseLoader: 'page',
+    displayNameAr: 'صفحة',
+    descriptionAr: 'وصف',
     showcaseCases: [{id: 'default', label: 'default', inputs: {}}],
+    showcaseCoverage: {coveredInputs: [], coveredModels: [], coveredOutputs: [], coveredValues: {}, coveredStates: [], coveredProjectionSlots: [], coveredReferenceCases: [], evidenceKind: 'STATIC_COMPONENT'},
   }];
   if (validateCatalog(valid).length !== 0) throw new Error('valid catalog fixture failed');
 
@@ -170,11 +265,14 @@ function selfTest() {
     [...valid, {...valid[0]}],
     valid.map((entry) => entry.className === 'ErpButton' ? {...entry, showcaseRoute: null} : entry),
     valid.map((entry) => entry.className === 'ErpButton' ? {...entry, nativeCoverage: null} : entry),
+    valid.map((entry) => entry.className === 'ErpButton' ? {...entry, showcaseOwnerPath: null} : entry),
+    valid.map((entry) => entry.className === 'ErpButton' ? {...entry, showcaseCoverage: null} : entry),
     valid.map((entry) => entry.className === 'ErpButton'
       ? {
           ...entry,
           publicApi: {inputs: [{name: 'label', required: true, values: []}], outputs: [], models: []},
           showcaseCases: [{id: 'default', label: 'default', inputs: {}}],
+          showcaseCoverage: {...entry.showcaseCoverage, coveredInputs: []},
         }
       : entry),
   ];

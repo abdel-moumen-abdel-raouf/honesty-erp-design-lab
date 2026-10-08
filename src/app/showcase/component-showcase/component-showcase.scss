@@ -6,3 +6,8 @@
 erp-page {
   padding-block: var(--honesty-space-layout-gap-lg);
 }
+
+.component-showcase__technical-value {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}

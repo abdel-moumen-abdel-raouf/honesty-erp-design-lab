@@ -1,0 +1,43 @@
+<erp-stack gap="default" data-dedicated-showcase="notification-bell" data-showcase-sections="3">
+  <erp-text type="heading-2">جرس الإشعارات</erp-text>
+  <erp-text type="paragraph" tone="secondary">مدخل إشعارات قابل للفتح مع عدد غير المقروء.</erp-text>
+    <erp-surface padding="default" border="subtle" data-showcase-case="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
+        <erp-notification-bell
+          [open]="$any(modelValue('default:open', cases[0].inputs['open']))"
+          (openChange)="recordModel('default:open', $event)"
+          (notificationActivated)="recordEvent('notificationActivated', $event)"
+          (markAllReadRequested)="recordEvent('markAllReadRequested', $event)"
+        ></erp-notification-bell>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="open-false">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">open: false</erp-text>
+        <erp-notification-bell
+          [open]="$any(modelValue('open-false:open', cases[1].inputs['open']))"
+          (openChange)="recordModel('open-false:open', $event)"
+          (notificationActivated)="recordEvent('notificationActivated', $event)"
+          (markAllReadRequested)="recordEvent('markAllReadRequested', $event)"
+        ></erp-notification-bell>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="open-true">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">open: true</erp-text>
+        <erp-notification-bell
+          [open]="$any(modelValue('open-true:open', cases[2].inputs['open']))"
+          (openChange)="recordModel('open-true:open', $event)"
+          (notificationActivated)="recordEvent('notificationActivated', $event)"
+          (markAllReadRequested)="recordEvent('markAllReadRequested', $event)"
+        ></erp-notification-bell>
+      </erp-stack>
+    </erp-surface>
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

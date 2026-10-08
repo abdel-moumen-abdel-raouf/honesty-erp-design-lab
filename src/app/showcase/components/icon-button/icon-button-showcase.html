@@ -1,0 +1,306 @@
+<erp-stack gap="default" data-dedicated-showcase="icon-button" data-showcase-sections="27">
+  <erp-text type="heading-2">زر أيقونة</erp-text>
+  <erp-text type="paragraph" tone="secondary">إجراء مختصر بأيقونة وتسمية وصول.</erp-text>
+    <erp-surface padding="default" border="subtle" data-showcase-case="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
+        <erp-tooltip text="الحالة الافتراضية"><erp-icon-button
+          [label]="$any(cases[0].inputs['label'])"
+          [icon]="$any(cases[0].inputs['icon'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="variant-solid">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">variant: solid</erp-text>
+        <erp-tooltip text="variant: solid"><erp-icon-button
+          [label]="$any(cases[1].inputs['label'])"
+          [icon]="$any(cases[1].inputs['icon'])"
+          [variant]="$any(cases[1].inputs['variant'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="variant-outline">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">variant: outline</erp-text>
+        <erp-tooltip text="variant: outline"><erp-icon-button
+          [label]="$any(cases[2].inputs['label'])"
+          [icon]="$any(cases[2].inputs['icon'])"
+          [variant]="$any(cases[2].inputs['variant'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="variant-subtle">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">variant: subtle</erp-text>
+        <erp-tooltip text="variant: subtle"><erp-icon-button
+          [label]="$any(cases[3].inputs['label'])"
+          [icon]="$any(cases[3].inputs['icon'])"
+          [variant]="$any(cases[3].inputs['variant'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="variant-ghost">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">variant: ghost</erp-text>
+        <erp-tooltip text="variant: ghost"><erp-icon-button
+          [label]="$any(cases[4].inputs['label'])"
+          [icon]="$any(cases[4].inputs['icon'])"
+          [variant]="$any(cases[4].inputs['variant'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-primary">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: primary</erp-text>
+        <erp-tooltip text="tone: primary"><erp-icon-button
+          [label]="$any(cases[5].inputs['label'])"
+          [icon]="$any(cases[5].inputs['icon'])"
+          [tone]="$any(cases[5].inputs['tone'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-secondary">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: secondary</erp-text>
+        <erp-tooltip text="tone: secondary"><erp-icon-button
+          [label]="$any(cases[6].inputs['label'])"
+          [icon]="$any(cases[6].inputs['icon'])"
+          [tone]="$any(cases[6].inputs['tone'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-accent">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: accent</erp-text>
+        <erp-tooltip text="tone: accent"><erp-icon-button
+          [label]="$any(cases[7].inputs['label'])"
+          [icon]="$any(cases[7].inputs['icon'])"
+          [tone]="$any(cases[7].inputs['tone'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-success">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: success</erp-text>
+        <erp-tooltip text="tone: success"><erp-icon-button
+          [label]="$any(cases[8].inputs['label'])"
+          [icon]="$any(cases[8].inputs['icon'])"
+          [tone]="$any(cases[8].inputs['tone'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-warning">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: warning</erp-text>
+        <erp-tooltip text="tone: warning"><erp-icon-button
+          [label]="$any(cases[9].inputs['label'])"
+          [icon]="$any(cases[9].inputs['icon'])"
+          [tone]="$any(cases[9].inputs['tone'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-danger">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: danger</erp-text>
+        <erp-tooltip text="tone: danger"><erp-icon-button
+          [label]="$any(cases[10].inputs['label'])"
+          [icon]="$any(cases[10].inputs['icon'])"
+          [tone]="$any(cases[10].inputs['tone'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-info">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: info</erp-text>
+        <erp-tooltip text="tone: info"><erp-icon-button
+          [label]="$any(cases[11].inputs['label'])"
+          [icon]="$any(cases[11].inputs['icon'])"
+          [tone]="$any(cases[11].inputs['tone'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="tone-neutral">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">tone: neutral</erp-text>
+        <erp-tooltip text="tone: neutral"><erp-icon-button
+          [label]="$any(cases[12].inputs['label'])"
+          [icon]="$any(cases[12].inputs['icon'])"
+          [tone]="$any(cases[12].inputs['tone'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="size-sm">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">size: sm</erp-text>
+        <erp-tooltip text="size: sm"><erp-icon-button
+          [label]="$any(cases[13].inputs['label'])"
+          [icon]="$any(cases[13].inputs['icon'])"
+          [size]="$any(cases[13].inputs['size'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="size-md">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">size: md</erp-text>
+        <erp-tooltip text="size: md"><erp-icon-button
+          [label]="$any(cases[14].inputs['label'])"
+          [icon]="$any(cases[14].inputs['icon'])"
+          [size]="$any(cases[14].inputs['size'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="size-lg">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">size: lg</erp-text>
+        <erp-tooltip text="size: lg"><erp-icon-button
+          [label]="$any(cases[15].inputs['label'])"
+          [icon]="$any(cases[15].inputs['icon'])"
+          [size]="$any(cases[15].inputs['size'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="shape-default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">shape: default</erp-text>
+        <erp-tooltip text="shape: default"><erp-icon-button
+          [label]="$any(cases[16].inputs['label'])"
+          [icon]="$any(cases[16].inputs['icon'])"
+          [shape]="$any(cases[16].inputs['shape'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="shape-rounded">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">shape: rounded</erp-text>
+        <erp-tooltip text="shape: rounded"><erp-icon-button
+          [label]="$any(cases[17].inputs['label'])"
+          [icon]="$any(cases[17].inputs['icon'])"
+          [shape]="$any(cases[17].inputs['shape'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="shape-pill">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">shape: pill</erp-text>
+        <erp-tooltip text="shape: pill"><erp-icon-button
+          [label]="$any(cases[18].inputs['label'])"
+          [icon]="$any(cases[18].inputs['icon'])"
+          [shape]="$any(cases[18].inputs['shape'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-false">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">disabled: false</erp-text>
+        <erp-tooltip text="disabled: false"><erp-icon-button
+          [label]="$any(cases[19].inputs['label'])"
+          [icon]="$any(cases[19].inputs['icon'])"
+          [disabled]="$any(cases[19].inputs['disabled'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-true">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">disabled: true</erp-text>
+        <erp-tooltip text="disabled: true"><erp-icon-button
+          [label]="$any(cases[20].inputs['label'])"
+          [icon]="$any(cases[20].inputs['icon'])"
+          [disabled]="$any(cases[20].inputs['disabled'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="loading-false">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">loading: false</erp-text>
+        <erp-tooltip text="loading: false"><erp-icon-button
+          [label]="$any(cases[21].inputs['label'])"
+          [icon]="$any(cases[21].inputs['icon'])"
+          [loading]="$any(cases[21].inputs['loading'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="loading-true">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">loading: true</erp-text>
+        <erp-tooltip text="loading: true"><erp-icon-button
+          [label]="$any(cases[22].inputs['label'])"
+          [icon]="$any(cases[22].inputs['icon'])"
+          [loading]="$any(cases[22].inputs['loading'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="cursor-pointer">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">cursor: pointer</erp-text>
+        <erp-tooltip text="cursor: pointer"><erp-icon-button
+          [label]="$any(cases[23].inputs['label'])"
+          [icon]="$any(cases[23].inputs['icon'])"
+          [cursor]="$any(cases[23].inputs['cursor'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="cursor-default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">cursor: default</erp-text>
+        <erp-tooltip text="cursor: default"><erp-icon-button
+          [label]="$any(cases[24].inputs['label'])"
+          [icon]="$any(cases[24].inputs['icon'])"
+          [cursor]="$any(cases[24].inputs['cursor'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="disabled">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">حالة معطلة</erp-text>
+        <erp-tooltip text="حالة معطلة"><erp-icon-button
+          [label]="$any(cases[25].inputs['label'])"
+          [icon]="$any(cases[25].inputs['icon'])"
+          [disabled]="$any(cases[25].inputs['disabled'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+    <erp-surface padding="default" border="subtle" data-showcase-case="loading">
+      <erp-stack gap="tight">
+        <erp-text type="heading-3">حالة تحميل</erp-text>
+        <erp-tooltip text="حالة تحميل"><erp-icon-button
+          [label]="$any(cases[26].inputs['label'])"
+          [icon]="$any(cases[26].inputs['icon'])"
+          [loading]="$any(cases[26].inputs['loading'])"
+          (pressed)="recordEvent('pressed', $event)"
+        ></erp-icon-button></erp-tooltip>
+      </erp-stack>
+    </erp-surface>
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>
