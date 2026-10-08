@@ -1,5 +1,14 @@
 # Next Component Reference Batch V1
 
+## Authoritative current reference gate — 2026-10-08 — UserMenu final review only
+
+No next component is authorized. The sole candidate is `ErpUserMenu` at the
+final popup geometry gate: bottom/top only, measured viewport height, readable
+identity, scrolling actions, consistent identity order, and persisted current
+PNG/JSON evidence. Technical verification passes 57/57 focused tests and the
+full 122-file/775-test zero-warning gate. Stop for external Product Owner visual
+review; S2 and every other component wave remain closed.
+
 ## Authoritative current reference gate — 2026-10-08 — UserMenu identity review only
 
 `ErpUserMenu` remains the sole open visual candidate. The bounded refinement

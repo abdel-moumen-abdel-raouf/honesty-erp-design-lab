@@ -1,5 +1,16 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Authoritative current review state — 2026-10-08 — UserMenu popup geometry gate
+
+`ErpUserMenu` remains the sole Shell S1 visual candidate. Current runtime
+evidence records only top/bottom placement, zero trigger overlap, zero viewport
+overflow, readable fixed identity, scrolling actions under constrained height,
+consistent identity order, and zero console diagnostics across the five
+required viewports and both directions/themes. Focused verification passes
+57/57 tests and the canonical gate passes 122/122 files and 775/775 tests,
+typechecks, production build, and zero warnings. This is technical evidence;
+Product Owner acceptance remains pending and S2 is not open.
+
 ## Authoritative current review state — 2026-10-08 — UserMenu identity refinement
 
 The existing `ErpUserMenu` remains the sole Shell S1 Product Owner visual

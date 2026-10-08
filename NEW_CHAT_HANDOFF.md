@@ -1,5 +1,21 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Authoritative current handoff — 2026-10-08 — Shell S1 popup geometry gate
+
+Start from live `main`. This bounded gate entered at
+`ccddf29d22b4608016d27818b17a2584a0f06632` and affects only UserMenu and its
+opt-in shared anchored-surface capabilities. Read the UserMenu exact contract
+and `docs/review-evidence/erp-user-menu/s1-final-popup-geometry.json` first.
+
+UserMenu now allows bottom/top placement only, measures available height before
+surface measurement, preserves identity readability, and scrolls only actions.
+Identity order is consistent between trigger and card. Browser evidence across
+320x568, 320x844, 390x844, 768x900, and 1440x900 records zero overlap,
+overflow, broken images, or console diagnostics. Focused verification passes
+57/57 tests and the canonical gate passes 122/122 files and 775/775 tests,
+both typechecks, production build, and zero warnings. The next action is Product
+Owner visual review; S2 remains closed.
+
 ## Authoritative current handoff — 2026-10-08 — Shell S1 UserMenu identity refinement
 
 Start from live `main`. This bounded task entered at

@@ -153,6 +153,53 @@ describe('AnchoredOverlayController', () => {
     vi.useRealTimers();
   });
 
+  it('prepares consumer-specific geometry before measuring the surface', () => {
+    vi.useFakeTimers();
+    vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) =>
+      setTimeout(() => callback(0), 0),
+    );
+    vi.stubGlobal('cancelAnimationFrame', (id: number) => clearTimeout(id));
+
+    const anchor = document.createElement('button');
+    const surface = document.createElement('span');
+    Object.assign(surface, {showPopover: vi.fn(), hidePopover: vi.fn()});
+    vi.spyOn(anchor, 'getBoundingClientRect').mockReturnValue({
+      left: 100, top: 200, right: 140, bottom: 240,
+      width: 40, height: 40, x: 100, y: 200, toJSON: () => ({}),
+    } as DOMRect);
+    vi.spyOn(surface, 'getBoundingClientRect').mockImplementation(() => ({
+      left: 0, top: 0, right: 80,
+      bottom: Number.parseFloat(surface.style.maxBlockSize),
+      width: 80, height: Number.parseFloat(surface.style.maxBlockSize),
+      x: 0, y: 0,
+      toJSON: () => ({}),
+    } as DOMRect));
+    const applyGeometry = vi.fn();
+    const controller = new AnchoredOverlayController({
+      anchor,
+      surface,
+      prepareGeometry: () => {
+        surface.style.maxBlockSize = '120px';
+      },
+      readGeometryInput: () => ({
+        preferredPlacement: 'bottom', direction: 'ltr', anchorGap: 0,
+        viewportInset: 0, showArrow: false, arrowWidth: 0,
+        arrowHeight: 0, arrowSafeInset: 0,
+      }),
+      applyGeometry,
+    });
+
+    expect(controller.show()).toBe(true);
+    vi.runAllTimers();
+
+    expect(surface.style.maxBlockSize).toBe('120px');
+    expect(applyGeometry).toHaveBeenCalledOnce();
+
+    controller.destroy();
+    vi.unstubAllGlobals();
+    vi.useRealTimers();
+  });
+
 
   it('attempts native Popover teardown even when pseudo-state matching is unavailable', () => {
     const anchor = document.createElement('button');

@@ -22,16 +22,6 @@
         {{ user().displayName }}
       </erp-text>
     }
-    @if (user().secondaryText) {
-      <erp-text
-        class="user-menu__trigger-secondary"
-        type="caption"
-        tone="secondary"
-        overflow="ellipsis"
-      >
-        {{ user().secondaryText }}
-      </erp-text>
-    }
     @if (showEmail() && user().email) {
       <erp-text
         class="user-menu__email user-menu__email--trigger"
@@ -67,6 +57,16 @@
           />
         }
       </span>
+    }
+    @if (user().secondaryText) {
+      <erp-text
+        class="user-menu__trigger-secondary"
+        type="caption"
+        tone="secondary"
+        overflow="ellipsis"
+      >
+        {{ user().secondaryText }}
+      </erp-text>
     }
   </span>
   <erp-button

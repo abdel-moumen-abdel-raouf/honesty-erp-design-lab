@@ -43,6 +43,15 @@ export function calculateAnchoredOverlayGeometry(
   input: AnchoredOverlayGeometryInput,
 ): AnchoredOverlayGeometryResult {
   const preferred = physicalPlacement(input.preferredPlacement, input.direction);
+  const allowedPlacements = input.allowedPlacements?.length
+    ? Array.from(
+        new Set(
+          input.allowedPlacements.map((placement) =>
+            physicalPlacement(placement, input.direction),
+          ),
+        ),
+      )
+    : ALL_PHYSICAL_PLACEMENTS;
   const gap = input.anchorGap + (input.showArrow ? input.arrowHeight : 0);
   const space: Readonly<Record<AnchoredOverlayPhysicalPlacement, number>> = {
     top: input.anchor.top - input.viewport.top - input.viewportInset,
@@ -83,16 +92,23 @@ export function calculateAnchoredOverlayGeometry(
       ALL_PHYSICAL_PLACEMENTS.indexOf(a) -
         ALL_PHYSICAL_PLACEMENTS.indexOf(b),
   );
-  const candidates: readonly AnchoredOverlayPhysicalPlacement[] = [
+  const orderedCandidates: readonly AnchoredOverlayPhysicalPlacement[] = [
     preferred,
     opposite(preferred),
     ...perpendicularByRoom,
   ];
+  const candidates = orderedCandidates.filter((placement, index) =>
+    allowedPlacements.includes(placement) &&
+    orderedCandidates.indexOf(placement) === index,
+  );
+  const effectiveCandidates = candidates.length > 0
+    ? candidates
+    : allowedPlacements;
 
-  const fittingPlacement = candidates.find(fits);
+  const fittingPlacement = effectiveCandidates.find(fits);
   const placement =
     fittingPlacement ??
-    candidates.reduce((best, candidate) =>
+    effectiveCandidates.reduce((best, candidate) =>
       space[candidate] > space[best] ? candidate : best,
     );
 

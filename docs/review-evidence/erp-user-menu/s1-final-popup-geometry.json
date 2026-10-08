@@ -1,0 +1,662 @@
+{
+  "capturedAt": "2026-10-08T19:03:51.284Z",
+  "measurements": [
+    {
+      "file": "s1-final-default-rich-light-rtl-desktop-closed.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "preset": "صورة محلية — متصل",
+      "open": false,
+      "placement": "top",
+      "targetCount": 1,
+      "trigger": {
+        "left": 1016,
+        "top": 398.359375,
+        "right": 1376,
+        "bottom": 502.359375,
+        "width": 360,
+        "height": 104
+      },
+      "surface": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "width": 0,
+        "height": 0
+      },
+      "identity": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "width": 0,
+        "height": 0
+      },
+      "actions": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "width": 0,
+        "height": 0,
+        "clientHeight": 0,
+        "scrollHeight": 0,
+        "scrollable": false
+      },
+      "overlap": false,
+      "arrowDelta": null,
+      "pageHorizontalOverflow": 0,
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "brokenImages": 0,
+      "visualOrder": [
+        "user-menu__identity-name",
+        "user-menu__email",
+        "user-menu__badges",
+        "secondaryText"
+      ]
+    },
+    {
+      "file": "s1-final-default-rich-light-rtl-desktop-open.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "preset": "صورة محلية — متصل",
+      "open": true,
+      "placement": "top",
+      "targetCount": 1,
+      "trigger": {
+        "left": 1016,
+        "top": 398.359375,
+        "right": 1376,
+        "bottom": 502.359375,
+        "width": 360,
+        "height": 104
+      },
+      "surface": {
+        "left": 1016,
+        "top": 8,
+        "right": 1376,
+        "bottom": 396.359375,
+        "width": 360,
+        "height": 388.359375
+      },
+      "identity": {
+        "left": 1039,
+        "top": 16,
+        "right": 1368,
+        "bottom": 120,
+        "width": 329,
+        "height": 104
+      },
+      "actions": {
+        "left": 1039,
+        "top": 137,
+        "right": 1368,
+        "bottom": 388.359375,
+        "width": 329,
+        "height": 251.359375,
+        "clientHeight": 251,
+        "scrollHeight": 353,
+        "scrollable": true
+      },
+      "overlap": false,
+      "arrowDelta": 0,
+      "pageHorizontalOverflow": 0,
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "brokenImages": 0,
+      "visualOrder": [
+        "user-menu__identity-name",
+        "user-menu__email",
+        "user-menu__badges",
+        "secondaryText"
+      ]
+    },
+    {
+      "file": "s1-final-long-arabic-dark-rtl-desktop-open.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "rtl",
+      "preset": "اسم عربي طويل — غير متصل",
+      "open": true,
+      "placement": "top",
+      "targetCount": 1,
+      "trigger": {
+        "left": 1016,
+        "top": 398.359375,
+        "right": 1376,
+        "bottom": 502.359375,
+        "width": 360,
+        "height": 104
+      },
+      "surface": {
+        "left": 1016,
+        "top": 8,
+        "right": 1376,
+        "bottom": 396.359375,
+        "width": 360,
+        "height": 388.359375
+      },
+      "identity": {
+        "left": 1039,
+        "top": 16,
+        "right": 1368,
+        "bottom": 164,
+        "width": 329,
+        "height": 148
+      },
+      "actions": {
+        "left": 1039,
+        "top": 181,
+        "right": 1368,
+        "bottom": 388.359375,
+        "width": 329,
+        "height": 207.359375,
+        "clientHeight": 207,
+        "scrollHeight": 353,
+        "scrollable": true
+      },
+      "overlap": false,
+      "arrowDelta": 0,
+      "pageHorizontalOverflow": 0,
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "brokenImages": 0,
+      "visualOrder": [
+        "user-menu__identity-name",
+        "user-menu__email",
+        "user-menu__badges",
+        "secondaryText"
+      ]
+    },
+    {
+      "file": "s1-final-long-english-dark-ltr-desktop-open.png",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "preset": "اسم إنجليزي طويل — متصل",
+      "open": true,
+      "placement": "bottom",
+      "targetCount": 1,
+      "trigger": {
+        "left": 49,
+        "top": 398.359375,
+        "right": 409,
+        "bottom": 501.359375,
+        "width": 360,
+        "height": 103
+      },
+      "surface": {
+        "left": 49,
+        "top": 503.359375,
+        "right": 409,
+        "bottom": 892,
+        "width": 360,
+        "height": 388.640625
+      },
+      "identity": {
+        "left": 57,
+        "top": 511.359375,
+        "right": 401,
+        "bottom": 653.359375,
+        "width": 344,
+        "height": 142
+      },
+      "actions": {
+        "left": 57,
+        "top": 670.359375,
+        "right": 401,
+        "bottom": 884,
+        "width": 344,
+        "height": 213.640625,
+        "clientHeight": 214,
+        "scrollHeight": 353,
+        "scrollable": true
+      },
+      "overlap": false,
+      "arrowDelta": 0,
+      "pageHorizontalOverflow": 0,
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "brokenImages": 0,
+      "visualOrder": [
+        "user-menu__identity-name",
+        "user-menu__email",
+        "user-menu__badges",
+        "secondaryText"
+      ]
+    },
+    {
+      "file": "s1-final-initials-light-rtl-390-open.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "preset": "أحرف أولى — بعيد",
+      "open": true,
+      "placement": "bottom",
+      "targetCount": 1,
+      "trigger": {
+        "left": 33,
+        "top": 369.734375,
+        "right": 342,
+        "bottom": 473.734375,
+        "width": 309,
+        "height": 104
+      },
+      "surface": {
+        "left": 8,
+        "top": 475.734375,
+        "right": 368,
+        "bottom": 836,
+        "width": 360,
+        "height": 360.265625
+      },
+      "identity": {
+        "left": 16,
+        "top": 483.734375,
+        "right": 360,
+        "bottom": 587.734375,
+        "width": 344,
+        "height": 104
+      },
+      "actions": {
+        "left": 16,
+        "top": 604.734375,
+        "right": 360,
+        "bottom": 828,
+        "width": 344,
+        "height": 223.265625,
+        "clientHeight": 223,
+        "scrollHeight": 353,
+        "scrollable": true
+      },
+      "overlap": false,
+      "arrowDelta": null,
+      "pageHorizontalOverflow": 0,
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "brokenImages": 0,
+      "visualOrder": [
+        "user-menu__identity-name",
+        "user-menu__email",
+        "user-menu__badges",
+        "secondaryText"
+      ]
+    },
+    {
+      "file": "s1-final-icon-dark-ltr-390-open.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "preset": "أيقونة صريحة — مشغول",
+      "open": true,
+      "placement": "bottom",
+      "targetCount": 1,
+      "trigger": {
+        "left": 33,
+        "top": 369.734375,
+        "right": 342,
+        "bottom": 473.734375,
+        "width": 309,
+        "height": 104
+      },
+      "surface": {
+        "left": 8,
+        "top": 475.734375,
+        "right": 368,
+        "bottom": 836,
+        "width": 360,
+        "height": 360.265625
+      },
+      "identity": {
+        "left": 16,
+        "top": 483.734375,
+        "right": 360,
+        "bottom": 587.734375,
+        "width": 344,
+        "height": 104
+      },
+      "actions": {
+        "left": 16,
+        "top": 604.734375,
+        "right": 360,
+        "bottom": 828,
+        "width": 344,
+        "height": 223.265625,
+        "clientHeight": 223,
+        "scrollHeight": 353,
+        "scrollable": true
+      },
+      "overlap": false,
+      "arrowDelta": null,
+      "pageHorizontalOverflow": 0,
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "brokenImages": 0,
+      "visualOrder": [
+        "user-menu__identity-name",
+        "user-menu__email",
+        "user-menu__badges",
+        "secondaryText"
+      ]
+    },
+    {
+      "file": "s1-final-long-arabic-light-rtl-320x568-open-scroll.png",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "preset": "اسم عربي طويل — غير متصل",
+      "open": true,
+      "placement": "bottom",
+      "targetCount": 1,
+      "trigger": {
+        "left": 33,
+        "top": 0.734375,
+        "right": 272,
+        "bottom": 126.734375,
+        "width": 239,
+        "height": 126
+      },
+      "surface": {
+        "left": 8,
+        "top": 128.734375,
+        "right": 312,
+        "bottom": 560,
+        "width": 304,
+        "height": 431.265625
+      },
+      "identity": {
+        "left": 16,
+        "top": 136.734375,
+        "right": 304,
+        "bottom": 302.734375,
+        "width": 288,
+        "height": 166
+      },
+      "actions": {
+        "left": 16,
+        "top": 319.734375,
+        "right": 304,
+        "bottom": 552,
+        "width": 288,
+        "height": 232.265625,
+        "clientHeight": 232,
+        "scrollHeight": 353,
+        "scrollable": true
+      },
+      "overlap": false,
+      "arrowDelta": null,
+      "pageHorizontalOverflow": 0,
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "brokenImages": 0,
+      "visualOrder": [
+        "user-menu__identity-name",
+        "user-menu__email",
+        "user-menu__badges",
+        "secondaryText"
+      ]
+    },
+    {
+      "file": "s1-final-long-english-dark-ltr-320x568-closed.png",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "preset": "اسم إنجليزي طويل — متصل",
+      "open": false,
+      "placement": "bottom",
+      "targetCount": 1,
+      "trigger": {
+        "left": 33,
+        "top": 221.734375,
+        "right": 272,
+        "bottom": 346.734375,
+        "width": 239,
+        "height": 125
+      },
+      "surface": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "width": 0,
+        "height": 0
+      },
+      "identity": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "width": 0,
+        "height": 0
+      },
+      "actions": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "width": 0,
+        "height": 0,
+        "clientHeight": 0,
+        "scrollHeight": 0,
+        "scrollable": false
+      },
+      "overlap": false,
+      "arrowDelta": null,
+      "pageHorizontalOverflow": 0,
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "brokenImages": 0,
+      "visualOrder": [
+        "user-menu__identity-name",
+        "user-menu__email",
+        "user-menu__badges",
+        "secondaryText"
+      ]
+    },
+    {
+      "file": "s1-final-default-dark-ltr-320x844-open.png",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "preset": "صورة محلية — متصل",
+      "open": true,
+      "placement": "bottom",
+      "targetCount": 1,
+      "trigger": {
+        "left": 33,
+        "top": 369.734375,
+        "right": 272,
+        "bottom": 473.734375,
+        "width": 239,
+        "height": 104
+      },
+      "surface": {
+        "left": 8,
+        "top": 475.71875,
+        "right": 312,
+        "bottom": 835.984375,
+        "width": 304,
+        "height": 360.265625
+      },
+      "identity": {
+        "left": 16,
+        "top": 483.71875,
+        "right": 304,
+        "bottom": 587.71875,
+        "width": 288,
+        "height": 104
+      },
+      "actions": {
+        "left": 16,
+        "top": 604.71875,
+        "right": 304,
+        "bottom": 827.984375,
+        "width": 288,
+        "height": 223.265625,
+        "clientHeight": 223,
+        "scrollHeight": 353,
+        "scrollable": true
+      },
+      "overlap": false,
+      "arrowDelta": null,
+      "pageHorizontalOverflow": 0,
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "brokenImages": 0,
+      "visualOrder": [
+        "user-menu__identity-name",
+        "user-menu__email",
+        "user-menu__badges",
+        "secondaryText"
+      ]
+    },
+    {
+      "file": "s1-final-mixed-light-rtl-768-open.png",
+      "viewport": {
+        "width": 768,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "preset": "اسم مختلط الاتجاه — بعيد",
+      "open": true,
+      "placement": "top",
+      "targetCount": 1,
+      "trigger": {
+        "left": 352,
+        "top": 398.359375,
+        "right": 712,
+        "bottom": 502.359375,
+        "width": 360,
+        "height": 104
+      },
+      "surface": {
+        "left": 352,
+        "top": 8,
+        "right": 712,
+        "bottom": 396.359375,
+        "width": 360,
+        "height": 388.359375
+      },
+      "identity": {
+        "left": 375,
+        "top": 16,
+        "right": 704,
+        "bottom": 141,
+        "width": 329,
+        "height": 125
+      },
+      "actions": {
+        "left": 375,
+        "top": 158,
+        "right": 704,
+        "bottom": 388.359375,
+        "width": 329,
+        "height": 230.359375,
+        "clientHeight": 230,
+        "scrollHeight": 353,
+        "scrollable": true
+      },
+      "overlap": false,
+      "arrowDelta": 0,
+      "pageHorizontalOverflow": 0,
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "brokenImages": 0,
+      "visualOrder": [
+        "user-menu__identity-name",
+        "user-menu__email",
+        "user-menu__badges",
+        "secondaryText"
+      ]
+    }
+  ],
+  "dynamicGeometry": {
+    "before": {
+      "placement": "top",
+      "triggerHeight": 104,
+      "surfaceHeight": 388.359375,
+      "gap": 2,
+      "overlap": false
+    },
+    "after": {
+      "placement": "top",
+      "triggerHeight": 104,
+      "surfaceHeight": 388.359375,
+      "gap": 2,
+      "overlap": false
+    }
+  },
+  "diagnostics": []
+}

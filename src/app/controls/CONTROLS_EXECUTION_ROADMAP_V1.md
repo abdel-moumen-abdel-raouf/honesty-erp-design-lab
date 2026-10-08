@@ -1,5 +1,18 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Authoritative current gate — 2026-10-08 — UserMenu popup geometry review
+
+Only the existing `ErpUserMenu` is authorized. It now uses bottom/top placement
+only, measured viewport height, a persistent identity region, scrolling actions,
+and consistent identity ordering. Five required viewports, both themes and
+directions, long/dynamic identities, fallbacks, and constrained height have
+current PNG/JSON evidence with zero overlap or overflow.
+
+Focused verification passes 57/57 tests and the canonical gate passes 122/122
+files and 775/775 tests, all lint/governance, both typechecks, production build,
+and zero warnings. Initial bundle is 490.24 kB / 105.58 kB estimated transfer.
+Stop for Product Owner review; S2 and all adjacent owners remain unopened.
+
 ## Authoritative current gate — 2026-10-08 — Shell S1 UserMenu identity refinement
 
 Only the existing `ErpUserMenu` is authorized. The bounded task entered at

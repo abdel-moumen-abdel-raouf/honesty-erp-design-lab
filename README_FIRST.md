@@ -1,5 +1,21 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Current gate — Shell S1 UserMenu final popup geometry
+
+The current bounded candidate entered at
+`ccddf29d22b4608016d27818b17a2584a0f06632`. Read
+`src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md` and the current
+evidence under `docs/review-evidence/erp-user-menu/`. Only `ErpUserMenu` is
+open: it uses bottom/top placement only, viewport-aware block sizing, a fixed
+readable identity region, and a scrolling actions region.
+
+The current evidence covers the required five viewports in Light/Dark and
+RTL/LTR with rich, long, image, initials, and icon identities. Focused checks
+pass 57/57 tests; the canonical gate passes 122/122 files and 775/775 tests,
+both typechecks, production build, and zero warnings. Initial bundle is
+490.24 kB / 105.58 kB estimated transfer. Stop for external Product Owner
+visual review; do not open S2.
+
 ## Current gate — Shell Phase S1 ErpUserMenu identity refinement
 
 The current bounded enhancement entered from clean live `main` at

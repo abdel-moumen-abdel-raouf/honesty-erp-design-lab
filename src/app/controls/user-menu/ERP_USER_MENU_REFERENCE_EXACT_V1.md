@@ -76,6 +76,29 @@ overlay or restore a fixed arrow offset.
 - Reduced motion removes the entrance animation without changing visibility or
   interaction.
 
+## Final vertical-dropdown geometry closure
+
+The Product Owner final S1 gate explicitly limits UserMenu to a vertical
+dropdown. Its allowed placement set is `bottom`, then `top`; left/right remain
+available to other shared anchored-overlay consumers but are not candidates for
+UserMenu. Before each surface measurement, UserMenu calculates the real block
+space above and below the trigger from the current viewport, reference inset,
+and anchor gap. The greater available block size becomes the bounded surface
+maximum; the identity region does not shrink and only the action list scrolls.
+
+This policy was measured at 320 x 568, 320 x 844, 390 x 844, 768 x 900, and
+1440 x 900 in RTL/LTR with long and dynamic identities. Every open case is
+inside the visible viewport and has zero trigger overlap. The constrained
+320 x 568 case keeps a 166 px identity region visible while its actions use a
+232 px client region for 353 px of content. Desktop top and bottom cases retain
+zero measured arrow-center delta. The current machine-readable evidence is
+`docs/review-evidence/erp-user-menu/s1-final-popup-geometry.json`.
+
+Both trigger and open card use the same visible identity order after Avatar:
+name, email, role/branch badges, then optional legacy `secondaryText`.
+`secondaryText` remains independent and is never reinterpreted as email, role,
+or branch.
+
 ## Viewport-clamped arrow closure
 
 The S1 follow-up verified a real failure in the original candidate: at the

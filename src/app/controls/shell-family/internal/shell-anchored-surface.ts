@@ -1,4 +1,8 @@
-import {AnchoredOverlayGeometryResult} from '../../../shared/anchored-overlay/anchored-overlay-contracts';
+import {
+  AnchoredOverlayGeometryResult,
+  AnchoredOverlayLogicalPlacement,
+  OverlayRect,
+} from '../../../shared/anchored-overlay/anchored-overlay-contracts';
 import {AnchoredOverlayController} from '../../../shared/anchored-overlay/anchored-overlay-controller';
 
 export interface ShellAnchoredSurfaceOptions {
@@ -11,6 +15,11 @@ export interface ShellAnchoredSurfaceOptions {
   readonly crossAxisAlignment?: 'center' | 'start' | 'end';
   readonly arrowWidth?: () => number;
   readonly arrowSafeInset?: () => number;
+  readonly allowedPlacements?: readonly AnchoredOverlayLogicalPlacement[];
+  readonly prepareGeometry?: (context: {
+    readonly anchor: OverlayRect;
+    readonly viewport: OverlayRect;
+  }) => void;
 }
 
 export class ShellAnchoredSurfaceController {
@@ -36,8 +45,10 @@ export class ShellAnchoredSurfaceController {
           arrowHeight: 0,
           arrowSafeInset: options.arrowSafeInset?.() ?? 0,
           crossAxisAlignment: options.crossAxisAlignment ?? 'center',
+          allowedPlacements: options.allowedPlacements,
         };
       },
+      prepareGeometry: options.prepareGeometry,
       applyGeometry: (result) => this.applyGeometry(result),
     });
   }

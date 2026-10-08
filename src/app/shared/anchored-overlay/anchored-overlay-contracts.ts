@@ -17,6 +17,7 @@ export interface AnchoredOverlayGeometryInput {
   readonly arrowHeight: number;
   readonly arrowSafeInset: number;
   readonly crossAxisAlignment?: AnchoredOverlayCrossAxisAlignment;
+  readonly allowedPlacements?: readonly AnchoredOverlayLogicalPlacement[];
 }
 export interface AnchoredOverlayGeometryResult {
   readonly x: number;
@@ -28,5 +29,9 @@ export interface AnchoredOverlayControllerOptions {
   readonly anchor: HTMLElement;
   readonly surface: HTMLElement;
   readonly readGeometryInput: () => Omit<AnchoredOverlayGeometryInput, 'anchor' | 'surfaceWidth' | 'surfaceHeight' | 'viewport'>;
+  readonly prepareGeometry?: (context: {
+    readonly anchor: OverlayRect;
+    readonly viewport: OverlayRect;
+  }) => void;
   readonly applyGeometry: (result: AnchoredOverlayGeometryResult) => void;
 }

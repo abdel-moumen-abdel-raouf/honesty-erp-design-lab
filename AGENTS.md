@@ -1,5 +1,27 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Shell S1 UserMenu Popup Geometry Gate
+
+The bounded final gate entered from clean live `main` at
+`ccddf29d22b4608016d27818b17a2584a0f06632` and changes only the existing
+`ErpUserMenu` plus the shared anchored-overlay capability it consumes. UserMenu
+now permits only bottom/top placement, measures actual block space before
+surface layout, keeps identity content visible, and makes only the action list
+scroll. Other overlay consumers retain their existing placement defaults.
+
+Trigger and open identity use the same order: name, email, role/branch badges,
+then independent legacy `secondaryText`. Current PNG and JSON evidence under
+`docs/review-evidence/erp-user-menu/` covers 320x568, 320x844, 390x844,
+768x900, and 1440x900 in Light/Dark and RTL/LTR. Open cases have zero trigger
+overlap, zero viewport overflow, top/bottom placement only, and the constrained
+case keeps identity visible while actions scroll.
+
+Focused verification passes 4/4 files and 57/57 tests plus Shell governance.
+Canonical verification passes 122/122 files and 775/775 tests, all lint and
+governance, both typechecks, production build, and zero warnings. Initial
+bundle is 490.24 kB / 105.58 kB estimated transfer. Product Owner visual review
+remains pending; S2 and every other Shell owner remain closed.
+
 ## Current Shell Phase S1 — ErpUserMenu identity and responsive refinement
 
 This bounded enhancement entered from clean live `main` at

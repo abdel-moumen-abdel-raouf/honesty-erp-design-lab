@@ -161,15 +161,22 @@ export function validateShellNavigation(files) {
   if (
     !userMenu.includes('arrowWidth:') ||
     !userMenu.includes('arrowSafeInset:') ||
+    !userMenu.includes("allowedPlacements: ['bottom', 'top']") ||
+    !userMenu.includes('prepareGeometry:') ||
     !userMenuStyles.includes(
       '--honesty-anchored-surface-arrow-cross-axis-center',
     )
   ) {
-    errors.push('ErpUserMenu arrow must track measured anchored-surface geometry');
+    errors.push('ErpUserMenu must use measured vertical-only anchored geometry and arrow tracking');
   }
   if (
     !userMenuStyles.includes('min-inline-size: 0') ||
-    !userMenuStyles.includes('overflow-y: auto') ||
+    !/user-menu__items[^}]*overflow(?:-y)?:\s*auto/s.test(userMenuStyles) ||
+    !(
+      /user-menu__identity-header[^}]*flex:\s*0 0 auto/s.test(userMenuStyles) ||
+      /user-menu__surface\s*>\s*\*[^}]*flex:\s*none/s.test(userMenuStyles)
+    ) ||
+    !/user-menu__items[^}]*flex:\s*(?:auto|1 1 auto)/s.test(userMenuStyles) ||
     !/user-menu__surface:popover-open[^}]*display:\s*flex/s.test(userMenuStyles) ||
     /user-menu__trigger-name[^}]*display:\s*none/s.test(userMenuStyles)
   ) {
@@ -248,7 +255,7 @@ function validFixture(overrides = new Map()) {
   );
   files.set(
     'src/app/controls/user-menu/user-menu.ts',
-    "import {ErpAvatar} from 'x'; import {ErpStatusBadge} from 'b'; import {ErpDivider} from 'z'; import {ShellAnchoredSurfaceController} from 'y'; const options = {crossAxisAlignment: 'end', arrowWidth: () => 13, arrowSafeInset: () => 16}; export class ErpUserMenu { readonly showAvatar = input(true); readonly showUserName = input(true); readonly showEmail = input(true); readonly showPresence = input(true); readonly showRoleBadge = input(true); readonly showBranchBadge = input(true); }",
+    "import {ErpAvatar} from 'x'; import {ErpStatusBadge} from 'b'; import {ErpDivider} from 'z'; import {ShellAnchoredSurfaceController} from 'y'; const options = {crossAxisAlignment: 'end', arrowWidth: () => 13, arrowSafeInset: () => 16, allowedPlacements: ['bottom', 'top'], prepareGeometry: () => undefined}; export class ErpUserMenu { readonly showAvatar = input(true); readonly showUserName = input(true); readonly showEmail = input(true); readonly showPresence = input(true); readonly showRoleBadge = input(true); readonly showBranchBadge = input(true); }",
   );
   files.set(
     'src/app/controls/user-menu/user-menu.html',
@@ -256,7 +263,7 @@ function validFixture(overrides = new Map()) {
   );
   files.set(
     'src/app/controls/user-menu/user-menu.scss',
-    '.user-menu { min-inline-size: 0; } .user-menu__items { overflow-y: auto; } .user-menu__surface:popover-open { display: flex; } .user-menu__surface::before { left: var(--honesty-anchored-surface-arrow-cross-axis-center); } @media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }',
+    '.user-menu { min-inline-size: 0; } .user-menu__identity-header { flex: 0 0 auto; } .user-menu__items { flex: 1 1 auto; overflow-y: auto; } .user-menu__surface:popover-open { display: flex; } .user-menu__surface::before { left: var(--honesty-anchored-surface-arrow-cross-axis-center); } @media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }',
   );
   files.set(
     'src/styles/foundation/components/user-menu/_tokens.scss',
@@ -287,11 +294,11 @@ function runSelfTest() {
     ['manual popover', new Map([['src/app/controls/notification-bell/notification-bell.ts', 'export class ErpNotificationBell { open(){ this.surface.showPopover(); } }']]), 'overlay engine'],
     ['missing UserMenu reference', new Map([[USER_MENU_REFERENCE, 'missing']]), 'exact-reference contract'],
     ['missing UserMenu reduced motion', new Map([['src/app/controls/user-menu/user-menu.scss', '']]), 'reduced-motion'],
-    ['missing UserMenu arrow geometry', new Map([['src/app/controls/user-menu/user-menu.ts', "import {ErpAvatar} from 'x'; import {ErpDivider} from 'z'; import {ShellAnchoredSurfaceController} from 'y'; const options = {crossAxisAlignment: 'end'}; export class ErpUserMenu {}"]]), 'arrow'],
+    ['missing UserMenu vertical geometry', new Map([['src/app/controls/user-menu/user-menu.ts', "import {ErpAvatar} from 'x'; import {ErpDivider} from 'z'; import {ShellAnchoredSurfaceController} from 'y'; const options = {crossAxisAlignment: 'end', arrowWidth: () => 13, arrowSafeInset: () => 16}; export class ErpUserMenu {}"]]), 'vertical-only'],
     ['missing UserMenu rich identity', new Map([[CONTRACTS, 'export interface ErpNavigationItem {} export interface ErpBreadcrumbItem {} export interface ErpShellUserSummary {} export interface ErpBranchOption {} export interface ErpNotificationSummary {}']]), 'rich-identity'],
     ['missing UserMenu badge reuse', new Map([['src/app/controls/user-menu/user-menu.html', '<erp-avatar></erp-avatar><erp-divider></erp-divider>']]), 'ErpStatusBadge'],
-    ['hidden UserMenu name', new Map([['src/app/controls/user-menu/user-menu.scss', '.user-menu { min-inline-size: 0; } .user-menu__items { overflow-y: auto; } .user-menu__trigger-name { display: none; } .user-menu__surface::before { left: var(--honesty-anchored-surface-arrow-cross-axis-center); } @media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }']]), 'responsive identity'],
-    ['always-visible UserMenu surface', new Map([['src/app/controls/user-menu/user-menu.scss', '.user-menu { min-inline-size: 0; } .user-menu__items { overflow-y: auto; } .user-menu__surface::before { left: var(--honesty-anchored-surface-arrow-cross-axis-center); } @media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }']]), 'open-only flex'],
+    ['hidden UserMenu name', new Map([['src/app/controls/user-menu/user-menu.scss', '.user-menu { min-inline-size: 0; } .user-menu__identity-header { flex: 0 0 auto; } .user-menu__items { flex: 1 1 auto; overflow-y: auto; } .user-menu__trigger-name { display: none; } .user-menu__surface::before { left: var(--honesty-anchored-surface-arrow-cross-axis-center); } @media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }']]), 'responsive identity'],
+    ['always-visible UserMenu surface', new Map([['src/app/controls/user-menu/user-menu.scss', '.user-menu { min-inline-size: 0; } .user-menu__identity-header { flex: 0 0 auto; } .user-menu__items { flex: 1 1 auto; overflow-y: auto; } .user-menu__surface::before { left: var(--honesty-anchored-surface-arrow-cross-axis-center); } @media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }']]), 'open-only flex'],
   ];
 
   for (const [label, overrides, expected] of invalidFixtures) {

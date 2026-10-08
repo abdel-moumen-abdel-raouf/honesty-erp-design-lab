@@ -40,6 +40,25 @@ describe('calculateAnchoredOverlayGeometry', () => {
     expect(result.placement).toBe('right');
   });
 
+  it('honors a bounded placement allow-list without changing the default policy', () => {
+    const constrained = calculateAnchoredOverlayGeometry({
+      ...base,
+      preferredPlacement: 'bottom',
+      allowedPlacements: ['bottom', 'top'],
+      surfaceWidth: 200,
+      surfaceHeight: 180,
+    });
+    const unconstrained = calculateAnchoredOverlayGeometry({
+      ...base,
+      preferredPlacement: 'bottom',
+      surfaceWidth: 200,
+      surfaceHeight: 180,
+    });
+
+    expect(['bottom', 'top']).toContain(constrained.placement);
+    expect(unconstrained.placement).toBe('right');
+  });
+
   it('orders perpendicular candidates by available room', () => {
     const result = calculateAnchoredOverlayGeometry({
       ...base,

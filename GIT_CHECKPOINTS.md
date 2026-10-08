@@ -1,5 +1,23 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Shell S1 UserMenu final popup-geometry checkpoint — 2026-10-08
+
+Entry checkpoint:
+
+- `ccddf29d22b4608016d27818b17a2584a0f06632` — clean live `main` and
+  `origin/main` before this bounded gate.
+
+Single task commit message:
+
+- `fix(shell): close UserMenu popup geometry gate`
+
+Resolve the final commit SHA from live `main` because this file is part of that
+commit. Focused verification passes 4/4 files and 57/57 tests plus Shell
+governance. Canonical verification passes 122/122 files and 775/775 tests, all
+lint/governance, both typechecks, production build, and zero warnings. Initial
+bundle is 490.24 kB / 105.58 kB estimated transfer. Product Owner visual review
+remains pending; S2 is not open.
+
 ## Shell Phase S1 ErpUserMenu identity-refinement checkpoint — 2026-10-08
 
 Entry checkpoint:

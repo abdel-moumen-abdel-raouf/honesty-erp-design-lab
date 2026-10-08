@@ -4,6 +4,41 @@ Evidence date: 2026-10-08. This directory records implementation runtime
 evidence for the Product Owner review candidate. It does not record or imply
 Product Owner visual acceptance.
 
+## S1 final popup geometry gate
+
+The current authoritative runtime record is
+`s1-final-popup-geometry.json`. The older values in
+`runtime-measurements.json` are retained only as historical provenance and are
+explicitly marked superseded for current geometry. The final gate permits only
+`bottom` and `top` placement, measures the real space on both sides of the
+trigger before surface layout, keeps the identity region fixed, and gives
+vertical scrolling only to the action-list region.
+
+All open captures have zero trigger overlap, zero surface overflow, zero page
+horizontal overflow, one primary `data-showcase-target`, no broken images, and
+no console warning, console error, or runtime exception. The rendered identity
+order in every captured case is name, email, role/branch badges, then the
+independent legacy `secondaryText` line.
+
+| Current capture | Exact condition | Measured result |
+|---|---|---|
+| `s1-final-default-rich-light-rtl-desktop-closed.png` | 1440 x 900, Light, RTL, local image, Online, closed | trigger 360 x 104 px; surface absent |
+| `s1-final-default-rich-light-rtl-desktop-open.png` | 1440 x 900, Light, RTL, local image, Online, open | top; surface 360 x 388.359 px; trigger gap 2 px; arrow delta 0 px |
+| `s1-final-long-arabic-dark-rtl-desktop-open.png` | 1440 x 900, Dark, RTL, long Arabic, Offline | top; identity 148 px; actions 207/353 px client/scroll |
+| `s1-final-long-english-dark-ltr-desktop-open.png` | 1440 x 900, Dark, LTR, long English, Online | bottom; identity 142 px; actions 214/353 px; arrow delta 0 px |
+| `s1-final-initials-light-rtl-390-open.png` | 390 x 844, Light, RTL, initials fallback | bottom; surface 360 x 360.266 px; actions scroll |
+| `s1-final-icon-dark-ltr-390-open.png` | 390 x 844, Dark, LTR, explicit icon fallback | bottom; viewport-contained; actions scroll |
+| `s1-final-long-arabic-light-rtl-320x568-open-scroll.png` | 320 x 568, Light, RTL, constrained height | bottom; trigger 239 x 126 px; identity 166 px remains visible; actions 232/353 px scroll |
+| `s1-final-long-english-dark-ltr-320x568-closed.png` | 320 x 568, Dark, LTR, long English, closed | trigger 239 x 125 px; surface absent |
+| `s1-final-default-dark-ltr-320x844-open.png` | 320 x 844, Dark, LTR, local image, Online | bottom; surface 304 x 360.266 px; actions scroll |
+| `s1-final-mixed-light-rtl-768-open.png` | 768 x 900, Light, RTL, mixed-direction identity | top; surface 360 x 388.359 px; arrow delta 0 px |
+
+An additional live 768 x 900 update changed the complete user value while the
+popup remained open. Before and after both resolved to `top`, retained a 2 px
+trigger gap, a 388.359 px contained surface, and zero overlap. The five required
+viewport sizes are protected by the focused geometry matrix: 320 x 568,
+320 x 844, 390 x 844, 768 x 900, and 1440 x 900.
+
 ## Identity and responsive refinement evidence
 
 The current bounded pass extends the evidence without reopening another Shell

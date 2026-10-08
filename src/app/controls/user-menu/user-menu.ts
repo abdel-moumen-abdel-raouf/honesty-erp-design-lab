@@ -109,6 +109,29 @@ export class ErpUserMenu implements AfterViewInit, OnDestroy {
         readShellCssLength(surface, '--honesty-user-menu-arrow-size'),
       arrowSafeInset: () =>
         readShellCssLength(surface, '--honesty-user-menu-arrow-offset'),
+      allowedPlacements: ['bottom', 'top'],
+      prepareGeometry: ({anchor, viewport}) => {
+        const inset = readShellCssLength(
+          surface,
+          '--honesty-user-menu-viewport-inset',
+        );
+        const gap = readShellCssLength(
+          surface,
+          '--honesty-user-menu-anchor-gap',
+        );
+        const availableAbove = Math.max(
+          0,
+          anchor.top - viewport.top - inset - gap,
+        );
+        const availableBelow = Math.max(
+          0,
+          viewport.bottom - anchor.bottom - inset - gap,
+        );
+        surface.style.maxBlockSize = `${Math.max(
+          availableAbove,
+          availableBelow,
+        )}px`;
+      },
       onOpenChange: (open) => this.open.set(open),
     });
     this.viewReady = true;

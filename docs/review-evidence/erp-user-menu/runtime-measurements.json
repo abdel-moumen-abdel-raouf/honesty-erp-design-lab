@@ -1,4 +1,10 @@
 {
+  "currentAuthority": {
+    "status": "SUPERSEDED_BY_S1_FINAL_POPUP_GEOMETRY",
+    "source": "s1-final-popup-geometry.json",
+    "entryHead": "ccddf29d22b4608016d27818b17a2584a0f06632",
+    "scope": "Historical measurements below remain provenance only. Current popup placement, overlap, identity-order, action-scroll, arrow, overflow, and diagnostic evidence is recorded in the named source file."
+  },
   "measurements": [
     {
       "file": "implementation-dark-rtl-desktop-open-down.png",

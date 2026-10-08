@@ -1,5 +1,19 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Shell S1 final popup-geometry binding decision — 2026-10-08
+
+`ErpUserMenu` is a vertical dropdown. Its allowed placements are bottom and
+top only; the existing shared anchored-overlay engine keeps its broader default
+for other consumers. UserMenu must measure actual available viewport block
+space before its surface is measured, keep the identity region readable and
+nonshrinking, and assign constrained scrolling only to the actions region.
+
+Trigger and open card must present identity metadata in the same order: name,
+email, role/branch badges, then optional independent `secondaryText`. Existing
+six visibility inputs, Avatar presence/fallback behavior, actions, keyboard,
+dismissal, focus return, and arrow calculation remain in force. Current runtime
+evidence and green gates do not declare visual acceptance or authorize S2.
+
 ## Shell S1 UserMenu identity-refinement binding decision — 2026-10-08
 
 The Product Owner authorizes a bounded refinement of the existing

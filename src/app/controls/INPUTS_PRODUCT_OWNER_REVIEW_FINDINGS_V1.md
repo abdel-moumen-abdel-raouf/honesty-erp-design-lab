@@ -1,5 +1,14 @@
 # Inputs Product Owner Review Findings V1
 
+## Authoritative continuity note — 2026-10-08 — UserMenu popup geometry gate
+
+No Input visual or behavioral contract changed. This bounded Shell follow-up
+changes only UserMenu's allowed placement and height preparation plus the
+shared opt-in overlay capability it consumes. All Input findings remain
+unchanged. Focused tests pass 57/57 and the canonical 122-file/775-test gate,
+typechecks, build, and zero-warning check pass. Product Owner UserMenu review is
+pending; no Input or S2 work is authorized.
+
 ## Authoritative continuity note — 2026-10-08 — Shell S1 UserMenu identity refinement
 
 This bounded task changes no Input visual or behavioral contract. It refines

@@ -1,5 +1,29 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Authoritative current execution state — 2026-10-08 — Shell S1 popup geometry gate
+
+This bounded follow-up entered from clean `main` at
+`ccddf29d22b4608016d27818b17a2584a0f06632`. `ErpUserMenu` is now a strictly
+vertical dropdown: preferred bottom, top fallback, with no left/right candidate.
+It measures real available space above/below the trigger before sizing the
+surface, keeps the identity card nonshrinking, and gives overflow scrolling to
+the keyboard-accessible actions region only. The shared overlay default remains
+unchanged for other owners.
+
+Both identity presentations use name, email, role/branch badges, then optional
+independent `secondaryText`. Current browser evidence covers the five required
+viewports, long/dynamic identities, both directions, both themes, local image,
+initials/icon fallbacks, and open/closed states. All captured open states have
+zero trigger overlap, zero surface/page overflow, one showcase target, and zero
+runtime diagnostics. The constrained 320x568 surface keeps a 166 px identity
+visible while 353 px of actions scroll within a 232 px client region.
+
+Focused verification passes 4/4 files and 57/57 tests plus Shell governance.
+Canonical verification passes all lint/governance checks, 122/122 files and
+775/775 tests, both typechecks, production build, and zero warnings. Initial
+bundle is 490.24 kB / 105.58 kB estimated transfer. Product Owner acceptance is
+pending and S2 is not open.
+
 ## Authoritative current execution state — 2026-10-08 — Shell S1 UserMenu identity refinement
 
 The bounded task entered from clean `main` at

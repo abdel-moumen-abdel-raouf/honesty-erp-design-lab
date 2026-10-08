@@ -33,6 +33,24 @@ describe('ErpUserMenu', () => {
     const name = header.querySelector('.user-menu__identity-name') as HTMLElement;
     const email = header.querySelector('.user-menu__email') as HTMLElement;
     const badges = header.querySelector('.user-menu__badges') as HTMLElement;
+    const secondary = header.querySelector(
+      '.user-menu__identity > erp-text:last-child',
+    ) as HTMLElement;
+    const triggerIdentity = fixture.nativeElement.querySelector(
+      '.user-menu__trigger-identity',
+    ) as HTMLElement;
+    const triggerName = triggerIdentity.querySelector(
+      '.user-menu__trigger-name',
+    ) as HTMLElement;
+    const triggerEmail = triggerIdentity.querySelector(
+      '.user-menu__email',
+    ) as HTMLElement;
+    const triggerBadges = triggerIdentity.querySelector(
+      '.user-menu__badges',
+    ) as HTMLElement;
+    const triggerSecondary = triggerIdentity.querySelector(
+      '.user-menu__trigger-secondary',
+    ) as HTMLElement;
 
     expect(trigger.textContent).toContain(fullName);
     expect(
@@ -45,7 +63,119 @@ describe('ErpUserMenu', () => {
     expect(avatar.compareDocumentPosition(name) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(name.compareDocumentPosition(email) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(email.compareDocumentPosition(badges) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(badges.compareDocumentPosition(secondary) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(triggerName.compareDocumentPosition(triggerEmail) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(triggerEmail.compareDocumentPosition(triggerBadges) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(triggerBadges.compareDocumentPosition(triggerSecondary) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
+
+  it.each([
+    {width: 320, height: 568, anchorTop: 220, anchorHeight: 104},
+    {width: 320, height: 844, anchorTop: 359, anchorHeight: 126},
+    {width: 390, height: 844, anchorTop: 370, anchorHeight: 104},
+    {width: 768, height: 900, anchorTop: 398, anchorHeight: 104},
+    {width: 1440, height: 900, anchorTop: 398, anchorHeight: 104},
+  ])(
+    'keeps a long-identity popup vertical, contained, and clear of its trigger at $width x $height',
+    ({width, height, anchorTop, anchorHeight}) => {
+      const previousViewport = {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      };
+      const requestFrame = vi
+        .spyOn(window, 'requestAnimationFrame')
+        .mockImplementation((callback) => {
+          callback(0);
+          return 1;
+        });
+      const fixture = TestBed.createComponent(ErpUserMenu);
+      fixture.componentRef.setInput('user', {
+        displayName: 'نادية عبد الرحمن فؤاد مسؤولة المشتريات الإقليمية',
+        secondaryText: 'إدارة سلاسل الإمداد والمشتريات',
+        email: 'nadia.abdelrahman@honesty.example',
+        roleLabel: 'مسؤولة المشتريات الإقليمية',
+        branchLabel: 'فرع القاهرة الجديدة',
+        avatarPresence: 'online',
+      });
+      fixture.componentRef.setInput('items', Array.from({length: 12}, (_, index) => ({
+        id: `action-${index}`,
+        label: `الإجراء ${index + 1}`,
+      })));
+      fixture.detectChanges();
+
+      const triggerHost = fixture.nativeElement.querySelector(
+        '.user-menu__trigger-action',
+      ) as HTMLElement;
+      const surface = fixture.nativeElement.querySelector(
+        '.user-menu__surface',
+      ) as HTMLElement;
+      installPopover(surface);
+      surface.style.setProperty('--honesty-user-menu-arrow-size', '13px');
+      surface.style.setProperty('--honesty-user-menu-arrow-offset', '16px');
+      surface.style.setProperty('--honesty-user-menu-anchor-gap', '2px');
+      surface.style.setProperty('--honesty-user-menu-viewport-inset', '8px');
+      const triggerWidth = Math.min(360, width - 48);
+      const triggerLeft = width - triggerWidth - 24;
+      vi.spyOn(triggerHost, 'getBoundingClientRect').mockReturnValue({
+        left: triggerLeft,
+        top: anchorTop,
+        right: triggerLeft + triggerWidth,
+        bottom: anchorTop + anchorHeight,
+        width: triggerWidth,
+        height: anchorHeight,
+        x: triggerLeft,
+        y: anchorTop,
+        toJSON: () => ({}),
+      });
+      vi.spyOn(surface, 'getBoundingClientRect').mockImplementation(() => {
+        const measuredHeight = Number.parseFloat(surface.style.maxBlockSize);
+        const measuredWidth = Math.min(360, width - 16);
+        return {
+          left: 0,
+          top: 0,
+          right: measuredWidth,
+          bottom: measuredHeight,
+          width: measuredWidth,
+          height: measuredHeight,
+          x: 0,
+          y: 0,
+          toJSON: () => ({}),
+        };
+      });
+      Object.defineProperties(window, {
+        innerWidth: {configurable: true, value: width},
+        innerHeight: {configurable: true, value: height},
+      });
+
+      try {
+        (fixture.nativeElement.querySelector(
+          '.user-menu__trigger button',
+        ) as HTMLButtonElement).click();
+
+        const placement = surface.dataset['overlayPlacement'];
+        const surfaceTop = Number.parseFloat(surface.style.top);
+        const surfaceHeight = Number.parseFloat(surface.style.maxBlockSize);
+        const surfaceBottom = surfaceTop + surfaceHeight;
+        const triggerBottom = anchorTop + anchorHeight;
+
+        expect(['bottom', 'top']).toContain(placement);
+        expect(surfaceTop).toBeGreaterThanOrEqual(8);
+        expect(surfaceBottom).toBeLessThanOrEqual(height - 8);
+        if (placement === 'bottom') {
+          expect(surfaceTop).toBeGreaterThanOrEqual(triggerBottom + 2);
+        } else {
+          expect(surfaceBottom).toBeLessThanOrEqual(anchorTop - 2);
+        }
+        expect(surface.style.maxBlockSize).not.toBe('');
+      } finally {
+        Object.defineProperties(window, {
+          innerWidth: {configurable: true, value: previousViewport.width},
+          innerHeight: {configurable: true, value: previousViewport.height},
+        });
+        requestFrame.mockRestore();
+      }
+    },
+  );
 
   it('applies all visibility inputs to the same trigger and identity card without placeholders', () => {
     const fixture = TestBed.createComponent(ErpUserMenu);
