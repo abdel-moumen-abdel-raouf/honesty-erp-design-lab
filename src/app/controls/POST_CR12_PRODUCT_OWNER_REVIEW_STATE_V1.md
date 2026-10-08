@@ -1,5 +1,29 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Authoritative current review state — 2026-10-08 — UserMenu identity refinement
+
+The existing `ErpUserMenu` remains the sole Shell S1 Product Owner visual
+candidate. The bounded enhancement entered at
+`b210bb1311841dea836379e996f53aaa5a7ddf74` and adds responsive trigger
+identity, optional email/role/branch/presence, six default-true visibility
+inputs, and one-target interactive evidence. It does not change any other
+component's visual status.
+
+Runtime evidence covers Light/Dark, RTL/LTR, 320/390/768/desktop, open/closed,
+long and mixed-direction identities, dynamic changes while open, the corrected
+arrow, and zero horizontal overflow. This remains technical evidence only.
+Product Owner visual acceptance is pending and S2 stays closed.
+
+The candidate passes 27/27 focused tests and the full 122/122-file,
+768/768-test canonical gate, all lint/governance, both typechecks, production
+build, and zero warnings. Initial bundle is 490.24 kB / 105.57 kB estimated
+transfer.
+
+The Product Owner also records that unavailable Gxon evidence no longer blocks
+a future separately authorized AppFooter or QuickActionsBar. Those future
+owners require explicit design decisions and may not use fabricated Gxon
+measurements; later Gxon recovery is not automatic reopen authority.
+
 ## Authoritative current review state — 2026-10-08 — Shell S1 final evidence closure
 
 The existing `ErpUserMenu` remains the sole bounded Shell S1 visual candidate.

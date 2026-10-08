@@ -9,6 +9,128 @@ describe('ErpUserMenu', () => {
     });
   }
 
+  it('renders the rich identity in the authorized order and keeps the full name accessible', () => {
+    const fixture = TestBed.createComponent(ErpUserMenu);
+    const fullName = 'نادية عبد الرحمن فؤاد مسؤولة المشتريات الإقليمية';
+    fixture.componentRef.setInput('user', {
+      displayName: fullName,
+      secondaryText: 'إدارة سلاسل الإمداد',
+      email: 'nadia.abdelrahman@honesty.example',
+      roleLabel: 'مسؤولة المشتريات الإقليمية',
+      branchLabel: 'فرع القاهرة الجديدة',
+      avatarSrc: '/assets/honesty-erp-avatars/users/female/avatar-21.png',
+      avatarPresence: 'online',
+    });
+    fixture.detectChanges();
+
+    const trigger = fixture.nativeElement.querySelector(
+      '.user-menu__trigger button',
+    ) as HTMLButtonElement;
+    const header = fixture.nativeElement.querySelector(
+      '.user-menu__identity-header',
+    ) as HTMLElement;
+    const avatar = header.querySelector('erp-avatar') as HTMLElement;
+    const name = header.querySelector('.user-menu__identity-name') as HTMLElement;
+    const email = header.querySelector('.user-menu__email') as HTMLElement;
+    const badges = header.querySelector('.user-menu__badges') as HTMLElement;
+
+    expect(trigger.textContent).toContain(fullName);
+    expect(
+      fixture.nativeElement.querySelector('.user-menu__trigger-name')
+        .getAttribute('data-text-overflow'),
+    ).toBe('ellipsis');
+    expect(avatar.getAttribute('data-avatar-presence')).toBe('online');
+    expect(email.getAttribute('dir')).toBe('ltr');
+    expect(header.querySelectorAll('erp-status-badge')).toHaveLength(2);
+    expect(avatar.compareDocumentPosition(name) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(name.compareDocumentPosition(email) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(email.compareDocumentPosition(badges) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
+  it('applies all visibility inputs to the same trigger and identity card without placeholders', () => {
+    const fixture = TestBed.createComponent(ErpUserMenu);
+    fixture.componentRef.setInput('user', {
+      displayName: 'أميرة حداد',
+      email: 'amira@honesty.example',
+      roleLabel: 'مديرة المالية',
+      branchLabel: 'الفرع الرئيسي',
+      avatarPresence: 'away',
+    });
+    for (const inputName of [
+      'showAvatar',
+      'showUserName',
+      'showEmail',
+      'showPresence',
+      'showRoleBadge',
+      'showBranchBadge',
+    ]) {
+      fixture.componentRef.setInput(inputName, false);
+    }
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelectorAll('erp-avatar')).toHaveLength(0);
+    expect(fixture.nativeElement.querySelectorAll('.user-menu__trigger-name')).toHaveLength(0);
+    expect(fixture.nativeElement.querySelectorAll('.user-menu__email')).toHaveLength(0);
+    expect(fixture.nativeElement.querySelectorAll('erp-status-badge')).toHaveLength(0);
+    expect(
+      (fixture.nativeElement.querySelector(
+        '.user-menu__trigger button',
+      ) as HTMLButtonElement).textContent,
+    ).toContain('أميرة حداد');
+  });
+
+  it.each(['online', 'away', 'busy', 'offline'] as const)(
+    'forwards the explicit %s presence state without inventing one',
+    (presence) => {
+      const fixture = TestBed.createComponent(ErpUserMenu);
+      fixture.componentRef.setInput('user', {
+        displayName: 'أميرة حداد',
+        avatarPresence: presence,
+      });
+      fixture.detectChanges();
+
+      const avatars = (fixture.nativeElement as HTMLElement)
+        .querySelectorAll<HTMLElement>('erp-avatar');
+      expect(avatars).toHaveLength(2);
+      expect(
+        Array.from(avatars).every(
+          (avatar) => avatar.getAttribute('data-avatar-presence') === presence,
+        ),
+      ).toBe(true);
+    },
+  );
+
+  it('uses initials by default and only uses an icon fallback when explicitly supplied', () => {
+    const fixture = TestBed.createComponent(ErpUserMenu);
+    fixture.componentRef.setInput('user', {displayName: 'عمر ناصر'});
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelectorAll('.avatar__initials')).toHaveLength(2);
+    expect(fixture.nativeElement.querySelectorAll('.avatar__icon')).toHaveLength(0);
+
+    fixture.componentRef.setInput('user', {
+      displayName: 'حساب الدعم',
+      fallbackIcon: 'user',
+    });
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelectorAll('.avatar__icon')).toHaveLength(2);
+    expect(fixture.nativeElement.querySelectorAll('.avatar__initials')).toHaveLength(0);
+  });
+
+  it('does not invent identity metadata or presence when optional data is absent', () => {
+    const fixture = TestBed.createComponent(ErpUserMenu);
+    fixture.componentRef.setInput('user', {displayName: 'ليلى محمود'});
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelectorAll('.user-menu__email')).toHaveLength(0);
+    expect(fixture.nativeElement.querySelectorAll('erp-status-badge')).toHaveLength(0);
+    expect(
+      Array.from((fixture.nativeElement as HTMLElement)
+        .querySelectorAll<HTMLElement>('erp-avatar')).every(
+        (avatar) => !avatar.hasAttribute('data-avatar-presence'),
+      ),
+    ).toBe(true);
+  });
+
   it('composes Avatar, opens an anchored action list, and emits enabled actions', () => {
     const fixture = TestBed.createComponent(ErpUserMenu);
     fixture.componentRef.setInput('user', {
@@ -212,6 +334,108 @@ describe('ErpUserMenu', () => {
           '--honesty-anchored-surface-arrow-cross-axis-center',
         ),
       ).toBe('308px');
+    } finally {
+      Object.defineProperties(window, {
+        innerWidth: {configurable: true, value: previousViewport.width},
+        innerHeight: {configurable: true, value: previousViewport.height},
+      });
+      requestFrame.mockRestore();
+    }
+  });
+
+  it('repositions the existing anchored surface after live identity and visibility changes', () => {
+    const previousViewport = {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    };
+    const frames: FrameRequestCallback[] = [];
+    const requestFrame = vi
+      .spyOn(window, 'requestAnimationFrame')
+      .mockImplementation((callback) => {
+        frames.push(callback);
+        return frames.length;
+      });
+    const flushFrames = (timestamp: number): void => {
+      let callback = frames.shift();
+      while (callback) {
+        callback(timestamp);
+        callback = frames.shift();
+      }
+    };
+    const fixture = TestBed.createComponent(ErpUserMenu);
+    fixture.componentRef.setInput('user', {displayName: 'أميرة حداد'});
+    fixture.detectChanges();
+
+    const triggerHost = fixture.nativeElement.querySelector(
+      '.user-menu__trigger-action',
+    ) as HTMLElement;
+    const surface = fixture.nativeElement.querySelector(
+      '.user-menu__surface',
+    ) as HTMLElement;
+    installPopover(surface);
+    surface.style.setProperty('--honesty-user-menu-arrow-size', '13px');
+    surface.style.setProperty('--honesty-user-menu-arrow-offset', '16px');
+    surface.style.setProperty('--honesty-user-menu-anchor-gap', '2px');
+    surface.style.setProperty('--honesty-user-menu-viewport-inset', '8px');
+    let anchorLeft = 80;
+    vi.spyOn(triggerHost, 'getBoundingClientRect').mockImplementation(() => ({
+      left: anchorLeft,
+      top: 40,
+      right: anchorLeft + 160,
+      bottom: 96,
+      width: 160,
+      height: 56,
+      x: anchorLeft,
+      y: 40,
+      toJSON: () => ({}),
+    }));
+    vi.spyOn(surface, 'getBoundingClientRect').mockReturnValue({
+      left: 0,
+      top: 0,
+      right: 360,
+      bottom: 360,
+      width: 360,
+      height: 360,
+      x: 0,
+      y: 0,
+      toJSON: () => ({}),
+    });
+    Object.defineProperties(window, {
+      innerWidth: {configurable: true, value: 800},
+      innerHeight: {configurable: true, value: 700},
+    });
+
+    try {
+      (fixture.nativeElement.querySelector(
+        '.user-menu__trigger button',
+      ) as HTMLButtonElement).click();
+      flushFrames(0);
+      const firstCenter = surface.style.getPropertyValue(
+        '--honesty-anchored-surface-arrow-cross-axis-center',
+      );
+
+      anchorLeft = 480;
+      fixture.componentRef.setInput('user', {
+        displayName: 'Alexandria Regional Finance Operations Manager',
+        email: 'alexandria.finance.manager@honesty.example',
+        roleLabel: 'Finance Operations',
+      });
+      fixture.detectChanges();
+      flushFrames(16);
+      const updatedCenter = surface.style.getPropertyValue(
+        '--honesty-anchored-surface-arrow-cross-axis-center',
+      );
+
+      fixture.componentRef.setInput('showAvatar', false);
+      fixture.componentRef.setInput('showRoleBadge', false);
+      fixture.detectChanges();
+      flushFrames(32);
+
+      expect(firstCenter).not.toBe(updatedCenter);
+      expect(updatedCenter).not.toBe('');
+      expect(fixture.componentInstance.open()).toBe(true);
+      expect(fixture.nativeElement.querySelectorAll('erp-avatar')).toHaveLength(0);
+      expect(fixture.nativeElement.querySelectorAll('erp-status-badge')).toHaveLength(0);
     } finally {
       Object.defineProperties(window, {
         innerWidth: {configurable: true, value: previousViewport.width},

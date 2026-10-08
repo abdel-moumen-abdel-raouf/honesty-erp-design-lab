@@ -4,6 +4,43 @@ Evidence date: 2026-10-08. This directory records implementation runtime
 evidence for the Product Owner review candidate. It does not record or imply
 Product Owner visual acceptance.
 
+## Identity and responsive refinement evidence
+
+The current bounded pass extends the evidence without reopening another Shell
+owner. The browser workbench retained one primary target while its single live
+instance was changed among a local-image user, initials fallback, explicit icon
+fallback, all four presence states, long Arabic/English/mixed-direction names,
+and each of the six visibility inputs.
+
+The new browser captures were reviewed in-session and their reproducible box
+measurements are stored in the `identityRefinement` section of
+`runtime-measurements.json`. The persisted measurement set covers 320 x 844,
+390 x 844, 768 x 900, and 1440 x 900 in Light/Dark and RTL/LTR, including open
+and closed states. No new production image asset or vendor asset was added.
+
+Key results:
+
+- trigger padding is 8 px block / 12 px inline with a 12 px identity gap;
+- the trigger grows from 103 to 126 px for the measured rich/long identities
+  instead of forcing the former 40 px height;
+- 320 px trigger width is 239 px and 390 px long-English width is 309 px;
+- desktop trigger width is capped at 360 px;
+- popup width is 360 px on desktop and viewport minus 8 px per edge on narrow;
+- 320/390/768/1440 horizontal overflow is 0 px;
+- measured top and bottom desktop arrow deltas remain exactly 0 px after live
+  identity changes;
+- the identity region remains visible and the action list owns vertical
+  scrolling when content height exceeds available space;
+- console errors, console warnings, and broken images are zero in the captured
+  runtime session.
+
+The post-build 320 x 844 regression check measured the default rich-identity
+trigger at 239 x 104 px and the open surface at 304 x 490 px with an 8 px
+physical viewport inset and zero horizontal overflow. After Escape, the same
+surface measured 0 x 0 px, confirming that the closed native popover does not
+remain visually rendered. Console warnings/errors and broken images remained
+zero.
+
 ## Captures
 
 | File | Viewport / mode | State |

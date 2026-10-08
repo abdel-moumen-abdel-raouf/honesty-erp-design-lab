@@ -4909,6 +4909,78 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "hasDefault": true,
           "defaultValue": "قائمة المستخدم",
           "defaultExpression": "'قائمة المستخدم'"
+        },
+        {
+          "name": "showAvatar",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
+        },
+        {
+          "name": "showUserName",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
+        },
+        {
+          "name": "showEmail",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
+        },
+        {
+          "name": "showPresence",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
+        },
+        {
+          "name": "showRoleBadge",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
+        },
+        {
+          "name": "showBranchBadge",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         }
       ],
       "outputs": [
@@ -4934,11 +5006,13 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "ErpButton",
       "ErpDivider",
       "ErpShellUserSummary",
+      "ErpStatusBadge",
       "ErpText",
       "ErpUserMenuItem",
       "erp-avatar",
       "erp-button",
       "erp-divider",
+      "erp-status-badge",
       "erp-text"
     ],
     "nativeElementsOwned": [
@@ -4954,7 +5028,14 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseLoader": "user-menu",
     "visualReference": "src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md",
     "visualStatus": "PENDING",
-    "showcaseFacets": [],
+    "showcaseFacets": [
+      "showAvatar",
+      "showUserName",
+      "showEmail",
+      "showPresence",
+      "showRoleBadge",
+      "showBranchBadge"
+    ],
     "showcaseCases": [
       {
         "id": "default",
@@ -4962,8 +5043,12 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "inputs": {
           "user": {
             "displayName": "أميرة حداد",
-            "secondaryText": "مديرة المالية",
-            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png"
+            "secondaryText": "الحساب المؤسسي",
+            "email": "amira.haddad@honesty.example",
+            "roleLabel": "مديرة المالية",
+            "branchLabel": "الفرع الرئيسي",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "avatarPresence": "online"
           },
           "items": [
             {
@@ -5003,48 +5088,296 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         }
       },
       {
+        "id": "local-image-online",
+        "label": "صورة محلية — متصل",
+        "inputs": {
+          "user": {
+            "displayName": "أميرة حداد",
+            "secondaryText": "الحساب المؤسسي",
+            "email": "amira.haddad@honesty.example",
+            "roleLabel": "مديرة المالية",
+            "branchLabel": "الفرع الرئيسي",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "avatarPresence": "online"
+          }
+        }
+      },
+      {
+        "id": "initials-away",
+        "label": "أحرف أولى — بعيد",
+        "inputs": {
+          "user": {
+            "displayName": "عمر ناصر",
+            "secondaryText": "فريق العمليات",
+            "email": "omar.nasser@honesty.example",
+            "roleLabel": "مسؤول المخزون",
+            "branchLabel": "فرع الإسكندرية",
+            "avatarPresence": "away"
+          }
+        }
+      },
+      {
+        "id": "explicit-icon-busy",
+        "label": "أيقونة صريحة — مشغول",
+        "inputs": {
+          "user": {
+            "displayName": "حساب الدعم",
+            "secondaryText": "هوية خدمة داخلية",
+            "email": "support@honesty.example",
+            "roleLabel": "دعم النظام",
+            "branchLabel": "المركز الرئيسي",
+            "fallbackIcon": "user",
+            "avatarPresence": "busy"
+          }
+        }
+      },
+      {
+        "id": "long-arabic-offline",
+        "label": "اسم عربي طويل — غير متصل",
+        "inputs": {
+          "user": {
+            "displayName": "نادية عبد الرحمن فؤاد مسؤولة المشتريات الإقليمية",
+            "secondaryText": "إدارة سلاسل الإمداد والمشتريات",
+            "email": "nadia.abdelrahman@honesty.example",
+            "roleLabel": "مسؤولة المشتريات الإقليمية",
+            "branchLabel": "فرع القاهرة الجديدة",
+            "avatarPresence": "offline"
+          }
+        }
+      },
+      {
+        "id": "long-english-online",
+        "label": "اسم إنجليزي طويل — متصل",
+        "inputs": {
+          "user": {
+            "displayName": "Alexandria Regional Finance Operations Manager",
+            "secondaryText": "Regional finance operations",
+            "email": "alexandria.finance.manager@honesty.example",
+            "roleLabel": "Finance Operations",
+            "branchLabel": "Alexandria Branch",
+            "avatarPresence": "online"
+          }
+        }
+      },
+      {
+        "id": "mixed-direction-away",
+        "label": "اسم مختلط الاتجاه — بعيد",
+        "inputs": {
+          "user": {
+            "displayName": "ليلى Mahmoud — Procurement Operations",
+            "secondaryText": "المشتريات · Regional Office",
+            "email": "leila.mahmoud@honesty.example",
+            "roleLabel": "Procurement Lead",
+            "branchLabel": "فرع الجيزة · Giza",
+            "avatarPresence": "away"
+          }
+        }
+      },
+      {
+        "id": "showAvatar-false",
+        "label": "showAvatar: false",
+        "inputs": {
+          "user": {
+            "displayName": "أميرة حداد",
+            "secondaryText": "الحساب المؤسسي",
+            "email": "amira.haddad@honesty.example",
+            "roleLabel": "مديرة المالية",
+            "branchLabel": "الفرع الرئيسي",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "avatarPresence": "online"
+          },
+          "showAvatar": false
+        }
+      },
+      {
+        "id": "showAvatar-true",
+        "label": "showAvatar: true",
+        "inputs": {
+          "user": {
+            "displayName": "أميرة حداد",
+            "secondaryText": "الحساب المؤسسي",
+            "email": "amira.haddad@honesty.example",
+            "roleLabel": "مديرة المالية",
+            "branchLabel": "الفرع الرئيسي",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "avatarPresence": "online"
+          },
+          "showAvatar": true
+        }
+      },
+      {
+        "id": "showUserName-false",
+        "label": "showUserName: false",
+        "inputs": {
+          "user": {
+            "displayName": "أميرة حداد",
+            "secondaryText": "الحساب المؤسسي",
+            "email": "amira.haddad@honesty.example",
+            "roleLabel": "مديرة المالية",
+            "branchLabel": "الفرع الرئيسي",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "avatarPresence": "online"
+          },
+          "showUserName": false
+        }
+      },
+      {
+        "id": "showUserName-true",
+        "label": "showUserName: true",
+        "inputs": {
+          "user": {
+            "displayName": "أميرة حداد",
+            "secondaryText": "الحساب المؤسسي",
+            "email": "amira.haddad@honesty.example",
+            "roleLabel": "مديرة المالية",
+            "branchLabel": "الفرع الرئيسي",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "avatarPresence": "online"
+          },
+          "showUserName": true
+        }
+      },
+      {
+        "id": "showEmail-false",
+        "label": "showEmail: false",
+        "inputs": {
+          "user": {
+            "displayName": "أميرة حداد",
+            "secondaryText": "الحساب المؤسسي",
+            "email": "amira.haddad@honesty.example",
+            "roleLabel": "مديرة المالية",
+            "branchLabel": "الفرع الرئيسي",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "avatarPresence": "online"
+          },
+          "showEmail": false
+        }
+      },
+      {
+        "id": "showEmail-true",
+        "label": "showEmail: true",
+        "inputs": {
+          "user": {
+            "displayName": "أميرة حداد",
+            "secondaryText": "الحساب المؤسسي",
+            "email": "amira.haddad@honesty.example",
+            "roleLabel": "مديرة المالية",
+            "branchLabel": "الفرع الرئيسي",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "avatarPresence": "online"
+          },
+          "showEmail": true
+        }
+      },
+      {
+        "id": "showPresence-false",
+        "label": "showPresence: false",
+        "inputs": {
+          "user": {
+            "displayName": "أميرة حداد",
+            "secondaryText": "الحساب المؤسسي",
+            "email": "amira.haddad@honesty.example",
+            "roleLabel": "مديرة المالية",
+            "branchLabel": "الفرع الرئيسي",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "avatarPresence": "online"
+          },
+          "showPresence": false
+        }
+      },
+      {
+        "id": "showPresence-true",
+        "label": "showPresence: true",
+        "inputs": {
+          "user": {
+            "displayName": "أميرة حداد",
+            "secondaryText": "الحساب المؤسسي",
+            "email": "amira.haddad@honesty.example",
+            "roleLabel": "مديرة المالية",
+            "branchLabel": "الفرع الرئيسي",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "avatarPresence": "online"
+          },
+          "showPresence": true
+        }
+      },
+      {
+        "id": "showRoleBadge-false",
+        "label": "showRoleBadge: false",
+        "inputs": {
+          "user": {
+            "displayName": "أميرة حداد",
+            "secondaryText": "الحساب المؤسسي",
+            "email": "amira.haddad@honesty.example",
+            "roleLabel": "مديرة المالية",
+            "branchLabel": "الفرع الرئيسي",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "avatarPresence": "online"
+          },
+          "showRoleBadge": false
+        }
+      },
+      {
+        "id": "showRoleBadge-true",
+        "label": "showRoleBadge: true",
+        "inputs": {
+          "user": {
+            "displayName": "أميرة حداد",
+            "secondaryText": "الحساب المؤسسي",
+            "email": "amira.haddad@honesty.example",
+            "roleLabel": "مديرة المالية",
+            "branchLabel": "الفرع الرئيسي",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "avatarPresence": "online"
+          },
+          "showRoleBadge": true
+        }
+      },
+      {
+        "id": "showBranchBadge-false",
+        "label": "showBranchBadge: false",
+        "inputs": {
+          "user": {
+            "displayName": "أميرة حداد",
+            "secondaryText": "الحساب المؤسسي",
+            "email": "amira.haddad@honesty.example",
+            "roleLabel": "مديرة المالية",
+            "branchLabel": "الفرع الرئيسي",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "avatarPresence": "online"
+          },
+          "showBranchBadge": false
+        }
+      },
+      {
+        "id": "showBranchBadge-true",
+        "label": "showBranchBadge: true",
+        "inputs": {
+          "user": {
+            "displayName": "أميرة حداد",
+            "secondaryText": "الحساب المؤسسي",
+            "email": "amira.haddad@honesty.example",
+            "roleLabel": "مديرة المالية",
+            "branchLabel": "الفرع الرئيسي",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "avatarPresence": "online"
+          },
+          "showBranchBadge": true
+        }
+      },
+      {
         "id": "open-false",
         "label": "open: false",
         "inputs": {
           "user": {
             "displayName": "أميرة حداد",
-            "secondaryText": "مديرة المالية",
-            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png"
+            "secondaryText": "الحساب المؤسسي",
+            "email": "amira.haddad@honesty.example",
+            "roleLabel": "مديرة المالية",
+            "branchLabel": "الفرع الرئيسي",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "avatarPresence": "online"
           },
-          "items": [
-            {
-              "id": "profile",
-              "label": "الملف الشخصي",
-              "icon": "user"
-            },
-            {
-              "id": "settings",
-              "label": "الإعدادات",
-              "icon": "settings"
-            },
-            {
-              "id": "dashboard",
-              "label": "لوحة التحكم",
-              "icon": "dashboard"
-            },
-            {
-              "id": "earnings",
-              "label": "الأرباح",
-              "icon": "wallet"
-            },
-            {
-              "id": "downloads",
-              "label": "التنزيلات",
-              "icon": "download"
-            },
-            {
-              "id": "logout",
-              "label": "تسجيل الخروج",
-              "icon": "logout",
-              "tone": "danger",
-              "dividerBefore": true
-            }
-          ],
           "open": false
         }
       },
@@ -5054,43 +5387,13 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "inputs": {
           "user": {
             "displayName": "أميرة حداد",
-            "secondaryText": "مديرة المالية",
-            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png"
+            "secondaryText": "الحساب المؤسسي",
+            "email": "amira.haddad@honesty.example",
+            "roleLabel": "مديرة المالية",
+            "branchLabel": "الفرع الرئيسي",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "avatarPresence": "online"
           },
-          "items": [
-            {
-              "id": "profile",
-              "label": "الملف الشخصي",
-              "icon": "user"
-            },
-            {
-              "id": "settings",
-              "label": "الإعدادات",
-              "icon": "settings"
-            },
-            {
-              "id": "dashboard",
-              "label": "لوحة التحكم",
-              "icon": "dashboard"
-            },
-            {
-              "id": "earnings",
-              "label": "الأرباح",
-              "icon": "wallet"
-            },
-            {
-              "id": "downloads",
-              "label": "التنزيلات",
-              "icon": "download"
-            },
-            {
-              "id": "logout",
-              "label": "تسجيل الخروج",
-              "icon": "logout",
-              "tone": "danger",
-              "dividerBefore": true
-            }
-          ],
           "open": true
         }
       }
@@ -5133,11 +5436,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         }
       ],
       "label": "قائمة المستخدم",
+      "showAvatar": true,
+      "showUserName": true,
+      "showEmail": true,
+      "showPresence": true,
+      "showRoleBadge": true,
+      "showBranchBadge": true,
       "open": true,
       "user": {
         "displayName": "أميرة حداد",
-        "secondaryText": "مديرة المالية",
-        "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png"
+        "secondaryText": "الحساب المؤسسي",
+        "email": "amira.haddad@honesty.example",
+        "roleLabel": "مديرة المالية",
+        "branchLabel": "الفرع الرئيسي",
+        "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+        "avatarPresence": "online"
       }
     },
     "showcaseControls": [
@@ -5151,8 +5464,12 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "options": [],
         "initialValue": {
           "displayName": "أميرة حداد",
-          "secondaryText": "مديرة المالية",
-          "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png"
+          "secondaryText": "الحساب المؤسسي",
+          "email": "amira.haddad@honesty.example",
+          "roleLabel": "مديرة المالية",
+          "branchLabel": "الفرع الرئيسي",
+          "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+          "avatarPresence": "online"
         }
       },
       {
@@ -5209,6 +5526,84 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "initialValue": "قائمة المستخدم"
       },
       {
+        "name": "showAvatar",
+        "label": "showAvatar",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "showUserName",
+        "label": "showUserName",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "showEmail",
+        "label": "showEmail",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "showPresence",
+        "label": "showPresence",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "showRoleBadge",
+        "label": "showRoleBadge",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "showBranchBadge",
+        "label": "showBranchBadge",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
         "name": "open",
         "label": "open",
         "source": "model",
@@ -5220,6 +5615,23 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "true"
         ],
         "initialValue": true
+      },
+      {
+        "name": "$userPreset",
+        "label": "نموذج الهوية",
+        "source": "preview",
+        "kind": "select",
+        "required": true,
+        "type": "UserMenu showcase preset",
+        "options": [
+          "صورة محلية — متصل",
+          "أحرف أولى — بعيد",
+          "أيقونة صريحة — مشغول",
+          "اسم عربي طويل — غير متصل",
+          "اسم إنجليزي طويل — متصل",
+          "اسم مختلط الاتجاه — بعيد"
+        ],
+        "initialValue": "صورة محلية — متصل"
       },
       {
         "name": "$previewDirection",
@@ -5239,7 +5651,13 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredInputs": [
         "user",
         "items",
-        "label"
+        "label",
+        "showAvatar",
+        "showUserName",
+        "showEmail",
+        "showPresence",
+        "showRoleBadge",
+        "showBranchBadge"
       ],
       "coveredModels": [
         "open"
@@ -5247,11 +5665,61 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredOutputs": [
         "actionActivated"
       ],
-      "coveredValues": {},
-      "coveredStates": [],
+      "coveredValues": {
+        "showAvatar": [
+          "false",
+          "true"
+        ],
+        "showUserName": [
+          "false",
+          "true"
+        ],
+        "showEmail": [
+          "false",
+          "true"
+        ],
+        "showPresence": [
+          "false",
+          "true"
+        ],
+        "showRoleBadge": [
+          "false",
+          "true"
+        ],
+        "showBranchBadge": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "showAvatar",
+        "showUserName",
+        "showEmail",
+        "showPresence",
+        "showRoleBadge",
+        "showBranchBadge"
+      ],
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [
         "default",
+        "local-image-online",
+        "initials-away",
+        "explicit-icon-busy",
+        "long-arabic-offline",
+        "long-english-online",
+        "mixed-direction-away",
+        "showAvatar-false",
+        "showAvatar-true",
+        "showUserName-false",
+        "showUserName-true",
+        "showEmail-false",
+        "showEmail-true",
+        "showPresence-false",
+        "showPresence-true",
+        "showRoleBadge-false",
+        "showRoleBadge-true",
+        "showBranchBadge-false",
+        "showBranchBadge-true",
         "open-false",
         "open-true"
       ],

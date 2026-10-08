@@ -1,5 +1,19 @@
 # Next Component Reference Batch V1
 
+## Authoritative current reference gate — 2026-10-08 — UserMenu identity review only
+
+`ErpUserMenu` remains the sole open visual candidate. The bounded refinement
+entered at `b210bb1311841dea836379e996f53aaa5a7ddf74` and adds only the
+Product Owner-authorized responsive identity, optional metadata, visibility
+controls, dedicated evidence, and direct verification. Stop at external review
+of `/components/user-menu`; S2 and every other component wave remain closed.
+
+Gxon is currently unavailable and no longer blocks a future independently
+authorized AppFooter or QuickActionsBar. No implementation is authorized here;
+future geometry must be explicitly designed and recorded rather than fabricated
+from inaccessible Gxon material. Later reference recovery alone is not reopen
+authority.
+
 ## Authoritative current reference gate — 2026-10-08 — Shell S1 review only
 
 `ErpUserMenu` is the sole open production visual owner. Its final evidence

@@ -1,19 +1,78 @@
 <div class="user-menu__trigger">
-  <erp-avatar
-    class="user-menu__trigger-avatar"
-    [name]="user().displayName"
-    [src]="user().avatarSrc ?? null"
-    [fallbackIcon]="user().fallbackIcon ?? 'user'"
-    presentation="user-menu-trigger"
-    [bordered]="false"
-  />
-  <erp-text class="user-menu__trigger-name" type="span" weight="medium">
-    {{ user().displayName }}
-  </erp-text>
+  @if (showAvatar()) {
+    <erp-avatar
+      class="user-menu__trigger-avatar"
+      [name]="user().displayName"
+      [src]="user().avatarSrc ?? null"
+      [fallbackIcon]="user().fallbackIcon ?? null"
+      [presence]="showPresence() ? user().avatarPresence ?? null : null"
+      presentation="user-menu-trigger"
+      [bordered]="false"
+    />
+  }
+  <span class="user-menu__trigger-identity">
+    @if (showUserName()) {
+      <erp-text
+        class="user-menu__trigger-name"
+        type="span"
+        weight="medium"
+        overflow="ellipsis"
+        [attr.aria-label]="user().displayName"
+      >
+        {{ user().displayName }}
+      </erp-text>
+    }
+    @if (user().secondaryText) {
+      <erp-text
+        class="user-menu__trigger-secondary"
+        type="caption"
+        tone="secondary"
+        overflow="ellipsis"
+      >
+        {{ user().secondaryText }}
+      </erp-text>
+    }
+    @if (showEmail() && user().email) {
+      <erp-text
+        class="user-menu__email user-menu__email--trigger"
+        type="caption"
+        tone="secondary"
+        overflow="ellipsis"
+        direction="ltr"
+      >
+        {{ user().email }}
+      </erp-text>
+    }
+    @if (
+      (showRoleBadge() && user().roleLabel) ||
+      (showBranchBadge() && user().branchLabel)
+    ) {
+      <span class="user-menu__badges user-menu__badges--trigger">
+        @if (showRoleBadge() && user().roleLabel) {
+          <erp-status-badge
+            [label]="user().roleLabel!"
+            tone="brand"
+            variant="soft"
+            size="sm"
+            shape="pill"
+          />
+        }
+        @if (showBranchBadge() && user().branchLabel) {
+          <erp-status-badge
+            [label]="user().branchLabel!"
+            tone="neutral"
+            variant="soft"
+            size="sm"
+            shape="pill"
+          />
+        }
+      </span>
+    }
+  </span>
   <erp-button
     #trigger
     class="user-menu__trigger-action"
-    [label]="label()"
+    [label]="triggerAccessibleLabel()"
     variant="ghost"
     tone="neutral"
     presentation="user-menu-trigger"
@@ -36,15 +95,63 @@
   (keydown)="handleMenuKeydown($event)"
 >
   <header class="user-menu__identity-header">
-    <erp-avatar
-      [name]="user().displayName"
-      [src]="user().avatarSrc ?? null"
-      [fallbackIcon]="user().fallbackIcon ?? 'user'"
-      presentation="user-menu-identity"
-      [bordered]="false"
-    />
+    @if (showAvatar()) {
+      <erp-avatar
+        [name]="user().displayName"
+        [src]="user().avatarSrc ?? null"
+        [fallbackIcon]="user().fallbackIcon ?? null"
+        [presence]="showPresence() ? user().avatarPresence ?? null : null"
+        presentation="user-menu-identity"
+        [bordered]="false"
+      />
+    }
     <span class="user-menu__identity">
-      <erp-text type="span" weight="medium">{{ user().displayName }}</erp-text>
+      @if (showUserName()) {
+        <erp-text
+          class="user-menu__identity-name"
+          type="span"
+          weight="medium"
+          [attr.aria-label]="user().displayName"
+        >
+          {{ user().displayName }}
+        </erp-text>
+      }
+      @if (showEmail() && user().email) {
+        <erp-text
+          class="user-menu__email"
+          type="caption"
+          tone="secondary"
+          direction="ltr"
+          selectable
+        >
+          {{ user().email }}
+        </erp-text>
+      }
+      @if (
+        (showRoleBadge() && user().roleLabel) ||
+        (showBranchBadge() && user().branchLabel)
+      ) {
+        <span class="user-menu__badges">
+          @if (showRoleBadge() && user().roleLabel) {
+            <erp-status-badge
+              [label]="user().roleLabel!"
+              tone="brand"
+              variant="soft"
+              size="sm"
+              shape="pill"
+            />
+          }
+          @if (showBranchBadge() && user().branchLabel) {
+            <erp-status-badge
+              [label]="user().branchLabel!"
+              tone="neutral"
+              variant="soft"
+              size="sm"
+              shape="pill"
+            />
+          }
+        </span>
+      }
       @if (user().secondaryText) {
         <erp-text type="caption" tone="secondary">
           {{ user().secondaryText }}

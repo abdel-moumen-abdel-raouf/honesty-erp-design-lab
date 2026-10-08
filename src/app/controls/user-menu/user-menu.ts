@@ -1,7 +1,9 @@
 import {
   AfterViewInit,
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
+  computed,
   effect,
   ElementRef,
   input,
@@ -14,6 +16,7 @@ import {ErpAvatar} from '../avatar/avatar';
 import {ErpButton} from '../button/button';
 import {ErpText} from '../../primitives/text/text';
 import {ErpDivider} from '../../primitives/divider/divider';
+import {ErpStatusBadge} from '../status-badge/status-badge';
 import {
   ErpShellUserSummary,
   ErpUserMenuItem,
@@ -29,7 +32,7 @@ let nextUserMenuId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector -- ERP production components intentionally use the erp prefix.
   selector: 'erp-user-menu',
-  imports: [ErpAvatar, ErpButton, ErpDivider, ErpText],
+  imports: [ErpAvatar, ErpButton, ErpDivider, ErpStatusBadge, ErpText],
   templateUrl: './user-menu.html',
   styleUrl: './user-menu.scss',
   host: {'[attr.data-user-menu-open]': 'open()'},
@@ -38,10 +41,19 @@ export class ErpUserMenu implements AfterViewInit, OnDestroy {
   readonly user = input.required<ErpShellUserSummary>();
   readonly items = input<readonly ErpUserMenuItem[]>([]);
   readonly label = input('قائمة المستخدم');
+  readonly showAvatar = input(true, {transform: booleanAttribute});
+  readonly showUserName = input(true, {transform: booleanAttribute});
+  readonly showEmail = input(true, {transform: booleanAttribute});
+  readonly showPresence = input(true, {transform: booleanAttribute});
+  readonly showRoleBadge = input(true, {transform: booleanAttribute});
+  readonly showBranchBadge = input(true, {transform: booleanAttribute});
   readonly open = model(false);
   readonly actionActivated = output<ErpUserMenuItem>();
 
   protected readonly surfaceId = `erp-user-menu-surface-${++nextUserMenuId}`;
+  protected readonly triggerAccessibleLabel = computed(
+    () => `${this.label()}: ${this.user().displayName}`,
+  );
 
   private readonly trigger = viewChild('trigger', {
     read: ElementRef<HTMLElement>,
@@ -53,6 +65,16 @@ export class ErpUserMenu implements AfterViewInit, OnDestroy {
   constructor() {
     effect(() => {
       const requested = this.open();
+      // Identity changes can resize both anchor and surface while open. Reading
+      // the complete bounded presentation state here reuses the same overlay
+      // controller to schedule fresh post-render geometry.
+      this.user();
+      this.showAvatar();
+      this.showUserName();
+      this.showEmail();
+      this.showPresence();
+      this.showRoleBadge();
+      this.showBranchBadge();
 
       if (!this.viewReady || !this.controller) {
         return;

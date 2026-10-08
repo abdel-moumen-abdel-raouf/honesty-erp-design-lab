@@ -1,5 +1,27 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Shell Phase S1 ErpUserMenu identity-refinement checkpoint — 2026-10-08
+
+Entry checkpoint:
+
+- `b210bb1311841dea836379e996f53aaa5a7ddf74` — clean live `main` and
+  `origin/main` before the bounded UserMenu identity/refinement task.
+
+Single task commit message:
+
+- `feat(shell): refine UserMenu identity and responsiveness`
+
+Resolve the final commit SHA from live `main` because this file is part of that
+commit. The bounded candidate extends only the existing UserMenu contract and
+presentation, its one-target workbench, direct tests/governance, runtime
+evidence, and continuity records. Product Owner visual acceptance remains
+pending and S2 is not opened.
+
+Verification passes 2/2 focused files and 27/27 focused tests, 122/122
+canonical test files and 768/768 tests, all lint/governance, both typechecks,
+production build, and zero warnings. Initial production bundle is 490.24 kB /
+105.57 kB estimated transfer.
+
 ## Shell Phase S1 ErpUserMenu final evidence checkpoint — 2026-10-08
 
 Entry checkpoint:

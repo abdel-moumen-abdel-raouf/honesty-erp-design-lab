@@ -1,4 +1,5 @@
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
+import {ErpAvatarPresence} from '../avatar/avatar';
 import {ErpStatusBadgeTone} from '../status-badge/status-badge';
 
 export interface ErpNavigationBadge {
@@ -26,8 +27,15 @@ export interface ErpBreadcrumbItem {
 export interface ErpShellUserSummary {
   readonly displayName: string;
   readonly secondaryText?: string;
+  readonly email?: string;
+  readonly roleLabel?: string;
+  readonly branchLabel?: string;
   readonly avatarSrc?: string;
   readonly fallbackIcon?: ErpIconName;
+  readonly avatarPresence?: Extract<
+    ErpAvatarPresence,
+    'online' | 'away' | 'busy' | 'offline'
+  >;
 }
 
 export interface ErpBranchOption {

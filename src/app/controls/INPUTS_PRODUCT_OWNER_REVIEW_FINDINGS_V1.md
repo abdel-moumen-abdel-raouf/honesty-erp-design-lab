@@ -1,5 +1,17 @@
 # Inputs Product Owner Review Findings V1
 
+## Authoritative continuity note — 2026-10-08 — Shell S1 UserMenu identity refinement
+
+This bounded task changes no Input visual or behavioral contract. It refines
+only `ErpUserMenu`, extending its typed user summary with optional identity
+metadata and adding six visibility controls to its dedicated workbench. The
+component continues to reuse the existing Avatar, StatusBadge, ERP action/text,
+and anchored-overlay owners.
+
+Input findings and acceptance states remain unchanged. Product Owner review of
+UserMenu remains pending, S2 is not open, and the Gxon continuity decision does
+not authorize any Input or other Shell implementation.
+
 ## Authoritative continuity note — 2026-10-08 — Shell S1 final evidence closure
 
 This phase changes no Input visual contract. It authorizes only the existing

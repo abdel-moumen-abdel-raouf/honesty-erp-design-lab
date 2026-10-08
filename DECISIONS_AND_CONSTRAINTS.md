@@ -1,5 +1,33 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Shell S1 UserMenu identity-refinement binding decision — 2026-10-08
+
+The Product Owner authorizes a bounded refinement of the existing
+`ErpUserMenu` only. The former fixed 40 px multi-line trigger and unconditional
+576 px visual-name hiding are superseded. The trigger must instead use balanced
+padding, `min-inline-size: 0`, bounded responsive sizing, visual truncation or
+wrapping, and a full accessible user name.
+
+`ErpShellUserSummary` may add optional email, role, branch, and Avatar presence
+without reinterpreting `secondaryText`. UserMenu must reuse `ErpAvatar` and
+`ErpStatusBadge`; role and branch are independent noninteractive badges. The
+six visibility inputs `showAvatar`, `showUserName`, `showEmail`, `showPresence`,
+`showRoleBadge`, and `showBranchBadge` are backward-compatible and default to
+true. The same data and flags govern the trigger and open identity card.
+
+The corrected measured arrow remains authoritative and must be recomputed after
+open-state identity changes through the existing controller. Identity content
+must not be clipped; only the action region may scroll. No second menu, Avatar,
+Badge, theme, session, permissions, router, backend, or overlay owner is
+authorized.
+
+Gxon is currently inaccessible and no longer blocks a future bounded
+AppFooter or QuickActionsBar. Future implementation must follow the Product
+Owner topology and Honesty ERP architecture using explicit authored design
+decisions; unavailable Gxon values must never be invented. If Gxon later
+becomes accessible, comparison alone does not authorize reopening an accepted
+owner.
+
 ## Shell Phase S1 final-evidence binding decision — 2026-10-08
 
 The Skodash RTL user dropdown at the source URL recorded in

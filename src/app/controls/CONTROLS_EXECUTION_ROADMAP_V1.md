@@ -1,5 +1,29 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Authoritative current gate — 2026-10-08 — Shell S1 UserMenu identity refinement
+
+Only the existing `ErpUserMenu` is authorized. The bounded task entered at
+`b210bb1311841dea836379e996f53aaa5a7ddf74` and adds a responsive identity
+capsule, optional typed email/role/branch/presence data, and six default-true
+visibility inputs. Avatar, StatusBadge, ERP action/text, and anchored-overlay
+ownership remain reused; no new owner or menu engine is opened.
+
+The one-target workbench exposes Arabic identity presets and every new flag.
+Runtime acceptance evidence covers 320/390/768/1440 px, Light/Dark, RTL/LTR,
+open/closed, dynamic identity updates, corrected arrow alignment, and zero
+horizontal overflow. The next gate is external Product Owner review of
+`/components/user-menu`; S2 remains unopened.
+
+Focused verification passes 27/27 tests and the canonical gate passes 122/122
+test files and 768/768 tests, all lint/governance, both typechecks, production
+build, and zero warnings. Initial bundle is 490.24 kB / 105.57 kB estimated
+transfer.
+
+Gxon is unavailable and no longer blocks a future separately authorized
+AppFooter or QuickActionsBar. Those future units require explicit authored
+Product Owner/Honesty ERP design decisions, not fabricated Gxon measurements;
+later source availability does not automatically reopen accepted owners.
+
 ## Authoritative current gate — 2026-10-08 — Shell S1 final evidence closure
 
 Only `ErpUserMenu` is authorized. The follow-up entered from clean `main` at

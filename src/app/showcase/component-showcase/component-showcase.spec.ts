@@ -237,4 +237,54 @@ describe('ComponentShowcase', () => {
       'openChange: false',
     );
   });
+
+  it('applies UserMenu identity presets and every visibility control to the same live target', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/components/user-menu', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+
+    const root = harness.routeNativeElement as HTMLElement;
+    const panel = harness.fixture.debugElement
+      .query(By.directive(ErpReviewShowcaseControlPanel))
+      .componentInstance as ErpReviewShowcaseControlPanel;
+    const target = root.querySelector('[data-showcase-target]');
+    const preset = panel.controls().find((control) => control.name === '$userPreset')!;
+    const visibilityNames = [
+      'showAvatar',
+      'showUserName',
+      'showEmail',
+      'showPresence',
+      'showRoleBadge',
+      'showBranchBadge',
+    ];
+
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect(preset.options).toHaveLength(6);
+    for (const name of visibilityNames) {
+      expect(panel.controls().find((control) => control.name === name)).toBeTruthy();
+    }
+
+    panel.editor(preset).setValue('أحرف أولى — بعيد');
+    harness.fixture.detectChanges();
+    expect(target?.textContent).toContain('عمر ناصر');
+    expect(target?.querySelectorAll('.avatar__initials')).toHaveLength(2);
+    expect(target?.querySelector('erp-avatar')?.getAttribute('data-avatar-presence')).toBe('away');
+
+    for (const name of visibilityNames) {
+      const control = panel.controls().find((candidate) => candidate.name === name)!;
+      panel.editor(control).setValue(false);
+    }
+    harness.fixture.detectChanges();
+
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect(target?.querySelectorAll('erp-avatar')).toHaveLength(0);
+    expect(target?.querySelectorAll('.user-menu__trigger-name')).toHaveLength(0);
+    expect(target?.querySelectorAll('.user-menu__email')).toHaveLength(0);
+    expect(target?.querySelectorAll('erp-status-badge')).toHaveLength(0);
+    expect(target?.querySelector<HTMLButtonElement>('.user-menu__trigger button')?.textContent)
+      .toContain('عمر ناصر');
+  });
 });

@@ -7,6 +7,58 @@ import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'user-menu')!;
+const USER_MENU_PRESETS: Readonly<Record<string, unknown>> = {
+  "صورة محلية — متصل": {
+    "displayName": "أميرة حداد",
+    "secondaryText": "الحساب المؤسسي",
+    "email": "amira.haddad@honesty.example",
+    "roleLabel": "مديرة المالية",
+    "branchLabel": "الفرع الرئيسي",
+    "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+    "avatarPresence": "online"
+  },
+  "أحرف أولى — بعيد": {
+    "displayName": "عمر ناصر",
+    "secondaryText": "فريق العمليات",
+    "email": "omar.nasser@honesty.example",
+    "roleLabel": "مسؤول المخزون",
+    "branchLabel": "فرع الإسكندرية",
+    "avatarPresence": "away"
+  },
+  "أيقونة صريحة — مشغول": {
+    "displayName": "حساب الدعم",
+    "secondaryText": "هوية خدمة داخلية",
+    "email": "support@honesty.example",
+    "roleLabel": "دعم النظام",
+    "branchLabel": "المركز الرئيسي",
+    "fallbackIcon": "user",
+    "avatarPresence": "busy"
+  },
+  "اسم عربي طويل — غير متصل": {
+    "displayName": "نادية عبد الرحمن فؤاد مسؤولة المشتريات الإقليمية",
+    "secondaryText": "إدارة سلاسل الإمداد والمشتريات",
+    "email": "nadia.abdelrahman@honesty.example",
+    "roleLabel": "مسؤولة المشتريات الإقليمية",
+    "branchLabel": "فرع القاهرة الجديدة",
+    "avatarPresence": "offline"
+  },
+  "اسم إنجليزي طويل — متصل": {
+    "displayName": "Alexandria Regional Finance Operations Manager",
+    "secondaryText": "Regional finance operations",
+    "email": "alexandria.finance.manager@honesty.example",
+    "roleLabel": "Finance Operations",
+    "branchLabel": "Alexandria Branch",
+    "avatarPresence": "online"
+  },
+  "اسم مختلط الاتجاه — بعيد": {
+    "displayName": "ليلى Mahmoud — Procurement Operations",
+    "secondaryText": "المشتريات · Regional Office",
+    "email": "leila.mahmoud@honesty.example",
+    "roleLabel": "Procurement Lead",
+    "branchLabel": "فرع الجيزة · Giza",
+    "avatarPresence": "away"
+  }
+};
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -37,6 +89,14 @@ export class ErpUserMenuShowcase {
   applyControl(change: ErpShowcaseControlChange): void {
     if (change.control.source === 'cva') {
       this.cvaValue.set(change.value);
+      return;
+    }
+    if (change.control.name === '$userPreset') {
+      this.liveValues.update((current) => ({
+        ...current,
+        '$userPreset': change.value,
+        user: USER_MENU_PRESETS[String(change.value)] ?? current['user'],
+      }));
       return;
     }
     const value = change.control.kind === 'function'

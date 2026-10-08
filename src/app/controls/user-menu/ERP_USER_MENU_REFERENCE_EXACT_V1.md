@@ -31,7 +31,37 @@ runtime code are evidence only and are not production dependencies.
 | `.setting-text` | 16 px, weight 500 | `ErpText` through `ErpButton` |
 | `animdropdown` | 600 ms, `cubic-bezier(.25,.8,.25,1)`, opacity 0 to 1, translateY 6 px to 0 | UserMenu component tokens |
 | `max-width: 767px` | arrow hidden and dropdown becomes viewport-width presentation | Foundation `viewport-down(md)` |
-| Bootstrap `d-sm-block` | visible user name from 576 px upward | Foundation `viewport-down(compact)` |
+| Bootstrap `d-sm-block` | historical reference behavior only; superseded by the 2026-10-08 Product Owner responsive-identity refinement | intrinsic component sizing and truncation |
+
+## Product Owner responsive-identity refinement
+
+The Product Owner explicitly authorized these bounded refinements on
+2026-10-08. They supersede the reference's fixed 40 px multi-line trigger and
+the unconditional 576 px name hiding, without reopening any other Shell owner:
+
+- the closed capsule uses balanced 8 px block / 12 px inline padding, a 12 px
+  identity gap, a 56 px minimum block size, and a 360 px maximum inline size;
+- intrinsic flex sizing, `min-inline-size: 0`, and ellipsis keep long Arabic,
+  English, and mixed-direction names within the available header width;
+- the full display name remains the trigger's accessible action label even
+  when the visible text is shortened or hidden by a consumer input;
+- `ErpShellUserSummary` adds optional `email`, `roleLabel`, `branchLabel`, and
+  `avatarPresence` fields without reinterpreting legacy `secondaryText`;
+- Avatar resolution remains image, then initials, then an explicitly supplied
+  icon fallback. Presence is rendered only when the consumer supplies it;
+- `ErpStatusBadge` owns independent role and branch labels; the badges wrap as
+  separate units and remain noninteractive;
+- `showAvatar`, `showUserName`, `showEmail`, `showPresence`, `showRoleBadge`,
+  and `showBranchBadge` are backward-compatible, default-true visibility
+  inputs shared by the closed capsule and open identity card;
+- the open identity sequence is Avatar, full name, email, then role and branch
+  badges. Legacy `secondaryText` remains an independent optional line;
+- the popup identity remains visible while the action region alone becomes
+  vertically scrollable when the viewport cannot contain the complete menu.
+
+Live identity or visibility changes while open reuse the existing anchored
+surface and request fresh measured placement. They never create a second
+overlay or restore a fixed arrow offset.
 
 ## Interaction contract
 
@@ -70,7 +100,8 @@ force.
 
 ## Ownership and compatibility
 
-- `ErpUserMenu` composes `ErpAvatar`, `ErpButton`, `ErpDivider`, and `ErpText`.
+- `ErpUserMenu` composes `ErpAvatar`, `ErpStatusBadge`, `ErpButton`,
+  `ErpDivider`, and `ErpText`.
 - `ShellAnchoredSurfaceController` remains the single overlay owner.
 - `dividerBefore` is the only added action metadata and is optional, preserving
   all existing consumers.

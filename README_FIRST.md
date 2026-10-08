@@ -1,5 +1,31 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Current gate — Shell Phase S1 ErpUserMenu identity refinement
+
+The current bounded enhancement entered from clean live `main` at
+`b210bb1311841dea836379e996f53aaa5a7ddf74`. Read
+`src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md` before changing
+Shell UI. Only the existing `ErpUserMenu` is open. It now owns a responsive
+identity capsule, optional email/role/branch/presence data, and six live
+visibility inputs while continuing to reuse Avatar, StatusBadge, ERP actions,
+and the single anchored-surface controller.
+
+Review `/components/user-menu` at 320, 390, 768, and desktop widths in
+Light/Dark and RTL/LTR. The page has one primary target; identity presets and
+visibility controls update it immediately. The current stop point is external
+Product Owner visual review. Do not open S2 or another Shell owner.
+
+The bounded candidate passes 2/2 focused files and 27/27 focused tests plus the
+full 122/122-file, 768/768-test canonical gate, both typechecks, production
+build, and zero warnings. Initial production bundle is 490.24 kB / 105.57 kB
+estimated transfer.
+
+Gxon is currently unavailable and no longer blocks a future separately
+authorized AppFooter or QuickActionsBar. Future designs require explicit
+Product Owner decisions and Honesty ERP architecture; do not invent Gxon
+measurements, and do not treat later source recovery as automatic reopen
+authority.
+
 ## Current gate — Shell Phase S1 ErpUserMenu final evidence closure
 
 The current bounded follow-up entered from clean live `main` at

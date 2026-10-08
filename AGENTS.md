@@ -1,5 +1,40 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Shell Phase S1 — ErpUserMenu identity and responsive refinement
+
+This bounded enhancement entered from clean live `main` at
+`b210bb1311841dea836379e996f53aaa5a7ddf74` and changes only the existing
+`ErpUserMenu`. The trigger is now a responsive identity capsule rather than a
+forced 40 px multi-line control. It uses balanced 8 px block / 12 px inline
+padding, a 12 px content gap, `min-inline-size: 0`, bounded truncation, and the
+full user name in the accessible trigger label.
+
+`ErpShellUserSummary` retains every previous field and adds optional email,
+role, branch, and Avatar presence data. UserMenu continues to compose
+`ErpAvatar`, `ErpStatusBadge`, ERP actions/text, and the single
+`ShellAnchoredSurfaceController`. Six default-true visibility inputs control the
+same closed trigger and open identity card. The identity card order is Avatar,
+full name, email, then independently wrapping role and branch badges; only the
+action region scrolls when the viewport requires it.
+
+The dedicated `/components/user-menu` workbench retains one primary target and
+adds live identity presets plus all six visibility controls. Runtime evidence
+covers 320, 390, 768, and 1440 px, Light/Dark, RTL/LTR, open/closed states,
+dynamic identity changes, zero horizontal overflow, and unchanged computed
+arrow alignment. Product Owner visual acceptance remains pending and S2 stays
+closed.
+
+Focused verification passes 2/2 files and 27/27 tests. Canonical verification
+passes all lint/governance checks, 122/122 test files and 768/768 tests, both
+typechecks, production build, and zero warnings. Initial production bundle is
+490.24 kB / 105.57 kB estimated transfer.
+
+Gxon is currently unavailable and no longer blocks a future bounded
+`AppFooter` or `QuickActionsBar` implementation. Any such future unit requires
+explicit Product Owner authorization and explicitly authored Honesty ERP design
+decisions; fabricated Gxon measurements are forbidden. Later Gxon availability
+does not itself reopen an accepted component.
+
 ## Current Shell Phase S1 — ErpUserMenu final visual-evidence closure
 
 This bounded follow-up entered from clean live `main` at

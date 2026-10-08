@@ -240,6 +240,83 @@ const PURPOSE_OVERRIDES = new Map([
   ['ErpIcon', 'Owns semantic icon registry rendering and hides vendor icon implementations.'],
 ]);
 
+const USER_MENU_SHOWCASE_PRESETS = [
+  {
+    id: 'local-image-online',
+    label: 'صورة محلية — متصل',
+    user: {
+      displayName: 'أميرة حداد',
+      secondaryText: 'الحساب المؤسسي',
+      email: 'amira.haddad@honesty.example',
+      roleLabel: 'مديرة المالية',
+      branchLabel: 'الفرع الرئيسي',
+      avatarSrc: '/assets/honesty-erp-avatars/users/female/avatar-21.png',
+      avatarPresence: 'online',
+    },
+  },
+  {
+    id: 'initials-away',
+    label: 'أحرف أولى — بعيد',
+    user: {
+      displayName: 'عمر ناصر',
+      secondaryText: 'فريق العمليات',
+      email: 'omar.nasser@honesty.example',
+      roleLabel: 'مسؤول المخزون',
+      branchLabel: 'فرع الإسكندرية',
+      avatarPresence: 'away',
+    },
+  },
+  {
+    id: 'explicit-icon-busy',
+    label: 'أيقونة صريحة — مشغول',
+    user: {
+      displayName: 'حساب الدعم',
+      secondaryText: 'هوية خدمة داخلية',
+      email: 'support@honesty.example',
+      roleLabel: 'دعم النظام',
+      branchLabel: 'المركز الرئيسي',
+      fallbackIcon: 'user',
+      avatarPresence: 'busy',
+    },
+  },
+  {
+    id: 'long-arabic-offline',
+    label: 'اسم عربي طويل — غير متصل',
+    user: {
+      displayName: 'نادية عبد الرحمن فؤاد مسؤولة المشتريات الإقليمية',
+      secondaryText: 'إدارة سلاسل الإمداد والمشتريات',
+      email: 'nadia.abdelrahman@honesty.example',
+      roleLabel: 'مسؤولة المشتريات الإقليمية',
+      branchLabel: 'فرع القاهرة الجديدة',
+      avatarPresence: 'offline',
+    },
+  },
+  {
+    id: 'long-english-online',
+    label: 'اسم إنجليزي طويل — متصل',
+    user: {
+      displayName: 'Alexandria Regional Finance Operations Manager',
+      secondaryText: 'Regional finance operations',
+      email: 'alexandria.finance.manager@honesty.example',
+      roleLabel: 'Finance Operations',
+      branchLabel: 'Alexandria Branch',
+      avatarPresence: 'online',
+    },
+  },
+  {
+    id: 'mixed-direction-away',
+    label: 'اسم مختلط الاتجاه — بعيد',
+    user: {
+      displayName: 'ليلى Mahmoud — Procurement Operations',
+      secondaryText: 'المشتريات · Regional Office',
+      email: 'leila.mahmoud@honesty.example',
+      roleLabel: 'Procurement Lead',
+      branchLabel: 'فرع الجيزة · Giza',
+      avatarPresence: 'away',
+    },
+  },
+];
+
 const FIXTURE_INPUTS = new Map([
   ['ErpAlert', {title: 'تنبيه تشغيلي'}],
   ['ErpAppShell', {navigationItems: [{id: 'finance', label: 'المالية', icon: 'wallet'}]}],
@@ -320,11 +397,7 @@ const FIXTURE_INPUTS = new Map([
   ['ErpTabs', {items: [{id: 'overview', label: 'نظرة عامة', content: 'محتوى النظرة العامة'}]}],
   ['ErpTooltip', {text: 'توضيح الإجراء للمستخدم'}],
   ['ErpUserMenu', {
-    user: {
-      displayName: 'أميرة حداد',
-      secondaryText: 'مديرة المالية',
-      avatarSrc: '/assets/honesty-erp-avatars/users/female/avatar-21.png',
-    },
+    user: USER_MENU_SHOWCASE_PRESETS[0].user,
     items: [
       {id: 'profile', label: 'الملف الشخصي', icon: 'user'},
       {id: 'settings', label: 'الإعدادات', icon: 'settings'},
@@ -348,6 +421,8 @@ const FACET_NAMES = [
   'position', 'align', 'justify', 'gap', 'wrap', 'density', 'headerShape',
   'verticalPlacement', 'selectSize', 'presence', 'presencePosition',
   'presenceMotion', 'hoverMotion', 'cursor', 'transition', 'direction',
+  'showAvatar', 'showUserName', 'showEmail', 'showPresence',
+  'showRoleBadge', 'showBranchBadge',
 ];
 
 export const NATIVE_ELEMENT_COVERAGE = [
@@ -667,16 +742,28 @@ function showcaseControlsFor(entry) {
     );
   }
   if (entry.className === 'ErpUserMenu') {
-    controls.push({
-      name: '$previewDirection',
-      label: 'اتجاه مساحة المعاينة',
-      source: 'preview',
-      kind: 'select',
-      required: true,
-      type: "'rtl' | 'ltr'",
-      options: ['rtl', 'ltr'],
-      initialValue: 'rtl',
-    });
+    controls.push(
+      {
+        name: '$userPreset',
+        label: 'نموذج الهوية',
+        source: 'preview',
+        kind: 'select',
+        required: true,
+        type: 'UserMenu showcase preset',
+        options: USER_MENU_SHOWCASE_PRESETS.map((preset) => preset.label),
+        initialValue: USER_MENU_SHOWCASE_PRESETS[0].label,
+      },
+      {
+        name: '$previewDirection',
+        label: 'اتجاه مساحة المعاينة',
+        source: 'preview',
+        kind: 'select',
+        required: true,
+        type: "'rtl' | 'ltr'",
+        options: ['rtl', 'ltr'],
+        initialValue: 'rtl',
+      },
+    );
   }
   return controls;
 }
@@ -777,6 +864,15 @@ function fixtureCases(entry, sourceText) {
     throw new Error(`${entry.className} showcase fixture is missing required inputs: ${missingRequired.join(', ')}`);
   }
   const cases = [{id: 'default', label: 'الحالة الافتراضية', inputs: baseInputs}];
+  if (entry.className === 'ErpUserMenu') {
+    for (const preset of USER_MENU_SHOWCASE_PRESETS) {
+      cases.push({
+        id: preset.id,
+        label: preset.label,
+        inputs: {user: preset.user},
+      });
+    }
+  }
   for (const inputApi of entry.ownPublicApi.inputs) {
     if (!FACET_NAMES.includes(inputApi.name)) continue;
     for (const value of inputApi.values) {
@@ -784,7 +880,9 @@ function fixtureCases(entry, sourceText) {
       cases.push({
         id: `${inputApi.name}-${value}`,
         label: `${inputApi.name}: ${value}`,
-        inputs: {...baseInputs, [inputApi.name]: resolvedValue},
+        inputs: entry.className === 'ErpUserMenu'
+          ? {user: baseInputs.user, [inputApi.name]: resolvedValue}
+          : {...baseInputs, [inputApi.name]: resolvedValue},
       });
     }
   }
@@ -794,7 +892,9 @@ function fixtureCases(entry, sourceText) {
       cases.push({
         id: `${modelApi.name}-${value}`,
         label: `${modelApi.name}: ${value}`,
-        inputs: {...baseInputs, [modelApi.name]: resolvedValue},
+        inputs: entry.className === 'ErpUserMenu'
+          ? {user: baseInputs.user, [modelApi.name]: resolvedValue}
+          : {...baseInputs, [modelApi.name]: resolvedValue},
       });
     }
   }
@@ -1069,13 +1169,22 @@ function generatedShowcaseOwner(entry) {
     : 'showcase-live-preview';
 
   const initialCvaValue = entry.showcaseControls.find((control) => control.source === 'cva')?.initialValue ?? null;
-  const source = `${importLines.join('\n')}\n\nconst ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === '${entry.id}')!;\n\n@Component({\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  selector: 'app-${entry.id}-showcase',\n  imports: [${[...imports].join(', ')}],\n  templateUrl: './${entry.id}-showcase.html',\n  styleUrl: './${entry.id}-showcase.scss',\n})\nexport class ${className} {\n  readonly entry = ENTRY;\n  readonly controls = ENTRY.showcaseControls;\n  readonly lastEvent = signal('لم يحدث تفاعل بعد');\n  readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});\n  readonly cvaValue = signal<unknown>(${JSON.stringify(initialCvaValue)});\n  readonly controlValues = computed<Readonly<Record<string, unknown>>>(() => ({\n    ...this.liveValues(),\n    '$value': this.cvaValue(),\n  }));\n${isCva ? `  readonly control = new FormControl<unknown>(${JSON.stringify({value: initialCvaValue, disabled: Boolean(entry.showcaseInitialValues?.disabled)})});\n\n  constructor() {\n    this.control.valueChanges.pipe(takeUntilDestroyed()).subscribe((value) => {\n      this.cvaValue.set(value);\n      this.recordEvent('valueChange', value);\n    });\n  }\n` : ''}\n  readonly previewInline = computed(() => Number(this.liveValues()['$previewInline'] ?? 80));\n  readonly previewBlock = computed(() => Number(this.liveValues()['$previewBlock'] ?? 75));\n  readonly previewDirection = computed(() => this.liveValues()['$previewDirection'] === 'ltr' ? 'ltr' : 'rtl');\n\n  value(name: string): unknown {\n    return this.liveValues()[name];\n  }\n\n  applyControl(change: ErpShowcaseControlChange): void {\n    if (change.control.source === 'cva') {\n${isCva ? `      this.control.setValue(change.value);` : `      this.cvaValue.set(change.value);`}\n      return;\n    }\n${hasCvaDisabled ? `    if (change.control.name === 'disabled') {\n      this.liveValues.update((current) => ({...current, disabled: change.value}));\n      if (change.value) this.control.disable();\n      else this.control.enable();\n      return;\n    }\n` : ''}    const value = change.control.kind === 'function'\n      ? this.functionPreset(change.control.name, change.value)\n      : change.value;\n    this.liveValues.update((current) => ({...current, [change.control.name]: value}));\n  }\n\n  recordModel(name: string, value: unknown): void {\n    this.liveValues.update((current) => ({...current, [name]: value}));\n    this.recordEvent(\`${'${name}'}Change\`, value);\n  }\n\n  recordEvent(name: string, value: unknown): void {\n    let rendered = '';\n    try { rendered = typeof value === 'string' ? value : JSON.stringify(value); }\n    catch { rendered = String(value); }\n    this.lastEvent.set(\`${'${name}'}: ${'${rendered}'}\`);\n  }\n\n  private functionPreset(name: string, value: unknown): unknown {\n    if (value !== 'sample') return null;\n    if (/comparator/i.test(name)) return () => 0;\n    if (/formatter/i.test(name)) return (candidate: unknown) => String(candidate ?? '');\n    if (/disabled/i.test(name)) return () => false;\n    if (/filter|predicate/i.test(name)) return () => true;\n    return (candidate: unknown) => candidate;\n  }\n}\n`;
+  const userMenuPresetSource = entry.className === 'ErpUserMenu'
+    ? `\nconst USER_MENU_PRESETS: Readonly<Record<string, unknown>> = ${JSON.stringify(Object.fromEntries(USER_MENU_SHOWCASE_PRESETS.map((preset) => [preset.label, preset.user])), null, 2)};\n`
+    : '';
+  const userMenuPresetHandler = entry.className === 'ErpUserMenu'
+    ? `    if (change.control.name === '$userPreset') {\n      this.liveValues.update((current) => ({\n        ...current,\n        '$userPreset': change.value,\n        user: USER_MENU_PRESETS[String(change.value)] ?? current['user'],\n      }));\n      return;\n    }\n`
+    : '';
+  const source = `${importLines.join('\n')}\n\nconst ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === '${entry.id}')!;${userMenuPresetSource}\n@Component({\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  selector: 'app-${entry.id}-showcase',\n  imports: [${[...imports].join(', ')}],\n  templateUrl: './${entry.id}-showcase.html',\n  styleUrl: './${entry.id}-showcase.scss',\n})\nexport class ${className} {\n  readonly entry = ENTRY;\n  readonly controls = ENTRY.showcaseControls;\n  readonly lastEvent = signal('لم يحدث تفاعل بعد');\n  readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});\n  readonly cvaValue = signal<unknown>(${JSON.stringify(initialCvaValue)});\n  readonly controlValues = computed<Readonly<Record<string, unknown>>>(() => ({\n    ...this.liveValues(),\n    '$value': this.cvaValue(),\n  }));\n${isCva ? `  readonly control = new FormControl<unknown>(${JSON.stringify({value: initialCvaValue, disabled: Boolean(entry.showcaseInitialValues?.disabled)})});\n\n  constructor() {\n    this.control.valueChanges.pipe(takeUntilDestroyed()).subscribe((value) => {\n      this.cvaValue.set(value);\n      this.recordEvent('valueChange', value);\n    });\n  }\n` : ''}\n  readonly previewInline = computed(() => Number(this.liveValues()['$previewInline'] ?? 80));\n  readonly previewBlock = computed(() => Number(this.liveValues()['$previewBlock'] ?? 75));\n  readonly previewDirection = computed(() => this.liveValues()['$previewDirection'] === 'ltr' ? 'ltr' : 'rtl');\n\n  value(name: string): unknown {\n    return this.liveValues()[name];\n  }\n\n  applyControl(change: ErpShowcaseControlChange): void {\n    if (change.control.source === 'cva') {\n${isCva ? `      this.control.setValue(change.value);` : `      this.cvaValue.set(change.value);`}\n      return;\n    }\n${userMenuPresetHandler}${hasCvaDisabled ? `    if (change.control.name === 'disabled') {\n      this.liveValues.update((current) => ({...current, disabled: change.value}));\n      if (change.value) this.control.disable();\n      else this.control.enable();\n      return;\n    }\n` : ''}    const value = change.control.kind === 'function'\n+      ? this.functionPreset(change.control.name, change.value)\n+      : change.value;\n+    this.liveValues.update((current) => ({...current, [change.control.name]: value}));\n+  }\n\n  recordModel(name: string, value: unknown): void {\n    this.liveValues.update((current) => ({...current, [name]: value}));\n    this.recordEvent(\`${'${name}'}Change\`, value);\n  }\n\n  recordEvent(name: string, value: unknown): void {\n    let rendered = '';\n    try { rendered = typeof value === 'string' ? value : JSON.stringify(value); }\n    catch { rendered = String(value); }\n    this.lastEvent.set(\`${'${name}'}: ${'${rendered}'}\`);\n  }\n\n  private functionPreset(name: string, value: unknown): unknown {\n    if (value !== 'sample') return null;\n    if (/comparator/i.test(name)) return () => 0;\n    if (/formatter/i.test(name)) return (candidate: unknown) => String(candidate ?? '');\n    if (/disabled/i.test(name)) return () => false;\n    if (/filter|predicate/i.test(name)) return () => true;\n    return (candidate: unknown) => candidate;\n  }\n}\n`;
+  const normalizedSource = source
+    .replaceAll('\n+', '\n')
+    .replace('!;\n@Component', '!;\n\n@Component');
   const html = `<erp-stack gap="default" data-dedicated-showcase="${entry.id}" data-showcase-sections="1">\n  <erp-text type="heading-2">${entry.displayNameAr}</erp-text>\n  <erp-text type="paragraph" tone="secondary">${entry.descriptionAr}</erp-text>\n${referenceLabel}  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="${livePreviewClass}">\n    <erp-stack gap="tight">\n      <erp-text type="heading-3">المعاينة الحية</erp-text>\n      ${renderedOwner}\n    </erp-stack>\n  </erp-surface>\n  <app-review-showcase-control-panel\n    [controls]="controls"\n    [values]="controlValues()"\n    (controlChanged)="applyControl($event)"\n  />\n  <erp-surface padding="default" border="subtle" data-showcase-event-log>\n    <erp-stack gap="tight">\n      <erp-text type="heading-3">آخر تفاعل</erp-text>\n      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>\n${isCva ? '      <erp-text type="caption" selectable>القيمة الحالية: {{ cvaValue() }}</erp-text>\n' : ''}    </erp-stack>\n  </erp-surface>\n${exactReferenceEvidence}</erp-stack>\n`;
   const previewMinBlockSize = entry.className === 'ErpUserMenu' ? '32rem' : '12rem';
   const scss = `:host { display: block; min-inline-size: 0; }\n\n.showcase-reference { overflow-wrap: anywhere; }\n\n.showcase-live-preview { min-block-size: ${previewMinBlockSize}; }\n${isFloatingPreview ? '' : '\n.showcase-live-preview--floating { position: relative; min-block-size: 30rem; overflow: clip; }\n'}`;
   let generatedSource = hasDirectionalPreview
-    ? source
-    : source.replace(
+    ? normalizedSource
+    : normalizedSource.replace(
       "  readonly previewDirection = computed(() => this.liveValues()['$previewDirection'] === 'ltr' ? 'ltr' : 'rtl');\n",
       '',
     );

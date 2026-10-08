@@ -1,5 +1,39 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Authoritative current execution state — 2026-10-08 — Shell S1 UserMenu identity refinement
+
+The bounded task entered from clean `main` at
+`b210bb1311841dea836379e996f53aaa5a7ddf74` and authorizes only the existing
+`ErpUserMenu`. Its trigger now supports responsive multi-line identity without
+a forced 40 px height or an unconditional 576 px name hide. The compatible
+`ErpShellUserSummary` contract adds optional email, role, branch, and Avatar
+presence values; six default-true public visibility inputs apply immediately to
+the same closed trigger and open identity card.
+
+The implementation reuses `ErpAvatar` for image, initials, explicit-icon, and
+presence presentation and reuses `ErpStatusBadge` for independent role and
+branch labels. The popup preserves actions, separators, disabled behavior,
+events, keyboard navigation, Escape, outside dismissal, focus return, reduced
+motion, and the corrected post-clamp arrow geometry. Its identity content stays
+visible while only the action region can scroll.
+
+The UserMenu workbench retains one `data-showcase-target` and provides live
+Arabic identity presets plus all visibility flags. Browser evidence covers
+320/390/768/1440 px, Light/Dark, RTL/LTR, open/closed, long Arabic/English/mixed
+names, dynamic open-state updates, and zero horizontal overflow. Product Owner
+visual acceptance remains pending; S2 and all other Shell owners remain closed.
+
+Focused verification passes 2/2 files and 27/27 tests. Canonical verification
+passes all lint/governance checks, 122/122 test files and 768/768 tests, both
+typechecks, production build, and the zero-warning gate. The initial production
+bundle is 490.24 kB / 105.57 kB estimated transfer.
+
+Gxon remains inaccessible, but it no longer blocks a later separately
+authorized `AppFooter` or `QuickActionsBar`. Those future designs must use the
+Product Owner topology and Honesty ERP architecture with explicit authored
+decisions, never fabricated Gxon measurements. A later Gxon recovery does not
+automatically reopen an accepted component.
+
 ## Authoritative current execution state — 2026-10-08 — Shell S1 final evidence closure
 
 The bounded follow-up entered from clean `main` at

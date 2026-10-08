@@ -1,5 +1,35 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Authoritative current handoff — 2026-10-08 — Shell S1 UserMenu identity refinement
+
+Start from live `main`. This bounded task entered at
+`b210bb1311841dea836379e996f53aaa5a7ddf74` and changes only the existing
+`ErpUserMenu`, its compatible user-summary type, its dedicated showcase
+fixtures, and directly related governance/evidence. Read
+`src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md` first.
+
+The component now provides a responsive multi-line trigger; optional email,
+role, branch, and presence data; and six default-true visibility inputs. It
+reuses `ErpAvatar` and `ErpStatusBadge`, preserves the single anchored-overlay
+engine and corrected arrow computation, and allows only the action region to
+scroll. The `/components/user-menu` workbench retains one primary target and
+updates it live through identity presets and visibility controls.
+
+Verification passes 2/2 focused files and 27/27 focused tests, all governance
+and lint, 122/122 canonical test files and 768/768 tests, both typechecks,
+production build, and zero warnings. Initial production bundle is 490.24 kB /
+105.57 kB estimated transfer.
+
+The next action is external Product Owner review across 320/390/768/desktop,
+Light/Dark, and RTL/LTR. S2, Sidebar, Topbar, Applications/Messages,
+NotificationBell, AppFooter, QuickActionsBar, AppShell, and the root layout are
+not open.
+
+Gxon is presently unavailable and is no longer a blocker for later AppFooter
+or QuickActionsBar work. Such work still needs separate authorization and
+explicit Product Owner/Honesty ERP design decisions; never fabricate unavailable
+measurements. Later Gxon recovery does not automatically reopen accepted work.
+
 ## Authoritative current handoff — 2026-10-08 — Shell S1 final evidence closure
 
 Start from live `main`. This bounded follow-up entered at

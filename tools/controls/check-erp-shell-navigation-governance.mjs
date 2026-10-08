@@ -116,8 +116,29 @@ export function validateShellNavigation(files) {
   if (!userMenu.includes('ErpAvatar') || !userMenu.includes('ShellAnchoredSurfaceController')) {
     errors.push('ErpUserMenu must reuse Avatar and anchored surface infrastructure');
   }
+  if (!userMenu.includes('ErpStatusBadge') || !userMenu.includes('<erp-status-badge')) {
+    errors.push('ErpUserMenu must reuse ErpStatusBadge for role and branch identity labels');
+  }
   if (!userMenu.includes('ErpDivider') || !userMenu.includes('crossAxisAlignment: \'end\'')) {
     errors.push('ErpUserMenu must compose dividers and use logical-end anchored placement');
+  }
+  for (const visibilityInput of [
+    'showAvatar',
+    'showUserName',
+    'showEmail',
+    'showPresence',
+    'showRoleBadge',
+    'showBranchBadge',
+  ]) {
+    if (!userMenu.includes(`readonly ${visibilityInput} = input(true`)) {
+      errors.push(`ErpUserMenu must expose default-true ${visibilityInput} visibility control`);
+    }
+  }
+
+  for (const identityField of ['email?', 'roleLabel?', 'branchLabel?', 'avatarPresence?']) {
+    if (!contracts.includes(identityField)) {
+      errors.push(`ErpShellUserSummary is missing compatible rich-identity field: ${identityField}`);
+    }
   }
 
   const userMenuReference = files.get(USER_MENU_REFERENCE) ?? '';
@@ -145,6 +166,14 @@ export function validateShellNavigation(files) {
     )
   ) {
     errors.push('ErpUserMenu arrow must track measured anchored-surface geometry');
+  }
+  if (
+    !userMenuStyles.includes('min-inline-size: 0') ||
+    !userMenuStyles.includes('overflow-y: auto') ||
+    !/user-menu__surface:popover-open[^}]*display:\s*flex/s.test(userMenuStyles) ||
+    /user-menu__trigger-name[^}]*display:\s*none/s.test(userMenuStyles)
+  ) {
+    errors.push('ErpUserMenu must preserve responsive identity sizing and open-only flex layout without unconditional name hiding');
   }
   for (const referenceValue of ['360px', '8px', '10px', '600ms', 'cubic-bezier(0.25, 0.8, 0.25, 1)']) {
     if (!userMenuTokens.includes(referenceValue)) {
@@ -179,7 +208,7 @@ function validFixture(overrides = new Map()) {
   const files = new Map([
     [ROUTES, "path: 'controls/shell-batch'"],
     [REVIEW, '<erp-app-shell></erp-app-shell>'],
-    [CONTRACTS, 'export interface ErpNavigationItem {} export interface ErpBreadcrumbItem {} export interface ErpShellUserSummary {} export interface ErpBranchOption {} export interface ErpNotificationSummary {}'],
+    [CONTRACTS, 'export interface ErpNavigationItem {} export interface ErpBreadcrumbItem {} export interface ErpShellUserSummary { email?: string; roleLabel?: string; branchLabel?: string; avatarPresence?: string; } export interface ErpBranchOption {} export interface ErpNotificationSummary {}'],
     [USER_MENU_REFERENCE, '75F64AE955800ABE9FCBE27D7B09161D95E2DE2C77B6106C337AA4841D39D399 1EFFE6A3ADC2613EC19612699E567C38E5457997E342333B0686F70D63A3AFEA'],
   ]);
 
@@ -219,11 +248,15 @@ function validFixture(overrides = new Map()) {
   );
   files.set(
     'src/app/controls/user-menu/user-menu.ts',
-    "import {ErpAvatar} from 'x'; import {ErpDivider} from 'z'; import {ShellAnchoredSurfaceController} from 'y'; const options = {crossAxisAlignment: 'end', arrowWidth: () => 13, arrowSafeInset: () => 16}; export class ErpUserMenu {}",
+    "import {ErpAvatar} from 'x'; import {ErpStatusBadge} from 'b'; import {ErpDivider} from 'z'; import {ShellAnchoredSurfaceController} from 'y'; const options = {crossAxisAlignment: 'end', arrowWidth: () => 13, arrowSafeInset: () => 16}; export class ErpUserMenu { readonly showAvatar = input(true); readonly showUserName = input(true); readonly showEmail = input(true); readonly showPresence = input(true); readonly showRoleBadge = input(true); readonly showBranchBadge = input(true); }",
+  );
+  files.set(
+    'src/app/controls/user-menu/user-menu.html',
+    '<erp-avatar></erp-avatar><erp-status-badge></erp-status-badge><erp-divider></erp-divider>',
   );
   files.set(
     'src/app/controls/user-menu/user-menu.scss',
-    '.user-menu__surface::before { left: var(--honesty-anchored-surface-arrow-cross-axis-center); } @media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }',
+    '.user-menu { min-inline-size: 0; } .user-menu__items { overflow-y: auto; } .user-menu__surface:popover-open { display: flex; } .user-menu__surface::before { left: var(--honesty-anchored-surface-arrow-cross-axis-center); } @media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }',
   );
   files.set(
     'src/styles/foundation/components/user-menu/_tokens.scss',
@@ -255,6 +288,10 @@ function runSelfTest() {
     ['missing UserMenu reference', new Map([[USER_MENU_REFERENCE, 'missing']]), 'exact-reference contract'],
     ['missing UserMenu reduced motion', new Map([['src/app/controls/user-menu/user-menu.scss', '']]), 'reduced-motion'],
     ['missing UserMenu arrow geometry', new Map([['src/app/controls/user-menu/user-menu.ts', "import {ErpAvatar} from 'x'; import {ErpDivider} from 'z'; import {ShellAnchoredSurfaceController} from 'y'; const options = {crossAxisAlignment: 'end'}; export class ErpUserMenu {}"]]), 'arrow'],
+    ['missing UserMenu rich identity', new Map([[CONTRACTS, 'export interface ErpNavigationItem {} export interface ErpBreadcrumbItem {} export interface ErpShellUserSummary {} export interface ErpBranchOption {} export interface ErpNotificationSummary {}']]), 'rich-identity'],
+    ['missing UserMenu badge reuse', new Map([['src/app/controls/user-menu/user-menu.html', '<erp-avatar></erp-avatar><erp-divider></erp-divider>']]), 'ErpStatusBadge'],
+    ['hidden UserMenu name', new Map([['src/app/controls/user-menu/user-menu.scss', '.user-menu { min-inline-size: 0; } .user-menu__items { overflow-y: auto; } .user-menu__trigger-name { display: none; } .user-menu__surface::before { left: var(--honesty-anchored-surface-arrow-cross-axis-center); } @media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }']]), 'responsive identity'],
+    ['always-visible UserMenu surface', new Map([['src/app/controls/user-menu/user-menu.scss', '.user-menu { min-inline-size: 0; } .user-menu__items { overflow-y: auto; } .user-menu__surface::before { left: var(--honesty-anchored-surface-arrow-cross-axis-center); } @media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }']]), 'open-only flex'],
   ];
 
   for (const [label, overrides, expected] of invalidFixtures) {
