@@ -1,74 +1,46 @@
-<erp-stack gap="default" data-dedicated-showcase="empty-state" data-showcase-sections="6">
+<erp-stack gap="default" data-dedicated-showcase="empty-state" data-showcase-sections="1">
   <erp-text type="heading-2">الحالة الفارغة</erp-text>
   <erp-text type="paragraph" tone="secondary">حالة فارغة بعنوان ووصف وإجراءات ورسوم اختيارية.</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-empty-state
+  <erp-text class="showcase-reference" type="caption" tone="secondary" selectable>مرجع Product Owner: src/app/controls/empty-state/EMPTY_STATE_REFERENCE_EXACT_V1.md</erp-text>
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-empty-state
+          data-showcase-target
+          [variant]="$any(value('variant'))"
+          [title]="$any(value('title'))"
+          [description]="$any(value('description'))"
+          [animated]="$any(value('animated'))"
+          [illustrationMotion]="$any(value('illustrationMotion'))"
+          [motionSpeed]="$any(value('motionSpeed'))"
+          [showIllustration]="$any(value('showIllustration'))"
+          [showTitle]="$any(value('showTitle'))"
+          [showDescription]="$any(value('showDescription'))"
+          [showActions]="$any(value('showActions'))"
+          [showExtra]="$any(value('showExtra'))"
+          [showPrimaryAction]="$any(value('showPrimaryAction'))"
+          [primaryActionLabel]="$any(value('primaryActionLabel'))"
+          [showSecondaryAction]="$any(value('showSecondaryAction'))"
+          [secondaryActionLabel]="$any(value('secondaryActionLabel'))"
+          [showTertiaryAction]="$any(value('showTertiaryAction'))"
+          [tertiaryActionLabel]="$any(value('tertiaryActionLabel'))"
+          [extraPrefix]="$any(value('extraPrefix'))"
+          [extraLinkLabel]="$any(value('extraLinkLabel'))"
+          [extraLinkHref]="$any(value('extraLinkHref'))"
           (primaryAction)="recordEvent('primaryAction', $event)"
           (secondaryAction)="recordEvent('secondaryAction', $event)"
           (tertiaryAction)="recordEvent('tertiaryAction', $event)"
         ></erp-empty-state>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="variant-no-data">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">variant: no-data</erp-text>
-        <erp-empty-state
-          [variant]="$any(cases[1].inputs['variant'])"
-          (primaryAction)="recordEvent('primaryAction', $event)"
-          (secondaryAction)="recordEvent('secondaryAction', $event)"
-          (tertiaryAction)="recordEvent('tertiaryAction', $event)"
-        ></erp-empty-state>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="variant-no-search">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">variant: no-search</erp-text>
-        <erp-empty-state
-          [variant]="$any(cases[2].inputs['variant'])"
-          (primaryAction)="recordEvent('primaryAction', $event)"
-          (secondaryAction)="recordEvent('secondaryAction', $event)"
-          (tertiaryAction)="recordEvent('tertiaryAction', $event)"
-        ></erp-empty-state>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="variant-error">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">variant: error</erp-text>
-        <erp-empty-state
-          [variant]="$any(cases[3].inputs['variant'])"
-          (primaryAction)="recordEvent('primaryAction', $event)"
-          (secondaryAction)="recordEvent('secondaryAction', $event)"
-          (tertiaryAction)="recordEvent('tertiaryAction', $event)"
-        ></erp-empty-state>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="variant-forbidden">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">variant: forbidden</erp-text>
-        <erp-empty-state
-          [variant]="$any(cases[4].inputs['variant'])"
-          (primaryAction)="recordEvent('primaryAction', $event)"
-          (secondaryAction)="recordEvent('secondaryAction', $event)"
-          (tertiaryAction)="recordEvent('tertiaryAction', $event)"
-        ></erp-empty-state>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="variant-custom">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">variant: custom</erp-text>
-        <erp-empty-state
-          [variant]="$any(cases[5].inputs['variant'])"
-          (primaryAction)="recordEvent('primaryAction', $event)"
-          (secondaryAction)="recordEvent('secondaryAction', $event)"
-          (tertiaryAction)="recordEvent('tertiaryAction', $event)"
-        ></erp-empty-state>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>

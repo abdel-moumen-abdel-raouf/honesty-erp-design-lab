@@ -95,7 +95,7 @@ export class ErpRangeSlider
   readonly showValueTooltip = input(true, {transform: booleanAttribute});
   readonly valueTooltipPlacement = input<ErpTooltipPlacement>('top');
   readonly valueTooltipFormatter =
-    input<ErpRangeSliderTooltipFormatter>(
+    input<ErpRangeSliderTooltipFormatter | null>(
       DEFAULT_RANGE_TOOLTIP_FORMATTER,
     );
 
@@ -263,7 +263,10 @@ export class ErpRangeSlider
       thumb === 'lower'
         ? this.currentValue().lower
         : this.currentValue().upper;
-    return this.valueTooltipFormatter()(value, thumb);
+    return (this.valueTooltipFormatter() ?? DEFAULT_RANGE_TOOLTIP_FORMATTER)(
+      value,
+      thumb,
+    );
   }
 
   protected handleClear(): void {

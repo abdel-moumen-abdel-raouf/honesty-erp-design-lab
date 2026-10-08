@@ -17,7 +17,7 @@ import {
 } from '../../shared/anchored-overlay/anchored-overlay-contracts';
 import {ErpButton} from '../button/button';
 import {ErpIconButton} from '../icon-button/icon-button';
-import {ErpItemPickerOption} from '../selection-family/selection-contracts';
+import {ErpActionMenuItem} from '../composite-family/composite-contracts';
 import {ErpActionMenuContent} from '../composite-family/internal/action-menu-content';
 
 @Component({
@@ -35,7 +35,7 @@ import {ErpActionMenuContent} from '../composite-family/internal/action-menu-con
 })
 export class ErpSplitButton implements OnDestroy {
   readonly label = input.required<string>();
-  readonly items = input.required<readonly ErpItemPickerOption[]>();
+  readonly items = input.required<readonly ErpActionMenuItem[]>();
   readonly disabled = input(false, {transform: booleanAttribute});
   readonly primaryPressed = output<void>();
   readonly itemSelected = output<string>();

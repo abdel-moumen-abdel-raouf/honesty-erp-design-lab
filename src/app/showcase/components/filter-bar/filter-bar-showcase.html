@@ -1,52 +1,27 @@
-<erp-stack gap="default" data-dedicated-showcase="filter-bar" data-showcase-sections="4">
+<erp-stack gap="default" data-dedicated-showcase="filter-bar" data-showcase-sections="1">
   <erp-text type="heading-2">شريط التصفية</erp-text>
   <erp-text type="paragraph" tone="secondary">عرض المرشحات النشطة وإصدار نوايا تعديلها.</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-filter-bar
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-filter-bar
+          data-showcase-target
+          [filters]="$any(value('filters'))"
+          [disabled]="$any(value('disabled'))"
           (filterRemoved)="recordEvent('filterRemoved', $event)"
           (resetRequested)="recordEvent('resetRequested', $event)"
           (applyRequested)="recordEvent('applyRequested', $event)"
         ></erp-filter-bar>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-false">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">disabled: false</erp-text>
-        <erp-filter-bar
-          [disabled]="$any(cases[1].inputs['disabled'])"
-          (filterRemoved)="recordEvent('filterRemoved', $event)"
-          (resetRequested)="recordEvent('resetRequested', $event)"
-          (applyRequested)="recordEvent('applyRequested', $event)"
-        ></erp-filter-bar>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-true">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">disabled: true</erp-text>
-        <erp-filter-bar
-          [disabled]="$any(cases[2].inputs['disabled'])"
-          (filterRemoved)="recordEvent('filterRemoved', $event)"
-          (resetRequested)="recordEvent('resetRequested', $event)"
-          (applyRequested)="recordEvent('applyRequested', $event)"
-        ></erp-filter-bar>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">حالة معطلة</erp-text>
-        <erp-filter-bar
-          [disabled]="$any(cases[3].inputs['disabled'])"
-          (filterRemoved)="recordEvent('filterRemoved', $event)"
-          (resetRequested)="recordEvent('resetRequested', $event)"
-          (applyRequested)="recordEvent('applyRequested', $event)"
-        ></erp-filter-bar>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>

@@ -1,19 +1,24 @@
 # Inputs Product Owner Review Findings V1
 
-## Authoritative current continuity finding — 2026-10-08 — showcase reconstruction
+## Authoritative current continuity finding — 2026-10-08 — live API workbenches
 
-No Input or Core visual implementation was reopened. The Product Owner finding
-was the incomplete generic showcase architecture. All 77 public owners now have
-dedicated showcase owners with authored projection, state, event, interaction,
-and exact-reference evidence as applicable. Exact Select and other exact Core
-evidence is reused unchanged.
+No Input or exact-reference visual implementation was reopened. Each public
+component page now has one target and live controls for every public input and
+model, including CVA value and disabled-state handling without conflicting
+Angular bindings. Meaningful outputs appear in a live event log.
 
-The legacy Inputs route and other old batch pages no longer render; their
-meaningful evidence is mapped to the appropriate component pages and their URLs
-redirect. Runtime audit found zero empty pages, console errors/warnings, broken
-assets, or overflow across all component routes in Light/Dark RTL and narrow
-review. The next action is Product Owner review of the reconstructed showcase
-system. No Input correction or later visual wave is opened.
+The catalog extracts 990 inputs, 20 models, and 67 outputs across 77 owners and
+generates 1,040 controls. Runtime audit in Light/Dark RTL and at 390 px found
+zero missing targets/panels, empty visible output, console errors/warnings,
+broken assets, or overflow. The next action is Product Owner review of these
+workbenches. No Input correction, FAB-owner merge, or later visual wave is
+opened.
+
+## Historical showcase reconstruction continuity finding — superseded 2026-10-08
+
+The prior dedicated-route correction remains historical evidence for legacy
+migration and route ownership, but its static/matrix showcase structure is no
+longer the current API interaction contract.
 
 ## Historical ownership and Page continuity finding — superseded 2026-10-08
 

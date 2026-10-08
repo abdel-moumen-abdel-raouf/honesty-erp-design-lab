@@ -1,0 +1,81 @@
+<erp-stack gap="tight" data-showcase-control-panel>
+  <erp-text type="heading-3">التحكم الحي في واجهة API</erp-text>
+  <erp-text type="paragraph" tone="secondary">
+    تُطبق القيم التالية مباشرة على النسخة الرئيسية الوحيدة للمكوّن.
+  </erp-text>
+
+  <erp-grid [columns]="3" gap="sm" responsive="auto">
+    @for (definition of controls(); track definition.name) {
+      <erp-surface
+        padding="tight"
+        border="subtle"
+        [attr.data-showcase-control]="definition.name"
+        [attr.data-showcase-control-kind]="definition.kind"
+      >
+        <erp-stack gap="tight">
+          @switch (definition.kind) {
+            @case ('boolean') {
+              <erp-check-box
+                [label]="definition.label"
+                [formControl]="editor(definition)"
+              />
+            }
+            @case ('select') {
+              <erp-select
+                [label]="definition.label"
+                [options]="options(definition)"
+                [searchable]="definition.options.length > 8"
+                [sortable]="false"
+                [formControl]="editor(definition)"
+              />
+            }
+            @case ('function') {
+              <erp-select
+                [label]="definition.label"
+                [options]="options(definition)"
+                [sortable]="false"
+                [formControl]="editor(definition)"
+              />
+            }
+            @case ('number') {
+              <erp-number-box
+                [label]="definition.label"
+                [formControl]="editor(definition)"
+              />
+            }
+            @case ('range') {
+              <erp-range-slider
+                [label]="definition.label"
+                [min]="0"
+                [max]="100"
+                [step]="1"
+                [showValueTooltip]="true"
+                [formControl]="editor(definition)"
+              />
+            }
+            @case ('text') {
+              <erp-text-box
+                [label]="definition.label"
+                [formControl]="editor(definition)"
+              />
+            }
+            @default {
+              <erp-text-area-box
+                [label]="definition.label"
+                [rows]="6"
+                resize="vertical"
+                [formControl]="editor(definition)"
+              />
+            }
+          }
+          <erp-text type="caption" tone="secondary" selectable>
+            {{ definition.source }} · {{ definition.type }}
+          </erp-text>
+          @if (error(definition.name); as message) {
+            <erp-text type="caption" tone="danger">{{ message }}</erp-text>
+          }
+        </erp-stack>
+      </erp-surface>
+    }
+  </erp-grid>
+</erp-stack>

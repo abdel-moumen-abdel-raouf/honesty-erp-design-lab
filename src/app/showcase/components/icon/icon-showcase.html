@@ -1,134 +1,29 @@
-<erp-stack gap="default" data-dedicated-showcase="icon" data-showcase-sections="14">
+<erp-stack gap="default" data-dedicated-showcase="icon" data-showcase-sections="1">
   <erp-text type="heading-2">الأيقونة</erp-text>
   <erp-text type="paragraph" tone="secondary">عرض أيقونة دلالية من السجل المعتمد.</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-icon
-          [name]="$any(cases[0].inputs['name'])"
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-icon
+          data-showcase-target
+          [name]="$any(value('name'))"
+          [size]="$any(value('size'))"
+          [tone]="$any(value('tone'))"
+          [variant]="$any(value('variant'))"
+          [strokeWidth]="$any(value('strokeWidth'))"
+          [decorative]="$any(value('decorative'))"
+          [label]="$any(value('label'))"
         ></erp-icon>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-inherit">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: inherit</erp-text>
-        <erp-icon
-          [name]="$any(cases[1].inputs['name'])"
-          [tone]="$any(cases[1].inputs['tone'])"
-        ></erp-icon>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-primary">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: primary</erp-text>
-        <erp-icon
-          [name]="$any(cases[2].inputs['name'])"
-          [tone]="$any(cases[2].inputs['tone'])"
-        ></erp-icon>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-secondary">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: secondary</erp-text>
-        <erp-icon
-          [name]="$any(cases[3].inputs['name'])"
-          [tone]="$any(cases[3].inputs['tone'])"
-        ></erp-icon>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-muted">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: muted</erp-text>
-        <erp-icon
-          [name]="$any(cases[4].inputs['name'])"
-          [tone]="$any(cases[4].inputs['tone'])"
-        ></erp-icon>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-disabled">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: disabled</erp-text>
-        <erp-icon
-          [name]="$any(cases[5].inputs['name'])"
-          [tone]="$any(cases[5].inputs['tone'])"
-        ></erp-icon>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-inverse">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: inverse</erp-text>
-        <erp-icon
-          [name]="$any(cases[6].inputs['name'])"
-          [tone]="$any(cases[6].inputs['tone'])"
-        ></erp-icon>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-brand-primary">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: brand-primary</erp-text>
-        <erp-icon
-          [name]="$any(cases[7].inputs['name'])"
-          [tone]="$any(cases[7].inputs['tone'])"
-        ></erp-icon>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-brand-secondary">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: brand-secondary</erp-text>
-        <erp-icon
-          [name]="$any(cases[8].inputs['name'])"
-          [tone]="$any(cases[8].inputs['tone'])"
-        ></erp-icon>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-brand-accent">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: brand-accent</erp-text>
-        <erp-icon
-          [name]="$any(cases[9].inputs['name'])"
-          [tone]="$any(cases[9].inputs['tone'])"
-        ></erp-icon>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-success">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: success</erp-text>
-        <erp-icon
-          [name]="$any(cases[10].inputs['name'])"
-          [tone]="$any(cases[10].inputs['tone'])"
-        ></erp-icon>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-warning">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: warning</erp-text>
-        <erp-icon
-          [name]="$any(cases[11].inputs['name'])"
-          [tone]="$any(cases[11].inputs['tone'])"
-        ></erp-icon>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-danger">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: danger</erp-text>
-        <erp-icon
-          [name]="$any(cases[12].inputs['name'])"
-          [tone]="$any(cases[12].inputs['tone'])"
-        ></erp-icon>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-info">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: info</erp-text>
-        <erp-icon
-          [name]="$any(cases[13].inputs['name'])"
-          [tone]="$any(cases[13].inputs['tone'])"
-        ></erp-icon>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>

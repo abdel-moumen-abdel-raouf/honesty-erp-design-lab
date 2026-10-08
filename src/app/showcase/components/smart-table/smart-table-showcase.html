@@ -1,170 +1,50 @@
-<erp-stack gap="default" data-dedicated-showcase="smart-table" data-showcase-sections="6">
+<erp-stack gap="default" data-dedicated-showcase="smart-table" data-showcase-sections="1">
   <erp-text type="heading-2">الجدول الذكي</erp-text>
   <erp-text type="paragraph" tone="secondary">تركيب مضبوط للجدول والأدوات والصفحات والحالات.</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-smart-table
-          [caption]="$any(cases[0].inputs['caption'])"
-          [columns]="$any(cases[0].inputs['columns'])"
-          [rows]="$any(cases[0].inputs['rows'])"
-          [page]="$any(modelValue('default:page', cases[0].inputs['page']))"
-          (pageChange)="recordModel('default:page', $event)"
-          [pageSize]="$any(modelValue('default:pageSize', cases[0].inputs['pageSize']))"
-          (pageSizeChange)="recordModel('default:pageSize', $event)"
-          [sort]="$any(modelValue('default:sort', cases[0].inputs['sort']))"
-          (sortChange)="recordModel('default:sort', $event)"
-          [filters]="$any(modelValue('default:filters', cases[0].inputs['filters']))"
-          (filtersChange)="recordModel('default:filters', $event)"
-          [visibleColumns]="$any(modelValue('default:visibleColumns', cases[0].inputs['visibleColumns']))"
-          (visibleColumnsChange)="recordModel('default:visibleColumns', $event)"
-          [selectedKeys]="$any(modelValue('default:selectedKeys', cases[0].inputs['selectedKeys']))"
-          (selectedKeysChange)="recordModel('default:selectedKeys', $event)"
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-smart-table
+          data-showcase-target
+          [caption]="$any(value('caption'))"
+          [columns]="$any(value('columns'))"
+          [rows]="$any(value('rows'))"
+          [mode]="$any(value('mode'))"
+          [rowKey]="$any(value('rowKey'))"
+          [loading]="$any(value('loading'))"
+          [error]="$any(value('error'))"
+          [totalItems]="$any(value('totalItems'))"
+          [selectable]="$any(value('selectable'))"
+          [compact]="$any(value('compact'))"
+          [filterDefinitions]="$any(value('filterDefinitions'))"
+          [pageSizeOptions]="$any(value('pageSizeOptions'))"
+          [page]="$any(value('page'))"
+          (pageChange)="recordModel('page', $event)"
+          [pageSize]="$any(value('pageSize'))"
+          (pageSizeChange)="recordModel('pageSize', $event)"
+          [sort]="$any(value('sort'))"
+          (sortChange)="recordModel('sort', $event)"
+          [filters]="$any(value('filters'))"
+          (filtersChange)="recordModel('filters', $event)"
+          [visibleColumns]="$any(value('visibleColumns'))"
+          (visibleColumnsChange)="recordModel('visibleColumns', $event)"
+          [selectedKeys]="$any(value('selectedKeys'))"
+          (selectedKeysChange)="recordModel('selectedKeys', $event)"
           (queryChanged)="recordEvent('queryChanged', $event)"
           (rowActivated)="recordEvent('rowActivated', $event)"
           (refreshRequested)="recordEvent('refreshRequested', $event)"
           (exportRequested)="recordEvent('exportRequested', $event)"
         ></erp-smart-table>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="mode-local">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">mode: local</erp-text>
-        <erp-smart-table
-          [caption]="$any(cases[1].inputs['caption'])"
-          [columns]="$any(cases[1].inputs['columns'])"
-          [rows]="$any(cases[1].inputs['rows'])"
-          [mode]="$any(cases[1].inputs['mode'])"
-          [page]="$any(modelValue('mode-local:page', cases[1].inputs['page']))"
-          (pageChange)="recordModel('mode-local:page', $event)"
-          [pageSize]="$any(modelValue('mode-local:pageSize', cases[1].inputs['pageSize']))"
-          (pageSizeChange)="recordModel('mode-local:pageSize', $event)"
-          [sort]="$any(modelValue('mode-local:sort', cases[1].inputs['sort']))"
-          (sortChange)="recordModel('mode-local:sort', $event)"
-          [filters]="$any(modelValue('mode-local:filters', cases[1].inputs['filters']))"
-          (filtersChange)="recordModel('mode-local:filters', $event)"
-          [visibleColumns]="$any(modelValue('mode-local:visibleColumns', cases[1].inputs['visibleColumns']))"
-          (visibleColumnsChange)="recordModel('mode-local:visibleColumns', $event)"
-          [selectedKeys]="$any(modelValue('mode-local:selectedKeys', cases[1].inputs['selectedKeys']))"
-          (selectedKeysChange)="recordModel('mode-local:selectedKeys', $event)"
-          (queryChanged)="recordEvent('queryChanged', $event)"
-          (rowActivated)="recordEvent('rowActivated', $event)"
-          (refreshRequested)="recordEvent('refreshRequested', $event)"
-          (exportRequested)="recordEvent('exportRequested', $event)"
-        ></erp-smart-table>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="mode-remote">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">mode: remote</erp-text>
-        <erp-smart-table
-          [caption]="$any(cases[2].inputs['caption'])"
-          [columns]="$any(cases[2].inputs['columns'])"
-          [rows]="$any(cases[2].inputs['rows'])"
-          [mode]="$any(cases[2].inputs['mode'])"
-          [page]="$any(modelValue('mode-remote:page', cases[2].inputs['page']))"
-          (pageChange)="recordModel('mode-remote:page', $event)"
-          [pageSize]="$any(modelValue('mode-remote:pageSize', cases[2].inputs['pageSize']))"
-          (pageSizeChange)="recordModel('mode-remote:pageSize', $event)"
-          [sort]="$any(modelValue('mode-remote:sort', cases[2].inputs['sort']))"
-          (sortChange)="recordModel('mode-remote:sort', $event)"
-          [filters]="$any(modelValue('mode-remote:filters', cases[2].inputs['filters']))"
-          (filtersChange)="recordModel('mode-remote:filters', $event)"
-          [visibleColumns]="$any(modelValue('mode-remote:visibleColumns', cases[2].inputs['visibleColumns']))"
-          (visibleColumnsChange)="recordModel('mode-remote:visibleColumns', $event)"
-          [selectedKeys]="$any(modelValue('mode-remote:selectedKeys', cases[2].inputs['selectedKeys']))"
-          (selectedKeysChange)="recordModel('mode-remote:selectedKeys', $event)"
-          (queryChanged)="recordEvent('queryChanged', $event)"
-          (rowActivated)="recordEvent('rowActivated', $event)"
-          (refreshRequested)="recordEvent('refreshRequested', $event)"
-          (exportRequested)="recordEvent('exportRequested', $event)"
-        ></erp-smart-table>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="loading-false">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">loading: false</erp-text>
-        <erp-smart-table
-          [caption]="$any(cases[3].inputs['caption'])"
-          [columns]="$any(cases[3].inputs['columns'])"
-          [rows]="$any(cases[3].inputs['rows'])"
-          [loading]="$any(cases[3].inputs['loading'])"
-          [page]="$any(modelValue('loading-false:page', cases[3].inputs['page']))"
-          (pageChange)="recordModel('loading-false:page', $event)"
-          [pageSize]="$any(modelValue('loading-false:pageSize', cases[3].inputs['pageSize']))"
-          (pageSizeChange)="recordModel('loading-false:pageSize', $event)"
-          [sort]="$any(modelValue('loading-false:sort', cases[3].inputs['sort']))"
-          (sortChange)="recordModel('loading-false:sort', $event)"
-          [filters]="$any(modelValue('loading-false:filters', cases[3].inputs['filters']))"
-          (filtersChange)="recordModel('loading-false:filters', $event)"
-          [visibleColumns]="$any(modelValue('loading-false:visibleColumns', cases[3].inputs['visibleColumns']))"
-          (visibleColumnsChange)="recordModel('loading-false:visibleColumns', $event)"
-          [selectedKeys]="$any(modelValue('loading-false:selectedKeys', cases[3].inputs['selectedKeys']))"
-          (selectedKeysChange)="recordModel('loading-false:selectedKeys', $event)"
-          (queryChanged)="recordEvent('queryChanged', $event)"
-          (rowActivated)="recordEvent('rowActivated', $event)"
-          (refreshRequested)="recordEvent('refreshRequested', $event)"
-          (exportRequested)="recordEvent('exportRequested', $event)"
-        ></erp-smart-table>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="loading-true">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">loading: true</erp-text>
-        <erp-smart-table
-          [caption]="$any(cases[4].inputs['caption'])"
-          [columns]="$any(cases[4].inputs['columns'])"
-          [rows]="$any(cases[4].inputs['rows'])"
-          [loading]="$any(cases[4].inputs['loading'])"
-          [page]="$any(modelValue('loading-true:page', cases[4].inputs['page']))"
-          (pageChange)="recordModel('loading-true:page', $event)"
-          [pageSize]="$any(modelValue('loading-true:pageSize', cases[4].inputs['pageSize']))"
-          (pageSizeChange)="recordModel('loading-true:pageSize', $event)"
-          [sort]="$any(modelValue('loading-true:sort', cases[4].inputs['sort']))"
-          (sortChange)="recordModel('loading-true:sort', $event)"
-          [filters]="$any(modelValue('loading-true:filters', cases[4].inputs['filters']))"
-          (filtersChange)="recordModel('loading-true:filters', $event)"
-          [visibleColumns]="$any(modelValue('loading-true:visibleColumns', cases[4].inputs['visibleColumns']))"
-          (visibleColumnsChange)="recordModel('loading-true:visibleColumns', $event)"
-          [selectedKeys]="$any(modelValue('loading-true:selectedKeys', cases[4].inputs['selectedKeys']))"
-          (selectedKeysChange)="recordModel('loading-true:selectedKeys', $event)"
-          (queryChanged)="recordEvent('queryChanged', $event)"
-          (rowActivated)="recordEvent('rowActivated', $event)"
-          (refreshRequested)="recordEvent('refreshRequested', $event)"
-          (exportRequested)="recordEvent('exportRequested', $event)"
-        ></erp-smart-table>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="loading">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">حالة تحميل</erp-text>
-        <erp-smart-table
-          [caption]="$any(cases[5].inputs['caption'])"
-          [columns]="$any(cases[5].inputs['columns'])"
-          [rows]="$any(cases[5].inputs['rows'])"
-          [loading]="$any(cases[5].inputs['loading'])"
-          [page]="$any(modelValue('loading:page', cases[5].inputs['page']))"
-          (pageChange)="recordModel('loading:page', $event)"
-          [pageSize]="$any(modelValue('loading:pageSize', cases[5].inputs['pageSize']))"
-          (pageSizeChange)="recordModel('loading:pageSize', $event)"
-          [sort]="$any(modelValue('loading:sort', cases[5].inputs['sort']))"
-          (sortChange)="recordModel('loading:sort', $event)"
-          [filters]="$any(modelValue('loading:filters', cases[5].inputs['filters']))"
-          (filtersChange)="recordModel('loading:filters', $event)"
-          [visibleColumns]="$any(modelValue('loading:visibleColumns', cases[5].inputs['visibleColumns']))"
-          (visibleColumnsChange)="recordModel('loading:visibleColumns', $event)"
-          [selectedKeys]="$any(modelValue('loading:selectedKeys', cases[5].inputs['selectedKeys']))"
-          (selectedKeysChange)="recordModel('loading:selectedKeys', $event)"
-          (queryChanged)="recordEvent('queryChanged', $event)"
-          (rowActivated)="recordEvent('rowActivated', $event)"
-          (refreshRequested)="recordEvent('refreshRequested', $event)"
-          (exportRequested)="recordEvent('exportRequested', $event)"
-        ></erp-smart-table>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>

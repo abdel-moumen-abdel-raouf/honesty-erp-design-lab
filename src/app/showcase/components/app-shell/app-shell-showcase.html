@@ -1,18 +1,27 @@
 <erp-stack gap="default" data-dedicated-showcase="app-shell" data-showcase-sections="1">
   <erp-text type="heading-2">إطار تطبيق ERP</erp-text>
   <erp-text type="paragraph" tone="secondary">تكوين إطار التطبيق من الشريط العلوي والشريط الجانبي والمحتوى.</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-app-shell
-          [navigationItems]="$any(cases[0].inputs['navigationItems'])"
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-app-shell
+          data-showcase-target
+          [navigationItems]="$any(value('navigationItems'))"
+          [activeNavigationId]="$any(value('activeNavigationId'))"
+          [sidebarLabel]="$any(value('sidebarLabel'))"
+          [contentLabel]="$any(value('contentLabel'))"
           (navigationActivated)="recordEvent('navigationActivated', $event)"
         ><erp-text erpAppShellTopbarStart type="heading-3">Honesty ERP</erp-text><erp-text type="heading-3">محتوى التطبيق</erp-text><erp-text type="paragraph">ملخص العمليات اليومية</erp-text></erp-app-shell>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>

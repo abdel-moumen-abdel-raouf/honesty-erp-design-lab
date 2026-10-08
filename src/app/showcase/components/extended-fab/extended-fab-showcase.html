@@ -1,168 +1,35 @@
-<erp-stack gap="default" data-dedicated-showcase="extended-fab" data-showcase-sections="16">
+<erp-stack gap="default" data-dedicated-showcase="extended-fab" data-showcase-sections="1">
   <erp-text type="heading-2">زر إجراء عائم ممتد</erp-text>
   <erp-text type="paragraph" tone="secondary">إجراء عائم يجمع الأيقونة والتسمية.</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-extended-fab
-          [label]="$any(cases[0].inputs['label'])"
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview showcase-live-preview--floating">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-extended-fab
+          data-showcase-target
+          [label]="$any(value('label'))"
+          [icon]="$any(value('icon'))"
+          [size]="$any(value('size'))"
+          [tone]="$any(value('tone'))"
+          [disabled]="$any(value('disabled'))"
+          [loading]="$any(value('loading'))"
+          [cursor]="$any(value('cursor'))"
+          [rippleSpeed]="$any(value('rippleSpeed'))"
           (pressed)="recordEvent('pressed', $event)"
+          [style.position]="'absolute'"
+          [style.inset-inline-start.%]="previewInline()"
+          [style.inset-block-start.%]="previewBlock()"
+          [style.transform]="'translate(-50%, -50%)'"
         ></erp-extended-fab>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="size-md">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">size: md</erp-text>
-        <erp-extended-fab
-          [label]="$any(cases[1].inputs['label'])"
-          [size]="$any(cases[1].inputs['size'])"
-          (pressed)="recordEvent('pressed', $event)"
-        ></erp-extended-fab>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="size-lg">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">size: lg</erp-text>
-        <erp-extended-fab
-          [label]="$any(cases[2].inputs['label'])"
-          [size]="$any(cases[2].inputs['size'])"
-          (pressed)="recordEvent('pressed', $event)"
-        ></erp-extended-fab>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="size-xl">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">size: xl</erp-text>
-        <erp-extended-fab
-          [label]="$any(cases[3].inputs['label'])"
-          [size]="$any(cases[3].inputs['size'])"
-          (pressed)="recordEvent('pressed', $event)"
-        ></erp-extended-fab>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-primary">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: primary</erp-text>
-        <erp-extended-fab
-          [label]="$any(cases[4].inputs['label'])"
-          [tone]="$any(cases[4].inputs['tone'])"
-          (pressed)="recordEvent('pressed', $event)"
-        ></erp-extended-fab>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-secondary">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: secondary</erp-text>
-        <erp-extended-fab
-          [label]="$any(cases[5].inputs['label'])"
-          [tone]="$any(cases[5].inputs['tone'])"
-          (pressed)="recordEvent('pressed', $event)"
-        ></erp-extended-fab>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-accent">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: accent</erp-text>
-        <erp-extended-fab
-          [label]="$any(cases[6].inputs['label'])"
-          [tone]="$any(cases[6].inputs['tone'])"
-          (pressed)="recordEvent('pressed', $event)"
-        ></erp-extended-fab>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-surface">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: surface</erp-text>
-        <erp-extended-fab
-          [label]="$any(cases[7].inputs['label'])"
-          [tone]="$any(cases[7].inputs['tone'])"
-          (pressed)="recordEvent('pressed', $event)"
-        ></erp-extended-fab>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-false">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">disabled: false</erp-text>
-        <erp-extended-fab
-          [label]="$any(cases[8].inputs['label'])"
-          [disabled]="$any(cases[8].inputs['disabled'])"
-          (pressed)="recordEvent('pressed', $event)"
-        ></erp-extended-fab>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-true">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">disabled: true</erp-text>
-        <erp-extended-fab
-          [label]="$any(cases[9].inputs['label'])"
-          [disabled]="$any(cases[9].inputs['disabled'])"
-          (pressed)="recordEvent('pressed', $event)"
-        ></erp-extended-fab>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="loading-false">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">loading: false</erp-text>
-        <erp-extended-fab
-          [label]="$any(cases[10].inputs['label'])"
-          [loading]="$any(cases[10].inputs['loading'])"
-          (pressed)="recordEvent('pressed', $event)"
-        ></erp-extended-fab>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="loading-true">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">loading: true</erp-text>
-        <erp-extended-fab
-          [label]="$any(cases[11].inputs['label'])"
-          [loading]="$any(cases[11].inputs['loading'])"
-          (pressed)="recordEvent('pressed', $event)"
-        ></erp-extended-fab>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="cursor-pointer">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">cursor: pointer</erp-text>
-        <erp-extended-fab
-          [label]="$any(cases[12].inputs['label'])"
-          [cursor]="$any(cases[12].inputs['cursor'])"
-          (pressed)="recordEvent('pressed', $event)"
-        ></erp-extended-fab>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="cursor-default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">cursor: default</erp-text>
-        <erp-extended-fab
-          [label]="$any(cases[13].inputs['label'])"
-          [cursor]="$any(cases[13].inputs['cursor'])"
-          (pressed)="recordEvent('pressed', $event)"
-        ></erp-extended-fab>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">حالة معطلة</erp-text>
-        <erp-extended-fab
-          [label]="$any(cases[14].inputs['label'])"
-          [disabled]="$any(cases[14].inputs['disabled'])"
-          (pressed)="recordEvent('pressed', $event)"
-        ></erp-extended-fab>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="loading">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">حالة تحميل</erp-text>
-        <erp-extended-fab
-          [label]="$any(cases[15].inputs['label'])"
-          [loading]="$any(cases[15].inputs['loading'])"
-          (pressed)="recordEvent('pressed', $event)"
-        ></erp-extended-fab>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>

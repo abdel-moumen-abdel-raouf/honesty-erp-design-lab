@@ -1,17 +1,24 @@
 <erp-stack gap="default" data-dedicated-showcase="bulk-action-bar" data-showcase-sections="1">
   <erp-text type="heading-2">شريط الإجراءات الجماعية</erp-text>
   <erp-text type="paragraph" tone="secondary">إجراءات مرتبطة بالصفوف المحددة.</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-bulk-action-bar
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-bulk-action-bar
+          data-showcase-target
+          [selectedCount]="$any(value('selectedCount'))"
           (clearSelection)="recordEvent('clearSelection', $event)"
         ></erp-bulk-action-bar>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>

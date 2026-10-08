@@ -1,25 +1,32 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
-## Authoritative current review state — 2026-10-08 — dedicated showcase system
+## Authoritative current review state — 2026-10-08 — live API workbenches
 
-The Product Owner rejected the catalog checkpoint as a complete showcase
-system because generic input-only hosts could be empty or incomplete and the
-legacy pages/navigation remained duplicated. The bounded reconstruction entered
-at `54451b1fdca8da0f03096d16df20adc6100a5c11` and now gives all 77 public ERP
-components a dedicated authored showcase owner, loader, and coverage contract.
+The Product Owner required one visible component plus controls for every public
+API property, applied immediately. The bounded correction entered at
+`fce028a2e080714a5759c649746656a3f36da524`; all 77 public component pages now
+render one primary target and one shared live control panel.
 
-Missing owners, empty showcases, and unmapped meaningful legacy sections are
-zero. Former runtime pages are redirect-only, the legacy navigation is removed,
-and the compact Arabic catalog consumes 280 px / 21.875% at 1280 px and zero
-permanent width when closed at 390 px. Runtime audit passed every component
-route in Light/Dark RTL, all redirects, and representative interactions with
-zero console errors/warnings, broken assets, or page overflow.
+The catalog covers 990 inputs, 20 models, 67 outputs, and 24 CVA owners through
+1,040 controls. ButtonGroup renders three buttons; Fab, ExtendedFab, and
+FabMenu provide bounded live positioning; FabMenu and SplitButton provide five
+mixed text/icon action presentations. Existing production FAB owners were not
+merged because that architecture change was not authorized.
 
-Canonical verification passes 119/119 test files and 730/730 tests, all
-lint/governance, both typechecks, production build, and zero warnings. Initial
-bundle is 488.33 kB / 106.12 kB. Product Owner review of the reconstructed
-showcase system is the only next action. No later visual or feature wave is
+Runtime audit passed all 77 routes in Light/Dark RTL and at 390 px with zero
+missing targets/panels, empty visible output, console errors/warnings, broken
+assets, or overflow. Canonical verification passes 120/120 files and 737/737
+tests, all lint/governance, both typechecks, production build, and zero
+warnings. Initial bundle is 488.18 kB / 105.32 kB. Product Owner review of the
+live workbenches is the only next action; no later visual or feature wave is
 authorized.
+
+## Historical dedicated showcase review state — superseded 2026-10-08
+
+The preceding reconstruction entered at
+`54451b1fdca8da0f03096d16df20adc6100a5c11`. Its legacy migration and compact
+navigation remain valid, while its static/matrix showcase interaction contract
+is superseded.
 
 ## Historical ownership catalog and ErpPage review state — superseded 2026-10-08
 

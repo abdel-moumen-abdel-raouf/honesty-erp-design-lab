@@ -1,37 +1,43 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
-## Authoritative current execution state — 2026-10-08 — dedicated showcase reconstruction
+## Authoritative current execution state — 2026-10-08 — live API showcase workbenches
 
-This bounded reconstruction entered from clean live `main` at
-`54451b1fdca8da0f03096d16df20adc6100a5c11`. All 77 public ERP components now
-have generated catalog metadata plus a dedicated, component-specific Design Lab
-showcase owner and lazy loader. Generic input-only rendering is no longer a
-fallback. The machine-readable coverage records inputs, models, outputs,
-variants, sizes, states, projection slots, and exact-reference cases.
+This bounded correction entered from clean live `main` at
+`fce028a2e080714a5759c649746656a3f36da524`. Every one of the 77 public ERP
+component pages now renders exactly one primary target plus a shared live API
+control panel. The generated catalog extracts 990 public inputs, 20 models, and
+67 outputs; 1,040 live editors apply input, model, CVA, and bounded preview
+changes immediately while meaningful outputs are shown in an event log.
 
-Projection-driven and structural owners render authored visible children;
-interactive, CVA, model, output, overlay, and exact-reference owners expose live
-evidence appropriate to their contracts. Exact Select, StatusBadge, Avatar,
-AvatarPicker, Tabs, and Table evidence is reused rather than recreated. The
-legacy migration ledger records zero unmapped meaningful sections. Former
-showcase and Foundation routes are redirect-only; their routed implementations
-and the duplicated legacy navigation were removed.
+`ErpButtonGroup` now renders three real buttons. `ErpFab`, `ErpExtendedFab`, and
+`ErpFabMenu` render inside a bounded floating preview with live inline/block
+position controls. `ErpFabMenu` and `ErpSplitButton` each expose five actions
+covering text-only, icon-only, and icon-plus-text presentations. The production
+FAB owners remain separate because this task did not authorize an API-family
+merge; their actual public APIs are exposed without a visual redesign.
 
-The primary navigation is now a compact Arabic catalog: 280 px at a 1280 px
-desktop viewport (21.875%), at most 17.5 rem / 25vw, and zero permanent width
-when closed at 390 px. It supports category collapse, active state, keyboard
-dismissal, and ErpSearchBox search. Runtime audit covered `/components`, all 77
-component routes, and 29 redirect aliases in Light and Dark RTL. Every route
-rendered meaningful content with zero empty showcases, console errors,
-console warnings, broken images, or page overflow. Representative interactions
-for Tooltip, Select, Tabs, Table, AvatarPicker, and Form submit/reset passed.
+Governance rejects a missing public-API control, multiple target instances, an
+unbound input/model/output, incomplete action-menu presentations, or missing
+floating-position controls. Runtime audit covered all 77 routes in Light and
+Dark RTL and at 390 px: target count, control panel, visible content, console
+errors/warnings, broken assets, and horizontal overflow all pass with zero
+failures. Direct interaction checks passed ButtonGroup orientation, FAB
+positioning, and the FabMenu/SplitButton mixed action menus.
 
-Canonical verification passes all lint/governance, 119/119 test files and
-730/730 tests, both typechecks, production build, and zero warnings. The initial
-bundle is 488.33 kB / 106.12 kB estimated transfer; component showcases remain
-independently lazy-loaded. Product Owner visual/runtime acceptance remains the
-next gate. The separate ERP-TABLE visual gate remains pending, and no later
-component, visual, page-pattern, or feature wave is opened.
+Canonical verification passes all lint/governance, 120/120 test files and
+737/737 tests, both typechecks, production build, and zero warnings. The initial
+bundle is 488.18 kB / 105.32 kB estimated transfer; component workbenches remain
+independently lazy-loaded. Product Owner review of the live API workbenches is
+the exact next gate. No component visual acceptance, FAB owner merge, later
+visual wave, page pattern, or feature migration is inferred or opened.
+
+## Historical dedicated showcase reconstruction — superseded 2026-10-08
+
+The prior dedicated-showcase checkpoint entered at
+`54451b1fdca8da0f03096d16df20adc6100a5c11`, covered 77 authored routes, and
+passed 119/119 files and 730/730 tests. It is superseded as the current showcase
+contract because its pages did not expose one live target with controls for the
+complete public API.
 
 ## Historical ownership catalog and Page foundation state — superseded 2026-10-08
 

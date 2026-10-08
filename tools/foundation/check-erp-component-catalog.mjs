@@ -88,10 +88,51 @@ function validateCatalog(catalog) {
         errors.push(`${entry.className} exact-reference evidence is missing`);
       }
     }
+    const controlNames = new Set(entry.showcaseControls.map((control) => control.name));
+    for (const inputApi of entry.publicApi.inputs) {
+      if (!controlNames.has(inputApi.name)) {
+        errors.push(`${entry.className} input ${inputApi.name} has no live control`);
+      }
+    }
+    for (const modelApi of entry.publicApi.models) {
+      if (!controlNames.has(modelApi.name)) {
+        errors.push(`${entry.className} model ${modelApi.name} has no live control`);
+      }
+    }
+    if (entry.publicApi.inputs.some((inputApi) => inputApi.name === 'label') &&
+        !Object.prototype.hasOwnProperty.call(entry.showcaseInitialValues, 'label')) {
+      errors.push(`${entry.className} live showcase has no initial label`);
+    }
   }
 
   if (!publicEntries.some((entry) => entry.className === 'ErpPage')) {
     errors.push('ErpPage is missing from the public catalog');
+  }
+
+  const buttonGroup = publicEntries.find((entry) => entry.className === 'ErpButtonGroup');
+  if (buttonGroup && (!Array.isArray(buttonGroup.showcaseInitialValues?.items) ||
+      buttonGroup.showcaseInitialValues.items.length < 3)) {
+    errors.push('ErpButtonGroup live showcase does not start with a real multi-action group');
+  }
+  for (const className of ['ErpFab', 'ErpExtendedFab', 'ErpFabMenu']) {
+    const entry = publicEntries.find((candidate) => candidate.className === className);
+    if (!entry) continue;
+    const controlNames = new Set(entry?.showcaseControls.map((control) => control.name) ?? []);
+    if (!controlNames.has('$previewInline') || !controlNames.has('$previewBlock')) {
+      errors.push(`${className} live showcase has no two-axis floating-position controls`);
+    }
+  }
+  for (const className of ['ErpFabMenu', 'ErpSplitButton']) {
+    const entry = publicEntries.find((candidate) => candidate.className === className);
+    if (!entry) continue;
+    const items = entry?.showcaseInitialValues?.items;
+    const presentations = new Set(
+      Array.isArray(items) ? items.map((item) => item?.presentation) : [],
+    );
+    if (!Array.isArray(items) || items.length < 5 ||
+        !['text', 'icon', 'icon-text'].every((value) => presentations.has(value))) {
+      errors.push(`${className} live showcase does not cover five mixed action presentations`);
+    }
   }
 
   return errors;
@@ -191,16 +232,41 @@ function validateRepository() {
     const htmlPath = entry.showcaseOwnerPath.replace(/\.ts$/, '.html');
     const html = fs.readFileSync(path.join(REPO_ROOT, htmlPath), 'utf8');
     if (!html.includes(`data-dedicated-showcase="${entry.id}"`) ||
-        !html.includes('data-showcase-case=') ||
+        !html.includes('data-showcase-case="live"') ||
         !html.includes(`<${entry.selector}`)) {
       errors.push(`${entry.className} dedicated showcase is empty or does not render its owner`);
+    }
+    if (!html.includes('data-showcase-sections="1"') ||
+        !html.includes('<app-review-showcase-control-panel')) {
+      errors.push(`${entry.className} does not use the single live-preview control contract`);
+    }
+    if ((html.match(/data-showcase-target/g) ?? []).length !== 1) {
+      errors.push(`${entry.className} does not identify exactly one live showcase target`);
+    }
+    for (const inputApi of entry.publicApi.inputs) {
+      const bindingName = inputApi.name === 'forId' ? 'for' : inputApi.name;
+      const cvaDisabled = inputApi.name === 'disabled' &&
+        html.includes('[formControl]="control"') &&
+        html.includes('data-showcase-cva-disabled-control');
+      if (!cvaDisabled && !html.includes(`[${bindingName}]="$any(value('${inputApi.name}'))"`)) {
+        errors.push(`${entry.className} live target is not bound to input ${inputApi.name}`);
+      }
+    }
+    for (const outputName of entry.publicApi.outputs) {
+      if (!html.includes(`(${outputName})="recordEvent('${outputName}', $event)"`)) {
+        errors.push(`${entry.className} live target has no event evidence for ${outputName}`);
+      }
     }
     const projectedChildPattern = new RegExp(
       `<${entry.selector}[\\s\\S]*?>\\s*<erp-`,
     );
     if (entry.showcaseCoverage.coveredProjectionSlots.length &&
+        entry.className !== 'ErpText' &&
         !projectedChildPattern.test(html)) {
       errors.push(`${entry.className} projection showcase has no visible projected content`);
+    }
+    if (entry.className === 'ErpText' && !html.includes('نص تجريبي مباشر')) {
+      errors.push('ErpText projection showcase has no visible authored text');
     }
   }
   errors.push(...validatePageOwner({
@@ -239,6 +305,8 @@ function selfTest() {
     displayNameAr: 'زر',
     descriptionAr: 'وصف',
     showcaseCases: [{id: 'default', label: 'default', inputs: {}}],
+    showcaseInitialValues: {},
+    showcaseControls: [],
     showcaseCoverage: {coveredInputs: [], coveredModels: [], coveredOutputs: [], coveredValues: {}, coveredStates: [], coveredProjectionSlots: [], coveredReferenceCases: [], evidenceKind: 'STATIC_COMPONENT'},
   }, {
     id: 'page',
@@ -256,6 +324,8 @@ function selfTest() {
     displayNameAr: 'صفحة',
     descriptionAr: 'وصف',
     showcaseCases: [{id: 'default', label: 'default', inputs: {}}],
+    showcaseInitialValues: {},
+    showcaseControls: [],
     showcaseCoverage: {coveredInputs: [], coveredModels: [], coveredOutputs: [], coveredValues: {}, coveredStates: [], coveredProjectionSlots: [], coveredReferenceCases: [], evidenceKind: 'STATIC_COMPONENT'},
   }];
   if (validateCatalog(valid).length !== 0) throw new Error('valid catalog fixture failed');
@@ -272,6 +342,8 @@ function selfTest() {
           ...entry,
           publicApi: {inputs: [{name: 'label', required: true, values: []}], outputs: [], models: []},
           showcaseCases: [{id: 'default', label: 'default', inputs: {}}],
+          showcaseInitialValues: {},
+          showcaseControls: [],
           showcaseCoverage: {...entry.showcaseCoverage, coveredInputs: []},
         }
       : entry),

@@ -1,17 +1,23 @@
 <erp-stack gap="default" data-dedicated-showcase="topbar" data-showcase-sections="1">
   <erp-text type="heading-2">الشريط العلوي</erp-text>
   <erp-text type="paragraph" tone="secondary">تخطيط مناطق السياق والبحث والإشعارات والمستخدم.</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-topbar
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-topbar
+          data-showcase-target
           
         ><erp-text erpTopbarStart type="heading-3">Honesty ERP</erp-text><erp-text erpTopbarContext type="paragraph">فرع القاهرة</erp-text><erp-text erpTopbarSearch type="paragraph">البحث العام</erp-text><erp-text erpTopbarNotifications type="paragraph">الإشعارات</erp-text><erp-text erpTopbarUser type="paragraph">أميرة حداد</erp-text></erp-topbar>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>

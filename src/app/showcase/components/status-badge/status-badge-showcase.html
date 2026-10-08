@@ -1,335 +1,42 @@
-<erp-stack gap="default" data-dedicated-showcase="status-badge" data-showcase-sections="27">
+<erp-stack gap="default" data-dedicated-showcase="status-badge" data-showcase-sections="1">
   <erp-text type="heading-2">شارة الحالة</erp-text>
   <erp-text type="paragraph" tone="secondary">مؤشر حالة غير تفاعلي أو تفاعلي حسب العقد.</erp-text>
-  <erp-text type="heading-2">مرجع Product Owner الدقيق</erp-text>
-  <app-review-exact-core-showcase [focus]="'status-badge'" />
-  <erp-text type="heading-2">واجهة API والتوافق</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[0].inputs['label'])"
+  <erp-text class="showcase-reference" type="caption" tone="secondary" selectable>مرجع Product Owner: src/app/controls/status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md</erp-text>
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-status-badge
+          data-showcase-target
+          [label]="$any(value('label'))"
+          [tone]="$any(value('tone'))"
+          [variant]="$any(value('variant'))"
+          [size]="$any(value('size'))"
+          [shape]="$any(value('shape'))"
+          [widthMode]="$any(value('widthMode'))"
+          [icon]="$any(value('icon'))"
+          [image]="$any(value('image'))"
+          [count]="$any(value('count'))"
+          [showDot]="$any(value('showDot'))"
+          [pulse]="$any(value('pulse'))"
+          [uppercase]="$any(value('uppercase'))"
+          [interactive]="$any(value('interactive'))"
+          [selected]="$any(value('selected'))"
+          [removable]="$any(value('removable'))"
+          [disabled]="$any(value('disabled'))"
           (badgeClick)="recordEvent('badgeClick', $event)"
           (selectedChange)="recordEvent('selectedChange', $event)"
           (remove)="recordEvent('remove', $event)"
         ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-neutral">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: neutral</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[1].inputs['label'])"
-          [tone]="$any(cases[1].inputs['tone'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-success">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: success</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[2].inputs['label'])"
-          [tone]="$any(cases[2].inputs['tone'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-warning">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: warning</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[3].inputs['label'])"
-          [tone]="$any(cases[3].inputs['tone'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-danger">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: danger</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[4].inputs['label'])"
-          [tone]="$any(cases[4].inputs['tone'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-info">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: info</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[5].inputs['label'])"
-          [tone]="$any(cases[5].inputs['tone'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-brand">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: brand</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[6].inputs['label'])"
-          [tone]="$any(cases[6].inputs['tone'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-pending">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: pending</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[7].inputs['label'])"
-          [tone]="$any(cases[7].inputs['tone'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-archived">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: archived</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[8].inputs['label'])"
-          [tone]="$any(cases[8].inputs['tone'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="variant-soft">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">variant: soft</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[9].inputs['label'])"
-          [variant]="$any(cases[9].inputs['variant'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="variant-solid">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">variant: solid</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[10].inputs['label'])"
-          [variant]="$any(cases[10].inputs['variant'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="variant-outline">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">variant: outline</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[11].inputs['label'])"
-          [variant]="$any(cases[11].inputs['variant'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="variant-ghost">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">variant: ghost</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[12].inputs['label'])"
-          [variant]="$any(cases[12].inputs['variant'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="size-sm">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">size: sm</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[13].inputs['label'])"
-          [size]="$any(cases[13].inputs['size'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="size-md">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">size: md</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[14].inputs['label'])"
-          [size]="$any(cases[14].inputs['size'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="size-lg">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">size: lg</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[15].inputs['label'])"
-          [size]="$any(cases[15].inputs['size'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="size-xl">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">size: xl</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[16].inputs['label'])"
-          [size]="$any(cases[16].inputs['size'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="shape-square">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">shape: square</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[17].inputs['label'])"
-          [shape]="$any(cases[17].inputs['shape'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="shape-rounded">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">shape: rounded</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[18].inputs['label'])"
-          [shape]="$any(cases[18].inputs['shape'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="shape-pill">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">shape: pill</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[19].inputs['label'])"
-          [shape]="$any(cases[19].inputs['shape'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="widthMode-content">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">widthMode: content</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[20].inputs['label'])"
-          [widthMode]="$any(cases[20].inputs['widthMode'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="widthMode-stretch">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">widthMode: stretch</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[21].inputs['label'])"
-          [widthMode]="$any(cases[21].inputs['widthMode'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="selected-false">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">selected: false</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[22].inputs['label'])"
-          [selected]="$any(cases[22].inputs['selected'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="selected-true">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">selected: true</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[23].inputs['label'])"
-          [selected]="$any(cases[23].inputs['selected'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-false">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">disabled: false</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[24].inputs['label'])"
-          [disabled]="$any(cases[24].inputs['disabled'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-true">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">disabled: true</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[25].inputs['label'])"
-          [disabled]="$any(cases[25].inputs['disabled'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">حالة معطلة</erp-text>
-        <erp-status-badge
-          [label]="$any(cases[26].inputs['label'])"
-          [disabled]="$any(cases[26].inputs['disabled'])"
-          (badgeClick)="recordEvent('badgeClick', $event)"
-          (selectedChange)="recordEvent('selectedChange', $event)"
-          (remove)="recordEvent('remove', $event)"
-        ></erp-status-badge>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>

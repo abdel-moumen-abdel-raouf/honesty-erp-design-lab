@@ -1,48 +1,31 @@
-<erp-stack gap="default" data-dedicated-showcase="repeater" data-showcase-sections="4">
+<erp-stack gap="default" data-dedicated-showcase="repeater" data-showcase-sections="1">
   <erp-text type="heading-2">مكرر</erp-text>
   <erp-text type="paragraph" tone="secondary">قائمة عناصر مضبوطة مع نوايا الإضافة والحذف.</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-repeater
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-repeater
+          data-showcase-target
+          [items]="$any(value('items'))"
+          [label]="$any(value('label'))"
+          [addLabel]="$any(value('addLabel'))"
+          [removeLabel]="$any(value('removeLabel'))"
+          [minItems]="$any(value('minItems'))"
+          [maxItems]="$any(value('maxItems'))"
+          [disabled]="$any(value('disabled'))"
           (addRequested)="recordEvent('addRequested', $event)"
           (removeRequested)="recordEvent('removeRequested', $event)"
         ></erp-repeater>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-false">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">disabled: false</erp-text>
-        <erp-repeater
-          [disabled]="$any(cases[1].inputs['disabled'])"
-          (addRequested)="recordEvent('addRequested', $event)"
-          (removeRequested)="recordEvent('removeRequested', $event)"
-        ></erp-repeater>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-true">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">disabled: true</erp-text>
-        <erp-repeater
-          [disabled]="$any(cases[2].inputs['disabled'])"
-          (addRequested)="recordEvent('addRequested', $event)"
-          (removeRequested)="recordEvent('removeRequested', $event)"
-        ></erp-repeater>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">حالة معطلة</erp-text>
-        <erp-repeater
-          [disabled]="$any(cases[3].inputs['disabled'])"
-          (addRequested)="recordEvent('addRequested', $event)"
-          (removeRequested)="recordEvent('removeRequested', $event)"
-        ></erp-repeater>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>

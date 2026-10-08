@@ -1,76 +1,34 @@
-<erp-stack gap="default" data-dedicated-showcase="standard-entity-form" data-showcase-sections="4">
+<erp-stack gap="default" data-dedicated-showcase="standard-entity-form" data-showcase-sections="1">
   <erp-text type="heading-2">نموذج الكيان القياسي</erp-text>
   <erp-text type="paragraph" tone="secondary">تكوين CRUD محدود بمخطط وقيم مضبوطة.</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-standard-entity-form
-          [schema]="$any(cases[0].inputs['schema'])"
-          [values]="$any(cases[0].inputs['values'])"
-          [activeStepId]="$any(modelValue('default:activeStepId', cases[0].inputs['activeStepId']))"
-          (activeStepIdChange)="recordModel('default:activeStepId', $event)"
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-standard-entity-form
+          data-showcase-target
+          [schema]="$any(value('schema'))"
+          [values]="$any(value('values'))"
+          [issues]="$any(value('issues'))"
+          [disabled]="$any(value('disabled'))"
+          [busy]="$any(value('busy'))"
+          [activeStepId]="$any(value('activeStepId'))"
+          (activeStepIdChange)="recordModel('activeStepId', $event)"
           (valueChanged)="recordEvent('valueChanged', $event)"
           (submitRequested)="recordEvent('submitRequested', $event)"
           (resetRequested)="recordEvent('resetRequested', $event)"
           (cancelRequested)="recordEvent('cancelRequested', $event)"
           (issueActivated)="recordEvent('issueActivated', $event)"
         ></erp-standard-entity-form>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-false">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">disabled: false</erp-text>
-        <erp-standard-entity-form
-          [schema]="$any(cases[1].inputs['schema'])"
-          [values]="$any(cases[1].inputs['values'])"
-          [disabled]="$any(cases[1].inputs['disabled'])"
-          [activeStepId]="$any(modelValue('disabled-false:activeStepId', cases[1].inputs['activeStepId']))"
-          (activeStepIdChange)="recordModel('disabled-false:activeStepId', $event)"
-          (valueChanged)="recordEvent('valueChanged', $event)"
-          (submitRequested)="recordEvent('submitRequested', $event)"
-          (resetRequested)="recordEvent('resetRequested', $event)"
-          (cancelRequested)="recordEvent('cancelRequested', $event)"
-          (issueActivated)="recordEvent('issueActivated', $event)"
-        ></erp-standard-entity-form>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-true">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">disabled: true</erp-text>
-        <erp-standard-entity-form
-          [schema]="$any(cases[2].inputs['schema'])"
-          [values]="$any(cases[2].inputs['values'])"
-          [disabled]="$any(cases[2].inputs['disabled'])"
-          [activeStepId]="$any(modelValue('disabled-true:activeStepId', cases[2].inputs['activeStepId']))"
-          (activeStepIdChange)="recordModel('disabled-true:activeStepId', $event)"
-          (valueChanged)="recordEvent('valueChanged', $event)"
-          (submitRequested)="recordEvent('submitRequested', $event)"
-          (resetRequested)="recordEvent('resetRequested', $event)"
-          (cancelRequested)="recordEvent('cancelRequested', $event)"
-          (issueActivated)="recordEvent('issueActivated', $event)"
-        ></erp-standard-entity-form>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">حالة معطلة</erp-text>
-        <erp-standard-entity-form
-          [schema]="$any(cases[3].inputs['schema'])"
-          [values]="$any(cases[3].inputs['values'])"
-          [disabled]="$any(cases[3].inputs['disabled'])"
-          [activeStepId]="$any(modelValue('disabled:activeStepId', cases[3].inputs['activeStepId']))"
-          (activeStepIdChange)="recordModel('disabled:activeStepId', $event)"
-          (valueChanged)="recordEvent('valueChanged', $event)"
-          (submitRequested)="recordEvent('submitRequested', $event)"
-          (resetRequested)="recordEvent('resetRequested', $event)"
-          (cancelRequested)="recordEvent('cancelRequested', $event)"
-          (issueActivated)="recordEvent('issueActivated', $event)"
-        ></erp-standard-entity-form>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>

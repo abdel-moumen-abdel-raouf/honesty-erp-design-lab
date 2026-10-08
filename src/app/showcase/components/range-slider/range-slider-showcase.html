@@ -1,150 +1,45 @@
-<erp-stack gap="default" data-dedicated-showcase="range-slider" data-showcase-sections="14">
+<erp-stack gap="default" data-dedicated-showcase="range-slider" data-showcase-sections="1">
   <erp-text type="heading-2">منزلق النطاق</erp-text>
   <erp-text type="paragraph" tone="secondary">اختيار حدين عدديين من نطاق.</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-range-slider
-          [label]="$any(cases[0].inputs['label'])"
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-range-slider
+          data-showcase-target
+          [label]="$any(value('label'))"
+          [name]="$any(value('name'))"
+          [form]="$any(value('form'))"
+          [required]="$any(value('required'))"
+          [externalValidationIssues]="$any(value('externalValidationIssues'))"
+          [min]="$any(value('min'))"
+          [max]="$any(value('max'))"
+          [step]="$any(value('step'))"
+          [defaultRange]="$any(value('defaultRange'))"
+          [tone]="$any(value('tone'))"
+          [status]="$any(value('status'))"
+          [size]="$any(value('size'))"
+          [appearance]="$any(value('appearance'))"
+          [helperText]="$any(value('helperText'))"
+          [helperPosition]="$any(value('helperPosition'))"
+          [clearable]="$any(value('clearable'))"
+          [showValueTooltip]="$any(value('showValueTooltip'))"
+          [valueTooltipPlacement]="$any(value('valueTooltipPlacement'))"
+          [valueTooltipFormatter]="$any(value('valueTooltipFormatter'))"
           [formControl]="control"
+          data-showcase-cva-disabled-control
         ></erp-range-slider>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-neutral">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: neutral</erp-text>
-        <erp-range-slider
-          [label]="$any(cases[1].inputs['label'])"
-          [tone]="$any(cases[1].inputs['tone'])"
-          [formControl]="control"
-        ></erp-range-slider>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-primary">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: primary</erp-text>
-        <erp-range-slider
-          [label]="$any(cases[2].inputs['label'])"
-          [tone]="$any(cases[2].inputs['tone'])"
-          [formControl]="control"
-        ></erp-range-slider>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-secondary">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: secondary</erp-text>
-        <erp-range-slider
-          [label]="$any(cases[3].inputs['label'])"
-          [tone]="$any(cases[3].inputs['tone'])"
-          [formControl]="control"
-        ></erp-range-slider>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="tone-accent">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">tone: accent</erp-text>
-        <erp-range-slider
-          [label]="$any(cases[4].inputs['label'])"
-          [tone]="$any(cases[4].inputs['tone'])"
-          [formControl]="control"
-        ></erp-range-slider>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="size-sm">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">size: sm</erp-text>
-        <erp-range-slider
-          [label]="$any(cases[5].inputs['label'])"
-          [size]="$any(cases[5].inputs['size'])"
-          [formControl]="control"
-        ></erp-range-slider>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="size-md">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">size: md</erp-text>
-        <erp-range-slider
-          [label]="$any(cases[6].inputs['label'])"
-          [size]="$any(cases[6].inputs['size'])"
-          [formControl]="control"
-        ></erp-range-slider>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="size-lg">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">size: lg</erp-text>
-        <erp-range-slider
-          [label]="$any(cases[7].inputs['label'])"
-          [size]="$any(cases[7].inputs['size'])"
-          [formControl]="control"
-        ></erp-range-slider>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="size-xl">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">size: xl</erp-text>
-        <erp-range-slider
-          [label]="$any(cases[8].inputs['label'])"
-          [size]="$any(cases[8].inputs['size'])"
-          [formControl]="control"
-        ></erp-range-slider>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="size-xxl">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">size: xxl</erp-text>
-        <erp-range-slider
-          [label]="$any(cases[9].inputs['label'])"
-          [size]="$any(cases[9].inputs['size'])"
-          [formControl]="control"
-        ></erp-range-slider>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="size-xxxl">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">size: xxxl</erp-text>
-        <erp-range-slider
-          [label]="$any(cases[10].inputs['label'])"
-          [size]="$any(cases[10].inputs['size'])"
-          [formControl]="control"
-        ></erp-range-slider>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="size-xxxxl">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">size: xxxxl</erp-text>
-        <erp-range-slider
-          [label]="$any(cases[11].inputs['label'])"
-          [size]="$any(cases[11].inputs['size'])"
-          [formControl]="control"
-        ></erp-range-slider>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="appearance-standard">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">appearance: standard</erp-text>
-        <erp-range-slider
-          [label]="$any(cases[12].inputs['label'])"
-          [appearance]="$any(cases[12].inputs['appearance'])"
-          [formControl]="control"
-        ></erp-range-slider>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="appearance-glass">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">appearance: glass</erp-text>
-        <erp-range-slider
-          [label]="$any(cases[13].inputs['label'])"
-          [appearance]="$any(cases[13].inputs['appearance'])"
-          [formControl]="control"
-        ></erp-range-slider>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
-      <erp-text type="caption" selectable>القيمة الحالية: {{ control.value }}</erp-text>
+      <erp-text type="caption" selectable>القيمة الحالية: {{ cvaValue() }}</erp-text>
     </erp-stack>
   </erp-surface>
 </erp-stack>

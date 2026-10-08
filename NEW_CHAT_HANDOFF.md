@@ -1,32 +1,32 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
-## Authoritative current handoff — 2026-10-08 — reconstructed component showcases
+## Authoritative current handoff — 2026-10-08 — live API showcase workbenches
 
-Start from live `main`. This bounded reconstruction entered at
-`54451b1fdca8da0f03096d16df20adc6100a5c11`. Read the generated component
-catalog, `docs/governance/LEGACY_SHOWCASE_MIGRATION_LEDGER.md`, the compact
-catalog-navigation owner, and the component-specific showcase tree before
-changing review architecture.
+Start from live `main`. This bounded correction entered at
+`fce028a2e080714a5759c649746656a3f36da524`. Read the generated component
+catalog, the shared showcase control panel, and the dedicated showcase tree
+before changing review architecture.
 
-All 77 public ERP owners have a dedicated showcase owner, loader, and
-machine-readable coverage. Missing owners and empty showcases are zero. The
-input-only generic fallback is removed. Exact-reference content is reused from
-the authoritative review internals, while projection, model, event, overlay,
-CVA, and layout components have authored live evidence.
+All 77 public ERP pages render one primary target. Their generated workbenches
+cover 990 public inputs, 20 models, 67 outputs, and 24 CVA values with 1,040
+immediately applied controls and an output event log. ButtonGroup shows three
+buttons; Fab, ExtendedFab, and FabMenu have bounded two-axis positioning;
+FabMenu and SplitButton expose five mixed text/icon action presentations.
 
-Legacy meaningful content is fully mapped; old routed implementations are
-removed and 29 legacy URLs redirect to `/components` or the corresponding
-component. The old navigation rows/link matrix are gone. The compact Arabic
-catalog is 280 px / 21.875% at 1280 px and zero-width when closed at 390 px.
+Runtime audit passed all 77 routes in Light/Dark RTL and at 390 px with zero
+missing targets/control panels, empty visible output, console errors/warnings,
+broken images, or overflow. Canonical verification passes 120/120 test files,
+737/737 tests, all lint/governance, both typechecks, production build, and zero
+warnings. Initial bundle is 488.18 kB / 105.32 kB. The exact next action is
+Product Owner review of the live API workbenches. Existing visual contracts and
+separate production FAB owners were not reopened; no later wave is authorized.
 
-Runtime audit passed `/components`, every `/components/:id`, and all redirects
-in Light/Dark RTL plus narrow review with zero console errors/warnings, broken
-images, empty pages, or page overflow. Canonical verification passes 119/119
-test files, 730/730 tests, all lint/governance, both typechecks, production
-build, and zero warnings. Initial bundle is 488.33 kB / 106.12 kB. The exact
-next action is Product Owner review of the reconstructed showcase system. No
-component visual redesign, Data/Table wave, page pattern, or feature migration
-is authorized.
+## Historical dedicated showcase handoff — superseded 2026-10-08
+
+The preceding reconstruction entered at
+`54451b1fdca8da0f03096d16df20adc6100a5c11`. Its dedicated-route and legacy
+migration results remain useful history, but its static/matrix evidence is no
+longer the current per-page interaction contract.
 
 ## Historical ownership catalog and Page handoff — superseded 2026-10-08
 

@@ -1,78 +1,27 @@
-<erp-stack gap="default" data-dedicated-showcase="sort-header" data-showcase-sections="7">
+<erp-stack gap="default" data-dedicated-showcase="sort-header" data-showcase-sections="1">
   <erp-text type="heading-2">رأس الفرز</erp-text>
   <erp-text type="paragraph" tone="secondary">رأس تفاعلي يبدل اتجاه الفرز.</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-sort-header
-          [label]="$any(cases[0].inputs['label'])"
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-sort-header
+          data-showcase-target
+          [label]="$any(value('label'))"
+          [direction]="$any(value('direction'))"
+          [disabled]="$any(value('disabled'))"
+          [presentation]="$any(value('presentation'))"
           (sortChange)="recordEvent('sortChange', $event)"
         ></erp-sort-header>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="direction-none">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">direction: none</erp-text>
-        <erp-sort-header
-          [label]="$any(cases[1].inputs['label'])"
-          [direction]="$any(cases[1].inputs['direction'])"
-          (sortChange)="recordEvent('sortChange', $event)"
-        ></erp-sort-header>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="direction-ascending">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">direction: ascending</erp-text>
-        <erp-sort-header
-          [label]="$any(cases[2].inputs['label'])"
-          [direction]="$any(cases[2].inputs['direction'])"
-          (sortChange)="recordEvent('sortChange', $event)"
-        ></erp-sort-header>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="direction-descending">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">direction: descending</erp-text>
-        <erp-sort-header
-          [label]="$any(cases[3].inputs['label'])"
-          [direction]="$any(cases[3].inputs['direction'])"
-          (sortChange)="recordEvent('sortChange', $event)"
-        ></erp-sort-header>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-false">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">disabled: false</erp-text>
-        <erp-sort-header
-          [label]="$any(cases[4].inputs['label'])"
-          [disabled]="$any(cases[4].inputs['disabled'])"
-          (sortChange)="recordEvent('sortChange', $event)"
-        ></erp-sort-header>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-true">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">disabled: true</erp-text>
-        <erp-sort-header
-          [label]="$any(cases[5].inputs['label'])"
-          [disabled]="$any(cases[5].inputs['disabled'])"
-          (sortChange)="recordEvent('sortChange', $event)"
-        ></erp-sort-header>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">حالة معطلة</erp-text>
-        <erp-sort-header
-          [label]="$any(cases[6].inputs['label'])"
-          [disabled]="$any(cases[6].inputs['disabled'])"
-          (sortChange)="recordEvent('sortChange', $event)"
-        ></erp-sort-header>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>

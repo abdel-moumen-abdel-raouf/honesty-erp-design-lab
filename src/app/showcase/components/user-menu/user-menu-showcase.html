@@ -1,42 +1,28 @@
-<erp-stack gap="default" data-dedicated-showcase="user-menu" data-showcase-sections="3">
+<erp-stack gap="default" data-dedicated-showcase="user-menu" data-showcase-sections="1">
   <erp-text type="heading-2">قائمة المستخدم</erp-text>
   <erp-text type="paragraph" tone="secondary">هوية المستخدم وإجراءات الحساب ضمن سطح مثبت.</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-user-menu
-          [user]="$any(cases[0].inputs['user'])"
-          [open]="$any(modelValue('default:open', cases[0].inputs['open']))"
-          (openChange)="recordModel('default:open', $event)"
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-user-menu
+          data-showcase-target
+          [user]="$any(value('user'))"
+          [items]="$any(value('items'))"
+          [label]="$any(value('label'))"
+          [open]="$any(value('open'))"
+          (openChange)="recordModel('open', $event)"
           (actionActivated)="recordEvent('actionActivated', $event)"
         ></erp-user-menu>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="open-false">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">open: false</erp-text>
-        <erp-user-menu
-          [user]="$any(cases[1].inputs['user'])"
-          [open]="$any(modelValue('open-false:open', cases[1].inputs['open']))"
-          (openChange)="recordModel('open-false:open', $event)"
-          (actionActivated)="recordEvent('actionActivated', $event)"
-        ></erp-user-menu>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="open-true">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">open: true</erp-text>
-        <erp-user-menu
-          [user]="$any(cases[2].inputs['user'])"
-          [open]="$any(modelValue('open-true:open', cases[2].inputs['open']))"
-          (openChange)="recordModel('open-true:open', $event)"
-          (actionActivated)="recordEvent('actionActivated', $event)"
-        ></erp-user-menu>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>

@@ -1,160 +1,33 @@
-<erp-stack gap="default" data-dedicated-showcase="tooltip" data-showcase-sections="14">
+<erp-stack gap="default" data-dedicated-showcase="tooltip" data-showcase-sections="1">
   <erp-text type="heading-2">تلميح</erp-text>
   <erp-text type="paragraph" tone="secondary">شرح مثبت على محفز مرئي مع مواضع وسلوك فتح متعددة.</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-tooltip
-          [text]="$any(cases[0].inputs['text'])"
-          [open]="$any(modelValue('default:open', cases[0].inputs['open']))"
-          (openChange)="recordModel('default:open', $event)"
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-tooltip
+          data-showcase-target
+          [text]="$any(value('text'))"
+          [variant]="$any(value('variant'))"
+          [interactive]="$any(value('interactive'))"
+          [placement]="$any(value('placement'))"
+          [activation]="$any(value('activation'))"
+          [showArrow]="$any(value('showArrow'))"
+          [disabled]="$any(value('disabled'))"
+          [enterAnimation]="$any(value('enterAnimation'))"
+          [exitAnimation]="$any(value('exitAnimation'))"
+          [open]="$any(value('open'))"
+          (openChange)="recordModel('open', $event)"
         ><erp-button label="اعرض التلميح" variant="outline" /></erp-tooltip>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="variant-plain">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">variant: plain</erp-text>
-        <erp-tooltip
-          [text]="$any(cases[1].inputs['text'])"
-          [variant]="$any(cases[1].inputs['variant'])"
-          [open]="$any(modelValue('variant-plain:open', cases[1].inputs['open']))"
-          (openChange)="recordModel('variant-plain:open', $event)"
-        ><erp-button label="اعرض التلميح" variant="outline" /></erp-tooltip>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="variant-rich">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">variant: rich</erp-text>
-        <erp-tooltip
-          [text]="$any(cases[2].inputs['text'])"
-          [variant]="$any(cases[2].inputs['variant'])"
-          [open]="$any(modelValue('variant-rich:open', cases[2].inputs['open']))"
-          (openChange)="recordModel('variant-rich:open', $event)"
-        ><erp-button label="اعرض التلميح الغني" variant="outline" /><erp-tooltip-content><erp-text type="paragraph">تفاصيل اعتماد الفاتورة وحالتها الحالية</erp-text></erp-tooltip-content></erp-tooltip>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="placement-top">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">placement: top</erp-text>
-        <erp-tooltip
-          [text]="$any(cases[3].inputs['text'])"
-          [placement]="$any(cases[3].inputs['placement'])"
-          [open]="$any(modelValue('placement-top:open', cases[3].inputs['open']))"
-          (openChange)="recordModel('placement-top:open', $event)"
-        ><erp-button label="اعرض التلميح" variant="outline" /></erp-tooltip>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="placement-bottom">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">placement: bottom</erp-text>
-        <erp-tooltip
-          [text]="$any(cases[4].inputs['text'])"
-          [placement]="$any(cases[4].inputs['placement'])"
-          [open]="$any(modelValue('placement-bottom:open', cases[4].inputs['open']))"
-          (openChange)="recordModel('placement-bottom:open', $event)"
-        ><erp-button label="اعرض التلميح" variant="outline" /></erp-tooltip>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="placement-start">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">placement: start</erp-text>
-        <erp-tooltip
-          [text]="$any(cases[5].inputs['text'])"
-          [placement]="$any(cases[5].inputs['placement'])"
-          [open]="$any(modelValue('placement-start:open', cases[5].inputs['open']))"
-          (openChange)="recordModel('placement-start:open', $event)"
-        ><erp-button label="اعرض التلميح" variant="outline" /></erp-tooltip>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="placement-end">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">placement: end</erp-text>
-        <erp-tooltip
-          [text]="$any(cases[6].inputs['text'])"
-          [placement]="$any(cases[6].inputs['placement'])"
-          [open]="$any(modelValue('placement-end:open', cases[6].inputs['open']))"
-          (openChange)="recordModel('placement-end:open', $event)"
-        ><erp-button label="اعرض التلميح" variant="outline" /></erp-tooltip>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="activation-auto">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">activation: auto</erp-text>
-        <erp-tooltip
-          [text]="$any(cases[7].inputs['text'])"
-          [activation]="$any(cases[7].inputs['activation'])"
-          [open]="$any(modelValue('activation-auto:open', cases[7].inputs['open']))"
-          (openChange)="recordModel('activation-auto:open', $event)"
-        ><erp-button label="اعرض التلميح" variant="outline" /></erp-tooltip>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="activation-press">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">activation: press</erp-text>
-        <erp-tooltip
-          [text]="$any(cases[8].inputs['text'])"
-          [activation]="$any(cases[8].inputs['activation'])"
-          [open]="$any(modelValue('activation-press:open', cases[8].inputs['open']))"
-          (openChange)="recordModel('activation-press:open', $event)"
-        ><erp-button label="اعرض التلميح" variant="outline" /></erp-tooltip>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-false">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">disabled: false</erp-text>
-        <erp-tooltip
-          [text]="$any(cases[9].inputs['text'])"
-          [disabled]="$any(cases[9].inputs['disabled'])"
-          [open]="$any(modelValue('disabled-false:open', cases[9].inputs['open']))"
-          (openChange)="recordModel('disabled-false:open', $event)"
-        ><erp-button label="اعرض التلميح" variant="outline" /></erp-tooltip>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-true">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">disabled: true</erp-text>
-        <erp-tooltip
-          [text]="$any(cases[10].inputs['text'])"
-          [disabled]="$any(cases[10].inputs['disabled'])"
-          [open]="$any(modelValue('disabled-true:open', cases[10].inputs['open']))"
-          (openChange)="recordModel('disabled-true:open', $event)"
-        ><erp-button label="اعرض التلميح" variant="outline" /></erp-tooltip>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="open-false">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">open: false</erp-text>
-        <erp-tooltip
-          [text]="$any(cases[11].inputs['text'])"
-          [open]="$any(modelValue('open-false:open', cases[11].inputs['open']))"
-          (openChange)="recordModel('open-false:open', $event)"
-        ><erp-button label="اعرض التلميح" variant="outline" /></erp-tooltip>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="open-true">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">open: true</erp-text>
-        <erp-tooltip
-          [text]="$any(cases[12].inputs['text'])"
-          [open]="$any(modelValue('open-true:open', cases[12].inputs['open']))"
-          (openChange)="recordModel('open-true:open', $event)"
-        ><erp-button label="اعرض التلميح" variant="outline" /></erp-tooltip>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">حالة معطلة</erp-text>
-        <erp-tooltip
-          [text]="$any(cases[13].inputs['text'])"
-          [disabled]="$any(cases[13].inputs['disabled'])"
-          [open]="$any(modelValue('disabled:open', cases[13].inputs['open']))"
-          (openChange)="recordModel('disabled:open', $event)"
-        ><erp-button label="اعرض التلميح" variant="outline" /></erp-tooltip>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>

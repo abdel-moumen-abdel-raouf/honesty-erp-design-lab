@@ -1,32 +1,36 @@
 # Honesty ERP Design Lab — Codex Instructions
 
-## Current Dedicated Component Showcase State
+## Current Live API Component Workbench State
 
-The current bounded reconstruction entered from clean live `main` at
-`54451b1fdca8da0f03096d16df20adc6100a5c11`. All 77 public ERP components have
-a dedicated Design-Lab-only showcase owner and lazy loader. The catalog records
-authored coverage for inputs, models, outputs, variants, sizes, states,
-projection slots, and exact-reference cases. Generic input-only fallback
-rendering is forbidden.
+The current bounded correction entered from clean live `main` at
+`fce028a2e080714a5759c649746656a3f36da524`. All 77 public ERP component pages
+render exactly one primary target and one shared live API control panel. The
+generated catalog exposes 990 inputs, 20 models, and 67 outputs through 1,040
+immediately applied editors, including 24 CVA owners and output event evidence.
 
-Legacy meaningful content is fully mapped by
-`docs/governance/LEGACY_SHOWCASE_MIGRATION_LEDGER.md`; old routed showcase and
-Foundation implementations are removed, with legacy URLs retained only as 29
-redirect aliases. The old navigation rows and full-width component matrix are
-removed. The compact Arabic catalog navigation uses `ErpSearchBox`, grouped
-categories, active state, keyboard dismissal, and a closed narrow drawer.
+ButtonGroup renders three buttons. Fab, ExtendedFab, and FabMenu use bounded
+floating previews with inline/block range controls. FabMenu and SplitButton
+each expose five text-only, icon-only, and icon-plus-text actions. The existing
+production FAB owners remain separate; this task did not authorize a public API
+merge or any exact-reference visual redesign.
 
-Runtime audit covers `/components`, all 77 public routes, and every redirect in
-Light and Dark RTL plus 390 px narrow review. Missing/empty showcases, console
-errors, console warnings, broken images, and page overflow are all zero.
-Canonical verification passes 119/119 test files and 730/730 tests, all
-lint/governance, both typechecks, production build, and zero warnings. Initial
-bundle is 488.33 kB / 106.12 kB estimated transfer.
+Runtime audit covers all 77 routes in Light and Dark RTL plus 390 px narrow
+review. Missing targets/control panels, empty visible output, console errors,
+console warnings, broken images, and overflow are zero. Canonical verification
+passes 120/120 test files and 737/737 tests, all lint/governance, both
+typechecks, production build, and zero warnings. Initial bundle is 488.18 kB /
+105.32 kB estimated transfer.
 
-The exact next action is Product Owner review of the reconstructed showcase
-system. Existing component visuals were not reopened. The separate ERP-TABLE
-visual gate remains pending, no later wave is opened, and technical PASS is not
-Product Owner visual acceptance.
+The exact next action is Product Owner review of the live API workbenches.
+Existing component visuals remain unaccepted unless separately approved, no
+later wave is opened, and technical PASS is not Product Owner visual acceptance.
+
+## Historical Dedicated Component Showcase State — superseded 2026-10-08
+
+The preceding reconstruction entered at
+`54451b1fdca8da0f03096d16df20adc6100a5c11` and established dedicated owners,
+legacy migration, redirect-only aliases, and compact navigation. Its static
+showcase contract is superseded by the live workbench contract above.
 
 ## Historical ERP Ownership Catalog and Page Foundation State — superseded 2026-10-08
 

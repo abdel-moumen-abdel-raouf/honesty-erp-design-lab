@@ -1,20 +1,53 @@
 <erp-stack gap="default" data-dedicated-showcase="tel-box" data-showcase-sections="1">
   <erp-text type="heading-2">حقل الهاتف</erp-text>
   <erp-text type="paragraph" tone="secondary">تحرير رقم هاتف وفق عقد الحقول.</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-tel-box
-          [label]="$any(cases[0].inputs['label'])"
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-tel-box
+          data-showcase-target
+          [label]="$any(value('label'))"
+          [name]="$any(value('name'))"
+          [form]="$any(value('form'))"
+          [required]="$any(value('required'))"
+          [externalValidationIssues]="$any(value('externalValidationIssues'))"
+          [tone]="$any(value('tone'))"
+          [status]="$any(value('status'))"
+          [variant]="$any(value('variant'))"
+          [borderMode]="$any(value('borderMode'))"
+          [shape]="$any(value('shape'))"
+          [size]="$any(value('size'))"
+          [appearance]="$any(value('appearance'))"
+          [labelMode]="$any(value('labelMode'))"
+          [floatingPosition]="$any(value('floatingPosition'))"
+          [helperText]="$any(value('helperText'))"
+          [helperPosition]="$any(value('helperPosition'))"
+          [leadingIcon]="$any(value('leadingIcon'))"
+          [trailingIcon]="$any(value('trailingIcon'))"
+          [clearable]="$any(value('clearable'))"
+          [feedbackText]="$any(value('feedbackText'))"
+          [feedbackDismissible]="$any(value('feedbackDismissible'))"
+          [placeholder]="$any(value('placeholder'))"
+          [readonly]="$any(value('readonly'))"
+          [autocomplete]="$any(value('autocomplete'))"
+          [pattern]="$any(value('pattern'))"
+          [minLength]="$any(value('minLength'))"
+          [maxLength]="$any(value('maxLength'))"
           [formControl]="control"
+          data-showcase-cva-disabled-control
         ></erp-tel-box>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
-      <erp-text type="caption" selectable>القيمة الحالية: {{ control.value }}</erp-text>
+      <erp-text type="caption" selectable>القيمة الحالية: {{ cvaValue() }}</erp-text>
     </erp-stack>
   </erp-surface>
 </erp-stack>

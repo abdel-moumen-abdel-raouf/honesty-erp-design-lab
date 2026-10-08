@@ -67,4 +67,33 @@ describe('ComponentShowcase', () => {
       expect(typeof owner).toBe('function');
     }
   });
+
+  it('assigns one live control to every public input and model', () => {
+    for (const entry of ERP_COMPONENT_CATALOG.filter(
+      (candidate) => candidate.classification === 'PUBLIC ERP COMPONENT',
+    )) {
+      const controlNames = new Set(entry.showcaseControls.map((control) => control.name));
+      for (const input of entry.publicApi.inputs) {
+        expect(controlNames.has(input.name), `${entry.className}.${input.name}`).toBe(true);
+      }
+      for (const model of entry.publicApi.models) {
+        expect(controlNames.has(model.name), `${entry.className}.${model.name}`).toBe(true);
+      }
+    }
+  });
+
+  it('renders ButtonGroup as one controlled group with multiple actions', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/components/button-group', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+
+    const root = harness.routeNativeElement as HTMLElement;
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect(root.querySelectorAll('[data-showcase-target] erp-button')).toHaveLength(3);
+    expect(root.querySelector('[data-showcase-control="orientation"]')).not.toBeNull();
+    expect(root.querySelector('[data-showcase-control="attached"]')).not.toBeNull();
+  });
 });

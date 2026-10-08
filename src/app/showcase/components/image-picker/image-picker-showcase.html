@@ -1,20 +1,52 @@
 <erp-stack gap="default" data-dedicated-showcase="image-picker" data-showcase-sections="1">
   <erp-text type="heading-2">منتقي الصور</erp-text>
   <erp-text type="paragraph" tone="secondary">اختيار صور محلية مع معاينات مضبوطة.</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-image-picker
-          [label]="$any(cases[0].inputs['label'])"
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-image-picker
+          data-showcase-target
+          [label]="$any(value('label'))"
+          [name]="$any(value('name'))"
+          [form]="$any(value('form'))"
+          [required]="$any(value('required'))"
+          [externalValidationIssues]="$any(value('externalValidationIssues'))"
+          [tone]="$any(value('tone'))"
+          [status]="$any(value('status'))"
+          [variant]="$any(value('variant'))"
+          [borderMode]="$any(value('borderMode'))"
+          [shape]="$any(value('shape'))"
+          [size]="$any(value('size'))"
+          [appearance]="$any(value('appearance'))"
+          [labelMode]="$any(value('labelMode'))"
+          [floatingPosition]="$any(value('floatingPosition'))"
+          [helperText]="$any(value('helperText'))"
+          [helperPosition]="$any(value('helperPosition'))"
+          [leadingIcon]="$any(value('leadingIcon'))"
+          [trailingIcon]="$any(value('trailingIcon'))"
+          [clearable]="$any(value('clearable'))"
+          [feedbackText]="$any(value('feedbackText'))"
+          [feedbackDismissible]="$any(value('feedbackDismissible'))"
+          [accept]="$any(value('accept'))"
+          [maxFileSize]="$any(value('maxFileSize'))"
+          [minFiles]="$any(value('minFiles'))"
+          [maxFiles]="$any(value('maxFiles'))"
+          [previewSize]="$any(value('previewSize'))"
           [formControl]="control"
+          data-showcase-cva-disabled-control
         ></erp-image-picker>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
-      <erp-text type="caption" selectable>القيمة الحالية: {{ control.value }}</erp-text>
+      <erp-text type="caption" selectable>القيمة الحالية: {{ cvaValue() }}</erp-text>
     </erp-stack>
   </erp-surface>
 </erp-stack>

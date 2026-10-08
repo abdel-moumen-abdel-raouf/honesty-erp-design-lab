@@ -134,4 +134,28 @@ describe('ErpSplitButton', () => {
     expect(host.getAttribute('data-split-button-open')).toBe('false');
     expect(document.activeElement).toBe(trigger);
   });
+
+  it('renders text-only, icon-only, and icon-text menu actions through the shared action owner', () => {
+    const fixture = TestBed.createComponent(ErpSplitButton);
+    fixture.componentRef.setInput('label', 'Save');
+    fixture.componentRef.setInput('items', [
+      {value: 'text', label: 'Text only', presentation: 'text'},
+      {value: 'icon', label: 'Icon only', icon: 'eye', presentation: 'icon'},
+      {value: 'mixed', label: 'Icon and text', icon: 'save', presentation: 'icon-text'},
+    ]);
+    fixture.detectChanges();
+
+    const surface = (fixture.nativeElement as HTMLElement).querySelector(
+      '.split-button__menu',
+    )!;
+    const actions = surface.querySelectorAll('[data-action-item]');
+
+    expect(actions).toHaveLength(3);
+    expect(actions[0].tagName.toLowerCase()).toBe('erp-button');
+    expect(actions[0].querySelector('erp-icon')).toBeNull();
+    expect(actions[1].tagName.toLowerCase()).toBe('erp-icon-button');
+    expect(actions[1].closest('erp-tooltip')).not.toBeNull();
+    expect(actions[2].tagName.toLowerCase()).toBe('erp-button');
+    expect(actions[2].querySelector('erp-icon')).not.toBeNull();
+  });
 });

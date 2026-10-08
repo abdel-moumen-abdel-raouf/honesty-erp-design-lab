@@ -19,9 +19,9 @@ export interface ErpComponentCatalogEntry {
   readonly sourcePath: string;
   readonly purpose: string;
   readonly publicApi: {
-    readonly inputs: readonly {readonly name: string; readonly required: boolean; readonly values: readonly string[]}[];
+    readonly inputs: readonly {readonly name: string; readonly required: boolean; readonly values: readonly string[]; readonly type: string; readonly hasDefault: boolean; readonly defaultValue: unknown; readonly defaultExpression: string | null}[];
     readonly outputs: readonly string[];
-    readonly models: readonly {readonly name: string; readonly required: boolean; readonly values: readonly string[]}[];
+    readonly models: readonly {readonly name: string; readonly required: boolean; readonly values: readonly string[]; readonly type: string; readonly hasDefault: boolean; readonly defaultValue: unknown; readonly defaultExpression: string | null}[];
   };
   readonly lowerLevelOwners: readonly string[];
   readonly nativeElementsOwned: readonly string[];
@@ -36,6 +36,17 @@ export interface ErpComponentCatalogEntry {
   readonly visualStatus: ErpCatalogVisualStatus;
   readonly showcaseFacets: readonly string[];
   readonly showcaseCases: readonly ErpComponentShowcaseCase[];
+  readonly showcaseInitialValues: Readonly<Record<string, unknown>> | null;
+  readonly showcaseControls: readonly {
+    readonly name: string;
+    readonly label: string;
+    readonly source: 'cva' | 'input' | 'model' | 'preview';
+    readonly kind: 'boolean' | 'function' | 'json' | 'number' | 'range' | 'select' | 'text';
+    readonly required: boolean;
+    readonly type: string;
+    readonly options: readonly string[];
+    readonly initialValue: unknown;
+  }[];
   readonly showcaseCoverage: {
     readonly coveredInputs: readonly string[];
     readonly coveredModels: readonly string[];
@@ -62,7 +73,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "variant",
@@ -73,7 +88,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpButtonVariant",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "tone",
@@ -87,7 +106,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "danger",
             "info",
             "neutral"
-          ]
+          ],
+          "type": "ErpButtonTone",
+          "hasDefault": true,
+          "defaultValue": "primary",
+          "defaultExpression": "'primary'"
         },
         {
           "name": "size",
@@ -96,7 +119,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "sm",
             "md",
             "lg"
-          ]
+          ],
+          "type": "ErpButtonSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "shape",
@@ -105,7 +132,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpButtonShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "borderStyle",
@@ -113,12 +144,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "solid",
             "dashed"
-          ]
+          ],
+          "type": "ErpButtonBorderStyle",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "icon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "iconPosition",
@@ -126,7 +165,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "start",
             "end"
-          ]
+          ],
+          "type": "ErpButtonIconPosition",
+          "hasDefault": true,
+          "defaultValue": "start",
+          "defaultExpression": "'start'"
         },
         {
           "name": "type",
@@ -135,22 +178,38 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "button",
             "submit",
             "reset"
-          ]
+          ],
+          "type": "ErpNativeButtonType",
+          "hasDefault": true,
+          "defaultValue": "button",
+          "defaultExpression": "'button'"
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "value",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "ariaHasPopup",
@@ -159,24 +218,40 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "menu",
             "dialog",
             "listbox"
-          ]
+          ],
+          "type": "'menu' | 'dialog' | 'listbox' | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "ariaControls",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "ariaExpanded",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "boolean | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "role",
           "required": false,
           "values": [
             "menuitem"
-          ]
+          ],
+          "type": "'menuitem' | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -184,7 +259,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "loading",
@@ -192,12 +271,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "loadingLabel",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "fullWidth",
@@ -205,7 +292,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "cursor",
@@ -213,7 +304,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "pointer",
             "default"
-          ]
+          ],
+          "type": "ErpPressableCursor",
+          "hasDefault": true,
+          "defaultValue": "pointer",
+          "defaultExpression": "'pointer'"
         },
         {
           "name": "rippleSpeed",
@@ -222,7 +317,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "fast",
             "normal",
             "slow"
-          ]
+          ],
+          "type": "ErpRippleSpeed",
+          "hasDefault": true,
+          "defaultValue": "normal",
+          "defaultExpression": "'normal'"
         },
         {
           "name": "presentation",
@@ -232,7 +331,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "table-reference-tool",
             "table-reference-page",
             "table-reference-cell"
-          ]
+          ],
+          "type": "ErpButtonPresentation",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         }
       ],
       "outputs": [
@@ -507,6 +610,323 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "زر",
     "descriptionAr": "إجراء نصي قياسي بحالاته وأحجامه وأنماطه.",
+    "showcaseInitialValues": {
+      "variant": "solid",
+      "tone": "primary",
+      "size": "md",
+      "shape": "default",
+      "borderStyle": "solid",
+      "icon": null,
+      "iconPosition": "start",
+      "type": "button",
+      "name": null,
+      "value": null,
+      "form": null,
+      "ariaHasPopup": null,
+      "ariaControls": null,
+      "ariaExpanded": null,
+      "role": null,
+      "disabled": false,
+      "loading": false,
+      "loadingLabel": null,
+      "fullWidth": false,
+      "cursor": "pointer",
+      "rippleSpeed": "normal",
+      "presentation": "default",
+      "label": "تنفيذ الإجراء"
+    },
+    "showcaseControls": [
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "تنفيذ الإجراء"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpButtonVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpButtonTone",
+        "options": [
+          "primary",
+          "secondary",
+          "accent",
+          "success",
+          "warning",
+          "danger",
+          "info",
+          "neutral"
+        ],
+        "initialValue": "primary"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpButtonSize",
+        "options": [
+          "sm",
+          "md",
+          "lg"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpButtonShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "borderStyle",
+        "label": "borderStyle",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpButtonBorderStyle",
+        "options": [
+          "solid",
+          "dashed"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "icon",
+        "label": "icon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "iconPosition",
+        "label": "iconPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpButtonIconPosition",
+        "options": [
+          "start",
+          "end"
+        ],
+        "initialValue": "start"
+      },
+      {
+        "name": "type",
+        "label": "type",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpNativeButtonType",
+        "options": [
+          "button",
+          "submit",
+          "reset"
+        ],
+        "initialValue": "button"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "value",
+        "label": "value",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "ariaHasPopup",
+        "label": "ariaHasPopup",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "'menu' | 'dialog' | 'listbox' | null",
+        "options": [
+          "menu",
+          "dialog",
+          "listbox"
+        ],
+        "initialValue": null
+      },
+      {
+        "name": "ariaControls",
+        "label": "ariaControls",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "ariaExpanded",
+        "label": "ariaExpanded",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "boolean | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "role",
+        "label": "role",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "'menuitem' | null",
+        "options": [
+          "menuitem"
+        ],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "loading",
+        "label": "loading",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "loadingLabel",
+        "label": "loadingLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "fullWidth",
+        "label": "fullWidth",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "cursor",
+        "label": "cursor",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpPressableCursor",
+        "options": [
+          "pointer",
+          "default"
+        ],
+        "initialValue": "pointer"
+      },
+      {
+        "name": "rippleSpeed",
+        "label": "rippleSpeed",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpRippleSpeed",
+        "options": [
+          "fast",
+          "normal",
+          "slow"
+        ],
+        "initialValue": "normal"
+      },
+      {
+        "name": "presentation",
+        "label": "presentation",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpButtonPresentation",
+        "options": [
+          "default",
+          "table-reference-tool",
+          "table-reference-page",
+          "table-reference-cell"
+        ],
+        "initialValue": "default"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -637,7 +1057,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "items",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "readonly ErpButtonGroupItem[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "orientation",
@@ -645,7 +1069,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "horizontal",
             "vertical"
-          ]
+          ],
+          "type": "ErpButtonGroupOrientation",
+          "hasDefault": true,
+          "defaultValue": "horizontal",
+          "defaultExpression": "'horizontal'"
         },
         {
           "name": "attached",
@@ -653,7 +1081,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         }
       ],
       "outputs": [
@@ -688,7 +1120,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "items": [
             {
               "value": "save",
-              "label": "حفظ"
+              "label": "حفظ",
+              "icon": "save"
+            },
+            {
+              "value": "preview",
+              "label": "معاينة",
+              "icon": "eye"
+            },
+            {
+              "value": "archive",
+              "label": "أرشفة",
+              "icon": "layers"
             }
           ]
         }
@@ -700,7 +1143,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "items": [
             {
               "value": "save",
-              "label": "حفظ"
+              "label": "حفظ",
+              "icon": "save"
+            },
+            {
+              "value": "preview",
+              "label": "معاينة",
+              "icon": "eye"
+            },
+            {
+              "value": "archive",
+              "label": "أرشفة",
+              "icon": "layers"
             }
           ],
           "orientation": "horizontal"
@@ -713,7 +1167,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "items": [
             {
               "value": "save",
-              "label": "حفظ"
+              "label": "حفظ",
+              "icon": "save"
+            },
+            {
+              "value": "preview",
+              "label": "معاينة",
+              "icon": "eye"
+            },
+            {
+              "value": "archive",
+              "label": "أرشفة",
+              "icon": "layers"
             }
           ],
           "orientation": "vertical"
@@ -722,6 +1187,81 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "مجموعة أزرار",
     "descriptionAr": "اختيار إجراء واحد من مجموعة مترابطة.",
+    "showcaseInitialValues": {
+      "orientation": "horizontal",
+      "attached": true,
+      "items": [
+        {
+          "value": "save",
+          "label": "حفظ",
+          "icon": "save"
+        },
+        {
+          "value": "preview",
+          "label": "معاينة",
+          "icon": "eye"
+        },
+        {
+          "value": "archive",
+          "label": "أرشفة",
+          "icon": "layers"
+        }
+      ]
+    },
+    "showcaseControls": [
+      {
+        "name": "items",
+        "label": "items",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "readonly ErpButtonGroupItem[]",
+        "options": [],
+        "initialValue": [
+          {
+            "value": "save",
+            "label": "حفظ",
+            "icon": "save"
+          },
+          {
+            "value": "preview",
+            "label": "معاينة",
+            "icon": "eye"
+          },
+          {
+            "value": "archive",
+            "label": "أرشفة",
+            "icon": "layers"
+          }
+        ]
+      },
+      {
+        "name": "orientation",
+        "label": "orientation",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpButtonGroupOrientation",
+        "options": [
+          "horizontal",
+          "vertical"
+        ],
+        "initialValue": "horizontal"
+      },
+      {
+        "name": "attached",
+        "label": "attached",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "items",
@@ -763,12 +1303,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "icon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "size",
@@ -777,7 +1325,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "md",
             "lg",
             "xl"
-          ]
+          ],
+          "type": "ErpExtendedFabSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "tone",
@@ -787,7 +1339,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "secondary",
             "accent",
             "surface"
-          ]
+          ],
+          "type": "ErpFabTone",
+          "hasDefault": true,
+          "defaultValue": "primary",
+          "defaultExpression": "'primary'"
         },
         {
           "name": "disabled",
@@ -795,7 +1351,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "loading",
@@ -803,7 +1363,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "cursor",
@@ -811,7 +1375,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "pointer",
             "default"
-          ]
+          ],
+          "type": "ErpPressableCursor",
+          "hasDefault": true,
+          "defaultValue": "pointer",
+          "defaultExpression": "'pointer'"
         },
         {
           "name": "rippleSpeed",
@@ -820,7 +1388,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "fast",
             "normal",
             "slow"
-          ]
+          ],
+          "type": "ErpRippleSpeed",
+          "hasDefault": true,
+          "defaultValue": "normal",
+          "defaultExpression": "'normal'"
         }
       ],
       "outputs": [
@@ -989,6 +1561,140 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "زر إجراء عائم ممتد",
     "descriptionAr": "إجراء عائم يجمع الأيقونة والتسمية.",
+    "showcaseInitialValues": {
+      "icon": null,
+      "size": "md",
+      "tone": "primary",
+      "disabled": false,
+      "loading": false,
+      "cursor": "pointer",
+      "rippleSpeed": "normal",
+      "label": "إضافة سجل"
+    },
+    "showcaseControls": [
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "إضافة سجل"
+      },
+      {
+        "name": "icon",
+        "label": "icon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpExtendedFabSize",
+        "options": [
+          "md",
+          "lg",
+          "xl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFabTone",
+        "options": [
+          "primary",
+          "secondary",
+          "accent",
+          "surface"
+        ],
+        "initialValue": "primary"
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "loading",
+        "label": "loading",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "cursor",
+        "label": "cursor",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpPressableCursor",
+        "options": [
+          "pointer",
+          "default"
+        ],
+        "initialValue": "pointer"
+      },
+      {
+        "name": "rippleSpeed",
+        "label": "rippleSpeed",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpRippleSpeed",
+        "options": [
+          "fast",
+          "normal",
+          "slow"
+        ],
+        "initialValue": "normal"
+      },
+      {
+        "name": "$previewInline",
+        "label": "الموضع الأفقي داخل مساحة المعاينة",
+        "source": "preview",
+        "kind": "range",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 80
+      },
+      {
+        "name": "$previewBlock",
+        "label": "الموضع الرأسي داخل مساحة المعاينة",
+        "source": "preview",
+        "kind": "range",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 75
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -1056,12 +1762,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "icon",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "ErpIconName",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "size",
@@ -1070,7 +1784,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "sm",
             "md",
             "lg"
-          ]
+          ],
+          "type": "ErpFabSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "tone",
@@ -1080,7 +1798,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "secondary",
             "accent",
             "surface"
-          ]
+          ],
+          "type": "ErpFabTone",
+          "hasDefault": true,
+          "defaultValue": "primary",
+          "defaultExpression": "'primary'"
         },
         {
           "name": "disabled",
@@ -1088,7 +1810,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "loading",
@@ -1096,7 +1822,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "cursor",
@@ -1104,7 +1834,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "pointer",
             "default"
-          ]
+          ],
+          "type": "ErpPressableCursor",
+          "hasDefault": true,
+          "defaultValue": "pointer",
+          "defaultExpression": "'pointer'"
         },
         {
           "name": "rippleSpeed",
@@ -1113,7 +1847,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "fast",
             "normal",
             "slow"
-          ]
+          ],
+          "type": "ErpRippleSpeed",
+          "hasDefault": true,
+          "defaultValue": "normal",
+          "defaultExpression": "'normal'"
         }
       ],
       "outputs": [
@@ -1298,6 +2036,140 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "زر إجراء عائم",
     "descriptionAr": "إجراء عائم بأيقونة ودلالة وصول واضحة.",
+    "showcaseInitialValues": {
+      "size": "md",
+      "tone": "primary",
+      "disabled": false,
+      "loading": false,
+      "cursor": "pointer",
+      "rippleSpeed": "normal",
+      "label": "إضافة",
+      "icon": "add"
+    },
+    "showcaseControls": [
+      {
+        "name": "icon",
+        "label": "icon",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "ErpIconName",
+        "options": [],
+        "initialValue": "add"
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "إضافة"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFabSize",
+        "options": [
+          "sm",
+          "md",
+          "lg"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFabTone",
+        "options": [
+          "primary",
+          "secondary",
+          "accent",
+          "surface"
+        ],
+        "initialValue": "primary"
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "loading",
+        "label": "loading",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "cursor",
+        "label": "cursor",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpPressableCursor",
+        "options": [
+          "pointer",
+          "default"
+        ],
+        "initialValue": "pointer"
+      },
+      {
+        "name": "rippleSpeed",
+        "label": "rippleSpeed",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpRippleSpeed",
+        "options": [
+          "fast",
+          "normal",
+          "slow"
+        ],
+        "initialValue": "normal"
+      },
+      {
+        "name": "$previewInline",
+        "label": "الموضع الأفقي داخل مساحة المعاينة",
+        "source": "preview",
+        "kind": "range",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 80
+      },
+      {
+        "name": "$previewBlock",
+        "label": "الموضع الرأسي داخل مساحة المعاينة",
+        "source": "preview",
+        "kind": "range",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 75
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "icon",
@@ -1365,17 +2237,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "icon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName",
+          "hasDefault": true,
+          "defaultValue": "add",
+          "defaultExpression": "'add'"
         },
         {
           "name": "items",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "readonly ErpActionMenuItem[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "placement",
@@ -1383,7 +2267,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "block-start",
             "block-end"
-          ]
+          ],
+          "type": "ErpFabMenuPlacement",
+          "hasDefault": true,
+          "defaultValue": "block-start",
+          "defaultExpression": "'block-start'"
         },
         {
           "name": "disabled",
@@ -1391,7 +2279,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ],
       "outputs": [
@@ -1400,13 +2292,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "models": []
     },
     "lowerLevelOwners": [
+      "ErpActionMenuItem",
       "ErpExtendedFab",
       "ErpFab",
       "ErpFabMenuPlacement",
       "ErpIconName",
-      "ErpItemPickerOption",
+      "ErpTooltip",
       "erp-extended-fab",
-      "erp-fab"
+      "erp-fab",
+      "erp-tooltip"
     ],
     "nativeElementsOwned": [
       "div"
@@ -1431,7 +2325,33 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "items": [
             {
               "value": "add",
-              "label": "إضافة"
+              "label": "إضافة",
+              "icon": "add",
+              "presentation": "icon"
+            },
+            {
+              "value": "save",
+              "label": "حفظ",
+              "presentation": "text"
+            },
+            {
+              "value": "share",
+              "label": "مشاركة",
+              "icon": "copy",
+              "presentation": "icon-text"
+            },
+            {
+              "value": "archive",
+              "label": "أرشفة",
+              "icon": "layers",
+              "presentation": "icon-text"
+            },
+            {
+              "value": "delete",
+              "label": "حذف",
+              "icon": "delete",
+              "presentation": "icon-text",
+              "disabled": true
             }
           ]
         }
@@ -1444,7 +2364,33 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "items": [
             {
               "value": "add",
-              "label": "إضافة"
+              "label": "إضافة",
+              "icon": "add",
+              "presentation": "icon"
+            },
+            {
+              "value": "save",
+              "label": "حفظ",
+              "presentation": "text"
+            },
+            {
+              "value": "share",
+              "label": "مشاركة",
+              "icon": "copy",
+              "presentation": "icon-text"
+            },
+            {
+              "value": "archive",
+              "label": "أرشفة",
+              "icon": "layers",
+              "presentation": "icon-text"
+            },
+            {
+              "value": "delete",
+              "label": "حذف",
+              "icon": "delete",
+              "presentation": "icon-text",
+              "disabled": true
             }
           ],
           "placement": "block-start"
@@ -1458,7 +2404,33 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "items": [
             {
               "value": "add",
-              "label": "إضافة"
+              "label": "إضافة",
+              "icon": "add",
+              "presentation": "icon"
+            },
+            {
+              "value": "save",
+              "label": "حفظ",
+              "presentation": "text"
+            },
+            {
+              "value": "share",
+              "label": "مشاركة",
+              "icon": "copy",
+              "presentation": "icon-text"
+            },
+            {
+              "value": "archive",
+              "label": "أرشفة",
+              "icon": "layers",
+              "presentation": "icon-text"
+            },
+            {
+              "value": "delete",
+              "label": "حذف",
+              "icon": "delete",
+              "presentation": "icon-text",
+              "disabled": true
             }
           ],
           "placement": "block-end"
@@ -1472,7 +2444,33 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "items": [
             {
               "value": "add",
-              "label": "إضافة"
+              "label": "إضافة",
+              "icon": "add",
+              "presentation": "icon"
+            },
+            {
+              "value": "save",
+              "label": "حفظ",
+              "presentation": "text"
+            },
+            {
+              "value": "share",
+              "label": "مشاركة",
+              "icon": "copy",
+              "presentation": "icon-text"
+            },
+            {
+              "value": "archive",
+              "label": "أرشفة",
+              "icon": "layers",
+              "presentation": "icon-text"
+            },
+            {
+              "value": "delete",
+              "label": "حذف",
+              "icon": "delete",
+              "presentation": "icon-text",
+              "disabled": true
             }
           ],
           "disabled": false
@@ -1486,7 +2484,33 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "items": [
             {
               "value": "add",
-              "label": "إضافة"
+              "label": "إضافة",
+              "icon": "add",
+              "presentation": "icon"
+            },
+            {
+              "value": "save",
+              "label": "حفظ",
+              "presentation": "text"
+            },
+            {
+              "value": "share",
+              "label": "مشاركة",
+              "icon": "copy",
+              "presentation": "icon-text"
+            },
+            {
+              "value": "archive",
+              "label": "أرشفة",
+              "icon": "layers",
+              "presentation": "icon-text"
+            },
+            {
+              "value": "delete",
+              "label": "حذف",
+              "icon": "delete",
+              "presentation": "icon-text",
+              "disabled": true
             }
           ],
           "disabled": true
@@ -1500,7 +2524,33 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "items": [
             {
               "value": "add",
-              "label": "إضافة"
+              "label": "إضافة",
+              "icon": "add",
+              "presentation": "icon"
+            },
+            {
+              "value": "save",
+              "label": "حفظ",
+              "presentation": "text"
+            },
+            {
+              "value": "share",
+              "label": "مشاركة",
+              "icon": "copy",
+              "presentation": "icon-text"
+            },
+            {
+              "value": "archive",
+              "label": "أرشفة",
+              "icon": "layers",
+              "presentation": "icon-text"
+            },
+            {
+              "value": "delete",
+              "label": "حذف",
+              "icon": "delete",
+              "presentation": "icon-text",
+              "disabled": true
             }
           ],
           "disabled": true
@@ -1509,6 +2559,153 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "قائمة إجراءات عائمة",
     "descriptionAr": "مجموعة إجراءات عائمة قابلة للفتح والإغلاق.",
+    "showcaseInitialValues": {
+      "icon": "add",
+      "placement": "block-start",
+      "disabled": false,
+      "label": "إجراءات سريعة",
+      "items": [
+        {
+          "value": "add",
+          "label": "إضافة",
+          "icon": "add",
+          "presentation": "icon"
+        },
+        {
+          "value": "save",
+          "label": "حفظ",
+          "presentation": "text"
+        },
+        {
+          "value": "share",
+          "label": "مشاركة",
+          "icon": "copy",
+          "presentation": "icon-text"
+        },
+        {
+          "value": "archive",
+          "label": "أرشفة",
+          "icon": "layers",
+          "presentation": "icon-text"
+        },
+        {
+          "value": "delete",
+          "label": "حذف",
+          "icon": "delete",
+          "presentation": "icon-text",
+          "disabled": true
+        }
+      ]
+    },
+    "showcaseControls": [
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "إجراءات سريعة"
+      },
+      {
+        "name": "icon",
+        "label": "icon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName",
+        "options": [],
+        "initialValue": "add"
+      },
+      {
+        "name": "items",
+        "label": "items",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "readonly ErpActionMenuItem[]",
+        "options": [],
+        "initialValue": [
+          {
+            "value": "add",
+            "label": "إضافة",
+            "icon": "add",
+            "presentation": "icon"
+          },
+          {
+            "value": "save",
+            "label": "حفظ",
+            "presentation": "text"
+          },
+          {
+            "value": "share",
+            "label": "مشاركة",
+            "icon": "copy",
+            "presentation": "icon-text"
+          },
+          {
+            "value": "archive",
+            "label": "أرشفة",
+            "icon": "layers",
+            "presentation": "icon-text"
+          },
+          {
+            "value": "delete",
+            "label": "حذف",
+            "icon": "delete",
+            "presentation": "icon-text",
+            "disabled": true
+          }
+        ]
+      },
+      {
+        "name": "placement",
+        "label": "placement",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFabMenuPlacement",
+        "options": [
+          "block-start",
+          "block-end"
+        ],
+        "initialValue": "block-start"
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "$previewInline",
+        "label": "الموضع الأفقي داخل مساحة المعاينة",
+        "source": "preview",
+        "kind": "range",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 80
+      },
+      {
+        "name": "$previewBlock",
+        "label": "الموضع الرأسي داخل مساحة المعاينة",
+        "source": "preview",
+        "kind": "range",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 75
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -1552,12 +2749,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "icon",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "ErpIconName",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "variant",
@@ -1567,7 +2772,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "outline",
             "subtle",
             "ghost"
-          ]
+          ],
+          "type": "ErpIconButtonVariant",
+          "hasDefault": true,
+          "defaultValue": "ghost",
+          "defaultExpression": "'ghost'"
         },
         {
           "name": "tone",
@@ -1581,7 +2790,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "danger",
             "info",
             "neutral"
-          ]
+          ],
+          "type": "ErpButtonTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "size",
@@ -1590,7 +2803,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "sm",
             "md",
             "lg"
-          ]
+          ],
+          "type": "ErpButtonSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "shape",
@@ -1599,7 +2816,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpButtonShape",
+          "hasDefault": true,
+          "defaultValue": "rounded",
+          "defaultExpression": "'rounded'"
         },
         {
           "name": "borderStyle",
@@ -1607,7 +2828,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "solid",
             "dashed"
-          ]
+          ],
+          "type": "ErpButtonBorderStyle",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "type",
@@ -1616,22 +2841,38 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "button",
             "submit",
             "reset"
-          ]
+          ],
+          "type": "ErpNativeButtonType",
+          "hasDefault": true,
+          "defaultValue": "button",
+          "defaultExpression": "'button'"
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "value",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "ariaHasPopup",
@@ -1640,17 +2881,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "menu",
             "dialog",
             "listbox"
-          ]
+          ],
+          "type": "'menu' | 'dialog' | 'listbox' | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "ariaControls",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "ariaExpanded",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "boolean | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -1658,7 +2911,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "loading",
@@ -1666,7 +2923,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "cursor",
@@ -1674,7 +2935,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "pointer",
             "default"
-          ]
+          ],
+          "type": "ErpPressableCursor",
+          "hasDefault": true,
+          "defaultValue": "pointer",
+          "defaultExpression": "'pointer'"
         },
         {
           "name": "rippleSpeed",
@@ -1683,7 +2948,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "fast",
             "normal",
             "slow"
-          ]
+          ],
+          "type": "ErpRippleSpeed",
+          "hasDefault": true,
+          "defaultValue": "normal",
+          "defaultExpression": "'normal'"
         },
         {
           "name": "presentation",
@@ -1692,7 +2961,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "table-reference-cell",
             "table-reference-page"
-          ]
+          ],
+          "type": "ErpIconButtonPresentation",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         }
       ],
       "outputs": [
@@ -1983,6 +3256,269 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "زر أيقونة",
     "descriptionAr": "إجراء مختصر بأيقونة وتسمية وصول.",
+    "showcaseInitialValues": {
+      "variant": "ghost",
+      "tone": "neutral",
+      "size": "md",
+      "shape": "rounded",
+      "borderStyle": "solid",
+      "type": "button",
+      "name": null,
+      "value": null,
+      "form": null,
+      "ariaHasPopup": null,
+      "ariaControls": null,
+      "ariaExpanded": null,
+      "disabled": false,
+      "loading": false,
+      "cursor": "pointer",
+      "rippleSpeed": "normal",
+      "presentation": "default",
+      "label": "الإعدادات",
+      "icon": "settings"
+    },
+    "showcaseControls": [
+      {
+        "name": "icon",
+        "label": "icon",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "ErpIconName",
+        "options": [],
+        "initialValue": "settings"
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "الإعدادات"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpIconButtonVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost"
+        ],
+        "initialValue": "ghost"
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpButtonTone",
+        "options": [
+          "primary",
+          "secondary",
+          "accent",
+          "success",
+          "warning",
+          "danger",
+          "info",
+          "neutral"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpButtonSize",
+        "options": [
+          "sm",
+          "md",
+          "lg"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpButtonShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "rounded"
+      },
+      {
+        "name": "borderStyle",
+        "label": "borderStyle",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpButtonBorderStyle",
+        "options": [
+          "solid",
+          "dashed"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "type",
+        "label": "type",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpNativeButtonType",
+        "options": [
+          "button",
+          "submit",
+          "reset"
+        ],
+        "initialValue": "button"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "value",
+        "label": "value",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "ariaHasPopup",
+        "label": "ariaHasPopup",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "'menu' | 'dialog' | 'listbox' | null",
+        "options": [
+          "menu",
+          "dialog",
+          "listbox"
+        ],
+        "initialValue": null
+      },
+      {
+        "name": "ariaControls",
+        "label": "ariaControls",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "ariaExpanded",
+        "label": "ariaExpanded",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "boolean | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "loading",
+        "label": "loading",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "cursor",
+        "label": "cursor",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpPressableCursor",
+        "options": [
+          "pointer",
+          "default"
+        ],
+        "initialValue": "pointer"
+      },
+      {
+        "name": "rippleSpeed",
+        "label": "rippleSpeed",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpRippleSpeed",
+        "options": [
+          "fast",
+          "normal",
+          "slow"
+        ],
+        "initialValue": "normal"
+      },
+      {
+        "name": "presentation",
+        "label": "presentation",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpIconButtonPresentation",
+        "options": [
+          "default",
+          "table-reference-cell",
+          "table-reference-page"
+        ],
+        "initialValue": "default"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "icon",
@@ -2095,12 +3631,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "items",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "readonly ErpActionMenuItem[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "disabled",
@@ -2108,7 +3652,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ],
       "outputs": [
@@ -2119,9 +3667,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     },
     "lowerLevelOwners": [
       "ErpActionMenuContent",
+      "ErpActionMenuItem",
       "ErpButton",
       "ErpIconButton",
-      "ErpItemPickerOption",
       "erp-action-menu-content",
       "erp-button",
       "erp-icon-button"
@@ -2148,7 +3696,33 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "items": [
             {
               "value": "save-close",
-              "label": "حفظ وإغلاق"
+              "label": "حفظ وإغلاق",
+              "icon": "save",
+              "presentation": "icon-text"
+            },
+            {
+              "value": "save-copy",
+              "label": "حفظ نسخة",
+              "presentation": "text"
+            },
+            {
+              "value": "preview",
+              "label": "معاينة",
+              "icon": "eye",
+              "presentation": "icon"
+            },
+            {
+              "value": "archive",
+              "label": "أرشفة",
+              "icon": "layers",
+              "presentation": "icon-text"
+            },
+            {
+              "value": "delete",
+              "label": "حذف",
+              "icon": "delete",
+              "presentation": "icon-text",
+              "disabled": true
             }
           ]
         }
@@ -2161,7 +3735,33 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "items": [
             {
               "value": "save-close",
-              "label": "حفظ وإغلاق"
+              "label": "حفظ وإغلاق",
+              "icon": "save",
+              "presentation": "icon-text"
+            },
+            {
+              "value": "save-copy",
+              "label": "حفظ نسخة",
+              "presentation": "text"
+            },
+            {
+              "value": "preview",
+              "label": "معاينة",
+              "icon": "eye",
+              "presentation": "icon"
+            },
+            {
+              "value": "archive",
+              "label": "أرشفة",
+              "icon": "layers",
+              "presentation": "icon-text"
+            },
+            {
+              "value": "delete",
+              "label": "حذف",
+              "icon": "delete",
+              "presentation": "icon-text",
+              "disabled": true
             }
           ],
           "disabled": false
@@ -2175,7 +3775,33 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "items": [
             {
               "value": "save-close",
-              "label": "حفظ وإغلاق"
+              "label": "حفظ وإغلاق",
+              "icon": "save",
+              "presentation": "icon-text"
+            },
+            {
+              "value": "save-copy",
+              "label": "حفظ نسخة",
+              "presentation": "text"
+            },
+            {
+              "value": "preview",
+              "label": "معاينة",
+              "icon": "eye",
+              "presentation": "icon"
+            },
+            {
+              "value": "archive",
+              "label": "أرشفة",
+              "icon": "layers",
+              "presentation": "icon-text"
+            },
+            {
+              "value": "delete",
+              "label": "حذف",
+              "icon": "delete",
+              "presentation": "icon-text",
+              "disabled": true
             }
           ],
           "disabled": true
@@ -2189,7 +3815,33 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "items": [
             {
               "value": "save-close",
-              "label": "حفظ وإغلاق"
+              "label": "حفظ وإغلاق",
+              "icon": "save",
+              "presentation": "icon-text"
+            },
+            {
+              "value": "save-copy",
+              "label": "حفظ نسخة",
+              "presentation": "text"
+            },
+            {
+              "value": "preview",
+              "label": "معاينة",
+              "icon": "eye",
+              "presentation": "icon"
+            },
+            {
+              "value": "archive",
+              "label": "أرشفة",
+              "icon": "layers",
+              "presentation": "icon-text"
+            },
+            {
+              "value": "delete",
+              "label": "حذف",
+              "icon": "delete",
+              "presentation": "icon-text",
+              "disabled": true
             }
           ],
           "disabled": true
@@ -2198,6 +3850,108 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "زر منقسم",
     "descriptionAr": "إجراء أساسي مع قائمة إجراءات إضافية.",
+    "showcaseInitialValues": {
+      "disabled": false,
+      "label": "حفظ",
+      "items": [
+        {
+          "value": "save-close",
+          "label": "حفظ وإغلاق",
+          "icon": "save",
+          "presentation": "icon-text"
+        },
+        {
+          "value": "save-copy",
+          "label": "حفظ نسخة",
+          "presentation": "text"
+        },
+        {
+          "value": "preview",
+          "label": "معاينة",
+          "icon": "eye",
+          "presentation": "icon"
+        },
+        {
+          "value": "archive",
+          "label": "أرشفة",
+          "icon": "layers",
+          "presentation": "icon-text"
+        },
+        {
+          "value": "delete",
+          "label": "حذف",
+          "icon": "delete",
+          "presentation": "icon-text",
+          "disabled": true
+        }
+      ]
+    },
+    "showcaseControls": [
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حفظ"
+      },
+      {
+        "name": "items",
+        "label": "items",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "readonly ErpActionMenuItem[]",
+        "options": [],
+        "initialValue": [
+          {
+            "value": "save-close",
+            "label": "حفظ وإغلاق",
+            "icon": "save",
+            "presentation": "icon-text"
+          },
+          {
+            "value": "save-copy",
+            "label": "حفظ نسخة",
+            "presentation": "text"
+          },
+          {
+            "value": "preview",
+            "label": "معاينة",
+            "icon": "eye",
+            "presentation": "icon"
+          },
+          {
+            "value": "archive",
+            "label": "أرشفة",
+            "icon": "layers",
+            "presentation": "icon-text"
+          },
+          {
+            "value": "delete",
+            "label": "حذف",
+            "icon": "delete",
+            "presentation": "icon-text",
+            "disabled": true
+          }
+        ]
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -2236,22 +3990,38 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "navigationItems",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "readonly ErpNavigationItem[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "activeNavigationId",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "sidebarLabel",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "التنقل الرئيسي",
+          "defaultExpression": "'التنقل الرئيسي'"
         },
         {
           "name": "contentLabel",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "محتوى التطبيق",
+          "defaultExpression": "'محتوى التطبيق'"
         }
       ],
       "outputs": [
@@ -2296,6 +4066,66 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "إطار تطبيق ERP",
     "descriptionAr": "تكوين إطار التطبيق من الشريط العلوي والشريط الجانبي والمحتوى.",
+    "showcaseInitialValues": {
+      "activeNavigationId": null,
+      "sidebarLabel": "التنقل الرئيسي",
+      "contentLabel": "محتوى التطبيق",
+      "navigationItems": [
+        {
+          "id": "finance",
+          "label": "المالية",
+          "icon": "wallet"
+        }
+      ]
+    },
+    "showcaseControls": [
+      {
+        "name": "navigationItems",
+        "label": "navigationItems",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "readonly ErpNavigationItem[]",
+        "options": [],
+        "initialValue": [
+          {
+            "id": "finance",
+            "label": "المالية",
+            "icon": "wallet"
+          }
+        ]
+      },
+      {
+        "name": "activeNavigationId",
+        "label": "activeNavigationId",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "sidebarLabel",
+        "label": "sidebarLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "التنقل الرئيسي"
+      },
+      {
+        "name": "contentLabel",
+        "label": "contentLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "محتوى التطبيق"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "navigationItems",
@@ -2329,17 +4159,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "branches",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "readonly ErpBranchOption[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "label",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "الفرع",
+          "defaultExpression": "'الفرع'"
         },
         {
           "name": "placeholder",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "اختر الفرع",
+          "defaultExpression": "'اختر الفرع'"
         },
         {
           "name": "disabled",
@@ -2347,7 +4189,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ],
       "outputs": [
@@ -2357,7 +4203,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "value",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ]
     },
@@ -2438,6 +4288,78 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "محدد الفرع",
     "descriptionAr": "اختيار فرع مضبوط يتحكم فيه المستهلك.",
+    "showcaseInitialValues": {
+      "label": "الفرع",
+      "placeholder": "اختر الفرع",
+      "disabled": false,
+      "value": null,
+      "branches": [
+        {
+          "id": "cairo",
+          "label": "فرع القاهرة"
+        }
+      ]
+    },
+    "showcaseControls": [
+      {
+        "name": "branches",
+        "label": "branches",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "readonly ErpBranchOption[]",
+        "options": [],
+        "initialValue": [
+          {
+            "id": "cairo",
+            "label": "فرع القاهرة"
+          }
+        ]
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "الفرع"
+      },
+      {
+        "name": "placeholder",
+        "label": "placeholder",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "اختر الفرع"
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "value",
+        "label": "value",
+        "source": "model",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "branches",
@@ -2478,17 +4400,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "results",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpGlobalSearchResult[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "label",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "البحث العام",
+          "defaultExpression": "'البحث العام'"
         },
         {
           "name": "placeholder",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "ابحث في النظام",
+          "defaultExpression": "'ابحث في النظام'"
         },
         {
           "name": "mode",
@@ -2497,7 +4431,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "modal",
             "dropdown",
             "inline"
-          ]
+          ],
+          "type": "ErpSearchBoxMode",
+          "hasDefault": true,
+          "defaultValue": "dropdown",
+          "defaultExpression": "'dropdown'"
         }
       ],
       "outputs": [
@@ -2507,7 +4445,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "query",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "",
+          "defaultExpression": "''"
         }
       ]
     },
@@ -2564,6 +4506,69 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "البحث العام",
     "descriptionAr": "بحث عام داخل إطار التطبيق مع نتائج مصنفة.",
+    "showcaseInitialValues": {
+      "results": [],
+      "label": "البحث العام",
+      "placeholder": "ابحث في النظام",
+      "mode": "dropdown",
+      "query": ""
+    },
+    "showcaseControls": [
+      {
+        "name": "results",
+        "label": "results",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpGlobalSearchResult[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "البحث العام"
+      },
+      {
+        "name": "placeholder",
+        "label": "placeholder",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "ابحث في النظام"
+      },
+      {
+        "name": "mode",
+        "label": "mode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpSearchBoxMode",
+        "options": [
+          "modal",
+          "dropdown",
+          "inline"
+        ],
+        "initialValue": "dropdown"
+      },
+      {
+        "name": "query",
+        "label": "query",
+        "source": "model",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": ""
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "results",
@@ -2603,17 +4608,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "notifications",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpNotificationSummary[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "unreadCount",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "label",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "الإشعارات",
+          "defaultExpression": "'الإشعارات'"
         }
       ],
       "outputs": [
@@ -2627,7 +4644,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ]
     },
@@ -2686,6 +4707,57 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "جرس الإشعارات",
     "descriptionAr": "مدخل إشعارات قابل للفتح مع عدد غير المقروء.",
+    "showcaseInitialValues": {
+      "notifications": [],
+      "unreadCount": null,
+      "label": "الإشعارات",
+      "open": false
+    },
+    "showcaseControls": [
+      {
+        "name": "notifications",
+        "label": "notifications",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpNotificationSummary[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "unreadCount",
+        "label": "unreadCount",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "الإشعارات"
+      },
+      {
+        "name": "open",
+        "label": "open",
+        "source": "model",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "notifications",
@@ -2741,6 +4813,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "الشريط العلوي",
     "descriptionAr": "تخطيط مناطق السياق والبحث والإشعارات والمستخدم.",
+    "showcaseInitialValues": {},
+    "showcaseControls": [],
     "showcaseCoverage": {
       "coveredInputs": [],
       "coveredModels": [],
@@ -2767,17 +4841,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "user",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "ErpShellUserSummary",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "items",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpUserMenuItem[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "label",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "قائمة المستخدم",
+          "defaultExpression": "'قائمة المستخدم'"
         }
       ],
       "outputs": [
@@ -2790,7 +4876,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ]
     },
@@ -2855,6 +4945,63 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "قائمة المستخدم",
     "descriptionAr": "هوية المستخدم وإجراءات الحساب ضمن سطح مثبت.",
+    "showcaseInitialValues": {
+      "items": [],
+      "label": "قائمة المستخدم",
+      "open": false,
+      "user": {
+        "displayName": "أميرة حداد",
+        "secondaryText": "مديرة المالية"
+      }
+    },
+    "showcaseControls": [
+      {
+        "name": "user",
+        "label": "user",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "ErpShellUserSummary",
+        "options": [],
+        "initialValue": {
+          "displayName": "أميرة حداد",
+          "secondaryText": "مديرة المالية"
+        }
+      },
+      {
+        "name": "items",
+        "label": "items",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpUserMenuItem[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "قائمة المستخدم"
+      },
+      {
+        "name": "open",
+        "label": "open",
+        "source": "model",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "user",
@@ -2887,7 +5034,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "selectedCount",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 0,
+          "defaultExpression": "0"
         }
       ],
       "outputs": [
@@ -2916,11 +5067,28 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "selectedCount": 3
+        }
       }
     ],
     "displayNameAr": "شريط الإجراءات الجماعية",
     "descriptionAr": "إجراءات مرتبطة بالصفوف المحددة.",
+    "showcaseInitialValues": {
+      "selectedCount": 3
+    },
+    "showcaseControls": [
+      {
+        "name": "selectedCount",
+        "label": "selectedCount",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 3
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "selectedCount"
@@ -2949,7 +5117,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "filters",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpDataFilter[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "disabled",
@@ -2957,7 +5129,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ],
       "outputs": [
@@ -3018,6 +5194,35 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "شريط التصفية",
     "descriptionAr": "عرض المرشحات النشطة وإصدار نوايا تعديلها.",
+    "showcaseInitialValues": {
+      "filters": [],
+      "disabled": false
+    },
+    "showcaseControls": [
+      {
+        "name": "filters",
+        "label": "filters",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpDataFilter[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "filters",
@@ -3056,12 +5261,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "definitions",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "readonly ErpDataFilterDefinition[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "filters",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpDataFilter[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "disabled",
@@ -3069,7 +5282,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ],
       "outputs": [
@@ -3132,6 +5349,46 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "درج التصفية",
     "descriptionAr": "سطح حاجب لتكوين المرشحات وتطبيقها.",
+    "showcaseInitialValues": {
+      "filters": [],
+      "disabled": false,
+      "definitions": []
+    },
+    "showcaseControls": [
+      {
+        "name": "definitions",
+        "label": "definitions",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "readonly ErpDataFilterDefinition[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "filters",
+        "label": "filters",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpDataFilter[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "definitions",
@@ -3169,17 +5426,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "caption",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "columns",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "readonly ErpDataColumn[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "rows",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpTableRow[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "mode",
@@ -3187,12 +5456,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "local",
             "remote"
-          ]
+          ],
+          "type": "ErpSmartTableMode",
+          "hasDefault": true,
+          "defaultValue": "local",
+          "defaultExpression": "'local'"
         },
         {
           "name": "rowKey",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "id",
+          "defaultExpression": "'id'"
         },
         {
           "name": "loading",
@@ -3200,17 +5477,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "error",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "totalItems",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "selectable",
@@ -3218,7 +5507,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "compact",
@@ -3226,17 +5519,34 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "filterDefinitions",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpDataFilterDefinition[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "pageSizeOptions",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly number[]",
+          "hasDefault": true,
+          "defaultValue": [
+            10,
+            25,
+            50,
+            100
+          ],
+          "defaultExpression": "[10, 25, 50, 100]"
         }
       ],
       "outputs": [
@@ -3249,32 +5559,56 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "page",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 1,
+          "defaultExpression": "1"
         },
         {
           "name": "pageSize",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 25,
+          "defaultExpression": "25"
         },
         {
           "name": "sort",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpDataSort | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "filters",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpDataFilter[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "visibleColumns",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly string[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "selectedKeys",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly string[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         }
       ]
     },
@@ -3513,6 +5847,260 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "الجدول الذكي",
     "descriptionAr": "تركيب مضبوط للجدول والأدوات والصفحات والحالات.",
+    "showcaseInitialValues": {
+      "rows": [
+        {
+          "id": "1",
+          "name": "حساب المبيعات",
+          "balance": "125,000 ج.م"
+        }
+      ],
+      "mode": "local",
+      "rowKey": "id",
+      "loading": false,
+      "error": null,
+      "totalItems": null,
+      "selectable": false,
+      "compact": false,
+      "filterDefinitions": [],
+      "pageSizeOptions": [
+        10,
+        25,
+        50,
+        100
+      ],
+      "page": 1,
+      "pageSize": 25,
+      "sort": null,
+      "filters": [],
+      "visibleColumns": [],
+      "selectedKeys": [],
+      "caption": "سجل الحسابات",
+      "columns": [
+        {
+          "key": "name",
+          "label": "اسم الحساب"
+        },
+        {
+          "key": "balance",
+          "label": "الرصيد"
+        }
+      ]
+    },
+    "showcaseControls": [
+      {
+        "name": "caption",
+        "label": "caption",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "سجل الحسابات"
+      },
+      {
+        "name": "columns",
+        "label": "columns",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "readonly ErpDataColumn[]",
+        "options": [],
+        "initialValue": [
+          {
+            "key": "name",
+            "label": "اسم الحساب"
+          },
+          {
+            "key": "balance",
+            "label": "الرصيد"
+          }
+        ]
+      },
+      {
+        "name": "rows",
+        "label": "rows",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpTableRow[]",
+        "options": [],
+        "initialValue": [
+          {
+            "id": "1",
+            "name": "حساب المبيعات",
+            "balance": "125,000 ج.م"
+          }
+        ]
+      },
+      {
+        "name": "mode",
+        "label": "mode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpSmartTableMode",
+        "options": [
+          "local",
+          "remote"
+        ],
+        "initialValue": "local"
+      },
+      {
+        "name": "rowKey",
+        "label": "rowKey",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "id"
+      },
+      {
+        "name": "loading",
+        "label": "loading",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "error",
+        "label": "error",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "totalItems",
+        "label": "totalItems",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "selectable",
+        "label": "selectable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "compact",
+        "label": "compact",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "filterDefinitions",
+        "label": "filterDefinitions",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpDataFilterDefinition[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "pageSizeOptions",
+        "label": "pageSizeOptions",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "readonly number[]",
+        "options": [],
+        "initialValue": [
+          10,
+          25,
+          50,
+          100
+        ]
+      },
+      {
+        "name": "page",
+        "label": "page",
+        "source": "model",
+        "kind": "number",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 1
+      },
+      {
+        "name": "pageSize",
+        "label": "pageSize",
+        "source": "model",
+        "kind": "number",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 25
+      },
+      {
+        "name": "sort",
+        "label": "sort",
+        "source": "model",
+        "kind": "json",
+        "required": false,
+        "type": "ErpDataSort | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "filters",
+        "label": "filters",
+        "source": "model",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpDataFilter[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "visibleColumns",
+        "label": "visibleColumns",
+        "source": "model",
+        "kind": "json",
+        "required": false,
+        "type": "readonly string[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "selectedKeys",
+        "label": "selectedKeys",
+        "source": "model",
+        "kind": "json",
+        "required": false,
+        "type": "readonly string[]",
+        "options": [],
+        "initialValue": []
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "caption",
@@ -3583,32 +6171,56 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "caption",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "columns",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "readonly ErpTableColumn[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "visibleColumnKeys",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly string[] | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "rows",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpTableRow[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "rowKey",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "id",
+          "defaultExpression": "'id'"
         },
         {
           "name": "emptyText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "لا توجد بيانات متاحة",
+          "defaultExpression": "'لا توجد بيانات متاحة'"
         },
         {
           "name": "compact",
@@ -3616,7 +6228,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "density",
@@ -3625,7 +6241,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "compact",
             "normal",
             "comfortable"
-          ]
+          ],
+          "type": "ErpTableDensity",
+          "hasDefault": true,
+          "defaultValue": "normal",
+          "defaultExpression": "'normal'"
         },
         {
           "name": "layout",
@@ -3633,7 +6253,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "horizontal",
             "vertical"
-          ]
+          ],
+          "type": "ErpTableLayout",
+          "hasDefault": true,
+          "defaultValue": "horizontal",
+          "defaultExpression": "'horizontal'"
         },
         {
           "name": "presentation",
@@ -3641,12 +6265,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standalone",
             "reference-experience"
-          ]
+          ],
+          "type": "ErpTablePresentation",
+          "hasDefault": true,
+          "defaultValue": "standalone",
+          "defaultExpression": "'standalone'"
         },
         {
           "name": "fixedHeight",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "selectable",
@@ -3654,7 +6286,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "showHeaderSelection",
@@ -3662,7 +6298,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "rowActivatable",
@@ -3670,7 +6310,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "striped",
@@ -3678,7 +6322,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "hover",
@@ -3686,7 +6334,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "hoverMotion",
@@ -3694,27 +6346,47 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "sort",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpTableSort | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "footerValues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "Readonly<Record<string, string | number | null | undefined>>",
+          "hasDefault": true,
+          "defaultValue": {},
+          "defaultExpression": "{}"
         },
         {
           "name": "cellDefinitions",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpTableCell[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "footerDefinitions",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpTableFooter[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         }
       ],
       "outputs": [
@@ -3726,12 +6398,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "selectedKeys",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly string[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "columnWidths",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "Readonly<Record<string, number>>",
+          "hasDefault": true,
+          "defaultValue": {},
+          "defaultExpression": "{}"
         }
       ]
     },
@@ -3967,6 +6647,324 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "الجدول",
     "descriptionAr": "دلالات الجدول والصفوف والخلايا والاختيار والفرز والتحجيم.",
+    "showcaseInitialValues": {
+      "visibleColumnKeys": null,
+      "rows": [
+        {
+          "id": "1",
+          "name": "حساب المبيعات",
+          "balance": "125,000 ج.م"
+        }
+      ],
+      "rowKey": "id",
+      "emptyText": "لا توجد بيانات متاحة",
+      "compact": false,
+      "density": "normal",
+      "layout": "horizontal",
+      "presentation": "standalone",
+      "fixedHeight": null,
+      "selectable": false,
+      "showHeaderSelection": true,
+      "rowActivatable": false,
+      "striped": false,
+      "hover": true,
+      "hoverMotion": true,
+      "sort": null,
+      "footerValues": {},
+      "cellDefinitions": [],
+      "footerDefinitions": [],
+      "selectedKeys": [],
+      "columnWidths": {},
+      "caption": "سجل الحسابات",
+      "columns": [
+        {
+          "key": "name",
+          "label": "اسم الحساب"
+        },
+        {
+          "key": "balance",
+          "label": "الرصيد"
+        }
+      ]
+    },
+    "showcaseControls": [
+      {
+        "name": "caption",
+        "label": "caption",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "سجل الحسابات"
+      },
+      {
+        "name": "columns",
+        "label": "columns",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "readonly ErpTableColumn[]",
+        "options": [],
+        "initialValue": [
+          {
+            "key": "name",
+            "label": "اسم الحساب"
+          },
+          {
+            "key": "balance",
+            "label": "الرصيد"
+          }
+        ]
+      },
+      {
+        "name": "visibleColumnKeys",
+        "label": "visibleColumnKeys",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly string[] | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "rows",
+        "label": "rows",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpTableRow[]",
+        "options": [],
+        "initialValue": [
+          {
+            "id": "1",
+            "name": "حساب المبيعات",
+            "balance": "125,000 ج.م"
+          }
+        ]
+      },
+      {
+        "name": "rowKey",
+        "label": "rowKey",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "id"
+      },
+      {
+        "name": "emptyText",
+        "label": "emptyText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "لا توجد بيانات متاحة"
+      },
+      {
+        "name": "compact",
+        "label": "compact",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "density",
+        "label": "density",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTableDensity",
+        "options": [
+          "compact",
+          "normal",
+          "comfortable"
+        ],
+        "initialValue": "normal"
+      },
+      {
+        "name": "layout",
+        "label": "layout",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTableLayout",
+        "options": [
+          "horizontal",
+          "vertical"
+        ],
+        "initialValue": "horizontal"
+      },
+      {
+        "name": "presentation",
+        "label": "presentation",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTablePresentation",
+        "options": [
+          "standalone",
+          "reference-experience"
+        ],
+        "initialValue": "standalone"
+      },
+      {
+        "name": "fixedHeight",
+        "label": "fixedHeight",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "selectable",
+        "label": "selectable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "showHeaderSelection",
+        "label": "showHeaderSelection",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "rowActivatable",
+        "label": "rowActivatable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "striped",
+        "label": "striped",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "hover",
+        "label": "hover",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "hoverMotion",
+        "label": "hoverMotion",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "sort",
+        "label": "sort",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpTableSort | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "footerValues",
+        "label": "footerValues",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "Readonly<Record<string, string | number | null | undefined>>",
+        "options": [],
+        "initialValue": {}
+      },
+      {
+        "name": "cellDefinitions",
+        "label": "cellDefinitions",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpTableCell[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "footerDefinitions",
+        "label": "footerDefinitions",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpTableFooter[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "selectedKeys",
+        "label": "selectedKeys",
+        "source": "model",
+        "kind": "json",
+        "required": false,
+        "type": "readonly string[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "columnWidths",
+        "label": "columnWidths",
+        "source": "model",
+        "kind": "number",
+        "required": false,
+        "type": "Readonly<Record<string, number>>",
+        "options": [],
+        "initialValue": {}
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "caption",
@@ -4080,12 +7078,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "default",
             "table-reference"
-          ]
+          ],
+          "type": "'default' | 'table-reference'",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "label",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "أدوات الجدول",
+          "defaultExpression": "'أدوات الجدول'"
         },
         {
           "name": "showRefresh",
@@ -4093,7 +7099,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "showExport",
@@ -4101,7 +7111,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "refreshing",
@@ -4109,7 +7123,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "disabled",
@@ -4117,7 +7135,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ],
       "outputs": [
@@ -4175,6 +7197,91 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "شريط أدوات الجدول",
     "descriptionAr": "تخطيط البحث والإجراءات وأدوات العرض للجدول.",
+    "showcaseInitialValues": {
+      "presentation": "default",
+      "label": "أدوات الجدول",
+      "showRefresh": true,
+      "showExport": false,
+      "refreshing": false,
+      "disabled": false
+    },
+    "showcaseControls": [
+      {
+        "name": "presentation",
+        "label": "presentation",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "'default' | 'table-reference'",
+        "options": [
+          "default",
+          "table-reference"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "أدوات الجدول"
+      },
+      {
+        "name": "showRefresh",
+        "label": "showRefresh",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "showExport",
+        "label": "showExport",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "refreshing",
+        "label": "refreshing",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "presentation",
@@ -4235,12 +7342,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "title",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "description",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "tone",
@@ -4250,12 +7365,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "success",
             "warning",
             "danger"
-          ]
+          ],
+          "type": "ErpAlertTone",
+          "hasDefault": true,
+          "defaultValue": "info",
+          "defaultExpression": "'info'"
         },
         {
           "name": "icon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "dismissible",
@@ -4263,12 +7386,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "dismissLabel",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "إغلاق التنبيه",
+          "defaultExpression": "'إغلاق التنبيه'"
         }
       ],
       "outputs": [
@@ -4344,6 +7475,84 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "تنبيه",
     "descriptionAr": "رسالة ملاحظات قابلة للإغلاق عند السماح بذلك.",
+    "showcaseInitialValues": {
+      "description": null,
+      "tone": "info",
+      "icon": null,
+      "dismissible": false,
+      "dismissLabel": "إغلاق التنبيه",
+      "title": "تنبيه تشغيلي"
+    },
+    "showcaseControls": [
+      {
+        "name": "title",
+        "label": "title",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "تنبيه تشغيلي"
+      },
+      {
+        "name": "description",
+        "label": "description",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpAlertTone",
+        "options": [
+          "info",
+          "success",
+          "warning",
+          "danger"
+        ],
+        "initialValue": "info"
+      },
+      {
+        "name": "icon",
+        "label": "icon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "dismissible",
+        "label": "dismissible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "dismissLabel",
+        "label": "dismissLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "إغلاق التنبيه"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "title",
@@ -4396,17 +7605,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "error",
             "forbidden",
             "custom"
-          ]
+          ],
+          "type": "ErpEmptyStateVariant",
+          "hasDefault": true,
+          "defaultValue": "no-data",
+          "defaultExpression": "'no-data'"
         },
         {
           "name": "title",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "description",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "animated",
@@ -4414,7 +7635,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "illustrationMotion",
@@ -4423,17 +7648,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "float",
             "pulse",
             "none"
-          ]
+          ],
+          "type": "ErpEmptyStateIllustrationMotion",
+          "hasDefault": true,
+          "defaultValue": "float",
+          "defaultExpression": "'float'"
         },
         {
           "name": "motionSpeed",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpEmptyStateMotionSpeed",
+          "hasDefault": true,
+          "defaultValue": 1,
+          "defaultExpression": "1"
         },
         {
           "name": "showIllustration",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "boolean | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "showTitle",
@@ -4441,7 +7678,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "showDescription",
@@ -4449,7 +7690,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "showActions",
@@ -4457,57 +7702,101 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "showExtra",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "boolean | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "showPrimaryAction",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "boolean | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "primaryActionLabel",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "showSecondaryAction",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "boolean | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "secondaryActionLabel",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "showTertiaryAction",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "boolean | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "tertiaryActionLabel",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "extraPrefix",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "هل تواجه مشكلة؟",
+          "defaultExpression": "'هل تواجه مشكلة؟'"
         },
         {
           "name": "extraLinkLabel",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "مركز مساعدة النظام والتوثيق",
+          "defaultExpression": "'مركز مساعدة النظام والتوثيق'"
         },
         {
           "name": "extraLinkHref",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "#help",
+          "defaultExpression": "'#help'"
         }
       ],
       "outputs": [
@@ -4592,6 +7881,252 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "الحالة الفارغة",
     "descriptionAr": "حالة فارغة بعنوان ووصف وإجراءات ورسوم اختيارية.",
+    "showcaseInitialValues": {
+      "variant": "no-data",
+      "title": null,
+      "description": null,
+      "animated": true,
+      "illustrationMotion": "float",
+      "motionSpeed": 1,
+      "showIllustration": null,
+      "showTitle": true,
+      "showDescription": true,
+      "showActions": true,
+      "showExtra": null,
+      "showPrimaryAction": null,
+      "primaryActionLabel": null,
+      "showSecondaryAction": null,
+      "secondaryActionLabel": null,
+      "showTertiaryAction": null,
+      "tertiaryActionLabel": null,
+      "extraPrefix": "هل تواجه مشكلة؟",
+      "extraLinkLabel": "مركز مساعدة النظام والتوثيق",
+      "extraLinkHref": "#help"
+    },
+    "showcaseControls": [
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpEmptyStateVariant",
+        "options": [
+          "no-data",
+          "no-search",
+          "error",
+          "forbidden",
+          "custom"
+        ],
+        "initialValue": "no-data"
+      },
+      {
+        "name": "title",
+        "label": "title",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "description",
+        "label": "description",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "animated",
+        "label": "animated",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "illustrationMotion",
+        "label": "illustrationMotion",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpEmptyStateIllustrationMotion",
+        "options": [
+          "float",
+          "pulse",
+          "none"
+        ],
+        "initialValue": "float"
+      },
+      {
+        "name": "motionSpeed",
+        "label": "motionSpeed",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpEmptyStateMotionSpeed",
+        "options": [],
+        "initialValue": 1
+      },
+      {
+        "name": "showIllustration",
+        "label": "showIllustration",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "boolean | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "showTitle",
+        "label": "showTitle",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "showDescription",
+        "label": "showDescription",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "showActions",
+        "label": "showActions",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "showExtra",
+        "label": "showExtra",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "boolean | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "showPrimaryAction",
+        "label": "showPrimaryAction",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "boolean | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "primaryActionLabel",
+        "label": "primaryActionLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "showSecondaryAction",
+        "label": "showSecondaryAction",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "boolean | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "secondaryActionLabel",
+        "label": "secondaryActionLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "showTertiaryAction",
+        "label": "showTertiaryAction",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "boolean | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "tertiaryActionLabel",
+        "label": "tertiaryActionLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "extraPrefix",
+        "label": "extraPrefix",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "هل تواجه مشكلة؟"
+      },
+      {
+        "name": "extraLinkLabel",
+        "label": "extraLinkLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "مركز مساعدة النظام والتوثيق"
+      },
+      {
+        "name": "extraLinkHref",
+        "label": "extraLinkHref",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "#help"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "variant",
@@ -4686,7 +8221,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "line",
             "block",
             "circle"
-          ]
+          ],
+          "type": "ErpSkeletonVariant",
+          "hasDefault": true,
+          "defaultValue": "line",
+          "defaultExpression": "'line'"
         },
         {
           "name": "size",
@@ -4695,12 +8234,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "sm",
             "md",
             "lg"
-          ]
+          ],
+          "type": "ErpSkeletonSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "lines",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 1,
+          "defaultExpression": "1"
         },
         {
           "name": "animated",
@@ -4708,12 +8255,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "label",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "جارٍ تحميل المحتوى",
+          "defaultExpression": "'جارٍ تحميل المحتوى'"
         }
       ],
       "outputs": [],
@@ -4788,6 +8343,76 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "هيكل التحميل",
     "descriptionAr": "تمثيل مؤقت للمحتوى أثناء التحميل.",
+    "showcaseInitialValues": {
+      "variant": "line",
+      "size": "md",
+      "lines": 1,
+      "animated": true,
+      "label": "جارٍ تحميل المحتوى"
+    },
+    "showcaseControls": [
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpSkeletonVariant",
+        "options": [
+          "line",
+          "block",
+          "circle"
+        ],
+        "initialValue": "line"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpSkeletonSize",
+        "options": [
+          "sm",
+          "md",
+          "lg"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "lines",
+        "label": "lines",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 1
+      },
+      {
+        "name": "animated",
+        "label": "animated",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "جارٍ تحميل المحتوى"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "variant",
@@ -4835,7 +8460,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "tone",
@@ -4849,7 +8478,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "brand",
             "pending",
             "archived"
-          ]
+          ],
+          "type": "ErpStatusBadgeTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "variant",
@@ -4859,7 +8492,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "outline",
             "ghost"
-          ]
+          ],
+          "type": "ErpStatusBadgeVariant",
+          "hasDefault": true,
+          "defaultValue": "soft",
+          "defaultExpression": "'soft'"
         },
         {
           "name": "size",
@@ -4869,7 +8506,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "md",
             "lg",
             "xl"
-          ]
+          ],
+          "type": "ErpStatusBadgeSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "shape",
@@ -4878,7 +8519,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "square",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpStatusBadgeShape",
+          "hasDefault": true,
+          "defaultValue": "rounded",
+          "defaultExpression": "'rounded'"
         },
         {
           "name": "widthMode",
@@ -4886,22 +8531,38 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "content",
             "stretch"
-          ]
+          ],
+          "type": "ErpStatusBadgeWidthMode",
+          "hasDefault": true,
+          "defaultValue": "content",
+          "defaultExpression": "'content'"
         },
         {
           "name": "icon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "image",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "count",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "showDot",
@@ -4909,7 +8570,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "pulse",
@@ -4917,7 +8582,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "uppercase",
@@ -4925,7 +8594,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "interactive",
@@ -4933,7 +8606,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "selected",
@@ -4941,7 +8618,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "removable",
@@ -4949,7 +8630,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "disabled",
@@ -4957,7 +8642,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ],
       "outputs": [
@@ -5220,6 +8909,233 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "شارة الحالة",
     "descriptionAr": "مؤشر حالة غير تفاعلي أو تفاعلي حسب العقد.",
+    "showcaseInitialValues": {
+      "tone": "neutral",
+      "variant": "soft",
+      "size": "md",
+      "shape": "rounded",
+      "widthMode": "content",
+      "icon": null,
+      "image": null,
+      "count": null,
+      "showDot": false,
+      "pulse": false,
+      "uppercase": false,
+      "interactive": false,
+      "selected": false,
+      "removable": false,
+      "disabled": false,
+      "label": "نشط"
+    },
+    "showcaseControls": [
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "نشط"
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpStatusBadgeTone",
+        "options": [
+          "neutral",
+          "success",
+          "warning",
+          "danger",
+          "info",
+          "brand",
+          "pending",
+          "archived"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpStatusBadgeVariant",
+        "options": [
+          "soft",
+          "solid",
+          "outline",
+          "ghost"
+        ],
+        "initialValue": "soft"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpStatusBadgeSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpStatusBadgeShape",
+        "options": [
+          "square",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "rounded"
+      },
+      {
+        "name": "widthMode",
+        "label": "widthMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpStatusBadgeWidthMode",
+        "options": [
+          "content",
+          "stretch"
+        ],
+        "initialValue": "content"
+      },
+      {
+        "name": "icon",
+        "label": "icon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "image",
+        "label": "image",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "count",
+        "label": "count",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "showDot",
+        "label": "showDot",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "pulse",
+        "label": "pulse",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "uppercase",
+        "label": "uppercase",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "interactive",
+        "label": "interactive",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "selected",
+        "label": "selected",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "removable",
+        "label": "removable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -5361,7 +9277,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "text",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "variant",
@@ -5369,7 +9289,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "plain",
             "rich"
-          ]
+          ],
+          "type": "ErpTooltipVariant",
+          "hasDefault": true,
+          "defaultValue": "plain",
+          "defaultExpression": "'plain'"
         },
         {
           "name": "interactive",
@@ -5377,7 +9301,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "placement",
@@ -5387,7 +9315,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "bottom",
             "start",
             "end"
-          ]
+          ],
+          "type": "ErpTooltipPlacement",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "activation",
@@ -5395,7 +9327,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "auto",
             "press"
-          ]
+          ],
+          "type": "ErpTooltipActivation",
+          "hasDefault": true,
+          "defaultValue": "auto",
+          "defaultExpression": "'auto'"
         },
         {
           "name": "showArrow",
@@ -5403,7 +9339,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "disabled",
@@ -5411,17 +9351,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "enterAnimation",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpMotionPreset",
+          "hasDefault": true,
+          "defaultValue": "zoom",
+          "defaultExpression": "'zoom'"
         },
         {
           "name": "exitAnimation",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpMotionPreset",
+          "hasDefault": true,
+          "defaultValue": "zoom",
+          "defaultExpression": "'zoom'"
         }
       ],
       "outputs": [],
@@ -5432,7 +9384,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ]
     },
@@ -5590,6 +9546,143 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "تلميح",
     "descriptionAr": "شرح مثبت على محفز مرئي مع مواضع وسلوك فتح متعددة.",
+    "showcaseInitialValues": {
+      "text": "توضيح الإجراء للمستخدم",
+      "variant": "plain",
+      "interactive": false,
+      "placement": "top",
+      "activation": "auto",
+      "showArrow": true,
+      "disabled": false,
+      "enterAnimation": "zoom",
+      "exitAnimation": "zoom",
+      "open": false
+    },
+    "showcaseControls": [
+      {
+        "name": "text",
+        "label": "text",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": "توضيح الإجراء للمستخدم"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTooltipVariant",
+        "options": [
+          "plain",
+          "rich"
+        ],
+        "initialValue": "plain"
+      },
+      {
+        "name": "interactive",
+        "label": "interactive",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "placement",
+        "label": "placement",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTooltipPlacement",
+        "options": [
+          "top",
+          "bottom",
+          "start",
+          "end"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "activation",
+        "label": "activation",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTooltipActivation",
+        "options": [
+          "auto",
+          "press"
+        ],
+        "initialValue": "auto"
+      },
+      {
+        "name": "showArrow",
+        "label": "showArrow",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "enterAnimation",
+        "label": "enterAnimation",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpMotionPreset",
+        "options": [],
+        "initialValue": "zoom"
+      },
+      {
+        "name": "exitAnimation",
+        "label": "exitAnimation",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpMotionPreset",
+        "options": [],
+        "initialValue": "zoom"
+      },
+      {
+        "name": "open",
+        "label": "open",
+        "source": "model",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "text",
@@ -5659,27 +9752,47 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "fields",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "readonly ErpEntityFieldDefinition[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "values",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "ErpEntityFormValues",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "section",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpEntityFieldsSection | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "issues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpFormValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "customFieldOutlets",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpEntityCustomFieldOutlet[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         }
       ],
       "outputs": [
@@ -5756,6 +9869,81 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "حقول مخطط الكيان",
     "descriptionAr": "عرض حقول المخطط من خلال مدخلات ERP المعتمدة.",
+    "showcaseInitialValues": {
+      "section": null,
+      "issues": [],
+      "customFieldOutlets": [],
+      "fields": [
+        {
+          "key": "name",
+          "kind": "text",
+          "label": "اسم السجل"
+        }
+      ],
+      "values": {
+        "name": "حساب المبيعات"
+      }
+    },
+    "showcaseControls": [
+      {
+        "name": "fields",
+        "label": "fields",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "readonly ErpEntityFieldDefinition[]",
+        "options": [],
+        "initialValue": [
+          {
+            "key": "name",
+            "kind": "text",
+            "label": "اسم السجل"
+          }
+        ]
+      },
+      {
+        "name": "values",
+        "label": "values",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "ErpEntityFormValues",
+        "options": [],
+        "initialValue": {
+          "name": "حساب المبيعات"
+        }
+      },
+      {
+        "name": "section",
+        "label": "section",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpEntityFieldsSection | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "issues",
+        "label": "issues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpFormValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "customFieldOutlets",
+        "label": "customFieldOutlets",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpEntityCustomFieldOutlet[]",
+        "options": [],
+        "initialValue": []
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "fields",
@@ -5788,12 +9976,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "description",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -5801,7 +9997,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "busy",
@@ -5809,7 +10009,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ],
       "outputs": [
@@ -5873,6 +10077,60 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "نموذج",
     "descriptionAr": "حد form الدلالي مع نوايا الإرسال وإعادة الضبط.",
+    "showcaseInitialValues": {
+      "description": null,
+      "disabled": false,
+      "busy": false,
+      "label": "نموذج السجل"
+    },
+    "showcaseControls": [
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "نموذج السجل"
+      },
+      {
+        "name": "description",
+        "label": "description",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "busy",
+        "label": "busy",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -5940,6 +10198,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "إجراءات النموذج",
     "descriptionAr": "تخطيط الإجراءات الأساسية والثانوية للنموذج.",
+    "showcaseInitialValues": {},
+    "showcaseControls": [],
     "showcaseCoverage": {
       "coveredInputs": [],
       "coveredModels": [],
@@ -5966,12 +10226,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "title",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "description",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "compact",
@@ -5979,7 +10247,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ],
       "outputs": [],
@@ -6012,6 +10284,46 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "قسم النموذج",
     "descriptionAr": "تجميع دلالي لحقول النموذج مع عنوان وإجراءات.",
+    "showcaseInitialValues": {
+      "description": null,
+      "compact": false,
+      "title": "البيانات الأساسية"
+    },
+    "showcaseControls": [
+      {
+        "name": "title",
+        "label": "title",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "البيانات الأساسية"
+      },
+      {
+        "name": "description",
+        "label": "description",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "compact",
+        "label": "compact",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "title",
@@ -6049,32 +10361,56 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "items",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpRepeaterItem<TValue>[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "label",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "العناصر المتكررة",
+          "defaultExpression": "'العناصر المتكررة'"
         },
         {
           "name": "addLabel",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "إضافة عنصر",
+          "defaultExpression": "'إضافة عنصر'"
         },
         {
           "name": "removeLabel",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "حذف العنصر",
+          "defaultExpression": "'حذف العنصر'"
         },
         {
           "name": "minItems",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 0,
+          "defaultExpression": "0"
         },
         {
           "name": "maxItems",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -6082,7 +10418,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ],
       "outputs": [
@@ -6145,6 +10485,90 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "مكرر",
     "descriptionAr": "قائمة عناصر مضبوطة مع نوايا الإضافة والحذف.",
+    "showcaseInitialValues": {
+      "items": [],
+      "label": "العناصر المتكررة",
+      "addLabel": "إضافة عنصر",
+      "removeLabel": "حذف العنصر",
+      "minItems": 0,
+      "maxItems": null,
+      "disabled": false
+    },
+    "showcaseControls": [
+      {
+        "name": "items",
+        "label": "items",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpRepeaterItem<TValue>[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "العناصر المتكررة"
+      },
+      {
+        "name": "addLabel",
+        "label": "addLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "إضافة عنصر"
+      },
+      {
+        "name": "removeLabel",
+        "label": "removeLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "حذف العنصر"
+      },
+      {
+        "name": "minItems",
+        "label": "minItems",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 0
+      },
+      {
+        "name": "maxItems",
+        "label": "maxItems",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "items",
@@ -6187,17 +10611,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "schema",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "ErpEntityFormSchema",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "values",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "ErpEntityFormValues",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "issues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpFormValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "disabled",
@@ -6205,7 +10641,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "busy",
@@ -6213,7 +10653,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ],
       "outputs": [
@@ -6227,7 +10671,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "activeStepId",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "",
+          "defaultExpression": "''"
         }
       ]
     },
@@ -6348,6 +10796,96 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "نموذج الكيان القياسي",
     "descriptionAr": "تكوين CRUD محدود بمخطط وقيم مضبوطة.",
+    "showcaseInitialValues": {
+      "issues": [],
+      "disabled": false,
+      "busy": false,
+      "activeStepId": "",
+      "schema": {
+        "id": "record",
+        "label": "نموذج سجل",
+        "sections": [],
+        "actions": {
+          "submitLabel": "حفظ"
+        }
+      },
+      "values": {}
+    },
+    "showcaseControls": [
+      {
+        "name": "schema",
+        "label": "schema",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "ErpEntityFormSchema",
+        "options": [],
+        "initialValue": {
+          "id": "record",
+          "label": "نموذج سجل",
+          "sections": [],
+          "actions": {
+            "submitLabel": "حفظ"
+          }
+        }
+      },
+      {
+        "name": "values",
+        "label": "values",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "ErpEntityFormValues",
+        "options": [],
+        "initialValue": {}
+      },
+      {
+        "name": "issues",
+        "label": "issues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpFormValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "busy",
+        "label": "busy",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "activeStepId",
+        "label": "activeStepId",
+        "source": "model",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": ""
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "schema",
@@ -6398,12 +10936,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "title",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "يرجى مراجعة الحقول التالية",
+          "defaultExpression": "'يرجى مراجعة الحقول التالية'"
         },
         {
           "name": "issues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpFormValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         }
       ],
       "outputs": [
@@ -6433,11 +10979,72 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "issues": [
+            {
+              "key": "account-name",
+              "fieldLabel": "اسم الحساب",
+              "message": "اسم الحساب مطلوب."
+            },
+            {
+              "key": "branch",
+              "fieldLabel": "الفرع",
+              "message": "يجب اختيار الفرع."
+            }
+          ]
+        }
       }
     ],
     "displayNameAr": "ملخص التحقق",
     "descriptionAr": "عرض مشكلات التحقق المشتركة ونية تنشيط الحقل.",
+    "showcaseInitialValues": {
+      "title": "يرجى مراجعة الحقول التالية",
+      "issues": [
+        {
+          "key": "account-name",
+          "fieldLabel": "اسم الحساب",
+          "message": "اسم الحساب مطلوب."
+        },
+        {
+          "key": "branch",
+          "fieldLabel": "الفرع",
+          "message": "يجب اختيار الفرع."
+        }
+      ]
+    },
+    "showcaseControls": [
+      {
+        "name": "title",
+        "label": "title",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "يرجى مراجعة الحقول التالية"
+      },
+      {
+        "name": "issues",
+        "label": "issues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpFormValidationIssue[]",
+        "options": [],
+        "initialValue": [
+          {
+            "key": "account-name",
+            "fieldLabel": "اسم الحساب",
+            "message": "اسم الحساب مطلوب."
+          },
+          {
+            "key": "branch",
+            "fieldLabel": "الفرع",
+            "message": "يجب اختيار الفرع."
+          }
+        ]
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "title",
@@ -6467,17 +11074,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -6485,7 +11104,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -6493,12 +11116,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "tone",
@@ -6508,7 +11139,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -6519,7 +11154,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "variant",
@@ -6530,7 +11169,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpFieldVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "borderMode",
@@ -6539,7 +11182,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "dashed",
             "underline"
-          ]
+          ],
+          "type": "ErpFieldBorderMode",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "shape",
@@ -6548,7 +11195,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpFieldShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "size",
@@ -6561,7 +11212,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -6569,7 +11224,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "labelMode",
@@ -6578,7 +11237,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "static",
             "floating",
             "visually-hidden"
-          ]
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
         },
         {
           "name": "floatingPosition",
@@ -6586,12 +11249,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "top",
             "bottom"
-          ]
+          ],
+          "type": "ErpFieldFloatingPosition",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -6599,17 +11270,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "leadingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "trailingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": "chevron-down",
+          "defaultExpression": "'chevron-down'"
         },
         {
           "name": "clearable",
@@ -6617,12 +11300,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "feedbackText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "feedbackDismissible",
@@ -6630,7 +11321,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "mode",
@@ -6638,12 +11333,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "system",
             "free"
-          ]
+          ],
+          "type": "ErpColorPickerMode",
+          "hasDefault": true,
+          "defaultValue": "system",
+          "defaultExpression": "'system'"
         },
         {
           "name": "overlayConfig",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "Partial<ErpOverlayBehaviorConfig> | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [],
@@ -6712,6 +11415,345 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "منتقي اللون",
     "descriptionAr": "اختيار لون من سجل ألوان النظام.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "tone": "neutral",
+      "status": "none",
+      "variant": "outline",
+      "borderMode": "solid",
+      "shape": "default",
+      "size": "md",
+      "appearance": "standard",
+      "labelMode": "static",
+      "floatingPosition": "top",
+      "helperText": null,
+      "helperPosition": "below",
+      "leadingIcon": null,
+      "trailingIcon": "chevron-down",
+      "clearable": true,
+      "feedbackText": null,
+      "feedbackDismissible": false,
+      "mode": "system",
+      "overlayConfig": null,
+      "label": "حقل تجريبي"
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "borderMode",
+        "label": "borderMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldBorderMode",
+        "options": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "appearance",
+        "label": "appearance",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldAppearance",
+        "options": [
+          "standard",
+          "glass"
+        ],
+        "initialValue": "standard"
+      },
+      {
+        "name": "labelMode",
+        "label": "labelMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldLabelMode",
+        "options": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "initialValue": "static"
+      },
+      {
+        "name": "floatingPosition",
+        "label": "floatingPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldFloatingPosition",
+        "options": [
+          "top",
+          "bottom"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "helperText",
+        "label": "helperText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "helperPosition",
+        "label": "helperPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldHelperPosition",
+        "options": [
+          "above",
+          "below"
+        ],
+        "initialValue": "below"
+      },
+      {
+        "name": "leadingIcon",
+        "label": "leadingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "trailingIcon",
+        "label": "trailingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": "chevron-down"
+      },
+      {
+        "name": "clearable",
+        "label": "clearable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "feedbackText",
+        "label": "feedbackText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "feedbackDismissible",
+        "label": "feedbackDismissible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "mode",
+        "label": "mode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpColorPickerMode",
+        "options": [
+          "system",
+          "free"
+        ],
+        "initialValue": "system"
+      },
+      {
+        "name": "overlayConfig",
+        "label": "overlayConfig",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "Partial<ErpOverlayBehaviorConfig> | null",
+        "options": [],
+        "initialValue": null
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -6843,17 +11885,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -6861,7 +11915,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -6869,12 +11927,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "tone",
@@ -6884,7 +11950,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -6895,7 +11965,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "variant",
@@ -6906,7 +11980,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpFieldVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "borderMode",
@@ -6915,7 +11993,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "dashed",
             "underline"
-          ]
+          ],
+          "type": "ErpFieldBorderMode",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "shape",
@@ -6924,7 +12006,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpFieldShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "size",
@@ -6937,7 +12023,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -6945,7 +12035,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "labelMode",
@@ -6954,7 +12048,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "static",
             "floating",
             "visually-hidden"
-          ]
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
         },
         {
           "name": "floatingPosition",
@@ -6962,12 +12060,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "top",
             "bottom"
-          ]
+          ],
+          "type": "ErpFieldFloatingPosition",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -6975,17 +12081,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "leadingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "trailingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": "chevron-down",
+          "defaultExpression": "'chevron-down'"
         },
         {
           "name": "clearable",
@@ -6993,12 +12111,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "feedbackText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "feedbackDismissible",
@@ -7006,22 +12132,38 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "items",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "readonly ErpItemPickerOption[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "placeholder",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "overlayConfig",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "Partial<ErpOverlayBehaviorConfig> | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [],
@@ -7075,6 +12217,363 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "صندوق التحرير والاختيار",
     "descriptionAr": "تحرير نصي مع اقتراحات واختيار مضبوط.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "tone": "neutral",
+      "status": "none",
+      "variant": "outline",
+      "borderMode": "solid",
+      "shape": "default",
+      "size": "md",
+      "appearance": "standard",
+      "labelMode": "static",
+      "floatingPosition": "top",
+      "helperText": null,
+      "helperPosition": "below",
+      "leadingIcon": null,
+      "trailingIcon": "chevron-down",
+      "clearable": true,
+      "feedbackText": null,
+      "feedbackDismissible": false,
+      "placeholder": null,
+      "overlayConfig": null,
+      "label": "حقل تجريبي",
+      "items": [
+        {
+          "value": "customer",
+          "label": "عميل"
+        }
+      ]
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "borderMode",
+        "label": "borderMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldBorderMode",
+        "options": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "appearance",
+        "label": "appearance",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldAppearance",
+        "options": [
+          "standard",
+          "glass"
+        ],
+        "initialValue": "standard"
+      },
+      {
+        "name": "labelMode",
+        "label": "labelMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldLabelMode",
+        "options": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "initialValue": "static"
+      },
+      {
+        "name": "floatingPosition",
+        "label": "floatingPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldFloatingPosition",
+        "options": [
+          "top",
+          "bottom"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "helperText",
+        "label": "helperText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "helperPosition",
+        "label": "helperPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldHelperPosition",
+        "options": [
+          "above",
+          "below"
+        ],
+        "initialValue": "below"
+      },
+      {
+        "name": "leadingIcon",
+        "label": "leadingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "trailingIcon",
+        "label": "trailingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": "chevron-down"
+      },
+      {
+        "name": "clearable",
+        "label": "clearable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "feedbackText",
+        "label": "feedbackText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "feedbackDismissible",
+        "label": "feedbackDismissible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "items",
+        "label": "items",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "readonly ErpItemPickerOption[]",
+        "options": [],
+        "initialValue": [
+          {
+            "value": "customer",
+            "label": "عميل"
+          }
+        ]
+      },
+      {
+        "name": "placeholder",
+        "label": "placeholder",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "overlayConfig",
+        "label": "overlayConfig",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "Partial<ErpOverlayBehaviorConfig> | null",
+        "options": [],
+        "initialValue": null
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -7203,17 +12702,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -7221,7 +12732,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -7229,12 +12744,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "tone",
@@ -7244,7 +12767,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -7255,7 +12782,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "variant",
@@ -7266,7 +12797,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpFieldVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "borderMode",
@@ -7275,7 +12810,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "dashed",
             "underline"
-          ]
+          ],
+          "type": "ErpFieldBorderMode",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "shape",
@@ -7284,7 +12823,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpFieldShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "size",
@@ -7297,7 +12840,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -7305,7 +12852,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "labelMode",
@@ -7314,7 +12865,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "static",
             "floating",
             "visually-hidden"
-          ]
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
         },
         {
           "name": "floatingPosition",
@@ -7322,12 +12877,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "top",
             "bottom"
-          ]
+          ],
+          "type": "ErpFieldFloatingPosition",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -7335,17 +12898,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "leadingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "trailingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": "calendar",
+          "defaultExpression": "'calendar'"
         },
         {
           "name": "clearable",
@@ -7353,12 +12928,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "feedbackText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "feedbackDismissible",
@@ -7366,42 +12949,74 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "min",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "max",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "weekStartsOn",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 0,
+          "defaultExpression": "0"
         },
         {
           "name": "locale",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "ar-EG",
+          "defaultExpression": "'ar-EG'"
         },
         {
           "name": "placeholder",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "اختر التاريخ",
+          "defaultExpression": "'اختر التاريخ'"
         },
         {
           "name": "pattern",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "overlayConfig",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "Partial<ErpOverlayBehaviorConfig> | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [],
@@ -7454,6 +13069,397 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "حقل التاريخ",
     "descriptionAr": "تحرير تاريخ من خلال عقد الإدخال المعتمد.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "tone": "neutral",
+      "status": "none",
+      "variant": "outline",
+      "borderMode": "solid",
+      "shape": "default",
+      "size": "md",
+      "appearance": "standard",
+      "labelMode": "static",
+      "floatingPosition": "top",
+      "helperText": null,
+      "helperPosition": "below",
+      "leadingIcon": null,
+      "trailingIcon": "calendar",
+      "clearable": true,
+      "feedbackText": null,
+      "feedbackDismissible": false,
+      "min": null,
+      "max": null,
+      "weekStartsOn": 0,
+      "locale": "ar-EG",
+      "placeholder": "اختر التاريخ",
+      "pattern": null,
+      "overlayConfig": null,
+      "label": "حقل تجريبي"
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "borderMode",
+        "label": "borderMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldBorderMode",
+        "options": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "appearance",
+        "label": "appearance",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldAppearance",
+        "options": [
+          "standard",
+          "glass"
+        ],
+        "initialValue": "standard"
+      },
+      {
+        "name": "labelMode",
+        "label": "labelMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldLabelMode",
+        "options": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "initialValue": "static"
+      },
+      {
+        "name": "floatingPosition",
+        "label": "floatingPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldFloatingPosition",
+        "options": [
+          "top",
+          "bottom"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "helperText",
+        "label": "helperText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "helperPosition",
+        "label": "helperPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldHelperPosition",
+        "options": [
+          "above",
+          "below"
+        ],
+        "initialValue": "below"
+      },
+      {
+        "name": "leadingIcon",
+        "label": "leadingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "trailingIcon",
+        "label": "trailingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": "calendar"
+      },
+      {
+        "name": "clearable",
+        "label": "clearable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "feedbackText",
+        "label": "feedbackText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "feedbackDismissible",
+        "label": "feedbackDismissible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "min",
+        "label": "min",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "max",
+        "label": "max",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "weekStartsOn",
+        "label": "weekStartsOn",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 0
+      },
+      {
+        "name": "locale",
+        "label": "locale",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "ar-EG"
+      },
+      {
+        "name": "placeholder",
+        "label": "placeholder",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "اختر التاريخ"
+      },
+      {
+        "name": "pattern",
+        "label": "pattern",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "overlayConfig",
+        "label": "overlayConfig",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "Partial<ErpOverlayBehaviorConfig> | null",
+        "options": [],
+        "initialValue": null
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -7586,17 +13592,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -7604,7 +13622,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -7612,12 +13634,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "tone",
@@ -7627,7 +13657,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -7638,7 +13672,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "variant",
@@ -7649,7 +13687,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpFieldVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "borderMode",
@@ -7658,7 +13700,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "dashed",
             "underline"
-          ]
+          ],
+          "type": "ErpFieldBorderMode",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "shape",
@@ -7667,7 +13713,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpFieldShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "size",
@@ -7680,7 +13730,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -7688,7 +13742,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "labelMode",
@@ -7697,7 +13755,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "static",
             "floating",
             "visually-hidden"
-          ]
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
         },
         {
           "name": "floatingPosition",
@@ -7705,12 +13767,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "top",
             "bottom"
-          ]
+          ],
+          "type": "ErpFieldFloatingPosition",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -7718,17 +13788,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "leadingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "trailingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": "calendar",
+          "defaultExpression": "'calendar'"
         },
         {
           "name": "clearable",
@@ -7736,12 +13818,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "feedbackText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "feedbackDismissible",
@@ -7749,37 +13839,65 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "min",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "max",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "locale",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "ar-EG",
+          "defaultExpression": "'ar-EG'"
         },
         {
           "name": "placeholder",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "اختر نطاق التاريخ",
+          "defaultExpression": "'اختر نطاق التاريخ'"
         },
         {
           "name": "pattern",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "overlayConfig",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "Partial<ErpOverlayBehaviorConfig> | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [],
@@ -7831,6 +13949,386 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "حقل نطاق التاريخ",
     "descriptionAr": "اختيار نطاق زمني مضبوط.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "tone": "neutral",
+      "status": "none",
+      "variant": "outline",
+      "borderMode": "solid",
+      "shape": "default",
+      "size": "md",
+      "appearance": "standard",
+      "labelMode": "static",
+      "floatingPosition": "top",
+      "helperText": null,
+      "helperPosition": "below",
+      "leadingIcon": null,
+      "trailingIcon": "calendar",
+      "clearable": true,
+      "feedbackText": null,
+      "feedbackDismissible": false,
+      "min": null,
+      "max": null,
+      "locale": "ar-EG",
+      "placeholder": "اختر نطاق التاريخ",
+      "pattern": null,
+      "overlayConfig": null,
+      "label": "حقل تجريبي"
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "borderMode",
+        "label": "borderMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldBorderMode",
+        "options": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "appearance",
+        "label": "appearance",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldAppearance",
+        "options": [
+          "standard",
+          "glass"
+        ],
+        "initialValue": "standard"
+      },
+      {
+        "name": "labelMode",
+        "label": "labelMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldLabelMode",
+        "options": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "initialValue": "static"
+      },
+      {
+        "name": "floatingPosition",
+        "label": "floatingPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldFloatingPosition",
+        "options": [
+          "top",
+          "bottom"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "helperText",
+        "label": "helperText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "helperPosition",
+        "label": "helperPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldHelperPosition",
+        "options": [
+          "above",
+          "below"
+        ],
+        "initialValue": "below"
+      },
+      {
+        "name": "leadingIcon",
+        "label": "leadingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "trailingIcon",
+        "label": "trailingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": "calendar"
+      },
+      {
+        "name": "clearable",
+        "label": "clearable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "feedbackText",
+        "label": "feedbackText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "feedbackDismissible",
+        "label": "feedbackDismissible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "min",
+        "label": "min",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "max",
+        "label": "max",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "locale",
+        "label": "locale",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "ar-EG"
+      },
+      {
+        "name": "placeholder",
+        "label": "placeholder",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "اختر نطاق التاريخ"
+      },
+      {
+        "name": "pattern",
+        "label": "pattern",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "overlayConfig",
+        "label": "overlayConfig",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "Partial<ErpOverlayBehaviorConfig> | null",
+        "options": [],
+        "initialValue": null
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -7962,17 +14460,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -7980,7 +14490,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -7988,12 +14502,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "tone",
@@ -8003,7 +14525,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -8014,7 +14540,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "variant",
@@ -8025,7 +14555,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpFieldVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "borderMode",
@@ -8034,7 +14568,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "dashed",
             "underline"
-          ]
+          ],
+          "type": "ErpFieldBorderMode",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "shape",
@@ -8043,7 +14581,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpFieldShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "size",
@@ -8056,7 +14598,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -8064,7 +14610,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "labelMode",
@@ -8073,7 +14623,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "static",
             "floating",
             "visually-hidden"
-          ]
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
         },
         {
           "name": "floatingPosition",
@@ -8081,12 +14635,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "top",
             "bottom"
-          ]
+          ],
+          "type": "ErpFieldFloatingPosition",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -8094,17 +14656,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "leadingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "trailingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": "calendar",
+          "defaultExpression": "'calendar'"
         },
         {
           "name": "clearable",
@@ -8112,12 +14686,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "feedbackText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "feedbackDismissible",
@@ -8125,37 +14707,65 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "min",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "max",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "locale",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "ar-EG",
+          "defaultExpression": "'ar-EG'"
         },
         {
           "name": "placeholder",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "اختر التاريخ والوقت",
+          "defaultExpression": "'اختر التاريخ والوقت'"
         },
         {
           "name": "pattern",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "overlayConfig",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "Partial<ErpOverlayBehaviorConfig> | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [],
@@ -8208,6 +14818,386 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "حقل التاريخ والوقت",
     "descriptionAr": "تحرير تاريخ ووقت ضمن عقد واحد.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "tone": "neutral",
+      "status": "none",
+      "variant": "outline",
+      "borderMode": "solid",
+      "shape": "default",
+      "size": "md",
+      "appearance": "standard",
+      "labelMode": "static",
+      "floatingPosition": "top",
+      "helperText": null,
+      "helperPosition": "below",
+      "leadingIcon": null,
+      "trailingIcon": "calendar",
+      "clearable": true,
+      "feedbackText": null,
+      "feedbackDismissible": false,
+      "min": null,
+      "max": null,
+      "locale": "ar-EG",
+      "placeholder": "اختر التاريخ والوقت",
+      "pattern": null,
+      "overlayConfig": null,
+      "label": "حقل تجريبي"
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "borderMode",
+        "label": "borderMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldBorderMode",
+        "options": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "appearance",
+        "label": "appearance",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldAppearance",
+        "options": [
+          "standard",
+          "glass"
+        ],
+        "initialValue": "standard"
+      },
+      {
+        "name": "labelMode",
+        "label": "labelMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldLabelMode",
+        "options": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "initialValue": "static"
+      },
+      {
+        "name": "floatingPosition",
+        "label": "floatingPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldFloatingPosition",
+        "options": [
+          "top",
+          "bottom"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "helperText",
+        "label": "helperText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "helperPosition",
+        "label": "helperPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldHelperPosition",
+        "options": [
+          "above",
+          "below"
+        ],
+        "initialValue": "below"
+      },
+      {
+        "name": "leadingIcon",
+        "label": "leadingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "trailingIcon",
+        "label": "trailingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": "calendar"
+      },
+      {
+        "name": "clearable",
+        "label": "clearable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "feedbackText",
+        "label": "feedbackText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "feedbackDismissible",
+        "label": "feedbackDismissible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "min",
+        "label": "min",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "max",
+        "label": "max",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "locale",
+        "label": "locale",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "ar-EG"
+      },
+      {
+        "name": "placeholder",
+        "label": "placeholder",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "اختر التاريخ والوقت"
+      },
+      {
+        "name": "pattern",
+        "label": "pattern",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "overlayConfig",
+        "label": "overlayConfig",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "Partial<ErpOverlayBehaviorConfig> | null",
+        "options": [],
+        "initialValue": null
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -8339,17 +15329,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -8357,7 +15359,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -8365,12 +15371,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "tone",
@@ -8380,7 +15394,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -8391,7 +15409,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "variant",
@@ -8402,7 +15424,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpFieldVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "borderMode",
@@ -8411,7 +15437,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "dashed",
             "underline"
-          ]
+          ],
+          "type": "ErpFieldBorderMode",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "shape",
@@ -8420,7 +15450,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpFieldShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "size",
@@ -8433,7 +15467,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -8441,7 +15479,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "labelMode",
@@ -8450,7 +15492,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "static",
             "floating",
             "visually-hidden"
-          ]
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
         },
         {
           "name": "floatingPosition",
@@ -8458,12 +15504,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "top",
             "bottom"
-          ]
+          ],
+          "type": "ErpFieldFloatingPosition",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -8471,17 +15525,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "leadingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "trailingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "clearable",
@@ -8489,12 +15555,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "feedbackText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "feedbackDismissible",
@@ -8502,27 +15576,47 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "accept",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "maxFileSize",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "minFiles",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "maxFiles",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [],
@@ -8575,6 +15669,364 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "منتقي الملفات",
     "descriptionAr": "اختيار ملفات محلية متعدد دون نقل شبكي.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "tone": "neutral",
+      "status": "none",
+      "variant": "outline",
+      "borderMode": "solid",
+      "shape": "default",
+      "size": "md",
+      "appearance": "standard",
+      "labelMode": "static",
+      "floatingPosition": "top",
+      "helperText": null,
+      "helperPosition": "below",
+      "leadingIcon": null,
+      "trailingIcon": null,
+      "clearable": true,
+      "feedbackText": null,
+      "feedbackDismissible": false,
+      "accept": null,
+      "maxFileSize": null,
+      "minFiles": null,
+      "maxFiles": null,
+      "label": "حقل تجريبي"
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "borderMode",
+        "label": "borderMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldBorderMode",
+        "options": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "appearance",
+        "label": "appearance",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldAppearance",
+        "options": [
+          "standard",
+          "glass"
+        ],
+        "initialValue": "standard"
+      },
+      {
+        "name": "labelMode",
+        "label": "labelMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldLabelMode",
+        "options": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "initialValue": "static"
+      },
+      {
+        "name": "floatingPosition",
+        "label": "floatingPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldFloatingPosition",
+        "options": [
+          "top",
+          "bottom"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "helperText",
+        "label": "helperText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "helperPosition",
+        "label": "helperPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldHelperPosition",
+        "options": [
+          "above",
+          "below"
+        ],
+        "initialValue": "below"
+      },
+      {
+        "name": "leadingIcon",
+        "label": "leadingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "trailingIcon",
+        "label": "trailingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "clearable",
+        "label": "clearable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "feedbackText",
+        "label": "feedbackText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "feedbackDismissible",
+        "label": "feedbackDismissible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "accept",
+        "label": "accept",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "maxFileSize",
+        "label": "maxFileSize",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "minFiles",
+        "label": "minFiles",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "maxFiles",
+        "label": "maxFiles",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -8704,17 +16156,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -8722,7 +16186,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -8730,12 +16198,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "tone",
@@ -8745,7 +16221,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -8756,7 +16236,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "variant",
@@ -8767,7 +16251,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpFieldVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "borderMode",
@@ -8776,7 +16264,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "dashed",
             "underline"
-          ]
+          ],
+          "type": "ErpFieldBorderMode",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "shape",
@@ -8785,7 +16277,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpFieldShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "size",
@@ -8798,7 +16294,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -8806,7 +16306,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "labelMode",
@@ -8815,7 +16319,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "static",
             "floating",
             "visually-hidden"
-          ]
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
         },
         {
           "name": "floatingPosition",
@@ -8823,12 +16331,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "top",
             "bottom"
-          ]
+          ],
+          "type": "ErpFieldFloatingPosition",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -8836,17 +16352,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "leadingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "trailingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": "chevron-down",
+          "defaultExpression": "'chevron-down'"
         },
         {
           "name": "clearable",
@@ -8854,12 +16382,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "feedbackText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "feedbackDismissible",
@@ -8867,12 +16403,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "overlayConfig",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "Partial<ErpOverlayBehaviorConfig> | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [],
@@ -8922,6 +16466,331 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "منتقي الأيقونة",
     "descriptionAr": "اختيار أيقونة دلالية من سجل النظام.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "tone": "neutral",
+      "status": "none",
+      "variant": "outline",
+      "borderMode": "solid",
+      "shape": "default",
+      "size": "md",
+      "appearance": "standard",
+      "labelMode": "static",
+      "floatingPosition": "top",
+      "helperText": null,
+      "helperPosition": "below",
+      "leadingIcon": null,
+      "trailingIcon": "chevron-down",
+      "clearable": true,
+      "feedbackText": null,
+      "feedbackDismissible": false,
+      "overlayConfig": null,
+      "label": "حقل تجريبي"
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "borderMode",
+        "label": "borderMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldBorderMode",
+        "options": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "appearance",
+        "label": "appearance",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldAppearance",
+        "options": [
+          "standard",
+          "glass"
+        ],
+        "initialValue": "standard"
+      },
+      {
+        "name": "labelMode",
+        "label": "labelMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldLabelMode",
+        "options": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "initialValue": "static"
+      },
+      {
+        "name": "floatingPosition",
+        "label": "floatingPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldFloatingPosition",
+        "options": [
+          "top",
+          "bottom"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "helperText",
+        "label": "helperText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "helperPosition",
+        "label": "helperPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldHelperPosition",
+        "options": [
+          "above",
+          "below"
+        ],
+        "initialValue": "below"
+      },
+      {
+        "name": "leadingIcon",
+        "label": "leadingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "trailingIcon",
+        "label": "trailingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": "chevron-down"
+      },
+      {
+        "name": "clearable",
+        "label": "clearable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "feedbackText",
+        "label": "feedbackText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "feedbackDismissible",
+        "label": "feedbackDismissible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "overlayConfig",
+        "label": "overlayConfig",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "Partial<ErpOverlayBehaviorConfig> | null",
+        "options": [],
+        "initialValue": null
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -9048,17 +16917,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -9066,7 +16947,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -9074,12 +16959,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "tone",
@@ -9089,7 +16982,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -9100,7 +16997,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "variant",
@@ -9111,7 +17012,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpFieldVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "borderMode",
@@ -9120,7 +17025,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "dashed",
             "underline"
-          ]
+          ],
+          "type": "ErpFieldBorderMode",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "shape",
@@ -9129,7 +17038,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpFieldShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "size",
@@ -9142,7 +17055,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -9150,7 +17067,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "labelMode",
@@ -9159,7 +17080,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "static",
             "floating",
             "visually-hidden"
-          ]
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
         },
         {
           "name": "floatingPosition",
@@ -9167,12 +17092,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "top",
             "bottom"
-          ]
+          ],
+          "type": "ErpFieldFloatingPosition",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -9180,17 +17113,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "leadingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "trailingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "clearable",
@@ -9198,12 +17143,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "feedbackText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "feedbackDismissible",
@@ -9211,27 +17164,47 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "accept",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": "image/*",
+          "defaultExpression": "'image/*'"
         },
         {
           "name": "maxFileSize",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "minFiles",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "maxFiles",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "previewSize",
@@ -9240,7 +17213,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "sm",
             "md",
             "lg"
-          ]
+          ],
+          "type": "ErpImagePickerPreviewSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         }
       ],
       "outputs": [],
@@ -9296,6 +17273,379 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "منتقي الصور",
     "descriptionAr": "اختيار صور محلية مع معاينات مضبوطة.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "tone": "neutral",
+      "status": "none",
+      "variant": "outline",
+      "borderMode": "solid",
+      "shape": "default",
+      "size": "md",
+      "appearance": "standard",
+      "labelMode": "static",
+      "floatingPosition": "top",
+      "helperText": null,
+      "helperPosition": "below",
+      "leadingIcon": null,
+      "trailingIcon": null,
+      "clearable": true,
+      "feedbackText": null,
+      "feedbackDismissible": false,
+      "accept": "image/*",
+      "maxFileSize": null,
+      "minFiles": null,
+      "maxFiles": null,
+      "previewSize": "md",
+      "label": "حقل تجريبي"
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "borderMode",
+        "label": "borderMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldBorderMode",
+        "options": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "appearance",
+        "label": "appearance",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldAppearance",
+        "options": [
+          "standard",
+          "glass"
+        ],
+        "initialValue": "standard"
+      },
+      {
+        "name": "labelMode",
+        "label": "labelMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldLabelMode",
+        "options": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "initialValue": "static"
+      },
+      {
+        "name": "floatingPosition",
+        "label": "floatingPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldFloatingPosition",
+        "options": [
+          "top",
+          "bottom"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "helperText",
+        "label": "helperText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "helperPosition",
+        "label": "helperPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldHelperPosition",
+        "options": [
+          "above",
+          "below"
+        ],
+        "initialValue": "below"
+      },
+      {
+        "name": "leadingIcon",
+        "label": "leadingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "trailingIcon",
+        "label": "trailingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "clearable",
+        "label": "clearable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "feedbackText",
+        "label": "feedbackText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "feedbackDismissible",
+        "label": "feedbackDismissible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "accept",
+        "label": "accept",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": "image/*"
+      },
+      {
+        "name": "maxFileSize",
+        "label": "maxFileSize",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "minFiles",
+        "label": "minFiles",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "maxFiles",
+        "label": "maxFiles",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "previewSize",
+        "label": "previewSize",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpImagePickerPreviewSize",
+        "options": [
+          "sm",
+          "md",
+          "lg"
+        ],
+        "initialValue": "md"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -9431,17 +17781,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -9449,7 +17811,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -9457,12 +17823,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "tone",
@@ -9472,7 +17846,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -9483,7 +17861,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "variant",
@@ -9494,7 +17876,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpFieldVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "borderMode",
@@ -9503,7 +17889,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "dashed",
             "underline"
-          ]
+          ],
+          "type": "ErpFieldBorderMode",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "shape",
@@ -9512,7 +17902,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpFieldShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "size",
@@ -9525,7 +17919,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -9533,7 +17931,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "labelMode",
@@ -9542,7 +17944,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "static",
             "floating",
             "visually-hidden"
-          ]
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
         },
         {
           "name": "floatingPosition",
@@ -9550,12 +17956,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "top",
             "bottom"
-          ]
+          ],
+          "type": "ErpFieldFloatingPosition",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -9563,17 +17977,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "leadingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "trailingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": "chevron-down",
+          "defaultExpression": "'chevron-down'"
         },
         {
           "name": "clearable",
@@ -9581,12 +18007,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "feedbackText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "feedbackDismissible",
@@ -9594,17 +18028,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "items",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "readonly ErpItemPickerOption[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "placeholder",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "searchable",
@@ -9612,12 +18058,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "overlayConfig",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "Partial<ErpOverlayBehaviorConfig> | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [],
@@ -9672,6 +18126,377 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "منتقي العناصر",
     "descriptionAr": "اختيار عناصر من قائمة يملكها المستهلك.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "tone": "neutral",
+      "status": "none",
+      "variant": "outline",
+      "borderMode": "solid",
+      "shape": "default",
+      "size": "md",
+      "appearance": "standard",
+      "labelMode": "static",
+      "floatingPosition": "top",
+      "helperText": null,
+      "helperPosition": "below",
+      "leadingIcon": null,
+      "trailingIcon": "chevron-down",
+      "clearable": true,
+      "feedbackText": null,
+      "feedbackDismissible": false,
+      "placeholder": null,
+      "searchable": false,
+      "overlayConfig": null,
+      "label": "حقل تجريبي",
+      "items": [
+        {
+          "value": "item-1",
+          "label": "صنف مخزني"
+        }
+      ]
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "borderMode",
+        "label": "borderMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldBorderMode",
+        "options": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "appearance",
+        "label": "appearance",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldAppearance",
+        "options": [
+          "standard",
+          "glass"
+        ],
+        "initialValue": "standard"
+      },
+      {
+        "name": "labelMode",
+        "label": "labelMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldLabelMode",
+        "options": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "initialValue": "static"
+      },
+      {
+        "name": "floatingPosition",
+        "label": "floatingPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldFloatingPosition",
+        "options": [
+          "top",
+          "bottom"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "helperText",
+        "label": "helperText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "helperPosition",
+        "label": "helperPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldHelperPosition",
+        "options": [
+          "above",
+          "below"
+        ],
+        "initialValue": "below"
+      },
+      {
+        "name": "leadingIcon",
+        "label": "leadingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "trailingIcon",
+        "label": "trailingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": "chevron-down"
+      },
+      {
+        "name": "clearable",
+        "label": "clearable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "feedbackText",
+        "label": "feedbackText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "feedbackDismissible",
+        "label": "feedbackDismissible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "items",
+        "label": "items",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "readonly ErpItemPickerOption[]",
+        "options": [],
+        "initialValue": [
+          {
+            "value": "item-1",
+            "label": "صنف مخزني"
+          }
+        ]
+      },
+      {
+        "name": "placeholder",
+        "label": "placeholder",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "searchable",
+        "label": "searchable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "overlayConfig",
+        "label": "overlayConfig",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "Partial<ErpOverlayBehaviorConfig> | null",
+        "options": [],
+        "initialValue": null
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -9806,17 +18631,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -9824,7 +18661,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -9832,12 +18673,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "tone",
@@ -9847,7 +18696,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -9858,7 +18711,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "variant",
@@ -9869,7 +18726,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpFieldVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "borderMode",
@@ -9878,7 +18739,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "dashed",
             "underline"
-          ]
+          ],
+          "type": "ErpFieldBorderMode",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "shape",
@@ -9887,7 +18752,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpFieldShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "size",
@@ -9900,7 +18769,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -9908,7 +18781,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "labelMode",
@@ -9917,7 +18794,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "static",
             "floating",
             "visually-hidden"
-          ]
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
         },
         {
           "name": "floatingPosition",
@@ -9925,12 +18806,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "top",
             "bottom"
-          ]
+          ],
+          "type": "ErpFieldFloatingPosition",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -9938,17 +18827,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "leadingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "trailingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "clearable",
@@ -9956,12 +18857,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "feedbackText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "feedbackDismissible",
@@ -9969,47 +18878,83 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "currency",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "locale",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "min",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "max",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "step",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 0.01,
+          "defaultExpression": "0.01"
         },
         {
           "name": "minimumFractionDigits",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "maximumFractionDigits",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "placeholder",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "readonly",
@@ -10017,7 +18962,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "allowEmpty",
@@ -10025,17 +18974,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "pattern",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "digitSet",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "DigitSet | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [],
@@ -10080,6 +19041,458 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "حقل المال",
     "descriptionAr": "تحرير قيمة مالية وعملة وفق التفضيلات.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "tone": "neutral",
+      "status": "none",
+      "variant": "outline",
+      "borderMode": "solid",
+      "shape": "default",
+      "size": "md",
+      "appearance": "standard",
+      "labelMode": "static",
+      "floatingPosition": "top",
+      "helperText": null,
+      "helperPosition": "below",
+      "leadingIcon": null,
+      "trailingIcon": null,
+      "clearable": true,
+      "feedbackText": null,
+      "feedbackDismissible": false,
+      "locale": null,
+      "min": null,
+      "max": null,
+      "step": 0.01,
+      "minimumFractionDigits": null,
+      "maximumFractionDigits": null,
+      "placeholder": null,
+      "readonly": false,
+      "allowEmpty": true,
+      "pattern": null,
+      "digitSet": null,
+      "label": "حقل تجريبي",
+      "currency": "EGP"
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "borderMode",
+        "label": "borderMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldBorderMode",
+        "options": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "appearance",
+        "label": "appearance",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldAppearance",
+        "options": [
+          "standard",
+          "glass"
+        ],
+        "initialValue": "standard"
+      },
+      {
+        "name": "labelMode",
+        "label": "labelMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldLabelMode",
+        "options": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "initialValue": "static"
+      },
+      {
+        "name": "floatingPosition",
+        "label": "floatingPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldFloatingPosition",
+        "options": [
+          "top",
+          "bottom"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "helperText",
+        "label": "helperText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "helperPosition",
+        "label": "helperPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldHelperPosition",
+        "options": [
+          "above",
+          "below"
+        ],
+        "initialValue": "below"
+      },
+      {
+        "name": "leadingIcon",
+        "label": "leadingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "trailingIcon",
+        "label": "trailingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "clearable",
+        "label": "clearable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "feedbackText",
+        "label": "feedbackText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "feedbackDismissible",
+        "label": "feedbackDismissible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "currency",
+        "label": "currency",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "EGP"
+      },
+      {
+        "name": "locale",
+        "label": "locale",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "min",
+        "label": "min",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "max",
+        "label": "max",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "step",
+        "label": "step",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 0.01
+      },
+      {
+        "name": "minimumFractionDigits",
+        "label": "minimumFractionDigits",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "maximumFractionDigits",
+        "label": "maximumFractionDigits",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "placeholder",
+        "label": "placeholder",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "readonly",
+        "label": "readonly",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "allowEmpty",
+        "label": "allowEmpty",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "pattern",
+        "label": "pattern",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "digitSet",
+        "label": "digitSet",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "DigitSet | null",
+        "options": [],
+        "initialValue": null
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -10227,17 +19640,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -10245,7 +19670,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -10253,12 +19682,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "tone",
@@ -10268,7 +19705,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -10279,7 +19720,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "variant",
@@ -10290,7 +19735,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpFieldVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "borderMode",
@@ -10299,7 +19748,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "dashed",
             "underline"
-          ]
+          ],
+          "type": "ErpFieldBorderMode",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "shape",
@@ -10308,7 +19761,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpFieldShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "size",
@@ -10321,7 +19778,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -10329,7 +19790,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "labelMode",
@@ -10338,7 +19803,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "static",
             "floating",
             "visually-hidden"
-          ]
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
         },
         {
           "name": "floatingPosition",
@@ -10346,12 +19815,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "top",
             "bottom"
-          ]
+          ],
+          "type": "ErpFieldFloatingPosition",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -10359,17 +19836,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "leadingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "trailingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "clearable",
@@ -10377,12 +19866,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "feedbackText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "feedbackDismissible",
@@ -10390,12 +19887,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "placeholder",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "readonly",
@@ -10403,22 +19908,38 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "min",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "max",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "step",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 1,
+          "defaultExpression": "1"
         },
         {
           "name": "allowEmpty",
@@ -10426,12 +19947,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "pattern",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [],
@@ -10475,6 +20004,403 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "حقل الرقم",
     "descriptionAr": "تحرير قيمة رقمية نصية بلا spinner متصفح.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "tone": "neutral",
+      "status": "none",
+      "variant": "outline",
+      "borderMode": "solid",
+      "shape": "default",
+      "size": "md",
+      "appearance": "standard",
+      "labelMode": "static",
+      "floatingPosition": "top",
+      "helperText": null,
+      "helperPosition": "below",
+      "leadingIcon": null,
+      "trailingIcon": null,
+      "clearable": true,
+      "feedbackText": null,
+      "feedbackDismissible": false,
+      "placeholder": null,
+      "readonly": false,
+      "min": null,
+      "max": null,
+      "step": 1,
+      "allowEmpty": true,
+      "pattern": null,
+      "label": "حقل تجريبي"
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "borderMode",
+        "label": "borderMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldBorderMode",
+        "options": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "appearance",
+        "label": "appearance",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldAppearance",
+        "options": [
+          "standard",
+          "glass"
+        ],
+        "initialValue": "standard"
+      },
+      {
+        "name": "labelMode",
+        "label": "labelMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldLabelMode",
+        "options": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "initialValue": "static"
+      },
+      {
+        "name": "floatingPosition",
+        "label": "floatingPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldFloatingPosition",
+        "options": [
+          "top",
+          "bottom"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "helperText",
+        "label": "helperText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "helperPosition",
+        "label": "helperPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldHelperPosition",
+        "options": [
+          "above",
+          "below"
+        ],
+        "initialValue": "below"
+      },
+      {
+        "name": "leadingIcon",
+        "label": "leadingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "trailingIcon",
+        "label": "trailingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "clearable",
+        "label": "clearable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "feedbackText",
+        "label": "feedbackText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "feedbackDismissible",
+        "label": "feedbackDismissible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "placeholder",
+        "label": "placeholder",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "readonly",
+        "label": "readonly",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "min",
+        "label": "min",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "max",
+        "label": "max",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "step",
+        "label": "step",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 1
+      },
+      {
+        "name": "allowEmpty",
+        "label": "allowEmpty",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "pattern",
+        "label": "pattern",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -10617,17 +20543,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -10635,7 +20573,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -10643,12 +20585,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "tone",
@@ -10658,7 +20608,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -10669,7 +20623,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "variant",
@@ -10680,7 +20638,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpFieldVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "borderMode",
@@ -10689,7 +20651,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "dashed",
             "underline"
-          ]
+          ],
+          "type": "ErpFieldBorderMode",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "shape",
@@ -10698,7 +20664,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpFieldShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "size",
@@ -10711,7 +20681,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -10719,7 +20693,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "labelMode",
@@ -10728,7 +20706,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "static",
             "floating",
             "visually-hidden"
-          ]
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
         },
         {
           "name": "floatingPosition",
@@ -10736,12 +20718,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "top",
             "bottom"
-          ]
+          ],
+          "type": "ErpFieldFloatingPosition",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -10749,17 +20739,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "leadingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "trailingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "clearable",
@@ -10767,12 +20769,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "feedbackText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "feedbackDismissible",
@@ -10780,12 +20790,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "placeholder",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "readonly",
@@ -10793,22 +20811,38 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "min",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "max",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "step",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 1,
+          "defaultExpression": "1"
         },
         {
           "name": "allowEmpty",
@@ -10816,12 +20850,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "pattern",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [],
@@ -10867,6 +20909,403 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "مغيّر الرقم",
     "descriptionAr": "زيادة وإنقاص قيمة عددية ضمن حدود مضبوطة.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "tone": "neutral",
+      "status": "none",
+      "variant": "outline",
+      "borderMode": "solid",
+      "shape": "default",
+      "size": "md",
+      "appearance": "standard",
+      "labelMode": "static",
+      "floatingPosition": "top",
+      "helperText": null,
+      "helperPosition": "below",
+      "leadingIcon": null,
+      "trailingIcon": null,
+      "clearable": true,
+      "feedbackText": null,
+      "feedbackDismissible": false,
+      "placeholder": null,
+      "readonly": false,
+      "min": null,
+      "max": null,
+      "step": 1,
+      "allowEmpty": true,
+      "pattern": null,
+      "label": "حقل تجريبي"
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "borderMode",
+        "label": "borderMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldBorderMode",
+        "options": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "appearance",
+        "label": "appearance",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldAppearance",
+        "options": [
+          "standard",
+          "glass"
+        ],
+        "initialValue": "standard"
+      },
+      {
+        "name": "labelMode",
+        "label": "labelMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldLabelMode",
+        "options": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "initialValue": "static"
+      },
+      {
+        "name": "floatingPosition",
+        "label": "floatingPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldFloatingPosition",
+        "options": [
+          "top",
+          "bottom"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "helperText",
+        "label": "helperText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "helperPosition",
+        "label": "helperPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldHelperPosition",
+        "options": [
+          "above",
+          "below"
+        ],
+        "initialValue": "below"
+      },
+      {
+        "name": "leadingIcon",
+        "label": "leadingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "trailingIcon",
+        "label": "trailingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "clearable",
+        "label": "clearable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "feedbackText",
+        "label": "feedbackText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "feedbackDismissible",
+        "label": "feedbackDismissible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "placeholder",
+        "label": "placeholder",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "readonly",
+        "label": "readonly",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "min",
+        "label": "min",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "max",
+        "label": "max",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "step",
+        "label": "step",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 1
+      },
+      {
+        "name": "allowEmpty",
+        "label": "allowEmpty",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "pattern",
+        "label": "pattern",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -11009,17 +21448,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -11027,7 +21478,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -11035,12 +21490,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "tone",
@@ -11050,7 +21513,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -11061,7 +21528,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "variant",
@@ -11072,7 +21543,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpFieldVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "borderMode",
@@ -11081,7 +21556,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "dashed",
             "underline"
-          ]
+          ],
+          "type": "ErpFieldBorderMode",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "shape",
@@ -11090,7 +21569,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpFieldShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "size",
@@ -11103,7 +21586,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -11111,7 +21598,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "labelMode",
@@ -11120,7 +21611,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "static",
             "floating",
             "visually-hidden"
-          ]
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
         },
         {
           "name": "floatingPosition",
@@ -11128,12 +21623,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "top",
             "bottom"
-          ]
+          ],
+          "type": "ErpFieldFloatingPosition",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -11141,17 +21644,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "leadingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "trailingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "clearable",
@@ -11159,12 +21674,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "feedbackText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "feedbackDismissible",
@@ -11172,12 +21695,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "placeholder",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "readonly",
@@ -11185,12 +21716,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "autocomplete",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "current-password",
+          "defaultExpression": "'current-password'"
         },
         {
           "name": "revealToggle",
@@ -11198,22 +21737,38 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "minLength",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "maxLength",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "pattern",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [],
@@ -11260,6 +21815,403 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "حقل كلمة المرور",
     "descriptionAr": "تحرير قيمة سرية مع إظهار مضبوط.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "tone": "neutral",
+      "status": "none",
+      "variant": "outline",
+      "borderMode": "solid",
+      "shape": "default",
+      "size": "md",
+      "appearance": "standard",
+      "labelMode": "static",
+      "floatingPosition": "top",
+      "helperText": null,
+      "helperPosition": "below",
+      "leadingIcon": null,
+      "trailingIcon": null,
+      "clearable": true,
+      "feedbackText": null,
+      "feedbackDismissible": false,
+      "placeholder": null,
+      "readonly": false,
+      "autocomplete": "current-password",
+      "revealToggle": true,
+      "minLength": null,
+      "maxLength": null,
+      "pattern": null,
+      "label": "حقل تجريبي"
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "borderMode",
+        "label": "borderMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldBorderMode",
+        "options": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "appearance",
+        "label": "appearance",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldAppearance",
+        "options": [
+          "standard",
+          "glass"
+        ],
+        "initialValue": "standard"
+      },
+      {
+        "name": "labelMode",
+        "label": "labelMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldLabelMode",
+        "options": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "initialValue": "static"
+      },
+      {
+        "name": "floatingPosition",
+        "label": "floatingPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldFloatingPosition",
+        "options": [
+          "top",
+          "bottom"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "helperText",
+        "label": "helperText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "helperPosition",
+        "label": "helperPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldHelperPosition",
+        "options": [
+          "above",
+          "below"
+        ],
+        "initialValue": "below"
+      },
+      {
+        "name": "leadingIcon",
+        "label": "leadingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "trailingIcon",
+        "label": "trailingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "clearable",
+        "label": "clearable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "feedbackText",
+        "label": "feedbackText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "feedbackDismissible",
+        "label": "feedbackDismissible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "placeholder",
+        "label": "placeholder",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "readonly",
+        "label": "readonly",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "autocomplete",
+        "label": "autocomplete",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "current-password"
+      },
+      {
+        "name": "revealToggle",
+        "label": "revealToggle",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "minLength",
+        "label": "minLength",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "maxLength",
+        "label": "maxLength",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "pattern",
+        "label": "pattern",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -11402,17 +22354,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -11420,7 +22384,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -11428,32 +22396,56 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "min",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 0,
+          "defaultExpression": "0"
         },
         {
           "name": "max",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 100,
+          "defaultExpression": "100"
         },
         {
           "name": "step",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 1,
+          "defaultExpression": "1"
         },
         {
           "name": "defaultRange",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpRangeSliderValue | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "tone",
@@ -11463,7 +22455,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -11474,7 +22470,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "size",
@@ -11487,7 +22487,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -11495,12 +22499,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -11508,7 +22520,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "clearable",
@@ -11516,7 +22532,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "showValueTooltip",
@@ -11524,7 +22544,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "valueTooltipPlacement",
@@ -11534,12 +22558,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "bottom",
             "start",
             "end"
-          ]
+          ],
+          "type": "ErpTooltipPlacement",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "valueTooltipFormatter",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpRangeSliderTooltipFormatter | null",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": "DEFAULT_RANGE_TOOLTIP_FORMATTER"
         }
       ],
       "outputs": [],
@@ -11701,6 +22733,281 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "منزلق النطاق",
     "descriptionAr": "اختيار حدين عدديين من نطاق.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "defaultRange": null,
+      "tone": "neutral",
+      "status": "none",
+      "size": "md",
+      "appearance": "standard",
+      "helperText": null,
+      "helperPosition": "below",
+      "clearable": true,
+      "showValueTooltip": true,
+      "valueTooltipPlacement": "top",
+      "label": "حقل تجريبي"
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "min",
+        "label": "min",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 0
+      },
+      {
+        "name": "max",
+        "label": "max",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 100
+      },
+      {
+        "name": "step",
+        "label": "step",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 1
+      },
+      {
+        "name": "defaultRange",
+        "label": "defaultRange",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpRangeSliderValue | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "appearance",
+        "label": "appearance",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldAppearance",
+        "options": [
+          "standard",
+          "glass"
+        ],
+        "initialValue": "standard"
+      },
+      {
+        "name": "helperText",
+        "label": "helperText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "helperPosition",
+        "label": "helperPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldHelperPosition",
+        "options": [
+          "above",
+          "below"
+        ],
+        "initialValue": "below"
+      },
+      {
+        "name": "clearable",
+        "label": "clearable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "showValueTooltip",
+        "label": "showValueTooltip",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "valueTooltipPlacement",
+        "label": "valueTooltipPlacement",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTooltipPlacement",
+        "options": [
+          "top",
+          "bottom",
+          "start",
+          "end"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "valueTooltipFormatter",
+        "label": "valueTooltipFormatter",
+        "source": "input",
+        "kind": "function",
+        "required": false,
+        "type": "ErpRangeSliderTooltipFormatter | null",
+        "options": [],
+        "initialValue": null
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -11804,17 +23111,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -11822,7 +23141,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -11830,12 +23153,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "tone",
@@ -11845,7 +23176,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -11856,7 +23191,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "variant",
@@ -11867,7 +23206,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpFieldVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "borderMode",
@@ -11876,7 +23219,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "dashed",
             "underline"
-          ]
+          ],
+          "type": "ErpFieldBorderMode",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "shape",
@@ -11885,7 +23232,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpFieldShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "size",
@@ -11898,7 +23249,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -11906,7 +23261,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "labelMode",
@@ -11915,7 +23274,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "static",
             "floating",
             "visually-hidden"
-          ]
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
         },
         {
           "name": "floatingPosition",
@@ -11923,12 +23286,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "top",
             "bottom"
-          ]
+          ],
+          "type": "ErpFieldFloatingPosition",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -11936,17 +23307,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "leadingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "trailingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "clearable",
@@ -11954,12 +23337,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "feedbackText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "feedbackDismissible",
@@ -11967,7 +23358,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "mode",
@@ -11976,7 +23371,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "modal",
             "dropdown",
             "inline"
-          ]
+          ],
+          "type": "ErpSearchBoxMode",
+          "hasDefault": true,
+          "defaultValue": "dropdown",
+          "defaultExpression": "'dropdown'"
         },
         {
           "name": "presentation",
@@ -11985,17 +23384,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "field",
             "select-panel",
             "table-reference"
-          ]
+          ],
+          "type": "ErpSearchBoxPresentation",
+          "hasDefault": true,
+          "defaultValue": "field",
+          "defaultExpression": "'field'"
         },
         {
           "name": "items",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpSearchBoxOption[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "placeholder",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "readonly",
@@ -12003,22 +23414,38 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "autocomplete",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "off",
+          "defaultExpression": "'off'"
         },
         {
           "name": "minLength",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "maxLength",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "dismissOnOutside",
@@ -12026,7 +23453,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "dismissOnEscape",
@@ -12034,7 +23465,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "showDefaultSearchIcon",
@@ -12042,22 +23477,38 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "enterAnimation",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpOverlayAnimation",
+          "hasDefault": true,
+          "defaultValue": "fade-scale",
+          "defaultExpression": "'fade-scale'"
         },
         {
           "name": "exitAnimation",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpOverlayAnimation",
+          "hasDefault": true,
+          "defaultValue": "fade-scale",
+          "defaultExpression": "'fade-scale'"
         },
         {
           "name": "modalOverlayConfig",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "Partial<ErpOverlayBehaviorConfig> | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [],
@@ -12149,6 +23600,494 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "صندوق البحث",
     "descriptionAr": "تحرير استعلام وعرض نتائج inline أو popup.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "tone": "neutral",
+      "status": "none",
+      "variant": "outline",
+      "borderMode": "solid",
+      "shape": "default",
+      "size": "md",
+      "appearance": "standard",
+      "labelMode": "static",
+      "floatingPosition": "top",
+      "helperText": null,
+      "helperPosition": "below",
+      "leadingIcon": null,
+      "trailingIcon": null,
+      "clearable": true,
+      "feedbackText": null,
+      "feedbackDismissible": false,
+      "mode": "dropdown",
+      "presentation": "field",
+      "items": [],
+      "placeholder": null,
+      "readonly": false,
+      "autocomplete": "off",
+      "minLength": null,
+      "maxLength": null,
+      "dismissOnOutside": true,
+      "dismissOnEscape": true,
+      "showDefaultSearchIcon": true,
+      "enterAnimation": "fade-scale",
+      "exitAnimation": "fade-scale",
+      "modalOverlayConfig": null,
+      "label": "حقل تجريبي"
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "borderMode",
+        "label": "borderMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldBorderMode",
+        "options": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "appearance",
+        "label": "appearance",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldAppearance",
+        "options": [
+          "standard",
+          "glass"
+        ],
+        "initialValue": "standard"
+      },
+      {
+        "name": "labelMode",
+        "label": "labelMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldLabelMode",
+        "options": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "initialValue": "static"
+      },
+      {
+        "name": "floatingPosition",
+        "label": "floatingPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldFloatingPosition",
+        "options": [
+          "top",
+          "bottom"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "helperText",
+        "label": "helperText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "helperPosition",
+        "label": "helperPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldHelperPosition",
+        "options": [
+          "above",
+          "below"
+        ],
+        "initialValue": "below"
+      },
+      {
+        "name": "leadingIcon",
+        "label": "leadingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "trailingIcon",
+        "label": "trailingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "clearable",
+        "label": "clearable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "feedbackText",
+        "label": "feedbackText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "feedbackDismissible",
+        "label": "feedbackDismissible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "mode",
+        "label": "mode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpSearchBoxMode",
+        "options": [
+          "modal",
+          "dropdown",
+          "inline"
+        ],
+        "initialValue": "dropdown"
+      },
+      {
+        "name": "presentation",
+        "label": "presentation",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpSearchBoxPresentation",
+        "options": [
+          "field",
+          "select-panel",
+          "table-reference"
+        ],
+        "initialValue": "field"
+      },
+      {
+        "name": "items",
+        "label": "items",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpSearchBoxOption[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "placeholder",
+        "label": "placeholder",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "readonly",
+        "label": "readonly",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "autocomplete",
+        "label": "autocomplete",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "off"
+      },
+      {
+        "name": "minLength",
+        "label": "minLength",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "maxLength",
+        "label": "maxLength",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "dismissOnOutside",
+        "label": "dismissOnOutside",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "dismissOnEscape",
+        "label": "dismissOnEscape",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "showDefaultSearchIcon",
+        "label": "showDefaultSearchIcon",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "enterAnimation",
+        "label": "enterAnimation",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpOverlayAnimation",
+        "options": [],
+        "initialValue": "fade-scale"
+      },
+      {
+        "name": "exitAnimation",
+        "label": "exitAnimation",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpOverlayAnimation",
+        "options": [],
+        "initialValue": "fade-scale"
+      },
+      {
+        "name": "modalOverlayConfig",
+        "label": "modalOverlayConfig",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "Partial<ErpOverlayBehaviorConfig> | null",
+        "options": [],
+        "initialValue": null
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -12318,17 +24257,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -12336,7 +24287,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -12344,12 +24299,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "tone",
@@ -12359,7 +24322,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -12370,7 +24337,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "variant",
@@ -12381,7 +24352,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpFieldVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "borderMode",
@@ -12390,7 +24365,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "dashed",
             "underline"
-          ]
+          ],
+          "type": "ErpFieldBorderMode",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "shape",
@@ -12399,7 +24378,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpFieldShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "size",
@@ -12412,7 +24395,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -12420,7 +24407,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "labelMode",
@@ -12429,7 +24420,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "static",
             "floating",
             "visually-hidden"
-          ]
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
         },
         {
           "name": "floatingPosition",
@@ -12437,12 +24432,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "top",
             "bottom"
-          ]
+          ],
+          "type": "ErpFieldFloatingPosition",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -12450,17 +24453,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "leadingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "trailingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "clearable",
@@ -12468,12 +24483,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "feedbackText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "feedbackDismissible",
@@ -12481,12 +24504,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "options",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpSelectOption[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "multiple",
@@ -12494,7 +24525,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "searchable",
@@ -12502,7 +24537,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "filterable",
@@ -12510,7 +24549,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "sortable",
@@ -12518,7 +24561,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "showIcons",
@@ -12526,7 +24573,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "showImages",
@@ -12534,7 +24585,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "selectAll",
@@ -12542,37 +24597,65 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "maxSelected",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "maxChips",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 3,
+          "defaultExpression": "3"
         },
         {
           "name": "placeholder",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "اختر قيمة",
+          "defaultExpression": "'اختر قيمة'"
         },
         {
           "name": "searchPlaceholder",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "البحث",
+          "defaultExpression": "'البحث'"
         },
         {
           "name": "searchLabel",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "البحث",
+          "defaultExpression": "'البحث'"
         },
         {
           "name": "emptyText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "لا توجد نتائج مطابقة",
+          "defaultExpression": "'لا توجد نتائج مطابقة'"
         },
         {
           "name": "selectSize",
@@ -12583,12 +24666,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "normal",
             "lg",
             "xlg"
-          ]
+          ],
+          "type": "ErpSelectSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "selectAppearance",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpSelectAppearance | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "placement",
@@ -12596,12 +24687,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "bottom",
             "top"
-          ]
+          ],
+          "type": "ErpSelectPlacement",
+          "hasDefault": true,
+          "defaultValue": "bottom",
+          "defaultExpression": "'bottom'"
         },
         {
           "name": "groupBy",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "keyof ErpSelectOption | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "sortMode",
@@ -12610,22 +24709,38 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "none",
             "label",
             "custom"
-          ]
+          ],
+          "type": "ErpSelectSortMode",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "filterPredicate",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "((option: ErpSelectOption, query: string) => boolean) | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "filterFn",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "((option: ErpSelectOption) => boolean) | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "comparator",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "((left: ErpSelectOption, right: ErpSelectOption) => number) | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [
@@ -12643,7 +24758,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "source",
             "ascending",
             "descending"
-          ]
+          ],
+          "type": "ErpSelectSort",
+          "hasDefault": true,
+          "defaultValue": "source",
+          "defaultExpression": "'source'"
         }
       ]
     },
@@ -12819,6 +24938,611 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "قائمة الاختيار",
     "descriptionAr": "اختيار مفرد أو متعدد مع بحث وتجميع.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "tone": "neutral",
+      "status": "none",
+      "variant": "outline",
+      "borderMode": "solid",
+      "shape": "default",
+      "size": "md",
+      "appearance": "standard",
+      "labelMode": "static",
+      "floatingPosition": "top",
+      "helperText": null,
+      "helperPosition": "below",
+      "leadingIcon": null,
+      "trailingIcon": null,
+      "clearable": true,
+      "feedbackText": null,
+      "feedbackDismissible": false,
+      "options": [],
+      "multiple": false,
+      "searchable": false,
+      "filterable": true,
+      "sortable": true,
+      "showIcons": true,
+      "showImages": true,
+      "selectAll": false,
+      "maxSelected": null,
+      "maxChips": 3,
+      "placeholder": "اختر قيمة",
+      "searchPlaceholder": "البحث",
+      "searchLabel": "البحث",
+      "emptyText": "لا توجد نتائج مطابقة",
+      "selectSize": "md",
+      "selectAppearance": null,
+      "placement": "bottom",
+      "groupBy": null,
+      "sortMode": "none",
+      "filterPredicate": null,
+      "filterFn": null,
+      "comparator": null,
+      "sort": "source",
+      "label": "حقل تجريبي"
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "borderMode",
+        "label": "borderMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldBorderMode",
+        "options": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "appearance",
+        "label": "appearance",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldAppearance",
+        "options": [
+          "standard",
+          "glass"
+        ],
+        "initialValue": "standard"
+      },
+      {
+        "name": "labelMode",
+        "label": "labelMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldLabelMode",
+        "options": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "initialValue": "static"
+      },
+      {
+        "name": "floatingPosition",
+        "label": "floatingPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldFloatingPosition",
+        "options": [
+          "top",
+          "bottom"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "helperText",
+        "label": "helperText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "helperPosition",
+        "label": "helperPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldHelperPosition",
+        "options": [
+          "above",
+          "below"
+        ],
+        "initialValue": "below"
+      },
+      {
+        "name": "leadingIcon",
+        "label": "leadingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "trailingIcon",
+        "label": "trailingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "clearable",
+        "label": "clearable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "feedbackText",
+        "label": "feedbackText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "feedbackDismissible",
+        "label": "feedbackDismissible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "options",
+        "label": "options",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpSelectOption[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "multiple",
+        "label": "multiple",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "searchable",
+        "label": "searchable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "filterable",
+        "label": "filterable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "sortable",
+        "label": "sortable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "showIcons",
+        "label": "showIcons",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "showImages",
+        "label": "showImages",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "selectAll",
+        "label": "selectAll",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "maxSelected",
+        "label": "maxSelected",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "maxChips",
+        "label": "maxChips",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 3
+      },
+      {
+        "name": "placeholder",
+        "label": "placeholder",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "اختر قيمة"
+      },
+      {
+        "name": "searchPlaceholder",
+        "label": "searchPlaceholder",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "البحث"
+      },
+      {
+        "name": "searchLabel",
+        "label": "searchLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "البحث"
+      },
+      {
+        "name": "emptyText",
+        "label": "emptyText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "لا توجد نتائج مطابقة"
+      },
+      {
+        "name": "selectSize",
+        "label": "selectSize",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpSelectSize",
+        "options": [
+          "sm",
+          "md",
+          "normal",
+          "lg",
+          "xlg"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "selectAppearance",
+        "label": "selectAppearance",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpSelectAppearance | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "placement",
+        "label": "placement",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpSelectPlacement",
+        "options": [
+          "bottom",
+          "top"
+        ],
+        "initialValue": "bottom"
+      },
+      {
+        "name": "groupBy",
+        "label": "groupBy",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "keyof ErpSelectOption | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "sortMode",
+        "label": "sortMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpSelectSortMode",
+        "options": [
+          "none",
+          "label",
+          "custom"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "filterPredicate",
+        "label": "filterPredicate",
+        "source": "input",
+        "kind": "function",
+        "required": false,
+        "type": "((option: ErpSelectOption, query: string) => boolean) | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "filterFn",
+        "label": "filterFn",
+        "source": "input",
+        "kind": "function",
+        "required": false,
+        "type": "((option: ErpSelectOption) => boolean) | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "comparator",
+        "label": "comparator",
+        "source": "input",
+        "kind": "function",
+        "required": false,
+        "type": "((left: ErpSelectOption, right: ErpSelectOption) => number) | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "sort",
+        "label": "sort",
+        "source": "model",
+        "kind": "select",
+        "required": false,
+        "type": "ErpSelectSort",
+        "options": [
+          "source",
+          "ascending",
+          "descending"
+        ],
+        "initialValue": "source"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -13039,17 +25763,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -13057,7 +25793,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -13065,12 +25805,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "tone",
@@ -13080,7 +25828,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -13091,7 +25843,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "variant",
@@ -13102,7 +25858,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpFieldVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "borderMode",
@@ -13111,7 +25871,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "dashed",
             "underline"
-          ]
+          ],
+          "type": "ErpFieldBorderMode",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "shape",
@@ -13120,7 +25884,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpFieldShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "size",
@@ -13133,7 +25901,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -13141,7 +25913,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "labelMode",
@@ -13150,7 +25926,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "static",
             "floating",
             "visually-hidden"
-          ]
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
         },
         {
           "name": "floatingPosition",
@@ -13158,12 +25938,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "top",
             "bottom"
-          ]
+          ],
+          "type": "ErpFieldFloatingPosition",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -13171,17 +25959,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "leadingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "trailingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "clearable",
@@ -13189,12 +25989,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "feedbackText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "feedbackDismissible",
@@ -13202,12 +26010,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "placeholder",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "readonly",
@@ -13215,27 +26031,47 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "autocomplete",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "tel",
+          "defaultExpression": "'tel'"
         },
         {
           "name": "pattern",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "minLength",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "maxLength",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [],
@@ -13279,6 +26115,389 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "حقل الهاتف",
     "descriptionAr": "تحرير رقم هاتف وفق عقد الحقول.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "tone": "neutral",
+      "status": "none",
+      "variant": "outline",
+      "borderMode": "solid",
+      "shape": "default",
+      "size": "md",
+      "appearance": "standard",
+      "labelMode": "static",
+      "floatingPosition": "top",
+      "helperText": null,
+      "helperPosition": "below",
+      "leadingIcon": null,
+      "trailingIcon": null,
+      "clearable": true,
+      "feedbackText": null,
+      "feedbackDismissible": false,
+      "placeholder": null,
+      "readonly": false,
+      "autocomplete": "tel",
+      "pattern": null,
+      "minLength": null,
+      "maxLength": null,
+      "label": "حقل تجريبي"
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "borderMode",
+        "label": "borderMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldBorderMode",
+        "options": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "appearance",
+        "label": "appearance",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldAppearance",
+        "options": [
+          "standard",
+          "glass"
+        ],
+        "initialValue": "standard"
+      },
+      {
+        "name": "labelMode",
+        "label": "labelMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldLabelMode",
+        "options": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "initialValue": "static"
+      },
+      {
+        "name": "floatingPosition",
+        "label": "floatingPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldFloatingPosition",
+        "options": [
+          "top",
+          "bottom"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "helperText",
+        "label": "helperText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "helperPosition",
+        "label": "helperPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldHelperPosition",
+        "options": [
+          "above",
+          "below"
+        ],
+        "initialValue": "below"
+      },
+      {
+        "name": "leadingIcon",
+        "label": "leadingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "trailingIcon",
+        "label": "trailingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "clearable",
+        "label": "clearable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "feedbackText",
+        "label": "feedbackText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "feedbackDismissible",
+        "label": "feedbackDismissible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "placeholder",
+        "label": "placeholder",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "readonly",
+        "label": "readonly",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "autocomplete",
+        "label": "autocomplete",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "tel"
+      },
+      {
+        "name": "pattern",
+        "label": "pattern",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "minLength",
+        "label": "minLength",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "maxLength",
+        "label": "maxLength",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -13415,17 +26634,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -13433,7 +26664,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -13441,12 +26676,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "tone",
@@ -13456,7 +26699,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -13467,7 +26714,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "variant",
@@ -13478,7 +26729,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpFieldVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "borderMode",
@@ -13487,7 +26742,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "dashed",
             "underline"
-          ]
+          ],
+          "type": "ErpFieldBorderMode",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "shape",
@@ -13496,7 +26755,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpFieldShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "size",
@@ -13509,7 +26772,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -13517,7 +26784,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "labelMode",
@@ -13526,7 +26797,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "static",
             "floating",
             "visually-hidden"
-          ]
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
         },
         {
           "name": "floatingPosition",
@@ -13534,12 +26809,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "top",
             "bottom"
-          ]
+          ],
+          "type": "ErpFieldFloatingPosition",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -13547,17 +26830,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "leadingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "trailingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "clearable",
@@ -13565,12 +26860,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "feedbackText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "feedbackDismissible",
@@ -13578,12 +26881,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "placeholder",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "readonly",
@@ -13591,22 +26902,38 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "minLength",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "maxLength",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "rows",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 4,
+          "defaultExpression": "4"
         },
         {
           "name": "resize",
@@ -13615,7 +26942,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "vertical",
             "both",
             "none"
-          ]
+          ],
+          "type": "ErpTextAreaResize",
+          "hasDefault": true,
+          "defaultValue": "vertical",
+          "defaultExpression": "'vertical'"
         },
         {
           "name": "showCounter",
@@ -13623,7 +26954,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ],
       "outputs": [],
@@ -13669,6 +27004,407 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "منطقة النص",
     "descriptionAr": "تحرير نص متعدد الأسطر.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "tone": "neutral",
+      "status": "none",
+      "variant": "outline",
+      "borderMode": "solid",
+      "shape": "default",
+      "size": "md",
+      "appearance": "standard",
+      "labelMode": "static",
+      "floatingPosition": "top",
+      "helperText": null,
+      "helperPosition": "below",
+      "leadingIcon": null,
+      "trailingIcon": null,
+      "clearable": true,
+      "feedbackText": null,
+      "feedbackDismissible": false,
+      "placeholder": null,
+      "readonly": false,
+      "minLength": null,
+      "maxLength": null,
+      "rows": 4,
+      "resize": "vertical",
+      "showCounter": false,
+      "label": "حقل تجريبي"
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "borderMode",
+        "label": "borderMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldBorderMode",
+        "options": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "appearance",
+        "label": "appearance",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldAppearance",
+        "options": [
+          "standard",
+          "glass"
+        ],
+        "initialValue": "standard"
+      },
+      {
+        "name": "labelMode",
+        "label": "labelMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldLabelMode",
+        "options": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "initialValue": "static"
+      },
+      {
+        "name": "floatingPosition",
+        "label": "floatingPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldFloatingPosition",
+        "options": [
+          "top",
+          "bottom"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "helperText",
+        "label": "helperText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "helperPosition",
+        "label": "helperPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldHelperPosition",
+        "options": [
+          "above",
+          "below"
+        ],
+        "initialValue": "below"
+      },
+      {
+        "name": "leadingIcon",
+        "label": "leadingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "trailingIcon",
+        "label": "trailingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "clearable",
+        "label": "clearable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "feedbackText",
+        "label": "feedbackText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "feedbackDismissible",
+        "label": "feedbackDismissible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "placeholder",
+        "label": "placeholder",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "readonly",
+        "label": "readonly",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "minLength",
+        "label": "minLength",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "maxLength",
+        "label": "maxLength",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "rows",
+        "label": "rows",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 4
+      },
+      {
+        "name": "resize",
+        "label": "resize",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTextAreaResize",
+        "options": [
+          "vertical",
+          "both",
+          "none"
+        ],
+        "initialValue": "vertical"
+      },
+      {
+        "name": "showCounter",
+        "label": "showCounter",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -13816,17 +27552,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -13834,7 +27582,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -13842,12 +27594,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "tone",
@@ -13857,7 +27617,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -13868,7 +27632,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "variant",
@@ -13879,7 +27647,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpFieldVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "borderMode",
@@ -13888,7 +27660,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "dashed",
             "underline"
-          ]
+          ],
+          "type": "ErpFieldBorderMode",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "shape",
@@ -13897,7 +27673,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpFieldShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "size",
@@ -13910,7 +27690,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -13918,7 +27702,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "labelMode",
@@ -13927,7 +27715,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "static",
             "floating",
             "visually-hidden"
-          ]
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
         },
         {
           "name": "floatingPosition",
@@ -13935,12 +27727,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "top",
             "bottom"
-          ]
+          ],
+          "type": "ErpFieldFloatingPosition",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -13948,17 +27748,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "leadingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "trailingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "clearable",
@@ -13966,12 +27778,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "feedbackText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "feedbackDismissible",
@@ -13979,12 +27799,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "placeholder",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "readonly",
@@ -13992,32 +27820,56 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "minLength",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "maxLength",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "pattern",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "autocomplete",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "inputMode",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "text",
+          "defaultExpression": "'text'"
         },
         {
           "name": "spellcheck",
@@ -14025,7 +27877,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         }
       ],
       "outputs": [],
@@ -14068,6 +27924,414 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "حقل النص",
     "descriptionAr": "تحرير نص قياسي مع حالات الحقل.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "tone": "neutral",
+      "status": "none",
+      "variant": "outline",
+      "borderMode": "solid",
+      "shape": "default",
+      "size": "md",
+      "appearance": "standard",
+      "labelMode": "static",
+      "floatingPosition": "top",
+      "helperText": null,
+      "helperPosition": "below",
+      "leadingIcon": null,
+      "trailingIcon": null,
+      "clearable": true,
+      "feedbackText": null,
+      "feedbackDismissible": false,
+      "placeholder": null,
+      "readonly": false,
+      "minLength": null,
+      "maxLength": null,
+      "pattern": null,
+      "autocomplete": null,
+      "inputMode": "text",
+      "spellcheck": true,
+      "label": "حقل تجريبي"
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "borderMode",
+        "label": "borderMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldBorderMode",
+        "options": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "appearance",
+        "label": "appearance",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldAppearance",
+        "options": [
+          "standard",
+          "glass"
+        ],
+        "initialValue": "standard"
+      },
+      {
+        "name": "labelMode",
+        "label": "labelMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldLabelMode",
+        "options": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "initialValue": "static"
+      },
+      {
+        "name": "floatingPosition",
+        "label": "floatingPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldFloatingPosition",
+        "options": [
+          "top",
+          "bottom"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "helperText",
+        "label": "helperText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "helperPosition",
+        "label": "helperPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldHelperPosition",
+        "options": [
+          "above",
+          "below"
+        ],
+        "initialValue": "below"
+      },
+      {
+        "name": "leadingIcon",
+        "label": "leadingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "trailingIcon",
+        "label": "trailingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "clearable",
+        "label": "clearable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "feedbackText",
+        "label": "feedbackText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "feedbackDismissible",
+        "label": "feedbackDismissible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "placeholder",
+        "label": "placeholder",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "readonly",
+        "label": "readonly",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "minLength",
+        "label": "minLength",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "maxLength",
+        "label": "maxLength",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "pattern",
+        "label": "pattern",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "autocomplete",
+        "label": "autocomplete",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "inputMode",
+        "label": "inputMode",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "text"
+      },
+      {
+        "name": "spellcheck",
+        "label": "spellcheck",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -14211,17 +28475,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -14229,7 +28505,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -14237,12 +28517,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "tone",
@@ -14252,7 +28540,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -14263,7 +28555,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "variant",
@@ -14274,7 +28570,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpFieldVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "borderMode",
@@ -14283,7 +28583,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "dashed",
             "underline"
-          ]
+          ],
+          "type": "ErpFieldBorderMode",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "shape",
@@ -14292,7 +28596,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpFieldShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "size",
@@ -14305,7 +28613,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -14313,7 +28625,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "labelMode",
@@ -14322,7 +28638,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "static",
             "floating",
             "visually-hidden"
-          ]
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
         },
         {
           "name": "floatingPosition",
@@ -14330,12 +28650,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "top",
             "bottom"
-          ]
+          ],
+          "type": "ErpFieldFloatingPosition",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -14343,17 +28671,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "leadingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "trailingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": "clock",
+          "defaultExpression": "'clock'"
         },
         {
           "name": "clearable",
@@ -14361,12 +28701,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "feedbackText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "feedbackDismissible",
@@ -14374,42 +28722,74 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "minuteStep",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 5,
+          "defaultExpression": "5"
         },
         {
           "name": "min",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "max",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "locale",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "ar-EG",
+          "defaultExpression": "'ar-EG'"
         },
         {
           "name": "placeholder",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "اختر الوقت",
+          "defaultExpression": "'اختر الوقت'"
         },
         {
           "name": "pattern",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "overlayConfig",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "Partial<ErpOverlayBehaviorConfig> | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [],
@@ -14462,6 +28842,397 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "حقل الوقت",
     "descriptionAr": "تحرير وقت وفق عقد الحقول.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "tone": "neutral",
+      "status": "none",
+      "variant": "outline",
+      "borderMode": "solid",
+      "shape": "default",
+      "size": "md",
+      "appearance": "standard",
+      "labelMode": "static",
+      "floatingPosition": "top",
+      "helperText": null,
+      "helperPosition": "below",
+      "leadingIcon": null,
+      "trailingIcon": "clock",
+      "clearable": true,
+      "feedbackText": null,
+      "feedbackDismissible": false,
+      "minuteStep": 5,
+      "min": null,
+      "max": null,
+      "locale": "ar-EG",
+      "placeholder": "اختر الوقت",
+      "pattern": null,
+      "overlayConfig": null,
+      "label": "حقل تجريبي"
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "borderMode",
+        "label": "borderMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldBorderMode",
+        "options": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "appearance",
+        "label": "appearance",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldAppearance",
+        "options": [
+          "standard",
+          "glass"
+        ],
+        "initialValue": "standard"
+      },
+      {
+        "name": "labelMode",
+        "label": "labelMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldLabelMode",
+        "options": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "initialValue": "static"
+      },
+      {
+        "name": "floatingPosition",
+        "label": "floatingPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldFloatingPosition",
+        "options": [
+          "top",
+          "bottom"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "helperText",
+        "label": "helperText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "helperPosition",
+        "label": "helperPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldHelperPosition",
+        "options": [
+          "above",
+          "below"
+        ],
+        "initialValue": "below"
+      },
+      {
+        "name": "leadingIcon",
+        "label": "leadingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "trailingIcon",
+        "label": "trailingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": "clock"
+      },
+      {
+        "name": "clearable",
+        "label": "clearable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "feedbackText",
+        "label": "feedbackText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "feedbackDismissible",
+        "label": "feedbackDismissible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "minuteStep",
+        "label": "minuteStep",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 5
+      },
+      {
+        "name": "min",
+        "label": "min",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "max",
+        "label": "max",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "locale",
+        "label": "locale",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "ar-EG"
+      },
+      {
+        "name": "placeholder",
+        "label": "placeholder",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "اختر الوقت"
+      },
+      {
+        "name": "pattern",
+        "label": "pattern",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "overlayConfig",
+        "label": "overlayConfig",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "Partial<ErpOverlayBehaviorConfig> | null",
+        "options": [],
+        "initialValue": null
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -14594,17 +29365,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -14612,7 +29395,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -14620,12 +29407,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "tone",
@@ -14635,7 +29430,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -14646,7 +29445,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "variant",
@@ -14657,7 +29460,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpFieldVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "borderMode",
@@ -14666,7 +29473,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "dashed",
             "underline"
-          ]
+          ],
+          "type": "ErpFieldBorderMode",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "shape",
@@ -14675,7 +29486,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpFieldShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "size",
@@ -14688,7 +29503,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -14696,7 +29515,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "labelMode",
@@ -14705,7 +29528,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "static",
             "floating",
             "visually-hidden"
-          ]
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
         },
         {
           "name": "floatingPosition",
@@ -14713,12 +29540,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "top",
             "bottom"
-          ]
+          ],
+          "type": "ErpFieldFloatingPosition",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -14726,17 +29561,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "leadingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "trailingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "clearable",
@@ -14744,12 +29591,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "feedbackText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "feedbackDismissible",
@@ -14757,12 +29612,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "placeholder",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "readonly",
@@ -14770,27 +29633,47 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "autocomplete",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "url",
+          "defaultExpression": "'url'"
         },
         {
           "name": "pattern",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "minLength",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "maxLength",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [],
@@ -14834,6 +29717,389 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "حقل الرابط",
     "descriptionAr": "تحرير عنوان URL مع تحقق الحقل.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "tone": "neutral",
+      "status": "none",
+      "variant": "outline",
+      "borderMode": "solid",
+      "shape": "default",
+      "size": "md",
+      "appearance": "standard",
+      "labelMode": "static",
+      "floatingPosition": "top",
+      "helperText": null,
+      "helperPosition": "below",
+      "leadingIcon": null,
+      "trailingIcon": null,
+      "clearable": true,
+      "feedbackText": null,
+      "feedbackDismissible": false,
+      "placeholder": null,
+      "readonly": false,
+      "autocomplete": "url",
+      "pattern": null,
+      "minLength": null,
+      "maxLength": null,
+      "label": "حقل تجريبي"
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldVariant",
+        "options": [
+          "solid",
+          "outline",
+          "subtle",
+          "ghost",
+          "text"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "borderMode",
+        "label": "borderMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldBorderMode",
+        "options": [
+          "solid",
+          "dashed",
+          "underline"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldShape",
+        "options": [
+          "default",
+          "rounded",
+          "pill"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "appearance",
+        "label": "appearance",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldAppearance",
+        "options": [
+          "standard",
+          "glass"
+        ],
+        "initialValue": "standard"
+      },
+      {
+        "name": "labelMode",
+        "label": "labelMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldLabelMode",
+        "options": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "initialValue": "static"
+      },
+      {
+        "name": "floatingPosition",
+        "label": "floatingPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldFloatingPosition",
+        "options": [
+          "top",
+          "bottom"
+        ],
+        "initialValue": "top"
+      },
+      {
+        "name": "helperText",
+        "label": "helperText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "helperPosition",
+        "label": "helperPosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldHelperPosition",
+        "options": [
+          "above",
+          "below"
+        ],
+        "initialValue": "below"
+      },
+      {
+        "name": "leadingIcon",
+        "label": "leadingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "trailingIcon",
+        "label": "trailingIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "clearable",
+        "label": "clearable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "feedbackText",
+        "label": "feedbackText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "feedbackDismissible",
+        "label": "feedbackDismissible",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "placeholder",
+        "label": "placeholder",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "readonly",
+        "label": "readonly",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "autocomplete",
+        "label": "autocomplete",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "url"
+      },
+      {
+        "name": "pattern",
+        "label": "pattern",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "minLength",
+        "label": "minLength",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "maxLength",
+        "label": "maxLength",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -14983,6 +30249,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "AnchoredOverlayController",
     "descriptionAr": "Owns nonblocking anchored surface geometry and lifecycle.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -14998,7 +30266,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "items",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "readonly ErpActionMenuItem[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         }
       ],
       "outputs": [
@@ -15007,11 +30279,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "models": []
     },
     "lowerLevelOwners": [
+      "ErpActionMenuItem",
       "ErpButton",
-      "ErpItemPickerOption",
+      "ErpIconButton",
       "ErpStack",
+      "ErpTooltip",
       "erp-button",
-      "erp-stack"
+      "erp-icon-button",
+      "erp-stack",
+      "erp-tooltip"
     ],
     "nativeElementsOwned": [],
     "nativeCoverage": [],
@@ -15025,6 +30301,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpActionMenuContent",
     "descriptionAr": "Owns bounded internal action menu content semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -15043,12 +30321,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         }
       ],
       "outputs": [
@@ -15071,6 +30357,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpAvatarAction",
     "descriptionAr": "Owns bounded internal avatar action semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -15101,6 +30389,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpAvatarFrame",
     "descriptionAr": "Owns bounded internal avatar frame semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -15116,7 +30406,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "item",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "ErpAvatarCatalogItem",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "selected",
@@ -15124,7 +30418,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "disabled",
@@ -15132,7 +30430,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "avatarSize",
@@ -15147,7 +30449,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "3xl",
             "4xl",
             "5xl"
-          ]
+          ],
+          "type": "ErpAvatarSize",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "avatarShape",
@@ -15156,17 +30462,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "circle",
             "rounded",
             "square"
-          ]
+          ],
+          "type": "ErpAvatarShape",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "tabIndex",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "-1",
+          "hasDefault": true,
+          "defaultValue": -1,
+          "defaultExpression": "-1"
         },
         {
           "name": "animationIndex",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 0,
+          "defaultExpression": "0"
         }
       ],
       "outputs": [
@@ -15203,6 +30521,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpAvatarPickerTile",
     "descriptionAr": "Owns bounded internal avatar picker tile semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -15233,6 +30553,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpAvatarPresenceIndicator",
     "descriptionAr": "Owns bounded internal avatar presence semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -15268,6 +30590,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpConfirmDialogContent",
     "descriptionAr": "Owns bounded internal confirm dialog content semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -15296,6 +30620,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpConfirmDialogService",
     "descriptionAr": "Opens approved confirmation dialogs through the shared overlay system.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -15336,6 +30662,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpEmptyStateExtra",
     "descriptionAr": "Extends its parent ERP owner with typed [erpEmptyStateExtra] template projection.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -15376,6 +30704,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpEmptyStateIllustration",
     "descriptionAr": "Extends its parent ERP owner with typed [erpEmptyStateIllustration] template projection.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -15391,7 +30721,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "assetPath",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "animated",
@@ -15399,7 +30733,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "motion",
@@ -15408,12 +30746,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "float",
             "pulse",
             "none"
-          ]
+          ],
+          "type": "ErpEmptyStateIllustrationMotion",
+          "hasDefault": true,
+          "defaultValue": "float",
+          "defaultExpression": "'float'"
         },
         {
           "name": "speed",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpEmptyStateMotionSpeed",
+          "hasDefault": true,
+          "defaultValue": 1,
+          "defaultExpression": "1"
         }
       ],
       "outputs": [],
@@ -15439,6 +30785,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpEmptyStateLottie",
     "descriptionAr": "Owns bounded internal empty state lottie semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -15454,7 +30802,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "outlet",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         }
       ],
       "outputs": [],
@@ -15479,6 +30831,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpEntityCustomFieldOutlet",
     "descriptionAr": "Extends its parent ERP owner with typed ng template[erpEntityCustomField] template projection.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -15494,7 +30848,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "outlet",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         }
       ],
       "outputs": [],
@@ -15519,6 +30877,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpEntityCustomSectionOutlet",
     "descriptionAr": "Extends its parent ERP owner with typed ng template[erpEntityCustomSection] template projection.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -15553,6 +30913,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpEntityFormReviewTemplate",
     "descriptionAr": "Extends its parent ERP owner with typed ng template[erpEntityFormReview] template projection.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -15568,12 +30930,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "messageId",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "text",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "status",
@@ -15584,7 +30954,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "dismissible",
@@ -15592,12 +30966,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "dismissLabel",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "إغلاق الرسالة",
+          "defaultExpression": "'إغلاق الرسالة'"
         }
       ],
       "outputs": [
@@ -15631,6 +31013,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpFieldFeedback",
     "descriptionAr": "Owns bounded internal field feedback semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -15646,12 +31030,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "controlId",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "tone",
@@ -15661,7 +31053,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -15672,7 +31068,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "variant",
@@ -15683,7 +31083,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "ghost",
             "text"
-          ]
+          ],
+          "type": "ErpFieldVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "borderMode",
@@ -15692,7 +31096,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "dashed",
             "underline"
-          ]
+          ],
+          "type": "ErpFieldBorderMode",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "shape",
@@ -15701,7 +31109,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "rounded",
             "pill"
-          ]
+          ],
+          "type": "ErpFieldShape",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "size",
@@ -15714,7 +31126,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "appearance",
@@ -15722,7 +31138,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "glass"
-          ]
+          ],
+          "type": "ErpFieldAppearance",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         },
         {
           "name": "labelMode",
@@ -15731,7 +31151,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "static",
             "floating",
             "visually-hidden"
-          ]
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
         },
         {
           "name": "floatingPosition",
@@ -15739,12 +31163,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "top",
             "bottom"
-          ]
+          ],
+          "type": "ErpFieldFloatingPosition",
+          "hasDefault": true,
+          "defaultValue": "top",
+          "defaultExpression": "'top'"
         },
         {
           "name": "helperText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "helperPosition",
@@ -15752,17 +31184,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "above",
             "below"
-          ]
+          ],
+          "type": "ErpFieldHelperPosition",
+          "hasDefault": true,
+          "defaultValue": "below",
+          "defaultExpression": "'below'"
         },
         {
           "name": "leadingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "trailingIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "clearable",
@@ -15770,17 +31214,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "clearLabel",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "مسح القيمة",
+          "defaultExpression": "'مسح القيمة'"
         },
         {
           "name": "feedbackText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "feedbackDismissible",
@@ -15788,12 +31244,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "feedbackDismissLabel",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "إغلاق الرسالة",
+          "defaultExpression": "'إغلاق الرسالة'"
         },
         {
           "name": "feedbackVisible",
@@ -15801,7 +31265,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "focused",
@@ -15809,7 +31277,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "hasDisplayValue",
@@ -15817,12 +31289,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "placeholder",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -15830,7 +31310,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "configurationState",
@@ -15838,7 +31322,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "ready",
             "invalid"
-          ]
+          ],
+          "type": "ErpInputConfigurationState",
+          "hasDefault": true,
+          "defaultValue": "ready",
+          "defaultExpression": "'ready'"
         },
         {
           "name": "multiline",
@@ -15846,7 +31334,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "controlPresentation",
@@ -15854,7 +31346,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standard",
             "custom"
-          ]
+          ],
+          "type": "'standard' | 'custom'",
+          "hasDefault": true,
+          "defaultValue": "standard",
+          "defaultExpression": "'standard'"
         }
       ],
       "outputs": [
@@ -15909,6 +31405,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpFieldFrame",
     "descriptionAr": "Owns bounded internal field frame semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -15924,17 +31422,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "id",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -15942,49 +31452,85 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "ariaDescribedBy",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "ariaErrorMessage",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "ariaInvalid",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "boolean | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "ariaHasPopup",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "ariaControls",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "ariaExpanded",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "boolean | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "semanticRole",
           "required": false,
           "values": [
             "combobox"
-          ]
+          ],
+          "type": "'combobox' | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "ariaActiveDescendant",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "ariaAutocomplete",
@@ -15992,12 +31538,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "list",
             "none"
-          ]
+          ],
+          "type": "'list' | 'none' | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "ariaRequired",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "boolean | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [
@@ -16025,6 +31579,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpFieldTrigger",
     "descriptionAr": "Owns bounded internal field trigger semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -16053,6 +31609,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpFileSelectionBase",
     "descriptionAr": "Shares bounded file-selection behavior for FilePicker and ImagePicker.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -16090,6 +31648,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpFilterDrawerContent",
     "descriptionAr": "Owns bounded internal filter drawer content semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -16118,6 +31678,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpInputBase",
     "descriptionAr": "Shares nonvisual CVA and validation behavior across concrete input owners.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -16133,12 +31695,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "config",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "ErpOverlayFrameConfig",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "ref",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "ErpOverlayRef<unknown>",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         }
       ],
       "outputs": [
@@ -16181,6 +31751,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpOverlayFrame",
     "descriptionAr": "Owns bounded internal overlay frame semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -16217,6 +31789,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpOverlayHost",
     "descriptionAr": "Owns bounded internal overlay host semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -16245,6 +31819,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpOverlayManager",
     "descriptionAr": "Owns blocking overlay lifecycle, focus, scroll, and stacking.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -16273,6 +31849,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpOverlayRef",
     "descriptionAr": "Represents one manager-owned blocking overlay instance.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -16308,6 +31886,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpRepeaterItemTemplate",
     "descriptionAr": "Extends its parent ERP owner with typed ng template[erpRepeaterItem] template projection.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -16328,22 +31908,38 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "chip-remove",
             "search-clear",
             "footer"
-          ]
+          ],
+          "type": "ErpSelectActionKind",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "icon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "tabIndex",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 0,
+          "defaultExpression": "0"
         }
       ],
       "outputs": [
@@ -16374,6 +31970,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpSelectAction",
     "descriptionAr": "Owns bounded internal select action semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -16426,6 +32024,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpSelectionPickerContent",
     "descriptionAr": "Owns bounded internal selection picker content semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -16441,7 +32041,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "selected",
@@ -16449,7 +32053,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "active",
@@ -16457,7 +32065,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "disabled",
@@ -16465,7 +32077,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "presentation",
@@ -16474,17 +32090,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "tile",
             "list",
             "select-option"
-          ]
+          ],
+          "type": "ErpSelectionTilePresentation",
+          "hasDefault": true,
+          "defaultValue": "tile",
+          "defaultExpression": "'tile'"
         },
         {
           "name": "tabIndex",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 0,
+          "defaultExpression": "0"
         },
         {
           "name": "nativeId",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [
@@ -16513,6 +32141,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpSelectionTile",
     "descriptionAr": "Owns bounded internal selection tile semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -16528,7 +32158,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "disabled",
@@ -16536,7 +32170,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ],
       "outputs": [
@@ -16561,6 +32199,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpSortTrigger",
     "descriptionAr": "Owns bounded internal sort trigger semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -16579,12 +32219,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "main",
             "remove"
-          ]
+          ],
+          "type": "ErpStatusBadgeActionKind",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "disabled",
@@ -16592,7 +32240,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "pressed",
@@ -16600,7 +32252,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ],
       "outputs": [
@@ -16629,6 +32285,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpStatusBadgeAction",
     "descriptionAr": "Owns bounded internal status badge action semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -16644,7 +32302,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "id",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         }
       ],
       "outputs": [],
@@ -16670,6 +32332,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpStepPanel",
     "descriptionAr": "Extends its parent ERP owner with typed ng template[erpStepPanel] template projection.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -16685,7 +32349,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "key",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         }
       ],
       "outputs": [],
@@ -16729,6 +32397,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpTableCell",
     "descriptionAr": "Extends its parent ERP owner with typed ng template[erpTableCell] template projection.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -16744,7 +32414,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "key",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         }
       ],
       "outputs": [],
@@ -16788,6 +32462,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpTableFooter",
     "descriptionAr": "Extends its parent ERP owner with typed ng template[erpTableFooter] template projection.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -16803,7 +32479,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "disabled",
@@ -16811,7 +32491,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ],
       "outputs": [
@@ -16837,6 +32521,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpTableResizeHandle",
     "descriptionAr": "Owns bounded internal table resize handle semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -16852,7 +32538,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "caption",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "density",
@@ -16861,12 +32551,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "compact",
             "normal",
             "comfortable"
-          ]
+          ],
+          "type": "ErpTableDensity",
+          "hasDefault": true,
+          "defaultValue": "normal",
+          "defaultExpression": "'normal'"
         },
         {
           "name": "fixedHeight",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "vertical",
@@ -16874,7 +32572,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "presentation",
@@ -16882,7 +32584,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "standalone",
             "reference-experience"
-          ]
+          ],
+          "type": "ErpTablePresentation",
+          "hasDefault": true,
+          "defaultValue": "standalone",
+          "defaultExpression": "'standalone'"
         }
       ],
       "outputs": [],
@@ -16908,6 +32614,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpTableViewport",
     "descriptionAr": "Owns bounded internal table viewport semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -16923,7 +32631,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "id",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         }
       ],
       "outputs": [],
@@ -16960,6 +32672,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpTabPanel",
     "descriptionAr": "Extends its parent ERP owner with typed ng template[erpTabPanel] template projection.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -16975,17 +32689,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "id",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "controls",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "selected",
@@ -16993,7 +32719,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "disabled",
@@ -17001,12 +32731,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "tabIndex",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 0,
+          "defaultExpression": "0"
         },
         {
           "name": "fill",
@@ -17014,7 +32752,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ],
       "outputs": [
@@ -17041,6 +32783,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpTabTrigger",
     "descriptionAr": "Owns bounded internal tab trigger semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -17087,6 +32831,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpTemporalPickerContent",
     "descriptionAr": "Owns bounded internal temporal picker content semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -17115,6 +32861,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpTooltipContent",
     "descriptionAr": "Owns bounded internal tooltip content semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -17143,6 +32891,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "PressRippleController",
     "descriptionAr": "Owns shared press-ripple interaction for the Button family.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -17171,6 +32921,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ShellAnchoredSurfaceController",
     "descriptionAr": "Adapts approved anchored overlays for shell entry surfaces.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
     "showcaseCoverage": null
   },
   {
@@ -17186,22 +32938,38 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "name",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "src",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "initials",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "alt",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "",
+          "defaultExpression": "''"
         },
         {
           "name": "size",
@@ -17216,7 +32984,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "3xl",
             "4xl",
             "5xl"
-          ]
+          ],
+          "type": "ErpAvatarSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "shape",
@@ -17225,7 +32997,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "circle",
             "rounded",
             "square"
-          ]
+          ],
+          "type": "ErpAvatarShape",
+          "hasDefault": true,
+          "defaultValue": "circle",
+          "defaultExpression": "'circle'"
         },
         {
           "name": "tone",
@@ -17239,12 +33015,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "info",
             "purple",
             "slate"
-          ]
+          ],
+          "type": "ErpAvatarTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "fallbackIcon",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconName | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "ring",
@@ -17252,7 +33036,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "bordered",
@@ -17260,7 +33048,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "loading",
@@ -17268,7 +33060,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "interactive",
@@ -17276,12 +33072,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "presence",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpAvatarPresence | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "presencePosition",
@@ -17295,7 +33099,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "top-right",
             "bottom-left",
             "bottom-right"
-          ]
+          ],
+          "type": "ErpAvatarPresencePosition",
+          "hasDefault": true,
+          "defaultValue": "bottom-right",
+          "defaultExpression": "'bottom-right'"
         },
         {
           "name": "presenceMotion",
@@ -17307,7 +33115,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "bounce",
             "blink",
             "breathe"
-          ]
+          ],
+          "type": "ErpAvatarPresenceMotion",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "hoverMotion",
@@ -17316,7 +33128,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "none",
             "scale",
             "lift"
-          ]
+          ],
+          "type": "ErpAvatarHoverMotion",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "cursor",
@@ -17324,7 +33140,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "default",
             "pointer"
-          ]
+          ],
+          "type": "ErpAvatarCursor",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "presentation",
@@ -17332,7 +33152,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "default",
             "table-reference-photo"
-          ]
+          ],
+          "type": "ErpAvatarPresentation",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         }
       ],
       "outputs": [
@@ -17732,6 +33556,269 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "الصورة الرمزية",
     "descriptionAr": "هوية بصرية بصورة أو أحرف أو أيقونة وحضور.",
+    "showcaseInitialValues": {
+      "src": null,
+      "initials": null,
+      "alt": "",
+      "size": "md",
+      "shape": "circle",
+      "tone": "neutral",
+      "fallbackIcon": null,
+      "ring": false,
+      "bordered": true,
+      "loading": false,
+      "interactive": false,
+      "presence": null,
+      "presencePosition": "bottom-right",
+      "presenceMotion": "none",
+      "hoverMotion": "none",
+      "cursor": "default",
+      "presentation": "default",
+      "name": "أميرة حداد"
+    },
+    "showcaseControls": [
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "أميرة حداد"
+      },
+      {
+        "name": "src",
+        "label": "src",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "initials",
+        "label": "initials",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "alt",
+        "label": "alt",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": ""
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpAvatarSize",
+        "options": [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "2xl",
+          "3xl",
+          "4xl",
+          "5xl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "shape",
+        "label": "shape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpAvatarShape",
+        "options": [
+          "circle",
+          "rounded",
+          "square"
+        ],
+        "initialValue": "circle"
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpAvatarTone",
+        "options": [
+          "neutral",
+          "brand",
+          "success",
+          "warning",
+          "danger",
+          "info",
+          "purple",
+          "slate"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "fallbackIcon",
+        "label": "fallbackIcon",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconName | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "ring",
+        "label": "ring",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "bordered",
+        "label": "bordered",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "loading",
+        "label": "loading",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "interactive",
+        "label": "interactive",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "presence",
+        "label": "presence",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpAvatarPresence | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "presencePosition",
+        "label": "presencePosition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpAvatarPresencePosition",
+        "options": [
+          "top",
+          "bottom",
+          "left",
+          "right",
+          "top-left",
+          "top-right",
+          "bottom-left",
+          "bottom-right"
+        ],
+        "initialValue": "bottom-right"
+      },
+      {
+        "name": "presenceMotion",
+        "label": "presenceMotion",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpAvatarPresenceMotion",
+        "options": [
+          "none",
+          "pulse",
+          "ping",
+          "bounce",
+          "blink",
+          "breathe"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "hoverMotion",
+        "label": "hoverMotion",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpAvatarHoverMotion",
+        "options": [
+          "none",
+          "scale",
+          "lift"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "cursor",
+        "label": "cursor",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpAvatarCursor",
+        "options": [
+          "default",
+          "pointer"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "presentation",
+        "label": "presentation",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpAvatarPresentation",
+        "options": [
+          "default",
+          "table-reference-photo"
+        ],
+        "initialValue": "default"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "name",
@@ -17900,17 +33987,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "items",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "readonly ErpBreadcrumbItem[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "currentId",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "label",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "مسار الصفحة",
+          "defaultExpression": "'مسار الصفحة'"
         }
       ],
       "outputs": [
@@ -17962,6 +34061,55 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "مسار التنقل",
     "descriptionAr": "مسار موقع منطقي مع العنصر الحالي.",
+    "showcaseInitialValues": {
+      "currentId": null,
+      "label": "مسار الصفحة",
+      "items": [
+        {
+          "id": "home",
+          "label": "الرئيسية",
+          "href": "/"
+        }
+      ]
+    },
+    "showcaseControls": [
+      {
+        "name": "items",
+        "label": "items",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "readonly ErpBreadcrumbItem[]",
+        "options": [],
+        "initialValue": [
+          {
+            "id": "home",
+            "label": "الرئيسية",
+            "href": "/"
+          }
+        ]
+      },
+      {
+        "name": "currentId",
+        "label": "currentId",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "مسار الصفحة"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "items",
@@ -17992,27 +34140,52 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "page",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 1,
+          "defaultExpression": "1"
         },
         {
           "name": "pageCount",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "totalItems",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "pageSize",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 25,
+          "defaultExpression": "25"
         },
         {
           "name": "pageSizeOptions",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly number[]",
+          "hasDefault": true,
+          "defaultValue": [
+            10,
+            25,
+            50,
+            100
+          ],
+          "defaultExpression": "[10, 25, 50, 100]"
         },
         {
           "name": "presentation",
@@ -18020,17 +34193,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "default",
             "table-reference"
-          ]
+          ],
+          "type": "'default' | 'table-reference'",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "visibleItems",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "selectedItems",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "number",
+          "hasDefault": true,
+          "defaultValue": 0,
+          "defaultExpression": "0"
         },
         {
           "name": "showSummary",
@@ -18038,7 +34223,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "showPageSize",
@@ -18046,7 +34235,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "showFirst",
@@ -18054,7 +34247,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "showPrevious",
@@ -18062,7 +34259,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "showPageNumbers",
@@ -18070,7 +34271,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "showNext",
@@ -18078,7 +34283,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "showLast",
@@ -18086,7 +34295,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         }
       ],
       "outputs": [
@@ -18130,6 +34343,209 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "ترقيم الصفحات",
     "descriptionAr": "تنقل مضبوط بين الصفحات وحجم الصفحة.",
+    "showcaseInitialValues": {
+      "page": 1,
+      "totalItems": null,
+      "pageSize": 25,
+      "pageSizeOptions": [
+        10,
+        25,
+        50,
+        100
+      ],
+      "presentation": "default",
+      "visibleItems": null,
+      "selectedItems": 0,
+      "showSummary": true,
+      "showPageSize": true,
+      "showFirst": true,
+      "showPrevious": true,
+      "showPageNumbers": true,
+      "showNext": true,
+      "showLast": true,
+      "pageCount": 3
+    },
+    "showcaseControls": [
+      {
+        "name": "page",
+        "label": "page",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 1
+      },
+      {
+        "name": "pageCount",
+        "label": "pageCount",
+        "source": "input",
+        "kind": "number",
+        "required": true,
+        "type": "number",
+        "options": [],
+        "initialValue": 3
+      },
+      {
+        "name": "totalItems",
+        "label": "totalItems",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "pageSize",
+        "label": "pageSize",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 25
+      },
+      {
+        "name": "pageSizeOptions",
+        "label": "pageSizeOptions",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "readonly number[]",
+        "options": [],
+        "initialValue": [
+          10,
+          25,
+          50,
+          100
+        ]
+      },
+      {
+        "name": "presentation",
+        "label": "presentation",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "'default' | 'table-reference'",
+        "options": [
+          "default",
+          "table-reference"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "visibleItems",
+        "label": "visibleItems",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "selectedItems",
+        "label": "selectedItems",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number",
+        "options": [],
+        "initialValue": 0
+      },
+      {
+        "name": "showSummary",
+        "label": "showSummary",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "showPageSize",
+        "label": "showPageSize",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "showFirst",
+        "label": "showFirst",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "showPrevious",
+        "label": "showPrevious",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "showPageNumbers",
+        "label": "showPageNumbers",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "showNext",
+        "label": "showNext",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "showLast",
+        "label": "showLast",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "page",
@@ -18214,17 +34630,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "items",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "readonly ErpNavigationItem[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "activeId",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "label",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "التنقل الرئيسي",
+          "defaultExpression": "'التنقل الرئيسي'"
         }
       ],
       "outputs": [
@@ -18279,6 +34707,55 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "الشريط الجانبي",
     "descriptionAr": "تنقل هرمي مضبوط بعناصر يقدمها المستهلك.",
+    "showcaseInitialValues": {
+      "activeId": null,
+      "label": "التنقل الرئيسي",
+      "items": [
+        {
+          "id": "finance",
+          "label": "المالية",
+          "icon": "wallet"
+        }
+      ]
+    },
+    "showcaseControls": [
+      {
+        "name": "items",
+        "label": "items",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "readonly ErpNavigationItem[]",
+        "options": [],
+        "initialValue": [
+          {
+            "id": "finance",
+            "label": "المالية",
+            "icon": "wallet"
+          }
+        ]
+      },
+      {
+        "name": "activeId",
+        "label": "activeId",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "التنقل الرئيسي"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "items",
@@ -18309,7 +34786,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "direction",
@@ -18318,7 +34799,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "none",
             "ascending",
             "descending"
-          ]
+          ],
+          "type": "ErpSortDirection",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "disabled",
@@ -18326,7 +34811,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "presentation",
@@ -18334,7 +34823,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "default",
             "table-reference"
-          ]
+          ],
+          "type": "'default' | 'table-reference'",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         }
       ],
       "outputs": [
@@ -18424,6 +34917,64 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "رأس الفرز",
     "descriptionAr": "رأس تفاعلي يبدل اتجاه الفرز.",
+    "showcaseInitialValues": {
+      "direction": "none",
+      "disabled": false,
+      "presentation": "default",
+      "label": "اسم الحساب"
+    },
+    "showcaseControls": [
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "اسم الحساب"
+      },
+      {
+        "name": "direction",
+        "label": "direction",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpSortDirection",
+        "options": [
+          "none",
+          "ascending",
+          "descending"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "presentation",
+        "label": "presentation",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "'default' | 'table-reference'",
+        "options": [
+          "default",
+          "table-reference"
+        ],
+        "initialValue": "default"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -18471,7 +35022,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "steps",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "readonly ErpStepDefinition[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         }
       ],
       "outputs": [
@@ -18481,7 +35036,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "activeId",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "",
+          "defaultExpression": "''"
         }
       ]
     },
@@ -18524,6 +35083,42 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "الخطوات",
     "descriptionAr": "تنقل مضبوط بين خطوات ومحتوى مسمى.",
+    "showcaseInitialValues": {
+      "activeId": "",
+      "steps": [
+        {
+          "id": "details",
+          "label": "البيانات"
+        }
+      ]
+    },
+    "showcaseControls": [
+      {
+        "name": "steps",
+        "label": "steps",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "readonly ErpStepDefinition[]",
+        "options": [],
+        "initialValue": [
+          {
+            "id": "details",
+            "label": "البيانات"
+          }
+        ]
+      },
+      {
+        "name": "activeId",
+        "label": "activeId",
+        "source": "model",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": ""
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "steps"
@@ -18554,7 +35149,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "items",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "readonly ErpTabItem[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "orientation",
@@ -18562,7 +35161,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "horizontal",
             "vertical"
-          ]
+          ],
+          "type": "ErpTabsOrientation",
+          "hasDefault": true,
+          "defaultValue": "horizontal",
+          "defaultExpression": "'horizontal'"
         },
         {
           "name": "verticalPlacement",
@@ -18570,7 +35173,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "start",
             "end"
-          ]
+          ],
+          "type": "ErpTabsVerticalPlacement",
+          "hasDefault": true,
+          "defaultValue": "start",
+          "defaultExpression": "'start'"
         },
         {
           "name": "distribution",
@@ -18578,7 +35185,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "content",
             "fill"
-          ]
+          ],
+          "type": "ErpTabsDistribution",
+          "hasDefault": true,
+          "defaultValue": "content",
+          "defaultExpression": "'content'"
         },
         {
           "name": "variant",
@@ -18589,7 +35200,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "solid",
             "ghost",
             "pills"
-          ]
+          ],
+          "type": "ErpTabsVariant",
+          "hasDefault": true,
+          "defaultValue": "underline",
+          "defaultExpression": "'underline'"
         },
         {
           "name": "transition",
@@ -18603,7 +35218,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "fade-down",
             "fade-start",
             "fade-end"
-          ]
+          ],
+          "type": "ErpTabsTransition",
+          "hasDefault": true,
+          "defaultValue": "slide",
+          "defaultExpression": "'slide'"
         },
         {
           "name": "headerPresentation",
@@ -18615,7 +35234,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "icon-only",
             "image",
             "image-text"
-          ]
+          ],
+          "type": "ErpTabHeaderPresentation",
+          "hasDefault": true,
+          "defaultValue": "text",
+          "defaultExpression": "'text'"
         },
         {
           "name": "headerShape",
@@ -18625,7 +35248,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "rectangle",
             "rounded",
             "circle"
-          ]
+          ],
+          "type": "ErpTabHeaderShape",
+          "hasDefault": true,
+          "defaultValue": "reference",
+          "defaultExpression": "'reference'"
         },
         {
           "name": "renderPanels",
@@ -18633,7 +35260,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "lazy",
@@ -18641,7 +35272,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "keepAlive",
@@ -18649,7 +35284,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         }
       ],
       "outputs": [
@@ -18660,7 +35299,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "activeId",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "",
+          "defaultExpression": "''"
         }
       ]
     },
@@ -19069,6 +35712,199 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "علامات التبويب",
     "descriptionAr": "تبديل دلالي بين رؤوس ولوحات محتوى.",
+    "showcaseInitialValues": {
+      "orientation": "horizontal",
+      "verticalPlacement": "start",
+      "distribution": "content",
+      "variant": "underline",
+      "transition": "slide",
+      "headerPresentation": "text",
+      "headerShape": "reference",
+      "renderPanels": true,
+      "lazy": true,
+      "keepAlive": true,
+      "activeId": "",
+      "items": [
+        {
+          "id": "overview",
+          "label": "نظرة عامة",
+          "content": "محتوى النظرة العامة"
+        }
+      ]
+    },
+    "showcaseControls": [
+      {
+        "name": "items",
+        "label": "items",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "readonly ErpTabItem[]",
+        "options": [],
+        "initialValue": [
+          {
+            "id": "overview",
+            "label": "نظرة عامة",
+            "content": "محتوى النظرة العامة"
+          }
+        ]
+      },
+      {
+        "name": "orientation",
+        "label": "orientation",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTabsOrientation",
+        "options": [
+          "horizontal",
+          "vertical"
+        ],
+        "initialValue": "horizontal"
+      },
+      {
+        "name": "verticalPlacement",
+        "label": "verticalPlacement",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTabsVerticalPlacement",
+        "options": [
+          "start",
+          "end"
+        ],
+        "initialValue": "start"
+      },
+      {
+        "name": "distribution",
+        "label": "distribution",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTabsDistribution",
+        "options": [
+          "content",
+          "fill"
+        ],
+        "initialValue": "content"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTabsVariant",
+        "options": [
+          "underline",
+          "pill",
+          "solid",
+          "ghost",
+          "pills"
+        ],
+        "initialValue": "underline"
+      },
+      {
+        "name": "transition",
+        "label": "transition",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTabsTransition",
+        "options": [
+          "slide",
+          "fade",
+          "scale",
+          "none",
+          "fade-up",
+          "fade-down",
+          "fade-start",
+          "fade-end"
+        ],
+        "initialValue": "slide"
+      },
+      {
+        "name": "headerPresentation",
+        "label": "headerPresentation",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTabHeaderPresentation",
+        "options": [
+          "text",
+          "icon",
+          "icon-text",
+          "icon-only",
+          "image",
+          "image-text"
+        ],
+        "initialValue": "text"
+      },
+      {
+        "name": "headerShape",
+        "label": "headerShape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTabHeaderShape",
+        "options": [
+          "reference",
+          "rectangle",
+          "rounded",
+          "circle"
+        ],
+        "initialValue": "reference"
+      },
+      {
+        "name": "renderPanels",
+        "label": "renderPanels",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "lazy",
+        "label": "lazy",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "keepAlive",
+        "label": "keepAlive",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "activeId",
+        "label": "activeId",
+        "source": "model",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": ""
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "items",
@@ -19199,7 +36035,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "boxed",
             "fluid",
             "full"
-          ]
+          ],
+          "type": "ErpPageWidthMode",
+          "hasDefault": true,
+          "defaultValue": "fluid",
+          "defaultExpression": "'fluid'"
         },
         {
           "name": "scrollMode",
@@ -19208,7 +36048,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "document",
             "page",
             "free"
-          ]
+          ],
+          "type": "ErpPageScrollMode",
+          "hasDefault": true,
+          "defaultValue": "document",
+          "defaultExpression": "'document'"
         }
       ],
       "outputs": [],
@@ -19281,6 +36125,40 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "الصفحة",
     "descriptionAr": "حد عرض وتمرير واستجابة لمحتوى صفحة واحدة.",
+    "showcaseInitialValues": {
+      "widthMode": "fluid",
+      "scrollMode": "document"
+    },
+    "showcaseControls": [
+      {
+        "name": "widthMode",
+        "label": "widthMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpPageWidthMode",
+        "options": [
+          "boxed",
+          "fluid",
+          "full"
+        ],
+        "initialValue": "fluid"
+      },
+      {
+        "name": "scrollMode",
+        "label": "scrollMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpPageScrollMode",
+        "options": [
+          "document",
+          "page",
+          "free"
+        ],
+        "initialValue": "document"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "widthMode",
@@ -19321,12 +36199,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "title",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "subtitle",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [],
@@ -19359,6 +36245,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "رأس الصفحة",
     "descriptionAr": "عنوان الصفحة والوصف والبيانات والإجراءات المسقطة.",
+    "showcaseInitialValues": {
+      "subtitle": null,
+      "title": "سجل الحساب"
+    },
+    "showcaseControls": [
+      {
+        "name": "title",
+        "label": "title",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "سجل الحساب"
+      },
+      {
+        "name": "subtitle",
+        "label": "subtitle",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "title",
@@ -19412,6 +36324,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "تكوين الصفحة",
     "descriptionAr": "تنظيم الرأس والمحتوى والسياق والتذييل.",
+    "showcaseInitialValues": {},
+    "showcaseControls": [],
     "showcaseCoverage": {
       "coveredInputs": [],
       "coveredModels": [],
@@ -19443,7 +36357,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "narrow",
             "content",
             "wide"
-          ]
+          ],
+          "type": "ErpContainerWidth",
+          "hasDefault": true,
+          "defaultValue": "full",
+          "defaultExpression": "'full'"
         },
         {
           "name": "gutter",
@@ -19451,7 +36369,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "page",
             "none"
-          ]
+          ],
+          "type": "ErpContainerGutter",
+          "hasDefault": true,
+          "defaultValue": "page",
+          "defaultExpression": "'page'"
         }
       ],
       "outputs": [],
@@ -19481,6 +36403,40 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "الحاوية",
     "descriptionAr": "حد عرض أفقي للمحتوى.",
+    "showcaseInitialValues": {
+      "width": "full",
+      "gutter": "page"
+    },
+    "showcaseControls": [
+      {
+        "name": "width",
+        "label": "width",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpContainerWidth",
+        "options": [
+          "full",
+          "narrow",
+          "content",
+          "wide"
+        ],
+        "initialValue": "full"
+      },
+      {
+        "name": "gutter",
+        "label": "gutter",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpContainerGutter",
+        "options": [
+          "page",
+          "none"
+        ],
+        "initialValue": "page"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "width",
@@ -19524,7 +36480,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "horizontal",
             "vertical"
-          ]
+          ],
+          "type": "ErpDividerOrientation",
+          "hasDefault": true,
+          "defaultValue": "horizontal",
+          "defaultExpression": "'horizontal'"
         },
         {
           "name": "tone",
@@ -19533,7 +36493,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "default",
             "strong"
-          ]
+          ],
+          "type": "ErpDividerTone",
+          "hasDefault": true,
+          "defaultValue": "subtle",
+          "defaultExpression": "'subtle'"
         },
         {
           "name": "stroke",
@@ -19541,7 +36505,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "solid",
             "dashed"
-          ]
+          ],
+          "type": "ErpDividerStroke",
+          "hasDefault": true,
+          "defaultValue": "solid",
+          "defaultExpression": "'solid'"
         },
         {
           "name": "weight",
@@ -19549,7 +36517,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "default",
             "emphasis"
-          ]
+          ],
+          "type": "ErpDividerWeight",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         }
       ],
       "outputs": [],
@@ -19619,6 +36591,67 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "الفاصل",
     "descriptionAr": "فاصل دلالي أفقي أو رأسي.",
+    "showcaseInitialValues": {
+      "orientation": "horizontal",
+      "tone": "subtle",
+      "stroke": "solid",
+      "weight": "default"
+    },
+    "showcaseControls": [
+      {
+        "name": "orientation",
+        "label": "orientation",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpDividerOrientation",
+        "options": [
+          "horizontal",
+          "vertical"
+        ],
+        "initialValue": "horizontal"
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpDividerTone",
+        "options": [
+          "subtle",
+          "default",
+          "strong"
+        ],
+        "initialValue": "subtle"
+      },
+      {
+        "name": "stroke",
+        "label": "stroke",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpDividerStroke",
+        "options": [
+          "solid",
+          "dashed"
+        ],
+        "initialValue": "solid"
+      },
+      {
+        "name": "weight",
+        "label": "weight",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpDividerWeight",
+        "options": [
+          "default",
+          "emphasis"
+        ],
+        "initialValue": "default"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "orientation",
@@ -19666,7 +36699,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "columns",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpGridColumns",
+          "hasDefault": true,
+          "defaultValue": 1,
+          "defaultExpression": "1"
         },
         {
           "name": "gap",
@@ -19681,7 +36718,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "lg",
             "xl",
             "xxl"
-          ]
+          ],
+          "type": "ErpGridGap",
+          "hasDefault": true,
+          "defaultValue": "grid",
+          "defaultExpression": "'grid'"
         },
         {
           "name": "responsive",
@@ -19689,7 +36730,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "auto",
             "fixed"
-          ]
+          ],
+          "type": "ErpGridResponsive",
+          "hasDefault": true,
+          "defaultValue": "auto",
+          "defaultExpression": "'auto'"
         }
       ],
       "outputs": [],
@@ -19785,6 +36830,56 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "الشبكة",
     "descriptionAr": "تخطيط شبكي بأعمدة وفجوات مضبوطة.",
+    "showcaseInitialValues": {
+      "columns": 1,
+      "gap": "grid",
+      "responsive": "auto"
+    },
+    "showcaseControls": [
+      {
+        "name": "columns",
+        "label": "columns",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpGridColumns",
+        "options": [],
+        "initialValue": 1
+      },
+      {
+        "name": "gap",
+        "label": "gap",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpGridGap",
+        "options": [
+          "grid",
+          "none",
+          "xxs",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl"
+        ],
+        "initialValue": "grid"
+      },
+      {
+        "name": "responsive",
+        "label": "responsive",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpGridResponsive",
+        "options": [
+          "auto",
+          "fixed"
+        ],
+        "initialValue": "auto"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "columns",
@@ -19831,12 +36926,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "name",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "ErpIconName",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "size",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "tone",
@@ -19855,17 +36958,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpIconTone",
+          "hasDefault": true,
+          "defaultValue": "inherit",
+          "defaultExpression": "'inherit'"
         },
         {
           "name": "variant",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "strokeWidth",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpIconStrokeWidth",
+          "hasDefault": true,
+          "defaultValue": "regular",
+          "defaultExpression": "'regular'"
         },
         {
           "name": "decorative",
@@ -19873,12 +36988,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "label",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "",
+          "defaultExpression": "''"
         }
       ],
       "outputs": [],
@@ -20025,6 +37148,104 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "الأيقونة",
     "descriptionAr": "عرض أيقونة دلالية من السجل المعتمد.",
+    "showcaseInitialValues": {
+      "size": "md",
+      "tone": "inherit",
+      "variant": "outline",
+      "strokeWidth": "regular",
+      "decorative": true,
+      "label": "",
+      "name": "settings"
+    },
+    "showcaseControls": [
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "ErpIconName",
+        "options": [],
+        "initialValue": "settings"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconSize",
+        "options": [],
+        "initialValue": "md"
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpIconTone",
+        "options": [
+          "inherit",
+          "primary",
+          "secondary",
+          "muted",
+          "disabled",
+          "inverse",
+          "brand-primary",
+          "brand-secondary",
+          "brand-accent",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "inherit"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconVariant",
+        "options": [],
+        "initialValue": "outline"
+      },
+      {
+        "name": "strokeWidth",
+        "label": "strokeWidth",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpIconStrokeWidth",
+        "options": [],
+        "initialValue": "regular"
+      },
+      {
+        "name": "decorative",
+        "label": "decorative",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": ""
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "name",
@@ -20084,7 +37305,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "tight",
             "default",
             "loose"
-          ]
+          ],
+          "type": "ErpInlineGap",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "align",
@@ -20095,7 +37320,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "center",
             "end",
             "baseline"
-          ]
+          ],
+          "type": "ErpInlineAlign",
+          "hasDefault": true,
+          "defaultValue": "center",
+          "defaultExpression": "'center'"
         },
         {
           "name": "justify",
@@ -20105,7 +37334,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "center",
             "end",
             "between"
-          ]
+          ],
+          "type": "ErpInlineJustify",
+          "hasDefault": true,
+          "defaultValue": "start",
+          "defaultExpression": "'start'"
         },
         {
           "name": "wrap",
@@ -20113,7 +37346,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "nowrap",
             "wrap"
-          ]
+          ],
+          "type": "ErpInlineWrap",
+          "hasDefault": true,
+          "defaultValue": "nowrap",
+          "defaultExpression": "'nowrap'"
         }
       ],
       "outputs": [],
@@ -20255,6 +37492,73 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "التخطيط السطري",
     "descriptionAr": "ترتيب عناصر على المحور السطري مع التفاف مضبوط.",
+    "showcaseInitialValues": {
+      "gap": "default",
+      "align": "center",
+      "justify": "start",
+      "wrap": "nowrap"
+    },
+    "showcaseControls": [
+      {
+        "name": "gap",
+        "label": "gap",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpInlineGap",
+        "options": [
+          "none",
+          "tight",
+          "default",
+          "loose"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "align",
+        "label": "align",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpInlineAlign",
+        "options": [
+          "stretch",
+          "start",
+          "center",
+          "end",
+          "baseline"
+        ],
+        "initialValue": "center"
+      },
+      {
+        "name": "justify",
+        "label": "justify",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpInlineJustify",
+        "options": [
+          "start",
+          "center",
+          "end",
+          "between"
+        ],
+        "initialValue": "start"
+      },
+      {
+        "name": "wrap",
+        "label": "wrap",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpInlineWrap",
+        "options": [
+          "nowrap",
+          "wrap"
+        ],
+        "initialValue": "nowrap"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "gap",
@@ -20314,7 +37618,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "none",
             "default",
             "large"
-          ]
+          ],
+          "type": "ErpSectionGap",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         }
       ],
       "outputs": [],
@@ -20366,6 +37674,25 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "القسم",
     "descriptionAr": "حد section دلالي وفجوة داخلية.",
+    "showcaseInitialValues": {
+      "gap": "default"
+    },
+    "showcaseControls": [
+      {
+        "name": "gap",
+        "label": "gap",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpSectionGap",
+        "options": [
+          "none",
+          "default",
+          "large"
+        ],
+        "initialValue": "default"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "gap"
@@ -20405,7 +37732,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "tight",
             "default",
             "loose"
-          ]
+          ],
+          "type": "ErpStackGap",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "align",
@@ -20415,7 +37746,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "start",
             "center",
             "end"
-          ]
+          ],
+          "type": "ErpStackAlign",
+          "hasDefault": true,
+          "defaultValue": "stretch",
+          "defaultExpression": "'stretch'"
         },
         {
           "name": "justify",
@@ -20425,7 +37760,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "center",
             "end",
             "between"
-          ]
+          ],
+          "type": "ErpStackJustify",
+          "hasDefault": true,
+          "defaultValue": "start",
+          "defaultExpression": "'start'"
         }
       ],
       "outputs": [],
@@ -20544,6 +37883,58 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "التكديس",
     "descriptionAr": "ترتيب عناصر رأسيًا مع محاذاة وفجوات مضبوطة.",
+    "showcaseInitialValues": {
+      "gap": "default",
+      "align": "stretch",
+      "justify": "start"
+    },
+    "showcaseControls": [
+      {
+        "name": "gap",
+        "label": "gap",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpStackGap",
+        "options": [
+          "none",
+          "tight",
+          "default",
+          "loose"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "align",
+        "label": "align",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpStackAlign",
+        "options": [
+          "stretch",
+          "start",
+          "center",
+          "end"
+        ],
+        "initialValue": "stretch"
+      },
+      {
+        "name": "justify",
+        "label": "justify",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpStackJustify",
+        "options": [
+          "start",
+          "center",
+          "end",
+          "between"
+        ],
+        "initialValue": "start"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "gap",
@@ -20598,7 +37989,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "default",
             "elevated",
             "inverse"
-          ]
+          ],
+          "type": "ErpSurfaceTone",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "border",
@@ -20608,7 +38003,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "subtle",
             "default",
             "strong"
-          ]
+          ],
+          "type": "ErpSurfaceBorder",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "elevation",
@@ -20617,7 +38016,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "none",
             "raised",
             "overlay"
-          ]
+          ],
+          "type": "ErpSurfaceElevation",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "radius",
@@ -20628,7 +38031,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "surface",
             "overlay",
             "full"
-          ]
+          ],
+          "type": "ErpSurfaceRadius",
+          "hasDefault": true,
+          "defaultValue": "surface",
+          "defaultExpression": "'surface'"
         },
         {
           "name": "padding",
@@ -20638,7 +38045,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "tight",
             "default",
             "loose"
-          ]
+          ],
+          "type": "ErpSurfacePadding",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         }
       ],
       "outputs": [],
@@ -20701,6 +38112,90 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "السطح",
     "descriptionAr": "سطح مرئي يملك الحشو والحدود والارتفاع.",
+    "showcaseInitialValues": {
+      "tone": "default",
+      "border": "none",
+      "elevation": "none",
+      "radius": "surface",
+      "padding": "default"
+    },
+    "showcaseControls": [
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpSurfaceTone",
+        "options": [
+          "canvas",
+          "default",
+          "elevated",
+          "inverse"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "border",
+        "label": "border",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpSurfaceBorder",
+        "options": [
+          "none",
+          "subtle",
+          "default",
+          "strong"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "elevation",
+        "label": "elevation",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpSurfaceElevation",
+        "options": [
+          "none",
+          "raised",
+          "overlay"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "radius",
+        "label": "radius",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpSurfaceRadius",
+        "options": [
+          "none",
+          "control",
+          "surface",
+          "overlay",
+          "full"
+        ],
+        "initialValue": "surface"
+      },
+      {
+        "name": "padding",
+        "label": "padding",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpSurfacePadding",
+        "options": [
+          "none",
+          "tight",
+          "default",
+          "loose"
+        ],
+        "initialValue": "default"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "tone",
@@ -20819,7 +38314,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "table-header",
             "table-cell",
             "link"
-          ]
+          ],
+          "type": "ErpTextType",
+          "hasDefault": true,
+          "defaultValue": "text",
+          "defaultExpression": "'text'"
         },
         {
           "name": "size",
@@ -20837,7 +38336,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "3xl",
             "4xl",
             "5xl"
-          ]
+          ],
+          "type": "ErpTextSize",
+          "hasDefault": true,
+          "defaultValue": "auto",
+          "defaultExpression": "'auto'"
         },
         {
           "name": "weight",
@@ -20848,7 +38351,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "regular",
             "medium",
             "bold"
-          ]
+          ],
+          "type": "ErpTextWeight",
+          "hasDefault": true,
+          "defaultValue": "auto",
+          "defaultExpression": "'auto'"
         },
         {
           "name": "tone",
@@ -20868,7 +38375,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpTextTone",
+          "hasDefault": true,
+          "defaultValue": "auto",
+          "defaultExpression": "'auto'"
         },
         {
           "name": "family",
@@ -20879,7 +38390,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "ui",
             "arabic",
             "latin"
-          ]
+          ],
+          "type": "ErpTextFamily",
+          "hasDefault": true,
+          "defaultValue": "auto",
+          "defaultExpression": "'auto'"
         },
         {
           "name": "lineHeight",
@@ -20894,7 +38409,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "comfortable",
             "relaxed",
             "loose"
-          ]
+          ],
+          "type": "ErpTextLineHeight",
+          "hasDefault": true,
+          "defaultValue": "auto",
+          "defaultExpression": "'auto'"
         },
         {
           "name": "fontStyle",
@@ -20904,7 +38423,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inherit",
             "normal",
             "italic"
-          ]
+          ],
+          "type": "ErpTextFontStyle",
+          "hasDefault": true,
+          "defaultValue": "auto",
+          "defaultExpression": "'auto'"
         },
         {
           "name": "decoration",
@@ -20915,7 +38438,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "none",
             "underline",
             "line-through"
-          ]
+          ],
+          "type": "ErpTextDecoration",
+          "hasDefault": true,
+          "defaultValue": "auto",
+          "defaultExpression": "'auto'"
         },
         {
           "name": "align",
@@ -20926,7 +38453,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "center",
             "end",
             "justify"
-          ]
+          ],
+          "type": "ErpTextAlign",
+          "hasDefault": true,
+          "defaultValue": "inherit",
+          "defaultExpression": "'inherit'"
         },
         {
           "name": "wrap",
@@ -20938,7 +38469,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "pre",
             "pre-wrap",
             "break-spaces"
-          ]
+          ],
+          "type": "ErpTextWrap",
+          "hasDefault": true,
+          "defaultValue": "auto",
+          "defaultExpression": "'auto'"
         },
         {
           "name": "overflow",
@@ -20947,12 +38482,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "visible",
             "clip",
             "ellipsis"
-          ]
+          ],
+          "type": "ErpTextOverflow",
+          "hasDefault": true,
+          "defaultValue": "visible",
+          "defaultExpression": "'visible'"
         },
         {
           "name": "lineClamp",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpTextLineClamp",
+          "hasDefault": true,
+          "defaultValue": 0,
+          "defaultExpression": "0"
         },
         {
           "name": "direction",
@@ -20962,7 +38505,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "auto",
             "rtl",
             "ltr"
-          ]
+          ],
+          "type": "ErpTextDirection",
+          "hasDefault": true,
+          "defaultValue": "inherit",
+          "defaultExpression": "'inherit'"
         },
         {
           "name": "selectable",
@@ -20970,12 +38517,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "href",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "target",
@@ -20985,42 +38540,74 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "_blank",
             "_parent",
             "_top"
-          ]
+          ],
+          "type": "'_self' | '_blank' | '_parent' | '_top' | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "rel",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "download",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "forId",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "datetime",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "value",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "title",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "cite",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [],
@@ -21405,6 +38992,409 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "النص",
     "descriptionAr": "بوابة النصوص الإنتاجية وأدوارها الدلالية.",
+    "showcaseInitialValues": {
+      "type": "text",
+      "size": "auto",
+      "weight": "auto",
+      "tone": "auto",
+      "family": "auto",
+      "lineHeight": "auto",
+      "fontStyle": "auto",
+      "decoration": "auto",
+      "align": "inherit",
+      "wrap": "auto",
+      "overflow": "visible",
+      "lineClamp": 0,
+      "direction": "inherit",
+      "selectable": false,
+      "href": null,
+      "target": null,
+      "rel": null,
+      "download": null,
+      "forId": null,
+      "datetime": null,
+      "value": null,
+      "title": null,
+      "cite": null
+    },
+    "showcaseControls": [
+      {
+        "name": "type",
+        "label": "type",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTextType",
+        "options": [
+          "text",
+          "heading-1",
+          "heading-2",
+          "heading-3",
+          "heading-4",
+          "heading-5",
+          "heading-6",
+          "paragraph",
+          "div",
+          "span",
+          "pre",
+          "blockquote",
+          "address",
+          "hgroup",
+          "figure",
+          "figcaption",
+          "strong",
+          "bold",
+          "emphasis",
+          "italic",
+          "underline",
+          "strike",
+          "deleted",
+          "inserted",
+          "mark",
+          "small",
+          "subscript",
+          "superscript",
+          "abbreviation",
+          "definition",
+          "citation",
+          "quote",
+          "time",
+          "data",
+          "bdi",
+          "bdo",
+          "ruby",
+          "ruby-text",
+          "ruby-parenthesis",
+          "code",
+          "keyboard",
+          "sample",
+          "variable",
+          "label",
+          "legend",
+          "caption",
+          "summary",
+          "output",
+          "list-item",
+          "term",
+          "description",
+          "table-header",
+          "table-cell",
+          "link"
+        ],
+        "initialValue": "text"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTextSize",
+        "options": [
+          "auto",
+          "inherit",
+          "2xs",
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "2xl",
+          "3xl",
+          "4xl",
+          "5xl"
+        ],
+        "initialValue": "auto"
+      },
+      {
+        "name": "weight",
+        "label": "weight",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTextWeight",
+        "options": [
+          "auto",
+          "inherit",
+          "regular",
+          "medium",
+          "bold"
+        ],
+        "initialValue": "auto"
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTextTone",
+        "options": [
+          "auto",
+          "inherit",
+          "primary",
+          "secondary",
+          "muted",
+          "disabled",
+          "inverse",
+          "brand-primary",
+          "brand-secondary",
+          "brand-accent",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "auto"
+      },
+      {
+        "name": "family",
+        "label": "family",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTextFamily",
+        "options": [
+          "auto",
+          "inherit",
+          "ui",
+          "arabic",
+          "latin"
+        ],
+        "initialValue": "auto"
+      },
+      {
+        "name": "lineHeight",
+        "label": "lineHeight",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTextLineHeight",
+        "options": [
+          "auto",
+          "inherit",
+          "tight",
+          "snug",
+          "compact",
+          "normal",
+          "comfortable",
+          "relaxed",
+          "loose"
+        ],
+        "initialValue": "auto"
+      },
+      {
+        "name": "fontStyle",
+        "label": "fontStyle",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTextFontStyle",
+        "options": [
+          "auto",
+          "inherit",
+          "normal",
+          "italic"
+        ],
+        "initialValue": "auto"
+      },
+      {
+        "name": "decoration",
+        "label": "decoration",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTextDecoration",
+        "options": [
+          "auto",
+          "inherit",
+          "none",
+          "underline",
+          "line-through"
+        ],
+        "initialValue": "auto"
+      },
+      {
+        "name": "align",
+        "label": "align",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTextAlign",
+        "options": [
+          "inherit",
+          "start",
+          "center",
+          "end",
+          "justify"
+        ],
+        "initialValue": "inherit"
+      },
+      {
+        "name": "wrap",
+        "label": "wrap",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTextWrap",
+        "options": [
+          "auto",
+          "normal",
+          "nowrap",
+          "pre",
+          "pre-wrap",
+          "break-spaces"
+        ],
+        "initialValue": "auto"
+      },
+      {
+        "name": "overflow",
+        "label": "overflow",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTextOverflow",
+        "options": [
+          "visible",
+          "clip",
+          "ellipsis"
+        ],
+        "initialValue": "visible"
+      },
+      {
+        "name": "lineClamp",
+        "label": "lineClamp",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpTextLineClamp",
+        "options": [],
+        "initialValue": 0
+      },
+      {
+        "name": "direction",
+        "label": "direction",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpTextDirection",
+        "options": [
+          "inherit",
+          "auto",
+          "rtl",
+          "ltr"
+        ],
+        "initialValue": "inherit"
+      },
+      {
+        "name": "selectable",
+        "label": "selectable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "href",
+        "label": "href",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "target",
+        "label": "target",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "'_self' | '_blank' | '_parent' | '_top' | null",
+        "options": [
+          "_self",
+          "_blank",
+          "_parent",
+          "_top"
+        ],
+        "initialValue": null
+      },
+      {
+        "name": "rel",
+        "label": "rel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "download",
+        "label": "download",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "forId",
+        "label": "forId",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "datetime",
+        "label": "datetime",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "value",
+        "label": "value",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "title",
+        "label": "title",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "cite",
+        "label": "cite",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "type",
@@ -21598,9 +39588,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredStates": [
         "selectable"
       ],
-      "coveredProjectionSlots": [],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
       "coveredReferenceCases": [],
-      "evidenceKind": "STATIC_COMPONENT"
+      "evidenceKind": "AUTHORED_PROJECTION"
     }
   },
   {
@@ -21616,22 +39608,38 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "avatars",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpAvatarCatalogItem[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": "ERP_AVATAR_CATALOG"
         },
         {
           "name": "title",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "اختيار الصورة الشخصية",
+          "defaultExpression": "'اختيار الصورة الشخصية'"
         },
         {
           "name": "label",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "subtitle",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "اختر الصورة التي تناسب حسابك",
+          "defaultExpression": "'اختر الصورة التي تناسب حسابك'"
         },
         {
           "name": "searchable",
@@ -21639,7 +39647,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "showConfirm",
@@ -21647,7 +39659,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "showCount",
@@ -21655,32 +39671,56 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "searchPlaceholder",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "ابحث عن صورة...",
+          "defaultExpression": "'ابحث عن صورة...'"
         },
         {
           "name": "emptyText",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "لا توجد صور مطابقة لبحثك",
+          "defaultExpression": "'لا توجد صور مطابقة لبحثك'"
         },
         {
           "name": "confirmLabel",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "حفظ الاختيار",
+          "defaultExpression": "'حفظ الاختيار'"
         },
         {
           "name": "cancelLabel",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "إلغاء",
+          "defaultExpression": "'إلغاء'"
         },
         {
           "name": "savedLabel",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "تم حفظ الصورة الشخصية",
+          "defaultExpression": "'تم حفظ الصورة الشخصية'"
         },
         {
           "name": "disabled",
@@ -21688,7 +39728,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "size",
@@ -21696,7 +39740,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "default",
             "compact"
-          ]
+          ],
+          "type": "ErpAvatarPickerSize",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         },
         {
           "name": "avatarShape",
@@ -21705,12 +39753,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "circle",
             "rounded",
             "square"
-          ]
+          ],
+          "type": "ErpAvatarShape",
+          "hasDefault": true,
+          "defaultValue": "circle",
+          "defaultExpression": "'circle'"
         },
         {
           "name": "avatarSize",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "ErpAvatarSize | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [
@@ -21723,7 +39779,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "value",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "gender",
@@ -21731,7 +39791,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "male",
             "female"
-          ]
+          ],
+          "type": "ErpAvatarGender",
+          "hasDefault": true,
+          "defaultValue": "male",
+          "defaultExpression": "'male'"
         }
       ]
     },
@@ -21786,6 +39850,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
+          "avatars": [
+            {
+              "id": "avatar-01",
+              "gender": "male",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "label": "صورة ١"
+            },
+            {
+              "id": "avatar-02",
+              "gender": "male",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-02.png",
+              "label": "صورة ٢"
+            },
+            {
+              "id": "avatar-21",
+              "gender": "female",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "label": "صورة ٢١"
+            },
+            {
+              "id": "avatar-22",
+              "gender": "female",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
+              "label": "صورة ٢٢"
+            }
+          ],
           "value": null,
           "gender": null
         }
@@ -21794,6 +39884,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled-false",
         "label": "disabled: false",
         "inputs": {
+          "avatars": [
+            {
+              "id": "avatar-01",
+              "gender": "male",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "label": "صورة ١"
+            },
+            {
+              "id": "avatar-02",
+              "gender": "male",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-02.png",
+              "label": "صورة ٢"
+            },
+            {
+              "id": "avatar-21",
+              "gender": "female",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "label": "صورة ٢١"
+            },
+            {
+              "id": "avatar-22",
+              "gender": "female",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
+              "label": "صورة ٢٢"
+            }
+          ],
           "value": null,
           "gender": null,
           "disabled": false
@@ -21803,6 +39919,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled-true",
         "label": "disabled: true",
         "inputs": {
+          "avatars": [
+            {
+              "id": "avatar-01",
+              "gender": "male",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "label": "صورة ١"
+            },
+            {
+              "id": "avatar-02",
+              "gender": "male",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-02.png",
+              "label": "صورة ٢"
+            },
+            {
+              "id": "avatar-21",
+              "gender": "female",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "label": "صورة ٢١"
+            },
+            {
+              "id": "avatar-22",
+              "gender": "female",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
+              "label": "صورة ٢٢"
+            }
+          ],
           "value": null,
           "gender": null,
           "disabled": true
@@ -21812,6 +39954,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-default",
         "label": "size: default",
         "inputs": {
+          "avatars": [
+            {
+              "id": "avatar-01",
+              "gender": "male",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "label": "صورة ١"
+            },
+            {
+              "id": "avatar-02",
+              "gender": "male",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-02.png",
+              "label": "صورة ٢"
+            },
+            {
+              "id": "avatar-21",
+              "gender": "female",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "label": "صورة ٢١"
+            },
+            {
+              "id": "avatar-22",
+              "gender": "female",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
+              "label": "صورة ٢٢"
+            }
+          ],
           "value": null,
           "gender": null,
           "size": "default"
@@ -21821,6 +39989,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-compact",
         "label": "size: compact",
         "inputs": {
+          "avatars": [
+            {
+              "id": "avatar-01",
+              "gender": "male",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "label": "صورة ١"
+            },
+            {
+              "id": "avatar-02",
+              "gender": "male",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-02.png",
+              "label": "صورة ٢"
+            },
+            {
+              "id": "avatar-21",
+              "gender": "female",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "label": "صورة ٢١"
+            },
+            {
+              "id": "avatar-22",
+              "gender": "female",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
+              "label": "صورة ٢٢"
+            }
+          ],
           "value": null,
           "gender": null,
           "size": "compact"
@@ -21830,6 +40024,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "gender-male",
         "label": "gender: male",
         "inputs": {
+          "avatars": [
+            {
+              "id": "avatar-01",
+              "gender": "male",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "label": "صورة ١"
+            },
+            {
+              "id": "avatar-02",
+              "gender": "male",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-02.png",
+              "label": "صورة ٢"
+            },
+            {
+              "id": "avatar-21",
+              "gender": "female",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "label": "صورة ٢١"
+            },
+            {
+              "id": "avatar-22",
+              "gender": "female",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
+              "label": "صورة ٢٢"
+            }
+          ],
           "value": null,
           "gender": "male"
         }
@@ -21838,6 +40058,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "gender-female",
         "label": "gender: female",
         "inputs": {
+          "avatars": [
+            {
+              "id": "avatar-01",
+              "gender": "male",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "label": "صورة ١"
+            },
+            {
+              "id": "avatar-02",
+              "gender": "male",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-02.png",
+              "label": "صورة ٢"
+            },
+            {
+              "id": "avatar-21",
+              "gender": "female",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "label": "صورة ٢١"
+            },
+            {
+              "id": "avatar-22",
+              "gender": "female",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
+              "label": "صورة ٢٢"
+            }
+          ],
           "value": null,
           "gender": "female"
         }
@@ -21846,6 +40092,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
+          "avatars": [
+            {
+              "id": "avatar-01",
+              "gender": "male",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "label": "صورة ١"
+            },
+            {
+              "id": "avatar-02",
+              "gender": "male",
+              "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-02.png",
+              "label": "صورة ٢"
+            },
+            {
+              "id": "avatar-21",
+              "gender": "female",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "label": "صورة ٢١"
+            },
+            {
+              "id": "avatar-22",
+              "gender": "female",
+              "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
+              "label": "صورة ٢٢"
+            }
+          ],
           "value": null,
           "gender": null,
           "disabled": true
@@ -21854,6 +40126,280 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "منتقي الصورة الرمزية",
     "descriptionAr": "اختيار صورة رمزية مضبوطة من الفهرس.",
+    "showcaseInitialValues": {
+      "title": "اختيار الصورة الشخصية",
+      "label": null,
+      "subtitle": "اختر الصورة التي تناسب حسابك",
+      "searchable": true,
+      "showConfirm": true,
+      "showCount": true,
+      "searchPlaceholder": "ابحث عن صورة...",
+      "emptyText": "لا توجد صور مطابقة لبحثك",
+      "confirmLabel": "حفظ الاختيار",
+      "cancelLabel": "إلغاء",
+      "savedLabel": "تم حفظ الصورة الشخصية",
+      "disabled": false,
+      "size": "default",
+      "avatarShape": "circle",
+      "avatarSize": null,
+      "value": null,
+      "gender": "male",
+      "avatars": [
+        {
+          "id": "avatar-01",
+          "gender": "male",
+          "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+          "label": "صورة ١"
+        },
+        {
+          "id": "avatar-02",
+          "gender": "male",
+          "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-02.png",
+          "label": "صورة ٢"
+        },
+        {
+          "id": "avatar-21",
+          "gender": "female",
+          "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+          "label": "صورة ٢١"
+        },
+        {
+          "id": "avatar-22",
+          "gender": "female",
+          "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
+          "label": "صورة ٢٢"
+        }
+      ]
+    },
+    "showcaseControls": [
+      {
+        "name": "avatars",
+        "label": "avatars",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpAvatarCatalogItem[]",
+        "options": [],
+        "initialValue": [
+          {
+            "id": "avatar-01",
+            "gender": "male",
+            "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+            "label": "صورة ١"
+          },
+          {
+            "id": "avatar-02",
+            "gender": "male",
+            "imageUrl": "/assets/honesty-erp-avatars/users/male/avatar-02.png",
+            "label": "صورة ٢"
+          },
+          {
+            "id": "avatar-21",
+            "gender": "female",
+            "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "label": "صورة ٢١"
+          },
+          {
+            "id": "avatar-22",
+            "gender": "female",
+            "imageUrl": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
+            "label": "صورة ٢٢"
+          }
+        ]
+      },
+      {
+        "name": "title",
+        "label": "title",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "اختيار الصورة الشخصية"
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "subtitle",
+        "label": "subtitle",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "اختر الصورة التي تناسب حسابك"
+      },
+      {
+        "name": "searchable",
+        "label": "searchable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "showConfirm",
+        "label": "showConfirm",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "showCount",
+        "label": "showCount",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "searchPlaceholder",
+        "label": "searchPlaceholder",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "ابحث عن صورة..."
+      },
+      {
+        "name": "emptyText",
+        "label": "emptyText",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "لا توجد صور مطابقة لبحثك"
+      },
+      {
+        "name": "confirmLabel",
+        "label": "confirmLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "حفظ الاختيار"
+      },
+      {
+        "name": "cancelLabel",
+        "label": "cancelLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "إلغاء"
+      },
+      {
+        "name": "savedLabel",
+        "label": "savedLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "تم حفظ الصورة الشخصية"
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpAvatarPickerSize",
+        "options": [
+          "default",
+          "compact"
+        ],
+        "initialValue": "default"
+      },
+      {
+        "name": "avatarShape",
+        "label": "avatarShape",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpAvatarShape",
+        "options": [
+          "circle",
+          "rounded",
+          "square"
+        ],
+        "initialValue": "circle"
+      },
+      {
+        "name": "avatarSize",
+        "label": "avatarSize",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpAvatarSize | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "value",
+        "label": "value",
+        "source": "model",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "gender",
+        "label": "gender",
+        "source": "model",
+        "kind": "select",
+        "required": false,
+        "type": "ErpAvatarGender",
+        "options": [
+          "male",
+          "female"
+        ],
+        "initialValue": "male"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "avatars",
@@ -21943,17 +40489,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -21961,7 +40519,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -21969,17 +40531,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "description",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "indeterminate",
@@ -21987,7 +40561,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "readOnly",
@@ -21995,7 +40573,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "hideText",
@@ -22003,7 +40585,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "tone",
@@ -22013,7 +40599,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -22024,7 +40614,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "size",
@@ -22037,7 +40631,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "mode",
@@ -22046,7 +40644,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "checkbox",
             "switch",
             "tile"
-          ]
+          ],
+          "type": "ErpCheckBoxMode",
+          "hasDefault": true,
+          "defaultValue": "checkbox",
+          "defaultExpression": "'checkbox'"
         },
         {
           "name": "variant",
@@ -22055,7 +40657,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "outline",
             "filled",
             "soft"
-          ]
+          ],
+          "type": "ErpCheckBoxVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "presentation",
@@ -22063,7 +40669,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "default",
             "table-reference"
-          ]
+          ],
+          "type": "'default' | 'table-reference'",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         }
       ],
       "outputs": [],
@@ -22274,6 +40884,241 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "مربع الاختيار",
     "descriptionAr": "اختيار منطقي مستقل أو ضمن مجموعة.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "description": null,
+      "indeterminate": false,
+      "readOnly": false,
+      "hideText": false,
+      "tone": "neutral",
+      "status": "none",
+      "size": "md",
+      "mode": "checkbox",
+      "variant": "outline",
+      "presentation": "default",
+      "label": "حقل تجريبي"
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "boolean",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": false
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "description",
+        "label": "description",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "indeterminate",
+        "label": "indeterminate",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "readOnly",
+        "label": "readOnly",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "hideText",
+        "label": "hideText",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "mode",
+        "label": "mode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpCheckBoxMode",
+        "options": [
+          "checkbox",
+          "switch",
+          "tile"
+        ],
+        "initialValue": "checkbox"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpCheckBoxVariant",
+        "options": [
+          "outline",
+          "filled",
+          "soft"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "presentation",
+        "label": "presentation",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "'default' | 'table-reference'",
+        "options": [
+          "default",
+          "table-reference"
+        ],
+        "initialValue": "default"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -22400,12 +41245,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "columns",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "readonly ErpDataColumn[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "visibleKeys",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly string[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "disabled",
@@ -22413,7 +41266,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "presentation",
@@ -22421,7 +41278,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "default",
             "table-reference"
-          ]
+          ],
+          "type": "'default' | 'table-reference'",
+          "hasDefault": true,
+          "defaultValue": "default",
+          "defaultExpression": "'default'"
         }
       ],
       "outputs": [
@@ -22516,6 +41377,72 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "محدد الأعمدة",
     "descriptionAr": "ضبط الأعمدة المرئية للجدول.",
+    "showcaseInitialValues": {
+      "visibleKeys": [],
+      "disabled": false,
+      "presentation": "default",
+      "columns": [
+        {
+          "key": "name",
+          "label": "الاسم",
+          "hideable": true
+        }
+      ]
+    },
+    "showcaseControls": [
+      {
+        "name": "columns",
+        "label": "columns",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "readonly ErpDataColumn[]",
+        "options": [],
+        "initialValue": [
+          {
+            "key": "name",
+            "label": "الاسم",
+            "hideable": true
+          }
+        ]
+      },
+      {
+        "name": "visibleKeys",
+        "label": "visibleKeys",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly string[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "presentation",
+        "label": "presentation",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "'default' | 'table-reference'",
+        "options": [
+          "default",
+          "table-reference"
+        ],
+        "initialValue": "default"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "columns",
@@ -22559,17 +41486,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -22577,7 +41516,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -22585,17 +41528,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "description",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "readOnly",
@@ -22603,7 +41558,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "hideText",
@@ -22611,7 +41570,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "tone",
@@ -22621,7 +41584,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -22632,7 +41599,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "size",
@@ -22645,7 +41616,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "mode",
@@ -22653,7 +41628,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "radio",
             "tile"
-          ]
+          ],
+          "type": "ErpRadioBoxMode",
+          "hasDefault": true,
+          "defaultValue": "radio",
+          "defaultExpression": "'radio'"
         },
         {
           "name": "variant",
@@ -22662,7 +41641,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "outline",
             "filled",
             "soft"
-          ]
+          ],
+          "type": "ErpRadioBoxVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         }
       ],
       "outputs": [],
@@ -22863,6 +41846,212 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "زر الاختيار",
     "descriptionAr": "اختيار قيمة واحدة ضمن سياق.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "description": null,
+      "readOnly": false,
+      "hideText": false,
+      "tone": "neutral",
+      "status": "none",
+      "size": "md",
+      "mode": "radio",
+      "variant": "outline",
+      "label": "حقل تجريبي"
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "boolean",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": false
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "description",
+        "label": "description",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "readOnly",
+        "label": "readOnly",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "hideText",
+        "label": "hideText",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "mode",
+        "label": "mode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpRadioBoxMode",
+        "options": [
+          "radio",
+          "tile"
+        ],
+        "initialValue": "radio"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpRadioBoxVariant",
+        "options": [
+          "outline",
+          "filled",
+          "soft"
+        ],
+        "initialValue": "outline"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -22976,17 +42165,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         {
           "name": "label",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "name",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "form",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         },
         {
           "name": "disabled",
@@ -22994,7 +42195,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "required",
@@ -23002,17 +42207,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         },
         {
           "name": "externalValidationIssues",
           "required": false,
-          "values": []
+          "values": [],
+          "type": "readonly ErpInputValidationIssue[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
         },
         {
           "name": "options",
           "required": true,
-          "values": []
+          "values": [],
+          "type": "readonly ErpRadioGroupOption[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
         },
         {
           "name": "mode",
@@ -23020,7 +42237,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "radio",
             "tile"
-          ]
+          ],
+          "type": "ErpRadioBoxMode",
+          "hasDefault": true,
+          "defaultValue": "radio",
+          "defaultExpression": "'radio'"
         },
         {
           "name": "variant",
@@ -23029,7 +42250,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "outline",
             "filled",
             "soft"
-          ]
+          ],
+          "type": "ErpRadioBoxVariant",
+          "hasDefault": true,
+          "defaultValue": "outline",
+          "defaultExpression": "'outline'"
         },
         {
           "name": "tone",
@@ -23039,7 +42264,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "primary",
             "secondary",
             "accent"
-          ]
+          ],
+          "type": "ErpFieldTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
         },
         {
           "name": "status",
@@ -23050,7 +42279,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "warning",
             "danger",
             "info"
-          ]
+          ],
+          "type": "ErpFieldStatus",
+          "hasDefault": true,
+          "defaultValue": "none",
+          "defaultExpression": "'none'"
         },
         {
           "name": "size",
@@ -23063,7 +42296,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "xxl",
             "xxxl",
             "xxxxl"
-          ]
+          ],
+          "type": "ErpFieldSize",
+          "hasDefault": true,
+          "defaultValue": "md",
+          "defaultExpression": "'md'"
         },
         {
           "name": "readOnly",
@@ -23071,7 +42308,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ],
       "outputs": [],
@@ -23393,6 +42634,208 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "مجموعة الاختيار",
     "descriptionAr": "مجموعة خيارات أحادية مضبوطة.",
+    "showcaseInitialValues": {
+      "name": null,
+      "form": null,
+      "disabled": false,
+      "required": false,
+      "externalValidationIssues": [],
+      "mode": "radio",
+      "variant": "outline",
+      "tone": "neutral",
+      "status": "none",
+      "size": "md",
+      "readOnly": false,
+      "label": "حقل تجريبي",
+      "options": [
+        {
+          "value": "active",
+          "label": "نشط"
+        }
+      ]
+    },
+    "showcaseControls": [
+      {
+        "name": "$value",
+        "label": "value (CVA)",
+        "source": "cva",
+        "kind": "json",
+        "required": false,
+        "type": "ControlValueAccessor value",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": true,
+        "type": "string",
+        "options": [],
+        "initialValue": "حقل تجريبي"
+      },
+      {
+        "name": "name",
+        "label": "name",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "form",
+        "label": "form",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "required",
+        "label": "required",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "externalValidationIssues",
+        "label": "externalValidationIssues",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpInputValidationIssue[]",
+        "options": [],
+        "initialValue": []
+      },
+      {
+        "name": "options",
+        "label": "options",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "readonly ErpRadioGroupOption[]",
+        "options": [],
+        "initialValue": [
+          {
+            "value": "active",
+            "label": "نشط"
+          }
+        ]
+      },
+      {
+        "name": "mode",
+        "label": "mode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpRadioBoxMode",
+        "options": [
+          "radio",
+          "tile"
+        ],
+        "initialValue": "radio"
+      },
+      {
+        "name": "variant",
+        "label": "variant",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpRadioBoxVariant",
+        "options": [
+          "outline",
+          "filled",
+          "soft"
+        ],
+        "initialValue": "outline"
+      },
+      {
+        "name": "tone",
+        "label": "tone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldTone",
+        "options": [
+          "neutral",
+          "primary",
+          "secondary",
+          "accent"
+        ],
+        "initialValue": "neutral"
+      },
+      {
+        "name": "status",
+        "label": "status",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldStatus",
+        "options": [
+          "none",
+          "success",
+          "warning",
+          "danger",
+          "info"
+        ],
+        "initialValue": "none"
+      },
+      {
+        "name": "size",
+        "label": "size",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldSize",
+        "options": [
+          "sm",
+          "md",
+          "lg",
+          "xl",
+          "xxl",
+          "xxxl",
+          "xxxxl"
+        ],
+        "initialValue": "md"
+      },
+      {
+        "name": "readOnly",
+        "label": "readOnly",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "label",
@@ -23482,7 +42925,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "false",
             "true"
-          ]
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ],
       "outputs": [
@@ -23495,7 +42942,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "values": [
             "table",
             "cards"
-          ]
+          ],
+          "type": "ErpViewMode",
+          "hasDefault": true,
+          "defaultValue": "table",
+          "defaultExpression": "'table'"
         }
       ]
     },
@@ -23565,6 +43016,38 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     ],
     "displayNameAr": "مبدل العرض",
     "descriptionAr": "اختيار وضع عرض واحد من أوضاع محددة.",
+    "showcaseInitialValues": {
+      "disabled": false,
+      "value": "table"
+    },
+    "showcaseControls": [
+      {
+        "name": "disabled",
+        "label": "disabled",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "value",
+        "label": "value",
+        "source": "model",
+        "kind": "select",
+        "required": false,
+        "type": "ErpViewMode",
+        "options": [
+          "table",
+          "cards"
+        ],
+        "initialValue": "table"
+      }
+    ],
     "showcaseCoverage": {
       "coveredInputs": [
         "disabled"

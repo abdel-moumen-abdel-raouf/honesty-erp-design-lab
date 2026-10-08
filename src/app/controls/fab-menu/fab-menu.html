@@ -7,13 +7,25 @@
     [attr.aria-label]="label()"
   >
     @for (item of items(); track item.value) {
-      <erp-extended-fab
-        data-fab-menu-action
-        [label]="item.label"
-        [icon]="item.icon ?? null"
-        [disabled]="item.disabled ?? false"
-        (pressed)="select(item)"
-      />
+      @if (item.presentation === 'icon' && item.icon) {
+        <erp-tooltip [text]="item.label">
+          <erp-fab
+            data-fab-menu-action
+            [label]="item.label"
+            [icon]="item.icon"
+            [disabled]="item.disabled ?? false"
+            (pressed)="select(item)"
+          />
+        </erp-tooltip>
+      } @else {
+        <erp-extended-fab
+          data-fab-menu-action
+          [label]="item.label"
+          [icon]="item.presentation === 'text' ? null : (item.icon ?? null)"
+          [disabled]="item.disabled ?? false"
+          (pressed)="select(item)"
+        />
+      }
     }
   </div>
 

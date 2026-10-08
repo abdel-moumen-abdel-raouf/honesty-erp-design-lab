@@ -127,7 +127,7 @@ const CVA_COMPONENTS = new Set([
 const PROJECTION_COMPONENTS = new Set([
   'ErpAppShell', 'ErpContainer', 'ErpForm', 'ErpFormActions', 'ErpFormSection',
   'ErpGrid', 'ErpInline', 'ErpPage', 'ErpPageHeader', 'ErpPageShell',
-  'ErpSection', 'ErpStack', 'ErpSurface', 'ErpTooltip', 'ErpTopbar',
+  'ErpSection', 'ErpStack', 'ErpSurface', 'ErpText', 'ErpTooltip', 'ErpTopbar',
 ]);
 
 const EXACT_CORE_SHOWCASE_IDS = new Set([
@@ -234,10 +234,21 @@ const FIXTURE_INPUTS = new Map([
   ['ErpAlert', {title: 'تنبيه تشغيلي'}],
   ['ErpAppShell', {navigationItems: [{id: 'finance', label: 'المالية', icon: 'wallet'}]}],
   ['ErpAvatar', {name: 'أميرة حداد'}],
+  ['ErpAvatarPicker', {avatars: [
+    {id: 'avatar-01', gender: 'male', imageUrl: '/assets/honesty-erp-avatars/users/male/avatar-01.png', label: 'صورة ١'},
+    {id: 'avatar-02', gender: 'male', imageUrl: '/assets/honesty-erp-avatars/users/male/avatar-02.png', label: 'صورة ٢'},
+    {id: 'avatar-21', gender: 'female', imageUrl: '/assets/honesty-erp-avatars/users/female/avatar-21.png', label: 'صورة ٢١'},
+    {id: 'avatar-22', gender: 'female', imageUrl: '/assets/honesty-erp-avatars/users/female/avatar-22.png', label: 'صورة ٢٢'},
+  ]}],
   ['ErpBranchSelector', {branches: [{id: 'cairo', label: 'فرع القاهرة'}]}],
   ['ErpBreadcrumbs', {items: [{id: 'home', label: 'الرئيسية', href: '/'}]}],
   ['ErpButton', {label: 'تنفيذ الإجراء'}],
-  ['ErpButtonGroup', {items: [{value: 'save', label: 'حفظ'}]}],
+  ['ErpButtonGroup', {items: [
+    {value: 'save', label: 'حفظ', icon: 'save'},
+    {value: 'preview', label: 'معاينة', icon: 'eye'},
+    {value: 'archive', label: 'أرشفة', icon: 'layers'},
+  ]}],
+  ['ErpBulkActionBar', {selectedCount: 3}],
   ['ErpColumnChooser', {columns: [{key: 'name', label: 'الاسم', hideable: true}]}],
   ['ErpComboBox', {items: [{value: 'customer', label: 'عميل'}]}],
   ['ErpEntitySchemaFields', {
@@ -246,7 +257,13 @@ const FIXTURE_INPUTS = new Map([
   }],
   ['ErpExtendedFab', {label: 'إضافة سجل'}],
   ['ErpFab', {icon: 'add', label: 'إضافة'}],
-  ['ErpFabMenu', {label: 'إجراءات سريعة', items: [{value: 'add', label: 'إضافة'}]}],
+  ['ErpFabMenu', {label: 'إجراءات سريعة', items: [
+    {value: 'add', label: 'إضافة', icon: 'add', presentation: 'icon'},
+    {value: 'save', label: 'حفظ', presentation: 'text'},
+    {value: 'share', label: 'مشاركة', icon: 'copy', presentation: 'icon-text'},
+    {value: 'archive', label: 'أرشفة', icon: 'layers', presentation: 'icon-text'},
+    {value: 'delete', label: 'حذف', icon: 'delete', presentation: 'icon-text', disabled: true},
+  ]}],
   ['ErpFilterDrawer', {definitions: []}],
   ['ErpForm', {label: 'نموذج السجل'}],
   ['ErpFormSection', {title: 'البيانات الأساسية'}],
@@ -270,7 +287,13 @@ const FIXTURE_INPUTS = new Map([
     selectedKeys: [],
   }],
   ['ErpSortHeader', {label: 'اسم الحساب'}],
-  ['ErpSplitButton', {label: 'حفظ', items: [{value: 'save-close', label: 'حفظ وإغلاق'}]}],
+  ['ErpSplitButton', {label: 'حفظ', items: [
+    {value: 'save-close', label: 'حفظ وإغلاق', icon: 'save', presentation: 'icon-text'},
+    {value: 'save-copy', label: 'حفظ نسخة', presentation: 'text'},
+    {value: 'preview', label: 'معاينة', icon: 'eye', presentation: 'icon'},
+    {value: 'archive', label: 'أرشفة', icon: 'layers', presentation: 'icon-text'},
+    {value: 'delete', label: 'حذف', icon: 'delete', presentation: 'icon-text', disabled: true},
+  ]}],
   ['ErpStandardEntityForm', {
     schema: {id: 'record', label: 'نموذج سجل', sections: [], actions: {submitLabel: 'حفظ'}},
     values: {},
@@ -287,6 +310,10 @@ const FIXTURE_INPUTS = new Map([
   ['ErpTabs', {items: [{id: 'overview', label: 'نظرة عامة', content: 'محتوى النظرة العامة'}]}],
   ['ErpTooltip', {text: 'توضيح الإجراء للمستخدم'}],
   ['ErpUserMenu', {user: {displayName: 'أميرة حداد', secondaryText: 'مديرة المالية'}}],
+  ['ErpValidationSummary', {issues: [
+    {key: 'account-name', fieldLabel: 'اسم الحساب', message: 'اسم الحساب مطلوب.'},
+    {key: 'branch', fieldLabel: 'الفرع', message: 'يجب اختيار الفرع.'},
+  ]}],
 ]);
 
 const FACET_NAMES = [
@@ -442,6 +469,69 @@ function inputValues(member, sourceFile, aliases) {
   return [];
 }
 
+function inputType(member, sourceFile) {
+  const typeArgument = member.initializer.typeArguments?.[0];
+  if (typeArgument) return typeArgument.getText(sourceFile);
+  const firstArgument = member.initializer.arguments[0];
+  if (!firstArgument) return 'unknown';
+  if (ts.isStringLiteral(firstArgument) || ts.isNoSubstitutionTemplateLiteral(firstArgument)) return 'string';
+  if (ts.isNumericLiteral(firstArgument)) return 'number';
+  if (firstArgument.kind === ts.SyntaxKind.TrueKeyword || firstArgument.kind === ts.SyntaxKind.FalseKeyword) return 'boolean';
+  if (firstArgument.kind === ts.SyntaxKind.NullKeyword) return 'unknown | null';
+  if (ts.isArrayLiteralExpression(firstArgument)) return 'readonly unknown[]';
+  if (ts.isObjectLiteralExpression(firstArgument)) return 'Readonly<Record<string, unknown>>';
+  return firstArgument.getText(sourceFile);
+}
+
+function literalValue(node) {
+  if (!node) return {found: false, value: null};
+  if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) {
+    return {found: true, value: node.text};
+  }
+  if (ts.isNumericLiteral(node)) return {found: true, value: Number(node.text)};
+  if (node.kind === ts.SyntaxKind.TrueKeyword) return {found: true, value: true};
+  if (node.kind === ts.SyntaxKind.FalseKeyword) return {found: true, value: false};
+  if (node.kind === ts.SyntaxKind.NullKeyword) return {found: true, value: null};
+  if (ts.isPrefixUnaryExpression(node) && ts.isNumericLiteral(node.operand)) {
+    const value = Number(node.operand.text);
+    return {found: true, value: node.operator === ts.SyntaxKind.MinusToken ? -value : value};
+  }
+  if (ts.isArrayLiteralExpression(node)) {
+    const values = [];
+    for (const element of node.elements) {
+      const resolved = literalValue(element);
+      if (!resolved.found) return {found: false, value: null};
+      values.push(resolved.value);
+    }
+    return {found: true, value: values};
+  }
+  if (ts.isObjectLiteralExpression(node)) {
+    const value = {};
+    for (const property of node.properties) {
+      if (!ts.isPropertyAssignment(property)) return {found: false, value: null};
+      const key = property.name.getText().replaceAll(/["']/g, '');
+      const resolved = literalValue(property.initializer);
+      if (!resolved.found) return {found: false, value: null};
+      value[key] = resolved.value;
+    }
+    return {found: true, value};
+  }
+  return {found: false, value: null};
+}
+
+function inputDefault(member, sourceFile) {
+  if (member.initializer.expression.getText().endsWith('.required')) {
+    return {hasDefault: false, defaultValue: null, defaultExpression: null};
+  }
+  const defaultNode = member.initializer.arguments[0];
+  const resolved = literalValue(defaultNode);
+  return {
+    hasDefault: resolved.found,
+    defaultValue: resolved.value,
+    defaultExpression: defaultNode?.getText(sourceFile) ?? null,
+  };
+}
+
 function publicApi(classDeclaration, sourceFile, aliases) {
   const inputs = [];
   const outputs = [];
@@ -454,22 +544,103 @@ function publicApi(classDeclaration, sourceFile, aliases) {
     const name = member.name.getText(sourceFile).replaceAll(/["']/g, '');
     const expression = member.initializer.expression.getText(sourceFile);
     if (expression === 'input' || expression === 'input.required') {
+      const resolvedDefault = inputDefault(member, sourceFile);
       inputs.push({
         name,
         required: expression.endsWith('.required'),
         values: inputValues(member, sourceFile, aliases),
+        type: inputType(member, sourceFile),
+        ...resolvedDefault,
       });
     } else if (expression === 'output') {
       outputs.push(name);
     } else if (expression === 'model' || expression === 'model.required') {
+      const resolvedDefault = inputDefault(member, sourceFile);
       models.push({
         name,
         required: expression.endsWith('.required'),
         values: inputValues(member, sourceFile, aliases),
+        type: inputType(member, sourceFile),
+        ...resolvedDefault,
       });
     }
   }
   return {inputs, outputs, models};
+}
+
+function showcaseControlKind(api) {
+  if (api.values.includes('false') && api.values.includes('true')) return 'boolean';
+  if (api.values.length > 0) return 'select';
+  if (/=>|Function|Predicate|Formatter|Comparator/.test(api.type)) return 'function';
+  if (/\bnumber\b/.test(api.type)) return 'number';
+  if (/\bstring\b/.test(api.type) && !/[\[\]{}]|Record|readonly/.test(api.type)) return 'text';
+  return 'json';
+}
+
+function showcaseInitialInputs(entry) {
+  const values = {};
+  for (const api of [...entry.publicApi.inputs, ...entry.publicApi.models]) {
+    if (api.hasDefault) values[api.name] = api.defaultValue;
+  }
+  if (entry.publicApi.inputs.some((api) => api.name === 'label') &&
+      !Object.prototype.hasOwnProperty.call(values, 'label')) {
+    values.label = 'حقل تجريبي';
+  }
+  Object.assign(values, FIXTURE_INPUTS.get(entry.className) ?? {});
+  return values;
+}
+
+function showcaseControlsFor(entry) {
+  const initialValues = showcaseInitialInputs(entry);
+  const controls = [
+    ...entry.publicApi.inputs.map((api) => ({
+      name: api.name,
+      label: api.name,
+      source: 'input',
+      kind: showcaseControlKind(api),
+      required: api.required,
+      type: api.type,
+      options: api.values,
+      initialValue: Object.prototype.hasOwnProperty.call(initialValues, api.name)
+        ? initialValues[api.name]
+        : null,
+    })),
+    ...entry.publicApi.models.map((api) => ({
+      name: api.name,
+      label: api.name,
+      source: 'model',
+      kind: showcaseControlKind(api),
+      required: api.required,
+      type: api.type,
+      options: api.values,
+      initialValue: Object.prototype.hasOwnProperty.call(initialValues, api.name)
+        ? initialValues[api.name]
+        : null,
+    })),
+  ];
+  if (CVA_COMPONENTS.has(entry.className)) {
+    controls.unshift({
+      name: '$value',
+      label: 'value (CVA)',
+      source: 'cva',
+      kind: entry.className === 'ErpCheckBox' || entry.className === 'ErpRadioBox'
+        ? 'boolean'
+        : 'json',
+      required: false,
+      type: 'ControlValueAccessor value',
+      options: [],
+      initialValue: entry.className === 'ErpCheckBox' || entry.className === 'ErpRadioBox'
+        ? false
+        : null,
+    });
+  }
+  if (['ErpFab', 'ErpExtendedFab', 'ErpFabMenu'].includes(entry.className)) {
+    controls.push(
+      {name: '$previewInline', label: 'الموضع الأفقي داخل مساحة المعاينة', source: 'preview', kind: 'range', required: false, type: 'number', options: [], initialValue: 80},
+      {name: '$previewBlock', label: 'الموضع الرأسي داخل مساحة المعاينة', source: 'preview', kind: 'range', required: false, type: 'number', options: [], initialValue: 75},
+    );
+  }
+  return controls;
 }
 
 function inheritedPublicApi(className, classDefinitions, aliases, visiting = new Set()) {
@@ -665,6 +836,12 @@ function scanDecoratedEntries() {
         };
         entry.displayNameAr = ARABIC_COMPONENT_METADATA.get(id)?.[0] ?? className;
         entry.descriptionAr = ARABIC_COMPONENT_METADATA.get(id)?.[1] ?? purposeFor(className, selector, classification);
+        entry.showcaseInitialValues = classification === 'PUBLIC ERP COMPONENT'
+          ? showcaseInitialInputs(entry)
+          : null;
+        entry.showcaseControls = classification === 'PUBLIC ERP COMPONENT'
+          ? showcaseControlsFor(entry)
+          : [];
         entry.showcaseCoverage = classification === 'PUBLIC ERP COMPONENT'
           ? showcaseCoverageFor(entry)
           : null;
@@ -700,6 +877,8 @@ export function buildCatalog() {
       showcaseCases: [],
       displayNameAr: className,
       descriptionAr: purpose,
+      showcaseInitialValues: null,
+      showcaseControls: [],
       showcaseCoverage: null,
     });
   }
@@ -720,6 +899,9 @@ function relativeShowcaseImport(ownerPath, sourcePath) {
 }
 
 function projectionMarkup(entry) {
+  if (entry.className === 'ErpText') {
+    return 'نص تجريبي مباشر';
+  }
   if (entry.className === 'ErpTooltip') {
     return '<erp-button label="اعرض التلميح" variant="outline" />';
   }
@@ -759,12 +941,21 @@ function generatedShowcaseOwner(entry) {
   const ownerPath = entry.showcaseOwnerPath;
   const componentImport = relativeShowcaseImport(ownerPath, entry.sourcePath);
   const isCva = CVA_COMPONENTS.has(entry.className);
+  const hasCvaDisabled = isCva && entry.publicApi.inputs.some((inputApi) => inputApi.name === 'disabled');
+  const isFloatingPreview = ['ErpFab', 'ErpExtendedFab', 'ErpFabMenu'].includes(entry.className);
   const projection = projectionMarkup(entry);
-  const imports = new Set([entry.className, 'ErpStack', 'ErpSurface', 'ErpText']);
+  const imports = new Set([
+    entry.className,
+    'ErpReviewShowcaseControlPanel',
+    'ErpStack',
+    'ErpSurface',
+    'ErpText',
+  ]);
   const importLines = [
-    `import {ChangeDetectionStrategy, Component, signal} from '@angular/core';`,
+    `import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core';`,
     `import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';`,
     `import {${entry.className}} from '${componentImport}';`,
+    `import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';`,
   ];
   if (entry.className !== 'ErpStack') importLines.push(`import {ErpStack} from '../../../primitives/stack/stack';`);
   if (entry.className !== 'ErpSurface') importLines.push(`import {ErpSurface} from '../../../primitives/surface/surface';`);
@@ -782,50 +973,50 @@ function generatedShowcaseOwner(entry) {
     if (entry.className !== 'ErpTextBox') importLines.push(`import {ErpTextBox} from '../../../controls/text-box/text-box';`);
     imports.add('ErpTextBox');
   }
-  if (entry.className === 'ErpTooltip') {
-    importLines.push(`import {ErpTooltipContent} from '../../../controls/tooltip/tooltip-content';`);
-    imports.add('ErpTooltipContent');
-  }
-  if (EXACT_CORE_SHOWCASE_IDS.has(entry.id)) {
-    importLines.push(`import {CoreBatch as ErpReviewExactCoreShowcase} from '../../../review-internals/exact-core-showcase/core-batch';`);
-    imports.add('ErpReviewExactCoreShowcase');
-  }
   if (['ErpIconButton', 'ErpFab'].includes(entry.className)) {
     importLines.push(`import {ErpTooltip} from '../../../controls/tooltip/tooltip';`);
     imports.add('ErpTooltip');
   }
 
   const className = `${entry.className}Showcase`;
-  let cases = entry.showcaseCases.map((showcaseCase, index) => {
-    const modelNames = new Set(entry.publicApi.models.map((modelApi) => modelApi.name));
-    const inputBindings = Object.keys(showcaseCase.inputs)
-      .filter((name) => !modelNames.has(name))
-      .map((name) => `[${name}]="$any(cases[${index}].inputs['${name}'])"`);
-    for (const modelApi of entry.publicApi.models) {
-      const modelKey = `${showcaseCase.id}:${modelApi.name}`;
-      inputBindings.push(`[${modelApi.name}]="$any(modelValue('${modelKey}', cases[${index}].inputs['${modelApi.name}']))"`);
-      inputBindings.push(`(${modelApi.name}Change)="recordModel('${modelKey}', $event)"`);
-    }
-    for (const outputName of entry.publicApi.outputs) {
-      inputBindings.push(`(${outputName})="recordEvent('${outputName}', $event)"`);
-    }
-    if (isCva) inputBindings.push('[formControl]="control"');
-    const caseProjection = entry.className === 'ErpTooltip' && showcaseCase.inputs.variant === 'rich'
-      ? '<erp-button label="اعرض التلميح الغني" variant="outline" /><erp-tooltip-content><erp-text type="paragraph">تفاصيل اعتماد الفاتورة وحالتها الحالية</erp-text></erp-tooltip-content>'
-      : projection;
-    const ownerMarkup = `<${entry.selector}\n          ${inputBindings.join('\n          ')}\n        >${caseProjection}</${entry.selector}>`;
-    const renderedOwner = ['ErpIconButton', 'ErpFab'].includes(entry.className)
-      ? `<erp-tooltip text="${showcaseCase.label}">${ownerMarkup}</erp-tooltip>`
-      : ownerMarkup;
-    return `    <erp-surface padding="default" border="subtle" data-showcase-case="${showcaseCase.id}">\n      <erp-stack gap="tight">\n        <erp-text type="heading-3">${showcaseCase.label}</erp-text>\n        ${renderedOwner}\n      </erp-stack>\n    </erp-surface>`;
-  }).join('\n');
-  if (EXACT_CORE_SHOWCASE_IDS.has(entry.id)) {
-    cases = `  <erp-text type="heading-2">مرجع Product Owner الدقيق</erp-text>\n  <app-review-exact-core-showcase [focus]="'${entry.id}'" />\n  <erp-text type="heading-2">واجهة API والتوافق</erp-text>\n${cases}`;
+  const inputBindings = entry.publicApi.inputs
+    .filter((inputApi) => !(hasCvaDisabled && inputApi.name === 'disabled'))
+    .map((inputApi) =>
+    `[${inputApi.name === 'forId' ? 'for' : inputApi.name}]="$any(value('${inputApi.name}'))"`,
+  );
+  for (const modelApi of entry.publicApi.models) {
+    inputBindings.push(`[${modelApi.name}]="$any(value('${modelApi.name}'))"`);
+    inputBindings.push(`(${modelApi.name}Change)="recordModel('${modelApi.name}', $event)"`);
   }
+  for (const outputName of entry.publicApi.outputs) {
+    inputBindings.push(`(${outputName})="recordEvent('${outputName}', $event)"`);
+  }
+  if (isCva) inputBindings.push('[formControl]="control"');
+  if (hasCvaDisabled) inputBindings.push('data-showcase-cva-disabled-control');
+  if (isFloatingPreview) {
+    inputBindings.push(`[style.position]="'absolute'"`);
+    inputBindings.push(`[style.inset-inline-start.%]="previewInline()"`);
+    inputBindings.push(`[style.inset-block-start.%]="previewBlock()"`);
+    inputBindings.push(`[style.transform]="'translate(-50%, -50%)'"`);
+  }
+  const ownerMarkup = `<${entry.selector}
+          data-showcase-target
+          ${inputBindings.join('\n          ')}
+        >${projection}</${entry.selector}>`;
+  const renderedOwner = ['ErpIconButton', 'ErpFab'].includes(entry.className)
+    ? `<erp-tooltip text="${entry.displayNameAr}">${ownerMarkup}</erp-tooltip>`
+    : ownerMarkup;
+  const referenceLabel = entry.visualReference
+    ? `  <erp-text class="showcase-reference" type="caption" tone="secondary" selectable>مرجع Product Owner: ${entry.visualReference}</erp-text>\n`
+    : '';
+  const livePreviewClass = isFloatingPreview
+    ? 'showcase-live-preview showcase-live-preview--floating'
+    : 'showcase-live-preview';
 
-  const source = `${importLines.join('\n')}\n\nconst ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === '${entry.id}')!;\n\n@Component({\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  selector: 'app-${entry.id}-showcase',\n  imports: [${[...imports].join(', ')}],\n  templateUrl: './${entry.id}-showcase.html',\n  styleUrl: './${entry.id}-showcase.scss',\n})\nexport class ${className} {\n  readonly entry = ENTRY;\n  readonly cases = ENTRY.showcaseCases;\n  readonly lastEvent = signal('لم يحدث تفاعل بعد');\n  private readonly modelValues = signal<Readonly<Record<string, unknown>>>({});\n${isCva ? `  readonly control = new FormControl<unknown>(null);\n\n  constructor() {\n    this.control.valueChanges.pipe(takeUntilDestroyed()).subscribe((value) => {\n      this.recordEvent('valueChange', value);\n    });\n  }\n` : ''}\n  modelValue(name: string, fallback: unknown): unknown {\n    return this.modelValues()[name] ?? fallback;\n  }\n\n  recordModel(name: string, value: unknown): void {\n    this.modelValues.update((current) => ({...current, [name]: value}));\n    this.recordEvent(\`${'${name}'}Change\`, value);\n  }\n\n  recordEvent(name: string, value: unknown): void {\n    let rendered = '';\n    try { rendered = typeof value === 'string' ? value : JSON.stringify(value); }\n    catch { rendered = String(value); }\n    this.lastEvent.set(\`${'${name}'}: ${'${rendered}'}\`);\n  }\n}\n`;
-  const html = `<erp-stack gap="default" data-dedicated-showcase="${entry.id}" data-showcase-sections="${entry.showcaseCases.length}">\n  <erp-text type="heading-2">${entry.displayNameAr}</erp-text>\n  <erp-text type="paragraph" tone="secondary">${entry.descriptionAr}</erp-text>\n${cases}\n  <erp-surface padding="default" border="subtle" data-showcase-event-log>\n    <erp-stack gap="tight">\n      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>\n      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>\n${isCva ? '      <erp-text type="caption" selectable>القيمة الحالية: {{ control.value }}</erp-text>\n' : ''}    </erp-stack>\n  </erp-surface>\n</erp-stack>\n`;
-  const scss = `:host { display: block; min-inline-size: 0; }\n`;
+  const initialCvaValue = entry.showcaseControls.find((control) => control.source === 'cva')?.initialValue ?? null;
+  const source = `${importLines.join('\n')}\n\nconst ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === '${entry.id}')!;\n\n@Component({\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  selector: 'app-${entry.id}-showcase',\n  imports: [${[...imports].join(', ')}],\n  templateUrl: './${entry.id}-showcase.html',\n  styleUrl: './${entry.id}-showcase.scss',\n})\nexport class ${className} {\n  readonly entry = ENTRY;\n  readonly controls = ENTRY.showcaseControls;\n  readonly lastEvent = signal('لم يحدث تفاعل بعد');\n  readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});\n  readonly cvaValue = signal<unknown>(${JSON.stringify(initialCvaValue)});\n  readonly controlValues = computed<Readonly<Record<string, unknown>>>(() => ({\n    ...this.liveValues(),\n    '$value': this.cvaValue(),\n  }));\n${isCva ? `  readonly control = new FormControl<unknown>(${JSON.stringify({value: initialCvaValue, disabled: Boolean(entry.showcaseInitialValues?.disabled)})});\n\n  constructor() {\n    this.control.valueChanges.pipe(takeUntilDestroyed()).subscribe((value) => {\n      this.cvaValue.set(value);\n      this.recordEvent('valueChange', value);\n    });\n  }\n` : ''}\n  readonly previewInline = computed(() => Number(this.liveValues()['$previewInline'] ?? 80));\n  readonly previewBlock = computed(() => Number(this.liveValues()['$previewBlock'] ?? 75));\n\n  value(name: string): unknown {\n    return this.liveValues()[name];\n  }\n\n  applyControl(change: ErpShowcaseControlChange): void {\n    if (change.control.source === 'cva') {\n${isCva ? `      this.control.setValue(change.value);` : `      this.cvaValue.set(change.value);`}\n      return;\n    }\n${hasCvaDisabled ? `    if (change.control.name === 'disabled') {\n      this.liveValues.update((current) => ({...current, disabled: change.value}));\n      if (change.value) this.control.disable();\n      else this.control.enable();\n      return;\n    }\n` : ''}    const value = change.control.kind === 'function'\n      ? this.functionPreset(change.control.name, change.value)\n      : change.value;\n    this.liveValues.update((current) => ({...current, [change.control.name]: value}));\n  }\n\n  recordModel(name: string, value: unknown): void {\n    this.liveValues.update((current) => ({...current, [name]: value}));\n    this.recordEvent(\`${'${name}'}Change\`, value);\n  }\n\n  recordEvent(name: string, value: unknown): void {\n    let rendered = '';\n    try { rendered = typeof value === 'string' ? value : JSON.stringify(value); }\n    catch { rendered = String(value); }\n    this.lastEvent.set(\`${'${name}'}: ${'${rendered}'}\`);\n  }\n\n  private functionPreset(name: string, value: unknown): unknown {\n    if (value !== 'sample') return null;\n    if (/comparator/i.test(name)) return () => 0;\n    if (/formatter/i.test(name)) return (candidate: unknown) => String(candidate ?? '');\n    if (/disabled/i.test(name)) return () => false;\n    if (/filter|predicate/i.test(name)) return () => true;\n    return (candidate: unknown) => candidate;\n  }\n}\n`;
+  const html = `<erp-stack gap="default" data-dedicated-showcase="${entry.id}" data-showcase-sections="1">\n  <erp-text type="heading-2">${entry.displayNameAr}</erp-text>\n  <erp-text type="paragraph" tone="secondary">${entry.descriptionAr}</erp-text>\n${referenceLabel}  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="${livePreviewClass}">\n    <erp-stack gap="tight">\n      <erp-text type="heading-3">المعاينة الحية</erp-text>\n      ${renderedOwner}\n    </erp-stack>\n  </erp-surface>\n  <app-review-showcase-control-panel\n    [controls]="controls"\n    [values]="controlValues()"\n    (controlChanged)="applyControl($event)"\n  />\n  <erp-surface padding="default" border="subtle" data-showcase-event-log>\n    <erp-stack gap="tight">\n      <erp-text type="heading-3">آخر تفاعل</erp-text>\n      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>\n${isCva ? '      <erp-text type="caption" selectable>القيمة الحالية: {{ cvaValue() }}</erp-text>\n' : ''}    </erp-stack>\n  </erp-surface>\n</erp-stack>\n`;
+  const scss = `:host { display: block; min-inline-size: 0; }\n\n.showcase-reference { overflow-wrap: anywhere; }\n\n.showcase-live-preview { min-block-size: 12rem; }\n\n.showcase-live-preview--floating { position: relative; min-block-size: 30rem; overflow: clip; }\n`;
   return new Map([
     [ownerPath, source],
     [ownerPath.replace(/\.ts$/, '.html'), html],
@@ -860,9 +1051,9 @@ export interface ErpComponentCatalogEntry {
   readonly sourcePath: string;
   readonly purpose: string;
   readonly publicApi: {
-    readonly inputs: readonly {readonly name: string; readonly required: boolean; readonly values: readonly string[]}[];
+    readonly inputs: readonly {readonly name: string; readonly required: boolean; readonly values: readonly string[]; readonly type: string; readonly hasDefault: boolean; readonly defaultValue: unknown; readonly defaultExpression: string | null}[];
     readonly outputs: readonly string[];
-    readonly models: readonly {readonly name: string; readonly required: boolean; readonly values: readonly string[]}[];
+    readonly models: readonly {readonly name: string; readonly required: boolean; readonly values: readonly string[]; readonly type: string; readonly hasDefault: boolean; readonly defaultValue: unknown; readonly defaultExpression: string | null}[];
   };
   readonly lowerLevelOwners: readonly string[];
   readonly nativeElementsOwned: readonly string[];
@@ -877,6 +1068,17 @@ export interface ErpComponentCatalogEntry {
   readonly visualStatus: ErpCatalogVisualStatus;
   readonly showcaseFacets: readonly string[];
   readonly showcaseCases: readonly ErpComponentShowcaseCase[];
+  readonly showcaseInitialValues: Readonly<Record<string, unknown>> | null;
+  readonly showcaseControls: readonly {
+    readonly name: string;
+    readonly label: string;
+    readonly source: 'cva' | 'input' | 'model' | 'preview';
+    readonly kind: 'boolean' | 'function' | 'json' | 'number' | 'range' | 'select' | 'text';
+    readonly required: boolean;
+    readonly type: string;
+    readonly options: readonly string[];
+    readonly initialValue: unknown;
+  }[];
   readonly showcaseCoverage: {
     readonly coveredInputs: readonly string[];
     readonly coveredModels: readonly string[];

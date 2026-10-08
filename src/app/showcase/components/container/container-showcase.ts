@@ -1,6 +1,7 @@
-import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core';
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpContainer} from '../../../primitives/container/container';
+import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
@@ -10,22 +11,41 @@ const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'container')!;
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-container-showcase',
-  imports: [ErpContainer, ErpStack, ErpSurface, ErpText],
+  imports: [ErpContainer, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
   templateUrl: './container-showcase.html',
   styleUrl: './container-showcase.scss',
 })
 export class ErpContainerShowcase {
   readonly entry = ENTRY;
-  readonly cases = ENTRY.showcaseCases;
+  readonly controls = ENTRY.showcaseControls;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
-  private readonly modelValues = signal<Readonly<Record<string, unknown>>>({});
+  readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
+  readonly cvaValue = signal<unknown>(null);
+  readonly controlValues = computed<Readonly<Record<string, unknown>>>(() => ({
+    ...this.liveValues(),
+    '$value': this.cvaValue(),
+  }));
 
-  modelValue(name: string, fallback: unknown): unknown {
-    return this.modelValues()[name] ?? fallback;
+  readonly previewInline = computed(() => Number(this.liveValues()['$previewInline'] ?? 80));
+  readonly previewBlock = computed(() => Number(this.liveValues()['$previewBlock'] ?? 75));
+
+  value(name: string): unknown {
+    return this.liveValues()[name];
+  }
+
+  applyControl(change: ErpShowcaseControlChange): void {
+    if (change.control.source === 'cva') {
+      this.cvaValue.set(change.value);
+      return;
+    }
+    const value = change.control.kind === 'function'
+      ? this.functionPreset(change.control.name, change.value)
+      : change.value;
+    this.liveValues.update((current) => ({...current, [change.control.name]: value}));
   }
 
   recordModel(name: string, value: unknown): void {
-    this.modelValues.update((current) => ({...current, [name]: value}));
+    this.liveValues.update((current) => ({...current, [name]: value}));
     this.recordEvent(`${name}Change`, value);
   }
 
@@ -34,5 +54,14 @@ export class ErpContainerShowcase {
     try { rendered = typeof value === 'string' ? value : JSON.stringify(value); }
     catch { rendered = String(value); }
     this.lastEvent.set(`${name}: ${rendered}`);
+  }
+
+  private functionPreset(name: string, value: unknown): unknown {
+    if (value !== 'sample') return null;
+    if (/comparator/i.test(name)) return () => 0;
+    if (/formatter/i.test(name)) return (candidate: unknown) => String(candidate ?? '');
+    if (/disabled/i.test(name)) return () => false;
+    if (/filter|predicate/i.test(name)) return () => true;
+    return (candidate: unknown) => candidate;
   }
 }

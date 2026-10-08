@@ -21,26 +21,31 @@ Implementation agent:
 
 ## Authoritative current showcase-system decision — 2026-10-08
 
-The Product Owner rejected route existence plus generic input-only instantiation
-as sufficient showcase evidence. The current binding decision is that every
-public ERP component must have a dedicated Design-Lab-only showcase owner,
-loader, and machine-readable coverage. Missing ownership, empty hosts, missing
-projection, unexercised controlled state/outputs, or absent exact-reference
-cases are governance failures.
+Every public ERP component page must render exactly one primary target and a
+live control panel for every public input and model. Control changes apply
+immediately, CVA values remain live and controlled, and meaningful outputs are
+visible in an event log. A static matrix, generic input-only host, or component
+instance without complete API controls is not sufficient showcase evidence.
 
-The 77 component pages retain `ErpPage`, the native ownership registry, and the
-existing production ERP owners. Showcases do not redesign those owners. Legacy
-showcase content is migrated rather than duplicated; the migration ledger must
-remain at zero unmapped meaningful sections. Old runtime pages are redirects
-only, and the application may not restore the former navigation rows or a
-full-width link matrix.
+The generated catalog is the authority for public API metadata and currently
+records 77 owners, 990 inputs, 20 models, and 67 outputs. Governance fails on a
+missing/unbound control, multiple target instances, missing event binding, or
+an invalid CVA control path. Projection-only owners with no public inputs still
+render one visible target and an empty-but-present API panel.
 
-The Design Lab catalog navigation is an internal compact owner using
-`ErpSearchBox`, Arabic categories, active state, keyboard dismissal, and a
-closed-by-default narrow drawer. Runtime evidence covers all 77 routes in Light
-and Dark RTL, all redirects, and narrow layout with zero empty showcases,
-console errors/warnings, broken images, and page overflow. Technical PASS does
-not grant Product Owner visual acceptance or open a later wave.
+ButtonGroup evidence contains a real group. FAB evidence uses a bounded preview
+with live two-axis positioning. Action-menu evidence covers text-only,
+icon-only, and icon-plus-text items. These are showcase contracts, not
+authorization to merge `ErpFab`, `ErpExtendedFab`, and `ErpFabMenu` production
+owners or redesign any exact-reference component. Technical PASS does not grant
+Product Owner visual acceptance or open a later wave.
+
+## Historical dedicated showcase-system decision — superseded 2026-10-08
+
+The preceding decision established dedicated owners, legacy migration, compact
+navigation, and the prohibition on generic fallback. Those constraints remain,
+but static authored cases are superseded by the one-target live-API workbench
+contract above.
 
 ## Historical ownership and Page decision — superseded 2026-10-08
 

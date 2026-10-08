@@ -1,323 +1,38 @@
-<erp-stack gap="default" data-dedicated-showcase="tabs" data-showcase-sections="24">
+<erp-stack gap="default" data-dedicated-showcase="tabs" data-showcase-sections="1">
   <erp-text type="heading-2">علامات التبويب</erp-text>
   <erp-text type="paragraph" tone="secondary">تبديل دلالي بين رؤوس ولوحات محتوى.</erp-text>
-  <erp-text type="heading-2">مرجع Product Owner الدقيق</erp-text>
-  <app-review-exact-core-showcase [focus]="'tabs'" />
-  <erp-text type="heading-2">واجهة API والتوافق</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-tabs
-          [items]="$any(cases[0].inputs['items'])"
-          [activeId]="$any(modelValue('default:activeId', cases[0].inputs['activeId']))"
-          (activeIdChange)="recordModel('default:activeId', $event)"
+  <erp-text class="showcase-reference" type="caption" tone="secondary" selectable>مرجع Product Owner: src/app/controls/tabs/ERP_TABS_REFERENCE_EXACT_V1.md</erp-text>
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-tabs
+          data-showcase-target
+          [items]="$any(value('items'))"
+          [orientation]="$any(value('orientation'))"
+          [verticalPlacement]="$any(value('verticalPlacement'))"
+          [distribution]="$any(value('distribution'))"
+          [variant]="$any(value('variant'))"
+          [transition]="$any(value('transition'))"
+          [headerPresentation]="$any(value('headerPresentation'))"
+          [headerShape]="$any(value('headerShape'))"
+          [renderPanels]="$any(value('renderPanels'))"
+          [lazy]="$any(value('lazy'))"
+          [keepAlive]="$any(value('keepAlive'))"
+          [activeId]="$any(value('activeId'))"
+          (activeIdChange)="recordModel('activeId', $event)"
           (changed)="recordEvent('changed', $event)"
           (tabClick)="recordEvent('tabClick', $event)"
         ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="orientation-horizontal">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">orientation: horizontal</erp-text>
-        <erp-tabs
-          [items]="$any(cases[1].inputs['items'])"
-          [orientation]="$any(cases[1].inputs['orientation'])"
-          [activeId]="$any(modelValue('orientation-horizontal:activeId', cases[1].inputs['activeId']))"
-          (activeIdChange)="recordModel('orientation-horizontal:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="orientation-vertical">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">orientation: vertical</erp-text>
-        <erp-tabs
-          [items]="$any(cases[2].inputs['items'])"
-          [orientation]="$any(cases[2].inputs['orientation'])"
-          [activeId]="$any(modelValue('orientation-vertical:activeId', cases[2].inputs['activeId']))"
-          (activeIdChange)="recordModel('orientation-vertical:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="verticalPlacement-start">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">verticalPlacement: start</erp-text>
-        <erp-tabs
-          [items]="$any(cases[3].inputs['items'])"
-          [verticalPlacement]="$any(cases[3].inputs['verticalPlacement'])"
-          [activeId]="$any(modelValue('verticalPlacement-start:activeId', cases[3].inputs['activeId']))"
-          (activeIdChange)="recordModel('verticalPlacement-start:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="verticalPlacement-end">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">verticalPlacement: end</erp-text>
-        <erp-tabs
-          [items]="$any(cases[4].inputs['items'])"
-          [verticalPlacement]="$any(cases[4].inputs['verticalPlacement'])"
-          [activeId]="$any(modelValue('verticalPlacement-end:activeId', cases[4].inputs['activeId']))"
-          (activeIdChange)="recordModel('verticalPlacement-end:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="distribution-content">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">distribution: content</erp-text>
-        <erp-tabs
-          [items]="$any(cases[5].inputs['items'])"
-          [distribution]="$any(cases[5].inputs['distribution'])"
-          [activeId]="$any(modelValue('distribution-content:activeId', cases[5].inputs['activeId']))"
-          (activeIdChange)="recordModel('distribution-content:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="distribution-fill">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">distribution: fill</erp-text>
-        <erp-tabs
-          [items]="$any(cases[6].inputs['items'])"
-          [distribution]="$any(cases[6].inputs['distribution'])"
-          [activeId]="$any(modelValue('distribution-fill:activeId', cases[6].inputs['activeId']))"
-          (activeIdChange)="recordModel('distribution-fill:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="variant-underline">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">variant: underline</erp-text>
-        <erp-tabs
-          [items]="$any(cases[7].inputs['items'])"
-          [variant]="$any(cases[7].inputs['variant'])"
-          [activeId]="$any(modelValue('variant-underline:activeId', cases[7].inputs['activeId']))"
-          (activeIdChange)="recordModel('variant-underline:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="variant-pill">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">variant: pill</erp-text>
-        <erp-tabs
-          [items]="$any(cases[8].inputs['items'])"
-          [variant]="$any(cases[8].inputs['variant'])"
-          [activeId]="$any(modelValue('variant-pill:activeId', cases[8].inputs['activeId']))"
-          (activeIdChange)="recordModel('variant-pill:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="variant-solid">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">variant: solid</erp-text>
-        <erp-tabs
-          [items]="$any(cases[9].inputs['items'])"
-          [variant]="$any(cases[9].inputs['variant'])"
-          [activeId]="$any(modelValue('variant-solid:activeId', cases[9].inputs['activeId']))"
-          (activeIdChange)="recordModel('variant-solid:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="variant-ghost">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">variant: ghost</erp-text>
-        <erp-tabs
-          [items]="$any(cases[10].inputs['items'])"
-          [variant]="$any(cases[10].inputs['variant'])"
-          [activeId]="$any(modelValue('variant-ghost:activeId', cases[10].inputs['activeId']))"
-          (activeIdChange)="recordModel('variant-ghost:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="variant-pills">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">variant: pills</erp-text>
-        <erp-tabs
-          [items]="$any(cases[11].inputs['items'])"
-          [variant]="$any(cases[11].inputs['variant'])"
-          [activeId]="$any(modelValue('variant-pills:activeId', cases[11].inputs['activeId']))"
-          (activeIdChange)="recordModel('variant-pills:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="transition-slide">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">transition: slide</erp-text>
-        <erp-tabs
-          [items]="$any(cases[12].inputs['items'])"
-          [transition]="$any(cases[12].inputs['transition'])"
-          [activeId]="$any(modelValue('transition-slide:activeId', cases[12].inputs['activeId']))"
-          (activeIdChange)="recordModel('transition-slide:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="transition-fade">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">transition: fade</erp-text>
-        <erp-tabs
-          [items]="$any(cases[13].inputs['items'])"
-          [transition]="$any(cases[13].inputs['transition'])"
-          [activeId]="$any(modelValue('transition-fade:activeId', cases[13].inputs['activeId']))"
-          (activeIdChange)="recordModel('transition-fade:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="transition-scale">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">transition: scale</erp-text>
-        <erp-tabs
-          [items]="$any(cases[14].inputs['items'])"
-          [transition]="$any(cases[14].inputs['transition'])"
-          [activeId]="$any(modelValue('transition-scale:activeId', cases[14].inputs['activeId']))"
-          (activeIdChange)="recordModel('transition-scale:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="transition-none">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">transition: none</erp-text>
-        <erp-tabs
-          [items]="$any(cases[15].inputs['items'])"
-          [transition]="$any(cases[15].inputs['transition'])"
-          [activeId]="$any(modelValue('transition-none:activeId', cases[15].inputs['activeId']))"
-          (activeIdChange)="recordModel('transition-none:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="transition-fade-up">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">transition: fade-up</erp-text>
-        <erp-tabs
-          [items]="$any(cases[16].inputs['items'])"
-          [transition]="$any(cases[16].inputs['transition'])"
-          [activeId]="$any(modelValue('transition-fade-up:activeId', cases[16].inputs['activeId']))"
-          (activeIdChange)="recordModel('transition-fade-up:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="transition-fade-down">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">transition: fade-down</erp-text>
-        <erp-tabs
-          [items]="$any(cases[17].inputs['items'])"
-          [transition]="$any(cases[17].inputs['transition'])"
-          [activeId]="$any(modelValue('transition-fade-down:activeId', cases[17].inputs['activeId']))"
-          (activeIdChange)="recordModel('transition-fade-down:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="transition-fade-start">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">transition: fade-start</erp-text>
-        <erp-tabs
-          [items]="$any(cases[18].inputs['items'])"
-          [transition]="$any(cases[18].inputs['transition'])"
-          [activeId]="$any(modelValue('transition-fade-start:activeId', cases[18].inputs['activeId']))"
-          (activeIdChange)="recordModel('transition-fade-start:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="transition-fade-end">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">transition: fade-end</erp-text>
-        <erp-tabs
-          [items]="$any(cases[19].inputs['items'])"
-          [transition]="$any(cases[19].inputs['transition'])"
-          [activeId]="$any(modelValue('transition-fade-end:activeId', cases[19].inputs['activeId']))"
-          (activeIdChange)="recordModel('transition-fade-end:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="headerShape-reference">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">headerShape: reference</erp-text>
-        <erp-tabs
-          [items]="$any(cases[20].inputs['items'])"
-          [headerShape]="$any(cases[20].inputs['headerShape'])"
-          [activeId]="$any(modelValue('headerShape-reference:activeId', cases[20].inputs['activeId']))"
-          (activeIdChange)="recordModel('headerShape-reference:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="headerShape-rectangle">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">headerShape: rectangle</erp-text>
-        <erp-tabs
-          [items]="$any(cases[21].inputs['items'])"
-          [headerShape]="$any(cases[21].inputs['headerShape'])"
-          [activeId]="$any(modelValue('headerShape-rectangle:activeId', cases[21].inputs['activeId']))"
-          (activeIdChange)="recordModel('headerShape-rectangle:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="headerShape-rounded">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">headerShape: rounded</erp-text>
-        <erp-tabs
-          [items]="$any(cases[22].inputs['items'])"
-          [headerShape]="$any(cases[22].inputs['headerShape'])"
-          [activeId]="$any(modelValue('headerShape-rounded:activeId', cases[22].inputs['activeId']))"
-          (activeIdChange)="recordModel('headerShape-rounded:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="headerShape-circle">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">headerShape: circle</erp-text>
-        <erp-tabs
-          [items]="$any(cases[23].inputs['items'])"
-          [headerShape]="$any(cases[23].inputs['headerShape'])"
-          [activeId]="$any(modelValue('headerShape-circle:activeId', cases[23].inputs['activeId']))"
-          (activeIdChange)="recordModel('headerShape-circle:activeId', $event)"
-          (changed)="recordEvent('changed', $event)"
-          (tabClick)="recordEvent('tabClick', $event)"
-        ></erp-tabs>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>

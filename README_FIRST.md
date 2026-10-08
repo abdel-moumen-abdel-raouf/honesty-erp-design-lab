@@ -51,29 +51,35 @@ For long-range inventory/dependency context only, read when needed:
 
 The blueprint is planning context only, not implementation authorization.
 
-## Authoritative current state — 2026-10-08 — complete dedicated showcase system
+## Authoritative current state — 2026-10-08 — live API showcase workbenches
 
-The reconstruction entered from clean `main` at
-`54451b1fdca8da0f03096d16df20adc6100a5c11`. Every one of the 77 public ERP
-components now has a dedicated lazy showcase owner with authored coverage;
-there is no generic input-only fallback. Projection, controlled state, outputs,
-overlays, interactions, and exact-reference evidence are rendered through the
-appropriate component-specific harness.
+The current correction entered from clean `main` at
+`fce028a2e080714a5759c649746656a3f36da524`. All 77 public component routes now
+render one primary component target and one shared live API control panel. The
+catalog records and controls 990 inputs, 20 models, 67 outputs, and 24 CVA
+values through 1,040 live editors; changes apply immediately and outputs appear
+in an event log.
 
-The legacy showcase migration ledger reports zero unmapped meaningful sections.
-Old routed showcase/Foundation implementations and duplicated navigation links
-are removed; 29 legacy URLs remain redirects only. `/components` is the compact
-Arabic catalog landing. Its navigation is 280 px / 21.875% at 1280 px and
-consumes zero permanent width when closed at 390 px.
+ButtonGroup renders a real three-button group. Fab, ExtendedFab, and FabMenu
+use bounded floating canvases with two-axis live controls. FabMenu and
+SplitButton provide five actions spanning text-only, icon-only, and
+icon-plus-text. Existing production FAB owners remain distinct; this showcase
+correction does not authorize an owner/API merge or visual redesign.
 
-Runtime verification covered the landing, all 77 component routes, and all
-redirect aliases in Light and Dark RTL plus narrow review. Missing showcase
-owners, empty showcases, console errors, console warnings, broken assets, and
-page overflow are all zero. Canonical verification passes 119/119 test files,
-730/730 tests, all lint/governance, both typechecks, production build, and the
-zero-warning gate. Initial bundle is 488.33 kB / 106.12 kB estimated transfer.
-The next action is Product Owner review of the reconstructed showcase system;
+Runtime verification covered every route in Light and Dark RTL and at 390 px.
+Missing targets/control panels, empty output, console errors/warnings, broken
+assets, and overflow are zero. Canonical verification passes 120/120 test
+files, 737/737 tests, all lint/governance, both typechecks, production build,
+and the zero-warning gate. Initial bundle is 488.18 kB / 105.32 kB estimated
+transfer. The next action is Product Owner review of the live API workbenches;
 technical PASS is not visual approval and no later wave is authorized.
+
+## Historical dedicated showcase state — superseded 2026-10-08
+
+The preceding reconstruction entered at
+`54451b1fdca8da0f03096d16df20adc6100a5c11` and supplied one dedicated route
+per public owner. It is historical because the current contract additionally
+requires one target with complete, immediately applied public-API controls.
 
 ## Historical ownership/catalog/Page state — superseded 2026-10-08
 

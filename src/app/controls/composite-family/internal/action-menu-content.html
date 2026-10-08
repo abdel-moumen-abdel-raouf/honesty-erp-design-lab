@@ -5,16 +5,29 @@
   (keydown)="handleKeydown($event)"
 >
   @for (item of items(); track item.value) {
-    <erp-button
-      data-action-item
-      [attr.data-value]="item.value"
-      [label]="item.label"
-      [icon]="item.icon ?? null"
-      variant="ghost"
-      tone="neutral"
-      [disabled]="item.disabled ?? false"
-      fullWidth
-      (pressed)="select(item)"
-    />
+    @if (item.presentation === 'icon' && item.icon) {
+      <erp-tooltip [text]="item.label">
+        <erp-icon-button
+          data-action-item
+          [attr.data-value]="item.value"
+          [icon]="item.icon"
+          [label]="item.label"
+          [disabled]="item.disabled ?? false"
+          (pressed)="select(item)"
+        />
+      </erp-tooltip>
+    } @else {
+      <erp-button
+        data-action-item
+        [attr.data-value]="item.value"
+        [label]="item.label"
+        [icon]="item.presentation === 'text' ? null : (item.icon ?? null)"
+        variant="ghost"
+        tone="neutral"
+        [disabled]="item.disabled ?? false"
+        fullWidth
+        (pressed)="select(item)"
+      />
+    }
   }
 </erp-stack>

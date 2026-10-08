@@ -5,22 +5,24 @@ import {
   output,
 } from '@angular/core';
 import {ErpButton} from '../../button/button';
+import {ErpIconButton} from '../../icon-button/icon-button';
+import {ErpTooltip} from '../../tooltip/tooltip';
 import {ErpStack} from '../../../primitives/stack/stack';
-import {ErpItemPickerOption} from '../../selection-family/selection-contracts';
+import {ErpActionMenuItem} from '../composite-contracts';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-action-menu-content',
-  imports: [ErpButton, ErpStack],
+  imports: [ErpButton, ErpIconButton, ErpStack, ErpTooltip],
   templateUrl: './action-menu-content.html',
   styleUrl: './action-menu-content.scss',
 })
 export class ErpActionMenuContent {
-  readonly items = input.required<readonly ErpItemPickerOption[]>();
+  readonly items = input.required<readonly ErpActionMenuItem[]>();
   readonly itemSelected = output<string>();
 
-  protected select(item: ErpItemPickerOption): void {
+  protected select(item: ErpActionMenuItem): void {
     if (!item.disabled) {
       this.itemSelected.emit(item.value);
     }

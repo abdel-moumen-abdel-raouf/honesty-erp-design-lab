@@ -1,56 +1,27 @@
-<erp-stack gap="default" data-dedicated-showcase="split-button" data-showcase-sections="4">
+<erp-stack gap="default" data-dedicated-showcase="split-button" data-showcase-sections="1">
   <erp-text type="heading-2">زر منقسم</erp-text>
   <erp-text type="paragraph" tone="secondary">إجراء أساسي مع قائمة إجراءات إضافية.</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-split-button
-          [label]="$any(cases[0].inputs['label'])"
-          [items]="$any(cases[0].inputs['items'])"
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-split-button
+          data-showcase-target
+          [label]="$any(value('label'))"
+          [items]="$any(value('items'))"
+          [disabled]="$any(value('disabled'))"
           (primaryPressed)="recordEvent('primaryPressed', $event)"
           (itemSelected)="recordEvent('itemSelected', $event)"
         ></erp-split-button>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-false">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">disabled: false</erp-text>
-        <erp-split-button
-          [label]="$any(cases[1].inputs['label'])"
-          [items]="$any(cases[1].inputs['items'])"
-          [disabled]="$any(cases[1].inputs['disabled'])"
-          (primaryPressed)="recordEvent('primaryPressed', $event)"
-          (itemSelected)="recordEvent('itemSelected', $event)"
-        ></erp-split-button>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled-true">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">disabled: true</erp-text>
-        <erp-split-button
-          [label]="$any(cases[2].inputs['label'])"
-          [items]="$any(cases[2].inputs['items'])"
-          [disabled]="$any(cases[2].inputs['disabled'])"
-          (primaryPressed)="recordEvent('primaryPressed', $event)"
-          (itemSelected)="recordEvent('itemSelected', $event)"
-        ></erp-split-button>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="disabled">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">حالة معطلة</erp-text>
-        <erp-split-button
-          [label]="$any(cases[3].inputs['label'])"
-          [items]="$any(cases[3].inputs['items'])"
-          [disabled]="$any(cases[3].inputs['disabled'])"
-          (primaryPressed)="recordEvent('primaryPressed', $event)"
-          (itemSelected)="recordEvent('itemSelected', $event)"
-        ></erp-split-button>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>

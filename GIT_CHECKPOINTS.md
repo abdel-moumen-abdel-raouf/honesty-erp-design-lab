@@ -1,27 +1,35 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
-## Current dedicated showcase reconstruction checkpoint — 2026-10-08
+## Current live API showcase workbench checkpoint — 2026-10-08
 
 Entry checkpoint:
 
-- `54451b1fdca8da0f03096d16df20adc6100a5c11` — clean live `main` and
-  `origin/main` before the showcase-system reconstruction.
+- `fce028a2e080714a5759c649746656a3f36da524` — clean live `main` and
+  `origin/main` before the workbench correction.
 
-The bounded implementation commit is `feat(showcase): reconstruct dedicated
-component review system`; resolve its final SHA from live `main` because this
-file is part of that commit.
+The bounded implementation commit is `fix(showcase): add live API control
+workbenches`; resolve its final SHA from live `main` because this file is part
+of that commit.
 
-The checkpoint contains 77 dedicated showcase owners, zero missing or empty
-showcases, a zero-gap legacy migration ledger, redirect-only legacy URLs, and a
-compact Arabic catalog navigation. Runtime audit covers all component routes in
-Light/Dark RTL, 390 px narrow review, and 29 redirects with zero console
-errors/warnings, broken assets, or page overflow. Canonical verification passes
-119/119 test files and 730/730 tests, all lint/governance, both typechecks,
-production build, and zero warnings. Initial bundle is 488.33 kB / 106.12 kB.
+The checkpoint contains 77 one-target workbenches, 1,040 live controls for 990
+inputs, 20 models, 67 outputs, and 24 CVA owners, plus the specific ButtonGroup,
+FAB positioning, FabMenu, and SplitButton corrections. Runtime audit covers all
+77 component routes in Light/Dark RTL and at 390 px with zero console
+errors/warnings, broken assets, empty output, or overflow. Canonical
+verification passes 120/120 test files and 737/737 tests, all lint/governance,
+both typechecks, production build, and zero warnings. Initial bundle is 488.18
+kB / 105.32 kB.
 
 Product Owner visual approval is not inferred. The next gate is review of the
-reconstructed showcase system; the separate full ERP-TABLE gate remains pending
-and no later wave is opened.
+live API workbenches; no production FAB merge or later wave is opened.
+
+## Historical dedicated showcase reconstruction checkpoint — superseded 2026-10-08
+
+The preceding reconstruction entered at
+`54451b1fdca8da0f03096d16df20adc6100a5c11` and committed as
+`feat(showcase): reconstruct dedicated component review system`. Its dedicated
+routes and legacy migration remain historical foundations for the current
+workbenches.
 
 ## Historical ownership catalog and Page foundation checkpoint — superseded 2026-10-08
 

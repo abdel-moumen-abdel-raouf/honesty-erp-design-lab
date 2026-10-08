@@ -1,52 +1,29 @@
-<erp-stack gap="default" data-dedicated-showcase="global-search" data-showcase-sections="4">
+<erp-stack gap="default" data-dedicated-showcase="global-search" data-showcase-sections="1">
   <erp-text type="heading-2">البحث العام</erp-text>
   <erp-text type="paragraph" tone="secondary">بحث عام داخل إطار التطبيق مع نتائج مصنفة.</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-global-search
-          [query]="$any(modelValue('default:query', cases[0].inputs['query']))"
-          (queryChange)="recordModel('default:query', $event)"
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-global-search
+          data-showcase-target
+          [results]="$any(value('results'))"
+          [label]="$any(value('label'))"
+          [placeholder]="$any(value('placeholder'))"
+          [mode]="$any(value('mode'))"
+          [query]="$any(value('query'))"
+          (queryChange)="recordModel('query', $event)"
           (resultActivated)="recordEvent('resultActivated', $event)"
         ></erp-global-search>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="mode-modal">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">mode: modal</erp-text>
-        <erp-global-search
-          [mode]="$any(cases[1].inputs['mode'])"
-          [query]="$any(modelValue('mode-modal:query', cases[1].inputs['query']))"
-          (queryChange)="recordModel('mode-modal:query', $event)"
-          (resultActivated)="recordEvent('resultActivated', $event)"
-        ></erp-global-search>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="mode-dropdown">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">mode: dropdown</erp-text>
-        <erp-global-search
-          [mode]="$any(cases[2].inputs['mode'])"
-          [query]="$any(modelValue('mode-dropdown:query', cases[2].inputs['query']))"
-          (queryChange)="recordModel('mode-dropdown:query', $event)"
-          (resultActivated)="recordEvent('resultActivated', $event)"
-        ></erp-global-search>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="mode-inline">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">mode: inline</erp-text>
-        <erp-global-search
-          [mode]="$any(cases[3].inputs['mode'])"
-          [query]="$any(modelValue('mode-inline:query', cases[3].inputs['query']))"
-          (queryChange)="recordModel('mode-inline:query', $event)"
-          (resultActivated)="recordEvent('resultActivated', $event)"
-        ></erp-global-search>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>

@@ -1,137 +1,26 @@
-<erp-stack gap="default" data-dedicated-showcase="inline" data-showcase-sections="16">
+<erp-stack gap="default" data-dedicated-showcase="inline" data-showcase-sections="1">
   <erp-text type="heading-2">التخطيط السطري</erp-text>
   <erp-text type="paragraph" tone="secondary">ترتيب عناصر على المحور السطري مع التفاف مضبوط.</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-inline
-          
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-inline
+          data-showcase-target
+          [gap]="$any(value('gap'))"
+          [align]="$any(value('align'))"
+          [justify]="$any(value('justify'))"
+          [wrap]="$any(value('wrap'))"
         ><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 1</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 2</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 3</erp-text></erp-surface></erp-inline>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="gap-none">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">gap: none</erp-text>
-        <erp-inline
-          [gap]="$any(cases[1].inputs['gap'])"
-        ><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 1</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 2</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 3</erp-text></erp-surface></erp-inline>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="gap-tight">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">gap: tight</erp-text>
-        <erp-inline
-          [gap]="$any(cases[2].inputs['gap'])"
-        ><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 1</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 2</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 3</erp-text></erp-surface></erp-inline>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="gap-default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">gap: default</erp-text>
-        <erp-inline
-          [gap]="$any(cases[3].inputs['gap'])"
-        ><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 1</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 2</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 3</erp-text></erp-surface></erp-inline>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="gap-loose">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">gap: loose</erp-text>
-        <erp-inline
-          [gap]="$any(cases[4].inputs['gap'])"
-        ><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 1</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 2</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 3</erp-text></erp-surface></erp-inline>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="align-stretch">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">align: stretch</erp-text>
-        <erp-inline
-          [align]="$any(cases[5].inputs['align'])"
-        ><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 1</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 2</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 3</erp-text></erp-surface></erp-inline>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="align-start">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">align: start</erp-text>
-        <erp-inline
-          [align]="$any(cases[6].inputs['align'])"
-        ><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 1</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 2</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 3</erp-text></erp-surface></erp-inline>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="align-center">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">align: center</erp-text>
-        <erp-inline
-          [align]="$any(cases[7].inputs['align'])"
-        ><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 1</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 2</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 3</erp-text></erp-surface></erp-inline>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="align-end">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">align: end</erp-text>
-        <erp-inline
-          [align]="$any(cases[8].inputs['align'])"
-        ><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 1</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 2</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 3</erp-text></erp-surface></erp-inline>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="align-baseline">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">align: baseline</erp-text>
-        <erp-inline
-          [align]="$any(cases[9].inputs['align'])"
-        ><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 1</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 2</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 3</erp-text></erp-surface></erp-inline>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="justify-start">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">justify: start</erp-text>
-        <erp-inline
-          [justify]="$any(cases[10].inputs['justify'])"
-        ><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 1</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 2</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 3</erp-text></erp-surface></erp-inline>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="justify-center">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">justify: center</erp-text>
-        <erp-inline
-          [justify]="$any(cases[11].inputs['justify'])"
-        ><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 1</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 2</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 3</erp-text></erp-surface></erp-inline>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="justify-end">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">justify: end</erp-text>
-        <erp-inline
-          [justify]="$any(cases[12].inputs['justify'])"
-        ><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 1</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 2</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 3</erp-text></erp-surface></erp-inline>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="justify-between">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">justify: between</erp-text>
-        <erp-inline
-          [justify]="$any(cases[13].inputs['justify'])"
-        ><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 1</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 2</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 3</erp-text></erp-surface></erp-inline>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="wrap-nowrap">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">wrap: nowrap</erp-text>
-        <erp-inline
-          [wrap]="$any(cases[14].inputs['wrap'])"
-        ><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 1</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 2</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 3</erp-text></erp-surface></erp-inline>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="wrap-wrap">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">wrap: wrap</erp-text>
-        <erp-inline
-          [wrap]="$any(cases[15].inputs['wrap'])"
-        ><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 1</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 2</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي 3</erp-text></erp-surface></erp-inline>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>

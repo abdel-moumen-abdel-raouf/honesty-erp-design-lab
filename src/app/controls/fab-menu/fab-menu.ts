@@ -18,14 +18,17 @@ import {
 import {ErpIconName} from '../../primitives/icon/icon-contracts';
 import {ErpExtendedFab} from '../extended-fab/extended-fab';
 import {ErpFab} from '../fab/fab';
-import {ErpItemPickerOption} from '../selection-family/selection-contracts';
-import {ErpFabMenuPlacement} from '../composite-family/composite-contracts';
+import {ErpTooltip} from '../tooltip/tooltip';
+import {
+  ErpActionMenuItem,
+  ErpFabMenuPlacement,
+} from '../composite-family/composite-contracts';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'erp-fab-menu',
-  imports: [ErpExtendedFab, ErpFab],
+  imports: [ErpExtendedFab, ErpFab, ErpTooltip],
   templateUrl: './fab-menu.html',
   styleUrl: './fab-menu.scss',
   host: {
@@ -38,7 +41,7 @@ import {ErpFabMenuPlacement} from '../composite-family/composite-contracts';
 export class ErpFabMenu implements OnDestroy {
   readonly label = input.required<string>();
   readonly icon = input<ErpIconName>('add');
-  readonly items = input.required<readonly ErpItemPickerOption[]>();
+  readonly items = input.required<readonly ErpActionMenuItem[]>();
   readonly placement = input<ErpFabMenuPlacement>('block-start');
   readonly disabled = input(false, {transform: booleanAttribute});
   readonly itemSelected = output<string>();
@@ -72,7 +75,7 @@ export class ErpFabMenu implements OnDestroy {
     this.openMenu();
   }
 
-  protected select(item: ErpItemPickerOption): void {
+  protected select(item: ErpActionMenuItem): void {
     if (item.disabled) {
       return;
     }

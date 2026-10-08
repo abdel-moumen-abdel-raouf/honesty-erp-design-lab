@@ -1,24 +1,33 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
-## Authoritative current gate — 2026-10-08 — dedicated showcase reconstruction
+## Authoritative current gate — 2026-10-08 — live API showcase workbenches
 
-The bounded work entered at `54451b1fdca8da0f03096d16df20adc6100a5c11`.
-Every one of the 77 public ERP owners now has a dedicated component-specific
-showcase owner, lazy loader, and coverage contract. Missing owners and empty
-showcases are zero; generic input-only fallback is prohibited.
+The bounded correction entered at `fce028a2e080714a5759c649746656a3f36da524`.
+All 77 public owners render one primary target and a complete live API control
+panel: 990 inputs, 20 models, 67 outputs, 24 CVA owners, and 1,040 immediately
+applied editors. Governance rejects missing controls/bindings, multiple targets,
+or incomplete interaction evidence.
 
-Legacy meaningful sections are fully mapped and the old routed showcase and
-Foundation implementations are decommissioned behind 29 redirect aliases.
-Navigation is a compact Arabic catalog rather than the former duplicate rows
-and component matrix. Runtime review passed all component routes in Light/Dark
-RTL, representative interactions, 390 px narrow review, and all redirects with
-zero console errors/warnings, broken assets, or page overflow.
+ButtonGroup now renders a real three-button group. Fab, ExtendedFab, and
+FabMenu use bounded floating canvases with live inline/block position controls.
+FabMenu and SplitButton each provide five actions covering text-only,
+icon-only, and icon-plus-text. Production FAB owners remain separate because no
+merge was authorized.
 
-Canonical verification passes 119/119 test files and 730/730 tests, all
-lint/governance, both typechecks, production build, and zero warnings. Initial
-bundle is 488.33 kB / 106.12 kB. The next gate is Product Owner review of the
-showcase reconstruction. Existing component visual contracts remain closed and
-no later component/page/feature wave is authorized.
+Runtime review passed all 77 component routes in Light/Dark RTL and at 390 px
+with zero missing targets/control panels, empty visible output, console
+errors/warnings, broken assets, or overflow. Canonical verification passes
+120/120 files and 737/737 tests, all lint/governance, both typechecks,
+production build, and zero warnings. Initial bundle is 488.18 kB / 105.32 kB.
+The next gate is Product Owner review of the live workbenches; no later
+component/page/feature wave is authorized.
+
+## Historical dedicated showcase gate — superseded 2026-10-08
+
+The preceding reconstruction entered at
+`54451b1fdca8da0f03096d16df20adc6100a5c11`. Its dedicated routes, legacy
+migration, and compact navigation remain in force, while its static/matrix page
+contract is superseded by the one-target live-API contract above.
 
 ## Historical ownership catalog and ErpPage gate — superseded 2026-10-08
 

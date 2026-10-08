@@ -1,65 +1,24 @@
-<erp-stack gap="default" data-dedicated-showcase="page" data-showcase-sections="7">
+<erp-stack gap="default" data-dedicated-showcase="page" data-showcase-sections="1">
   <erp-text type="heading-2">الصفحة</erp-text>
   <erp-text type="paragraph" tone="secondary">حد عرض وتمرير واستجابة لمحتوى صفحة واحدة.</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-page
-          
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-page
+          data-showcase-target
+          [widthMode]="$any(value('widthMode'))"
+          [scrollMode]="$any(value('scrollMode'))"
         ><erp-text type="paragraph">محتوى مسقط مرئي داخل المكوّن</erp-text></erp-page>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="widthMode-boxed">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">widthMode: boxed</erp-text>
-        <erp-page
-          [widthMode]="$any(cases[1].inputs['widthMode'])"
-        ><erp-text type="paragraph">محتوى مسقط مرئي داخل المكوّن</erp-text></erp-page>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="widthMode-fluid">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">widthMode: fluid</erp-text>
-        <erp-page
-          [widthMode]="$any(cases[2].inputs['widthMode'])"
-        ><erp-text type="paragraph">محتوى مسقط مرئي داخل المكوّن</erp-text></erp-page>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="widthMode-full">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">widthMode: full</erp-text>
-        <erp-page
-          [widthMode]="$any(cases[3].inputs['widthMode'])"
-        ><erp-text type="paragraph">محتوى مسقط مرئي داخل المكوّن</erp-text></erp-page>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="scrollMode-document">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">scrollMode: document</erp-text>
-        <erp-page
-          [scrollMode]="$any(cases[4].inputs['scrollMode'])"
-        ><erp-text type="paragraph">محتوى مسقط مرئي داخل المكوّن</erp-text></erp-page>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="scrollMode-page">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">scrollMode: page</erp-text>
-        <erp-page
-          [scrollMode]="$any(cases[5].inputs['scrollMode'])"
-        ><erp-text type="paragraph">محتوى مسقط مرئي داخل المكوّن</erp-text></erp-page>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="scrollMode-free">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">scrollMode: free</erp-text>
-        <erp-page
-          [scrollMode]="$any(cases[6].inputs['scrollMode'])"
-        ><erp-text type="paragraph">محتوى مسقط مرئي داخل المكوّن</erp-text></erp-page>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>

@@ -1,41 +1,23 @@
-<erp-stack gap="default" data-dedicated-showcase="section" data-showcase-sections="4">
+<erp-stack gap="default" data-dedicated-showcase="section" data-showcase-sections="1">
   <erp-text type="heading-2">القسم</erp-text>
   <erp-text type="paragraph" tone="secondary">حد section دلالي وفجوة داخلية.</erp-text>
-    <erp-surface padding="default" border="subtle" data-showcase-case="default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">الحالة الافتراضية</erp-text>
-        <erp-section
-          
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-section
+          data-showcase-target
+          [gap]="$any(value('gap'))"
         ><erp-text type="paragraph">محتوى مسقط مرئي داخل المكوّن</erp-text></erp-section>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="gap-none">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">gap: none</erp-text>
-        <erp-section
-          [gap]="$any(cases[1].inputs['gap'])"
-        ><erp-text type="paragraph">محتوى مسقط مرئي داخل المكوّن</erp-text></erp-section>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="gap-default">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">gap: default</erp-text>
-        <erp-section
-          [gap]="$any(cases[2].inputs['gap'])"
-        ><erp-text type="paragraph">محتوى مسقط مرئي داخل المكوّن</erp-text></erp-section>
-      </erp-stack>
-    </erp-surface>
-    <erp-surface padding="default" border="subtle" data-showcase-case="gap-large">
-      <erp-stack gap="tight">
-        <erp-text type="heading-3">gap: large</erp-text>
-        <erp-section
-          [gap]="$any(cases[3].inputs['gap'])"
-        ><erp-text type="paragraph">محتوى مسقط مرئي داخل المكوّن</erp-text></erp-section>
-      </erp-stack>
-    </erp-surface>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
   <erp-surface padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">دليل التفاعل والحالة المضبوطة</erp-text>
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>

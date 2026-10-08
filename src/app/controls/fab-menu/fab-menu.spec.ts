@@ -126,4 +126,28 @@ describe('ErpFabMenu', () => {
     expect(host.getAttribute('data-fab-menu-open')).toBe('false');
     expect(document.activeElement).toBe(trigger);
   });
+
+  it('composes text-only, icon-only, and icon-text action presentations', () => {
+    const fixture = TestBed.createComponent(ErpFabMenu);
+    fixture.componentRef.setInput('label', 'Actions');
+    fixture.componentRef.setInput('items', [
+      {value: 'text', label: 'Text only', presentation: 'text'},
+      {value: 'icon', label: 'Icon only', icon: 'eye', presentation: 'icon'},
+      {value: 'mixed', label: 'Icon and text', icon: 'save', presentation: 'icon-text'},
+    ]);
+    fixture.detectChanges();
+
+    const surface = (fixture.nativeElement as HTMLElement).querySelector(
+      '.fab-menu__actions',
+    )!;
+    const actions = surface.querySelectorAll('[data-fab-menu-action]');
+
+    expect(actions).toHaveLength(3);
+    expect(actions[0].tagName.toLowerCase()).toBe('erp-extended-fab');
+    expect(actions[0].querySelector('erp-icon')).toBeNull();
+    expect(actions[1].tagName.toLowerCase()).toBe('erp-fab');
+    expect(actions[1].closest('erp-tooltip')).not.toBeNull();
+    expect(actions[2].tagName.toLowerCase()).toBe('erp-extended-fab');
+    expect(actions[2].querySelector('erp-icon')).not.toBeNull();
+  });
 });
