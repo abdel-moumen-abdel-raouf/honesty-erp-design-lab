@@ -1,5 +1,15 @@
 # Next Component Reference Batch V1
 
+## Authoritative current reference gate — 2026-10-08 — UserMenu compact-trigger review only
+
+No next component is authorized. `ErpUserMenu` is the sole visual candidate;
+the current evidence covers the Product Owner compact three-row trigger,
+default popup-only badges, independent trigger badge opt-ins, long identities,
+fallbacks, both directions/themes, and all required viewports. Technical
+verification passes 63/63 focused tests and the full 122-file/782-test
+zero-warning gate. Stop for external Product Owner review; S2 and every other
+component wave remain closed.
+
 ## Authoritative current reference gate — 2026-10-08 — Avatar library review only
 
 No next component is authorized. The current candidate is the Product Owner's

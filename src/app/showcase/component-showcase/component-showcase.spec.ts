@@ -283,6 +283,8 @@ describe('ComponentShowcase', () => {
       'showPresence',
       'showRoleBadge',
       'showBranchBadge',
+      'showTriggerRoleBadge',
+      'showTriggerBranchBadge',
     ];
 
     expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);

@@ -10,65 +10,80 @@
       [bordered]="false"
     />
   }
-  <span class="user-menu__trigger-identity">
-    @if (showUserName()) {
-      <erp-text
-        class="user-menu__trigger-name"
-        type="span"
-        weight="medium"
-        overflow="ellipsis"
-        [attr.aria-label]="user().displayName"
-      >
-        {{ user().displayName }}
-      </erp-text>
-    }
-    @if (showEmail() && user().email) {
-      <erp-text
-        class="user-menu__email user-menu__email--trigger"
-        type="caption"
-        tone="secondary"
-        overflow="ellipsis"
-        direction="ltr"
-      >
-        {{ user().email }}
-      </erp-text>
-    }
-    @if (
-      (showRoleBadge() && user().roleLabel) ||
-      (showBranchBadge() && user().branchLabel)
-    ) {
-      <span class="user-menu__badges user-menu__badges--trigger">
-        @if (showRoleBadge() && user().roleLabel) {
-          <erp-status-badge
-            [label]="user().roleLabel!"
-            tone="brand"
-            variant="soft"
-            size="sm"
-            shape="pill"
-          />
-        }
-        @if (showBranchBadge() && user().branchLabel) {
-          <erp-status-badge
-            [label]="user().branchLabel!"
-            tone="neutral"
-            variant="soft"
-            size="sm"
-            shape="pill"
-          />
-        }
-      </span>
-    }
-    @if (user().secondaryText) {
-      <erp-text
-        class="user-menu__trigger-secondary"
-        type="caption"
-        tone="secondary"
-        overflow="ellipsis"
-      >
-        {{ user().secondaryText }}
-      </erp-text>
-    }
-  </span>
+  @if (triggerIdentityVisible()) {
+    <span class="user-menu__trigger-identity">
+      @if (showUserName()) {
+        <erp-text
+          class="user-menu__trigger-name"
+          type="span"
+          weight="medium"
+          overflow="ellipsis"
+          [attr.aria-label]="user().displayName"
+        >
+          {{ user().displayName }}
+        </erp-text>
+      }
+      @if (showEmail() && user().email) {
+        <erp-text
+          class="user-menu__email user-menu__email--trigger"
+          type="caption"
+          tone="secondary"
+          overflow="ellipsis"
+          direction="ltr"
+          [attr.aria-label]="user().email"
+        >
+          {{ user().email }}
+        </erp-text>
+      }
+      @if (
+        user().secondaryText || triggerRoleVisible() || triggerBranchVisible()
+      ) {
+        <span
+          class="user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata"
+        >
+          @if (user().secondaryText) {
+            <erp-text
+              class="user-menu__trigger-secondary"
+              type="caption"
+              tone="secondary"
+              overflow="ellipsis"
+              [attr.aria-label]="user().secondaryText"
+            >
+              {{ user().secondaryText }}
+            </erp-text>
+          }
+          @if (triggerRoleVisible() || triggerBranchVisible()) {
+            <span class="user-menu__badges user-menu__badges--trigger">
+              @if (triggerRoleVisible()) {
+                <erp-status-badge
+                  class="user-menu__trigger-badge"
+                  [attr.aria-label]="user().roleLabel"
+                  [label]="user().roleLabel!"
+                  tone="brand"
+                  variant="soft"
+                  size="sm"
+                  shape="pill"
+                  widthMode="stretch"
+                />
+              }
+              @if (triggerBranchVisible()) {
+                <erp-status-badge
+                  class="user-menu__trigger-badge"
+                  [attr.aria-label]="user().branchLabel"
+                  [label]="user().branchLabel!"
+                  tone="neutral"
+                  variant="soft"
+                  size="sm"
+                  shape="pill"
+                  widthMode="stretch"
+                />
+              }
+            </span>
+          }
+        </span>
+      }
+    </span>
+  }
   <erp-button
     #trigger
     class="user-menu__trigger-action"
@@ -94,6 +109,7 @@
   [attr.aria-label]="label()"
   (keydown)="handleMenuKeydown($event)"
 >
+  <erp-user-menu-arrow />
   <header class="user-menu__identity-header">
     @if (showAvatar()) {
       <erp-avatar

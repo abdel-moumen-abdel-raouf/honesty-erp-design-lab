@@ -39,8 +39,9 @@ The Product Owner explicitly authorized these bounded refinements on
 2026-10-08. They supersede the reference's fixed 40 px multi-line trigger and
 the unconditional 576 px name hiding, without reopening any other Shell owner:
 
-- the closed capsule uses balanced 8 px block / 12 px inline padding, a 12 px
-  identity gap, a 56 px minimum block size, and a 360 px maximum inline size;
+- the closed capsule uses intrinsic height and bounded responsive inline sizing;
+  the later compact-trigger correction below owns its current physical padding,
+  gap, and minimum-size values;
 - intrinsic flex sizing, `min-inline-size: 0`, and ellipsis keep long Arabic,
   English, and mixed-direction names within the available header width;
 - the full display name remains the trigger's accessible action label even
@@ -62,6 +63,47 @@ the unconditional 576 px name hiding, without reopening any other Shell owner:
 Live identity or visibility changes while open reuse the existing anchored
 surface and request fresh measured placement. They never create a second
 overlay or restore a fixed arrow offset.
+
+## Product Owner compact-trigger correction
+
+The Product Owner explicitly rejected the preceding closed-trigger candidate
+on 2026-10-08 because it rendered a 104--125 px capsule with four identity
+rows and default trigger badges. This bounded correction supersedes only that
+closed-trigger presentation; the open popup, arrow, vertical placement, and
+actions-only scrolling contracts remain in force.
+
+- the trigger has at most three direct identity rows: display name, email, and
+  one optional metadata row;
+- `secondaryText` occupies the metadata row. When trigger badges are explicitly
+  enabled, that row uses constrained equal-width inline cells so it never
+  creates a fourth or fifth row;
+- `showRoleBadge` and `showBranchBadge` remain default-true global gates and
+  continue to show popup badges by default;
+- new default-false `showTriggerRoleBadge` and
+  `showTriggerBranchBadge` inputs independently opt the corresponding badges
+  into the closed trigger;
+- trigger padding is 6 px block / 10 px inline, Avatar-to-copy gap is 10 px,
+  copy-row gap is 1 px, metadata gap is 4 px, and the minimum capsule block
+  size is 52 px;
+- the full three-row identity renders at 60 px, yielding a 72 px capsule; a
+  name-only identity yields the 52 px minimum. The Avatar remains 40 x 40 px
+  and its measured center delta is 0 px;
+- name, email, secondary text, and opted-in badges truncate inline without
+  vertical clipping; full values remain exposed by accessible labels.
+
+The before/after browser matrix and reproducible capture script are under
+`docs/review-evidence/erp-user-menu/compact-trigger-v1/`. At 1440 px the
+default capsule changes from 360 x 104 px and four rows to 360 x 72 px and
+three rows. At 390 px it changes from 309 x 104 px to 309 x 72 px. The long
+English 320 px case changes from 239 x 125 px to 239 x 71 px. All corrected
+row client/scroll/rendered heights match, all popup edges remain contained,
+and page horizontal overflow is 0 px.
+
+To retain the existing 4 kB component-style budget without changing the
+already validated arrow, its purely visual CSS is isolated in the bounded
+internal `ErpUserMenuArrow`. This is not a public component or overlay owner;
+position still comes from `ShellAnchoredSurfaceController`. Wide open captures
+record a 0 px arrow-center delta, and the existing narrow rule still hides it.
 
 ## Interaction contract
 
@@ -94,10 +136,11 @@ inside the visible viewport and has zero trigger overlap. The constrained
 zero measured arrow-center delta. The current machine-readable evidence is
 `docs/review-evidence/erp-user-menu/s1-final-popup-geometry.json`.
 
-Both trigger and open card use the same visible identity order after Avatar:
-name, email, role/branch badges, then optional legacy `secondaryText`.
-`secondaryText` remains independent and is never reinterpreted as email, role,
-or branch.
+The open card order after Avatar remains name, email, role/branch badges, then
+optional legacy `secondaryText`. The compact trigger uses name, email, then one
+bounded metadata row containing optional `secondaryText` and any explicitly
+enabled trigger badges. `secondaryText` remains independent and is never
+reinterpreted as email, role, or branch.
 
 ## Viewport-clamped arrow closure
 

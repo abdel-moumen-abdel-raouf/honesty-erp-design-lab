@@ -1,5 +1,15 @@
 # Inputs Product Owner Review Findings V1
 
+## Authoritative continuity note — 2026-10-08 — UserMenu compact-trigger correction
+
+No Input visual or behavioral contract changed. This bounded Shell correction
+changes only `ErpUserMenu` trigger presentation, two trigger-specific boolean
+inputs, its generated workbench controls, direct governance/tests, and visual
+evidence. The existing global visibility inputs retain their semantics and
+defaults. Input findings remain unchanged; Product Owner UserMenu review is
+pending and S2 is not authorized. Canonical verification passes 122/122 files
+and 782/782 tests with zero warnings.
+
 ## Authoritative continuity note — 2026-10-08 — Avatar asset replacement
 
 No Input visual or behavioral contract changed. The bounded task replaces only

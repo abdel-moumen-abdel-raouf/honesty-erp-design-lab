@@ -1,5 +1,22 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Shell S1 compact-trigger binding decision — 2026-10-08
+
+The closed `ErpUserMenu` trigger has a maximum of three direct identity rows:
+name, email, and optional metadata. `showRoleBadge` and `showBranchBadge`
+remain default-true global gates. Default-false `showTriggerRoleBadge` and
+`showTriggerBranchBadge` are the only trigger-specific additions and must not
+change popup defaults. Explicit trigger badges share the third row with
+`secondaryText` through bounded inline tracks and accessible full labels.
+
+The current physical contract is intrinsic height, 6 px block / 10 px inline
+padding, 10 px Avatar gap, 1 px row gap, 40 x 40 px Avatar, and 52 px minimum
+block size. No fixed height, clipped text, breakpoint-only hiding, new public
+owner, new overlay engine, or Avatar/StatusBadge/Button redesign is authorized.
+The bounded internal arrow presentation retains the already validated geometry
+and exists only to keep the unchanged 4 kB component-style budget. Technical
+success does not approve the visual result or authorize S2.
+
 ## Global 3D avatar asset-library binding decision — 2026-10-08
 
 The 116 Product Owner-supplied PNGs under the import-time provenance directory

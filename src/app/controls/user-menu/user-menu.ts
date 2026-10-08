@@ -25,6 +25,7 @@ import {
   readShellCssLength,
   ShellAnchoredSurfaceController,
 } from '../shell-family/internal/shell-anchored-surface';
+import {ErpUserMenuArrow} from './internal/user-menu-arrow';
 
 let nextUserMenuId = 0;
 
@@ -32,7 +33,14 @@ let nextUserMenuId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector -- ERP production components intentionally use the erp prefix.
   selector: 'erp-user-menu',
-  imports: [ErpAvatar, ErpButton, ErpDivider, ErpStatusBadge, ErpText],
+  imports: [
+    ErpAvatar,
+    ErpButton,
+    ErpDivider,
+    ErpStatusBadge,
+    ErpText,
+    ErpUserMenuArrow,
+  ],
   templateUrl: './user-menu.html',
   styleUrl: './user-menu.scss',
   host: {'[attr.data-user-menu-open]': 'open()'},
@@ -47,12 +55,29 @@ export class ErpUserMenu implements AfterViewInit, OnDestroy {
   readonly showPresence = input(true, {transform: booleanAttribute});
   readonly showRoleBadge = input(true, {transform: booleanAttribute});
   readonly showBranchBadge = input(true, {transform: booleanAttribute});
+  readonly showTriggerRoleBadge = input(false, {transform: booleanAttribute});
+  readonly showTriggerBranchBadge = input(false, {transform: booleanAttribute});
   readonly open = model(false);
   readonly actionActivated = output<ErpUserMenuItem>();
 
   protected readonly surfaceId = `erp-user-menu-surface-${++nextUserMenuId}`;
   protected readonly triggerAccessibleLabel = computed(
     () => `${this.label()}: ${this.user().displayName}`,
+  );
+  protected readonly triggerRoleVisible = computed(
+    () => this.showRoleBadge() && this.showTriggerRoleBadge() &&
+      Boolean(this.user().roleLabel),
+  );
+  protected readonly triggerBranchVisible = computed(
+    () => this.showBranchBadge() && this.showTriggerBranchBadge() &&
+      Boolean(this.user().branchLabel),
+  );
+  protected readonly triggerIdentityVisible = computed(
+    () => this.showUserName() ||
+      (this.showEmail() && Boolean(this.user().email)) ||
+      Boolean(this.user().secondaryText) ||
+      this.triggerRoleVisible() ||
+      this.triggerBranchVisible(),
   );
 
   private readonly trigger = viewChild('trigger', {
@@ -75,6 +100,8 @@ export class ErpUserMenu implements AfterViewInit, OnDestroy {
       this.showPresence();
       this.showRoleBadge();
       this.showBranchBadge();
+      this.showTriggerRoleBadge();
+      this.showTriggerBranchBadge();
 
       if (!this.viewReady || !this.controller) {
         return;

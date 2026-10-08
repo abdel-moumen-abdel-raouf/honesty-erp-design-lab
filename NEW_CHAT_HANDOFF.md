@@ -1,5 +1,21 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Authoritative current handoff — 2026-10-08 — Shell S1 compact UserMenu trigger
+
+Start from live `main`. This bounded correction entered at
+`991c03daaf01b5bd3dd8ab03b222cdcc4f57b6f0` and affects only the existing
+`ErpUserMenu`. Read its exact contract and
+`docs/review-evidence/erp-user-menu/compact-trigger-v1/README.md` first.
+
+The closed trigger now contains at most name, email, and one metadata row.
+Role/branch badges remain visible by default in the popup but require their new
+independent default-false trigger gates in the capsule. Current evidence records
+71--72 px full-identity capsules, 40 px centered Avatar, zero block clipping,
+zero horizontal/popup overflow, zero broken images, and one live workbench
+target. Canonical verification passes 122/122 files and 782/782 tests, both
+typechecks, production build, all governance, and zero warnings. The next
+action is Product Owner visual review; do not open S2 or another owner.
+
 ## Authoritative current handoff — 2026-10-08 — 3D avatar collection review
 
 Start from live `main`. This bounded asset task entered at

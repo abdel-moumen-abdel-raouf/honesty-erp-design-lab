@@ -1,5 +1,21 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Current gate — Shell S1 compact UserMenu trigger
+
+Start from live `main` and read
+`src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md` plus
+`docs/review-evidence/erp-user-menu/compact-trigger-v1/README.md`. Only
+`ErpUserMenu` is open. The default closed capsule now has at most three rows,
+hides trigger role/branch badges by default, and preserves both popup badges by
+default. Two compatible trigger-specific controls expose independent opt-in.
+
+Browser evidence covers 320/390/768/1440 px, both themes and directions,
+open/closed states, long identities, fallbacks, and explicit badge states with
+zero vertical row clipping or page/popup overflow. The canonical gate passes
+122/122 files and 782/782 tests, both typechecks, production build, all
+governance, and zero warnings. Stop for external Product Owner review; do not
+open S2.
+
 ## Current gate — Product Owner 116-image 3D avatar library
 
 Start from live `main`. Read

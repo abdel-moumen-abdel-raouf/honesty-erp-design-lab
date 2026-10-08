@@ -1,5 +1,19 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Authoritative current review state — 2026-10-08 — UserMenu compact trigger
+
+The Product Owner explicitly rejected the preceding closed-trigger candidate.
+`ErpUserMenu` remains the sole bounded Shell S1 visual candidate. The current
+candidate limits the trigger to three identity rows, hides role/branch badges
+there by default, retains both popup badges by default, and exposes two
+independent trigger opt-ins. Measured corrected heights are 72 px at
+desktop/390 and 71 px for the 320 long-name case, with no row block clipping,
+horizontal/popup overflow, broken images, or browser diagnostics.
+
+Focused verification passes 63/63 tests and the canonical 122-file/782-test
+zero-warning gate passes. This is technical evidence only; Product Owner
+acceptance remains pending and S2 is not open.
+
 ## Authoritative current review state — 2026-10-08 — 3D avatar asset collection
 
 The Product Owner's 116 supplied 3D PNGs supersede the previous system avatar

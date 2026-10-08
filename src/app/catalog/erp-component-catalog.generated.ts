@@ -4981,6 +4981,30 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "hasDefault": true,
           "defaultValue": true,
           "defaultExpression": "true"
+        },
+        {
+          "name": "showTriggerRoleBadge",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
+        },
+        {
+          "name": "showTriggerBranchBadge",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ],
       "outputs": [
@@ -5008,12 +5032,14 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "ErpShellUserSummary",
       "ErpStatusBadge",
       "ErpText",
+      "ErpUserMenuArrow",
       "ErpUserMenuItem",
       "erp-avatar",
       "erp-button",
       "erp-divider",
       "erp-status-badge",
-      "erp-text"
+      "erp-text",
+      "erp-user-menu-arrow"
     ],
     "nativeElementsOwned": [
       "div",
@@ -5034,7 +5060,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "showEmail",
       "showPresence",
       "showRoleBadge",
-      "showBranchBadge"
+      "showBranchBadge",
+      "showTriggerRoleBadge",
+      "showTriggerBranchBadge"
     ],
     "showcaseCases": [
       {
@@ -5366,6 +5394,70 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         }
       },
       {
+        "id": "showTriggerRoleBadge-false",
+        "label": "showTriggerRoleBadge: false",
+        "inputs": {
+          "user": {
+            "displayName": "أميرة حداد",
+            "secondaryText": "الحساب المؤسسي",
+            "email": "amira.haddad@honesty.example",
+            "roleLabel": "مديرة المالية",
+            "branchLabel": "الفرع الرئيسي",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "avatarPresence": "online"
+          },
+          "showTriggerRoleBadge": false
+        }
+      },
+      {
+        "id": "showTriggerRoleBadge-true",
+        "label": "showTriggerRoleBadge: true",
+        "inputs": {
+          "user": {
+            "displayName": "أميرة حداد",
+            "secondaryText": "الحساب المؤسسي",
+            "email": "amira.haddad@honesty.example",
+            "roleLabel": "مديرة المالية",
+            "branchLabel": "الفرع الرئيسي",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "avatarPresence": "online"
+          },
+          "showTriggerRoleBadge": true
+        }
+      },
+      {
+        "id": "showTriggerBranchBadge-false",
+        "label": "showTriggerBranchBadge: false",
+        "inputs": {
+          "user": {
+            "displayName": "أميرة حداد",
+            "secondaryText": "الحساب المؤسسي",
+            "email": "amira.haddad@honesty.example",
+            "roleLabel": "مديرة المالية",
+            "branchLabel": "الفرع الرئيسي",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "avatarPresence": "online"
+          },
+          "showTriggerBranchBadge": false
+        }
+      },
+      {
+        "id": "showTriggerBranchBadge-true",
+        "label": "showTriggerBranchBadge: true",
+        "inputs": {
+          "user": {
+            "displayName": "أميرة حداد",
+            "secondaryText": "الحساب المؤسسي",
+            "email": "amira.haddad@honesty.example",
+            "roleLabel": "مديرة المالية",
+            "branchLabel": "الفرع الرئيسي",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "avatarPresence": "online"
+          },
+          "showTriggerBranchBadge": true
+        }
+      },
+      {
         "id": "open-false",
         "label": "open: false",
         "inputs": {
@@ -5442,6 +5534,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "showPresence": true,
       "showRoleBadge": true,
       "showBranchBadge": true,
+      "showTriggerRoleBadge": false,
+      "showTriggerBranchBadge": false,
       "open": true,
       "user": {
         "displayName": "أميرة حداد",
@@ -5604,6 +5698,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "initialValue": true
       },
       {
+        "name": "showTriggerRoleBadge",
+        "label": "showTriggerRoleBadge",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "showTriggerBranchBadge",
+        "label": "showTriggerBranchBadge",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
         "name": "open",
         "label": "open",
         "source": "model",
@@ -5657,7 +5777,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "showEmail",
         "showPresence",
         "showRoleBadge",
-        "showBranchBadge"
+        "showBranchBadge",
+        "showTriggerRoleBadge",
+        "showTriggerBranchBadge"
       ],
       "coveredModels": [
         "open"
@@ -5689,6 +5811,14 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "showBranchBadge": [
           "false",
           "true"
+        ],
+        "showTriggerRoleBadge": [
+          "false",
+          "true"
+        ],
+        "showTriggerBranchBadge": [
+          "false",
+          "true"
         ]
       },
       "coveredStates": [
@@ -5697,7 +5827,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "showEmail",
         "showPresence",
         "showRoleBadge",
-        "showBranchBadge"
+        "showBranchBadge",
+        "showTriggerRoleBadge",
+        "showTriggerBranchBadge"
       ],
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [
@@ -5720,6 +5852,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "showRoleBadge-true",
         "showBranchBadge-false",
         "showBranchBadge-true",
+        "showTriggerRoleBadge-false",
+        "showTriggerRoleBadge-true",
+        "showTriggerBranchBadge-false",
+        "showTriggerBranchBadge-true",
         "open-false",
         "open-true"
       ],
@@ -33566,6 +33702,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCases": [],
     "displayNameAr": "ErpTooltipContent",
     "descriptionAr": "Owns bounded internal tooltip content semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
+    "showcaseCoverage": null
+  },
+  {
+    "id": "user-menu-arrow",
+    "selector": "erp-user-menu-arrow",
+    "className": "ErpUserMenuArrow",
+    "category": "Internal Owners",
+    "classification": "INTERNAL SEMANTIC OWNER",
+    "sourcePath": "src/app/controls/user-menu/internal/user-menu-arrow.ts",
+    "purpose": "Owns bounded internal user menu arrow semantics for its parent ERP component.",
+    "publicApi": {
+      "inputs": [],
+      "outputs": [],
+      "models": []
+    },
+    "lowerLevelOwners": [],
+    "nativeElementsOwned": [],
+    "nativeCoverage": [],
+    "coverageScope": "parent-owner-only",
+    "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
+    "visualReference": null,
+    "visualStatus": "PENDING",
+    "showcaseFacets": [],
+    "showcaseCases": [],
+    "displayNameAr": "ErpUserMenuArrow",
+    "descriptionAr": "Owns bounded internal user menu arrow semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
     "showcaseCoverage": null

@@ -134,6 +134,22 @@ export function validateShellNavigation(files) {
       errors.push(`ErpUserMenu must expose default-true ${visibilityInput} visibility control`);
     }
   }
+  for (const triggerVisibilityInput of [
+    'showTriggerRoleBadge',
+    'showTriggerBranchBadge',
+  ]) {
+    if (!userMenu.includes(`readonly ${triggerVisibilityInput} = input(false`)) {
+      errors.push(`ErpUserMenu must expose default-false trigger-specific ${triggerVisibilityInput} visibility control`);
+    }
+  }
+  if (
+    !userMenu.includes('triggerRoleVisible') ||
+    !userMenu.includes('triggerBranchVisible') ||
+    !userMenu.includes('user-menu__trigger-metadata') ||
+    !userMenu.includes('user-menu__badges--trigger')
+  ) {
+    errors.push('ErpUserMenu trigger badges must remain independently gated inside the third identity row');
+  }
 
   for (const identityField of ['email?', 'roleLabel?', 'branchLabel?', 'avatarPresence?']) {
     if (!contracts.includes(identityField)) {
@@ -150,6 +166,8 @@ export function validateShellNavigation(files) {
   }
 
   const userMenuStyles = files.get('src/app/controls/user-menu/user-menu.scss') ?? '';
+  const userMenuArrowStyles =
+    files.get('src/app/controls/user-menu/internal/user-menu-arrow.scss') ?? '';
   const userMenuTokens =
     files.get('src/styles/foundation/components/user-menu/_tokens.scss') ?? '';
   if (
@@ -163,9 +181,11 @@ export function validateShellNavigation(files) {
     !userMenu.includes('arrowSafeInset:') ||
     !userMenu.includes("allowedPlacements: ['bottom', 'top']") ||
     !userMenu.includes('prepareGeometry:') ||
-    !userMenuStyles.includes(
+    !userMenuArrowStyles.includes(
       '--honesty-anchored-surface-arrow-cross-axis-center',
-    )
+    ) ||
+    !userMenu.includes('ErpUserMenuArrow') ||
+    !userMenu.includes('<erp-user-menu-arrow')
   ) {
     errors.push('ErpUserMenu must use measured vertical-only anchored geometry and arrow tracking');
   }
@@ -180,11 +200,22 @@ export function validateShellNavigation(files) {
     ) ||
     !/user-menu__items[^}]*flex:\s*(?:auto|1 1 auto)/s.test(userMenuStyles) ||
     !/user-menu__surface:popover-open[^}]*display:\s*flex/s.test(userMenuStyles) ||
-    /user-menu__trigger-name[^}]*display:\s*none/s.test(userMenuStyles)
+    /user-menu__trigger-name[^}]*display:\s*none/s.test(userMenuStyles) ||
+    /user-menu__trigger-identity[^}]*block-size:/s.test(userMenuStyles) ||
+    !/user-menu__badges--trigger[^}]*grid-auto-flow:\s*column/s.test(userMenuStyles)
   ) {
     errors.push('ErpUserMenu must preserve responsive identity sizing and open-only flex layout without unconditional name hiding');
   }
-  for (const referenceValue of ['360px', '8px', '10px', '600ms', 'cubic-bezier(0.25, 0.8, 0.25, 1)']) {
+  for (const referenceValue of [
+    '360px',
+    '8px',
+    '10px',
+    '600ms',
+    'cubic-bezier(0.25, 0.8, 0.25, 1)',
+    '--honesty-user-menu-trigger-padding: 6px 10px',
+    '--honesty-user-menu-trigger-min-size: 52px',
+    '--honesty-user-menu-trigger-copy-gap: 1px',
+  ]) {
     if (!userMenuTokens.includes(referenceValue)) {
       errors.push(`ErpUserMenu reference geometry or motion token is missing: ${referenceValue}`);
     }
@@ -257,19 +288,23 @@ function validFixture(overrides = new Map()) {
   );
   files.set(
     'src/app/controls/user-menu/user-menu.ts',
-    "import {ErpAvatar} from 'x'; import {ErpStatusBadge} from 'b'; import {ErpDivider} from 'z'; import {ShellAnchoredSurfaceController} from 'y'; const options = {crossAxisAlignment: 'end', arrowWidth: () => 13, arrowSafeInset: () => 16, allowedPlacements: ['bottom', 'top'], prepareGeometry: () => undefined}; export class ErpUserMenu { readonly showAvatar = input(true); readonly showUserName = input(true); readonly showEmail = input(true); readonly showPresence = input(true); readonly showRoleBadge = input(true); readonly showBranchBadge = input(true); }",
+    "import {ErpAvatar} from 'x'; import {ErpStatusBadge} from 'b'; import {ErpDivider} from 'z'; import {ErpUserMenuArrow} from './internal/user-menu-arrow'; import {ShellAnchoredSurfaceController} from 'y'; const options = {crossAxisAlignment: 'end', arrowWidth: () => 13, arrowSafeInset: () => 16, allowedPlacements: ['bottom', 'top'], prepareGeometry: () => undefined}; export class ErpUserMenu { readonly showAvatar = input(true); readonly showUserName = input(true); readonly showEmail = input(true); readonly showPresence = input(true); readonly showRoleBadge = input(true); readonly showBranchBadge = input(true); readonly showTriggerRoleBadge = input(false); readonly showTriggerBranchBadge = input(false); triggerRoleVisible() {} triggerBranchVisible() {} }",
   );
   files.set(
     'src/app/controls/user-menu/user-menu.html',
-    '<erp-avatar></erp-avatar><erp-status-badge></erp-status-badge><erp-divider></erp-divider>',
+    '<erp-avatar></erp-avatar><span class="user-menu__trigger-metadata"><span class="user-menu__badges--trigger"><erp-status-badge></erp-status-badge></span></span><erp-user-menu-arrow></erp-user-menu-arrow><erp-divider></erp-divider>',
   );
   files.set(
     'src/app/controls/user-menu/user-menu.scss',
-    '.user-menu { min-inline-size: 0; } .user-menu__surface { overflow: visible; color: var(--honesty-user-menu-fg); } .user-menu__identity-header { flex: 0 0 auto; } .user-menu__items { flex: 1 1 auto; overflow-y: auto; } .user-menu__surface:popover-open { display: flex; } .user-menu__surface::before { left: var(--honesty-anchored-surface-arrow-cross-axis-center); } @media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }',
+    '.user-menu { min-inline-size: 0; } .user-menu__surface { overflow: visible; color: var(--honesty-user-menu-fg); } .user-menu__identity-header { flex: 0 0 auto; } .user-menu__items { flex: 1 1 auto; overflow-y: auto; } .user-menu__badges--trigger { grid-auto-flow: column; } .user-menu__surface:popover-open { display: flex; } @media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }',
+  );
+  files.set(
+    'src/app/controls/user-menu/internal/user-menu-arrow.scss',
+    ':host { left: var(--honesty-anchored-surface-arrow-cross-axis-center); }',
   );
   files.set(
     'src/styles/foundation/components/user-menu/_tokens.scss',
-    '@mixin base { --honesty-user-menu-popup-width: 360px; --honesty-user-menu-popup-padding: 8px; --honesty-user-menu-popup-radius: 10px; --honesty-user-menu-motion-duration: 600ms; --honesty-user-menu-motion-easing: cubic-bezier(0.25, 0.8, 0.25, 1); }',
+    '@mixin base { --honesty-user-menu-popup-width: 360px; --honesty-user-menu-popup-padding: 8px; --honesty-user-menu-popup-radius: 10px; --honesty-user-menu-trigger-padding: 6px 10px; --honesty-user-menu-trigger-min-size: 52px; --honesty-user-menu-trigger-copy-gap: 1px; --honesty-user-menu-motion-duration: 600ms; --honesty-user-menu-motion-easing: cubic-bezier(0.25, 0.8, 0.25, 1); }',
   );
 
   for (const [key, value] of overrides) {
@@ -299,6 +334,7 @@ function runSelfTest() {
     ['missing UserMenu vertical geometry', new Map([['src/app/controls/user-menu/user-menu.ts', "import {ErpAvatar} from 'x'; import {ErpDivider} from 'z'; import {ShellAnchoredSurfaceController} from 'y'; const options = {crossAxisAlignment: 'end', arrowWidth: () => 13, arrowSafeInset: () => 16}; export class ErpUserMenu {}"]]), 'vertical-only'],
     ['missing UserMenu rich identity', new Map([[CONTRACTS, 'export interface ErpNavigationItem {} export interface ErpBreadcrumbItem {} export interface ErpShellUserSummary {} export interface ErpBranchOption {} export interface ErpNotificationSummary {}']]), 'rich-identity'],
     ['missing UserMenu badge reuse', new Map([['src/app/controls/user-menu/user-menu.html', '<erp-avatar></erp-avatar><erp-divider></erp-divider>']]), 'ErpStatusBadge'],
+    ['missing UserMenu trigger-specific badge gates', new Map([['src/app/controls/user-menu/user-menu.ts', "import {ErpAvatar} from 'x'; import {ErpStatusBadge} from 'b'; import {ErpDivider} from 'z'; import {ShellAnchoredSurfaceController} from 'y'; const options = {crossAxisAlignment: 'end', arrowWidth: () => 13, arrowSafeInset: () => 16, allowedPlacements: ['bottom', 'top'], prepareGeometry: () => undefined}; export class ErpUserMenu { readonly showAvatar = input(true); readonly showUserName = input(true); readonly showEmail = input(true); readonly showPresence = input(true); readonly showRoleBadge = input(true); readonly showBranchBadge = input(true); triggerRoleVisible() {} triggerBranchVisible() {} }"]]), 'trigger-specific'],
     ['hidden UserMenu name', new Map([['src/app/controls/user-menu/user-menu.scss', '.user-menu { min-inline-size: 0; } .user-menu__identity-header { flex: 0 0 auto; } .user-menu__items { flex: 1 1 auto; overflow-y: auto; } .user-menu__trigger-name { display: none; } .user-menu__surface::before { left: var(--honesty-anchored-surface-arrow-cross-axis-center); } @media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }']]), 'responsive identity'],
     ['always-visible UserMenu surface', new Map([['src/app/controls/user-menu/user-menu.scss', '.user-menu { min-inline-size: 0; } .user-menu__identity-header { flex: 0 0 auto; } .user-menu__items { flex: 1 1 auto; overflow-y: auto; } .user-menu__surface::before { left: var(--honesty-anchored-surface-arrow-cross-axis-center); } @media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }']]), 'open-only flex'],
   ];
@@ -338,6 +374,7 @@ function runCheck() {
 
   for (const absolute of [
     ...walk(path.join(ROOT, 'src/app/controls/shell-family')),
+    ...walk(path.join(ROOT, 'src/app/controls/user-menu/internal')),
     ...walk(path.join(ROOT, 'src/app/review-internals/legacy-shell-batch')),
   ]) {
     const relative = normalize(path.relative(ROOT, absolute));

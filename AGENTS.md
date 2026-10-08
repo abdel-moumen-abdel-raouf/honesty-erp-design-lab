@@ -1,5 +1,30 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Shell S1 Compact UserMenu Trigger State
+
+The Product Owner rejected the preceding closed `ErpUserMenu` trigger at clean
+live `main` `991c03daaf01b5bd3dd8ab03b222cdcc4f57b6f0`. The bounded correction
+keeps one owner and changes only the trigger identity presentation plus two
+compatible trigger-specific badge inputs. Default trigger anatomy is name,
+email, and optional `secondaryText`; role and branch badges are default-hidden
+there but remain default-visible in the popup.
+
+Current measured capsules are 360 x 72 px at desktop, 309 x 72 px at 390, and
+239 x 71 px for the long-name 320 case, versus the rejected 104/104/125 px.
+All have at most three rows, 40 x 40 px Avatar, 0 px Avatar center delta, no
+vertical row clipping, no page/popup overflow, and no broken images. The
+internal arrow presentation was isolated only to preserve the unchanged arrow
+geometry while keeping the 4 kB component-style budget; it is not a public
+owner or a new overlay engine.
+
+The dedicated workbench retains one live target and exposes all existing six
+visibility inputs plus `showTriggerRoleBadge` and
+`showTriggerBranchBadge`. Evidence is under
+`docs/review-evidence/erp-user-menu/compact-trigger-v1/`. Technical gates pass
+122/122 test files and 782/782 tests, all lint/governance, both typechecks,
+production build, and zero warnings. Product Owner visual acceptance remains
+pending; S2 and every other Shell owner remain closed.
+
 ## Current Global 3D Avatar Asset Library Gate
 
 The Product Owner supplied 116 standalone 3D PNGs now supersede the former

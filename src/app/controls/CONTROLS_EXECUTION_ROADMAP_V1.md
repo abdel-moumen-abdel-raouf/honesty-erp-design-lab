@@ -1,5 +1,19 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Authoritative current gate — 2026-10-08 — UserMenu compact-trigger review
+
+Only the existing `ErpUserMenu` is authorized. The Product Owner-rejected
+four-row 104--125 px trigger is replaced by an intrinsic 71--72 px three-row
+capsule. Popup badge defaults remain intact; two default-false trigger-only
+badge gates provide independent opt-in without creating additional rows.
+
+Current PNG/JSON evidence covers the required viewport, theme, direction,
+identity, fallback, badge, and popup cases with zero vertical row clipping,
+page/popup overflow, broken images, or console diagnostics. Focused checks pass
+63/63 tests and the canonical gate passes 122/122 files and 782/782 tests with
+zero warnings. Stop for Product Owner review; S2 and all adjacent owners remain
+unopened.
+
 ## Authoritative current gate — 2026-10-08 — global Avatar asset review
 
 Only the Product Owner-authorized 116-image asset replacement and bounded

@@ -416,7 +416,8 @@ const FACET_NAMES = [
   'verticalPlacement', 'selectSize', 'presence', 'presencePosition',
   'presenceMotion', 'hoverMotion', 'cursor', 'transition', 'direction',
   'showAvatar', 'showUserName', 'showEmail', 'showPresence',
-  'showRoleBadge', 'showBranchBadge',
+  'showRoleBadge', 'showBranchBadge', 'showTriggerRoleBadge',
+  'showTriggerBranchBadge',
 ];
 
 export const NATIVE_ELEMENT_COVERAGE = [

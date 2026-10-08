@@ -1,5 +1,24 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Authoritative current execution state — 2026-10-08 — Shell S1 compact UserMenu trigger
+
+The Product Owner rejected the previous closed-trigger presentation at clean
+live `main` `991c03daaf01b5bd3dd8ab03b222cdcc4f57b6f0`. The bounded candidate
+reduces the default capsule from four rows to at most three: name, email, and
+one optional metadata row. Global role/branch visibility remains default true
+for the popup; new default-false trigger-specific gates control those badges in
+the capsule without creating further rows.
+
+Measured before/after evidence covers 320/390/768/1440 px, Light/Dark,
+RTL/LTR, open/closed, long Arabic/English/mixed content, image/initials/icon
+fallbacks, and missing optional data. Corrected full-identity heights are
+71--72 px versus 104--125 px before correction, with no vertical row clipping,
+horizontal overflow, broken images, popup escape, or browser diagnostics.
+Arrow, vertical placement, action-list-only scrolling, and the 116-image Avatar
+library remain unchanged. Technical verification passes 122/122 test files and
+782/782 tests, both typechecks, production build, all governance, and zero
+warnings. Product Owner review is pending and S2 remains closed.
+
 ## Authoritative current execution state — 2026-10-08 — 116-image 3D avatar library
 
 The Product Owner-authorized asset replacement entered from clean live

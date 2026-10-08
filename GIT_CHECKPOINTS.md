@@ -1,5 +1,23 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Shell S1 compact UserMenu trigger checkpoint — 2026-10-08
+
+Entry checkpoint:
+
+- `991c03daaf01b5bd3dd8ab03b222cdcc4f57b6f0` — clean live `main` and
+  `origin/main` before the Product Owner compact-trigger correction.
+
+Single task commit message:
+
+- `fix(shell): compact UserMenu trigger identity`
+
+Resolve the final commit SHA from live `main` because this file is part of that
+commit. Focused verification passes 4/4 files and 63/63 tests; canonical
+verification passes 122/122 files and 782/782 tests, all lint/governance, both
+typechecks, production build, and zero warnings. Initial bundle is 490.24 kB /
+105.58 kB estimated transfer. Product Owner visual review remains pending; S2
+is not open.
+
 ## Global 3D avatar asset-library checkpoint — 2026-10-08
 
 Entry checkpoint:
