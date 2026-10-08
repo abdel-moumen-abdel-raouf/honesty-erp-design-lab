@@ -146,4 +146,78 @@ describe('ErpUserMenu', () => {
     );
     expect(document.activeElement).toBe(enabledActions[0]);
   });
+
+  it('applies the measured cross-axis arrow center when the popup is viewport-clamped', () => {
+    const previousViewport = {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    };
+    const requestFrame = vi
+      .spyOn(window, 'requestAnimationFrame')
+      .mockImplementation((callback) => {
+        callback(0);
+        return 1;
+      });
+    const fixture = TestBed.createComponent(ErpUserMenu);
+    fixture.componentRef.setInput('user', {displayName: 'أميرة حداد'});
+    fixture.detectChanges();
+
+    const triggerHost = fixture.nativeElement.querySelector(
+      '.user-menu__trigger-action',
+    ) as HTMLElement;
+    const surface = fixture.nativeElement.querySelector(
+      '.user-menu__surface',
+    ) as HTMLElement;
+    installPopover(surface);
+    triggerHost.style.direction = 'rtl';
+    surface.style.setProperty('--honesty-user-menu-arrow-size', '13px');
+    surface.style.setProperty('--honesty-user-menu-arrow-offset', '16px');
+    surface.style.setProperty('--honesty-user-menu-anchor-gap', '2px');
+    surface.style.setProperty('--honesty-user-menu-viewport-inset', '8px');
+    vi.spyOn(triggerHost, 'getBoundingClientRect').mockReturnValue({
+      left: 320,
+      top: 240,
+      right: 360,
+      bottom: 280,
+      width: 40,
+      height: 40,
+      x: 320,
+      y: 240,
+      toJSON: () => ({}),
+    });
+    vi.spyOn(surface, 'getBoundingClientRect').mockReturnValue({
+      left: 0,
+      top: 0,
+      right: 360,
+      bottom: 180,
+      width: 360,
+      height: 180,
+      x: 0,
+      y: 0,
+      toJSON: () => ({}),
+    });
+    Object.defineProperties(window, {
+      innerWidth: {configurable: true, value: 400},
+      innerHeight: {configurable: true, value: 300},
+    });
+
+    try {
+      (fixture.nativeElement.querySelector(
+        '.user-menu__trigger button',
+      ) as HTMLButtonElement).click();
+
+      expect(surface.dataset['overlayPlacement']).toBe('top');
+      expect(
+        surface.style.getPropertyValue(
+          '--honesty-anchored-surface-arrow-cross-axis-center',
+        ),
+      ).toBe('308px');
+    } finally {
+      Object.defineProperties(window, {
+        innerWidth: {configurable: true, value: previousViewport.width},
+        innerHeight: {configurable: true, value: previousViewport.height},
+      });
+      requestFrame.mockRestore();
+    }
+  });
 });

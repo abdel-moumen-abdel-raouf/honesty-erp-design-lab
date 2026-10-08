@@ -1,27 +1,27 @@
 # Honesty ERP Design Lab — Codex Instructions
 
-## Current Shell Phase S1 — ErpUserMenu exact-reference candidate
+## Current Shell Phase S1 — ErpUserMenu final visual-evidence closure
 
-Shell Phase S1 entered from clean live `main` at
-`7b0aab52ae5fd4ac5aaa319e586e829f7f98f6bd`. The Skodash RTL user dropdown is
-the binding visual and behavioral reference for `ErpUserMenu`; its verified
-source evidence is recorded in
-`src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md`.
+This bounded follow-up entered from clean live `main` at
+`b28012f18dfd74ac9c37827e00010d70f701719f` and changes only the existing
+`ErpUserMenu` and its shared anchored-surface integration. Browser geometry
+confirmed that the viewport-clamped popup arrow used a fixed edge offset and
+missed the trigger center by 237.3125 px. The controller now supplies the
+measured physical cross-axis center after clamping; UserMenu consumes it without
+changing arrow size, popup geometry, or other anchored-overlay defaults.
 
-The bounded candidate preserves the controlled `open` model, typed consumer
-items, disabled semantics, action output, `ErpAvatar`, `ErpButton`, `ErpText`,
-and the shared anchored-surface controller. It adds only optional
-`dividerBefore` metadata and bounded lower-owner presentations needed for the
-verified 40/60 px anatomy. Sidebar, Topbar, the remaining Shell owners, and the
-Design Lab root were not opened. Technical success is not Product Owner visual
-acceptance; the next gate is external review of `/components/user-menu`.
+Saved evidence adds open Dark RTL/LTR captures at 1440x900 and 390x844, proves
+above/below placement at both physical horizontal edges in both directions, and
+records zero overflow. The reference specimen uses the approved local
+`avatar-21.png` asset while existing image-failure fallback behavior remains
+covered. Sidebar, Topbar, S2, every other Shell owner, and the Design Lab root
+remain closed. Technical success is not Product Owner visual acceptance.
 
-Focused verification passes 3/3 files and 30/30 tests. Canonical verification
-passes all lint/governance, 122/122 test files and 753/753 tests, both
+Focused verification passes 3/3 files and 35/35 tests. Canonical verification
+passes all lint/governance, 122/122 test files and 758/758 tests, both
 typechecks, production build, and zero warnings. Initial production bundle is
-490.24 kB / 105.58 kB estimated transfer. Desktop and 390 px runtime evidence
-covers Light/Dark, RTL/LTR, keyboard/dismissal/focus return, reduced motion,
-zero overflow, and zero console findings.
+490.24 kB / 105.56 kB estimated transfer. The next and only gate is external
+Product Owner review of `/components/user-menu`.
 
 ## Current Bounded Live API Workbench Correction State
 

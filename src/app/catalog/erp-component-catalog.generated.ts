@@ -4962,7 +4962,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "inputs": {
           "user": {
             "displayName": "أميرة حداد",
-            "secondaryText": "مديرة المالية"
+            "secondaryText": "مديرة المالية",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png"
           },
           "items": [
             {
@@ -5007,7 +5008,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "inputs": {
           "user": {
             "displayName": "أميرة حداد",
-            "secondaryText": "مديرة المالية"
+            "secondaryText": "مديرة المالية",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png"
           },
           "items": [
             {
@@ -5052,7 +5054,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "inputs": {
           "user": {
             "displayName": "أميرة حداد",
-            "secondaryText": "مديرة المالية"
+            "secondaryText": "مديرة المالية",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png"
           },
           "items": [
             {
@@ -5133,7 +5136,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "open": true,
       "user": {
         "displayName": "أميرة حداد",
-        "secondaryText": "مديرة المالية"
+        "secondaryText": "مديرة المالية",
+        "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png"
       }
     },
     "showcaseControls": [
@@ -5147,7 +5151,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "options": [],
         "initialValue": {
           "displayName": "أميرة حداد",
-          "secondaryText": "مديرة المالية"
+          "secondaryText": "مديرة المالية",
+          "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png"
         }
       },
       {

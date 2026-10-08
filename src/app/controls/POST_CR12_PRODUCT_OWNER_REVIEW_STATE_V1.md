@@ -1,20 +1,24 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
-## Authoritative current review state — 2026-10-08 — Shell Phase S1 UserMenu
+## Authoritative current review state — 2026-10-08 — Shell S1 final evidence closure
 
-The existing `ErpUserMenu` is reopened as the sole bounded Shell S1 visual
-candidate from entry checkpoint
-`7b0aab52ae5fd4ac5aaa319e586e829f7f98f6bd`. Its binding reference, verified
+The existing `ErpUserMenu` remains the sole bounded Shell S1 visual candidate.
+The final evidence follow-up entered at
+`b28012f18dfd74ac9c37827e00010d70f701719f`. Its binding reference, verified
 source hashes, measured geometry, interaction contract, and limitations are in
 `user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md`. All other Product Owner review
 states remain unchanged. UserMenu visual acceptance is pending external review;
 technical gates cannot promote it to accepted.
 
-The candidate passes 3/3 focused files and 30/30 tests, the full 122/122-file
-and 753/753-test canonical gate, both typechecks, production build, and zero
-warnings. Saved browser evidence covers Light/Dark, RTL/LTR, desktop and 390 px,
-keyboard/dismissal/focus return, reduced motion, zero overflow, and zero console
-findings. Acceptance remains pending.
+The corrected arrow uses the post-clamp measured physical center and records a
+maximum desktop alignment delta of 0.0005 px across both directions, both
+horizontal edges, and both placements. The approved local Avatar asset appears
+in the reference specimen. The candidate passes 3/3 focused files and 35/35
+tests, the full 122/122-file and 758/758-test canonical gate, both typechecks,
+production build, and zero warnings. Saved browser evidence covers Light/Dark,
+RTL/LTR, desktop and 390 px, keyboard/dismissal/focus return, reduced motion,
+zero overflow, and zero console findings. Acceptance remains pending, and S2 is
+not open.
 
 ## Authoritative current review state — 2026-10-08 — bounded live workbench correction
 

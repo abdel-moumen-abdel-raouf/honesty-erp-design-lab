@@ -1,6 +1,6 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
-## Shell Phase S1 binding decision — 2026-10-08
+## Shell Phase S1 final-evidence binding decision — 2026-10-08
 
 The Skodash RTL user dropdown at the source URL recorded in
 `ERP_USER_MENU_REFERENCE_EXACT_V1.md` is the binding visual and behavioral
@@ -8,13 +8,17 @@ authority for `ErpUserMenu`. Honesty ERP colors and typography are the permitted
 system substitutions. The existing owner, typed items, controlled open state,
 Avatar/Button/Text hierarchy, and `ShellAnchoredSurfaceController` remain in
 force. Optional `dividerBefore` metadata and bounded embedded presentations are
-the only public compatibility additions. No other Shell visual contract is
-opened by this decision.
+the only public compatibility additions. The follow-up entered at
+`b28012f18dfd74ac9c37827e00010d70f701719f` and establishes that arrow
+cross-axis alignment is computed from measured anchor/surface geometry after
+viewport clamping. This arrow option is opt-in and does not change unrelated
+anchored-surface owners or general popup geometry. No other Shell visual
+contract is opened by this decision.
 
-The bounded implementation is technically verified by 30/30 focused tests and
-the full 122/122-file, 753/753-test canonical gate, with both typechecks,
+The bounded implementation is technically verified by 35/35 focused tests and
+the full 122/122-file, 758/758-test canonical gate, with both typechecks,
 production build, and zero warnings. These results do not change the pending
-Product Owner visual state.
+Product Owner visual state or open S2.
 
 ## Authority
 

@@ -137,6 +137,15 @@ export function validateShellNavigation(files) {
   ) {
     errors.push('ErpUserMenu must preserve an explicit reduced-motion override');
   }
+  if (
+    !userMenu.includes('arrowWidth:') ||
+    !userMenu.includes('arrowSafeInset:') ||
+    !userMenuStyles.includes(
+      '--honesty-anchored-surface-arrow-cross-axis-center',
+    )
+  ) {
+    errors.push('ErpUserMenu arrow must track measured anchored-surface geometry');
+  }
   for (const referenceValue of ['360px', '8px', '10px', '600ms', 'cubic-bezier(0.25, 0.8, 0.25, 1)']) {
     if (!userMenuTokens.includes(referenceValue)) {
       errors.push(`ErpUserMenu reference geometry or motion token is missing: ${referenceValue}`);
@@ -210,11 +219,11 @@ function validFixture(overrides = new Map()) {
   );
   files.set(
     'src/app/controls/user-menu/user-menu.ts',
-    "import {ErpAvatar} from 'x'; import {ErpDivider} from 'z'; import {ShellAnchoredSurfaceController} from 'y'; const options = {crossAxisAlignment: 'end'}; export class ErpUserMenu {}",
+    "import {ErpAvatar} from 'x'; import {ErpDivider} from 'z'; import {ShellAnchoredSurfaceController} from 'y'; const options = {crossAxisAlignment: 'end', arrowWidth: () => 13, arrowSafeInset: () => 16}; export class ErpUserMenu {}",
   );
   files.set(
     'src/app/controls/user-menu/user-menu.scss',
-    '@media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }',
+    '.user-menu__surface::before { left: var(--honesty-anchored-surface-arrow-cross-axis-center); } @media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }',
   );
   files.set(
     'src/styles/foundation/components/user-menu/_tokens.scss',
@@ -245,6 +254,7 @@ function runSelfTest() {
     ['manual popover', new Map([['src/app/controls/notification-bell/notification-bell.ts', 'export class ErpNotificationBell { open(){ this.surface.showPopover(); } }']]), 'overlay engine'],
     ['missing UserMenu reference', new Map([[USER_MENU_REFERENCE, 'missing']]), 'exact-reference contract'],
     ['missing UserMenu reduced motion', new Map([['src/app/controls/user-menu/user-menu.scss', '']]), 'reduced-motion'],
+    ['missing UserMenu arrow geometry', new Map([['src/app/controls/user-menu/user-menu.ts', "import {ErpAvatar} from 'x'; import {ErpDivider} from 'z'; import {ShellAnchoredSurfaceController} from 'y'; const options = {crossAxisAlignment: 'end'}; export class ErpUserMenu {}"]]), 'arrow'],
   ];
 
   for (const [label, overrides, expected] of invalidFixtures) {

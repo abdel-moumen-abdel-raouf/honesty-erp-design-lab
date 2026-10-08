@@ -1,17 +1,21 @@
 # README FIRST — HONESTY ERP Design Lab
 
-## Current gate — Shell Phase S1 ErpUserMenu
+## Current gate — Shell Phase S1 ErpUserMenu final evidence closure
 
-The current bounded implementation entered from clean live `main` at
-`7b0aab52ae5fd4ac5aaa319e586e829f7f98f6bd`. Read
+The current bounded follow-up entered from clean live `main` at
+`b28012f18dfd74ac9c37827e00010d70f701719f`. Read
 `src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md` before working
 on Shell UI. Only `ErpUserMenu` is open; the Skodash RTL dropdown controls its
 authorized geometry and behavior while Honesty ERP colors and typography remain
 system-owned. The stop point is external Product Owner review of
 `/components/user-menu`, not the next Shell owner.
 
-The current technical checkpoint passes 3/3 focused files and 30/30 focused
-tests, 122/122 canonical files and 753/753 tests, both typechecks, production
+The arrow now follows measured anchor/surface geometry after viewport clamping,
+with Dark RTL/LTR desktop and 390 px captures plus an eight-case edge/placement
+matrix saved under `docs/review-evidence/erp-user-menu/`. The approved local
+avatar specimen is used without changing fallback behavior. The checkpoint
+passes 3/3 focused files and 35/35 focused tests, 122/122 canonical files and
+758/758 tests, both typechecks, production
 build, and zero warnings. Runtime evidence is stored under
 `docs/review-evidence/erp-user-menu/`. Product Owner visual acceptance remains
 pending.

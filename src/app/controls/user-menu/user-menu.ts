@@ -83,6 +83,10 @@ export class ErpUserMenu implements AfterViewInit, OnDestroy {
       viewportInset: () =>
         readShellCssLength(surface, '--honesty-user-menu-viewport-inset'),
       crossAxisAlignment: 'end',
+      arrowWidth: () =>
+        readShellCssLength(surface, '--honesty-user-menu-arrow-size'),
+      arrowSafeInset: () =>
+        readShellCssLength(surface, '--honesty-user-menu-arrow-offset'),
       onOpenChange: (open) => this.open.set(open),
     });
     this.viewReady = true;

@@ -320,7 +320,11 @@ const FIXTURE_INPUTS = new Map([
   ['ErpTabs', {items: [{id: 'overview', label: 'نظرة عامة', content: 'محتوى النظرة العامة'}]}],
   ['ErpTooltip', {text: 'توضيح الإجراء للمستخدم'}],
   ['ErpUserMenu', {
-    user: {displayName: 'أميرة حداد', secondaryText: 'مديرة المالية'},
+    user: {
+      displayName: 'أميرة حداد',
+      secondaryText: 'مديرة المالية',
+      avatarSrc: '/assets/honesty-erp-avatars/users/female/avatar-21.png',
+    },
     items: [
       {id: 'profile', label: 'الملف الشخصي', icon: 'user'},
       {id: 'settings', label: 'الإعدادات', icon: 'settings'},

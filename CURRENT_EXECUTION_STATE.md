@@ -1,26 +1,28 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
-## Authoritative current execution state — 2026-10-08 — Shell Phase S1 UserMenu
+## Authoritative current execution state — 2026-10-08 — Shell S1 final evidence closure
 
-Shell Phase S1 entered from clean `main` at
-`7b0aab52ae5fd4ac5aaa319e586e829f7f98f6bd` and authorizes only the existing
-`ErpUserMenu`. The live Skodash RTL dropdown is its binding reference; verified
-source hashes, selectors, geometry, motion, responsive thresholds, and evidence
-limits are recorded in `ERP_USER_MENU_REFERENCE_EXACT_V1.md`.
+The bounded follow-up entered from clean `main` at
+`b28012f18dfd74ac9c37827e00010d70f701719f` and authorizes only the existing
+`ErpUserMenu`. Actual browser geometry confirmed a 237.3125 px arrow-to-trigger
+delta when the 360 px popup was viewport-clamped. The shared controller now
+exposes the post-clamp physical cross-axis center only for arrow-enabled owners;
+UserMenu applies it while preserving popup/arrow geometry and the single
+anchored-overlay engine.
 
-The candidate retains one shared anchored-overlay engine, one App-owned theme,
-and existing Avatar/Button/Text ownership. It adds logical-end popup alignment,
-viewport containment, keyboard traversal, optional item dividers, and the
-reference workbench sample. All other Shell and component visual owners remain
-closed. Product Owner visual acceptance remains pending.
+Evidence under `docs/review-evidence/erp-user-menu/` now includes open Dark
+RTL/LTR captures at 1440x900 and 390x844. An eight-case browser matrix covers
+above/below placement at both physical horizontal edges in both directions:
+desktop arrow delta is at most 0.0005 px, all overflow metrics are zero, and
+narrow presentation retains the reference rule that hides the arrow. The
+approved local female `avatar-21.png` is used by the reference specimen;
+fallback behavior and public APIs remain unchanged.
 
-Focused verification passes 3/3 files and 30/30 tests plus Shell and catalog
+Focused verification passes 3/3 files and 35/35 tests plus Shell and catalog
 governance. Canonical verification passes every lint/governance gate, 122/122
-test files and 753/753 tests, both typechecks, production build, and the
-zero-warning gate. The production initial bundle is 490.24 kB / 105.58 kB
-estimated transfer. Browser evidence covers Light/Dark, RTL/LTR, desktop and
-390 px, keyboard traversal, Escape, outside dismissal, focus return, reduced
-motion, zero horizontal overflow, and zero console findings.
+test files and 758/758 tests, both typechecks, production build, and the
+zero-warning gate. The initial bundle is 490.24 kB / 105.56 kB estimated
+transfer. Product Owner visual acceptance remains pending, and S2 is not open.
 
 ## Authoritative current execution state — 2026-10-08 — bounded live workbench correction
 

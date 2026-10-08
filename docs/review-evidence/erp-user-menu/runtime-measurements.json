@@ -1,0 +1,367 @@
+{
+  "measurements": [
+    {
+      "file": "implementation-dark-rtl-desktop-open-down.png",
+      "direction": "rtl",
+      "theme": "dark",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "placement": "bottom",
+      "trigger": {
+        "left": 1241.625,
+        "top": 112.359375,
+        "right": 1376,
+        "bottom": 152.359375,
+        "width": 134.375,
+        "height": 40
+      },
+      "surface": {
+        "left": 1057,
+        "top": 154.359375,
+        "right": 1417,
+        "bottom": 616.359375,
+        "width": 360,
+        "height": 462
+      },
+      "arrow": {
+        "visible": true,
+        "size": 13,
+        "center": 1308.812,
+        "delta": -0.0005000000001018634
+      },
+      "avatar": {
+        "src": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+        "naturalWidth": 229
+      },
+      "overflow": {
+        "horizontal": 0,
+        "surfaceLeft": 0,
+        "surfaceRight": 0,
+        "surfaceTop": 0,
+        "surfaceBottom": 0
+      },
+      "targetCount": 1
+    },
+    {
+      "file": "implementation-dark-ltr-desktop-open-down.png",
+      "direction": "ltr",
+      "theme": "dark",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "placement": "bottom",
+      "trigger": {
+        "left": 1241.625,
+        "top": 112.359375,
+        "right": 1376,
+        "bottom": 152.359375,
+        "width": 134.375,
+        "height": 40
+      },
+      "surface": {
+        "left": 1016,
+        "top": 154.359375,
+        "right": 1376,
+        "bottom": 616.359375,
+        "width": 360,
+        "height": 462
+      },
+      "arrow": {
+        "visible": true,
+        "size": 13,
+        "center": 1308.812,
+        "delta": -0.0005000000001018634
+      },
+      "avatar": {
+        "src": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+        "naturalWidth": 229
+      },
+      "overflow": {
+        "horizontal": 0,
+        "surfaceLeft": 0,
+        "surfaceRight": 0,
+        "surfaceTop": 0,
+        "surfaceBottom": 0
+      },
+      "targetCount": 1
+    },
+    {
+      "file": "implementation-dark-rtl-390-open-down.png",
+      "direction": "rtl",
+      "theme": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "placement": "bottom",
+      "trigger": {
+        "left": 302,
+        "top": 111.734375,
+        "right": 342,
+        "bottom": 151.734375,
+        "width": 40,
+        "height": 40
+      },
+      "surface": {
+        "left": 8,
+        "top": 153.734375,
+        "right": 382,
+        "bottom": 615.734375,
+        "width": 374,
+        "height": 462
+      },
+      "arrow": {
+        "visible": false,
+        "size": 13,
+        "center": null,
+        "delta": null
+      },
+      "avatar": {
+        "src": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+        "naturalWidth": 229
+      },
+      "overflow": {
+        "horizontal": 0,
+        "surfaceLeft": 0,
+        "surfaceRight": 0,
+        "surfaceTop": 0,
+        "surfaceBottom": 0
+      },
+      "targetCount": 1
+    },
+    {
+      "file": "implementation-dark-ltr-390-open-down.png",
+      "direction": "ltr",
+      "theme": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "placement": "bottom",
+      "trigger": {
+        "left": 302,
+        "top": 111.734375,
+        "right": 342,
+        "bottom": 151.734375,
+        "width": 40,
+        "height": 40
+      },
+      "surface": {
+        "left": 8,
+        "top": 153.734375,
+        "right": 382,
+        "bottom": 615.734375,
+        "width": 374,
+        "height": 462
+      },
+      "arrow": {
+        "visible": false,
+        "size": 13,
+        "center": null,
+        "delta": null
+      },
+      "avatar": {
+        "src": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+        "naturalWidth": 229
+      },
+      "overflow": {
+        "horizontal": 0,
+        "surfaceLeft": 0,
+        "surfaceRight": 0,
+        "surfaceTop": 0,
+        "surfaceBottom": 0
+      },
+      "targetCount": 1
+    }
+  ],
+  "edgeMeasurements": [
+    {
+      "direction": "rtl",
+      "edge": "left",
+      "requestedPlacement": "bottom",
+      "resolvedPlacement": "bottom",
+      "triggerCenter": 75.1875,
+      "arrowCenter": 75.1875,
+      "arrowDelta": 0,
+      "surface": {
+        "left": 8,
+        "right": 368,
+        "top": 122,
+        "bottom": 584
+      },
+      "overflow": {
+        "horizontal": 0,
+        "surfaceLeft": 0,
+        "surfaceRight": 0,
+        "surfaceTop": 0,
+        "surfaceBottom": 0
+      },
+      "targetCount": 1
+    },
+    {
+      "direction": "rtl",
+      "edge": "left",
+      "requestedPlacement": "top",
+      "resolvedPlacement": "top",
+      "triggerCenter": 75.1875,
+      "arrowCenter": 75.1875,
+      "arrowDelta": 0,
+      "surface": {
+        "left": 8,
+        "right": 368,
+        "top": 156,
+        "bottom": 618
+      },
+      "overflow": {
+        "horizontal": 0,
+        "surfaceLeft": 0,
+        "surfaceRight": 0,
+        "surfaceTop": 0,
+        "surfaceBottom": 0
+      },
+      "targetCount": 1
+    },
+    {
+      "direction": "rtl",
+      "edge": "right",
+      "requestedPlacement": "bottom",
+      "resolvedPlacement": "bottom",
+      "triggerCenter": 709.8125,
+      "arrowCenter": 709.812,
+      "arrowDelta": -0.0004999999999881766,
+      "surface": {
+        "left": 417,
+        "right": 777,
+        "top": 122,
+        "bottom": 584
+      },
+      "overflow": {
+        "horizontal": 0,
+        "surfaceLeft": 0,
+        "surfaceRight": 0,
+        "surfaceTop": 0,
+        "surfaceBottom": 0
+      },
+      "targetCount": 1
+    },
+    {
+      "direction": "rtl",
+      "edge": "right",
+      "requestedPlacement": "top",
+      "resolvedPlacement": "top",
+      "triggerCenter": 709.8125,
+      "arrowCenter": 709.812,
+      "arrowDelta": -0.0004999999999881766,
+      "surface": {
+        "left": 417,
+        "right": 777,
+        "top": 156,
+        "bottom": 618
+      },
+      "overflow": {
+        "horizontal": 0,
+        "surfaceLeft": 0,
+        "surfaceRight": 0,
+        "surfaceTop": 0,
+        "surfaceBottom": 0
+      },
+      "targetCount": 1
+    },
+    {
+      "direction": "ltr",
+      "edge": "left",
+      "requestedPlacement": "bottom",
+      "resolvedPlacement": "bottom",
+      "triggerCenter": 75.1875,
+      "arrowCenter": 75.1875,
+      "arrowDelta": 0,
+      "surface": {
+        "left": 8,
+        "right": 368,
+        "top": 122,
+        "bottom": 584
+      },
+      "overflow": {
+        "horizontal": 0,
+        "surfaceLeft": 0,
+        "surfaceRight": 0,
+        "surfaceTop": 0,
+        "surfaceBottom": 0
+      },
+      "targetCount": 1
+    },
+    {
+      "direction": "ltr",
+      "edge": "left",
+      "requestedPlacement": "top",
+      "resolvedPlacement": "top",
+      "triggerCenter": 75.1875,
+      "arrowCenter": 75.1875,
+      "arrowDelta": 0,
+      "surface": {
+        "left": 8,
+        "right": 368,
+        "top": 155.984375,
+        "bottom": 617.984375
+      },
+      "overflow": {
+        "horizontal": 0,
+        "surfaceLeft": 0,
+        "surfaceRight": 0,
+        "surfaceTop": 0,
+        "surfaceBottom": 0
+      },
+      "targetCount": 1
+    },
+    {
+      "direction": "ltr",
+      "edge": "right",
+      "requestedPlacement": "bottom",
+      "resolvedPlacement": "bottom",
+      "triggerCenter": 709.8125,
+      "arrowCenter": 709.812,
+      "arrowDelta": -0.0004999999999881766,
+      "surface": {
+        "left": 417,
+        "right": 777,
+        "top": 122,
+        "bottom": 584
+      },
+      "overflow": {
+        "horizontal": 0,
+        "surfaceLeft": 0,
+        "surfaceRight": 0,
+        "surfaceTop": 0,
+        "surfaceBottom": 0
+      },
+      "targetCount": 1
+    },
+    {
+      "direction": "ltr",
+      "edge": "right",
+      "requestedPlacement": "top",
+      "resolvedPlacement": "top",
+      "triggerCenter": 709.8125,
+      "arrowCenter": 709.812,
+      "arrowDelta": -0.0004999999999881766,
+      "surface": {
+        "left": 417,
+        "right": 777,
+        "top": 156,
+        "bottom": 618
+      },
+      "overflow": {
+        "horizontal": 0,
+        "surfaceLeft": 0,
+        "surfaceRight": 0,
+        "surfaceTop": 0,
+        "surfaceBottom": 0
+      },
+      "targetCount": 1
+    }
+  ],
+  "diagnostics": []
+}

@@ -46,6 +46,28 @@ runtime code are evidence only and are not production dependencies.
 - Reduced motion removes the entrance animation without changing visibility or
   interaction.
 
+## Viewport-clamped arrow closure
+
+The S1 follow-up verified a real failure in the original candidate: at the
+committed desktop RTL review position, the trigger center was `725.8125 px`
+while the fixed logical-edge arrow center was `488.5 px`, a `-237.3125 px`
+cross-axis error after viewport clamping. The shared anchored-overlay engine
+already calculated the correct physical cross-axis center, but UserMenu did not
+consume it.
+
+UserMenu now passes the reference `13 px` arrow width and `16 px` safe inset to
+the existing `ShellAnchoredSurfaceController`. The controller writes the
+calculated physical center to the open surface; the UserMenu pseudo-element
+uses that value without changing its reference size, block offset, popup gap,
+surface geometry, or any other anchored-overlay owner's defaults.
+
+Browser evidence at 800 x 700 covers `top` and `bottom` placement at both
+physical horizontal edges in RTL and LTR. All eight cases resolve with an
+absolute arrow-center delta of at most `0.0005 px`, zero surface overflow, and
+one primary showcase target. At 390 x 844, the reference narrow rule continues
+to hide the arrow while the 8 px viewport inset and zero overflow remain in
+force.
+
 ## Ownership and compatibility
 
 - `ErpUserMenu` composes `ErpAvatar`, `ErpButton`, `ErpDivider`, and `ErpText`.
@@ -56,6 +78,9 @@ runtime code are evidence only and are not production dependencies.
   navigation, transport, or permission behavior.
 - The `/components/user-menu` workbench retains one primary live target, live
   Public API controls, and action-event evidence.
+- The reference workbench user uses the approved local asset
+  `/assets/honesty-erp-avatars/users/female/avatar-21.png`; Avatar's image-error
+  fallback hierarchy and tests remain unchanged.
 
 ## Evidence limitations and acceptance
 

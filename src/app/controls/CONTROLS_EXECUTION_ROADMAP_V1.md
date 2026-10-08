@@ -1,20 +1,21 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
-## Authoritative current gate — 2026-10-08 — Shell Phase S1 UserMenu
+## Authoritative current gate — 2026-10-08 — Shell S1 final evidence closure
 
-Only `ErpUserMenu` is authorized in this phase. Its binding Skodash RTL source
+Only `ErpUserMenu` is authorized. The follow-up entered from clean `main` at
+`b28012f18dfd74ac9c37827e00010d70f701719f`. Its binding Skodash RTL source
 evidence and exact measurements are recorded in
-`user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md`. The candidate reuses the
-existing lower owners and anchored overlay, preserves all controlled contracts,
-and adds bounded divider/presentation support. The next gate is Product Owner
-review of `/components/user-menu`; no subsequent Shell unit or component visual
-review is automatically opened.
+`user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md`. The arrow now follows the
+post-clamp measured anchor center through the existing shared controller, with
+no public API, arrow-size, surface-geometry, or unrelated overlay-default
+change. The approved local Avatar asset is used and fallback behavior remains.
 
-The bounded candidate passes 30/30 focused tests and the complete 122/122-file,
-753/753-test canonical gate, all governance/lint, both typechecks, production
-build, and zero warnings. Browser evidence covers desktop/390 px,
-Light/Dark, RTL/LTR, keyboard and dismissal paths, focus return, reduced motion,
-zero overflow, and zero console findings.
+The bounded candidate passes 35/35 focused tests and the complete 122/122-file,
+758/758-test canonical gate, all governance/lint, both typechecks, production
+build, and zero warnings. Saved Dark RTL/LTR evidence covers 1440x900 and
+390x844 plus both physical edges and above/below placement with zero overflow.
+The next gate is Product Owner review of `/components/user-menu`; S2 and every
+other Shell unit remain unopened.
 
 ## Authoritative current gate — 2026-10-08 — bounded live workbench correction
 

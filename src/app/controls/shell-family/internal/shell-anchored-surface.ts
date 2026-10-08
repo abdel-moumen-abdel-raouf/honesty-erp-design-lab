@@ -9,6 +9,8 @@ export interface ShellAnchoredSurfaceOptions {
   readonly viewportInset: () => number;
   readonly onOpenChange: (open: boolean) => void;
   readonly crossAxisAlignment?: 'center' | 'start' | 'end';
+  readonly arrowWidth?: () => number;
+  readonly arrowSafeInset?: () => number;
 }
 
 export class ShellAnchoredSurfaceController {
@@ -19,17 +21,23 @@ export class ShellAnchoredSurfaceController {
     this.overlay = new AnchoredOverlayController({
       anchor: options.anchor,
       surface: options.surface,
-      readGeometryInput: () => ({
-        preferredPlacement: 'bottom',
-        direction: this.direction(),
-        anchorGap: options.anchorGap(),
-        viewportInset: options.viewportInset(),
-        showArrow: false,
-        arrowWidth: 0,
-        arrowHeight: 0,
-        arrowSafeInset: 0,
-        crossAxisAlignment: options.crossAxisAlignment ?? 'center',
-      }),
+      readGeometryInput: () => {
+        const arrowWidth = options.arrowWidth?.() ?? 0;
+
+        return {
+          preferredPlacement: 'bottom',
+          direction: this.direction(),
+          anchorGap: options.anchorGap(),
+          viewportInset: options.viewportInset(),
+          showArrow: arrowWidth > 0,
+          arrowWidth,
+          // UserMenu's rotated square overlaps the surface edge. It has no
+          // additional main-axis depth beyond the reference anchor gap.
+          arrowHeight: 0,
+          arrowSafeInset: options.arrowSafeInset?.() ?? 0,
+          crossAxisAlignment: options.crossAxisAlignment ?? 'center',
+        };
+      },
       applyGeometry: (result) => this.applyGeometry(result),
     });
   }
@@ -117,6 +125,13 @@ export class ShellAnchoredSurfaceController {
     this.options.surface.style.transformOrigin =
       result.placement === 'top' ? 'center bottom' : 'center top';
     this.options.surface.dataset['overlayPlacement'] = result.placement;
+
+    if (this.options.arrowWidth) {
+      this.options.surface.style.setProperty(
+        '--honesty-anchored-surface-arrow-cross-axis-center',
+        `${result.arrowCrossAxisCenter}px`,
+      );
+    }
   }
 }
 

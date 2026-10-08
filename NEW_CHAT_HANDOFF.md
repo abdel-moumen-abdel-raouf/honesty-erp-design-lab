@@ -1,22 +1,25 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
-## Authoritative current handoff — 2026-10-08 — Shell Phase S1 UserMenu
+## Authoritative current handoff — 2026-10-08 — Shell S1 final evidence closure
 
-Start from live `main`. Shell Phase S1 entered at
-`7b0aab52ae5fd4ac5aaa319e586e829f7f98f6bd` and reconstructs only the existing
-`ErpUserMenu` from the source-verified Skodash RTL user dropdown. Read
+Start from live `main`. This bounded follow-up entered at
+`b28012f18dfd74ac9c37827e00010d70f701719f` and changes only the existing
+`ErpUserMenu` arrow alignment and evidence. Read
 `src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md`, the UserMenu
 owner, its Component Tokens, and the shared anchored-surface controller first.
 Do not open Sidebar, Topbar, Applications/Messages, NotificationBell, footer,
 quick actions, AppShell layout, or root layout. The next action is external
 Product Owner review; technical PASS does not declare visual acceptance.
 
-The S1 candidate passes 3/3 focused files and 30/30 tests and the full 122/122
-file, 753/753-test canonical gate, both typechecks, production build, and zero
-warnings. The initial bundle is 490.24 kB / 105.58 kB estimated transfer.
-Review the saved runtime record under `docs/review-evidence/erp-user-menu/`;
-Light/Dark, RTL/LTR, desktop/390 px, keyboard, dismissal, focus return, reduced
-motion, overflow, and console diagnostics are covered.
+The fixed arrow consumes the shared controller's post-clamp physical cross-axis
+center; no popup geometry or unrelated overlay default changed. The candidate
+passes 3/3 focused files and 35/35 tests and the full 122/122-file,
+758/758-test canonical gate, both typechecks, production build, and zero
+warnings. The initial bundle is 490.24 kB / 105.56 kB estimated transfer.
+Review the captures and measurement JSON under
+`docs/review-evidence/erp-user-menu/`; Dark RTL/LTR desktop/390 px, both popup
+placements, both physical edges, the local avatar, overflow, and diagnostics are
+covered. S2 remains unopened.
 
 ## Authoritative current handoff — 2026-10-08 — bounded live workbench correction
 

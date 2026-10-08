@@ -1,15 +1,18 @@
 # Inputs Product Owner Review Findings V1
 
-## Authoritative continuity note — 2026-10-08 — Shell Phase S1
+## Authoritative continuity note — 2026-10-08 — Shell S1 final evidence closure
 
 This phase changes no Input visual contract. It authorizes only the existing
 `ErpUserMenu`, which continues to use ERP-owned actions and shared anchored
 overlay infrastructure. Input findings and acceptance states remain unchanged;
 the Shell S1 candidate is separately pending Product Owner visual review.
 
-Shell S1 technical verification passes 30/30 focused tests and 753/753 tests in
-the canonical 122-file gate, with both typechecks, production build, and zero
-warnings. No Input implementation was modified by that visual reconstruction.
+The follow-up entered at `b28012f18dfd74ac9c37827e00010d70f701719f` and
+changes only opt-in anchored-surface arrow geometry, UserMenu evidence, and its
+approved local Avatar specimen. Shell S1 technical verification passes 35/35
+focused tests and 758/758 tests in the canonical 122-file gate, with both
+typechecks, production build, and zero warnings. No Input implementation or
+visual contract was modified.
 
 ## Authoritative current continuity finding — 2026-10-08 — bounded live workbench correction
 

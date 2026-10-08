@@ -52,7 +52,10 @@
   content: '';
   position: absolute;
   inset-block-start: calc(var(--honesty-user-menu-arrow-size) / -2);
-  inset-inline-end: var(--honesty-user-menu-arrow-offset);
+  left: calc(
+    var(--honesty-anchored-surface-arrow-cross-axis-center) -
+      var(--honesty-user-menu-arrow-size) / 2
+  );
   inline-size: var(--honesty-user-menu-arrow-size);
   block-size: var(--honesty-user-menu-arrow-size);
   border-block-start: 1px solid var(--honesty-user-menu-border-color);

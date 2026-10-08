@@ -131,4 +131,55 @@ describe('calculateAnchoredOverlayGeometry', () => {
     expect(result.x + 360).toBeLessThanOrEqual(392);
   });
 
+  it.each([
+    {
+      name: 'LTR left edge below',
+      direction: 'ltr' as const,
+      anchor: {left: 4, top: 40, right: 44, bottom: 80, width: 40, height: 40},
+      expectedPlacement: 'bottom',
+    },
+    {
+      name: 'RTL left edge above',
+      direction: 'rtl' as const,
+      anchor: {left: 4, top: 240, right: 44, bottom: 280, width: 40, height: 40},
+      expectedPlacement: 'top',
+    },
+    {
+      name: 'LTR right edge above',
+      direction: 'ltr' as const,
+      anchor: {left: 356, top: 240, right: 396, bottom: 280, width: 40, height: 40},
+      expectedPlacement: 'top',
+    },
+    {
+      name: 'RTL right edge below',
+      direction: 'rtl' as const,
+      anchor: {left: 356, top: 40, right: 396, bottom: 80, width: 40, height: 40},
+      expectedPlacement: 'bottom',
+    },
+  ])('tracks the trigger at both viewport edges: $name', ({
+    direction,
+    anchor,
+    expectedPlacement,
+  }) => {
+    const result = calculateAnchoredOverlayGeometry({
+      ...base,
+      preferredPlacement: 'bottom',
+      crossAxisAlignment: 'end',
+      direction,
+      anchor,
+      surfaceWidth: 360,
+      surfaceHeight: 180,
+      arrowWidth: 13,
+      arrowHeight: 0,
+      arrowSafeInset: 16,
+    });
+    const triggerCenter = anchor.left + anchor.width / 2;
+    const arrowCenter = result.x + result.arrowCrossAxisCenter;
+
+    expect(result.placement).toBe(expectedPlacement);
+    expect(result.x).toBeGreaterThanOrEqual(8);
+    expect(result.x + 360).toBeLessThanOrEqual(392);
+    expect(Math.abs(arrowCenter - triggerCenter)).toBeLessThanOrEqual(6.5);
+  });
+
 });
