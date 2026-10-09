@@ -1,5 +1,15 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Current authorized unit — 2026-10-09 — Shell S2-E AppShell integration
+
+The ordered Shell continuation has completed Sidebar, Topbar, AppFooter and
+QuickActionsBar technical stages. QuickActionsBar is a public data-driven
+action rail with a dedicated workbench and responsive vertical/horizontal
+containment. Its gate passes 124/124 files and 791/791 tests, both typechecks,
+production build, all governance, and zero warnings. All four owners remain
+pending Product Owner visual review. The exact next unit is the authorized
+minimum AppShell integration; no other wave is open.
+
 ## Current authorized unit — 2026-10-09 — Shell S2-D QuickActionsBar
 
 S2-A Sidebar, S2-B Topbar, and S2-C AppFooter are technically verified and

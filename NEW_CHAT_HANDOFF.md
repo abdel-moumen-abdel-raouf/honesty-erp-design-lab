@@ -1,5 +1,19 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Authoritative current handoff — 2026-10-09 — Shell S2-D complete
+
+S2-A Sidebar, S2-B Topbar, S2-C AppFooter and S2-D QuickActionsBar are
+technically verified and visually pending. QuickActionsBar is a data-driven,
+in-flow owner using IconButton, Tooltip and Text; it does not hardcode the
+unavailable Gxon taxonomy or viewport positioning. Its dedicated workbench,
+six-condition evidence and 124-file/791-test canonical gate pass with zero
+warnings or browser diagnostics.
+
+The exact next permitted unit is S2-E minimum AppShell integration. Compose the
+existing four owners with the established Search, Branch Selector,
+Notifications and UserMenu; do not redesign reused owners or open another
+Shell family.
+
 ## Authoritative current handoff — 2026-10-09 — Shell continuation S2-C
 
 S2-A Sidebar, S2-B Topbar, and S2-C AppFooter are `TECHNICAL_VERIFIED` and

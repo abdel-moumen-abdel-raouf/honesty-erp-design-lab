@@ -1,5 +1,22 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Shell S2-D QuickActionsBar State — 2026-10-09
+
+S2-D adds one public `ErpQuickActionsBar` owner. Its group labels and action
+taxonomy are consumer data because Gxon remains unavailable and no fixed
+Product Owner category vocabulary was recovered. It composes `ErpIconButton`,
+`ErpTooltip`, and `ErpText`, emits activation intent only, stays in flow, and
+changes from a vertical rail to a horizontally contained narrow composition
+through the Foundation Query API.
+
+Focused verification passes 1/1 file and 3/3 tests. Canonical verification
+passes 124/124 files and 791/791 tests, the 79-component catalog and 12-owner
+Shell governance, both typechecks, production build, and zero warnings. Six
+browser conditions cover 1440 through 320 px with zero page overflow, broken
+images, errors or warnings. Status is `TECHNICAL_VERIFIED` and
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. The exact next unit is S2-E minimum
+`ErpAppShell` integration.
+
 ## Current Shell S2-C AppFooter State — 2026-10-09
 
 S2-C introduces one public `ErpAppFooter` owner as an explicitly authorized

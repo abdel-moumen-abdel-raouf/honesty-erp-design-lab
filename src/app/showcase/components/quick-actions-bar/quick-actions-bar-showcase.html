@@ -1,0 +1,26 @@
+<erp-stack gap="default" data-dedicated-showcase="quick-actions-bar" data-showcase-sections="1">
+  <erp-text type="heading-2">شريط الإجراءات السريعة</erp-text>
+  <erp-text type="paragraph" tone="secondary">مجموعات إجراءات سريعة يحددها المستهلك ضمن إطار التطبيق.</erp-text>
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-quick-actions-bar
+          data-showcase-target
+          [groups]="$any(value('groups'))"
+          [ariaLabel]="$any(value('ariaLabel'))"
+          (actionActivated)="recordEvent('actionActivated', $event)"
+        ></erp-quick-actions-bar>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

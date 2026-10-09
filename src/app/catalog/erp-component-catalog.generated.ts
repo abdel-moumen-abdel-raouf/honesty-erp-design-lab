@@ -5086,6 +5086,225 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     }
   },
   {
+    "id": "quick-actions-bar",
+    "selector": "erp-quick-actions-bar",
+    "className": "ErpQuickActionsBar",
+    "category": "Application Shell",
+    "classification": "PUBLIC ERP COMPONENT",
+    "sourcePath": "src/app/controls/quick-actions-bar/quick-actions-bar.ts",
+    "purpose": "Owns the public ERP quick actions bar semantic and presentation contract.",
+    "publicApi": {
+      "inputs": [
+        {
+          "name": "groups",
+          "required": true,
+          "values": [],
+          "type": "readonly ErpQuickActionGroup[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
+        },
+        {
+          "name": "ariaLabel",
+          "required": false,
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "الإجراءات السريعة",
+          "defaultExpression": "'الإجراءات السريعة'"
+        }
+      ],
+      "outputs": [
+        "actionActivated"
+      ],
+      "models": []
+    },
+    "lowerLevelOwners": [
+      "ErpIconButton",
+      "ErpIconName",
+      "ErpQuickAction",
+      "ErpQuickActionGroup",
+      "ErpQuickActionPriority",
+      "ErpText",
+      "ErpTooltip",
+      "erp-icon-button",
+      "erp-text",
+      "erp-tooltip"
+    ],
+    "nativeElementsOwned": [
+      "aside",
+      "div",
+      "span"
+    ],
+    "nativeCoverage": [
+      "aside"
+    ],
+    "coverageScope": "public-consumer",
+    "showcaseRoute": "/components/quick-actions-bar",
+    "showcaseOwnerPath": "src/app/showcase/components/quick-actions-bar/quick-actions-bar-showcase.ts",
+    "showcaseLoader": "quick-actions-bar",
+    "visualReference": null,
+    "visualStatus": "PENDING",
+    "showcaseFacets": [],
+    "showcaseCases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "groups": [
+            {
+              "id": "daily",
+              "label": "العمل اليومي",
+              "actions": [
+                {
+                  "id": "task",
+                  "label": "مهمة جديدة",
+                  "icon": "add",
+                  "priority": "primary"
+                },
+                {
+                  "id": "event",
+                  "label": "موعد جديد",
+                  "icon": "calendar"
+                }
+              ]
+            },
+            {
+              "id": "support",
+              "label": "المساندة",
+              "actions": [
+                {
+                  "id": "help",
+                  "label": "المساعدة",
+                  "icon": "help"
+                },
+                {
+                  "id": "settings",
+                  "label": "الإعدادات",
+                  "icon": "settings",
+                  "disabled": true
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "displayNameAr": "شريط الإجراءات السريعة",
+    "descriptionAr": "مجموعات إجراءات سريعة يحددها المستهلك ضمن إطار التطبيق.",
+    "showcaseInitialValues": {
+      "ariaLabel": "الإجراءات السريعة",
+      "groups": [
+        {
+          "id": "daily",
+          "label": "العمل اليومي",
+          "actions": [
+            {
+              "id": "task",
+              "label": "مهمة جديدة",
+              "icon": "add",
+              "priority": "primary"
+            },
+            {
+              "id": "event",
+              "label": "موعد جديد",
+              "icon": "calendar"
+            }
+          ]
+        },
+        {
+          "id": "support",
+          "label": "المساندة",
+          "actions": [
+            {
+              "id": "help",
+              "label": "المساعدة",
+              "icon": "help"
+            },
+            {
+              "id": "settings",
+              "label": "الإعدادات",
+              "icon": "settings",
+              "disabled": true
+            }
+          ]
+        }
+      ]
+    },
+    "showcaseControls": [
+      {
+        "name": "groups",
+        "label": "groups",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "readonly ErpQuickActionGroup[]",
+        "options": [],
+        "initialValue": [
+          {
+            "id": "daily",
+            "label": "العمل اليومي",
+            "actions": [
+              {
+                "id": "task",
+                "label": "مهمة جديدة",
+                "icon": "add",
+                "priority": "primary"
+              },
+              {
+                "id": "event",
+                "label": "موعد جديد",
+                "icon": "calendar"
+              }
+            ]
+          },
+          {
+            "id": "support",
+            "label": "المساندة",
+            "actions": [
+              {
+                "id": "help",
+                "label": "المساعدة",
+                "icon": "help"
+              },
+              {
+                "id": "settings",
+                "label": "الإعدادات",
+                "icon": "settings",
+                "disabled": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ariaLabel",
+        "label": "ariaLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "الإجراءات السريعة"
+      }
+    ],
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "groups",
+        "ariaLabel"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "actionActivated"
+      ],
+      "coveredValues": {},
+      "coveredStates": [],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
+  },
+  {
     "id": "topbar",
     "selector": "erp-topbar",
     "className": "ErpTopbar",
@@ -44515,6 +44734,7 @@ export const ERP_PUBLIC_SHOWCASE_LOADERS: Readonly<Record<string, () => Promise<
   "branch-selector": () => import("../showcase/components/branch-selector/branch-selector-showcase").then((module) => module.ErpBranchSelectorShowcase),
   "global-search": () => import("../showcase/components/global-search/global-search-showcase").then((module) => module.ErpGlobalSearchShowcase),
   "notification-bell": () => import("../showcase/components/notification-bell/notification-bell-showcase").then((module) => module.ErpNotificationBellShowcase),
+  "quick-actions-bar": () => import("../showcase/components/quick-actions-bar/quick-actions-bar-showcase").then((module) => module.ErpQuickActionsBarShowcase),
   "topbar": () => import("../showcase/components/topbar/topbar-showcase").then((module) => module.ErpTopbarShowcase),
   "user-menu": () => import("../showcase/components/user-menu/user-menu-showcase").then((module) => module.ErpUserMenuShowcase),
   "bulk-action-bar": () => import("../showcase/components/bulk-action-bar/bulk-action-bar-showcase").then((module) => module.ErpBulkActionBarShowcase),

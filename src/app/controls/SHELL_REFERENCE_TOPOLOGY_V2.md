@@ -78,7 +78,7 @@
   and QuickActionsBar candidates; it also does not authorize fabricated
   measurements.
 
-## Current repository behavior before this wave
+## Entry repository behavior before this wave (historical)
 
 - `ErpSidebar` renders all descendants permanently and has no disclosure or
   collapsed contract.
@@ -87,6 +87,17 @@
   canonical `erpTopbarActions` slot.
 - `ErpAppShell` composes Topbar, Sidebar, and content only.
 - No public `ErpAppFooter` or `ErpQuickActionsBar` exists.
+
+## Current implementation status — through S2-D
+
+- `ErpSidebar`, `ErpTopbar`, `ErpAppFooter`, and `ErpQuickActionsBar` are
+  `TECHNICAL_VERIFIED` and `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+- AppFooter is an in-flow original Honesty ERP owner with consumer-supplied
+  identity, status and auxiliary actions.
+- QuickActionsBar owns consumer-driven grouped action presentation, composes
+  IconButton/Tooltip/Text, and changes from vertical to horizontal flow through
+  the Foundation Query API. No Gxon measurement or fixed taxonomy is claimed.
+- The exact next unit is the authorized minimum `ErpAppShell` integration.
 
 ## Unknown or provisional visual points
 

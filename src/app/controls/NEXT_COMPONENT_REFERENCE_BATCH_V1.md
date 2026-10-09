@@ -1,5 +1,13 @@
 # Next Component Reference Batch V1
 
+## Authoritative next unit — 2026-10-09 — Shell S2-E AppShell integration
+
+Sidebar, Topbar, AppFooter and QuickActionsBar are technically verified and
+remain visually pending. QuickActionsBar records Gxon as unavailable and keeps
+categories consumer-driven. The only next authorized component work is S2-E
+minimum AppShell integration and its consolidated evidence. No additional
+Shell component or later component reference batch is open.
+
 ## Authoritative next unit — 2026-10-09 — Shell S2-D QuickActionsBar
 
 S2-A through S2-C are technically verified and remain visually pending. The

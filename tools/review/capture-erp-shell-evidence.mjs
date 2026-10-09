@@ -14,7 +14,7 @@ const OUTPUT = path.join(
   'docs',
   'review-evidence',
   'erp-shell',
-  ({sidebar: 's2-a-sidebar', topbar: 's2-b-topbar', 'app-footer': 's2-c-app-footer'}[COMPONENT]
+  ({sidebar: 's2-a-sidebar', topbar: 's2-b-topbar', 'app-footer': 's2-c-app-footer', 'quick-actions-bar': 's2-d-quick-actions-bar'}[COMPONENT]
     ?? `shell-${COMPONENT}`),
 );
 
@@ -45,11 +45,22 @@ const appFooterScenarios = [
   {name: 'app-footer-320-dark-ltr-empty', width: 320, height: 568, theme: 'dark', direction: 'ltr', state: 'empty'},
 ];
 
+const quickActionsScenarios = [
+  {name: 'quick-actions-1440-light-rtl-default', width: 1440, height: 900, theme: 'light', direction: 'rtl'},
+  {name: 'quick-actions-1280-dark-ltr-default', width: 1280, height: 900, theme: 'dark', direction: 'ltr'},
+  {name: 'quick-actions-1024-light-rtl-dense', width: 1024, height: 768, theme: 'light', direction: 'rtl', state: 'dense'},
+  {name: 'quick-actions-768-dark-rtl-default', width: 768, height: 900, theme: 'dark', direction: 'rtl'},
+  {name: 'quick-actions-390-light-rtl-dense', width: 390, height: 844, theme: 'light', direction: 'rtl', state: 'dense'},
+  {name: 'quick-actions-320-dark-ltr-default', width: 320, height: 568, theme: 'dark', direction: 'ltr'},
+];
+
 const scenarios = COMPONENT === 'topbar'
   ? topbarScenarios
   : COMPONENT === 'app-footer'
     ? appFooterScenarios
-    : sidebarScenarios;
+    : COMPONENT === 'quick-actions-bar'
+      ? quickActionsScenarios
+      : sidebarScenarios;
 
 class DevToolsClient {
   #socket;
@@ -167,7 +178,9 @@ async function main() {
         ? 'erp-topbar[data-showcase-target] header, [data-showcase-target] erp-topbar header'
         : COMPONENT === 'app-footer'
           ? 'erp-app-footer[data-showcase-target] footer, [data-showcase-target] erp-app-footer footer'
-          : 'erp-sidebar[data-showcase-target] nav, [data-showcase-target] erp-sidebar nav';
+          : COMPONENT === 'quick-actions-bar'
+            ? 'erp-quick-actions-bar[data-showcase-target] [role="toolbar"], [data-showcase-target] erp-quick-actions-bar [role="toolbar"]'
+            : 'erp-sidebar[data-showcase-target] nav, [data-showcase-target] erp-sidebar nav';
       await waitFor(() => evaluate(client, `Boolean(document.querySelector(${JSON.stringify(readySelector)}))`));
       await evaluate(client, `(() => {
         document.documentElement.dir = '${scenario.direction}';
@@ -212,6 +225,31 @@ async function main() {
         })()`);
         await new Promise((resolve) => setTimeout(resolve, 250));
       }
+      if (COMPONENT === 'quick-actions-bar' && scenario.state === 'dense') {
+        await evaluate(client, `(() => {
+          const field = document.querySelector('[data-showcase-control="groups"] textarea, [data-showcase-control="groups"] input');
+          if (!field) throw new Error('Missing quick-actions groups editor');
+          const setter = Object.getOwnPropertyDescriptor(
+            field instanceof HTMLTextAreaElement ? HTMLTextAreaElement.prototype : HTMLInputElement.prototype,
+            'value',
+          ).set;
+          setter.call(field, JSON.stringify([
+            {id: 'daily', label: 'العمل اليومي', actions: [
+              {id: 'task', label: 'مهمة جديدة', icon: 'add', priority: 'primary'},
+              {id: 'event', label: 'موعد جديد', icon: 'calendar'},
+              {id: 'report', label: 'تقرير سريع', icon: 'chart'}
+            ]},
+            {id: 'support', label: 'المساندة', actions: [
+              {id: 'help', label: 'المساعدة', icon: 'help'},
+              {id: 'settings', label: 'الإعدادات', icon: 'settings'},
+              {id: 'disabled', label: 'إجراء غير متاح', icon: 'lock', disabled: true}
+            ]}
+          ], null, 2));
+          field.dispatchEvent(new Event('input', {bubbles: true}));
+        })()`);
+        await new Promise((resolve) => setTimeout(resolve, 250));
+      }
+      await evaluate(client, `document.querySelector('erp-${COMPONENT}[data-showcase-target], [data-showcase-target] erp-${COMPONENT}')?.scrollIntoView({block: 'center', inline: 'nearest'})`);
       await new Promise((resolve) => setTimeout(resolve, 200));
 
       const measurement = await evaluate(client, `(() => {
@@ -220,6 +258,7 @@ async function main() {
         const nav = host?.querySelector('nav');
         const header = host?.querySelector('header');
         const footer = host?.querySelector('footer');
+        const toolbar = host?.querySelector('[role="toolbar"]');
         const rect = (element) => {
           if (!element) return null;
           const value = element.getBoundingClientRect();
@@ -244,6 +283,12 @@ async function main() {
           activeAncestors: host?.querySelectorAll('[data-sidebar-active-ancestor="true"]').length ?? 0,
           header: rect(header),
           footer: rect(footer),
+          toolbar: rect(toolbar),
+          toolbarFlexDirection: toolbar ? getComputedStyle(toolbar).flexDirection : null,
+          toolbarHorizontalOverflow: toolbar ? Math.max(0, toolbar.scrollWidth - toolbar.clientWidth) : null,
+          quickActionGroups: host?.querySelectorAll('.quick-actions-bar__group').length ?? 0,
+          quickActionButtons: host?.querySelectorAll('erp-icon-button button').length ?? 0,
+          quickActionDisabledButtons: host?.querySelectorAll('erp-icon-button button:disabled').length ?? 0,
           footerPresent: Boolean(footer),
           footerActionCount: host?.querySelectorAll('.app-footer__actions erp-button').length ?? 0,
           footerDisabledActionCount: host?.querySelectorAll('.app-footer__actions button:disabled').length ?? 0,

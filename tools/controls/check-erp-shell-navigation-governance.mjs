@@ -12,6 +12,8 @@ const TOPBAR_REFERENCE = 'src/app/controls/topbar/ERP_TOPBAR_REFERENCE_V1.md';
 const TOPBAR_SHOWCASE = 'src/app/showcase/components/topbar/topbar-showcase.html';
 const APP_FOOTER_REFERENCE = 'src/app/controls/app-footer/ERP_APP_FOOTER_CANDIDATE_V1.md';
 const APP_FOOTER_SHOWCASE = 'src/app/showcase/components/app-footer/app-footer-showcase.html';
+const QUICK_ACTIONS_REFERENCE = 'src/app/controls/quick-actions-bar/ERP_QUICK_ACTIONS_BAR_CANDIDATE_V1.md';
+const QUICK_ACTIONS_SHOWCASE = 'src/app/showcase/components/quick-actions-bar/quick-actions-bar-showcase.html';
 const USER_MENU_REFERENCE = 'src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md';
 const OWNERS = [
   'app-footer',
@@ -23,6 +25,7 @@ const OWNERS = [
   'branch-selector',
   'global-search',
   'notification-bell',
+  'quick-actions-bar',
   'user-menu',
   'app-shell',
 ];
@@ -55,6 +58,7 @@ export function validateShellNavigation(files) {
   const sidebarReference = files.get(SIDEBAR_REFERENCE) ?? '';
   const topbarReference = files.get(TOPBAR_REFERENCE) ?? '';
   const appFooterReference = files.get(APP_FOOTER_REFERENCE) ?? '';
+  const quickActionsReference = files.get(QUICK_ACTIONS_REFERENCE) ?? '';
   const sources = OWNERS.map(
     (owner) => files.get(`src/app/controls/${owner}/${owner}.ts`) ?? '',
   ).join('\n');
@@ -202,6 +206,29 @@ export function validateShellNavigation(files) {
     !appFooterReference.includes('unavailable')
   ) {
     errors.push('ErpAppFooter must record original-design authority and the unavailable Gxon boundary');
+  }
+
+  const quickActionsSource = files.get('src/app/controls/quick-actions-bar/quick-actions-bar.ts') ?? '';
+  const quickActionsTemplate = files.get('src/app/controls/quick-actions-bar/quick-actions-bar.html') ?? '';
+  const quickActionsShowcase = files.get(QUICK_ACTIONS_SHOWCASE) ?? '';
+  for (const owner of ['ErpIconButton', 'ErpTooltip', 'ErpText']) {
+    if (!quickActionsSource.includes(owner)) {
+      errors.push(`ErpQuickActionsBar must reuse ${owner}`);
+    }
+  }
+  if (!quickActionsTemplate.includes('role="toolbar"') || !quickActionsTemplate.includes('(pressed)="activate(action)"')) {
+    errors.push('ErpQuickActionsBar must own grouped toolbar semantics and emit consumer action intent');
+  }
+  if (!quickActionsShowcase.includes('<erp-quick-actions-bar') || !quickActionsShowcase.includes('data-showcase-target')) {
+    errors.push('ErpQuickActionsBar must retain one dedicated live workbench target');
+  }
+  if (
+    !quickActionsReference.includes('PRODUCT_OWNER_VISUAL_REVIEW_PENDING') ||
+    !quickActionsReference.includes('data-driven') ||
+    !quickActionsReference.includes('Gxon') ||
+    !quickActionsReference.includes('unavailable')
+  ) {
+    errors.push('ErpQuickActionsBar must record its data-driven category and unavailable Gxon boundaries');
   }
 
   const branchSelector = `${files.get('src/app/controls/branch-selector/branch-selector.ts') ?? ''}\n${files.get('src/app/controls/branch-selector/branch-selector.html') ?? ''}`;
@@ -357,6 +384,8 @@ function validFixture(overrides = new Map()) {
     [TOPBAR_SHOWCASE, '<erp-branch-selector erpTopbarContext /><erp-global-search erpTopbarSearch /><erp-notification-bell erpTopbarActions /><erp-user-menu erpTopbarUser />'],
     [APP_FOOTER_REFERENCE, 'original Honesty ERP PRODUCT_OWNER_VISUAL_REVIEW_PENDING Gxon unavailable'],
     [APP_FOOTER_SHOWCASE, '<erp-app-footer data-showcase-target />'],
+    [QUICK_ACTIONS_REFERENCE, 'PRODUCT_OWNER_VISUAL_REVIEW_PENDING data-driven Gxon unavailable'],
+    [QUICK_ACTIONS_SHOWCASE, '<erp-quick-actions-bar data-showcase-target />'],
     [USER_MENU_REFERENCE, '75F64AE955800ABE9FCBE27D7B09161D95E2DE2C77B6106C337AA4841D39D399 1EFFE6A3ADC2613EC19612699E567C38E5457997E342333B0686F70D63A3AFEA'],
   ]);
 
@@ -385,6 +414,14 @@ function validFixture(overrides = new Map()) {
   files.set(
     'src/app/controls/app-footer/app-footer.html',
     '<footer><erp-button (pressed)="activate(action)" /></footer>',
+  );
+  files.set(
+    'src/app/controls/quick-actions-bar/quick-actions-bar.ts',
+    'import {ErpIconButton} from "x"; import {ErpTooltip} from "y"; import {ErpText} from "z"; export class ErpQuickActionsBar {}',
+  );
+  files.set(
+    'src/app/controls/quick-actions-bar/quick-actions-bar.html',
+    '<div role="toolbar"><erp-icon-button (pressed)="activate(action)" /></div>',
   );
   files.set(
     'src/app/controls/topbar/topbar.html',
@@ -505,6 +542,8 @@ function runCheck() {
     TOPBAR_SHOWCASE,
     APP_FOOTER_REFERENCE,
     APP_FOOTER_SHOWCASE,
+    QUICK_ACTIONS_REFERENCE,
+    QUICK_ACTIONS_SHOWCASE,
     USER_MENU_REFERENCE,
   ];
 

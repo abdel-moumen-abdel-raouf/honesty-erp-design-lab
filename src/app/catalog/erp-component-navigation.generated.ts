@@ -132,6 +132,16 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "purpose": "Owns the public ERP notification bell semantic and presentation contract."
   },
   {
+    "id": "quick-actions-bar",
+    "className": "ErpQuickActionsBar",
+    "selector": "erp-quick-actions-bar",
+    "category": "Application Shell",
+    "showcaseRoute": "/components/quick-actions-bar",
+    "displayNameAr": "شريط الإجراءات السريعة",
+    "descriptionAr": "مجموعات إجراءات سريعة يحددها المستهلك ضمن إطار التطبيق.",
+    "purpose": "Owns the public ERP quick actions bar semantic and presentation contract."
+  },
+  {
     "id": "topbar",
     "className": "ErpTopbar",
     "selector": "erp-topbar",

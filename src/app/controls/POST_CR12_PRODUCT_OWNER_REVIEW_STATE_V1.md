@@ -1,5 +1,14 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current deferred visual-review queue — 2026-10-09 — Shell S2-A/S2-B/S2-C/S2-D
+
+The authorized continuation now has technically verified Sidebar, Topbar,
+AppFooter and QuickActionsBar candidates. QuickActionsBar uses consumer-provided
+groups rather than an invented fixed taxonomy and has reproducible Light/Dark,
+RTL/LTR, desktop/narrow evidence. None of these stages is visually approved.
+The exact next unit is S2-E AppShell integration, after which the wave stops for
+consolidated Product Owner review.
+
 ## Current deferred visual-review queue — 2026-10-09 — Shell S2-A/S2-B/S2-C
 
 `ErpSidebar`, `ErpTopbar`, and `ErpAppFooter` are

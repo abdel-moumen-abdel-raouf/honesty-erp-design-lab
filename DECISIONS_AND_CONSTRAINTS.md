@@ -1,5 +1,17 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Shell S2-D QuickActionsBar decisions — 2026-10-09
+
+- `ErpQuickActionsBar` is a public Shell owner distinct from Sidebar, Topbar,
+  FabMenu, ButtonGroup and PageHeader actions.
+- Group names and classification are typed consumer data; no unavailable Gxon
+  taxonomy or measurements are treated as authority.
+- The owner is in-flow and placement belongs to AppShell. Its internal desktop
+  flow is vertical and narrow flow horizontal through the Foundation Query API.
+- Every icon action reuses `ErpIconButton` and `ErpTooltip`; business meaning,
+  authorization, persistence and transactions remain consumer-owned.
+- Technical status is verified; Product Owner visual review remains pending.
+
 ## Shell S2-C AppFooter decision — 2026-10-09
 
 `ErpAppFooter` is the sole global application Footer owner. It is distinct from

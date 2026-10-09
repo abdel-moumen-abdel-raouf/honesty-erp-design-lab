@@ -1,0 +1,14 @@
+@mixin base {
+  --honesty-quick-actions-bar-bg: var(--honesty-color-surface-default);
+  --honesty-quick-actions-bar-fg: var(--honesty-color-text-primary);
+  --honesty-quick-actions-bar-border-color: var(--honesty-border-subtle);
+  --honesty-quick-actions-bar-border-width: var(--honesty-border-width-default);
+  --honesty-quick-actions-bar-radius: var(--honesty-radius-overlay);
+  --honesty-quick-actions-bar-shadow: var(--honesty-elevation-raised);
+  --honesty-quick-actions-bar-padding: 0.5rem;
+  --honesty-quick-actions-bar-group-gap: 0.5rem;
+  --honesty-quick-actions-bar-item-gap: 0.375rem;
+  --honesty-quick-actions-bar-label-max-width: 4.5rem;
+  --honesty-quick-actions-bar-narrow-label-max-width: 7rem;
+  --honesty-quick-actions-bar-separator-length: 2rem;
+}

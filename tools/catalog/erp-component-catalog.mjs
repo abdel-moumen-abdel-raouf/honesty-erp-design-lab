@@ -59,6 +59,7 @@ const ARABIC_COMPONENT_METADATA = new Map([
   ['branch-selector', ['محدد الفرع', 'اختيار فرع مضبوط يتحكم فيه المستهلك.']],
   ['global-search', ['البحث العام', 'بحث عام داخل إطار التطبيق مع نتائج مصنفة.']],
   ['notification-bell', ['جرس الإشعارات', 'مدخل إشعارات قابل للفتح مع عدد غير المقروء.']],
+  ['quick-actions-bar', ['شريط الإجراءات السريعة', 'مجموعات إجراءات سريعة يحددها المستهلك ضمن إطار التطبيق.']],
   ['topbar', ['الشريط العلوي', 'تخطيط مناطق السياق والبحث والإشعارات والمستخدم.']],
   ['user-menu', ['قائمة المستخدم', 'هوية المستخدم وإجراءات الحساب ضمن سطح مثبت.']],
   ['bulk-action-bar', ['شريط الإجراءات الجماعية', 'إجراءات مرتبطة بالصفوف المحددة.']],
@@ -192,12 +193,13 @@ const CATEGORY_GROUPS = [
   ])],
   ['Application Shell', new Set([
     'erp-app-footer', 'erp-app-shell', 'erp-branch-selector', 'erp-global-search',
-    'erp-notification-bell', 'erp-topbar', 'erp-user-menu',
+    'erp-notification-bell', 'erp-quick-actions-bar', 'erp-topbar', 'erp-user-menu',
   ])],
 ];
 
 const NATIVE_REPLACEMENTS = new Map([
   ['ErpAppFooter', ['footer']],
+  ['ErpQuickActionsBar', ['aside']],
   ['ErpAvatar', ['img']],
   ['ErpBreadcrumbs', ['nav', 'ol', 'li', 'a']],
   ['ErpButton', ['button']],
@@ -369,6 +371,24 @@ const FIXTURE_INPUTS = new Map([
   ['ErpMoneyBox', {currency: 'EGP'}],
   ['ErpPageHeader', {title: 'سجل الحساب'}],
   ['ErpPagination', {pageCount: 3}],
+  ['ErpQuickActionsBar', {groups: [
+    {
+      id: 'daily',
+      label: 'العمل اليومي',
+      actions: [
+        {id: 'task', label: 'مهمة جديدة', icon: 'add', priority: 'primary'},
+        {id: 'event', label: 'موعد جديد', icon: 'calendar'},
+      ],
+    },
+    {
+      id: 'support',
+      label: 'المساندة',
+      actions: [
+        {id: 'help', label: 'المساعدة', icon: 'help'},
+        {id: 'settings', label: 'الإعدادات', icon: 'settings', disabled: true},
+      ],
+    },
+  ]}],
   ['ErpRadioGroup', {options: [{value: 'active', label: 'نشط'}]}],
   ['ErpSidebar', {
     items: [

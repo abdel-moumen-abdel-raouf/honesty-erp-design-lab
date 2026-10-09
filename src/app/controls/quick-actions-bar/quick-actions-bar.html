@@ -1,0 +1,34 @@
+@if (groups().length) {
+  <aside [attr.aria-label]="ariaLabel()">
+    <div class="quick-actions-bar" role="toolbar" [attr.aria-label]="ariaLabel()">
+      @for (group of groups(); track group.id; let last = $last) {
+        <div class="quick-actions-bar__group" role="group" [attr.aria-label]="group.label ?? ariaLabel()">
+          @if (group.label) {
+            <erp-text class="quick-actions-bar__label" type="caption" tone="secondary">
+              {{ group.label }}
+            </erp-text>
+          }
+          <div class="quick-actions-bar__actions">
+            @for (action of group.actions; track action.id) {
+              <erp-tooltip [text]="action.label" placement="start">
+                <erp-icon-button
+                  [icon]="action.icon"
+                  [label]="action.label"
+                  [variant]="action.priority === 'primary' ? 'solid' : 'ghost'"
+                  [tone]="action.priority === 'primary' ? 'primary' : 'neutral'"
+                  size="md"
+                  shape="rounded"
+                  [disabled]="action.disabled ?? false"
+                  (pressed)="activate(action)"
+                />
+              </erp-tooltip>
+            }
+          </div>
+        </div>
+        @if (!last) {
+          <span class="quick-actions-bar__separator" aria-hidden="true"></span>
+        }
+      }
+    </div>
+  </aside>
+}

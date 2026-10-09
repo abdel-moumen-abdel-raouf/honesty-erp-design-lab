@@ -1,0 +1,80 @@
+@use '../../../styles/foundation/components/quick-actions-bar' as tokens;
+@use '../../../styles/foundation/queries' as query;
+
+:host {
+  @include tokens.base;
+  display: block;
+  min-inline-size: 0;
+  color: var(--honesty-quick-actions-bar-fg);
+}
+
+aside,
+.quick-actions-bar,
+.quick-actions-bar__group,
+.quick-actions-bar__actions {
+  min-inline-size: 0;
+}
+
+.quick-actions-bar {
+  box-sizing: border-box;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  gap: var(--honesty-quick-actions-bar-group-gap);
+  padding: var(--honesty-quick-actions-bar-padding);
+  max-block-size: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: var(--honesty-quick-actions-bar-border-width) solid
+    var(--honesty-quick-actions-bar-border-color);
+  border-radius: var(--honesty-quick-actions-bar-radius);
+  background: var(--honesty-quick-actions-bar-bg);
+  box-shadow: var(--honesty-quick-actions-bar-shadow);
+}
+
+.quick-actions-bar__group,
+.quick-actions-bar__actions {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: var(--honesty-quick-actions-bar-item-gap);
+}
+
+.quick-actions-bar__label {
+  max-inline-size: var(--honesty-quick-actions-bar-label-max-width);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.quick-actions-bar__separator {
+  display: block;
+  inline-size: 100%;
+  block-size: var(--honesty-quick-actions-bar-border-width);
+  background: var(--honesty-quick-actions-bar-border-color);
+}
+
+@include query.viewport-down('sm') {
+  .quick-actions-bar {
+    align-items: center;
+    flex-direction: row;
+    max-block-size: none;
+    max-inline-size: 100%;
+    overflow-x: auto;
+    overflow-y: visible;
+  }
+
+  .quick-actions-bar__group,
+  .quick-actions-bar__actions {
+    flex-direction: row;
+    flex: 0 0 auto;
+  }
+
+  .quick-actions-bar__label {
+    max-inline-size: var(--honesty-quick-actions-bar-narrow-label-max-width);
+  }
+
+  .quick-actions-bar__separator {
+    inline-size: var(--honesty-quick-actions-bar-border-width);
+    block-size: var(--honesty-quick-actions-bar-separator-length);
+  }
+}

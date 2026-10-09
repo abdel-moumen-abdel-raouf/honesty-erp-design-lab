@@ -1,0 +1,348 @@
+{
+  "capturedAt": "2026-10-09T14:12:39.361Z",
+  "baseUrl": "http://127.0.0.1:4200",
+  "measurements": [
+    {
+      "name": "quick-actions-1440-light-rtl-default",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 49,
+        "y": 322.765625,
+        "width": 1327,
+        "height": 255
+      },
+      "component": "quick-actions-bar",
+      "host": {
+        "x": 49,
+        "y": 322.765625,
+        "width": 1327,
+        "height": 255
+      },
+      "nav": null,
+      "navOverflowY": null,
+      "navScrollHeight": null,
+      "navClientHeight": null,
+      "collapsed": false,
+      "visibleEntries": 0,
+      "enabledInteractiveEntries": 0,
+      "activeDestinations": 0,
+      "activeAncestors": 0,
+      "header": null,
+      "footer": null,
+      "toolbar": {
+        "x": 49,
+        "y": 322.765625,
+        "width": 1327,
+        "height": 255
+      },
+      "toolbarFlexDirection": "column",
+      "toolbarHorizontalOverflow": 0,
+      "quickActionGroups": 2,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 1,
+      "footerPresent": false,
+      "footerActionCount": 0,
+      "footerDisabledActionCount": 0,
+      "regions": {},
+      "renderedOwners": {
+        "branchSelector": 0,
+        "globalSearch": 0,
+        "notificationBell": 0,
+        "userMenu": 0
+      },
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "quick-actions-1280-dark-ltr-default",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 49,
+        "y": 322.765625,
+        "width": 1167,
+        "height": 255
+      },
+      "component": "quick-actions-bar",
+      "host": {
+        "x": 49,
+        "y": 322.765625,
+        "width": 1167,
+        "height": 255
+      },
+      "nav": null,
+      "navOverflowY": null,
+      "navScrollHeight": null,
+      "navClientHeight": null,
+      "collapsed": false,
+      "visibleEntries": 0,
+      "enabledInteractiveEntries": 0,
+      "activeDestinations": 0,
+      "activeAncestors": 0,
+      "header": null,
+      "footer": null,
+      "toolbar": {
+        "x": 49,
+        "y": 322.765625,
+        "width": 1167,
+        "height": 255
+      },
+      "toolbarFlexDirection": "column",
+      "toolbarHorizontalOverflow": 0,
+      "quickActionGroups": 2,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 1,
+      "footerPresent": false,
+      "footerActionCount": 0,
+      "footerDisabledActionCount": 0,
+      "regions": {},
+      "renderedOwners": {
+        "branchSelector": 0,
+        "globalSearch": 0,
+        "notificationBell": 0,
+        "userMenu": 0
+      },
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "quick-actions-1024-light-rtl-dense",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 49,
+        "y": 210.765625,
+        "width": 911,
+        "height": 347
+      },
+      "component": "quick-actions-bar",
+      "host": {
+        "x": 49,
+        "y": 210.765625,
+        "width": 911,
+        "height": 347
+      },
+      "nav": null,
+      "navOverflowY": null,
+      "navScrollHeight": null,
+      "navClientHeight": null,
+      "collapsed": false,
+      "visibleEntries": 0,
+      "enabledInteractiveEntries": 0,
+      "activeDestinations": 0,
+      "activeAncestors": 0,
+      "header": null,
+      "footer": null,
+      "toolbar": {
+        "x": 49,
+        "y": 210.765625,
+        "width": 911,
+        "height": 347
+      },
+      "toolbarFlexDirection": "column",
+      "toolbarHorizontalOverflow": 0,
+      "quickActionGroups": 2,
+      "quickActionButtons": 6,
+      "quickActionDisabledButtons": 1,
+      "footerPresent": false,
+      "footerActionCount": 0,
+      "footerDisabledActionCount": 0,
+      "regions": {},
+      "renderedOwners": {
+        "branchSelector": 0,
+        "globalSearch": 0,
+        "notificationBell": 0,
+        "userMenu": 0
+      },
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "quick-actions-768-dark-rtl-default",
+      "viewport": {
+        "width": 768,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 41,
+        "y": 322.765625,
+        "width": 671,
+        "height": 255
+      },
+      "component": "quick-actions-bar",
+      "host": {
+        "x": 41,
+        "y": 322.765625,
+        "width": 671,
+        "height": 255
+      },
+      "nav": null,
+      "navOverflowY": null,
+      "navScrollHeight": null,
+      "navClientHeight": null,
+      "collapsed": false,
+      "visibleEntries": 0,
+      "enabledInteractiveEntries": 0,
+      "activeDestinations": 0,
+      "activeAncestors": 0,
+      "header": null,
+      "footer": null,
+      "toolbar": {
+        "x": 41,
+        "y": 322.765625,
+        "width": 671,
+        "height": 255
+      },
+      "toolbarFlexDirection": "column",
+      "toolbarHorizontalOverflow": 0,
+      "quickActionGroups": 2,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 1,
+      "footerPresent": false,
+      "footerActionCount": 0,
+      "footerDisabledActionCount": 0,
+      "regions": {},
+      "renderedOwners": {
+        "branchSelector": 0,
+        "globalSearch": 0,
+        "notificationBell": 0,
+        "userMenu": 0
+      },
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "quick-actions-390-light-rtl-dense",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 33,
+        "y": 385.953125,
+        "width": 309,
+        "height": 73
+      },
+      "component": "quick-actions-bar",
+      "host": {
+        "x": 33,
+        "y": 385.953125,
+        "width": 309,
+        "height": 73
+      },
+      "nav": null,
+      "navOverflowY": null,
+      "navScrollHeight": null,
+      "navClientHeight": null,
+      "collapsed": false,
+      "visibleEntries": 0,
+      "enabledInteractiveEntries": 0,
+      "activeDestinations": 0,
+      "activeAncestors": 0,
+      "header": null,
+      "footer": null,
+      "toolbar": {
+        "x": 33,
+        "y": 385.953125,
+        "width": 309,
+        "height": 73
+      },
+      "toolbarFlexDirection": "row",
+      "toolbarHorizontalOverflow": 112,
+      "quickActionGroups": 2,
+      "quickActionButtons": 6,
+      "quickActionDisabledButtons": 1,
+      "footerPresent": false,
+      "footerActionCount": 0,
+      "footerDisabledActionCount": 0,
+      "regions": {},
+      "renderedOwners": {
+        "branchSelector": 0,
+        "globalSearch": 0,
+        "notificationBell": 0,
+        "userMenu": 0
+      },
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "quick-actions-320-dark-ltr-default",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 33,
+        "y": 247.75,
+        "width": 239,
+        "height": 73
+      },
+      "component": "quick-actions-bar",
+      "host": {
+        "x": 33,
+        "y": 247.75,
+        "width": 239,
+        "height": 73
+      },
+      "nav": null,
+      "navOverflowY": null,
+      "navScrollHeight": null,
+      "navClientHeight": null,
+      "collapsed": false,
+      "visibleEntries": 0,
+      "enabledInteractiveEntries": 0,
+      "activeDestinations": 0,
+      "activeAncestors": 0,
+      "header": null,
+      "footer": null,
+      "toolbar": {
+        "x": 33,
+        "y": 247.75,
+        "width": 239,
+        "height": 73
+      },
+      "toolbarFlexDirection": "row",
+      "toolbarHorizontalOverflow": 90,
+      "quickActionGroups": 2,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 1,
+      "footerPresent": false,
+      "footerActionCount": 0,
+      "footerDisabledActionCount": 0,
+      "regions": {},
+      "renderedOwners": {
+        "branchSelector": 0,
+        "globalSearch": 0,
+        "notificationBell": 0,
+        "userMenu": 0
+      },
+      "brokenImages": 0,
+      "diagnostics": []
+    }
+  ]
+}
