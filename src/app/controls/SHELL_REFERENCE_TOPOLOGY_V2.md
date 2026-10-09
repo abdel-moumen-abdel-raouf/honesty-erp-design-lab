@@ -98,4 +98,3 @@
   visual-review decisions.
 - The AppShell narrow Sidebar stays an in-flow review candidate; no new Drawer
   or global navigation overlay is opened by this wave.
-
