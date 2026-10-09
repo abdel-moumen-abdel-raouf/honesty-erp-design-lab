@@ -1,69 +1,53 @@
-<div class="notification-bell__trigger-wrap">
+<div class="bell__trigger-wrap">
   <erp-tooltip [text]="label()" placement="bottom">
-    <erp-icon-button
-      #trigger
-      icon="notification"
-      [label]="label()"
-      ariaHasPopup="dialog"
-      [ariaControls]="surfaceId"
-      [ariaExpanded]="open()"
-      (pressed)="toggle()"
-    />
+    <erp-icon-button #trigger icon="notification" [label]="label()" ariaHasPopup="dialog" [ariaControls]="surfaceId" [ariaExpanded]="open()" (pressed)="toggle()" />
   </erp-tooltip>
   @if (effectiveUnreadCount() > 0) {
-    <erp-status-badge
-      class="notification-bell__badge"
-      [label]="effectiveUnreadCount() > 99 ? '99+' : effectiveUnreadCount().toString()"
-      tone="danger"
-      size="sm"
-    />
+    <erp-status-badge class="bell__badge" [label]="effectiveUnreadCount() > 99 ? '99+' : effectiveUnreadCount().toString()" tone="danger" size="sm" />
   }
 </div>
 
-<section
-  #surface
-  class="notification-bell__surface"
-  popover="manual"
-  role="dialog"
-  [id]="surfaceId"
-  [attr.aria-label]="label()"
->
-  <header class="notification-bell__header">
+<section #surface class="bell__surface" popover="manual" role="dialog" [id]="surfaceId" [attr.aria-label]="label()" (keydown)="handleKeyboard($event)">
+  <header class="bell__header">
     <erp-text type="heading-3">{{ label() }}</erp-text>
     @if (effectiveUnreadCount() > 0) {
-      <erp-button
-        label="تعيين الكل كمقروء"
-        size="sm"
-        variant="ghost"
-        tone="neutral"
-        (pressed)="markAllRead()"
-      />
+      <erp-button label="تعيين الكل كمقروء" size="sm" variant="ghost" tone="neutral" (pressed)="markAllRead()" />
     }
   </header>
 
-  <ul>
-    @for (notification of notifications(); track notification.id) {
-      <li [attr.data-notification-read]="notification.read ?? false">
-        <erp-button
-          [label]="notification.title"
-          [icon]="notification.icon ?? 'notification'"
-          variant="ghost"
-          tone="neutral"
-          fullWidth
-          [disabled]="notification.disabled ?? false"
-          (pressed)="activate(notification)"
-        />
-        @if (notification.description) {
-          <erp-text type="caption" tone="secondary">
-            {{ notification.description }}
-          </erp-text>
-        }
-      </li>
+  @if (searchable()) {
+    <erp-search-box class="bell__search" mode="inline" presentation="table-reference" labelMode="visually-hidden" size="sm" [label]="searchLabel()" [placeholder]="searchLabel()" [ngModel]="query()" [ngModelOptions]="{standalone: true}" (ngModelChange)="query.set($event)" />
+  }
+
+  <div class="bell__items" role="list" [attr.aria-label]="label()">
+    @for (notification of filteredNotifications(); track notification.id) {
+      <erp-shell-menu-action role="listitem" [label]="notification.title" [disabled]="notification.disabled ?? false" [unread]="!(notification.read ?? false)" (activated)="activate(notification)">
+        <span class="bell__item">
+          <span class="bell__icon" aria-hidden="true">
+            <erp-icon [name]="notification.icon ?? 'notification'" size="lg" tone="brand-primary" />
+          </span>
+          <span class="bell__copy">
+            <span class="bell__meta">
+              <erp-text type="strong">{{ notification.title }}</erp-text>
+              @if (notification.timestamp) {
+                <erp-text type="caption" tone="secondary" selectable>{{ notification.timestamp }}</erp-text>
+              }
+            </span>
+            @if (notification.description) {
+              <erp-text class="bell__description" type="caption" tone="secondary">{{ notification.description }}</erp-text>
+            }
+          </span>
+        </span>
+      </erp-shell-menu-action>
     } @empty {
-      <li class="notification-bell__empty">
+      <span class="bell__empty">
         <erp-icon name="notification" size="md" tone="muted" />
-        <erp-text type="caption" tone="secondary">لا توجد إشعارات</erp-text>
-      </li>
+        <erp-text type="caption" tone="secondary">{{ emptyLabel() }}</erp-text>
+      </span>
     }
-  </ul>
+  </div>
+
+  <footer class="bell__footer">
+    <erp-button [label]="viewAllLabel()" size="sm" variant="ghost" tone="neutral" fullWidth (pressed)="viewAll()" />
+  </footer>
 </section>

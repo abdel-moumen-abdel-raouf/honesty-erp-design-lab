@@ -36,6 +36,7 @@ const EXACT_REFERENCES = new Map([
   ['ErpUserMenu', 'src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md'],
   ['ErpApplicationsMenu', 'src/app/controls/applications-menu/ERP_APPLICATIONS_MENU_REFERENCE_V1.md'],
   ['ErpMessagesMenu', 'src/app/controls/messages-menu/ERP_MESSAGES_MENU_REFERENCE_V1.md'],
+  ['ErpNotificationBell', 'src/app/controls/notification-bell/ERP_NOTIFICATION_BELL_REFERENCE_V1.md'],
 ]);
 
 const EXACT_CORE_FOCUS = new Map([
@@ -420,6 +421,15 @@ const FIXTURE_INPUTS = new Map([
   ['ErpIconButton', {icon: 'settings', label: 'الإعدادات'}],
   ['ErpItemPicker', {items: [{value: 'item-1', label: 'صنف مخزني'}]}],
   ['ErpMoneyBox', {currency: 'EGP'}],
+  ['ErpNotificationBell', {
+    notifications: [
+      {id: 'stock', title: 'حد إعادة الطلب', description: 'وصل صنفان في فرع القاهرة إلى الحد الأدنى.', timestamp: 'منذ دقيقتين', icon: 'inventory', read: false},
+      {id: 'approval', title: 'فاتورة تحتاج اعتمادًا', description: 'فاتورة المبيعات رقم 1042 بانتظار موافقتك.', timestamp: 'منذ 14 دقيقة', icon: 'file', read: false},
+      {id: 'ledger', title: 'تم ترحيل القيد', description: 'رُحّل القيد اليومي إلى الحسابات العامة.', timestamp: 'منذ ساعة', icon: 'check-mark', read: true},
+      {id: 'disabled', title: 'إشعار مؤرشف', description: 'هذا الإشعار غير متاح.', timestamp: 'أمس', icon: 'notification', read: true, disabled: true},
+    ],
+    open: true,
+  }],
   ['ErpPageHeader', {title: 'سجل الحساب'}],
   ['ErpPagination', {pageCount: 3}],
   ['ErpQuickActionsBar', {groups: [

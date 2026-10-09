@@ -1,0 +1,29 @@
+@use '../../../styles/foundation/queries' as query;
+
+.bell__surface::before {
+  position: absolute;
+  left: calc(var(--honesty-anchored-surface-arrow-cross-axis-center) - var(--honesty-notification-bell-arrow-size) / 2);
+  inline-size: var(--honesty-notification-bell-arrow-size);
+  block-size: var(--honesty-notification-bell-arrow-size);
+  background: var(--honesty-notification-bell-bg);
+  border: var(--honesty-notification-bell-border-width) solid var(--honesty-notification-bell-border-color);
+  content: '';
+  transform: rotate(45deg);
+}
+
+.bell__surface[data-overlay-placement='bottom']::before { inset-block-start: calc(var(--honesty-notification-bell-arrow-size) / -2); border-inline-end: 0; border-block-end: 0; }
+.bell__surface[data-overlay-placement='top']::before { inset-block-end: calc(var(--honesty-notification-bell-arrow-size) / -2); border-inline-start: 0; border-block-start: 0; }
+.bell__surface:popover-open { animation: notification-bell-enter var(--honesty-notification-bell-motion-duration) var(--honesty-notification-bell-motion-easing) both; }
+
+@keyframes notification-bell-enter {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@include query.viewport-down('compact') {
+  .bell__surface { inline-size: calc(100vw - 2 * var(--honesty-notification-bell-viewport-inset)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bell__surface:popover-open { animation: none; }
+}

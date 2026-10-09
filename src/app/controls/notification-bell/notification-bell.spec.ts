@@ -19,17 +19,17 @@ describe('ErpNotificationBell', () => {
     fixture.componentInstance.notificationActivated.subscribe(activated);
     fixture.detectChanges();
     installPopover(
-      fixture.nativeElement.querySelector('.notification-bell__surface'),
+      fixture.nativeElement.querySelector('.bell__surface'),
     );
 
-    expect(fixture.nativeElement.querySelector('.notification-bell__badge')?.textContent)
+    expect(fixture.nativeElement.querySelector('.bell__badge')?.textContent)
       .toContain('1');
     const trigger = fixture.nativeElement.querySelector(
-      '.notification-bell__trigger-wrap button',
+      '.bell__trigger-wrap button',
     ) as HTMLButtonElement;
     trigger.click();
     expect(fixture.componentInstance.open()).toBe(true);
-    (fixture.nativeElement.querySelector('.notification-bell__surface li erp-button button') as HTMLButtonElement)
+    (fixture.nativeElement.querySelector('.bell__items erp-shell-menu-action button') as HTMLButtonElement)
       .click();
     expect(activated).toHaveBeenCalledWith(
       expect.objectContaining({id: 'approval'}),
@@ -42,7 +42,7 @@ describe('ErpNotificationBell', () => {
     const fixture = TestBed.createComponent(ErpNotificationBell);
     fixture.detectChanges();
     installPopover(
-      fixture.nativeElement.querySelector('.notification-bell__surface'),
+      fixture.nativeElement.querySelector('.bell__surface'),
     );
     (fixture.nativeElement.querySelector('erp-icon-button button') as HTMLButtonElement)
       .click();
@@ -59,14 +59,46 @@ describe('ErpNotificationBell', () => {
     fixture.componentInstance.notificationActivated.subscribe(activated);
     fixture.detectChanges();
     installPopover(
-      fixture.nativeElement.querySelector('.notification-bell__surface'),
+      fixture.nativeElement.querySelector('.bell__surface'),
     );
 
     (fixture.nativeElement.querySelector('erp-icon-button button') as HTMLButtonElement)
       .click();
-    (fixture.nativeElement.querySelector('.notification-bell__surface erp-button button') as HTMLButtonElement)
+    (fixture.nativeElement.querySelector('.bell__items erp-shell-menu-action button') as HTMLButtonElement)
       .click();
     expect(activated).not.toHaveBeenCalled();
     expect(fixture.componentInstance.open()).toBe(true);
+  });
+
+  it('filters notifications and keeps only the item list as the scroll owner', () => {
+    const fixture = TestBed.createComponent(ErpNotificationBell);
+    fixture.componentRef.setInput('notifications', [
+      {id: 'stock', title: 'تنبيه المخزون', description: 'إعادة الطلب', timestamp: 'الآن'},
+      {id: 'ledger', title: 'ترحيل القيد', description: 'الحسابات العامة', timestamp: 'أمس'},
+    ]);
+    fixture.detectChanges();
+    fixture.componentInstance.query.set('المخزون');
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelectorAll('erp-shell-menu-action')).toHaveLength(1);
+    expect(fixture.nativeElement.querySelector('.bell__items')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('.bell__surface')).not.toBeNull();
+  });
+
+  it('emits mark-all and view-all intents independently', () => {
+    const fixture = TestBed.createComponent(ErpNotificationBell);
+    fixture.componentRef.setInput('notifications', [{id: 'one', title: 'تنبيه', read: false}]);
+    const markAll = vi.fn();
+    const viewAll = vi.fn();
+    fixture.componentInstance.markAllReadRequested.subscribe(markAll);
+    fixture.componentInstance.viewAllRequested.subscribe(viewAll);
+    fixture.detectChanges();
+    installPopover(fixture.nativeElement.querySelector('.bell__surface'));
+
+    const buttons = fixture.nativeElement.querySelectorAll('.bell__surface erp-button button');
+    (buttons[0] as HTMLButtonElement).click();
+    (buttons[1] as HTMLButtonElement).click();
+    expect(markAll).toHaveBeenCalledOnce();
+    expect(viewAll).toHaveBeenCalledOnce();
   });
 });

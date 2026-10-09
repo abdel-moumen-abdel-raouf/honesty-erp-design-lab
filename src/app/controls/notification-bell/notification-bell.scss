@@ -1,67 +1,35 @@
 @use '../../../styles/foundation/components/notification-bell' as tokens;
 
-:host {
-  @include tokens.base;
-  display: inline-block;
-  position: relative;
-}
+:host { @include tokens.base; display: inline-block; position: relative; }
+.bell__trigger-wrap { position: relative; display: inline-flex; }
+.bell__badge { position: absolute; inset-block-start: var(--honesty-notification-bell-badge-offset); inset-inline-end: var(--honesty-notification-bell-badge-offset); pointer-events: none; }
 
-.notification-bell__trigger-wrap {
-  position: relative;
-  display: inline-flex;
-}
-
-.notification-bell__badge {
-  position: absolute;
-  inset-block-start: var(--honesty-notification-bell-badge-offset);
-  inset-inline-end: var(--honesty-notification-bell-badge-offset);
-  pointer-events: none;
-}
-
-.notification-bell__surface {
+.bell__surface {
   position: fixed;
   inset: auto;
-  inline-size: min(
-    var(--honesty-notification-bell-inline-size),
-    calc(100vw - 2 * var(--honesty-notification-bell-viewport-inset))
-  );
-  max-block-size: var(--honesty-notification-bell-max-block-size);
+  display: flex;
+  box-sizing: border-box;
+  inline-size: min(var(--honesty-notification-bell-inline-size), calc(100vw - 2 * var(--honesty-notification-bell-viewport-inset)));
+  max-block-size: calc(100dvh - 2 * var(--honesty-notification-bell-viewport-inset));
+  flex-direction: column;
   margin: 0;
   padding: var(--honesty-notification-bell-padding);
-  overflow: auto;
+  overflow: visible;
   color: var(--honesty-notification-bell-fg);
   background: var(--honesty-notification-bell-bg);
-  border: var(--honesty-notification-bell-border-width) solid
-    var(--honesty-notification-bell-border-color);
+  border: var(--honesty-notification-bell-border-width) solid var(--honesty-notification-bell-border-color);
   border-radius: var(--honesty-notification-bell-radius);
   box-shadow: var(--honesty-notification-bell-elevation);
   z-index: var(--honesty-notification-bell-layer);
 }
 
-.notification-bell__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--honesty-notification-bell-gap);
-  padding-block-end: var(--honesty-notification-bell-gap);
-  border-block-end: var(--honesty-notification-bell-border-width) solid
-    var(--honesty-notification-bell-border-color);
-}
-
-ul {
-  display: grid;
-  gap: var(--honesty-notification-bell-gap);
-  margin: 0;
-  padding: var(--honesty-notification-bell-gap) 0 0;
-  list-style: none;
-}
-
-li {
-  display: grid;
-  gap: var(--honesty-notification-bell-copy-gap);
-}
-
-.notification-bell__empty {
-  place-items: center;
-  padding: var(--honesty-notification-bell-empty-padding);
-}
+.bell__header { display: flex; flex: 0 0 auto; align-items: center; justify-content: space-between; gap: var(--honesty-notification-bell-gap); padding: var(--honesty-notification-bell-gap); border-block-end: var(--honesty-notification-bell-border-width) solid var(--honesty-notification-bell-border-color); }
+.bell__search { flex: 0 0 auto; padding: var(--honesty-notification-bell-gap); }
+.bell__items { display: grid; min-block-size: 0; max-block-size: var(--honesty-notification-bell-list-max-block-size); overflow-y: auto; overscroll-behavior: contain; }
+.bell__item { display: grid; min-inline-size: 0; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: var(--honesty-notification-bell-row-gap); padding: var(--honesty-notification-bell-row-padding); }
+.bell__icon { display: grid; inline-size: var(--honesty-notification-bell-icon-size); block-size: var(--honesty-notification-bell-icon-size); place-items: center; background: var(--honesty-notification-bell-icon-bg); border-radius: 50%; }
+.bell__copy { display: grid; min-inline-size: 0; gap: var(--honesty-notification-bell-copy-gap); }
+.bell__meta { display: flex; min-inline-size: 0; align-items: baseline; justify-content: space-between; gap: var(--honesty-notification-bell-copy-gap); }
+.bell__description { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bell__empty { display: grid; min-block-size: 8rem; place-items: center; align-content: center; gap: var(--honesty-notification-bell-copy-gap); padding: var(--honesty-notification-bell-empty-padding); }
+.bell__footer { flex: 0 0 auto; padding: var(--honesty-notification-bell-gap); border-block-start: var(--honesty-notification-bell-border-width) solid var(--honesty-notification-bell-border-color); }

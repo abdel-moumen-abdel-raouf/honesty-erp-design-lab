@@ -6108,13 +6108,62 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "hasDefault": true,
           "defaultValue": "الإشعارات",
           "defaultExpression": "'الإشعارات'"
+        },
+        {
+          "name": "searchLabel",
+          "required": false,
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "البحث في الإشعارات",
+          "defaultExpression": "'البحث في الإشعارات'"
+        },
+        {
+          "name": "emptyLabel",
+          "required": false,
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "لا توجد إشعارات",
+          "defaultExpression": "'لا توجد إشعارات'"
+        },
+        {
+          "name": "viewAllLabel",
+          "required": false,
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "عرض كل الإشعارات",
+          "defaultExpression": "'عرض كل الإشعارات'"
+        },
+        {
+          "name": "searchable",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
         }
       ],
       "outputs": [
         "notificationActivated",
-        "markAllReadRequested"
+        "markAllReadRequested",
+        "viewAllRequested"
       ],
       "models": [
+        {
+          "name": "query",
+          "required": false,
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "",
+          "defaultExpression": "''"
+        },
         {
           "name": "open",
           "required": false,
@@ -6134,29 +6183,33 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "ErpIcon",
       "ErpIconButton",
       "ErpNotificationSummary",
+      "ErpSearchBox",
+      "ErpShellMenuAction",
       "ErpStatusBadge",
       "ErpText",
       "ErpTooltip",
       "erp-button",
       "erp-icon",
       "erp-icon-button",
+      "erp-search-box",
+      "erp-shell-menu-action",
       "erp-status-badge",
       "erp-text",
       "erp-tooltip"
     ],
     "nativeElementsOwned": [
       "div",
+      "footer",
       "header",
-      "li",
       "section",
-      "ul"
+      "span"
     ],
     "nativeCoverage": [],
     "coverageScope": "public-consumer",
     "showcaseRoute": "/components/notification-bell",
     "showcaseOwnerPath": "src/app/showcase/components/notification-bell/notification-bell-showcase.ts",
     "showcaseLoader": "notification-bell",
-    "visualReference": null,
+    "visualReference": "src/app/controls/notification-bell/ERP_NOTIFICATION_BELL_REFERENCE_V1.md",
     "visualStatus": "PENDING",
     "showcaseFacets": [],
     "showcaseCases": [
@@ -6164,31 +6217,178 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "open": false
+          "notifications": [
+            {
+              "id": "stock",
+              "title": "حد إعادة الطلب",
+              "description": "وصل صنفان في فرع القاهرة إلى الحد الأدنى.",
+              "timestamp": "منذ دقيقتين",
+              "icon": "inventory",
+              "read": false
+            },
+            {
+              "id": "approval",
+              "title": "فاتورة تحتاج اعتمادًا",
+              "description": "فاتورة المبيعات رقم 1042 بانتظار موافقتك.",
+              "timestamp": "منذ 14 دقيقة",
+              "icon": "file",
+              "read": false
+            },
+            {
+              "id": "ledger",
+              "title": "تم ترحيل القيد",
+              "description": "رُحّل القيد اليومي إلى الحسابات العامة.",
+              "timestamp": "منذ ساعة",
+              "icon": "check-mark",
+              "read": true
+            },
+            {
+              "id": "disabled",
+              "title": "إشعار مؤرشف",
+              "description": "هذا الإشعار غير متاح.",
+              "timestamp": "أمس",
+              "icon": "notification",
+              "read": true,
+              "disabled": true
+            }
+          ],
+          "open": true,
+          "query": null
         }
       },
       {
         "id": "open-false",
         "label": "open: false",
         "inputs": {
-          "open": false
+          "notifications": [
+            {
+              "id": "stock",
+              "title": "حد إعادة الطلب",
+              "description": "وصل صنفان في فرع القاهرة إلى الحد الأدنى.",
+              "timestamp": "منذ دقيقتين",
+              "icon": "inventory",
+              "read": false
+            },
+            {
+              "id": "approval",
+              "title": "فاتورة تحتاج اعتمادًا",
+              "description": "فاتورة المبيعات رقم 1042 بانتظار موافقتك.",
+              "timestamp": "منذ 14 دقيقة",
+              "icon": "file",
+              "read": false
+            },
+            {
+              "id": "ledger",
+              "title": "تم ترحيل القيد",
+              "description": "رُحّل القيد اليومي إلى الحسابات العامة.",
+              "timestamp": "منذ ساعة",
+              "icon": "check-mark",
+              "read": true
+            },
+            {
+              "id": "disabled",
+              "title": "إشعار مؤرشف",
+              "description": "هذا الإشعار غير متاح.",
+              "timestamp": "أمس",
+              "icon": "notification",
+              "read": true,
+              "disabled": true
+            }
+          ],
+          "open": false,
+          "query": null
         }
       },
       {
         "id": "open-true",
         "label": "open: true",
         "inputs": {
-          "open": true
+          "notifications": [
+            {
+              "id": "stock",
+              "title": "حد إعادة الطلب",
+              "description": "وصل صنفان في فرع القاهرة إلى الحد الأدنى.",
+              "timestamp": "منذ دقيقتين",
+              "icon": "inventory",
+              "read": false
+            },
+            {
+              "id": "approval",
+              "title": "فاتورة تحتاج اعتمادًا",
+              "description": "فاتورة المبيعات رقم 1042 بانتظار موافقتك.",
+              "timestamp": "منذ 14 دقيقة",
+              "icon": "file",
+              "read": false
+            },
+            {
+              "id": "ledger",
+              "title": "تم ترحيل القيد",
+              "description": "رُحّل القيد اليومي إلى الحسابات العامة.",
+              "timestamp": "منذ ساعة",
+              "icon": "check-mark",
+              "read": true
+            },
+            {
+              "id": "disabled",
+              "title": "إشعار مؤرشف",
+              "description": "هذا الإشعار غير متاح.",
+              "timestamp": "أمس",
+              "icon": "notification",
+              "read": true,
+              "disabled": true
+            }
+          ],
+          "open": true,
+          "query": null
         }
       }
     ],
     "displayNameAr": "جرس الإشعارات",
     "descriptionAr": "مدخل إشعارات قابل للفتح مع عدد غير المقروء.",
     "showcaseInitialValues": {
-      "notifications": [],
+      "notifications": [
+        {
+          "id": "stock",
+          "title": "حد إعادة الطلب",
+          "description": "وصل صنفان في فرع القاهرة إلى الحد الأدنى.",
+          "timestamp": "منذ دقيقتين",
+          "icon": "inventory",
+          "read": false
+        },
+        {
+          "id": "approval",
+          "title": "فاتورة تحتاج اعتمادًا",
+          "description": "فاتورة المبيعات رقم 1042 بانتظار موافقتك.",
+          "timestamp": "منذ 14 دقيقة",
+          "icon": "file",
+          "read": false
+        },
+        {
+          "id": "ledger",
+          "title": "تم ترحيل القيد",
+          "description": "رُحّل القيد اليومي إلى الحسابات العامة.",
+          "timestamp": "منذ ساعة",
+          "icon": "check-mark",
+          "read": true
+        },
+        {
+          "id": "disabled",
+          "title": "إشعار مؤرشف",
+          "description": "هذا الإشعار غير متاح.",
+          "timestamp": "أمس",
+          "icon": "notification",
+          "read": true,
+          "disabled": true
+        }
+      ],
       "unreadCount": null,
       "label": "الإشعارات",
-      "open": false
+      "searchLabel": "البحث في الإشعارات",
+      "emptyLabel": "لا توجد إشعارات",
+      "viewAllLabel": "عرض كل الإشعارات",
+      "searchable": true,
+      "query": "",
+      "open": true
     },
     "showcaseControls": [
       {
@@ -6199,7 +6399,41 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "readonly ErpNotificationSummary[]",
         "options": [],
-        "initialValue": []
+        "initialValue": [
+          {
+            "id": "stock",
+            "title": "حد إعادة الطلب",
+            "description": "وصل صنفان في فرع القاهرة إلى الحد الأدنى.",
+            "timestamp": "منذ دقيقتين",
+            "icon": "inventory",
+            "read": false
+          },
+          {
+            "id": "approval",
+            "title": "فاتورة تحتاج اعتمادًا",
+            "description": "فاتورة المبيعات رقم 1042 بانتظار موافقتك.",
+            "timestamp": "منذ 14 دقيقة",
+            "icon": "file",
+            "read": false
+          },
+          {
+            "id": "ledger",
+            "title": "تم ترحيل القيد",
+            "description": "رُحّل القيد اليومي إلى الحسابات العامة.",
+            "timestamp": "منذ ساعة",
+            "icon": "check-mark",
+            "read": true
+          },
+          {
+            "id": "disabled",
+            "title": "إشعار مؤرشف",
+            "description": "هذا الإشعار غير متاح.",
+            "timestamp": "أمس",
+            "icon": "notification",
+            "read": true,
+            "disabled": true
+          }
+        ]
       },
       {
         "name": "unreadCount",
@@ -6222,6 +6456,59 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "initialValue": "الإشعارات"
       },
       {
+        "name": "searchLabel",
+        "label": "searchLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "البحث في الإشعارات"
+      },
+      {
+        "name": "emptyLabel",
+        "label": "emptyLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "لا توجد إشعارات"
+      },
+      {
+        "name": "viewAllLabel",
+        "label": "viewAllLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "عرض كل الإشعارات"
+      },
+      {
+        "name": "searchable",
+        "label": "searchable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "query",
+        "label": "query",
+        "source": "model",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": ""
+      },
+      {
         "name": "open",
         "label": "open",
         "source": "model",
@@ -6232,26 +6519,43 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "false",
           "true"
         ],
-        "initialValue": false
+        "initialValue": true
       }
     ],
     "showcaseCoverage": {
       "coveredInputs": [
         "notifications",
         "unreadCount",
-        "label"
+        "label",
+        "searchLabel",
+        "emptyLabel",
+        "viewAllLabel",
+        "searchable"
       ],
       "coveredModels": [
+        "query",
         "open"
       ],
       "coveredOutputs": [
         "notificationActivated",
-        "markAllReadRequested"
+        "markAllReadRequested",
+        "viewAllRequested"
       ],
-      "coveredValues": {},
-      "coveredStates": [],
+      "coveredValues": {
+        "searchable": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "searchable"
+      ],
       "coveredProjectionSlots": [],
-      "coveredReferenceCases": [],
+      "coveredReferenceCases": [
+        "default",
+        "open-false",
+        "open-true"
+      ],
       "evidenceKind": "INTERACTIVE_OUTPUT"
     }
   },

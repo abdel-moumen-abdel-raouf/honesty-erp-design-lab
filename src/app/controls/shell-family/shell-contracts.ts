@@ -59,6 +59,7 @@ export interface ErpNotificationSummary {
   readonly title: string;
   readonly description?: string;
   readonly icon?: ErpIconName;
+  readonly timestamp?: string;
   readonly read?: boolean;
   readonly disabled?: boolean;
 }
