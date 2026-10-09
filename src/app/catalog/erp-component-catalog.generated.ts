@@ -4357,7 +4357,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/applications-menu",
     "showcaseOwnerPath": "src/app/showcase/components/applications-menu/applications-menu-showcase.ts",
     "showcaseLoader": "applications-menu",
-    "visualReference": null,
+    "visualReference": "src/app/controls/applications-menu/ERP_APPLICATIONS_MENU_REFERENCE_V1.md",
     "visualStatus": "PENDING",
     "showcaseFacets": [],
     "showcaseCases": [
@@ -4707,7 +4707,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredValues": {},
       "coveredStates": [],
       "coveredProjectionSlots": [],
-      "coveredReferenceCases": [],
+      "coveredReferenceCases": [
+        "default",
+        "open-false",
+        "open-true"
+      ],
       "evidenceKind": "INTERACTIVE_OUTPUT"
     }
   },
@@ -5578,6 +5582,493 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredStates": [],
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
+  },
+  {
+    "id": "messages-menu",
+    "selector": "erp-messages-menu",
+    "className": "ErpMessagesMenu",
+    "category": "Application Shell",
+    "classification": "PUBLIC ERP COMPONENT",
+    "sourcePath": "src/app/controls/messages-menu/messages-menu.ts",
+    "purpose": "Owns the public ERP messages menu semantic and presentation contract.",
+    "publicApi": {
+      "inputs": [
+        {
+          "name": "messages",
+          "required": false,
+          "values": [],
+          "type": "readonly ErpMessageSummary[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
+        },
+        {
+          "name": "unreadCount",
+          "required": false,
+          "values": [],
+          "type": "number | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
+        },
+        {
+          "name": "label",
+          "required": false,
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "الرسائل",
+          "defaultExpression": "'الرسائل'"
+        },
+        {
+          "name": "searchLabel",
+          "required": false,
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "البحث في الرسائل",
+          "defaultExpression": "'البحث في الرسائل'"
+        },
+        {
+          "name": "emptyLabel",
+          "required": false,
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "لا توجد رسائل",
+          "defaultExpression": "'لا توجد رسائل'"
+        },
+        {
+          "name": "viewAllLabel",
+          "required": false,
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "عرض كل الرسائل",
+          "defaultExpression": "'عرض كل الرسائل'"
+        },
+        {
+          "name": "searchable",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": true,
+          "defaultExpression": "true"
+        }
+      ],
+      "outputs": [
+        "messageActivated",
+        "viewAllRequested"
+      ],
+      "models": [
+        {
+          "name": "query",
+          "required": false,
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "",
+          "defaultExpression": "''"
+        },
+        {
+          "name": "open",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
+        }
+      ]
+    },
+    "lowerLevelOwners": [
+      "ErpAvatar",
+      "ErpButton",
+      "ErpIcon",
+      "ErpIconButton",
+      "ErpMessageSummary",
+      "ErpSearchBox",
+      "ErpShellMenuAction",
+      "ErpStatusBadge",
+      "ErpText",
+      "ErpTooltip",
+      "erp-avatar",
+      "erp-button",
+      "erp-icon",
+      "erp-icon-button",
+      "erp-search-box",
+      "erp-shell-menu-action",
+      "erp-status-badge",
+      "erp-text",
+      "erp-tooltip"
+    ],
+    "nativeElementsOwned": [
+      "div",
+      "footer",
+      "header",
+      "section",
+      "span"
+    ],
+    "nativeCoverage": [],
+    "coverageScope": "public-consumer",
+    "showcaseRoute": "/components/messages-menu",
+    "showcaseOwnerPath": "src/app/showcase/components/messages-menu/messages-menu-showcase.ts",
+    "showcaseLoader": "messages-menu",
+    "visualReference": "src/app/controls/messages-menu/ERP_MESSAGES_MENU_REFERENCE_V1.md",
+    "visualStatus": "PENDING",
+    "showcaseFacets": [],
+    "showcaseCases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "messages": [
+            {
+              "id": "invoice",
+              "senderName": "أميرة حداد",
+              "preview": "تم اعتماد فاتورة المبيعات رقم 1042.",
+              "timestamp": "منذ دقيقة",
+              "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "read": false
+            },
+            {
+              "id": "stock",
+              "senderName": "عمر ناصر",
+              "preview": "تم تحديث كميات المخزون في الفرع الرئيسي.",
+              "timestamp": "منذ 18 دقيقة",
+              "avatarSrc": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "read": false
+            },
+            {
+              "id": "purchase",
+              "senderName": "ليلى محمود",
+              "preview": "أضيف طلب شراء جديد بانتظار المراجعة.",
+              "timestamp": "منذ ساعة",
+              "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
+              "read": true
+            },
+            {
+              "id": "disabled",
+              "senderName": "النظام",
+              "preview": "رسالة مؤرشفة وغير متاحة.",
+              "timestamp": "أمس",
+              "fallbackIcon": "mail",
+              "read": true,
+              "disabled": true
+            }
+          ],
+          "open": true,
+          "query": null
+        }
+      },
+      {
+        "id": "open-false",
+        "label": "open: false",
+        "inputs": {
+          "messages": [
+            {
+              "id": "invoice",
+              "senderName": "أميرة حداد",
+              "preview": "تم اعتماد فاتورة المبيعات رقم 1042.",
+              "timestamp": "منذ دقيقة",
+              "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "read": false
+            },
+            {
+              "id": "stock",
+              "senderName": "عمر ناصر",
+              "preview": "تم تحديث كميات المخزون في الفرع الرئيسي.",
+              "timestamp": "منذ 18 دقيقة",
+              "avatarSrc": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "read": false
+            },
+            {
+              "id": "purchase",
+              "senderName": "ليلى محمود",
+              "preview": "أضيف طلب شراء جديد بانتظار المراجعة.",
+              "timestamp": "منذ ساعة",
+              "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
+              "read": true
+            },
+            {
+              "id": "disabled",
+              "senderName": "النظام",
+              "preview": "رسالة مؤرشفة وغير متاحة.",
+              "timestamp": "أمس",
+              "fallbackIcon": "mail",
+              "read": true,
+              "disabled": true
+            }
+          ],
+          "open": false,
+          "query": null
+        }
+      },
+      {
+        "id": "open-true",
+        "label": "open: true",
+        "inputs": {
+          "messages": [
+            {
+              "id": "invoice",
+              "senderName": "أميرة حداد",
+              "preview": "تم اعتماد فاتورة المبيعات رقم 1042.",
+              "timestamp": "منذ دقيقة",
+              "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "read": false
+            },
+            {
+              "id": "stock",
+              "senderName": "عمر ناصر",
+              "preview": "تم تحديث كميات المخزون في الفرع الرئيسي.",
+              "timestamp": "منذ 18 دقيقة",
+              "avatarSrc": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "read": false
+            },
+            {
+              "id": "purchase",
+              "senderName": "ليلى محمود",
+              "preview": "أضيف طلب شراء جديد بانتظار المراجعة.",
+              "timestamp": "منذ ساعة",
+              "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
+              "read": true
+            },
+            {
+              "id": "disabled",
+              "senderName": "النظام",
+              "preview": "رسالة مؤرشفة وغير متاحة.",
+              "timestamp": "أمس",
+              "fallbackIcon": "mail",
+              "read": true,
+              "disabled": true
+            }
+          ],
+          "open": true,
+          "query": null
+        }
+      }
+    ],
+    "displayNameAr": "قائمة الرسائل",
+    "descriptionAr": "رسائل المستخدم الواردة مع البحث وحالة القراءة وإجراءات المستهلك.",
+    "showcaseInitialValues": {
+      "messages": [
+        {
+          "id": "invoice",
+          "senderName": "أميرة حداد",
+          "preview": "تم اعتماد فاتورة المبيعات رقم 1042.",
+          "timestamp": "منذ دقيقة",
+          "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+          "read": false
+        },
+        {
+          "id": "stock",
+          "senderName": "عمر ناصر",
+          "preview": "تم تحديث كميات المخزون في الفرع الرئيسي.",
+          "timestamp": "منذ 18 دقيقة",
+          "avatarSrc": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+          "read": false
+        },
+        {
+          "id": "purchase",
+          "senderName": "ليلى محمود",
+          "preview": "أضيف طلب شراء جديد بانتظار المراجعة.",
+          "timestamp": "منذ ساعة",
+          "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
+          "read": true
+        },
+        {
+          "id": "disabled",
+          "senderName": "النظام",
+          "preview": "رسالة مؤرشفة وغير متاحة.",
+          "timestamp": "أمس",
+          "fallbackIcon": "mail",
+          "read": true,
+          "disabled": true
+        }
+      ],
+      "unreadCount": null,
+      "label": "الرسائل",
+      "searchLabel": "البحث في الرسائل",
+      "emptyLabel": "لا توجد رسائل",
+      "viewAllLabel": "عرض كل الرسائل",
+      "searchable": true,
+      "query": "",
+      "open": true
+    },
+    "showcaseControls": [
+      {
+        "name": "messages",
+        "label": "messages",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpMessageSummary[]",
+        "options": [],
+        "initialValue": [
+          {
+            "id": "invoice",
+            "senderName": "أميرة حداد",
+            "preview": "تم اعتماد فاتورة المبيعات رقم 1042.",
+            "timestamp": "منذ دقيقة",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+            "read": false
+          },
+          {
+            "id": "stock",
+            "senderName": "عمر ناصر",
+            "preview": "تم تحديث كميات المخزون في الفرع الرئيسي.",
+            "timestamp": "منذ 18 دقيقة",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+            "read": false
+          },
+          {
+            "id": "purchase",
+            "senderName": "ليلى محمود",
+            "preview": "أضيف طلب شراء جديد بانتظار المراجعة.",
+            "timestamp": "منذ ساعة",
+            "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
+            "read": true
+          },
+          {
+            "id": "disabled",
+            "senderName": "النظام",
+            "preview": "رسالة مؤرشفة وغير متاحة.",
+            "timestamp": "أمس",
+            "fallbackIcon": "mail",
+            "read": true,
+            "disabled": true
+          }
+        ]
+      },
+      {
+        "name": "unreadCount",
+        "label": "unreadCount",
+        "source": "input",
+        "kind": "number",
+        "required": false,
+        "type": "number | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "الرسائل"
+      },
+      {
+        "name": "searchLabel",
+        "label": "searchLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "البحث في الرسائل"
+      },
+      {
+        "name": "emptyLabel",
+        "label": "emptyLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "لا توجد رسائل"
+      },
+      {
+        "name": "viewAllLabel",
+        "label": "viewAllLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "عرض كل الرسائل"
+      },
+      {
+        "name": "searchable",
+        "label": "searchable",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      },
+      {
+        "name": "query",
+        "label": "query",
+        "source": "model",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": ""
+      },
+      {
+        "name": "open",
+        "label": "open",
+        "source": "model",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      }
+    ],
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "messages",
+        "unreadCount",
+        "label",
+        "searchLabel",
+        "emptyLabel",
+        "viewAllLabel",
+        "searchable"
+      ],
+      "coveredModels": [
+        "query",
+        "open"
+      ],
+      "coveredOutputs": [
+        "messageActivated",
+        "viewAllRequested"
+      ],
+      "coveredValues": {
+        "searchable": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "searchable"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [
+        "default",
+        "open-false",
+        "open-true"
+      ],
       "evidenceKind": "INTERACTIVE_OUTPUT"
     }
   },
@@ -45497,6 +45988,7 @@ export const ERP_PUBLIC_SHOWCASE_LOADERS: Readonly<Record<string, () => Promise<
   "app-shell": () => import("../showcase/components/app-shell/app-shell-showcase").then((module) => module.ErpAppShellShowcase),
   "branch-selector": () => import("../showcase/components/branch-selector/branch-selector-showcase").then((module) => module.ErpBranchSelectorShowcase),
   "global-search": () => import("../showcase/components/global-search/global-search-showcase").then((module) => module.ErpGlobalSearchShowcase),
+  "messages-menu": () => import("../showcase/components/messages-menu/messages-menu-showcase").then((module) => module.ErpMessagesMenuShowcase),
   "notification-bell": () => import("../showcase/components/notification-bell/notification-bell-showcase").then((module) => module.ErpNotificationBellShowcase),
   "quick-actions-bar": () => import("../showcase/components/quick-actions-bar/quick-actions-bar-showcase").then((module) => module.ErpQuickActionsBarShowcase),
   "topbar": () => import("../showcase/components/topbar/topbar-showcase").then((module) => module.ErpTopbarShowcase),

@@ -132,6 +132,16 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "purpose": "Owns the public ERP global search semantic and presentation contract."
   },
   {
+    "id": "messages-menu",
+    "className": "ErpMessagesMenu",
+    "selector": "erp-messages-menu",
+    "category": "Application Shell",
+    "showcaseRoute": "/components/messages-menu",
+    "displayNameAr": "قائمة الرسائل",
+    "descriptionAr": "رسائل المستخدم الواردة مع البحث وحالة القراءة وإجراءات المستهلك.",
+    "purpose": "Owns the public ERP messages menu semantic and presentation contract."
+  },
+  {
     "id": "notification-bell",
     "className": "ErpNotificationBell",
     "selector": "erp-notification-bell",

@@ -1,0 +1,25 @@
+@mixin base {
+  --honesty-messages-menu-bg: var(--honesty-color-surface-elevated);
+  --honesty-messages-menu-fg: var(--honesty-color-text-primary);
+  --honesty-messages-menu-border-color: var(--honesty-border-subtle);
+  --honesty-messages-menu-unread-bg: var(--honesty-color-action-primary-subtle-bg);
+  --honesty-messages-menu-avatar-bg: var(--honesty-color-surface-muted);
+  --honesty-messages-menu-popup-width: 360px;
+  --honesty-messages-menu-popup-padding: 8px;
+  --honesty-messages-menu-popup-radius: 10px;
+  --honesty-messages-menu-border-width: 1px;
+  --honesty-messages-menu-popup-shadow: var(--honesty-elevation-overlay);
+  --honesty-messages-menu-layer: var(--honesty-layer-overlay);
+  --honesty-messages-menu-header-padding: 8px;
+  --honesty-messages-menu-list-max-height: 420px;
+  --honesty-messages-menu-row-gap: 12px;
+  --honesty-messages-menu-row-padding: 10px;
+  --honesty-messages-menu-copy-gap: 4px;
+  --honesty-messages-menu-anchor-gap: 8px;
+  --honesty-messages-menu-viewport-inset: 8px;
+  --honesty-messages-menu-arrow-size: 13px;
+  --honesty-messages-menu-arrow-safe-inset: 16px;
+  --honesty-messages-menu-badge-offset: -4px;
+  --honesty-messages-menu-motion-duration: 600ms;
+  --honesty-messages-menu-motion-easing: cubic-bezier(0.25, 0.8, 0.25, 1);
+}

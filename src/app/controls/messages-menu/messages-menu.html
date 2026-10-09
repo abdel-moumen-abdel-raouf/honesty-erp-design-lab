@@ -1,0 +1,89 @@
+<div class="messages-menu__trigger-wrap">
+  <erp-tooltip [text]="label()" placement="bottom">
+    <erp-icon-button
+      #trigger
+      icon="mail"
+      [label]="label()"
+      ariaHasPopup="dialog"
+      [ariaControls]="surfaceId"
+      [ariaExpanded]="open()"
+      (pressed)="toggle()"
+    />
+  </erp-tooltip>
+  @if (effectiveUnreadCount() > 0) {
+    <erp-status-badge
+      class="messages-menu__badge"
+      [label]="effectiveUnreadCount() > 99 ? '99+' : effectiveUnreadCount().toString()"
+      tone="danger"
+      size="sm"
+    />
+  }
+</div>
+
+<section
+  #surface
+  class="messages-menu__surface"
+  popover="manual"
+  role="dialog"
+  [id]="surfaceId"
+  [attr.aria-label]="label()"
+  (keydown)="handleKeyboard($event)"
+>
+  <header class="messages-menu__header">
+    <erp-text type="heading-3">{{ label() }}</erp-text>
+  </header>
+
+  @if (searchable()) {
+    <erp-search-box
+      class="messages-menu__search"
+      mode="inline"
+      presentation="table-reference"
+      labelMode="visually-hidden"
+      size="sm"
+      [label]="searchLabel()"
+      [placeholder]="searchLabel()"
+      [ngModel]="query()"
+      [ngModelOptions]="{standalone: true}"
+      (ngModelChange)="query.set($event)"
+    />
+  }
+
+  <div class="messages-menu__items" role="list" [attr.aria-label]="label()">
+    @for (message of filteredMessages(); track message.id) {
+      <erp-shell-menu-action
+        role="listitem"
+        [label]="message.senderName"
+        [disabled]="message.disabled ?? false"
+        [unread]="!(message.read ?? false)"
+        (activated)="activate(message)"
+      >
+        <span class="messages-menu__item">
+          <erp-avatar
+            [name]="message.senderName"
+            [src]="message.avatarSrc ?? null"
+            [fallbackIcon]="message.fallbackIcon ?? null"
+            size="lg"
+          />
+          <span class="messages-menu__copy">
+            <span class="messages-menu__meta">
+              <erp-text type="strong">{{ message.senderName }}</erp-text>
+              <erp-text type="caption" tone="secondary" selectable>{{ message.timestamp }}</erp-text>
+            </span>
+            <erp-text class="messages-menu__preview" type="caption" tone="secondary">
+              {{ message.preview }}
+            </erp-text>
+          </span>
+        </span>
+      </erp-shell-menu-action>
+    } @empty {
+      <span class="messages-menu__empty">
+        <erp-icon name="mail" size="md" tone="muted" />
+        <erp-text type="caption" tone="secondary">{{ emptyLabel() }}</erp-text>
+      </span>
+    }
+  </div>
+
+  <footer class="messages-menu__footer">
+    <erp-button [label]="viewAllLabel()" variant="ghost" tone="neutral" fullWidth (pressed)="viewAll()" />
+  </footer>
+</section>

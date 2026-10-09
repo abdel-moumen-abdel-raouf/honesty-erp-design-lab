@@ -34,6 +34,8 @@ const EXACT_REFERENCES = new Map([
   ['ErpTable', 'src/app/controls/table/ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md'],
   ['ErpTabs', 'src/app/controls/tabs/ERP_TABS_REFERENCE_EXACT_V1.md'],
   ['ErpUserMenu', 'src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md'],
+  ['ErpApplicationsMenu', 'src/app/controls/applications-menu/ERP_APPLICATIONS_MENU_REFERENCE_V1.md'],
+  ['ErpMessagesMenu', 'src/app/controls/messages-menu/ERP_MESSAGES_MENU_REFERENCE_V1.md'],
 ]);
 
 const EXACT_CORE_FOCUS = new Map([
@@ -60,6 +62,7 @@ const ARABIC_COMPONENT_METADATA = new Map([
   ['app-footer', ['تذييل التطبيق', 'معلومات التطبيق والحالة والإجراءات المساعدة ضمن إطار ERP.']],
   ['branch-selector', ['محدد الفرع', 'اختيار فرع مضبوط يتحكم فيه المستهلك.']],
   ['global-search', ['البحث العام', 'بحث عام داخل إطار التطبيق مع نتائج مصنفة.']],
+  ['messages-menu', ['قائمة الرسائل', 'رسائل المستخدم الواردة مع البحث وحالة القراءة وإجراءات المستهلك.']],
   ['notification-bell', ['جرس الإشعارات', 'مدخل إشعارات قابل للفتح مع عدد غير المقروء.']],
   ['quick-actions-bar', ['شريط الإجراءات السريعة', 'مجموعات إجراءات سريعة يحددها المستهلك ضمن إطار التطبيق.']],
   ['topbar', ['الشريط العلوي', 'تخطيط مناطق السياق والبحث والإشعارات والمستخدم.']],
@@ -195,7 +198,7 @@ const CATEGORY_GROUPS = [
   ])],
   ['Application Shell', new Set([
     'erp-app-footer', 'erp-app-shell', 'erp-applications-menu', 'erp-branch-selector', 'erp-global-search',
-    'erp-notification-bell', 'erp-quick-actions-bar', 'erp-topbar', 'erp-user-menu',
+    'erp-messages-menu', 'erp-notification-bell', 'erp-quick-actions-bar', 'erp-topbar', 'erp-user-menu',
   ])],
 ];
 
@@ -373,6 +376,15 @@ const FIXTURE_INPUTS = new Map([
           {id: 'settings', label: 'الإعدادات', icon: 'settings', disabled: true},
         ],
       },
+    ],
+    open: true,
+  }],
+  ['ErpMessagesMenu', {
+    messages: [
+      {id: 'invoice', senderName: 'أميرة حداد', preview: 'تم اعتماد فاتورة المبيعات رقم 1042.', timestamp: 'منذ دقيقة', avatarSrc: '/assets/honesty-erp-avatars/users/female/avatar-21.png', read: false},
+      {id: 'stock', senderName: 'عمر ناصر', preview: 'تم تحديث كميات المخزون في الفرع الرئيسي.', timestamp: 'منذ 18 دقيقة', avatarSrc: '/assets/honesty-erp-avatars/users/male/avatar-01.png', read: false},
+      {id: 'purchase', senderName: 'ليلى محمود', preview: 'أضيف طلب شراء جديد بانتظار المراجعة.', timestamp: 'منذ ساعة', avatarSrc: '/assets/honesty-erp-avatars/users/female/avatar-22.png', read: true},
+      {id: 'disabled', senderName: 'النظام', preview: 'رسالة مؤرشفة وغير متاحة.', timestamp: 'أمس', fallbackIcon: 'mail', read: true, disabled: true},
     ],
     open: true,
   }],

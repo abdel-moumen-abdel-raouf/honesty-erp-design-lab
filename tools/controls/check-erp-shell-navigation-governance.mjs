@@ -29,6 +29,7 @@ const OWNERS = [
   'user-menu',
   'app-shell',
   'applications-menu',
+  'messages-menu',
 ];
 
 function normalize(value) {

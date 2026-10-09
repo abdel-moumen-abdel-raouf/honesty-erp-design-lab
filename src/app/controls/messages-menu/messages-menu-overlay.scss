@@ -1,0 +1,52 @@
+@use '../../../styles/foundation/queries' as query;
+
+.messages-menu__surface::before {
+  position: absolute;
+  left: calc(var(--honesty-anchored-surface-arrow-cross-axis-center) - var(--honesty-messages-menu-arrow-size) / 2);
+  inline-size: var(--honesty-messages-menu-arrow-size);
+  block-size: var(--honesty-messages-menu-arrow-size);
+  background: var(--honesty-messages-menu-bg);
+  border: var(--honesty-messages-menu-border-width) solid var(--honesty-messages-menu-border-color);
+  content: '';
+  transform: rotate(45deg);
+}
+
+.messages-menu__surface[data-overlay-placement='bottom']::before {
+  inset-block-start: calc(var(--honesty-messages-menu-arrow-size) / -2);
+  border-inline-end: 0;
+  border-block-end: 0;
+}
+
+.messages-menu__surface[data-overlay-placement='top']::before {
+  inset-block-end: calc(var(--honesty-messages-menu-arrow-size) / -2);
+  border-inline-start: 0;
+  border-block-start: 0;
+}
+
+.messages-menu__surface:popover-open {
+  animation: messages-menu-enter var(--honesty-messages-menu-motion-duration)
+    var(--honesty-messages-menu-motion-easing) both;
+}
+
+@keyframes messages-menu-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@include query.viewport-down('compact') {
+  .messages-menu__surface {
+    inline-size: calc(100vw - 2 * var(--honesty-messages-menu-viewport-inset));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .messages-menu__surface:popover-open {
+    animation: none;
+  }
+}

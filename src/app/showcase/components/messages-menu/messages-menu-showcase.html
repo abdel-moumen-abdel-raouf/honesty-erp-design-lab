@@ -1,0 +1,37 @@
+<erp-stack gap="default" data-dedicated-showcase="messages-menu" data-showcase-sections="1">
+  <erp-text type="heading-2">قائمة الرسائل</erp-text>
+  <erp-text type="paragraph" tone="secondary">رسائل المستخدم الواردة مع البحث وحالة القراءة وإجراءات المستهلك.</erp-text>
+  <erp-text class="showcase-reference" type="caption" tone="secondary" selectable>مرجع Product Owner: src/app/controls/messages-menu/ERP_MESSAGES_MENU_REFERENCE_V1.md</erp-text>
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-messages-menu
+          data-showcase-target
+          [messages]="$any(value('messages'))"
+          [unreadCount]="$any(value('unreadCount'))"
+          [label]="$any(value('label'))"
+          [searchLabel]="$any(value('searchLabel'))"
+          [emptyLabel]="$any(value('emptyLabel'))"
+          [viewAllLabel]="$any(value('viewAllLabel'))"
+          [searchable]="$any(value('searchable'))"
+          [query]="$any(value('query'))"
+          (queryChange)="recordModel('query', $event)"
+          [open]="$any(value('open'))"
+          (openChange)="recordModel('open', $event)"
+          (messageActivated)="recordEvent('messageActivated', $event)"
+          (viewAllRequested)="recordEvent('viewAllRequested', $event)"
+        ></erp-messages-menu>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

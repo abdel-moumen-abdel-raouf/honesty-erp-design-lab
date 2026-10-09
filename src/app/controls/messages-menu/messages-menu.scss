@@ -1,0 +1,105 @@
+@use '../../../styles/foundation/components/messages-menu' as tokens;
+
+:host {
+  @include tokens.base;
+  display: inline-block;
+  position: relative;
+}
+
+.messages-menu__trigger-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.messages-menu__badge {
+  position: absolute;
+  inset-block-start: var(--honesty-messages-menu-badge-offset);
+  inset-inline-end: var(--honesty-messages-menu-badge-offset);
+  pointer-events: none;
+}
+
+.messages-menu__surface {
+  position: fixed;
+  inset: auto;
+  display: flex;
+  box-sizing: border-box;
+  inline-size: min(
+    var(--honesty-messages-menu-popup-width),
+    calc(100vw - 2 * var(--honesty-messages-menu-viewport-inset))
+  );
+  max-block-size: calc(100dvh - 2 * var(--honesty-messages-menu-viewport-inset));
+  flex-direction: column;
+  margin: 0;
+  padding: var(--honesty-messages-menu-popup-padding);
+  overflow: visible;
+  color: var(--honesty-messages-menu-fg);
+  background: var(--honesty-messages-menu-bg);
+  border: var(--honesty-messages-menu-border-width) solid var(--honesty-messages-menu-border-color);
+  border-radius: var(--honesty-messages-menu-popup-radius);
+  box-shadow: var(--honesty-messages-menu-popup-shadow);
+  z-index: var(--honesty-messages-menu-layer);
+}
+
+.messages-menu__header,
+.messages-menu__footer {
+  flex: 0 0 auto;
+  padding: var(--honesty-messages-menu-header-padding);
+}
+
+.messages-menu__header {
+  border-block-end: var(--honesty-messages-menu-border-width) solid var(--honesty-messages-menu-border-color);
+}
+
+.messages-menu__search {
+  flex: 0 0 auto;
+  padding: var(--honesty-messages-menu-header-padding);
+}
+
+.messages-menu__items {
+  display: grid;
+  min-block-size: 0;
+  max-block-size: var(--honesty-messages-menu-list-max-height);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.messages-menu__item {
+  display: grid;
+  min-inline-size: 0;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--honesty-messages-menu-row-gap);
+  padding: var(--honesty-messages-menu-row-padding);
+}
+
+.messages-menu__copy {
+  display: grid;
+  min-inline-size: 0;
+  gap: var(--honesty-messages-menu-copy-gap);
+}
+
+.messages-menu__meta {
+  display: flex;
+  min-inline-size: 0;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--honesty-messages-menu-copy-gap);
+}
+
+.messages-menu__preview {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.messages-menu__empty {
+  display: grid;
+  min-block-size: 8rem;
+  place-items: center;
+  align-content: center;
+  gap: var(--honesty-messages-menu-copy-gap);
+}
+
+.messages-menu__footer {
+  border-block-start: var(--honesty-messages-menu-border-width) solid var(--honesty-messages-menu-border-color);
+}
