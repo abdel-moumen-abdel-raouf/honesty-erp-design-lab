@@ -5456,7 +5456,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseRoute": "/components/global-search",
     "showcaseOwnerPath": "src/app/showcase/components/global-search/global-search-showcase.ts",
     "showcaseLoader": "global-search",
-    "visualReference": null,
+    "visualReference": "src/app/controls/global-search/ERP_GLOBAL_SEARCH_REFERENCE_V1.md",
     "visualStatus": "PENDING",
     "showcaseFacets": [
       "mode"
@@ -5466,38 +5466,228 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "query": null
+          "results": [
+            {
+              "id": "invoice-1042",
+              "label": "فاتورة 1042",
+              "category": "المبيعات",
+              "description": "شركة النور للتجارة",
+              "icon": "file"
+            },
+            {
+              "id": "customer-amira",
+              "label": "أميرة حداد",
+              "category": "العملاء",
+              "description": "الفرع الرئيسي",
+              "icon": "user"
+            },
+            {
+              "id": "stock-laptop",
+              "label": "حاسوب محمول للأعمال",
+              "category": "المخزون",
+              "description": "متاح 18 قطعة",
+              "icon": "inventory"
+            },
+            {
+              "id": "supplier-northwind",
+              "label": "Northwind Trading International",
+              "category": "الموردون",
+              "description": "حساب مورد نشط",
+              "icon": "building"
+            },
+            {
+              "id": "archived-ledger",
+              "label": "قيد مؤرشف",
+              "category": "الحسابات العامة",
+              "description": "غير متاح حاليًا",
+              "icon": "archive",
+              "disabled": true
+            }
+          ],
+          "mode": "dropdown",
+          "query": ""
         }
       },
       {
         "id": "mode-modal",
         "label": "mode: modal",
         "inputs": {
-          "query": null,
-          "mode": "modal"
+          "results": [
+            {
+              "id": "invoice-1042",
+              "label": "فاتورة 1042",
+              "category": "المبيعات",
+              "description": "شركة النور للتجارة",
+              "icon": "file"
+            },
+            {
+              "id": "customer-amira",
+              "label": "أميرة حداد",
+              "category": "العملاء",
+              "description": "الفرع الرئيسي",
+              "icon": "user"
+            },
+            {
+              "id": "stock-laptop",
+              "label": "حاسوب محمول للأعمال",
+              "category": "المخزون",
+              "description": "متاح 18 قطعة",
+              "icon": "inventory"
+            },
+            {
+              "id": "supplier-northwind",
+              "label": "Northwind Trading International",
+              "category": "الموردون",
+              "description": "حساب مورد نشط",
+              "icon": "building"
+            },
+            {
+              "id": "archived-ledger",
+              "label": "قيد مؤرشف",
+              "category": "الحسابات العامة",
+              "description": "غير متاح حاليًا",
+              "icon": "archive",
+              "disabled": true
+            }
+          ],
+          "mode": "modal",
+          "query": ""
         }
       },
       {
         "id": "mode-dropdown",
         "label": "mode: dropdown",
         "inputs": {
-          "query": null,
-          "mode": "dropdown"
+          "results": [
+            {
+              "id": "invoice-1042",
+              "label": "فاتورة 1042",
+              "category": "المبيعات",
+              "description": "شركة النور للتجارة",
+              "icon": "file"
+            },
+            {
+              "id": "customer-amira",
+              "label": "أميرة حداد",
+              "category": "العملاء",
+              "description": "الفرع الرئيسي",
+              "icon": "user"
+            },
+            {
+              "id": "stock-laptop",
+              "label": "حاسوب محمول للأعمال",
+              "category": "المخزون",
+              "description": "متاح 18 قطعة",
+              "icon": "inventory"
+            },
+            {
+              "id": "supplier-northwind",
+              "label": "Northwind Trading International",
+              "category": "الموردون",
+              "description": "حساب مورد نشط",
+              "icon": "building"
+            },
+            {
+              "id": "archived-ledger",
+              "label": "قيد مؤرشف",
+              "category": "الحسابات العامة",
+              "description": "غير متاح حاليًا",
+              "icon": "archive",
+              "disabled": true
+            }
+          ],
+          "mode": "dropdown",
+          "query": ""
         }
       },
       {
         "id": "mode-inline",
         "label": "mode: inline",
         "inputs": {
-          "query": null,
-          "mode": "inline"
+          "results": [
+            {
+              "id": "invoice-1042",
+              "label": "فاتورة 1042",
+              "category": "المبيعات",
+              "description": "شركة النور للتجارة",
+              "icon": "file"
+            },
+            {
+              "id": "customer-amira",
+              "label": "أميرة حداد",
+              "category": "العملاء",
+              "description": "الفرع الرئيسي",
+              "icon": "user"
+            },
+            {
+              "id": "stock-laptop",
+              "label": "حاسوب محمول للأعمال",
+              "category": "المخزون",
+              "description": "متاح 18 قطعة",
+              "icon": "inventory"
+            },
+            {
+              "id": "supplier-northwind",
+              "label": "Northwind Trading International",
+              "category": "الموردون",
+              "description": "حساب مورد نشط",
+              "icon": "building"
+            },
+            {
+              "id": "archived-ledger",
+              "label": "قيد مؤرشف",
+              "category": "الحسابات العامة",
+              "description": "غير متاح حاليًا",
+              "icon": "archive",
+              "disabled": true
+            }
+          ],
+          "mode": "inline",
+          "query": ""
         }
       }
     ],
     "displayNameAr": "البحث العام",
     "descriptionAr": "بحث عام داخل إطار التطبيق مع نتائج مصنفة.",
     "showcaseInitialValues": {
-      "results": [],
+      "results": [
+        {
+          "id": "invoice-1042",
+          "label": "فاتورة 1042",
+          "category": "المبيعات",
+          "description": "شركة النور للتجارة",
+          "icon": "file"
+        },
+        {
+          "id": "customer-amira",
+          "label": "أميرة حداد",
+          "category": "العملاء",
+          "description": "الفرع الرئيسي",
+          "icon": "user"
+        },
+        {
+          "id": "stock-laptop",
+          "label": "حاسوب محمول للأعمال",
+          "category": "المخزون",
+          "description": "متاح 18 قطعة",
+          "icon": "inventory"
+        },
+        {
+          "id": "supplier-northwind",
+          "label": "Northwind Trading International",
+          "category": "الموردون",
+          "description": "حساب مورد نشط",
+          "icon": "building"
+        },
+        {
+          "id": "archived-ledger",
+          "label": "قيد مؤرشف",
+          "category": "الحسابات العامة",
+          "description": "غير متاح حاليًا",
+          "icon": "archive",
+          "disabled": true
+        }
+      ],
       "label": "البحث العام",
       "placeholder": "ابحث في النظام",
       "mode": "dropdown",
@@ -5512,7 +5702,44 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "readonly ErpGlobalSearchResult[]",
         "options": [],
-        "initialValue": []
+        "initialValue": [
+          {
+            "id": "invoice-1042",
+            "label": "فاتورة 1042",
+            "category": "المبيعات",
+            "description": "شركة النور للتجارة",
+            "icon": "file"
+          },
+          {
+            "id": "customer-amira",
+            "label": "أميرة حداد",
+            "category": "العملاء",
+            "description": "الفرع الرئيسي",
+            "icon": "user"
+          },
+          {
+            "id": "stock-laptop",
+            "label": "حاسوب محمول للأعمال",
+            "category": "المخزون",
+            "description": "متاح 18 قطعة",
+            "icon": "inventory"
+          },
+          {
+            "id": "supplier-northwind",
+            "label": "Northwind Trading International",
+            "category": "الموردون",
+            "description": "حساب مورد نشط",
+            "icon": "building"
+          },
+          {
+            "id": "archived-ledger",
+            "label": "قيد مؤرشف",
+            "category": "الحسابات العامة",
+            "description": "غير متاح حاليًا",
+            "icon": "archive",
+            "disabled": true
+          }
+        ]
       },
       {
         "name": "label",
@@ -5581,7 +5808,12 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       },
       "coveredStates": [],
       "coveredProjectionSlots": [],
-      "coveredReferenceCases": [],
+      "coveredReferenceCases": [
+        "default",
+        "mode-modal",
+        "mode-dropdown",
+        "mode-inline"
+      ],
       "evidenceKind": "INTERACTIVE_OUTPUT"
     }
   },

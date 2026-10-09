@@ -37,6 +37,7 @@ const EXACT_REFERENCES = new Map([
   ['ErpApplicationsMenu', 'src/app/controls/applications-menu/ERP_APPLICATIONS_MENU_REFERENCE_V1.md'],
   ['ErpMessagesMenu', 'src/app/controls/messages-menu/ERP_MESSAGES_MENU_REFERENCE_V1.md'],
   ['ErpNotificationBell', 'src/app/controls/notification-bell/ERP_NOTIFICATION_BELL_REFERENCE_V1.md'],
+  ['ErpGlobalSearch', 'src/app/controls/global-search/ERP_GLOBAL_SEARCH_REFERENCE_V1.md'],
 ]);
 
 const EXACT_CORE_FOCUS = new Map([
@@ -487,6 +488,17 @@ const FIXTURE_INPUTS = new Map([
     filters: [],
     visibleColumns: [],
     selectedKeys: [],
+  }],
+  ['ErpGlobalSearch', {
+    results: [
+      {id: 'invoice-1042', label: 'فاتورة 1042', category: 'المبيعات', description: 'شركة النور للتجارة', icon: 'file'},
+      {id: 'customer-amira', label: 'أميرة حداد', category: 'العملاء', description: 'الفرع الرئيسي', icon: 'user'},
+      {id: 'stock-laptop', label: 'حاسوب محمول للأعمال', category: 'المخزون', description: 'متاح 18 قطعة', icon: 'inventory'},
+      {id: 'supplier-northwind', label: 'Northwind Trading International', category: 'الموردون', description: 'حساب مورد نشط', icon: 'building'},
+      {id: 'archived-ledger', label: 'قيد مؤرشف', category: 'الحسابات العامة', description: 'غير متاح حاليًا', icon: 'archive', disabled: true},
+    ],
+    mode: 'dropdown',
+    query: '',
   }],
   ['ErpSortHeader', {label: 'اسم الحساب'}],
   ['ErpSplitButton', {label: 'حفظ', items: [

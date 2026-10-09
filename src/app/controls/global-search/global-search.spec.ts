@@ -15,7 +15,9 @@ describe('ErpGlobalSearch', () => {
 
     const search = fixture.debugElement.query(By.directive(ErpSearchBox));
     expect(search.componentInstance.mode()).toBe('dropdown');
+    expect(search.componentInstance.labelMode()).toBe('visually-hidden');
     expect(search.componentInstance.items()[0].label).toContain('المبيعات');
+    expect(search.componentInstance.items()[0].description).toBeUndefined();
     search.triggerEventHandler('ngModelChange', 'invoice-1');
     expect(fixture.componentInstance.query()).toBe('invoice-1');
     expect(activated).toHaveBeenCalledWith(
@@ -29,5 +31,27 @@ describe('ErpGlobalSearch', () => {
     activated.mockClear();
     search.triggerEventHandler('ngModelChange', 'blocked');
     expect(activated).not.toHaveBeenCalled();
+  });
+
+  it('preserves descriptions and mixed-direction labels for the shared SearchBox owner', () => {
+    const fixture = TestBed.createComponent(ErpGlobalSearch);
+    fixture.componentRef.setInput('results', [
+      {
+        id: 'supplier-27',
+        label: 'مورد Northwind Trading International',
+        category: 'الموردون',
+        description: 'القاهرة — حساب نشط',
+        icon: 'building',
+      },
+    ]);
+    fixture.detectChanges();
+
+    const search = fixture.debugElement.query(By.directive(ErpSearchBox));
+    expect(search.componentInstance.items()[0]).toEqual(expect.objectContaining({
+      value: 'supplier-27',
+      label: 'الموردون — مورد Northwind Trading International',
+      description: 'القاهرة — حساب نشط',
+      icon: 'building',
+    }));
   });
 });
