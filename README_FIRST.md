@@ -1,5 +1,16 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Current authorized unit — 2026-10-09 — Shell S2-D QuickActionsBar
+
+S2-A Sidebar, S2-B Topbar, and S2-C AppFooter are technically verified and
+remain pending Product Owner visual review. AppFooter is an original in-flow
+Honesty ERP owner with consumer-provided labels, status and actions; it does not
+claim inaccessible Gxon measurements. Its gate passes 123/123 files and
+788/788 tests with zero warnings. Evidence is under
+`docs/review-evidence/erp-shell/s2-c-app-footer/`. The next bounded unit is the
+data-driven `ErpQuickActionsBar`; no fixed Product Owner taxonomy may be
+invented.
+
 ## Current authorized unit — 2026-10-09 — Shell S2-C AppFooter
 
 S2-A Sidebar and S2-B Topbar are technically verified and remain pending

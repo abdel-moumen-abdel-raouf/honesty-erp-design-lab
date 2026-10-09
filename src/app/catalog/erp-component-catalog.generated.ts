@@ -4023,6 +4023,268 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     }
   },
   {
+    "id": "app-footer",
+    "selector": "erp-app-footer",
+    "className": "ErpAppFooter",
+    "category": "Application Shell",
+    "classification": "PUBLIC ERP COMPONENT",
+    "sourcePath": "src/app/controls/app-footer/app-footer.ts",
+    "purpose": "Owns the public ERP app footer semantic and presentation contract.",
+    "publicApi": {
+      "inputs": [
+        {
+          "name": "applicationLabel",
+          "required": false,
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
+        },
+        {
+          "name": "versionLabel",
+          "required": false,
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
+        },
+        {
+          "name": "statusLabel",
+          "required": false,
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
+        },
+        {
+          "name": "statusTone",
+          "required": false,
+          "values": [
+            "neutral",
+            "success",
+            "warning",
+            "danger",
+            "info",
+            "brand",
+            "pending",
+            "archived"
+          ],
+          "type": "ErpStatusBadgeTone",
+          "hasDefault": true,
+          "defaultValue": "neutral",
+          "defaultExpression": "'neutral'"
+        },
+        {
+          "name": "actions",
+          "required": false,
+          "values": [],
+          "type": "readonly ErpAppFooterAction[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
+        },
+        {
+          "name": "ariaLabel",
+          "required": false,
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "تذييل التطبيق",
+          "defaultExpression": "'تذييل التطبيق'"
+        }
+      ],
+      "outputs": [
+        "actionActivated"
+      ],
+      "models": []
+    },
+    "lowerLevelOwners": [
+      "ErpAppFooterAction",
+      "ErpButton",
+      "ErpIconName",
+      "ErpStatusBadge",
+      "ErpStatusBadgeTone",
+      "ErpText",
+      "erp-button",
+      "erp-status-badge",
+      "erp-text"
+    ],
+    "nativeElementsOwned": [
+      "div",
+      "footer"
+    ],
+    "nativeCoverage": [
+      "footer"
+    ],
+    "coverageScope": "public-consumer",
+    "showcaseRoute": "/components/app-footer",
+    "showcaseOwnerPath": "src/app/showcase/components/app-footer/app-footer-showcase.ts",
+    "showcaseLoader": "app-footer",
+    "visualReference": null,
+    "visualStatus": "PENDING",
+    "showcaseFacets": [],
+    "showcaseCases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "applicationLabel": "Honesty ERP",
+          "versionLabel": "الإصدار 1.0.0",
+          "statusLabel": "تعمل الأنظمة",
+          "statusTone": "success",
+          "actions": [
+            {
+              "id": "support",
+              "label": "الدعم",
+              "icon": "help"
+            },
+            {
+              "id": "privacy",
+              "label": "الخصوصية",
+              "icon": "shield"
+            }
+          ]
+        }
+      }
+    ],
+    "displayNameAr": "تذييل التطبيق",
+    "descriptionAr": "معلومات التطبيق والحالة والإجراءات المساعدة ضمن إطار ERP.",
+    "showcaseInitialValues": {
+      "applicationLabel": "Honesty ERP",
+      "versionLabel": "الإصدار 1.0.0",
+      "statusLabel": "تعمل الأنظمة",
+      "statusTone": "success",
+      "actions": [
+        {
+          "id": "support",
+          "label": "الدعم",
+          "icon": "help"
+        },
+        {
+          "id": "privacy",
+          "label": "الخصوصية",
+          "icon": "shield"
+        }
+      ],
+      "ariaLabel": "تذييل التطبيق"
+    },
+    "showcaseControls": [
+      {
+        "name": "applicationLabel",
+        "label": "applicationLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": "Honesty ERP"
+      },
+      {
+        "name": "versionLabel",
+        "label": "versionLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": "الإصدار 1.0.0"
+      },
+      {
+        "name": "statusLabel",
+        "label": "statusLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": "تعمل الأنظمة"
+      },
+      {
+        "name": "statusTone",
+        "label": "statusTone",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpStatusBadgeTone",
+        "options": [
+          "neutral",
+          "success",
+          "warning",
+          "danger",
+          "info",
+          "brand",
+          "pending",
+          "archived"
+        ],
+        "initialValue": "success"
+      },
+      {
+        "name": "actions",
+        "label": "actions",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpAppFooterAction[]",
+        "options": [],
+        "initialValue": [
+          {
+            "id": "support",
+            "label": "الدعم",
+            "icon": "help"
+          },
+          {
+            "id": "privacy",
+            "label": "الخصوصية",
+            "icon": "shield"
+          }
+        ]
+      },
+      {
+        "name": "ariaLabel",
+        "label": "ariaLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "تذييل التطبيق"
+      }
+    ],
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "applicationLabel",
+        "versionLabel",
+        "statusLabel",
+        "statusTone",
+        "actions",
+        "ariaLabel"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [
+        "actionActivated"
+      ],
+      "coveredValues": {
+        "statusTone": [
+          "neutral",
+          "success",
+          "warning",
+          "danger",
+          "info",
+          "brand",
+          "pending",
+          "archived"
+        ]
+      },
+      "coveredStates": [],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
+  },
+  {
     "id": "app-shell",
     "selector": "erp-app-shell",
     "className": "ErpAppShell",
@@ -44248,6 +44510,7 @@ export const ERP_PUBLIC_SHOWCASE_LOADERS: Readonly<Record<string, () => Promise<
   "fab-menu": () => import("../showcase/components/fab-menu/fab-menu-showcase").then((module) => module.ErpFabMenuShowcase),
   "icon-button": () => import("../showcase/components/icon-button/icon-button-showcase").then((module) => module.ErpIconButtonShowcase),
   "split-button": () => import("../showcase/components/split-button/split-button-showcase").then((module) => module.ErpSplitButtonShowcase),
+  "app-footer": () => import("../showcase/components/app-footer/app-footer-showcase").then((module) => module.ErpAppFooterShowcase),
   "app-shell": () => import("../showcase/components/app-shell/app-shell-showcase").then((module) => module.ErpAppShellShowcase),
   "branch-selector": () => import("../showcase/components/branch-selector/branch-selector-showcase").then((module) => module.ErpBranchSelectorShowcase),
   "global-search": () => import("../showcase/components/global-search/global-search-showcase").then((module) => module.ErpGlobalSearchShowcase),

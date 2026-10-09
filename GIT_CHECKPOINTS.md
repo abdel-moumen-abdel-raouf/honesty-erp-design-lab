@@ -1,5 +1,22 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Shell S2-C AppFooter checkpoint — 2026-10-09
+
+Entry checkpoint:
+
+- `7f76ff59573e9b9654c623cea1483969082e0861` — clean `main` and
+  `origin/main` after S2-B Topbar.
+
+Scoped stage commit message:
+
+- `feat(shell): add ERP application footer`
+
+Resolve the resulting commit SHA from live `main` because this file is part of
+that commit. Focused verification passes 1/1 file and 3/3 tests; canonical
+verification passes 123/123 files and 788/788 tests, all governance, both
+typechecks, production build, and zero warnings. Initial bundle is 490.24 kB /
+105.58 kB estimated transfer. The exact next unit is S2-D QuickActionsBar.
+
 ## Shell S2-B Topbar checkpoint — 2026-10-09
 
 Entry checkpoint:

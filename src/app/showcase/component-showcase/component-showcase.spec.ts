@@ -57,8 +57,8 @@ describe('ComponentShowcase', () => {
     const publicEntries = ERP_COMPONENT_CATALOG.filter(
       (candidate) => candidate.classification === 'PUBLIC ERP COMPONENT',
     );
-    expect(publicEntries).toHaveLength(77);
-    expect(Object.keys(ERP_PUBLIC_SHOWCASE_LOADERS)).toHaveLength(77);
+    expect(publicEntries).toHaveLength(78);
+    expect(Object.keys(ERP_PUBLIC_SHOWCASE_LOADERS)).toHaveLength(78);
 
     for (const entry of publicEntries) {
       expect(entry.showcaseOwnerPath).toBe(

@@ -1,0 +1,42 @@
+@if (hasContent()) {
+  <footer [attr.aria-label]="ariaLabel()">
+    @if (applicationLabel() || versionLabel()) {
+      <div class="app-footer__identity">
+        @if (applicationLabel()) {
+          <erp-text type="strong">{{ applicationLabel() }}</erp-text>
+        }
+        @if (versionLabel()) {
+          <erp-text type="caption" tone="secondary" selectable>
+            {{ versionLabel() }}
+          </erp-text>
+        }
+      </div>
+    }
+
+    @if (statusLabel()) {
+      <erp-status-badge
+        [label]="statusLabel()!"
+        [tone]="statusTone()"
+        variant="soft"
+        size="sm"
+        shape="pill"
+      />
+    }
+
+    @if (actions().length) {
+      <div class="app-footer__actions" role="group" [attr.aria-label]="ariaLabel()">
+        @for (action of actions(); track action.id) {
+          <erp-button
+            [label]="action.label"
+            [icon]="action.icon ?? null"
+            variant="ghost"
+            tone="neutral"
+            size="sm"
+            [disabled]="action.disabled ?? false"
+            (pressed)="activate(action)"
+          />
+        }
+      </div>
+    }
+  </footer>
+}

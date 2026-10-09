@@ -1,5 +1,15 @@
 # Next Component Reference Batch V1
 
+## Authoritative next unit — 2026-10-09 — Shell S2-D QuickActionsBar
+
+S2-A through S2-C are technically verified and remain visually pending. The
+next unit is a distinct, bounded, consumer-driven `ErpQuickActionsBar`. The
+historical Gxon runtime remains unavailable and no authoritative fixed action
+taxonomy has been recovered, so groups/categories must be typed consumer data.
+The candidate belongs at the logical end of the workspace and must support a
+narrow horizontal composition without imposing global fixed positioning. S2-E
+AppShell integration follows only after this gate.
+
 ## Authoritative next unit — 2026-10-09 — Shell S2-C AppFooter
 
 S2-A Sidebar and S2-B Topbar are technically verified and remain visually

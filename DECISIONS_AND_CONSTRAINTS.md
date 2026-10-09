@@ -1,5 +1,19 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Shell S2-C AppFooter decision — 2026-10-09
+
+`ErpAppFooter` is the sole global application Footer owner. It is distinct from
+PageShell's page-local footer projection, OverlayFrame footer, and action bars.
+Because reliable Gxon source/runtime evidence is unavailable, its first
+candidate is explicitly an original Honesty ERP design: in-flow, restrained,
+system-theme inherited, responsive through Foundation Query, and entirely
+consumer-fed. No Gxon dimensions, animation, DOM or interaction are inferred.
+
+The public API is limited to optional application/version/status labels,
+status tone, typed actions, accessible landmark label and action intent. Status
+and actions reuse existing owners. AppFooter owns no real environment data,
+routing, persistence, session, transport, permission, or theme state.
+
 ## Shell S2-B Topbar decision — 2026-10-09
 
 `ErpTopbar` has one canonical projection contract: start, context, search,

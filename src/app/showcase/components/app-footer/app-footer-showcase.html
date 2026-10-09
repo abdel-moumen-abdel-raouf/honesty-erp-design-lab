@@ -1,0 +1,30 @@
+<erp-stack gap="default" data-dedicated-showcase="app-footer" data-showcase-sections="1">
+  <erp-text type="heading-2">تذييل التطبيق</erp-text>
+  <erp-text type="paragraph" tone="secondary">معلومات التطبيق والحالة والإجراءات المساعدة ضمن إطار ERP.</erp-text>
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-app-footer
+          data-showcase-target
+          [applicationLabel]="$any(value('applicationLabel'))"
+          [versionLabel]="$any(value('versionLabel'))"
+          [statusLabel]="$any(value('statusLabel'))"
+          [statusTone]="$any(value('statusTone'))"
+          [actions]="$any(value('actions'))"
+          [ariaLabel]="$any(value('ariaLabel'))"
+          (actionActivated)="recordEvent('actionActivated', $event)"
+        ></erp-app-footer>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>

@@ -82,6 +82,16 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "purpose": "Owns the public ERP split button semantic and presentation contract."
   },
   {
+    "id": "app-footer",
+    "className": "ErpAppFooter",
+    "selector": "erp-app-footer",
+    "category": "Application Shell",
+    "showcaseRoute": "/components/app-footer",
+    "displayNameAr": "تذييل التطبيق",
+    "descriptionAr": "معلومات التطبيق والحالة والإجراءات المساعدة ضمن إطار ERP.",
+    "purpose": "Owns the public ERP app footer semantic and presentation contract."
+  },
+  {
     "id": "app-shell",
     "className": "ErpAppShell",
     "selector": "erp-app-shell",

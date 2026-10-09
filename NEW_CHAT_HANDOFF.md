@@ -1,5 +1,20 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Authoritative current handoff — 2026-10-09 — Shell continuation S2-C
+
+S2-A Sidebar, S2-B Topbar, and S2-C AppFooter are `TECHNICAL_VERIFIED` and
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. `ErpAppFooter` is the single new global
+application-footer owner and composes ErpText, ErpStatusBadge, and ErpButton.
+Its original-design authority, no-Gxon-evidence boundary, public API, empty
+state, and ownership are recorded in
+`src/app/controls/app-footer/ERP_APP_FOOTER_CANDIDATE_V1.md`.
+
+Canonical verification passes 123/123 files and 788/788 tests, all governance,
+both typechecks, production build, and zero warnings. Six browser conditions
+are persisted under `docs/review-evidence/erp-shell/s2-c-app-footer/`. Continue
+only with S2-D QuickActionsBar; its category vocabulary remains consumer-owned
+because no authoritative fixed taxonomy was recovered.
+
 ## Authoritative current handoff — 2026-10-09 — Shell continuation S2-B
 
 S2-A Sidebar and S2-B Topbar are `TECHNICAL_VERIFIED` and

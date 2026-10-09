@@ -55,6 +55,7 @@ const ARABIC_COMPONENT_METADATA = new Map([
   ['icon-button', ['زر أيقونة', 'إجراء مختصر بأيقونة وتسمية وصول.']],
   ['split-button', ['زر منقسم', 'إجراء أساسي مع قائمة إجراءات إضافية.']],
   ['app-shell', ['إطار تطبيق ERP', 'تكوين إطار التطبيق من الشريط العلوي والشريط الجانبي والمحتوى.']],
+  ['app-footer', ['تذييل التطبيق', 'معلومات التطبيق والحالة والإجراءات المساعدة ضمن إطار ERP.']],
   ['branch-selector', ['محدد الفرع', 'اختيار فرع مضبوط يتحكم فيه المستهلك.']],
   ['global-search', ['البحث العام', 'بحث عام داخل إطار التطبيق مع نتائج مصنفة.']],
   ['notification-bell', ['جرس الإشعارات', 'مدخل إشعارات قابل للفتح مع عدد غير المقروء.']],
@@ -190,12 +191,13 @@ const CATEGORY_GROUPS = [
     'erp-page', 'erp-page-header', 'erp-page-shell',
   ])],
   ['Application Shell', new Set([
-    'erp-app-shell', 'erp-branch-selector', 'erp-global-search',
+    'erp-app-footer', 'erp-app-shell', 'erp-branch-selector', 'erp-global-search',
     'erp-notification-bell', 'erp-topbar', 'erp-user-menu',
   ])],
 ];
 
 const NATIVE_REPLACEMENTS = new Map([
+  ['ErpAppFooter', ['footer']],
   ['ErpAvatar', ['img']],
   ['ErpBreadcrumbs', ['nav', 'ol', 'li', 'a']],
   ['ErpButton', ['button']],
@@ -322,6 +324,16 @@ const USER_MENU_SHOWCASE_PRESETS = [
 
 const FIXTURE_INPUTS = new Map([
   ['ErpAlert', {title: 'تنبيه تشغيلي'}],
+  ['ErpAppFooter', {
+    applicationLabel: 'Honesty ERP',
+    versionLabel: 'الإصدار 1.0.0',
+    statusLabel: 'تعمل الأنظمة',
+    statusTone: 'success',
+    actions: [
+      {id: 'support', label: 'الدعم', icon: 'help'},
+      {id: 'privacy', label: 'الخصوصية', icon: 'shield'},
+    ],
+  }],
   ['ErpAppShell', {navigationItems: [{id: 'finance', label: 'المالية', icon: 'wallet'}]}],
   ['ErpAvatar', {name: 'أميرة حداد'}],
   ['ErpBranchSelector', {branches: [{id: 'cairo', label: 'فرع القاهرة'}]}],

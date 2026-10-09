@@ -1,0 +1,307 @@
+{
+  "capturedAt": "2026-10-09T13:59:47.666Z",
+  "baseUrl": "http://127.0.0.1:4200",
+  "measurements": [
+    {
+      "name": "app-footer-1440-light-rtl-default",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 49,
+        "y": 404.765625,
+        "width": 1327,
+        "height": 57
+      },
+      "component": "app-footer",
+      "host": {
+        "x": 49,
+        "y": 404.765625,
+        "width": 1327,
+        "height": 57
+      },
+      "nav": null,
+      "navOverflowY": null,
+      "navScrollHeight": null,
+      "navClientHeight": null,
+      "collapsed": false,
+      "visibleEntries": 0,
+      "enabledInteractiveEntries": 0,
+      "activeDestinations": 0,
+      "activeAncestors": 0,
+      "header": null,
+      "footer": {
+        "x": 49,
+        "y": 404.765625,
+        "width": 1327,
+        "height": 57
+      },
+      "footerPresent": true,
+      "footerActionCount": 2,
+      "footerDisabledActionCount": 0,
+      "regions": {},
+      "renderedOwners": {
+        "branchSelector": 0,
+        "globalSearch": 0,
+        "notificationBell": 0,
+        "userMenu": 0
+      },
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "app-footer-1280-dark-ltr-default",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 49,
+        "y": 404.765625,
+        "width": 1167,
+        "height": 57
+      },
+      "component": "app-footer",
+      "host": {
+        "x": 49,
+        "y": 404.765625,
+        "width": 1167,
+        "height": 57
+      },
+      "nav": null,
+      "navOverflowY": null,
+      "navScrollHeight": null,
+      "navClientHeight": null,
+      "collapsed": false,
+      "visibleEntries": 0,
+      "enabledInteractiveEntries": 0,
+      "activeDestinations": 0,
+      "activeAncestors": 0,
+      "header": null,
+      "footer": {
+        "x": 49,
+        "y": 404.765625,
+        "width": 1167,
+        "height": 57
+      },
+      "footerPresent": true,
+      "footerActionCount": 2,
+      "footerDisabledActionCount": 0,
+      "regions": {},
+      "renderedOwners": {
+        "branchSelector": 0,
+        "globalSearch": 0,
+        "notificationBell": 0,
+        "userMenu": 0
+      },
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "app-footer-1024-light-rtl-default",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 49,
+        "y": 404.765625,
+        "width": 911,
+        "height": 57
+      },
+      "component": "app-footer",
+      "host": {
+        "x": 49,
+        "y": 404.765625,
+        "width": 911,
+        "height": 57
+      },
+      "nav": null,
+      "navOverflowY": null,
+      "navScrollHeight": null,
+      "navClientHeight": null,
+      "collapsed": false,
+      "visibleEntries": 0,
+      "enabledInteractiveEntries": 0,
+      "activeDestinations": 0,
+      "activeAncestors": 0,
+      "header": null,
+      "footer": {
+        "x": 49,
+        "y": 404.765625,
+        "width": 911,
+        "height": 57
+      },
+      "footerPresent": true,
+      "footerActionCount": 2,
+      "footerDisabledActionCount": 0,
+      "regions": {},
+      "renderedOwners": {
+        "branchSelector": 0,
+        "globalSearch": 0,
+        "notificationBell": 0,
+        "userMenu": 0
+      },
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "app-footer-768-dark-rtl-default",
+      "viewport": {
+        "width": 768,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 41,
+        "y": 404.765625,
+        "width": 671,
+        "height": 57
+      },
+      "component": "app-footer",
+      "host": {
+        "x": 41,
+        "y": 404.765625,
+        "width": 671,
+        "height": 57
+      },
+      "nav": null,
+      "navOverflowY": null,
+      "navScrollHeight": null,
+      "navClientHeight": null,
+      "collapsed": false,
+      "visibleEntries": 0,
+      "enabledInteractiveEntries": 0,
+      "activeDestinations": 0,
+      "activeAncestors": 0,
+      "header": null,
+      "footer": {
+        "x": 41,
+        "y": 404.765625,
+        "width": 671,
+        "height": 57
+      },
+      "footerPresent": true,
+      "footerActionCount": 2,
+      "footerDisabledActionCount": 0,
+      "regions": {},
+      "renderedOwners": {
+        "branchSelector": 0,
+        "globalSearch": 0,
+        "notificationBell": 0,
+        "userMenu": 0
+      },
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "app-footer-390-light-rtl-dense",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 33,
+        "y": 499.953125,
+        "width": 309,
+        "height": 208
+      },
+      "component": "app-footer",
+      "host": {
+        "x": 33,
+        "y": 499.953125,
+        "width": 309,
+        "height": 208
+      },
+      "nav": null,
+      "navOverflowY": null,
+      "navScrollHeight": null,
+      "navClientHeight": null,
+      "collapsed": false,
+      "visibleEntries": 0,
+      "enabledInteractiveEntries": 0,
+      "activeDestinations": 0,
+      "activeAncestors": 0,
+      "header": null,
+      "footer": {
+        "x": 33,
+        "y": 499.953125,
+        "width": 309,
+        "height": 208
+      },
+      "footerPresent": true,
+      "footerActionCount": 6,
+      "footerDisabledActionCount": 1,
+      "regions": {},
+      "renderedOwners": {
+        "branchSelector": 0,
+        "globalSearch": 0,
+        "notificationBell": 0,
+        "userMenu": 0
+      },
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "app-footer-320-dark-ltr-empty",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 33,
+        "y": 565.953125,
+        "width": 239,
+        "height": 0
+      },
+      "component": "app-footer",
+      "host": {
+        "x": 33,
+        "y": 565.953125,
+        "width": 239,
+        "height": 0
+      },
+      "nav": null,
+      "navOverflowY": null,
+      "navScrollHeight": null,
+      "navClientHeight": null,
+      "collapsed": false,
+      "visibleEntries": 0,
+      "enabledInteractiveEntries": 0,
+      "activeDestinations": 0,
+      "activeAncestors": 0,
+      "header": null,
+      "footer": null,
+      "footerPresent": false,
+      "footerActionCount": 0,
+      "footerDisabledActionCount": 0,
+      "regions": {},
+      "renderedOwners": {
+        "branchSelector": 0,
+        "globalSearch": 0,
+        "notificationBell": 0,
+        "userMenu": 0
+      },
+      "brokenImages": 0,
+      "diagnostics": []
+    }
+  ]
+}

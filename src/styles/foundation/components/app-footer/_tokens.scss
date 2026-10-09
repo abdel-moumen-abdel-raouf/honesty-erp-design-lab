@@ -1,0 +1,11 @@
+@mixin base {
+  --honesty-app-footer-bg: var(--honesty-color-surface-default);
+  --honesty-app-footer-fg: var(--honesty-color-text-secondary);
+  --honesty-app-footer-border-color: var(--honesty-border-subtle);
+  --honesty-app-footer-border-width: var(--honesty-border-width-default);
+  --honesty-app-footer-min-height: 3.5rem;
+  --honesty-app-footer-padding-block: 0.75rem;
+  --honesty-app-footer-padding-inline: 1.5rem;
+  --honesty-app-footer-narrow-padding-inline: 1rem;
+  --honesty-app-footer-item-gap: 0.75rem;
+}

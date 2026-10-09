@@ -14,7 +14,8 @@ const OUTPUT = path.join(
   'docs',
   'review-evidence',
   'erp-shell',
-  COMPONENT === 'sidebar' ? 's2-a-sidebar' : `s2-b-${COMPONENT}`,
+  ({sidebar: 's2-a-sidebar', topbar: 's2-b-topbar', 'app-footer': 's2-c-app-footer'}[COMPONENT]
+    ?? `shell-${COMPONENT}`),
 );
 
 const sidebarScenarios = [
@@ -35,7 +36,20 @@ const topbarScenarios = [
   {name: 'topbar-320-dark-ltr', width: 320, height: 568, theme: 'dark', direction: 'ltr'},
 ];
 
-const scenarios = COMPONENT === 'topbar' ? topbarScenarios : sidebarScenarios;
+const appFooterScenarios = [
+  {name: 'app-footer-1440-light-rtl-default', width: 1440, height: 900, theme: 'light', direction: 'rtl'},
+  {name: 'app-footer-1280-dark-ltr-default', width: 1280, height: 900, theme: 'dark', direction: 'ltr'},
+  {name: 'app-footer-1024-light-rtl-default', width: 1024, height: 768, theme: 'light', direction: 'rtl'},
+  {name: 'app-footer-768-dark-rtl-default', width: 768, height: 900, theme: 'dark', direction: 'rtl'},
+  {name: 'app-footer-390-light-rtl-dense', width: 390, height: 844, theme: 'light', direction: 'rtl', state: 'dense'},
+  {name: 'app-footer-320-dark-ltr-empty', width: 320, height: 568, theme: 'dark', direction: 'ltr', state: 'empty'},
+];
+
+const scenarios = COMPONENT === 'topbar'
+  ? topbarScenarios
+  : COMPONENT === 'app-footer'
+    ? appFooterScenarios
+    : sidebarScenarios;
 
 class DevToolsClient {
   #socket;
@@ -151,7 +165,9 @@ async function main() {
       await client.command('Page.navigate', {url: `${BASE_URL}/components/${COMPONENT}`});
       const readySelector = COMPONENT === 'topbar'
         ? 'erp-topbar[data-showcase-target] header, [data-showcase-target] erp-topbar header'
-        : 'erp-sidebar[data-showcase-target] nav, [data-showcase-target] erp-sidebar nav';
+        : COMPONENT === 'app-footer'
+          ? 'erp-app-footer[data-showcase-target] footer, [data-showcase-target] erp-app-footer footer'
+          : 'erp-sidebar[data-showcase-target] nav, [data-showcase-target] erp-sidebar nav';
       await waitFor(() => evaluate(client, `Boolean(document.querySelector(${JSON.stringify(readySelector)}))`));
       await evaluate(client, `(() => {
         document.documentElement.dir = '${scenario.direction}';
@@ -165,6 +181,37 @@ async function main() {
         await evaluate(client, `document.querySelector('erp-sidebar[data-showcase-target] .sidebar__header erp-icon-button button, [data-showcase-target] erp-sidebar .sidebar__header erp-icon-button button')?.click()`);
         await waitFor(() => evaluate(client, `document.querySelector('erp-sidebar[data-showcase-target], [data-showcase-target] erp-sidebar')?.getAttribute('data-sidebar-collapsed') === 'true'`));
       }
+      if (COMPONENT === 'app-footer' && scenario.state) {
+        await evaluate(client, `(() => {
+          const setEditor = (name, value) => {
+            const field = document.querySelector('[data-showcase-control="' + name + '"] input, [data-showcase-control="' + name + '"] textarea');
+            if (!field) throw new Error('Missing workbench editor: ' + name);
+            const setter = Object.getOwnPropertyDescriptor(
+              field instanceof HTMLTextAreaElement ? HTMLTextAreaElement.prototype : HTMLInputElement.prototype,
+              'value',
+            ).set;
+            setter.call(field, value);
+            field.dispatchEvent(new Event('input', {bubbles: true}));
+          };
+          if ('${scenario.state}' === 'dense') {
+            setEditor('actions', JSON.stringify([
+              {id: 'support', label: 'الدعم', icon: 'help'},
+              {id: 'privacy', label: 'الخصوصية', icon: 'shield'},
+              {id: 'docs', label: 'دليل الاستخدام', icon: 'file'},
+              {id: 'status', label: 'حالة الخدمات', icon: 'notification'},
+              {id: 'contact', label: 'تواصل معنا', icon: 'mail'},
+              {id: 'disabled', label: 'إجراء غير متاح', disabled: true}
+            ], null, 2));
+          }
+          if ('${scenario.state}' === 'empty') {
+            setEditor('applicationLabel', '');
+            setEditor('versionLabel', '');
+            setEditor('statusLabel', '');
+            setEditor('actions', '[]');
+          }
+        })()`);
+        await new Promise((resolve) => setTimeout(resolve, 250));
+      }
       await new Promise((resolve) => setTimeout(resolve, 200));
 
       const measurement = await evaluate(client, `(() => {
@@ -172,6 +219,7 @@ async function main() {
         const target = document.querySelector('[data-showcase-target]');
         const nav = host?.querySelector('nav');
         const header = host?.querySelector('header');
+        const footer = host?.querySelector('footer');
         const rect = (element) => {
           if (!element) return null;
           const value = element.getBoundingClientRect();
@@ -195,6 +243,10 @@ async function main() {
           activeDestinations: host?.querySelectorAll('[aria-current="page"]').length ?? 0,
           activeAncestors: host?.querySelectorAll('[data-sidebar-active-ancestor="true"]').length ?? 0,
           header: rect(header),
+          footer: rect(footer),
+          footerPresent: Boolean(footer),
+          footerActionCount: host?.querySelectorAll('.app-footer__actions erp-button').length ?? 0,
+          footerDisabledActionCount: host?.querySelectorAll('.app-footer__actions button:disabled').length ?? 0,
           regions: header ? Object.fromEntries(
             [...header.children].map((element) => [
               element.className,

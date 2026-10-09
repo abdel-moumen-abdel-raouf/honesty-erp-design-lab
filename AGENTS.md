@@ -1,5 +1,22 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Shell S2-C AppFooter State — 2026-10-09
+
+S2-C introduces one public `ErpAppFooter` owner as an explicitly authorized
+original Honesty ERP candidate. It is an in-flow global application footer,
+distinct from PageShell projection and action bars. Consumer-supplied
+application/version/status/actions compose `ErpText`, `ErpStatusBadge`, and
+`ErpButton`; absent optional data emits no empty landmark. No Gxon geometry or
+behavior is claimed because its binding runtime evidence remains unavailable.
+
+Technical verification passes 123/123 files and 788/788 tests, 78-component
+catalog and 11-owner Shell governance, both typechecks, production build, and
+zero warnings. Browser evidence covers default, dense six-action, disabled and
+empty states from 1440 to 320 px with zero page overflow, broken images or
+diagnostics. Status is `TECHNICAL_VERIFIED` and
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. The exact next unit is S2-D
+QuickActionsBar.
+
 ## Current Shell S2-B Topbar State — 2026-10-09
 
 S2-B retains `ErpTopbar` as the five-region projection owner and resolves the

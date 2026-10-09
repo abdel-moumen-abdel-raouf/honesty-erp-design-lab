@@ -1,0 +1,53 @@
+@use '../../../styles/foundation/components/app-footer' as tokens;
+@use '../../../styles/foundation/queries' as query;
+
+:host {
+  @include tokens.base;
+  display: block;
+  min-inline-size: 0;
+  color: var(--honesty-app-footer-fg);
+}
+
+footer,
+.app-footer__identity,
+.app-footer__actions {
+  display: flex;
+  align-items: center;
+  min-inline-size: 0;
+  gap: var(--honesty-app-footer-item-gap);
+}
+
+footer {
+  flex-wrap: wrap;
+  min-block-size: var(--honesty-app-footer-min-height);
+  padding-block: var(--honesty-app-footer-padding-block);
+  padding-inline: var(--honesty-app-footer-padding-inline);
+  background: var(--honesty-app-footer-bg);
+  border-block-start: var(--honesty-app-footer-border-width) solid
+    var(--honesty-app-footer-border-color);
+}
+
+.app-footer__identity,
+.app-footer__actions {
+  flex-wrap: wrap;
+}
+
+.app-footer__identity {
+  overflow-wrap: anywhere;
+}
+
+.app-footer__actions {
+  margin-inline-start: auto;
+}
+
+@include query.viewport-down('sm') {
+  footer {
+    align-items: stretch;
+    flex-direction: column;
+    padding-inline: var(--honesty-app-footer-narrow-padding-inline);
+  }
+
+  .app-footer__actions {
+    margin-inline-start: 0;
+  }
+}

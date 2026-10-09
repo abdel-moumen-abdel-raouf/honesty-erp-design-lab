@@ -10,8 +10,11 @@ const SHELL_REFERENCE = 'src/app/controls/SHELL_REFERENCE_TOPOLOGY_V2.md';
 const SIDEBAR_REFERENCE = 'src/app/controls/sidebar/ERP_SIDEBAR_REFERENCE_V1.md';
 const TOPBAR_REFERENCE = 'src/app/controls/topbar/ERP_TOPBAR_REFERENCE_V1.md';
 const TOPBAR_SHOWCASE = 'src/app/showcase/components/topbar/topbar-showcase.html';
+const APP_FOOTER_REFERENCE = 'src/app/controls/app-footer/ERP_APP_FOOTER_CANDIDATE_V1.md';
+const APP_FOOTER_SHOWCASE = 'src/app/showcase/components/app-footer/app-footer-showcase.html';
 const USER_MENU_REFERENCE = 'src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md';
 const OWNERS = [
+  'app-footer',
   'breadcrumbs',
   'page-header',
   'page-shell',
@@ -51,6 +54,7 @@ export function validateShellNavigation(files) {
   const shellReference = files.get(SHELL_REFERENCE) ?? '';
   const sidebarReference = files.get(SIDEBAR_REFERENCE) ?? '';
   const topbarReference = files.get(TOPBAR_REFERENCE) ?? '';
+  const appFooterReference = files.get(APP_FOOTER_REFERENCE) ?? '';
   const sources = OWNERS.map(
     (owner) => files.get(`src/app/controls/${owner}/${owner}.ts`) ?? '',
   ).join('\n');
@@ -175,6 +179,29 @@ export function validateShellNavigation(files) {
   }
   if (!topbarReference.includes('PRODUCT_OWNER_VISUAL_REVIEW_PENDING')) {
     errors.push('ErpTopbar reference contract must preserve pending Product Owner visual status');
+  }
+
+  const appFooterSource = files.get('src/app/controls/app-footer/app-footer.ts') ?? '';
+  const appFooterTemplate = files.get('src/app/controls/app-footer/app-footer.html') ?? '';
+  const appFooterShowcase = files.get(APP_FOOTER_SHOWCASE) ?? '';
+  for (const owner of ['ErpButton', 'ErpStatusBadge', 'ErpText']) {
+    if (!appFooterSource.includes(owner)) {
+      errors.push(`ErpAppFooter must reuse ${owner}`);
+    }
+  }
+  if (!appFooterTemplate.includes('<footer') || !appFooterTemplate.includes('(pressed)="activate(action)"')) {
+    errors.push('ErpAppFooter must own the footer landmark and emit consumer action intent');
+  }
+  if (!appFooterShowcase.includes('<erp-app-footer') || !appFooterShowcase.includes('data-showcase-target')) {
+    errors.push('ErpAppFooter must retain one dedicated live workbench target');
+  }
+  if (
+    !appFooterReference.includes('original Honesty ERP') ||
+    !appFooterReference.includes('PRODUCT_OWNER_VISUAL_REVIEW_PENDING') ||
+    !appFooterReference.includes('Gxon') ||
+    !appFooterReference.includes('unavailable')
+  ) {
+    errors.push('ErpAppFooter must record original-design authority and the unavailable Gxon boundary');
   }
 
   const branchSelector = `${files.get('src/app/controls/branch-selector/branch-selector.ts') ?? ''}\n${files.get('src/app/controls/branch-selector/branch-selector.html') ?? ''}`;
@@ -328,6 +355,8 @@ function validFixture(overrides = new Map()) {
     [SIDEBAR_REFERENCE, 'PRODUCT_OWNER_VISUAL_REVIEW_PENDING'],
     [TOPBAR_REFERENCE, 'PRODUCT_OWNER_VISUAL_REVIEW_PENDING'],
     [TOPBAR_SHOWCASE, '<erp-branch-selector erpTopbarContext /><erp-global-search erpTopbarSearch /><erp-notification-bell erpTopbarActions /><erp-user-menu erpTopbarUser />'],
+    [APP_FOOTER_REFERENCE, 'original Honesty ERP PRODUCT_OWNER_VISUAL_REVIEW_PENDING Gxon unavailable'],
+    [APP_FOOTER_SHOWCASE, '<erp-app-footer data-showcase-target />'],
     [USER_MENU_REFERENCE, '75F64AE955800ABE9FCBE27D7B09161D95E2DE2C77B6106C337AA4841D39D399 1EFFE6A3ADC2613EC19612699E567C38E5457997E342333B0686F70D63A3AFEA'],
   ]);
 
@@ -348,6 +377,14 @@ function validFixture(overrides = new Map()) {
   files.set(
     'src/app/controls/app-shell/app-shell.html',
     '<erp-topbar></erp-topbar><erp-sidebar></erp-sidebar>',
+  );
+  files.set(
+    'src/app/controls/app-footer/app-footer.ts',
+    'import {ErpButton} from "x"; import {ErpStatusBadge} from "y"; import {ErpText} from "z"; export class ErpAppFooter {}',
+  );
+  files.set(
+    'src/app/controls/app-footer/app-footer.html',
+    '<footer><erp-button (pressed)="activate(action)" /></footer>',
   );
   files.set(
     'src/app/controls/topbar/topbar.html',
@@ -466,6 +503,8 @@ function runCheck() {
     SIDEBAR_REFERENCE,
     TOPBAR_REFERENCE,
     TOPBAR_SHOWCASE,
+    APP_FOOTER_REFERENCE,
+    APP_FOOTER_SHOWCASE,
     USER_MENU_REFERENCE,
   ];
 
@@ -498,7 +537,7 @@ function runCheck() {
   }
 
   console.log('ERP Shell navigation governance: PASS');
-  console.log('10 owners, shared contracts, ERP-only review, token bases, composition reuse, theme/transport/query/overlay boundaries verified.');
+  console.log(`${OWNERS.length} owners, shared contracts, ERP-only review, token bases, composition reuse, theme/transport/query/overlay boundaries verified.`);
 }
 
 if (process.argv.includes('--self-test')) {
