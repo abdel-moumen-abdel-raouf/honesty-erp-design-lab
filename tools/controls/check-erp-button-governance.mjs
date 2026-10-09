@@ -122,6 +122,7 @@ const APPROVED_NATIVE_BUTTON_ROOTS = new Set([
   'src/app/controls/status-badge/internal/status-badge-action.html',
   'src/app/controls/avatar/internal/avatar-action.html',
   'src/app/controls/avatar-picker/internal/avatar-picker-tile.html',
+  'src/app/controls/sidebar/internal/sidebar-disclosure.html',
   'src/app/controls/tabs/internal/tab-trigger.html',
   'src/app/controls/sort-header/internal/sort-trigger.html',
   'src/app/controls/table/internal/table-resize-handle.html',
@@ -681,6 +682,7 @@ function runSelfTest() {
     'src/app/controls/input-family/internal/field-trigger.html',
     'src/app/controls/selection-family/internal/selection-tile.html',
     'src/app/controls/avatar-picker/internal/avatar-picker-tile.html',
+    'src/app/controls/sidebar/internal/sidebar-disclosure.html',
   ].flatMap((file) =>
     validateControlNativeButtonSource(
       '<button type="button">Trigger</button>',

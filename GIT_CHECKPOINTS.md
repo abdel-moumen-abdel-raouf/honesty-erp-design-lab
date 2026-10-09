@@ -1,5 +1,23 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Shell S2-A Sidebar checkpoint — 2026-10-09
+
+Entry checkpoint:
+
+- `216fd4d36819df0adfbcdb0c599574d2b67469cd` — clean `main` and
+  `origin/main` before the authorized Shell continuation wave.
+
+Scoped stage commit message:
+
+- `feat(shell): refine ERP sidebar reference`
+
+Resolve the resulting commit SHA from live `main` because this file is part of
+that commit. Focused Sidebar verification passes 1/1 file and 6/6 tests;
+canonical verification passes 122/122 files and 785/785 tests, all governance,
+both typechecks, production build, and zero warnings. Initial bundle is
+490.24 kB / 105.58 kB estimated transfer. The exact next permitted unit is
+S2-B Topbar. Product Owner visual review remains pending.
+
 ## Shell S1 compact UserMenu trigger checkpoint — 2026-10-08
 
 Entry checkpoint:

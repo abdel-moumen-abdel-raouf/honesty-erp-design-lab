@@ -1,41 +1,44 @@
-<nav [attr.aria-label]="label()">
+<div class="sidebar__header">
+  <erp-tooltip [text]="collapseLabel()" placement="end">
+    <erp-icon-button
+      icon="menu"
+      [label]="collapseLabel()"
+      size="md"
+      shape="pill"
+      [ariaExpanded]="!collapsed()"
+      (pressed)="toggleCollapsed()"
+    />
+  </erp-tooltip>
+  <erp-text class="sidebar__title" type="caption" tone="secondary" weight="medium">
+    {{ label() }}
+  </erp-text>
+</div>
+
+<nav [id]="instanceId" [attr.aria-label]="label()">
   <ul>
     @for (entry of entries(); track entry.item.id) {
       <li
+        [hidden]="!entry.visible"
         [attr.data-sidebar-level]="entry.level"
+        [attr.data-sidebar-group]="entry.group"
+        [attr.data-sidebar-active-ancestor]="entry.activeAncestor"
         [style.--_honesty-sidebar-level]="entry.level"
       >
         @if (entry.group) {
-          <div class="sidebar__group" [attr.aria-label]="entry.item.label">
-            @if (entry.item.icon) {
-              <erp-icon [name]="entry.item.icon" size="sm" tone="inherit" />
-            }
-            <erp-text type="span" tone="inherit" weight="medium">
-              {{ entry.item.label }}
-            </erp-text>
-          </div>
+          <erp-sidebar-disclosure
+            [item]="entry.item"
+            [expanded]="isExpanded(entry.item.id)"
+            [active]="entry.activeAncestor"
+            [collapsed]="collapsed()"
+            (toggled)="toggleGroup(entry.item)"
+          />
         } @else {
-          <a
-            data-sidebar-link
-            [href]="entry.item.disabled ? null : entry.item.href ?? '#'"
-            [attr.aria-current]="activeId() === entry.item.id ? 'page' : null"
-            [attr.aria-disabled]="entry.item.disabled ? 'true' : null"
-            [attr.tabindex]="entry.item.disabled ? -1 : null"
-            (click)="activate(entry.item, $event)"
-            (keydown)="handleKeydown($event)"
-          >
-            @if (entry.item.icon) {
-              <erp-icon [name]="entry.item.icon" size="sm" tone="inherit" />
-            }
-            <erp-text type="span" tone="inherit">{{ entry.item.label }}</erp-text>
-            @if (entry.item.badge; as badge) {
-              <erp-status-badge
-                [label]="badge.label"
-                [tone]="badge.tone ?? 'neutral'"
-                size="sm"
-              />
-            }
-          </a>
+          <erp-sidebar-link
+            [item]="entry.item"
+            [active]="activeId() === entry.item.id"
+            [collapsed]="collapsed()"
+            (activated)="activate($event)"
+          />
         }
       </li>
     }

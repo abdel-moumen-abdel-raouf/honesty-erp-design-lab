@@ -32987,6 +32987,173 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null
   },
   {
+    "id": "sidebar-disclosure",
+    "selector": "erp-sidebar-disclosure",
+    "className": "ErpSidebarDisclosure",
+    "category": "Internal Owners",
+    "classification": "INTERNAL SEMANTIC OWNER",
+    "sourcePath": "src/app/controls/sidebar/internal/sidebar-disclosure.ts",
+    "purpose": "Owns bounded internal sidebar disclosure semantics for its parent ERP component.",
+    "publicApi": {
+      "inputs": [
+        {
+          "name": "item",
+          "required": true,
+          "values": [],
+          "type": "ErpNavigationItem",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
+        },
+        {
+          "name": "expanded",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
+        },
+        {
+          "name": "active",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
+        },
+        {
+          "name": "collapsed",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
+        }
+      ],
+      "outputs": [
+        "toggled"
+      ],
+      "models": []
+    },
+    "lowerLevelOwners": [
+      "ErpIcon",
+      "ErpNavigationItem",
+      "ErpStatusBadge",
+      "ErpText",
+      "erp-icon",
+      "erp-status-badge",
+      "erp-text"
+    ],
+    "nativeElementsOwned": [
+      "button",
+      "span"
+    ],
+    "nativeCoverage": [
+      "button"
+    ],
+    "coverageScope": "parent-owner-only",
+    "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
+    "visualReference": null,
+    "visualStatus": "PENDING",
+    "showcaseFacets": [],
+    "showcaseCases": [],
+    "displayNameAr": "ErpSidebarDisclosure",
+    "descriptionAr": "Owns bounded internal sidebar disclosure semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
+    "showcaseCoverage": null
+  },
+  {
+    "id": "sidebar-link",
+    "selector": "erp-sidebar-link",
+    "className": "ErpSidebarLink",
+    "category": "Internal Owners",
+    "classification": "INTERNAL SEMANTIC OWNER",
+    "sourcePath": "src/app/controls/sidebar/internal/sidebar-link.ts",
+    "purpose": "Owns bounded internal sidebar link semantics for its parent ERP component.",
+    "publicApi": {
+      "inputs": [
+        {
+          "name": "item",
+          "required": true,
+          "values": [],
+          "type": "ErpNavigationItem",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
+        },
+        {
+          "name": "active",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
+        },
+        {
+          "name": "collapsed",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
+        }
+      ],
+      "outputs": [
+        "activated"
+      ],
+      "models": []
+    },
+    "lowerLevelOwners": [
+      "ErpIcon",
+      "ErpNavigationItem",
+      "ErpStatusBadge",
+      "ErpText",
+      "erp-icon",
+      "erp-status-badge",
+      "erp-text"
+    ],
+    "nativeElementsOwned": [
+      "a"
+    ],
+    "nativeCoverage": [],
+    "coverageScope": "parent-owner-only",
+    "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
+    "visualReference": null,
+    "visualStatus": "PENDING",
+    "showcaseFacets": [],
+    "showcaseCases": [],
+    "displayNameAr": "ErpSidebarLink",
+    "descriptionAr": "Owns bounded internal sidebar link semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
+    "showcaseCoverage": null
+  },
+  {
     "id": "sort-trigger",
     "selector": "erp-sort-trigger",
     "className": "ErpSortTrigger",
@@ -35562,25 +35729,59 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "hasDefault": true,
           "defaultValue": "التنقل الرئيسي",
           "defaultExpression": "'التنقل الرئيسي'"
+        },
+        {
+          "name": "collapseLabel",
+          "required": false,
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "تبديل عرض الشريط الجانبي",
+          "defaultExpression": "'تبديل عرض الشريط الجانبي'"
         }
       ],
       "outputs": [
         "navigationActivated"
       ],
-      "models": []
+      "models": [
+        {
+          "name": "collapsed",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
+        },
+        {
+          "name": "expandedIds",
+          "required": false,
+          "values": [],
+          "type": "readonly string[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
+        }
+      ]
     },
     "lowerLevelOwners": [
-      "ErpIcon",
+      "ErpIconButton",
       "ErpNavigationItem",
-      "ErpStatusBadge",
+      "ErpSidebarDisclosure",
+      "ErpSidebarLink",
       "ErpText",
+      "ErpTooltip",
       "ErpVisibleNavigationEntry",
-      "erp-icon",
-      "erp-status-badge",
-      "erp-text"
+      "erp-icon-button",
+      "erp-sidebar-disclosure",
+      "erp-sidebar-link",
+      "erp-text",
+      "erp-tooltip"
     ],
     "nativeElementsOwned": [
-      "a",
       "div",
       "li",
       "nav",
@@ -35608,22 +35809,252 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "finance",
               "label": "المالية",
-              "icon": "wallet"
+              "icon": "wallet",
+              "badge": {
+                "label": "8",
+                "tone": "info"
+              },
+              "children": [
+                {
+                  "id": "ledger",
+                  "label": "الحسابات العامة",
+                  "icon": "menu",
+                  "href": "/ledger"
+                },
+                {
+                  "id": "reports",
+                  "label": "التقارير المالية والتحليلات التشغيلية المطولة",
+                  "icon": "chart",
+                  "children": [
+                    {
+                      "id": "trial-balance",
+                      "label": "ميزان المراجعة",
+                      "href": "/trial-balance"
+                    },
+                    {
+                      "id": "closed-period",
+                      "label": "فترة مقفلة",
+                      "href": "/closed",
+                      "disabled": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "inventory",
+              "label": "المخزون",
+              "icon": "layers",
+              "href": "/inventory",
+              "badge": {
+                "label": "3"
+              }
+            },
+            {
+              "id": "settings",
+              "label": "الإعدادات",
+              "icon": "settings",
+              "href": "/settings"
             }
-          ]
+          ],
+          "activeId": "trial-balance",
+          "expandedIds": [
+            "finance",
+            "reports"
+          ],
+          "collapsed": false
+        }
+      },
+      {
+        "id": "collapsed-false",
+        "label": "collapsed: false",
+        "inputs": {
+          "items": [
+            {
+              "id": "finance",
+              "label": "المالية",
+              "icon": "wallet",
+              "badge": {
+                "label": "8",
+                "tone": "info"
+              },
+              "children": [
+                {
+                  "id": "ledger",
+                  "label": "الحسابات العامة",
+                  "icon": "menu",
+                  "href": "/ledger"
+                },
+                {
+                  "id": "reports",
+                  "label": "التقارير المالية والتحليلات التشغيلية المطولة",
+                  "icon": "chart",
+                  "children": [
+                    {
+                      "id": "trial-balance",
+                      "label": "ميزان المراجعة",
+                      "href": "/trial-balance"
+                    },
+                    {
+                      "id": "closed-period",
+                      "label": "فترة مقفلة",
+                      "href": "/closed",
+                      "disabled": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "inventory",
+              "label": "المخزون",
+              "icon": "layers",
+              "href": "/inventory",
+              "badge": {
+                "label": "3"
+              }
+            },
+            {
+              "id": "settings",
+              "label": "الإعدادات",
+              "icon": "settings",
+              "href": "/settings"
+            }
+          ],
+          "activeId": "trial-balance",
+          "expandedIds": [
+            "finance",
+            "reports"
+          ],
+          "collapsed": false
+        }
+      },
+      {
+        "id": "collapsed-true",
+        "label": "collapsed: true",
+        "inputs": {
+          "items": [
+            {
+              "id": "finance",
+              "label": "المالية",
+              "icon": "wallet",
+              "badge": {
+                "label": "8",
+                "tone": "info"
+              },
+              "children": [
+                {
+                  "id": "ledger",
+                  "label": "الحسابات العامة",
+                  "icon": "menu",
+                  "href": "/ledger"
+                },
+                {
+                  "id": "reports",
+                  "label": "التقارير المالية والتحليلات التشغيلية المطولة",
+                  "icon": "chart",
+                  "children": [
+                    {
+                      "id": "trial-balance",
+                      "label": "ميزان المراجعة",
+                      "href": "/trial-balance"
+                    },
+                    {
+                      "id": "closed-period",
+                      "label": "فترة مقفلة",
+                      "href": "/closed",
+                      "disabled": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "inventory",
+              "label": "المخزون",
+              "icon": "layers",
+              "href": "/inventory",
+              "badge": {
+                "label": "3"
+              }
+            },
+            {
+              "id": "settings",
+              "label": "الإعدادات",
+              "icon": "settings",
+              "href": "/settings"
+            }
+          ],
+          "activeId": "trial-balance",
+          "expandedIds": [
+            "finance",
+            "reports"
+          ],
+          "collapsed": true
         }
       }
     ],
     "displayNameAr": "الشريط الجانبي",
     "descriptionAr": "تنقل هرمي مضبوط بعناصر يقدمها المستهلك.",
     "showcaseInitialValues": {
-      "activeId": null,
+      "activeId": "trial-balance",
       "label": "التنقل الرئيسي",
+      "collapseLabel": "تبديل عرض الشريط الجانبي",
+      "collapsed": false,
+      "expandedIds": [
+        "finance",
+        "reports"
+      ],
       "items": [
         {
           "id": "finance",
           "label": "المالية",
-          "icon": "wallet"
+          "icon": "wallet",
+          "badge": {
+            "label": "8",
+            "tone": "info"
+          },
+          "children": [
+            {
+              "id": "ledger",
+              "label": "الحسابات العامة",
+              "icon": "menu",
+              "href": "/ledger"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير المالية والتحليلات التشغيلية المطولة",
+              "icon": "chart",
+              "children": [
+                {
+                  "id": "trial-balance",
+                  "label": "ميزان المراجعة",
+                  "href": "/trial-balance"
+                },
+                {
+                  "id": "closed-period",
+                  "label": "فترة مقفلة",
+                  "href": "/closed",
+                  "disabled": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "inventory",
+          "label": "المخزون",
+          "icon": "layers",
+          "href": "/inventory",
+          "badge": {
+            "label": "3"
+          }
+        },
+        {
+          "id": "settings",
+          "label": "الإعدادات",
+          "icon": "settings",
+          "href": "/settings"
         }
       ]
     },
@@ -35640,7 +36071,52 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           {
             "id": "finance",
             "label": "المالية",
-            "icon": "wallet"
+            "icon": "wallet",
+            "badge": {
+              "label": "8",
+              "tone": "info"
+            },
+            "children": [
+              {
+                "id": "ledger",
+                "label": "الحسابات العامة",
+                "icon": "menu",
+                "href": "/ledger"
+              },
+              {
+                "id": "reports",
+                "label": "التقارير المالية والتحليلات التشغيلية المطولة",
+                "icon": "chart",
+                "children": [
+                  {
+                    "id": "trial-balance",
+                    "label": "ميزان المراجعة",
+                    "href": "/trial-balance"
+                  },
+                  {
+                    "id": "closed-period",
+                    "label": "فترة مقفلة",
+                    "href": "/closed",
+                    "disabled": true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "inventory",
+            "label": "المخزون",
+            "icon": "layers",
+            "href": "/inventory",
+            "badge": {
+              "label": "3"
+            }
+          },
+          {
+            "id": "settings",
+            "label": "الإعدادات",
+            "icon": "settings",
+            "href": "/settings"
           }
         ]
       },
@@ -35652,7 +36128,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "trial-balance"
       },
       {
         "name": "label",
@@ -35663,15 +36139,55 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "type": "string",
         "options": [],
         "initialValue": "التنقل الرئيسي"
+      },
+      {
+        "name": "collapseLabel",
+        "label": "collapseLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "تبديل عرض الشريط الجانبي"
+      },
+      {
+        "name": "collapsed",
+        "label": "collapsed",
+        "source": "model",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "expandedIds",
+        "label": "expandedIds",
+        "source": "model",
+        "kind": "json",
+        "required": false,
+        "type": "readonly string[]",
+        "options": [],
+        "initialValue": [
+          "finance",
+          "reports"
+        ]
       }
     ],
     "showcaseCoverage": {
       "coveredInputs": [
         "items",
         "activeId",
-        "label"
+        "label",
+        "collapseLabel"
       ],
-      "coveredModels": [],
+      "coveredModels": [
+        "collapsed",
+        "expandedIds"
+      ],
       "coveredOutputs": [
         "navigationActivated"
       ],

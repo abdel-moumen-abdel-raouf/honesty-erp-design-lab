@@ -1,0 +1,228 @@
+{
+  "capturedAt": "2026-10-09T13:37:14.703Z",
+  "baseUrl": "http://127.0.0.1:4200",
+  "measurements": [
+    {
+      "name": "sidebar-1440-light-rtl-expanded",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 1106,
+        "y": 404.765625,
+        "width": 270,
+        "height": 432
+      },
+      "sidebar": {
+        "x": 1106,
+        "y": 404.765625,
+        "width": 270,
+        "height": 432
+      },
+      "nav": {
+        "x": 1107,
+        "y": 464.765625,
+        "width": 269,
+        "height": 372
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 372,
+      "navClientHeight": 372,
+      "collapsed": false,
+      "visibleEntries": 7,
+      "enabledInteractiveEntries": 6,
+      "activeDestinations": 1,
+      "activeAncestors": 2,
+      "diagnostics": []
+    },
+    {
+      "name": "sidebar-1280-dark-ltr-expanded",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 49,
+        "y": 404.765625,
+        "width": 270,
+        "height": 432
+      },
+      "sidebar": {
+        "x": 49,
+        "y": 404.765625,
+        "width": 270,
+        "height": 432
+      },
+      "nav": {
+        "x": 49,
+        "y": 464.765625,
+        "width": 269,
+        "height": 372
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 372,
+      "navClientHeight": 372,
+      "collapsed": false,
+      "visibleEntries": 7,
+      "enabledInteractiveEntries": 6,
+      "activeDestinations": 1,
+      "activeAncestors": 2,
+      "diagnostics": []
+    },
+    {
+      "name": "sidebar-1024-light-rtl-expanded",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 690,
+        "y": 404.765625,
+        "width": 270,
+        "height": 432
+      },
+      "sidebar": {
+        "x": 690,
+        "y": 404.765625,
+        "width": 270,
+        "height": 432
+      },
+      "nav": {
+        "x": 691,
+        "y": 464.765625,
+        "width": 269,
+        "height": 372
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 372,
+      "navClientHeight": 372,
+      "collapsed": false,
+      "visibleEntries": 7,
+      "enabledInteractiveEntries": 6,
+      "activeDestinations": 1,
+      "activeAncestors": 2,
+      "diagnostics": []
+    },
+    {
+      "name": "sidebar-768-dark-rtl-collapsed",
+      "viewport": {
+        "width": 768,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 652,
+        "y": 404.765625,
+        "width": 60,
+        "height": 232
+      },
+      "sidebar": {
+        "x": 652,
+        "y": 404.765625,
+        "width": 60,
+        "height": 232
+      },
+      "nav": {
+        "x": 653,
+        "y": 464.765625,
+        "width": 59,
+        "height": 172
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 172,
+      "navClientHeight": 172,
+      "collapsed": true,
+      "visibleEntries": 7,
+      "enabledInteractiveEntries": 6,
+      "activeDestinations": 1,
+      "activeAncestors": 2,
+      "diagnostics": []
+    },
+    {
+      "name": "sidebar-390-light-rtl-collapsed",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 282,
+        "y": 448.765625,
+        "width": 60,
+        "height": 232
+      },
+      "sidebar": {
+        "x": 282,
+        "y": 448.765625,
+        "width": 60,
+        "height": 232
+      },
+      "nav": {
+        "x": 283,
+        "y": 508.765625,
+        "width": 59,
+        "height": 172
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 172,
+      "navClientHeight": 172,
+      "collapsed": true,
+      "visibleEntries": 7,
+      "enabledInteractiveEntries": 6,
+      "activeDestinations": 1,
+      "activeAncestors": 2,
+      "diagnostics": []
+    },
+    {
+      "name": "sidebar-320-dark-ltr-collapsed",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 33,
+        "y": 565.953125,
+        "width": 60,
+        "height": 232
+      },
+      "sidebar": {
+        "x": 33,
+        "y": 565.953125,
+        "width": 60,
+        "height": 232
+      },
+      "nav": {
+        "x": 33,
+        "y": 625.953125,
+        "width": 59,
+        "height": 172
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 172,
+      "navClientHeight": 172,
+      "collapsed": true,
+      "visibleEntries": 7,
+      "enabledInteractiveEntries": 6,
+      "activeDestinations": 1,
+      "activeAncestors": 2,
+      "diagnostics": []
+    }
+  ]
+}

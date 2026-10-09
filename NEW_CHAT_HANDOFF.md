@@ -1,5 +1,23 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Authoritative current handoff — 2026-10-09 — Shell continuation S2-A
+
+The Product Owner superseded the historical "S2 closed" restriction only for
+the bounded Sidebar, Topbar, AppFooter, QuickActionsBar, and AppShell integration
+sequence. Entry was clean live `main`
+`216fd4d36819df0adfbcdb0c599574d2b67469cd`. Read
+`src/app/controls/SHELL_REFERENCE_TOPOLOGY_V2.md` and
+`src/app/controls/sidebar/ERP_SIDEBAR_REFERENCE_V1.md`.
+
+S2-A retains the public Sidebar owner and adds controlled collapsed/expanded
+state, real disclosure semantics, active-ancestor expansion, keyboard traversal,
+long-label containment, badges, and a 270/60 px expanded/collapsed contract.
+The app still owns permissions, routes, and taxonomy. Technical verification is
+122/122 files and 785/785 tests, all governance/typechecks, production build,
+and zero warnings. Status is `TECHNICAL_VERIFIED` and
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Proceed only to S2-B Topbar within this
+authorized wave; preserve the pending UserMenu candidate unchanged.
+
 ## Authoritative current handoff — 2026-10-08 — Shell S1 compact UserMenu trigger
 
 Start from live `main`. This bounded correction entered at

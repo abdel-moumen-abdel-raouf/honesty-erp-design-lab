@@ -17,6 +17,8 @@ const INTERNAL_COMPONENTS = new Set([
   'ErpEmptyStateLottie',
   'ErpOverlayFrame',
   'ErpOverlayHost',
+  'ErpSidebarDisclosure',
+  'ErpSidebarLink',
   'ErpTooltipContent',
 ]);
 
@@ -219,6 +221,7 @@ const NATIVE_REPLACEMENTS = new Map([
   ['ErpSection', ['section']],
   ['ErpSelect', ['select', 'option', 'optgroup']],
   ['ErpSidebar', ['nav', 'ul', 'li', 'a']],
+  ['ErpSidebarDisclosure', ['button']],
   ['ErpStack', ['div']],
   ['ErpSurface', ['div']],
   ['ErpTable', ['table', 'caption', 'colgroup', 'col', 'thead', 'tbody', 'tfoot', 'tr', 'th', 'td']],
@@ -355,7 +358,32 @@ const FIXTURE_INPUTS = new Map([
   ['ErpPageHeader', {title: 'سجل الحساب'}],
   ['ErpPagination', {pageCount: 3}],
   ['ErpRadioGroup', {options: [{value: 'active', label: 'نشط'}]}],
-  ['ErpSidebar', {items: [{id: 'finance', label: 'المالية', icon: 'wallet'}]}],
+  ['ErpSidebar', {
+    items: [
+      {
+        id: 'finance',
+        label: 'المالية',
+        icon: 'wallet',
+        badge: {label: '8', tone: 'info'},
+        children: [
+          {id: 'ledger', label: 'الحسابات العامة', icon: 'menu', href: '/ledger'},
+          {
+            id: 'reports',
+            label: 'التقارير المالية والتحليلات التشغيلية المطولة',
+            icon: 'chart',
+            children: [
+              {id: 'trial-balance', label: 'ميزان المراجعة', href: '/trial-balance'},
+              {id: 'closed-period', label: 'فترة مقفلة', href: '/closed', disabled: true},
+            ],
+          },
+        ],
+      },
+      {id: 'inventory', label: 'المخزون', icon: 'layers', href: '/inventory', badge: {label: '3'}},
+      {id: 'settings', label: 'الإعدادات', icon: 'settings', href: '/settings'},
+    ],
+    activeId: 'trial-balance',
+    expandedIds: ['finance', 'reports'],
+  }],
   ['ErpSmartTable', {
     caption: 'سجل الحسابات',
     columns: [{key: 'name', label: 'اسم الحساب'}, {key: 'balance', label: 'الرصيد'}],
@@ -421,7 +449,7 @@ const FACET_NAMES = [
 ];
 
 export const NATIVE_ELEMENT_COVERAGE = [
-  {tag: 'button', policy: 'GLOBAL_OWNER_ONLY', owners: ['ErpButton', 'ErpIconButton', 'ErpFab', 'ErpExtendedFab', 'ErpFieldTrigger', 'ErpTabTrigger', 'ErpSortTrigger', 'ErpAvatarAction', 'ErpStatusBadgeAction', 'ErpTableResizeHandle', 'ErpSelectionTile', 'ErpAvatarPickerTile'], allowedPaths: [
+  {tag: 'button', policy: 'GLOBAL_OWNER_ONLY', owners: ['ErpButton', 'ErpIconButton', 'ErpFab', 'ErpExtendedFab', 'ErpFieldTrigger', 'ErpTabTrigger', 'ErpSortTrigger', 'ErpAvatarAction', 'ErpStatusBadgeAction', 'ErpTableResizeHandle', 'ErpSelectionTile', 'ErpAvatarPickerTile', 'ErpSidebarDisclosure'], allowedPaths: [
     'src/app/controls/avatar-picker/internal/avatar-picker-tile.html',
     'src/app/controls/avatar/internal/avatar-action.html',
     'src/app/controls/button/button.html',
@@ -431,6 +459,7 @@ export const NATIVE_ELEMENT_COVERAGE = [
     'src/app/controls/input-family/internal/field-trigger.html',
     'src/app/controls/select/internal/select-action.html',
     'src/app/controls/selection-family/internal/selection-tile.html',
+    'src/app/controls/sidebar/internal/sidebar-disclosure.html',
     'src/app/controls/sort-header/internal/sort-trigger.html',
     'src/app/controls/status-badge/internal/status-badge-action.html',
     'src/app/controls/table/internal/table-resize-handle.html',

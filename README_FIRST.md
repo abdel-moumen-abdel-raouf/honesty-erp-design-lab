@@ -1,5 +1,18 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Current authorized wave — 2026-10-09 — Shell S2-A through S2-E
+
+The Product Owner opened a bounded sequential Shell wave from clean live
+`main` `216fd4d36819df0adfbcdb0c599574d2b67469cd`: Sidebar, Topbar,
+AppFooter, QuickActionsBar, then their minimum AppShell integration. Read
+`src/app/controls/SHELL_REFERENCE_TOPOLOGY_V2.md` first. S2-A refines the
+existing `ErpSidebar` with consumer-driven hierarchy, separate disclosure and
+navigation intents, active ancestors, controlled collapse/expansion, badges,
+disabled states, vertical keyboard traversal, and one scroll owner. Its
+technical gate is 122/122 files and 785/785 tests with a zero-warning build.
+Product Owner visual review remains pending. The next permitted unit is S2-B
+`ErpTopbar`; no other Shell or application wave is opened.
+
 ## Current gate — Shell S1 compact UserMenu trigger
 
 Start from live `main` and read

@@ -1,0 +1,37 @@
+<button
+  type="button"
+  data-sidebar-interactive
+  [attr.aria-expanded]="expanded()"
+  [attr.aria-label]="collapsed() ? item().label : null"
+  [disabled]="item().disabled"
+  (click)="toggled.emit()"
+>
+  <span class="sidebar-disclosure__identity">
+    @if (item().icon; as icon) {
+      <erp-icon [name]="icon" size="sm" tone="inherit" />
+    } @else {
+      <erp-text class="sidebar-disclosure__fallback" type="span" tone="inherit" weight="medium">
+        {{ item().label.slice(0, 1) }}
+      </erp-text>
+    }
+    <erp-text class="sidebar-disclosure__label" type="span" tone="inherit" weight="medium">
+      {{ item().label }}
+    </erp-text>
+  </span>
+
+  @if (item().badge; as badge) {
+    <erp-status-badge
+      class="sidebar-disclosure__badge"
+      [label]="badge.label"
+      [tone]="badge.tone ?? 'neutral'"
+      size="sm"
+    />
+  }
+
+  <erp-icon
+    class="sidebar-disclosure__indicator"
+    [name]="expanded() ? 'chevron-up' : 'chevron-down'"
+    size="xs"
+    tone="inherit"
+  />
+</button>

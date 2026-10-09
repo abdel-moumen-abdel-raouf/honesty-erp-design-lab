@@ -1,5 +1,23 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Authoritative current execution state — 2026-10-09 — Shell S2-A
+
+The bounded Shell continuation entered from clean `main`
+`216fd4d36819df0adfbcdb0c599574d2b67469cd`. This decision opens only
+`ErpSidebar`, `ErpTopbar`, `ErpAppFooter`, `ErpQuickActionsBar`, and minimum
+`ErpAppShell` integration in that order, with intermediate visual approval
+deferred but every technical gate mandatory.
+
+S2-A is technically verified. The existing `ErpSidebar` now accepts typed
+consumer hierarchy, owns disclosure separately from destination activation,
+tracks controlled collapsed and expanded state, exposes active ancestors,
+skips disabled entries, supports ArrowUp/ArrowDown/Home/End, and contains its
+own scrolling. The verified Skodash source contract and unavailable Gxon state
+are recorded in `src/app/controls/SHELL_REFERENCE_TOPOLOGY_V2.md`. Canonical
+verification passes 122/122 files and 785/785 tests, all governance and both
+typechecks, production build, and zero warnings. Visual status remains
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`; S2-B Topbar is the exact next unit.
+
 ## Authoritative current execution state — 2026-10-08 — Shell S1 compact UserMenu trigger
 
 The Product Owner rejected the previous closed-trigger presentation at clean

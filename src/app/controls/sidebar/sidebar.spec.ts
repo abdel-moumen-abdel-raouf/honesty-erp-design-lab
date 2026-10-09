@@ -37,14 +37,41 @@ describe('ErpSidebar', () => {
     );
   });
 
-  it('moves focus vertically across enabled links', () => {
+  it('owns disclosure separately from navigation and exposes active ancestor context', () => {
     const fixture = TestBed.createComponent(ErpSidebar);
     fixture.componentRef.setInput('items', items);
+    fixture.componentRef.setInput('activeId', 'ledger');
     fixture.detectChanges();
-    const links = fixture.nativeElement.querySelectorAll('a:not([aria-disabled="true"])');
-    links[0].focus();
-    links[0].dispatchEvent(new KeyboardEvent('keydown', {key: 'ArrowDown', bubbles: true}));
-    expect(document.activeElement).toBe(links[1]);
+
+    const disclosure = fixture.nativeElement.querySelector(
+      'erp-sidebar-disclosure button',
+    ) as HTMLButtonElement;
+    expect(disclosure.getAttribute('aria-expanded')).toBe('true');
+    expect(fixture.nativeElement.querySelector(
+      '[data-sidebar-active-ancestor="true"]',
+    )).not.toBeNull();
+
+    fixture.componentRef.setInput('activeId', null);
+    fixture.detectChanges();
+    disclosure.click();
+    fixture.detectChanges();
+    expect(fixture.componentInstance.expandedIds()).toEqual(['finance']);
+  });
+
+  it('moves focus vertically across disclosure and enabled destinations', () => {
+    const fixture = TestBed.createComponent(ErpSidebar);
+    fixture.componentRef.setInput('items', items);
+    fixture.componentRef.setInput('expandedIds', ['finance']);
+    fixture.detectChanges();
+    const controls = fixture.nativeElement.querySelectorAll(
+      '[data-sidebar-interactive]:not([disabled]):not([aria-disabled="true"])',
+    );
+    controls[0].focus();
+    controls[0].dispatchEvent(new KeyboardEvent('keydown', {
+      key: 'ArrowDown',
+      bubbles: true,
+    }));
+    expect(document.activeElement).toBe(controls[1]);
   });
 
   it('inherits RTL direction without owning a local direction contract', () => {
@@ -56,5 +83,36 @@ describe('ErpSidebar', () => {
     expect(fixture.nativeElement.querySelector('nav').dir).toBe('');
     expect(fixture.nativeElement.querySelector('[data-sidebar-level="1"]'))
       .not.toBeNull();
+  });
+
+  it('keeps destinations reachable when a collapsed group is activated', () => {
+    const fixture = TestBed.createComponent(ErpSidebar);
+    fixture.componentRef.setInput('items', items);
+    fixture.componentRef.setInput('collapsed', true);
+    fixture.detectChanges();
+
+    const disclosure = fixture.nativeElement.querySelector(
+      'erp-sidebar-disclosure button',
+    ) as HTMLButtonElement;
+    disclosure.click();
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.collapsed()).toBe(false);
+    expect(fixture.componentInstance.expandedIds()).toContain('finance');
+    expect(fixture.nativeElement.querySelector('a[href="/ledger"]')).not.toBeNull();
+  });
+
+  it('skips cyclic navigation data without duplicating entries', () => {
+    const cyclic: {id: string; label: string; children?: readonly unknown[]} = {
+      id: 'cycle',
+      label: 'دورة غير صالحة',
+    };
+    cyclic.children = [cyclic];
+    const fixture = TestBed.createComponent(ErpSidebar);
+    fixture.componentRef.setInput('items', [cyclic]);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelectorAll('[data-sidebar-level]').length)
+      .toBe(1);
   });
 });

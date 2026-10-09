@@ -1,0 +1,96 @@
+:host {
+  display: block;
+  min-inline-size: 0;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  inline-size: 100%;
+  min-inline-size: 0;
+  min-block-size: var(--honesty-sidebar-item-height);
+  gap: var(--honesty-sidebar-content-gap);
+  padding: var(--honesty-sidebar-item-padding-block)
+    var(--honesty-sidebar-item-padding-inline);
+  border: 0;
+  border-radius: var(--honesty-sidebar-item-radius);
+  color: var(--honesty-sidebar-group-fg);
+  background: transparent;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--honesty-sidebar-item-bg-hover);
+}
+
+button:focus-visible {
+  outline: var(--honesty-sidebar-focus-width) solid
+    var(--honesty-sidebar-focus-color);
+  outline-offset: var(--honesty-sidebar-focus-offset);
+}
+
+button:disabled {
+  color: var(--honesty-sidebar-item-fg-disabled);
+  cursor: not-allowed;
+}
+
+:host([data-sidebar-disclosure-active='true']) button {
+  color: var(--honesty-sidebar-item-fg-active);
+  background: var(--honesty-sidebar-item-bg-active);
+}
+
+.sidebar-disclosure__identity {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  min-inline-size: 0;
+  gap: var(--honesty-sidebar-content-gap);
+}
+
+.sidebar-disclosure__label {
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar-disclosure__fallback {
+  display: inline-grid;
+  place-items: center;
+  inline-size: var(--honesty-sidebar-icon-size);
+  block-size: var(--honesty-sidebar-icon-size);
+}
+
+.sidebar-disclosure__indicator {
+  flex: 0 0 auto;
+  transition: transform var(--honesty-sidebar-motion-duration)
+    var(--honesty-sidebar-motion-easing);
+}
+
+:host([data-sidebar-disclosure-collapsed='true']) button {
+  justify-content: center;
+  inline-size: var(--honesty-sidebar-compact-trigger-size);
+  block-size: var(--honesty-sidebar-compact-trigger-size);
+  min-block-size: var(--honesty-sidebar-compact-trigger-size);
+  margin-inline: auto;
+  padding: 0;
+  border-radius: 50%;
+}
+
+:host([data-sidebar-disclosure-collapsed='true'])
+  :is(.sidebar-disclosure__label, .sidebar-disclosure__badge, .sidebar-disclosure__indicator) {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-disclosure__indicator {
+    transition: none;
+  }
+}

@@ -6,6 +6,8 @@ const ROOT = process.cwd();
 const ROUTES = 'src/app/app.routes.ts';
 const REVIEW = 'src/app/review-internals/legacy-shell-batch/shell-batch.html';
 const CONTRACTS = 'src/app/controls/shell-family/shell-contracts.ts';
+const SHELL_REFERENCE = 'src/app/controls/SHELL_REFERENCE_TOPOLOGY_V2.md';
+const SIDEBAR_REFERENCE = 'src/app/controls/sidebar/ERP_SIDEBAR_REFERENCE_V1.md';
 const USER_MENU_REFERENCE = 'src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md';
 const OWNERS = [
   'breadcrumbs',
@@ -44,6 +46,8 @@ export function validateShellNavigation(files) {
   const routes = files.get(ROUTES) ?? '';
   const review = files.get(REVIEW) ?? '';
   const contracts = files.get(CONTRACTS) ?? '';
+  const shellReference = files.get(SHELL_REFERENCE) ?? '';
+  const sidebarReference = files.get(SIDEBAR_REFERENCE) ?? '';
   const sources = OWNERS.map(
     (owner) => files.get(`src/app/controls/${owner}/${owner}.ts`) ?? '',
   ).join('\n');
@@ -100,6 +104,36 @@ export function validateShellNavigation(files) {
   const appShell = files.get('src/app/controls/app-shell/app-shell.html') ?? '';
   if (!appShell.includes('<erp-sidebar') || !appShell.includes('<erp-topbar')) {
     errors.push('ErpAppShell must compose ErpSidebar and ErpTopbar');
+  }
+
+  const sidebar = `${files.get('src/app/controls/sidebar/sidebar.ts') ?? ''}\n${files.get('src/app/controls/sidebar/sidebar.html') ?? ''}`;
+  const sidebarTokens = files.get(
+    'src/styles/foundation/components/sidebar/_tokens.scss',
+  ) ?? '';
+  for (const contract of [
+    'readonly collapsed = model(false)',
+    'readonly expandedIds = model<readonly string[]>([])',
+    'ErpSidebarDisclosure',
+    'ErpSidebarLink',
+    'ErpIconButton',
+    'ErpTooltip',
+    'data-sidebar-active-ancestor',
+  ]) {
+    if (!sidebar.includes(contract)) {
+      errors.push(`ErpSidebar reference contract is missing: ${contract}`);
+    }
+  }
+  for (const referenceValue of ['16.875rem', '3.75rem', '2.5rem']) {
+    if (!sidebarTokens.includes(referenceValue)) {
+      errors.push(`ErpSidebar reference geometry token is missing: ${referenceValue}`);
+    }
+  }
+  if (
+    !shellReference.includes('00905891AF3FE58429227E5099688480DBB78BA8843D5930D0962A1525304542') ||
+    !shellReference.includes('1EFFE6A3ADC2613EC19612699E567C38E5457997E342333B0686F70D63A3AFEA') ||
+    !sidebarReference.includes('PRODUCT_OWNER_VISUAL_REVIEW_PENDING')
+  ) {
+    errors.push('ErpSidebar reference register, source hashes, and visual-review status must remain current');
   }
 
   const branchSelector = `${files.get('src/app/controls/branch-selector/branch-selector.ts') ?? ''}\n${files.get('src/app/controls/branch-selector/branch-selector.html') ?? ''}`;
@@ -249,6 +283,8 @@ function validFixture(overrides = new Map()) {
     [ROUTES, "path: 'controls/shell-batch'"],
     [REVIEW, '<erp-app-shell></erp-app-shell>'],
     [CONTRACTS, 'export interface ErpNavigationItem {} export interface ErpBreadcrumbItem {} export interface ErpShellUserSummary { email?: string; roleLabel?: string; branchLabel?: string; avatarPresence?: string; } export interface ErpBranchOption {} export interface ErpNotificationSummary {}'],
+    [SHELL_REFERENCE, '00905891AF3FE58429227E5099688480DBB78BA8843D5930D0962A1525304542 1EFFE6A3ADC2613EC19612699E567C38E5457997E342333B0686F70D63A3AFEA'],
+    [SIDEBAR_REFERENCE, 'PRODUCT_OWNER_VISUAL_REVIEW_PENDING'],
     [USER_MENU_REFERENCE, '75F64AE955800ABE9FCBE27D7B09161D95E2DE2C77B6106C337AA4841D39D399 1EFFE6A3ADC2613EC19612699E567C38E5457997E342333B0686F70D63A3AFEA'],
   ]);
 
@@ -269,6 +305,18 @@ function validFixture(overrides = new Map()) {
   files.set(
     'src/app/controls/app-shell/app-shell.html',
     '<erp-topbar></erp-topbar><erp-sidebar></erp-sidebar>',
+  );
+  files.set(
+    'src/app/controls/sidebar/sidebar.ts',
+    'import {ErpSidebarDisclosure} from "x"; import {ErpSidebarLink} from "w"; import {ErpIconButton} from "y"; import {ErpTooltip} from "z"; export class ErpSidebar { readonly collapsed = model(false); readonly expandedIds = model<readonly string[]>([]); }',
+  );
+  files.set(
+    'src/app/controls/sidebar/sidebar.html',
+    '<erp-sidebar-disclosure data-sidebar-active-ancestor></erp-sidebar-disclosure>',
+  );
+  files.set(
+    'src/styles/foundation/components/sidebar/_tokens.scss',
+    '@mixin base { --honesty-sidebar-width-expanded: 16.875rem; --honesty-sidebar-width-collapsed: 3.75rem; --honesty-sidebar-compact-trigger-size: 2.5rem; }',
   );
   files.set(
     'src/app/controls/branch-selector/branch-selector.ts',
@@ -327,6 +375,8 @@ function runSelfTest() {
     ['local theme', new Map([['src/app/controls/app-shell/app-shell.ts', 'export class ErpAppShell { readonly theme = input(); }']]), 'theme'],
     ['router ownership', new Map([['src/app/controls/app-shell/app-shell.ts', 'export class ErpAppShell { private router = inject(Router); }']]), 'router'],
     ['raw breakpoint', new Map([['src/app/controls/sidebar/sidebar.scss', '@media (max-width: 40rem) {}']]), 'Query API'],
+    ['missing Sidebar reference hash', new Map([[SHELL_REFERENCE, 'missing']]), 'reference register'],
+    ['missing Sidebar disclosure model', new Map([['src/app/controls/sidebar/sidebar.ts', 'export class ErpSidebar {}']]), 'reference contract'],
     ['missing owner', new Map([['src/app/controls/page-shell/page-shell.ts', '']]), 'Missing authorized'],
     ['manual popover', new Map([['src/app/controls/notification-bell/notification-bell.ts', 'export class ErpNotificationBell { open(){ this.surface.showPopover(); } }']]), 'overlay engine'],
     ['missing UserMenu reference', new Map([[USER_MENU_REFERENCE, 'missing']]), 'exact-reference contract'],
@@ -357,7 +407,14 @@ function runSelfTest() {
 
 function runCheck() {
   const files = new Map();
-  const fixed = [ROUTES, REVIEW, CONTRACTS, USER_MENU_REFERENCE];
+  const fixed = [
+    ROUTES,
+    REVIEW,
+    CONTRACTS,
+    SHELL_REFERENCE,
+    SIDEBAR_REFERENCE,
+    USER_MENU_REFERENCE,
+  ];
 
   for (const owner of OWNERS) {
     fixed.push(

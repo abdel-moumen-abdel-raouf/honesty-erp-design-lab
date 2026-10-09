@@ -1,5 +1,15 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current deferred visual-review queue — 2026-10-09 — Shell S2-A
+
+The Product Owner authorized technical continuation while visual review is
+temporarily deferred. `ErpSidebar` is now `TECHNICAL_VERIFIED` and
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`; this is not visual acceptance or a
+freeze. Evidence must cover expanded/collapsed hierarchy, active ancestor,
+disabled item, long Arabic labels, keyboard focus, RTL/LTR, both themes, and
+the required viewport matrix. The pre-existing `ErpUserMenu` visual status is
+unchanged. The next permitted technical unit is S2-B Topbar.
+
 ## Authoritative current review state — 2026-10-08 — UserMenu compact trigger
 
 The Product Owner explicitly rejected the preceding closed-trigger candidate.

@@ -1,5 +1,16 @@
 # Next Component Reference Batch V1
 
+## Authoritative next unit — 2026-10-09 — Shell S2-B Topbar
+
+The Product Owner authorized continued execution through the bounded Shell
+sequence without intermediate visual approval. S2-A Sidebar is technically
+verified against the source-backed Skodash contract and remains visually
+pending. The next and only current execution unit is S2-B `ErpTopbar`, including
+the documented projection mismatch correction and responsive composition. S2-C
+AppFooter, S2-D QuickActionsBar, and S2-E AppShell integration follow only after
+their preceding technical gates. No other component or application wave is
+opened.
+
 ## Authoritative current reference gate — 2026-10-08 — UserMenu compact-trigger review only
 
 No next component is authorized. `ErpUserMenu` is the sole visual candidate;

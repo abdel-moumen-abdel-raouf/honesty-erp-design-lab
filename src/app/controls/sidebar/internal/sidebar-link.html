@@ -1,0 +1,28 @@
+<a
+  data-sidebar-interactive
+  [href]="item().disabled ? null : item().href ?? '#'"
+  [attr.aria-label]="collapsed() ? item().label : null"
+  [attr.aria-current]="active() ? 'page' : null"
+  [attr.aria-disabled]="item().disabled ? 'true' : null"
+  [attr.tabindex]="item().disabled ? -1 : null"
+  (click)="activate($event)"
+>
+  @if (item().icon; as icon) {
+    <erp-icon [name]="icon" size="sm" tone="inherit" />
+  } @else {
+    <erp-text class="sidebar-link__fallback" type="span" tone="inherit" weight="medium">
+      {{ item().label.slice(0, 1) }}
+    </erp-text>
+  }
+  <erp-text class="sidebar-link__label" type="span" tone="inherit">
+    {{ item().label }}
+  </erp-text>
+  @if (item().badge; as badge) {
+    <erp-status-badge
+      class="sidebar-link__badge"
+      [label]="badge.label"
+      [tone]="badge.tone ?? 'neutral'"
+      size="sm"
+    />
+  }
+</a>

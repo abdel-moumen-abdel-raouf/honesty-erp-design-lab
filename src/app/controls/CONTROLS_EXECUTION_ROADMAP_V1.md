@@ -1,5 +1,16 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Authoritative Shell continuation — 2026-10-09
+
+The Product Owner authorized the ordered S2-A Sidebar, S2-B Topbar, S2-C
+AppFooter, S2-D QuickActionsBar, and S2-E AppShell integration wave. S2-A is
+`TECHNICAL_VERIFIED`: the existing Sidebar owns consumer-driven hierarchy,
+disclosure, active context, collapse/expansion, keyboard/focus behavior, and
+scroll containment without owning routes, permissions, or taxonomy. Its gate
+passes 122/122 files and 785/785 tests with zero warnings. Product Owner visual
+review remains pending. The exact next execution unit is S2-B Topbar; no
+component outside the authorized five-owner sequence is opened.
+
 ## Authoritative current gate — 2026-10-08 — UserMenu compact-trigger review
 
 Only the existing `ErpUserMenu` is authorized. The Product Owner-rejected

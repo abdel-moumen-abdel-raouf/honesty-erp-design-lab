@@ -9,6 +9,11 @@
           [items]="$any(value('items'))"
           [activeId]="$any(value('activeId'))"
           [label]="$any(value('label'))"
+          [collapseLabel]="$any(value('collapseLabel'))"
+          [collapsed]="$any(value('collapsed'))"
+          (collapsedChange)="recordModel('collapsed', $event)"
+          [expandedIds]="$any(value('expandedIds'))"
+          (expandedIdsChange)="recordModel('expandedIds', $event)"
           (navigationActivated)="recordEvent('navigationActivated', $event)"
         ></erp-sidebar>
     </erp-stack>

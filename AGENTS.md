@@ -1,5 +1,24 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Shell Continuation State — 2026-10-09
+
+The Product Owner opened a bounded ordered Shell continuation from clean live
+`main` `216fd4d36819df0adfbcdb0c599574d2b67469cd`: S2-A Sidebar,
+S2-B Topbar, S2-C AppFooter, S2-D QuickActionsBar, then S2-E minimum AppShell
+integration. This supersedes historical "S2 closed" language only for those
+owners. Intermediate visual approvals are deferred; every stage still requires
+its technical gate and remains `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+
+S2-A retains `ErpSidebar` and adds controlled collapse/expansion, hierarchical
+disclosure distinct from navigation, active-ancestor context, badges, disabled
+semantics, long-label containment, vertical keyboard traversal, and a single
+scroll owner. Verified reference dimensions are 270 px expanded, 60 px
+collapsed, 60 px header, and 40 px compact triggers. Consumers still own
+taxonomy, permissions, filtering, and route effects. Technical verification
+passes 122/122 files and 785/785 tests, all governance/typechecks, production
+build, and zero warnings. The next authorized unit is S2-B Topbar; preserve
+ErpUserMenu and every other visual owner unchanged.
+
 ## Current Shell S1 Compact UserMenu Trigger State
 
 The Product Owner rejected the preceding closed `ErpUserMenu` trigger at clean

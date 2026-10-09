@@ -1,5 +1,22 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Shell continuation authorization and S2-A decision — 2026-10-09
+
+The former prohibition on starting S2 is superseded only for the ordered
+Sidebar, Topbar, AppFooter, QuickActionsBar, and minimum AppShell integration
+wave. Visual acceptance is deferred, not granted. Each owner must keep separate
+`TECHNICAL_VERIFIED` and `PRODUCT_OWNER_VISUAL_REVIEW_PENDING` states.
+
+Sidebar taxonomy, filtering, permissions, and navigation remain consumer-owned.
+`ErpSidebar` owns only presentation and intent: typed hierarchy, disclosure,
+active context, collapse/expansion, keyboard/focus behavior, and scrolling.
+The verified Skodash physical contract is 270 px expanded, 60 px collapsed,
+60 px header, and 40 px compact triggers; colors and fonts remain Honesty ERP
+system-owned. Internal `ErpSidebarDisclosure` and `ErpSidebarLink` are bounded
+semantic owners and are not public navigation engines. No vendor runtime,
+Bootstrap class, fixed taxonomy, router, permission, or local theme ownership
+is permitted.
+
 ## Shell S1 compact-trigger binding decision — 2026-10-08
 
 The closed `ErpUserMenu` trigger has a maximum of three direct identity rows:
