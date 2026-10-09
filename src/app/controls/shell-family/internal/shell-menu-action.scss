@@ -1,0 +1,57 @@
+@use '../../../../styles/foundation/components/shell-menu-action' as tokens;
+
+:host {
+  @include tokens.base;
+  display: block;
+  min-inline-size: 0;
+}
+
+button {
+  display: block;
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-inline-size: 0;
+  padding: var(--honesty-shell-menu-action-row-padding);
+  color: var(--honesty-shell-menu-action-fg);
+  background: var(--honesty-shell-menu-action-bg);
+  border: 0;
+  border-radius: var(--honesty-shell-menu-action-radius);
+  font: inherit;
+  text-align: inherit;
+  cursor: pointer;
+  transition:
+    background-color var(--honesty-shell-menu-action-transition-duration)
+      var(--honesty-shell-menu-action-transition-easing),
+    color var(--honesty-shell-menu-action-transition-duration)
+      var(--honesty-shell-menu-action-transition-easing);
+}
+
+:host([data-shell-menu-action-presentation='tile']) button {
+  block-size: 100%;
+  padding: var(--honesty-shell-menu-action-tile-padding);
+  text-align: center;
+}
+
+:host([data-shell-menu-action-unread='true']) button {
+  background: var(--honesty-shell-menu-action-bg-unread);
+}
+
+button:hover:not(:disabled) {
+  background: var(--honesty-shell-menu-action-bg-hover);
+}
+
+button:focus-visible {
+  outline: var(--honesty-shell-menu-action-focus-ring);
+  outline-offset: -2px;
+}
+
+button:disabled {
+  color: var(--honesty-shell-menu-action-fg-disabled);
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button {
+    transition: none;
+  }
+}

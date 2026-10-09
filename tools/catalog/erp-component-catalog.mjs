@@ -19,6 +19,7 @@ const INTERNAL_COMPONENTS = new Set([
   'ErpOverlayHost',
   'ErpSidebarDisclosure',
   'ErpSidebarLink',
+  'ErpShellMenuAction',
   'ErpTooltipContent',
 ]);
 
@@ -55,6 +56,7 @@ const ARABIC_COMPONENT_METADATA = new Map([
   ['icon-button', ['زر أيقونة', 'إجراء مختصر بأيقونة وتسمية وصول.']],
   ['split-button', ['زر منقسم', 'إجراء أساسي مع قائمة إجراءات إضافية.']],
   ['app-shell', ['إطار تطبيق ERP', 'تكوين إطار التطبيق من الشريط العلوي والشريط الجانبي والمحتوى.']],
+  ['applications-menu', ['قائمة التطبيقات', 'قائمة تطبيقات ومجالات ERP يحددها المستهلك.']],
   ['app-footer', ['تذييل التطبيق', 'معلومات التطبيق والحالة والإجراءات المساعدة ضمن إطار ERP.']],
   ['branch-selector', ['محدد الفرع', 'اختيار فرع مضبوط يتحكم فيه المستهلك.']],
   ['global-search', ['البحث العام', 'بحث عام داخل إطار التطبيق مع نتائج مصنفة.']],
@@ -192,7 +194,7 @@ const CATEGORY_GROUPS = [
     'erp-page', 'erp-page-header', 'erp-page-shell',
   ])],
   ['Application Shell', new Set([
-    'erp-app-footer', 'erp-app-shell', 'erp-branch-selector', 'erp-global-search',
+    'erp-app-footer', 'erp-app-shell', 'erp-applications-menu', 'erp-branch-selector', 'erp-global-search',
     'erp-notification-bell', 'erp-quick-actions-bar', 'erp-topbar', 'erp-user-menu',
   ])],
 ];
@@ -354,6 +356,26 @@ const FIXTURE_INPUTS = new Map([
       actions: [{id: 'support', label: 'الدعم', icon: 'help'}],
     },
   }],
+  ['ErpApplicationsMenu', {
+    groups: [
+      {
+        id: 'core',
+        label: 'تطبيقات ERP',
+        items: [
+          {id: 'sales', label: 'المبيعات', icon: 'shopping-cart'},
+          {id: 'inventory', label: 'المخزون', icon: 'inventory'},
+          {id: 'finance', label: 'المالية', icon: 'wallet'},
+          {id: 'customers', label: 'العملاء', icon: 'customer'},
+          {id: 'people', label: 'الموارد البشرية', icon: 'people'},
+          {id: 'reports', label: 'التقارير', icon: 'chart'},
+          {id: 'operations', label: 'العمليات', icon: 'operations'},
+          {id: 'files', label: 'المستندات', icon: 'folder'},
+          {id: 'settings', label: 'الإعدادات', icon: 'settings', disabled: true},
+        ],
+      },
+    ],
+    open: true,
+  }],
   ['ErpAvatar', {name: 'أميرة حداد'}],
   ['ErpBranchSelector', {branches: [{id: 'cairo', label: 'فرع القاهرة'}]}],
   ['ErpBreadcrumbs', {items: [{id: 'home', label: 'الرئيسية', href: '/'}]}],
@@ -498,7 +520,7 @@ const FACET_NAMES = [
 ];
 
 export const NATIVE_ELEMENT_COVERAGE = [
-  {tag: 'button', policy: 'GLOBAL_OWNER_ONLY', owners: ['ErpButton', 'ErpIconButton', 'ErpFab', 'ErpExtendedFab', 'ErpFieldTrigger', 'ErpTabTrigger', 'ErpSortTrigger', 'ErpAvatarAction', 'ErpStatusBadgeAction', 'ErpTableResizeHandle', 'ErpSelectionTile', 'ErpAvatarPickerTile', 'ErpSidebarDisclosure'], allowedPaths: [
+  {tag: 'button', policy: 'GLOBAL_OWNER_ONLY', owners: ['ErpButton', 'ErpIconButton', 'ErpFab', 'ErpExtendedFab', 'ErpFieldTrigger', 'ErpTabTrigger', 'ErpSortTrigger', 'ErpAvatarAction', 'ErpStatusBadgeAction', 'ErpTableResizeHandle', 'ErpSelectionTile', 'ErpAvatarPickerTile', 'ErpSidebarDisclosure', 'ErpShellMenuAction'], allowedPaths: [
     'src/app/controls/avatar-picker/internal/avatar-picker-tile.html',
     'src/app/controls/avatar/internal/avatar-action.html',
     'src/app/controls/button/button.html',
@@ -509,6 +531,7 @@ export const NATIVE_ELEMENT_COVERAGE = [
     'src/app/controls/select/internal/select-action.html',
     'src/app/controls/selection-family/internal/selection-tile.html',
     'src/app/controls/sidebar/internal/sidebar-disclosure.html',
+    'src/app/controls/shell-family/internal/shell-menu-action.html',
     'src/app/controls/sort-header/internal/sort-trigger.html',
     'src/app/controls/status-badge/internal/status-badge-action.html',
     'src/app/controls/table/internal/table-resize-handle.html',

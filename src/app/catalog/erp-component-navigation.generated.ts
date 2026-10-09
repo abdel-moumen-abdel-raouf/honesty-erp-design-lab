@@ -92,6 +92,16 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "purpose": "Owns the public ERP app footer semantic and presentation contract."
   },
   {
+    "id": "applications-menu",
+    "className": "ErpApplicationsMenu",
+    "selector": "erp-applications-menu",
+    "category": "Application Shell",
+    "showcaseRoute": "/components/applications-menu",
+    "displayNameAr": "قائمة التطبيقات",
+    "descriptionAr": "قائمة تطبيقات ومجالات ERP يحددها المستهلك.",
+    "purpose": "Owns the public ERP applications menu semantic and presentation contract."
+  },
+  {
     "id": "app-shell",
     "className": "ErpAppShell",
     "selector": "erp-app-shell",

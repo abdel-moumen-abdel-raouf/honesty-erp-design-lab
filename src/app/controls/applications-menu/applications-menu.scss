@@ -1,0 +1,73 @@
+@use '../../../styles/foundation/components/applications-menu' as tokens;
+
+:host {
+  @include tokens.base;
+  display: inline-block;
+  position: relative;
+}
+
+.applications-menu__trigger {
+  display: inline-flex;
+}
+
+.applications-menu__surface {
+  position: fixed;
+  inset: auto;
+  box-sizing: border-box;
+  inline-size: min(
+    var(--honesty-applications-menu-popup-width),
+    calc(100vw - 2 * var(--honesty-applications-menu-viewport-inset))
+  );
+  margin: 0;
+  padding: var(--honesty-applications-menu-popup-padding);
+  overflow: visible;
+  color: var(--honesty-applications-menu-fg);
+  background: var(--honesty-applications-menu-bg);
+  border: var(--honesty-applications-menu-border-width) solid
+    var(--honesty-applications-menu-border-color);
+  border-radius: var(--honesty-applications-menu-popup-radius);
+  box-shadow: var(--honesty-applications-menu-popup-shadow);
+  z-index: var(--honesty-applications-menu-layer);
+  animation: applications-menu-enter var(--honesty-applications-menu-motion-duration)
+    var(--honesty-applications-menu-motion-easing) both;
+}
+
+
+.applications-menu__group {
+  display: grid;
+  gap: var(--honesty-applications-menu-group-gap);
+}
+
+.applications-menu__group + .applications-menu__group {
+  margin-block-start: var(--honesty-applications-menu-group-gap);
+  padding-block-start: var(--honesty-applications-menu-group-gap);
+  border-block-start: var(--honesty-applications-menu-border-width) solid
+    var(--honesty-applications-menu-border-color);
+}
+
+.applications-menu__grid {
+  display: grid;
+  grid-template-columns: repeat(
+    var(--honesty-applications-menu-grid-columns),
+    minmax(0, 1fr)
+  );
+  gap: var(--honesty-applications-menu-grid-gap);
+}
+
+.applications-menu__item {
+  display: flex;
+  min-inline-size: 0;
+  align-items: center;
+  flex-direction: column;
+  gap: var(--honesty-applications-menu-copy-gap);
+}
+
+.applications-menu__icon {
+  display: grid;
+  inline-size: var(--honesty-applications-menu-icon-size);
+  block-size: var(--honesty-applications-menu-icon-size);
+  place-items: center;
+  color: var(--honesty-applications-menu-icon-fg);
+  background: var(--honesty-applications-menu-icon-bg);
+  border-radius: 50%;
+}

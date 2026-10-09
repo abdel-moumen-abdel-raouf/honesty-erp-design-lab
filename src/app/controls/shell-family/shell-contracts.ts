@@ -63,6 +63,32 @@ export interface ErpNotificationSummary {
   readonly disabled?: boolean;
 }
 
+export interface ErpApplicationMenuItem {
+  readonly id: string;
+  readonly label: string;
+  readonly icon: ErpIconName;
+  readonly description?: string;
+  readonly badge?: ErpNavigationBadge;
+  readonly disabled?: boolean;
+}
+
+export interface ErpApplicationMenuGroup {
+  readonly id: string;
+  readonly label?: string;
+  readonly items: readonly ErpApplicationMenuItem[];
+}
+
+export interface ErpMessageSummary {
+  readonly id: string;
+  readonly senderName: string;
+  readonly preview: string;
+  readonly timestamp: string;
+  readonly avatarSrc?: string;
+  readonly fallbackIcon?: ErpIconName;
+  readonly read?: boolean;
+  readonly disabled?: boolean;
+}
+
 export interface ErpUserMenuItem {
   readonly id: string;
   readonly label: string;

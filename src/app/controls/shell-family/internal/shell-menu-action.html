@@ -1,0 +1,8 @@
+<button
+  type="button"
+  [disabled]="disabled()"
+  [attr.aria-label]="label()"
+  (click)="activate()"
+>
+  <ng-content />
+</button>

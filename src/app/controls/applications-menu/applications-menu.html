@@ -1,0 +1,54 @@
+<div class="applications-menu__trigger">
+  <erp-tooltip [text]="label()" placement="bottom">
+    <erp-icon-button
+      #trigger
+      icon="operations"
+      [label]="label()"
+      ariaHasPopup="dialog"
+      [ariaControls]="surfaceId"
+      [ariaExpanded]="open()"
+      (pressed)="toggle()"
+    />
+  </erp-tooltip>
+</div>
+
+<section
+  #surface
+  class="applications-menu__surface"
+  popover="manual"
+  role="dialog"
+  [id]="surfaceId"
+  [attr.aria-label]="label()"
+  (keydown)="handleKeyboard($event)"
+>
+  @for (group of groups(); track group.id) {
+    <section class="applications-menu__group" [attr.aria-label]="group.label ?? null">
+      @if (group.label) {
+        <erp-text type="caption" tone="secondary">{{ group.label }}</erp-text>
+      }
+      <div class="applications-menu__grid">
+        @for (item of group.items; track item.id) {
+          <erp-shell-menu-action
+            presentation="tile"
+            [label]="item.label"
+            [disabled]="item.disabled ?? false"
+            (activated)="activate(item)"
+          >
+            <span class="applications-menu__item">
+              <span class="applications-menu__icon" aria-hidden="true">
+                <erp-icon [name]="item.icon" size="lg" tone="brand-primary" />
+              </span>
+              <erp-text type="caption">{{ item.label }}</erp-text>
+              @if (item.description) {
+                <erp-text type="caption" tone="secondary">{{ item.description }}</erp-text>
+              }
+              @if (item.badge; as badge) {
+                <erp-status-badge [label]="badge.label" [tone]="badge.tone ?? 'neutral'" size="sm" />
+              }
+            </span>
+          </erp-shell-menu-action>
+        }
+      </div>
+    </section>
+  }
+</section>

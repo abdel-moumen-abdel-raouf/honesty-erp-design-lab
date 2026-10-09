@@ -1,0 +1,25 @@
+@mixin base {
+  --honesty-applications-menu-bg: var(--honesty-color-surface-elevated);
+  --honesty-applications-menu-fg: var(--honesty-color-text-primary);
+  --honesty-applications-menu-border-color: var(--honesty-border-subtle);
+  --honesty-applications-menu-icon-bg: var(--honesty-color-action-primary-subtle-bg);
+  --honesty-applications-menu-icon-fg: var(--honesty-color-action-primary-subtle-fg);
+  --honesty-applications-menu-trigger-size: 40px;
+  --honesty-applications-menu-popup-width: 360px;
+  --honesty-applications-menu-popup-padding: 8px;
+  --honesty-applications-menu-popup-radius: 10px;
+  --honesty-applications-menu-border-width: 1px;
+  --honesty-applications-menu-popup-shadow: var(--honesty-elevation-overlay);
+  --honesty-applications-menu-layer: var(--honesty-layer-overlay);
+  --honesty-applications-menu-grid-columns: 3;
+  --honesty-applications-menu-grid-gap: 4px;
+  --honesty-applications-menu-group-gap: 8px;
+  --honesty-applications-menu-icon-size: 52px;
+  --honesty-applications-menu-copy-gap: 6px;
+  --honesty-applications-menu-anchor-gap: 8px;
+  --honesty-applications-menu-viewport-inset: 8px;
+  --honesty-applications-menu-arrow-size: 13px;
+  --honesty-applications-menu-arrow-safe-inset: 16px;
+  --honesty-applications-menu-motion-duration: 600ms;
+  --honesty-applications-menu-motion-easing: cubic-bezier(0.25, 0.8, 0.25, 1);
+}

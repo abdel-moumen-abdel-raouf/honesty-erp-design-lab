@@ -22,6 +22,8 @@ const FAB_MENU_TEMPLATE =
   'src/app/controls/fab-menu/fab-menu.html';
 const NOTIFICATION_BELL_TEMPLATE =
   'src/app/controls/notification-bell/notification-bell.html';
+const APPLICATIONS_MENU_TEMPLATE =
+  'src/app/controls/applications-menu/applications-menu.html';
 const USER_MENU_TEMPLATE =
   'src/app/controls/user-menu/user-menu.html';
 const COLUMN_CHOOSER_TEMPLATE =
@@ -32,6 +34,7 @@ const APPROVED_MANUAL_POPOVER_TEMPLATES = new Set([
   SPLIT_BUTTON_TEMPLATE,
   FAB_MENU_TEMPLATE,
   NOTIFICATION_BELL_TEMPLATE,
+  APPLICATIONS_MENU_TEMPLATE,
   USER_MENU_TEMPLATE,
   COLUMN_CHOOSER_TEMPLATE,
 ]);

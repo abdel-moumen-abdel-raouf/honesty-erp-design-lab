@@ -4285,6 +4285,433 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     }
   },
   {
+    "id": "applications-menu",
+    "selector": "erp-applications-menu",
+    "className": "ErpApplicationsMenu",
+    "category": "Application Shell",
+    "classification": "PUBLIC ERP COMPONENT",
+    "sourcePath": "src/app/controls/applications-menu/applications-menu.ts",
+    "purpose": "Owns the public ERP applications menu semantic and presentation contract.",
+    "publicApi": {
+      "inputs": [
+        {
+          "name": "groups",
+          "required": true,
+          "values": [],
+          "type": "readonly ErpApplicationMenuGroup[]",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
+        },
+        {
+          "name": "label",
+          "required": false,
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "التطبيقات",
+          "defaultExpression": "'التطبيقات'"
+        }
+      ],
+      "outputs": [
+        "applicationActivated"
+      ],
+      "models": [
+        {
+          "name": "open",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
+        }
+      ]
+    },
+    "lowerLevelOwners": [
+      "ErpApplicationMenuGroup",
+      "ErpApplicationMenuItem",
+      "ErpIcon",
+      "ErpIconButton",
+      "ErpShellMenuAction",
+      "ErpStatusBadge",
+      "ErpText",
+      "ErpTooltip",
+      "erp-icon",
+      "erp-icon-button",
+      "erp-shell-menu-action",
+      "erp-status-badge",
+      "erp-text",
+      "erp-tooltip"
+    ],
+    "nativeElementsOwned": [
+      "div",
+      "section",
+      "span"
+    ],
+    "nativeCoverage": [],
+    "coverageScope": "public-consumer",
+    "showcaseRoute": "/components/applications-menu",
+    "showcaseOwnerPath": "src/app/showcase/components/applications-menu/applications-menu-showcase.ts",
+    "showcaseLoader": "applications-menu",
+    "visualReference": null,
+    "visualStatus": "PENDING",
+    "showcaseFacets": [],
+    "showcaseCases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "groups": [
+            {
+              "id": "core",
+              "label": "تطبيقات ERP",
+              "items": [
+                {
+                  "id": "sales",
+                  "label": "المبيعات",
+                  "icon": "shopping-cart"
+                },
+                {
+                  "id": "inventory",
+                  "label": "المخزون",
+                  "icon": "inventory"
+                },
+                {
+                  "id": "finance",
+                  "label": "المالية",
+                  "icon": "wallet"
+                },
+                {
+                  "id": "customers",
+                  "label": "العملاء",
+                  "icon": "customer"
+                },
+                {
+                  "id": "people",
+                  "label": "الموارد البشرية",
+                  "icon": "people"
+                },
+                {
+                  "id": "reports",
+                  "label": "التقارير",
+                  "icon": "chart"
+                },
+                {
+                  "id": "operations",
+                  "label": "العمليات",
+                  "icon": "operations"
+                },
+                {
+                  "id": "files",
+                  "label": "المستندات",
+                  "icon": "folder"
+                },
+                {
+                  "id": "settings",
+                  "label": "الإعدادات",
+                  "icon": "settings",
+                  "disabled": true
+                }
+              ]
+            }
+          ],
+          "open": true
+        }
+      },
+      {
+        "id": "open-false",
+        "label": "open: false",
+        "inputs": {
+          "groups": [
+            {
+              "id": "core",
+              "label": "تطبيقات ERP",
+              "items": [
+                {
+                  "id": "sales",
+                  "label": "المبيعات",
+                  "icon": "shopping-cart"
+                },
+                {
+                  "id": "inventory",
+                  "label": "المخزون",
+                  "icon": "inventory"
+                },
+                {
+                  "id": "finance",
+                  "label": "المالية",
+                  "icon": "wallet"
+                },
+                {
+                  "id": "customers",
+                  "label": "العملاء",
+                  "icon": "customer"
+                },
+                {
+                  "id": "people",
+                  "label": "الموارد البشرية",
+                  "icon": "people"
+                },
+                {
+                  "id": "reports",
+                  "label": "التقارير",
+                  "icon": "chart"
+                },
+                {
+                  "id": "operations",
+                  "label": "العمليات",
+                  "icon": "operations"
+                },
+                {
+                  "id": "files",
+                  "label": "المستندات",
+                  "icon": "folder"
+                },
+                {
+                  "id": "settings",
+                  "label": "الإعدادات",
+                  "icon": "settings",
+                  "disabled": true
+                }
+              ]
+            }
+          ],
+          "open": false
+        }
+      },
+      {
+        "id": "open-true",
+        "label": "open: true",
+        "inputs": {
+          "groups": [
+            {
+              "id": "core",
+              "label": "تطبيقات ERP",
+              "items": [
+                {
+                  "id": "sales",
+                  "label": "المبيعات",
+                  "icon": "shopping-cart"
+                },
+                {
+                  "id": "inventory",
+                  "label": "المخزون",
+                  "icon": "inventory"
+                },
+                {
+                  "id": "finance",
+                  "label": "المالية",
+                  "icon": "wallet"
+                },
+                {
+                  "id": "customers",
+                  "label": "العملاء",
+                  "icon": "customer"
+                },
+                {
+                  "id": "people",
+                  "label": "الموارد البشرية",
+                  "icon": "people"
+                },
+                {
+                  "id": "reports",
+                  "label": "التقارير",
+                  "icon": "chart"
+                },
+                {
+                  "id": "operations",
+                  "label": "العمليات",
+                  "icon": "operations"
+                },
+                {
+                  "id": "files",
+                  "label": "المستندات",
+                  "icon": "folder"
+                },
+                {
+                  "id": "settings",
+                  "label": "الإعدادات",
+                  "icon": "settings",
+                  "disabled": true
+                }
+              ]
+            }
+          ],
+          "open": true
+        }
+      }
+    ],
+    "displayNameAr": "قائمة التطبيقات",
+    "descriptionAr": "قائمة تطبيقات ومجالات ERP يحددها المستهلك.",
+    "showcaseInitialValues": {
+      "label": "التطبيقات",
+      "open": true,
+      "groups": [
+        {
+          "id": "core",
+          "label": "تطبيقات ERP",
+          "items": [
+            {
+              "id": "sales",
+              "label": "المبيعات",
+              "icon": "shopping-cart"
+            },
+            {
+              "id": "inventory",
+              "label": "المخزون",
+              "icon": "inventory"
+            },
+            {
+              "id": "finance",
+              "label": "المالية",
+              "icon": "wallet"
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "icon": "customer"
+            },
+            {
+              "id": "people",
+              "label": "الموارد البشرية",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "icon": "chart"
+            },
+            {
+              "id": "operations",
+              "label": "العمليات",
+              "icon": "operations"
+            },
+            {
+              "id": "files",
+              "label": "المستندات",
+              "icon": "folder"
+            },
+            {
+              "id": "settings",
+              "label": "الإعدادات",
+              "icon": "settings",
+              "disabled": true
+            }
+          ]
+        }
+      ]
+    },
+    "showcaseControls": [
+      {
+        "name": "groups",
+        "label": "groups",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "readonly ErpApplicationMenuGroup[]",
+        "options": [],
+        "initialValue": [
+          {
+            "id": "core",
+            "label": "تطبيقات ERP",
+            "items": [
+              {
+                "id": "sales",
+                "label": "المبيعات",
+                "icon": "shopping-cart"
+              },
+              {
+                "id": "inventory",
+                "label": "المخزون",
+                "icon": "inventory"
+              },
+              {
+                "id": "finance",
+                "label": "المالية",
+                "icon": "wallet"
+              },
+              {
+                "id": "customers",
+                "label": "العملاء",
+                "icon": "customer"
+              },
+              {
+                "id": "people",
+                "label": "الموارد البشرية",
+                "icon": "people"
+              },
+              {
+                "id": "reports",
+                "label": "التقارير",
+                "icon": "chart"
+              },
+              {
+                "id": "operations",
+                "label": "العمليات",
+                "icon": "operations"
+              },
+              {
+                "id": "files",
+                "label": "المستندات",
+                "icon": "folder"
+              },
+              {
+                "id": "settings",
+                "label": "الإعدادات",
+                "icon": "settings",
+                "disabled": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "label",
+        "label": "label",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "التطبيقات"
+      },
+      {
+        "name": "open",
+        "label": "open",
+        "source": "model",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": true
+      }
+    ],
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "groups",
+        "label"
+      ],
+      "coveredModels": [
+        "open"
+      ],
+      "coveredOutputs": [
+        "applicationActivated"
+      ],
+      "coveredValues": {},
+      "coveredStates": [],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "INTERACTIVE_OUTPUT"
+    }
+  },
+  {
     "id": "app-shell",
     "selector": "erp-app-shell",
     "className": "ErpAppShell",
@@ -33720,6 +34147,90 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null
   },
   {
+    "id": "shell-menu-action",
+    "selector": "erp-shell-menu-action",
+    "className": "ErpShellMenuAction",
+    "category": "Internal Owners",
+    "classification": "INTERNAL SEMANTIC OWNER",
+    "sourcePath": "src/app/controls/shell-family/internal/shell-menu-action.ts",
+    "purpose": "Owns bounded internal shell menu action semantics for its parent ERP component.",
+    "publicApi": {
+      "inputs": [
+        {
+          "name": "label",
+          "required": true,
+          "values": [],
+          "type": "string",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
+        },
+        {
+          "name": "disabled",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
+        },
+        {
+          "name": "unread",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
+        },
+        {
+          "name": "presentation",
+          "required": false,
+          "values": [
+            "row",
+            "tile"
+          ],
+          "type": "ErpShellMenuActionPresentation",
+          "hasDefault": true,
+          "defaultValue": "row",
+          "defaultExpression": "'row'"
+        }
+      ],
+      "outputs": [
+        "activated"
+      ],
+      "models": []
+    },
+    "lowerLevelOwners": [
+      "ErpShellMenuActionPresentation"
+    ],
+    "nativeElementsOwned": [
+      "button"
+    ],
+    "nativeCoverage": [],
+    "coverageScope": "parent-owner-only",
+    "showcaseRoute": null,
+    "showcaseOwnerPath": null,
+    "showcaseLoader": null,
+    "visualReference": null,
+    "visualStatus": "PENDING",
+    "showcaseFacets": [
+      "disabled"
+    ],
+    "showcaseCases": [],
+    "displayNameAr": "ErpShellMenuAction",
+    "descriptionAr": "Owns bounded internal shell menu action semantics for its parent ERP component.",
+    "showcaseInitialValues": null,
+    "showcaseControls": [],
+    "showcaseCoverage": null
+  },
+  {
     "id": "sidebar-disclosure",
     "selector": "erp-sidebar-disclosure",
     "className": "ErpSidebarDisclosure",
@@ -44982,6 +45493,7 @@ export const ERP_PUBLIC_SHOWCASE_LOADERS: Readonly<Record<string, () => Promise<
   "icon-button": () => import("../showcase/components/icon-button/icon-button-showcase").then((module) => module.ErpIconButtonShowcase),
   "split-button": () => import("../showcase/components/split-button/split-button-showcase").then((module) => module.ErpSplitButtonShowcase),
   "app-footer": () => import("../showcase/components/app-footer/app-footer-showcase").then((module) => module.ErpAppFooterShowcase),
+  "applications-menu": () => import("../showcase/components/applications-menu/applications-menu-showcase").then((module) => module.ErpApplicationsMenuShowcase),
   "app-shell": () => import("../showcase/components/app-shell/app-shell-showcase").then((module) => module.ErpAppShellShowcase),
   "branch-selector": () => import("../showcase/components/branch-selector/branch-selector-showcase").then((module) => module.ErpBranchSelectorShowcase),
   "global-search": () => import("../showcase/components/global-search/global-search-showcase").then((module) => module.ErpGlobalSearchShowcase),

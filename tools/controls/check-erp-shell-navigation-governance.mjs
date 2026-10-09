@@ -28,6 +28,7 @@ const OWNERS = [
   'quick-actions-bar',
   'user-menu',
   'app-shell',
+  'applications-menu',
 ];
 
 function normalize(value) {

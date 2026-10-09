@@ -1,0 +1,13 @@
+@mixin base {
+  --honesty-shell-menu-action-bg: transparent;
+  --honesty-shell-menu-action-bg-hover: var(--honesty-color-action-neutral-subtle-bg-hover);
+  --honesty-shell-menu-action-bg-unread: var(--honesty-color-action-primary-subtle-bg);
+  --honesty-shell-menu-action-fg: var(--honesty-color-text-primary);
+  --honesty-shell-menu-action-fg-disabled: var(--honesty-color-text-disabled);
+  --honesty-shell-menu-action-focus-ring: var(--honesty-focus-ring);
+  --honesty-shell-menu-action-radius: 8px;
+  --honesty-shell-menu-action-row-padding: 8px;
+  --honesty-shell-menu-action-tile-padding: 8px 4px;
+  --honesty-shell-menu-action-transition-duration: 180ms;
+  --honesty-shell-menu-action-transition-easing: ease;
+}

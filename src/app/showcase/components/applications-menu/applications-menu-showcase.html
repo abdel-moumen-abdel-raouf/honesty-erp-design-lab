@@ -1,0 +1,28 @@
+<erp-stack gap="default" data-dedicated-showcase="applications-menu" data-showcase-sections="1">
+  <erp-text type="heading-2">قائمة التطبيقات</erp-text>
+  <erp-text type="paragraph" tone="secondary">قائمة تطبيقات ومجالات ERP يحددها المستهلك.</erp-text>
+  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-applications-menu
+          data-showcase-target
+          [groups]="$any(value('groups'))"
+          [label]="$any(value('label'))"
+          [open]="$any(value('open'))"
+          (openChange)="recordModel('open', $event)"
+          (applicationActivated)="recordEvent('applicationActivated', $event)"
+        ></erp-applications-menu>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>
