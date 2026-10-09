@@ -1,5 +1,16 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current Product Owner visual-review item — 2026-10-09 — UserMenu trigger correction
+
+`ErpUserMenu` is `TECHNICAL_VERIFIED` and
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. The latest trigger candidate supersedes
+the hidden-trigger-badge/secondary-text anatomy: name, email and role/branch
+badges are the only closed identity rows, with a 60 px Avatar matching the
+identity stack. Evidence is indexed at
+`docs/review-evidence/erp-user-menu/final-trigger-v2/`. No visual acceptance is
+recorded. The Sidebar, Topbar, AppFooter, QuickActionsBar and AppShell review
+queue remains pending and unchanged.
+
 ## Current deferred visual-review queue — 2026-10-09 — complete Shell S2 wave
 
 `ErpSidebar`, `ErpTopbar`, `ErpAppFooter`, `ErpQuickActionsBar`, and the

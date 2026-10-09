@@ -1,5 +1,22 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Authoritative current execution state — 2026-10-09 — UserMenu final trigger correction
+
+The Product Owner reopened only the closed `ErpUserMenu` trigger from clean
+`main` `76a0893f8c647363833ac32a58685450507055c8`. The candidate now has name,
+email, then role/branch badges in one third row; `secondaryText` is popup-only.
+Both trigger-specific badge gates default true, the bounded trigger Avatar is
+60 x 60 px against a 60 px identity stack, and the email row inherits logical
+alignment while isolating the Latin address through `ErpText`.
+
+Focused verification passes 3/3 files and 53/53 tests. Canonical verification
+passes 124/124 files and 793/793 tests, all governance, both typechecks,
+production build, and zero warnings. The 20-condition evidence under
+`docs/review-evidence/erp-user-menu/final-trigger-v2/` has zero block clipping,
+page/popup overflow, broken images, or browser diagnostics. Status remains
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`; Sidebar, Topbar, AppFooter,
+QuickActionsBar and AppShell were not changed and no later wave is authorized.
+
 ## Authoritative current execution state — 2026-10-09 — Shell S2-E complete
 
 The ordered S2-A through S2-E wave is technically complete. `ErpAppShell`

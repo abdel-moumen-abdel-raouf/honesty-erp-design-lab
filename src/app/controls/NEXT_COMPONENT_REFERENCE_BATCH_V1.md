@@ -1,5 +1,13 @@
 # Next Component Reference Batch V1
 
+## Authoritative next action — 2026-10-09 — corrected UserMenu visual review
+
+The final closed-trigger correction is technically verified at 124/124 files
+and 793/793 tests. Product Owner review must use
+`docs/review-evidence/erp-user-menu/final-trigger-v2/`. No next component,
+Shell owner, application feature, or migration batch is authorized. Existing
+S2 visual-review items remain pending and were not reopened by this task.
+
 ## Authoritative next action — 2026-10-09 — no implementation unit open
 
 The Product Owner-authorized Shell continuation through S2-E is technically

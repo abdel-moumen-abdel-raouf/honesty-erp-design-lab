@@ -4,6 +4,21 @@ Evidence date: 2026-10-08. This directory records implementation runtime
 evidence for the Product Owner review candidate. It does not record or imply
 Product Owner visual acceptance.
 
+## 2026-10-09 final closed-trigger correction
+
+The current closed-trigger evidence is under `final-trigger-v2/`. The Product
+Owner superseded the earlier hidden-trigger-badge rule: role and branch now
+default visible in the third trigger row, while legacy `secondaryText` is
+excluded from the closed trigger and remains available in the popup. The
+bounded trigger Avatar is 60 x 60 px, matching the 60 px three-row identity
+stack inside a 72 px content-driven capsule.
+
+The saved baseline/corrected measurements and full/cropped PNGs cover
+1440/768/390/320 px, Light/Dark, RTL/LTR, open/closed, image/initials/icon
+fallbacks, long identities, and independent badge controls. All corrected
+conditions record zero page/popup overflow, broken images, or browser
+diagnostics. This evidence does not declare visual acceptance.
+
 ## S1 final dark contrast and scroll ownership correction
 
 The current authoritative runtime record is

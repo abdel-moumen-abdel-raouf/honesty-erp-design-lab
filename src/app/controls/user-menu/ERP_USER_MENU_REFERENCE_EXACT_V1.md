@@ -64,40 +64,46 @@ Live identity or visibility changes while open reuse the existing anchored
 surface and request fresh measured placement. They never create a second
 overlay or restore a fixed arrow offset.
 
-## Product Owner compact-trigger correction
+## Product Owner final closed-trigger correction
 
-The Product Owner explicitly rejected the preceding closed-trigger candidate
-on 2026-10-08 because it rendered a 104--125 px capsule with four identity
-rows and default trigger badges. This bounded correction supersedes only that
-closed-trigger presentation; the open popup, arrow, vertical placement, and
-actions-only scrolling contracts remain in force.
+The Product Owner explicitly rejected the closed trigger at
+`76a0893f8c647363833ac32a58685450507055c8`. This 2026-10-09 decision
+supersedes the preceding hidden-by-default trigger-badge rule and the use of
+legacy `secondaryText` in the closed capsule. It changes no popup, arrow,
+vertical placement, action scrolling, or other Shell owner contract.
 
-- the trigger has at most three direct identity rows: display name, email, and
-  one optional metadata row;
-- `secondaryText` occupies the metadata row. When trigger badges are explicitly
-  enabled, that row uses constrained equal-width inline cells so it never
-  creates a fourth or fifth row;
-- `showRoleBadge` and `showBranchBadge` remain default-true global gates and
-  continue to show popup badges by default;
-- new default-false `showTriggerRoleBadge` and
-  `showTriggerBranchBadge` inputs independently opt the corresponding badges
-  into the closed trigger;
-- trigger padding is 6 px block / 10 px inline, Avatar-to-copy gap is 10 px,
-  copy-row gap is 1 px, metadata gap is 4 px, and the minimum capsule block
-  size is 52 px;
-- the full three-row identity renders at 60 px, yielding a 72 px capsule; a
-  name-only identity yields the 52 px minimum. The Avatar remains 40 x 40 px
-  and its measured center delta is 0 px;
-- name, email, secondary text, and opted-in badges truncate inline without
-  vertical clipping; full values remain exposed by accessible labels.
+- the closed trigger contains at most three direct identity rows: display
+  name, email, then role and branch badges in one constrained inline row;
+- `secondaryText` never renders in the closed trigger and remains independent
+  optional popup metadata. It is not reinterpreted as role, branch, or email;
+- `showRoleBadge` and `showBranchBadge` remain default-true global gates;
+- `showTriggerRoleBadge` and `showTriggerBranchBadge` now also default to true
+  and remain independent trigger-specific gates;
+- absent or disabled role/branch values reserve no empty badge or row;
+- trigger padding remains 6 px block / 10 px inline, Avatar-to-copy gap 10 px,
+  row gap 1 px, badge gap 4 px, and minimum block size 52 px;
+- the intrinsic three-row identity is 60 px (22/18/18 px). Its bounded
+  `ErpAvatar` trigger presentation is also 60 x 60 px, so the content-driven
+  default capsule is 72 px with 0 px Avatar center delta;
+- the RTL Avatar occupies logical start (physical right), while LTR mirrors it;
+- the email row inherits RTL/LTR alignment. Only its address content uses the
+  existing `ErpText` BDI/LTR presentation, preserving Latin character order
+  without forcing an LTR row;
+- long names, emails, and badges remain one-line constrained values with full
+  accessible names and no vertical clipping.
 
-The before/after browser matrix and reproducible capture script are under
-`docs/review-evidence/erp-user-menu/compact-trigger-v1/`. At 1440 px the
-default capsule changes from 360 x 104 px and four rows to 360 x 72 px and
-three rows. At 390 px it changes from 309 x 104 px to 309 x 72 px. The long
-English 320 px case changes from 239 x 125 px to 239 x 71 px. All corrected
-row client/scroll/rendered heights match, all popup edges remain contained,
-and page horizontal overflow is 0 px.
+The rejected/current before-and-after measurements, 20-condition runtime
+matrix, and full/cropped PNGs are under
+`docs/review-evidence/erp-user-menu/final-trigger-v2/`. The 1440 px capsule
+remains 360 x 72 px while the Avatar changes from 40 to 60 px and the third row
+changes from `الحساب المؤسسي` to the two badges. The 390 px capsule is
+309 x 72 px; the long-English 320 px capsule is 239 x 72 px. All corrected
+conditions record zero block clipping, page/popup overflow, broken images, or
+browser diagnostics.
+
+The earlier `compact-trigger-v1/` directory remains historical evidence for
+the prior Product Owner decision and is superseded only for current closed
+trigger anatomy and badge defaults.
 
 To retain the existing 4 kB component-style budget without changing the
 already validated arrow, its purely visual CSS is isolated in the bounded
@@ -138,9 +144,8 @@ zero measured arrow-center delta. The current machine-readable evidence is
 
 The open card order after Avatar remains name, email, role/branch badges, then
 optional legacy `secondaryText`. The compact trigger uses name, email, then one
-bounded metadata row containing optional `secondaryText` and any explicitly
-enabled trigger badges. `secondaryText` remains independent and is never
-reinterpreted as email, role, or branch.
+bounded role/branch badge row. `secondaryText` remains independent popup data
+and is never reinterpreted as email, role, or branch.
 
 ## Viewport-clamped arrow closure
 

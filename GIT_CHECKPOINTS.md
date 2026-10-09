@@ -1,5 +1,23 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Product Owner final UserMenu trigger correction — 2026-10-09
+
+Entry checkpoint:
+
+- `76a0893f8c647363833ac32a58685450507055c8` — clean `main` and
+  `origin/main` after Shell S2-E.
+
+Scoped task commit message:
+
+- `fix(shell): correct UserMenu trigger identity`
+
+Resolve the resulting SHA from live `main` because this file is part of that
+commit. Focused verification passes 3/3 files and 53/53 tests; canonical
+verification passes 124/124 files and 793/793 tests, all governance, both
+typechecks, production build, and zero warnings. Initial bundle remains 490.24
+kB / 105.58 kB estimated transfer. Twenty browser states have zero overflow,
+broken images or diagnostics. Stop for Product Owner UserMenu visual review.
+
 ## Shell S2-E AppShell integration checkpoint — 2026-10-09
 
 Entry checkpoint:

@@ -1,5 +1,15 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Authoritative bounded correction — 2026-10-09 — UserMenu trigger complete technically
+
+The Product Owner reopened only the closed UserMenu trigger after Shell S2-E.
+The technical candidate implements the required three-row name/email/badges
+anatomy, default-visible trigger badges, popup-only `secondaryText`, a 60 px
+bounded Avatar matching the identity stack, and logical email alignment with
+address isolation. The 124-file/793-test canonical gate and 20-condition
+browser matrix pass with zero warnings or diagnostics. The roadmap stops for
+Product Owner visual review; no subsequent component unit is open.
+
 ## Authoritative Shell continuation — 2026-10-09 — S2-E complete
 
 The bounded Sidebar, Topbar, AppFooter, QuickActionsBar and AppShell integration

@@ -1,0 +1,1075 @@
+{
+  "mode": "baseline",
+  "capturedAt": "2026-10-09T15:37:06.484Z",
+  "measurements": [
+    {
+      "name": "light-rtl-1440-default-closed",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "open": false,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 1016,
+          "top": 414.359375,
+          "right": 1376,
+          "bottom": 486.359375,
+          "width": 360,
+          "height": 72
+        },
+        "clientWidth": 360,
+        "clientHeight": 72,
+        "scrollWidth": 360,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 1326,
+          "top": 430.359375,
+          "right": 1366,
+          "bottom": 470.359375,
+          "width": 40,
+          "height": 40
+        },
+        "clientWidth": 40,
+        "clientHeight": 40,
+        "scrollWidth": 40,
+        "scrollHeight": 44,
+        "lineHeight": "14px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "identity": {
+        "box": {
+          "left": 1026,
+          "top": 420.359375,
+          "right": 1316,
+          "bottom": 480.359375,
+          "width": 290,
+          "height": 60
+        },
+        "clientWidth": 290,
+        "clientHeight": 60,
+        "scrollWidth": 290,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "أميرة حداد",
+          "box": {
+            "left": 1026,
+            "top": 420.359375,
+            "right": 1316,
+            "bottom": 442.359375,
+            "width": 290,
+            "height": 22
+          },
+          "clientWidth": 290,
+          "clientHeight": 22,
+          "scrollWidth": 290,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "amira.haddad@honesty.example",
+          "box": {
+            "left": 1026,
+            "top": 443.359375,
+            "right": 1316,
+            "bottom": 461.359375,
+            "width": 290,
+            "height": 18
+          },
+          "clientWidth": 290,
+          "clientHeight": 18,
+          "scrollWidth": 290,
+          "scrollHeight": 18,
+          "lineHeight": "18px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "الحساب المؤسسي",
+          "box": {
+            "left": 1026,
+            "top": 462.359375,
+            "right": 1316,
+            "bottom": 480.359375,
+            "width": 290,
+            "height": 18
+          },
+          "clientWidth": 290,
+          "clientHeight": 18,
+          "scrollWidth": 290,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": true,
+      "emailPresentation": {
+        "direction": "ltr",
+        "textAlign": "start",
+        "unicodeBidi": "isolate"
+      },
+      "triggerBadges": 0,
+      "popupBadges": 2,
+      "surface": null,
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "top",
+      "surfaceOverflow": null,
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 998,
+        "y": 462.359375,
+        "width": 396,
+        "height": 108,
+        "scale": 1
+      }
+    },
+    {
+      "name": "dark-rtl-1440-default-closed",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "rtl",
+      "open": false,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 1016,
+          "top": 414.359375,
+          "right": 1376,
+          "bottom": 486.359375,
+          "width": 360,
+          "height": 72
+        },
+        "clientWidth": 360,
+        "clientHeight": 72,
+        "scrollWidth": 360,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 1326,
+          "top": 430.359375,
+          "right": 1366,
+          "bottom": 470.359375,
+          "width": 40,
+          "height": 40
+        },
+        "clientWidth": 40,
+        "clientHeight": 40,
+        "scrollWidth": 40,
+        "scrollHeight": 44,
+        "lineHeight": "14px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "identity": {
+        "box": {
+          "left": 1026,
+          "top": 420.359375,
+          "right": 1316,
+          "bottom": 480.359375,
+          "width": 290,
+          "height": 60
+        },
+        "clientWidth": 290,
+        "clientHeight": 60,
+        "scrollWidth": 290,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "أميرة حداد",
+          "box": {
+            "left": 1026,
+            "top": 420.359375,
+            "right": 1316,
+            "bottom": 442.359375,
+            "width": 290,
+            "height": 22
+          },
+          "clientWidth": 290,
+          "clientHeight": 22,
+          "scrollWidth": 290,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "amira.haddad@honesty.example",
+          "box": {
+            "left": 1026,
+            "top": 443.359375,
+            "right": 1316,
+            "bottom": 461.359375,
+            "width": 290,
+            "height": 18
+          },
+          "clientWidth": 290,
+          "clientHeight": 18,
+          "scrollWidth": 290,
+          "scrollHeight": 18,
+          "lineHeight": "18px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "الحساب المؤسسي",
+          "box": {
+            "left": 1026,
+            "top": 462.359375,
+            "right": 1316,
+            "bottom": 480.359375,
+            "width": 290,
+            "height": 18
+          },
+          "clientWidth": 290,
+          "clientHeight": 18,
+          "scrollWidth": 290,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": true,
+      "emailPresentation": {
+        "direction": "ltr",
+        "textAlign": "start",
+        "unicodeBidi": "isolate"
+      },
+      "triggerBadges": 0,
+      "popupBadges": 2,
+      "surface": null,
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "top",
+      "surfaceOverflow": null,
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 998,
+        "y": 462.359375,
+        "width": 396,
+        "height": 108,
+        "scale": 1
+      }
+    },
+    {
+      "name": "dark-ltr-1440-default-closed",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "open": false,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 49,
+          "top": 414.359375,
+          "right": 409,
+          "bottom": 486.359375,
+          "width": 360,
+          "height": 72
+        },
+        "clientWidth": 360,
+        "clientHeight": 72,
+        "scrollWidth": 360,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 59,
+          "top": 430.359375,
+          "right": 99,
+          "bottom": 470.359375,
+          "width": 40,
+          "height": 40
+        },
+        "clientWidth": 40,
+        "clientHeight": 40,
+        "scrollWidth": 44,
+        "scrollHeight": 44,
+        "lineHeight": "14px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": true,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "identity": {
+        "box": {
+          "left": 109,
+          "top": 420.359375,
+          "right": 399,
+          "bottom": 480.359375,
+          "width": 290,
+          "height": 60
+        },
+        "clientWidth": 290,
+        "clientHeight": 60,
+        "scrollWidth": 290,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "أميرة حداد",
+          "box": {
+            "left": 109,
+            "top": 420.359375,
+            "right": 399,
+            "bottom": 442.359375,
+            "width": 290,
+            "height": 22
+          },
+          "clientWidth": 290,
+          "clientHeight": 22,
+          "scrollWidth": 290,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "amira.haddad@honesty.example",
+          "box": {
+            "left": 109,
+            "top": 443.359375,
+            "right": 399,
+            "bottom": 461.359375,
+            "width": 290,
+            "height": 18
+          },
+          "clientWidth": 290,
+          "clientHeight": 18,
+          "scrollWidth": 290,
+          "scrollHeight": 18,
+          "lineHeight": "18px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "الحساب المؤسسي",
+          "box": {
+            "left": 109,
+            "top": 462.359375,
+            "right": 399,
+            "bottom": 480.359375,
+            "width": 290,
+            "height": 18
+          },
+          "clientWidth": 290,
+          "clientHeight": 18,
+          "scrollWidth": 290,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": true,
+      "emailPresentation": {
+        "direction": "ltr",
+        "textAlign": "start",
+        "unicodeBidi": "isolate"
+      },
+      "triggerBadges": 0,
+      "popupBadges": 2,
+      "surface": null,
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "top",
+      "surfaceOverflow": null,
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 31,
+        "y": 462.359375,
+        "width": 396,
+        "height": 108,
+        "scale": 1
+      }
+    },
+    {
+      "name": "light-rtl-768-mixed-closed",
+      "viewport": {
+        "width": 768,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "open": false,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 352,
+          "top": 414.359375,
+          "right": 712,
+          "bottom": 486.359375,
+          "width": 360,
+          "height": 72
+        },
+        "clientWidth": 360,
+        "clientHeight": 72,
+        "scrollWidth": 360,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 662,
+          "top": 430.359375,
+          "right": 702,
+          "bottom": 470.359375,
+          "width": 40,
+          "height": 40
+        },
+        "clientWidth": 40,
+        "clientHeight": 40,
+        "scrollWidth": 40,
+        "scrollHeight": 44,
+        "lineHeight": "14px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "identity": {
+        "box": {
+          "left": 362,
+          "top": 420.359375,
+          "right": 652,
+          "bottom": 480.359375,
+          "width": 290,
+          "height": 60
+        },
+        "clientWidth": 290,
+        "clientHeight": 60,
+        "scrollWidth": 290,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "ليلى Mahmoud — Procurement Operations",
+          "box": {
+            "left": 362,
+            "top": 420.359375,
+            "right": 652,
+            "bottom": 442.359375,
+            "width": 290,
+            "height": 22
+          },
+          "clientWidth": 290,
+          "clientHeight": 22,
+          "scrollWidth": 317,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": true,
+          "contentExceedsBlock": false,
+          "clippedInline": true,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "leila.mahmoud@honesty.example",
+          "box": {
+            "left": 362,
+            "top": 443.359375,
+            "right": 652,
+            "bottom": 461.359375,
+            "width": 290,
+            "height": 18
+          },
+          "clientWidth": 290,
+          "clientHeight": 18,
+          "scrollWidth": 290,
+          "scrollHeight": 18,
+          "lineHeight": "18px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "المشتريات · Regional Office",
+          "box": {
+            "left": 362,
+            "top": 462.359375,
+            "right": 652,
+            "bottom": 480.359375,
+            "width": 290,
+            "height": 18
+          },
+          "clientWidth": 290,
+          "clientHeight": 18,
+          "scrollWidth": 290,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": true,
+      "emailPresentation": {
+        "direction": "ltr",
+        "textAlign": "start",
+        "unicodeBidi": "isolate"
+      },
+      "triggerBadges": 0,
+      "popupBadges": 2,
+      "surface": null,
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "top",
+      "surfaceOverflow": null,
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 334,
+        "y": 462.359375,
+        "width": 396,
+        "height": 108,
+        "scale": 1
+      }
+    },
+    {
+      "name": "dark-rtl-390-default-closed",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "rtl",
+      "open": false,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 33,
+          "top": 385.734375,
+          "right": 342,
+          "bottom": 457.734375,
+          "width": 309,
+          "height": 72
+        },
+        "clientWidth": 309,
+        "clientHeight": 72,
+        "scrollWidth": 309,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 292,
+          "top": 401.734375,
+          "right": 332,
+          "bottom": 441.734375,
+          "width": 40,
+          "height": 40
+        },
+        "clientWidth": 40,
+        "clientHeight": 40,
+        "scrollWidth": 40,
+        "scrollHeight": 44,
+        "lineHeight": "14px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "identity": {
+        "box": {
+          "left": 43,
+          "top": 391.734375,
+          "right": 282,
+          "bottom": 451.734375,
+          "width": 239,
+          "height": 60
+        },
+        "clientWidth": 239,
+        "clientHeight": 60,
+        "scrollWidth": 239,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "أميرة حداد",
+          "box": {
+            "left": 43,
+            "top": 391.734375,
+            "right": 282,
+            "bottom": 413.734375,
+            "width": 239,
+            "height": 22
+          },
+          "clientWidth": 239,
+          "clientHeight": 22,
+          "scrollWidth": 239,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "amira.haddad@honesty.example",
+          "box": {
+            "left": 43,
+            "top": 414.734375,
+            "right": 282,
+            "bottom": 432.734375,
+            "width": 239,
+            "height": 18
+          },
+          "clientWidth": 239,
+          "clientHeight": 18,
+          "scrollWidth": 239,
+          "scrollHeight": 18,
+          "lineHeight": "18px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "الحساب المؤسسي",
+          "box": {
+            "left": 43,
+            "top": 433.734375,
+            "right": 282,
+            "bottom": 451.734375,
+            "width": 239,
+            "height": 18
+          },
+          "clientWidth": 239,
+          "clientHeight": 18,
+          "scrollWidth": 239,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": true,
+      "emailPresentation": {
+        "direction": "ltr",
+        "textAlign": "start",
+        "unicodeBidi": "isolate"
+      },
+      "triggerBadges": 0,
+      "popupBadges": 2,
+      "surface": null,
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "top",
+      "surfaceOverflow": null,
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 15,
+        "y": 626.734375,
+        "width": 345,
+        "height": 108,
+        "scale": 1
+      }
+    },
+    {
+      "name": "light-ltr-320-long-closed",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "theme": "light",
+      "direction": "ltr",
+      "open": false,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 33,
+          "top": 248.734375,
+          "right": 272,
+          "bottom": 319.734375,
+          "width": 239,
+          "height": 71
+        },
+        "clientWidth": 239,
+        "clientHeight": 71,
+        "scrollWidth": 239,
+        "scrollHeight": 75,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 43,
+          "top": 264.234375,
+          "right": 83,
+          "bottom": 304.234375,
+          "width": 40,
+          "height": 40
+        },
+        "clientWidth": 40,
+        "clientHeight": 40,
+        "scrollWidth": 44,
+        "scrollHeight": 44,
+        "lineHeight": "14px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": true,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "identity": {
+        "box": {
+          "left": 93,
+          "top": 254.734375,
+          "right": 262,
+          "bottom": 313.734375,
+          "width": 169,
+          "height": 59
+        },
+        "clientWidth": 169,
+        "clientHeight": 59,
+        "scrollWidth": 169,
+        "scrollHeight": 59,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 59,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "Alexandria Regional Finance Operations Manager",
+          "box": {
+            "left": 93,
+            "top": 254.734375,
+            "right": 262,
+            "bottom": 275.734375,
+            "width": 169,
+            "height": 21
+          },
+          "clientWidth": 169,
+          "clientHeight": 21,
+          "scrollWidth": 377,
+          "scrollHeight": 21,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": true,
+          "contentExceedsBlock": false,
+          "clippedInline": true,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "alexandria.finance.manager@honesty.example",
+          "box": {
+            "left": 93,
+            "top": 276.734375,
+            "right": 262,
+            "bottom": 294.734375,
+            "width": 169,
+            "height": 18
+          },
+          "clientWidth": 169,
+          "clientHeight": 18,
+          "scrollWidth": 272,
+          "scrollHeight": 18,
+          "lineHeight": "18px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": true,
+          "contentExceedsBlock": false,
+          "clippedInline": true,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "Regional finance operations",
+          "box": {
+            "left": 93,
+            "top": 295.734375,
+            "right": 262,
+            "bottom": 313.734375,
+            "width": 169,
+            "height": 18
+          },
+          "clientWidth": 169,
+          "clientHeight": 18,
+          "scrollWidth": 169,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": true,
+      "emailPresentation": {
+        "direction": "ltr",
+        "textAlign": "start",
+        "unicodeBidi": "isolate"
+      },
+      "triggerBadges": 0,
+      "popupBadges": 2,
+      "surface": null,
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "top",
+      "surfaceOverflow": null,
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 15,
+        "y": 710.734375,
+        "width": 275,
+        "height": 107,
+        "scale": 1
+      }
+    }
+  ],
+  "diagnostics": []
+}

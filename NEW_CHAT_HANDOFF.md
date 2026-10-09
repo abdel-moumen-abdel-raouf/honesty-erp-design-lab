@@ -1,5 +1,20 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Authoritative current handoff — 2026-10-09 — UserMenu final trigger candidate
+
+Only the closed `ErpUserMenu` trigger was reopened. Its live default now shows
+a logical-start 60 px Avatar beside exactly three maximum rows: name, email,
+then role/branch badges. Both trigger badge controls default true;
+`secondaryText` remains available only in the open popup. Popup geometry,
+vertical placement, arrow tracking, action-only scrolling and interactions are
+unchanged.
+
+Canonical verification passes 124/124 files and 793/793 tests with zero
+warnings. Review the full/cropped screenshots and measurements at
+`docs/review-evidence/erp-user-menu/final-trigger-v2/`. The result remains
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. The completed S2 technical checkpoints
+remain intact; no additional Shell owner or component wave is authorized.
+
 ## Authoritative current handoff — 2026-10-09 — Shell S2 wave complete
 
 S2-A Sidebar, S2-B Topbar, S2-C AppFooter, S2-D QuickActionsBar and S2-E

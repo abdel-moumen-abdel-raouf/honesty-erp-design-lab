@@ -1,5 +1,18 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Current gate — 2026-10-09 — Product Owner review of corrected UserMenu trigger
+
+The latest bounded change affects only the closed `ErpUserMenu` trigger. It
+renders name, email, then default-visible role/branch badges in one third row;
+legacy `secondaryText` is popup-only. The 60 px trigger Avatar matches the
+60 px three-row stack inside a content-driven 72 px capsule. RTL/LTR email
+alignment and Latin-address isolation are separate and verified.
+
+The 124-file/793-test canonical gate, all governance/typechecks, production
+build, and zero-warning gate pass. The 20-condition browser matrix is under
+`docs/review-evidence/erp-user-menu/final-trigger-v2/`. Stop for Product Owner
+visual review. Do not mark UserMenu accepted or open another execution wave.
+
 ## Current gate — 2026-10-09 — consolidated Shell S2 visual review
 
 The explicitly authorized S2-A through S2-E execution wave is technically

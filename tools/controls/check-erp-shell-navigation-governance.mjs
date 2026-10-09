@@ -272,17 +272,18 @@ export function validateShellNavigation(files) {
     'showTriggerRoleBadge',
     'showTriggerBranchBadge',
   ]) {
-    if (!userMenu.includes(`readonly ${triggerVisibilityInput} = input(false`)) {
-      errors.push(`ErpUserMenu must expose default-false trigger-specific ${triggerVisibilityInput} visibility control`);
+    if (!userMenu.includes(`readonly ${triggerVisibilityInput} = input(true`)) {
+      errors.push(`ErpUserMenu must expose default-true trigger-specific ${triggerVisibilityInput} visibility control`);
     }
   }
   if (
     !userMenu.includes('triggerRoleVisible') ||
     !userMenu.includes('triggerBranchVisible') ||
     !userMenu.includes('user-menu__trigger-metadata') ||
-    !userMenu.includes('user-menu__badges--trigger')
+    !userMenu.includes('user-menu__badges--trigger') ||
+    userMenu.includes('user-menu__trigger-secondary')
   ) {
-    errors.push('ErpUserMenu trigger badges must remain independently gated inside the third identity row');
+    errors.push('ErpUserMenu trigger badges must remain independently gated inside the third identity row without secondary text');
   }
 
   for (const identityField of ['email?', 'roleLabel?', 'branchLabel?', 'avatarPresence?']) {
@@ -466,7 +467,7 @@ function validFixture(overrides = new Map()) {
   );
   files.set(
     'src/app/controls/user-menu/user-menu.ts',
-    "import {ErpAvatar} from 'x'; import {ErpStatusBadge} from 'b'; import {ErpDivider} from 'z'; import {ErpUserMenuArrow} from './internal/user-menu-arrow'; import {ShellAnchoredSurfaceController} from 'y'; const options = {crossAxisAlignment: 'end', arrowWidth: () => 13, arrowSafeInset: () => 16, allowedPlacements: ['bottom', 'top'], prepareGeometry: () => undefined}; export class ErpUserMenu { readonly showAvatar = input(true); readonly showUserName = input(true); readonly showEmail = input(true); readonly showPresence = input(true); readonly showRoleBadge = input(true); readonly showBranchBadge = input(true); readonly showTriggerRoleBadge = input(false); readonly showTriggerBranchBadge = input(false); triggerRoleVisible() {} triggerBranchVisible() {} }",
+    "import {ErpAvatar} from 'x'; import {ErpStatusBadge} from 'b'; import {ErpDivider} from 'z'; import {ErpUserMenuArrow} from './internal/user-menu-arrow'; import {ShellAnchoredSurfaceController} from 'y'; const options = {crossAxisAlignment: 'end', arrowWidth: () => 13, arrowSafeInset: () => 16, allowedPlacements: ['bottom', 'top'], prepareGeometry: () => undefined}; export class ErpUserMenu { readonly showAvatar = input(true); readonly showUserName = input(true); readonly showEmail = input(true); readonly showPresence = input(true); readonly showRoleBadge = input(true); readonly showBranchBadge = input(true); readonly showTriggerRoleBadge = input(true); readonly showTriggerBranchBadge = input(true); triggerRoleVisible() {} triggerBranchVisible() {} }",
   );
   files.set(
     'src/app/controls/user-menu/user-menu.html',

@@ -1,5 +1,22 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Product Owner final UserMenu trigger decision — 2026-10-09
+
+- The closed trigger order is name, email, then role and branch badges in one
+  third row. It has no fourth row.
+- `secondaryText` remains backward-compatible popup metadata and never renders
+  in the closed trigger or substitutes for `roleLabel`/`branchLabel`.
+- `showTriggerRoleBadge` and `showTriggerBranchBadge` now default true. The
+  default-true global role/branch gates remain the master visibility controls.
+- The intrinsic identity stack and bounded trigger Avatar are both 60 px; the
+  capsule remains content-driven with 6 px block padding and no fixed height.
+- The email row inherits logical alignment. Only the address content receives
+  BDI/LTR isolation through the existing ErpText owner.
+- Existing popup placement, arrow, scrolling, actions, overlays, Avatar assets,
+  other Shell owners, theme authority and quality budgets remain unchanged.
+- Automated and browser verification do not imply Product Owner visual
+  acceptance.
+
 ## Shell S2-E integration decisions — 2026-10-09
 
 - `ErpAppShell` remains the application-frame composition owner; it now

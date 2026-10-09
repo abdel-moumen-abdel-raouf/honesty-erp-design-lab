@@ -5724,8 +5724,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           ],
           "type": "boolean",
           "hasDefault": true,
-          "defaultValue": false,
-          "defaultExpression": "false"
+          "defaultValue": true,
+          "defaultExpression": "true"
         },
         {
           "name": "showTriggerBranchBadge",
@@ -5736,8 +5736,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           ],
           "type": "boolean",
           "hasDefault": true,
-          "defaultValue": false,
-          "defaultExpression": "false"
+          "defaultValue": true,
+          "defaultExpression": "true"
         }
       ],
       "outputs": [
@@ -6267,8 +6267,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "showPresence": true,
       "showRoleBadge": true,
       "showBranchBadge": true,
-      "showTriggerRoleBadge": false,
-      "showTriggerBranchBadge": false,
+      "showTriggerRoleBadge": true,
+      "showTriggerBranchBadge": true,
       "open": true,
       "user": {
         "displayName": "أميرة حداد",
@@ -6441,7 +6441,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "false",
           "true"
         ],
-        "initialValue": false
+        "initialValue": true
       },
       {
         "name": "showTriggerBranchBadge",
@@ -6454,7 +6454,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "false",
           "true"
         ],
-        "initialValue": false
+        "initialValue": true
       },
       {
         "name": "open",

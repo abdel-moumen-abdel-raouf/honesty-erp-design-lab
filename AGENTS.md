@@ -1,5 +1,23 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Product Owner UserMenu Trigger Correction — 2026-10-09
+
+The Product Owner rejected the closed UserMenu trigger at
+`76a0893f8c647363833ac32a58685450507055c8`. The current bounded correction
+renders name, email, then the role/branch badges as exactly three maximum
+identity rows. Trigger badge gates now default true; legacy `secondaryText`
+remains popup-only. The trigger Avatar is 60 x 60 px, matching the 60 px
+identity stack inside the intrinsic 72 px capsule. The email row inherits
+RTL/LTR alignment while its address uses ErpText BDI isolation.
+
+Focused verification passes 3/3 files and 53/53 tests. Canonical verification
+passes 124/124 files and 793/793 tests, all governance, both typechecks,
+production build, and zero warnings. Twenty browser conditions cover
+1440/768/390/320 px, Light/Dark, RTL/LTR, open/closed, fallbacks and independent
+badge gates with zero page/popup overflow, broken images or diagnostics.
+`ErpUserMenu` remains `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`; the S2 technical
+checkpoints remain intact and no additional wave is open.
+
 ## Current Shell S2-E Integrated AppShell State — 2026-10-09
 
 The authorized Shell continuation is technically complete. `ErpAppShell`

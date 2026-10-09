@@ -31,6 +31,15 @@
   gap: var(--honesty-user-menu-copy-gap);
 }
 
+.user-menu__trigger-identity {
+  grid-auto-rows: minmax(0, auto);
+  align-content: center;
+}
+
+.user-menu__trigger-avatar {
+  align-self: center;
+}
+
 .user-menu__trigger-action {
   position: absolute;
   inset: 0;
@@ -73,6 +82,16 @@
 }
 
 .user-menu__email {
+  display: flex;
+  justify-content: flex-start;
+  min-inline-size: 0;
+  overflow: hidden;
+  text-align: start;
+}
+
+.user-menu__email-address {
+  min-inline-size: 0;
+  max-inline-size: 100%;
   overflow-wrap: anywhere;
 }
 
@@ -87,6 +106,13 @@
   grid-auto-flow: column;
   grid-auto-columns: minmax(0, 1fr);
   min-inline-size: 0;
+  overflow: hidden;
+  align-items: center;
+}
+
+.user-menu__trigger-badge {
+  min-inline-size: 0;
+  max-inline-size: 100%;
   overflow: hidden;
 }
 

@@ -5,7 +5,7 @@ const mode = process.argv.includes('--baseline') ? 'baseline' : 'corrected';
 const port = Number(process.env['HONESTY_CAPTURE_CDP_PORT'] ?? 9223);
 const cdpUrl = `http://localhost:${port}`;
 const outputDirectory = path.resolve(
-  'docs/review-evidence/erp-user-menu/compact-trigger-v1',
+  'docs/review-evidence/erp-user-menu/final-trigger-v2',
 );
 
 const users = {
@@ -88,14 +88,16 @@ const correctedStates = [
   {name: 'dark-rtl-390-default-open', width: 390, height: 844, theme: 'dark', direction: 'rtl', user: 'image', open: true},
   {name: 'light-ltr-320-long-closed', width: 320, height: 568, theme: 'light', direction: 'ltr', user: 'longEnglish'},
   {name: 'light-ltr-320-long-open', width: 320, height: 568, theme: 'light', direction: 'ltr', user: 'longEnglish', open: true},
-  {name: 'light-rtl-390-role-trigger-closed', width: 390, height: 844, theme: 'light', direction: 'rtl', user: 'image', triggerRole: true},
-  {name: 'light-rtl-390-branch-trigger-closed', width: 390, height: 844, theme: 'light', direction: 'rtl', user: 'image', triggerBranch: true},
+  {name: 'light-rtl-390-role-trigger-closed', width: 390, height: 844, theme: 'light', direction: 'rtl', user: 'image', triggerRole: true, triggerBranch: false},
+  {name: 'light-rtl-390-branch-trigger-closed', width: 390, height: 844, theme: 'light', direction: 'rtl', user: 'image', triggerRole: false, triggerBranch: true},
   {name: 'light-rtl-390-both-trigger-closed', width: 390, height: 844, theme: 'light', direction: 'rtl', user: 'image', triggerRole: true, triggerBranch: true},
+  {name: 'light-rtl-390-no-trigger-badges-closed', width: 390, height: 844, theme: 'light', direction: 'rtl', user: 'image', triggerRole: false, triggerBranch: false},
   {name: 'dark-ltr-390-icon-open', width: 390, height: 844, theme: 'dark', direction: 'ltr', user: 'icon', open: true},
   {name: 'light-rtl-320-minimal-closed', width: 320, height: 568, theme: 'light', direction: 'rtl', user: 'minimal'},
 ];
 
 const states = mode === 'baseline' ? baselineStates : correctedStates;
+const defaultTriggerBadges = mode === 'corrected';
 const delay = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 
 async function connect() {
@@ -205,8 +207,8 @@ function stateExpression(state) {
     await setBoolean('showPresence', true);
     await setBoolean('showRoleBadge', true);
     await setBoolean('showBranchBadge', true);
-    await setBoolean('showTriggerRoleBadge', ${Boolean(state.triggerRole)});
-    await setBoolean('showTriggerBranchBadge', ${Boolean(state.triggerBranch)});
+    await setBoolean('showTriggerRoleBadge', ${state.triggerRole ?? defaultTriggerBadges});
+    await setBoolean('showTriggerBranchBadge', ${state.triggerBranch ?? defaultTriggerBadges});
 
     target.setAttribute('dir', ${JSON.stringify(state.direction)});
     await pause(180);
@@ -307,10 +309,35 @@ function stateExpression(state) {
           (triggerRect.top + triggerRect.height / 2)
         )
         : null,
+      avatarLogicalSide: triggerRect && avatarRect && identity
+        ? (${JSON.stringify(state.direction)} === 'rtl'
+          ? (avatarRect.left >= identity.getBoundingClientRect().right ? 'start' : 'wrong')
+          : (avatarRect.right <= identity.getBoundingClientRect().left ? 'start' : 'wrong'))
+        : null,
       identity: metrics(identity),
+      identityBlockSize: identity?.getBoundingClientRect().height ?? null,
       visibleIdentityRows: rowMetrics.length,
       rows: rowMetrics,
+      triggerSecondaryPresent: Boolean(
+        target.querySelector('.user-menu__trigger-secondary')
+      ),
+      emailPresentation: (() => {
+        const email = target.querySelector('.user-menu__email--trigger');
+        if (!email) return null;
+        const style = getComputedStyle(email);
+        return {
+          direction: style.direction,
+          textAlign: style.textAlign,
+          unicodeBidi: style.unicodeBidi,
+        };
+      })(),
       triggerBadges: target.querySelectorAll('.user-menu__badges--trigger erp-status-badge').length,
+      triggerBadgeMetrics: Array.from(
+        target.querySelectorAll('.user-menu__badges--trigger erp-status-badge')
+      ).map((badge) => ({
+        ariaLabel: badge.getAttribute('aria-label'),
+        ...metrics(badge),
+      })),
       popupBadges: surface.querySelectorAll('.user-menu__badges erp-status-badge').length,
       surface: surfaceRect,
       arrow: arrowRect,
@@ -398,6 +425,7 @@ if (mode === 'corrected') {
     if (measurement.pageHorizontalOverflow !== 0) failures.push(`${measurement.name}: page overflow`);
     if (measurement.brokenImages !== 0) failures.push(`${measurement.name}: broken image`);
     if (measurement.avatarCenterDelta !== 0) failures.push(`${measurement.name}: avatar alignment`);
+    if (measurement.avatarLogicalSide !== 'start') failures.push(`${measurement.name}: avatar logical side`);
     if (measurement.surfaceOverflow && Object.values(measurement.surfaceOverflow).some(Boolean)) {
       failures.push(`${measurement.name}: popup containment`);
     }
@@ -407,10 +435,23 @@ if (mode === 'corrected') {
     if (expected.open && expected.width <= 767 && measurement.arrow !== null) {
       failures.push(`${measurement.name}: narrow arrow visibility`);
     }
-    const expectedTriggerBadges = Number(Boolean(expected.triggerRole)) +
-      Number(Boolean(expected.triggerBranch));
+    const expectedTriggerBadges = expected.user === 'minimal'
+      ? 0
+      : Number(expected.triggerRole ?? defaultTriggerBadges) +
+        Number(expected.triggerBranch ?? defaultTriggerBadges);
     if (measurement.triggerBadges !== expectedTriggerBadges) {
       failures.push(`${measurement.name}: trigger badge count`);
+    }
+    if (measurement.triggerSecondaryPresent) {
+      failures.push(`${measurement.name}: trigger secondary text`);
+    }
+    if (measurement.triggerBadgeMetrics.some((badge) => badge.clippedBlock)) {
+      failures.push(`${measurement.name}: trigger badge block clipping`);
+    }
+    if (measurement.emailPresentation &&
+      measurement.direction === 'rtl' &&
+      measurement.emailPresentation.textAlign !== 'start') {
+      failures.push(`${measurement.name}: trigger email alignment`);
     }
     const expectedPopupBadges = expected.user === 'minimal' ? 0 : 2;
     if (measurement.popupBadges !== expectedPopupBadges) {

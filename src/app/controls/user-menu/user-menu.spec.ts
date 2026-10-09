@@ -1,4 +1,5 @@
 import {TestBed} from '@angular/core/testing';
+import {ErpAvatar} from '../avatar/avatar';
 import {ErpUserMenu} from './user-menu';
 
 describe('ErpUserMenu', () => {
@@ -51,8 +52,8 @@ describe('ErpUserMenu', () => {
     const triggerMetadata = triggerIdentity.querySelector(
       '.user-menu__trigger-metadata',
     ) as HTMLElement;
-    const triggerSecondary = triggerIdentity.querySelector(
-      '.user-menu__trigger-secondary',
+    const triggerEmailAddress = triggerEmail.querySelector(
+      '.user-menu__email-address',
     ) as HTMLElement;
 
     expect(trigger.textContent).toContain(fullName);
@@ -61,7 +62,8 @@ describe('ErpUserMenu', () => {
         .getAttribute('data-text-overflow'),
     ).toBe('ellipsis');
     expect(avatar.getAttribute('data-avatar-presence')).toBe('online');
-    expect(email.getAttribute('dir')).toBe('ltr');
+    expect(email.getAttribute('dir')).toBeNull();
+    expect(email.querySelector('.user-menu__email-address')?.getAttribute('dir')).toBe('ltr');
     expect(header.querySelectorAll('erp-status-badge')).toHaveLength(2);
     expect(avatar.compareDocumentPosition(name) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(name.compareDocumentPosition(email) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
@@ -69,12 +71,14 @@ describe('ErpUserMenu', () => {
     expect(badges.compareDocumentPosition(secondary) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(triggerName.compareDocumentPosition(triggerEmail) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(triggerEmail.compareDocumentPosition(triggerMetadata) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(triggerMetadata.contains(triggerSecondary)).toBe(true);
-    expect(triggerBadges).toHaveLength(0);
+    expect(triggerEmail.getAttribute('dir')).toBeNull();
+    expect(triggerEmailAddress.getAttribute('dir')).toBe('ltr');
+    expect(triggerMetadata.querySelector('.user-menu__trigger-secondary')).toBeNull();
+    expect(triggerBadges).toHaveLength(2);
     expect(triggerIdentity.children).toHaveLength(3);
   });
 
-  it('hides trigger badges by default while preserving both popup badges', () => {
+  it('shows trigger and popup role and branch badges by default without rendering secondary text in the trigger', () => {
     const fixture = TestBed.createComponent(ErpUserMenu);
     fixture.componentRef.setInput('user', {
       displayName: 'أميرة حداد',
@@ -89,7 +93,7 @@ describe('ErpUserMenu', () => {
       fixture.nativeElement.querySelectorAll(
         '.user-menu__badges--trigger erp-status-badge',
       ),
-    ).toHaveLength(0);
+    ).toHaveLength(2);
     expect(
       fixture.nativeElement.querySelectorAll(
         '.user-menu__identity-header .user-menu__badges erp-status-badge',
@@ -98,6 +102,12 @@ describe('ErpUserMenu', () => {
     expect(
       fixture.nativeElement.querySelector('.user-menu__trigger-identity').children,
     ).toHaveLength(3);
+    expect(
+      fixture.nativeElement.querySelector('.user-menu__trigger-secondary'),
+    ).toBeNull();
+    expect(
+      fixture.nativeElement.querySelector('.user-menu__trigger-metadata')?.textContent,
+    ).not.toContain('الحساب المؤسسي');
   });
 
   it('controls trigger role and branch badges independently within the third row', () => {
@@ -116,7 +126,10 @@ describe('ErpUserMenu', () => {
       ),
     ).map((badge) => badge.getAttribute('aria-label') ?? '');
 
-    fixture.componentRef.setInput('showTriggerRoleBadge', true);
+    fixture.detectChanges();
+    expect(triggerBadgeLabels()).toEqual(['مديرة المالية', 'الفرع الرئيسي']);
+
+    fixture.componentRef.setInput('showTriggerBranchBadge', false);
     fixture.detectChanges();
     expect(triggerBadgeLabels()).toEqual(['مديرة المالية']);
 
@@ -148,16 +161,13 @@ describe('ErpUserMenu', () => {
     const fixture = TestBed.createComponent(ErpUserMenu);
     const displayName = 'Alexandria Regional Finance Operations Manager';
     const email = 'alexandria.finance.manager@honesty.example';
-    const secondaryText = 'Regional finance operations';
     fixture.componentRef.setInput('user', {
       displayName,
       email,
-      secondaryText,
+      secondaryText: 'Regional finance operations',
       roleLabel: 'Finance Operations',
       branchLabel: 'Alexandria Branch',
     });
-    fixture.componentRef.setInput('showTriggerRoleBadge', true);
-    fixture.componentRef.setInput('showTriggerBranchBadge', true);
     fixture.detectChanges();
 
     const identity = fixture.nativeElement.querySelector(
@@ -171,9 +181,10 @@ describe('ErpUserMenu', () => {
       identity.querySelector('.user-menu__email--trigger')?.getAttribute('aria-label'),
     ).toBe(email);
     expect(
-      identity.querySelector('.user-menu__trigger-secondary')?.getAttribute('aria-label'),
-    ).toBe(secondaryText);
+      identity.querySelector('.user-menu__trigger-secondary'),
+    ).toBeNull();
     expect(identity.querySelectorAll('.user-menu__trigger-metadata')).toHaveLength(1);
+    expect(identity.querySelectorAll('.user-menu__trigger-badge')).toHaveLength(2);
 
     const compiledStyles = (
       ErpUserMenu as unknown as {ɵcmp: {styles: readonly string[]}}
@@ -183,6 +194,33 @@ describe('ErpUserMenu', () => {
     );
     expect(compiledStyles).not.toMatch(
       /user-menu__trigger-identity[^}]*block-size:/,
+    );
+    expect(compiledStyles).toMatch(
+      /user-menu__email[^}]*justify-content:\s*flex-start/,
+    );
+  });
+
+  it('uses the bounded 60px Avatar presentation to match the intrinsic three-row identity stack', () => {
+    const fixture = TestBed.createComponent(ErpUserMenu);
+    fixture.componentRef.setInput('user', {
+      displayName: 'أميرة حداد',
+      email: 'amira@honesty.example',
+      roleLabel: 'مديرة المالية',
+      branchLabel: 'الفرع الرئيسي',
+      avatarPresence: 'online',
+    });
+    fixture.detectChanges();
+
+    const avatar = fixture.nativeElement.querySelector(
+      'erp-avatar.user-menu__trigger-avatar',
+    ) as HTMLElement;
+    expect(avatar.getAttribute('data-avatar-presentation')).toBe('user-menu-trigger');
+
+    const avatarStyles = (
+      ErpAvatar as unknown as {ɵcmp: {styles: readonly string[]}}
+    ).ɵcmp.styles.join(' ');
+    expect(avatarStyles).toMatch(
+      /data-avatar-presentation=user-menu-trigger[^}]*--honesty-avatar-size:\s*60px/s,
     );
   });
 

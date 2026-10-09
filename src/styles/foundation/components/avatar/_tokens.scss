@@ -160,14 +160,14 @@
 }
 
 @mixin presentation-user-menu-trigger {
-  --honesty-avatar-size: 40px;
-  --honesty-avatar-font-size: 14px;
-  --honesty-avatar-icon-size: 20px;
-  --honesty-avatar-presence-size: 10px;
-  --honesty-avatar-presence-border-width: 2px;
+  --honesty-avatar-size: 60px;
+  --honesty-avatar-font-size: 20px;
+  --honesty-avatar-icon-size: 30px;
+  --honesty-avatar-presence-size: 15px;
+  --honesty-avatar-presence-border-width: 3px;
   --honesty-avatar-ring-width: 2px;
-  --honesty-avatar-ring-offset: 2px;
-  --honesty-avatar-image-inset: 4px;
+  --honesty-avatar-ring-offset: 3px;
+  --honesty-avatar-image-inset: 0;
 }
 
 @mixin presentation-user-menu-identity {

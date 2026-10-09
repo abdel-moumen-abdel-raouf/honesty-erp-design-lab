@@ -55,8 +55,8 @@ export class ErpUserMenu implements AfterViewInit, OnDestroy {
   readonly showPresence = input(true, {transform: booleanAttribute});
   readonly showRoleBadge = input(true, {transform: booleanAttribute});
   readonly showBranchBadge = input(true, {transform: booleanAttribute});
-  readonly showTriggerRoleBadge = input(false, {transform: booleanAttribute});
-  readonly showTriggerBranchBadge = input(false, {transform: booleanAttribute});
+  readonly showTriggerRoleBadge = input(true, {transform: booleanAttribute});
+  readonly showTriggerBranchBadge = input(true, {transform: booleanAttribute});
   readonly open = model(false);
   readonly actionActivated = output<ErpUserMenuItem>();
 
@@ -75,7 +75,6 @@ export class ErpUserMenu implements AfterViewInit, OnDestroy {
   protected readonly triggerIdentityVisible = computed(
     () => this.showUserName() ||
       (this.showEmail() && Boolean(this.user().email)) ||
-      Boolean(this.user().secondaryText) ||
       this.triggerRoleVisible() ||
       this.triggerBranchVisible(),
   );
