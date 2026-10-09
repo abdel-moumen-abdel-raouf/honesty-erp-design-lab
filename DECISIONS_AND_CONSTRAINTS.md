@@ -1,5 +1,24 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Shell S2-E integration decisions — 2026-10-09
+
+- `ErpAppShell` remains the application-frame composition owner; it now
+  optionally composes the existing `ErpQuickActionsBar` and `ErpAppFooter`.
+- `quickActionGroups`, `quickActionsLabel`, and `footer` are bounded optional
+  inputs. `quickActionActivated` and `footerActionActivated` forward IDs only;
+  business effects stay consumer-owned.
+- Absence of the new inputs preserves the preceding Topbar + Sidebar + content
+  composition. No duplicate Shell, navigation, action, Footer, overlay, theme,
+  router, or scrolling engine is introduced.
+- The desktop topology is logical-start Sidebar, main content, logical-end
+  quick actions and an in-flow Footer. The approved Query API changes narrow
+  layout to one column with a horizontal QuickActionsBar.
+- Sidebar owns a `max-inline-size: 100%` containment guarantee so the 269 px
+  reference width contracts safely inside a narrower AppShell column; clipping
+  is not used to conceal the width mismatch.
+- S2-A through S2-E are technically verified only. Product Owner visual review
+  remains pending and no subsequent Shell or application unit is opened.
+
 ## Shell S2-D QuickActionsBar decisions — 2026-10-09
 
 - `ErpQuickActionsBar` is a public Shell owner distinct from Sidebar, Topbar,

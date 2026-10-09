@@ -1,5 +1,25 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Shell S2-E Integrated AppShell State — 2026-10-09
+
+The authorized Shell continuation is technically complete. `ErpAppShell`
+retains its existing Topbar, Sidebar and content contracts and adds optional,
+backward-compatible `quickActionGroups`, `quickActionsLabel`, and `footer`
+composition with forwarded QuickActionsBar and AppFooter activation intents.
+The integrated workbench composes the real BranchSelector, GlobalSearch,
+NotificationBell and unchanged UserMenu owners. Sidebar now caps its fixed
+reference width to the available container, preventing narrow clipping without
+changing its 269 px rendered desktop width.
+
+Focused AppShell verification passes 1/1 file and 2/2 tests. Canonical
+verification passes 124/124 files and 792/792 tests, the 79-component catalog,
+12-owner Shell governance, both typechecks, production build, and zero
+warnings. Eight browser captures cover 1440/1280/1024/768/390/320 px,
+Light/Dark and RTL/LTR, with zero page or Shell horizontal overflow, broken
+images, errors, or warnings. S2-A through S2-E are `TECHNICAL_VERIFIED` and
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. The wave stops for consolidated Product
+Owner review; no additional Shell owner or application wave is open.
+
 ## Current Shell S2-D QuickActionsBar State — 2026-10-09
 
 S2-D adds one public `ErpQuickActionsBar` owner. Its group labels and action

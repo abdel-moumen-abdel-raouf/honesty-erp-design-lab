@@ -10,10 +10,14 @@
 .app-shell {
   display: grid;
   grid-template-areas:
-    'topbar topbar'
-    'sidebar content';
-  grid-template-columns: var(--honesty-app-shell-sidebar-width) minmax(0, 1fr);
-  grid-template-rows: auto minmax(var(--honesty-app-shell-min-height), 1fr);
+    'topbar topbar topbar'
+    'sidebar content quick-actions'
+    'sidebar footer footer';
+  grid-template-columns:
+    var(--honesty-app-shell-sidebar-width)
+    minmax(0, 1fr)
+    auto;
+  grid-template-rows: auto minmax(var(--honesty-app-shell-min-height), 1fr) auto;
   min-inline-size: 0;
   color: var(--honesty-app-shell-fg);
   background: var(--honesty-app-shell-bg);
@@ -33,6 +37,7 @@
 
 .app-shell__sidebar {
   grid-area: sidebar;
+  min-inline-size: 0;
   min-block-size: 0;
 }
 
@@ -45,19 +50,44 @@
   --honesty-layout-available-block-size: 100%;
 }
 
+.app-shell__quick-actions {
+  grid-area: quick-actions;
+  align-self: start;
+  min-block-size: 0;
+  max-block-size: var(--honesty-app-shell-quick-actions-max-block-size);
+  padding-block: var(--honesty-app-shell-quick-actions-padding-block);
+  padding-inline-end: var(--honesty-app-shell-quick-actions-padding-inline);
+}
+
+.app-shell__footer {
+  grid-area: footer;
+  min-inline-size: 0;
+}
+
 @include query.viewport-down('md') {
   .app-shell {
     grid-template-areas:
       'topbar'
       'sidebar'
-      'content';
+      'content'
+      'quick-actions'
+      'footer';
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto auto minmax(var(--honesty-app-shell-min-height), 1fr);
+    grid-template-rows: auto auto minmax(var(--honesty-app-shell-min-height), 1fr) auto auto;
   }
 
   .app-shell__sidebar {
+    inline-size: 100%;
+    max-inline-size: 100%;
     max-block-size: var(--honesty-app-shell-sidebar-max-block-size-narrow);
     border-block-end: var(--honesty-app-shell-border-width) solid
       var(--honesty-app-shell-border-color);
+  }
+
+
+  .app-shell__quick-actions {
+    max-block-size: none;
+    padding-block: 0;
+    padding-inline: var(--honesty-app-shell-quick-actions-padding-inline-narrow);
   }
 }

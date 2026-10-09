@@ -1,5 +1,24 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Shell S2-E AppShell integration checkpoint — 2026-10-09
+
+Entry checkpoint:
+
+- `907380c9fe2881126e7ecc328f6925c005c76271` — clean `main` and
+  `origin/main` after S2-D QuickActionsBar.
+
+Scoped stage commit message:
+
+- `feat(shell): integrate ERP application shell`
+
+Resolve the resulting commit SHA from live `main` because this file is part of
+that commit. Focused verification passes 1/1 file and 2/2 tests; canonical
+verification passes 124/124 files and 792/792 tests, all governance, both
+typechecks, production build, and zero warnings. Initial bundle remains 490.24
+kB / 105.58 kB estimated transfer. Eight browser captures record zero
+page/Shell horizontal overflow, broken images or browser diagnostics. The wave
+stops for consolidated Product Owner visual review.
+
 ## Shell S2-D QuickActionsBar checkpoint — 2026-10-09
 
 Entry checkpoint:

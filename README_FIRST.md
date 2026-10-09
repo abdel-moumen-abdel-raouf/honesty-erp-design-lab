@@ -1,5 +1,20 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Current gate — 2026-10-09 — consolidated Shell S2 visual review
+
+The explicitly authorized S2-A through S2-E execution wave is technically
+complete. Sidebar, Topbar, AppFooter, QuickActionsBar, and their integrated
+AppShell workbench pass the 124-file/792-test canonical gate, all governance,
+both typechecks, the production build, and zero warnings. The 79-component
+catalog and 12-owner Shell contract are current. Eight AppShell captures prove
+the real composition at 1440 through 320 px with zero page/Shell horizontal
+overflow, broken images, or browser diagnostics.
+
+All five units remain `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Review the index
+at `docs/review-evidence/erp-shell/README.md`. Do not start another Shell owner,
+application feature, page migration, or component wave without new Product
+Owner authorization.
+
 ## Current authorized unit — 2026-10-09 — Shell S2-E AppShell integration
 
 The ordered Shell continuation has completed Sidebar, Topbar, AppFooter and

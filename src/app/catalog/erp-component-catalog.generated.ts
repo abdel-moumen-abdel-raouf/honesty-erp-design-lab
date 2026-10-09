@@ -4329,17 +4329,54 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "hasDefault": true,
           "defaultValue": "محتوى التطبيق",
           "defaultExpression": "'محتوى التطبيق'"
+        },
+        {
+          "name": "quickActionGroups",
+          "required": false,
+          "values": [],
+          "type": "readonly ErpQuickActionGroup[]",
+          "hasDefault": true,
+          "defaultValue": [],
+          "defaultExpression": "[]"
+        },
+        {
+          "name": "quickActionsLabel",
+          "required": false,
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "الإجراءات السريعة",
+          "defaultExpression": "'الإجراءات السريعة'"
+        },
+        {
+          "name": "footer",
+          "required": false,
+          "values": [],
+          "type": "ErpAppShellFooterConfig | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [
-        "navigationActivated"
+        "navigationActivated",
+        "quickActionActivated",
+        "footerActionActivated"
       ],
       "models": []
     },
     "lowerLevelOwners": [
+      "ErpAppFooter",
+      "ErpAppFooterAction",
+      "ErpAppShellFooterConfig",
       "ErpNavigationItem",
+      "ErpQuickActionGroup",
+      "ErpQuickActionsBar",
       "ErpSidebar",
+      "ErpStatusBadgeTone",
       "ErpTopbar",
+      "erp-app-footer",
+      "erp-quick-actions-bar",
       "erp-sidebar",
       "erp-topbar"
     ],
@@ -4365,23 +4402,145 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "finance",
               "label": "المالية",
-              "icon": "wallet"
+              "icon": "wallet",
+              "children": [
+                {
+                  "id": "ledger",
+                  "label": "الحسابات العامة",
+                  "href": "/ledger"
+                }
+              ]
+            },
+            {
+              "id": "inventory",
+              "label": "المخزون",
+              "icon": "layers",
+              "href": "/inventory"
             }
-          ]
+          ],
+          "activeNavigationId": "ledger",
+          "quickActionGroups": [
+            {
+              "id": "daily",
+              "label": "العمل اليومي",
+              "actions": [
+                {
+                  "id": "task",
+                  "label": "مهمة جديدة",
+                  "icon": "add",
+                  "priority": "primary"
+                },
+                {
+                  "id": "event",
+                  "label": "موعد جديد",
+                  "icon": "calendar"
+                }
+              ]
+            },
+            {
+              "id": "support",
+              "actions": [
+                {
+                  "id": "help",
+                  "label": "المساعدة",
+                  "icon": "help"
+                },
+                {
+                  "id": "settings",
+                  "label": "الإعدادات",
+                  "icon": "settings"
+                }
+              ]
+            }
+          ],
+          "footer": {
+            "applicationLabel": "Honesty ERP",
+            "versionLabel": "الإصدار 1.0.0",
+            "statusLabel": "تعمل الأنظمة",
+            "statusTone": "success",
+            "actions": [
+              {
+                "id": "support",
+                "label": "الدعم",
+                "icon": "help"
+              }
+            ]
+          }
         }
       }
     ],
     "displayNameAr": "إطار تطبيق ERP",
     "descriptionAr": "تكوين إطار التطبيق من الشريط العلوي والشريط الجانبي والمحتوى.",
     "showcaseInitialValues": {
-      "activeNavigationId": null,
+      "activeNavigationId": "ledger",
       "sidebarLabel": "التنقل الرئيسي",
       "contentLabel": "محتوى التطبيق",
+      "quickActionGroups": [
+        {
+          "id": "daily",
+          "label": "العمل اليومي",
+          "actions": [
+            {
+              "id": "task",
+              "label": "مهمة جديدة",
+              "icon": "add",
+              "priority": "primary"
+            },
+            {
+              "id": "event",
+              "label": "موعد جديد",
+              "icon": "calendar"
+            }
+          ]
+        },
+        {
+          "id": "support",
+          "actions": [
+            {
+              "id": "help",
+              "label": "المساعدة",
+              "icon": "help"
+            },
+            {
+              "id": "settings",
+              "label": "الإعدادات",
+              "icon": "settings"
+            }
+          ]
+        }
+      ],
+      "quickActionsLabel": "الإجراءات السريعة",
+      "footer": {
+        "applicationLabel": "Honesty ERP",
+        "versionLabel": "الإصدار 1.0.0",
+        "statusLabel": "تعمل الأنظمة",
+        "statusTone": "success",
+        "actions": [
+          {
+            "id": "support",
+            "label": "الدعم",
+            "icon": "help"
+          }
+        ]
+      },
       "navigationItems": [
         {
           "id": "finance",
           "label": "المالية",
-          "icon": "wallet"
+          "icon": "wallet",
+          "children": [
+            {
+              "id": "ledger",
+              "label": "الحسابات العامة",
+              "href": "/ledger"
+            }
+          ]
+        },
+        {
+          "id": "inventory",
+          "label": "المخزون",
+          "icon": "layers",
+          "href": "/inventory"
         }
       ]
     },
@@ -4398,7 +4557,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           {
             "id": "finance",
             "label": "المالية",
-            "icon": "wallet"
+            "icon": "wallet",
+            "children": [
+              {
+                "id": "ledger",
+                "label": "الحسابات العامة",
+                "href": "/ledger"
+              }
+            ]
+          },
+          {
+            "id": "inventory",
+            "label": "المخزون",
+            "icon": "layers",
+            "href": "/inventory"
           }
         ]
       },
@@ -4410,7 +4582,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "ledger"
       },
       {
         "name": "sidebarLabel",
@@ -4431,6 +4603,81 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "type": "string",
         "options": [],
         "initialValue": "محتوى التطبيق"
+      },
+      {
+        "name": "quickActionGroups",
+        "label": "quickActionGroups",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "readonly ErpQuickActionGroup[]",
+        "options": [],
+        "initialValue": [
+          {
+            "id": "daily",
+            "label": "العمل اليومي",
+            "actions": [
+              {
+                "id": "task",
+                "label": "مهمة جديدة",
+                "icon": "add",
+                "priority": "primary"
+              },
+              {
+                "id": "event",
+                "label": "موعد جديد",
+                "icon": "calendar"
+              }
+            ]
+          },
+          {
+            "id": "support",
+            "actions": [
+              {
+                "id": "help",
+                "label": "المساعدة",
+                "icon": "help"
+              },
+              {
+                "id": "settings",
+                "label": "الإعدادات",
+                "icon": "settings"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "quickActionsLabel",
+        "label": "quickActionsLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "الإجراءات السريعة"
+      },
+      {
+        "name": "footer",
+        "label": "footer",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "ErpAppShellFooterConfig | null",
+        "options": [],
+        "initialValue": {
+          "applicationLabel": "Honesty ERP",
+          "versionLabel": "الإصدار 1.0.0",
+          "statusLabel": "تعمل الأنظمة",
+          "statusTone": "success",
+          "actions": [
+            {
+              "id": "support",
+              "label": "الدعم",
+              "icon": "help"
+            }
+          ]
+        }
       }
     ],
     "showcaseCoverage": {
@@ -4438,11 +4685,16 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "navigationItems",
         "activeNavigationId",
         "sidebarLabel",
-        "contentLabel"
+        "contentLabel",
+        "quickActionGroups",
+        "quickActionsLabel",
+        "footer"
       ],
       "coveredModels": [],
       "coveredOutputs": [
-        "navigationActivated"
+        "navigationActivated",
+        "quickActionActivated",
+        "footerActionActivated"
       ],
       "coveredValues": {},
       "coveredStates": [],

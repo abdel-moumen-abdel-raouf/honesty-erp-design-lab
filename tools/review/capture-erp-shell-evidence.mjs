@@ -14,7 +14,7 @@ const OUTPUT = path.join(
   'docs',
   'review-evidence',
   'erp-shell',
-  ({sidebar: 's2-a-sidebar', topbar: 's2-b-topbar', 'app-footer': 's2-c-app-footer', 'quick-actions-bar': 's2-d-quick-actions-bar'}[COMPONENT]
+  ({sidebar: 's2-a-sidebar', topbar: 's2-b-topbar', 'app-footer': 's2-c-app-footer', 'quick-actions-bar': 's2-d-quick-actions-bar', 'app-shell': 's2-e-app-shell'}[COMPONENT]
     ?? `shell-${COMPONENT}`),
 );
 
@@ -54,13 +54,26 @@ const quickActionsScenarios = [
   {name: 'quick-actions-320-dark-ltr-default', width: 320, height: 568, theme: 'dark', direction: 'ltr'},
 ];
 
+const appShellScenarios = [
+  {name: 'app-shell-1440-light-rtl', width: 1440, height: 900, theme: 'light', direction: 'rtl'},
+  {name: 'app-shell-1280-dark-ltr', width: 1280, height: 900, theme: 'dark', direction: 'ltr'},
+  {name: 'app-shell-1024-light-rtl', width: 1024, height: 768, theme: 'light', direction: 'rtl'},
+  {name: 'app-shell-768-dark-rtl', width: 768, height: 900, theme: 'dark', direction: 'rtl'},
+  {name: 'app-shell-390-light-rtl', width: 390, height: 844, theme: 'light', direction: 'rtl'},
+  {name: 'app-shell-320-dark-ltr', width: 320, height: 568, theme: 'dark', direction: 'ltr'},
+  {name: 'app-shell-390-light-rtl-end', width: 390, height: 844, theme: 'light', direction: 'rtl', state: 'end'},
+  {name: 'app-shell-320-dark-ltr-end', width: 320, height: 568, theme: 'dark', direction: 'ltr', state: 'end'},
+];
+
 const scenarios = COMPONENT === 'topbar'
   ? topbarScenarios
   : COMPONENT === 'app-footer'
     ? appFooterScenarios
     : COMPONENT === 'quick-actions-bar'
       ? quickActionsScenarios
-      : sidebarScenarios;
+      : COMPONENT === 'app-shell'
+        ? appShellScenarios
+        : sidebarScenarios;
 
 class DevToolsClient {
   #socket;
@@ -180,7 +193,9 @@ async function main() {
           ? 'erp-app-footer[data-showcase-target] footer, [data-showcase-target] erp-app-footer footer'
           : COMPONENT === 'quick-actions-bar'
             ? 'erp-quick-actions-bar[data-showcase-target] [role="toolbar"], [data-showcase-target] erp-quick-actions-bar [role="toolbar"]'
-            : 'erp-sidebar[data-showcase-target] nav, [data-showcase-target] erp-sidebar nav';
+            : COMPONENT === 'app-shell'
+              ? 'erp-app-shell[data-showcase-target] .app-shell, [data-showcase-target] erp-app-shell .app-shell'
+              : 'erp-sidebar[data-showcase-target] nav, [data-showcase-target] erp-sidebar nav';
       await waitFor(() => evaluate(client, `Boolean(document.querySelector(${JSON.stringify(readySelector)}))`));
       await evaluate(client, `(() => {
         document.documentElement.dir = '${scenario.direction}';
@@ -249,7 +264,23 @@ async function main() {
         })()`);
         await new Promise((resolve) => setTimeout(resolve, 250));
       }
-      await evaluate(client, `document.querySelector('erp-${COMPONENT}[data-showcase-target], [data-showcase-target] erp-${COMPONENT}')?.scrollIntoView({block: 'center', inline: 'nearest'})`);
+      let interactionEvidence = null;
+      if (COMPONENT === 'app-shell') {
+        await evaluate(client, `document.querySelector('[data-showcase-target] .app-shell__quick-actions erp-icon-button button')?.click()`);
+        await new Promise((resolve) => setTimeout(resolve, 50));
+        const quickActionEvent = await evaluate(client, `document.querySelector('[data-showcase-event-log]')?.textContent?.trim() ?? ''`);
+        await evaluate(client, `document.querySelector('[data-showcase-target] .app-shell__footer erp-button button')?.click()`);
+        await new Promise((resolve) => setTimeout(resolve, 50));
+        const footerActionEvent = await evaluate(client, `document.querySelector('[data-showcase-event-log]')?.textContent?.trim() ?? ''`);
+        interactionEvidence = {quickActionEvent, footerActionEvent};
+      }
+      const scrollBlock = COMPONENT === 'app-shell'
+        ? scenario.state === 'end' ? 'end' : 'start'
+        : 'center';
+      await evaluate(client, `document.querySelector('erp-${COMPONENT}[data-showcase-target], [data-showcase-target] erp-${COMPONENT}')?.scrollIntoView({block: '${scrollBlock}', inline: 'nearest'})`);
+      if (COMPONENT === 'app-shell' && scenario.state !== 'end') {
+        await evaluate(client, `window.scrollBy(0, -(document.querySelector('#lab-utility-bar')?.getBoundingClientRect().height ?? 0))`);
+      }
       await new Promise((resolve) => setTimeout(resolve, 200));
 
       const measurement = await evaluate(client, `(() => {
@@ -259,6 +290,16 @@ async function main() {
         const header = host?.querySelector('header');
         const footer = host?.querySelector('footer');
         const toolbar = host?.querySelector('[role="toolbar"]');
+        const shell = host?.querySelector('.app-shell');
+        const shellContent = host?.querySelector('.app-shell__content');
+        const quickActions = host?.querySelector('erp-quick-actions-bar') ?? host;
+        const shellRegions = shell ? {
+          topbar: shell.querySelector('.app-shell__topbar'),
+          sidebar: shell.querySelector('.app-shell__sidebar'),
+          content: shell.querySelector('.app-shell__content'),
+          quickActions: shell.querySelector('.app-shell__quick-actions'),
+          footer: shell.querySelector('.app-shell__footer'),
+        } : {};
         const rect = (element) => {
           if (!element) return null;
           const value = element.getBoundingClientRect();
@@ -284,14 +325,23 @@ async function main() {
           header: rect(header),
           footer: rect(footer),
           toolbar: rect(toolbar),
+          shell: rect(shell),
+          shellHorizontalOverflow: shell ? Math.max(0, shell.scrollWidth - shell.clientWidth) : null,
+          shellContent: rect(shellContent),
+          shellContentOverflowY: shellContent ? getComputedStyle(shellContent).overflowY : null,
+          shellContentScrollHeight: shellContent?.scrollHeight ?? null,
+          shellContentClientHeight: shellContent?.clientHeight ?? null,
           toolbarFlexDirection: toolbar ? getComputedStyle(toolbar).flexDirection : null,
           toolbarHorizontalOverflow: toolbar ? Math.max(0, toolbar.scrollWidth - toolbar.clientWidth) : null,
           quickActionGroups: host?.querySelectorAll('.quick-actions-bar__group').length ?? 0,
-          quickActionButtons: host?.querySelectorAll('erp-icon-button button').length ?? 0,
-          quickActionDisabledButtons: host?.querySelectorAll('erp-icon-button button:disabled').length ?? 0,
+          quickActionButtons: quickActions?.querySelectorAll('erp-icon-button button').length ?? 0,
+          quickActionDisabledButtons: quickActions?.querySelectorAll('erp-icon-button button:disabled').length ?? 0,
           footerPresent: Boolean(footer),
           footerActionCount: host?.querySelectorAll('.app-footer__actions erp-button').length ?? 0,
           footerDisabledActionCount: host?.querySelectorAll('.app-footer__actions button:disabled').length ?? 0,
+          shellRegions: Object.fromEntries(
+            Object.entries(shellRegions).map(([name, element]) => [name, rect(element)]),
+          ),
           regions: header ? Object.fromEntries(
             [...header.children].map((element) => [
               element.className,
@@ -299,6 +349,10 @@ async function main() {
             ]),
           ) : {},
           renderedOwners: {
+            sidebar: host?.querySelectorAll('erp-sidebar').length ?? 0,
+            topbar: host?.querySelectorAll('erp-topbar').length ?? 0,
+            appFooter: host?.querySelectorAll('erp-app-footer').length ?? 0,
+            quickActionsBar: host?.querySelectorAll('erp-quick-actions-bar').length ?? 0,
             branchSelector: host?.querySelectorAll('erp-branch-selector').length ?? 0,
             globalSearch: host?.querySelectorAll('erp-global-search').length ?? 0,
             notificationBell: host?.querySelectorAll('erp-notification-bell').length ?? 0,
@@ -307,7 +361,7 @@ async function main() {
           brokenImages: [...document.images].filter((image) => image.complete && image.naturalWidth === 0).length,
         };
       })()`);
-      measurements.push({name: scenario.name, ...measurement, diagnostics: [...client.diagnostics]});
+      measurements.push({name: scenario.name, ...measurement, interactionEvidence, diagnostics: [...client.diagnostics]});
       const screenshot = await client.command('Page.captureScreenshot', {
         format: 'png',
         captureBeyondViewport: false,

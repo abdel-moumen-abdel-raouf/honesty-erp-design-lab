@@ -2,8 +2,10 @@
 
 :host {
   @include tokens.base;
+  box-sizing: border-box;
   display: block;
   min-inline-size: 0;
+  max-inline-size: 100%;
   block-size: 100%;
   inline-size: var(--honesty-sidebar-width-expanded);
   color: var(--honesty-sidebar-fg);

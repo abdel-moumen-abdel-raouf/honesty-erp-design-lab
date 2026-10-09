@@ -1,5 +1,13 @@
 # Next Component Reference Batch V1
 
+## Authoritative next action — 2026-10-09 — no implementation unit open
+
+The Product Owner-authorized Shell continuation through S2-E is technically
+complete. Sidebar, Topbar, AppFooter, QuickActionsBar and AppShell integration
+remain visually pending. The next action is consolidated Product Owner review
+of `docs/review-evidence/erp-shell/README.md`; no next component, Shell owner,
+application feature, or migration batch is authorized.
+
 ## Authoritative next unit — 2026-10-09 — Shell S2-E AppShell integration
 
 Sidebar, Topbar, AppFooter and QuickActionsBar are technically verified and

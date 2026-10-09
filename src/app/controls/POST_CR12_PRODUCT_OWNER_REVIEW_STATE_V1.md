@@ -1,5 +1,16 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current deferred visual-review queue — 2026-10-09 — complete Shell S2 wave
+
+`ErpSidebar`, `ErpTopbar`, `ErpAppFooter`, `ErpQuickActionsBar`, and the
+integrated `ErpAppShell` candidate are `TECHNICAL_VERIFIED` and
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. None is accepted or frozen. The
+consolidated checklist and evidence index is
+`docs/review-evidence/erp-shell/README.md`; AppShell has eight Light/Dark,
+RTL/LTR, desktop/narrow captures with zero page/Shell horizontal overflow,
+broken images or browser diagnostics. UserMenu's independent visual status is
+unchanged. No later execution unit is open.
+
 ## Current deferred visual-review queue — 2026-10-09 — Shell S2-A/S2-B/S2-C/S2-D
 
 The authorized continuation now has technically verified Sidebar, Topbar,

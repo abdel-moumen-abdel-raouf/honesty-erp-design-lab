@@ -10,8 +10,13 @@
           [activeNavigationId]="$any(value('activeNavigationId'))"
           [sidebarLabel]="$any(value('sidebarLabel'))"
           [contentLabel]="$any(value('contentLabel'))"
+          [quickActionGroups]="$any(value('quickActionGroups'))"
+          [quickActionsLabel]="$any(value('quickActionsLabel'))"
+          [footer]="$any(value('footer'))"
           (navigationActivated)="recordEvent('navigationActivated', $event)"
-        ><erp-text erpAppShellTopbarStart type="heading-3">Honesty ERP</erp-text><erp-text type="heading-3">محتوى التطبيق</erp-text><erp-text type="paragraph">ملخص العمليات اليومية</erp-text></erp-app-shell>
+          (quickActionActivated)="recordEvent('quickActionActivated', $event)"
+          (footerActionActivated)="recordEvent('footerActionActivated', $event)"
+        ><erp-text erpAppShellTopbarStart type="heading-3">Honesty ERP</erp-text><erp-branch-selector erpAppShellTopbarContext [branches]="topbarBranches" value="cairo" (changed)="recordEvent('branchChanged', $event)" /><erp-global-search erpAppShellTopbarSearch [results]="topbarSearchResults" (resultActivated)="recordEvent('searchResultActivated', $event)" /><erp-notification-bell erpAppShellTopbarActions [notifications]="topbarNotifications" (notificationActivated)="recordEvent('notificationActivated', $event)" /><erp-user-menu erpAppShellTopbarUser [user]="topbarUser" [items]="topbarUserItems" (actionActivated)="recordEvent('userActionActivated', $event)" /><erp-stack gap="default"><erp-text type="heading-3">لوحة العمليات</erp-text><erp-text type="paragraph">ملخص المبيعات والمشتريات والمخزون والحسابات العامة.</erp-text><erp-surface padding="default" border="subtle"><erp-text type="strong">المبيعات اليومية</erp-text><erp-text type="paragraph">128 فاتورة قيد المتابعة.</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="strong">حالة المخزون</erp-text><erp-text type="paragraph">ثمانية أصناف تحتاج إلى إعادة الطلب.</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="strong">المهام المالية</erp-text><erp-text type="paragraph">إقفال الفترة ومراجعة أرصدة الحسابات.</erp-text></erp-surface></erp-stack></erp-app-shell>
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel

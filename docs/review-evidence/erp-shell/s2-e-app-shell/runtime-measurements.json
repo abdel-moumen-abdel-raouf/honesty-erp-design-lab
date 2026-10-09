@@ -1,0 +1,1318 @@
+{
+  "capturedAt": "2026-10-09T14:31:32.987Z",
+  "baseUrl": "http://127.0.0.1:4200",
+  "measurements": [
+    {
+      "name": "app-shell-1440-light-rtl",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 49,
+        "y": 48.765625,
+        "width": 1327,
+        "height": 640.296875
+      },
+      "component": "app-shell",
+      "host": {
+        "x": 49,
+        "y": 48.765625,
+        "width": 1327,
+        "height": 640.296875
+      },
+      "nav": {
+        "x": 1106,
+        "y": 179.0625,
+        "width": 269,
+        "height": 172
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 172,
+      "navClientHeight": 172,
+      "collapsed": false,
+      "visibleEntries": 3,
+      "enabledInteractiveEntries": 3,
+      "activeDestinations": 1,
+      "activeAncestors": 1,
+      "header": {
+        "x": 50,
+        "y": 49.765625,
+        "width": 1325,
+        "height": 68.296875
+      },
+      "footer": {
+        "x": 50,
+        "y": 631.0625,
+        "width": 1037,
+        "height": 57
+      },
+      "toolbar": {
+        "x": 66,
+        "y": 135.0625,
+        "width": 83.3125,
+        "height": 231
+      },
+      "shell": {
+        "x": 49,
+        "y": 48.765625,
+        "width": 1327,
+        "height": 640.296875
+      },
+      "shellHorizontalOverflow": 0,
+      "shellContent": {
+        "x": 149.3125,
+        "y": 119.0625,
+        "width": 937.6875,
+        "height": 512
+      },
+      "shellContentOverflowY": "auto",
+      "shellContentScrollHeight": 512,
+      "shellContentClientHeight": 512,
+      "toolbarFlexDirection": "column",
+      "toolbarHorizontalOverflow": 0,
+      "quickActionGroups": 2,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 0,
+      "footerPresent": true,
+      "footerActionCount": 1,
+      "footerDisabledActionCount": 0,
+      "shellRegions": {
+        "topbar": {
+          "x": 50,
+          "y": 49.765625,
+          "width": 1325,
+          "height": 69.296875
+        },
+        "sidebar": {
+          "x": 1105,
+          "y": 119.0625,
+          "width": 270,
+          "height": 569
+        },
+        "content": {
+          "x": 149.3125,
+          "y": 119.0625,
+          "width": 937.6875,
+          "height": 512
+        },
+        "quickActions": {
+          "x": 50,
+          "y": 119.0625,
+          "width": 99.3125,
+          "height": 263
+        },
+        "footer": {
+          "x": 50,
+          "y": 631.0625,
+          "width": 1037,
+          "height": 57
+        }
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 1241.359375,
+          "y": 70.859375,
+          "width": 109.640625,
+          "height": 26.09375,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 1033.359375,
+          "y": 50.765625,
+          "width": 192,
+          "height": 66.296875,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 338.390625,
+          "y": 49.765625,
+          "width": 678.96875,
+          "height": 68.296875,
+          "overflowWidth": 0
+        },
+        "topbar__actions": {
+          "x": 282.390625,
+          "y": 63.90625,
+          "width": 40,
+          "height": 40,
+          "overflowWidth": 4
+        },
+        "topbar__user": {
+          "x": 74,
+          "y": 57.40625,
+          "width": 192.390625,
+          "height": 53,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "sidebar": 1,
+        "topbar": 1,
+        "appFooter": 1,
+        "quickActionsBar": 1,
+        "branchSelector": 1,
+        "globalSearch": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "brokenImages": 0,
+      "interactionEvidence": {
+        "quickActionEvent": "آخر تفاعلquickActionActivated: task",
+        "footerActionEvent": "آخر تفاعلfooterActionActivated: support"
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "app-shell-1280-dark-ltr",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 49,
+        "y": 48.765625,
+        "width": 1167,
+        "height": 640.296875
+      },
+      "component": "app-shell",
+      "host": {
+        "x": 49,
+        "y": 48.765625,
+        "width": 1167,
+        "height": 640.296875
+      },
+      "nav": {
+        "x": 50,
+        "y": 179.0625,
+        "width": 269,
+        "height": 172
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 172,
+      "navClientHeight": 172,
+      "collapsed": false,
+      "visibleEntries": 3,
+      "enabledInteractiveEntries": 3,
+      "activeDestinations": 1,
+      "activeAncestors": 1,
+      "header": {
+        "x": 50,
+        "y": 49.765625,
+        "width": 1165,
+        "height": 68.296875
+      },
+      "footer": {
+        "x": 338,
+        "y": 631.0625,
+        "width": 877,
+        "height": 57
+      },
+      "toolbar": {
+        "x": 1115.6875,
+        "y": 135.0625,
+        "width": 83.3125,
+        "height": 231
+      },
+      "shell": {
+        "x": 49,
+        "y": 48.765625,
+        "width": 1167,
+        "height": 640.296875
+      },
+      "shellHorizontalOverflow": 0,
+      "shellContent": {
+        "x": 338,
+        "y": 119.0625,
+        "width": 777.6875,
+        "height": 512
+      },
+      "shellContentOverflowY": "auto",
+      "shellContentScrollHeight": 512,
+      "shellContentClientHeight": 512,
+      "toolbarFlexDirection": "column",
+      "toolbarHorizontalOverflow": 0,
+      "quickActionGroups": 2,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 0,
+      "footerPresent": true,
+      "footerActionCount": 1,
+      "footerDisabledActionCount": 0,
+      "shellRegions": {
+        "topbar": {
+          "x": 50,
+          "y": 49.765625,
+          "width": 1165,
+          "height": 69.296875
+        },
+        "sidebar": {
+          "x": 50,
+          "y": 119.0625,
+          "width": 270,
+          "height": 569
+        },
+        "content": {
+          "x": 338,
+          "y": 119.0625,
+          "width": 777.6875,
+          "height": 512
+        },
+        "quickActions": {
+          "x": 1115.6875,
+          "y": 119.0625,
+          "width": 99.3125,
+          "height": 263
+        },
+        "footer": {
+          "x": 338,
+          "y": 631.0625,
+          "width": 877,
+          "height": 57
+        }
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 74,
+          "y": 70.859375,
+          "width": 109.640625,
+          "height": 26.09375,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 199.640625,
+          "y": 50.765625,
+          "width": 192,
+          "height": 66.296875,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 407.640625,
+          "y": 49.765625,
+          "width": 518.96875,
+          "height": 68.296875,
+          "overflowWidth": 0
+        },
+        "topbar__actions": {
+          "x": 942.609375,
+          "y": 63.90625,
+          "width": 40,
+          "height": 40,
+          "overflowWidth": 4
+        },
+        "topbar__user": {
+          "x": 998.609375,
+          "y": 57.40625,
+          "width": 192.390625,
+          "height": 53,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "sidebar": 1,
+        "topbar": 1,
+        "appFooter": 1,
+        "quickActionsBar": 1,
+        "branchSelector": 1,
+        "globalSearch": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "brokenImages": 0,
+      "interactionEvidence": {
+        "quickActionEvent": "آخر تفاعلquickActionActivated: task",
+        "footerActionEvent": "آخر تفاعلfooterActionActivated: support"
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "app-shell-1024-light-rtl",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 49,
+        "y": 48.765625,
+        "width": 911,
+        "height": 640.296875
+      },
+      "component": "app-shell",
+      "host": {
+        "x": 49,
+        "y": 48.765625,
+        "width": 911,
+        "height": 640.296875
+      },
+      "nav": {
+        "x": 690,
+        "y": 179.0625,
+        "width": 269,
+        "height": 172
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 172,
+      "navClientHeight": 172,
+      "collapsed": false,
+      "visibleEntries": 3,
+      "enabledInteractiveEntries": 3,
+      "activeDestinations": 1,
+      "activeAncestors": 1,
+      "header": {
+        "x": 50,
+        "y": 49.765625,
+        "width": 909,
+        "height": 68.296875
+      },
+      "footer": {
+        "x": 50,
+        "y": 631.0625,
+        "width": 621,
+        "height": 57
+      },
+      "toolbar": {
+        "x": 66,
+        "y": 135.0625,
+        "width": 83.3125,
+        "height": 231
+      },
+      "shell": {
+        "x": 49,
+        "y": 48.765625,
+        "width": 911,
+        "height": 640.296875
+      },
+      "shellHorizontalOverflow": 0,
+      "shellContent": {
+        "x": 149.3125,
+        "y": 119.0625,
+        "width": 521.6875,
+        "height": 512
+      },
+      "shellContentOverflowY": "auto",
+      "shellContentScrollHeight": 512,
+      "shellContentClientHeight": 512,
+      "toolbarFlexDirection": "column",
+      "toolbarHorizontalOverflow": 0,
+      "quickActionGroups": 2,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 0,
+      "footerPresent": true,
+      "footerActionCount": 1,
+      "footerDisabledActionCount": 0,
+      "shellRegions": {
+        "topbar": {
+          "x": 50,
+          "y": 49.765625,
+          "width": 909,
+          "height": 69.296875
+        },
+        "sidebar": {
+          "x": 689,
+          "y": 119.0625,
+          "width": 270,
+          "height": 569
+        },
+        "content": {
+          "x": 149.3125,
+          "y": 119.0625,
+          "width": 521.6875,
+          "height": 512
+        },
+        "quickActions": {
+          "x": 50,
+          "y": 119.0625,
+          "width": 99.3125,
+          "height": 263
+        },
+        "footer": {
+          "x": 50,
+          "y": 631.0625,
+          "width": 621,
+          "height": 57
+        }
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 825.359375,
+          "y": 70.859375,
+          "width": 109.640625,
+          "height": 26.09375,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 617.359375,
+          "y": 50.765625,
+          "width": 192,
+          "height": 66.296875,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 338.390625,
+          "y": 49.765625,
+          "width": 262.96875,
+          "height": 68.296875,
+          "overflowWidth": 0
+        },
+        "topbar__actions": {
+          "x": 282.390625,
+          "y": 63.90625,
+          "width": 40,
+          "height": 40,
+          "overflowWidth": 4
+        },
+        "topbar__user": {
+          "x": 74,
+          "y": 57.40625,
+          "width": 192.390625,
+          "height": 53,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "sidebar": 1,
+        "topbar": 1,
+        "appFooter": 1,
+        "quickActionsBar": 1,
+        "branchSelector": 1,
+        "globalSearch": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "brokenImages": 0,
+      "interactionEvidence": {
+        "quickActionEvent": "آخر تفاعلquickActionActivated: task",
+        "footerActionEvent": "آخر تفاعلfooterActionActivated: support"
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "app-shell-768-dark-rtl",
+      "viewport": {
+        "width": 768,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 41,
+        "y": 48.765625,
+        "width": 671,
+        "height": 771.59375
+      },
+      "component": "app-shell",
+      "host": {
+        "x": 41,
+        "y": 48.765625,
+        "width": 671,
+        "height": 771.59375
+      },
+      "nav": {
+        "x": 442,
+        "y": 277.359375,
+        "width": 269,
+        "height": 172
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 172,
+      "navClientHeight": 172,
+      "collapsed": false,
+      "visibleEntries": 3,
+      "enabledInteractiveEntries": 3,
+      "activeDestinations": 1,
+      "activeAncestors": 1,
+      "header": {
+        "x": 42,
+        "y": 49.765625,
+        "width": 669,
+        "height": 166.59375
+      },
+      "footer": {
+        "x": 42,
+        "y": 729.359375,
+        "width": 381,
+        "height": 90
+      },
+      "toolbar": {
+        "x": 58,
+        "y": 233.359375,
+        "width": 83.3125,
+        "height": 231
+      },
+      "shell": {
+        "x": 41,
+        "y": 48.765625,
+        "width": 671,
+        "height": 771.59375
+      },
+      "shellHorizontalOverflow": 0,
+      "shellContent": {
+        "x": 141.3125,
+        "y": 217.359375,
+        "width": 281.6875,
+        "height": 512
+      },
+      "shellContentOverflowY": "auto",
+      "shellContentScrollHeight": 512,
+      "shellContentClientHeight": 512,
+      "toolbarFlexDirection": "column",
+      "toolbarHorizontalOverflow": 0,
+      "quickActionGroups": 2,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 0,
+      "footerPresent": true,
+      "footerActionCount": 1,
+      "footerDisabledActionCount": 0,
+      "shellRegions": {
+        "topbar": {
+          "x": 42,
+          "y": 49.765625,
+          "width": 669,
+          "height": 167.59375
+        },
+        "sidebar": {
+          "x": 441,
+          "y": 217.359375,
+          "width": 270,
+          "height": 602
+        },
+        "content": {
+          "x": 141.3125,
+          "y": 217.359375,
+          "width": 281.6875,
+          "height": 512
+        },
+        "quickActions": {
+          "x": 42,
+          "y": 217.359375,
+          "width": 99.3125,
+          "height": 263
+        },
+        "footer": {
+          "x": 42,
+          "y": 729.359375,
+          "width": 381,
+          "height": 90
+        }
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 593.359375,
+          "y": 57.765625,
+          "width": 109.640625,
+          "height": 66.296875,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 385.359375,
+          "y": 57.765625,
+          "width": 192,
+          "height": 66.296875,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 50,
+          "y": 140.0625,
+          "width": 653,
+          "height": 68.296875,
+          "overflowWidth": 0
+        },
+        "topbar__actions": {
+          "x": 329.359375,
+          "y": 57.765625,
+          "width": 40,
+          "height": 66.296875,
+          "overflowWidth": 4
+        },
+        "topbar__user": {
+          "x": 50,
+          "y": 57.765625,
+          "width": 192.390625,
+          "height": 66.296875,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "sidebar": 1,
+        "topbar": 1,
+        "appFooter": 1,
+        "quickActionsBar": 1,
+        "branchSelector": 1,
+        "globalSearch": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "brokenImages": 0,
+      "interactionEvidence": {
+        "quickActionEvent": "آخر تفاعلquickActionActivated: task",
+        "footerActionEvent": "آخر تفاعلfooterActionActivated: support"
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "app-shell-390-light-rtl",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 33,
+        "y": 92.953125,
+        "width": 309,
+        "height": 1203.6875
+      },
+      "component": "app-shell",
+      "host": {
+        "x": 33,
+        "y": 92.953125,
+        "width": 309,
+        "height": 1203.6875
+      },
+      "nav": {
+        "x": 35,
+        "y": 432.640625,
+        "width": 306,
+        "height": 172
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 172,
+      "navClientHeight": 172,
+      "collapsed": false,
+      "visibleEntries": 3,
+      "enabledInteractiveEntries": 3,
+      "activeDestinations": 1,
+      "activeAncestors": 1,
+      "header": {
+        "x": 34,
+        "y": 93.953125,
+        "width": 307,
+        "height": 277.6875
+      },
+      "footer": {
+        "x": 34,
+        "y": 1175.640625,
+        "width": 307,
+        "height": 120
+      },
+      "toolbar": {
+        "x": 42,
+        "y": 1117.640625,
+        "width": 291,
+        "height": 58
+      },
+      "shell": {
+        "x": 33,
+        "y": 92.953125,
+        "width": 309,
+        "height": 1203.6875
+      },
+      "shellHorizontalOverflow": 0,
+      "shellContent": {
+        "x": 34,
+        "y": 605.640625,
+        "width": 307,
+        "height": 512
+      },
+      "shellContentOverflowY": "auto",
+      "shellContentScrollHeight": 512,
+      "shellContentClientHeight": 512,
+      "toolbarFlexDirection": "row",
+      "toolbarHorizontalOverflow": 0,
+      "quickActionGroups": 2,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 0,
+      "footerPresent": true,
+      "footerActionCount": 1,
+      "footerDisabledActionCount": 0,
+      "shellRegions": {
+        "topbar": {
+          "x": 34,
+          "y": 93.953125,
+          "width": 307,
+          "height": 278.6875
+        },
+        "sidebar": {
+          "x": 34,
+          "y": 372.640625,
+          "width": 307,
+          "height": 233
+        },
+        "content": {
+          "x": 34,
+          "y": 605.640625,
+          "width": 307,
+          "height": 512
+        },
+        "quickActions": {
+          "x": 34,
+          "y": 1117.640625,
+          "width": 307,
+          "height": 58
+        },
+        "footer": {
+          "x": 34,
+          "y": 1175.640625,
+          "width": 307,
+          "height": 120
+        }
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 223.359375,
+          "y": 101.953125,
+          "width": 109.640625,
+          "height": 26.09375,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 141,
+          "y": 144.046875,
+          "width": 192,
+          "height": 66.296875,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 42,
+          "y": 295.34375,
+          "width": 291,
+          "height": 68.296875,
+          "overflowWidth": 0
+        },
+        "topbar__actions": {
+          "x": 85,
+          "y": 144.046875,
+          "width": 40,
+          "height": 66.296875,
+          "overflowWidth": 4
+        },
+        "topbar__user": {
+          "x": 42,
+          "y": 226.34375,
+          "width": 192.390625,
+          "height": 53,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "sidebar": 1,
+        "topbar": 1,
+        "appFooter": 1,
+        "quickActionsBar": 1,
+        "branchSelector": 1,
+        "globalSearch": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "brokenImages": 0,
+      "interactionEvidence": {
+        "quickActionEvent": "آخر تفاعلquickActionActivated: task",
+        "footerActionEvent": "آخر تفاعلfooterActionActivated: support"
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "app-shell-320-dark-ltr",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 33,
+        "y": 136.953125,
+        "width": 239,
+        "height": 1305.125
+      },
+      "component": "app-shell",
+      "host": {
+        "x": 33,
+        "y": 136.953125,
+        "width": 239,
+        "height": 1305.125
+      },
+      "nav": {
+        "x": 34,
+        "y": 532.640625,
+        "width": 236,
+        "height": 172
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 172,
+      "navClientHeight": 172,
+      "collapsed": false,
+      "visibleEntries": 3,
+      "enabledInteractiveEntries": 3,
+      "activeDestinations": 1,
+      "activeAncestors": 1,
+      "header": {
+        "x": 34,
+        "y": 137.953125,
+        "width": 237,
+        "height": 333.6875
+      },
+      "footer": {
+        "x": 34,
+        "y": 1321.078125,
+        "width": 237,
+        "height": 120
+      },
+      "toolbar": {
+        "x": 42,
+        "y": 1248.078125,
+        "width": 221,
+        "height": 73
+      },
+      "shell": {
+        "x": 33,
+        "y": 136.953125,
+        "width": 239,
+        "height": 1305.125
+      },
+      "shellHorizontalOverflow": 0,
+      "shellContent": {
+        "x": 34,
+        "y": 705.640625,
+        "width": 237,
+        "height": 542.4375
+      },
+      "shellContentOverflowY": "auto",
+      "shellContentScrollHeight": 542,
+      "shellContentClientHeight": 542,
+      "toolbarFlexDirection": "row",
+      "toolbarHorizontalOverflow": 56,
+      "quickActionGroups": 2,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 0,
+      "footerPresent": true,
+      "footerActionCount": 1,
+      "footerDisabledActionCount": 0,
+      "shellRegions": {
+        "topbar": {
+          "x": 34,
+          "y": 137.953125,
+          "width": 237,
+          "height": 334.6875
+        },
+        "sidebar": {
+          "x": 34,
+          "y": 472.640625,
+          "width": 237,
+          "height": 233
+        },
+        "content": {
+          "x": 34,
+          "y": 705.640625,
+          "width": 237,
+          "height": 542.4375
+        },
+        "quickActions": {
+          "x": 34,
+          "y": 1248.078125,
+          "width": 237,
+          "height": 73
+        },
+        "footer": {
+          "x": 34,
+          "y": 1321.078125,
+          "width": 237,
+          "height": 120
+        }
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 42,
+          "y": 145.953125,
+          "width": 109.640625,
+          "height": 26.09375,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 42,
+          "y": 188.046875,
+          "width": 192,
+          "height": 66.296875,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 42,
+          "y": 395.34375,
+          "width": 221,
+          "height": 68.296875,
+          "overflowWidth": 2
+        },
+        "topbar__actions": {
+          "x": 42,
+          "y": 270.34375,
+          "width": 40,
+          "height": 40,
+          "overflowWidth": 4
+        },
+        "topbar__user": {
+          "x": 70.609375,
+          "y": 326.34375,
+          "width": 192.390625,
+          "height": 53,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "sidebar": 1,
+        "topbar": 1,
+        "appFooter": 1,
+        "quickActionsBar": 1,
+        "branchSelector": 1,
+        "globalSearch": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "brokenImages": 0,
+      "interactionEvidence": {
+        "quickActionEvent": "آخر تفاعلquickActionActivated: task",
+        "footerActionEvent": "آخر تفاعلfooterActionActivated: support"
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "app-shell-390-light-rtl-end",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 33,
+        "y": -360.046875,
+        "width": 309,
+        "height": 1203.6875
+      },
+      "component": "app-shell",
+      "host": {
+        "x": 33,
+        "y": -360.046875,
+        "width": 309,
+        "height": 1203.6875
+      },
+      "nav": {
+        "x": 35,
+        "y": -20.359375,
+        "width": 306,
+        "height": 172
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 172,
+      "navClientHeight": 172,
+      "collapsed": false,
+      "visibleEntries": 3,
+      "enabledInteractiveEntries": 3,
+      "activeDestinations": 1,
+      "activeAncestors": 1,
+      "header": {
+        "x": 34,
+        "y": -359.046875,
+        "width": 307,
+        "height": 277.6875
+      },
+      "footer": {
+        "x": 34,
+        "y": 722.640625,
+        "width": 307,
+        "height": 120
+      },
+      "toolbar": {
+        "x": 42,
+        "y": 664.640625,
+        "width": 291,
+        "height": 58
+      },
+      "shell": {
+        "x": 33,
+        "y": -360.046875,
+        "width": 309,
+        "height": 1203.6875
+      },
+      "shellHorizontalOverflow": 0,
+      "shellContent": {
+        "x": 34,
+        "y": 152.640625,
+        "width": 307,
+        "height": 512
+      },
+      "shellContentOverflowY": "auto",
+      "shellContentScrollHeight": 512,
+      "shellContentClientHeight": 512,
+      "toolbarFlexDirection": "row",
+      "toolbarHorizontalOverflow": 0,
+      "quickActionGroups": 2,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 0,
+      "footerPresent": true,
+      "footerActionCount": 1,
+      "footerDisabledActionCount": 0,
+      "shellRegions": {
+        "topbar": {
+          "x": 34,
+          "y": -359.046875,
+          "width": 307,
+          "height": 278.6875
+        },
+        "sidebar": {
+          "x": 34,
+          "y": -80.359375,
+          "width": 307,
+          "height": 233
+        },
+        "content": {
+          "x": 34,
+          "y": 152.640625,
+          "width": 307,
+          "height": 512
+        },
+        "quickActions": {
+          "x": 34,
+          "y": 664.640625,
+          "width": 307,
+          "height": 58
+        },
+        "footer": {
+          "x": 34,
+          "y": 722.640625,
+          "width": 307,
+          "height": 120
+        }
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 223.359375,
+          "y": -351.046875,
+          "width": 109.640625,
+          "height": 26.09375,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 141,
+          "y": -308.953125,
+          "width": 192,
+          "height": 66.296875,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 42,
+          "y": -157.65625,
+          "width": 291,
+          "height": 68.296875,
+          "overflowWidth": 0
+        },
+        "topbar__actions": {
+          "x": 85,
+          "y": -308.953125,
+          "width": 40,
+          "height": 66.296875,
+          "overflowWidth": 4
+        },
+        "topbar__user": {
+          "x": 42,
+          "y": -226.65625,
+          "width": 192.390625,
+          "height": 53,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "sidebar": 1,
+        "topbar": 1,
+        "appFooter": 1,
+        "quickActionsBar": 1,
+        "branchSelector": 1,
+        "globalSearch": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "brokenImages": 0,
+      "interactionEvidence": {
+        "quickActionEvent": "آخر تفاعلquickActionActivated: task",
+        "footerActionEvent": "آخر تفاعلfooterActionActivated: support"
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "app-shell-320-dark-ltr-end",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 33,
+        "y": -737.046875,
+        "width": 239,
+        "height": 1305.125
+      },
+      "component": "app-shell",
+      "host": {
+        "x": 33,
+        "y": -737.046875,
+        "width": 239,
+        "height": 1305.125
+      },
+      "nav": {
+        "x": 34,
+        "y": -341.359375,
+        "width": 236,
+        "height": 172
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 172,
+      "navClientHeight": 172,
+      "collapsed": false,
+      "visibleEntries": 3,
+      "enabledInteractiveEntries": 3,
+      "activeDestinations": 1,
+      "activeAncestors": 1,
+      "header": {
+        "x": 34,
+        "y": -736.046875,
+        "width": 237,
+        "height": 333.6875
+      },
+      "footer": {
+        "x": 34,
+        "y": 447.078125,
+        "width": 237,
+        "height": 120
+      },
+      "toolbar": {
+        "x": 42,
+        "y": 374.078125,
+        "width": 221,
+        "height": 73
+      },
+      "shell": {
+        "x": 33,
+        "y": -737.046875,
+        "width": 239,
+        "height": 1305.125
+      },
+      "shellHorizontalOverflow": 0,
+      "shellContent": {
+        "x": 34,
+        "y": -168.359375,
+        "width": 237,
+        "height": 542.4375
+      },
+      "shellContentOverflowY": "auto",
+      "shellContentScrollHeight": 542,
+      "shellContentClientHeight": 542,
+      "toolbarFlexDirection": "row",
+      "toolbarHorizontalOverflow": 56,
+      "quickActionGroups": 2,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 0,
+      "footerPresent": true,
+      "footerActionCount": 1,
+      "footerDisabledActionCount": 0,
+      "shellRegions": {
+        "topbar": {
+          "x": 34,
+          "y": -736.046875,
+          "width": 237,
+          "height": 334.6875
+        },
+        "sidebar": {
+          "x": 34,
+          "y": -401.359375,
+          "width": 237,
+          "height": 233
+        },
+        "content": {
+          "x": 34,
+          "y": -168.359375,
+          "width": 237,
+          "height": 542.4375
+        },
+        "quickActions": {
+          "x": 34,
+          "y": 374.078125,
+          "width": 237,
+          "height": 73
+        },
+        "footer": {
+          "x": 34,
+          "y": 447.078125,
+          "width": 237,
+          "height": 120
+        }
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 42,
+          "y": -728.046875,
+          "width": 109.640625,
+          "height": 26.09375,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 42,
+          "y": -685.953125,
+          "width": 192,
+          "height": 66.296875,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 42,
+          "y": -478.65625,
+          "width": 221,
+          "height": 68.296875,
+          "overflowWidth": 2
+        },
+        "topbar__actions": {
+          "x": 42,
+          "y": -603.65625,
+          "width": 40,
+          "height": 40,
+          "overflowWidth": 4
+        },
+        "topbar__user": {
+          "x": 70.609375,
+          "y": -547.65625,
+          "width": 192.390625,
+          "height": 53,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "sidebar": 1,
+        "topbar": 1,
+        "appFooter": 1,
+        "quickActionsBar": 1,
+        "branchSelector": 1,
+        "globalSearch": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "brokenImages": 0,
+      "interactionEvidence": {
+        "quickActionEvent": "آخر تفاعلquickActionActivated: task",
+        "footerActionEvent": "آخر تفاعلfooterActionActivated: support"
+      },
+      "diagnostics": []
+    }
+  ]
+}

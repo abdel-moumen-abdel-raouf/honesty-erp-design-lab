@@ -113,8 +113,13 @@ export function validateShellNavigation(files) {
   }
 
   const appShell = files.get('src/app/controls/app-shell/app-shell.html') ?? '';
-  if (!appShell.includes('<erp-sidebar') || !appShell.includes('<erp-topbar')) {
-    errors.push('ErpAppShell must compose ErpSidebar and ErpTopbar');
+  if (
+    !appShell.includes('<erp-sidebar') ||
+    !appShell.includes('<erp-topbar') ||
+    !appShell.includes('<erp-quick-actions-bar') ||
+    !appShell.includes('<erp-app-footer')
+  ) {
+    errors.push('ErpAppShell must compose Sidebar, Topbar, QuickActionsBar, and AppFooter');
   }
 
   const sidebar = `${files.get('src/app/controls/sidebar/sidebar.ts') ?? ''}\n${files.get('src/app/controls/sidebar/sidebar.html') ?? ''}`;
@@ -405,7 +410,7 @@ function validFixture(overrides = new Map()) {
 
   files.set(
     'src/app/controls/app-shell/app-shell.html',
-    '<erp-topbar></erp-topbar><erp-sidebar></erp-sidebar>',
+    '<erp-topbar></erp-topbar><erp-sidebar></erp-sidebar><erp-quick-actions-bar></erp-quick-actions-bar><erp-app-footer></erp-app-footer>',
   );
   files.set(
     'src/app/controls/app-footer/app-footer.ts',

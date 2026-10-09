@@ -1,5 +1,20 @@
 # Honesty ERP — Accelerated Navigation & ERP Shell Batch V1
 
+## Current continuation authority — 2026-10-09
+
+The historical accelerated ten-owner batch below remains history. The Product
+Owner subsequently authorized S2-A through S2-E: reference-driven Sidebar,
+reference-driven Topbar, original Honesty ERP AppFooter, consumer-driven
+QuickActionsBar, and minimum AppShell integration. The authoritative current
+reference/topology register is `SHELL_REFERENCE_TOPOLOGY_V2.md`; it supersedes
+the historical claim below that no Sidebar or Topbar reference existed.
+
+All five continuation units are technically verified and visually pending.
+AppShell composes the four owners plus the established BranchSelector,
+GlobalSearch, NotificationBell and unchanged UserMenu. The final gate is
+124/124 files and 792/792 tests with zero warnings. No subsequent Shell owner
+or application wave is authorized.
+
 ## Authority and scope
 
 The Product Owner explicitly opened this grouped batch for exactly these ten

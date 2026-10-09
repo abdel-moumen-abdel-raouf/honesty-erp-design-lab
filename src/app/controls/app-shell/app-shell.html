@@ -28,4 +28,26 @@
   <main class="app-shell__content" [attr.aria-label]="contentLabel()">
     <ng-content />
   </main>
+
+  @if (quickActionGroups().length) {
+    <erp-quick-actions-bar
+      class="app-shell__quick-actions"
+      [groups]="quickActionGroups()"
+      [ariaLabel]="quickActionsLabel()"
+      (actionActivated)="quickActionActivated.emit($event)"
+    />
+  }
+
+  @if (footer(); as footerConfig) {
+    <erp-app-footer
+      class="app-shell__footer"
+      [applicationLabel]="footerConfig.applicationLabel ?? null"
+      [versionLabel]="footerConfig.versionLabel ?? null"
+      [statusLabel]="footerConfig.statusLabel ?? null"
+      [statusTone]="footerConfig.statusTone ?? 'neutral'"
+      [actions]="footerConfig.actions ?? []"
+      [ariaLabel]="footerConfig.ariaLabel ?? 'تذييل التطبيق'"
+      (actionActivated)="footerActionActivated.emit($event)"
+    />
+  }
 </section>

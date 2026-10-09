@@ -1,5 +1,21 @@
 # Shell Reference and Topology Contract V2
 
+## Implemented topology checkpoint — 2026-10-09
+
+S2-A through S2-E implement the bounded topology as independent owners:
+logical-start `ErpSidebar`, workspace `ErpTopbar`, projected main content,
+logical-end `ErpQuickActionsBar`, and in-flow `ErpAppFooter`. AppShell's new
+QuickActions/Footer configuration is optional and activation-only; existing
+consumers remain compatible. On narrow Query API conditions the composition is
+one column and QuickActionsBar becomes horizontally contained. Sidebar caps its
+desktop reference width to the available container rather than being clipped.
+
+Technical evidence is indexed at `docs/review-evidence/erp-shell/README.md`.
+The final gate is 124/124 files and 792/792 tests, all governance, both
+typechecks, production build, and zero warnings. This checkpoint does not add
+unknown Gxon measurements or fixed quick-action taxonomy and does not grant
+Product Owner visual acceptance.
+
 ## Authority and scope
 
 - Product Owner authorization date: 2026-10-09.

@@ -1,5 +1,23 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Authoritative current handoff — 2026-10-09 — Shell S2 wave complete
+
+S2-A Sidebar, S2-B Topbar, S2-C AppFooter, S2-D QuickActionsBar and S2-E
+AppShell integration are `TECHNICAL_VERIFIED` and
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. AppShell optionally composes the new
+owners, preserves the old composition when they are absent, forwards only
+activation intent, and demonstrates the established BranchSelector,
+GlobalSearch, NotificationBell and unchanged UserMenu in one production-style
+workbench.
+
+Canonical verification passes 124/124 files and 792/792 tests, all governance,
+both typechecks, production build, and zero warnings. Evidence and the deferred
+review checklist are indexed at `docs/review-evidence/erp-shell/README.md`;
+AppShell measurements cover 1440/1280/1024/768/390/320 px with zero page/Shell
+horizontal overflow, broken images or diagnostics. Stop for consolidated
+Product Owner visual review. No additional Shell owner, application feature,
+page migration, or component wave is authorized.
+
 ## Authoritative current handoff — 2026-10-09 — Shell S2-D complete
 
 S2-A Sidebar, S2-B Topbar, S2-C AppFooter and S2-D QuickActionsBar are

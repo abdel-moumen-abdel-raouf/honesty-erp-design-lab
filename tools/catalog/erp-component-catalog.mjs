@@ -336,7 +336,24 @@ const FIXTURE_INPUTS = new Map([
       {id: 'privacy', label: 'الخصوصية', icon: 'shield'},
     ],
   }],
-  ['ErpAppShell', {navigationItems: [{id: 'finance', label: 'المالية', icon: 'wallet'}]}],
+  ['ErpAppShell', {
+    navigationItems: [
+      {id: 'finance', label: 'المالية', icon: 'wallet', children: [{id: 'ledger', label: 'الحسابات العامة', href: '/ledger'}]},
+      {id: 'inventory', label: 'المخزون', icon: 'layers', href: '/inventory'},
+    ],
+    activeNavigationId: 'ledger',
+    quickActionGroups: [
+      {id: 'daily', label: 'العمل اليومي', actions: [{id: 'task', label: 'مهمة جديدة', icon: 'add', priority: 'primary'}, {id: 'event', label: 'موعد جديد', icon: 'calendar'}]},
+      {id: 'support', actions: [{id: 'help', label: 'المساعدة', icon: 'help'}, {id: 'settings', label: 'الإعدادات', icon: 'settings'}]},
+    ],
+    footer: {
+      applicationLabel: 'Honesty ERP',
+      versionLabel: 'الإصدار 1.0.0',
+      statusLabel: 'تعمل الأنظمة',
+      statusTone: 'success',
+      actions: [{id: 'support', label: 'الدعم', icon: 'help'}],
+    },
+  }],
   ['ErpAvatar', {name: 'أميرة حداد'}],
   ['ErpBranchSelector', {branches: [{id: 'cairo', label: 'فرع القاهرة'}]}],
   ['ErpBreadcrumbs', {items: [{id: 'home', label: 'الرئيسية', href: '/'}]}],
@@ -1123,7 +1140,7 @@ function projectionMarkup(entry) {
     return '<erp-text erpTopbarStart type="heading-3">Honesty ERP</erp-text><erp-branch-selector erpTopbarContext [branches]="topbarBranches" value="cairo" (changed)="recordEvent(\'branchChanged\', $event)" /><erp-global-search erpTopbarSearch [results]="topbarSearchResults" (resultActivated)="recordEvent(\'searchResultActivated\', $event)" /><erp-notification-bell erpTopbarActions [notifications]="topbarNotifications" (notificationActivated)="recordEvent(\'notificationActivated\', $event)" /><erp-user-menu erpTopbarUser [user]="topbarUser" [items]="topbarUserItems" (actionActivated)="recordEvent(\'userActionActivated\', $event)" />';
   }
   if (entry.className === 'ErpAppShell') {
-    return '<erp-text erpAppShellTopbarStart type="heading-3">Honesty ERP</erp-text><erp-text type="heading-3">محتوى التطبيق</erp-text><erp-text type="paragraph">ملخص العمليات اليومية</erp-text>';
+    return '<erp-text erpAppShellTopbarStart type="heading-3">Honesty ERP</erp-text><erp-branch-selector erpAppShellTopbarContext [branches]="topbarBranches" value="cairo" (changed)="recordEvent(\'branchChanged\', $event)" /><erp-global-search erpAppShellTopbarSearch [results]="topbarSearchResults" (resultActivated)="recordEvent(\'searchResultActivated\', $event)" /><erp-notification-bell erpAppShellTopbarActions [notifications]="topbarNotifications" (notificationActivated)="recordEvent(\'notificationActivated\', $event)" /><erp-user-menu erpAppShellTopbarUser [user]="topbarUser" [items]="topbarUserItems" (actionActivated)="recordEvent(\'userActionActivated\', $event)" /><erp-stack gap="default"><erp-text type="heading-3">لوحة العمليات</erp-text><erp-text type="paragraph">ملخص المبيعات والمشتريات والمخزون والحسابات العامة.</erp-text><erp-surface padding="default" border="subtle"><erp-text type="strong">المبيعات اليومية</erp-text><erp-text type="paragraph">128 فاتورة قيد المتابعة.</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="strong">حالة المخزون</erp-text><erp-text type="paragraph">ثمانية أصناف تحتاج إلى إعادة الطلب.</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="strong">المهام المالية</erp-text><erp-text type="paragraph">إقفال الفترة ومراجعة أرصدة الحسابات.</erp-text></erp-surface></erp-stack>';
   }
   if (PROJECTION_COMPONENTS.has(entry.className)) {
     return '<erp-text type="paragraph">محتوى مسقط مرئي داخل المكوّن</erp-text>';
@@ -1173,7 +1190,7 @@ function generatedShowcaseOwner(entry) {
     if (entry.className !== 'ErpTextBox') importLines.push(`import {ErpTextBox} from '../../../controls/text-box/text-box';`);
     imports.add('ErpTextBox');
   }
-  if (entry.className === 'ErpTopbar') {
+  if (entry.className === 'ErpTopbar' || entry.className === 'ErpAppShell') {
     importLines.push(`import {ErpBranchSelector} from '../../../controls/branch-selector/branch-selector';`);
     importLines.push(`import {ErpGlobalSearch} from '../../../controls/global-search/global-search';`);
     importLines.push(`import {ErpNotificationBell} from '../../../controls/notification-bell/notification-bell';`);
@@ -1246,14 +1263,14 @@ function generatedShowcaseOwner(entry) {
   const userMenuPresetHandler = entry.className === 'ErpUserMenu'
     ? `    if (change.control.name === '$userPreset') {\n      this.liveValues.update((current) => ({\n        ...current,\n        '$userPreset': change.value,\n        user: USER_MENU_PRESETS[String(change.value)] ?? current['user'],\n      }));\n      return;\n    }\n`
     : '';
-  const topbarEvidenceSource = entry.className === 'ErpTopbar'
+  const topbarEvidenceSource = entry.className === 'ErpTopbar' || entry.className === 'ErpAppShell'
     ? `\nconst TOPBAR_BRANCHES = [{id: 'cairo', label: 'فرع القاهرة'}, {id: 'alexandria', label: 'فرع الإسكندرية'}] as const;\nconst TOPBAR_SEARCH_RESULTS = [{id: 'invoice-1042', label: 'فاتورة 1042', category: 'المبيعات', icon: 'file'}] as const;\nconst TOPBAR_NOTIFICATIONS = [{id: 'stock', title: 'تنبيه مخزون', description: 'وصل صنفان إلى حد إعادة الطلب', icon: 'notification'}] as const;\nconst TOPBAR_USER = {displayName: 'أميرة حداد', email: 'amira@honesty.local', roleLabel: 'مديرة المالية', branchLabel: 'القاهرة', avatarSrc: '/assets/honesty-erp-avatars/users/female/avatar-21.png', avatarPresence: 'online'} as const;\nconst TOPBAR_USER_ITEMS = [{id: 'profile', label: 'الملف الشخصي', icon: 'user'}, {id: 'sign-out', label: 'تسجيل الخروج', icon: 'logout'}] as const;\n`
     : '';
   const source = `${importLines.join('\n')}\n\nconst ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === '${entry.id}')!;${userMenuPresetSource}\n@Component({\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  selector: 'app-${entry.id}-showcase',\n  imports: [${[...imports].join(', ')}],\n  templateUrl: './${entry.id}-showcase.html',\n  styleUrl: './${entry.id}-showcase.scss',\n})\nexport class ${className} {\n  readonly entry = ENTRY;\n  readonly controls = ENTRY.showcaseControls;\n  readonly lastEvent = signal('لم يحدث تفاعل بعد');\n  readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});\n  readonly cvaValue = signal<unknown>(${JSON.stringify(initialCvaValue)});\n  readonly controlValues = computed<Readonly<Record<string, unknown>>>(() => ({\n    ...this.liveValues(),\n    '$value': this.cvaValue(),\n  }));\n${isCva ? `  readonly control = new FormControl<unknown>(${JSON.stringify({value: initialCvaValue, disabled: Boolean(entry.showcaseInitialValues?.disabled)})});\n\n  constructor() {\n    this.control.valueChanges.pipe(takeUntilDestroyed()).subscribe((value) => {\n      this.cvaValue.set(value);\n      this.recordEvent('valueChange', value);\n    });\n  }\n` : ''}${isAvatarPicker ? `  readonly defaultAvatars = ERP_AVATAR_CATALOG;\n\n  effectiveAvatars(): unknown {\n    const avatars = this.value('avatars');\n    return Array.isArray(avatars) ? avatars : this.defaultAvatars;\n  }\n\n` : ''}\n  readonly previewInline = computed(() => Number(this.liveValues()['$previewInline'] ?? 80));\n  readonly previewBlock = computed(() => Number(this.liveValues()['$previewBlock'] ?? 75));\n  readonly previewDirection = computed(() => this.liveValues()['$previewDirection'] === 'ltr' ? 'ltr' : 'rtl');\n\n  value(name: string): unknown {\n    return this.liveValues()[name];\n  }\n\n  applyControl(change: ErpShowcaseControlChange): void {\n    if (change.control.source === 'cva') {\n${isCva ? `      this.control.setValue(change.value);` : `      this.cvaValue.set(change.value);`}\n      return;\n    }\n${userMenuPresetHandler}${hasCvaDisabled ? `    if (change.control.name === 'disabled') {\n      this.liveValues.update((current) => ({...current, disabled: change.value}));\n      if (change.value) this.control.disable();\n      else this.control.enable();\n      return;\n    }\n` : ''}    const value = change.control.kind === 'function'\n+      ? this.functionPreset(change.control.name, change.value)\n+      : change.value;\n+    this.liveValues.update((current) => ({...current, [change.control.name]: value}));\n+  }\n\n  recordModel(name: string, value: unknown): void {\n    this.liveValues.update((current) => ({...current, [name]: value}));\n    this.recordEvent(\`${'${name}'}Change\`, value);\n  }\n\n  recordEvent(name: string, value: unknown): void {\n    let rendered = '';\n    try { rendered = typeof value === 'string' ? value : JSON.stringify(value); }\n    catch { rendered = String(value); }\n    this.lastEvent.set(\`${'${name}'}: ${'${rendered}'}\`);\n  }\n\n  private functionPreset(name: string, value: unknown): unknown {\n    if (value !== 'sample') return null;\n    if (/comparator/i.test(name)) return () => 0;\n    if (/formatter/i.test(name)) return (candidate: unknown) => String(candidate ?? '');\n    if (/disabled/i.test(name)) return () => false;\n    if (/filter|predicate/i.test(name)) return () => true;\n    return (candidate: unknown) => candidate;\n  }\n}\n`;
   let normalizedSource = source
     .replaceAll('\n+', '\n')
     .replace('!;\n@Component', '!;\n\n@Component');
-  if (entry.className === 'ErpTopbar') {
+  if (entry.className === 'ErpTopbar' || entry.className === 'ErpAppShell') {
     normalizedSource = normalizedSource
       .replace('!;\n\n@Component', `!;${topbarEvidenceSource}\n@Component`)
       .replace(
