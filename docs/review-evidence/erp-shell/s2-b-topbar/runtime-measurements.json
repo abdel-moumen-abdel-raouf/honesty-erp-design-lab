@@ -1,0 +1,504 @@
+{
+  "capturedAt": "2026-10-09T13:49:34.651Z",
+  "baseUrl": "http://127.0.0.1:4200",
+  "measurements": [
+    {
+      "name": "topbar-1440-light-rtl",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 49,
+        "y": 404.765625,
+        "width": 1327,
+        "height": 69.296875
+      },
+      "component": "topbar",
+      "host": {
+        "x": 49,
+        "y": 404.765625,
+        "width": 1327,
+        "height": 69.296875
+      },
+      "nav": null,
+      "navOverflowY": null,
+      "navScrollHeight": null,
+      "navClientHeight": null,
+      "collapsed": false,
+      "visibleEntries": 0,
+      "enabledInteractiveEntries": 0,
+      "activeDestinations": 0,
+      "activeAncestors": 0,
+      "header": {
+        "x": 49,
+        "y": 404.765625,
+        "width": 1327,
+        "height": 68.296875
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 1242.359375,
+          "y": 425.859375,
+          "width": 109.640625,
+          "height": 26.09375,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 1034.359375,
+          "y": 405.765625,
+          "width": 192,
+          "height": 66.296875,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 337.390625,
+          "y": 404.765625,
+          "width": 680.96875,
+          "height": 68.296875,
+          "overflowWidth": 0
+        },
+        "topbar__actions": {
+          "x": 281.390625,
+          "y": 418.90625,
+          "width": 40,
+          "height": 40,
+          "overflowWidth": 5
+        },
+        "topbar__user": {
+          "x": 73,
+          "y": 412.40625,
+          "width": 192.390625,
+          "height": 53,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "branchSelector": 1,
+        "globalSearch": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "topbar-1280-dark-ltr",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 49,
+        "y": 404.765625,
+        "width": 1167,
+        "height": 69.296875
+      },
+      "component": "topbar",
+      "host": {
+        "x": 49,
+        "y": 404.765625,
+        "width": 1167,
+        "height": 69.296875
+      },
+      "nav": null,
+      "navOverflowY": null,
+      "navScrollHeight": null,
+      "navClientHeight": null,
+      "collapsed": false,
+      "visibleEntries": 0,
+      "enabledInteractiveEntries": 0,
+      "activeDestinations": 0,
+      "activeAncestors": 0,
+      "header": {
+        "x": 49,
+        "y": 404.765625,
+        "width": 1167,
+        "height": 68.296875
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 73,
+          "y": 425.859375,
+          "width": 109.640625,
+          "height": 26.09375,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 198.640625,
+          "y": 405.765625,
+          "width": 192,
+          "height": 66.296875,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 406.640625,
+          "y": 404.765625,
+          "width": 520.96875,
+          "height": 68.296875,
+          "overflowWidth": 0
+        },
+        "topbar__actions": {
+          "x": 943.609375,
+          "y": 418.90625,
+          "width": 40,
+          "height": 40,
+          "overflowWidth": 5
+        },
+        "topbar__user": {
+          "x": 999.609375,
+          "y": 412.40625,
+          "width": 192.390625,
+          "height": 53,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "branchSelector": 1,
+        "globalSearch": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "topbar-1024-light-rtl",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 49,
+        "y": 404.765625,
+        "width": 911,
+        "height": 69.296875
+      },
+      "component": "topbar",
+      "host": {
+        "x": 49,
+        "y": 404.765625,
+        "width": 911,
+        "height": 69.296875
+      },
+      "nav": null,
+      "navOverflowY": null,
+      "navScrollHeight": null,
+      "navClientHeight": null,
+      "collapsed": false,
+      "visibleEntries": 0,
+      "enabledInteractiveEntries": 0,
+      "activeDestinations": 0,
+      "activeAncestors": 0,
+      "header": {
+        "x": 49,
+        "y": 404.765625,
+        "width": 911,
+        "height": 68.296875
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 826.359375,
+          "y": 425.859375,
+          "width": 109.640625,
+          "height": 26.09375,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 618.359375,
+          "y": 405.765625,
+          "width": 192,
+          "height": 66.296875,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 337.390625,
+          "y": 404.765625,
+          "width": 264.96875,
+          "height": 68.296875,
+          "overflowWidth": 0
+        },
+        "topbar__actions": {
+          "x": 281.390625,
+          "y": 418.90625,
+          "width": 40,
+          "height": 40,
+          "overflowWidth": 5
+        },
+        "topbar__user": {
+          "x": 73,
+          "y": 412.40625,
+          "width": 192.390625,
+          "height": 53,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "branchSelector": 1,
+        "globalSearch": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "topbar-768-dark-rtl",
+      "viewport": {
+        "width": 768,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 41,
+        "y": 404.765625,
+        "width": 671,
+        "height": 167.59375
+      },
+      "component": "topbar",
+      "host": {
+        "x": 41,
+        "y": 404.765625,
+        "width": 671,
+        "height": 167.59375
+      },
+      "nav": null,
+      "navOverflowY": null,
+      "navScrollHeight": null,
+      "navClientHeight": null,
+      "collapsed": false,
+      "visibleEntries": 0,
+      "enabledInteractiveEntries": 0,
+      "activeDestinations": 0,
+      "activeAncestors": 0,
+      "header": {
+        "x": 41,
+        "y": 404.765625,
+        "width": 671,
+        "height": 166.59375
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 594.359375,
+          "y": 412.765625,
+          "width": 109.640625,
+          "height": 66.296875,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 386.359375,
+          "y": 412.765625,
+          "width": 192,
+          "height": 66.296875,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 49,
+          "y": 495.0625,
+          "width": 655,
+          "height": 68.296875,
+          "overflowWidth": 0
+        },
+        "topbar__actions": {
+          "x": 330.359375,
+          "y": 412.765625,
+          "width": 40,
+          "height": 66.296875,
+          "overflowWidth": 5
+        },
+        "topbar__user": {
+          "x": 49,
+          "y": 412.765625,
+          "width": 192.390625,
+          "height": 66.296875,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "branchSelector": 1,
+        "globalSearch": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "topbar-390-light-rtl",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 33,
+        "y": 499.953125,
+        "width": 309,
+        "height": 278.6875
+      },
+      "component": "topbar",
+      "host": {
+        "x": 33,
+        "y": 499.953125,
+        "width": 309,
+        "height": 278.6875
+      },
+      "nav": null,
+      "navOverflowY": null,
+      "navScrollHeight": null,
+      "navClientHeight": null,
+      "collapsed": false,
+      "visibleEntries": 0,
+      "enabledInteractiveEntries": 0,
+      "activeDestinations": 0,
+      "activeAncestors": 0,
+      "header": {
+        "x": 33,
+        "y": 499.953125,
+        "width": 309,
+        "height": 277.6875
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 224.359375,
+          "y": 507.953125,
+          "width": 109.640625,
+          "height": 26.09375,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 142,
+          "y": 550.046875,
+          "width": 192,
+          "height": 66.296875,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 41,
+          "y": 701.34375,
+          "width": 293,
+          "height": 68.296875,
+          "overflowWidth": 0
+        },
+        "topbar__actions": {
+          "x": 86,
+          "y": 550.046875,
+          "width": 40,
+          "height": 66.296875,
+          "overflowWidth": 5
+        },
+        "topbar__user": {
+          "x": 41,
+          "y": 632.34375,
+          "width": 192.390625,
+          "height": 53,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "branchSelector": 1,
+        "globalSearch": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "topbar-320-dark-ltr",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 33,
+        "y": 543.953125,
+        "width": 239,
+        "height": 334.6875
+      },
+      "component": "topbar",
+      "host": {
+        "x": 33,
+        "y": 543.953125,
+        "width": 239,
+        "height": 334.6875
+      },
+      "nav": null,
+      "navOverflowY": null,
+      "navScrollHeight": null,
+      "navClientHeight": null,
+      "collapsed": false,
+      "visibleEntries": 0,
+      "enabledInteractiveEntries": 0,
+      "activeDestinations": 0,
+      "activeAncestors": 0,
+      "header": {
+        "x": 33,
+        "y": 543.953125,
+        "width": 239,
+        "height": 333.6875
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 41,
+          "y": 551.953125,
+          "width": 109.640625,
+          "height": 26.09375,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 41,
+          "y": 594.046875,
+          "width": 192,
+          "height": 66.296875,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 41,
+          "y": 801.34375,
+          "width": 223,
+          "height": 68.296875,
+          "overflowWidth": 1
+        },
+        "topbar__actions": {
+          "x": 41,
+          "y": 676.34375,
+          "width": 40,
+          "height": 40,
+          "overflowWidth": 5
+        },
+        "topbar__user": {
+          "x": 71.609375,
+          "y": 732.34375,
+          "width": 192.390625,
+          "height": 53,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "branchSelector": 1,
+        "globalSearch": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "brokenImages": 0,
+      "diagnostics": []
+    }
+  ]
+}

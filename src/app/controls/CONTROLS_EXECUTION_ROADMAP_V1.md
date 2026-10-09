@@ -1,5 +1,16 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Authoritative Shell continuation — 2026-10-09 — S2-B complete
+
+S2-A Sidebar and S2-B Topbar are `TECHNICAL_VERIFIED` and
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Topbar retains one five-region
+projection owner and composes BranchSelector, GlobalSearch, NotificationBell,
+and UserMenu in its workbench. Its 122-file/785-test canonical gate and six
+browser conditions pass with zero build warnings, page overflow, broken images,
+or browser diagnostics. The next and only current unit is S2-C AppFooter,
+followed by the already authorized S2-D and S2-E only after their preceding
+gates.
+
 ## Authoritative Shell continuation — 2026-10-09
 
 The Product Owner authorized the ordered S2-A Sidebar, S2-B Topbar, S2-C

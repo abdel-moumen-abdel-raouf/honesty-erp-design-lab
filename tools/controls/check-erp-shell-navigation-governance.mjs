@@ -8,6 +8,8 @@ const REVIEW = 'src/app/review-internals/legacy-shell-batch/shell-batch.html';
 const CONTRACTS = 'src/app/controls/shell-family/shell-contracts.ts';
 const SHELL_REFERENCE = 'src/app/controls/SHELL_REFERENCE_TOPOLOGY_V2.md';
 const SIDEBAR_REFERENCE = 'src/app/controls/sidebar/ERP_SIDEBAR_REFERENCE_V1.md';
+const TOPBAR_REFERENCE = 'src/app/controls/topbar/ERP_TOPBAR_REFERENCE_V1.md';
+const TOPBAR_SHOWCASE = 'src/app/showcase/components/topbar/topbar-showcase.html';
 const USER_MENU_REFERENCE = 'src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md';
 const OWNERS = [
   'breadcrumbs',
@@ -48,6 +50,7 @@ export function validateShellNavigation(files) {
   const contracts = files.get(CONTRACTS) ?? '';
   const shellReference = files.get(SHELL_REFERENCE) ?? '';
   const sidebarReference = files.get(SIDEBAR_REFERENCE) ?? '';
+  const topbarReference = files.get(TOPBAR_REFERENCE) ?? '';
   const sources = OWNERS.map(
     (owner) => files.get(`src/app/controls/${owner}/${owner}.ts`) ?? '',
   ).join('\n');
@@ -134,6 +137,44 @@ export function validateShellNavigation(files) {
     !sidebarReference.includes('PRODUCT_OWNER_VISUAL_REVIEW_PENDING')
   ) {
     errors.push('ErpSidebar reference register, source hashes, and visual-review status must remain current');
+  }
+
+  const topbarTemplate = files.get('src/app/controls/topbar/topbar.html') ?? '';
+  const topbarTokens = files.get(
+    'src/styles/foundation/components/topbar/_tokens.scss',
+  ) ?? '';
+  const topbarShowcase = files.get(TOPBAR_SHOWCASE) ?? '';
+  for (const slot of [
+    'erpTopbarStart',
+    'erpTopbarContext',
+    'erpTopbarSearch',
+    'erpTopbarActions',
+    'erpTopbarUser',
+  ]) {
+    if (!topbarTemplate.includes(slot)) {
+      errors.push(`ErpTopbar canonical projection slot is missing: ${slot}`);
+    }
+  }
+  if (topbarTemplate.includes('erpTopbarNotifications') || topbarShowcase.includes('erpTopbarNotifications')) {
+    errors.push('ErpTopbar must not restore the superseded notification-only projection slot');
+  }
+  for (const owner of [
+    'erp-branch-selector',
+    'erp-global-search',
+    'erp-notification-bell',
+    'erp-user-menu',
+  ]) {
+    if (!topbarShowcase.includes(owner)) {
+      errors.push(`ErpTopbar workbench must project the real ${owner} owner`);
+    }
+  }
+  for (const referenceValue of ['3.75rem', '1.5rem', '30%', '0.5rem']) {
+    if (!topbarTokens.includes(referenceValue)) {
+      errors.push(`ErpTopbar reference geometry token is missing: ${referenceValue}`);
+    }
+  }
+  if (!topbarReference.includes('PRODUCT_OWNER_VISUAL_REVIEW_PENDING')) {
+    errors.push('ErpTopbar reference contract must preserve pending Product Owner visual status');
   }
 
   const branchSelector = `${files.get('src/app/controls/branch-selector/branch-selector.ts') ?? ''}\n${files.get('src/app/controls/branch-selector/branch-selector.html') ?? ''}`;
@@ -285,6 +326,8 @@ function validFixture(overrides = new Map()) {
     [CONTRACTS, 'export interface ErpNavigationItem {} export interface ErpBreadcrumbItem {} export interface ErpShellUserSummary { email?: string; roleLabel?: string; branchLabel?: string; avatarPresence?: string; } export interface ErpBranchOption {} export interface ErpNotificationSummary {}'],
     [SHELL_REFERENCE, '00905891AF3FE58429227E5099688480DBB78BA8843D5930D0962A1525304542 1EFFE6A3ADC2613EC19612699E567C38E5457997E342333B0686F70D63A3AFEA'],
     [SIDEBAR_REFERENCE, 'PRODUCT_OWNER_VISUAL_REVIEW_PENDING'],
+    [TOPBAR_REFERENCE, 'PRODUCT_OWNER_VISUAL_REVIEW_PENDING'],
+    [TOPBAR_SHOWCASE, '<erp-branch-selector erpTopbarContext /><erp-global-search erpTopbarSearch /><erp-notification-bell erpTopbarActions /><erp-user-menu erpTopbarUser />'],
     [USER_MENU_REFERENCE, '75F64AE955800ABE9FCBE27D7B09161D95E2DE2C77B6106C337AA4841D39D399 1EFFE6A3ADC2613EC19612699E567C38E5457997E342333B0686F70D63A3AFEA'],
   ]);
 
@@ -305,6 +348,14 @@ function validFixture(overrides = new Map()) {
   files.set(
     'src/app/controls/app-shell/app-shell.html',
     '<erp-topbar></erp-topbar><erp-sidebar></erp-sidebar>',
+  );
+  files.set(
+    'src/app/controls/topbar/topbar.html',
+    '<ng-content select="[erpTopbarStart]" /><ng-content select="[erpTopbarContext]" /><ng-content select="[erpTopbarSearch]" /><ng-content select="[erpTopbarActions]" /><ng-content select="[erpTopbarUser]" />',
+  );
+  files.set(
+    'src/styles/foundation/components/topbar/_tokens.scss',
+    '@mixin base { --honesty-topbar-height: 3.75rem; --honesty-topbar-padding-inline: 1.5rem; --honesty-topbar-search-basis: 30%; --honesty-topbar-narrow-padding-inline: 0.5rem; }',
   );
   files.set(
     'src/app/controls/sidebar/sidebar.ts',
@@ -413,6 +464,8 @@ function runCheck() {
     CONTRACTS,
     SHELL_REFERENCE,
     SIDEBAR_REFERENCE,
+    TOPBAR_REFERENCE,
+    TOPBAR_SHOWCASE,
     USER_MENU_REFERENCE,
   ];
 

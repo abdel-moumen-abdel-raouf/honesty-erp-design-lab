@@ -1,5 +1,15 @@
 # Next Component Reference Batch V1
 
+## Authoritative next unit — 2026-10-09 — Shell S2-C AppFooter
+
+S2-A Sidebar and S2-B Topbar are technically verified and remain visually
+pending. The exact next unit is the dedicated application Footer owner. A
+reliable binding Gxon Footer reference is unavailable, so S2-C is an explicitly
+authorized original Honesty ERP candidate: in-flow, restrained, data supplied
+by consumers, App-theme inherited, and responsive through Foundation Query.
+No Gxon dimensions or behavior may be fabricated. S2-D QuickActionsBar and
+S2-E AppShell integration remain ordered subsequent units; nothing else opens.
+
 ## Authoritative next unit — 2026-10-09 — Shell S2-B Topbar
 
 The Product Owner authorized continued execution through the bounded Shell

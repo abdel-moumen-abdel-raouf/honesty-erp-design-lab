@@ -1,5 +1,20 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Shell S2-B Topbar decision — 2026-10-09
+
+`ErpTopbar` has one canonical projection contract: start, context, search,
+actions, and user. Notifications are action content and do not receive a
+duplicate slot API. Topbar owns layout only; BranchSelector, GlobalSearch,
+NotificationBell, and UserMenu retain their existing ownership and behavior.
+Topbar owns no theme, branch effects, search transport, notification store,
+session, authentication, or routing.
+
+Source-backed Skodash values retained as physical evidence are 60 px minimum
+height, 24 px desktop inline padding, 30% search basis, and 40 px utility
+triggers. The rendered height may grow for current child-owner intrinsic
+geometry and narrow wrapping. The responsive transition consumes only the
+Foundation Query API. Product Owner visual acceptance remains pending.
+
 ## Shell continuation authorization and S2-A decision — 2026-10-09
 
 The former prohibition on starting S2 is superseded only for the ordered

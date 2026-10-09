@@ -7,7 +7,7 @@
       <erp-topbar
           data-showcase-target
           
-        ><erp-text erpTopbarStart type="heading-3">Honesty ERP</erp-text><erp-text erpTopbarContext type="paragraph">فرع القاهرة</erp-text><erp-text erpTopbarSearch type="paragraph">البحث العام</erp-text><erp-text erpTopbarNotifications type="paragraph">الإشعارات</erp-text><erp-text erpTopbarUser type="paragraph">أميرة حداد</erp-text></erp-topbar>
+        ><erp-text erpTopbarStart type="heading-3">Honesty ERP</erp-text><erp-branch-selector erpTopbarContext [branches]="topbarBranches" value="cairo" (changed)="recordEvent('branchChanged', $event)" /><erp-global-search erpTopbarSearch [results]="topbarSearchResults" (resultActivated)="recordEvent('searchResultActivated', $event)" /><erp-notification-bell erpTopbarActions [notifications]="topbarNotifications" (notificationActivated)="recordEvent('notificationActivated', $event)" /><erp-user-menu erpTopbarUser [user]="topbarUser" [items]="topbarUserItems" (actionActivated)="recordEvent('userActionActivated', $event)" /></erp-topbar>
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel

@@ -1,5 +1,23 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Shell S2-B Topbar checkpoint — 2026-10-09
+
+Entry checkpoint:
+
+- `aa4dd4e1a5042a1e7b2f0ead485cadfecd88a0de` — clean `main` and
+  `origin/main` after the S2-A Sidebar checkpoint normalization.
+
+Scoped stage commit message:
+
+- `feat(shell): refine ERP topbar composition`
+
+Resolve the resulting commit SHA from live `main` because this file is part of
+that commit. Focused Topbar verification passes 1/1 file and 1/1 test;
+canonical verification passes 122/122 files and 785/785 tests, all governance,
+both typechecks, production build, and zero warnings. Initial bundle remains
+490.24 kB / 105.58 kB estimated transfer. The exact next unit is S2-C
+AppFooter; Product Owner visual review remains pending.
+
 ## Shell S2-A Sidebar checkpoint — 2026-10-09
 
 Entry checkpoint:

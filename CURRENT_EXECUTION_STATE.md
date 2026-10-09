@@ -1,5 +1,20 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Authoritative current execution state — 2026-10-09 — Shell S2-B
+
+S2-B is technically verified. `ErpTopbar` remains a projection-only owner with
+start, context, search, actions, and user regions. The generated dedicated
+workbench now proves the actual BranchSelector, GlobalSearch,
+NotificationBell, and UserMenu owners rather than a stale
+`erpTopbarNotifications` marker. Responsive composition uses the Foundation
+Query API and contains all regions through 320 px without page overflow.
+
+Focused Topbar verification passes 1/1 test. Canonical verification passes
+122/122 files and 785/785 tests, all governance, both typechecks, production
+build, and zero warnings. Browser evidence covers six viewport/theme/direction
+conditions with zero broken images or diagnostics. Visual status remains
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`; S2-C AppFooter is the exact next unit.
+
 ## Authoritative current execution state — 2026-10-09 — Shell S2-A
 
 The bounded Shell continuation entered from clean `main`

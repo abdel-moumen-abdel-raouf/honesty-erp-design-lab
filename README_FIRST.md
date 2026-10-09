@@ -1,5 +1,16 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Current authorized unit — 2026-10-09 — Shell S2-C AppFooter
+
+S2-A Sidebar and S2-B Topbar are technically verified and remain pending
+Product Owner visual review. Topbar now projects the real BranchSelector,
+GlobalSearch, NotificationBell, and UserMenu owners through its single
+canonical slot contract; the dedicated evidence is under
+`docs/review-evidence/erp-shell/s2-b-topbar/`. Its full gate passes 122/122
+files and 785/785 tests with a zero-warning production build. The next bounded
+unit is the original Honesty ERP `ErpAppFooter` candidate. No reliable Gxon
+runtime measurements are claimed and no other Shell or application work opens.
+
 ## Current authorized wave — 2026-10-09 — Shell S2-A through S2-E
 
 The Product Owner opened a bounded sequential Shell wave from clean live

@@ -1,5 +1,14 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current deferred visual-review queue — 2026-10-09 — Shell S2-A/S2-B
+
+`ErpSidebar` and `ErpTopbar` are `TECHNICAL_VERIFIED` and
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`; neither is visually accepted or frozen.
+Topbar evidence covers real composed owners at 1440/1280/1024/768/390/320 px,
+Light/Dark and RTL/LTR, with zero page overflow, broken images, or captured
+browser diagnostics. The pre-existing UserMenu status remains unchanged. The
+next permitted technical unit is S2-C AppFooter.
+
 ## Current deferred visual-review queue — 2026-10-09 — Shell S2-A
 
 The Product Owner authorized technical continuation while visual review is

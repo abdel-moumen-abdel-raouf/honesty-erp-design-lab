@@ -10,7 +10,7 @@ import {ErpTopbar} from './topbar';
       <erp-text erpTopbarStart type="span">البداية</erp-text>
       <erp-text erpTopbarContext type="span">السياق</erp-text>
       <erp-text erpTopbarSearch type="span">البحث</erp-text>
-      <erp-text erpTopbarActions type="span">الإجراءات</erp-text>
+      <erp-text erpTopbarActions data-notification-evidence type="span">الإشعارات</erp-text>
       <erp-text erpTopbarUser type="span">المستخدم</erp-text>
     </erp-topbar>
   `,
@@ -27,5 +27,10 @@ describe('ErpTopbar', () => {
         .not.toBe('');
     }
     expect(fixture.nativeElement.querySelector('[data-theme]')).toBeNull();
+    expect(fixture.nativeElement.querySelector(
+      '.topbar__actions [data-notification-evidence]',
+    )?.textContent).toContain('الإشعارات');
+    expect(fixture.nativeElement.querySelector('[erpTopbarNotifications]'))
+      .toBeNull();
   });
 });

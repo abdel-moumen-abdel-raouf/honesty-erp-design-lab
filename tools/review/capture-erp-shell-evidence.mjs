@@ -8,9 +8,16 @@ const ROOT = process.cwd();
 const CHROME = process.env.CHROME_PATH
   ?? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 const BASE_URL = process.env.SHELL_EVIDENCE_URL ?? 'http://127.0.0.1:4200';
-const OUTPUT = path.join(ROOT, 'docs', 'review-evidence', 'erp-shell', 's2-a-sidebar');
+const COMPONENT = process.env.SHELL_EVIDENCE_COMPONENT ?? 'sidebar';
+const OUTPUT = path.join(
+  ROOT,
+  'docs',
+  'review-evidence',
+  'erp-shell',
+  COMPONENT === 'sidebar' ? 's2-a-sidebar' : `s2-b-${COMPONENT}`,
+);
 
-const scenarios = [
+const sidebarScenarios = [
   {name: 'sidebar-1440-light-rtl-expanded', width: 1440, height: 900, theme: 'light', direction: 'rtl'},
   {name: 'sidebar-1280-dark-ltr-expanded', width: 1280, height: 900, theme: 'dark', direction: 'ltr'},
   {name: 'sidebar-1024-light-rtl-expanded', width: 1024, height: 768, theme: 'light', direction: 'rtl'},
@@ -18,6 +25,17 @@ const scenarios = [
   {name: 'sidebar-390-light-rtl-collapsed', width: 390, height: 844, theme: 'light', direction: 'rtl', collapsed: true},
   {name: 'sidebar-320-dark-ltr-collapsed', width: 320, height: 568, theme: 'dark', direction: 'ltr', collapsed: true},
 ];
+
+const topbarScenarios = [
+  {name: 'topbar-1440-light-rtl', width: 1440, height: 900, theme: 'light', direction: 'rtl'},
+  {name: 'topbar-1280-dark-ltr', width: 1280, height: 900, theme: 'dark', direction: 'ltr'},
+  {name: 'topbar-1024-light-rtl', width: 1024, height: 768, theme: 'light', direction: 'rtl'},
+  {name: 'topbar-768-dark-rtl', width: 768, height: 900, theme: 'dark', direction: 'rtl'},
+  {name: 'topbar-390-light-rtl', width: 390, height: 844, theme: 'light', direction: 'rtl'},
+  {name: 'topbar-320-dark-ltr', width: 320, height: 568, theme: 'dark', direction: 'ltr'},
+];
+
+const scenarios = COMPONENT === 'topbar' ? topbarScenarios : sidebarScenarios;
 
 class DevToolsClient {
   #socket;
@@ -130,26 +148,30 @@ async function main() {
       await client.command('Page.navigate', {url: BASE_URL});
       await waitFor(() => evaluate(client, 'document.readyState === "complete"'));
       await evaluate(client, `localStorage.setItem('honesty-lab-theme', '${scenario.theme}')`);
-      await client.command('Page.navigate', {url: `${BASE_URL}/components/sidebar`});
-      await waitFor(() => evaluate(client, 'Boolean(document.querySelector("erp-sidebar[data-showcase-target] nav, [data-showcase-target] erp-sidebar nav"))'));
+      await client.command('Page.navigate', {url: `${BASE_URL}/components/${COMPONENT}`});
+      const readySelector = COMPONENT === 'topbar'
+        ? 'erp-topbar[data-showcase-target] header, [data-showcase-target] erp-topbar header'
+        : 'erp-sidebar[data-showcase-target] nav, [data-showcase-target] erp-sidebar nav';
+      await waitFor(() => evaluate(client, `Boolean(document.querySelector(${JSON.stringify(readySelector)}))`));
       await evaluate(client, `(() => {
         document.documentElement.dir = '${scenario.direction}';
         document.body.dir = '${scenario.direction}';
         document.documentElement.style.setProperty('direction', '${scenario.direction}', 'important');
         document.body.style.setProperty('direction', '${scenario.direction}', 'important');
-        document.querySelector('erp-sidebar[data-showcase-target], [data-showcase-target] erp-sidebar')
+        document.querySelector('erp-${COMPONENT}[data-showcase-target], [data-showcase-target] erp-${COMPONENT}')
           ?.setAttribute('dir', '${scenario.direction}');
       })()`);
-      if (scenario.collapsed) {
+      if (COMPONENT === 'sidebar' && scenario.collapsed) {
         await evaluate(client, `document.querySelector('erp-sidebar[data-showcase-target] .sidebar__header erp-icon-button button, [data-showcase-target] erp-sidebar .sidebar__header erp-icon-button button')?.click()`);
         await waitFor(() => evaluate(client, `document.querySelector('erp-sidebar[data-showcase-target], [data-showcase-target] erp-sidebar')?.getAttribute('data-sidebar-collapsed') === 'true'`));
       }
       await new Promise((resolve) => setTimeout(resolve, 200));
 
       const measurement = await evaluate(client, `(() => {
-        const host = document.querySelector('erp-sidebar[data-showcase-target], [data-showcase-target] erp-sidebar');
+        const host = document.querySelector('erp-${COMPONENT}[data-showcase-target], [data-showcase-target] erp-${COMPONENT}');
         const target = document.querySelector('[data-showcase-target]');
         const nav = host?.querySelector('nav');
+        const header = host?.querySelector('header');
         const rect = (element) => {
           if (!element) return null;
           const value = element.getBoundingClientRect();
@@ -161,7 +183,8 @@ async function main() {
           direction: getComputedStyle(host).direction,
           pageHorizontalOverflow: Math.max(0, document.documentElement.scrollWidth - document.documentElement.clientWidth),
           target: rect(target),
-          sidebar: rect(host),
+          component: '${COMPONENT}',
+          host: rect(host),
           nav: rect(nav),
           navOverflowY: nav ? getComputedStyle(nav).overflowY : null,
           navScrollHeight: nav?.scrollHeight ?? null,
@@ -171,6 +194,20 @@ async function main() {
           enabledInteractiveEntries: host?.querySelectorAll('[data-sidebar-interactive]:not([disabled]):not([aria-disabled="true"])').length ?? 0,
           activeDestinations: host?.querySelectorAll('[aria-current="page"]').length ?? 0,
           activeAncestors: host?.querySelectorAll('[data-sidebar-active-ancestor="true"]').length ?? 0,
+          header: rect(header),
+          regions: header ? Object.fromEntries(
+            [...header.children].map((element) => [
+              element.className,
+              {...rect(element), overflowWidth: Math.max(0, element.scrollWidth - element.clientWidth)},
+            ]),
+          ) : {},
+          renderedOwners: {
+            branchSelector: host?.querySelectorAll('erp-branch-selector').length ?? 0,
+            globalSearch: host?.querySelectorAll('erp-global-search').length ?? 0,
+            notificationBell: host?.querySelectorAll('erp-notification-bell').length ?? 0,
+            userMenu: host?.querySelectorAll('erp-user-menu').length ?? 0,
+          },
+          brokenImages: [...document.images].filter((image) => image.complete && image.naturalWidth === 0).length,
         };
       })()`);
       measurements.push({name: scenario.name, ...measurement, diagnostics: [...client.diagnostics]});

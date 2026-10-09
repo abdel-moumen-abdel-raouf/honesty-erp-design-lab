@@ -1,5 +1,20 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Authoritative current handoff — 2026-10-09 — Shell continuation S2-B
+
+S2-A Sidebar and S2-B Topbar are `TECHNICAL_VERIFIED` and
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. S2-B retains the five canonical Topbar
+slots, removes the stale notification-only showcase marker, and demonstrates
+real BranchSelector, GlobalSearch, NotificationBell, and UserMenu composition.
+Its reference/design boundary is recorded in
+`src/app/controls/topbar/ERP_TOPBAR_REFERENCE_V1.md`; six real browser captures
+and measurements are in `docs/review-evidence/erp-shell/s2-b-topbar/`.
+
+Canonical verification passes 122/122 files and 785/785 tests, all governance,
+both typechecks, production build, and zero warnings. Continue only with S2-C
+AppFooter, an original Honesty ERP candidate because the Gxon source is not
+reliably accessible. Do not alter the pending UserMenu candidate.
+
 ## Authoritative current handoff — 2026-10-09 — Shell continuation S2-A
 
 The Product Owner superseded the historical "S2 closed" restriction only for

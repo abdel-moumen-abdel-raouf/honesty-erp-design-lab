@@ -1088,7 +1088,7 @@ function projectionMarkup(entry) {
     return '<erp-text erpPageShellHeader type="heading-3">رأس الصفحة</erp-text><erp-text type="paragraph">محتوى الصفحة الرئيسي</erp-text><erp-text erpPageShellSide type="paragraph">سياق جانبي</erp-text><erp-text erpPageShellFooter type="caption">تذييل الصفحة</erp-text>';
   }
   if (entry.className === 'ErpTopbar') {
-    return '<erp-text erpTopbarStart type="heading-3">Honesty ERP</erp-text><erp-text erpTopbarContext type="paragraph">فرع القاهرة</erp-text><erp-text erpTopbarSearch type="paragraph">البحث العام</erp-text><erp-text erpTopbarNotifications type="paragraph">الإشعارات</erp-text><erp-text erpTopbarUser type="paragraph">أميرة حداد</erp-text>';
+    return '<erp-text erpTopbarStart type="heading-3">Honesty ERP</erp-text><erp-branch-selector erpTopbarContext [branches]="topbarBranches" value="cairo" (changed)="recordEvent(\'branchChanged\', $event)" /><erp-global-search erpTopbarSearch [results]="topbarSearchResults" (resultActivated)="recordEvent(\'searchResultActivated\', $event)" /><erp-notification-bell erpTopbarActions [notifications]="topbarNotifications" (notificationActivated)="recordEvent(\'notificationActivated\', $event)" /><erp-user-menu erpTopbarUser [user]="topbarUser" [items]="topbarUserItems" (actionActivated)="recordEvent(\'userActionActivated\', $event)" />';
   }
   if (entry.className === 'ErpAppShell') {
     return '<erp-text erpAppShellTopbarStart type="heading-3">Honesty ERP</erp-text><erp-text type="heading-3">محتوى التطبيق</erp-text><erp-text type="paragraph">ملخص العمليات اليومية</erp-text>';
@@ -1140,6 +1140,16 @@ function generatedShowcaseOwner(entry) {
   if (projection.includes('<erp-text-box')) {
     if (entry.className !== 'ErpTextBox') importLines.push(`import {ErpTextBox} from '../../../controls/text-box/text-box';`);
     imports.add('ErpTextBox');
+  }
+  if (entry.className === 'ErpTopbar') {
+    importLines.push(`import {ErpBranchSelector} from '../../../controls/branch-selector/branch-selector';`);
+    importLines.push(`import {ErpGlobalSearch} from '../../../controls/global-search/global-search';`);
+    importLines.push(`import {ErpNotificationBell} from '../../../controls/notification-bell/notification-bell';`);
+    importLines.push(`import {ErpUserMenu} from '../../../controls/user-menu/user-menu';`);
+    imports.add('ErpBranchSelector');
+    imports.add('ErpGlobalSearch');
+    imports.add('ErpNotificationBell');
+    imports.add('ErpUserMenu');
   }
   if (['ErpIconButton', 'ErpFab'].includes(entry.className)) {
     importLines.push(`import {ErpTooltip} from '../../../controls/tooltip/tooltip';`);
@@ -1204,10 +1214,21 @@ function generatedShowcaseOwner(entry) {
   const userMenuPresetHandler = entry.className === 'ErpUserMenu'
     ? `    if (change.control.name === '$userPreset') {\n      this.liveValues.update((current) => ({\n        ...current,\n        '$userPreset': change.value,\n        user: USER_MENU_PRESETS[String(change.value)] ?? current['user'],\n      }));\n      return;\n    }\n`
     : '';
+  const topbarEvidenceSource = entry.className === 'ErpTopbar'
+    ? `\nconst TOPBAR_BRANCHES = [{id: 'cairo', label: 'فرع القاهرة'}, {id: 'alexandria', label: 'فرع الإسكندرية'}] as const;\nconst TOPBAR_SEARCH_RESULTS = [{id: 'invoice-1042', label: 'فاتورة 1042', category: 'المبيعات', icon: 'file'}] as const;\nconst TOPBAR_NOTIFICATIONS = [{id: 'stock', title: 'تنبيه مخزون', description: 'وصل صنفان إلى حد إعادة الطلب', icon: 'notification'}] as const;\nconst TOPBAR_USER = {displayName: 'أميرة حداد', email: 'amira@honesty.local', roleLabel: 'مديرة المالية', branchLabel: 'القاهرة', avatarSrc: '/assets/honesty-erp-avatars/users/female/avatar-21.png', avatarPresence: 'online'} as const;\nconst TOPBAR_USER_ITEMS = [{id: 'profile', label: 'الملف الشخصي', icon: 'user'}, {id: 'sign-out', label: 'تسجيل الخروج', icon: 'logout'}] as const;\n`
+    : '';
   const source = `${importLines.join('\n')}\n\nconst ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === '${entry.id}')!;${userMenuPresetSource}\n@Component({\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  selector: 'app-${entry.id}-showcase',\n  imports: [${[...imports].join(', ')}],\n  templateUrl: './${entry.id}-showcase.html',\n  styleUrl: './${entry.id}-showcase.scss',\n})\nexport class ${className} {\n  readonly entry = ENTRY;\n  readonly controls = ENTRY.showcaseControls;\n  readonly lastEvent = signal('لم يحدث تفاعل بعد');\n  readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});\n  readonly cvaValue = signal<unknown>(${JSON.stringify(initialCvaValue)});\n  readonly controlValues = computed<Readonly<Record<string, unknown>>>(() => ({\n    ...this.liveValues(),\n    '$value': this.cvaValue(),\n  }));\n${isCva ? `  readonly control = new FormControl<unknown>(${JSON.stringify({value: initialCvaValue, disabled: Boolean(entry.showcaseInitialValues?.disabled)})});\n\n  constructor() {\n    this.control.valueChanges.pipe(takeUntilDestroyed()).subscribe((value) => {\n      this.cvaValue.set(value);\n      this.recordEvent('valueChange', value);\n    });\n  }\n` : ''}${isAvatarPicker ? `  readonly defaultAvatars = ERP_AVATAR_CATALOG;\n\n  effectiveAvatars(): unknown {\n    const avatars = this.value('avatars');\n    return Array.isArray(avatars) ? avatars : this.defaultAvatars;\n  }\n\n` : ''}\n  readonly previewInline = computed(() => Number(this.liveValues()['$previewInline'] ?? 80));\n  readonly previewBlock = computed(() => Number(this.liveValues()['$previewBlock'] ?? 75));\n  readonly previewDirection = computed(() => this.liveValues()['$previewDirection'] === 'ltr' ? 'ltr' : 'rtl');\n\n  value(name: string): unknown {\n    return this.liveValues()[name];\n  }\n\n  applyControl(change: ErpShowcaseControlChange): void {\n    if (change.control.source === 'cva') {\n${isCva ? `      this.control.setValue(change.value);` : `      this.cvaValue.set(change.value);`}\n      return;\n    }\n${userMenuPresetHandler}${hasCvaDisabled ? `    if (change.control.name === 'disabled') {\n      this.liveValues.update((current) => ({...current, disabled: change.value}));\n      if (change.value) this.control.disable();\n      else this.control.enable();\n      return;\n    }\n` : ''}    const value = change.control.kind === 'function'\n+      ? this.functionPreset(change.control.name, change.value)\n+      : change.value;\n+    this.liveValues.update((current) => ({...current, [change.control.name]: value}));\n+  }\n\n  recordModel(name: string, value: unknown): void {\n    this.liveValues.update((current) => ({...current, [name]: value}));\n    this.recordEvent(\`${'${name}'}Change\`, value);\n  }\n\n  recordEvent(name: string, value: unknown): void {\n    let rendered = '';\n    try { rendered = typeof value === 'string' ? value : JSON.stringify(value); }\n    catch { rendered = String(value); }\n    this.lastEvent.set(\`${'${name}'}: ${'${rendered}'}\`);\n  }\n\n  private functionPreset(name: string, value: unknown): unknown {\n    if (value !== 'sample') return null;\n    if (/comparator/i.test(name)) return () => 0;\n    if (/formatter/i.test(name)) return (candidate: unknown) => String(candidate ?? '');\n    if (/disabled/i.test(name)) return () => false;\n    if (/filter|predicate/i.test(name)) return () => true;\n    return (candidate: unknown) => candidate;\n  }\n}\n`;
-  const normalizedSource = source
+  let normalizedSource = source
     .replaceAll('\n+', '\n')
     .replace('!;\n@Component', '!;\n\n@Component');
+  if (entry.className === 'ErpTopbar') {
+    normalizedSource = normalizedSource
+      .replace('!;\n\n@Component', `!;${topbarEvidenceSource}\n@Component`)
+      .replace(
+        '  readonly cvaValue = signal<unknown>(null);\n',
+        `  readonly cvaValue = signal<unknown>(null);\n  readonly topbarBranches = TOPBAR_BRANCHES;\n  readonly topbarSearchResults = TOPBAR_SEARCH_RESULTS;\n  readonly topbarNotifications = TOPBAR_NOTIFICATIONS;\n  readonly topbarUser = TOPBAR_USER;\n  readonly topbarUserItems = TOPBAR_USER_ITEMS;\n`,
+      );
+  }
   const html = `<erp-stack gap="default" data-dedicated-showcase="${entry.id}" data-showcase-sections="1">\n  <erp-text type="heading-2">${entry.displayNameAr}</erp-text>\n  <erp-text type="paragraph" tone="secondary">${entry.descriptionAr}</erp-text>\n${referenceLabel}  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="${livePreviewClass}">\n    <erp-stack gap="tight">\n      <erp-text type="heading-3">المعاينة الحية</erp-text>\n      ${renderedOwner}\n    </erp-stack>\n  </erp-surface>\n  <app-review-showcase-control-panel\n    [controls]="controls"\n    [values]="controlValues()"\n    (controlChanged)="applyControl($event)"\n  />\n  <erp-surface padding="default" border="subtle" data-showcase-event-log>\n    <erp-stack gap="tight">\n      <erp-text type="heading-3">آخر تفاعل</erp-text>\n      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>\n${isCva ? '      <erp-text type="caption" selectable>القيمة الحالية: {{ cvaValue() }}</erp-text>\n' : ''}    </erp-stack>\n  </erp-surface>\n${exactReferenceEvidence}</erp-stack>\n`;
   const previewMinBlockSize = entry.className === 'ErpUserMenu' ? '32rem' : '12rem';
   const scss = `:host { display: block; min-inline-size: 0; }\n\n.showcase-reference { overflow-wrap: anywhere; }\n\n.showcase-live-preview { min-block-size: ${previewMinBlockSize}; }\n${isFloatingPreview ? '' : '\n.showcase-live-preview--floating { position: relative; min-block-size: 30rem; overflow: clip; }\n'}`;

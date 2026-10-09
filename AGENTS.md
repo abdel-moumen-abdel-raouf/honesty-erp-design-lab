@@ -1,5 +1,22 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Shell S2-B Topbar State — 2026-10-09
+
+S2-B retains `ErpTopbar` as the five-region projection owner and resolves the
+workbench mismatch by composing the existing `ErpBranchSelector`,
+`ErpGlobalSearch`, `ErpNotificationBell`, and `ErpUserMenu` through the
+canonical context/search/actions/user slots. The superseded
+`erpTopbarNotifications` marker must not return. Verified reference geometry is
+a 60 px minimum bar, 24 px desktop inline padding, 30% search basis, and 40 px
+utility triggers; narrow wrapping uses the Foundation Query API.
+
+Technical verification passes 122/122 files and 785/785 tests, all governance,
+both typechecks, production build, and zero warnings. Browser evidence at
+1440/1280/1024/768/390/320 px records zero page overflow, broken images, and
+browser diagnostics. Status is `TECHNICAL_VERIFIED` and
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. The exact next unit is S2-C AppFooter;
+preserve UserMenu and every unrelated visual owner unchanged.
+
 ## Current Shell Continuation State — 2026-10-09
 
 The Product Owner opened a bounded ordered Shell continuation from clean live
