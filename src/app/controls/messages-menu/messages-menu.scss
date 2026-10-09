@@ -21,7 +21,6 @@
 .messages-menu__surface {
   position: fixed;
   inset: auto;
-  display: flex;
   box-sizing: border-box;
   inline-size: min(
     var(--honesty-messages-menu-popup-width),
@@ -40,10 +39,33 @@
   z-index: var(--honesty-messages-menu-layer);
 }
 
+.messages-menu__surface:not(:popover-open) {
+  display: none;
+}
+
+.messages-menu__surface:popover-open {
+  display: flex;
+  animation: messages-menu-enter var(--honesty-messages-menu-motion-duration)
+    var(--honesty-messages-menu-motion-easing) both;
+}
+
 .messages-menu__header,
 .messages-menu__footer {
   flex: 0 0 auto;
   padding: var(--honesty-messages-menu-header-padding);
+}
+
+@keyframes messages-menu-enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--honesty-messages-menu-anchor-gap));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .messages-menu__surface:popover-open {
+    animation: none;
+  }
 }
 
 .messages-menu__header {

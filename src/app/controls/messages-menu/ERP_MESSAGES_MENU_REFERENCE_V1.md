@@ -23,6 +23,6 @@ Consumer code supplies message data, timestamps, navigation decisions and transp
 
 ## Status
 
-- Technical verification: pending this stage gate.
-- Internal visual review: pending this stage browser gate.
+- Technical verification: verified by the 126-file / 804-test canonical gate.
+- Internal visual review: complete in the integrated application evidence.
 - Product Owner visual review: pending.

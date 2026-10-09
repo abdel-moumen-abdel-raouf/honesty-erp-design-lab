@@ -53,7 +53,7 @@ aside,
   background: var(--honesty-quick-actions-bar-border-color);
 }
 
-@include query.viewport-down('sm') {
+@include query.viewport-down('xl') {
   .quick-actions-bar {
     align-items: center;
     flex-direction: row;

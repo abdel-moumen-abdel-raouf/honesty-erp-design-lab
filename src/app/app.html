@@ -1,61 +1,96 @@
-<div
-  id="lab-capture-root"
-  class="lab-capture-root"
-  [attr.data-theme]="theme()"
->
-  <header id="lab-utility-bar" class="lab-utility-bar">
-    <div id="lab-utility-brand" class="lab-utility-brand">
-      <span id="lab-utility-title" class="lab-utility-title">مختبر تصميم Honesty ERP</span>
-    </div>
-    <div id="lab-actions" class="lab-actions">
+<div id="lab-capture-root" class="lab-capture-root" [attr.data-theme]="theme()">
+  @defer (on immediate) {
+  <erp-app-shell
+    id="design-lab-app-shell"
+    [navigationItems]="navigationItems"
+    [activeNavigationId]="activeNavigationId()"
+    [quickActionGroups]="quickActions"
+    [footer]="footer"
+    [viewport]="true"
+    [(sidebarOpen)]="sidebarOpen"
+    [(sidebarCollapsed)]="sidebarCollapsed"
+    (navigationActivated)="navigate($event)"
+  >
+    <erp-inline erpAppShellTopbarStart class="lab-shell-brand" gap="tight" align="center">
+      <erp-tooltip text="فهرس المكوّنات" placement="bottom">
+        <erp-icon-button
+          id="btn-component-catalog"
+          icon="menu"
+          label="فهرس المكوّنات"
+          variant="ghost"
+          [ariaExpanded]="catalogOpen()"
+          ariaControls="design-lab-app-shell"
+          (pressed)="toggleCatalog()"
+        />
+      </erp-tooltip>
+      <erp-text class="lab-shell-title" type="strong">Honesty ERP</erp-text>
+    </erp-inline>
+
+    <erp-branch-selector
+      erpAppShellTopbarContext
+      [branches]="branches"
+      [value]="branchId()"
+      (valueChange)="branchId.set($event)"
+    />
+
+    <erp-global-search
+      erpAppShellTopbarSearch
+      [results]="searchResults"
+      (resultActivated)="activateSearchResult($event.id)"
+    />
+
+    <erp-inline erpAppShellTopbarActions class="lab-shell-actions" gap="tight" align="center">
       @if (statusMessage()) {
-        <erp-text id="lab-screenshot-status" class="lab-screenshot-status" type="caption" [tone]="hasError() ? 'danger' : 'secondary'">
+        <erp-text id="lab-screenshot-status" type="caption" [tone]="hasError() ? 'danger' : 'secondary'">
           {{ statusMessage() }}
         </erp-text>
       }
-      <erp-button
-        id="btn-component-catalog"
-        size="sm"
-        variant="outline"
-        label="فهرس المكوّنات"
-        [ariaExpanded]="catalogOpen()"
-        ariaControls="lab-component-catalog"
-        (pressed)="toggleCatalog()"
-      />
-      <erp-button
-        id="btn-lab-theme"
-        data-wave-a-theme-evidence
-        class="btn-theme"
-        size="sm"
-        variant="outline"
-        [label]="theme() === 'light' ? 'السمة الداكنة' : 'السمة الفاتحة'"
-        (pressed)="toggleTheme()"
-      />
+      <erp-applications-menu [groups]="applicationGroups" />
+      <erp-messages-menu [messages]="messages" />
+      <erp-notification-bell [notifications]="notifications" />
+      <erp-tooltip [text]="theme() === 'light' ? 'السمة الداكنة' : 'السمة الفاتحة'" placement="bottom">
+        <erp-icon-button
+          id="btn-lab-theme"
+          data-wave-a-theme-evidence
+          [icon]="theme() === 'light' ? 'moon' : 'sun'"
+          [label]="theme() === 'light' ? 'السمة الداكنة' : 'السمة الفاتحة'"
+          variant="ghost"
+          (pressed)="toggleTheme()"
+        />
+      </erp-tooltip>
       <erp-button
         id="btn-full-page-screenshot"
         data-wave-a-screenshot-evidence
-        class="btn-screenshot"
+        class="lab-screenshot-wide"
         [disabled]="isCapturing()"
         [loading]="isCapturing()"
         size="sm"
         variant="outline"
+        icon="download"
         [label]="isCapturing() ? 'جاري الالتقاط...' : 'لقطة كاملة'"
         (pressed)="captureScreenshot()"
       />
-    </div>
-  </header>
-  <div class="lab-workspace" [class.lab-workspace--catalog-open]="catalogOpen()">
-    @defer {
-      <app-review-catalog-navigation
-        id="lab-component-catalog"
-        [open]="catalogOpen()"
-        (closeRequested)="closeCatalog()"
-      />
-    }
-    <main id="routed-review-content" class="routed-content-wrapper">
-      <router-outlet id="app-router-outlet"></router-outlet>
-    </main>
-  </div>
+      <erp-tooltip text="لقطة كاملة" placement="bottom">
+        <erp-icon-button
+          class="lab-screenshot-narrow"
+          icon="download"
+          label="لقطة كاملة"
+          variant="ghost"
+          [disabled]="isCapturing()"
+          (pressed)="captureScreenshot()"
+        />
+      </erp-tooltip>
+    </erp-inline>
+
+    <erp-user-menu
+      erpAppShellTopbarUser
+      [user]="user"
+      [items]="userItems"
+    />
+
+    <router-outlet id="app-router-outlet" />
+  </erp-app-shell>
+  }
 
   <erp-overlay-host />
 </div>

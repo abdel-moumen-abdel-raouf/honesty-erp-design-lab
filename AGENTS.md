@@ -1,5 +1,32 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Autonomous App Shell Completion State — 2026-10-09
+
+The Product Owner-authorized wave entered at
+`6ceaf966c4b22efa0faf1d32e3dae841fd800c31`. The public catalog now has 81
+components, including independent `ErpApplicationsMenu` and
+`ErpMessagesMenu`. Existing `ErpNotificationBell` and `ErpGlobalSearch` own
+their completed dropdown/search experiences. The actual Design Lab root now
+uses one `ErpAppShell`, one direct RouterOutlet, one OverlayHost, and the sole
+App-root theme authority.
+
+Desktop composition is Sidebar beside the workspace, with Topbar, content plus
+logical-end QuickActionsBar, and Footer inside the workspace. At the Foundation
+`xl` query boundary, Sidebar becomes a logical-start off-canvas drawer and
+QuickActions become horizontal. The evidence package at
+`docs/review-evidence/erp-shell/autonomous-app-shell-wave/` covers six viewport
+widths, Light/Dark, RTL/LTR, dropdowns, search, Sidebar and router history with
+zero recorded overflow, broken images or diagnostics.
+
+Canonical verification passes 126/126 test files and 804/804 tests, all
+governance/lint, both typechecks, and the zero-warning production build. Initial
+output is 414.89 kB / 91.62 kB estimated transfer.
+
+Status is `TECHNICAL_VERIFIED` and `INTERNAL_VISUAL_REVIEW_COMPLETED` only;
+all Shell owners remain `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. The next action
+is consolidated Product Owner review. Do not infer approval or open unrelated
+CRUD, Feature/Page migration, or component work.
+
 ## Current Product Owner UserMenu Trigger Correction — 2026-10-09
 
 The Product Owner rejected the closed UserMenu trigger at

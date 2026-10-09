@@ -1,16 +1,66 @@
-import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, inject, signal} from '@angular/core';
+import {toSignal} from '@angular/core/rxjs-interop';
 import {
   Router,
   RouterOutlet,
 } from '@angular/router';
 import {ErpOverlayHost} from './shared/overlay/overlay-host';
+import {ERP_COMPONENT_NAVIGATION} from './catalog/erp-component-navigation.generated';
+import {ErpAppShell} from './controls/app-shell/app-shell';
+import {ErpApplicationsMenu} from './controls/applications-menu/applications-menu';
+import {ErpBranchSelector} from './controls/branch-selector/branch-selector';
 import {ErpButton} from './controls/button/button';
+import {ErpGlobalSearch} from './controls/global-search/global-search';
+import {ErpIconButton} from './controls/icon-button/icon-button';
+import {ErpMessagesMenu} from './controls/messages-menu/messages-menu';
+import {ErpNotificationBell} from './controls/notification-bell/notification-bell';
+import {
+  ErpApplicationMenuGroup,
+  ErpMessageSummary,
+  ErpNavigationItem,
+  ErpNotificationSummary,
+  ErpShellUserSummary,
+  ErpUserMenuItem,
+} from './controls/shell-family/shell-contracts';
+import {ErpQuickActionGroup} from './controls/quick-actions-bar/quick-actions-bar';
+import {ErpTooltip} from './controls/tooltip/tooltip';
+import {ErpUserMenu} from './controls/user-menu/user-menu';
 import {ErpText} from './primitives/text/text';
-import {ErpReviewCatalogNavigation} from './review-internals/review-catalog-navigation/review-catalog-navigation';
+import {ErpIconName} from './primitives/icon/icon-contracts';
+import {ErpInline} from './primitives/inline/inline';
 
 export type LabTheme = 'light' | 'dark';
 
 const LAB_THEME_STORAGE_KEY = 'honesty-lab-theme';
+
+const CATEGORY_PRESENTATION: Readonly<Record<string, Readonly<{label: string; icon: ErpIconName}>>> = {
+  Actions: {label: 'الإجراءات', icon: 'operations'},
+  'Application Shell': {label: 'إطار التطبيق', icon: 'dashboard'},
+  'Data / Tables': {label: 'البيانات والجداول', icon: 'layers'},
+  'Feedback / Status': {label: 'الملاحظات والحالات', icon: 'notification'},
+  Forms: {label: 'النماذج', icon: 'file'},
+  'Inputs / Fields': {label: 'الحقول والمدخلات', icon: 'edit'},
+  'Media / Identity': {label: 'الهوية والوسائط', icon: 'user'},
+  Navigation: {label: 'التنقل', icon: 'menu'},
+  'Page Composition': {label: 'تكوين الصفحات', icon: 'folder'},
+  Primitives: {label: 'البدائيات', icon: 'layers'},
+  Selection: {label: 'الاختيار', icon: 'check-mark'},
+};
+
+function buildLabNavigation(): readonly ErpNavigationItem[] {
+  const categories = new Map<string, ErpNavigationItem[]>();
+  for (const entry of ERP_COMPONENT_NAVIGATION) {
+    const items = categories.get(entry.category) ?? [];
+    items.push({id: entry.id, label: entry.displayNameAr, href: entry.showcaseRoute});
+    categories.set(entry.category, items);
+  }
+  return [...categories].map(([category, children]) => ({
+    id: `category-${category.toLocaleLowerCase().replace(/[^a-z]+/g, '-')}`,
+    label: CATEGORY_PRESENTATION[category]?.label ?? category,
+    icon: CATEGORY_PRESENTATION[category]?.icon ?? 'folder',
+    children,
+  }));
+}
 
 export function resolveLabTheme(
   storage: Pick<Storage, 'getItem'> | null,
@@ -165,19 +215,109 @@ export function normalizeScreenshotCloneColors(root: HTMLElement): void {
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-root',
-  imports: [RouterOutlet, ErpButton, ErpOverlayHost, ErpText, ErpReviewCatalogNavigation],
+  imports: [
+    RouterOutlet,
+    ErpAppShell,
+    ErpApplicationsMenu,
+    ErpBranchSelector,
+    ErpButton,
+    ErpGlobalSearch,
+    ErpIconButton,
+    ErpInline,
+    ErpMessagesMenu,
+    ErpNotificationBell,
+    ErpOverlayHost,
+    ErpText,
+    ErpTooltip,
+    ErpUserMenu,
+  ],
   templateUrl: './app.html',
-  styleUrls: ['./app.scss', './app-part-2.scss', './app-part-3.scss', './app-part-4.scss'],
+  styleUrl: './app.scss',
 })
 export class App {
   private readonly router = inject(Router);
   private readonly storage = this.resolveStorage();
+  private readonly routeEvent = toSignal(this.router.events, {initialValue: null});
 
   readonly theme = signal<LabTheme>(resolveLabTheme(this.storage));
   readonly isCapturing = signal(false);
   readonly statusMessage = signal<string | null>(null);
   readonly hasError = signal(false);
-  readonly catalogOpen = signal(false);
+  readonly sidebarOpen = signal(false);
+  readonly catalogOpen = this.sidebarOpen;
+  readonly sidebarCollapsed = signal(false);
+  readonly navigationItems = buildLabNavigation();
+  readonly activeNavigationId = computed(() => {
+    this.routeEvent();
+    const path = this.router.url.split(/[?#]/, 1)[0];
+    return ERP_COMPONENT_NAVIGATION.find((entry) => entry.showcaseRoute === path)?.id ?? null;
+  });
+
+  readonly branches = [
+    {id: 'cairo', label: 'فرع القاهرة', description: 'المركز الرئيسي'},
+    {id: 'alexandria', label: 'فرع الإسكندرية'},
+    {id: 'warehouse', label: 'مخازن العبور'},
+  ] as const;
+  readonly branchId = signal<string | null>('cairo');
+  readonly searchResults = [
+    {id: 'invoice-1042', label: 'فاتورة 1042', category: 'المبيعات', description: 'شركة النور للتجارة', icon: 'file' as const},
+    {id: 'component-table', label: 'الجدول', category: 'مكوّنات النظام', description: 'مرجع الجدول التفاعلي', icon: 'layers' as const},
+    {id: 'component-tabs', label: 'علامات التبويب', category: 'مكوّنات النظام', icon: 'folder' as const},
+  ] as const;
+  readonly applicationGroups: readonly ErpApplicationMenuGroup[] = [{
+    id: 'erp-apps',
+    label: 'تطبيقات Honesty ERP',
+    items: [
+      {id: 'sales', label: 'المبيعات', icon: 'shopping-cart'},
+      {id: 'purchases', label: 'المشتريات', icon: 'handshake'},
+      {id: 'inventory', label: 'المخزون', icon: 'inventory', badge: {label: '3'}},
+      {id: 'finance', label: 'الحسابات', icon: 'wallet'},
+      {id: 'customers', label: 'العملاء', icon: 'customer'},
+      {id: 'reports', label: 'التقارير', icon: 'chart'},
+      {id: 'people', label: 'الموارد البشرية', icon: 'people'},
+      {id: 'operations', label: 'العمليات', icon: 'operations'},
+      {id: 'settings', label: 'الإعدادات', icon: 'settings'},
+    ],
+  }];
+  readonly messages: readonly ErpMessageSummary[] = [
+    {id: 'invoice', senderName: 'أميرة حداد', preview: 'تم اعتماد فاتورة المبيعات رقم 1042.', timestamp: 'منذ دقيقة', avatarSrc: '/assets/honesty-erp-avatars/users/female/avatar-21.png', read: false},
+    {id: 'stock', senderName: 'عمر ناصر', preview: 'تم تحديث كميات المخزون في الفرع الرئيسي.', timestamp: 'منذ 18 دقيقة', avatarSrc: '/assets/honesty-erp-avatars/users/male/avatar-01.png', read: false},
+    {id: 'purchase', senderName: 'ليلى محمود', preview: 'أضيف طلب شراء جديد بانتظار المراجعة.', timestamp: 'منذ ساعة', avatarSrc: '/assets/honesty-erp-avatars/users/female/avatar-22.png', read: true},
+  ];
+  readonly notifications: readonly ErpNotificationSummary[] = [
+    {id: 'minimum-stock', title: 'حد إعادة الطلب', description: 'وصل صنفان إلى الحد الأدنى في فرع القاهرة.', timestamp: 'منذ دقيقتين', icon: 'inventory', read: false},
+    {id: 'pending-invoice', title: 'فاتورة تحتاج اعتمادًا', description: 'فاتورة المبيعات 1042 بانتظار موافقتك.', timestamp: 'منذ 14 دقيقة', icon: 'file', read: false},
+    {id: 'posted-ledger', title: 'تم ترحيل القيد', description: 'رُحّل القيد إلى الحسابات العامة.', timestamp: 'منذ ساعة', icon: 'check-mark', read: true},
+  ];
+  readonly user: ErpShellUserSummary = {
+    displayName: 'أميرة حداد',
+    email: 'amira.haddad@honesty-erp.com',
+    roleLabel: 'مديرة المالية',
+    branchLabel: 'القاهرة',
+    secondaryText: 'الحساب المؤسسي',
+    avatarSrc: '/assets/honesty-erp-avatars/users/female/avatar-21.png',
+    avatarPresence: 'online',
+  };
+  readonly userItems: readonly ErpUserMenuItem[] = [
+    {id: 'profile', label: 'الملف الشخصي', icon: 'user'},
+    {id: 'settings', label: 'الإعدادات', icon: 'settings'},
+    {id: 'sign-out', label: 'تسجيل الخروج', icon: 'logout', tone: 'danger', dividerBefore: true},
+  ];
+  readonly quickActions: readonly ErpQuickActionGroup[] = [
+    {id: 'daily', label: 'سريع', actions: [
+      {id: 'new-task', label: 'مهمة جديدة', icon: 'add', priority: 'primary'},
+      {id: 'calendar', label: 'الأحداث', icon: 'calendar'},
+      {id: 'help', label: 'المساعدة', icon: 'help'},
+      {id: 'settings', label: 'الإعدادات', icon: 'settings'},
+    ]},
+  ];
+  readonly footer = {
+    applicationLabel: 'Honesty ERP Design Lab',
+    versionLabel: 'Shell Candidate 2026.10',
+    statusLabel: 'بيئة المراجعة متصلة',
+    statusTone: 'success' as const,
+    actions: [{id: 'documentation', label: 'التوثيق', icon: 'external-link' as const}],
+  };
 
   toggleTheme(): void {
     const theme = this.theme() === 'light' ? 'dark' : 'light';
@@ -186,11 +326,23 @@ export class App {
   }
 
   toggleCatalog(): void {
-    this.catalogOpen.update((open) => !open);
+    this.sidebarOpen.update((open) => !open);
   }
 
   closeCatalog(): void {
-    this.catalogOpen.set(false);
+    this.sidebarOpen.set(false);
+  }
+
+  navigate(item: ErpNavigationItem): void {
+    if (item.href && !item.disabled) {
+      void this.router.navigateByUrl(item.href);
+      this.closeCatalog();
+    }
+  }
+
+  activateSearchResult(resultId: string): void {
+    if (resultId === 'component-table') void this.router.navigateByUrl('/components/table');
+    if (resultId === 'component-tabs') void this.router.navigateByUrl('/components/tabs');
   }
 
   async captureScreenshot(): Promise<void> {

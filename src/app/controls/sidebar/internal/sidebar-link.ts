@@ -29,8 +29,9 @@ export class ErpSidebarLink {
   readonly activated = output<ErpNavigationItem>();
 
   protected activate(event: MouseEvent): void {
+    event.preventDefault();
+
     if (this.item().disabled) {
-      event.preventDefault();
       return;
     }
 

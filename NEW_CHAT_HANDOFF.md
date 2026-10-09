@@ -1,5 +1,31 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Authoritative current handoff — 2026-10-09 — complete App Shell ready for consolidated review
+
+The autonomous Shell wave started at
+`6ceaf966c4b22efa0faf1d32e3dae841fd800c31` and completed the missing
+Applications and Messages public menus, refined the existing Notifications and
+Global Search owners, corrected responsive Shell composition, and installed
+`ErpAppShell` as the real Design Lab application frame. The root retains one
+theme authority, one RouterOutlet and one OverlayHost; route state and review
+data remain application-owned.
+
+The authoritative evidence package is
+`docs/review-evidence/erp-shell/autonomous-app-shell-wave/`. It covers six
+viewport widths, Light/Dark, RTL/LTR, open overlays, narrow Sidebar, active
+search and browser navigation. All delivered work is
+`TECHNICAL_VERIFIED` and `INTERNAL_VISUAL_REVIEW_COMPLETED`, while
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING` remains the only visual status. The next
+action is consolidated Product Owner review; no unrelated implementation wave
+is authorized by this handoff.
+
+The direct browser audit also passes every 81/81 public component route under
+the real Shell with zero diagnostics, broken images, or horizontal overflow.
+
+The final canonical gate passes 126/126 test files and 804/804 tests, all
+governance/lint, both typechecks, and the zero-warning production build. Initial
+output is 414.89 kB / 91.62 kB estimated transfer.
+
 ## Authoritative current handoff — 2026-10-09 — UserMenu final trigger candidate
 
 Only the closed `ErpUserMenu` trigger was reopened. Its live default now shows

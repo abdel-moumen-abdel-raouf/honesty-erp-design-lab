@@ -30,8 +30,15 @@ describe('ErpSidebar', () => {
     (fixture.nativeElement.querySelector('[aria-disabled="true"]') as HTMLAnchorElement)
       .click();
     expect(activated).not.toHaveBeenCalled();
-    (fixture.nativeElement.querySelector('a[href="/inventory"]') as HTMLAnchorElement)
-      .click();
+    const inventoryLink = fixture.nativeElement.querySelector(
+      'a[href="/inventory"]',
+    ) as HTMLAnchorElement;
+    const navigationClick = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+    });
+    inventoryLink.dispatchEvent(navigationClick);
+    expect(navigationClick.defaultPrevented).toBe(true);
     expect(activated).toHaveBeenCalledWith(
       expect.objectContaining({id: 'inventory'}),
     );

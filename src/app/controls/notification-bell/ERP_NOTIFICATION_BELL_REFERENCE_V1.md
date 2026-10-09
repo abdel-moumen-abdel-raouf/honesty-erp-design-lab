@@ -4,4 +4,5 @@ The autonomous App Shell wave authorizes the live Skodash RTL notifications drop
 
 `ErpNotificationBell` remains the sole notifications dropdown owner. It composes ERP search, button, text, icon, badge, tooltip and the shared anchored-surface controller. Only the item list scrolls. Consumers own data, read-state mutation, routing and transport.
 
-Technical verification, internal visual review, and Product Owner visual review remain separately recorded; Product Owner review is pending.
+Technical verification and integrated internal visual review are complete.
+Product Owner visual review remains pending and no acceptance is recorded.

@@ -1,7 +1,9 @@
 import {
+  booleanAttribute,
   ChangeDetectionStrategy,
   Component,
   input,
+  model,
   output,
 } from '@angular/core';
 import {ErpNavigationItem} from '../shell-family/shell-contracts';
@@ -29,8 +31,13 @@ export interface ErpAppShellFooterConfig {
   selector: 'erp-app-shell',
   imports: [ErpAppFooter, ErpQuickActionsBar, ErpSidebar, ErpTopbar],
   templateUrl: './app-shell.html',
-  styleUrl: './app-shell.scss',
-  host: {'[attr.data-app-shell-active]': 'activeNavigationId()'},
+  styleUrls: ['./app-shell.scss', './app-shell-responsive.scss'],
+  host: {
+    '[attr.data-app-shell-active]': 'activeNavigationId()',
+    '[attr.data-app-shell-sidebar-collapsed]': 'sidebarCollapsed()',
+    '[attr.data-app-shell-sidebar-open]': 'sidebarOpen()',
+    '[attr.data-app-shell-viewport]': 'viewport()',
+  },
 })
 export class ErpAppShell {
   readonly navigationItems = input.required<readonly ErpNavigationItem[]>();
@@ -40,7 +47,20 @@ export class ErpAppShell {
   readonly quickActionGroups = input<readonly ErpQuickActionGroup[]>([]);
   readonly quickActionsLabel = input('الإجراءات السريعة');
   readonly footer = input<ErpAppShellFooterConfig | null>(null);
+  readonly viewport = input(false, {transform: booleanAttribute});
+  readonly sidebarOpen = model(false);
+  readonly sidebarCollapsed = model(false);
   readonly navigationActivated = output<ErpNavigationItem>();
   readonly quickActionActivated = output<string>();
   readonly footerActionActivated = output<string>();
+
+  protected handleSidebarToggle(collapsed: boolean): void {
+    if (this.sidebarOpen()) {
+      this.sidebarOpen.set(false);
+      this.sidebarCollapsed.set(false);
+      return;
+    }
+
+    this.sidebarCollapsed.set(collapsed);
+  }
 }

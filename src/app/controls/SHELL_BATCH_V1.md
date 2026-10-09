@@ -1,5 +1,24 @@
 # Honesty ERP — Accelerated Navigation & ERP Shell Batch V1
 
+## Current autonomous completion authority — 2026-10-09
+
+The Product Owner subsequently authorized completion of the entire App Shell
+subsystem without intermediate visual pauses. The completed scope adds public
+Applications and Messages menus, refines Notifications and Global Search,
+preserves the latest UserMenu contract, and installs the production AppShell
+topology in the actual Design Lab root. Sidebar, Topbar, content,
+QuickActionsBar and Footer follow the logical workspace topology, with an
+off-canvas Sidebar and horizontal Quick Actions below the Foundation `xl`
+query boundary.
+
+The catalog contains 81 public routes and the evidence package is
+`docs/review-evidence/erp-shell/autonomous-app-shell-wave/`. Technical and
+internal visual review are complete; Product Owner visual acceptance remains
+pending. No unrelated application or component wave is opened.
+
+The canonical gate passes 126/126 test files and 804/804 tests, all
+governance/lint, both typechecks, and the zero-warning production build.
+
 ## Current continuation authority — 2026-10-09
 
 The historical accelerated ten-owner batch below remains history. The Product

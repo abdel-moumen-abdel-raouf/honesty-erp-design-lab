@@ -1,5 +1,36 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Autonomous App Shell completion wave — 2026-10-09
+
+Entry checkpoint:
+
+- `6ceaf966c4b22efa0faf1d32e3dae841fd800c31` — clean `main` and
+  `origin/main`.
+
+Published bounded checkpoints:
+
+- `fcf1685cf032d91835360c5e366764a6020df81e` —
+  `feat(shell): add ERP applications menu`
+- `74727a4a53e548e322f6b5f33a4b7754fe59e5cb` —
+  `feat(shell): add ERP messages menu`
+- `2881ddc6c08e8106458b55134cc2ff242fcd95f0` —
+  `docs(shell): register applications menu reference`
+- `2349ec29b8affa1cadc1506fe549c4668154ebd1` —
+  `feat(shell): refine ERP notifications menu`
+- `e7e74d9e054a93627d2ab8eb4d237e65f6a630eb` —
+  `feat(shell): refine ERP global search`
+
+The final integration commit uses
+`feat(shell): integrate complete ERP app shell`; resolve its SHA from live
+`main` because this file is part of that commit. The final checkpoint installs
+the real root Shell, responsive topology, governance, screenshots,
+measurements, and continuity state. Product Owner visual review remains
+pending.
+
+Final verification passes 126/126 test files and 804/804 tests, all lint and
+governance, both typechecks, and the zero-warning production build. Initial
+output is 414.89 kB / 91.62 kB estimated transfer.
+
 ## Product Owner final UserMenu trigger correction — 2026-10-09
 
 Entry checkpoint:

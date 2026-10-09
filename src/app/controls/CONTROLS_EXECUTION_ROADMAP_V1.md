@@ -1,5 +1,23 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Authoritative Shell completion — 2026-10-09 — consolidated review gate
+
+The authorized autonomous App Shell wave is complete in implementation scope:
+ApplicationsMenu and MessagesMenu are public owners, NotificationBell and
+GlobalSearch are refined existing owners, and the real Design Lab root composes
+the full Shell without a competing outlet, overlay host, theme authority, or
+catalog Sidebar. The catalog contains 81 public routes. Browser evidence covers
+1440 through 320 px and is indexed under
+`docs/review-evidence/erp-shell/autonomous-app-shell-wave/`.
+
+All delivered units are `TECHNICAL_VERIFIED` and
+`INTERNAL_VISUAL_REVIEW_COMPLETED`; Product Owner visual review remains
+pending. The roadmap stops at that consolidated review and does not open CRUD,
+Feature/Page migration, or unrelated control work.
+
+The final canonical gate passes 126/126 test files and 804/804 tests with zero
+build warnings; initial output is 414.89 kB / 91.62 kB estimated transfer.
+
 ## Authoritative bounded correction — 2026-10-09 — UserMenu trigger complete technically
 
 The Product Owner reopened only the closed UserMenu trigger after Shell S2-E.

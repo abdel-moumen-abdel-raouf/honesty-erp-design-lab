@@ -1,5 +1,28 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Current gate — 2026-10-09 — consolidated Product Owner App Shell review
+
+The Product Owner-authorized autonomous Shell wave is implemented in the real
+Design Lab application. The 81-route catalog now includes independent
+Applications and Messages menus; Notifications and Global Search use their
+existing refined owners. The root has one AppShell, direct RouterOutlet,
+OverlayHost and theme authority. Sidebar, Topbar, content, QuickActionsBar and
+Footer follow the approved workspace topology and narrow transformation.
+
+Runtime evidence at 1440/1280/1024/768/390/320 px, Light/Dark and RTL/LTR is
+indexed at `docs/review-evidence/erp-shell/autonomous-app-shell-wave/`. The
+candidate is technically verified and internally visually reviewed, but every
+Shell visual remains pending consolidated Product Owner review. Do not record
+acceptance or begin CRUD/Feature/Page work from this checkpoint.
+
+The browser route audit passes 81/81 public component pages under the real
+Shell with one primary target per page and zero diagnostics, broken images, or
+horizontal overflow.
+
+The canonical gate passes 126/126 test files and 804/804 tests, all governance
+and lint, both typechecks, and a zero-warning build at 414.89 kB / 91.62 kB
+estimated initial transfer.
+
 ## Current gate — 2026-10-09 — Product Owner review of corrected UserMenu trigger
 
 The latest bounded change affects only the closed `ErpUserMenu` trigger. It

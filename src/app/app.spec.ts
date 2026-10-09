@@ -137,6 +137,24 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     ).toBe(1);
   });
 
+  it('composes the real Shell owners around the routed Design Lab content', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const root = fixture.nativeElement as HTMLElement;
+
+    expect(root.querySelectorAll('erp-app-shell')).toHaveLength(1);
+    expect(root.querySelector('erp-sidebar')).not.toBeNull();
+    expect(root.querySelector('erp-topbar')).not.toBeNull();
+    expect(root.querySelector('erp-applications-menu')).not.toBeNull();
+    expect(root.querySelector('erp-messages-menu')).not.toBeNull();
+    expect(root.querySelector('erp-notification-bell')).not.toBeNull();
+    expect(root.querySelector('erp-global-search')).not.toBeNull();
+    expect(root.querySelector('erp-branch-selector')).not.toBeNull();
+    expect(root.querySelector('erp-user-menu')).not.toBeNull();
+    expect(root.querySelector('erp-quick-actions-bar')).not.toBeNull();
+    expect(root.querySelector('erp-app-footer')).not.toBeNull();
+  });
+
   it('should render the full-page screenshot button', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
@@ -196,8 +214,8 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     const captureRoot = root.querySelector('#lab-capture-root');
 
     expect(captureRoot).toBeTruthy();
-    expect(captureRoot?.querySelector('#lab-utility-bar')).toBeTruthy();
-    expect(captureRoot?.querySelector('#routed-review-content')).toBeTruthy();
+    expect(captureRoot?.querySelector('#design-lab-app-shell')).toBeTruthy();
+    expect(captureRoot?.querySelector('.app-shell__content')).toBeTruthy();
     expect(captureRoot?.querySelector('#app-router-outlet')).toBeTruthy();
     expect(captureRoot?.querySelector('iframe')).toBeNull();
     expect(captureRoot?.querySelector('[id^="btn-preview-"]')).toBeNull();
@@ -257,15 +275,12 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     fixture.detectChanges();
 
     const target = resolveLabScreenshotTarget(document);
-    const toolbar = target?.querySelector('#lab-utility-bar') as HTMLElement;
+    const shell = target?.querySelector('#design-lab-app-shell') as HTMLElement;
     const host = target?.querySelector('erp-overlay-host') as HTMLElement;
-    expect(toolbar).toBeTruthy();
+    expect(shell).toBeTruthy();
     expect(host).toBeTruthy();
-    expect(toolbar.inert).toBe(true);
-    expect(toolbar.getAttribute('aria-hidden')).toBe('true');
-    expect(getComputedStyle(toolbar).zIndex).toBe(
-      'var(--honesty-layer-sticky)',
-    );
+    expect(shell.inert).toBe(true);
+    expect(shell.getAttribute('aria-hidden')).toBe('true');
     expect(getComputedStyle(host).zIndex).toBe(
       'var(--honesty-overlay-layer)',
     );
@@ -273,7 +288,7 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
       getComputedStyle(host).getPropertyValue('--honesty-overlay-layer'),
     ).toBe('var(--honesty-layer-blocking)');
     expect(
-      toolbar.compareDocumentPosition(host) &
+      shell.compareDocumentPosition(host) &
         Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy();
     expect(target?.querySelector('[data-overlay-kind="modal"]')).toBeTruthy();

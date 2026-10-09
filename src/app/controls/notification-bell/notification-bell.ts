@@ -46,7 +46,11 @@ let nextNotificationBellId = 0;
     FormsModule,
   ],
   templateUrl: './notification-bell.html',
-  styleUrls: ['./notification-bell.scss', './notification-bell-overlay.scss'],
+  styleUrls: [
+    './notification-bell.scss',
+    './notification-bell-content.scss',
+    './notification-bell-overlay.scss',
+  ],
   host: {'[attr.data-notification-open]': 'open()'},
 })
 export class ErpNotificationBell implements AfterViewInit, OnDestroy {

@@ -4,6 +4,7 @@ import process from 'node:process';
 
 const ROOT = process.cwd();
 const ROUTES = 'src/app/app.routes.ts';
+const APP_TEMPLATE = 'src/app/app.html';
 const REVIEW = 'src/app/review-internals/legacy-shell-batch/shell-batch.html';
 const CONTRACTS = 'src/app/controls/shell-family/shell-contracts.ts';
 const SHELL_REFERENCE = 'src/app/controls/SHELL_REFERENCE_TOPOLOGY_V2.md';
@@ -54,6 +55,7 @@ function walk(directory) {
 export function validateShellNavigation(files) {
   const errors = [];
   const routes = files.get(ROUTES) ?? '';
+  const appTemplate = files.get(APP_TEMPLATE) ?? '';
   const review = files.get(REVIEW) ?? '';
   const contracts = files.get(CONTRACTS) ?? '';
   const shellReference = files.get(SHELL_REFERENCE) ?? '';
@@ -92,6 +94,24 @@ export function validateShellNavigation(files) {
 
   if (!routes.includes("path: 'controls/shell-batch'")) {
     errors.push('The Shell Batch review route must remain registered');
+  }
+
+  for (const owner of [
+    'erp-app-shell',
+    'erp-applications-menu',
+    'erp-messages-menu',
+    'erp-notification-bell',
+    'erp-global-search',
+    'erp-branch-selector',
+    'erp-user-menu',
+  ]) {
+    if (!appTemplate.includes(`<${owner}`)) {
+      errors.push(`The actual Design Lab frame must compose ${owner}`);
+    }
+  }
+  if ((appTemplate.match(/<router-outlet\b/g) ?? []).length !== 1 ||
+      (appTemplate.match(/<erp-overlay-host\b/g) ?? []).length !== 1) {
+    errors.push('The actual Design Lab frame must retain one RouterOutlet and one OverlayHost');
   }
 
   if (/<\/?(?!erp-)(?:form|button|input|select|textarea|nav|header|main|aside|section|div|span|a|ul|li)\b/i.test(review)) {
@@ -176,6 +196,8 @@ export function validateShellNavigation(files) {
   for (const owner of [
     'erp-branch-selector',
     'erp-global-search',
+    'erp-applications-menu',
+    'erp-messages-menu',
     'erp-notification-bell',
     'erp-user-menu',
   ]) {
@@ -359,11 +381,23 @@ export function validateShellNavigation(files) {
   }
 
   const anchoredOwners = [
+    files.get('src/app/controls/applications-menu/applications-menu.ts') ?? '',
+    files.get('src/app/controls/messages-menu/messages-menu.ts') ?? '',
     files.get('src/app/controls/notification-bell/notification-bell.ts') ?? '',
     files.get('src/app/controls/user-menu/user-menu.ts') ?? '',
   ].join('\n');
   if (/\.showPopover\s*\(|\.hidePopover\s*\(|ErpOverlayManager/.test(anchoredOwners)) {
     errors.push('Shell owners must not create a duplicate or manual overlay engine');
+  }
+
+  for (const [owner, marker] of [
+    ['messages-menu', '.messages-menu__surface:not(:popover-open)'],
+    ['notification-bell', '.bell__surface:not(:popover-open)'],
+  ]) {
+    const ownerStyles = files.get(`src/app/controls/${owner}/${owner}.scss`) ?? '';
+    if (!ownerStyles.includes(marker) || !ownerStyles.includes(':popover-open')) {
+      errors.push(`${owner} must keep its closed popup hidden and its open popup explicit`);
+    }
   }
 
   for (const contract of [
@@ -384,12 +418,13 @@ export function validateShellNavigation(files) {
 function validFixture(overrides = new Map()) {
   const files = new Map([
     [ROUTES, "path: 'controls/shell-batch'"],
+    [APP_TEMPLATE, '<erp-app-shell><erp-applications-menu /><erp-messages-menu /><erp-notification-bell /><erp-global-search /><erp-branch-selector /><erp-user-menu /><router-outlet /><erp-overlay-host /></erp-app-shell>'],
     [REVIEW, '<erp-app-shell></erp-app-shell>'],
     [CONTRACTS, 'export interface ErpNavigationItem {} export interface ErpBreadcrumbItem {} export interface ErpShellUserSummary { email?: string; roleLabel?: string; branchLabel?: string; avatarPresence?: string; } export interface ErpBranchOption {} export interface ErpNotificationSummary {}'],
     [SHELL_REFERENCE, '00905891AF3FE58429227E5099688480DBB78BA8843D5930D0962A1525304542 1EFFE6A3ADC2613EC19612699E567C38E5457997E342333B0686F70D63A3AFEA'],
     [SIDEBAR_REFERENCE, 'PRODUCT_OWNER_VISUAL_REVIEW_PENDING'],
     [TOPBAR_REFERENCE, 'PRODUCT_OWNER_VISUAL_REVIEW_PENDING'],
-    [TOPBAR_SHOWCASE, '<erp-branch-selector erpTopbarContext /><erp-global-search erpTopbarSearch /><erp-notification-bell erpTopbarActions /><erp-user-menu erpTopbarUser />'],
+    [TOPBAR_SHOWCASE, '<erp-branch-selector erpTopbarContext /><erp-global-search erpTopbarSearch /><erp-applications-menu /><erp-messages-menu /><erp-notification-bell erpTopbarActions /><erp-user-menu erpTopbarUser />'],
     [APP_FOOTER_REFERENCE, 'original Honesty ERP PRODUCT_OWNER_VISUAL_REVIEW_PENDING Gxon unavailable'],
     [APP_FOOTER_SHOWCASE, '<erp-app-footer data-showcase-target />'],
     [QUICK_ACTIONS_REFERENCE, 'PRODUCT_OWNER_VISUAL_REVIEW_PENDING data-driven Gxon unavailable'],
@@ -468,6 +503,14 @@ function validFixture(overrides = new Map()) {
     '<erp-search-box></erp-search-box>',
   );
   files.set(
+    'src/app/controls/messages-menu/messages-menu.scss',
+    '.messages-menu__surface:not(:popover-open) { display: none; } .messages-menu__surface:popover-open { display: flex; }',
+  );
+  files.set(
+    'src/app/controls/notification-bell/notification-bell.scss',
+    '.bell__surface:not(:popover-open) { display: none; } .bell__surface:popover-open { display: flex; }',
+  );
+  files.set(
     'src/app/controls/user-menu/user-menu.ts',
     "import {ErpAvatar} from 'x'; import {ErpStatusBadge} from 'b'; import {ErpDivider} from 'z'; import {ErpUserMenuArrow} from './internal/user-menu-arrow'; import {ShellAnchoredSurfaceController} from 'y'; const options = {crossAxisAlignment: 'end', arrowWidth: () => 13, arrowSafeInset: () => 16, allowedPlacements: ['bottom', 'top'], prepareGeometry: () => undefined}; export class ErpUserMenu { readonly showAvatar = input(true); readonly showUserName = input(true); readonly showEmail = input(true); readonly showPresence = input(true); readonly showRoleBadge = input(true); readonly showBranchBadge = input(true); readonly showTriggerRoleBadge = input(true); readonly showTriggerBranchBadge = input(true); triggerRoleVisible() {} triggerBranchVisible() {} }",
   );
@@ -542,6 +585,7 @@ function runCheck() {
   const files = new Map();
   const fixed = [
     ROUTES,
+    APP_TEMPLATE,
     REVIEW,
     CONTRACTS,
     SHELL_REFERENCE,

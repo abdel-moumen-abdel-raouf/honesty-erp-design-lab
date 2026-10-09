@@ -1,5 +1,26 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Autonomous App Shell completion decisions — 2026-10-09
+
+- `ErpApplicationsMenu` and `ErpMessagesMenu` are independent public Shell
+  owners; they reuse the shared anchored-overlay controller and own no routing,
+  permissions, transport, authentication, or persistence.
+- `ErpNotificationBell` remains the sole notifications dropdown owner;
+  `ErpGlobalSearch` remains a composition over `ErpSearchBox`. No competing
+  notification or search engine was created.
+- The actual Design Lab root composes one `ErpAppShell`, one direct
+  RouterOutlet, and one OverlayHost. App root alone owns theme and route state.
+- Desktop Shell topology is Sidebar beside the workspace; Topbar and Footer
+  span the workspace only, while QuickActionsBar occupies its logical end.
+- At the Foundation `xl` query boundary, Sidebar becomes an off-canvas drawer
+  and QuickActionsBar becomes horizontal. No raw breakpoint or second drawer
+  engine was introduced.
+- Vendor Bootstrap, jQuery, PerfectScrollbar, scripts, icons, and colors remain
+  evidence only and are not runtime dependencies.
+- Internal browser inspection can establish
+  `INTERNAL_VISUAL_REVIEW_COMPLETED`; it never establishes Product Owner visual
+  approval.
+
 ## Product Owner final UserMenu trigger decision — 2026-10-09
 
 - The closed trigger order is name, email, then role and branch badges in one

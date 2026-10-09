@@ -22,6 +22,8 @@
     [items]="navigationItems()"
     [activeId]="activeNavigationId()"
     [label]="sidebarLabel()"
+    [collapsed]="sidebarCollapsed()"
+    (collapsedChange)="handleSidebarToggle($event)"
     (navigationActivated)="navigationActivated.emit($event)"
   />
 

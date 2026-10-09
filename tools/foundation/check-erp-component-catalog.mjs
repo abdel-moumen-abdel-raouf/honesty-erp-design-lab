@@ -231,10 +231,12 @@ function validateRepository() {
     errors.push('generic input-only component fallback is still active');
   }
   const appTemplate = fs.readFileSync(path.join(REPO_ROOT, 'src/app/app.html'), 'utf8');
-  if (!appTemplate.includes('<app-review-catalog-navigation') ||
+  if (!appTemplate.includes('<erp-app-shell') ||
+      !appTemplate.includes('[navigationItems]="navigationItems"') ||
+      !appTemplate.includes('<erp-sidebar') && !appTemplate.includes('<erp-app-shell') ||
       appTemplate.includes('lab-component-group') ||
       appTemplate.includes('id="lab-nav"')) {
-    errors.push('compact catalog navigation has not replaced the legacy navigation matrices');
+    errors.push('the real AppShell catalog navigation has not replaced the legacy navigation matrices');
   }
   const migrationLedger = fs.readFileSync(
     path.join(REPO_ROOT, 'docs/governance/LEGACY_SHOWCASE_MIGRATION_LEDGER.md'),

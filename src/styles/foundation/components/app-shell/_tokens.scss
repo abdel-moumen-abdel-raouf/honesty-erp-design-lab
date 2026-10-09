@@ -4,9 +4,14 @@
   --honesty-app-shell-border-color: var(--honesty-border-subtle);
   --honesty-app-shell-border-width: var(--honesty-border-width-default);
   --honesty-app-shell-radius: var(--honesty-radius-surface);
-  --honesty-app-shell-sidebar-width: 18rem;
+  --honesty-app-shell-sidebar-width: 16.875rem;
+  --honesty-app-shell-sidebar-width-collapsed: 3.75rem;
   --honesty-app-shell-min-height: 32rem;
   --honesty-app-shell-sidebar-max-block-size-narrow: 18rem;
+  --honesty-app-shell-sidebar-layer-narrow: var(--honesty-layer-blocking);
+  --honesty-app-shell-sidebar-shadow-narrow: var(--honesty-elevation-overlay);
+  --honesty-app-shell-sidebar-motion-duration: var(--honesty-motion-duration-default);
+  --honesty-app-shell-sidebar-motion-easing: var(--honesty-motion-easing-standard);
   --honesty-app-shell-content-padding: var(--honesty-space-inset-loose);
   --honesty-app-shell-quick-actions-max-block-size: 28rem;
   --honesty-app-shell-quick-actions-padding-block: var(--honesty-space-inset-default);

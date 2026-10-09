@@ -1,5 +1,37 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Authoritative current execution state — 2026-10-09 — autonomous App Shell completion
+
+The Product Owner-authorized App Shell completion wave entered from clean live
+`main` `6ceaf966c4b22efa0faf1d32e3dae841fd800c31`. The actual Design Lab root now
+uses one `ErpAppShell` around the single direct RouterOutlet and the single
+OverlayHost. `ErpApplicationsMenu` and `ErpMessagesMenu` are independent public
+owners; `ErpNotificationBell` and `ErpGlobalSearch` were refined through their
+existing owners. Sidebar, Topbar, UserMenu, BranchSelector, AppFooter and
+QuickActionsBar remain composed through their established contracts.
+
+The desktop topology is Sidebar beside a workspace whose rows are Topbar,
+content plus logical-end QuickActionsBar, and Footer. At the Foundation `xl`
+query boundary the Sidebar becomes a logical-start off-canvas drawer and Quick
+Actions become a contained horizontal region. The catalog now contains 81
+public component routes. Browser evidence at 1440, 1280, 1024, 768, 390 and
+320 px records zero page/Shell horizontal overflow, broken images, or console
+diagnostics and verifies router Back/Forward. Evidence is under
+`docs/review-evidence/erp-shell/autonomous-app-shell-wave/`.
+
+The direct browser route audit passes all 81/81 public component pages with one
+primary showcase target, one root AppShell, one RouterOutlet, one OverlayHost,
+and zero overflow, broken images, or diagnostics.
+
+Canonical verification passes 126/126 test files and 804/804 tests, all
+governance and lint, both TypeScript typechecks, and the zero-warning production
+build. Initial output is 414.89 kB / 91.62 kB estimated transfer.
+
+Delivered owners are `TECHNICAL_VERIFIED` and
+`INTERNAL_VISUAL_REVIEW_COMPLETED`; every visual status remains
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. No CRUD, Feature/Page migration, or
+unrelated component wave is opened.
+
 ## Authoritative current execution state — 2026-10-09 — UserMenu final trigger correction
 
 The Product Owner reopened only the closed `ErpUserMenu` trigger from clean

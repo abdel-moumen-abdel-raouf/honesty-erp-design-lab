@@ -31,6 +31,7 @@
 
 ## Current status
 
-- Technical verification: pending the autonomous Shell wave gate.
-- Internal visual review: pending integrated Topbar and AppShell evidence.
+- Technical verification: verified by the 126-file / 804-test canonical gate.
+- Internal visual review: complete with the real SearchBox popup in the
+  integrated Topbar/AppShell evidence.
 - Product Owner visual review: pending; this contract is not acceptance.

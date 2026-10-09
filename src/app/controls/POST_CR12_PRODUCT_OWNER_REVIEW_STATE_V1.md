@@ -1,5 +1,19 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current Product Owner visual-review item — 2026-10-09 — complete App Shell
+
+The consolidated queue now includes `ErpApplicationsMenu`, `ErpMessagesMenu`,
+the refined `ErpNotificationBell` and `ErpGlobalSearch`, and the complete real
+application composition with Sidebar, Topbar, UserMenu, BranchSelector,
+AppFooter, QuickActionsBar and AppShell. Each is `TECHNICAL_VERIFIED` and
+`INTERNAL_VISUAL_REVIEW_COMPLETED`; none is visually approved or frozen.
+
+Review the full evidence and defect log at
+`docs/review-evidence/erp-shell/autonomous-app-shell-wave/`. The evidence covers
+all six required widths, both directions and themes, active overlays/search,
+narrow navigation and browser history. The next action is one consolidated
+Product Owner Shell review.
+
 ## Current Product Owner visual-review item — 2026-10-09 — UserMenu trigger correction
 
 `ErpUserMenu` is `TECHNICAL_VERIFIED` and

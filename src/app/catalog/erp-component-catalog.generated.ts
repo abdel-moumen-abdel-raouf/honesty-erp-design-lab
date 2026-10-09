@@ -4787,6 +4787,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "hasDefault": true,
           "defaultValue": null,
           "defaultExpression": "null"
+        },
+        {
+          "name": "viewport",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ],
       "outputs": [
@@ -4794,7 +4806,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "quickActionActivated",
         "footerActionActivated"
       ],
-      "models": []
+      "models": [
+        {
+          "name": "sidebarOpen",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
+        },
+        {
+          "name": "sidebarCollapsed",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
+        }
+      ]
     },
     "lowerLevelOwners": [
       "ErpAppFooter",
@@ -4896,7 +4933,313 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
                 "icon": "help"
               }
             ]
-          }
+          },
+          "sidebarOpen": false,
+          "sidebarCollapsed": false
+        }
+      },
+      {
+        "id": "sidebarOpen-false",
+        "label": "sidebarOpen: false",
+        "inputs": {
+          "navigationItems": [
+            {
+              "id": "finance",
+              "label": "المالية",
+              "icon": "wallet",
+              "children": [
+                {
+                  "id": "ledger",
+                  "label": "الحسابات العامة",
+                  "href": "/ledger"
+                }
+              ]
+            },
+            {
+              "id": "inventory",
+              "label": "المخزون",
+              "icon": "layers",
+              "href": "/inventory"
+            }
+          ],
+          "activeNavigationId": "ledger",
+          "quickActionGroups": [
+            {
+              "id": "daily",
+              "label": "العمل اليومي",
+              "actions": [
+                {
+                  "id": "task",
+                  "label": "مهمة جديدة",
+                  "icon": "add",
+                  "priority": "primary"
+                },
+                {
+                  "id": "event",
+                  "label": "موعد جديد",
+                  "icon": "calendar"
+                }
+              ]
+            },
+            {
+              "id": "support",
+              "actions": [
+                {
+                  "id": "help",
+                  "label": "المساعدة",
+                  "icon": "help"
+                },
+                {
+                  "id": "settings",
+                  "label": "الإعدادات",
+                  "icon": "settings"
+                }
+              ]
+            }
+          ],
+          "footer": {
+            "applicationLabel": "Honesty ERP",
+            "versionLabel": "الإصدار 1.0.0",
+            "statusLabel": "تعمل الأنظمة",
+            "statusTone": "success",
+            "actions": [
+              {
+                "id": "support",
+                "label": "الدعم",
+                "icon": "help"
+              }
+            ]
+          },
+          "sidebarOpen": false,
+          "sidebarCollapsed": false
+        }
+      },
+      {
+        "id": "sidebarOpen-true",
+        "label": "sidebarOpen: true",
+        "inputs": {
+          "navigationItems": [
+            {
+              "id": "finance",
+              "label": "المالية",
+              "icon": "wallet",
+              "children": [
+                {
+                  "id": "ledger",
+                  "label": "الحسابات العامة",
+                  "href": "/ledger"
+                }
+              ]
+            },
+            {
+              "id": "inventory",
+              "label": "المخزون",
+              "icon": "layers",
+              "href": "/inventory"
+            }
+          ],
+          "activeNavigationId": "ledger",
+          "quickActionGroups": [
+            {
+              "id": "daily",
+              "label": "العمل اليومي",
+              "actions": [
+                {
+                  "id": "task",
+                  "label": "مهمة جديدة",
+                  "icon": "add",
+                  "priority": "primary"
+                },
+                {
+                  "id": "event",
+                  "label": "موعد جديد",
+                  "icon": "calendar"
+                }
+              ]
+            },
+            {
+              "id": "support",
+              "actions": [
+                {
+                  "id": "help",
+                  "label": "المساعدة",
+                  "icon": "help"
+                },
+                {
+                  "id": "settings",
+                  "label": "الإعدادات",
+                  "icon": "settings"
+                }
+              ]
+            }
+          ],
+          "footer": {
+            "applicationLabel": "Honesty ERP",
+            "versionLabel": "الإصدار 1.0.0",
+            "statusLabel": "تعمل الأنظمة",
+            "statusTone": "success",
+            "actions": [
+              {
+                "id": "support",
+                "label": "الدعم",
+                "icon": "help"
+              }
+            ]
+          },
+          "sidebarOpen": true,
+          "sidebarCollapsed": false
+        }
+      },
+      {
+        "id": "sidebarCollapsed-false",
+        "label": "sidebarCollapsed: false",
+        "inputs": {
+          "navigationItems": [
+            {
+              "id": "finance",
+              "label": "المالية",
+              "icon": "wallet",
+              "children": [
+                {
+                  "id": "ledger",
+                  "label": "الحسابات العامة",
+                  "href": "/ledger"
+                }
+              ]
+            },
+            {
+              "id": "inventory",
+              "label": "المخزون",
+              "icon": "layers",
+              "href": "/inventory"
+            }
+          ],
+          "activeNavigationId": "ledger",
+          "quickActionGroups": [
+            {
+              "id": "daily",
+              "label": "العمل اليومي",
+              "actions": [
+                {
+                  "id": "task",
+                  "label": "مهمة جديدة",
+                  "icon": "add",
+                  "priority": "primary"
+                },
+                {
+                  "id": "event",
+                  "label": "موعد جديد",
+                  "icon": "calendar"
+                }
+              ]
+            },
+            {
+              "id": "support",
+              "actions": [
+                {
+                  "id": "help",
+                  "label": "المساعدة",
+                  "icon": "help"
+                },
+                {
+                  "id": "settings",
+                  "label": "الإعدادات",
+                  "icon": "settings"
+                }
+              ]
+            }
+          ],
+          "footer": {
+            "applicationLabel": "Honesty ERP",
+            "versionLabel": "الإصدار 1.0.0",
+            "statusLabel": "تعمل الأنظمة",
+            "statusTone": "success",
+            "actions": [
+              {
+                "id": "support",
+                "label": "الدعم",
+                "icon": "help"
+              }
+            ]
+          },
+          "sidebarOpen": false,
+          "sidebarCollapsed": false
+        }
+      },
+      {
+        "id": "sidebarCollapsed-true",
+        "label": "sidebarCollapsed: true",
+        "inputs": {
+          "navigationItems": [
+            {
+              "id": "finance",
+              "label": "المالية",
+              "icon": "wallet",
+              "children": [
+                {
+                  "id": "ledger",
+                  "label": "الحسابات العامة",
+                  "href": "/ledger"
+                }
+              ]
+            },
+            {
+              "id": "inventory",
+              "label": "المخزون",
+              "icon": "layers",
+              "href": "/inventory"
+            }
+          ],
+          "activeNavigationId": "ledger",
+          "quickActionGroups": [
+            {
+              "id": "daily",
+              "label": "العمل اليومي",
+              "actions": [
+                {
+                  "id": "task",
+                  "label": "مهمة جديدة",
+                  "icon": "add",
+                  "priority": "primary"
+                },
+                {
+                  "id": "event",
+                  "label": "موعد جديد",
+                  "icon": "calendar"
+                }
+              ]
+            },
+            {
+              "id": "support",
+              "actions": [
+                {
+                  "id": "help",
+                  "label": "المساعدة",
+                  "icon": "help"
+                },
+                {
+                  "id": "settings",
+                  "label": "الإعدادات",
+                  "icon": "settings"
+                }
+              ]
+            }
+          ],
+          "footer": {
+            "applicationLabel": "Honesty ERP",
+            "versionLabel": "الإصدار 1.0.0",
+            "statusLabel": "تعمل الأنظمة",
+            "statusTone": "success",
+            "actions": [
+              {
+                "id": "support",
+                "label": "الدعم",
+                "icon": "help"
+              }
+            ]
+          },
+          "sidebarOpen": false,
+          "sidebarCollapsed": true
         }
       }
     ],
@@ -4954,6 +5297,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       },
+      "viewport": false,
+      "sidebarOpen": false,
+      "sidebarCollapsed": false,
       "navigationItems": [
         {
           "id": "finance",
@@ -5109,6 +5455,45 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             }
           ]
         }
+      },
+      {
+        "name": "viewport",
+        "label": "viewport",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "sidebarOpen",
+        "label": "sidebarOpen",
+        "source": "model",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "sidebarCollapsed",
+        "label": "sidebarCollapsed",
+        "source": "model",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
       }
     ],
     "showcaseCoverage": {
@@ -5119,16 +5504,27 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "contentLabel",
         "quickActionGroups",
         "quickActionsLabel",
-        "footer"
+        "footer",
+        "viewport"
       ],
-      "coveredModels": [],
+      "coveredModels": [
+        "sidebarOpen",
+        "sidebarCollapsed"
+      ],
       "coveredOutputs": [
         "navigationActivated",
         "quickActionActivated",
         "footerActionActivated"
       ],
-      "coveredValues": {},
-      "coveredStates": [],
+      "coveredValues": {
+        "viewport": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "viewport"
+      ],
       "coveredProjectionSlots": [
         "default-authored-content"
       ],

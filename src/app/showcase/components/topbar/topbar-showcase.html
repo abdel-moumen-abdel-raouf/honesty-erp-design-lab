@@ -7,7 +7,7 @@
       <erp-topbar
           data-showcase-target
           
-        ><erp-text erpTopbarStart type="heading-3">Honesty ERP</erp-text><erp-branch-selector erpTopbarContext [branches]="topbarBranches" value="cairo" (changed)="recordEvent('branchChanged', $event)" /><erp-global-search erpTopbarSearch [results]="topbarSearchResults" (resultActivated)="recordEvent('searchResultActivated', $event)" /><erp-notification-bell erpTopbarActions [notifications]="topbarNotifications" (notificationActivated)="recordEvent('notificationActivated', $event)" /><erp-user-menu erpTopbarUser [user]="topbarUser" [items]="topbarUserItems" (actionActivated)="recordEvent('userActionActivated', $event)" /></erp-topbar>
+        ><erp-text erpTopbarStart type="heading-3">Honesty ERP</erp-text><erp-branch-selector erpTopbarContext [branches]="topbarBranches" value="cairo" (valueChange)="recordEvent('branchChanged', $event)" /><erp-global-search erpTopbarSearch [results]="topbarSearchResults" (resultActivated)="recordEvent('searchResultActivated', $event)" /><erp-inline erpTopbarActions gap="tight" align="center"><erp-applications-menu [groups]="topbarApplications" (applicationActivated)="recordEvent('applicationActivated', $event)" /><erp-messages-menu [messages]="topbarMessages" (messageActivated)="recordEvent('messageActivated', $event)" /><erp-notification-bell [notifications]="topbarNotifications" (notificationActivated)="recordEvent('notificationActivated', $event)" /></erp-inline><erp-user-menu erpTopbarUser [user]="topbarUser" [items]="topbarUserItems" (actionActivated)="recordEvent('userActionActivated', $event)" /></erp-topbar>
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel

@@ -15,6 +15,7 @@ const OUTPUT = path.join(
   'review-evidence',
   'erp-shell',
   ({sidebar: 's2-a-sidebar', topbar: 's2-b-topbar', 'app-footer': 's2-c-app-footer', 'quick-actions-bar': 's2-d-quick-actions-bar', 'app-shell': 's2-e-app-shell'}[COMPONENT]
+    ?? (COMPONENT === 'integrated-app' ? 'autonomous-app-shell-wave' : null)
     ?? `shell-${COMPONENT}`),
 );
 
@@ -65,6 +66,17 @@ const appShellScenarios = [
   {name: 'app-shell-320-dark-ltr-end', width: 320, height: 568, theme: 'dark', direction: 'ltr', state: 'end'},
 ];
 
+const integratedAppScenarios = [
+  {name: 'integrated-1440-light-rtl', width: 1440, height: 900, theme: 'light', direction: 'rtl'},
+  {name: 'integrated-1440-dark-rtl-applications-open', width: 1440, height: 900, theme: 'dark', direction: 'rtl', open: 'applications'},
+  {name: 'integrated-1280-dark-ltr-messages-open', width: 1280, height: 900, theme: 'dark', direction: 'ltr', open: 'messages'},
+  {name: 'integrated-1024-light-rtl-notifications-open', width: 1024, height: 768, theme: 'light', direction: 'rtl', open: 'notifications'},
+  {name: 'integrated-768-dark-ltr-search-active', width: 768, height: 900, theme: 'dark', direction: 'ltr', open: 'search'},
+  {name: 'integrated-390-light-rtl-sidebar-open', width: 390, height: 844, theme: 'light', direction: 'rtl', open: 'sidebar'},
+  {name: 'integrated-390-dark-rtl-messages-open', width: 390, height: 844, theme: 'dark', direction: 'rtl', open: 'messages'},
+  {name: 'integrated-320-dark-ltr-notifications-open', width: 320, height: 568, theme: 'dark', direction: 'ltr', open: 'notifications'},
+];
+
 const scenarios = COMPONENT === 'topbar'
   ? topbarScenarios
   : COMPONENT === 'app-footer'
@@ -73,7 +85,9 @@ const scenarios = COMPONENT === 'topbar'
       ? quickActionsScenarios
       : COMPONENT === 'app-shell'
         ? appShellScenarios
-        : sidebarScenarios;
+        : COMPONENT === 'integrated-app'
+          ? integratedAppScenarios
+          : sidebarScenarios;
 
 class DevToolsClient {
   #socket;
@@ -186,7 +200,8 @@ async function main() {
       await client.command('Page.navigate', {url: BASE_URL});
       await waitFor(() => evaluate(client, 'document.readyState === "complete"'));
       await evaluate(client, `localStorage.setItem('honesty-lab-theme', '${scenario.theme}')`);
-      await client.command('Page.navigate', {url: `${BASE_URL}/components/${COMPONENT}`});
+      const route = COMPONENT === 'integrated-app' ? '/components/global-search' : `/components/${COMPONENT}`;
+      await client.command('Page.navigate', {url: `${BASE_URL}${route}`});
       const readySelector = COMPONENT === 'topbar'
         ? 'erp-topbar[data-showcase-target] header, [data-showcase-target] erp-topbar header'
         : COMPONENT === 'app-footer'
@@ -195,6 +210,8 @@ async function main() {
             ? 'erp-quick-actions-bar[data-showcase-target] [role="toolbar"], [data-showcase-target] erp-quick-actions-bar [role="toolbar"]'
             : COMPONENT === 'app-shell'
               ? 'erp-app-shell[data-showcase-target] .app-shell, [data-showcase-target] erp-app-shell .app-shell'
+              : COMPONENT === 'integrated-app'
+                ? '#design-lab-app-shell .app-shell'
               : 'erp-sidebar[data-showcase-target] nav, [data-showcase-target] erp-sidebar nav';
       await waitFor(() => evaluate(client, `Boolean(document.querySelector(${JSON.stringify(readySelector)}))`));
       await evaluate(client, `(() => {
@@ -202,9 +219,35 @@ async function main() {
         document.body.dir = '${scenario.direction}';
         document.documentElement.style.setProperty('direction', '${scenario.direction}', 'important');
         document.body.style.setProperty('direction', '${scenario.direction}', 'important');
-        document.querySelector('erp-${COMPONENT}[data-showcase-target], [data-showcase-target] erp-${COMPONENT}')
+        document.querySelector('${COMPONENT === 'integrated-app' ? '#design-lab-app-shell' : `erp-${COMPONENT}[data-showcase-target], [data-showcase-target] erp-${COMPONENT}`}')
           ?.setAttribute('dir', '${scenario.direction}');
       })()`);
+      if (COMPONENT === 'integrated-app' && scenario.open) {
+        const selector = {
+          applications: 'erp-applications-menu .applications-menu__trigger button',
+          messages: 'erp-messages-menu .messages-menu__trigger-wrap erp-icon-button button',
+          notifications: 'erp-notification-bell .bell__trigger-wrap erp-icon-button button',
+          search: 'erp-global-search .search-box__trigger button',
+          sidebar: '#btn-component-catalog button',
+        }[scenario.open];
+        if (scenario.open === 'search') {
+          await evaluate(client, `(() => {
+            document.querySelector(${JSON.stringify(selector)})?.click();
+          })()`);
+          await waitFor(() => evaluate(client, `Boolean(document.querySelector('erp-global-search .search-box__popup:popover-open .search-box__native'))`));
+          await evaluate(client, `(() => {
+            const field = document.querySelector('erp-global-search .search-box__popup:popover-open .search-box__native');
+            if (!(field instanceof HTMLInputElement)) throw new Error('Missing integrated GlobalSearch input');
+            const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set;
+            setter.call(field, 'ال');
+            field.dispatchEvent(new Event('input', {bubbles: true}));
+            field.focus();
+          })()`);
+        } else {
+          await evaluate(client, `document.querySelector(${JSON.stringify(selector)})?.click()`);
+        }
+        await new Promise((resolve) => setTimeout(resolve, 750));
+      }
       if (COMPONENT === 'sidebar' && scenario.collapsed) {
         await evaluate(client, `document.querySelector('erp-sidebar[data-showcase-target] .sidebar__header erp-icon-button button, [data-showcase-target] erp-sidebar .sidebar__header erp-icon-button button')?.click()`);
         await waitFor(() => evaluate(client, `document.querySelector('erp-sidebar[data-showcase-target], [data-showcase-target] erp-sidebar')?.getAttribute('data-sidebar-collapsed') === 'true'`));
@@ -265,6 +308,7 @@ async function main() {
         await new Promise((resolve) => setTimeout(resolve, 250));
       }
       let interactionEvidence = null;
+      let navigationEvidence = null;
       if (COMPONENT === 'app-shell') {
         await evaluate(client, `document.querySelector('[data-showcase-target] .app-shell__quick-actions erp-icon-button button')?.click()`);
         await new Promise((resolve) => setTimeout(resolve, 50));
@@ -274,17 +318,46 @@ async function main() {
         const footerActionEvent = await evaluate(client, `document.querySelector('[data-showcase-event-log]')?.textContent?.trim() ?? ''`);
         interactionEvidence = {quickActionEvent, footerActionEvent};
       }
+      if (COMPONENT === 'integrated-app' && !scenario.open) {
+        const originalPath = await evaluate(client, 'location.pathname');
+        await evaluate(client, `document.querySelector('erp-sidebar a[href="/components/messages-menu"]')?.click()`);
+        await waitFor(() => evaluate(client, `location.pathname === '/components/messages-menu'`));
+        await evaluate(client, 'history.back()');
+        await waitFor(() => evaluate(client, `location.pathname !== '/components/messages-menu'`));
+        const backPath = await evaluate(client, 'location.pathname');
+        await evaluate(client, 'history.forward()');
+        await waitFor(() => evaluate(client, `location.pathname === '/components/messages-menu'`));
+        await evaluate(client, 'history.back()');
+        await waitFor(() => evaluate(client, `location.pathname !== '/components/messages-menu'`));
+        const finalBackPath = await evaluate(client, 'location.pathname');
+        if (finalBackPath !== originalPath) {
+          await client.command('Page.navigate', {url: `${BASE_URL}${originalPath}`});
+          await waitFor(() => evaluate(client, `location.pathname === ${JSON.stringify(originalPath)}`));
+          await waitFor(() => evaluate(client, `Boolean(document.querySelector('#design-lab-app-shell .app-shell'))`));
+        }
+        navigationEvidence = {
+          originalPath,
+          destinationPath: '/components/messages-menu',
+          backPath,
+          backForwardRoundTrip: true,
+          finalPath: await evaluate(client, 'location.pathname'),
+        };
+      }
       const scrollBlock = COMPONENT === 'app-shell'
         ? scenario.state === 'end' ? 'end' : 'start'
         : 'center';
-      await evaluate(client, `document.querySelector('erp-${COMPONENT}[data-showcase-target], [data-showcase-target] erp-${COMPONENT}')?.scrollIntoView({block: '${scrollBlock}', inline: 'nearest'})`);
+      if (COMPONENT === 'integrated-app') {
+        await evaluate(client, 'window.scrollTo(0, 0)');
+      } else {
+        await evaluate(client, `document.querySelector('erp-${COMPONENT}[data-showcase-target], [data-showcase-target] erp-${COMPONENT}')?.scrollIntoView({block: '${scrollBlock}', inline: 'nearest'})`);
+      }
       if (COMPONENT === 'app-shell' && scenario.state !== 'end') {
         await evaluate(client, `window.scrollBy(0, -(document.querySelector('#lab-utility-bar')?.getBoundingClientRect().height ?? 0))`);
       }
       await new Promise((resolve) => setTimeout(resolve, 200));
 
       const measurement = await evaluate(client, `(() => {
-        const host = document.querySelector('erp-${COMPONENT}[data-showcase-target], [data-showcase-target] erp-${COMPONENT}');
+        const host = document.querySelector('${COMPONENT === 'integrated-app' ? '#design-lab-app-shell' : `erp-${COMPONENT}[data-showcase-target], [data-showcase-target] erp-${COMPONENT}`}');
         const target = document.querySelector('[data-showcase-target]');
         const nav = host?.querySelector('nav');
         const header = host?.querySelector('header');
@@ -305,6 +378,7 @@ async function main() {
           const value = element.getBoundingClientRect();
           return {x: value.x, y: value.y, width: value.width, height: value.height};
         };
+        const openSurfaces = [...document.querySelectorAll('[popover]:popover-open')];
         return {
           viewport: {width: innerWidth, height: innerHeight},
           theme: document.querySelector('.lab-capture-root')?.getAttribute('data-theme'),
@@ -312,6 +386,7 @@ async function main() {
           pageHorizontalOverflow: Math.max(0, document.documentElement.scrollWidth - document.documentElement.clientWidth),
           target: rect(target),
           component: '${COMPONENT}',
+          requestedOpenState: ${JSON.stringify(null)},
           host: rect(host),
           nav: rect(nav),
           navOverflowY: nav ? getComputedStyle(nav).overflowY : null,
@@ -355,13 +430,31 @@ async function main() {
             quickActionsBar: host?.querySelectorAll('erp-quick-actions-bar').length ?? 0,
             branchSelector: host?.querySelectorAll('erp-branch-selector').length ?? 0,
             globalSearch: host?.querySelectorAll('erp-global-search').length ?? 0,
+            applicationsMenu: host?.querySelectorAll('erp-applications-menu').length ?? 0,
+            messagesMenu: host?.querySelectorAll('erp-messages-menu').length ?? 0,
             notificationBell: host?.querySelectorAll('erp-notification-bell').length ?? 0,
             userMenu: host?.querySelectorAll('erp-user-menu').length ?? 0,
           },
+          openPopoverCount: openSurfaces.length,
+          openPopovers: openSurfaces.map((surface) => ({
+            className: surface.className,
+            rect: rect(surface),
+            horizontalOverflow: Math.max(0, surface.scrollWidth - surface.clientWidth),
+            verticalOverflow: Math.max(0, surface.scrollHeight - surface.clientHeight),
+          })),
+          routerOutletCount: document.querySelectorAll('router-outlet').length,
+          overlayHostCount: document.querySelectorAll('erp-overlay-host').length,
           brokenImages: [...document.images].filter((image) => image.complete && image.naturalWidth === 0).length,
         };
       })()`);
-      measurements.push({name: scenario.name, ...measurement, interactionEvidence, diagnostics: [...client.diagnostics]});
+      measurement.requestedOpenState = scenario.open ?? null;
+      measurements.push({
+        name: scenario.name,
+        ...measurement,
+        interactionEvidence,
+        navigationEvidence,
+        diagnostics: [...client.diagnostics],
+      });
       const screenshot = await client.command('Page.captureScreenshot', {
         format: 'png',
         captureBeyondViewport: false,
@@ -369,10 +462,70 @@ async function main() {
       await fs.writeFile(path.join(OUTPUT, `${scenario.name}.png`), Buffer.from(screenshot.data, 'base64'));
     }
 
+    let routeAudit = null;
+    if (COMPONENT === 'integrated-app') {
+      await client.command('Emulation.setDeviceMetricsOverride', {
+        width: 1440,
+        height: 900,
+        deviceScaleFactor: 1,
+        mobile: false,
+      });
+      await client.command('Page.navigate', {url: `${BASE_URL}/components/global-search`});
+      await waitFor(() => evaluate(client, `Boolean(document.querySelector('#design-lab-app-shell .app-shell'))`));
+      const routes = await evaluate(client, `[
+        ...new Set(
+          [...document.querySelectorAll('erp-sidebar a[href^="/components/"]')]
+            .map((anchor) => anchor.getAttribute('href'))
+            .filter(Boolean),
+        ),
+      ].sort()`);
+      const routeResults = [];
+      for (const route of routes) {
+        client.diagnostics.length = 0;
+        await client.command('Page.navigate', {url: `${BASE_URL}${route}`});
+        await waitFor(() => evaluate(client, 'document.readyState === "complete"'));
+        await waitFor(() => evaluate(client, `Boolean(document.querySelector('#design-lab-app-shell .app-shell'))`));
+        await waitFor(() => evaluate(client, `document.querySelectorAll('[data-showcase-target]').length === 1`));
+        await new Promise((resolve) => setTimeout(resolve, 75));
+        routeResults.push(await evaluate(client, `(() => ({
+          route: location.pathname,
+          shellCount: document.querySelectorAll('#design-lab-app-shell > .app-shell').length,
+          routerOutletCount: document.querySelectorAll('router-outlet').length,
+          overlayHostCount: document.querySelectorAll('erp-overlay-host').length,
+          primaryTargetCount: document.querySelectorAll('[data-showcase-target]').length,
+          pageHorizontalOverflow: Math.max(0, document.documentElement.scrollWidth - document.documentElement.clientWidth),
+          brokenImages: [...document.images].filter((image) => image.complete && image.naturalWidth === 0).length,
+        }))()`));
+        routeResults.at(-1).diagnostics = [...client.diagnostics];
+      }
+      const failures = routeResults.filter((result) =>
+        result.shellCount !== 1
+        || result.routerOutletCount !== 1
+        || result.overlayHostCount !== 1
+        || result.primaryTargetCount !== 1
+        || result.pageHorizontalOverflow !== 0
+        || result.brokenImages !== 0
+        || result.diagnostics.length !== 0,
+      );
+      routeAudit = {
+        expectedRoutes: 81,
+        auditedRoutes: routeResults.length,
+        passedRoutes: routeResults.length - failures.length,
+        failedRoutes: failures.length,
+        failures,
+        routes: routeResults,
+      };
+    }
+
     await fs.writeFile(
       path.join(OUTPUT, 'runtime-measurements.json'),
-      `${JSON.stringify({capturedAt: new Date().toISOString(), baseUrl: BASE_URL, measurements}, null, 2)}\n`,
+      `${JSON.stringify({capturedAt: new Date().toISOString(), baseUrl: BASE_URL, measurements, routeAudit}, null, 2)}\n`,
     );
+    if (routeAudit && (routeAudit.auditedRoutes !== routeAudit.expectedRoutes || routeAudit.failedRoutes > 0)) {
+      throw new Error(
+        `Integrated route audit failed: ${routeAudit.passedRoutes}/${routeAudit.expectedRoutes} passed.`,
+      );
+    }
     client.close();
   } finally {
     chrome.kill();

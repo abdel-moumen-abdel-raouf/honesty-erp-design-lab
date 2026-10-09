@@ -236,8 +236,10 @@ export function validateSingleDocumentLabContract(files) {
     'id="btn-full-page-screenshot"',
     'data-wave-a-theme-evidence',
     'data-wave-a-screenshot-evidence',
-    'id="routed-review-content"',
+    '<erp-app-shell',
+    'id="design-lab-app-shell"',
     'id="app-router-outlet"',
+    '<erp-overlay-host',
   ]) {
     if (!template.includes(required)) {
       errors.push(`App template: missing single-document Lab contract ${required}`);
@@ -1048,9 +1050,9 @@ link.download = buildScreenshotFilename(this.router.url, this.theme());`,
       `<div id="lab-capture-root" [attr.data-theme]="theme()">
 <button id="btn-lab-theme" data-wave-a-theme-evidence></button>
 <button id="btn-full-page-screenshot" data-wave-a-screenshot-evidence></button>
-<main id="routed-review-content">
+<erp-app-shell id="design-lab-app-shell">
 <router-outlet id="app-router-outlet"></router-outlet>
-</main>
+</erp-app-shell>
 <erp-overlay-host />
 </div>`,
     ],

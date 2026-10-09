@@ -1,0 +1,86 @@
+@use '../../../styles/foundation/queries' as query;
+
+@include query.viewport-down('xl') {
+  .app-shell {
+    grid-template-areas:
+      'topbar'
+      'content'
+      'quick-actions'
+      'footer';
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto auto;
+  }
+
+  :host([data-app-shell-sidebar-collapsed='true']) .app-shell {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .app-shell__sidebar {
+    position: fixed;
+    z-index: var(--honesty-app-shell-sidebar-layer-narrow);
+    inset-block: 0;
+    inset-inline-start: 0;
+    inline-size: min(
+      var(--honesty-app-shell-sidebar-width),
+      calc(100vw - var(--honesty-app-shell-quick-actions-padding-inline-narrow))
+    );
+    max-inline-size: 100%;
+    max-block-size: 100dvh;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(100%);
+    pointer-events: none;
+    box-shadow: var(--honesty-app-shell-sidebar-shadow-narrow);
+    transition:
+      transform var(--honesty-app-shell-sidebar-motion-duration)
+        var(--honesty-app-shell-sidebar-motion-easing),
+      opacity var(--honesty-app-shell-sidebar-motion-duration)
+        var(--honesty-app-shell-sidebar-motion-easing),
+      visibility var(--honesty-app-shell-sidebar-motion-duration)
+        var(--honesty-app-shell-sidebar-motion-easing);
+  }
+
+  :host([data-app-shell-sidebar-open='true']) .app-shell__sidebar {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  .app-shell__quick-actions {
+    max-block-size: none;
+    padding-block: 0;
+    padding-inline: var(--honesty-app-shell-quick-actions-padding-inline-narrow);
+  }
+}
+
+:host-context([dir='ltr']) {
+  @include query.viewport-down('xl') {
+    .app-shell__sidebar {
+      transform: translateX(-100%);
+    }
+
+    :host([data-app-shell-sidebar-open='true']) .app-shell__sidebar {
+      transform: translateX(0);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell__sidebar {
+    transition-duration: 0ms;
+  }
+}
+
+@include query.viewport-down('xs') {
+  :host([data-app-shell-viewport='true']) .app-shell {
+    block-size: auto;
+    min-block-size: 100dvh;
+    overflow: visible;
+  }
+
+  .app-shell__content {
+    min-block-size: var(--honesty-app-shell-min-height);
+    overflow: visible;
+  }
+}

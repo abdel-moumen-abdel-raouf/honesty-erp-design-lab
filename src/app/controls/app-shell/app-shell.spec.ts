@@ -11,6 +11,9 @@ import {ErpAppShell} from './app-shell';
       activeNavigationId="ledger"
       [quickActionGroups]="quickActions"
       [footer]="footer"
+      [viewport]="true"
+      [(sidebarOpen)]="sidebarOpen"
+      [(sidebarCollapsed)]="sidebarCollapsed"
       (navigationActivated)="activated = $event.id"
       (quickActionActivated)="quickActivated = $event"
       (footerActionActivated)="footerActivated = $event"
@@ -33,6 +36,8 @@ class AppShellTestHost {
   activated = '';
   quickActivated = '';
   footerActivated = '';
+  sidebarOpen = true;
+  sidebarCollapsed = true;
 }
 
 describe('ErpAppShell', () => {
@@ -47,6 +52,12 @@ describe('ErpAppShell', () => {
     expect(fixture.nativeElement.querySelector('.app-shell__content')?.textContent)
       .toContain('محتوى الصفحة');
     expect(fixture.nativeElement.querySelector('[data-theme]')).toBeNull();
+    expect(fixture.nativeElement.querySelector('erp-app-shell')?.getAttribute('data-app-shell-viewport'))
+      .toBe('true');
+    expect(fixture.nativeElement.querySelector('erp-app-shell')?.getAttribute('data-app-shell-sidebar-open'))
+      .toBe('true');
+    expect(fixture.nativeElement.querySelector('erp-app-shell')?.getAttribute('data-app-shell-sidebar-collapsed'))
+      .toBe('true');
     fixture.nativeElement.dir = 'rtl';
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('.app-shell').dir).toBe('');
@@ -57,6 +68,11 @@ describe('ErpAppShell', () => {
     expect(fixture.componentInstance.quickActivated).toBe('task');
     (fixture.nativeElement.querySelector('erp-app-footer button') as HTMLButtonElement).click();
     expect(fixture.componentInstance.footerActivated).toBe('support');
+
+    (fixture.nativeElement.querySelector('erp-sidebar .sidebar__header button') as HTMLButtonElement).click();
+    fixture.detectChanges();
+    expect(fixture.componentInstance.sidebarOpen).toBe(false);
+    expect(fixture.componentInstance.sidebarCollapsed).toBe(false);
   });
 
   it('preserves the prior composition when optional owners are not configured', () => {

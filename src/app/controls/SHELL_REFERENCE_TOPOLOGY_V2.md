@@ -1,5 +1,24 @@
 # Shell Reference and Topology Contract V2
 
+## Autonomous complete-AppShell checkpoint — 2026-10-09
+
+The real Design Lab now runs inside one `ErpAppShell`, not only an isolated
+showcase. Its Topbar composes the independent `ErpApplicationsMenu`,
+`ErpMessagesMenu`, completed `ErpNotificationBell`, `ErpGlobalSearch`,
+BranchSelector, current UserMenu, theme and screenshot actions. The Sidebar is
+the only visible catalog navigation, routed content owns one direct
+RouterOutlet, QuickActionsBar occupies logical end/horizontal narrow flow, and
+AppFooter spans only the workspace.
+
+The source-verified Skodash 1199 px off-canvas behavior maps through the
+Foundation Query API `xl` boundary. The AppShell Sidebar is a logical-start
+drawer below 1280 px; no raw breakpoint, duplicate navigation engine, iframe,
+theme authority, RouterOutlet or OverlayHost was introduced. The runtime
+matrix is at `docs/review-evidence/erp-shell/autonomous-app-shell-wave/`.
+All delivered owners are `TECHNICAL_VERIFIED`,
+`INTERNAL_VISUAL_REVIEW_COMPLETED`, and
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+
 ## Implemented topology checkpoint — 2026-10-09
 
 S2-A through S2-E implement the bounded topology as independent owners:
@@ -66,7 +85,7 @@ Product Owner visual acceptance.
 | text item | 8 px by 16 px padding; 1 px separator; active/hover states | Retain the measured inset/separator relationship through Sidebar tokens without copying the palette. |
 | `.wrapper.toggled` | text region leaves and the 60 px icon rail remains | Implement a controlled collapsed model with reachable disclosure/navigation behavior; never leave inaccessible hidden destinations. |
 | `app.js` toggle | `.nav-toggle-icon` toggles `.wrapper.toggled`; category activation restores expanded desktop state | Reimplement as Angular state and outputs; do not copy jQuery. |
-| responsive source rule | `@media screen and (max-width:1199px)` moves the Sidebar off-canvas and removes page/header offset | Use the existing Foundation Query API. The exact vendor boundary is evidence; no raw media query is permitted in the component. AppShell review keeps narrow Sidebar in normal document flow because a new global drawer owner is not authorized. |
+| responsive source rule | `@media screen and (max-width:1199px)` moves the Sidebar off-canvas and removes page/header offset | Use the existing Foundation Query API `xl` boundary. AppShell keeps the same Sidebar owner as a logical-start off-canvas drawer; no raw breakpoint or duplicate navigation owner is introduced. |
 | scrolling | vendor applies PerfectScrollbar separately to `.iconmenu` and `.textmenu` | Reject the dependency and duplicate scroll regions. `ErpSidebar nav` owns one native scroll boundary. |
 
 ### Source-verified Topbar anatomy
@@ -120,8 +139,7 @@ Product Owner visual acceptance.
 - No reliable Gxon Footer or QuickActionsBar DOM, CSS, motion, or breakpoint
   measurement is available.
 - No Product Owner-approved fixed quick-action category names were recovered.
-- The exact final Footer typography hierarchy, QuickActionsBar label treatment,
-  and the final narrow Shell navigation presentation remain Product Owner
-  visual-review decisions.
-- The AppShell narrow Sidebar stays an in-flow review candidate; no new Drawer
-  or global navigation overlay is opened by this wave.
+- Footer typography, QuickActionsBar label treatment, and the final visual
+  acceptance of the off-canvas narrow Shell remain Product Owner review
+  decisions. Their current implementation is internally reviewed evidence,
+  not Product Owner acceptance.
