@@ -59,8 +59,10 @@ describe('ErpPagination', () => {
     expect(spy.mock.calls.map(([page]) => page)).toEqual([1, 5, 7, 12]);
   });
 
-  it('uses ErpSelect for optional page-size selection and can hide it', () => {
+  it('uses ErpSelect for optional page-size selection and can hide it', async () => {
     const fixture = create(3);
+    await fixture.whenStable();
+    fixture.detectChanges();
     const select = fixture.nativeElement.querySelector('erp-select') as HTMLElement;
     const accessibleLabelHost = select.querySelector(
       '.field-frame__label--visually-hidden',

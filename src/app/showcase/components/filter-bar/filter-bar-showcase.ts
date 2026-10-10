@@ -5,13 +5,14 @@ import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
+import {ErpTextBox} from '../../../controls/text-box/text-box';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'filter-bar')!;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-filter-bar-showcase',
-  imports: [ErpFilterBar, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpFilterBar, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpTextBox],
   templateUrl: './filter-bar-showcase.html',
   styleUrl: './filter-bar-showcase.scss',
 })
@@ -42,6 +43,18 @@ export class ErpFilterBarShowcase {
       ? this.functionPreset(change.control.name, change.value)
       : change.value;
     this.liveValues.update((current) => ({...current, [change.control.name]: value}));
+  }
+
+  removeActiveFilter(key: string): void {
+    const filters = this.value('filters');
+    const next = Array.isArray(filters) ? filters.filter((filter) => Boolean(filter) && typeof filter === 'object' && (filter as {key?: unknown}).key !== key) : [];
+    this.liveValues.update((current) => ({...current, filters: next}));
+    this.recordEvent('filterRemoved', key);
+  }
+
+  resetActiveFilters(): void {
+    this.liveValues.update((current) => ({...current, filters: []}));
+    this.recordEvent('resetRequested', undefined);
   }
 
   recordModel(name: string, value: unknown): void {

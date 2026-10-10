@@ -8795,14 +8795,14 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "selectedCount": 3
+          "selectedCount": 2
         }
       }
     ],
     "displayNameAr": "شريط الإجراءات الجماعية",
     "descriptionAr": "إجراءات مرتبطة بالصفوف المحددة.",
     "showcaseInitialValues": {
-      "selectedCount": 3
+      "selectedCount": 2
     },
     "showcaseControls": [
       {
@@ -8813,7 +8813,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "number",
         "options": [],
-        "initialValue": 3
+        "initialValue": 2
       }
     ],
     "showcaseCoverage": {
@@ -8826,9 +8826,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredValues": {},
       "coveredStates": [],
-      "coveredProjectionSlots": [],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
       "coveredReferenceCases": [],
-      "evidenceKind": "INTERACTIVE_OUTPUT"
+      "evidenceKind": "AUTHORED_PROJECTION"
     }
   },
   {
@@ -8895,12 +8897,37 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "filters": [
+            {
+              "key": "city",
+              "label": "المدينة",
+              "value": "القاهرة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "value": "نشط"
+            }
+          ]
+        }
       },
       {
         "id": "disabled-false",
         "label": "disabled: false",
         "inputs": {
+          "filters": [
+            {
+              "key": "city",
+              "label": "المدينة",
+              "value": "القاهرة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "value": "نشط"
+            }
+          ],
           "disabled": false
         }
       },
@@ -8908,6 +8935,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled-true",
         "label": "disabled: true",
         "inputs": {
+          "filters": [
+            {
+              "key": "city",
+              "label": "المدينة",
+              "value": "القاهرة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "value": "نشط"
+            }
+          ],
           "disabled": true
         }
       },
@@ -8915,6 +8954,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
+          "filters": [
+            {
+              "key": "city",
+              "label": "المدينة",
+              "value": "القاهرة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "value": "نشط"
+            }
+          ],
           "disabled": true
         }
       }
@@ -8922,7 +8973,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "displayNameAr": "شريط التصفية",
     "descriptionAr": "عرض المرشحات النشطة وإصدار نوايا تعديلها.",
     "showcaseInitialValues": {
-      "filters": [],
+      "filters": [
+        {
+          "key": "city",
+          "label": "المدينة",
+          "value": "القاهرة"
+        },
+        {
+          "key": "status",
+          "label": "الحالة",
+          "value": "نشط"
+        }
+      ],
       "disabled": false
     },
     "showcaseControls": [
@@ -8934,7 +8996,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "readonly ErpDataFilter[]",
         "options": [],
-        "initialValue": []
+        "initialValue": [
+          {
+            "key": "city",
+            "label": "المدينة",
+            "value": "القاهرة"
+          },
+          {
+            "key": "status",
+            "label": "الحالة",
+            "value": "نشط"
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -8970,9 +9043,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredStates": [
         "disabled"
       ],
-      "coveredProjectionSlots": [],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
       "coveredReferenceCases": [],
-      "evidenceKind": "INTERACTIVE_OUTPUT"
+      "evidenceKind": "AUTHORED_PROJECTION"
     }
   },
   {
@@ -9046,14 +9121,60 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "definitions": []
+          "definitions": [
+            {
+              "key": "name",
+              "label": "اسم العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "اكتب اسم المدينة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "placeholder": "نشط أو قيد المراجعة"
+            }
+          ],
+          "filters": [
+            {
+              "key": "city",
+              "label": "المدينة",
+              "value": "القاهرة"
+            }
+          ]
         }
       },
       {
         "id": "disabled-false",
         "label": "disabled: false",
         "inputs": {
-          "definitions": [],
+          "definitions": [
+            {
+              "key": "name",
+              "label": "اسم العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "اكتب اسم المدينة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "placeholder": "نشط أو قيد المراجعة"
+            }
+          ],
+          "filters": [
+            {
+              "key": "city",
+              "label": "المدينة",
+              "value": "القاهرة"
+            }
+          ],
           "disabled": false
         }
       },
@@ -9061,7 +9182,30 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled-true",
         "label": "disabled: true",
         "inputs": {
-          "definitions": [],
+          "definitions": [
+            {
+              "key": "name",
+              "label": "اسم العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "اكتب اسم المدينة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "placeholder": "نشط أو قيد المراجعة"
+            }
+          ],
+          "filters": [
+            {
+              "key": "city",
+              "label": "المدينة",
+              "value": "القاهرة"
+            }
+          ],
           "disabled": true
         }
       },
@@ -9069,7 +9213,30 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
-          "definitions": [],
+          "definitions": [
+            {
+              "key": "name",
+              "label": "اسم العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "اكتب اسم المدينة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "placeholder": "نشط أو قيد المراجعة"
+            }
+          ],
+          "filters": [
+            {
+              "key": "city",
+              "label": "المدينة",
+              "value": "القاهرة"
+            }
+          ],
           "disabled": true
         }
       }
@@ -9077,9 +9244,31 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "displayNameAr": "درج التصفية",
     "descriptionAr": "سطح حاجب لتكوين المرشحات وتطبيقها.",
     "showcaseInitialValues": {
-      "filters": [],
+      "filters": [
+        {
+          "key": "city",
+          "label": "المدينة",
+          "value": "القاهرة"
+        }
+      ],
       "disabled": false,
-      "definitions": []
+      "definitions": [
+        {
+          "key": "name",
+          "label": "اسم العميل",
+          "placeholder": "ابحث باسم العميل"
+        },
+        {
+          "key": "city",
+          "label": "المدينة",
+          "placeholder": "اكتب اسم المدينة"
+        },
+        {
+          "key": "status",
+          "label": "الحالة",
+          "placeholder": "نشط أو قيد المراجعة"
+        }
+      ]
     },
     "showcaseControls": [
       {
@@ -9090,7 +9279,23 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "readonly ErpDataFilterDefinition[]",
         "options": [],
-        "initialValue": []
+        "initialValue": [
+          {
+            "key": "name",
+            "label": "اسم العميل",
+            "placeholder": "ابحث باسم العميل"
+          },
+          {
+            "key": "city",
+            "label": "المدينة",
+            "placeholder": "اكتب اسم المدينة"
+          },
+          {
+            "key": "status",
+            "label": "الحالة",
+            "placeholder": "نشط أو قيد المراجعة"
+          }
+        ]
       },
       {
         "name": "filters",
@@ -9100,7 +9305,13 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "readonly ErpDataFilter[]",
         "options": [],
-        "initialValue": []
+        "initialValue": [
+          {
+            "key": "city",
+            "label": "المدينة",
+            "value": "القاهرة"
+          }
+        ]
       },
       {
         "name": "disabled",
@@ -9390,60 +9601,234 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "caption": "سجل الحسابات",
+          "caption": "دليل العملاء المحلي",
           "columns": [
             {
+              "key": "code",
+              "label": "الكود",
+              "sortable": true,
+              "required": true,
+              "hideable": false
+            },
+            {
               "key": "name",
-              "label": "اسم الحساب"
+              "label": "العميل",
+              "sortable": true,
+              "required": true
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "sortable": true
             },
             {
               "key": "balance",
-              "label": "الرصيد"
+              "label": "الرصيد",
+              "sortable": true,
+              "align": "end"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "align": "center"
             }
           ],
           "rows": [
             {
               "id": "1",
-              "name": "حساب المبيعات",
-              "balance": "125,000 ج.م"
+              "code": "C-1001",
+              "name": "شركة النور",
+              "city": "القاهرة",
+              "balance": "42,500.00",
+              "status": "نشط"
+            },
+            {
+              "id": "2",
+              "code": "C-1002",
+              "name": "مؤسسة الأفق",
+              "city": "الإسكندرية",
+              "balance": "18,750.00",
+              "status": "قيد المراجعة"
+            },
+            {
+              "id": "3",
+              "code": "C-1003",
+              "name": "مجموعة البيان",
+              "city": "القاهرة",
+              "balance": "63,100.00",
+              "status": "نشط"
+            },
+            {
+              "id": "4",
+              "code": "C-1004",
+              "name": "شركة المدى",
+              "city": "المنصورة",
+              "balance": "27,900.00",
+              "status": "موقوف"
+            },
+            {
+              "id": "5",
+              "code": "C-1005",
+              "name": "مكتب الرؤية",
+              "city": "القاهرة",
+              "balance": "11,350.00",
+              "status": "نشط"
             }
           ],
+          "selectable": true,
+          "filterDefinitions": [
+            {
+              "key": "name",
+              "label": "اسم العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "اكتب اسم المدينة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "placeholder": "نشط أو قيد المراجعة"
+            }
+          ],
+          "pageSizeOptions": [
+            3,
+            5,
+            10
+          ],
           "page": 1,
-          "pageSize": 25,
+          "pageSize": 3,
           "sort": null,
           "filters": [],
-          "visibleColumns": [],
-          "selectedKeys": []
+          "visibleColumns": [
+            "code",
+            "name",
+            "city",
+            "balance",
+            "status"
+          ],
+          "selectedKeys": [
+            "2"
+          ]
         }
       },
       {
         "id": "mode-local",
         "label": "mode: local",
         "inputs": {
-          "caption": "سجل الحسابات",
+          "caption": "دليل العملاء المحلي",
           "columns": [
             {
+              "key": "code",
+              "label": "الكود",
+              "sortable": true,
+              "required": true,
+              "hideable": false
+            },
+            {
               "key": "name",
-              "label": "اسم الحساب"
+              "label": "العميل",
+              "sortable": true,
+              "required": true
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "sortable": true
             },
             {
               "key": "balance",
-              "label": "الرصيد"
+              "label": "الرصيد",
+              "sortable": true,
+              "align": "end"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "align": "center"
             }
           ],
           "rows": [
             {
               "id": "1",
-              "name": "حساب المبيعات",
-              "balance": "125,000 ج.م"
+              "code": "C-1001",
+              "name": "شركة النور",
+              "city": "القاهرة",
+              "balance": "42,500.00",
+              "status": "نشط"
+            },
+            {
+              "id": "2",
+              "code": "C-1002",
+              "name": "مؤسسة الأفق",
+              "city": "الإسكندرية",
+              "balance": "18,750.00",
+              "status": "قيد المراجعة"
+            },
+            {
+              "id": "3",
+              "code": "C-1003",
+              "name": "مجموعة البيان",
+              "city": "القاهرة",
+              "balance": "63,100.00",
+              "status": "نشط"
+            },
+            {
+              "id": "4",
+              "code": "C-1004",
+              "name": "شركة المدى",
+              "city": "المنصورة",
+              "balance": "27,900.00",
+              "status": "موقوف"
+            },
+            {
+              "id": "5",
+              "code": "C-1005",
+              "name": "مكتب الرؤية",
+              "city": "القاهرة",
+              "balance": "11,350.00",
+              "status": "نشط"
             }
           ],
+          "selectable": true,
+          "filterDefinitions": [
+            {
+              "key": "name",
+              "label": "اسم العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "اكتب اسم المدينة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "placeholder": "نشط أو قيد المراجعة"
+            }
+          ],
+          "pageSizeOptions": [
+            3,
+            5,
+            10
+          ],
           "page": 1,
-          "pageSize": 25,
+          "pageSize": 3,
           "sort": null,
           "filters": [],
-          "visibleColumns": [],
-          "selectedKeys": [],
+          "visibleColumns": [
+            "code",
+            "name",
+            "city",
+            "balance",
+            "status"
+          ],
+          "selectedKeys": [
+            "2"
+          ],
           "mode": "local"
         }
       },
@@ -9451,30 +9836,117 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "mode-remote",
         "label": "mode: remote",
         "inputs": {
-          "caption": "سجل الحسابات",
+          "caption": "دليل العملاء المحلي",
           "columns": [
             {
+              "key": "code",
+              "label": "الكود",
+              "sortable": true,
+              "required": true,
+              "hideable": false
+            },
+            {
               "key": "name",
-              "label": "اسم الحساب"
+              "label": "العميل",
+              "sortable": true,
+              "required": true
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "sortable": true
             },
             {
               "key": "balance",
-              "label": "الرصيد"
+              "label": "الرصيد",
+              "sortable": true,
+              "align": "end"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "align": "center"
             }
           ],
           "rows": [
             {
               "id": "1",
-              "name": "حساب المبيعات",
-              "balance": "125,000 ج.م"
+              "code": "C-1001",
+              "name": "شركة النور",
+              "city": "القاهرة",
+              "balance": "42,500.00",
+              "status": "نشط"
+            },
+            {
+              "id": "2",
+              "code": "C-1002",
+              "name": "مؤسسة الأفق",
+              "city": "الإسكندرية",
+              "balance": "18,750.00",
+              "status": "قيد المراجعة"
+            },
+            {
+              "id": "3",
+              "code": "C-1003",
+              "name": "مجموعة البيان",
+              "city": "القاهرة",
+              "balance": "63,100.00",
+              "status": "نشط"
+            },
+            {
+              "id": "4",
+              "code": "C-1004",
+              "name": "شركة المدى",
+              "city": "المنصورة",
+              "balance": "27,900.00",
+              "status": "موقوف"
+            },
+            {
+              "id": "5",
+              "code": "C-1005",
+              "name": "مكتب الرؤية",
+              "city": "القاهرة",
+              "balance": "11,350.00",
+              "status": "نشط"
             }
           ],
+          "selectable": true,
+          "filterDefinitions": [
+            {
+              "key": "name",
+              "label": "اسم العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "اكتب اسم المدينة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "placeholder": "نشط أو قيد المراجعة"
+            }
+          ],
+          "pageSizeOptions": [
+            3,
+            5,
+            10
+          ],
           "page": 1,
-          "pageSize": 25,
+          "pageSize": 3,
           "sort": null,
           "filters": [],
-          "visibleColumns": [],
-          "selectedKeys": [],
+          "visibleColumns": [
+            "code",
+            "name",
+            "city",
+            "balance",
+            "status"
+          ],
+          "selectedKeys": [
+            "2"
+          ],
           "mode": "remote"
         }
       },
@@ -9482,30 +9954,117 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "loading-false",
         "label": "loading: false",
         "inputs": {
-          "caption": "سجل الحسابات",
+          "caption": "دليل العملاء المحلي",
           "columns": [
             {
+              "key": "code",
+              "label": "الكود",
+              "sortable": true,
+              "required": true,
+              "hideable": false
+            },
+            {
               "key": "name",
-              "label": "اسم الحساب"
+              "label": "العميل",
+              "sortable": true,
+              "required": true
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "sortable": true
             },
             {
               "key": "balance",
-              "label": "الرصيد"
+              "label": "الرصيد",
+              "sortable": true,
+              "align": "end"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "align": "center"
             }
           ],
           "rows": [
             {
               "id": "1",
-              "name": "حساب المبيعات",
-              "balance": "125,000 ج.م"
+              "code": "C-1001",
+              "name": "شركة النور",
+              "city": "القاهرة",
+              "balance": "42,500.00",
+              "status": "نشط"
+            },
+            {
+              "id": "2",
+              "code": "C-1002",
+              "name": "مؤسسة الأفق",
+              "city": "الإسكندرية",
+              "balance": "18,750.00",
+              "status": "قيد المراجعة"
+            },
+            {
+              "id": "3",
+              "code": "C-1003",
+              "name": "مجموعة البيان",
+              "city": "القاهرة",
+              "balance": "63,100.00",
+              "status": "نشط"
+            },
+            {
+              "id": "4",
+              "code": "C-1004",
+              "name": "شركة المدى",
+              "city": "المنصورة",
+              "balance": "27,900.00",
+              "status": "موقوف"
+            },
+            {
+              "id": "5",
+              "code": "C-1005",
+              "name": "مكتب الرؤية",
+              "city": "القاهرة",
+              "balance": "11,350.00",
+              "status": "نشط"
             }
           ],
+          "selectable": true,
+          "filterDefinitions": [
+            {
+              "key": "name",
+              "label": "اسم العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "اكتب اسم المدينة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "placeholder": "نشط أو قيد المراجعة"
+            }
+          ],
+          "pageSizeOptions": [
+            3,
+            5,
+            10
+          ],
           "page": 1,
-          "pageSize": 25,
+          "pageSize": 3,
           "sort": null,
           "filters": [],
-          "visibleColumns": [],
-          "selectedKeys": [],
+          "visibleColumns": [
+            "code",
+            "name",
+            "city",
+            "balance",
+            "status"
+          ],
+          "selectedKeys": [
+            "2"
+          ],
           "loading": false
         }
       },
@@ -9513,30 +10072,117 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "loading-true",
         "label": "loading: true",
         "inputs": {
-          "caption": "سجل الحسابات",
+          "caption": "دليل العملاء المحلي",
           "columns": [
             {
+              "key": "code",
+              "label": "الكود",
+              "sortable": true,
+              "required": true,
+              "hideable": false
+            },
+            {
               "key": "name",
-              "label": "اسم الحساب"
+              "label": "العميل",
+              "sortable": true,
+              "required": true
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "sortable": true
             },
             {
               "key": "balance",
-              "label": "الرصيد"
+              "label": "الرصيد",
+              "sortable": true,
+              "align": "end"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "align": "center"
             }
           ],
           "rows": [
             {
               "id": "1",
-              "name": "حساب المبيعات",
-              "balance": "125,000 ج.م"
+              "code": "C-1001",
+              "name": "شركة النور",
+              "city": "القاهرة",
+              "balance": "42,500.00",
+              "status": "نشط"
+            },
+            {
+              "id": "2",
+              "code": "C-1002",
+              "name": "مؤسسة الأفق",
+              "city": "الإسكندرية",
+              "balance": "18,750.00",
+              "status": "قيد المراجعة"
+            },
+            {
+              "id": "3",
+              "code": "C-1003",
+              "name": "مجموعة البيان",
+              "city": "القاهرة",
+              "balance": "63,100.00",
+              "status": "نشط"
+            },
+            {
+              "id": "4",
+              "code": "C-1004",
+              "name": "شركة المدى",
+              "city": "المنصورة",
+              "balance": "27,900.00",
+              "status": "موقوف"
+            },
+            {
+              "id": "5",
+              "code": "C-1005",
+              "name": "مكتب الرؤية",
+              "city": "القاهرة",
+              "balance": "11,350.00",
+              "status": "نشط"
             }
           ],
+          "selectable": true,
+          "filterDefinitions": [
+            {
+              "key": "name",
+              "label": "اسم العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "اكتب اسم المدينة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "placeholder": "نشط أو قيد المراجعة"
+            }
+          ],
+          "pageSizeOptions": [
+            3,
+            5,
+            10
+          ],
           "page": 1,
-          "pageSize": 25,
+          "pageSize": 3,
           "sort": null,
           "filters": [],
-          "visibleColumns": [],
-          "selectedKeys": [],
+          "visibleColumns": [
+            "code",
+            "name",
+            "city",
+            "balance",
+            "status"
+          ],
+          "selectedKeys": [
+            "2"
+          ],
           "loading": true
         }
       },
@@ -9544,30 +10190,117 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "loading",
         "label": "حالة تحميل",
         "inputs": {
-          "caption": "سجل الحسابات",
+          "caption": "دليل العملاء المحلي",
           "columns": [
             {
+              "key": "code",
+              "label": "الكود",
+              "sortable": true,
+              "required": true,
+              "hideable": false
+            },
+            {
               "key": "name",
-              "label": "اسم الحساب"
+              "label": "العميل",
+              "sortable": true,
+              "required": true
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "sortable": true
             },
             {
               "key": "balance",
-              "label": "الرصيد"
+              "label": "الرصيد",
+              "sortable": true,
+              "align": "end"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "align": "center"
             }
           ],
           "rows": [
             {
               "id": "1",
-              "name": "حساب المبيعات",
-              "balance": "125,000 ج.م"
+              "code": "C-1001",
+              "name": "شركة النور",
+              "city": "القاهرة",
+              "balance": "42,500.00",
+              "status": "نشط"
+            },
+            {
+              "id": "2",
+              "code": "C-1002",
+              "name": "مؤسسة الأفق",
+              "city": "الإسكندرية",
+              "balance": "18,750.00",
+              "status": "قيد المراجعة"
+            },
+            {
+              "id": "3",
+              "code": "C-1003",
+              "name": "مجموعة البيان",
+              "city": "القاهرة",
+              "balance": "63,100.00",
+              "status": "نشط"
+            },
+            {
+              "id": "4",
+              "code": "C-1004",
+              "name": "شركة المدى",
+              "city": "المنصورة",
+              "balance": "27,900.00",
+              "status": "موقوف"
+            },
+            {
+              "id": "5",
+              "code": "C-1005",
+              "name": "مكتب الرؤية",
+              "city": "القاهرة",
+              "balance": "11,350.00",
+              "status": "نشط"
             }
           ],
+          "selectable": true,
+          "filterDefinitions": [
+            {
+              "key": "name",
+              "label": "اسم العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "اكتب اسم المدينة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "placeholder": "نشط أو قيد المراجعة"
+            }
+          ],
+          "pageSizeOptions": [
+            3,
+            5,
+            10
+          ],
           "page": 1,
-          "pageSize": 25,
+          "pageSize": 3,
           "sort": null,
           "filters": [],
-          "visibleColumns": [],
-          "selectedKeys": [],
+          "visibleColumns": [
+            "code",
+            "name",
+            "city",
+            "balance",
+            "status"
+          ],
+          "selectedKeys": [
+            "2"
+          ],
           "loading": true
         }
       }
@@ -9578,8 +10311,43 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "rows": [
         {
           "id": "1",
-          "name": "حساب المبيعات",
-          "balance": "125,000 ج.م"
+          "code": "C-1001",
+          "name": "شركة النور",
+          "city": "القاهرة",
+          "balance": "42,500.00",
+          "status": "نشط"
+        },
+        {
+          "id": "2",
+          "code": "C-1002",
+          "name": "مؤسسة الأفق",
+          "city": "الإسكندرية",
+          "balance": "18,750.00",
+          "status": "قيد المراجعة"
+        },
+        {
+          "id": "3",
+          "code": "C-1003",
+          "name": "مجموعة البيان",
+          "city": "القاهرة",
+          "balance": "63,100.00",
+          "status": "نشط"
+        },
+        {
+          "id": "4",
+          "code": "C-1004",
+          "name": "شركة المدى",
+          "city": "المنصورة",
+          "balance": "27,900.00",
+          "status": "موقوف"
+        },
+        {
+          "id": "5",
+          "code": "C-1005",
+          "name": "مكتب الرؤية",
+          "city": "القاهرة",
+          "balance": "11,350.00",
+          "status": "نشط"
         }
       ],
       "mode": "local",
@@ -9587,30 +10355,74 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "loading": false,
       "error": null,
       "totalItems": null,
-      "selectable": false,
+      "selectable": true,
       "compact": false,
-      "filterDefinitions": [],
-      "pageSizeOptions": [
-        10,
-        25,
-        50,
-        100
-      ],
-      "page": 1,
-      "pageSize": 25,
-      "sort": null,
-      "filters": [],
-      "visibleColumns": [],
-      "selectedKeys": [],
-      "caption": "سجل الحسابات",
-      "columns": [
+      "filterDefinitions": [
         {
           "key": "name",
-          "label": "اسم الحساب"
+          "label": "اسم العميل",
+          "placeholder": "ابحث باسم العميل"
+        },
+        {
+          "key": "city",
+          "label": "المدينة",
+          "placeholder": "اكتب اسم المدينة"
+        },
+        {
+          "key": "status",
+          "label": "الحالة",
+          "placeholder": "نشط أو قيد المراجعة"
+        }
+      ],
+      "pageSizeOptions": [
+        3,
+        5,
+        10
+      ],
+      "page": 1,
+      "pageSize": 3,
+      "sort": null,
+      "filters": [],
+      "visibleColumns": [
+        "code",
+        "name",
+        "city",
+        "balance",
+        "status"
+      ],
+      "selectedKeys": [
+        "2"
+      ],
+      "caption": "دليل العملاء المحلي",
+      "columns": [
+        {
+          "key": "code",
+          "label": "الكود",
+          "sortable": true,
+          "required": true,
+          "hideable": false
+        },
+        {
+          "key": "name",
+          "label": "العميل",
+          "sortable": true,
+          "required": true
+        },
+        {
+          "key": "city",
+          "label": "المدينة",
+          "sortable": true
         },
         {
           "key": "balance",
-          "label": "الرصيد"
+          "label": "الرصيد",
+          "sortable": true,
+          "align": "end"
+        },
+        {
+          "key": "status",
+          "label": "الحالة",
+          "align": "center"
         }
       ]
     },
@@ -9623,7 +10435,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "سجل الحسابات"
+        "initialValue": "دليل العملاء المحلي"
       },
       {
         "name": "columns",
@@ -9635,12 +10447,33 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "options": [],
         "initialValue": [
           {
+            "key": "code",
+            "label": "الكود",
+            "sortable": true,
+            "required": true,
+            "hideable": false
+          },
+          {
             "key": "name",
-            "label": "اسم الحساب"
+            "label": "العميل",
+            "sortable": true,
+            "required": true
+          },
+          {
+            "key": "city",
+            "label": "المدينة",
+            "sortable": true
           },
           {
             "key": "balance",
-            "label": "الرصيد"
+            "label": "الرصيد",
+            "sortable": true,
+            "align": "end"
+          },
+          {
+            "key": "status",
+            "label": "الحالة",
+            "align": "center"
           }
         ]
       },
@@ -9655,8 +10488,43 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "initialValue": [
           {
             "id": "1",
-            "name": "حساب المبيعات",
-            "balance": "125,000 ج.م"
+            "code": "C-1001",
+            "name": "شركة النور",
+            "city": "القاهرة",
+            "balance": "42,500.00",
+            "status": "نشط"
+          },
+          {
+            "id": "2",
+            "code": "C-1002",
+            "name": "مؤسسة الأفق",
+            "city": "الإسكندرية",
+            "balance": "18,750.00",
+            "status": "قيد المراجعة"
+          },
+          {
+            "id": "3",
+            "code": "C-1003",
+            "name": "مجموعة البيان",
+            "city": "القاهرة",
+            "balance": "63,100.00",
+            "status": "نشط"
+          },
+          {
+            "id": "4",
+            "code": "C-1004",
+            "name": "شركة المدى",
+            "city": "المنصورة",
+            "balance": "27,900.00",
+            "status": "موقوف"
+          },
+          {
+            "id": "5",
+            "code": "C-1005",
+            "name": "مكتب الرؤية",
+            "city": "القاهرة",
+            "balance": "11,350.00",
+            "status": "نشط"
           }
         ]
       },
@@ -9727,7 +10595,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "false",
           "true"
         ],
-        "initialValue": false
+        "initialValue": true
       },
       {
         "name": "compact",
@@ -9750,7 +10618,23 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "readonly ErpDataFilterDefinition[]",
         "options": [],
-        "initialValue": []
+        "initialValue": [
+          {
+            "key": "name",
+            "label": "اسم العميل",
+            "placeholder": "ابحث باسم العميل"
+          },
+          {
+            "key": "city",
+            "label": "المدينة",
+            "placeholder": "اكتب اسم المدينة"
+          },
+          {
+            "key": "status",
+            "label": "الحالة",
+            "placeholder": "نشط أو قيد المراجعة"
+          }
+        ]
       },
       {
         "name": "pageSizeOptions",
@@ -9761,10 +10645,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "type": "readonly number[]",
         "options": [],
         "initialValue": [
-          10,
-          25,
-          50,
-          100
+          3,
+          5,
+          10
         ]
       },
       {
@@ -9785,7 +10668,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "number",
         "options": [],
-        "initialValue": 25
+        "initialValue": 3
       },
       {
         "name": "sort",
@@ -9815,7 +10698,13 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "readonly string[]",
         "options": [],
-        "initialValue": []
+        "initialValue": [
+          "code",
+          "name",
+          "city",
+          "balance",
+          "status"
+        ]
       },
       {
         "name": "selectedKeys",
@@ -9825,7 +10714,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "readonly string[]",
         "options": [],
-        "initialValue": []
+        "initialValue": [
+          "2"
+        ]
       }
     ],
     "showcaseCoverage": {
@@ -9880,9 +10771,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "selectable",
         "compact"
       ],
-      "coveredProjectionSlots": [],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
       "coveredReferenceCases": [],
-      "evidenceKind": "INTERACTIVE_OUTPUT"
+      "evidenceKind": "AUTHORED_PROJECTION"
     }
   },
   {
@@ -11764,12 +12657,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "label": "دليل العملاء",
+          "showRefresh": true,
+          "showExport": true
+        }
       },
       {
         "id": "disabled-false",
         "label": "disabled: false",
         "inputs": {
+          "label": "دليل العملاء",
+          "showRefresh": true,
+          "showExport": true,
           "disabled": false
         }
       },
@@ -11777,6 +12677,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled-true",
         "label": "disabled: true",
         "inputs": {
+          "label": "دليل العملاء",
+          "showRefresh": true,
+          "showExport": true,
           "disabled": true
         }
       },
@@ -11784,6 +12687,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
+          "label": "دليل العملاء",
+          "showRefresh": true,
+          "showExport": true,
           "disabled": true
         }
       }
@@ -11792,9 +12698,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "تخطيط البحث والإجراءات وأدوات العرض للجدول.",
     "showcaseInitialValues": {
       "presentation": "default",
-      "label": "أدوات الجدول",
+      "label": "دليل العملاء",
       "showRefresh": true,
-      "showExport": false,
+      "showExport": true,
       "refreshing": false,
       "disabled": false
     },
@@ -11820,7 +12726,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string",
         "options": [],
-        "initialValue": "أدوات الجدول"
+        "initialValue": "دليل العملاء"
       },
       {
         "name": "showRefresh",
@@ -11846,7 +12752,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "false",
           "true"
         ],
-        "initialValue": false
+        "initialValue": true
       },
       {
         "name": "refreshing",
@@ -11917,9 +12823,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "refreshing",
         "disabled"
       ],
-      "coveredProjectionSlots": [],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
       "coveredReferenceCases": [],
-      "evidenceKind": "INTERACTIVE_OUTPUT"
+      "evidenceKind": "AUTHORED_PROJECTION"
     }
   },
   {

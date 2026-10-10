@@ -44,6 +44,11 @@ export class ErpFilterDrawerShowcase {
     this.liveValues.update((current) => ({...current, [change.control.name]: value}));
   }
 
+  applyDrawerFilters(value: readonly unknown[]): void {
+    this.liveValues.update((current) => ({...current, filters: value}));
+    this.recordEvent('applied', value);
+  }
+
   recordModel(name: string, value: unknown): void {
     this.liveValues.update((current) => ({...current, [name]: value}));
     this.recordEvent(`${name}Change`, value);

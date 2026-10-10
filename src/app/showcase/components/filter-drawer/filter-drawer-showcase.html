@@ -9,7 +9,7 @@
           [definitions]="$any(value('definitions'))"
           [filters]="$any(value('filters'))"
           [disabled]="$any(value('disabled'))"
-          (applied)="recordEvent('applied', $event)"
+          (applied)="applyDrawerFilters($event)"
         ></erp-filter-drawer>
     </erp-stack>
   </erp-surface>

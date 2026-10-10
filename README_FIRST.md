@@ -1,5 +1,21 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — Data/Table composition owners
+
+BulkActionBar, FilterBar, FilterDrawer, TableToolbar, and SmartTable completed
+internal browser review. Their Workbenches now prove real projected content,
+controlled interaction, three meaningful drawer fields, complete toolbar
+slots, five-column Arabic data and rich status cells. The default toolbar and
+Pagination wrap without narrow overflow; standalone Table columns retain
+readable intrinsic width inside the owned horizontal viewport. The exact
+Table-reference presentation remains unchanged. Evidence under
+`docs/review-evidence/erp-data-table/data-composition-v1-internal-review/`
+passes 50/50 assertions. Focused verification passes 8/8 files and 35/35
+tests; canonical verification passes 142/142 files and 869/869 tests with a
+zero-warning 418.32 kB / 92.89 kB build. Product Owner acceptance is not
+recorded. Next Bottom-Up unit: `ErpForm`, `ErpFormSection`, `ErpFormActions`,
+`ErpValidationSummary`, and `ErpRepeater`.
+
 ## Latest verified UI unit — Navigation owners
 
 Breadcrumbs, Pagination, SortHeader, and Stepper completed internal browser

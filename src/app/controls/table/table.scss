@@ -12,6 +12,10 @@
   font-size: var(--honesty-table-fs);
 }
 
+:host([data-table-presentation='standalone']) .table {
+  min-inline-size: max-content;
+}
+
 caption {
   position: absolute;
   inline-size: 1px;

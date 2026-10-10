@@ -168,9 +168,11 @@ const CVA_FIXTURE_VALUES = new Map([
 ]);
 
 const PROJECTION_COMPONENTS = new Set([
-  'ErpAlert', 'ErpAppShell', 'ErpContainer', 'ErpForm', 'ErpFormActions', 'ErpFormSection',
+  'ErpAlert', 'ErpAppShell', 'ErpBulkActionBar', 'ErpContainer', 'ErpFilterBar',
+  'ErpForm', 'ErpFormActions', 'ErpFormSection',
   'ErpGrid', 'ErpInline', 'ErpPage', 'ErpPageHeader', 'ErpPageShell',
-  'ErpSection', 'ErpStack', 'ErpSurface', 'ErpText', 'ErpTooltip', 'ErpTopbar',
+  'ErpSection', 'ErpSmartTable', 'ErpStack', 'ErpSurface', 'ErpTableToolbar',
+  'ErpText', 'ErpTooltip', 'ErpTopbar',
 ]);
 
 const EXACT_CORE_SHOWCASE_IDS = new Set([
@@ -445,7 +447,7 @@ const FIXTURE_INPUTS = new Map([
     {value: 'preview', label: 'معاينة', icon: 'eye'},
     {value: 'archive', label: 'أرشفة', icon: 'layers'},
   ], ariaLabel: 'إجراءات المستند'}],
-  ['ErpBulkActionBar', {selectedCount: 3}],
+  ['ErpBulkActionBar', {selectedCount: 2}],
   ['ErpColumnChooser', {
     columns: [
       {key: 'accountNumber', label: 'رقم الحساب', required: true},
@@ -491,7 +493,18 @@ const FIXTURE_INPUTS = new Map([
     maxFiles: 4,
     clearable: true,
   }],
-  ['ErpFilterDrawer', {definitions: []}],
+  ['ErpFilterBar', {filters: [
+    {key: 'city', label: 'المدينة', value: 'القاهرة'},
+    {key: 'status', label: 'الحالة', value: 'نشط'},
+  ]}],
+  ['ErpFilterDrawer', {
+    definitions: [
+      {key: 'name', label: 'اسم العميل', placeholder: 'ابحث باسم العميل'},
+      {key: 'city', label: 'المدينة', placeholder: 'اكتب اسم المدينة'},
+      {key: 'status', label: 'الحالة', placeholder: 'نشط أو قيد المراجعة'},
+    ],
+    filters: [{key: 'city', label: 'المدينة', value: 'القاهرة'}],
+  }],
   ['ErpForm', {label: 'نموذج السجل'}],
   ['ErpFormSection', {title: 'البيانات الأساسية'}],
   ['ErpIcon', {name: 'settings'}],
@@ -637,16 +650,36 @@ const FIXTURE_INPUTS = new Map([
   }],
   ['ErpSkeleton', {lines: 3}],
   ['ErpSmartTable', {
-    caption: 'سجل الحسابات',
-    columns: [{key: 'name', label: 'اسم الحساب'}, {key: 'balance', label: 'الرصيد'}],
-    rows: [{id: '1', name: 'حساب المبيعات', balance: '125,000 ج.م'}],
+    caption: 'دليل العملاء المحلي',
+    columns: [
+      {key: 'code', label: 'الكود', sortable: true, required: true, hideable: false},
+      {key: 'name', label: 'العميل', sortable: true, required: true},
+      {key: 'city', label: 'المدينة', sortable: true},
+      {key: 'balance', label: 'الرصيد', sortable: true, align: 'end'},
+      {key: 'status', label: 'الحالة', align: 'center'},
+    ],
+    rows: [
+      {id: '1', code: 'C-1001', name: 'شركة النور', city: 'القاهرة', balance: '42,500.00', status: 'نشط'},
+      {id: '2', code: 'C-1002', name: 'مؤسسة الأفق', city: 'الإسكندرية', balance: '18,750.00', status: 'قيد المراجعة'},
+      {id: '3', code: 'C-1003', name: 'مجموعة البيان', city: 'القاهرة', balance: '63,100.00', status: 'نشط'},
+      {id: '4', code: 'C-1004', name: 'شركة المدى', city: 'المنصورة', balance: '27,900.00', status: 'موقوف'},
+      {id: '5', code: 'C-1005', name: 'مكتب الرؤية', city: 'القاهرة', balance: '11,350.00', status: 'نشط'},
+    ],
+    selectable: true,
+    filterDefinitions: [
+      {key: 'name', label: 'اسم العميل', placeholder: 'ابحث باسم العميل'},
+      {key: 'city', label: 'المدينة', placeholder: 'اكتب اسم المدينة'},
+      {key: 'status', label: 'الحالة', placeholder: 'نشط أو قيد المراجعة'},
+    ],
+    pageSizeOptions: [3, 5, 10],
     page: 1,
-    pageSize: 25,
+    pageSize: 3,
     sort: null,
     filters: [],
-    visibleColumns: [],
-    selectedKeys: [],
+    visibleColumns: ['code', 'name', 'city', 'balance', 'status'],
+    selectedKeys: ['2'],
   }],
+  ['ErpTableToolbar', {label: 'دليل العملاء', showRefresh: true, showExport: true}],
   ['ErpGlobalSearch', {
     results: [
       {id: 'invoice-1042', label: 'فاتورة 1042', category: 'المبيعات', description: 'شركة النور للتجارة', icon: 'file'},
@@ -1376,6 +1409,18 @@ function projectionMarkup(entry) {
   if (entry.className === 'ErpAlert') {
     return `<erp-button erpAlertAction label="عرض التفاصيل" size="sm" variant="outline" (pressed)="recordEvent('alertActionPressed', true)" />`;
   }
+  if (entry.className === 'ErpBulkActionBar') {
+    return '<erp-button label="تصدير المحدد" icon="download" size="sm" variant="outline" (pressed)="recordEvent(\'bulkExportPressed\', true)" /><erp-button label="أرشفة المحدد" icon="layers" size="sm" variant="ghost" (pressed)="recordEvent(\'bulkArchivePressed\', true)" />';
+  }
+  if (entry.className === 'ErpFilterBar') {
+    return '<erp-text-box label="بحث سريع" placeholder="اسم العميل أو الكود" />';
+  }
+  if (entry.className === 'ErpTableToolbar') {
+    return '<erp-search-box erpTableToolbarSearch label="بحث الجدول" labelMode="visually-hidden" mode="inline" placeholder="اسم العميل أو الكود" /><erp-filter-drawer erpTableToolbarFilters [definitions]="tableFilterDefinitions" [filters]="tableFilters" (applied)="recordEvent(\'projectedFiltersApplied\', $event)" /><erp-column-chooser erpTableToolbarColumns presentation="table-reference" [columns]="tableColumns" [visibleKeys]="tableVisibleKeys" (visibilityChange)="recordEvent(\'projectedColumnsChanged\', $event)" /><erp-button erpTableToolbarActions label="إضافة عميل" icon="add" size="sm" (pressed)="recordEvent(\'toolbarActionPressed\', true)" />';
+  }
+  if (entry.className === 'ErpSmartTable') {
+    return '<erp-button erpSmartTableBulkActions label="تصدير المحدد" icon="download" size="sm" variant="outline" (pressed)="recordEvent(\'bulkExportPressed\', true)" /><ng-template erpTableCell="status" let-value="value"><erp-status-badge [label]="$any(value)" [tone]="$any(value) === \'نشط\' ? \'success\' : $any(value) === \'موقوف\' ? \'danger\' : \'warning\'" size="sm" /></ng-template>';
+  }
   if (entry.className === 'ErpText') {
     return 'تقرير حركة المخزون للفترة الحالية — Inventory Q4 / 2026 — مراجعة الطلبات وأرصدة الفروع';
   }
@@ -1603,6 +1648,26 @@ function generatedShowcaseOwner(entry) {
     if (entry.className !== 'ErpTextBox') importLines.push(`import {ErpTextBox} from '../../../controls/text-box/text-box';`);
     imports.add('ErpTextBox');
   }
+  if (projection.includes('<erp-search-box')) {
+    importLines.push(`import {ErpSearchBox} from '../../../controls/search-box/search-box';`);
+    imports.add('ErpSearchBox');
+  }
+  if (projection.includes('<erp-filter-drawer')) {
+    importLines.push(`import {ErpFilterDrawer} from '../../../controls/filter-drawer/filter-drawer';`);
+    imports.add('ErpFilterDrawer');
+  }
+  if (projection.includes('<erp-column-chooser')) {
+    importLines.push(`import {ErpColumnChooser} from '../../../controls/column-chooser/column-chooser';`);
+    imports.add('ErpColumnChooser');
+  }
+  if (projection.includes('<erp-status-badge')) {
+    importLines.push(`import {ErpStatusBadge} from '../../../controls/status-badge/status-badge';`);
+    imports.add('ErpStatusBadge');
+  }
+  if (projection.includes('erpTableCell=')) {
+    importLines.push(`import {ErpTableCell} from '../../../controls/table/table';`);
+    imports.add('ErpTableCell');
+  }
   if (projection.includes('<erp-inline')) {
     importLines.push(`import {ErpInline} from '../../../primitives/inline/inline';`);
     imports.add('ErpInline');
@@ -1664,6 +1729,14 @@ function generatedShowcaseOwner(entry) {
   for (const outputName of entry.publicApi.outputs) {
     const binding = entry.className === 'ErpColumnChooser' && outputName === 'visibilityChange'
       ? `(visibilityChange)="recordVisibleKeys($event)"`
+      : entry.className === 'ErpBulkActionBar' && outputName === 'clearSelection'
+        ? `(clearSelection)="clearBulkSelection()"`
+        : entry.className === 'ErpFilterBar' && outputName === 'filterRemoved'
+          ? `(filterRemoved)="removeActiveFilter($event)"`
+          : entry.className === 'ErpFilterBar' && outputName === 'resetRequested'
+            ? `(resetRequested)="resetActiveFilters()"`
+            : entry.className === 'ErpFilterDrawer' && outputName === 'applied'
+              ? `(applied)="applyDrawerFilters($event)"`
       : entry.className === 'ErpPagination' && outputName === 'pageChange'
         ? `(pageChange)="recordPaginationPage($event)"`
         : entry.className === 'ErpPagination' && outputName === 'pageSizeChange'
@@ -1785,6 +1858,30 @@ function generatedShowcaseOwner(entry) {
       "  readonly previewDirection = computed(() => this.liveValues()['$previewDirection'] === 'ltr' ? 'ltr' : 'rtl');\n",
       '',
     );
+  if (entry.className === 'ErpTableToolbar') {
+    generatedSource = generatedSource.replace(
+      '  readonly cvaValue = signal<unknown>(null);\n',
+      "  readonly cvaValue = signal<unknown>(null);\n  readonly tableFilterDefinitions = [{key: 'name', label: 'اسم العميل'}, {key: 'city', label: 'المدينة'}, {key: 'status', label: 'الحالة'}] as const;\n  readonly tableFilters = [{key: 'city', label: 'المدينة', value: 'القاهرة'}] as const;\n  readonly tableColumns = [{key: 'code', label: 'الكود', required: true}, {key: 'name', label: 'العميل'}, {key: 'city', label: 'المدينة'}, {key: 'balance', label: 'الرصيد'}] as const;\n  readonly tableVisibleKeys = ['code', 'name', 'city', 'balance'] as const;\n",
+    );
+  }
+  if (entry.className === 'ErpBulkActionBar') {
+    generatedSource = generatedSource.replace(
+      '\n  recordModel(name: string, value: unknown): void {',
+      "\n  clearBulkSelection(): void {\n    this.liveValues.update((current) => ({...current, selectedCount: 0}));\n    this.recordEvent('clearSelection', undefined);\n  }\n\n  recordModel(name: string, value: unknown): void {",
+    );
+  }
+  if (entry.className === 'ErpFilterBar') {
+    generatedSource = generatedSource.replace(
+      '\n  recordModel(name: string, value: unknown): void {',
+      "\n  removeActiveFilter(key: string): void {\n    const filters = this.value('filters');\n    const next = Array.isArray(filters) ? filters.filter((filter) => Boolean(filter) && typeof filter === 'object' && (filter as {key?: unknown}).key !== key) : [];\n    this.liveValues.update((current) => ({...current, filters: next}));\n    this.recordEvent('filterRemoved', key);\n  }\n\n  resetActiveFilters(): void {\n    this.liveValues.update((current) => ({...current, filters: []}));\n    this.recordEvent('resetRequested', undefined);\n  }\n\n  recordModel(name: string, value: unknown): void {",
+    );
+  }
+  if (entry.className === 'ErpFilterDrawer') {
+    generatedSource = generatedSource.replace(
+      '\n  recordModel(name: string, value: unknown): void {',
+      "\n  applyDrawerFilters(value: readonly unknown[]): void {\n    this.liveValues.update((current) => ({...current, filters: value}));\n    this.recordEvent('applied', value);\n  }\n\n  recordModel(name: string, value: unknown): void {",
+    );
+  }
   if (entry.className === 'ErpUserMenu') {
     generatedSource = generatedSource.replace(
       "    this.recordEvent(`${name}Change`, value);",

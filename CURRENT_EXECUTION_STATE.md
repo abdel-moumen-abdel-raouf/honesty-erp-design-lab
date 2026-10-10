@@ -1,5 +1,21 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — Data/Table composition internal review
+
+`ErpBulkActionBar`, `ErpFilterBar`, `ErpFilterDrawer`, `ErpTableToolbar`, and
+`ErpSmartTable` completed internal browser review. Generated dedicated
+Workbenches now author meaningful projection and close controlled interaction
+loops. TableToolbar search no longer collapses and its default action regions
+wrap at 390 px; Pagination remains inside SmartTable; standalone Table content
+scrolls inside its viewport rather than colliding. Ten desktop/narrow
+Light/Dark RTL/LTR captures pass 50/50 assertions with zero browser errors,
+warnings, page overflow, or target overflow. Evidence is under
+`docs/review-evidence/erp-data-table/data-composition-v1-internal-review/`.
+Canonical verification passes 142/142 files and 869/869 tests, both
+typechecks, all governance/lint, and the zero-warning 418.32 kB / 92.89 kB
+build. Status is `TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next: Forms composition owners.
+
 ## Current checkpoint — Navigation owners internal review
 
 `ErpBreadcrumbs`, `ErpPagination`, `ErpSortHeader`, and `ErpStepper` completed

@@ -1,7 +1,7 @@
 @use '../../../styles/foundation/components/pagination' as tokens;
 @use '../../../styles/foundation/queries' as query;
 :host { @include tokens.base; display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: var(--honesty-pagination-gap); min-width: 0; }
-.pagination__controls { display: flex; align-items: center; gap: var(--honesty-pagination-control-gap); overflow-x: auto; }
+.pagination__controls { display: flex; align-items: center; gap: var(--honesty-pagination-control-gap); min-inline-size: 0; max-inline-size: 100%; overflow-x: auto; }
 .pagination__size-row { min-inline-size: max-content; }
 .pagination__size { inline-size: var(--honesty-pagination-size-width); }
 
@@ -25,4 +25,16 @@
   line-height: var(--honesty-pagination-reference-summary-line-height);
 }
 
-@include query.viewport-down('sm') { :host { grid-template-columns: 1fr; } .pagination__controls { justify-content: start; } }
+@include query.viewport-down('sm') {
+  :host { grid-template-columns: 1fr; }
+  .pagination__controls:not(.pagination__controls--table-reference) {
+    justify-content: start;
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+  .pagination__size-row {
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    flex-wrap: wrap;
+  }
+}

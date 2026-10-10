@@ -1,5 +1,17 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — Data/Table composition complete internally
+
+BulkActionBar, FilterBar, FilterDrawer, TableToolbar, and SmartTable completed
+internal browser review. Meaningful projection, controlled output evidence,
+complete toolbar slots, drawer fields, Arabic data, rich cells, narrow wrapping
+and owned internal table scrolling pass 50/50 assertions. The exact
+Table-reference presentation remains unchanged. Canonical verification passes
+142/142 files and 869/869 tests with a zero-warning 418.32 kB / 92.89 kB
+build. Product Owner status remains pending. Continue Bottom-Up with `ErpForm`,
+`ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`, and `ErpRepeater`;
+business Feature/Page, CRUD, transport, and permissions work remain closed.
+
 ## Current UI continuation — Navigation owners complete internally
 
 Breadcrumbs, Pagination, SortHeader, and Stepper completed internal browser

@@ -44,6 +44,7 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpAlert',
   'ErpAvatar',
   'ErpAvatarPicker',
+  'ErpBulkActionBar',
   'ErpButton',
   'ErpButtonGroup',
   'ErpBreadcrumbs',
@@ -60,6 +61,8 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpFab',
   'ErpFabMenu',
   'ErpFilePicker',
+  'ErpFilterBar',
+  'ErpFilterDrawer',
   'ErpGrid',
   'ErpIcon',
   'ErpIconPicker',
@@ -79,6 +82,7 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpSection',
   'ErpSelect',
   'ErpSkeleton',
+  'ErpSmartTable',
   'ErpSortHeader',
   'ErpStack',
   'ErpStatusBadge',
@@ -87,6 +91,7 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpSurface',
   'ErpTabs',
   'ErpTable',
+  'ErpTableToolbar',
   'ErpTelBox',
   'ErpText',
   'ErpTextAreaBox',
@@ -303,7 +308,9 @@ drift.
   **\`ErpSplitButton\`**, **\`ErpFab\`**, **\`ErpExtendedFab\`**,
   **\`ErpFabMenu\`**, **\`ErpTooltip\`**, **\`ErpAlert\`**, **\`ErpSkeleton\`**,
   **\`ErpColumnChooser\`**, **\`ErpViewSwitcher\`**, **\`ErpBreadcrumbs\`**,
-  **\`ErpPagination\`**, **\`ErpSortHeader\`**, and **\`ErpStepper\`**. Their
+  **\`ErpPagination\`**, **\`ErpSortHeader\`**, **\`ErpStepper\`**,
+  **\`ErpBulkActionBar\`**, **\`ErpFilterBar\`**, **\`ErpFilterDrawer\`**,
+  **\`ErpTableToolbar\`**, and **\`ErpSmartTable\`**. Their
   Product Owner status remains pending.
 - All currently recorded binding-reference owners have completed internal
   review, the full public primitive layer has completed internal review, the
@@ -322,10 +329,12 @@ drift.
   ColumnChooser/ViewSwitcher selection pair has completed controlled visibility,
   dynamic reference-overlay, selected-state and disabled-state review, and the
   remaining Navigation owners have completed hierarchical content, controlled
-  pagination/sort, responsive breadcrumb, and projected-step review. The next
-  Bottom-Up unit opens the remaining Data/Table composition owners:
-  **\`ErpBulkActionBar\`**, **\`ErpFilterBar\`**, **\`ErpFilterDrawer\`**,
-  **\`ErpTableToolbar\`**, and **\`ErpSmartTable\`**.
+  pagination/sort, responsive breadcrumb, and projected-step review, and the
+  Data/Table composition owners have completed projection, interaction,
+  responsive wrapping, internal table-scroll and complete SmartTable review.
+  The next Bottom-Up unit opens the remaining Forms composition owners:
+  **\`ErpForm\`**, **\`ErpFormSection\`**, **\`ErpFormActions\`**,
+  **\`ErpValidationSummary\`**, and **\`ErpRepeater\`**.
 
 ## Public owner inventory
 

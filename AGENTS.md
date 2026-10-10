@@ -1,5 +1,24 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Data/Table Composition Internal Review State
+
+`ErpBulkActionBar`, `ErpFilterBar`, `ErpFilterDrawer`, `ErpTableToolbar`, and
+`ErpSmartTable` completed internal browser review as original Honesty ERP
+candidates. Their one-target Workbenches now contain real projected ERP
+actions, fields, filters, rich status cells and controlled event evidence.
+TableToolbar preserves its separate exact `table-reference` presentation while
+its default composition wraps without collapsing search. SmartTable exposes
+refresh/export and keeps narrow Pagination contained; standalone Table columns
+preserve intrinsic width and scroll only inside `ErpTableViewport`. Evidence
+under `docs/review-evidence/erp-data-table/data-composition-v1-internal-review/`
+passes 50/50 assertions. Focused verification passes 8/8 files and 35/35
+tests; canonical verification passes 142/142 files and 869/869 tests, both
+typechecks, all governance/lint, and the zero-warning 418.32 kB / 92.89 kB
+build. Status remains `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` / `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+Continue Bottom-Up with the remaining Forms composition owners; business
+Feature/Page, CRUD, transport and permissions work remain closed.
+
 ## Current Navigation Owners Internal Review State
 
 `ErpBreadcrumbs`, `ErpPagination`, `ErpSortHeader`, and `ErpStepper` completed

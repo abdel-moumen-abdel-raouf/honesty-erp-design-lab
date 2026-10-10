@@ -5,13 +5,14 @@ import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
+import {ErpButton} from '../../../controls/button/button';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'bulk-action-bar')!;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-bulk-action-bar-showcase',
-  imports: [ErpBulkActionBar, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpBulkActionBar, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpButton],
   templateUrl: './bulk-action-bar-showcase.html',
   styleUrl: './bulk-action-bar-showcase.scss',
 })
@@ -42,6 +43,11 @@ export class ErpBulkActionBarShowcase {
       ? this.functionPreset(change.control.name, change.value)
       : change.value;
     this.liveValues.update((current) => ({...current, [change.control.name]: value}));
+  }
+
+  clearBulkSelection(): void {
+    this.liveValues.update((current) => ({...current, selectedCount: 0}));
+    this.recordEvent('clearSelection', undefined);
   }
 
   recordModel(name: string, value: unknown): void {

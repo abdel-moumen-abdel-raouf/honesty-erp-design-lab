@@ -5,13 +5,17 @@ import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
+import {ErpButton} from '../../../controls/button/button';
+import {ErpSearchBox} from '../../../controls/search-box/search-box';
+import {ErpFilterDrawer} from '../../../controls/filter-drawer/filter-drawer';
+import {ErpColumnChooser} from '../../../controls/column-chooser/column-chooser';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'table-toolbar')!;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-table-toolbar-showcase',
-  imports: [ErpTableToolbar, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpTableToolbar, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpButton, ErpSearchBox, ErpFilterDrawer, ErpColumnChooser],
   templateUrl: './table-toolbar-showcase.html',
   styleUrl: './table-toolbar-showcase.scss',
 })
@@ -21,6 +25,10 @@ export class ErpTableToolbarShowcase {
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>(null);
+  readonly tableFilterDefinitions = [{key: 'name', label: 'اسم العميل'}, {key: 'city', label: 'المدينة'}, {key: 'status', label: 'الحالة'}] as const;
+  readonly tableFilters = [{key: 'city', label: 'المدينة', value: 'القاهرة'}] as const;
+  readonly tableColumns = [{key: 'code', label: 'الكود', required: true}, {key: 'name', label: 'العميل'}, {key: 'city', label: 'المدينة'}, {key: 'balance', label: 'الرصيد'}] as const;
+  readonly tableVisibleKeys = ['code', 'name', 'city', 'balance'] as const;
   readonly controlValues = computed<Readonly<Record<string, unknown>>>(() => ({
     ...this.liveValues(),
     '$value': this.cvaValue(),

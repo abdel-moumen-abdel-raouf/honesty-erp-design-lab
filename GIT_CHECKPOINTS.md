@@ -1,5 +1,33 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Data/Table composition internal-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `9e4c5a62f6b68e31907f32eeb8338a71e74a05d4` — synchronized `main` after the
+  Navigation owners checkpoint.
+
+Bounded scope:
+
+- Added meaningful projected actions, filter fields, drawer definitions,
+  toolbar slots, Arabic rows, rich status cells and controlled event evidence
+  to the five dedicated Workbenches.
+- Corrected default TableToolbar search/action wrapping, made SmartTable export
+  reachable, contained narrow Pagination, and preserved standalone Table
+  column readability through the existing viewport scroll owner.
+- Persisted ten inspected desktop/narrow Light/Dark RTL/LTR scenarios and
+  50/50 runtime assertions under
+  `docs/review-evidence/erp-data-table/data-composition-v1-internal-review/`.
+
+Verification before commit:
+
+- Focused tests: 8/8 files, 35/35 tests.
+- Canonical `npm run verify:clean`: 142/142 files, 869/869 tests, both
+  typechecks, all governance/lint, production build, zero warnings.
+- Build: 418.32 kB initial / 92.89 kB estimated transfer.
+
+Visual status remains `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+
 ## Navigation owners internal-review candidate — 2026-10-10
 
 Entry checkpoint:

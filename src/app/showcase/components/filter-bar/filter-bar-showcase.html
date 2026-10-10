@@ -8,10 +8,10 @@
           data-showcase-target
           [filters]="$any(value('filters'))"
           [disabled]="$any(value('disabled'))"
-          (filterRemoved)="recordEvent('filterRemoved', $event)"
-          (resetRequested)="recordEvent('resetRequested', $event)"
+          (filterRemoved)="removeActiveFilter($event)"
+          (resetRequested)="resetActiveFilters()"
           (applyRequested)="recordEvent('applyRequested', $event)"
-        ></erp-filter-bar>
+        ><erp-text-box label="بحث سريع" placeholder="اسم العميل أو الكود" /></erp-filter-bar>
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel

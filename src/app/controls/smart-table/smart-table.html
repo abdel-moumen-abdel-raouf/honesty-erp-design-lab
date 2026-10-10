@@ -1,5 +1,6 @@
 <erp-table-toolbar
   [label]="caption()"
+  [showExport]="true"
   [refreshing]="loading()"
   (refreshRequested)="refreshRequested.emit()"
   (exportRequested)="exportRequested.emit()"

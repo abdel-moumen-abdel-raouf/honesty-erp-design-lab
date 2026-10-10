@@ -7,8 +7,8 @@
       <erp-bulk-action-bar
           data-showcase-target
           [selectedCount]="$any(value('selectedCount'))"
-          (clearSelection)="recordEvent('clearSelection', $event)"
-        ></erp-bulk-action-bar>
+          (clearSelection)="clearBulkSelection()"
+        ><erp-button label="تصدير المحدد" icon="download" size="sm" variant="outline" (pressed)="recordEvent('bulkExportPressed', true)" /><erp-button label="أرشفة المحدد" icon="layers" size="sm" variant="ghost" (pressed)="recordEvent('bulkArchivePressed', true)" /></erp-bulk-action-bar>
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel

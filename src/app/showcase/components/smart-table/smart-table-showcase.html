@@ -34,7 +34,7 @@
           (rowActivated)="recordEvent('rowActivated', $event)"
           (refreshRequested)="recordEvent('refreshRequested', $event)"
           (exportRequested)="recordEvent('exportRequested', $event)"
-        ></erp-smart-table>
+        ><erp-button erpSmartTableBulkActions label="تصدير المحدد" icon="download" size="sm" variant="outline" (pressed)="recordEvent('bulkExportPressed', true)" /><ng-template erpTableCell="status" let-value="value"><erp-status-badge [label]="$any(value)" [tone]="$any(value) === 'نشط' ? 'success' : $any(value) === 'موقوف' ? 'danger' : 'warning'" size="sm" /></ng-template></erp-smart-table>
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel

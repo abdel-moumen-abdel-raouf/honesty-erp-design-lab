@@ -1,5 +1,18 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — Data/Table composition
+
+BulkActionBar, FilterBar, FilterDrawer, TableToolbar, and SmartTable completed
+internal browser review. Meaningful projection, controlled events, drawer
+content, complete toolbar slots, rich Arabic table rows, Pagination containment
+and internal Table scrolling pass 50/50 runtime assertions with zero browser
+diagnostics or page/target overflow. Screenshots, measurements, authority
+boundaries and reproduction notes are under
+`docs/review-evidence/erp-data-table/data-composition-v1-internal-review/`.
+Status is `TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next Bottom-Up unit: Form, FormSection,
+FormActions, ValidationSummary, and Repeater.
+
 ## Current review execution — 2026-10-10 — Navigation owners
 
 Breadcrumbs, Pagination, SortHeader, and Stepper completed internal browser

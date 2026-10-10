@@ -1,5 +1,21 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Data/Table composition internal-review decisions — 2026-10-10
+
+- BulkActionBar, FilterBar, FilterDrawer, TableToolbar, and SmartTable remain
+  original Honesty ERP candidates under the recorded accelerated-wave waiver.
+- TableToolbar's `table-reference` presentation remains governed by
+  `ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md`; default responsive composition
+  does not replace or reinterpret the exact presentation.
+- Projection-driven Workbenches must render real ERP-owned children and close
+  controlled event loops; empty custom-element hosts are not evidence.
+- SmartTable exposes its existing refresh and export outputs through its owned
+  TableToolbar; no second toolbar or data engine is introduced.
+- Narrow default Pagination wraps within its owner. Standalone Table content
+  preserves intrinsic column width and horizontal scrolling remains owned by
+  `ErpTableViewport`; page-level overflow is forbidden.
+- Internal review completion does not imply Product Owner acceptance.
+
 ## Navigation owners internal-review decisions — 2026-10-10
 
 - The exact ERP-TABLE pagination and sort presentations remain governed by

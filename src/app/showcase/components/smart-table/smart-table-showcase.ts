@@ -5,13 +5,16 @@ import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
+import {ErpButton} from '../../../controls/button/button';
+import {ErpStatusBadge} from '../../../controls/status-badge/status-badge';
+import {ErpTableCell} from '../../../controls/table/table';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'smart-table')!;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-smart-table-showcase',
-  imports: [ErpSmartTable, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpSmartTable, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpButton, ErpStatusBadge, ErpTableCell],
   templateUrl: './smart-table-showcase.html',
   styleUrl: './smart-table-showcase.scss',
 })

@@ -14,7 +14,7 @@
           [disabled]="$any(value('disabled'))"
           (refreshRequested)="recordEvent('refreshRequested', $event)"
           (exportRequested)="recordEvent('exportRequested', $event)"
-        ></erp-table-toolbar>
+        ><erp-search-box erpTableToolbarSearch label="بحث الجدول" labelMode="visually-hidden" mode="inline" placeholder="اسم العميل أو الكود" /><erp-filter-drawer erpTableToolbarFilters [definitions]="tableFilterDefinitions" [filters]="tableFilters" (applied)="recordEvent('projectedFiltersApplied', $event)" /><erp-column-chooser erpTableToolbarColumns presentation="table-reference" [columns]="tableColumns" [visibleKeys]="tableVisibleKeys" (visibilityChange)="recordEvent('projectedColumnsChanged', $event)" /><erp-button erpTableToolbarActions label="إضافة عميل" icon="add" size="sm" (pressed)="recordEvent('toolbarActionPressed', true)" /></erp-table-toolbar>
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel

@@ -1,0 +1,1058 @@
+{
+  "generatedAt": "2026-10-10T13:04:14.562Z",
+  "authority": {
+    "classification": "Original Honesty ERP Data/Table composition candidates under the recorded accelerated-wave waiver.",
+    "contract": "src/app/controls/data-table/DATA_TABLE_BATCH_V1.md",
+    "exactTableComposition": "src/app/controls/table/ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md",
+    "note": "ErpTableToolbar table-reference presentation remains exact-reference owned; this review covers the default composition presentation and SmartTable integration."
+  },
+  "scenarios": [
+    {
+      "name": "bulk-action-bar-1440-light-rtl",
+      "component": "bulk-action-bar",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "controlCount": 1,
+      "targetBox": {
+        "x": 147,
+        "y": 424.765625,
+        "right": 1097,
+        "bottom": 490.765625,
+        "width": 950,
+        "height": 66
+      },
+      "overlayBox": null,
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلbulkExportPressed: true",
+      "targetScrollWidth": 948,
+      "targetClientWidth": 948,
+      "projectedActions": 3,
+      "filterDefinitions": 0,
+      "tableRows": 0,
+      "statusBadges": 0,
+      "searchWidth": 0,
+      "tableViewport": null,
+      "pagination": null
+    },
+    {
+      "name": "bulk-action-bar-390-dark-ltr",
+      "component": "bulk-action-bar",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 290
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "controlCount": 1,
+      "targetBox": {
+        "x": 57,
+        "y": 350.5625,
+        "right": 333,
+        "bottom": 492.5625,
+        "width": 276,
+        "height": 142
+      },
+      "overlayBox": null,
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلbulkExportPressed: true",
+      "targetScrollWidth": 274,
+      "targetClientWidth": 274,
+      "projectedActions": 3,
+      "filterDefinitions": 0,
+      "tableRows": 0,
+      "statusBadges": 0,
+      "searchWidth": 0,
+      "tableViewport": null,
+      "pagination": null
+    },
+    {
+      "name": "filter-bar-1440-light-rtl",
+      "component": "filter-bar",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "controlCount": 2,
+      "targetBox": {
+        "x": 147,
+        "y": 358.765625,
+        "right": 1097,
+        "bottom": 557.0625,
+        "width": 950,
+        "height": 198.296875
+      },
+      "overlayBox": null,
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلfilterRemoved: city",
+      "targetScrollWidth": 948,
+      "targetClientWidth": 948,
+      "projectedActions": 3,
+      "filterDefinitions": 0,
+      "tableRows": 0,
+      "statusBadges": 1,
+      "searchWidth": 0,
+      "tableViewport": null,
+      "pagination": null
+    },
+    {
+      "name": "filter-bar-390-dark-ltr",
+      "component": "filter-bar",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 294
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "controlCount": 2,
+      "targetBox": {
+        "x": 57,
+        "y": 286.765625,
+        "right": 333,
+        "bottom": 521.0625,
+        "width": 276,
+        "height": 234.296875
+      },
+      "overlayBox": null,
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلfilterRemoved: city",
+      "targetScrollWidth": 274,
+      "targetClientWidth": 274,
+      "projectedActions": 3,
+      "filterDefinitions": 0,
+      "tableRows": 0,
+      "statusBadges": 1,
+      "searchWidth": 0,
+      "tableViewport": null,
+      "pagination": null
+    },
+    {
+      "name": "filter-drawer-open-1440-light-rtl",
+      "component": "filter-drawer",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "controlCount": 3,
+      "targetBox": {
+        "x": 147,
+        "y": 437.765625,
+        "right": 1097,
+        "bottom": 477.765625,
+        "width": 950,
+        "height": 40
+      },
+      "overlayBox": {
+        "x": 0,
+        "y": 0,
+        "right": 576,
+        "bottom": 900,
+        "width": 576,
+        "height": 900
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعللم يحدث تفاعل بعد",
+      "targetScrollWidth": 950,
+      "targetClientWidth": 950,
+      "projectedActions": 1,
+      "filterDefinitions": 3,
+      "tableRows": 0,
+      "statusBadges": 0,
+      "searchWidth": 0,
+      "tableViewport": null,
+      "pagination": null
+    },
+    {
+      "name": "filter-drawer-open-390-dark-ltr",
+      "component": "filter-drawer",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 201
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "controlCount": 3,
+      "targetBox": {
+        "x": 57,
+        "y": 401.765625,
+        "right": 333,
+        "bottom": 441.765625,
+        "width": 276,
+        "height": 40
+      },
+      "overlayBox": {
+        "x": 0,
+        "y": 0,
+        "right": 390,
+        "bottom": 844,
+        "width": 390,
+        "height": 844
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعللم يحدث تفاعل بعد",
+      "targetScrollWidth": 276,
+      "targetClientWidth": 276,
+      "projectedActions": 1,
+      "filterDefinitions": 3,
+      "tableRows": 0,
+      "statusBadges": 0,
+      "searchWidth": 0,
+      "tableViewport": null,
+      "pagination": null
+    },
+    {
+      "name": "table-toolbar-1440-light-rtl",
+      "component": "table-toolbar",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "controlCount": 6,
+      "targetBox": {
+        "x": 147,
+        "y": 421.765625,
+        "right": 1097,
+        "bottom": 494.765625,
+        "width": 950,
+        "height": 73
+      },
+      "overlayBox": null,
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلexportRequested: undefined",
+      "targetScrollWidth": 950,
+      "targetClientWidth": 950,
+      "projectedActions": 5,
+      "filterDefinitions": 0,
+      "tableRows": 0,
+      "statusBadges": 0,
+      "searchWidth": 226,
+      "tableViewport": null,
+      "pagination": null
+    },
+    {
+      "name": "table-toolbar-390-dark-ltr",
+      "component": "table-toolbar",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 346
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "controlCount": 6,
+      "targetBox": {
+        "x": 57,
+        "y": 307.953125,
+        "right": 333,
+        "bottom": 536.953125,
+        "width": 276,
+        "height": 229
+      },
+      "overlayBox": null,
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلexportRequested: undefined",
+      "targetScrollWidth": 276,
+      "targetClientWidth": 276,
+      "projectedActions": 5,
+      "filterDefinitions": 0,
+      "tableRows": 0,
+      "statusBadges": 0,
+      "searchWidth": 226,
+      "tableViewport": null,
+      "pagination": null
+    },
+    {
+      "name": "smart-table-1440-light-rtl",
+      "component": "smart-table",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 8
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "controlCount": 18,
+      "targetBox": {
+        "x": 147,
+        "y": 190.765625,
+        "right": 1097,
+        "bottom": 710.0625,
+        "width": 950,
+        "height": 519.296875
+      },
+      "overlayBox": null,
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلexportRequested: undefined",
+      "targetScrollWidth": 948,
+      "targetClientWidth": 948,
+      "projectedActions": 12,
+      "filterDefinitions": 0,
+      "tableRows": 2,
+      "statusBadges": 2,
+      "searchWidth": 0,
+      "tableViewport": {
+        "clientWidth": 914,
+        "scrollWidth": 914
+      },
+      "pagination": {
+        "clientWidth": 916,
+        "scrollWidth": 916
+      },
+      "paginationControls": {
+        "clientWidth": 426,
+        "scrollWidth": 426,
+        "wrap": "nowrap"
+      }
+    },
+    {
+      "name": "smart-table-390-dark-ltr",
+      "component": "smart-table",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 685
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "controlCount": 18,
+      "targetBox": {
+        "x": 57,
+        "y": -31.046875,
+        "right": 333,
+        "bottom": 874.84375,
+        "width": 276,
+        "height": 905.890625
+      },
+      "overlayBox": null,
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلexportRequested: undefined",
+      "targetScrollWidth": 274,
+      "targetClientWidth": 274,
+      "projectedActions": 12,
+      "filterDefinitions": 0,
+      "tableRows": 2,
+      "statusBadges": 2,
+      "searchWidth": 0,
+      "tableViewport": {
+        "clientWidth": 240,
+        "scrollWidth": 374
+      },
+      "pagination": {
+        "clientWidth": 242,
+        "scrollWidth": 242
+      },
+      "paginationControls": {
+        "clientWidth": 242,
+        "scrollWidth": 242,
+        "wrap": "wrap"
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "name": "bulk-action-bar-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "bulk-action-bar-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "rtl",
+        "theme": "light"
+      }
+    },
+    {
+      "name": "bulk-action-bar-1440-light-rtl overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "bulk-action-bar-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "bulk-action-bar-1440-light-rtl projected action",
+      "pass": true,
+      "actual": {
+        "name": "bulk-action-bar-1440-light-rtl",
+        "component": "bulk-action-bar",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "controlCount": 1,
+        "targetBox": {
+          "x": 147,
+          "y": 424.765625,
+          "right": 1097,
+          "bottom": 490.765625,
+          "width": 950,
+          "height": 66
+        },
+        "overlayBox": null,
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلbulkExportPressed: true",
+        "targetScrollWidth": 948,
+        "targetClientWidth": 948,
+        "projectedActions": 3,
+        "filterDefinitions": 0,
+        "tableRows": 0,
+        "statusBadges": 0,
+        "searchWidth": 0,
+        "tableViewport": null,
+        "pagination": null
+      }
+    },
+    {
+      "name": "bulk-action-bar-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "bulk-action-bar-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "ltr",
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "bulk-action-bar-390-dark-ltr overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "bulk-action-bar-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "bulk-action-bar-390-dark-ltr projected action",
+      "pass": true,
+      "actual": {
+        "name": "bulk-action-bar-390-dark-ltr",
+        "component": "bulk-action-bar",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 290
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "controlCount": 1,
+        "targetBox": {
+          "x": 57,
+          "y": 350.5625,
+          "right": 333,
+          "bottom": 492.5625,
+          "width": 276,
+          "height": 142
+        },
+        "overlayBox": null,
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلbulkExportPressed: true",
+        "targetScrollWidth": 274,
+        "targetClientWidth": 274,
+        "projectedActions": 3,
+        "filterDefinitions": 0,
+        "tableRows": 0,
+        "statusBadges": 0,
+        "searchWidth": 0,
+        "tableViewport": null,
+        "pagination": null
+      }
+    },
+    {
+      "name": "filter-bar-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "filter-bar-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "rtl",
+        "theme": "light"
+      }
+    },
+    {
+      "name": "filter-bar-1440-light-rtl overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "filter-bar-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "filter-bar-1440-light-rtl controlled filter removal",
+      "pass": true,
+      "actual": "آخر تفاعلfilterRemoved: city"
+    },
+    {
+      "name": "filter-bar-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "filter-bar-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "ltr",
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "filter-bar-390-dark-ltr overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "filter-bar-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "filter-bar-390-dark-ltr controlled filter removal",
+      "pass": true,
+      "actual": "آخر تفاعلfilterRemoved: city"
+    },
+    {
+      "name": "filter-drawer-open-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "filter-drawer-open-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "rtl",
+        "theme": "light"
+      }
+    },
+    {
+      "name": "filter-drawer-open-1440-light-rtl overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "filter-drawer-open-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "filter-drawer-open-1440-light-rtl meaningful drawer",
+      "pass": true,
+      "actual": {
+        "name": "filter-drawer-open-1440-light-rtl",
+        "component": "filter-drawer",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "controlCount": 3,
+        "targetBox": {
+          "x": 147,
+          "y": 437.765625,
+          "right": 1097,
+          "bottom": 477.765625,
+          "width": 950,
+          "height": 40
+        },
+        "overlayBox": {
+          "x": 0,
+          "y": 0,
+          "right": 576,
+          "bottom": 900,
+          "width": 576,
+          "height": 900
+        },
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعللم يحدث تفاعل بعد",
+        "targetScrollWidth": 950,
+        "targetClientWidth": 950,
+        "projectedActions": 1,
+        "filterDefinitions": 3,
+        "tableRows": 0,
+        "statusBadges": 0,
+        "searchWidth": 0,
+        "tableViewport": null,
+        "pagination": null
+      }
+    },
+    {
+      "name": "filter-drawer-open-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "filter-drawer-open-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "ltr",
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "filter-drawer-open-390-dark-ltr overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "filter-drawer-open-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "filter-drawer-open-390-dark-ltr meaningful drawer",
+      "pass": true,
+      "actual": {
+        "name": "filter-drawer-open-390-dark-ltr",
+        "component": "filter-drawer",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 201
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "controlCount": 3,
+        "targetBox": {
+          "x": 57,
+          "y": 401.765625,
+          "right": 333,
+          "bottom": 441.765625,
+          "width": 276,
+          "height": 40
+        },
+        "overlayBox": {
+          "x": 0,
+          "y": 0,
+          "right": 390,
+          "bottom": 844,
+          "width": 390,
+          "height": 844
+        },
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعللم يحدث تفاعل بعد",
+        "targetScrollWidth": 276,
+        "targetClientWidth": 276,
+        "projectedActions": 1,
+        "filterDefinitions": 3,
+        "tableRows": 0,
+        "statusBadges": 0,
+        "searchWidth": 0,
+        "tableViewport": null,
+        "pagination": null
+      }
+    },
+    {
+      "name": "table-toolbar-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "table-toolbar-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "rtl",
+        "theme": "light"
+      }
+    },
+    {
+      "name": "table-toolbar-1440-light-rtl overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "table-toolbar-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "table-toolbar-1440-light-rtl complete slots",
+      "pass": true,
+      "actual": {
+        "name": "table-toolbar-1440-light-rtl",
+        "component": "table-toolbar",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "controlCount": 6,
+        "targetBox": {
+          "x": 147,
+          "y": 421.765625,
+          "right": 1097,
+          "bottom": 494.765625,
+          "width": 950,
+          "height": 73
+        },
+        "overlayBox": null,
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلexportRequested: undefined",
+        "targetScrollWidth": 950,
+        "targetClientWidth": 950,
+        "projectedActions": 5,
+        "filterDefinitions": 0,
+        "tableRows": 0,
+        "statusBadges": 0,
+        "searchWidth": 226,
+        "tableViewport": null,
+        "pagination": null
+      }
+    },
+    {
+      "name": "table-toolbar-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "table-toolbar-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "ltr",
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "table-toolbar-390-dark-ltr overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "table-toolbar-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "table-toolbar-390-dark-ltr complete slots",
+      "pass": true,
+      "actual": {
+        "name": "table-toolbar-390-dark-ltr",
+        "component": "table-toolbar",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 346
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "controlCount": 6,
+        "targetBox": {
+          "x": 57,
+          "y": 307.953125,
+          "right": 333,
+          "bottom": 536.953125,
+          "width": 276,
+          "height": 229
+        },
+        "overlayBox": null,
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلexportRequested: undefined",
+        "targetScrollWidth": 276,
+        "targetClientWidth": 276,
+        "projectedActions": 5,
+        "filterDefinitions": 0,
+        "tableRows": 0,
+        "statusBadges": 0,
+        "searchWidth": 226,
+        "tableViewport": null,
+        "pagination": null
+      }
+    },
+    {
+      "name": "smart-table-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "smart-table-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "rtl",
+        "theme": "light"
+      }
+    },
+    {
+      "name": "smart-table-1440-light-rtl overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "smart-table-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "smart-table-1440-light-rtl composition",
+      "pass": true,
+      "actual": {
+        "name": "smart-table-1440-light-rtl",
+        "component": "smart-table",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 8
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "controlCount": 18,
+        "targetBox": {
+          "x": 147,
+          "y": 190.765625,
+          "right": 1097,
+          "bottom": 710.0625,
+          "width": 950,
+          "height": 519.296875
+        },
+        "overlayBox": null,
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلexportRequested: undefined",
+        "targetScrollWidth": 948,
+        "targetClientWidth": 948,
+        "projectedActions": 12,
+        "filterDefinitions": 0,
+        "tableRows": 2,
+        "statusBadges": 2,
+        "searchWidth": 0,
+        "tableViewport": {
+          "clientWidth": 914,
+          "scrollWidth": 914
+        },
+        "pagination": {
+          "clientWidth": 916,
+          "scrollWidth": 916
+        },
+        "paginationControls": {
+          "clientWidth": 426,
+          "scrollWidth": 426,
+          "wrap": "nowrap"
+        }
+      }
+    },
+    {
+      "name": "smart-table-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "smart-table-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "ltr",
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "smart-table-390-dark-ltr overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "smart-table-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "smart-table-390-dark-ltr composition",
+      "pass": true,
+      "actual": {
+        "name": "smart-table-390-dark-ltr",
+        "component": "smart-table",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 685
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "controlCount": 18,
+        "targetBox": {
+          "x": 57,
+          "y": -31.046875,
+          "right": 333,
+          "bottom": 874.84375,
+          "width": 276,
+          "height": 905.890625
+        },
+        "overlayBox": null,
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلexportRequested: undefined",
+        "targetScrollWidth": 274,
+        "targetClientWidth": 274,
+        "projectedActions": 12,
+        "filterDefinitions": 0,
+        "tableRows": 2,
+        "statusBadges": 2,
+        "searchWidth": 0,
+        "tableViewport": {
+          "clientWidth": 240,
+          "scrollWidth": 374
+        },
+        "pagination": {
+          "clientWidth": 242,
+          "scrollWidth": 242
+        },
+        "paginationControls": {
+          "clientWidth": 242,
+          "scrollWidth": 242,
+          "wrap": "wrap"
+        }
+      }
+    }
+  ],
+  "summary": {
+    "total": 50,
+    "passed": 50,
+    "failed": []
+  }
+}

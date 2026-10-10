@@ -123,6 +123,22 @@ describe('ErpSmartTable', () => {
     expect(fixture.nativeElement.querySelector('erp-empty-state')).not.toBeNull();
   });
 
+  it('keeps both refresh and export intents reachable through the owned toolbar', () => {
+    const fixture = create();
+    const refresh = vi.fn();
+    const exported = vi.fn();
+    fixture.componentInstance.refreshRequested.subscribe(refresh);
+    fixture.componentInstance.exportRequested.subscribe(exported);
+    fixture.detectChanges();
+
+    const actions = [...fixture.nativeElement.querySelectorAll('erp-table-toolbar erp-button button')] as HTMLButtonElement[];
+    actions.find((button) => button.textContent?.includes('تحديث'))?.click();
+    actions.find((button) => button.textContent?.includes('تصدير'))?.click();
+
+    expect(refresh).toHaveBeenCalledOnce();
+    expect(exported).toHaveBeenCalledOnce();
+  });
+
   it('inherits application theme and direction without local authority', () => {
     const fixture = create();
     expect(fixture.nativeElement.hasAttribute('data-theme')).toBe(false);

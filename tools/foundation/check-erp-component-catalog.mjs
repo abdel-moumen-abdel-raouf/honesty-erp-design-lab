@@ -351,8 +351,26 @@ function validateRepository() {
         html.includes('(sortChange)="recordSortDirection($event)"') &&
         source.includes("recordSortDirection(value: 'none' | 'ascending' | 'descending'): void") &&
         source.includes("this.recordEvent('sortChange', value);");
+      const controlledDataCompositionOutput =
+        entry.className === 'ErpBulkActionBar' && outputName === 'clearSelection' &&
+          html.includes('(clearSelection)="clearBulkSelection()"') &&
+          source.includes('clearBulkSelection(): void') &&
+          source.includes("this.recordEvent('clearSelection', undefined);") ||
+        entry.className === 'ErpFilterBar' && outputName === 'filterRemoved' &&
+          html.includes('(filterRemoved)="removeActiveFilter($event)"') &&
+          source.includes('removeActiveFilter(key: string): void') &&
+          source.includes("this.recordEvent('filterRemoved', key);") ||
+        entry.className === 'ErpFilterBar' && outputName === 'resetRequested' &&
+          html.includes('(resetRequested)="resetActiveFilters()"') &&
+          source.includes('resetActiveFilters(): void') &&
+          source.includes("this.recordEvent('resetRequested', undefined);") ||
+        entry.className === 'ErpFilterDrawer' && outputName === 'applied' &&
+          html.includes('(applied)="applyDrawerFilters($event)"') &&
+          source.includes('applyDrawerFilters(value: readonly unknown[]): void') &&
+          source.includes("this.recordEvent('applied', value);");
       if (!rootAppShellOutput && !controlledColumnVisibilityOutput &&
           !controlledPaginationOutput && !controlledSortOutput &&
+          !controlledDataCompositionOutput &&
           !html.includes(`(${outputName})="recordEvent('${outputName}', $event)"`)) {
         errors.push(`${entry.className} live target has no event evidence for ${outputName}`);
       }

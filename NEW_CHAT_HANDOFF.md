@@ -1,5 +1,19 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — Data/Table composition reviewed internally
+
+Continue from synchronized `main` after the Data/Table composition checkpoint.
+BulkActionBar, FilterBar, FilterDrawer, TableToolbar, and SmartTable have
+meaningful one-target projections and controlled interactions. Default toolbar
+and Pagination layouts contain at 390 px; standalone Table columns scroll in
+the owned viewport without text collision; exact Table-reference presentation
+remains separate and intact. Evidence under
+`docs/review-evidence/erp-data-table/data-composition-v1-internal-review/`
+passes 50/50 browser assertions. Canonical verification passes 142/142 files
+and 869/869 tests with a zero-warning 418.32 kB / 92.89 kB build. Product Owner
+acceptance is not recorded. Continue Bottom-Up with `ErpForm`,
+`ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`, and `ErpRepeater`.
+
 ## Current continuation point — Navigation owners reviewed internally
 
 Continue from synchronized `main` after the Navigation checkpoint.
