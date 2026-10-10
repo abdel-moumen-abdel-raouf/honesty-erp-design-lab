@@ -1,5 +1,19 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — FilePicker and ImagePicker
+
+FilePicker and ImagePicker completed internal browser review as original
+Honesty ERP candidates. Their one-target Workbenches now demonstrate a real
+local browser `File[]`, readable CVA/event evidence, accepted and rejected
+files, drag state, removal/clear, and image preview without trying to serialize
+`File` objects through the generic JSON editor. Evidence under
+`docs/review-evidence/erp-file-image-pickers/v1-internal-review/` passes 52/52
+assertions across desktop Light/RTL and 390 px Dark/LTR with no overflow,
+broken images, or browser diagnostics. Focused verification passes 3/3 files
+and 53/53 tests; canonical verification passes 128/128 files and 843/843 tests
+with a zero-warning 418.32 kB / 92.90 kB build. Product Owner acceptance is
+not recorded. Next Bottom-Up unit: Button and IconButton.
+
 ## Latest verified UI unit — selection picker family
 
 ItemPicker, IconPicker, and ColorPicker completed internal browser review as

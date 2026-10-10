@@ -1,5 +1,17 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — FilePicker and ImagePicker reviewed internally
+
+Continue from synchronized `main` after the FilePicker/ImagePicker checkpoint.
+The Workbenches use one live target, meaningful Arabic ERP constraints, and a
+real local `File[]` sample without feeding browser `File` objects through the
+generic JSON editor. Evidence under
+`docs/review-evidence/erp-file-image-pickers/v1-internal-review/` passes 52/52
+browser assertions. Canonical verification passes 128/128 files and 843/843
+tests with a zero-warning 418.32 kB / 92.90 kB build. Product Owner acceptance
+is not recorded. Continue Bottom-Up with `ErpButton` and `ErpIconButton` before
+their composite consumers.
+
 ## Current continuation point — selection pickers reviewed internally
 
 Continue from synchronized `main` after the ItemPicker/IconPicker/ColorPicker

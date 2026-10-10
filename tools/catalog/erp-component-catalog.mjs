@@ -458,6 +458,14 @@ const FIXTURE_INPUTS = new Map([
     {value: 'archive', label: 'أرشفة', icon: 'layers', presentation: 'icon-text'},
     {value: 'delete', label: 'حذف', icon: 'delete', presentation: 'icon-text', disabled: true},
   ]}],
+  ['ErpFilePicker', {
+    label: 'مرفقات طلب الشراء',
+    helperText: 'أرفق عروض الأسعار والمواصفات المعتمدة',
+    accept: '.pdf,.xlsx',
+    maxFileSize: 5242880,
+    maxFiles: 4,
+    clearable: true,
+  }],
   ['ErpFilterDrawer', {definitions: []}],
   ['ErpForm', {label: 'نموذج السجل'}],
   ['ErpFormSection', {title: 'البيانات الأساسية'}],
@@ -465,6 +473,15 @@ const FIXTURE_INPUTS = new Map([
   ['ErpIconButton', {icon: 'settings', label: 'الإعدادات'}],
   ['ErpColorPicker', {label: 'لون تصنيف الحساب', helperText: 'اختر لونًا من سجل ألوان النظام', clearable: true}],
   ['ErpIconPicker', {label: 'أيقونة الوحدة', helperText: 'اختر أيقونة دلالية من سجل النظام', clearable: true}],
+  ['ErpImagePicker', {
+    label: 'صور الصنف',
+    helperText: 'أضف صورًا واضحة لبطاقة الصنف',
+    accept: 'image/*',
+    maxFileSize: 2097152,
+    maxFiles: 4,
+    previewSize: 'lg',
+    clearable: true,
+  }],
   ['ErpItemPicker', {
     label: 'المستودع الافتراضي',
     helperText: 'اختر المستودع الذي يستقبل الحركات تلقائيًا',
@@ -1468,6 +1485,7 @@ function generatedShowcaseOwner(entry) {
   const componentImport = relativeShowcaseImport(ownerPath, entry.sourcePath);
   const isCva = CVA_COMPONENTS.has(entry.className);
   const isAvatarPicker = entry.className === 'ErpAvatarPicker';
+  const isFileSelection = ['ErpFilePicker', 'ErpImagePicker'].includes(entry.className);
   const hasCvaDisabled = isCva && entry.publicApi.inputs.some((inputApi) => inputApi.name === 'disabled');
   const isFloatingPreview = ['ErpFab', 'ErpExtendedFab', 'ErpFabMenu'].includes(entry.className);
   const hasDirectionalPreview = isFloatingPreview || entry.className === 'ErpUserMenu';
@@ -1498,6 +1516,10 @@ function generatedShowcaseOwner(entry) {
     importLines.push(`import {FormControl, ReactiveFormsModule} from '@angular/forms';`);
     importLines.push(`import {takeUntilDestroyed} from '@angular/core/rxjs-interop';`);
     imports.add('ReactiveFormsModule');
+  }
+  if (isFileSelection) {
+    importLines.push(`import {ErpButton} from '../../../controls/button/button';`);
+    imports.add('ErpButton');
   }
   if (isAvatarPicker) {
     importLines.push(`import {ERP_AVATAR_CATALOG} from '../../../controls/avatar-picker/avatar-picker-contracts';`);
@@ -1593,6 +1615,19 @@ function generatedShowcaseOwner(entry) {
         [direction]="previewDirection()"
       >${renderedOwner}</app-review-showcase-floating-preview>`;
   }
+  if (isFileSelection) {
+    const sampleFileName = entry.className === 'ErpImagePicker'
+      ? 'صورة-الصنف.svg'
+      : 'عرض-السعر.pdf';
+    renderedOwner = `${renderedOwner}\n      <erp-button
+        data-file-selection-sample
+        label="تحميل عينة مراجعة: ${sampleFileName}"
+        variant="outline"
+        tone="primary"
+        size="sm"
+        (pressed)="loadSampleFiles()"
+      />`;
+  }
   const referenceLabel = entry.visualReference
     ? `  <erp-text class="showcase-reference" type="caption" tone="secondary" selectable>مرجع Product Owner: ${entry.visualReference}</erp-text>\n`
     : '';
@@ -1629,7 +1664,27 @@ function generatedShowcaseOwner(entry) {
         `  readonly cvaValue = signal<unknown>(null);\n  readonly topbarBranches = TOPBAR_BRANCHES;\n  readonly topbarSearchResults = TOPBAR_SEARCH_RESULTS;\n  readonly topbarApplications = TOPBAR_APPLICATIONS;\n  readonly topbarMessages = TOPBAR_MESSAGES;\n  readonly topbarNotifications = TOPBAR_NOTIFICATIONS;\n  readonly topbarUser = TOPBAR_USER;\n  readonly topbarUserItems = TOPBAR_USER_ITEMS;\n`,
       );
   }
-  const html = `<erp-stack gap="default" data-dedicated-showcase="${entry.id}" data-showcase-sections="1">\n  <erp-text type="heading-2">${entry.displayNameAr}</erp-text>\n  <erp-text type="paragraph" tone="secondary">${entry.descriptionAr}</erp-text>\n${referenceLabel}  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="${livePreviewClass}">\n    <erp-stack gap="tight">\n      <erp-text type="heading-3">المعاينة الحية</erp-text>\n      ${renderedOwner}\n    </erp-stack>\n  </erp-surface>\n  <app-review-showcase-control-panel\n    [controls]="controls"\n    [values]="controlValues()"\n    (controlChanged)="applyControl($event)"\n  />\n  <erp-surface padding="default" border="subtle" data-showcase-event-log>\n    <erp-stack gap="tight">\n      <erp-text type="heading-3">آخر تفاعل</erp-text>\n      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>\n${isCva ? '      <erp-text type="caption" selectable>القيمة الحالية: {{ cvaValue() }}</erp-text>\n' : ''}    </erp-stack>\n  </erp-surface>\n${exactReferenceEvidence}</erp-stack>\n`;
+  if (isFileSelection) {
+    const sampleFileSource = entry.className === 'ErpImagePicker'
+      ? "new File(['<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 64 64\"><rect width=\"64\" height=\"64\" fill=\"#4f46e5\"/><circle cx=\"32\" cy=\"32\" r=\"18\" fill=\"#ffffff\"/></svg>'], 'صورة-الصنف.svg', {type: 'image/svg+xml', lastModified: 1})"
+      : "new File(['approved purchase offer'], 'عرض-السعر.pdf', {type: 'application/pdf', lastModified: 1})";
+    normalizedSource = normalizedSource
+      .replace("    '$value': this.cvaValue(),", "    '$value': null,")
+      .replace(
+        '\n  recordModel(name: string, value: unknown): void {',
+        `\n  loadSampleFiles(): void {\n    this.control.setValue([${sampleFileSource}]);\n  }\n\n  recordModel(name: string, value: unknown): void {`,
+      )
+      .replace(
+        "    let rendered = '';\n    try { rendered = typeof value === 'string' ? value : JSON.stringify(value); }\n    catch { rendered = String(value); }",
+        '    const rendered = this.fileSummary(value);',
+      )
+      .replace(
+        '\n  private functionPreset(name: string, value: unknown): unknown {',
+        "\n  fileSummary(value: unknown): string {\n    if (!Array.isArray(value)) return value === null ? 'لا ملفات' : String(value);\n    const names = value\n      .filter((entry): entry is {readonly name: string} => Boolean(entry) && typeof entry === 'object' && typeof (entry as {name?: unknown}).name === 'string')\n      .map((entry) => entry.name);\n    return names.length > 0 ? names.join('، ') : 'لا ملفات';\n  }\n\n  private functionPreset(name: string, value: unknown): unknown {",
+      );
+  }
+  const cvaValueEvidence = isFileSelection ? 'fileSummary(cvaValue())' : 'cvaValue()';
+  const html = `<erp-stack gap="default" data-dedicated-showcase="${entry.id}" data-showcase-sections="1">\n  <erp-text type="heading-2">${entry.displayNameAr}</erp-text>\n  <erp-text type="paragraph" tone="secondary">${entry.descriptionAr}</erp-text>\n${referenceLabel}  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="${livePreviewClass}">\n    <erp-stack gap="tight">\n      <erp-text type="heading-3">المعاينة الحية</erp-text>\n      ${renderedOwner}\n    </erp-stack>\n  </erp-surface>\n  <app-review-showcase-control-panel\n    [controls]="controls"\n    [values]="controlValues()"\n    (controlChanged)="applyControl($event)"\n  />\n  <erp-surface padding="default" border="subtle" data-showcase-event-log>\n    <erp-stack gap="tight">\n      <erp-text type="heading-3">آخر تفاعل</erp-text>\n      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>\n${isCva ? `      <erp-text type="caption" selectable>القيمة الحالية: {{ ${cvaValueEvidence} }}</erp-text>\n` : ''}    </erp-stack>\n  </erp-surface>\n${exactReferenceEvidence}</erp-stack>\n`;
   const previewMinBlockSize = entry.className === 'ErpUserMenu' ? '32rem' : '12rem';
   const dividerEvidenceStyle = entry.className === 'ErpDivider'
     ? `\n.showcase-divider-target[data-orientation='vertical'] {\n  min-block-size: 8rem;\n  align-self: center;\n}\n`

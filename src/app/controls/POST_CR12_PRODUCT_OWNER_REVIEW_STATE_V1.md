@@ -1,5 +1,19 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — FilePicker and ImagePicker
+
+The two local file-selection owners completed internal browser review as
+original Honesty ERP candidates. Generated Workbench evidence applies real
+browser `File[]` values to the same CVA target, renders readable filenames, and
+keeps non-serializable File values isolated from the generic JSON editor. The
+four-scenario audit passes 52/52 assertions for accepted/rejected files, drag,
+image preview, clear, and one primary target with no overflow, broken images,
+or browser diagnostics. Screenshots, measurements, and reproduction notes are
+under `docs/review-evidence/erp-file-image-pickers/v1-internal-review/`. Status
+is `TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next Bottom-Up unit: Button and
+IconButton.
+
 ## Current review execution — 2026-10-10 — selection picker family
 
 ItemPicker, IconPicker, and ColorPicker completed internal browser review as

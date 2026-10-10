@@ -1,5 +1,23 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current File and Image Picker Internal Review State
+
+`ErpFilePicker` and `ErpImagePicker` have completed internal browser review as
+original Honesty ERP candidates. Their single-target Workbenches use meaningful
+Arabic ERP policy inputs and an ERP-owned sample action that applies a real
+local `File[]` to the same CVA control. Non-serializable browser `File` values
+are no longer fed back through the generic JSON editor as invalid plain objects;
+visible event/current-value evidence preserves readable file names. Evidence at
+`docs/review-evidence/erp-file-image-pickers/v1-internal-review/` passes 52/52
+assertions across desktop Light/RTL and 390 px Dark/LTR, including real accept
+and reject policy behavior, drag state, image preview, clear, zero overflow,
+broken images, errors, or warnings. Focused verification passes 3/3 files and
+53/53 tests; canonical verification passes 128/128 files and 843/843 tests,
+both typechecks, all governance/lint, and the zero-warning 418.32 kB / 92.90 kB
+build. Status remains `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` / `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+Next Bottom-Up unit: `ErpButton` and `ErpIconButton` before their composites.
+
 ## Current Selection Picker Family Internal Review State
 
 `ErpItemPicker`, `ErpIconPicker`, and `ErpColorPicker` have completed internal

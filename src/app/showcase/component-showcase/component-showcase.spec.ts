@@ -394,6 +394,41 @@ describe('ComponentShowcase', () => {
     await Promise.resolve();
   });
 
+  it.each([
+    ['file-picker', 'مرفقات طلب الشراء', 'عرض-السعر.pdf'],
+    ['image-picker', 'صور الصنف', 'صورة-الصنف.svg'],
+  ] as const)('gives the %s workbench one meaningful local File sample affordance', async (
+    id,
+    label,
+    fileName,
+  ) => {
+    if (id === 'image-picker') {
+      Object.defineProperty(URL, 'createObjectURL', {
+        configurable: true,
+        value: vi.fn(() => 'blob:showcase-image'),
+      });
+      Object.defineProperty(URL, 'revokeObjectURL', {
+        configurable: true,
+        value: vi.fn(),
+      });
+    }
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl(`/components/${id}`, ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target] input[type="file"]')).not.toBeNull();
+    });
+
+    const root = harness.routeNativeElement as HTMLElement;
+    const target = root.querySelector('[data-showcase-target]') as HTMLElement;
+    const sample = root.querySelector('[data-file-selection-sample]');
+
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect(target.textContent).toContain(label);
+    expect(sample?.textContent).toContain('تحميل عينة مراجعة');
+    expect(root.textContent).toContain(fileName.split('.')[0]);
+  });
+
   it('renders ButtonGroup as one controlled group with multiple actions', async () => {
     const harness = await RouterTestingHarness.create();
     await harness.navigateByUrl('/components/button-group', ComponentShowcase);

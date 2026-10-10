@@ -20068,7 +20068,12 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي"
+          "label": "مرفقات طلب الشراء",
+          "helperText": "أرفق عروض الأسعار والمواصفات المعتمدة",
+          "accept": ".pdf,.xlsx",
+          "maxFileSize": 5242880,
+          "maxFiles": 4,
+          "clearable": true
         }
       }
     ],
@@ -20089,18 +20094,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "appearance": "standard",
       "labelMode": "static",
       "floatingPosition": "top",
-      "helperText": null,
+      "helperText": "أرفق عروض الأسعار والمواصفات المعتمدة",
       "helperPosition": "below",
       "leadingIcon": null,
       "trailingIcon": null,
       "clearable": true,
       "feedbackText": null,
       "feedbackDismissible": false,
-      "accept": null,
-      "maxFileSize": null,
+      "accept": ".pdf,.xlsx",
+      "maxFileSize": 5242880,
       "minFiles": null,
-      "maxFiles": null,
-      "label": "حقل تجريبي"
+      "maxFiles": 4,
+      "label": "مرفقات طلب الشراء"
     },
     "showcaseControls": [
       {
@@ -20121,7 +20126,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "حقل تجريبي"
+        "initialValue": "مرفقات طلب الشراء"
       },
       {
         "name": "name",
@@ -20320,7 +20325,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "أرفق عروض الأسعار والمواصفات المعتمدة"
       },
       {
         "name": "helperPosition",
@@ -20399,7 +20404,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": ".pdf,.xlsx"
       },
       {
         "name": "maxFileSize",
@@ -20409,7 +20414,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "number | null",
         "options": [],
-        "initialValue": null
+        "initialValue": 5242880
       },
       {
         "name": "minFiles",
@@ -20429,7 +20434,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "number | null",
         "options": [],
-        "initialValue": null
+        "initialValue": 4
       }
     ],
     "showcaseCoverage": {
@@ -21674,7 +21679,13 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي"
+          "label": "صور الصنف",
+          "helperText": "أضف صورًا واضحة لبطاقة الصنف",
+          "accept": "image/*",
+          "maxFileSize": 2097152,
+          "maxFiles": 4,
+          "previewSize": "lg",
+          "clearable": true
         }
       }
     ],
@@ -21695,7 +21706,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "appearance": "standard",
       "labelMode": "static",
       "floatingPosition": "top",
-      "helperText": null,
+      "helperText": "أضف صورًا واضحة لبطاقة الصنف",
       "helperPosition": "below",
       "leadingIcon": null,
       "trailingIcon": null,
@@ -21703,11 +21714,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "feedbackText": null,
       "feedbackDismissible": false,
       "accept": "image/*",
-      "maxFileSize": null,
+      "maxFileSize": 2097152,
       "minFiles": null,
-      "maxFiles": null,
-      "previewSize": "md",
-      "label": "حقل تجريبي"
+      "maxFiles": 4,
+      "previewSize": "lg",
+      "label": "صور الصنف"
     },
     "showcaseControls": [
       {
@@ -21728,7 +21739,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "حقل تجريبي"
+        "initialValue": "صور الصنف"
       },
       {
         "name": "name",
@@ -21927,7 +21938,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "أضف صورًا واضحة لبطاقة الصنف"
       },
       {
         "name": "helperPosition",
@@ -22016,7 +22027,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "number | null",
         "options": [],
-        "initialValue": null
+        "initialValue": 2097152
       },
       {
         "name": "minFiles",
@@ -22036,7 +22047,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "number | null",
         "options": [],
-        "initialValue": null
+        "initialValue": 4
       },
       {
         "name": "previewSize",
@@ -22050,7 +22061,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "md",
           "lg"
         ],
-        "initialValue": "md"
+        "initialValue": "lg"
       }
     ],
     "showcaseCoverage": {

@@ -35,6 +35,14 @@
           [formControl]="control"
           data-showcase-cva-disabled-control
         ></erp-image-picker>
+      <erp-button
+        data-file-selection-sample
+        label="تحميل عينة مراجعة: صورة-الصنف.svg"
+        variant="outline"
+        tone="primary"
+        size="sm"
+        (pressed)="loadSampleFiles()"
+      />
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel
@@ -46,7 +54,7 @@
     <erp-stack gap="tight">
       <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
-      <erp-text type="caption" selectable>القيمة الحالية: {{ cvaValue() }}</erp-text>
+      <erp-text type="caption" selectable>القيمة الحالية: {{ fileSummary(cvaValue()) }}</erp-text>
     </erp-stack>
   </erp-surface>
 </erp-stack>

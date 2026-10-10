@@ -1,5 +1,19 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## File and image picker internal-review decisions — 2026-10-10
+
+- No binding component-specific external reference is recorded for FilePicker
+  or ImagePicker; both remain original Honesty ERP candidates.
+- The shared File Selection base, Field, Button, Icon, Tooltip, native file
+  input, and CVA ownership remain unchanged. No upload, transport, persistence,
+  or private image renderer was added.
+- Browser `File` objects are not JSON values. Their Workbench therefore keeps
+  the generic JSON draft isolated from the non-serializable live queue and uses
+  an ERP-button sample action to apply a real local `File[]` to the same
+  `FormControl`; names are rendered as review evidence.
+- The production public APIs and visual defaults did not change. Internal
+  review completion does not imply Product Owner acceptance.
+
 ## Selection picker family internal-review decisions — 2026-10-10
 
 - No binding component-specific external reference is recorded for ItemPicker,

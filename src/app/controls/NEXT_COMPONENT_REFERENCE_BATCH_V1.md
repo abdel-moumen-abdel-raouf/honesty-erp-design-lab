@@ -1,5 +1,16 @@
 # Next Component Reference Batch V1
 
+## Authoritative next action — 2026-10-10 — basic action owners
+
+The autonomous UI authorization remains active. FilePicker and ImagePicker have
+completed internal review without Product Owner acceptance. Continue
+Bottom-Up with `ErpButton` and `ErpIconButton` before ButtonGroup, SplitButton,
+FAB-family, or other composite consumers. Their recorded visual authority is
+the Skodash RTL component-buttons fallback rather than a component-specific
+exact contract; preserve all existing ERP Button Family ownership, native
+button semantics, Icon/Text composition, ripple/focus, and Tooltip rules.
+Business Feature/Page, CRUD, transport, and permissions work remain closed.
+
 ## Authoritative next action — 2026-10-10 — file and image inputs
 
 The autonomous UI authorization remains active. ItemPicker, IconPicker, and

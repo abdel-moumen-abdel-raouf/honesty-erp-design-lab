@@ -1,5 +1,28 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## FilePicker and ImagePicker internal-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `97905e68a797c796218340127b3f5b1bd0893439` — synchronized `main` after the
+  selection-picker family checkpoint.
+
+Bounded scope:
+
+- Added meaningful generated FilePicker/ImagePicker fixtures and a real local
+  file sample action on each one-target Workbench.
+- Prevented the generic JSON editor from feeding non-serializable `File`
+  representations back into the live CVA queue; exposed readable filenames in
+  event/current-value evidence.
+- Persisted 52/52 browser assertions and selected-state screenshots under
+  `docs/review-evidence/erp-file-image-pickers/v1-internal-review/`.
+- Focused gate: 3/3 files and 53/53 tests. Canonical gate: 128/128 files,
+  843/843 tests, both typechecks, all governance/lint, and zero-warning
+  418.32 kB / 92.90 kB build.
+
+Product Owner visual status remains pending. The actual commit SHA is recorded
+by Git after this document snapshot; do not infer acceptance from the commit.
+
 ## Selection picker family internal-review candidate — 2026-10-10
 
 Entry checkpoint:

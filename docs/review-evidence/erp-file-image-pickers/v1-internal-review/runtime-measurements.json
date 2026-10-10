@@ -1,0 +1,441 @@
+{
+  "generatedAt": "2026-10-10T09:44:53.844Z",
+  "authority": "Original Honesty ERP candidates; no binding component-specific external reference is recorded.",
+  "scenarios": [
+    {
+      "name": "file-picker-1440-light-rtl",
+      "component": "file-picker",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "computedDirection": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 27,
+      "targetBox": {
+        "x": 147,
+        "y": 452.765625,
+        "width": 950,
+        "height": 445.484375
+      },
+      "previewBox": {
+        "x": 130,
+        "y": 401.671875,
+        "width": 984,
+        "height": 553.578125
+      },
+      "itemCount": 1,
+      "selectedName": "عرض-السعر.pdf  14 بايت · application/pdf إزالة عرض-السعر.pdf",
+      "feedback": "تعذر إضافة ملفات من نوع غير مسموح.",
+      "eventEvidence": "آخر تفاعلvalueChange: عرض-السعر.pdfالقيمة الحالية: عرض-السعر.pdf",
+      "previewSize": null,
+      "imageCount": 0,
+      "brokenImages": 0,
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "dragActive": "true",
+      "clearedCount": "0"
+    },
+    {
+      "name": "file-picker-390-dark-ltr",
+      "component": "file-picker",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "computedDirection": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 27,
+      "targetBox": {
+        "x": 57,
+        "y": 602.765625,
+        "width": 276,
+        "height": 489.078125
+      },
+      "previewBox": {
+        "x": 40,
+        "y": 551.671875,
+        "width": 310,
+        "height": 597.171875
+      },
+      "itemCount": 1,
+      "selectedName": "عرض-السعر.pdf  14 بايت · application/pdf إزالة عرض-السعر.pdf",
+      "feedback": "تعذر إضافة ملفات من نوع غير مسموح.",
+      "eventEvidence": "آخر تفاعلvalueChange: عرض-السعر.pdfالقيمة الحالية: عرض-السعر.pdf",
+      "previewSize": null,
+      "imageCount": 0,
+      "brokenImages": 0,
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "dragActive": "true",
+      "clearedCount": "0"
+    },
+    {
+      "name": "image-picker-1440-light-rtl",
+      "component": "image-picker",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "computedDirection": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 28,
+      "targetBox": {
+        "x": 147,
+        "y": 452.765625,
+        "width": 950,
+        "height": 489.890625
+      },
+      "previewBox": {
+        "x": 130,
+        "y": 401.671875,
+        "width": 984,
+        "height": 597.984375
+      },
+      "itemCount": 1,
+      "selectedName": "صورة-الصنف.png  68 بايت إزالة صورة-الصنف.png",
+      "feedback": "تعذر إضافة ملفات من نوع غير مسموح.",
+      "eventEvidence": "آخر تفاعلvalueChange: صورة-الصنف.pngالقيمة الحالية: صورة-الصنف.png",
+      "previewSize": "lg",
+      "imageCount": 1,
+      "brokenImages": 0,
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "dragActive": "true",
+      "clearedCount": "0"
+    },
+    {
+      "name": "image-picker-390-dark-ltr",
+      "component": "image-picker",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "computedDirection": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 28,
+      "targetBox": {
+        "x": 57,
+        "y": 602.765625,
+        "width": 276,
+        "height": 533.484375
+      },
+      "previewBox": {
+        "x": 40,
+        "y": 551.671875,
+        "width": 310,
+        "height": 641.578125
+      },
+      "itemCount": 1,
+      "selectedName": "صورة-الصنف.png  68 بايت إزالة صورة-الصنف.png",
+      "feedback": "تعذر إضافة ملفات من نوع غير مسموح.",
+      "eventEvidence": "آخر تفاعلvalueChange: صورة-الصنف.pngالقيمة الحالية: صورة-الصنف.png",
+      "previewSize": "lg",
+      "imageCount": 1,
+      "brokenImages": 0,
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "dragActive": "true",
+      "clearedCount": "0"
+    }
+  ],
+  "assertions": [
+    {
+      "name": "file-picker-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "file-picker-1440-light-rtl controls",
+      "pass": true,
+      "actual": 27
+    },
+    {
+      "name": "file-picker-1440-light-rtl theme",
+      "pass": true,
+      "actual": "light"
+    },
+    {
+      "name": "file-picker-1440-light-rtl direction",
+      "pass": true,
+      "actual": "rtl"
+    },
+    {
+      "name": "file-picker-1440-light-rtl selection",
+      "pass": true,
+      "actual": {
+        "count": 1,
+        "name": "عرض-السعر.pdf  14 بايت · application/pdf إزالة عرض-السعر.pdf"
+      }
+    },
+    {
+      "name": "file-picker-1440-light-rtl policy",
+      "pass": true,
+      "actual": "تعذر إضافة ملفات من نوع غير مسموح."
+    },
+    {
+      "name": "file-picker-1440-light-rtl event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: عرض-السعر.pdfالقيمة الحالية: عرض-السعر.pdf"
+    },
+    {
+      "name": "file-picker-1440-light-rtl drag",
+      "pass": true,
+      "actual": "true"
+    },
+    {
+      "name": "file-picker-1440-light-rtl image",
+      "pass": true,
+      "actual": {
+        "count": 0,
+        "broken": 0
+      }
+    },
+    {
+      "name": "file-picker-1440-light-rtl preview size",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "file-picker-1440-light-rtl clear",
+      "pass": true,
+      "actual": "0"
+    },
+    {
+      "name": "file-picker-1440-light-rtl overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "file-picker-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "file-picker-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "file-picker-390-dark-ltr controls",
+      "pass": true,
+      "actual": 27
+    },
+    {
+      "name": "file-picker-390-dark-ltr theme",
+      "pass": true,
+      "actual": "dark"
+    },
+    {
+      "name": "file-picker-390-dark-ltr direction",
+      "pass": true,
+      "actual": "ltr"
+    },
+    {
+      "name": "file-picker-390-dark-ltr selection",
+      "pass": true,
+      "actual": {
+        "count": 1,
+        "name": "عرض-السعر.pdf  14 بايت · application/pdf إزالة عرض-السعر.pdf"
+      }
+    },
+    {
+      "name": "file-picker-390-dark-ltr policy",
+      "pass": true,
+      "actual": "تعذر إضافة ملفات من نوع غير مسموح."
+    },
+    {
+      "name": "file-picker-390-dark-ltr event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: عرض-السعر.pdfالقيمة الحالية: عرض-السعر.pdf"
+    },
+    {
+      "name": "file-picker-390-dark-ltr drag",
+      "pass": true,
+      "actual": "true"
+    },
+    {
+      "name": "file-picker-390-dark-ltr image",
+      "pass": true,
+      "actual": {
+        "count": 0,
+        "broken": 0
+      }
+    },
+    {
+      "name": "file-picker-390-dark-ltr preview size",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "file-picker-390-dark-ltr clear",
+      "pass": true,
+      "actual": "0"
+    },
+    {
+      "name": "file-picker-390-dark-ltr overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "file-picker-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "image-picker-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "image-picker-1440-light-rtl controls",
+      "pass": true,
+      "actual": 28
+    },
+    {
+      "name": "image-picker-1440-light-rtl theme",
+      "pass": true,
+      "actual": "light"
+    },
+    {
+      "name": "image-picker-1440-light-rtl direction",
+      "pass": true,
+      "actual": "rtl"
+    },
+    {
+      "name": "image-picker-1440-light-rtl selection",
+      "pass": true,
+      "actual": {
+        "count": 1,
+        "name": "صورة-الصنف.png  68 بايت إزالة صورة-الصنف.png"
+      }
+    },
+    {
+      "name": "image-picker-1440-light-rtl policy",
+      "pass": true,
+      "actual": "تعذر إضافة ملفات من نوع غير مسموح."
+    },
+    {
+      "name": "image-picker-1440-light-rtl event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: صورة-الصنف.pngالقيمة الحالية: صورة-الصنف.png"
+    },
+    {
+      "name": "image-picker-1440-light-rtl drag",
+      "pass": true,
+      "actual": "true"
+    },
+    {
+      "name": "image-picker-1440-light-rtl image",
+      "pass": true,
+      "actual": {
+        "count": 1,
+        "broken": 0
+      }
+    },
+    {
+      "name": "image-picker-1440-light-rtl preview size",
+      "pass": true,
+      "actual": "lg"
+    },
+    {
+      "name": "image-picker-1440-light-rtl clear",
+      "pass": true,
+      "actual": "0"
+    },
+    {
+      "name": "image-picker-1440-light-rtl overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "image-picker-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "image-picker-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "image-picker-390-dark-ltr controls",
+      "pass": true,
+      "actual": 28
+    },
+    {
+      "name": "image-picker-390-dark-ltr theme",
+      "pass": true,
+      "actual": "dark"
+    },
+    {
+      "name": "image-picker-390-dark-ltr direction",
+      "pass": true,
+      "actual": "ltr"
+    },
+    {
+      "name": "image-picker-390-dark-ltr selection",
+      "pass": true,
+      "actual": {
+        "count": 1,
+        "name": "صورة-الصنف.png  68 بايت إزالة صورة-الصنف.png"
+      }
+    },
+    {
+      "name": "image-picker-390-dark-ltr policy",
+      "pass": true,
+      "actual": "تعذر إضافة ملفات من نوع غير مسموح."
+    },
+    {
+      "name": "image-picker-390-dark-ltr event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: صورة-الصنف.pngالقيمة الحالية: صورة-الصنف.png"
+    },
+    {
+      "name": "image-picker-390-dark-ltr drag",
+      "pass": true,
+      "actual": "true"
+    },
+    {
+      "name": "image-picker-390-dark-ltr image",
+      "pass": true,
+      "actual": {
+        "count": 1,
+        "broken": 0
+      }
+    },
+    {
+      "name": "image-picker-390-dark-ltr preview size",
+      "pass": true,
+      "actual": "lg"
+    },
+    {
+      "name": "image-picker-390-dark-ltr clear",
+      "pass": true,
+      "actual": "0"
+    },
+    {
+      "name": "image-picker-390-dark-ltr overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "image-picker-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    }
+  ],
+  "summary": {
+    "total": 52,
+    "passed": 52,
+    "failed": []
+  }
+}

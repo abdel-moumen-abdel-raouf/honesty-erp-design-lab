@@ -1,5 +1,18 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — FilePicker and ImagePicker complete internally
+
+FilePicker and ImagePicker completed internal browser review as original
+Honesty ERP candidates. Their generated Workbenches now carry meaningful ERP
+file policies and real local browser files while isolating the JSON editor from
+non-serializable `File` instances. The four-scenario gate passes 52/52
+assertions with accept/reject, drag, preview, clear, and readable event evidence,
+plus zero overflow, broken images, or diagnostics. Canonical verification
+passes 128/128 files and 843/843 tests with a zero-warning 418.32 kB / 92.90 kB
+build. Product Owner status remains pending. Continue Bottom-Up with
+`ErpButton` and `ErpIconButton` before their composites; business Feature/Page,
+CRUD, upload transport, and permissions work remain closed.
+
 ## Current UI continuation — selection picker family complete internally
 
 ItemPicker, IconPicker, and ColorPicker completed internal browser review as
