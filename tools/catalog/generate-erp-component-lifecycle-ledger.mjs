@@ -43,6 +43,7 @@ const SHELL_OWNERS = new Set([
 const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpAvatar',
   'ErpAvatarPicker',
+  'ErpComboBox',
   'ErpContainer',
   'ErpDateBox',
   'ErpDateRangeBox',
@@ -59,6 +60,7 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpRadioBox',
   'ErpRadioGroup',
   'ErpRangeSlider',
+  'ErpSearchBox',
   'ErpSection',
   'ErpSelect',
   'ErpStack',
@@ -273,13 +275,14 @@ drift.
   **\`ErpPasswordBox\`**, **\`ErpNumberBox\`**, **\`ErpMoneyBox\`**,
   **\`ErpTelBox\`**, **\`ErpUrlBox\`**, **\`ErpNumberStepper\`**,
   **\`ErpRangeSlider\`**, **\`ErpDateBox\`**, **\`ErpTimeBox\`**,
-  **\`ErpDateTimeBox\`**, and **\`ErpDateRangeBox\`**. Their
+  **\`ErpDateTimeBox\`**, **\`ErpDateRangeBox\`**, **\`ErpSearchBox\`**, and
+  **\`ErpComboBox\`**. Their
   Product Owner status remains pending.
 - All currently recorded binding-reference owners have completed internal
   review, the full public primitive layer has completed internal review, and
   the foundational text-like Input/Field family has completed internal review.
-  The next Bottom-Up unit is the search and picker input family, beginning with
-  **\`ErpSearchBox\`** and **\`ErpComboBox\`**.
+  The next Bottom-Up unit continues the picker input family with
+  **\`ErpItemPicker\`**, **\`ErpIconPicker\`**, and **\`ErpColorPicker\`**.
 
 ## Public owner inventory
 

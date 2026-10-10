@@ -1,5 +1,23 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — SearchBox and ComboBox internal review
+
+`ErpSearchBox` and `ErpComboBox` completed internal browser review as original
+Honesty ERP candidates. Generated Workbench fixtures now provide four Arabic
+search results and three supplier records with non-empty CVA values. The shared
+`ErpItemPickerOption` contract formally includes the optional description that
+GlobalSearch already supplied; the owned result lists render and search it.
+Four desktop/narrow Light/Dark RTL/LTR scenarios pass 48/48 assertions with one
+target, complete controls, real commit/event evidence, stable containment, one
+outer scroll boundary, and zero overflow, broken images, errors, or warnings.
+Evidence is under
+`docs/review-evidence/erp-search-combo/v1-internal-review/`. Canonical
+verification passes 128/128 files and 838/838 tests, both typechecks, all
+governance/lint, and the zero-warning 418.32 kB / 92.89 kB build. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next: ItemPicker, IconPicker, and
+ColorPicker.
+
 ## Current checkpoint — temporal input family internal review
 
 `ErpDateBox`, `ErpTimeBox`, `ErpDateTimeBox`, and `ErpDateRangeBox` completed

@@ -1,5 +1,20 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — SearchBox and ComboBox
+
+The two search/combo Input/Field owners completed internal browser review as
+original Honesty ERP candidates. Generated Workbench evidence provides
+meaningful Arabic ERP records; result activation and staged confirmation each
+commit a real CVA value to the one live target. The shared optional description
+is now typed, rendered, and searchable. The four-scenario audit passes 48/48
+assertions with stable viewport containment, one outer scroll boundary, and no
+overflow, broken images, or browser diagnostics. Screenshots, measurements,
+and reproduction notes are under
+`docs/review-evidence/erp-search-combo/v1-internal-review/`. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next Bottom-Up unit: ItemPicker,
+IconPicker, and ColorPicker.
+
 ## Current review execution — 2026-10-10 — temporal input family
 
 Four temporal Input/Field owners completed internal browser review as original

@@ -146,6 +146,7 @@ const CVA_COMPONENTS = new Set([
 ]);
 
 const CVA_FIXTURE_VALUES = new Map([
+  ['ErpComboBox', 'supplier-27'],
   ['ErpDateBox', '2026-10-12'],
   ['ErpDateRangeBox', {start: '2026-10-01', end: '2026-10-15'}],
   ['ErpDateTimeBox', '2026-10-12T09:30'],
@@ -154,6 +155,7 @@ const CVA_FIXTURE_VALUES = new Map([
   ['ErpNumberStepper', 12],
   ['ErpPasswordBox', 'Honesty@2026'],
   ['ErpRangeSlider', {lower: 25, upper: 75}],
+  ['ErpSearchBox', 'invoice-1042'],
   ['ErpSelect', 'ahmed'],
   ['ErpTelBox', '+20 100 123 4567'],
   ['ErpTextAreaBox', 'ملاحظات طلب الشراء: يرجى مراجعة الكميات قبل الاعتماد.'],
@@ -426,7 +428,17 @@ const FIXTURE_INPUTS = new Map([
   ]}],
   ['ErpBulkActionBar', {selectedCount: 3}],
   ['ErpColumnChooser', {columns: [{key: 'name', label: 'الاسم', hideable: true}]}],
-  ['ErpComboBox', {items: [{value: 'customer', label: 'عميل'}]}],
+  ['ErpComboBox', {
+    label: 'حساب المورد',
+    helperText: 'ابحث باسم المورد أو رقم الحساب',
+    placeholder: 'اكتب للبحث في الحسابات',
+    clearable: true,
+    items: [
+      {value: 'supplier-27', label: 'شركة النور للتوريدات', description: 'القاهرة — حساب نشط', icon: 'building'},
+      {value: 'supplier-42', label: 'مؤسسة الأفق التجارية', description: 'الإسكندرية — حساب نشط', icon: 'building'},
+      {value: 'supplier-68', label: 'مجموعة الدلتا الصناعية', description: 'المنصورة — حساب موقوف مؤقتًا', icon: 'inventory', disabled: true},
+    ],
+  }],
   ['ErpDateBox', {label: 'تاريخ الاستحقاق', helperText: 'تاريخ استحقاق الفاتورة', min: '2026-01-01', max: '2026-12-31', weekStartsOn: 6, clearable: true}],
   ['ErpDateRangeBox', {label: 'فترة التقرير', helperText: 'حدّد بداية ونهاية الفترة المالية', min: '2026-01-01', max: '2026-12-31', clearable: true}],
   ['ErpDateTimeBox', {label: 'موعد التسليم', helperText: 'التاريخ والوقت المحليان للتسليم', min: '2026-01-01T00:00', max: '2026-12-31T23:55', clearable: true}],
@@ -489,6 +501,19 @@ const FIXTURE_INPUTS = new Map([
   ]}],
   ['ErpRadioGroup', {options: [{value: 'active', label: 'نشط'}]}],
   ['ErpRangeSlider', {label: 'نطاق الخصم', helperText: 'النطاق المسموح من 0 إلى 100', min: 0, max: 100, step: 5, defaultRange: {lower: 20, upper: 80}, clearable: true, showValueTooltip: true}],
+  ['ErpSearchBox', {
+    label: 'البحث في السجلات',
+    helperText: 'ابحث في الفواتير والعملاء والموردين',
+    placeholder: 'رقم الفاتورة أو اسم الحساب',
+    clearable: true,
+    mode: 'dropdown',
+    items: [
+      {value: 'invoice-1042', label: 'فاتورة المبيعات 1042', description: 'المبيعات — بانتظار الاعتماد', icon: 'file'},
+      {value: 'customer-alnoor', label: 'شركة النور للتجارة', description: 'العملاء — فرع القاهرة', icon: 'customer'},
+      {value: 'supplier-delta', label: 'مجموعة الدلتا الصناعية', description: 'الموردون — حساب نشط', icon: 'building'},
+      {value: 'report-stock', label: 'تقرير حركة المخزون', description: 'التقارير — آخر 30 يومًا', icon: 'chart'},
+    ],
+  }],
   ['ErpSelect', {
     label: 'الموظف المسؤول',
     searchable: true,

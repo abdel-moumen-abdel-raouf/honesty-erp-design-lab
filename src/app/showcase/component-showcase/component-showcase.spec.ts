@@ -306,6 +306,63 @@ describe('ComponentShowcase', () => {
     await Promise.resolve();
   });
 
+  it('keeps the SearchBox workbench meaningful and commits a real dropdown result', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/components/search-box', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+
+    const root = harness.routeNativeElement as HTMLElement;
+    const target = root.querySelector('[data-showcase-target]') as HTMLElement;
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect(target.getAttribute('data-search-box-mode')).toBe('dropdown');
+    expect(target.textContent).toContain('فاتورة المبيعات 1042');
+
+    (target.querySelector('.search-box__trigger button') as HTMLButtonElement).click();
+    harness.fixture.detectChanges();
+    const popup = target.querySelector('.search-box__popup') as HTMLElement;
+    expect(popup).not.toBeNull();
+    expect(popup.querySelectorAll('[data-search-result]')).toHaveLength(4);
+    (popup.querySelector('[data-search-result][data-value="customer-alnoor"] button') as HTMLButtonElement).click();
+    harness.fixture.detectChanges();
+
+    expect(target.textContent).toContain('شركة النور للتجارة');
+    expect(root.querySelector('[data-showcase-event-log]')?.textContent).toContain('customer-alnoor');
+  });
+
+  it('keeps the ComboBox workbench meaningful and commits only an owned picker selection', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/components/combo-box', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target] input')).not.toBeNull();
+    });
+
+    const root = harness.routeNativeElement as HTMLElement;
+    const target = root.querySelector('[data-showcase-target]') as HTMLElement;
+    const input = target.querySelector('input') as HTMLInputElement;
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect(input.value).toBe('شركة النور للتوريدات');
+
+    input.dispatchEvent(new KeyboardEvent('keydown', {key: 'ArrowDown'}));
+    const manager = TestBed.inject(ErpOverlayManager);
+    const entry = manager.entries()[0];
+    expect(entry.ref.config.data).toMatchObject({
+      mode: 'combo',
+      value: 'supplier-27',
+      searchable: true,
+    });
+    entry.ref.close('supplier-42');
+    manager.completeTransition(entry.ref.id, 'leaving');
+    await Promise.resolve();
+    harness.fixture.detectChanges();
+
+    expect(input.value).toBe('مؤسسة الأفق التجارية');
+    expect(root.querySelector('[data-showcase-event-log]')?.textContent).toContain('supplier-42');
+  });
+
   it('renders ButtonGroup as one controlled group with multiple actions', async () => {
     const harness = await RouterTestingHarness.create();
     await harness.navigateByUrl('/components/button-group', ComponentShowcase);

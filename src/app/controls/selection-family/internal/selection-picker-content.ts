@@ -124,6 +124,7 @@ export class ErpSelectionPickerContent implements OnDestroy {
     return this.currentItems().filter((item) =>
       !query ||
       item.label.toLocaleLowerCase().includes(query) ||
+      item.description?.toLocaleLowerCase().includes(query) ||
       item.value.toLocaleLowerCase().includes(query),
     );
   });

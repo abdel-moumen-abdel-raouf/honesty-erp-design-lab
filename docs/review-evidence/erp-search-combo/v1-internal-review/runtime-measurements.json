@@ -1,0 +1,469 @@
+{
+  "generatedAt": "2026-10-10T09:03:15.179Z",
+  "authority": "Original Honesty ERP candidates; no binding component-specific external reference is recorded.",
+  "scenarios": [
+    {
+      "name": "search-box-1440-light-rtl",
+      "component": "search-box",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "direction": "rtl",
+      "computedDirection": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 37,
+      "initialValue": "فاتورة المبيعات 1042",
+      "targetBox": {
+        "x": 147,
+        "y": 452.765625,
+        "width": 950,
+        "height": 94.296875
+      },
+      "surfaceBox": {
+        "x": 166,
+        "y": 107.609375,
+        "width": 950,
+        "height": 380.671875,
+        "right": 1116,
+        "bottom": 488.28125
+      },
+      "surfaceScroll": {
+        "clientHeight": 379,
+        "scrollHeight": 379,
+        "overflowY": "hidden"
+      },
+      "contentScroll": {
+        "clientHeight": 270,
+        "scrollHeight": 270,
+        "overflowY": "auto"
+      },
+      "resultCount": 4,
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "value": "customer-alnoor",
+      "eventEvidence": "آخر تفاعلvalueChange: customer-alnoorالقيمة الحالية: customer-alnoor",
+      "diagnostics": []
+    },
+    {
+      "name": "search-box-390-dark-ltr",
+      "component": "search-box",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "direction": "ltr",
+      "computedDirection": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 37,
+      "initialValue": "فاتورة المبيعات 1042",
+      "targetBox": {
+        "x": 57,
+        "y": 602.765625,
+        "width": 276,
+        "height": 94.296875
+      },
+      "surfaceBox": {
+        "x": 62.515625,
+        "y": 257.609375,
+        "width": 276,
+        "height": 380.671875,
+        "right": 338.515625,
+        "bottom": 638.28125
+      },
+      "surfaceScroll": {
+        "clientHeight": 379,
+        "scrollHeight": 379,
+        "overflowY": "hidden"
+      },
+      "contentScroll": {
+        "clientHeight": 270,
+        "scrollHeight": 270,
+        "overflowY": "auto"
+      },
+      "resultCount": 4,
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "value": "customer-alnoor",
+      "eventEvidence": "آخر تفاعلvalueChange: customer-alnoorالقيمة الحالية: customer-alnoor",
+      "diagnostics": []
+    },
+    {
+      "name": "combo-box-1440-light-rtl",
+      "component": "combo-box",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "direction": "rtl",
+      "computedDirection": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 26,
+      "initialValue": "supplier-27",
+      "targetBox": {
+        "x": 147,
+        "y": 452.765625,
+        "width": 950,
+        "height": 94.296875
+      },
+      "surfaceBox": {
+        "x": 432,
+        "y": 224.796875,
+        "width": 576,
+        "height": 450.390625,
+        "right": 1008,
+        "bottom": 675.1875
+      },
+      "surfaceScroll": {
+        "clientHeight": 448,
+        "scrollHeight": 448,
+        "overflowY": "hidden"
+      },
+      "contentScroll": {
+        "clientHeight": 294,
+        "scrollHeight": 294,
+        "overflowY": "auto"
+      },
+      "resultCount": 3,
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "value": "supplier-42",
+      "eventEvidence": "آخر تفاعلvalueChange: supplier-42القيمة الحالية: supplier-42",
+      "diagnostics": []
+    },
+    {
+      "name": "combo-box-390-dark-ltr",
+      "component": "combo-box",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "direction": "ltr",
+      "computedDirection": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 26,
+      "initialValue": "supplier-27",
+      "targetBox": {
+        "x": 57,
+        "y": 602.765625,
+        "width": 276,
+        "height": 94.296875
+      },
+      "surfaceBox": {
+        "x": 8,
+        "y": 196.796875,
+        "width": 374,
+        "height": 450.390625,
+        "right": 382,
+        "bottom": 647.1875
+      },
+      "surfaceScroll": {
+        "clientHeight": 448,
+        "scrollHeight": 448,
+        "overflowY": "hidden"
+      },
+      "contentScroll": {
+        "clientHeight": 294,
+        "scrollHeight": 294,
+        "overflowY": "auto"
+      },
+      "resultCount": 3,
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "value": "supplier-42",
+      "eventEvidence": "آخر تفاعلvalueChange: supplier-42القيمة الحالية: supplier-42",
+      "diagnostics": []
+    }
+  ],
+  "assertions": [
+    {
+      "name": "search-box-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "search-box-1440-light-rtl controls",
+      "pass": true,
+      "actual": 37
+    },
+    {
+      "name": "search-box-1440-light-rtl direction",
+      "pass": true,
+      "actual": "rtl"
+    },
+    {
+      "name": "search-box-1440-light-rtl initial value",
+      "pass": true,
+      "actual": "فاتورة المبيعات 1042"
+    },
+    {
+      "name": "search-box-1440-light-rtl result inventory",
+      "pass": true,
+      "actual": 4
+    },
+    {
+      "name": "search-box-1440-light-rtl viewport containment",
+      "pass": true,
+      "actual": {
+        "x": 166,
+        "y": 107.609375,
+        "width": 950,
+        "height": 380.671875,
+        "right": 1116,
+        "bottom": 488.28125
+      }
+    },
+    {
+      "name": "search-box-1440-light-rtl one outer scroll owner",
+      "pass": true,
+      "actual": {
+        "clientHeight": 379,
+        "scrollHeight": 379,
+        "overflowY": "hidden"
+      }
+    },
+    {
+      "name": "search-box-1440-light-rtl value commit",
+      "pass": true,
+      "actual": "customer-alnoor"
+    },
+    {
+      "name": "search-box-1440-light-rtl event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: customer-alnoorالقيمة الحالية: customer-alnoor"
+    },
+    {
+      "name": "search-box-1440-light-rtl page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "search-box-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "search-box-1440-light-rtl broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "search-box-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "search-box-390-dark-ltr controls",
+      "pass": true,
+      "actual": 37
+    },
+    {
+      "name": "search-box-390-dark-ltr direction",
+      "pass": true,
+      "actual": "ltr"
+    },
+    {
+      "name": "search-box-390-dark-ltr initial value",
+      "pass": true,
+      "actual": "فاتورة المبيعات 1042"
+    },
+    {
+      "name": "search-box-390-dark-ltr result inventory",
+      "pass": true,
+      "actual": 4
+    },
+    {
+      "name": "search-box-390-dark-ltr viewport containment",
+      "pass": true,
+      "actual": {
+        "x": 62.515625,
+        "y": 257.609375,
+        "width": 276,
+        "height": 380.671875,
+        "right": 338.515625,
+        "bottom": 638.28125
+      }
+    },
+    {
+      "name": "search-box-390-dark-ltr one outer scroll owner",
+      "pass": true,
+      "actual": {
+        "clientHeight": 379,
+        "scrollHeight": 379,
+        "overflowY": "hidden"
+      }
+    },
+    {
+      "name": "search-box-390-dark-ltr value commit",
+      "pass": true,
+      "actual": "customer-alnoor"
+    },
+    {
+      "name": "search-box-390-dark-ltr event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: customer-alnoorالقيمة الحالية: customer-alnoor"
+    },
+    {
+      "name": "search-box-390-dark-ltr page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "search-box-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "search-box-390-dark-ltr broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "combo-box-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "combo-box-1440-light-rtl controls",
+      "pass": true,
+      "actual": 26
+    },
+    {
+      "name": "combo-box-1440-light-rtl direction",
+      "pass": true,
+      "actual": "rtl"
+    },
+    {
+      "name": "combo-box-1440-light-rtl initial value",
+      "pass": true,
+      "actual": "supplier-27"
+    },
+    {
+      "name": "combo-box-1440-light-rtl result inventory",
+      "pass": true,
+      "actual": 3
+    },
+    {
+      "name": "combo-box-1440-light-rtl viewport containment",
+      "pass": true,
+      "actual": {
+        "x": 432,
+        "y": 224.796875,
+        "width": 576,
+        "height": 450.390625,
+        "right": 1008,
+        "bottom": 675.1875
+      }
+    },
+    {
+      "name": "combo-box-1440-light-rtl one outer scroll owner",
+      "pass": true,
+      "actual": {
+        "clientHeight": 448,
+        "scrollHeight": 448,
+        "overflowY": "hidden"
+      }
+    },
+    {
+      "name": "combo-box-1440-light-rtl value commit",
+      "pass": true,
+      "actual": "supplier-42"
+    },
+    {
+      "name": "combo-box-1440-light-rtl event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: supplier-42القيمة الحالية: supplier-42"
+    },
+    {
+      "name": "combo-box-1440-light-rtl page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "combo-box-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "combo-box-1440-light-rtl broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "combo-box-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "combo-box-390-dark-ltr controls",
+      "pass": true,
+      "actual": 26
+    },
+    {
+      "name": "combo-box-390-dark-ltr direction",
+      "pass": true,
+      "actual": "ltr"
+    },
+    {
+      "name": "combo-box-390-dark-ltr initial value",
+      "pass": true,
+      "actual": "supplier-27"
+    },
+    {
+      "name": "combo-box-390-dark-ltr result inventory",
+      "pass": true,
+      "actual": 3
+    },
+    {
+      "name": "combo-box-390-dark-ltr viewport containment",
+      "pass": true,
+      "actual": {
+        "x": 8,
+        "y": 196.796875,
+        "width": 374,
+        "height": 450.390625,
+        "right": 382,
+        "bottom": 647.1875
+      }
+    },
+    {
+      "name": "combo-box-390-dark-ltr one outer scroll owner",
+      "pass": true,
+      "actual": {
+        "clientHeight": 448,
+        "scrollHeight": 448,
+        "overflowY": "hidden"
+      }
+    },
+    {
+      "name": "combo-box-390-dark-ltr value commit",
+      "pass": true,
+      "actual": "supplier-42"
+    },
+    {
+      "name": "combo-box-390-dark-ltr event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: supplier-42القيمة الحالية: supplier-42"
+    },
+    {
+      "name": "combo-box-390-dark-ltr page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "combo-box-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "combo-box-390-dark-ltr broken images",
+      "pass": true,
+      "actual": 0
+    }
+  ],
+  "summary": {
+    "total": 48,
+    "passed": 48,
+    "failed": []
+  }
+}

@@ -223,9 +223,16 @@
             @if (item.icon) {
               <erp-icon [name]="item.icon" size="sm" />
             }
-            <erp-text type="paragraph" tone="inherit">
-              {{ item.label }}
-            </erp-text>
+            <span class="search-box__result-copy">
+              <erp-text type="paragraph" tone="inherit">
+                {{ item.label }}
+              </erp-text>
+              @if (item.description) {
+                <erp-text type="caption" tone="secondary">
+                  {{ item.description }}
+                </erp-text>
+              }
+            </span>
           </erp-selection-tile>
         } @empty {
           <erp-text

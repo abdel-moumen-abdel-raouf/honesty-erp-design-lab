@@ -93,7 +93,14 @@
             @if (item.icon) {
               <erp-icon [name]="item.icon" size="md" />
             }
-            <erp-text type="caption">{{ item.label }}</erp-text>
+            <span class="selection-picker__item-copy">
+              <erp-text type="caption">{{ item.label }}</erp-text>
+              @if (item.description) {
+                <erp-text type="caption" tone="secondary">
+                  {{ item.description }}
+                </erp-text>
+              }
+            </span>
           </erp-selection-tile>
         }
       }

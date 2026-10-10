@@ -1,5 +1,16 @@
 # Next Component Reference Batch V1
 
+## Authoritative next action — 2026-10-10 — picker input family
+
+The autonomous UI authorization remains active. SearchBox and ComboBox have
+completed internal review without Product Owner acceptance. Continue
+Bottom-Up with `ErpItemPicker`, `ErpIconPicker`, and `ErpColorPicker`. No
+binding component-specific external reference is currently recorded for these
+owners; use explicitly labeled original Honesty ERP candidates and preserve
+the shared Selection Picker, Overlay, Icon, Color Registry, Field, and CVA
+ownership. Business Feature/Page, CRUD, transport, and permissions work remain
+closed.
+
 ## Authoritative next action — 2026-10-10 — SearchBox and ComboBox
 
 The autonomous UI authorization remains active. The temporal input family has

@@ -5,6 +5,7 @@ import {ErpOverlayFooterConfig} from '../../shared/overlay/overlay-contracts';
 export interface ErpItemPickerOption {
   readonly value: string;
   readonly label: string;
+  readonly description?: string;
   readonly disabled?: boolean;
   readonly icon?: ErpIconName;
 }

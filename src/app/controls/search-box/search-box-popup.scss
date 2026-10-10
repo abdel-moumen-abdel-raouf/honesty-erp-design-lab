@@ -77,6 +77,12 @@
   min-inline-size: 0;
 }
 
+.search-box__result-copy {
+  display: grid;
+  flex: 1 1 auto;
+  min-inline-size: 0;
+}
+
 .search-box__empty {
   padding: var(--honesty-search-box-popup-content-gap);
 }

@@ -284,6 +284,23 @@ describe('ErpSelectionPickerContent', () => {
     ).toBe(true);
   });
 
+  it('renders item descriptions and includes them in search filtering', async () => {
+    const {fixture} = await open({
+      ...base,
+      mode: 'combo',
+      searchable: true,
+      items: [
+        {value: 'supplier', label: 'شركة النور', description: 'القاهرة — حساب نشط'},
+        {value: 'customer', label: 'مؤسسة الأفق', description: 'الإسكندرية — عميل جديد'},
+      ],
+      query: 'القاهرة',
+    });
+    const root = fixture.nativeElement as HTMLElement;
+
+    expect(root.querySelectorAll('[data-item-option]')).toHaveLength(1);
+    expect(root.querySelector('[data-item-option]')?.textContent).toContain('القاهرة — حساب نشط');
+  });
+
   it('reacts to live item-provider updates while the picker remains open', async () => {
     const liveItems = signal([
       {value: 'alpha', label: 'Alpha'},

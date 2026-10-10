@@ -160,6 +160,7 @@ export class ErpSearchBox extends ErpFieldBase<string> implements OnDestroy {
       (item) =>
         !query ||
         item.label.toLocaleLowerCase().includes(query) ||
+        item.description?.toLocaleLowerCase().includes(query) ||
         item.value.toLocaleLowerCase().includes(query),
     );
   });

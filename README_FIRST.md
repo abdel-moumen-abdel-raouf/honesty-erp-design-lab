@@ -1,5 +1,19 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — SearchBox and ComboBox
+
+The SearchBox and ComboBox Input/Field owners completed internal browser
+review as original Honesty ERP candidates. Their single-target Workbenches now
+start with meaningful Arabic ERP records and committed CVA values. The shared
+optional result description is typed, rendered through `ErpText`, and included
+in filtering. Evidence under
+`docs/review-evidence/erp-search-combo/v1-internal-review/` passes 48/48
+assertions across desktop Light/RTL and 390 px Dark/LTR with no overflow,
+broken images, or browser diagnostics. Focused verification passes 4/4 files
+and 77/77 tests; canonical verification passes 128/128 files and 838/838 tests
+with a zero-warning 418.32 kB / 92.89 kB build. Product Owner acceptance is not
+recorded. Next Bottom-Up unit: ItemPicker, IconPicker, and ColorPicker.
+
 ## Latest verified UI unit — temporal input family
 
 The four temporal Input/Field owners completed browser review as original

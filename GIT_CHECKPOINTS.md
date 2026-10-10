@@ -1,5 +1,27 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## SearchBox and ComboBox internal-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `2700c2cfab4c864540d17e7e8802a42fa25b2101` — synchronized `main` after the
+  temporal input-family checkpoint.
+
+Bounded scope:
+
+- Added meaningful Arabic generated fixtures and CVA values for SearchBox and
+  ComboBox, plus real result and staged-confirmation regression evidence.
+- Formalized and rendered the existing optional result description through the
+  shared Selection contract and included it in owned filtering.
+- Persisted 48/48 browser assertions and open/committed screenshots under
+  `docs/review-evidence/erp-search-combo/v1-internal-review/`.
+- Focused gate: 4/4 files and 77/77 tests. Canonical gate: 128/128 files,
+  838/838 tests, both typechecks, all governance/lint, and zero-warning
+  418.32 kB / 92.89 kB build.
+
+Product Owner visual status remains pending. The actual commit SHA is recorded
+by Git after this document snapshot; do not infer acceptance from the commit.
+
 ## Temporal input family internal-review candidate — 2026-10-10
 
 Entry checkpoint:

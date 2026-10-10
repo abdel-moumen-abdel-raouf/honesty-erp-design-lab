@@ -1,5 +1,21 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Search and combo input internal-review decisions — 2026-10-10
+
+- No binding component-specific external reference is recorded for SearchBox
+  or ComboBox; both remain original Honesty ERP candidates.
+- `ErpItemPickerOption.description` is an optional typed presentation field.
+  It formalizes data already supplied by GlobalSearch and is rendered through
+  `ErpText`; it does not add transport, ranking, or data-source ownership.
+- Search filtering may match value, label, or optional description. ComboBox
+  still rejects free-form text and commits only an owned picker selection.
+- Anchored SearchBox results keep the result list as their bounded scroll
+  region. Modal ComboBox keeps the Overlay surface non-scrolling and the
+  Overlay Frame body as the owned content scroll region.
+- Geometry is accepted only after entrance motion settles; transient entering
+  transforms are not recorded as final containment.
+- Internal review completion does not imply Product Owner acceptance.
+
 ## Temporal input family internal-review decisions — 2026-10-10
 
 - No binding component-specific external reference is recorded for DateBox,

@@ -55,7 +55,7 @@ describe('ErpSearchBox', () => {
     const fixture = TestBed.createComponent(ErpSearchBox);
     fixture.componentRef.setInput('label', 'Search');
     fixture.componentRef.setInput('items', [
-      {value: 'invoice', label: 'فاتورة INV-2026-001'},
+      {value: 'invoice', label: 'فاتورة INV-2026-001', description: 'المبيعات — بانتظار الاعتماد'},
       {value: 'purchase', label: 'طلب شراء PO-2026-014'},
       {value: 'disabled', label: 'Disabled', disabled: true},
     ]);
@@ -185,6 +185,23 @@ describe('ErpSearchBox', () => {
     expect(host.querySelectorAll('[data-search-result]')).toHaveLength(1);
     expect(host.querySelector('[data-search-result]')?.getAttribute('data-value')).toBe('purchase');
     expect(onChange).not.toHaveBeenCalled();
+  });
+
+  it('renders secondary result descriptions and includes them in filtering', () => {
+    const fixture = create();
+    const host = fixture.nativeElement as HTMLElement;
+    openDropdown(fixture);
+
+    expect(host.querySelector('[data-search-result]')?.textContent).toContain(
+      'المبيعات — بانتظار الاعتماد',
+    );
+    const input = host.querySelector('.search-box__popup input') as HTMLInputElement;
+    input.value = 'بانتظار';
+    input.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    expect(host.querySelectorAll('[data-search-result]')).toHaveLength(1);
+    expect(host.querySelector('[data-search-result]')?.getAttribute('data-value')).toBe('invoice');
   });
 
   it('updates open dropdown results from live items input changes', () => {

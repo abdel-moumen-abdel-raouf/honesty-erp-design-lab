@@ -16537,11 +16537,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "حساب المورد",
+          "helperText": "ابحث باسم المورد أو رقم الحساب",
+          "placeholder": "اكتب للبحث في الحسابات",
+          "clearable": true,
           "items": [
             {
-              "value": "customer",
-              "label": "عميل"
+              "value": "supplier-27",
+              "label": "شركة النور للتوريدات",
+              "description": "القاهرة — حساب نشط",
+              "icon": "building"
+            },
+            {
+              "value": "supplier-42",
+              "label": "مؤسسة الأفق التجارية",
+              "description": "الإسكندرية — حساب نشط",
+              "icon": "building"
+            },
+            {
+              "value": "supplier-68",
+              "label": "مجموعة الدلتا الصناعية",
+              "description": "المنصورة — حساب موقوف مؤقتًا",
+              "icon": "inventory",
+              "disabled": true
             }
           ]
         }
@@ -16564,20 +16582,35 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "appearance": "standard",
       "labelMode": "static",
       "floatingPosition": "top",
-      "helperText": null,
+      "helperText": "ابحث باسم المورد أو رقم الحساب",
       "helperPosition": "below",
       "leadingIcon": null,
       "trailingIcon": "chevron-down",
       "clearable": true,
       "feedbackText": null,
       "feedbackDismissible": false,
-      "placeholder": null,
+      "placeholder": "اكتب للبحث في الحسابات",
       "overlayConfig": null,
-      "label": "حقل تجريبي",
+      "label": "حساب المورد",
       "items": [
         {
-          "value": "customer",
-          "label": "عميل"
+          "value": "supplier-27",
+          "label": "شركة النور للتوريدات",
+          "description": "القاهرة — حساب نشط",
+          "icon": "building"
+        },
+        {
+          "value": "supplier-42",
+          "label": "مؤسسة الأفق التجارية",
+          "description": "الإسكندرية — حساب نشط",
+          "icon": "building"
+        },
+        {
+          "value": "supplier-68",
+          "label": "مجموعة الدلتا الصناعية",
+          "description": "المنصورة — حساب موقوف مؤقتًا",
+          "icon": "inventory",
+          "disabled": true
         }
       ]
     },
@@ -16590,7 +16623,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "ControlValueAccessor value",
         "options": [],
-        "initialValue": null
+        "initialValue": "supplier-27"
       },
       {
         "name": "label",
@@ -16600,7 +16633,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "حقل تجريبي"
+        "initialValue": "حساب المورد"
       },
       {
         "name": "name",
@@ -16799,7 +16832,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "ابحث باسم المورد أو رقم الحساب"
       },
       {
         "name": "helperPosition",
@@ -16880,8 +16913,23 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "options": [],
         "initialValue": [
           {
-            "value": "customer",
-            "label": "عميل"
+            "value": "supplier-27",
+            "label": "شركة النور للتوريدات",
+            "description": "القاهرة — حساب نشط",
+            "icon": "building"
+          },
+          {
+            "value": "supplier-42",
+            "label": "مؤسسة الأفق التجارية",
+            "description": "الإسكندرية — حساب نشط",
+            "icon": "building"
+          },
+          {
+            "value": "supplier-68",
+            "label": "مجموعة الدلتا الصناعية",
+            "description": "المنصورة — حساب موقوف مؤقتًا",
+            "icon": "inventory",
+            "disabled": true
           }
         ]
       },
@@ -16893,7 +16941,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "اكتب للبحث في الحسابات"
       },
       {
         "name": "overlayConfig",
@@ -28078,31 +28126,148 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي"
+          "label": "البحث في السجلات",
+          "helperText": "ابحث في الفواتير والعملاء والموردين",
+          "placeholder": "رقم الفاتورة أو اسم الحساب",
+          "clearable": true,
+          "mode": "dropdown",
+          "items": [
+            {
+              "value": "invoice-1042",
+              "label": "فاتورة المبيعات 1042",
+              "description": "المبيعات — بانتظار الاعتماد",
+              "icon": "file"
+            },
+            {
+              "value": "customer-alnoor",
+              "label": "شركة النور للتجارة",
+              "description": "العملاء — فرع القاهرة",
+              "icon": "customer"
+            },
+            {
+              "value": "supplier-delta",
+              "label": "مجموعة الدلتا الصناعية",
+              "description": "الموردون — حساب نشط",
+              "icon": "building"
+            },
+            {
+              "value": "report-stock",
+              "label": "تقرير حركة المخزون",
+              "description": "التقارير — آخر 30 يومًا",
+              "icon": "chart"
+            }
+          ]
         }
       },
       {
         "id": "mode-modal",
         "label": "mode: modal",
         "inputs": {
-          "label": "حقل تجريبي",
-          "mode": "modal"
+          "label": "البحث في السجلات",
+          "helperText": "ابحث في الفواتير والعملاء والموردين",
+          "placeholder": "رقم الفاتورة أو اسم الحساب",
+          "clearable": true,
+          "mode": "modal",
+          "items": [
+            {
+              "value": "invoice-1042",
+              "label": "فاتورة المبيعات 1042",
+              "description": "المبيعات — بانتظار الاعتماد",
+              "icon": "file"
+            },
+            {
+              "value": "customer-alnoor",
+              "label": "شركة النور للتجارة",
+              "description": "العملاء — فرع القاهرة",
+              "icon": "customer"
+            },
+            {
+              "value": "supplier-delta",
+              "label": "مجموعة الدلتا الصناعية",
+              "description": "الموردون — حساب نشط",
+              "icon": "building"
+            },
+            {
+              "value": "report-stock",
+              "label": "تقرير حركة المخزون",
+              "description": "التقارير — آخر 30 يومًا",
+              "icon": "chart"
+            }
+          ]
         }
       },
       {
         "id": "mode-dropdown",
         "label": "mode: dropdown",
         "inputs": {
-          "label": "حقل تجريبي",
-          "mode": "dropdown"
+          "label": "البحث في السجلات",
+          "helperText": "ابحث في الفواتير والعملاء والموردين",
+          "placeholder": "رقم الفاتورة أو اسم الحساب",
+          "clearable": true,
+          "mode": "dropdown",
+          "items": [
+            {
+              "value": "invoice-1042",
+              "label": "فاتورة المبيعات 1042",
+              "description": "المبيعات — بانتظار الاعتماد",
+              "icon": "file"
+            },
+            {
+              "value": "customer-alnoor",
+              "label": "شركة النور للتجارة",
+              "description": "العملاء — فرع القاهرة",
+              "icon": "customer"
+            },
+            {
+              "value": "supplier-delta",
+              "label": "مجموعة الدلتا الصناعية",
+              "description": "الموردون — حساب نشط",
+              "icon": "building"
+            },
+            {
+              "value": "report-stock",
+              "label": "تقرير حركة المخزون",
+              "description": "التقارير — آخر 30 يومًا",
+              "icon": "chart"
+            }
+          ]
         }
       },
       {
         "id": "mode-inline",
         "label": "mode: inline",
         "inputs": {
-          "label": "حقل تجريبي",
-          "mode": "inline"
+          "label": "البحث في السجلات",
+          "helperText": "ابحث في الفواتير والعملاء والموردين",
+          "placeholder": "رقم الفاتورة أو اسم الحساب",
+          "clearable": true,
+          "mode": "inline",
+          "items": [
+            {
+              "value": "invoice-1042",
+              "label": "فاتورة المبيعات 1042",
+              "description": "المبيعات — بانتظار الاعتماد",
+              "icon": "file"
+            },
+            {
+              "value": "customer-alnoor",
+              "label": "شركة النور للتجارة",
+              "description": "العملاء — فرع القاهرة",
+              "icon": "customer"
+            },
+            {
+              "value": "supplier-delta",
+              "label": "مجموعة الدلتا الصناعية",
+              "description": "الموردون — حساب نشط",
+              "icon": "building"
+            },
+            {
+              "value": "report-stock",
+              "label": "تقرير حركة المخزون",
+              "description": "التقارير — آخر 30 يومًا",
+              "icon": "chart"
+            }
+          ]
         }
       }
     ],
@@ -28123,7 +28288,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "appearance": "standard",
       "labelMode": "static",
       "floatingPosition": "top",
-      "helperText": null,
+      "helperText": "ابحث في الفواتير والعملاء والموردين",
       "helperPosition": "below",
       "leadingIcon": null,
       "trailingIcon": null,
@@ -28132,8 +28297,33 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "feedbackDismissible": false,
       "mode": "dropdown",
       "presentation": "field",
-      "items": [],
-      "placeholder": null,
+      "items": [
+        {
+          "value": "invoice-1042",
+          "label": "فاتورة المبيعات 1042",
+          "description": "المبيعات — بانتظار الاعتماد",
+          "icon": "file"
+        },
+        {
+          "value": "customer-alnoor",
+          "label": "شركة النور للتجارة",
+          "description": "العملاء — فرع القاهرة",
+          "icon": "customer"
+        },
+        {
+          "value": "supplier-delta",
+          "label": "مجموعة الدلتا الصناعية",
+          "description": "الموردون — حساب نشط",
+          "icon": "building"
+        },
+        {
+          "value": "report-stock",
+          "label": "تقرير حركة المخزون",
+          "description": "التقارير — آخر 30 يومًا",
+          "icon": "chart"
+        }
+      ],
+      "placeholder": "رقم الفاتورة أو اسم الحساب",
       "readonly": false,
       "autocomplete": "off",
       "minLength": null,
@@ -28144,7 +28334,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "enterAnimation": "fade-scale",
       "exitAnimation": "fade-scale",
       "modalOverlayConfig": null,
-      "label": "حقل تجريبي"
+      "label": "البحث في السجلات"
     },
     "showcaseControls": [
       {
@@ -28155,7 +28345,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "ControlValueAccessor value",
         "options": [],
-        "initialValue": null
+        "initialValue": "invoice-1042"
       },
       {
         "name": "label",
@@ -28165,7 +28355,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "حقل تجريبي"
+        "initialValue": "البحث في السجلات"
       },
       {
         "name": "name",
@@ -28364,7 +28554,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "ابحث في الفواتير والعملاء والموردين"
       },
       {
         "name": "helperPosition",
@@ -28471,7 +28661,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "readonly ErpSearchBoxOption[]",
         "options": [],
-        "initialValue": []
+        "initialValue": [
+          {
+            "value": "invoice-1042",
+            "label": "فاتورة المبيعات 1042",
+            "description": "المبيعات — بانتظار الاعتماد",
+            "icon": "file"
+          },
+          {
+            "value": "customer-alnoor",
+            "label": "شركة النور للتجارة",
+            "description": "العملاء — فرع القاهرة",
+            "icon": "customer"
+          },
+          {
+            "value": "supplier-delta",
+            "label": "مجموعة الدلتا الصناعية",
+            "description": "الموردون — حساب نشط",
+            "icon": "building"
+          },
+          {
+            "value": "report-stock",
+            "label": "تقرير حركة المخزون",
+            "description": "التقارير — آخر 30 يومًا",
+            "icon": "chart"
+          }
+        ]
       },
       {
         "name": "placeholder",
@@ -28481,7 +28696,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "رقم الفاتورة أو اسم الحساب"
       },
       {
         "name": "readonly",

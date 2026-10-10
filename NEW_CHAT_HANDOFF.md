@@ -1,5 +1,16 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — SearchBox and ComboBox reviewed internally
+
+Continue from synchronized `main` after the SearchBox/ComboBox checkpoint. The
+Workbenches now use meaningful Arabic ERP records, and the optional typed
+description is visible and searchable in both owned result surfaces. Evidence
+under `docs/review-evidence/erp-search-combo/v1-internal-review/` passes 48/48
+browser assertions. Canonical verification passes 128/128 files and 838/838
+tests with a zero-warning 418.32 kB / 92.89 kB build. Product Owner acceptance
+is not recorded. Continue Bottom-Up with `ErpItemPicker`, `ErpIconPicker`, and
+`ErpColorPicker`.
+
 ## Current continuation point — temporal inputs reviewed internally
 
 Continue from synchronized `main` after the four-owner temporal checkpoint.

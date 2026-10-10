@@ -1,5 +1,22 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Search and Combo Input Internal Review State
+
+`ErpSearchBox` and `ErpComboBox` have completed internal browser review as
+original Honesty ERP candidates. Their Workbenches now begin with meaningful
+Arabic ERP records and non-empty CVA values. The shared typed option contract
+now exposes its already-consumed optional `description`; SearchBox and the
+Selection Picker render and search it through `ErpText`. Evidence under
+`docs/review-evidence/erp-search-combo/v1-internal-review/` passes 48/48
+assertions across desktop Light/RTL and 390 px Dark/LTR, including actual
+selection commits, stable viewport containment, one outer scroll boundary,
+and zero overflow, broken images, errors, or warnings. Focused verification
+passes 4/4 files and 77/77 tests; canonical verification passes 128/128 files
+and 838/838 tests, both typechecks, all governance/lint, and the zero-warning
+418.32 kB / 92.89 kB build. Status remains `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` / `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+Next Bottom-Up unit: `ErpItemPicker`, `ErpIconPicker`, and `ErpColorPicker`.
+
 ## Current Temporal Input Family Internal Review State
 
 `ErpDateBox`, `ErpTimeBox`, `ErpDateTimeBox`, and `ErpDateRangeBox` have

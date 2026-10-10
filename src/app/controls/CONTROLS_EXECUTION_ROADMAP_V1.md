@@ -1,5 +1,19 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — SearchBox and ComboBox complete internally
+
+SearchBox and ComboBox completed internal browser review as original Honesty
+ERP candidates. Their generated Workbenches now carry meaningful Arabic ERP
+records and non-empty CVA values. The shared optional description contract is
+visible and searchable through existing Selection/Field owners. The
+four-scenario gate passes 48/48 assertions with stable containment, controlled
+selection commits, one outer scroll boundary, and zero overflow, broken images,
+or diagnostics. Canonical verification passes 128/128 files and 838/838 tests
+with a zero-warning 418.32 kB / 92.89 kB build. Product Owner status remains
+pending. Continue Bottom-Up with `ErpItemPicker`, `ErpIconPicker`, and
+`ErpColorPicker`; business Feature/Page, CRUD, transport, and permissions work
+remain closed.
+
 ## Current UI continuation — temporal input family complete internally
 
 DateBox, TimeBox, DateTimeBox, and DateRangeBox completed internal browser

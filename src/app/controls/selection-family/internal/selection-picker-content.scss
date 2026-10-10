@@ -49,3 +49,9 @@
   overflow: auto;
   outline-color: var(--honesty-selection-picker-focus-color);
 }
+
+.selection-picker__item-copy {
+  display: grid;
+  flex: 1 1 auto;
+  min-inline-size: 0;
+}
