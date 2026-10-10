@@ -124,7 +124,10 @@ validation summary, custom field/section escape hatches, steps, optional review
 projection, disabled/read-only fields, RTL/theme inheritance, narrow layout,
 submit/reset/cancel intents, and deterministic unsupported-kind evidence.
 
-This phase does not open standalone EntityReview, Entity Wizard, workflow
-engine, DataPage, EntityDirectory, EntityDetail, Shell/navigation, reusable
-page patterns, feature/page migration, backend services, or ERP-specific domain
-editors. Phase 7 remains unopened.
+The 2026-10-11 Product Owner presentation-only authorization later opened the
+standalone `ErpEntityReview` candidate documented in
+`entity-review/ERP_ENTITY_REVIEW_V1.md` and the bounded readiness assessment in
+`PLANNED_UI_PATTERN_READINESS_V1.md`. That later decision does not retroactively
+expand this engine: Entity Wizard remains a composition pattern, workflow
+execution remains closed, and page patterns own no backend, transport,
+persistence, permissions, routing policy, or domain transactions.

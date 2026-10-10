@@ -1,5 +1,18 @@
 # Next Component Reference Batch V1
 
+## Authoritative current action — 2026-10-11 — DataPage composition
+
+The planned-pattern readiness assessment and immutable `ErpEntityReview` V1
+checkpoint are technically complete. The catalog now has 82 public owners and
+the full route audit passes. Product Owner visual acceptance remains pending.
+
+The next safe Bottom-Up unit is a bounded public `DataPage` composition using
+the existing Page/PageHeader/PageShell, SmartTable, toolbar, filter, chooser,
+pagination, and action owners. Consumers retain data, query state, fetch,
+mutation, routing, permissions, persistence, and backend effects. Do not turn
+Entity Wizard, EntityDirectory, or EntityDetail into public facade owners
+without a distinct nonduplicating contract; do not implement Workflow engine.
+
 ## Authoritative current action — 2026-10-11 — planned UI-only readiness
 
 The root Topbar visual correction V3 is technically verified and internally

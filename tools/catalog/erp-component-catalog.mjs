@@ -85,6 +85,7 @@ const ARABIC_COMPONENT_METADATA = new Map([
   ['status-badge', ['شارة الحالة', 'مؤشر حالة غير تفاعلي أو تفاعلي حسب العقد.']],
   ['tooltip', ['تلميح', 'شرح مثبت على محفز مرئي مع مواضع وسلوك فتح متعددة.']],
   ['entity-schema-fields', ['حقول مخطط الكيان', 'عرض حقول المخطط من خلال مدخلات ERP المعتمدة.']],
+  ['entity-review', ['مراجعة الكيان', 'عرض قيم كيان ثابتة من سياق مراجعة المخطط.']],
   ['form', ['نموذج', 'حد form الدلالي مع نوايا الإرسال وإعادة الضبط.']],
   ['form-actions', ['إجراءات النموذج', 'تخطيط الإجراءات الأساسية والثانوية للنموذج.']],
   ['form-section', ['قسم النموذج', 'تجميع دلالي لحقول النموذج مع عنوان وإجراءات.']],
@@ -219,7 +220,7 @@ const CATEGORY_GROUPS = [
     'erp-smart-table', 'erp-table', 'erp-table-toolbar',
   ])],
   ['Forms', new Set([
-    'erp-entity-schema-fields', 'erp-form', 'erp-form-actions',
+    'erp-entity-review', 'erp-entity-schema-fields', 'erp-form', 'erp-form-actions',
     'erp-form-section', 'erp-repeater', 'erp-standard-entity-form',
     'erp-validation-summary',
   ])],
@@ -476,6 +477,28 @@ const FIXTURE_INPUTS = new Map([
   ['ErpDateBox', {label: 'تاريخ الاستحقاق', helperText: 'تاريخ استحقاق الفاتورة', min: '2026-01-01', max: '2026-12-31', weekStartsOn: 6, clearable: true}],
   ['ErpDateRangeBox', {label: 'فترة التقرير', helperText: 'حدّد بداية ونهاية الفترة المالية', min: '2026-01-01', max: '2026-12-31', clearable: true}],
   ['ErpDateTimeBox', {label: 'موعد التسليم', helperText: 'التاريخ والوقت المحليان للتسليم', min: '2026-01-01T00:00', max: '2026-12-31T23:55', clearable: true}],
+  ['ErpEntityReview', {
+    context: {
+      $implicit: {name: 'شركة النيل للتوريدات', active: true, branch: 'cairo', limit: 250000},
+      values: {name: 'شركة النيل للتوريدات', active: true, branch: 'cairo', limit: 250000},
+      schema: {
+        id: 'supplier-review',
+        label: 'مراجعة المورد',
+        sections: [{
+          kind: 'fields', id: 'identity', title: 'بيانات المورد', description: 'قيم ثابتة قبل الاعتماد',
+          fields: [
+            {kind: 'text', key: 'name', label: 'اسم المورد'},
+            {kind: 'checkbox', key: 'active', label: 'نشط'},
+            {kind: 'select', key: 'branch', label: 'الفرع', options: [{value: 'cairo', label: 'القاهرة'}]},
+            {kind: 'money', key: 'limit', label: 'الحد الائتماني', currency: 'EGP'},
+          ],
+        }],
+        steps: [{id: 'review', label: 'المراجعة', sectionIds: ['identity'], review: true}],
+        actions: {submitLabel: 'اعتماد'},
+      },
+      step: {id: 'review', label: 'المراجعة', sectionIds: ['identity'], review: true},
+    },
+  }],
   ['ErpEntitySchemaFields', {
     fields: [
       {key: 'name', kind: 'text', label: 'اسم المورد', description: 'الاسم المسجل في المستندات', required: true},

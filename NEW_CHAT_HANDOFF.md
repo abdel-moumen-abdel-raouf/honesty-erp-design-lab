@@ -1,5 +1,22 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — DataPage presentation contract
+
+Continue from synchronized `main` after the immutable `ErpEntityReview` V1
+checkpoint. The catalog contains 82 public owners, 45 supporting entries, and
+five remaining planned identities. EntityReview has one-target Workbench,
+bounded gallery evidence, desktop/narrow Light/Dark RTL/LTR captures, and an
+82/82 route audit with zero failures. Canonical verification is 154/154 files,
+892/892 tests, and a zero-warning 425.83 kB / 93.18 kB build.
+
+The next authorized Bottom-Up unit is the bounded public `DataPage`
+composition described by `PLANNED_UI_PATTERN_READINESS_V1.md`: consumer-owned
+data/query state, existing Page/PageHeader/PageShell and data-table owners, no
+HTTP, persistence, CRUD, permissions, routing, or backend. Entity Wizard,
+EntityDirectory, and EntityDetail remain review-only composition candidates;
+Workflow execution remains excluded. Product Owner visual acceptance is still
+pending.
+
 ## Current continuation point — planned UI-only contract readiness
 
 The root Topbar visual correction V3 is technically verified from entry

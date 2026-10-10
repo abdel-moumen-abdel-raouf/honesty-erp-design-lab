@@ -9,7 +9,11 @@ const baseUrl = process.argv.find((argument) => argument.startsWith('--base-url=
 const captureOnly = process.argv.includes('--capture-only');
 const scenarioFilter = process.argv.find((argument) => argument.startsWith('--scenario='))
   ?.slice('--scenario='.length);
-const evidenceDirectory = path.join(REPO_ROOT, 'docs/review-evidence/visual-review-experience-v1-1');
+const evidenceArgument = process.argv.find((argument) => argument.startsWith('--evidence-dir='))
+  ?.slice('--evidence-dir='.length);
+const evidenceDirectory = evidenceArgument
+  ? path.resolve(REPO_ROOT, evidenceArgument)
+  : path.join(REPO_ROOT, 'docs/review-evidence/visual-review-experience-v1-1');
 const outputDirectory = await fs.mkdtemp(path.join(os.tmpdir(), 'honesty-review-output-'));
 const edgePath = 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe';
 const debuggingPort = 9335;

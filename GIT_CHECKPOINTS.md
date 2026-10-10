@@ -1,5 +1,30 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Immutable Entity Review V1 candidate — 2026-10-11
+
+Entry checkpoint:
+
+- `c447e0d8e643b4a196f1872c7322c2e3274e44d9` — synchronized clean `main`
+  after the root Topbar visual correction V3.
+
+Bounded scope:
+
+- Added `ErpEntityReview` as a read-only presentation over the existing entity
+  schema/review context, with no mutation or business-system authority.
+- Added the six-identity contract-readiness matrix and kept Workflow engine
+  explicitly deferred.
+- Registered the dedicated route/one-target Workbench, generated catalog and
+  lifecycle authority, governance, browser evidence, and 82-route audit.
+
+Verification before commit:
+
+- Focused regression: 4/4 files and 54/54 tests.
+- Browser audit: 82/82 routes, zero failures; EntityReview desktop/narrow
+  Light/Dark RTL/LTR evidence has zero clipping, overflow, broken images, or
+  diagnostics.
+- `npm run verify:clean`: 154/154 files, 892/892 tests, both typechecks, all
+  governance/lint, and a zero-warning 425.83 kB / 93.18 kB build.
+
 ## Root Topbar visual correction V3 candidate — 2026-10-11
 
 Entry checkpoint:

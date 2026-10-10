@@ -14,9 +14,9 @@ describe('ComponentCatalogContent', () => {
     const fixture = TestBed.createComponent(ComponentCatalogContent);
     fixture.detectChanges();
 
-    expect(fixture.componentInstance.publicCount).toBe(81);
+    expect(fixture.componentInstance.publicCount).toBe(82);
     expect(fixture.componentInstance.groups()
-      .flatMap((group) => group.entries)).toHaveLength(81);
+      .flatMap((group) => group.entries)).toHaveLength(82);
   });
 
   it('filters by grounded lifecycle authority without inferring acceptance', () => {

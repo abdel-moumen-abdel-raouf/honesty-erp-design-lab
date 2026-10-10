@@ -1,6 +1,6 @@
 # Honesty ERP Component Lifecycle Ledger V1
 
-Generated from `src/app/catalog/erp-component-catalog.generated.ts` on 2026-10-10.
+Generated from `src/app/catalog/erp-component-catalog.generated.ts` on 2026-10-11.
 Run `npm run erp-component-lifecycle:generate` after catalog or explicit
 Product Owner status changes; `npm run erp-component-lifecycle:check` rejects
 drift.
@@ -19,21 +19,21 @@ drift.
 
 ## Resolution summary
 
-- Public owners: **81**.
+- Public owners: **82**.
 - Supporting catalog entries: **45**.
 - Explicitly accepted/frozen public owners: **1** (`ErpCheckBox`).
 - Explicitly reopened public owners: **5**.
-- Planned identities outside the implemented catalog: **6**.
-- Internally browser-reviewed public owners: **80**.
+- Planned identities outside the implemented catalog: **5**.
+- Internally browser-reviewed public owners: **81**.
 - The currently defined public UI backlog is internally processed: the one
   explicitly accepted owner remains frozen, and every other public owner has a
   technically verified candidate plus internal browser evidence. Exact-reference
   and reopened candidates remain Product Owner review pending; internal review
   does not convert them to accepted.
-- The six planned identities below remain outside the implemented public catalog
-  and outside the authorized UI-component backlog. No business Feature/Page,
-  CRUD, workflow, transport, permissions, or backend work is opened by this
-  ledger closure.
+- The remaining planned identities below are governed by
+  `PLANNED_UI_PATTERN_READINESS_V1.md`. Only safe presentation composition is
+  authorized; CRUD, workflow execution, transport, permissions, and backend
+  work remain closed.
 
 ## Public owner inventory
 
@@ -100,6 +100,7 @@ drift.
 | ErpSmartTable | `erp-smart-table` | Data / Tables | IMPLEMENTED / TECHNICAL_VERIFIED | UNKNOWN / PO REVIEW PENDING | Technical verification and internal browser review are complete; no Product Owner accept/reject decision is recorded. | No binding component-specific reference recorded; current PO authorization permits a labeled original Honesty ERP candidate | ErpAlert, ErpBulkActionBar, ErpColumnChooser, ErpDataColumn, ErpDataFilter, ErpDataFilterDefinition, ErpDataSort, ErpEmptyState, ErpFilterBar, ErpFilterDrawer, ErpPagination, ErpSkeleton, ErpSmartTableMode, ErpSmartTableQuery, ErpTable, ErpTableCell, ErpTableColumn, ErpTableRow, ErpTableSort, ErpTableToolbar, erp-alert, erp-bulk-action-bar, erp-column-chooser, erp-empty-state, erp-filter-bar, erp-filter-drawer, erp-pagination, erp-skeleton, erp-table, erp-table-toolbar | `/components/smart-table` | Preserve the verified candidate and await consolidated Product Owner visual review. |
 | ErpTable | `erp-table` | Data / Tables | IMPLEMENTED / TECHNICAL_VERIFIED | REOPENED | The eddac4a8 candidate was rejected; the full reference experience remains pending review. | src/app/controls/table/ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md | ErpCheckBox, ErpIcon, ErpIconName, ErpSortDirection, ErpSortHeader, ErpTableAlign, ErpTableCell, ErpTableCellContext, ErpTableColumn, ErpTableColumnWidthChange, ErpTableDensity, ErpTableDigitSet, ErpTableFooter, ErpTableFooterContext, ErpTableLayout, ErpTableOverflow, ErpTablePresentation, ErpTableResizeHandle, ErpTableRow, ErpTableSort, ErpTableViewport, ErpText, ErpTextDirection, ErpTextFamily, erp-check-box, erp-icon, erp-sort-header, erp-table-resize-handle, erp-table-viewport, erp-text | `/components/table` | Preserve the verified candidate and await consolidated Product Owner visual review. |
 | ErpTableToolbar | `erp-table-toolbar` | Data / Tables | IMPLEMENTED / TECHNICAL_VERIFIED | UNKNOWN / PO REVIEW PENDING | Technical verification and internal browser review are complete; no Product Owner accept/reject decision is recorded. | No binding component-specific reference recorded; current PO authorization permits a labeled original Honesty ERP candidate | ErpButton, ErpText, erp-button, erp-text | `/components/table-toolbar` | Preserve the verified candidate and await consolidated Product Owner visual review. |
+| ErpEntityReview | `erp-entity-review` | Forms | IMPLEMENTED / TECHNICAL_VERIFIED | UNKNOWN / PO REVIEW PENDING | Technical verification and internal browser review are complete; no Product Owner accept/reject decision is recorded. | No binding component-specific reference recorded; current PO authorization permits a labeled original Honesty ERP candidate | ErpEntityFieldDefinition, ErpEntityFieldValue, ErpEntityFieldsSection, ErpEntityFormSchemaError, ErpEntityReviewContext, ErpEntitySectionDefinition, ErpFormSection, ErpText, erp-form-section, erp-text | `/components/entity-review` | Preserve the verified candidate and await consolidated Product Owner visual review. |
 | ErpEntitySchemaFields | `erp-entity-schema-fields` | Forms | IMPLEMENTED / TECHNICAL_VERIFIED | UNKNOWN / PO REVIEW PENDING | Technical verification and internal browser review are complete; no Product Owner accept/reject decision is recorded. | No binding component-specific reference recorded; current PO authorization permits a labeled original Honesty ERP candidate | ErpCheckBox, ErpDateBox, ErpDateTimeBox, ErpEntityCustomFieldContext, ErpEntityCustomFieldOutlet, ErpEntityFieldDefinition, ErpEntityFieldValue, ErpEntityFieldValueChange, ErpEntityFieldsSection, ErpEntityFormSchemaError, ErpEntityFormValues, ErpFormValidationIssue, ErpInputValidationIssue, ErpMoneyBox, ErpNumberBox, ErpPasswordBox, ErpRadioGroup, ErpSelect, ErpTelBox, ErpTextAreaBox, ErpTextBox, ErpTimeBox, ErpUrlBox, erp-check-box, erp-date-box, erp-date-time-box, erp-money-box, erp-number-box, erp-password-box, erp-radio-group, erp-select, erp-tel-box, erp-text-area-box, erp-text-box, erp-time-box, erp-url-box | `/components/entity-schema-fields` | Preserve the verified candidate and await consolidated Product Owner visual review. |
 | ErpForm | `erp-form` | Forms | IMPLEMENTED / TECHNICAL_VERIFIED | UNKNOWN / PO REVIEW PENDING | Technical verification and internal browser review are complete; no Product Owner accept/reject decision is recorded. | No binding component-specific reference recorded; current PO authorization permits a labeled original Honesty ERP candidate | ErpText, erp-text | `/components/form` | Preserve the verified candidate and await consolidated Product Owner visual review. |
 | ErpFormActions | `erp-form-actions` | Forms | IMPLEMENTED / TECHNICAL_VERIFIED | UNKNOWN / PO REVIEW PENDING | Technical verification and internal browser review are complete; no Product Owner accept/reject decision is recorded. | No binding component-specific reference recorded; current PO authorization permits a labeled original Honesty ERP candidate | none recorded | `/components/form-actions` | Preserve the verified candidate and await consolidated Product Owner visual review. |
@@ -175,7 +176,6 @@ drift.
 
 | Identity | Intended ownership | Implementation | Visual status | Source authority | Dependencies | Scope/next action |
 |---|---|---|---|---|---|---|
-| ErpEntityReview | planned standalone owner | PLANNED ONLY | UNKNOWN / NOT REVIEWED AS AN OWNER | src/app/controls/ENTITY_FORM_ENGINE_V1.md | ErpStandardEntityForm review template contract | PLANNED / outside the currently authorized UI-component backlog; no standalone implementation authority. |
 | Entity Wizard | planned pattern | PLANNED ONLY | UNKNOWN / NOT REVIEWED AS AN OWNER | src/app/controls/ENTITY_FORM_ENGINE_V1.md | ErpStepper + Entity Form contracts | PLANNED / business pattern remains closed. |
 | Workflow engine | planned system | PLANNED ONLY | UNKNOWN / NOT REVIEWED AS AN OWNER | src/app/controls/ENTITY_FORM_ENGINE_V1.md | not established | PLANNED / backend and business workflow authority remains closed. |
 | DataPage | planned page pattern | PLANNED ONLY | UNKNOWN / NOT REVIEWED AS AN OWNER | src/app/controls/ENTITY_FORM_ENGINE_V1.md | Table/Data + Page composition | PLANNED / Feature/Page scope remains closed. |

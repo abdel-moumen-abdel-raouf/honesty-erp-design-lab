@@ -1,5 +1,24 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — immutable Entity Review V1
+
+`ErpEntityReview` is now the public read-only entity-value presentation owner.
+It consumes the established `ErpEntityReviewContext`, renders only referenced
+schema sections, resolves option labels, formats bounded values, masks password
+data, and fails deterministically for missing sections. It emits no mutation or
+business intent and owns no form, workflow, router, persistence, transport, or
+permission behavior.
+
+The source-backed readiness matrix keeps Entity Wizard, EntityDirectory, and
+EntityDetail as review-only compositions unless a distinct nonduplicating
+contract is later proven; DataPage is the next safe public composition
+candidate; Workflow engine remains deferred as a non-UI business system. The
+catalog reports 82 public, 45 supporting, and five planned identities. The
+82-route browser audit and EntityReview desktop/narrow evidence pass with one
+primary target, zero clipping/overflow/broken images/diagnostics. Canonical
+verification passes 154/154 files and 892/892 tests with a zero-warning
+425.83 kB / 93.18 kB build.
+
 ## Current checkpoint — root Topbar visual correction V3
 
 The integrated AppShell Topbar has been reconstructed without creating another

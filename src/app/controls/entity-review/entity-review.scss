@@ -1,0 +1,9 @@
+@use '../../../styles/foundation/components/entity-review' as tokens;
+@use '../../../styles/foundation/queries' as query;
+
+:host { @include tokens.base; display: block; min-inline-size: 0; container-type: inline-size; }
+.entity-review { display: grid; gap: var(--honesty-entity-review-section-gap); min-inline-size: 0; }
+.entity-review__values { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--honesty-entity-review-value-gap); margin: 0; }
+.entity-review__value { display: grid; gap: var(--honesty-entity-review-label-gap); min-inline-size: 0; padding: var(--honesty-entity-review-value-padding); border: var(--honesty-entity-review-border-width) solid var(--honesty-entity-review-border-color); border-radius: var(--honesty-entity-review-radius); }
+.entity-review__value dt, .entity-review__value dd { min-inline-size: 0; margin: 0; }
+@include query.container-down('sm') { .entity-review__values { grid-template-columns: minmax(0, 1fr); } }

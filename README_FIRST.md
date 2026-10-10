@@ -1,5 +1,22 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest planned UI checkpoint — immutable Entity Review V1
+
+The Product Owner-authorized planned-pattern assessment now records a bounded
+readiness decision for all six historical identities. `ErpEntityReview` is the
+first safe public presentation owner: it renders immutable entity values from
+the existing schema/review context, reuses `ErpFormSection` and `ErpText`, and
+owns no editing, workflow, persistence, routing, permissions, or transport.
+
+The generated catalog now contains 82 public owners, 45 supporting entries,
+and five remaining planned identities. `/components/entity-review` retains one
+primary target plus bounded secondary gallery evidence. Persisted desktop and
+narrow Light/Dark RTL/LTR evidence and the 82-route audit report zero overflow,
+clipping, broken images, or browser diagnostics. Canonical verification passes
+154/154 files and 892/892 tests with a zero-warning 425.83 kB / 93.18 kB build.
+This is technical/internal evidence only; Product Owner acceptance remains
+pending.
+
 ## Latest Shell checkpoint — root Topbar visual correction V3
 
 The Product Owner-authorized root Topbar correction entered from clean

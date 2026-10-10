@@ -1,5 +1,23 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Planned UI Pattern State
+
+The Product Owner-authorized planned-pattern assessment entered from clean
+`c447e0d8e643b4a196f1872c7322c2e3274e44d9`. `ErpEntityReview` is now the
+bounded public immutable review owner over the existing entity schema context.
+It owns no form mutation, workflow, transport, persistence, routing,
+permissions, or backend behavior. The generated catalog contains 82 public
+owners, 45 supporting entries, and five remaining planned identities.
+
+The 82-route runtime audit and EntityReview desktop/narrow Light/Dark RTL/LTR
+evidence pass with one primary target and zero clipping, overflow, broken
+images, or browser diagnostics. Canonical verification passes 154/154 test
+files and 892/892 tests, both typechecks, all governance, production build, and
+zero warnings. The exact next authorized unit is bounded `DataPage`
+composition. Entity Wizard, EntityDirectory, and EntityDetail remain
+review-only candidates; Workflow engine remains deferred. Technical/internal
+PASS is not Product Owner visual acceptance.
+
 ## Current Root Topbar Visual Correction V3 State
 
 The Product Owner-authorized Topbar correction entered from clean

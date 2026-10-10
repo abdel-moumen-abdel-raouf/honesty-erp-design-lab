@@ -55,6 +55,7 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpDivider',
   'ErpEmptyState',
   'ErpEntitySchemaFields',
+  'ErpEntityReview',
   'ErpExtendedFab',
   'ErpFab',
   'ErpFabMenu',
@@ -132,13 +133,6 @@ const CATEGORY_ORDER = new Map([
 ]);
 
 const PLANNED = [
-  {
-    identity: 'ErpEntityReview',
-    owner: 'planned standalone owner',
-    source: 'src/app/controls/ENTITY_FORM_ENGINE_V1.md',
-    dependency: 'ErpStandardEntityForm review template contract',
-    action: 'PLANNED / outside the currently authorized UI-component backlog; no standalone implementation authority.',
-  },
   {
     identity: 'Entity Wizard',
     owner: 'planned pattern',
@@ -258,9 +252,9 @@ function buildLedger(catalog) {
       || left.className.localeCompare(right.className),
     );
 
-  if (publicEntries.length !== 81 || supportingEntries.length !== 45) {
+  if (publicEntries.length !== 82 || supportingEntries.length !== 45) {
     throw new Error(
-      `Catalog inventory drift: expected 81 public and 45 supporting; received ${publicEntries.length} and ${supportingEntries.length}.`,
+      `Catalog inventory drift: expected 82 public and 45 supporting; received ${publicEntries.length} and ${supportingEntries.length}.`,
     );
   }
   if (publicEntries.filter((entry) => entry.visualStatus === 'ACCEPTED').map((entry) => entry.className).join(',') !== 'ErpCheckBox') {
@@ -281,7 +275,7 @@ function buildLedger(catalog) {
 
   return `# Honesty ERP Component Lifecycle Ledger V1
 
-Generated from \`src/app/catalog/erp-component-catalog.generated.ts\` on 2026-10-10.
+Generated from \`src/app/catalog/erp-component-catalog.generated.ts\` on 2026-10-11.
 Run \`npm run erp-component-lifecycle:generate\` after catalog or explicit
 Product Owner status changes; \`npm run erp-component-lifecycle:check\` rejects
 drift.
@@ -311,10 +305,10 @@ drift.
   technically verified candidate plus internal browser evidence. Exact-reference
   and reopened candidates remain Product Owner review pending; internal review
   does not convert them to accepted.
-- The six planned identities below remain outside the implemented public catalog
-  and outside the authorized UI-component backlog. No business Feature/Page,
-  CRUD, workflow, transport, permissions, or backend work is opened by this
-  ledger closure.
+- The remaining planned identities below are governed by
+  \`PLANNED_UI_PATTERN_READINESS_V1.md\`. Only safe presentation composition is
+  authorized; CRUD, workflow execution, transport, permissions, and backend
+  work remain closed.
 
 ## Public owner inventory
 
@@ -354,8 +348,8 @@ if (process.argv.includes('--check')) {
     console.error('ERP component lifecycle ledger is stale. Run npm run erp-component-lifecycle:generate.');
     process.exit(1);
   }
-  console.log('ERP component lifecycle ledger: PASS (81 public, 45 supporting, 6 planned).');
+  console.log('ERP component lifecycle ledger: PASS (82 public, 45 supporting, 5 planned).');
 } else {
   await fs.writeFile(OUTPUT_PATH, output, 'utf8');
-  console.log('Generated ERP component lifecycle ledger (81 public, 45 supporting, 6 planned).');
+  console.log('Generated ERP component lifecycle ledger (82 public, 45 supporting, 5 planned).');
 }

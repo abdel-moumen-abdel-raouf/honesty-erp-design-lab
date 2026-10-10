@@ -462,6 +462,22 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     }
   },
   {
+    "id": "entity-review",
+    "className": "ErpEntityReview",
+    "selector": "erp-entity-review",
+    "category": "Forms",
+    "showcaseRoute": "/components/entity-review",
+    "displayNameAr": "مراجعة الكيان",
+    "descriptionAr": "عرض قيم كيان ثابتة من سياق مراجعة المخطط.",
+    "purpose": "Owns the public ERP entity review semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
+  },
+  {
     "id": "entity-schema-fields",
     "className": "ErpEntitySchemaFields",
     "selector": "erp-entity-schema-fields",

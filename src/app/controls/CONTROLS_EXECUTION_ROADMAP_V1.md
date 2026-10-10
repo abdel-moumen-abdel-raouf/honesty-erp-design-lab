@@ -1,5 +1,21 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — immutable Entity Review V1 complete
+
+The six-identity readiness assessment is recorded in
+`PLANNED_UI_PATTERN_READINESS_V1.md`. `ErpEntityReview` is now the bounded
+public read-only presentation owner over the existing schema/review context.
+The generated catalog has 82 public owners, 45 supporting entries, and five
+planned identities. Its one-target Workbench, browser evidence, and 82-route
+audit pass; canonical verification is 154/154 files and 892/892 tests with a
+zero-warning 425.83 kB / 93.18 kB build.
+
+Continue Bottom-Up with the source-bounded public `DataPage` composition. Keep
+Entity Wizard, EntityDirectory, and EntityDetail as review-only compositions
+unless a distinct nonduplicating contract is proven. Workflow engine remains a
+deferred non-UI business system. No HTTP, CRUD, persistence, permissions,
+routing, domain transactions, or backend behavior is opened.
+
 ## Current UI continuation — root Topbar correction technically complete
 
 The Product Owner-authorized root Topbar correction is complete as a bounded

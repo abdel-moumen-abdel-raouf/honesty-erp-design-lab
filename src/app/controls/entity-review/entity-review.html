@@ -1,0 +1,18 @@
+<span class="entity-review">
+  @for (section of sections(); track section.id) {
+    <erp-form-section [title]="section.title" [description]="section.description ?? null" [compact]="compact()">
+      @if (isFieldsSection(section)) {
+        <dl class="entity-review__values">
+          @for (field of fields(section); track field.key) {
+            <div class="entity-review__value" [attr.data-entity-review-field]="field.key">
+              <dt><erp-text type="term" size="sm" tone="secondary">{{ field.label }}</erp-text></dt>
+              <dd><erp-text type="description" size="md" selectable>{{ valueFor(field) }}</erp-text></dd>
+            </div>
+          }
+        </dl>
+      } @else {
+        <erp-text type="paragraph" tone="secondary">{{ customSectionLabel() }}</erp-text>
+      }
+    </erp-form-section>
+  }
+</span>

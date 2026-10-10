@@ -1,5 +1,24 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Planned UI pattern decisions — 2026-10-11
+
+- `ErpEntityReview` is a distinct immutable presentation owner over the
+  established `ErpEntityReviewContext`; it does not duplicate the Entity Form
+  engine or acquire edit, submit, workflow, transport, persistence, router, or
+  permission authority.
+- Missing referenced schema sections fail deterministically. Select/radio
+  labels come from schema options, sensitive values use bounded masked
+  presentation, and custom sections remain explicitly consumer supplied.
+- `DataPage` is the next safe public composition candidate because the existing
+  Page and data-table owners provide its lower-level semantics.
+- Entity Wizard, EntityDirectory, and EntityDetail remain review-only
+  compositions unless a future distinct public contract is proven without
+  duplicating existing owners.
+- Workflow engine is not a UI component and remains deferred. No execution
+  states, policy, persistence, backend, or business rules may be invented.
+- `ErpEntityReview` is `TECHNICAL_VERIFIED` and internally browser-reviewed;
+  it remains `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+
 ## Root Topbar visual correction decisions — 2026-10-11
 
 - The real root composition is the acceptance surface; the standalone Topbar

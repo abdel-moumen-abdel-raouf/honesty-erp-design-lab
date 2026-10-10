@@ -18316,6 +18316,511 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     }
   },
   {
+    "id": "entity-review",
+    "selector": "erp-entity-review",
+    "className": "ErpEntityReview",
+    "category": "Forms",
+    "classification": "PUBLIC ERP COMPONENT",
+    "sourcePath": "src/app/controls/entity-review/entity-review.ts",
+    "purpose": "Owns the public ERP entity review semantic and presentation contract.",
+    "publicApi": {
+      "inputs": [
+        {
+          "name": "context",
+          "required": true,
+          "values": [],
+          "type": "ErpEntityReviewContext",
+          "hasDefault": false,
+          "defaultValue": null,
+          "defaultExpression": null
+        },
+        {
+          "name": "compact",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
+        },
+        {
+          "name": "emptyValueLabel",
+          "required": false,
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "غير متوفر",
+          "defaultExpression": "'غير متوفر'"
+        },
+        {
+          "name": "trueValueLabel",
+          "required": false,
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "نعم",
+          "defaultExpression": "'نعم'"
+        },
+        {
+          "name": "falseValueLabel",
+          "required": false,
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "لا",
+          "defaultExpression": "'لا'"
+        },
+        {
+          "name": "sensitiveValueLabel",
+          "required": false,
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "••••••••",
+          "defaultExpression": "'••••••••'"
+        },
+        {
+          "name": "customSectionLabel",
+          "required": false,
+          "values": [],
+          "type": "string",
+          "hasDefault": true,
+          "defaultValue": "محتوى مخصص يقدمه المستهلك في تجربة المراجعة.",
+          "defaultExpression": "'محتوى مخصص يقدمه المستهلك في تجربة المراجعة.'"
+        }
+      ],
+      "outputs": [],
+      "models": []
+    },
+    "lowerLevelOwners": [
+      "ErpEntityFieldDefinition",
+      "ErpEntityFieldValue",
+      "ErpEntityFieldsSection",
+      "ErpEntityFormSchemaError",
+      "ErpEntityReviewContext",
+      "ErpEntitySectionDefinition",
+      "ErpFormSection",
+      "ErpText",
+      "erp-form-section",
+      "erp-text"
+    ],
+    "nativeElementsOwned": [
+      "dd",
+      "div",
+      "dl",
+      "dt",
+      "span"
+    ],
+    "nativeCoverage": [],
+    "coverageScope": "public-consumer",
+    "showcaseRoute": "/components/entity-review",
+    "showcaseOwnerPath": "src/app/showcase/components/entity-review/entity-review-showcase.ts",
+    "showcaseLoader": "entity-review",
+    "visualReference": null,
+    "visualStatus": "PENDING",
+    "showcaseFacets": [],
+    "showcaseCases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "context": {
+            "$implicit": {
+              "name": "شركة النيل للتوريدات",
+              "active": true,
+              "branch": "cairo",
+              "limit": 250000
+            },
+            "values": {
+              "name": "شركة النيل للتوريدات",
+              "active": true,
+              "branch": "cairo",
+              "limit": 250000
+            },
+            "schema": {
+              "id": "supplier-review",
+              "label": "مراجعة المورد",
+              "sections": [
+                {
+                  "kind": "fields",
+                  "id": "identity",
+                  "title": "بيانات المورد",
+                  "description": "قيم ثابتة قبل الاعتماد",
+                  "fields": [
+                    {
+                      "kind": "text",
+                      "key": "name",
+                      "label": "اسم المورد"
+                    },
+                    {
+                      "kind": "checkbox",
+                      "key": "active",
+                      "label": "نشط"
+                    },
+                    {
+                      "kind": "select",
+                      "key": "branch",
+                      "label": "الفرع",
+                      "options": [
+                        {
+                          "value": "cairo",
+                          "label": "القاهرة"
+                        }
+                      ]
+                    },
+                    {
+                      "kind": "money",
+                      "key": "limit",
+                      "label": "الحد الائتماني",
+                      "currency": "EGP"
+                    }
+                  ]
+                }
+              ],
+              "steps": [
+                {
+                  "id": "review",
+                  "label": "المراجعة",
+                  "sectionIds": [
+                    "identity"
+                  ],
+                  "review": true
+                }
+              ],
+              "actions": {
+                "submitLabel": "اعتماد"
+              }
+            },
+            "step": {
+              "id": "review",
+              "label": "المراجعة",
+              "sectionIds": [
+                "identity"
+              ],
+              "review": true
+            }
+          }
+        }
+      }
+    ],
+    "displayNameAr": "مراجعة الكيان",
+    "descriptionAr": "عرض قيم كيان ثابتة من سياق مراجعة المخطط.",
+    "showcaseInitialValues": {
+      "compact": false,
+      "emptyValueLabel": "غير متوفر",
+      "trueValueLabel": "نعم",
+      "falseValueLabel": "لا",
+      "sensitiveValueLabel": "••••••••",
+      "customSectionLabel": "محتوى مخصص يقدمه المستهلك في تجربة المراجعة.",
+      "context": {
+        "$implicit": {
+          "name": "شركة النيل للتوريدات",
+          "active": true,
+          "branch": "cairo",
+          "limit": 250000
+        },
+        "values": {
+          "name": "شركة النيل للتوريدات",
+          "active": true,
+          "branch": "cairo",
+          "limit": 250000
+        },
+        "schema": {
+          "id": "supplier-review",
+          "label": "مراجعة المورد",
+          "sections": [
+            {
+              "kind": "fields",
+              "id": "identity",
+              "title": "بيانات المورد",
+              "description": "قيم ثابتة قبل الاعتماد",
+              "fields": [
+                {
+                  "kind": "text",
+                  "key": "name",
+                  "label": "اسم المورد"
+                },
+                {
+                  "kind": "checkbox",
+                  "key": "active",
+                  "label": "نشط"
+                },
+                {
+                  "kind": "select",
+                  "key": "branch",
+                  "label": "الفرع",
+                  "options": [
+                    {
+                      "value": "cairo",
+                      "label": "القاهرة"
+                    }
+                  ]
+                },
+                {
+                  "kind": "money",
+                  "key": "limit",
+                  "label": "الحد الائتماني",
+                  "currency": "EGP"
+                }
+              ]
+            }
+          ],
+          "steps": [
+            {
+              "id": "review",
+              "label": "المراجعة",
+              "sectionIds": [
+                "identity"
+              ],
+              "review": true
+            }
+          ],
+          "actions": {
+            "submitLabel": "اعتماد"
+          }
+        },
+        "step": {
+          "id": "review",
+          "label": "المراجعة",
+          "sectionIds": [
+            "identity"
+          ],
+          "review": true
+        }
+      }
+    },
+    "showcaseControls": [
+      {
+        "name": "context",
+        "label": "context",
+        "source": "input",
+        "kind": "json",
+        "required": true,
+        "type": "ErpEntityReviewContext",
+        "options": [],
+        "initialValue": {
+          "$implicit": {
+            "name": "شركة النيل للتوريدات",
+            "active": true,
+            "branch": "cairo",
+            "limit": 250000
+          },
+          "values": {
+            "name": "شركة النيل للتوريدات",
+            "active": true,
+            "branch": "cairo",
+            "limit": 250000
+          },
+          "schema": {
+            "id": "supplier-review",
+            "label": "مراجعة المورد",
+            "sections": [
+              {
+                "kind": "fields",
+                "id": "identity",
+                "title": "بيانات المورد",
+                "description": "قيم ثابتة قبل الاعتماد",
+                "fields": [
+                  {
+                    "kind": "text",
+                    "key": "name",
+                    "label": "اسم المورد"
+                  },
+                  {
+                    "kind": "checkbox",
+                    "key": "active",
+                    "label": "نشط"
+                  },
+                  {
+                    "kind": "select",
+                    "key": "branch",
+                    "label": "الفرع",
+                    "options": [
+                      {
+                        "value": "cairo",
+                        "label": "القاهرة"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "money",
+                    "key": "limit",
+                    "label": "الحد الائتماني",
+                    "currency": "EGP"
+                  }
+                ]
+              }
+            ],
+            "steps": [
+              {
+                "id": "review",
+                "label": "المراجعة",
+                "sectionIds": [
+                  "identity"
+                ],
+                "review": true
+              }
+            ],
+            "actions": {
+              "submitLabel": "اعتماد"
+            }
+          },
+          "step": {
+            "id": "review",
+            "label": "المراجعة",
+            "sectionIds": [
+              "identity"
+            ],
+            "review": true
+          }
+        }
+      },
+      {
+        "name": "compact",
+        "label": "compact",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
+        "name": "emptyValueLabel",
+        "label": "emptyValueLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "غير متوفر"
+      },
+      {
+        "name": "trueValueLabel",
+        "label": "trueValueLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "نعم"
+      },
+      {
+        "name": "falseValueLabel",
+        "label": "falseValueLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "لا"
+      },
+      {
+        "name": "sensitiveValueLabel",
+        "label": "sensitiveValueLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "••••••••"
+      },
+      {
+        "name": "customSectionLabel",
+        "label": "customSectionLabel",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string",
+        "options": [],
+        "initialValue": "محتوى مخصص يقدمه المستهلك في تجربة المراجعة."
+      }
+    ],
+    "showcaseCoverage": {
+      "coveredInputs": [
+        "context",
+        "compact",
+        "emptyValueLabel",
+        "trueValueLabel",
+        "falseValueLabel",
+        "sensitiveValueLabel",
+        "customSectionLabel"
+      ],
+      "coveredModels": [],
+      "coveredOutputs": [],
+      "coveredValues": {
+        "compact": [
+          "false",
+          "true"
+        ]
+      },
+      "coveredStates": [
+        "compact"
+      ],
+      "coveredProjectionSlots": [],
+      "coveredReferenceCases": [],
+      "evidenceKind": "STATIC_COMPONENT"
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "compact",
+        "label": "الكثافة",
+        "cases": [
+          {
+            "id": "compact-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      }
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 2,
+      "supportedFacets": [
+        "compact"
+      ],
+      "coveredFacets": [
+        "compact"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
+  },
+  {
     "id": "entity-schema-fields",
     "selector": "erp-entity-schema-fields",
     "className": "ErpEntitySchemaFields",
@@ -63340,6 +63845,7 @@ export const ERP_PUBLIC_SHOWCASE_LOADERS: Readonly<Record<string, () => Promise<
   "skeleton": () => import("../showcase/components/skeleton/skeleton-showcase").then((module) => module.ErpSkeletonShowcase),
   "status-badge": () => import("../showcase/components/status-badge/status-badge-showcase").then((module) => module.ErpStatusBadgeShowcase),
   "tooltip": () => import("../showcase/components/tooltip/tooltip-showcase").then((module) => module.ErpTooltipShowcase),
+  "entity-review": () => import("../showcase/components/entity-review/entity-review-showcase").then((module) => module.ErpEntityReviewShowcase),
   "entity-schema-fields": () => import("../showcase/components/entity-schema-fields/entity-schema-fields-showcase").then((module) => module.ErpEntitySchemaFieldsShowcase),
   "form": () => import("../showcase/components/form/form-showcase").then((module) => module.ErpFormShowcase),
   "form-actions": () => import("../showcase/components/form-actions/form-actions-showcase").then((module) => module.ErpFormActionsShowcase),

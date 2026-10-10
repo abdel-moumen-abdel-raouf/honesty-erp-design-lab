@@ -1,0 +1,9 @@
+@mixin base {
+  --honesty-entity-review-section-gap: var(--honesty-space-stack-default);
+  --honesty-entity-review-value-gap: var(--honesty-space-stack-tight);
+  --honesty-entity-review-label-gap: var(--honesty-space-stack-tight);
+  --honesty-entity-review-value-padding: var(--honesty-space-inset-default);
+  --honesty-entity-review-border-width: var(--honesty-border-width-default);
+  --honesty-entity-review-border-color: var(--honesty-border-subtle);
+  --honesty-entity-review-radius: var(--honesty-radius-control);
+}

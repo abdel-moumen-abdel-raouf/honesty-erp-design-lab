@@ -1,0 +1,266 @@
+{
+  "generatedAt": "2026-10-10T22:19:03.080Z",
+  "authority": {
+    "classification": "Original Honesty ERP presentation candidate; no binding external visual reference exists.",
+    "contract": "src/app/controls/PLANNED_UI_PATTERN_READINESS_V1.md"
+  },
+  "scenarios": [
+    {
+      "name": "entity-review-1440-light-rtl",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "ownerCount": 3,
+      "targetBox": {
+        "x": 147,
+        "y": 304.078125,
+        "width": 950,
+        "height": 308.46875
+      },
+      "fieldCount": 4,
+      "sectionCount": 1,
+      "horizontalOverflow": 0,
+      "targetOverflow": 0,
+      "clipped": [],
+      "diagnostics": []
+    },
+    {
+      "name": "entity-review-390-dark-ltr",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 2061
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "ownerCount": 3,
+      "targetBox": {
+        "x": 57,
+        "y": 171.609375,
+        "width": 276,
+        "height": 500.25
+      },
+      "fieldCount": 4,
+      "sectionCount": 1,
+      "horizontalOverflow": 0,
+      "targetOverflow": 0,
+      "clipped": [],
+      "diagnostics": []
+    }
+  ],
+  "assertions": [
+    {
+      "name": "entity-review-1440-light-rtl ownership",
+      "pass": true,
+      "actual": {
+        "name": "entity-review-1440-light-rtl",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "ownerCount": 3,
+        "targetBox": {
+          "x": 147,
+          "y": 304.078125,
+          "width": 950,
+          "height": 308.46875
+        },
+        "fieldCount": 4,
+        "sectionCount": 1,
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "clipped": [],
+        "diagnostics": []
+      }
+    },
+    {
+      "name": "entity-review-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "name": "entity-review-1440-light-rtl",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "ownerCount": 3,
+        "targetBox": {
+          "x": 147,
+          "y": 304.078125,
+          "width": 950,
+          "height": 308.46875
+        },
+        "fieldCount": 4,
+        "sectionCount": 1,
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "clipped": [],
+        "diagnostics": []
+      }
+    },
+    {
+      "name": "entity-review-1440-light-rtl overflow-clipping",
+      "pass": true,
+      "actual": {
+        "name": "entity-review-1440-light-rtl",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "ownerCount": 3,
+        "targetBox": {
+          "x": 147,
+          "y": 304.078125,
+          "width": 950,
+          "height": 308.46875
+        },
+        "fieldCount": 4,
+        "sectionCount": 1,
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "clipped": [],
+        "diagnostics": []
+      }
+    },
+    {
+      "name": "entity-review-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "entity-review-390-dark-ltr ownership",
+      "pass": true,
+      "actual": {
+        "name": "entity-review-390-dark-ltr",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 2061
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "ownerCount": 3,
+        "targetBox": {
+          "x": 57,
+          "y": 171.609375,
+          "width": 276,
+          "height": 500.25
+        },
+        "fieldCount": 4,
+        "sectionCount": 1,
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "clipped": [],
+        "diagnostics": []
+      }
+    },
+    {
+      "name": "entity-review-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "name": "entity-review-390-dark-ltr",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 2061
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "ownerCount": 3,
+        "targetBox": {
+          "x": 57,
+          "y": 171.609375,
+          "width": 276,
+          "height": 500.25
+        },
+        "fieldCount": 4,
+        "sectionCount": 1,
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "clipped": [],
+        "diagnostics": []
+      }
+    },
+    {
+      "name": "entity-review-390-dark-ltr overflow-clipping",
+      "pass": true,
+      "actual": {
+        "name": "entity-review-390-dark-ltr",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 2061
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "ownerCount": 3,
+        "targetBox": {
+          "x": 57,
+          "y": 171.609375,
+          "width": 276,
+          "height": 500.25
+        },
+        "fieldCount": 4,
+        "sectionCount": 1,
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "clipped": [],
+        "diagnostics": []
+      }
+    },
+    {
+      "name": "entity-review-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    }
+  ],
+  "summary": {
+    "total": 8,
+    "passed": 8,
+    "failed": []
+  }
+}
