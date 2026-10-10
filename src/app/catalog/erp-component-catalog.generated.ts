@@ -1479,6 +1479,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "hasDefault": true,
           "defaultValue": "normal",
           "defaultExpression": "'normal'"
+        },
+        {
+          "name": "role",
+          "required": false,
+          "values": [
+            "menuitem"
+          ],
+          "type": "'menuitem' | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [
@@ -1655,6 +1666,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "loading": false,
       "cursor": "pointer",
       "rippleSpeed": "normal",
+      "role": null,
       "label": "إضافة سجل"
     },
     "showcaseControls": [
@@ -1761,6 +1773,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "initialValue": "normal"
       },
       {
+        "name": "role",
+        "label": "role",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "'menuitem' | null",
+        "options": [
+          "menuitem"
+        ],
+        "initialValue": null
+      },
+      {
         "name": "$previewInline",
         "label": "الموضع الأفقي داخل مساحة المعاينة",
         "source": "preview",
@@ -1803,7 +1827,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "disabled",
         "loading",
         "cursor",
-        "rippleSpeed"
+        "rippleSpeed",
+        "role"
       ],
       "coveredModels": [],
       "coveredOutputs": [
@@ -1837,6 +1862,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "fast",
           "normal",
           "slow"
+        ],
+        "role": [
+          "menuitem"
         ]
       },
       "coveredStates": [
@@ -1951,6 +1979,48 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "hasDefault": true,
           "defaultValue": "normal",
           "defaultExpression": "'normal'"
+        },
+        {
+          "name": "ariaHasPopup",
+          "required": false,
+          "values": [
+            "menu",
+            "dialog",
+            "listbox"
+          ],
+          "type": "'menu' | 'dialog' | 'listbox' | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
+        },
+        {
+          "name": "ariaControls",
+          "required": false,
+          "values": [],
+          "type": "string | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
+        },
+        {
+          "name": "ariaExpanded",
+          "required": false,
+          "values": [],
+          "type": "boolean | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
+        },
+        {
+          "name": "role",
+          "required": false,
+          "values": [
+            "menuitem"
+          ],
+          "type": "'menuitem' | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
         }
       ],
       "outputs": [
@@ -2142,6 +2212,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "loading": false,
       "cursor": "pointer",
       "rippleSpeed": "normal",
+      "ariaHasPopup": null,
+      "ariaControls": null,
+      "ariaExpanded": null,
+      "role": null,
       "label": "إضافة",
       "icon": "add"
     },
@@ -2249,6 +2323,52 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "initialValue": "normal"
       },
       {
+        "name": "ariaHasPopup",
+        "label": "ariaHasPopup",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "'menu' | 'dialog' | 'listbox' | null",
+        "options": [
+          "menu",
+          "dialog",
+          "listbox"
+        ],
+        "initialValue": null
+      },
+      {
+        "name": "ariaControls",
+        "label": "ariaControls",
+        "source": "input",
+        "kind": "text",
+        "required": false,
+        "type": "string | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "ariaExpanded",
+        "label": "ariaExpanded",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "boolean | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
+        "name": "role",
+        "label": "role",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "'menuitem' | null",
+        "options": [
+          "menuitem"
+        ],
+        "initialValue": null
+      },
+      {
         "name": "$previewInline",
         "label": "الموضع الأفقي داخل مساحة المعاينة",
         "source": "preview",
@@ -2291,7 +2411,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "disabled",
         "loading",
         "cursor",
-        "rippleSpeed"
+        "rippleSpeed",
+        "ariaHasPopup",
+        "ariaControls",
+        "ariaExpanded",
+        "role"
       ],
       "coveredModels": [],
       "coveredOutputs": [
@@ -2325,6 +2449,14 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "fast",
           "normal",
           "slow"
+        ],
+        "ariaHasPopup": [
+          "menu",
+          "dialog",
+          "listbox"
+        ],
+        "role": [
+          "menuitem"
         ]
       },
       "coveredStates": [
@@ -2815,7 +2947,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "number",
         "options": [],
-        "initialValue": 75
+        "initialValue": 100
       },
       {
         "name": "$previewDirection",

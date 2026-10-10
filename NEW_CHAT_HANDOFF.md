@@ -1,5 +1,16 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — floating actions reviewed internally
+
+Continue from synchronized `main` after the Fab/ExtendedFab/FabMenu checkpoint.
+Hosts are content-sized; FabMenu owns synchronized trigger/menu semantics,
+initial action focus, native-close state and Escape/focus return. The generated
+preview keeps the open surface contained at narrow width. Evidence under
+`docs/review-evidence/erp-floating-actions/v1-internal-review/` passes 56/56
+browser assertions. Canonical verification passes 128/128 files and 849/849
+tests with a zero-warning 418.32 kB / 92.89 kB build. Product Owner acceptance
+is not recorded. Continue Bottom-Up with `ErpTooltip`.
+
 ## Current continuation point — grouped actions reviewed internally
 
 Continue from synchronized `main` after the ButtonGroup/SplitButton checkpoint.

@@ -1,5 +1,16 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — floating actions complete internally
+
+Fab, ExtendedFab, and FabMenu completed internal browser review. The Skodash
+Button page is fallback evidence only because it has no FAB-specific owner.
+Content-sized hosts, both placement controls, mixed menu actions, controlled
+popup semantics, initial focus, Escape/focus return and desktop/narrow
+containment pass 56/56 assertions. Canonical verification passes 128/128 files
+and 849/849 tests with a zero-warning 418.32 kB / 92.89 kB build. Product Owner
+status remains pending. Continue Bottom-Up with `ErpTooltip`; business
+Feature/Page, CRUD, transport, and permissions work remain closed.
+
 ## Current UI continuation — grouped actions complete internally
 
 ButtonGroup and SplitButton completed internal browser review against the

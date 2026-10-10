@@ -1,5 +1,20 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Floating action internal-review decisions — 2026-10-10
+
+- Skodash RTL `component-buttons.html` contains no FAB-specific owner and is
+  fallback Button evidence only. The current FAB family remains a labeled
+  original Honesty ERP candidate.
+- Fab, ExtendedFab, and FabMenu custom-element hosts use content-sized
+  inline/block occupancy. Floating position remains owned by the parent review
+  layout through its existing inline and block controls.
+- FabMenu has one menu surface. Its trigger owns the unique popup relationship
+  and expanded state; existing Fab/ExtendedFab actions forward menuitem roles.
+- Opening focuses the first enabled action; native popover closure synchronizes
+  state, and document-capture Escape closes the top-layer popup and returns
+  focus without creating another overlay engine.
+- Internal review completion does not imply Product Owner acceptance.
+
 ## Grouped action internal-review decisions — 2026-10-10
 
 - Skodash RTL `component-buttons.html` is fallback presentation evidence for

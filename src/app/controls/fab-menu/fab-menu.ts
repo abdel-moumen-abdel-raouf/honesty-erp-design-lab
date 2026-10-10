@@ -24,6 +24,8 @@ import {
   ErpFabMenuPlacement,
 } from '../composite-family/composite-contracts';
 
+let nextFabMenuId = 0;
+
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -39,6 +41,7 @@ import {
   },
 })
 export class ErpFabMenu implements OnDestroy {
+  readonly menuId = `erp-fab-menu-${++nextFabMenuId}`;
   readonly label = input.required<string>();
   readonly icon = input<ErpIconName>('add');
   readonly items = input.required<readonly ErpActionMenuItem[]>();
@@ -56,8 +59,10 @@ export class ErpFabMenu implements OnDestroy {
   private readonly actionsSurface =
     viewChild<ElementRef<HTMLElement>>('actionsSurface');
   private controller: AnchoredOverlayController | null = null;
+  private focusFrame = 0;
 
   ngOnDestroy(): void {
+    cancelAnimationFrame(this.focusFrame);
     this.detachDismissalListeners();
     this.controller?.destroy();
   }
@@ -110,6 +115,19 @@ export class ErpFabMenu implements OnDestroy {
     buttons[(current + delta + buttons.length) % buttons.length].focus();
   }
 
+  protected handleSurfaceToggle(event: Event): void {
+    const newState = (event as ToggleEvent).newState;
+    if (newState !== 'closed' || !this.open()) {
+      return;
+    }
+
+    this.open.set(false);
+    this.resolvedPlacement.set(null);
+    cancelAnimationFrame(this.focusFrame);
+    this.detachDismissalListeners();
+    queueMicrotask(() => this.triggerButton()?.focus());
+  }
+
   private openMenu(): void {
     const trigger = this.triggerButton();
     const surface = this.actionsSurface()?.nativeElement;
@@ -149,7 +167,13 @@ export class ErpFabMenu implements OnDestroy {
 
     this.open.set(true);
     this.attachDismissalListeners();
-    queueMicrotask(() => this.actionButtons()[0]?.focus());
+    this.actionButtons()[0]?.focus({preventScroll: true});
+    cancelAnimationFrame(this.focusFrame);
+    this.focusFrame = requestAnimationFrame(() => {
+      if (this.open()) {
+        this.actionButtons()[0]?.focus({preventScroll: true});
+      }
+    });
   }
 
   private closeMenu(returnFocus: boolean): void {
@@ -159,6 +183,7 @@ export class ErpFabMenu implements OnDestroy {
 
     this.open.set(false);
     this.resolvedPlacement.set(null);
+    cancelAnimationFrame(this.focusFrame);
     this.controller?.hide();
     this.detachDismissalListeners();
 
@@ -178,12 +203,23 @@ export class ErpFabMenu implements OnDestroy {
     }
   };
 
+  private readonly handleDocumentKeydown = (event: KeyboardEvent): void => {
+    if (event.key !== 'Escape' || !this.open()) {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+    this.closeMenu(true);
+  };
+
   private attachDismissalListeners(): void {
     document.addEventListener(
       'pointerdown',
       this.handleDocumentPointerDown,
       true,
     );
+    document.addEventListener('keydown', this.handleDocumentKeydown, true);
   }
 
   private detachDismissalListeners(): void {
@@ -192,6 +228,7 @@ export class ErpFabMenu implements OnDestroy {
       this.handleDocumentPointerDown,
       true,
     );
+    document.removeEventListener('keydown', this.handleDocumentKeydown, true);
   }
 
   private actionButtons(): HTMLButtonElement[] {

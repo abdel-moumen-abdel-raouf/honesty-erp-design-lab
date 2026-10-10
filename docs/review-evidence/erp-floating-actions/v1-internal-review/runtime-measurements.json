@@ -1,0 +1,1234 @@
+{
+  "generatedAt": "2026-10-10T10:46:25.175Z",
+  "authority": {
+    "reference": {
+      "url": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-buttons.html",
+      "direction": "rtl",
+      "fabSpecificClasses": [],
+      "button": {
+        "box": {
+          "x": 833.640625,
+          "y": 211,
+          "width": 153.109375,
+          "height": 38
+        },
+        "padding": "6px 48px",
+        "borderRadius": "6px",
+        "fontSize": "16px",
+        "lineHeight": "24px"
+      },
+      "styles": [
+        "https://store.codervent.com/skodash/demo/tabular-menu/rtl/assets/plugins/simplebar/css/simplebar.css",
+        "https://store.codervent.com/skodash/demo/tabular-menu/rtl/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css",
+        "https://store.codervent.com/skodash/demo/tabular-menu/rtl/assets/css/bootstrap.min.css",
+        "https://store.codervent.com/skodash/demo/tabular-menu/rtl/assets/css/bootstrap-extended.css",
+        "https://store.codervent.com/skodash/demo/tabular-menu/rtl/assets/css/style.css",
+        "https://store.codervent.com/skodash/demo/tabular-menu/rtl/assets/css/icons.css",
+        "https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap",
+        "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css",
+        "https://store.codervent.com/skodash/demo/tabular-menu/rtl/assets/css/dark-theme.css"
+      ],
+      "scripts": [
+        "https://store.codervent.com/skodash/demo/tabular-menu/rtl/assets/js/bootstrap.bundle.min.js"
+      ]
+    },
+    "referenceUrl": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-buttons.html",
+    "systemSubstitutions": [
+      "Honesty ERP colors",
+      "Honesty ERP typography"
+    ]
+  },
+  "scenarios": [
+    {
+      "name": "fab-1440-light-rtl-start",
+      "component": "fab",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 15,
+      "previewBox": {
+        "x": 147,
+        "y": 123.765625,
+        "right": 1097,
+        "bottom": 539.765625,
+        "width": 950,
+        "height": 416
+      },
+      "targetBox": {
+        "x": 1041,
+        "y": 123.765625,
+        "right": 1097,
+        "bottom": 179.765625,
+        "width": 56,
+        "height": 56
+      },
+      "nativeBox": {
+        "x": 1041,
+        "y": 123.765625,
+        "right": 1097,
+        "bottom": 179.765625,
+        "width": 56,
+        "height": 56
+      },
+      "positionerBox": {
+        "x": 1041,
+        "y": 123.765625,
+        "right": 1097,
+        "bottom": 179.765625,
+        "width": 56,
+        "height": 56
+      },
+      "resolved": {
+        "x": "894",
+        "y": "0",
+        "direction": "rtl"
+      },
+      "containedInPreview": true,
+      "hostStyle": {
+        "display": "inline-flex",
+        "inlineSize": "56px",
+        "blockSize": "56px"
+      },
+      "eventEvidence": "آخر تفاعلpressed: undefined",
+      "menu": null,
+      "horizontalOverflow": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "fab-390-dark-ltr-end",
+      "component": "fab",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 15,
+      "previewBox": {
+        "x": 57,
+        "y": 50.765625,
+        "right": 333,
+        "bottom": 466.765625,
+        "width": 276,
+        "height": 416
+      },
+      "targetBox": {
+        "x": 277,
+        "y": 410.765625,
+        "right": 333,
+        "bottom": 466.765625,
+        "width": 56,
+        "height": 56
+      },
+      "nativeBox": {
+        "x": 277,
+        "y": 410.765625,
+        "right": 333,
+        "bottom": 466.765625,
+        "width": 56,
+        "height": 56
+      },
+      "positionerBox": {
+        "x": 277,
+        "y": 410.765625,
+        "right": 333,
+        "bottom": 466.765625,
+        "width": 56,
+        "height": 56
+      },
+      "resolved": {
+        "x": "220",
+        "y": "360",
+        "direction": "ltr"
+      },
+      "containedInPreview": true,
+      "hostStyle": {
+        "display": "inline-flex",
+        "inlineSize": "56px",
+        "blockSize": "56px"
+      },
+      "eventEvidence": "آخر تفاعلpressed: undefined",
+      "menu": null,
+      "horizontalOverflow": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "extended-fab-1440-light-ltr-end",
+      "component": "extended-fab",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 12,
+      "previewBox": {
+        "x": 147,
+        "y": 123.765625,
+        "right": 1097,
+        "bottom": 539.765625,
+        "width": 950,
+        "height": 416
+      },
+      "targetBox": {
+        "x": 981,
+        "y": 123.765625,
+        "right": 1097.125,
+        "bottom": 179.765625,
+        "width": 116.125,
+        "height": 56
+      },
+      "nativeBox": {
+        "x": 981,
+        "y": 123.765625,
+        "right": 1097.125,
+        "bottom": 179.765625,
+        "width": 116.125,
+        "height": 56
+      },
+      "positionerBox": {
+        "x": 981,
+        "y": 123.765625,
+        "right": 1097.125,
+        "bottom": 179.765625,
+        "width": 116.125,
+        "height": 56
+      },
+      "resolved": {
+        "x": "834",
+        "y": "0",
+        "direction": "ltr"
+      },
+      "containedInPreview": true,
+      "hostStyle": {
+        "display": "flex",
+        "inlineSize": "116.125px",
+        "blockSize": "56px"
+      },
+      "eventEvidence": "آخر تفاعلpressed: undefined",
+      "menu": null,
+      "horizontalOverflow": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "extended-fab-390-dark-rtl-start",
+      "component": "extended-fab",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 12,
+      "previewBox": {
+        "x": 57,
+        "y": 50.765625,
+        "right": 333,
+        "bottom": 466.765625,
+        "width": 276,
+        "height": 416
+      },
+      "targetBox": {
+        "x": 217,
+        "y": 410.765625,
+        "right": 333.125,
+        "bottom": 466.765625,
+        "width": 116.125,
+        "height": 56
+      },
+      "nativeBox": {
+        "x": 217,
+        "y": 410.765625,
+        "right": 333.125,
+        "bottom": 466.765625,
+        "width": 116.125,
+        "height": 56
+      },
+      "positionerBox": {
+        "x": 217,
+        "y": 410.765625,
+        "right": 333.125,
+        "bottom": 466.765625,
+        "width": 116.125,
+        "height": 56
+      },
+      "resolved": {
+        "x": "160",
+        "y": "360",
+        "direction": "rtl"
+      },
+      "containedInPreview": true,
+      "hostStyle": {
+        "display": "flex",
+        "inlineSize": "116.125px",
+        "blockSize": "56px"
+      },
+      "eventEvidence": "آخر تفاعلpressed: undefined",
+      "menu": null,
+      "horizontalOverflow": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "fab-menu-1440-light-rtl-open",
+      "component": "fab-menu",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 8,
+      "previewBox": {
+        "x": 147,
+        "y": 123.765625,
+        "right": 1097,
+        "bottom": 539.765625,
+        "width": 950,
+        "height": 416
+      },
+      "targetBox": {
+        "x": 906.9000244140625,
+        "y": 483.765625,
+        "right": 962.9000244140625,
+        "bottom": 539.765625,
+        "width": 56,
+        "height": 56
+      },
+      "nativeBox": {
+        "x": 906.9000244140625,
+        "y": 483.765625,
+        "right": 962.9000244140625,
+        "bottom": 539.765625,
+        "width": 56,
+        "height": 56
+      },
+      "positionerBox": {
+        "x": 906.9000244140625,
+        "y": 483.765625,
+        "right": 962.9000244140625,
+        "bottom": 539.765625,
+        "width": 56,
+        "height": 56
+      },
+      "resolved": {
+        "x": "759.9",
+        "y": "360",
+        "direction": "rtl"
+      },
+      "containedInPreview": true,
+      "hostStyle": {
+        "display": "flex",
+        "inlineSize": "56px",
+        "blockSize": "56px"
+      },
+      "eventEvidence": "آخر تفاعللم يحدث تفاعل بعد",
+      "menu": {
+        "open": "true",
+        "placement": "top",
+        "surface": {
+          "x": 876.71875,
+          "y": 163.765625,
+          "right": 993.0625,
+          "bottom": 475.765625,
+          "width": 116.34375,
+          "height": 312
+        },
+        "role": "menu",
+        "label": "إجراءات سريعة",
+        "trigger": {
+          "expanded": "true",
+          "hasPopup": "menu",
+          "controls": "erp-fab-menu-1"
+        },
+        "actionCount": 5,
+        "actionRoles": [
+          "menuitem",
+          "menuitem",
+          "menuitem",
+          "menuitem",
+          "menuitem"
+        ],
+        "presentations": [
+          {
+            "tag": "ERP-FAB",
+            "icon": true,
+            "disabled": false
+          },
+          {
+            "tag": "ERP-EXTENDED-FAB",
+            "icon": false,
+            "disabled": false
+          },
+          {
+            "tag": "ERP-EXTENDED-FAB",
+            "icon": true,
+            "disabled": false
+          },
+          {
+            "tag": "ERP-EXTENDED-FAB",
+            "icon": true,
+            "disabled": false
+          },
+          {
+            "tag": "ERP-EXTENDED-FAB",
+            "icon": true,
+            "disabled": true
+          }
+        ]
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "interaction": {
+        "keyboardLabel": "حفظ",
+        "closed": "false",
+        "expanded": "false",
+        "focusReturned": true
+      }
+    },
+    {
+      "name": "fab-menu-390-dark-ltr-open",
+      "component": "fab-menu",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 8,
+      "previewBox": {
+        "x": 57,
+        "y": 50.765625,
+        "right": 333,
+        "bottom": 466.765625,
+        "width": 276,
+        "height": 416
+      },
+      "targetBox": {
+        "x": 244,
+        "y": 410.765625,
+        "right": 300,
+        "bottom": 466.765625,
+        "width": 56,
+        "height": 56
+      },
+      "nativeBox": {
+        "x": 244,
+        "y": 410.765625,
+        "right": 300,
+        "bottom": 466.765625,
+        "width": 56,
+        "height": 56
+      },
+      "positionerBox": {
+        "x": 244,
+        "y": 410.765625,
+        "right": 300,
+        "bottom": 466.765625,
+        "width": 56,
+        "height": 56
+      },
+      "resolved": {
+        "x": "187",
+        "y": "360",
+        "direction": "ltr"
+      },
+      "containedInPreview": true,
+      "hostStyle": {
+        "display": "flex",
+        "inlineSize": "56px",
+        "blockSize": "56px"
+      },
+      "eventEvidence": "آخر تفاعللم يحدث تفاعل بعد",
+      "menu": {
+        "open": "true",
+        "placement": "top",
+        "surface": {
+          "x": 213.828125,
+          "y": 90.765625,
+          "right": 330.171875,
+          "bottom": 402.765625,
+          "width": 116.34375,
+          "height": 312
+        },
+        "role": "menu",
+        "label": "إجراءات سريعة",
+        "trigger": {
+          "expanded": "true",
+          "hasPopup": "menu",
+          "controls": "erp-fab-menu-1"
+        },
+        "actionCount": 5,
+        "actionRoles": [
+          "menuitem",
+          "menuitem",
+          "menuitem",
+          "menuitem",
+          "menuitem"
+        ],
+        "presentations": [
+          {
+            "tag": "ERP-FAB",
+            "icon": true,
+            "disabled": false
+          },
+          {
+            "tag": "ERP-EXTENDED-FAB",
+            "icon": false,
+            "disabled": false
+          },
+          {
+            "tag": "ERP-EXTENDED-FAB",
+            "icon": true,
+            "disabled": false
+          },
+          {
+            "tag": "ERP-EXTENDED-FAB",
+            "icon": true,
+            "disabled": false
+          },
+          {
+            "tag": "ERP-EXTENDED-FAB",
+            "icon": true,
+            "disabled": true
+          }
+        ]
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "interaction": {
+        "keyboardLabel": "حفظ",
+        "closed": "false",
+        "expanded": "false",
+        "focusReturned": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "name": "fab-1440-light-rtl-start target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "fab-1440-light-rtl-start controls",
+      "pass": true,
+      "actual": 15
+    },
+    {
+      "name": "fab-1440-light-rtl-start theme and direction",
+      "pass": true,
+      "actual": {
+        "theme": "light",
+        "direction": "rtl"
+      }
+    },
+    {
+      "name": "fab-1440-light-rtl-start contained",
+      "pass": true,
+      "actual": {
+        "preview": {
+          "x": 147,
+          "y": 123.765625,
+          "right": 1097,
+          "bottom": 539.765625,
+          "width": 950,
+          "height": 416
+        },
+        "target": {
+          "x": 1041,
+          "y": 123.765625,
+          "right": 1097,
+          "bottom": 179.765625,
+          "width": 56,
+          "height": 56
+        }
+      }
+    },
+    {
+      "name": "fab-1440-light-rtl-start content host",
+      "pass": true,
+      "actual": {
+        "host": {
+          "x": 1041,
+          "y": 123.765625,
+          "right": 1097,
+          "bottom": 179.765625,
+          "width": 56,
+          "height": 56
+        },
+        "native": {
+          "x": 1041,
+          "y": 123.765625,
+          "right": 1097,
+          "bottom": 179.765625,
+          "width": 56,
+          "height": 56
+        }
+      }
+    },
+    {
+      "name": "fab-1440-light-rtl-start overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "fab-1440-light-rtl-start diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "fab-1440-light-rtl-start event",
+      "pass": true,
+      "actual": "آخر تفاعلpressed: undefined"
+    },
+    {
+      "name": "fab-390-dark-ltr-end target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "fab-390-dark-ltr-end controls",
+      "pass": true,
+      "actual": 15
+    },
+    {
+      "name": "fab-390-dark-ltr-end theme and direction",
+      "pass": true,
+      "actual": {
+        "theme": "dark",
+        "direction": "ltr"
+      }
+    },
+    {
+      "name": "fab-390-dark-ltr-end contained",
+      "pass": true,
+      "actual": {
+        "preview": {
+          "x": 57,
+          "y": 50.765625,
+          "right": 333,
+          "bottom": 466.765625,
+          "width": 276,
+          "height": 416
+        },
+        "target": {
+          "x": 277,
+          "y": 410.765625,
+          "right": 333,
+          "bottom": 466.765625,
+          "width": 56,
+          "height": 56
+        }
+      }
+    },
+    {
+      "name": "fab-390-dark-ltr-end content host",
+      "pass": true,
+      "actual": {
+        "host": {
+          "x": 277,
+          "y": 410.765625,
+          "right": 333,
+          "bottom": 466.765625,
+          "width": 56,
+          "height": 56
+        },
+        "native": {
+          "x": 277,
+          "y": 410.765625,
+          "right": 333,
+          "bottom": 466.765625,
+          "width": 56,
+          "height": 56
+        }
+      }
+    },
+    {
+      "name": "fab-390-dark-ltr-end overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "fab-390-dark-ltr-end diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "fab-390-dark-ltr-end event",
+      "pass": true,
+      "actual": "آخر تفاعلpressed: undefined"
+    },
+    {
+      "name": "extended-fab-1440-light-ltr-end target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "extended-fab-1440-light-ltr-end controls",
+      "pass": true,
+      "actual": 12
+    },
+    {
+      "name": "extended-fab-1440-light-ltr-end theme and direction",
+      "pass": true,
+      "actual": {
+        "theme": "light",
+        "direction": "ltr"
+      }
+    },
+    {
+      "name": "extended-fab-1440-light-ltr-end contained",
+      "pass": true,
+      "actual": {
+        "preview": {
+          "x": 147,
+          "y": 123.765625,
+          "right": 1097,
+          "bottom": 539.765625,
+          "width": 950,
+          "height": 416
+        },
+        "target": {
+          "x": 981,
+          "y": 123.765625,
+          "right": 1097.125,
+          "bottom": 179.765625,
+          "width": 116.125,
+          "height": 56
+        }
+      }
+    },
+    {
+      "name": "extended-fab-1440-light-ltr-end content host",
+      "pass": true,
+      "actual": {
+        "host": {
+          "x": 981,
+          "y": 123.765625,
+          "right": 1097.125,
+          "bottom": 179.765625,
+          "width": 116.125,
+          "height": 56
+        },
+        "native": {
+          "x": 981,
+          "y": 123.765625,
+          "right": 1097.125,
+          "bottom": 179.765625,
+          "width": 116.125,
+          "height": 56
+        }
+      }
+    },
+    {
+      "name": "extended-fab-1440-light-ltr-end overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "extended-fab-1440-light-ltr-end diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "extended-fab-1440-light-ltr-end event",
+      "pass": true,
+      "actual": "آخر تفاعلpressed: undefined"
+    },
+    {
+      "name": "extended-fab-390-dark-rtl-start target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "extended-fab-390-dark-rtl-start controls",
+      "pass": true,
+      "actual": 12
+    },
+    {
+      "name": "extended-fab-390-dark-rtl-start theme and direction",
+      "pass": true,
+      "actual": {
+        "theme": "dark",
+        "direction": "rtl"
+      }
+    },
+    {
+      "name": "extended-fab-390-dark-rtl-start contained",
+      "pass": true,
+      "actual": {
+        "preview": {
+          "x": 57,
+          "y": 50.765625,
+          "right": 333,
+          "bottom": 466.765625,
+          "width": 276,
+          "height": 416
+        },
+        "target": {
+          "x": 217,
+          "y": 410.765625,
+          "right": 333.125,
+          "bottom": 466.765625,
+          "width": 116.125,
+          "height": 56
+        }
+      }
+    },
+    {
+      "name": "extended-fab-390-dark-rtl-start content host",
+      "pass": true,
+      "actual": {
+        "host": {
+          "x": 217,
+          "y": 410.765625,
+          "right": 333.125,
+          "bottom": 466.765625,
+          "width": 116.125,
+          "height": 56
+        },
+        "native": {
+          "x": 217,
+          "y": 410.765625,
+          "right": 333.125,
+          "bottom": 466.765625,
+          "width": 116.125,
+          "height": 56
+        }
+      }
+    },
+    {
+      "name": "extended-fab-390-dark-rtl-start overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "extended-fab-390-dark-rtl-start diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "extended-fab-390-dark-rtl-start event",
+      "pass": true,
+      "actual": "آخر تفاعلpressed: undefined"
+    },
+    {
+      "name": "fab-menu-1440-light-rtl-open target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "fab-menu-1440-light-rtl-open controls",
+      "pass": true,
+      "actual": 8
+    },
+    {
+      "name": "fab-menu-1440-light-rtl-open theme and direction",
+      "pass": true,
+      "actual": {
+        "theme": "light",
+        "direction": "rtl"
+      }
+    },
+    {
+      "name": "fab-menu-1440-light-rtl-open contained",
+      "pass": true,
+      "actual": {
+        "preview": {
+          "x": 147,
+          "y": 123.765625,
+          "right": 1097,
+          "bottom": 539.765625,
+          "width": 950,
+          "height": 416
+        },
+        "target": {
+          "x": 906.9000244140625,
+          "y": 483.765625,
+          "right": 962.9000244140625,
+          "bottom": 539.765625,
+          "width": 56,
+          "height": 56
+        }
+      }
+    },
+    {
+      "name": "fab-menu-1440-light-rtl-open content host",
+      "pass": true,
+      "actual": {
+        "host": {
+          "x": 906.9000244140625,
+          "y": 483.765625,
+          "right": 962.9000244140625,
+          "bottom": 539.765625,
+          "width": 56,
+          "height": 56
+        },
+        "native": {
+          "x": 906.9000244140625,
+          "y": 483.765625,
+          "right": 962.9000244140625,
+          "bottom": 539.765625,
+          "width": 56,
+          "height": 56
+        }
+      }
+    },
+    {
+      "name": "fab-menu-1440-light-rtl-open overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "fab-menu-1440-light-rtl-open diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "fab-menu-1440-light-rtl-open menu open",
+      "pass": true,
+      "actual": {
+        "open": "true",
+        "placement": "top",
+        "surface": {
+          "x": 876.71875,
+          "y": 163.765625,
+          "right": 993.0625,
+          "bottom": 475.765625,
+          "width": 116.34375,
+          "height": 312
+        },
+        "role": "menu",
+        "label": "إجراءات سريعة",
+        "trigger": {
+          "expanded": "true",
+          "hasPopup": "menu",
+          "controls": "erp-fab-menu-1"
+        },
+        "actionCount": 5,
+        "actionRoles": [
+          "menuitem",
+          "menuitem",
+          "menuitem",
+          "menuitem",
+          "menuitem"
+        ],
+        "presentations": [
+          {
+            "tag": "ERP-FAB",
+            "icon": true,
+            "disabled": false
+          },
+          {
+            "tag": "ERP-EXTENDED-FAB",
+            "icon": false,
+            "disabled": false
+          },
+          {
+            "tag": "ERP-EXTENDED-FAB",
+            "icon": true,
+            "disabled": false
+          },
+          {
+            "tag": "ERP-EXTENDED-FAB",
+            "icon": true,
+            "disabled": false
+          },
+          {
+            "tag": "ERP-EXTENDED-FAB",
+            "icon": true,
+            "disabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "fab-menu-1440-light-rtl-open menu within preview",
+      "pass": true,
+      "actual": {
+        "preview": {
+          "x": 147,
+          "y": 123.765625,
+          "right": 1097,
+          "bottom": 539.765625,
+          "width": 950,
+          "height": 416
+        },
+        "surface": {
+          "x": 876.71875,
+          "y": 163.765625,
+          "right": 993.0625,
+          "bottom": 475.765625,
+          "width": 116.34375,
+          "height": 312
+        }
+      }
+    },
+    {
+      "name": "fab-menu-1440-light-rtl-open trigger semantics",
+      "pass": "erp-fab-menu-1",
+      "actual": {
+        "expanded": "true",
+        "hasPopup": "menu",
+        "controls": "erp-fab-menu-1"
+      }
+    },
+    {
+      "name": "fab-menu-1440-light-rtl-open mixed actions",
+      "pass": true,
+      "actual": [
+        {
+          "tag": "ERP-FAB",
+          "icon": true,
+          "disabled": false
+        },
+        {
+          "tag": "ERP-EXTENDED-FAB",
+          "icon": false,
+          "disabled": false
+        },
+        {
+          "tag": "ERP-EXTENDED-FAB",
+          "icon": true,
+          "disabled": false
+        },
+        {
+          "tag": "ERP-EXTENDED-FAB",
+          "icon": true,
+          "disabled": false
+        },
+        {
+          "tag": "ERP-EXTENDED-FAB",
+          "icon": true,
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "name": "fab-menu-1440-light-rtl-open keyboard focus",
+      "pass": "حفظ",
+      "actual": {
+        "keyboardLabel": "حفظ",
+        "closed": "false",
+        "expanded": "false",
+        "focusReturned": true
+      }
+    },
+    {
+      "name": "fab-menu-390-dark-ltr-open target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "fab-menu-390-dark-ltr-open controls",
+      "pass": true,
+      "actual": 8
+    },
+    {
+      "name": "fab-menu-390-dark-ltr-open theme and direction",
+      "pass": true,
+      "actual": {
+        "theme": "dark",
+        "direction": "ltr"
+      }
+    },
+    {
+      "name": "fab-menu-390-dark-ltr-open contained",
+      "pass": true,
+      "actual": {
+        "preview": {
+          "x": 57,
+          "y": 50.765625,
+          "right": 333,
+          "bottom": 466.765625,
+          "width": 276,
+          "height": 416
+        },
+        "target": {
+          "x": 244,
+          "y": 410.765625,
+          "right": 300,
+          "bottom": 466.765625,
+          "width": 56,
+          "height": 56
+        }
+      }
+    },
+    {
+      "name": "fab-menu-390-dark-ltr-open content host",
+      "pass": true,
+      "actual": {
+        "host": {
+          "x": 244,
+          "y": 410.765625,
+          "right": 300,
+          "bottom": 466.765625,
+          "width": 56,
+          "height": 56
+        },
+        "native": {
+          "x": 244,
+          "y": 410.765625,
+          "right": 300,
+          "bottom": 466.765625,
+          "width": 56,
+          "height": 56
+        }
+      }
+    },
+    {
+      "name": "fab-menu-390-dark-ltr-open overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "fab-menu-390-dark-ltr-open diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "fab-menu-390-dark-ltr-open menu open",
+      "pass": true,
+      "actual": {
+        "open": "true",
+        "placement": "top",
+        "surface": {
+          "x": 213.828125,
+          "y": 90.765625,
+          "right": 330.171875,
+          "bottom": 402.765625,
+          "width": 116.34375,
+          "height": 312
+        },
+        "role": "menu",
+        "label": "إجراءات سريعة",
+        "trigger": {
+          "expanded": "true",
+          "hasPopup": "menu",
+          "controls": "erp-fab-menu-1"
+        },
+        "actionCount": 5,
+        "actionRoles": [
+          "menuitem",
+          "menuitem",
+          "menuitem",
+          "menuitem",
+          "menuitem"
+        ],
+        "presentations": [
+          {
+            "tag": "ERP-FAB",
+            "icon": true,
+            "disabled": false
+          },
+          {
+            "tag": "ERP-EXTENDED-FAB",
+            "icon": false,
+            "disabled": false
+          },
+          {
+            "tag": "ERP-EXTENDED-FAB",
+            "icon": true,
+            "disabled": false
+          },
+          {
+            "tag": "ERP-EXTENDED-FAB",
+            "icon": true,
+            "disabled": false
+          },
+          {
+            "tag": "ERP-EXTENDED-FAB",
+            "icon": true,
+            "disabled": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "fab-menu-390-dark-ltr-open menu within preview",
+      "pass": true,
+      "actual": {
+        "preview": {
+          "x": 57,
+          "y": 50.765625,
+          "right": 333,
+          "bottom": 466.765625,
+          "width": 276,
+          "height": 416
+        },
+        "surface": {
+          "x": 213.828125,
+          "y": 90.765625,
+          "right": 330.171875,
+          "bottom": 402.765625,
+          "width": 116.34375,
+          "height": 312
+        }
+      }
+    },
+    {
+      "name": "fab-menu-390-dark-ltr-open trigger semantics",
+      "pass": "erp-fab-menu-1",
+      "actual": {
+        "expanded": "true",
+        "hasPopup": "menu",
+        "controls": "erp-fab-menu-1"
+      }
+    },
+    {
+      "name": "fab-menu-390-dark-ltr-open mixed actions",
+      "pass": true,
+      "actual": [
+        {
+          "tag": "ERP-FAB",
+          "icon": true,
+          "disabled": false
+        },
+        {
+          "tag": "ERP-EXTENDED-FAB",
+          "icon": false,
+          "disabled": false
+        },
+        {
+          "tag": "ERP-EXTENDED-FAB",
+          "icon": true,
+          "disabled": false
+        },
+        {
+          "tag": "ERP-EXTENDED-FAB",
+          "icon": true,
+          "disabled": false
+        },
+        {
+          "tag": "ERP-EXTENDED-FAB",
+          "icon": true,
+          "disabled": true
+        }
+      ]
+    },
+    {
+      "name": "fab-menu-390-dark-ltr-open keyboard focus",
+      "pass": "حفظ",
+      "actual": {
+        "keyboardLabel": "حفظ",
+        "closed": "false",
+        "expanded": "false",
+        "focusReturned": true
+      }
+    }
+  ],
+  "summary": {
+    "total": 56,
+    "passed": 56,
+    "failed": []
+  }
+}

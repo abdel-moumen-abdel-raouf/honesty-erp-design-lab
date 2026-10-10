@@ -5,7 +5,9 @@
 :host {
   @include tokens.base;
 
-  display: inline-block;
+  display: inline-flex;
+  inline-size: fit-content;
+  block-size: fit-content;
 }
 
 :host([data-fab-size='sm']) { @include tokens.size-sm; }

@@ -1,5 +1,19 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — floating actions internal review
+
+`ErpFab`, `ErpExtendedFab`, and `ErpFabMenu` completed internal browser review.
+The Skodash Button page supplies fallback evidence only; it contains no
+FAB-specific contract. Six desktop/narrow Light/Dark RTL/LTR scenarios pass
+56/56 assertions for content-sized hosts, both positioning controls, boundary
+containment, five mixed menu actions, disabled state, popup/menu semantics,
+keyboard focus, Escape/focus return and zero overflow or diagnostics. Evidence
+is under `docs/review-evidence/erp-floating-actions/v1-internal-review/`.
+Canonical verification passes 128/128 files and 849/849 tests, both typechecks,
+all governance/lint, and the zero-warning 418.32 kB / 92.89 kB build. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next: `ErpTooltip`.
+
 ## Current checkpoint — grouped actions internal review
 
 `ErpButtonGroup` and `ErpSplitButton` completed internal browser review using

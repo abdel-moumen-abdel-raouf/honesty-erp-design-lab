@@ -31,6 +31,16 @@ describe('ErpExtendedFab', () => {
     expect(host.getAttribute('data-extended-fab-ripple-speed')).toBe('normal');
     expect(host.querySelectorAll('button').length).toBe(1);
     expect(host.querySelector('erp-text')?.textContent?.trim()).toBe('إنشاء جديد');
+    expect(getComputedStyle(host).inlineSize).toBe('fit-content');
+  });
+
+  it('forwards menuitem semantics to the owned native button', () => {
+    const fixture = create();
+    fixture.componentRef.setInput('role', 'menuitem');
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('button')?.getAttribute('role'))
+      .toBe('menuitem');
   });
 
   it('requires label before rendering', () => {

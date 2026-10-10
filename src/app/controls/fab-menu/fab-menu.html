@@ -1,10 +1,12 @@
 <div class="fab-menu">
   <div
     #actionsSurface
+    [id]="menuId"
     class="fab-menu__actions"
     popover="manual"
     role="menu"
     [attr.aria-label]="label()"
+    (toggle)="handleSurfaceToggle($event)"
   >
     @for (item of items(); track item.value) {
       @if (item.presentation === 'icon' && item.icon) {
@@ -13,6 +15,7 @@
             data-fab-menu-action
             [label]="item.label"
             [icon]="item.icon"
+            role="menuitem"
             [disabled]="item.disabled ?? false"
             (pressed)="select(item)"
           />
@@ -22,6 +25,7 @@
           data-fab-menu-action
           [label]="item.label"
           [icon]="item.presentation === 'text' ? null : (item.icon ?? null)"
+          role="menuitem"
           [disabled]="item.disabled ?? false"
           (pressed)="select(item)"
         />
@@ -35,6 +39,9 @@
     [icon]="open() ? 'close' : icon()"
     [label]="label()"
     [disabled]="disabled()"
+    ariaHasPopup="menu"
+    [ariaControls]="menuId"
+    [ariaExpanded]="open()"
     (pressed)="toggle()"
   />
 </div>

@@ -53,6 +53,9 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpDateTimeBox',
   'ErpDivider',
   'ErpEmptyState',
+  'ErpExtendedFab',
+  'ErpFab',
+  'ErpFabMenu',
   'ErpFilePicker',
   'ErpGrid',
   'ErpIcon',
@@ -287,8 +290,9 @@ drift.
   **\`ErpDateTimeBox\`**, **\`ErpDateRangeBox\`**, **\`ErpSearchBox\`**,
   **\`ErpComboBox\`**, **\`ErpItemPicker\`**, **\`ErpIconPicker\`**,
   **\`ErpColorPicker\`**, **\`ErpFilePicker\`**, **\`ErpImagePicker\`**,
-  **\`ErpButton\`**, **\`ErpIconButton\`**, **\`ErpButtonGroup\`**, and
-  **\`ErpSplitButton\`**. Their
+  **\`ErpButton\`**, **\`ErpIconButton\`**, **\`ErpButtonGroup\`**,
+  **\`ErpSplitButton\`**, **\`ErpFab\`**, **\`ErpExtendedFab\`**, and
+  **\`ErpFabMenu\`**. Their
   Product Owner status remains pending.
 - All currently recorded binding-reference owners have completed internal
   review, the full public primitive layer has completed internal review, the
@@ -297,9 +301,10 @@ drift.
   color, and free-color interaction review, and the local file/image selection
   owners have completed real browser-file review, and the two basic action
   owners have completed live state, output, focus and layout-occupancy review,
-  and the grouped action composites have completed mixed-action, anchored-menu,
-  keyboard and semantic review. The next Bottom-Up unit opens **\`ErpFab\`**,
-  **\`ErpExtendedFab\`**, and **\`ErpFabMenu\`**.
+  the grouped action composites have completed mixed-action, anchored-menu,
+  keyboard and semantic review, and the floating action family has completed
+  bounded placement, mixed-menu, popup-semantic, focus-return and viewport
+  containment review. The next Bottom-Up unit opens **\`ErpTooltip\`**.
 
 ## Public owner inventory
 

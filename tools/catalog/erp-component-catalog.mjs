@@ -1027,7 +1027,7 @@ function showcaseControlsFor(entry) {
   if (['ErpFab', 'ErpExtendedFab', 'ErpFabMenu'].includes(entry.className)) {
     controls.push(
       {name: '$previewInline', label: 'الموضع الأفقي داخل مساحة المعاينة', source: 'preview', kind: 'range', required: false, type: 'number', options: [], initialValue: 80},
-      {name: '$previewBlock', label: 'الموضع الرأسي داخل مساحة المعاينة', source: 'preview', kind: 'range', required: false, type: 'number', options: [], initialValue: 75},
+      {name: '$previewBlock', label: 'الموضع الرأسي داخل مساحة المعاينة', source: 'preview', kind: 'range', required: false, type: 'number', options: [], initialValue: entry.className === 'ErpFabMenu' ? 100 : 75},
       {name: '$previewDirection', label: 'اتجاه مساحة المعاينة', source: 'preview', kind: 'select', required: true, type: "'rtl' | 'ltr'", options: ['rtl', 'ltr'], initialValue: 'rtl'},
     );
   }

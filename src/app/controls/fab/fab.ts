@@ -41,6 +41,10 @@ export class ErpFab {
   readonly loading = input(false, {transform: booleanAttribute});
   readonly cursor = input<ErpPressableCursor>('pointer');
   readonly rippleSpeed = input<ErpRippleSpeed>('normal');
+  readonly ariaHasPopup = input<'menu' | 'dialog' | 'listbox' | null>(null);
+  readonly ariaControls = input<string | null>(null);
+  readonly ariaExpanded = input<boolean | null>(null);
+  readonly role = input<'menuitem' | null>(null);
   readonly pressed = output<void>();
 
   private readonly ripple = new PressRippleController();

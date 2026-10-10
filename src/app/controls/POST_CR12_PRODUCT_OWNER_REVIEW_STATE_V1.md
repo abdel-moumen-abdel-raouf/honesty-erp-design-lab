@@ -1,5 +1,17 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — floating action family
+
+Fab, ExtendedFab, and FabMenu completed internal browser review. The accessible
+Skodash Button page has no FAB-specific owner and is recorded only as fallback
+evidence. Host occupancy, both position controls, mixed menu presentations,
+trigger/menu roles, initial focus, Escape/focus return and viewport containment
+pass 56/56 assertions with zero overflow or browser diagnostics. Screenshots,
+measurements and reproduction notes are under
+`docs/review-evidence/erp-floating-actions/v1-internal-review/`. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next Bottom-Up unit: Tooltip.
+
 ## Current review execution — 2026-10-10 — ButtonGroup and SplitButton
 
 The grouped action owners completed internal browser review against the

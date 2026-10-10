@@ -3,6 +3,7 @@
   type="button"
   [disabled]="nativeDisabled()"
   [attr.aria-busy]="state() === 'loading' ? 'true' : null"
+  [attr.role]="role()"
   (pointerdown)="handlePointerDown($event)"
   (keydown)="handleKeyDown($event)"
   (click)="handleClick()"

@@ -32,6 +32,22 @@ describe('ErpFab', () => {
     expect(host.querySelectorAll('button').length).toBe(1);
     expect(host.querySelector('button')?.getAttribute('aria-label')).toBe('Add');
     expect(host.querySelector('erp-icon')?.getAttribute('data-icon-name')).toBe('add');
+    expect(getComputedStyle(host).inlineSize).toBe('fit-content');
+  });
+
+  it('forwards popup and menuitem semantics to the owned native button', () => {
+    const fixture = create();
+    fixture.componentRef.setInput('ariaHasPopup', 'menu');
+    fixture.componentRef.setInput('ariaControls', 'fab-actions');
+    fixture.componentRef.setInput('ariaExpanded', true);
+    fixture.componentRef.setInput('role', 'menuitem');
+    fixture.detectChanges();
+
+    const button = fixture.nativeElement.querySelector('button') as HTMLButtonElement;
+    expect(button.getAttribute('aria-haspopup')).toBe('menu');
+    expect(button.getAttribute('aria-controls')).toBe('fab-actions');
+    expect(button.getAttribute('aria-expanded')).toBe('true');
+    expect(button.getAttribute('role')).toBe('menuitem');
   });
 
   it('requires icon and label before rendering', () => {

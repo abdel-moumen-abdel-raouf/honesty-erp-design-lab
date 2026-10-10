@@ -1,5 +1,23 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Floating Actions Internal Review State
+
+`ErpFab`, `ErpExtendedFab`, and `ErpFabMenu` completed internal browser review.
+Skodash RTL `component-buttons.html` contains no FAB-specific owner, so it is
+recorded only as fallback Button evidence and the FAB presentation remains an
+original Honesty ERP candidate. Hosts now match their owned action surfaces;
+FabMenu exposes one controlled menu relationship, menuitem roles, reliable
+initial focus, native-close synchronization, and Escape closure with focus
+return. The generated FabMenu Workbench uses a contained 100% block start for
+its open top-placement surface. Evidence under
+`docs/review-evidence/erp-floating-actions/v1-internal-review/` passes 56/56
+browser assertions across desktop/narrow Light/Dark RTL/LTR. Focused
+verification passes 5/5 files and 68/68 tests; canonical verification passes
+128/128 files and 849/849 tests, both typechecks, all governance/lint, and the
+zero-warning 418.32 kB / 92.89 kB build. Status remains
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next Bottom-Up unit: `ErpTooltip`.
+
 ## Current Grouped Actions Internal Review State
 
 `ErpButtonGroup` and `ErpSplitButton` completed internal browser review against

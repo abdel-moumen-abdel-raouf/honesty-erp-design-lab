@@ -1,5 +1,28 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Floating actions internal-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `07562ff8d35325f60530eb2c864d5022c7f21685` — synchronized `main` after the
+  grouped-actions checkpoint.
+
+Bounded scope:
+
+- Corrected Fab-family host occupancy and completed FabMenu trigger/menuitem,
+  initial-focus, native-close and Escape/focus-return behavior.
+- Kept both review positioning controls and contained the open FabMenu surface
+  at desktop and narrow boundaries without clipping.
+- Persisted the inspected fallback reference plus 56/56 runtime assertions and
+  screenshots under
+  `docs/review-evidence/erp-floating-actions/v1-internal-review/`.
+- Focused gate: 5/5 files and 68/68 tests. Canonical gate: 128/128 files,
+  849/849 tests, both typechecks, all governance/lint, and zero-warning
+  418.32 kB / 92.89 kB build.
+
+Product Owner visual status remains pending. The actual commit SHA is recorded
+by Git after this document snapshot; do not infer acceptance from the commit.
+
 ## ButtonGroup and SplitButton internal-review candidate — 2026-10-10
 
 Entry checkpoint:

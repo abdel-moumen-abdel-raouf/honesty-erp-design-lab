@@ -1,5 +1,18 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — Fab, ExtendedFab and FabMenu
+
+The floating action family completed internal browser review. The accessible
+Skodash Button page has no FAB-specific reference, so the current presentation
+remains a labeled original Honesty ERP candidate. Custom-element occupancy now
+matches the action surfaces, and FabMenu has complete trigger/menu semantics,
+initial focus, Escape/focus-return behavior and contained narrow placement.
+Evidence under `docs/review-evidence/erp-floating-actions/v1-internal-review/`
+passes 56/56 assertions. Focused verification passes 5/5 files and 68/68 tests;
+canonical verification passes 128/128 files and 849/849 tests with a
+zero-warning 418.32 kB / 92.89 kB build. Product Owner acceptance is not
+recorded. Next Bottom-Up unit: Tooltip.
+
 ## Latest verified UI unit — ButtonGroup and SplitButton
 
 ButtonGroup and SplitButton completed internal browser review against the

@@ -1,5 +1,15 @@
 # Next Component Reference Batch V1
 
+## Authoritative next action — 2026-10-10 — Tooltip
+
+The autonomous UI authorization remains active. Fab, ExtendedFab, and FabMenu
+have completed internal review without Product Owner acceptance. Continue
+Bottom-Up with `ErpTooltip`. Preserve the existing Tooltip trigger/projection,
+activation, placement, delay, motion, overlay, accessibility and reduced-motion
+contracts. Use accessible Skodash evidence only where it actually documents a
+tooltip; otherwise retain the explicitly labeled Honesty ERP original design.
+Business Feature/Page, CRUD, transport, and permissions work remain closed.
+
 ## Authoritative next action — 2026-10-10 — floating action family
 
 The autonomous UI authorization remains active. ButtonGroup and SplitButton
