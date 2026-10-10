@@ -1,5 +1,15 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — Radio family
+
+The dedicated RadioBox and RadioGroup workbenches now restore their complete
+family evidence on demand while preserving one primary live target. Reproducible
+Light/Dark RTL/LTR desktop/narrow captures and measurements are under
+`docs/review-evidence/erp-radio-family/v1/`. The canonical gate passes 128/128
+test files and 811/811 tests with a zero-warning build. Product Owner
+acceptance is not recorded; the next prioritized reopened UI owner is
+`ErpEmptyState`.
+
 ## Current authorized execution — 2026-10-10 — autonomous UI visual QA
 
 The Product Owner has authorized continuous evidence-based review and technical

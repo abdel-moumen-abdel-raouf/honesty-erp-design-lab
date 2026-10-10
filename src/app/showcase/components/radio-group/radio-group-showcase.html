@@ -35,4 +35,20 @@
       <erp-text type="caption" selectable>القيمة الحالية: {{ cvaValue() }}</erp-text>
     </erp-stack>
   </erp-surface>
+  <erp-surface padding="default" border="subtle" data-radio-reference-section>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل الحالات المرجعية</erp-text>
+      <erp-text type="paragraph" tone="secondary">
+        التكوين العادي وTile متاحان عند الطلب مع استمرار هدف حي واحد.
+      </erp-text>
+      <erp-button
+        data-radio-reference-toggle
+        [label]="referenceExpanded() ? 'إخفاء الدليل' : 'عرض الدليل'"
+        (pressed)="toggleReference()"
+      />
+      @if (referenceExpanded()) {
+        <app-review-radio-reference focus="radio-group" />
+      }
+    </erp-stack>
+  </erp-surface>
 </erp-stack>

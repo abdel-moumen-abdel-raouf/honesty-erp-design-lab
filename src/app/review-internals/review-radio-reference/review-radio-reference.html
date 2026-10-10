@@ -1,0 +1,99 @@
+<erp-stack gap="default" data-radio-reference-evidence [attr.data-radio-reference-focus]="focus()">
+  <erp-text type="heading-3">دليل عائلة زر الاختيار</erp-text>
+  <erp-text type="paragraph" tone="secondary">
+    حالات مرجعية مستعادة عند الطلب مع native radio واحد لكل خيار وبدون هدف Workbench إضافي.
+  </erp-text>
+
+  @if (focus() === 'radio-box') {
+    <erp-surface padding="default" border="subtle" data-radio-box-standalone-panel>
+      <erp-stack gap="default">
+        <erp-text type="heading-3">زر مستقل وعنوان ووصف</erp-text>
+        <erp-inline class="radio-reference__row" gap="default" wrap="wrap">
+          <erp-radio-box label="غير محدد" hideText />
+          <erp-radio-box
+            label="محدد"
+            hideText
+            [ngModel]="standaloneValue()"
+            (ngModelChange)="standaloneValue.set($event)"
+          />
+          <erp-radio-box label="معطل" hideText disabled />
+          <erp-radio-box label="قراءة فقط" hideText readOnly [ngModel]="true" />
+        </erp-inline>
+        <erp-inline class="radio-reference__row radio-reference__row--wide" gap="default" wrap="wrap" data-radio-box-text-panel>
+          <erp-radio-box
+            label="الدفع النقدي"
+            description="استلام المبلغ مباشرة عند تنفيذ العملية."
+            [ngModel]="standaloneValue()"
+            (ngModelChange)="standaloneValue.set($event)"
+          />
+          <erp-radio-box
+            data-radio-box-required-evidence
+            label="اختيار مطلوب"
+            description="يجب اختيار هذا الخيار لإكمال المثال."
+            required
+            [ngModel]="requiredValue()"
+            (ngModelChange)="requiredValue.set($event)"
+          />
+        </erp-inline>
+      </erp-stack>
+    </erp-surface>
+
+    <erp-surface padding="default" border="subtle" data-radio-box-variants-panel>
+      <erp-stack gap="default">
+        <erp-text type="heading-3">الأنماط والأحجام</erp-text>
+        <erp-inline class="radio-reference__row radio-reference__row--wide" gap="default" wrap="wrap">
+          <erp-radio-box label="Outline" description="النمط المحيطي" [ngModel]="true" />
+          <erp-radio-box label="Filled" description="النمط الممتلئ" variant="filled" [ngModel]="true" />
+          <erp-radio-box label="Soft" description="النمط الهادئ" variant="soft" [ngModel]="true" />
+        </erp-inline>
+        <erp-inline class="radio-reference__row radio-reference__row--wide" gap="default" wrap="wrap" data-radio-box-size-panel>
+          <erp-radio-box label="SM" description="18px" size="sm" [ngModel]="true" />
+          <erp-radio-box label="MD" description="22px" size="md" [ngModel]="true" />
+          <erp-radio-box label="LG" description="28px" size="lg" [ngModel]="true" />
+          <erp-radio-box label="XL" description="36px" size="xl" [ngModel]="true" />
+        </erp-inline>
+      </erp-stack>
+    </erp-surface>
+
+    <erp-surface padding="default" border="subtle" data-radio-box-state-matrix-panel>
+      <erp-stack gap="default">
+        <erp-text type="heading-3">مصفوفة الحالات</erp-text>
+        <erp-inline class="radio-reference__row radio-reference__row--wide" gap="default" wrap="wrap">
+          <erp-radio-box label="افتراضي" />
+          <erp-radio-box label="محدد" [ngModel]="true" />
+          <erp-radio-box label="معطل" disabled />
+          <erp-radio-box label="قراءة فقط" readOnly [ngModel]="true" />
+          <erp-radio-box label="خطأ" description="حالة خطأ." status="danger" />
+          <erp-radio-box label="نجاح" description="حالة نجاح." status="success" [ngModel]="true" />
+        </erp-inline>
+      </erp-stack>
+    </erp-surface>
+  } @else {
+    <erp-surface padding="default" border="subtle" data-radio-box-group-panel>
+      <erp-stack gap="default">
+        <erp-text type="heading-3">مجموعة اختيار عادية</erp-text>
+        <erp-radio-group
+          data-radio-group-evidence
+          label="حالة السجل"
+          [options]="groupOptions"
+          [ngModel]="groupValue()"
+          (ngModelChange)="groupValue.set($event)"
+        />
+      </erp-stack>
+    </erp-surface>
+
+    <erp-surface padding="default" border="subtle" data-radio-box-tile-panel>
+      <erp-stack gap="default">
+        <erp-text type="heading-3">Tile — اختيار واحد</erp-text>
+        <erp-radio-group
+          data-radio-tile-group-evidence
+          label="نوع الوحدة"
+          mode="tile"
+          [options]="tileOptions"
+          [ngModel]="tileValue()"
+          (ngModelChange)="tileValue.set($event)"
+        />
+      </erp-stack>
+    </erp-surface>
+  }
+</erp-stack>

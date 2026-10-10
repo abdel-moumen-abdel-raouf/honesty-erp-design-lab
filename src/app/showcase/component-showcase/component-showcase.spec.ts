@@ -180,6 +180,34 @@ describe('ComponentShowcase', () => {
     expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
   }, 20000);
 
+  it('restores RadioBox and RadioGroup family evidence on demand with one live target', async () => {
+    const harness = await RouterTestingHarness.create();
+
+    for (const route of ['radio-box', 'radio-group']) {
+      await harness.navigateByUrl(`/components/${route}`, ComponentShowcase);
+      await vi.waitFor(() => {
+        harness.fixture.detectChanges();
+        expect(
+          harness.routeNativeElement?.querySelector('[data-showcase-target]'),
+        ).not.toBeNull();
+      });
+
+      const root = harness.routeNativeElement as HTMLElement;
+      expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+      expect(root.querySelector('app-review-radio-reference')).toBeNull();
+
+      (
+        root.querySelector(
+          '[data-radio-reference-toggle] button',
+        ) as HTMLButtonElement
+      ).click();
+      harness.fixture.detectChanges();
+
+      expect(root.querySelector('app-review-radio-reference')).not.toBeNull();
+      expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    }
+  }, 20000);
+
   it('uses the complete canonical AvatarPicker gallery in the live workbench', async () => {
     const harness = await RouterTestingHarness.create();
     await harness.navigateByUrl('/components/avatar-picker', ComponentShowcase);

@@ -1,5 +1,17 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Radio Family Internal Review State
+
+`ErpRadioBox` and `ErpRadioGroup` retain native radio ownership and the accepted
+CheckBox V5 family method. Their dedicated one-target workbenches now restore
+the complete family state/composition evidence on demand. Browser evidence at
+1440/1280/390/320 px in Light/Dark and RTL/LTR records the exact
+18/22/28/36 px scale with no overflow, clipping, broken images, or diagnostics.
+The historical `erp-radiobox.html` file was unavailable and no source values
+were invented. Both owners are technically and internally visually verified,
+but remain pending Product Owner visual review. The next prioritized reopened
+unit is `ErpEmptyState`.
+
 ## Current Autonomous UI Visual-QA Authorization — 2026-10-10
 
 The Product Owner explicitly reopened the documented ERP UI backlog for

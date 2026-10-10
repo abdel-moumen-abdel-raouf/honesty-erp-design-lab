@@ -1,0 +1,16 @@
+:host {
+  display: block;
+  min-inline-size: 0;
+}
+
+.radio-reference__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1rem;
+  min-inline-size: 0;
+}
+
+.radio-reference__row--wide {
+  gap: 1.5rem;
+}

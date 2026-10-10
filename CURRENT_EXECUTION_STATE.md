@@ -1,5 +1,19 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — Radio family internal review
+
+The RadioBox/RadioGroup candidate now restores its complete family evidence on
+demand from each dedicated page while keeping one primary Workbench target.
+The verified 18/22/28/36 px scale, native single-selection semantics, ordinary
+and Tile groups, variants, validation, read-only and state evidence pass in
+Light/Dark RTL/LTR at desktop and narrow widths with no overflow, clipping,
+broken images or browser diagnostics. The missing historical
+`erp-radiobox.html` source was not fabricated. Status remains
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`; the next prioritized reopened unit is
+`ErpEmptyState`. The canonical gate passes 128/128 test files and 811/811
+tests, all governance/lint, both typechecks, and the zero-warning production
+build at 418.32 kB / 92.86 kB estimated transfer.
+
 ## Authoritative current execution state — 2026-10-10 — autonomous UI visual QA opened
 
 The new Product Owner authorization supersedes the historical requirement to

@@ -1,5 +1,36 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Radio family internal visual-review checkpoint — 2026-10-10
+
+Entry checkpoint:
+
+- `8a14c00fdfcce28eefd4566c54a65a52e58ca80c` — clean synchronized `main` after
+  the global component lifecycle ledger.
+
+Bounded scope:
+
+- Restored an on-demand, multi-state `ErpRadioBox` / `ErpRadioGroup` evidence
+  surface to both dedicated live workbenches without adding a second primary
+  target.
+- Preserved the accepted `ErpCheckBox` family language and native radio
+  ownership; no production geometry or public API was changed.
+- Added reproducible Light/Dark, RTL/LTR, desktop/narrow captures and measured
+  exact 18/22/28/36 px RadioBox indicators with zero page overflow, clipping,
+  broken images, or browser diagnostics in the recorded cases.
+
+Planned bounded commit:
+
+- `fix(radio): restore complete family review evidence`
+
+Status:
+
+- `TECHNICAL_VERIFIED`: 4/4 focused files and 32/32 focused tests; canonical
+  128/128 test files and 811/811 tests; all governance/lint; both typechecks;
+  zero-warning build at 418.32 kB / 92.86 kB estimated transfer.
+- `INTERNAL_VISUAL_REVIEW_COMPLETED` for the recorded Radio family states.
+- `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`; no visual acceptance is inferred.
+- Next documented review priority: `ErpEmptyState`.
+
 ## Autonomous UI visual-QA Shell checkpoint — 2026-10-10
 
 Entry checkpoint:

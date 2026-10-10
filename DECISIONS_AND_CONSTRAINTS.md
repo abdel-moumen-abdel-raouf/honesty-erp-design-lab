@@ -1,5 +1,15 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Radio family internal-review decision — 2026-10-10
+
+- RadioBox continues to use native radio semantics and the accepted CheckBox
+  V5 family method; the unavailable historical external file is not a source
+  for fabricated measurements.
+- Dedicated RadioBox and RadioGroup pages keep one live target and expose rich
+  state/composition evidence only when requested.
+- Internal browser review does not change Product Owner visual status; both
+  Radio owners remain pending consolidated review.
+
 ## Autonomous UI visual-QA decisions — 2026-10-10
 
 - Product Owner authorization permits sequential internal visual review and

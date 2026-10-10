@@ -1,5 +1,22 @@
 # ErpRadioBox — Product Owner Visual Contract V1
 
+## Current internal review closure — 2026-10-10
+
+The dedicated `/components/radio-box` and `/components/radio-group` workbenches
+retain one primary live target and now restore the full Radio family evidence
+on demand. Browser evidence at 1440, 1280, 390, and 320 CSS px records exact
+18/22/28/36 px control sizes, zero page horizontal overflow, zero clipped
+visible text, zero broken images, and zero browser diagnostics in Light/Dark
+and RTL/LTR cases. Ordinary and Tile groups each retain exactly one selected
+option and native radio ownership.
+
+The previously named external `erp-radiobox.html` file was not available under
+Downloads during this review. The verified authority is therefore this
+contract plus the Product Owner-accepted CheckBox V5 family direction; no
+missing external geometry was invented. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+
 ## Authority
 
 On 2026-10-04 the Product Owner explicitly accepted the current

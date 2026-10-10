@@ -40,6 +40,11 @@ const SHELL_OWNERS = new Set([
   'ErpUserMenu',
 ]);
 
+const INTERNAL_VISUAL_REVIEWED = new Set([
+  'ErpRadioBox',
+  'ErpRadioGroup',
+]);
+
 const CATEGORY_ORDER = new Map([
   ['Primitives', 10],
   ['Inputs / Fields', 20],
@@ -149,13 +154,19 @@ function visualState(entry) {
   if (SHELL_OWNERS.has(entry.className)) {
     return ['UNKNOWN / PO REVIEW PENDING', 'Technical and internal visual evidence exists; no Product Owner accept/reject decision is recorded.'];
   }
+  if (INTERNAL_VISUAL_REVIEWED.has(entry.className)) {
+    return [
+      'UNKNOWN / PO REVIEW PENDING',
+      'Technical verification and internal browser review are complete; no Product Owner accept/reject decision is recorded.',
+    ];
+  }
   return ['UNKNOWN', 'Catalog PENDING is not interpreted as unreviewed, rejected, or accepted without an explicit Product Owner record.'];
 }
 
 function nextAction(entry, state) {
   if (state === 'ACCEPTED / FROZEN') return 'Preserve the accepted contract; regression-only.';
-  if (entry.className === 'ErpRadioBox') {
-    return 'NEXT: compare the live implementation to RADIO_BOX_VISUAL_CONTRACT_V1 and the accepted CheckBox family language; verify RadioGroup compatibility.';
+  if (INTERNAL_VISUAL_REVIEWED.has(entry.className)) {
+    return 'Preserve the verified candidate and await consolidated Product Owner visual review.';
   }
   if (state === 'REOPENED') return 'Run binding-reference browser comparison and close known rejection findings in Bottom-Up order.';
   if (entry.classification !== 'PUBLIC ERP COMPONENT') return 'Keep covered by public-owner tests and native-ownership governance.';
@@ -223,10 +234,10 @@ drift.
 - Explicitly accepted/frozen public owners: **1** (\`ErpCheckBox\`).
 - Explicitly reopened public owners: **${publicEntries.filter((entry) => REOPENED_VISUALS.has(entry.className)).length}**.
 - Planned identities outside the implemented catalog: **${PLANNED.length}**.
-- Next Bottom-Up visual unit: **\`ErpRadioBox\`**, followed by bounded
-  \`ErpRadioGroup\` compatibility evidence. This follows the accepted CheckBox
-  dependency and the existing RadioBox visual contract; it does not infer a
-  RadioBox acceptance.
+- Internally reviewed public owners added in the current UI wave:
+  **\`ErpRadioBox\`** and **\`ErpRadioGroup\`**. Their Product Owner status
+  remains unknown/pending.
+- Next prioritized reopened visual unit: **\`ErpEmptyState\`**.
 
 ## Public owner inventory
 

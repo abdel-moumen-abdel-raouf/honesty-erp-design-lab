@@ -1,5 +1,14 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — Radio family complete internally
+
+RadioBox and RadioGroup now have one-target interactive workbenches plus
+on-demand family evidence covering native standalone radio, title/description,
+required validation, outline/filled/soft, 18/22/28/36 px, state matrix,
+ordinary group, and Tile single-select. Browser evidence is complete for the
+authorized internal-review gate; Product Owner visual status remains pending.
+The next prioritized reopened visual unit is `ErpEmptyState`.
+
 ## Authoritative continuation — 2026-10-10 — documented UI backlog opened
 
 The Product Owner authorizes sequential internal visual QA and technical

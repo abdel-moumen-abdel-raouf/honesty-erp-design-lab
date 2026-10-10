@@ -1,5 +1,19 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — Radio family reviewed internally
+
+`ErpRadioBox` and `ErpRadioGroup` now expose their rich reference/state evidence
+on demand under their dedicated pages without adding another
+`data-showcase-target`. Runtime evidence lives at
+`docs/review-evidence/erp-radio-family/v1/`; the exact control scale and
+responsive Light/Dark RTL/LTR cases have no overflow, clipping, broken images,
+or diagnostics. The external file named by older history was unavailable, so
+the accepted CheckBox V5 family direction remains the source-grounded method.
+The full gate passes 128/128 test files and 811/811 tests, both typechecks, all
+governance/lint, and a zero-warning build. Product Owner visual acceptance is
+still pending. Continue with `ErpEmptyState`; do not alter accepted
+`ErpCheckBox` visuals.
+
 ## Authoritative current handoff — 2026-10-10 — autonomous UI backlog continuation
 
 Start from live `main` and preserve the Product Owner's new authorization to

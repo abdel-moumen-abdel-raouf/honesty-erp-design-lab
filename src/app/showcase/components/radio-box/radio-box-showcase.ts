@@ -7,13 +7,15 @@ import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {ErpButton} from '../../../controls/button/button';
+import {ErpReviewRadioReference} from '../../../review-internals/review-radio-reference/review-radio-reference';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'radio-box')!;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-radio-box-showcase',
-  imports: [ErpRadioBox, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ReactiveFormsModule],
+  imports: [ErpRadioBox, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ReactiveFormsModule, ErpButton, ErpReviewRadioReference],
   templateUrl: './radio-box-showcase.html',
   styleUrl: './radio-box-showcase.scss',
 })
@@ -21,6 +23,7 @@ export class ErpRadioBoxShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
+  readonly referenceExpanded = signal(false);
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>(false);
   readonly controlValues = computed<Readonly<Record<string, unknown>>>(() => ({
@@ -70,6 +73,10 @@ export class ErpRadioBoxShowcase {
     try { rendered = typeof value === 'string' ? value : JSON.stringify(value); }
     catch { rendered = String(value); }
     this.lastEvent.set(`${name}: ${rendered}`);
+  }
+
+  toggleReference(): void {
+    this.referenceExpanded.update((value) => !value);
   }
 
   private functionPreset(name: string, value: unknown): unknown {

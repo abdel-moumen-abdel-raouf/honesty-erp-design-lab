@@ -37,4 +37,20 @@
       <erp-text type="caption" selectable>القيمة الحالية: {{ cvaValue() }}</erp-text>
     </erp-stack>
   </erp-surface>
+  <erp-surface padding="default" border="subtle" data-radio-reference-section>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل الحالات المرجعية</erp-text>
+      <erp-text type="paragraph" tone="secondary">
+        المصفوفة الكاملة متاحة عند الطلب دون إنشاء هدف Workbench ثانٍ.
+      </erp-text>
+      <erp-button
+        data-radio-reference-toggle
+        [label]="referenceExpanded() ? 'إخفاء الدليل' : 'عرض الدليل'"
+        (pressed)="toggleReference()"
+      />
+      @if (referenceExpanded()) {
+        <app-review-radio-reference focus="radio-box" />
+      }
+    </erp-stack>
+  </erp-surface>
 </erp-stack>

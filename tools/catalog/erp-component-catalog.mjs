@@ -1332,6 +1332,9 @@ function generatedShowcaseOwner(entry) {
   const isFloatingPreview = ['ErpFab', 'ErpExtendedFab', 'ErpFabMenu'].includes(entry.className);
   const hasDirectionalPreview = isFloatingPreview || entry.className === 'ErpUserMenu';
   const exactCoreFocus = EXACT_CORE_FOCUS.get(entry.className) ?? null;
+  const hasRadioReference = ['ErpRadioBox', 'ErpRadioGroup'].includes(
+    entry.className,
+  );
   const projection = projectionMarkup(entry);
   const imports = new Set([
     entry.className,
@@ -1395,6 +1398,12 @@ function generatedShowcaseOwner(entry) {
     importLines.push(`import {ErpReviewShowcaseExactReference} from '../../../review-internals/showcase-exact-reference/showcase-exact-reference';`);
     imports.add('ErpReviewShowcaseExactReference');
   }
+  if (hasRadioReference) {
+    importLines.push(`import {ErpButton} from '../../../controls/button/button';`);
+    importLines.push(`import {ErpReviewRadioReference} from '../../../review-internals/review-radio-reference/review-radio-reference';`);
+    imports.add('ErpButton');
+    imports.add('ErpReviewRadioReference');
+  }
 
   const className = `${entry.className}Showcase`;
   const inputBindings = entry.publicApi.inputs
@@ -1434,7 +1443,9 @@ function generatedShowcaseOwner(entry) {
     : '';
   const exactReferenceEvidence = exactCoreFocus
     ? `  <app-review-showcase-exact-reference focus="${exactCoreFocus}" />\n`
-    : '';
+    : hasRadioReference
+      ? `  <erp-surface padding="default" border="subtle" data-radio-reference-section>\n    <erp-stack gap="tight">\n      <erp-text type="heading-3">دليل الحالات المرجعية</erp-text>\n      <erp-text type="paragraph" tone="secondary">\n        ${entry.className === 'ErpRadioBox' ? 'المصفوفة الكاملة متاحة عند الطلب دون إنشاء هدف Workbench ثانٍ.' : 'التكوين العادي وTile متاحان عند الطلب مع استمرار هدف حي واحد.'}\n      </erp-text>\n      <erp-button\n        data-radio-reference-toggle\n        [label]="referenceExpanded() ? 'إخفاء الدليل' : 'عرض الدليل'"\n        (pressed)="toggleReference()"\n      />\n      @if (referenceExpanded()) {\n        <app-review-radio-reference focus="${entry.id}" />\n      }\n    </erp-stack>\n  </erp-surface>\n`
+      : '';
   const livePreviewClass = isFloatingPreview
     ? 'showcase-live-preview'
     : 'showcase-live-preview';
@@ -1475,6 +1486,17 @@ function generatedShowcaseOwner(entry) {
       "    this.recordEvent(`${name}Change`, value);",
       "    if (name === 'open' && value === false && this.lastEvent().startsWith('actionActivated:')) {\n      this.lastEvent.update((current) => `${current} · openChange: false`);\n      return;\n    }\n    this.recordEvent(`${name}Change`, value);",
     );
+  }
+  if (hasRadioReference) {
+    generatedSource = generatedSource
+      .replace(
+        "  readonly lastEvent = signal('لم يحدث تفاعل بعد');\n",
+        "  readonly lastEvent = signal('لم يحدث تفاعل بعد');\n  readonly referenceExpanded = signal(false);\n",
+      )
+      .replace(
+        '\n  private functionPreset(name: string, value: unknown): unknown {',
+        '\n  toggleReference(): void {\n    this.referenceExpanded.update((value) => !value);\n  }\n\n  private functionPreset(name: string, value: unknown): unknown {',
+      );
   }
   return new Map([
     [ownerPath, generatedSource],

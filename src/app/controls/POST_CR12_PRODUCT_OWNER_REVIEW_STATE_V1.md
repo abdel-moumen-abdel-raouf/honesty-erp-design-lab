@@ -1,5 +1,17 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — Radio family
+
+`ErpRadioBox` and bounded `ErpRadioGroup` compatibility have completed internal
+browser review. The dedicated pages restore their ordinary, Tile, variant,
+size, required, selected, disabled, read-only, danger, and success evidence on
+demand while preserving exactly one primary live target. Evidence is under
+`docs/review-evidence/erp-radio-family/v1/`. The unavailable historical
+`erp-radiobox.html` file was not treated as a measured reference. Both owners
+are `TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. This does not change the accepted/frozen
+status of `ErpCheckBox`. The next prioritized reopened unit is `ErpEmptyState`.
+
 ## Current lifecycle inventory — 2026-10-10
 
 `ERP_COMPONENT_LIFECYCLE_LEDGER_V1.md` now records all 81 public owners, all

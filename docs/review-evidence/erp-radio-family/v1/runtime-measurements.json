@@ -1,0 +1,160 @@
+{
+  "capturedAt": "2026-10-10T03:25:25.628Z",
+  "baseUrl": "http://localhost:4999",
+  "measurements": [
+    {
+      "name": "radio-box-1440-light-rtl",
+      "route": "/components/radio-box",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "primaryTargetCount": 1,
+      "reference": {
+        "x": 162,
+        "y": 205.8125,
+        "width": 935,
+        "height": 571.953125
+      },
+      "radioCount": 19,
+      "selectedCount": 13,
+      "disabledCount": 2,
+      "controlSizes": [
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        18,
+        22,
+        28,
+        36,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22
+      ],
+      "pageHorizontalOverflow": 0,
+      "clippedVisibleText": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "radio-box-390-dark-ltr",
+      "route": "/components/radio-box",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "primaryTargetCount": 1,
+      "reference": {
+        "x": 57,
+        "y": 158.3125,
+        "width": 261,
+        "height": 992.078125
+      },
+      "radioCount": 19,
+      "selectedCount": 13,
+      "disabledCount": 2,
+      "controlSizes": [
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        18,
+        22,
+        28,
+        36,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22
+      ],
+      "pageHorizontalOverflow": 0,
+      "clippedVisibleText": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "radio-group-1280-dark-ltr",
+      "route": "/components/radio-group",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "primaryTargetCount": 1,
+      "reference": {
+        "x": 162,
+        "y": 205.21875,
+        "width": 775,
+        "height": 650.703125
+      },
+      "radioCount": 6,
+      "selectedCount": 2,
+      "disabledCount": 0,
+      "controlSizes": [
+        22,
+        22,
+        22,
+        22,
+        22,
+        22
+      ],
+      "pageHorizontalOverflow": 0,
+      "clippedVisibleText": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "radio-group-320-light-rtl",
+      "route": "/components/radio-group",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "primaryTargetCount": 1,
+      "reference": {
+        "x": 57,
+        "y": 184.0625,
+        "width": 191,
+        "height": 866.640625
+      },
+      "radioCount": 6,
+      "selectedCount": 2,
+      "disabledCount": 0,
+      "controlSizes": [
+        22,
+        22,
+        22,
+        22,
+        22,
+        22
+      ],
+      "pageHorizontalOverflow": 0,
+      "clippedVisibleText": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    }
+  ]
+}
