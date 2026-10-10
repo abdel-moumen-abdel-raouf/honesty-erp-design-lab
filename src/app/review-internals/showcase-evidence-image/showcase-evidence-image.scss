@@ -5,7 +5,13 @@ img {
   inline-size: 100%;
 }
 
+:host {
+  max-inline-size: 100%;
+  overflow-x: auto;
+}
+
 img {
+  min-inline-size: 15.0625rem;
   block-size: auto;
   max-block-size: 30rem;
   object-fit: contain;

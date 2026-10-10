@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-10T17:36:24.333Z",
+  "capturedAt": "2026-10-10T17:57:08.365Z",
   "baseUrl": "http://127.0.0.1:4999",
   "publicRoutes": 81,
   "failures": [],
@@ -1429,12 +1429,7 @@
       "appShells": 1,
       "routerOutlets": 1,
       "overlayHosts": 1,
-      "consoleFindings": [
-        {
-          "level": "warning",
-          "text": "NG0913: An image with src http://127.0.0.1:4999/assets/review-evidence/erp-shell/autonomous-app-shell-wave/integrated-1440-light-rtl.png has intrinsic file dimensions much larger than its rendered size. This can negatively impact application loading performance. For more information about addressing or disabling this warning, see https://v21.angular.dev/errors/NG0913. Find more at https://v21.angular.dev/errors/NG0913"
-        }
-      ]
+      "consoleFindings": []
     }
   ]
 }

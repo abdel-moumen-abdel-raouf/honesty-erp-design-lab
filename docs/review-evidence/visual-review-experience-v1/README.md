@@ -87,6 +87,12 @@ its complete multi-owner experience rather than an isolated table specimen.
 5. Capture writes initially triggered the development asset watcher while the
    audit was still running; captures now stage outside the watched tree and are
    copied only after runtime inspection completes.
+6. Narrow comparison images initially triggered Angular's oversized-image
+   diagnostic, and the desktop AppShell comparison then exposed a lazy-LCP
+   warning. The review-only image owner now preserves a scrollable minimum
+   inspection width on narrow screens and eagerly loads evidence only after its
+   lazy component route is opened. The repeated 81-route/ten-capture audit
+   records zero console findings.
 
 ## Lifecycle state
 
