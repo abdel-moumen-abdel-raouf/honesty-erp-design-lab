@@ -22,10 +22,10 @@
         } @else {
           <erp-text erpTopbarStart type="heading-3">Honesty ERP</erp-text>
         }
-        <erp-branch-selector erpTopbarContext [branches]="topbarBranches" value="cairo" />
+        <erp-branch-selector erpTopbarContext [branches]="topbarBranches" value="cairo" labelMode="visually-hidden" />
         <erp-global-search erpTopbarSearch [results]="topbarSearchResults" />
         <erp-inline erpTopbarActions gap="tight" align="center"><erp-applications-menu [groups]="topbarApplications" /><erp-messages-menu [messages]="topbarMessages" /><erp-notification-bell [notifications]="topbarNotifications" /></erp-inline>
-        <erp-user-menu erpTopbarUser [user]="topbarUser" [items]="topbarUserItems" /></erp-topbar></erp-stack>
+        <erp-user-menu erpTopbarUser [user]="topbarUser" [items]="topbarUserItems" [compactTriggerAtNarrow]="true" /></erp-topbar></erp-stack>
                 </erp-stack>
               </erp-surface>
             }
@@ -41,7 +41,7 @@
       <erp-topbar
           data-showcase-target
           
-        ><erp-text erpTopbarStart type="heading-3">Honesty ERP</erp-text><erp-branch-selector erpTopbarContext [branches]="topbarBranches" value="cairo" (valueChange)="recordEvent('branchChanged', $event)" /><erp-global-search erpTopbarSearch [results]="topbarSearchResults" (resultActivated)="recordEvent('searchResultActivated', $event)" /><erp-inline erpTopbarActions gap="tight" align="center"><erp-applications-menu [groups]="topbarApplications" (applicationActivated)="recordEvent('applicationActivated', $event)" /><erp-messages-menu [messages]="topbarMessages" (messageActivated)="recordEvent('messageActivated', $event)" /><erp-notification-bell [notifications]="topbarNotifications" (notificationActivated)="recordEvent('notificationActivated', $event)" /></erp-inline><erp-user-menu erpTopbarUser [user]="topbarUser" [items]="topbarUserItems" (actionActivated)="recordEvent('userActionActivated', $event)" /></erp-topbar>
+        ><erp-text erpTopbarStart type="heading-3">Honesty ERP</erp-text><erp-branch-selector erpTopbarContext [branches]="topbarBranches" value="cairo" labelMode="visually-hidden" (valueChange)="recordEvent('branchChanged', $event)" /><erp-global-search erpTopbarSearch [results]="topbarSearchResults" (resultActivated)="recordEvent('searchResultActivated', $event)" /><erp-inline erpTopbarActions gap="tight" align="center"><erp-applications-menu [groups]="topbarApplications" (applicationActivated)="recordEvent('applicationActivated', $event)" /><erp-messages-menu [messages]="topbarMessages" (messageActivated)="recordEvent('messageActivated', $event)" /><erp-notification-bell [notifications]="topbarNotifications" (notificationActivated)="recordEvent('notificationActivated', $event)" /></erp-inline><erp-user-menu erpTopbarUser [user]="topbarUser" [items]="topbarUserItems" [compactTriggerAtNarrow]="true" (actionActivated)="recordEvent('userActionActivated', $event)" /></erp-topbar>
     </erp-stack>
   </erp-surface>
   <details id="api-controls" class="showcase-api-controls" data-showcase-api-controls>

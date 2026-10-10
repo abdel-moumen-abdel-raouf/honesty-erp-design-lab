@@ -43,7 +43,11 @@ let nextUserMenuId = 0;
   ],
   templateUrl: './user-menu.html',
   styleUrl: './user-menu.scss',
-  host: {'[attr.data-user-menu-open]': 'open()'},
+  host: {
+    '[attr.data-user-menu-open]': 'open()',
+    '[attr.data-user-menu-compact-trigger-at-narrow]':
+      'compactTriggerAtNarrow()',
+  },
 })
 export class ErpUserMenu implements AfterViewInit, OnDestroy {
   readonly user = input.required<ErpShellUserSummary>();
@@ -57,13 +61,22 @@ export class ErpUserMenu implements AfterViewInit, OnDestroy {
   readonly showBranchBadge = input(true, {transform: booleanAttribute});
   readonly showTriggerRoleBadge = input(true, {transform: booleanAttribute});
   readonly showTriggerBranchBadge = input(true, {transform: booleanAttribute});
+  readonly compactTriggerAtNarrow = input(false, {transform: booleanAttribute});
   readonly open = model(false);
   readonly actionActivated = output<ErpUserMenuItem>();
 
   protected readonly surfaceId = `erp-user-menu-surface-${++nextUserMenuId}`;
-  protected readonly triggerAccessibleLabel = computed(
-    () => `${this.label()}: ${this.user().displayName}`,
-  );
+  protected readonly triggerAccessibleLabel = computed(() => {
+    const user = this.user();
+    const details = [
+      user.displayName,
+      this.showEmail() ? user.email : null,
+      this.showRoleBadge() ? user.roleLabel : null,
+      this.showBranchBadge() ? user.branchLabel : null,
+    ].filter((value): value is string => Boolean(value));
+
+    return `${this.label()}: ${details.join('، ')}`;
+  });
   protected readonly triggerRoleVisible = computed(
     () => this.showRoleBadge() && this.showTriggerRoleBadge() &&
       Boolean(this.user().roleLabel),
@@ -101,6 +114,7 @@ export class ErpUserMenu implements AfterViewInit, OnDestroy {
       this.showBranchBadge();
       this.showTriggerRoleBadge();
       this.showTriggerBranchBadge();
+      this.compactTriggerAtNarrow();
 
       if (!this.viewReady || !this.controller) {
         return;

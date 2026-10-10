@@ -41,13 +41,28 @@ erp-global-search {
   display: none;
 }
 
-@include query.viewport-down('sm') {
-  .lab-shell-title,
+.lab-screenshot-wide {
+  white-space: nowrap;
+}
+
+@include query.viewport-down('lg') {
+  .lab-shell-title {
+    display: none;
+  }
+}
+
+@include query.viewport-down('lg') {
   .lab-screenshot-wide {
     display: none;
   }
 
   .lab-screenshot-narrow {
     display: inline-block;
+  }
+}
+
+@include query.viewport-down('xxs') {
+  .lab-shell-actions {
+    gap: 0;
   }
 }

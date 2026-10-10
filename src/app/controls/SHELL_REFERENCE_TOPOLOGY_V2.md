@@ -1,5 +1,15 @@
 # Shell Reference and Topology Contract V2
 
+## 2026-10-11 integrated Topbar correction
+
+The root Topbar now uses the existing five regions in one 72px desktop row and
+a two-row 140px composition below the `lg` query boundary. The root opts into a
+compact narrow UserMenu trigger without changing UserMenu defaults; the full
+popup identity remains available. BranchSelector and GlobalSearch continue to
+own their existing Select/SearchBox engines. Ten integrated captures, stable
+opened dropdowns, and the 81-route audit are stored in
+`docs/review-evidence/erp-shell/topbar-visual-correction-v3/`.
+
 ## Root-owned AppShell Workbench contract — 2026-10-10
 
 The AppShell review route is part of the real application frame: it renders a

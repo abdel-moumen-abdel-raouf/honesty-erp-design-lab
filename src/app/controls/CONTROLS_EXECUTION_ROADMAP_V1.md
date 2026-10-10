@@ -1,5 +1,19 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — root Topbar correction technically complete
+
+The Product Owner-authorized root Topbar correction is complete as a bounded
+Shell checkpoint. The real App uses a five-region desktop grid and a contained
+two-row layout below `lg`, with compatible opt-in BranchSelector and UserMenu
+composition modes. Six-width integrated/standalone evidence and the 81-route
+audit pass with zero clipping, overflow, broken images, or diagnostics.
+
+Canonical verification passes 153/153 files and 889/889 tests with a
+zero-warning 425.22 kB / 93.16 kB build. The next authorized dependency step is
+the contract-readiness assessment for the six planned identities, followed only
+by safe presentation-only candidates. Workflow execution and business systems
+remain deferred. Product Owner visual review of the Topbar remains pending.
+
 ## Current UI continuation — Visual Review Experience V1.1 complete
 
 The 35 V1 single-example gallery gaps are closed through actual supported

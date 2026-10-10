@@ -1,5 +1,31 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Root Topbar visual correction V3 candidate — 2026-10-11
+
+Entry checkpoint:
+
+- `cdf7cef9a11629ee9ecc1962b4cdbc93415003e6` — synchronized clean `main`
+  after Visual Review Experience V1.1.
+
+Bounded scope:
+
+- Reconstructed the real root Topbar as a five-region desktop grid and a
+  Query-API-controlled two-row narrow composition.
+- Added compatible BranchSelector label-mode and UserMenu narrow-trigger
+  composition inputs without changing their defaults or popup contracts.
+- Prevented SearchBox popup-trigger wrapping and retained the existing search,
+  menu, overlay, AppShell, RouterOutlet, OverlayHost, and theme owners.
+- Persisted integrated and standalone captures plus measurements under
+  `docs/review-evidence/erp-shell/topbar-visual-correction-v3/`.
+
+Verification before commit:
+
+- 81/81 routes pass; maximum AppShell, RouterOutlet, OverlayHost, and primary
+  target count is one.
+- Browser diagnostics, region/page overflow, and broken images: zero.
+- `npm run verify:clean`: 153/153 files, 889/889 tests, both typechecks, and a
+  zero-warning 425.22 kB / 93.16 kB production build.
+
 ## Visual Review Experience V1.1 candidate — 2026-10-10
 
 Entry checkpoint:

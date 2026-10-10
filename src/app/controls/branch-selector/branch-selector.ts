@@ -8,6 +8,7 @@ import {
   output,
 } from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {ErpFieldLabelMode} from '../input-family/field-contracts';
 import {ErpSelect} from '../select/select';
 import {ErpSelectOption, ErpSelectValue} from '../select/select-contracts';
 import {ErpBranchOption} from '../shell-family/shell-contracts';
@@ -24,6 +25,7 @@ export class ErpBranchSelector {
   readonly branches = input.required<readonly ErpBranchOption[]>();
   readonly value = model<string | null>(null);
   readonly label = input('الفرع');
+  readonly labelMode = input<ErpFieldLabelMode>('static');
   readonly placeholder = input('اختر الفرع');
   readonly disabled = input(false, {transform: booleanAttribute});
   readonly changed = output<string | null>();

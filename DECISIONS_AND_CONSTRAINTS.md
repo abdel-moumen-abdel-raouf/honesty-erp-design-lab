@@ -1,5 +1,27 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Root Topbar visual correction decisions — 2026-10-11
+
+- The real root composition is the acceptance surface; the standalone Topbar
+  remains a composability specimen and may not diverge from the same owner.
+- Topbar uses five explicit projection regions in one desktop grid row. Below
+  the approved `lg` Foundation query it uses a contained two-row grid rather
+  than uncontrolled flex wrapping.
+- BranchSelector's new `labelMode` is a compatible composition input whose
+  default remains `static`; root and Topbar review opt into the existing
+  Field-family visually-hidden label presentation.
+- UserMenu's `compactTriggerAtNarrow` is opt-in and defaults to `false`. It
+  hides only the closed trigger identity below `lg`; the accessible name and
+  complete popup identity remain available. The Product Owner three-row normal
+  trigger contract is unchanged.
+- GlobalSearch/SearchBox remain the sole search owners. Trigger text uses the
+  existing ErpText ellipsis contract instead of wrapping inside the header.
+- Skodash measurements remain reference evidence, not vendor runtime or a
+  claim of pixel-exact reconstruction. Honesty tokens, typography, ownership,
+  Query API, and root theme authority remain binding.
+- This checkpoint is `TECHNICAL_VERIFIED` and internally browser-reviewed; it
+  is still `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+
 ## Visual Review Experience V1.1 decisions — 2026-10-10
 
 - Supplement only a gallery whose V1 baseline had one case. Existing

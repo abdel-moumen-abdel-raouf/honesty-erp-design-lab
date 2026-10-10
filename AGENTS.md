@@ -1,5 +1,27 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Root Topbar Visual Correction V3 State
+
+The Product Owner-authorized Topbar correction entered from clean
+`cdf7cef9a11629ee9ecc1962b4cdbc93415003e6`. The real root Topbar now uses a
+five-region desktop grid and a contained two-row composition below the approved
+`lg` query. BranchSelector has a compatible opt-in label mode, UserMenu has a
+compatible opt-in narrow trigger, and SearchBox popup trigger text uses ErpText
+ellipsis. Owner defaults, the full UserMenu popup, root theme authority, and all
+singular Shell invariants are preserved.
+
+Evidence under `docs/review-evidence/erp-shell/topbar-visual-correction-v3/`
+records 72 px desktop and 140 px narrow headers at 1440, 1280, 1024, 768, 390,
+and 320 px, with zero region/page overflow, broken images, or diagnostics. The
+81-route audit passes. Canonical verification passes 153/153 files and 889/889
+tests with a zero-warning 425.22 kB / 93.16 kB build.
+
+The next authorized work is a source-backed readiness assessment of the six
+planned identities and implementation only of safe UI-only candidates in
+Bottom-Up order. Workflow execution, CRUD, transport, persistence, permissions,
+authentication, and business rules remain excluded. Product Owner visual
+approval remains pending.
+
 ## Current Visual Review Experience V1.1 State
 
 The bounded gallery-coverage correction entered from clean

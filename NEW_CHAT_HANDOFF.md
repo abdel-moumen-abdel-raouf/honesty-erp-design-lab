@@ -1,5 +1,22 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — planned UI-only contract readiness
+
+The root Topbar visual correction V3 is technically verified from entry
+`cdf7cef9a11629ee9ecc1962b4cdbc93415003e6`. Evidence is under
+`docs/review-evidence/erp-shell/topbar-visual-correction-v3/`: desktop is 72 px,
+the contained narrow composition is 140 px, and the six-width browser matrix
+has zero clipping, region/page overflow, broken images, or diagnostics. The
+81-route audit and singular AppShell/RouterOutlet/OverlayHost/target invariants
+pass. Canonical verification is 153/153 files, 889/889 tests, and a zero-warning
+425.22 kB / 93.16 kB build.
+
+The next authorized unit is the source-backed readiness matrix for
+ErpEntityReview, Entity Wizard, Workflow engine, DataPage, EntityDirectory, and
+EntityDetail, followed only by safe presentation-only candidates. Workflow
+execution remains explicitly excluded. Product Owner visual review remains
+pending for the Topbar and every unaccepted owner.
+
 ## Current continuation point — Product Owner review of V1.1
 
 Continue from synchronized `main` after the Visual Review Experience V1.1

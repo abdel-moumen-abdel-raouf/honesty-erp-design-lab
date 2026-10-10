@@ -146,6 +146,23 @@ describe('ErpSearchBox', () => {
     expect(document.activeElement).toBe(input);
   });
 
+  it('keeps a constrained popup trigger on one ellipsized line', () => {
+    const fixture = TestBed.createComponent(ErpSearchBox);
+    fixture.componentRef.setInput('label', 'البحث العام');
+    fixture.componentRef.setInput('mode', 'dropdown');
+    fixture.componentRef.setInput(
+      'placeholder',
+      'ابحث في النظام عن فاتورة أو مورد أو صنف',
+    );
+    fixture.detectChanges();
+
+    expect(
+      fixture.nativeElement
+        .querySelector('.search-box__trigger erp-text')
+        ?.getAttribute('data-text-overflow'),
+    ).toBe('ellipsis');
+  });
+
   it('exposes the bounded exact Table reference inline presentation', () => {
     const fixture = create();
     fixture.componentRef.setInput('mode', 'inline');

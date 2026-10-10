@@ -243,13 +243,14 @@ export function validateShellNavigation(files) {
     errors.push('ErpTopbar reference contract must preserve pending Product Owner visual status');
   }
   if (
-    !topbarStyles.includes("viewport-down('xxs')") ||
-    !/\.topbar__context\s*\{[\s\S]*?flex:\s*1 1 calc\(50%/.test(topbarStyles) ||
-    !/\.topbar__search\s*\{[\s\S]*?flex:\s*1 1 calc\(50%/.test(topbarStyles) ||
-    !/\.topbar__search\s*\{[\s\S]*?min-inline-size:\s*0/.test(topbarStyles) ||
-    !/\.topbar__user\s*\{[\s\S]*?flex:\s*0 0 100%/.test(topbarStyles)
+    !/header\s*\{[\s\S]*?display:\s*grid/.test(topbarStyles) ||
+    !topbarStyles.includes("viewport-down('lg')") ||
+    !/\.topbar__context\s*\{[\s\S]*?grid-column:\s*1/.test(topbarStyles) ||
+    !/\.topbar__search\s*\{[\s\S]*?grid-column:\s*2/.test(topbarStyles) ||
+    !/\.topbar__user\s*\{[\s\S]*?grid-column:\s*3/.test(topbarStyles) ||
+    !/\.topbar__search\s*\{[\s\S]*?min-inline-size:\s*0/.test(topbarStyles)
   ) {
-    errors.push('ErpTopbar must keep context and search visible in one contained xxs row before the full identity row');
+    errors.push('ErpTopbar must use the authorized grid and keep context, search, and compact user access contained below lg');
   }
 
   const appFooterSource = files.get('src/app/controls/app-footer/app-footer.ts') ?? '';
@@ -304,10 +305,10 @@ export function validateShellNavigation(files) {
     errors.push('ErpBranchSelector must reuse ErpSelect');
   }
   if (
-    !branchSelectorStyles.includes("viewport-down('xxs')") ||
+    !branchSelectorStyles.includes("viewport-down('lg')") ||
     !/:host\s*\{\s*min-inline-size:\s*0/.test(branchSelectorStyles)
   ) {
-    errors.push('ErpBranchSelector must allow the existing Select owner to shrink under xxs Topbar pressure');
+    errors.push('ErpBranchSelector must allow the existing Select owner to shrink under compact Topbar pressure');
   }
 
   const globalSearch = `${files.get('src/app/controls/global-search/global-search.ts') ?? ''}\n${files.get('src/app/controls/global-search/global-search.html') ?? ''}`;
@@ -526,7 +527,7 @@ function validFixture(overrides = new Map()) {
   );
   files.set(
     'src/app/controls/topbar/topbar.scss',
-    "@include query.viewport-down('xxs') { .topbar__context { flex: 1 1 calc(50% - var(--honesty-topbar-region-gap) / 2); } .topbar__search { flex: 1 1 calc(50% - var(--honesty-topbar-region-gap) / 2); min-inline-size: 0; order: 4; } .topbar__user { flex: 0 0 100%; order: 5; } }",
+    "header { display: grid; } @include query.viewport-down('lg') { .topbar__context { grid-column: 1; } .topbar__search { grid-column: 2; min-inline-size: 0; } .topbar__user { grid-column: 3; } } @include query.viewport-down('xxs') { header { grid-template-columns: 5rem minmax(0, 1fr) auto; } }",
   );
   files.set(
     'src/app/controls/sidebar/sidebar.ts',
@@ -550,7 +551,7 @@ function validFixture(overrides = new Map()) {
   );
   files.set(
     'src/app/controls/branch-selector/branch-selector.scss',
-    "@include query.viewport-down('xxs') { :host { min-inline-size: 0; } }",
+    "@include query.viewport-down('lg') { :host { min-inline-size: 0; } }",
   );
   files.set(
     'src/app/controls/global-search/global-search.ts',
@@ -624,8 +625,8 @@ function runSelfTest() {
     ['nested AppShell showcase', new Map([[APP_SHELL_SHOWCASE, '<erp-app-shell data-app-shell-root-workbench-panel></erp-app-shell>']]), 'without rendering a nested Shell'],
     ['window-event AppShell bridge', new Map([[APP_SHELL_SHOWCASE_SOURCE, 'inject(ErpReviewAppShellWorkbenchState); window.dispatchEvent(new CustomEvent("honesty-erp-app-shell-showcase"))']]), 'typed Angular review-state bridge'],
     ['uncontained narrow AppShell drawer', new Map([[APP_SHELL_RESPONSIVE, '']]), 'document horizontal overflow'],
-    ['stacked xxs Topbar context and search', new Map([['src/app/controls/topbar/topbar.scss', "@include query.viewport-down('xxs') { .topbar__context, .topbar__search, .topbar__user { flex-basis: 100%; } }"]]), 'contained xxs row'],
-    ['non-shrinking xxs BranchSelector', new Map([['src/app/controls/branch-selector/branch-selector.scss', '']]), 'shrink under xxs Topbar pressure'],
+    ['non-grid compact Topbar context and search', new Map([['src/app/controls/topbar/topbar.scss', "@include query.viewport-down('lg') { .topbar__context, .topbar__search, .topbar__user { flex-basis: 100%; } }"]]), 'authorized grid'],
+    ['non-shrinking compact BranchSelector', new Map([['src/app/controls/branch-selector/branch-selector.scss', '']]), 'shrink under compact Topbar pressure'],
   ];
 
   for (const [label, overrides, expected] of invalidFixtures) {

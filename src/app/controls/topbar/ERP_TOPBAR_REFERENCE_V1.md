@@ -1,5 +1,23 @@
 # ErpTopbar reference-driven implementation contract V1
 
+## 2026-10-11 Product Owner visual correction
+
+The real root composition was reopened because its otherwise-contained regions
+had incompatible heights, a wrapped screenshot action, internal BranchSelector
+overflow, and 201–227.3px narrow headers. The bounded correction retains the
+five-slot owner and all lower owners, but uses a deliberate grid composition,
+a visually-hidden root BranchSelector label, single-line SearchBox trigger
+copy, and a root-only opt-in compact UserMenu trigger below the `lg` query
+boundary. The complete UserMenu identity and popup remain unchanged outside
+that opt-in composition.
+
+The measured result is 72px at 1440/1280/1024 and 140px at
+768/390/320, with zero region/page overflow. Evidence lives at
+`docs/review-evidence/erp-shell/topbar-visual-correction-v3/`. This is an
+adaptation of the verified Skodash geometry around the binding Honesty ERP
+UserMenu contract, not a claim of literal 60px parity. Product Owner visual
+acceptance remains pending.
+
 Date: 2026-10-09
 
 Status: `TECHNICAL_VERIFIED` / `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`

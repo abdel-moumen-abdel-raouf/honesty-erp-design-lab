@@ -1,5 +1,9 @@
 # Shell consolidated visual-review index
 
+`topbar-visual-correction-v3/` is the current root Topbar/AppShell evidence.
+It preserves the earlier directories as before-state evidence and includes
+standalone Topbar captures plus a fresh 81-route audit.
+
 The current complete application-frame evidence is in
 `autonomous-app-shell-wave/`. It adds the real Design Lab integration,
 ApplicationsMenu, MessagesMenu, completed NotificationBell and GlobalSearch,

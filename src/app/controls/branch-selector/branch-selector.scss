@@ -12,7 +12,7 @@ erp-select {
   display: block;
 }
 
-@include query.viewport-down('xxs') {
+@include query.viewport-down('lg') {
   :host {
     min-inline-size: 0;
   }

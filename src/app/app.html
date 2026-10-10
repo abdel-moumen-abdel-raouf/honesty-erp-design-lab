@@ -38,6 +38,7 @@
     <erp-branch-selector
       erpAppShellTopbarContext
       [branches]="branches"
+      labelMode="visually-hidden"
       [value]="branchId()"
       (valueChange)="branchId.set($event)"
     />
@@ -95,6 +96,7 @@
       erpAppShellTopbarUser
       [user]="user"
       [items]="userItems"
+      [compactTriggerAtNarrow]="true"
     />
 
     <router-outlet id="app-router-outlet" />

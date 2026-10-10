@@ -7079,6 +7079,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "defaultExpression": "'الفرع'"
         },
         {
+          "name": "labelMode",
+          "required": false,
+          "values": [
+            "static",
+            "floating",
+            "visually-hidden"
+          ],
+          "type": "ErpFieldLabelMode",
+          "hasDefault": true,
+          "defaultValue": "static",
+          "defaultExpression": "'static'"
+        },
+        {
           "name": "placeholder",
           "required": false,
           "values": [],
@@ -7117,6 +7130,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     },
     "lowerLevelOwners": [
       "ErpBranchOption",
+      "ErpFieldLabelMode",
       "ErpSelect",
       "ErpSelectOption",
       "ErpSelectValue",
@@ -7194,6 +7208,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "اختيار فرع مضبوط يتحكم فيه المستهلك.",
     "showcaseInitialValues": {
       "label": "الفرع",
+      "labelMode": "static",
       "placeholder": "اختر الفرع",
       "disabled": false,
       "value": null,
@@ -7229,6 +7244,20 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "type": "string",
         "options": [],
         "initialValue": "الفرع"
+      },
+      {
+        "name": "labelMode",
+        "label": "labelMode",
+        "source": "input",
+        "kind": "select",
+        "required": false,
+        "type": "ErpFieldLabelMode",
+        "options": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
+        "initialValue": "static"
       },
       {
         "name": "placeholder",
@@ -7268,6 +7297,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredInputs": [
         "branches",
         "label",
+        "labelMode",
         "placeholder",
         "disabled"
       ],
@@ -7278,6 +7308,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "changed"
       ],
       "coveredValues": {
+        "labelMode": [
+          "static",
+          "floating",
+          "visually-hidden"
+        ],
         "disabled": [
           "false",
           "true"
@@ -9504,6 +9539,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "hasDefault": true,
           "defaultValue": true,
           "defaultExpression": "true"
+        },
+        {
+          "name": "compactTriggerAtNarrow",
+          "required": false,
+          "values": [
+            "false",
+            "true"
+          ],
+          "type": "boolean",
+          "hasDefault": true,
+          "defaultValue": false,
+          "defaultExpression": "false"
         }
       ],
       "outputs": [
@@ -10035,6 +10082,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "showBranchBadge": true,
       "showTriggerRoleBadge": true,
       "showTriggerBranchBadge": true,
+      "compactTriggerAtNarrow": false,
       "open": true,
       "user": {
         "displayName": "أميرة حداد",
@@ -10223,6 +10271,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "initialValue": true
       },
       {
+        "name": "compactTriggerAtNarrow",
+        "label": "compactTriggerAtNarrow",
+        "source": "input",
+        "kind": "boolean",
+        "required": false,
+        "type": "boolean",
+        "options": [
+          "false",
+          "true"
+        ],
+        "initialValue": false
+      },
+      {
         "name": "open",
         "label": "open",
         "source": "model",
@@ -10278,7 +10339,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "showRoleBadge",
         "showBranchBadge",
         "showTriggerRoleBadge",
-        "showTriggerBranchBadge"
+        "showTriggerBranchBadge",
+        "compactTriggerAtNarrow"
       ],
       "coveredModels": [
         "open"
@@ -10318,6 +10380,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "showTriggerBranchBadge": [
           "false",
           "true"
+        ],
+        "compactTriggerAtNarrow": [
+          "false",
+          "true"
         ]
       },
       "coveredStates": [
@@ -10328,7 +10394,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "showRoleBadge",
         "showBranchBadge",
         "showTriggerRoleBadge",
-        "showTriggerBranchBadge"
+        "showTriggerBranchBadge",
+        "compactTriggerAtNarrow"
       ],
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [

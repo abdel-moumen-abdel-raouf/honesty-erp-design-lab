@@ -224,6 +224,38 @@ describe('ErpUserMenu', () => {
     );
   });
 
+  it('keeps the full trigger default and exposes an accessible narrow-only compact composition', () => {
+    const fixture = TestBed.createComponent(ErpUserMenu);
+    fixture.componentRef.setInput('user', {
+      displayName: 'أميرة حداد',
+      email: 'amira@honesty.example',
+      roleLabel: 'مديرة المالية',
+      branchLabel: 'الفرع الرئيسي',
+    });
+    fixture.detectChanges();
+
+    const host = fixture.nativeElement as HTMLElement;
+    expect(host.getAttribute('data-user-menu-compact-trigger-at-narrow')).toBe(
+      'false',
+    );
+
+    fixture.componentRef.setInput('compactTriggerAtNarrow', true);
+    fixture.detectChanges();
+    expect(host.getAttribute('data-user-menu-compact-trigger-at-narrow')).toBe(
+      'true',
+    );
+    expect(
+      host.querySelector('.user-menu__trigger button')?.textContent,
+    ).toContain('amira@honesty.example');
+
+    const compiledStyles = (
+      ErpUserMenu as unknown as {ɵcmp: {styles: readonly string[]}}
+    ).ɵcmp.styles.join(' ');
+    expect(compiledStyles).toMatch(
+      /data-user-menu-compact-trigger-at-narrow=true[^}]*user-menu__trigger-identity[^}]*display:\s*none/,
+    );
+  });
+
   it.each([
     {width: 320, height: 568, anchorTop: 220, anchorHeight: 104},
     {width: 320, height: 844, anchorTop: 359, anchorHeight: 126},

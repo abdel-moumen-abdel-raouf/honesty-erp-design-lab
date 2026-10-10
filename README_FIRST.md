@@ -1,5 +1,23 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest Shell checkpoint — root Topbar visual correction V3
+
+The Product Owner-authorized root Topbar correction entered from clean
+`cdf7cef9a11629ee9ecc1962b4cdbc93415003e6`. The real root composition now uses
+a deliberate five-region desktop grid and a contained two-row presentation
+below the approved `lg` query. BranchSelector supports an opt-in visually
+hidden label, GlobalSearch remains the sole search owner, and UserMenu supports
+an opt-in narrow trigger while preserving its complete popup identity.
+
+Persisted evidence under
+`docs/review-evidence/erp-shell/topbar-visual-correction-v3/` records 72 px at
+1440/1280/1024 and 140 px at 768/390/320, with zero region overflow, page
+overflow, broken images, or browser diagnostics. The 81-route audit passes;
+one AppShell, RouterOutlet, OverlayHost, and primary target remain invariant.
+Canonical verification passes 153/153 files and 889/889 tests with a
+zero-warning 425.22 kB / 93.16 kB build. This is technical/internal evidence,
+not Product Owner acceptance.
+
 ## Latest review experience — V1.1 gallery coverage complete
 
 Visual Review Experience V1.1 expands the 35 previously single-example public

@@ -155,6 +155,11 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(root.querySelector('erp-user-menu')).not.toBeNull();
     expect(root.querySelector('erp-quick-actions-bar')).not.toBeNull();
     expect(root.querySelector('erp-app-footer')).not.toBeNull();
+    expect(
+      root.querySelector('erp-user-menu')?.getAttribute(
+        'data-user-menu-compact-trigger-at-narrow',
+      ),
+    ).toBe('true');
   });
 
   it('should render the full-page screenshot button', () => {

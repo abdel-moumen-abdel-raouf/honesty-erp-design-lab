@@ -32,5 +32,11 @@ describe('ErpTopbar', () => {
     )?.textContent).toContain('الإشعارات');
     expect(fixture.nativeElement.querySelector('[erpTopbarNotifications]'))
       .toBeNull();
+
+    const styles = (
+      ErpTopbar as unknown as {ɵcmp: {styles: readonly string[]}}
+    ).ɵcmp.styles.join(' ');
+    expect(styles).toMatch(/header[^}]*display:\s*grid/);
+    expect(styles).toMatch(/topbar__search[^}]*min-inline-size/);
   });
 });

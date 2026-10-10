@@ -9,15 +9,17 @@ const CHROME = process.env.CHROME_PATH
   ?? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 const BASE_URL = process.env.SHELL_EVIDENCE_URL ?? 'http://127.0.0.1:4200';
 const COMPONENT = process.env.SHELL_EVIDENCE_COMPONENT ?? 'sidebar';
-const OUTPUT = path.join(
-  ROOT,
-  'docs',
-  'review-evidence',
-  'erp-shell',
-  ({sidebar: 's2-a-sidebar', topbar: 's2-b-topbar', 'app-footer': 's2-c-app-footer', 'quick-actions-bar': 's2-d-quick-actions-bar', 'app-shell': 's2-e-app-shell'}[COMPONENT]
-    ?? (COMPONENT === 'integrated-app' ? 'autonomous-app-shell-wave' : null)
-    ?? `shell-${COMPONENT}`),
-);
+const OUTPUT = process.env.SHELL_EVIDENCE_OUTPUT
+  ? path.resolve(ROOT, process.env.SHELL_EVIDENCE_OUTPUT)
+  : path.join(
+      ROOT,
+      'docs',
+      'review-evidence',
+      'erp-shell',
+      ({sidebar: 's2-a-sidebar', topbar: 's2-b-topbar', 'app-footer': 's2-c-app-footer', 'quick-actions-bar': 's2-d-quick-actions-bar', 'app-shell': 's2-e-app-shell'}[COMPONENT]
+        ?? (COMPONENT === 'integrated-app' ? 'autonomous-app-shell-wave' : null)
+        ?? `shell-${COMPONENT}`),
+    );
 
 const sidebarScenarios = [
   {name: 'sidebar-1440-light-rtl-expanded', width: 1440, height: 900, theme: 'light', direction: 'rtl'},

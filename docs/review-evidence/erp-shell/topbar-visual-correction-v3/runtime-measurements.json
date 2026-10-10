@@ -1,0 +1,2721 @@
+{
+  "capturedAt": "2026-10-10T21:56:12.073Z",
+  "baseUrl": "http://127.0.0.1:4999",
+  "measurements": [
+    {
+      "name": "integrated-1440-light-rtl",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 506,
+        "y": 1152.140625,
+        "width": 576,
+        "height": 40
+      },
+      "component": "integrated-app",
+      "requestedOpenState": null,
+      "host": {
+        "x": 0,
+        "y": 0,
+        "width": 1425,
+        "height": 900
+      },
+      "nav": {
+        "x": 1156,
+        "y": 60,
+        "width": 269,
+        "height": 840
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 1072,
+      "navClientHeight": 840,
+      "collapsed": false,
+      "visibleEntries": 21,
+      "enabledInteractiveEntries": 92,
+      "activeDestinations": 1,
+      "activeAncestors": 1,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1155,
+        "height": 72
+      },
+      "footer": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "toolbar": {
+        "x": 16,
+        "y": 89,
+        "width": 58,
+        "height": 220
+      },
+      "shell": {
+        "x": 0,
+        "y": 0,
+        "width": 1425,
+        "height": 900
+      },
+      "shellHorizontalOverflow": 0,
+      "shellContent": {
+        "x": 74,
+        "y": 73,
+        "width": 1081,
+        "height": 770
+      },
+      "shellContentOverflowY": "auto",
+      "shellContentScrollHeight": 1452,
+      "shellContentClientHeight": 770,
+      "toolbarFlexDirection": "column",
+      "toolbarHorizontalOverflow": 0,
+      "quickActionGroups": 1,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 0,
+      "footerPresent": true,
+      "footerActionCount": 1,
+      "footerDisabledActionCount": 0,
+      "shellRegions": {
+        "topbar": {
+          "x": 0,
+          "y": 0,
+          "width": 1155,
+          "height": 73
+        },
+        "sidebar": {
+          "x": 1155,
+          "y": 0,
+          "width": 270,
+          "height": 900
+        },
+        "content": {
+          "x": 74,
+          "y": 73,
+          "width": 1081,
+          "height": 770
+        },
+        "quickActions": {
+          "x": 0,
+          "y": 73,
+          "width": 74,
+          "height": 252
+        },
+        "footer": {
+          "x": 0,
+          "y": 843,
+          "width": 1155,
+          "height": 57
+        }
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 989.53125,
+          "y": 16,
+          "width": 141.46875,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 785.53125,
+          "y": 17,
+          "width": 192,
+          "height": 38,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 613.53125,
+          "y": 16,
+          "width": 160,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__actions": {
+          "x": 304.578125,
+          "y": 16,
+          "width": 296.953125,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__user": {
+          "x": 24,
+          "y": 0,
+          "width": 268.578125,
+          "height": 72,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "sidebar": 1,
+        "topbar": 1,
+        "appFooter": 1,
+        "quickActionsBar": 1,
+        "branchSelector": 1,
+        "globalSearch": 6,
+        "applicationsMenu": 1,
+        "messagesMenu": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "appShellOwnerCount": 1,
+      "primaryTargetCount": 1,
+      "rootIsPrimaryTarget": false,
+      "openPopoverCount": 0,
+      "openPopovers": [],
+      "routerOutletCount": 1,
+      "overlayHostCount": 1,
+      "brokenImages": 0,
+      "interactionEvidence": null,
+      "navigationEvidence": {
+        "originalPath": "/components/global-search",
+        "destinationPath": "/components/messages-menu",
+        "backPath": "/components/global-search",
+        "backForwardRoundTrip": true,
+        "finalPath": "/components/global-search"
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "integrated-1440-dark-rtl-applications-open",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 506,
+        "y": 1152.140625,
+        "width": 576,
+        "height": 40
+      },
+      "component": "integrated-app",
+      "requestedOpenState": "applications",
+      "host": {
+        "x": 0,
+        "y": 0,
+        "width": 1425,
+        "height": 900
+      },
+      "nav": {
+        "x": 1156,
+        "y": 60,
+        "width": 269,
+        "height": 840
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 1072,
+      "navClientHeight": 840,
+      "collapsed": false,
+      "visibleEntries": 21,
+      "enabledInteractiveEntries": 92,
+      "activeDestinations": 1,
+      "activeAncestors": 1,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1155,
+        "height": 72
+      },
+      "footer": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "toolbar": {
+        "x": 16,
+        "y": 89,
+        "width": 58,
+        "height": 220
+      },
+      "shell": {
+        "x": 0,
+        "y": 0,
+        "width": 1425,
+        "height": 900
+      },
+      "shellHorizontalOverflow": 0,
+      "shellContent": {
+        "x": 74,
+        "y": 73,
+        "width": 1081,
+        "height": 770
+      },
+      "shellContentOverflowY": "auto",
+      "shellContentScrollHeight": 1452,
+      "shellContentClientHeight": 770,
+      "toolbarFlexDirection": "column",
+      "toolbarHorizontalOverflow": 0,
+      "quickActionGroups": 1,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 0,
+      "footerPresent": true,
+      "footerActionCount": 1,
+      "footerDisabledActionCount": 0,
+      "shellRegions": {
+        "topbar": {
+          "x": 0,
+          "y": 0,
+          "width": 1155,
+          "height": 73
+        },
+        "sidebar": {
+          "x": 1155,
+          "y": 0,
+          "width": 270,
+          "height": 900
+        },
+        "content": {
+          "x": 74,
+          "y": 73,
+          "width": 1081,
+          "height": 770
+        },
+        "quickActions": {
+          "x": 0,
+          "y": 73,
+          "width": 74,
+          "height": 252
+        },
+        "footer": {
+          "x": 0,
+          "y": 843,
+          "width": 1155,
+          "height": 57
+        }
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 989.53125,
+          "y": 16,
+          "width": 141.46875,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 785.53125,
+          "y": 17,
+          "width": 192,
+          "height": 38,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 613.53125,
+          "y": 16,
+          "width": 160,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__actions": {
+          "x": 304.578125,
+          "y": 16,
+          "width": 296.953125,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__user": {
+          "x": 24,
+          "y": 0,
+          "width": 268.578125,
+          "height": 72,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "sidebar": 1,
+        "topbar": 1,
+        "appFooter": 1,
+        "quickActionsBar": 1,
+        "branchSelector": 1,
+        "globalSearch": 6,
+        "applicationsMenu": 1,
+        "messagesMenu": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "appShellOwnerCount": 1,
+      "primaryTargetCount": 1,
+      "rootIsPrimaryTarget": false,
+      "openPopoverCount": 1,
+      "openPopovers": [
+        {
+          "className": "applications-menu__surface",
+          "rect": {
+            "x": 561.53125,
+            "y": 64,
+            "width": 360,
+            "height": 352
+          },
+          "horizontalOverflow": 0,
+          "verticalOverflow": 0
+        }
+      ],
+      "routerOutletCount": 1,
+      "overlayHostCount": 1,
+      "brokenImages": 0,
+      "interactionEvidence": null,
+      "navigationEvidence": null,
+      "diagnostics": []
+    },
+    {
+      "name": "integrated-1280-dark-ltr-messages-open",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 343,
+        "y": 1308.140625,
+        "width": 576,
+        "height": 40
+      },
+      "component": "integrated-app",
+      "requestedOpenState": "messages",
+      "host": {
+        "x": 0,
+        "y": 0,
+        "width": 1265,
+        "height": 900
+      },
+      "nav": {
+        "x": 0,
+        "y": 60,
+        "width": 269,
+        "height": 840
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 1072,
+      "navClientHeight": 840,
+      "collapsed": false,
+      "visibleEntries": 21,
+      "enabledInteractiveEntries": 92,
+      "activeDestinations": 1,
+      "activeAncestors": 1,
+      "header": {
+        "x": 270,
+        "y": 0,
+        "width": 995,
+        "height": 72
+      },
+      "footer": {
+        "x": 556.46875,
+        "y": 421.09375,
+        "width": 342,
+        "height": 57
+      },
+      "toolbar": {
+        "x": 1191,
+        "y": 89,
+        "width": 58,
+        "height": 220
+      },
+      "shell": {
+        "x": 0,
+        "y": 0,
+        "width": 1265,
+        "height": 900
+      },
+      "shellHorizontalOverflow": 0,
+      "shellContent": {
+        "x": 270,
+        "y": 73,
+        "width": 921,
+        "height": 770
+      },
+      "shellContentOverflowY": "auto",
+      "shellContentScrollHeight": 1608,
+      "shellContentClientHeight": 770,
+      "toolbarFlexDirection": "column",
+      "toolbarHorizontalOverflow": 0,
+      "quickActionGroups": 1,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 0,
+      "footerPresent": true,
+      "footerActionCount": 1,
+      "footerDisabledActionCount": 0,
+      "shellRegions": {
+        "topbar": {
+          "x": 270,
+          "y": 0,
+          "width": 995,
+          "height": 73
+        },
+        "sidebar": {
+          "x": 0,
+          "y": 0,
+          "width": 270,
+          "height": 900
+        },
+        "content": {
+          "x": 270,
+          "y": 73,
+          "width": 921,
+          "height": 770
+        },
+        "quickActions": {
+          "x": 1191,
+          "y": 73,
+          "width": 74,
+          "height": 252
+        },
+        "footer": {
+          "x": 270,
+          "y": 843,
+          "width": 995,
+          "height": 57
+        }
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 294,
+          "y": 16,
+          "width": 141.46875,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 447.46875,
+          "y": 17,
+          "width": 192,
+          "height": 38,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 651.46875,
+          "y": 16,
+          "width": 160,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__actions": {
+          "x": 823.46875,
+          "y": 16,
+          "width": 296.953125,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__user": {
+          "x": 1132.421875,
+          "y": 0,
+          "width": 108.578125,
+          "height": 72,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "sidebar": 1,
+        "topbar": 1,
+        "appFooter": 1,
+        "quickActionsBar": 1,
+        "branchSelector": 1,
+        "globalSearch": 6,
+        "applicationsMenu": 1,
+        "messagesMenu": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "appShellOwnerCount": 1,
+      "primaryTargetCount": 1,
+      "rootIsPrimaryTarget": false,
+      "openPopoverCount": 1,
+      "openPopovers": [
+        {
+          "className": "messages-menu__surface",
+          "rect": {
+            "x": 547.46875,
+            "y": 64,
+            "width": 360,
+            "height": 423.09375
+          },
+          "horizontalOverflow": 0,
+          "verticalOverflow": 0
+        }
+      ],
+      "routerOutletCount": 1,
+      "overlayHostCount": 1,
+      "brokenImages": 0,
+      "interactionEvidence": null,
+      "navigationEvidence": null,
+      "diagnostics": []
+    },
+    {
+      "name": "integrated-1024-light-rtl-notifications-open",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 360,
+        "y": 1152.140625,
+        "width": 576,
+        "height": 40
+      },
+      "component": "integrated-app",
+      "requestedOpenState": "notifications",
+      "host": {
+        "x": 0,
+        "y": 0,
+        "width": 1009,
+        "height": 768
+      },
+      "nav": {
+        "x": 1010,
+        "y": 60,
+        "width": 269,
+        "height": 708
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 1072,
+      "navClientHeight": 708,
+      "collapsed": false,
+      "visibleEntries": 21,
+      "enabledInteractiveEntries": 92,
+      "activeDestinations": 1,
+      "activeAncestors": 1,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1009,
+        "height": 72
+      },
+      "footer": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "toolbar": {
+        "x": 8,
+        "y": 653,
+        "width": 993,
+        "height": 58
+      },
+      "shell": {
+        "x": 0,
+        "y": 0,
+        "width": 1009,
+        "height": 768
+      },
+      "shellHorizontalOverflow": 0,
+      "shellContent": {
+        "x": 0,
+        "y": 73,
+        "width": 1009,
+        "height": 580
+      },
+      "shellContentOverflowY": "auto",
+      "shellContentScrollHeight": 1452,
+      "shellContentClientHeight": 580,
+      "toolbarFlexDirection": "row",
+      "toolbarHorizontalOverflow": 0,
+      "quickActionGroups": 1,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 0,
+      "footerPresent": true,
+      "footerActionCount": 1,
+      "footerDisabledActionCount": 0,
+      "shellRegions": {
+        "topbar": {
+          "x": 0,
+          "y": 0,
+          "width": 1009,
+          "height": 73
+        },
+        "sidebar": {
+          "x": 1009,
+          "y": 0,
+          "width": 270,
+          "height": 768
+        },
+        "content": {
+          "x": 0,
+          "y": 73,
+          "width": 1009,
+          "height": 580
+        },
+        "quickActions": {
+          "x": 0,
+          "y": 653,
+          "width": 1009,
+          "height": 58
+        },
+        "footer": {
+          "x": 0,
+          "y": 711,
+          "width": 1009,
+          "height": 57
+        }
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 843.53125,
+          "y": 16,
+          "width": 141.46875,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 639.53125,
+          "y": 17,
+          "width": 192,
+          "height": 38,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 467.53125,
+          "y": 16,
+          "width": 160,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__actions": {
+          "x": 158.578125,
+          "y": 16,
+          "width": 296.953125,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__user": {
+          "x": 24,
+          "y": 0,
+          "width": 122.578125,
+          "height": 72,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "sidebar": 1,
+        "topbar": 1,
+        "appFooter": 1,
+        "quickActionsBar": 1,
+        "branchSelector": 1,
+        "globalSearch": 6,
+        "applicationsMenu": 1,
+        "messagesMenu": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "appShellOwnerCount": 1,
+      "primaryTargetCount": 1,
+      "rootIsPrimaryTarget": false,
+      "openPopoverCount": 1,
+      "openPopovers": [
+        {
+          "className": "bell__surface",
+          "rect": {
+            "x": 327.53125,
+            "y": 64,
+            "width": 360,
+            "height": 427
+          },
+          "horizontalOverflow": 0,
+          "verticalOverflow": 0
+        }
+      ],
+      "routerOutletCount": 1,
+      "overlayHostCount": 1,
+      "brokenImages": 0,
+      "interactionEvidence": null,
+      "navigationEvidence": null,
+      "diagnostics": []
+    },
+    {
+      "name": "integrated-768-dark-ltr-search-active",
+      "viewport": {
+        "width": 768,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 65,
+        "y": 1401.734375,
+        "width": 576,
+        "height": 40
+      },
+      "component": "integrated-app",
+      "requestedOpenState": "search",
+      "host": {
+        "x": 0,
+        "y": 0,
+        "width": 753,
+        "height": 900
+      },
+      "nav": {
+        "x": -270,
+        "y": 60,
+        "width": 269,
+        "height": 840
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 1072,
+      "navClientHeight": 840,
+      "collapsed": false,
+      "visibleEntries": 21,
+      "enabledInteractiveEntries": 92,
+      "activeDestinations": 1,
+      "activeAncestors": 1,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 753,
+        "height": 140
+      },
+      "footer": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "toolbar": {
+        "x": 8,
+        "y": 785,
+        "width": 737,
+        "height": 58
+      },
+      "shell": {
+        "x": 0,
+        "y": 0,
+        "width": 753,
+        "height": 900
+      },
+      "shellHorizontalOverflow": 0,
+      "shellContent": {
+        "x": 0,
+        "y": 141,
+        "width": 753,
+        "height": 644
+      },
+      "shellContentOverflowY": "auto",
+      "shellContentScrollHeight": 1633,
+      "shellContentClientHeight": 644,
+      "toolbarFlexDirection": "row",
+      "toolbarHorizontalOverflow": 0,
+      "quickActionGroups": 1,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 0,
+      "footerPresent": true,
+      "footerActionCount": 1,
+      "footerDisabledActionCount": 0,
+      "shellRegions": {
+        "topbar": {
+          "x": 0,
+          "y": 0,
+          "width": 753,
+          "height": 141
+        },
+        "sidebar": {
+          "x": -270,
+          "y": 0,
+          "width": 270,
+          "height": 900
+        },
+        "content": {
+          "x": 0,
+          "y": 141,
+          "width": 753,
+          "height": 644
+        },
+        "quickActions": {
+          "x": 0,
+          "y": 785,
+          "width": 753,
+          "height": 58
+        },
+        "footer": {
+          "x": 0,
+          "y": 843,
+          "width": 753,
+          "height": 57
+        }
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 8,
+          "y": 8,
+          "width": 324.5,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 8,
+          "y": 77,
+          "width": 324.5,
+          "height": 38,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 336.5,
+          "y": 76,
+          "width": 324.5,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__actions": {
+          "x": 336.5,
+          "y": 8,
+          "width": 408.5,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__user": {
+          "x": 665,
+          "y": 60,
+          "width": 80,
+          "height": 72,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "sidebar": 1,
+        "topbar": 1,
+        "appFooter": 1,
+        "quickActionsBar": 1,
+        "branchSelector": 1,
+        "globalSearch": 6,
+        "applicationsMenu": 1,
+        "messagesMenu": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "appShellOwnerCount": 1,
+      "primaryTargetCount": 1,
+      "rootIsPrimaryTarget": false,
+      "openPopoverCount": 1,
+      "openPopovers": [
+        {
+          "className": "search-box__popup",
+          "rect": {
+            "x": 336.5,
+            "y": 124,
+            "width": 324.5,
+            "height": 265.1875
+          },
+          "horizontalOverflow": 0,
+          "verticalOverflow": 0
+        }
+      ],
+      "routerOutletCount": 1,
+      "overlayHostCount": 1,
+      "brokenImages": 0,
+      "interactionEvidence": null,
+      "navigationEvidence": null,
+      "diagnostics": []
+    },
+    {
+      "name": "integrated-390-light-rtl-sidebar-open",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 57,
+        "y": 1764.515625,
+        "width": 261,
+        "height": 40
+      },
+      "component": "integrated-app",
+      "requestedOpenState": "sidebar",
+      "host": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 2315.109375
+      },
+      "nav": {
+        "x": 106,
+        "y": 60,
+        "width": 269,
+        "height": 784
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 1072,
+      "navClientHeight": 784,
+      "collapsed": false,
+      "visibleEntries": 21,
+      "enabledInteractiveEntries": 92,
+      "activeDestinations": 1,
+      "activeAncestors": 1,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 140
+      },
+      "footer": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "toolbar": {
+        "x": 8,
+        "y": 2137.109375,
+        "width": 359,
+        "height": 58
+      },
+      "shell": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 2315.109375
+      },
+      "shellHorizontalOverflow": 0,
+      "shellContent": {
+        "x": 0,
+        "y": 141,
+        "width": 375,
+        "height": 1996.109375
+      },
+      "shellContentOverflowY": "visible",
+      "shellContentScrollHeight": 1996,
+      "shellContentClientHeight": 1996,
+      "toolbarFlexDirection": "row",
+      "toolbarHorizontalOverflow": 0,
+      "quickActionGroups": 1,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 0,
+      "footerPresent": true,
+      "footerActionCount": 1,
+      "footerDisabledActionCount": 0,
+      "shellRegions": {
+        "topbar": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 141
+        },
+        "sidebar": {
+          "x": 105,
+          "y": 0,
+          "width": 270,
+          "height": 844
+        },
+        "content": {
+          "x": 0,
+          "y": 141,
+          "width": 375,
+          "height": 1996.109375
+        },
+        "quickActions": {
+          "x": 0,
+          "y": 2137.109375,
+          "width": 375,
+          "height": 58
+        },
+        "footer": {
+          "x": 0,
+          "y": 2195.109375,
+          "width": 375,
+          "height": 120
+        }
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 231.5,
+          "y": 8,
+          "width": 135.5,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 231.5,
+          "y": 77,
+          "width": 135.5,
+          "height": 38,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 92,
+          "y": 76,
+          "width": 135.5,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__actions": {
+          "x": 8,
+          "y": 8,
+          "width": 219.5,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__user": {
+          "x": 8,
+          "y": 60,
+          "width": 80,
+          "height": 72,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "sidebar": 1,
+        "topbar": 1,
+        "appFooter": 1,
+        "quickActionsBar": 1,
+        "branchSelector": 1,
+        "globalSearch": 6,
+        "applicationsMenu": 1,
+        "messagesMenu": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "appShellOwnerCount": 1,
+      "primaryTargetCount": 1,
+      "rootIsPrimaryTarget": false,
+      "openPopoverCount": 0,
+      "openPopovers": [],
+      "routerOutletCount": 1,
+      "overlayHostCount": 1,
+      "brokenImages": 0,
+      "interactionEvidence": null,
+      "navigationEvidence": null,
+      "diagnostics": []
+    },
+    {
+      "name": "integrated-390-light-rtl",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 57,
+        "y": 1764.515625,
+        "width": 261,
+        "height": 40
+      },
+      "component": "integrated-app",
+      "requestedOpenState": null,
+      "host": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 2315.109375
+      },
+      "nav": {
+        "x": 376,
+        "y": 60,
+        "width": 269,
+        "height": 784
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 1072,
+      "navClientHeight": 784,
+      "collapsed": false,
+      "visibleEntries": 21,
+      "enabledInteractiveEntries": 92,
+      "activeDestinations": 1,
+      "activeAncestors": 1,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 140
+      },
+      "footer": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "toolbar": {
+        "x": 8,
+        "y": 2137.109375,
+        "width": 359,
+        "height": 58
+      },
+      "shell": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 2315.109375
+      },
+      "shellHorizontalOverflow": 0,
+      "shellContent": {
+        "x": 0,
+        "y": 141,
+        "width": 375,
+        "height": 1996.109375
+      },
+      "shellContentOverflowY": "visible",
+      "shellContentScrollHeight": 1996,
+      "shellContentClientHeight": 1996,
+      "toolbarFlexDirection": "row",
+      "toolbarHorizontalOverflow": 0,
+      "quickActionGroups": 1,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 0,
+      "footerPresent": true,
+      "footerActionCount": 1,
+      "footerDisabledActionCount": 0,
+      "shellRegions": {
+        "topbar": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 141
+        },
+        "sidebar": {
+          "x": 375,
+          "y": 0,
+          "width": 270,
+          "height": 844
+        },
+        "content": {
+          "x": 0,
+          "y": 141,
+          "width": 375,
+          "height": 1996.109375
+        },
+        "quickActions": {
+          "x": 0,
+          "y": 2137.109375,
+          "width": 375,
+          "height": 58
+        },
+        "footer": {
+          "x": 0,
+          "y": 2195.109375,
+          "width": 375,
+          "height": 120
+        }
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 231.5,
+          "y": 8,
+          "width": 135.5,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 231.5,
+          "y": 77,
+          "width": 135.5,
+          "height": 38,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 92,
+          "y": 76,
+          "width": 135.5,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__actions": {
+          "x": 8,
+          "y": 8,
+          "width": 219.5,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__user": {
+          "x": 8,
+          "y": 60,
+          "width": 80,
+          "height": 72,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "sidebar": 1,
+        "topbar": 1,
+        "appFooter": 1,
+        "quickActionsBar": 1,
+        "branchSelector": 1,
+        "globalSearch": 6,
+        "applicationsMenu": 1,
+        "messagesMenu": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "appShellOwnerCount": 1,
+      "primaryTargetCount": 1,
+      "rootIsPrimaryTarget": false,
+      "openPopoverCount": 0,
+      "openPopovers": [],
+      "routerOutletCount": 1,
+      "overlayHostCount": 1,
+      "brokenImages": 0,
+      "interactionEvidence": null,
+      "navigationEvidence": {
+        "originalPath": "/components/global-search",
+        "destinationPath": "/components/messages-menu",
+        "backPath": "/components/global-search",
+        "backForwardRoundTrip": true,
+        "finalPath": "/components/global-search"
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "integrated-390-dark-rtl-messages-open",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "rtl",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 57,
+        "y": 1764.515625,
+        "width": 261,
+        "height": 40
+      },
+      "component": "integrated-app",
+      "requestedOpenState": "messages",
+      "host": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 2315.109375
+      },
+      "nav": {
+        "x": 376,
+        "y": 60,
+        "width": 269,
+        "height": 784
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 1072,
+      "navClientHeight": 784,
+      "collapsed": false,
+      "visibleEntries": 21,
+      "enabledInteractiveEntries": 92,
+      "activeDestinations": 1,
+      "activeAncestors": 1,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 140
+      },
+      "footer": {
+        "x": 17,
+        "y": 413.09375,
+        "width": 356,
+        "height": 57
+      },
+      "toolbar": {
+        "x": 8,
+        "y": 2137.109375,
+        "width": 359,
+        "height": 58
+      },
+      "shell": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 2315.109375
+      },
+      "shellHorizontalOverflow": 0,
+      "shellContent": {
+        "x": 0,
+        "y": 141,
+        "width": 375,
+        "height": 1996.109375
+      },
+      "shellContentOverflowY": "visible",
+      "shellContentScrollHeight": 1996,
+      "shellContentClientHeight": 1996,
+      "toolbarFlexDirection": "row",
+      "toolbarHorizontalOverflow": 0,
+      "quickActionGroups": 1,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 0,
+      "footerPresent": true,
+      "footerActionCount": 1,
+      "footerDisabledActionCount": 0,
+      "shellRegions": {
+        "topbar": {
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 141
+        },
+        "sidebar": {
+          "x": 375,
+          "y": 0,
+          "width": 270,
+          "height": 844
+        },
+        "content": {
+          "x": 0,
+          "y": 141,
+          "width": 375,
+          "height": 1996.109375
+        },
+        "quickActions": {
+          "x": 0,
+          "y": 2137.109375,
+          "width": 375,
+          "height": 58
+        },
+        "footer": {
+          "x": 0,
+          "y": 2195.109375,
+          "width": 375,
+          "height": 120
+        }
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 231.5,
+          "y": 8,
+          "width": 135.5,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 231.5,
+          "y": 77,
+          "width": 135.5,
+          "height": 38,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 92,
+          "y": 76,
+          "width": 135.5,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__actions": {
+          "x": 8,
+          "y": 8,
+          "width": 219.5,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__user": {
+          "x": 8,
+          "y": 60,
+          "width": 80,
+          "height": 72,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "sidebar": 1,
+        "topbar": 1,
+        "appFooter": 1,
+        "quickActionsBar": 1,
+        "branchSelector": 1,
+        "globalSearch": 6,
+        "applicationsMenu": 1,
+        "messagesMenu": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "appShellOwnerCount": 1,
+      "primaryTargetCount": 1,
+      "rootIsPrimaryTarget": false,
+      "openPopoverCount": 1,
+      "openPopovers": [
+        {
+          "className": "messages-menu__surface",
+          "rect": {
+            "x": 8,
+            "y": 56,
+            "width": 374,
+            "height": 423.09375
+          },
+          "horizontalOverflow": 0,
+          "verticalOverflow": 0
+        }
+      ],
+      "routerOutletCount": 1,
+      "overlayHostCount": 1,
+      "brokenImages": 0,
+      "interactionEvidence": null,
+      "navigationEvidence": null,
+      "diagnostics": []
+    },
+    {
+      "name": "integrated-320-dark-ltr",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 57,
+        "y": 2018.578125,
+        "width": 191,
+        "height": 40
+      },
+      "component": "integrated-app",
+      "requestedOpenState": null,
+      "host": {
+        "x": 0,
+        "y": 0,
+        "width": 305,
+        "height": 2599.171875
+      },
+      "nav": {
+        "x": -270,
+        "y": 60,
+        "width": 269,
+        "height": 508
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 1072,
+      "navClientHeight": 508,
+      "collapsed": false,
+      "visibleEntries": 21,
+      "enabledInteractiveEntries": 92,
+      "activeDestinations": 1,
+      "activeAncestors": 1,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 305,
+        "height": 140
+      },
+      "footer": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "toolbar": {
+        "x": 8,
+        "y": 2391.171875,
+        "width": 289,
+        "height": 58
+      },
+      "shell": {
+        "x": 0,
+        "y": 0,
+        "width": 305,
+        "height": 2599.171875
+      },
+      "shellHorizontalOverflow": 0,
+      "shellContent": {
+        "x": 0,
+        "y": 141,
+        "width": 305,
+        "height": 2250.171875
+      },
+      "shellContentOverflowY": "visible",
+      "shellContentScrollHeight": 2250,
+      "shellContentClientHeight": 2250,
+      "toolbarFlexDirection": "row",
+      "toolbarHorizontalOverflow": 0,
+      "quickActionGroups": 1,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 0,
+      "footerPresent": true,
+      "footerActionCount": 1,
+      "footerDisabledActionCount": 0,
+      "shellRegions": {
+        "topbar": {
+          "x": 0,
+          "y": 0,
+          "width": 305,
+          "height": 141
+        },
+        "sidebar": {
+          "x": -270,
+          "y": 0,
+          "width": 270,
+          "height": 568
+        },
+        "content": {
+          "x": 0,
+          "y": 141,
+          "width": 305,
+          "height": 2250.171875
+        },
+        "quickActions": {
+          "x": 0,
+          "y": 2391.171875,
+          "width": 305,
+          "height": 58
+        },
+        "footer": {
+          "x": 0,
+          "y": 2449.171875,
+          "width": 305,
+          "height": 150
+        }
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 8,
+          "y": 8,
+          "width": 80,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 8,
+          "y": 77,
+          "width": 80,
+          "height": 38,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 92,
+          "y": 76,
+          "width": 121,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__actions": {
+          "x": 92,
+          "y": 8,
+          "width": 205,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__user": {
+          "x": 217,
+          "y": 60,
+          "width": 80,
+          "height": 72,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "sidebar": 1,
+        "topbar": 1,
+        "appFooter": 1,
+        "quickActionsBar": 1,
+        "branchSelector": 1,
+        "globalSearch": 6,
+        "applicationsMenu": 1,
+        "messagesMenu": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "appShellOwnerCount": 1,
+      "primaryTargetCount": 1,
+      "rootIsPrimaryTarget": false,
+      "openPopoverCount": 0,
+      "openPopovers": [],
+      "routerOutletCount": 1,
+      "overlayHostCount": 1,
+      "brokenImages": 0,
+      "interactionEvidence": null,
+      "navigationEvidence": {
+        "originalPath": "/components/global-search",
+        "destinationPath": "/components/messages-menu",
+        "backPath": "/components/global-search",
+        "backForwardRoundTrip": true,
+        "finalPath": "/components/global-search"
+      },
+      "diagnostics": []
+    },
+    {
+      "name": "integrated-320-dark-ltr-notifications-open",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "pageHorizontalOverflow": 0,
+      "target": {
+        "x": 57,
+        "y": 2018.578125,
+        "width": 191,
+        "height": 40
+      },
+      "component": "integrated-app",
+      "requestedOpenState": "notifications",
+      "host": {
+        "x": 0,
+        "y": 0,
+        "width": 305,
+        "height": 2599.171875
+      },
+      "nav": {
+        "x": -270,
+        "y": 60,
+        "width": 269,
+        "height": 508
+      },
+      "navOverflowY": "auto",
+      "navScrollHeight": 1072,
+      "navClientHeight": 508,
+      "collapsed": false,
+      "visibleEntries": 21,
+      "enabledInteractiveEntries": 92,
+      "activeDestinations": 1,
+      "activeAncestors": 1,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 305,
+        "height": 140
+      },
+      "footer": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "toolbar": {
+        "x": 8,
+        "y": 2391.171875,
+        "width": 289,
+        "height": 58
+      },
+      "shell": {
+        "x": 0,
+        "y": 0,
+        "width": 305,
+        "height": 2599.171875
+      },
+      "shellHorizontalOverflow": 0,
+      "shellContent": {
+        "x": 0,
+        "y": 141,
+        "width": 305,
+        "height": 2250.171875
+      },
+      "shellContentOverflowY": "visible",
+      "shellContentScrollHeight": 2250,
+      "shellContentClientHeight": 2250,
+      "toolbarFlexDirection": "row",
+      "toolbarHorizontalOverflow": 0,
+      "quickActionGroups": 1,
+      "quickActionButtons": 4,
+      "quickActionDisabledButtons": 0,
+      "footerPresent": true,
+      "footerActionCount": 1,
+      "footerDisabledActionCount": 0,
+      "shellRegions": {
+        "topbar": {
+          "x": 0,
+          "y": 0,
+          "width": 305,
+          "height": 141
+        },
+        "sidebar": {
+          "x": -270,
+          "y": 0,
+          "width": 270,
+          "height": 568
+        },
+        "content": {
+          "x": 0,
+          "y": 141,
+          "width": 305,
+          "height": 2250.171875
+        },
+        "quickActions": {
+          "x": 0,
+          "y": 2391.171875,
+          "width": 305,
+          "height": 58
+        },
+        "footer": {
+          "x": 0,
+          "y": 2449.171875,
+          "width": 305,
+          "height": 150
+        }
+      },
+      "regions": {
+        "topbar__start": {
+          "x": 8,
+          "y": 8,
+          "width": 80,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__context": {
+          "x": 8,
+          "y": 77,
+          "width": 80,
+          "height": 38,
+          "overflowWidth": 0
+        },
+        "topbar__search": {
+          "x": 92,
+          "y": 76,
+          "width": 121,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__actions": {
+          "x": 92,
+          "y": 8,
+          "width": 205,
+          "height": 40,
+          "overflowWidth": 0
+        },
+        "topbar__user": {
+          "x": 217,
+          "y": 60,
+          "width": 80,
+          "height": 72,
+          "overflowWidth": 0
+        }
+      },
+      "renderedOwners": {
+        "sidebar": 1,
+        "topbar": 1,
+        "appFooter": 1,
+        "quickActionsBar": 1,
+        "branchSelector": 1,
+        "globalSearch": 6,
+        "applicationsMenu": 1,
+        "messagesMenu": 1,
+        "notificationBell": 1,
+        "userMenu": 1
+      },
+      "appShellOwnerCount": 1,
+      "primaryTargetCount": 1,
+      "rootIsPrimaryTarget": false,
+      "openPopoverCount": 1,
+      "openPopovers": [
+        {
+          "className": "bell__surface",
+          "rect": {
+            "x": 8,
+            "y": 56,
+            "width": 304,
+            "height": 445
+          },
+          "horizontalOverflow": 0,
+          "verticalOverflow": 0
+        }
+      ],
+      "routerOutletCount": 1,
+      "overlayHostCount": 1,
+      "brokenImages": 0,
+      "interactionEvidence": null,
+      "navigationEvidence": null,
+      "diagnostics": []
+    }
+  ],
+  "routeAudit": {
+    "expectedRoutes": 81,
+    "auditedRoutes": 81,
+    "passedRoutes": 81,
+    "failedRoutes": 0,
+    "navigationInteraction": {
+      "intentPath": "/components/app-shell",
+      "intentEvidence": "آخر تفاعلnavigationActivated: {\"id\":\"intent\",\"label\":\"معاينة نية التنقل\",\"icon\":\"menu\"}",
+      "destinationPath": "/components/table"
+    },
+    "failures": [],
+    "routes": [
+      {
+        "route": "/components/alert",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/app-footer",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/app-shell",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/applications-menu",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/avatar",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/avatar-picker",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/branch-selector",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/breadcrumbs",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/bulk-action-bar",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/button",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/button-group",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/check-box",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/color-picker",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/column-chooser",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/combo-box",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/container",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/date-box",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/date-range-box",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/date-time-box",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/divider",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/empty-state",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/entity-schema-fields",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/extended-fab",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/fab",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/fab-menu",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/file-picker",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/filter-bar",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/filter-drawer",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/form",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/form-actions",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/form-section",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/global-search",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/grid",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/icon",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/icon-button",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/icon-picker",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/image-picker",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/inline",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/item-picker",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/messages-menu",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/money-box",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/notification-bell",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/number-box",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/number-stepper",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/page",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/page-header",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/page-shell",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/pagination",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/password-box",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/quick-actions-bar",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/radio-box",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/radio-group",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/range-slider",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/repeater",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/search-box",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/section",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/select",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/sidebar",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/skeleton",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/smart-table",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/sort-header",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/split-button",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/stack",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/standard-entity-form",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/status-badge",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/stepper",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/surface",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/table",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/table-toolbar",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/tabs",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/tel-box",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/text",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/text-area-box",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/text-box",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/time-box",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/tooltip",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/topbar",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/url-box",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/user-menu",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/validation-summary",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      },
+      {
+        "route": "/components/view-switcher",
+        "shellCount": 1,
+        "appShellOwnerCount": 1,
+        "routerOutletCount": 1,
+        "overlayHostCount": 1,
+        "primaryTargetCount": 1,
+        "pageHorizontalOverflow": 0,
+        "brokenImages": 0,
+        "diagnostics": []
+      }
+    ]
+  }
+}

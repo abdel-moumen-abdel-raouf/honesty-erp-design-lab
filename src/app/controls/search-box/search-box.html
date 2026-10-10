@@ -132,7 +132,7 @@
       (focused)="handleTriggerFocus()"
       (blurred)="handleTriggerBlur()"
     >
-      <erp-text type="text" tone="inherit">
+      <erp-text type="text" tone="inherit" overflow="ellipsis">
         {{ triggerDisplayValue() || placeholder() || '' }}
       </erp-text>
     </erp-field-trigger>

@@ -1,5 +1,22 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — root Topbar visual correction V3
+
+The integrated AppShell Topbar has been reconstructed without creating another
+Topbar, search engine, menu engine, theme authority, or Shell. Desktop uses one
+five-region row; the approved Query API produces a contained two-row header at
+768 px and below. Root composition uses the BranchSelector's compatible hidden
+label mode and UserMenu's compatible opt-in narrow trigger, while normal owner
+defaults and the complete UserMenu popup remain unchanged.
+
+The persisted browser matrix covers 1440, 1280, 1024, 768, 390, and 320 px in
+Light/Dark and RTL/LTR, including stable open Applications, Messages,
+Notifications, Search, and Sidebar states. Header height is 72 px on desktop
+and 140 px at the narrow widths; region overflow, page overflow, broken images,
+and diagnostics are zero. All 81 routes pass and Shell singularity remains
+intact. Canonical verification passes 153/153 files and 889/889 tests with a
+zero-warning 425.22 kB / 93.16 kB build.
+
 ## Current checkpoint — Visual Review Experience V1.1
 
 All 35 V1 single-example gaps now have meaningful bounded gallery coverage.

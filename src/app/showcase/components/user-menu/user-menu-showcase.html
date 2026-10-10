@@ -26,6 +26,7 @@
                 [showBranchBadge]="$any(galleryValue(showcaseCase, 'showBranchBadge'))"
                 [showTriggerRoleBadge]="$any(galleryValue(showcaseCase, 'showTriggerRoleBadge'))"
                 [showTriggerBranchBadge]="$any(galleryValue(showcaseCase, 'showTriggerBranchBadge'))"
+                [compactTriggerAtNarrow]="$any(galleryValue(showcaseCase, 'compactTriggerAtNarrow'))"
                 [open]="$any(galleryValue(showcaseCase, 'open'))"
               ></erp-user-menu></erp-stack>
                 </erp-stack>
@@ -55,6 +56,7 @@
           [showBranchBadge]="$any(value('showBranchBadge'))"
           [showTriggerRoleBadge]="$any(value('showTriggerRoleBadge'))"
           [showTriggerBranchBadge]="$any(value('showTriggerBranchBadge'))"
+          [compactTriggerAtNarrow]="$any(value('compactTriggerAtNarrow'))"
           [open]="$any(value('open'))"
           (openChange)="recordModel('open', $event)"
           (actionActivated)="recordEvent('actionActivated', $event)"

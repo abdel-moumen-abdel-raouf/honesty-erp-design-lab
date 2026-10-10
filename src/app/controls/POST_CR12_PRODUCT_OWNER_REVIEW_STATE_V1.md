@@ -1,5 +1,18 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-11 — root Topbar correction V3
+
+The integrated Topbar has been reconstructed as a deliberate five-region
+desktop grid with a contained two-row narrow composition. Evidence covers six
+viewport widths, both themes/directions, stable open Shell surfaces, and the
+standalone Topbar. Desktop measures 72 px and narrow 140 px; region/page
+overflow, clipping findings, broken images, and browser diagnostics are zero.
+
+Canonical verification passes 153/153 files and 889/889 tests with a
+zero-warning 425.22 kB / 93.16 kB build. This remains technical/internal visual
+evidence only. Product Owner statuses remain one accepted/frozen, five reopened,
+and 75 pending; the Topbar is not accepted or frozen by this checkpoint.
+
 ## Current review execution — 2026-10-10 — Visual Review Experience V1.1
 
 The 35 previously incomplete one-example galleries now expose bounded,

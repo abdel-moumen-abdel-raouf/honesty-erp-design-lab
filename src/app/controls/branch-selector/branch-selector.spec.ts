@@ -24,7 +24,9 @@ describe('ErpBranchSelector', () => {
     expect(changed).toHaveBeenCalledWith('cairo');
 
     fixture.componentRef.setInput('disabled', true);
+    fixture.componentRef.setInput('labelMode', 'visually-hidden');
     fixture.detectChanges();
     expect(select.componentInstance.disabled()).toBe(true);
+    expect(select.componentInstance.labelMode()).toBe('visually-hidden');
   });
 });

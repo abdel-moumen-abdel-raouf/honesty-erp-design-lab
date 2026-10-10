@@ -1,5 +1,17 @@
 # Next Component Reference Batch V1
 
+## Authoritative current action — 2026-10-11 — planned UI-only readiness
+
+The root Topbar visual correction V3 is technically verified and internally
+browser-reviewed; it remains pending Product Owner visual review. The current
+authorized action is a source-backed readiness matrix for ErpEntityReview,
+Entity Wizard, Workflow engine, DataPage, EntityDirectory, and EntityDetail.
+
+Only presentation-only owners or review patterns with sufficient documented
+contracts may proceed. Workflow execution is explicitly non-UI and remains
+deferred. No HTTP, persistence, permissions, authentication, router ownership,
+domain transaction, or hidden business rule may enter these candidates.
+
 ## Authoritative current action — 2026-10-10 — Visual Review Experience V1
 
 The Product Owner-authorized review-experience wave has prepared all 81 public
