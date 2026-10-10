@@ -1,5 +1,21 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — EmptyState internal review
+
+`ErpEmptyState` retains its Product Owner-supplied five Lottie scenarios and
+now exposes the complete reference/state surface on demand from its dedicated
+one-target Workbench. Runtime evidence at 1440/1280/390/320 px covers both
+themes, directions, reduced motion, 160 px desktop and 108 px narrow
+illustrations. The review reproduced and fixed narrow extra-action clipping;
+all final captures report zero visible-text clipping, page overflow, broken
+images, and diagnostics. The recorded original HTML was unavailable, therefore
+no fresh exact-source geometry claim is made. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Canonical verification passes 128/128
+test files and 812/812 tests, both typechecks, all governance/lint, and the
+zero-warning 418.32 kB / 92.91 kB production build. Next reopened unit:
+`ErpSelect`.
+
 ## Current checkpoint — Radio family internal review
 
 The RadioBox/RadioGroup candidate now restores its complete family evidence on

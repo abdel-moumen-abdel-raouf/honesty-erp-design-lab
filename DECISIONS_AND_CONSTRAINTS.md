@@ -1,5 +1,17 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## EmptyState internal-review decision — 2026-10-10
+
+- Keep the five Product Owner-supplied Lottie scenarios, public projection
+  escape hatches, motion API, and one primary Workbench target unchanged.
+- Restore the full scenario evidence on demand; do not replace the interactive
+  Workbench with a permanent static matrix.
+- Narrow extra-action content may wrap within the EmptyState-owned boundary;
+  it must not be clipped or concealed by overflow.
+- The unavailable historical HTML source is recorded as an evidence limitation,
+  not reconstructed from assumptions. Internal review is not Product Owner
+  acceptance.
+
 ## Radio family internal-review decision — 2026-10-10
 
 - RadioBox continues to use native radio semantics and the accepted CheckBox

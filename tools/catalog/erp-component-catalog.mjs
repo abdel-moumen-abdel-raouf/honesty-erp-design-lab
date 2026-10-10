@@ -1335,6 +1335,8 @@ function generatedShowcaseOwner(entry) {
   const hasRadioReference = ['ErpRadioBox', 'ErpRadioGroup'].includes(
     entry.className,
   );
+  const hasEmptyStateReference = entry.className === 'ErpEmptyState';
+  const hasAdditionalReference = hasRadioReference || hasEmptyStateReference;
   const projection = projectionMarkup(entry);
   const imports = new Set([
     entry.className,
@@ -1404,6 +1406,12 @@ function generatedShowcaseOwner(entry) {
     imports.add('ErpButton');
     imports.add('ErpReviewRadioReference');
   }
+  if (hasEmptyStateReference) {
+    importLines.push(`import {ErpButton} from '../../../controls/button/button';`);
+    importLines.push(`import {EmptyStateControls} from '../../../review-internals/legacy-empty-state-controls/empty-state-controls';`);
+    imports.add('ErpButton');
+    imports.add('EmptyStateControls');
+  }
 
   const className = `${entry.className}Showcase`;
   const inputBindings = entry.publicApi.inputs
@@ -1445,7 +1453,9 @@ function generatedShowcaseOwner(entry) {
     ? `  <app-review-showcase-exact-reference focus="${exactCoreFocus}" />\n`
     : hasRadioReference
       ? `  <erp-surface padding="default" border="subtle" data-radio-reference-section>\n    <erp-stack gap="tight">\n      <erp-text type="heading-3">دليل الحالات المرجعية</erp-text>\n      <erp-text type="paragraph" tone="secondary">\n        ${entry.className === 'ErpRadioBox' ? 'المصفوفة الكاملة متاحة عند الطلب دون إنشاء هدف Workbench ثانٍ.' : 'التكوين العادي وTile متاحان عند الطلب مع استمرار هدف حي واحد.'}\n      </erp-text>\n      <erp-button\n        data-radio-reference-toggle\n        [label]="referenceExpanded() ? 'إخفاء الدليل' : 'عرض الدليل'"\n        (pressed)="toggleReference()"\n      />\n      @if (referenceExpanded()) {\n        <app-review-radio-reference focus="${entry.id}" />\n      }\n    </erp-stack>\n  </erp-surface>\n`
-      : '';
+      : hasEmptyStateReference
+        ? `  <erp-surface padding="default" border="subtle" data-empty-state-reference-section>\n    <erp-stack gap="tight">\n      <erp-text type="heading-3">دليل مرجع الحالة الفارغة</erp-text>\n      <erp-text type="paragraph" tone="secondary">\n        السيناريوهات الخمسة والتحكم في الأجزاء والحركة والاتجاه متاحة عند الطلب دون إنشاء هدف Workbench ثانٍ.\n      </erp-text>\n      <erp-button\n        data-empty-state-reference-toggle\n        [label]="referenceExpanded() ? 'إخفاء دليل المرجع' : 'عرض دليل المرجع'"\n        (pressed)="toggleReference()"\n      />\n      @if (referenceExpanded()) {\n        <app-empty-state-controls data-empty-state-reference-evidence />\n      }\n    </erp-stack>\n  </erp-surface>\n`
+        : '';
   const livePreviewClass = isFloatingPreview
     ? 'showcase-live-preview'
     : 'showcase-live-preview';
@@ -1487,7 +1497,7 @@ function generatedShowcaseOwner(entry) {
       "    if (name === 'open' && value === false && this.lastEvent().startsWith('actionActivated:')) {\n      this.lastEvent.update((current) => `${current} · openChange: false`);\n      return;\n    }\n    this.recordEvent(`${name}Change`, value);",
     );
   }
-  if (hasRadioReference) {
+  if (hasAdditionalReference) {
     generatedSource = generatedSource
       .replace(
         "  readonly lastEvent = signal('لم يحدث تفاعل بعد');\n",

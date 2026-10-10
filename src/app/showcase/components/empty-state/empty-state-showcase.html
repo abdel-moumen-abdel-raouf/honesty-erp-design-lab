@@ -44,4 +44,20 @@
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>
+  <erp-surface padding="default" border="subtle" data-empty-state-reference-section>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل مرجع الحالة الفارغة</erp-text>
+      <erp-text type="paragraph" tone="secondary">
+        السيناريوهات الخمسة والتحكم في الأجزاء والحركة والاتجاه متاحة عند الطلب دون إنشاء هدف Workbench ثانٍ.
+      </erp-text>
+      <erp-button
+        data-empty-state-reference-toggle
+        [label]="referenceExpanded() ? 'إخفاء دليل المرجع' : 'عرض دليل المرجع'"
+        (pressed)="toggleReference()"
+      />
+      @if (referenceExpanded()) {
+        <app-empty-state-controls data-empty-state-reference-evidence />
+      }
+    </erp-stack>
+  </erp-surface>
 </erp-stack>

@@ -1,5 +1,18 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — EmptyState
+
+The dedicated EmptyState Workbench now exposes the full five-scenario reference
+experience on demand without adding another primary target. Browser evidence at
+1440/1280/390/320 px covers Light/Dark, RTL/LTR, responsive 160/108 px Lottie
+illustrations, error and reduced-motion states. A narrow extra-action clipping
+defect was corrected and the final evidence records zero clipping, overflow,
+broken images, or diagnostics. The original historical HTML file was not
+available for a fresh source overlay. Product Owner acceptance is not recorded;
+the next reopened visual unit is `ErpSelect`. Canonical verification passes
+128/128 test files and 812/812 tests, both typechecks, all governance/lint, and
+the zero-warning 418.32 kB / 92.91 kB production build.
+
 ## Latest verified UI unit — Radio family
 
 The dedicated RadioBox and RadioGroup workbenches now restore their complete

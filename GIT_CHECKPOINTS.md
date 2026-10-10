@@ -1,5 +1,27 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## EmptyState internal visual-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `6b1fe59f0ec3fcaaaf64a43cbb5aaed601ecc048` — synchronized `main` after the
+  Radio family checkpoint.
+
+Bounded scope:
+
+- Restored the complete five-scenario EmptyState evidence on demand while
+  retaining one primary live target.
+- Corrected verified narrow extra-action clipping without changing the public
+  API or the Product Owner-supplied Lottie assets.
+- Added reproducible Light/Dark RTL/LTR desktop/narrow screenshots and runtime
+  measurements under `docs/review-evidence/erp-empty-state/`.
+
+Status: technical/internal review candidate; Product Owner visual review is
+pending. Focused tests pass 4/4 files and 48/48 tests; canonical verification
+passes 128/128 files and 812/812 tests, both typechecks, all governance/lint,
+and the zero-warning 418.32 kB / 92.91 kB build. The actual commit SHA is
+recorded after the checkpoint is created.
+
 ## Radio family internal visual-review checkpoint — 2026-10-10
 
 Entry checkpoint:

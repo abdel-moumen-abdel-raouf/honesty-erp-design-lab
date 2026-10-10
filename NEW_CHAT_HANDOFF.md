@@ -1,5 +1,19 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — EmptyState reviewed internally
+
+The EmptyState dedicated page keeps one primary live target and offers the
+complete five-scenario reference evidence on demand. Evidence and reproduction
+instructions are under
+`docs/review-evidence/erp-empty-state/v1-internal-review/`. Final Light/Dark,
+RTL/LTR desktop/narrow measurements show 160/108 px Lottie illustrations and
+zero clipping, page overflow, broken images, or diagnostics after correcting a
+real narrow extra-action wrapping defect. The historical source HTML could not
+be recovered, so do not describe this as a fresh pixel overlay. Product Owner
+visual review remains pending. Canonical verification passes 128/128 test files
+and 812/812 tests, both typechecks, all governance/lint, and the zero-warning
+418.32 kB / 92.91 kB build. Continue with the reopened `ErpSelect` unit.
+
 ## Current continuation point — Radio family reviewed internally
 
 `ErpRadioBox` and `ErpRadioGroup` now expose their rich reference/state evidence

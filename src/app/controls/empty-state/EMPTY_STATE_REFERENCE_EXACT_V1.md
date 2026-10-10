@@ -1,5 +1,25 @@
 # ErpEmptyState — Exact Product Owner Reference Contract V1
 
+## 2026-10-10 — Dedicated Workbench evidence closure
+
+The dedicated `/components/empty-state` page keeps exactly one primary live API
+target and now restores the complete five-scenario reference/state evidence on
+demand. Reproducible Light/Dark RTL/LTR desktop/narrow evidence lives at
+`docs/review-evidence/erp-empty-state/v1-internal-review/`. Internal browser
+review reproduced narrow extra-action text clipping; EmptyState-owned wrapping
+was corrected and final measurements record zero clipping, page overflow,
+broken images, or browser diagnostics. Desktop illustrations measure 160 px and
+narrow illustrations 108 px as required by the current contract.
+
+The originally recorded `erp-empty-state.html` file was not available in the
+current environment for a fresh source overlay. The recorded hash remains
+historical authority, but this review does not invent unavailable measurements
+or claim a new pixel comparison. The candidate is technically and internally
+reviewed; Product Owner visual acceptance remains pending. Focused regression
+passes 4/4 files and 48/48 tests. Canonical verification passes 128/128 files
+and 812/812 tests, both typechecks, all governance/lint, and the zero-warning
+418.32 kB / 92.91 kB production build.
+
 ## Authority
 
 Product Owner reference supplied on 2026-10-04:

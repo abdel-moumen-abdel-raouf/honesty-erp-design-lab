@@ -1,5 +1,15 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — EmptyState complete internally
+
+The dedicated EmptyState page now combines one interactive API target with an
+on-demand five-scenario reference surface. Final browser evidence covers
+Light/Dark, RTL/LTR, desktop/narrow, error and reduced-motion states with zero
+clipping, overflow, broken images, or diagnostics after a bounded narrow
+wrapping correction. The historical source HTML was unavailable for fresh
+measurement. Product Owner status remains pending; the next reopened exact
+candidate is `ErpSelect`.
+
 ## Current UI continuation — Radio family complete internally
 
 RadioBox and RadioGroup now have one-target interactive workbenches plus

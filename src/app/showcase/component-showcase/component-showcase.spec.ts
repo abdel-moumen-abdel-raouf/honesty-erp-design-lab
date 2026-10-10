@@ -208,6 +208,34 @@ describe('ComponentShowcase', () => {
     }
   }, 20000);
 
+  it('restores the complete EmptyState reference experience on demand with one live target', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/components/empty-state', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(
+        harness.routeNativeElement?.querySelector('[data-showcase-target]'),
+      ).not.toBeNull();
+    });
+
+    const root = harness.routeNativeElement as HTMLElement;
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect(root.querySelector('app-empty-state-controls')).toBeNull();
+
+    (
+      root.querySelector(
+        '[data-empty-state-reference-toggle] button',
+      ) as HTMLButtonElement
+    ).click();
+    harness.fixture.detectChanges();
+
+    const evidence = root.querySelector('app-empty-state-controls');
+    expect(evidence).not.toBeNull();
+    expect(evidence?.querySelectorAll('[data-empty-state-interactive-preview] erp-empty-state')).toHaveLength(1);
+    expect(evidence?.querySelectorAll('[data-empty-state-scenario-matrix] erp-empty-state')).toHaveLength(5);
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+  }, 20000);
+
   it('uses the complete canonical AvatarPicker gallery in the live workbench', async () => {
     const harness = await RouterTestingHarness.create();
     await harness.navigateByUrl('/components/avatar-picker', ComponentShowcase);

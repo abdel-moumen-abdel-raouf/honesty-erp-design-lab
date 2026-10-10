@@ -1,5 +1,18 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current EmptyState Internal Review State
+
+`ErpEmptyState` now restores the complete five-scenario Product Owner evidence
+on demand inside its dedicated one-target Workbench. Reproducible Light/Dark,
+RTL/LTR, desktop and narrow captures are stored under
+`docs/review-evidence/erp-empty-state/v1-internal-review/`. The internal review
+confirmed and corrected narrow extra-action text clipping; all final cases have
+zero page overflow, clipped visible text, broken images, or browser diagnostics.
+The recorded historical HTML reference was unavailable for fresh source
+comparison, so no new geometry was attributed to it. Technical/internal review
+is complete, Product Owner visual review remains pending, and `ErpSelect` is the
+next prioritized reopened unit.
+
 ## Current Radio Family Internal Review State
 
 `ErpRadioBox` and `ErpRadioGroup` retain native radio ownership and the accepted

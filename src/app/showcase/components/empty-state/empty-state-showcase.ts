@@ -5,13 +5,15 @@ import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
+import {ErpButton} from '../../../controls/button/button';
+import {EmptyStateControls} from '../../../review-internals/legacy-empty-state-controls/empty-state-controls';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'empty-state')!;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-empty-state-showcase',
-  imports: [ErpEmptyState, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpEmptyState, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpButton, EmptyStateControls],
   templateUrl: './empty-state-showcase.html',
   styleUrl: './empty-state-showcase.scss',
 })
@@ -19,6 +21,7 @@ export class ErpEmptyStateShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
+  readonly referenceExpanded = signal(false);
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>(null);
   readonly controlValues = computed<Readonly<Record<string, unknown>>>(() => ({
@@ -54,6 +57,10 @@ export class ErpEmptyStateShowcase {
     try { rendered = typeof value === 'string' ? value : JSON.stringify(value); }
     catch { rendered = String(value); }
     this.lastEvent.set(`${name}: ${rendered}`);
+  }
+
+  toggleReference(): void {
+    this.referenceExpanded.update((value) => !value);
   }
 
   private functionPreset(name: string, value: unknown): unknown {

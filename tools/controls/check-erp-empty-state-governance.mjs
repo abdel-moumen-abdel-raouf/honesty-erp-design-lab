@@ -375,9 +375,9 @@ export function validateEmptyStateContracts(files) {
     "applyScenario('error')",
     "applyScenario('forbidden')",
     "applyScenario('custom')",
-    'Illustration Motion',
-    'Motion Speed',
-    'Direction Evidence',
+    'value="float"',
+    'value="0.5"',
+    '[attr.dir]="direction()"',
   ]) {
     if (!showcase.includes(required)) {
       errors.push(`EmptyState showcase is missing ${required}`);
@@ -425,7 +425,7 @@ function createValidFixture() {
     ],
     [
       SHOWCASE,
-      "data-empty-state-interactive-preview data-empty-state-scenario-matrix applyScenario('no-data') applyScenario('no-search') applyScenario('error') applyScenario('forbidden') applyScenario('custom') Illustration Motion Motion Speed Direction Evidence",
+      `data-empty-state-interactive-preview data-empty-state-scenario-matrix applyScenario('no-data') applyScenario('no-search') applyScenario('error') applyScenario('forbidden') applyScenario('custom') value="float" value="0.5" [attr.dir]="direction()"`,
     ],
     [ROUTES, "path: 'controls/empty-states'"],
     [

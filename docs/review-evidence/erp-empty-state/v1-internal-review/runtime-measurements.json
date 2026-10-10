@@ -1,0 +1,266 @@
+{
+  "capturedAt": "2026-10-10T03:31:59.534Z",
+  "baseUrl": "http://localhost:4999",
+  "measurements": [
+    {
+      "name": "empty-state-1440-light-rtl",
+      "route": "/components/empty-state",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "reducedMotion": false,
+      "primaryTargetCount": 1,
+      "referenceEvidenceCount": 1,
+      "stateCount": 6,
+      "matrixStateCount": 5,
+      "preview": {
+        "x": 194,
+        "y": 265.65625,
+        "width": 467,
+        "height": 565.5625
+      },
+      "illustrationSizes": [
+        {
+          "x": 347.5,
+          "y": 338.65625,
+          "width": 160,
+          "height": 160
+        },
+        {
+          "x": 773.25,
+          "y": 2030.96875,
+          "width": 160,
+          "height": 160
+        },
+        {
+          "x": 325.75,
+          "y": 2030.96875,
+          "width": 160,
+          "height": 160
+        },
+        {
+          "x": 773.25,
+          "y": 2620.53125,
+          "width": 160,
+          "height": 160
+        },
+        {
+          "x": 325.75,
+          "y": 2620.53125,
+          "width": 160,
+          "height": 160
+        },
+        {
+          "x": 773.25,
+          "y": 3262.09375,
+          "width": 160,
+          "height": 160
+        }
+      ],
+      "lottieSvgCount": 6,
+      "pageHorizontalOverflow": 0,
+      "clippedVisibleText": 0,
+      "clippedVisibleTexts": [],
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "empty-state-1280-dark-ltr-matrix",
+      "route": "/components/empty-state",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "reducedMotion": false,
+      "primaryTargetCount": 1,
+      "referenceEvidenceCount": 1,
+      "stateCount": 6,
+      "matrixStateCount": 5,
+      "preview": {
+        "x": 598,
+        "y": -1483.75,
+        "width": 307,
+        "height": 776.34375
+      },
+      "illustrationSizes": [
+        {
+          "x": 671.5,
+          "y": -1410.75,
+          "width": 160,
+          "height": 160
+        },
+        {
+          "x": 285.75,
+          "y": 281.5625,
+          "width": 160,
+          "height": 160
+        },
+        {
+          "x": 653.25,
+          "y": 281.5625,
+          "width": 160,
+          "height": 160
+        },
+        {
+          "x": 285.75,
+          "y": 922.515625,
+          "width": 160,
+          "height": 160
+        },
+        {
+          "x": 653.25,
+          "y": 922.515625,
+          "width": 160,
+          "height": 160
+        },
+        {
+          "x": 285.75,
+          "y": 1644.46875,
+          "width": 160,
+          "height": 160
+        }
+      ],
+      "lottieSvgCount": 6,
+      "pageHorizontalOverflow": 0,
+      "clippedVisibleText": 0,
+      "clippedVisibleTexts": [],
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "empty-state-390-dark-rtl-error",
+      "route": "/components/empty-state",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "rtl",
+      "reducedMotion": false,
+      "primaryTargetCount": 1,
+      "referenceEvidenceCount": 1,
+      "stateCount": 6,
+      "matrixStateCount": 5,
+      "preview": {
+        "x": 73,
+        "y": -0.34375,
+        "width": 229,
+        "height": 661.734375
+      },
+      "illustrationSizes": [
+        {
+          "x": 133.5,
+          "y": 48.65625,
+          "width": 108,
+          "height": 108
+        },
+        {
+          "x": 133.5,
+          "y": 1066.359375,
+          "width": 108,
+          "height": 108
+        },
+        {
+          "x": 133.5,
+          "y": 1673.703125,
+          "width": 108,
+          "height": 108
+        },
+        {
+          "x": 133.5,
+          "y": 2232.4375,
+          "width": 108,
+          "height": 108
+        },
+        {
+          "x": 133.5,
+          "y": 2918.171875,
+          "width": 108,
+          "height": 108
+        },
+        {
+          "x": 133.5,
+          "y": 3465.515625,
+          "width": 108,
+          "height": 108
+        }
+      ],
+      "lottieSvgCount": 6,
+      "pageHorizontalOverflow": 0,
+      "clippedVisibleText": 0,
+      "clippedVisibleTexts": [],
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "empty-state-320-light-ltr-reduced-motion",
+      "route": "/components/empty-state",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "theme": "light",
+      "direction": "ltr",
+      "reducedMotion": true,
+      "primaryTargetCount": 1,
+      "referenceEvidenceCount": 1,
+      "stateCount": 6,
+      "matrixStateCount": 5,
+      "preview": {
+        "x": 73,
+        "y": 0,
+        "width": 159,
+        "height": 613.90625
+      },
+      "illustrationSizes": [
+        {
+          "x": 98.5,
+          "y": 49,
+          "width": 108,
+          "height": 108
+        },
+        {
+          "x": 98.5,
+          "y": 1093.25,
+          "width": 108,
+          "height": 108
+        },
+        {
+          "x": 98.5,
+          "y": 1893.546875,
+          "width": 108,
+          "height": 108
+        },
+        {
+          "x": 98.5,
+          "y": 2531.453125,
+          "width": 108,
+          "height": 108
+        },
+        {
+          "x": 98.5,
+          "y": 3357.359375,
+          "width": 108,
+          "height": 108
+        },
+        {
+          "x": 98.5,
+          "y": 4121.65625,
+          "width": 108,
+          "height": 108
+        }
+      ],
+      "lottieSvgCount": 6,
+      "pageHorizontalOverflow": 0,
+      "clippedVisibleText": 0,
+      "clippedVisibleTexts": [],
+      "brokenImages": 0,
+      "diagnostics": []
+    }
+  ]
+}

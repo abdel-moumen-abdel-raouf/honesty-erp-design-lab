@@ -1,6 +1,6 @@
 <erp-container class="empty-state-review" width="wide">
   <erp-stack class="empty-state-review__header" gap="tight">
-    <erp-text type="heading-1">Empty State — المرجع المعتمد</erp-text>
+    <erp-text type="heading-1">الحالة الفارغة — المرجع المعتمد</erp-text>
     <erp-text type="paragraph" tone="secondary">
       يعرض المعمل السيناريوهات الخمسة مع رسومات Lottie الشفافة المعتمدة من
       Product Owner، والتحكم الحقيقي في التشغيل والسرعة وإعادة الحركة، مع بقاء
@@ -42,40 +42,40 @@
         </erp-stack>
 
         <erp-review-select
-          label="Scenario"
+          label="السيناريو"
           [value]="variant()"
           (selectionChanged)="setVariantFromEvent($event)"
         >
-          <erp-review-choice value="no-data" label="No Data" />
-          <erp-review-choice value="no-search" label="No Search Results" />
-          <erp-review-choice value="error" label="Error" />
-          <erp-review-choice value="forbidden" label="Forbidden" />
-          <erp-review-choice value="custom" label="Custom" />
+          <erp-review-choice value="no-data" label="لا توجد بيانات" />
+          <erp-review-choice value="no-search" label="لا نتائج" />
+          <erp-review-choice value="error" label="خطأ" />
+          <erp-review-choice value="forbidden" label="غير مصرح" />
+          <erp-review-choice value="custom" label="مخصص" />
         </erp-review-select>
 
         <erp-text type="heading-4">إظهار / إخفاء الأجزاء</erp-text>
-        <erp-check-box label="Illustration" [ngModel]="showIllustration()" (ngModelChange)="showIllustration.set($event)" />
-        <erp-check-box label="Title" [ngModel]="showTitle()" (ngModelChange)="showTitle.set($event)" />
-        <erp-check-box label="Description" [ngModel]="showDescription()" (ngModelChange)="showDescription.set($event)" />
-        <erp-check-box label="Actions Area" [ngModel]="showActions()" (ngModelChange)="showActions.set($event)" />
-        <erp-check-box label="Extra Link" [ngModel]="showExtra()" (ngModelChange)="showExtra.set($event)" />
+        <erp-check-box label="الرسم" [ngModel]="showIllustration()" (ngModelChange)="showIllustration.set($event)" />
+        <erp-check-box label="العنوان" [ngModel]="showTitle()" (ngModelChange)="showTitle.set($event)" />
+        <erp-check-box label="الوصف" [ngModel]="showDescription()" (ngModelChange)="showDescription.set($event)" />
+        <erp-check-box label="منطقة الإجراءات" [ngModel]="showActions()" (ngModelChange)="showActions.set($event)" />
+        <erp-check-box label="الرابط الإضافي" [ngModel]="showExtra()" (ngModelChange)="showExtra.set($event)" />
 
         <erp-text type="heading-4">الأزرار التفاعلية</erp-text>
-        <erp-check-box label="Primary Action" [ngModel]="showPrimaryAction()" (ngModelChange)="showPrimaryAction.set($event)" />
-        <erp-check-box label="Secondary Action" [ngModel]="showSecondaryAction()" (ngModelChange)="showSecondaryAction.set($event)" />
-        <erp-check-box label="Tertiary Action" [ngModel]="showTertiaryAction()" (ngModelChange)="showTertiaryAction.set($event)" />
+        <erp-check-box label="الإجراء الأساسي" [ngModel]="showPrimaryAction()" (ngModelChange)="showPrimaryAction.set($event)" />
+        <erp-check-box label="الإجراء الثانوي" [ngModel]="showSecondaryAction()" (ngModelChange)="showSecondaryAction.set($event)" />
+        <erp-check-box label="الإجراء الثالث" [ngModel]="showTertiaryAction()" (ngModelChange)="showTertiaryAction.set($event)" />
 
         <erp-text type="heading-4">الحركة والمؤثرات</erp-text>
-        <erp-check-box label="Enable Animations" [ngModel]="animated()" (ngModelChange)="animated.set($event)" />
-        <erp-review-select label="Illustration Motion" [value]="motion()" (selectionChanged)="setMotionFromEvent($event)">
-          <erp-review-choice value="float" label="Floating & Breathing" />
-          <erp-review-choice value="pulse" label="Pulse" />
-          <erp-review-choice value="none" label="Static" />
+        <erp-check-box label="تشغيل الحركة" [ngModel]="animated()" (ngModelChange)="animated.set($event)" />
+        <erp-review-select label="حركة الرسم" [value]="motion()" (selectionChanged)="setMotionFromEvent($event)">
+          <erp-review-choice value="float" label="طفو" />
+          <erp-review-choice value="pulse" label="نبض" />
+          <erp-review-choice value="none" label="ثابت" />
         </erp-review-select>
-        <erp-review-select label="Motion Speed" [value]="motionSpeed().toString()" (selectionChanged)="setSpeedFromEvent($event)">
-          <erp-review-choice value="0.5" label="Slow 0.5x" />
-          <erp-review-choice value="1" label="Normal 1.0x" />
-          <erp-review-choice value="1.5" label="Fast 1.5x" />
+        <erp-review-select label="سرعة الحركة" [value]="motionSpeed().toString()" (selectionChanged)="setSpeedFromEvent($event)">
+          <erp-review-choice value="0.5" label="بطيء 0.5×" />
+          <erp-review-choice value="1" label="عادي" />
+          <erp-review-choice value="1.5" label="سريع 1.5×" />
         </erp-review-select>
         <erp-button label="تشغيل حركة الدخول الآن" icon="redo" variant="subtle" (pressed)="replay()" />
 
@@ -84,7 +84,7 @@
         <erp-text-area-box label="الوصف" [ngModel]="description()" (ngModelChange)="description.set($event)" />
         <erp-text-box label="نص الإجراء الأساسي" [ngModel]="primaryActionLabel()" (ngModelChange)="primaryActionLabel.set($event)" />
 
-        <erp-review-select label="Direction Evidence" [value]="direction()" (selectionChanged)="setDirectionFromEvent($event)">
+        <erp-review-select label="اتجاه الدليل" [value]="direction()" (selectionChanged)="setDirectionFromEvent($event)">
           <erp-review-choice value="rtl" label="RTL" />
           <erp-review-choice value="ltr" label="LTR" />
         </erp-review-select>
@@ -122,7 +122,7 @@
       </erp-surface>
 
       <erp-surface class="empty-state-review__action-evidence" border="subtle">
-        <erp-text type="caption" tone="secondary">Action event evidence</erp-text>
+        <erp-text type="caption" tone="secondary">دليل حدث الإجراء</erp-text>
         <erp-text data-empty-state-last-action type="paragraph">{{ lastAction() }}</erp-text>
       </erp-surface>
     </erp-stack>
@@ -130,7 +130,7 @@
 
   <erp-section class="empty-state-review__matrix" data-empty-state-scenario-matrix>
     <erp-stack gap="tight">
-      <erp-text type="heading-2">Scenario matrix</erp-text>
+      <erp-text type="heading-2">مصفوفة السيناريوهات</erp-text>
       <erp-text type="paragraph" tone="secondary">
         مصفوفة السيناريوهات الخمسة بالقيم الافتراضية، مع تثبيت Lottie على
         الإطار الأول لمنع تشغيل عدة حركات مستمرة في الصفحة نفسها.
