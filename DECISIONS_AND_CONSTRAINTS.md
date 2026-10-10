@@ -1,5 +1,22 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## ErpAvatar internal-review decisions — 2026-10-10
+
+- `ERP-AVATAR.html` at SHA-256
+  `2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`
+  remains the sole Avatar visual/behavioral authority.
+- System colors and font family remain the permitted reference substitutions;
+  fixed geometry, physical presence positions and motion anatomy remain owned
+  by the Avatar contract.
+- Direct browser comparison confirmed the current production geometry, so no
+  visual implementation or public API change is authorized by this review.
+- The 3xl/4xl/5xl sizes and 116-image catalog remain later Product
+  Owner-authorized compatibility capabilities, not modifications to the six
+  reference sizes.
+- The vendor document's narrow demo-page overflow is source evidence, not
+  permission for application overflow.
+- Internal review does not change Product Owner visual status from pending.
+
 ## ErpStatusBadge internal-review decisions — 2026-10-10
 
 - `ERP-STATUS-BADGE.html` at SHA-256

@@ -1,5 +1,18 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — ErpAvatar reviewed internally
+
+Continue from synchronized `main` after the bounded Avatar checkpoint.
+Reference/implementation screenshots, measurements and reproduction steps are
+under `docs/review-evidence/erp-avatar/v1-internal-review/`. All six fixed
+reference sizes match at zero delta, the narrow mapping matches, and the full
+shape/content/presence/position/motion evidence has been inspected. No
+production Avatar defect was reproduced, so component/API code remains
+unchanged; the 116-image catalog and 40 legacy mappings remain intact.
+Canonical verification passes 128/128 files and 818/818 tests with a
+zero-warning 418.32 kB / 92.88 kB build. Product Owner approval is not
+recorded. Continue with `ErpAvatarPicker` and its binding exact reference.
+
 ## Current continuation point — ErpStatusBadge reviewed internally
 
 Continue from synchronized `main` after the bounded StatusBadge checkpoint.

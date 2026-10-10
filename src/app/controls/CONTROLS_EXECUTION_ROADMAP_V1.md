@@ -1,5 +1,19 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — ErpAvatar complete internally
+
+The binding source was rehashed, rendered and compared directly with the exact
+Angular evidence. All six reference sizes and the authorized narrow mapping
+match; shapes, content, tones, rings, presence, physical positions and motions
+were inspected across Light/Dark and RTL/LTR. No production defect was
+reproduced, so Avatar implementation and APIs remain unchanged. Evidence is
+under `docs/review-evidence/erp-avatar/v1-internal-review/`. The 116-image
+asset gate passes. Product Owner status remains pending. Focused verification
+passes 3/3 files and 37/37 tests; canonical verification passes 128/128 files
+and 818/818 tests with a zero-warning 418.32 kB / 92.88 kB build. The next
+exact-reference owner is `ErpAvatarPicker`; business Feature/Page, CRUD,
+transport and permissions work remain closed.
+
 ## Current UI continuation — ErpStatusBadge complete internally
 
 The binding source was rehashed, rendered and compared directly with the exact

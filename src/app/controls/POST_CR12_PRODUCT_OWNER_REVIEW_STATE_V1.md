@@ -1,5 +1,21 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — ErpAvatar
+
+The binding Avatar SHA was reverified and the source was rendered beside the
+current exact experience. Fresh evidence confirms zero fixed-size delta across
+24/30/38/50/68/88px, the authorized narrow mapping, 18 shape/size cases, and
+the content/tone/ring/presence/position/motion contract. Screenshots,
+measurements and reproduction steps are under
+`docs/review-evidence/erp-avatar/v1-internal-review/`. Implementation cases
+have one target and zero overflow, broken images or diagnostics. No production
+defect was reproduced and no API changed. Status is `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Focused verification passes 3/3 files
+and 37/37 tests; canonical verification passes 128/128 files and 818/818
+tests, both typechecks, all governance/lint and the zero-warning 418.32 kB /
+92.88 kB build. Next binding-reference unit: `ErpAvatarPicker`.
+
 ## Current review execution — 2026-10-10 — ErpStatusBadge
 
 The binding StatusBadge SHA was reverified and the source was rendered beside

@@ -1,5 +1,35 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## ErpAvatar exact-reference internal-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `feb9938f330fa7c9d8652f7cd57e4eccc5ccfd5b` — synchronized `main` after the
+  ErpStatusBadge internal-review checkpoint.
+
+Bounded scope:
+
+- Rehashed and rendered the binding Avatar file in Chrome beside the exact ERP
+  evidence at matched desktop/narrow, theme and direction states.
+- Confirmed zero fixed-size delta across 24/30/38/50/68/88px and the authorized
+  narrow 58/72px xl/2xl mapping.
+- Inspected shapes, content, tones, rings, presence, positions and motion;
+  retained production component/API code unchanged because no defect was found.
+- Added reproducible evidence and advanced the generated lifecycle ledger to
+  `ErpAvatarPicker`.
+- Kept the grouped exact-showcase composition assertions while removing
+  duplicate Select internals from that composition-only test; no timeout or
+  gate was changed.
+
+Verification:
+
+- Focused: 3/3 files, 37/37 tests.
+- Canonical: 128/128 files, 818/818 tests; all governance/lint; both
+  typechecks; zero-warning 418.32 kB / 92.88 kB build.
+
+The commit SHA is established by Git after this document is written and is
+reported in the execution handoff. Product Owner visual review remains pending.
+
 ## ErpStatusBadge exact-reference internal-review candidate — 2026-10-10
 
 Entry checkpoint:

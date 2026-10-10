@@ -1,5 +1,22 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — ErpAvatar exact-reference internal review
+
+The binding Avatar source was rehashed and rendered directly beside the current
+exact experience. Fixed sizes match at 24/30/38/50/68/88px and the narrow
+mapping remains 24/30/38/50/58/72px. All shapes, content types, tones, rings,
+presence states, physical positions and reference motions were inspected.
+Implementation cases have one target and zero page overflow, broken images or
+browser diagnostics. The reference document itself has 193px narrow overflow
+from its fixed demo chrome; it is not propagated into production. No component
+defect was reproduced and no public API changed. Evidence is under
+`docs/review-evidence/erp-avatar/v1-internal-review/`. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Focused verification passes 3/3 files
+and 37/37 tests; canonical verification passes 128/128 files and 818/818
+tests, both typechecks, all governance/lint and the zero-warning 418.32 kB /
+92.88 kB build. Next binding-reference owner: `ErpAvatarPicker`.
+
 ## Current checkpoint — ErpStatusBadge exact-reference internal review
 
 The binding StatusBadge source was rehashed and rendered beside the current

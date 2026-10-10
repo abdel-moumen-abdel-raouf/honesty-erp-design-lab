@@ -1,5 +1,15 @@
 # Next Component Reference Batch V1
 
+## Authoritative next action — 2026-10-10 — ErpAvatarPicker
+
+The autonomous UI authorization remains active. `ErpAvatar` has completed
+direct internal exact-reference review with no Product Owner acceptance
+recorded and no production defect reproduced. The next implemented owner with
+a binding component-specific reference is `ErpAvatarPicker`. Preserve its
+composition through `ErpAvatar` and `ErpTabs`, the 116-image canonical catalog,
+and all 40 legacy compatibility mappings. Do not open business Feature/Page,
+CRUD, transport or permissions work.
+
 ## Authoritative next action — 2026-10-10 — ErpAvatar
 
 The autonomous UI authorization remains active. `ErpStatusBadge` has completed

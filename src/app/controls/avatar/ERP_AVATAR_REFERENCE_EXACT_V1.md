@@ -140,3 +140,24 @@ only.
 labelled compatibility evidence. Technical verification and runtime evidence do
 not declare Product Owner visual acceptance. Final acceptance remains pending
 Product Owner Light/Dark/RTL/LTR/narrow review.
+
+## 2026-10-10 internal browser review
+
+The SHA-verified binding file and the dedicated Angular exact-reference
+experience were rendered in fresh Chromium contexts at matched desktop and
+narrow conditions. The six reference sizes match at 24/30/38/50/68/88px with
+zero fixed-size delta; the narrow implementation preserves the authorized
+24/30/38/50/58/72px mapping. All three shapes, content types, tones, rings,
+presence statuses, physical positions and reference motion evidence were
+visually inspected in Light/Dark and RTL/LTR.
+
+No production Avatar geometry defect was reproduced, so the component and its
+public API remain unchanged. Implementation evidence has one primary target,
+zero horizontal page overflow, zero broken images and zero browser
+diagnostics. The reference document's own fixed demo chrome contributes 193px
+of narrow page overflow and is recorded as a source limitation rather than a
+production behavior. Reproducible evidence is stored in
+`docs/review-evidence/erp-avatar/v1-internal-review/`.
+
+Technical verification and internal visual review do not change the Product
+Owner status from pending.

@@ -41,6 +41,7 @@ const SHELL_OWNERS = new Set([
 ]);
 
 const INTERNAL_VISUAL_REVIEWED = new Set([
+  'ErpAvatar',
   'ErpEmptyState',
   'ErpRadioBox',
   'ErpRadioGroup',
@@ -241,12 +242,12 @@ drift.
 - Explicitly reopened public owners: **${publicEntries.filter((entry) => REOPENED_VISUALS.has(entry.className)).length}**.
 - Planned identities outside the implemented catalog: **${PLANNED.length}**.
 - Internally reviewed public owners added in the current UI wave:
-  **\`ErpRadioBox\`**, **\`ErpRadioGroup\`**, **\`ErpEmptyState\`**, and
+  **\`ErpRadioBox\`**, **\`ErpRadioGroup\`**, **\`ErpEmptyState\`**, **\`ErpAvatar\`**, and
   **\`ErpSelect\`**, **\`ErpStatusBadge\`**, **\`ErpTabs\`**, **\`ErpTable\`**, and
   **\`ErpUserMenu\`**. Their
   Product Owner status remains pending.
 - Explicitly reopened visual owners have completed internal review. The next
-  binding-reference unit is **\`ErpAvatar\`**.
+  binding-reference unit is **\`ErpAvatarPicker\`**.
 
 ## Public owner inventory
 

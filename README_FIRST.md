@@ -1,5 +1,20 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — ErpAvatar
+
+The binding Avatar SHA was reverified and its actual file was rendered beside
+the dedicated Angular exact-reference experience. The six reference sizes
+match at 24/30/38/50/68/88px with zero fixed-size delta; narrow xl/2xl resolve
+to the authorized 58/72px. All 18 shape/size cases plus content, tone, ring,
+presence, position and motion evidence were inspected in desktop/narrow,
+Light/Dark and RTL/LTR. Evidence is under
+`docs/review-evidence/erp-avatar/v1-internal-review/`. No production defect was
+reproduced, so the public API and component remain unchanged. The 116-image
+asset gate passes. Focused verification passes 3/3 files and 37/37 tests;
+canonical verification passes 128/128 files and 818/818 tests with a
+zero-warning 418.32 kB / 92.88 kB build. Product Owner approval is not
+recorded. Next exact-reference owner: `ErpAvatarPicker`.
+
 ## Latest verified UI unit — ErpStatusBadge
 
 The binding source SHA was reverified, rendered over isolated local HTTP and

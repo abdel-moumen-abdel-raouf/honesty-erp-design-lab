@@ -1,5 +1,23 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current ErpAvatar Exact-Reference Internal Review State
+
+`ERP-AVATAR.html` remains binding at SHA-256
+`2F62F11BB1C8716F08C4BD5FF202ADCAE4360142FC8B131089D1E5F59AB53ECA`.
+Fresh reference/implementation evidence is under
+`docs/review-evidence/erp-avatar/v1-internal-review/`. The six reference sizes
+match at 24/30/38/50/68/88px with zero fixed-size delta, and the narrow
+implementation retains 24/30/38/50/58/72px. All 18 shape/size items, content,
+tones, rings, presence states, physical positions and motions were inspected.
+No production geometry defect was reproduced, so no public API or production
+component changed. The 116-image library remains intact. Focused verification
+passes 3/3 files and 37/37 tests; canonical verification passes 128/128 files
+and 818/818 tests, all governance/lint, both typechecks and the zero-warning
+418.32 kB / 92.88 kB build. Status is `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next binding-reference unit:
+`ErpAvatarPicker`.
+
 ## Current ErpStatusBadge Exact-Reference Internal Review State
 
 `ERP-STATUS-BADGE.html` remains binding at SHA-256
