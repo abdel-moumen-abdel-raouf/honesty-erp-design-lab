@@ -438,7 +438,16 @@ const FIXTURE_INPUTS = new Map([
     {value: 'archive', label: 'أرشفة', icon: 'layers'},
   ], ariaLabel: 'إجراءات المستند'}],
   ['ErpBulkActionBar', {selectedCount: 3}],
-  ['ErpColumnChooser', {columns: [{key: 'name', label: 'الاسم', hideable: true}]}],
+  ['ErpColumnChooser', {
+    columns: [
+      {key: 'accountNumber', label: 'رقم الحساب', required: true},
+      {key: 'accountName', label: 'اسم الحساب', hideable: true},
+      {key: 'type', label: 'النوع', hideable: true},
+      {key: 'balance', label: 'الرصيد', hideable: true},
+      {key: 'status', label: 'الحالة', hideable: true},
+    ],
+    visibleKeys: ['accountNumber', 'accountName', 'balance', 'status'],
+  }],
   ['ErpComboBox', {
     label: 'حساب المورد',
     helperText: 'ابحث باسم المورد أو رقم الحساب',
@@ -1624,7 +1633,10 @@ function generatedShowcaseOwner(entry) {
     inputBindings.push(`(${modelApi.name}Change)="recordModel('${modelApi.name}', $event)"`);
   }
   for (const outputName of entry.publicApi.outputs) {
-    inputBindings.push(`(${outputName})="recordEvent('${outputName}', $event)"`);
+    inputBindings.push(entry.className === 'ErpColumnChooser' && outputName === 'visibilityChange'
+      ? `(visibilityChange)="recordVisibleKeys($event)"`
+      : `(${outputName})="recordEvent('${outputName}', $event)"`,
+    );
   }
   if (isCva) inputBindings.push('[formControl]="control"');
   if (hasCvaDisabled) inputBindings.push('data-showcase-cva-disabled-control');
@@ -1742,6 +1754,12 @@ function generatedShowcaseOwner(entry) {
     generatedSource = generatedSource.replace(
       "    this.recordEvent(`${name}Change`, value);",
       "    if (name === 'open' && value === false && this.lastEvent().startsWith('actionActivated:')) {\n      this.lastEvent.update((current) => `${current} · openChange: false`);\n      return;\n    }\n    this.recordEvent(`${name}Change`, value);",
+    );
+  }
+  if (entry.className === 'ErpColumnChooser') {
+    generatedSource = generatedSource.replace(
+      '\n  recordModel(name: string, value: unknown): void {',
+      "\n  recordVisibleKeys(value: readonly string[]): void {\n    this.liveValues.update((current) => ({...current, visibleKeys: value}));\n    this.recordEvent('visibilityChange', value);\n  }\n\n  recordModel(name: string, value: unknown): void {",
     );
   }
   if (hasAdditionalReference) {

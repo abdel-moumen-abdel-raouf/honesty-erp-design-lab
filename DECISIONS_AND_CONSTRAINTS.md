@@ -1,5 +1,23 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## ColumnChooser and ViewSwitcher internal-review decisions — 2026-10-10
+
+- `ErpColumnChooser[presentation="table-reference"]` remains governed by the
+  exact ERP-TABLE full-experience contract. Default presentation remains a
+  compatibility candidate rather than a claimed exact reconstruction.
+- A presentation change after initial render must create/destroy the same
+  anchored-overlay controller as its trigger/surface enter or leave the view;
+  no second overlay engine is introduced.
+- The dedicated Workbench treats `visibilityChange` as a controlled-state
+  update and event: the last valid emitted keys are applied back to the same
+  live target before unrelated controls change.
+- ViewSwitcher reuses ButtonGroup/Button. Selection is exposed through
+  `aria-pressed` and active Button presentation; `disabled` reaches both owned
+  buttons. No duplicate native action owner is introduced.
+- ViewSwitcher has no component-specific exact reference on record and remains
+  an explicitly labeled original Honesty ERP candidate.
+- Internal review completion does not imply Product Owner acceptance.
+
 ## Alert and Skeleton internal-review decisions — 2026-10-10
 
 - Skodash RTL `component-alerts.html` is fallback presentation evidence for

@@ -331,7 +331,12 @@ function validateRepository() {
       const rootAppShellOutput = isRootAppShell &&
         rootOutputHandler &&
         appTemplate.includes(`(${outputName})="${rootOutputHandler}($event)"`);
-      if (!rootAppShellOutput &&
+      const controlledColumnVisibilityOutput = entry.className === 'ErpColumnChooser' &&
+        outputName === 'visibilityChange' &&
+        html.includes('(visibilityChange)="recordVisibleKeys($event)"') &&
+        source.includes('recordVisibleKeys(value: readonly string[]): void') &&
+        source.includes("this.recordEvent('visibilityChange', value);");
+      if (!rootAppShellOutput && !controlledColumnVisibilityOutput &&
           !html.includes(`(${outputName})="recordEvent('${outputName}', $event)"`)) {
         errors.push(`${entry.className} live target has no event evidence for ${outputName}`);
       }

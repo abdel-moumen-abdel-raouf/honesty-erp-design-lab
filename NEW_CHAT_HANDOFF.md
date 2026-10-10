@@ -1,5 +1,18 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — ColumnChooser and ViewSwitcher reviewed internally
+
+Continue from synchronized `main` after the ColumnChooser/ViewSwitcher
+checkpoint. ColumnChooser has realistic controlled visibility evidence and its
+Table-reference overlay now initializes correctly after live presentation
+changes. ViewSwitcher exposes synchronized selected, disabled, model and event
+state. Evidence under
+`docs/review-evidence/erp-selection/column-view-v1-internal-review/` passes
+49/49 browser assertions. Canonical verification passes 133/133 files and
+859/859 tests with a zero-warning 418.32 kB / 92.90 kB build. Product Owner
+acceptance is not recorded. Continue Bottom-Up with `ErpBreadcrumbs`,
+`ErpPagination`, `ErpSortHeader`, and `ErpStepper`.
+
 ## Current continuation point — Alert and Skeleton reviewed internally
 
 Continue from synchronized `main` after the Alert/Skeleton checkpoint. Alert's

@@ -243,6 +243,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "defaultExpression": "null"
         },
         {
+          "name": "ariaPressed",
+          "required": false,
+          "values": [],
+          "type": "boolean | null",
+          "hasDefault": true,
+          "defaultValue": null,
+          "defaultExpression": "null"
+        },
+        {
           "name": "role",
           "required": false,
           "values": [
@@ -683,6 +692,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "ariaHasPopup": null,
       "ariaControls": null,
       "ariaExpanded": null,
+      "ariaPressed": null,
       "role": null,
       "disabled": false,
       "loading": false,
@@ -882,6 +892,16 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "initialValue": null
       },
       {
+        "name": "ariaPressed",
+        "label": "ariaPressed",
+        "source": "input",
+        "kind": "json",
+        "required": false,
+        "type": "boolean | null",
+        "options": [],
+        "initialValue": null
+      },
+      {
         "name": "role",
         "label": "role",
         "source": "input",
@@ -1004,6 +1024,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "ariaHasPopup",
         "ariaControls",
         "ariaExpanded",
+        "ariaPressed",
         "role",
         "disabled",
         "loading",
@@ -48161,10 +48182,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "inputs": {
           "columns": [
             {
-              "key": "name",
-              "label": "الاسم",
+              "key": "accountNumber",
+              "label": "رقم الحساب",
+              "required": true
+            },
+            {
+              "key": "accountName",
+              "label": "اسم الحساب",
+              "hideable": true
+            },
+            {
+              "key": "type",
+              "label": "النوع",
+              "hideable": true
+            },
+            {
+              "key": "balance",
+              "label": "الرصيد",
+              "hideable": true
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
               "hideable": true
             }
+          ],
+          "visibleKeys": [
+            "accountNumber",
+            "accountName",
+            "balance",
+            "status"
           ]
         }
       },
@@ -48174,10 +48221,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "inputs": {
           "columns": [
             {
-              "key": "name",
-              "label": "الاسم",
+              "key": "accountNumber",
+              "label": "رقم الحساب",
+              "required": true
+            },
+            {
+              "key": "accountName",
+              "label": "اسم الحساب",
+              "hideable": true
+            },
+            {
+              "key": "type",
+              "label": "النوع",
+              "hideable": true
+            },
+            {
+              "key": "balance",
+              "label": "الرصيد",
+              "hideable": true
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
               "hideable": true
             }
+          ],
+          "visibleKeys": [
+            "accountNumber",
+            "accountName",
+            "balance",
+            "status"
           ],
           "disabled": false
         }
@@ -48188,10 +48261,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "inputs": {
           "columns": [
             {
-              "key": "name",
-              "label": "الاسم",
+              "key": "accountNumber",
+              "label": "رقم الحساب",
+              "required": true
+            },
+            {
+              "key": "accountName",
+              "label": "اسم الحساب",
+              "hideable": true
+            },
+            {
+              "key": "type",
+              "label": "النوع",
+              "hideable": true
+            },
+            {
+              "key": "balance",
+              "label": "الرصيد",
+              "hideable": true
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
               "hideable": true
             }
+          ],
+          "visibleKeys": [
+            "accountNumber",
+            "accountName",
+            "balance",
+            "status"
           ],
           "disabled": true
         }
@@ -48202,10 +48301,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "inputs": {
           "columns": [
             {
-              "key": "name",
-              "label": "الاسم",
+              "key": "accountNumber",
+              "label": "رقم الحساب",
+              "required": true
+            },
+            {
+              "key": "accountName",
+              "label": "اسم الحساب",
+              "hideable": true
+            },
+            {
+              "key": "type",
+              "label": "النوع",
+              "hideable": true
+            },
+            {
+              "key": "balance",
+              "label": "الرصيد",
+              "hideable": true
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
               "hideable": true
             }
+          ],
+          "visibleKeys": [
+            "accountNumber",
+            "accountName",
+            "balance",
+            "status"
           ],
           "disabled": true
         }
@@ -48214,13 +48339,38 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "displayNameAr": "محدد الأعمدة",
     "descriptionAr": "ضبط الأعمدة المرئية للجدول.",
     "showcaseInitialValues": {
-      "visibleKeys": [],
+      "visibleKeys": [
+        "accountNumber",
+        "accountName",
+        "balance",
+        "status"
+      ],
       "disabled": false,
       "presentation": "default",
       "columns": [
         {
-          "key": "name",
-          "label": "الاسم",
+          "key": "accountNumber",
+          "label": "رقم الحساب",
+          "required": true
+        },
+        {
+          "key": "accountName",
+          "label": "اسم الحساب",
+          "hideable": true
+        },
+        {
+          "key": "type",
+          "label": "النوع",
+          "hideable": true
+        },
+        {
+          "key": "balance",
+          "label": "الرصيد",
+          "hideable": true
+        },
+        {
+          "key": "status",
+          "label": "الحالة",
           "hideable": true
         }
       ]
@@ -48236,8 +48386,28 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "options": [],
         "initialValue": [
           {
-            "key": "name",
-            "label": "الاسم",
+            "key": "accountNumber",
+            "label": "رقم الحساب",
+            "required": true
+          },
+          {
+            "key": "accountName",
+            "label": "اسم الحساب",
+            "hideable": true
+          },
+          {
+            "key": "type",
+            "label": "النوع",
+            "hideable": true
+          },
+          {
+            "key": "balance",
+            "label": "الرصيد",
+            "hideable": true
+          },
+          {
+            "key": "status",
+            "label": "الحالة",
             "hideable": true
           }
         ]
@@ -48250,7 +48420,12 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "readonly string[]",
         "options": [],
-        "initialValue": []
+        "initialValue": [
+          "accountNumber",
+          "accountName",
+          "balance",
+          "status"
+        ]
       },
       {
         "name": "disabled",

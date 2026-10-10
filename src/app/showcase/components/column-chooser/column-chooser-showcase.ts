@@ -44,6 +44,11 @@ export class ErpColumnChooserShowcase {
     this.liveValues.update((current) => ({...current, [change.control.name]: value}));
   }
 
+  recordVisibleKeys(value: readonly string[]): void {
+    this.liveValues.update((current) => ({...current, visibleKeys: value}));
+    this.recordEvent('visibilityChange', value);
+  }
+
   recordModel(name: string, value: unknown): void {
     this.liveValues.update((current) => ({...current, [name]: value}));
     this.recordEvent(`${name}Change`, value);

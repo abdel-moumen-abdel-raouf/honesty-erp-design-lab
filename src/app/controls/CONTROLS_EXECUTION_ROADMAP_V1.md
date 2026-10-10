@@ -1,5 +1,17 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — ColumnChooser and ViewSwitcher complete internally
+
+ColumnChooser and ViewSwitcher completed internal browser review. The exact
+Table-reference overlay initializes correctly after live presentation changes;
+controlled visibility, five-column evidence, selected mode, disabled state,
+model synchronization and event evidence pass 49/49 assertions. Canonical
+verification passes 133/133 files and 859/859 tests with a zero-warning
+418.32 kB / 92.90 kB build. Product Owner status remains pending. Continue
+Bottom-Up with `ErpBreadcrumbs`, `ErpPagination`, `ErpSortHeader`, and
+`ErpStepper`; business Feature/Page, CRUD, transport, and permissions work
+remain closed.
+
 ## Current UI continuation — Alert and Skeleton complete internally
 
 Alert and Skeleton completed internal browser review. Skodash provides fallback

@@ -1,5 +1,17 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — ColumnChooser and ViewSwitcher
+
+ColumnChooser and ViewSwitcher completed internal browser review. The exact
+Table-reference popup, controlled visibility, five-column Workbench,
+selected/disabled Button-group state, model synchronization and event evidence
+pass 49/49 runtime assertions with zero browser diagnostics or page overflow.
+Screenshots, measurements, authority boundaries and reproduction notes are
+under `docs/review-evidence/erp-selection/column-view-v1-internal-review/`.
+Status is `TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next Bottom-Up unit: Breadcrumbs,
+Pagination, SortHeader, and Stepper.
+
 ## Current review execution — 2026-10-10 — Alert and Skeleton
 
 Alert and Skeleton completed internal browser review. Alert uses accessible

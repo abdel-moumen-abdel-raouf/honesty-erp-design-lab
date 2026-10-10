@@ -10,7 +10,7 @@
           [visibleKeys]="$any(value('visibleKeys'))"
           [disabled]="$any(value('disabled'))"
           [presentation]="$any(value('presentation'))"
-          (visibilityChange)="recordEvent('visibilityChange', $event)"
+          (visibilityChange)="recordVisibleKeys($event)"
           (resetRequested)="recordEvent('resetRequested', $event)"
         ></erp-column-chooser>
     </erp-stack>

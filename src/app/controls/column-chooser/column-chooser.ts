@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  AfterViewChecked,
   booleanAttribute,
   ChangeDetectionStrategy,
   Component,
@@ -34,7 +35,7 @@ let nextColumnChooserId = 0;
     '[attr.data-column-chooser-open]': 'open()',
   },
 })
-export class ErpColumnChooser implements AfterViewInit, OnDestroy {
+export class ErpColumnChooser implements AfterViewInit, AfterViewChecked, OnDestroy {
   readonly columns = input.required<readonly ErpDataColumn[]>();
   readonly visibleKeys = input<readonly string[]>([]);
   readonly disabled = input(false, {transform: booleanAttribute});
@@ -52,6 +53,8 @@ export class ErpColumnChooser implements AfterViewInit, OnDestroy {
     read: ElementRef<HTMLElement>,
   });
   private controller: AnchoredOverlayController | null = null;
+  private controllerAnchor: HTMLElement | null = null;
+  private controllerSurface: HTMLElement | null = null;
   private readonly handleDocumentPointer = (event: PointerEvent) => {
     if (!this.open()) return;
     const target = event.target as Node | null;
@@ -80,9 +83,31 @@ export class ErpColumnChooser implements AfterViewInit, OnDestroy {
   });
 
   ngAfterViewInit(): void {
+    document.addEventListener('pointerdown', this.handleDocumentPointer, true);
+    document.addEventListener('keydown', this.handleDocumentKey);
+    this.ensureReferenceController();
+  }
+
+  ngAfterViewChecked(): void {
+    this.ensureReferenceController();
+  }
+
+  private ensureReferenceController(): void {
     const anchor = this.trigger()?.nativeElement;
     const surface = this.surface()?.nativeElement;
-    if (!anchor || !surface) return;
+    if (!anchor || !surface) {
+      this.controller?.destroy();
+      this.controller = null;
+      this.controllerAnchor = null;
+      this.controllerSurface = null;
+      if (this.open()) this.open.set(false);
+      return;
+    }
+    if (anchor === this.controllerAnchor && surface === this.controllerSurface) return;
+
+    this.controller?.destroy();
+    this.controllerAnchor = anchor;
+    this.controllerSurface = surface;
 
     this.controller = new AnchoredOverlayController({
       anchor,
@@ -103,14 +128,13 @@ export class ErpColumnChooser implements AfterViewInit, OnDestroy {
         surface.dataset['placement'] = placement;
       },
     });
-    document.addEventListener('pointerdown', this.handleDocumentPointer, true);
-    document.addEventListener('keydown', this.handleDocumentKey);
   }
 
   ngOnDestroy(): void {
     document.removeEventListener('pointerdown', this.handleDocumentPointer, true);
     document.removeEventListener('keydown', this.handleDocumentKey);
     this.controller?.destroy();
+    this.controller = null;
   }
 
   protected updateVisible(value: ErpSelectValue): void {

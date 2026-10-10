@@ -1,5 +1,32 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## ColumnChooser and ViewSwitcher internal-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `e5e3c656b1c5547d189a292fb796f2c970d679f1` — synchronized `main` after the
+  Alert/Skeleton checkpoint.
+
+Bounded scope:
+
+- Corrected dynamic creation of the exact Table-reference ColumnChooser
+  overlay, closed the Workbench controlled-visibility loop, and replaced the
+  one-column fixture with five meaningful ERP columns.
+- Added ViewSwitcher selected-state semantics/presentation and propagated its
+  public disabled state to both owned Button-family actions.
+- Persisted six inspected desktop/narrow Light/Dark RTL/LTR screenshots and
+  49/49 runtime assertions under
+  `docs/review-evidence/erp-selection/column-view-v1-internal-review/`.
+
+Verification before commit:
+
+- Focused tests: 6/6 files, 24/24 tests.
+- Canonical `npm run verify:clean`: 133/133 files, 859/859 tests, both
+  typechecks, all governance/lint, production build, zero warnings.
+- Build: 418.32 kB initial / 92.90 kB estimated transfer.
+
+Visual status remains `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+
 ## Alert and Skeleton internal-review candidate — 2026-10-10
 
 Entry checkpoint:

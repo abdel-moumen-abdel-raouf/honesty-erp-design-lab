@@ -69,4 +69,22 @@ describe('ErpColumnChooser', () => {
     expect(host.getAttribute('data-column-chooser-open')).toBe('false');
     expect(document.activeElement).toBe(trigger);
   });
+
+  it('initializes the reference overlay when presentation changes after the first render', () => {
+    const fixture = TestBed.createComponent(ErpColumnChooser);
+    fixture.componentRef.setInput('columns', columns);
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('erp-select')).not.toBeNull();
+
+    fixture.componentRef.setInput('presentation', 'table-reference');
+    fixture.detectChanges();
+    const surface = fixture.nativeElement.querySelector('.column-chooser__reference-surface') as HTMLElement;
+    const showPopover = vi.fn();
+    Object.assign(surface, {showPopover, hidePopover: vi.fn()});
+
+    (fixture.nativeElement.querySelector('erp-button button') as HTMLButtonElement).click();
+    fixture.detectChanges();
+    expect(showPopover).toHaveBeenCalledOnce();
+    expect(fixture.nativeElement.getAttribute('data-column-chooser-open')).toBe('true');
+  });
 });

@@ -12,6 +12,7 @@ export interface ErpButtonGroupItem {
   readonly label: string;
   readonly icon?: ErpIconName;
   readonly disabled?: boolean;
+  readonly selected?: boolean;
 }
 
 export type ErpButtonGroupOrientation = 'horizontal' | 'vertical';

@@ -12,6 +12,8 @@
       [attr.data-attached-position]="attached() ? position(index) : null"
       [label]="item.label"
       [icon]="item.icon ?? null"
+      [variant]="item.selected === false ? 'outline' : 'solid'"
+      [ariaPressed]="item.selected ?? null"
       [disabled]="item.disabled ?? false"
       (pressed)="itemPressed.emit(item.value)"
     />

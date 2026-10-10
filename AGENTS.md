@@ -1,5 +1,23 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current ColumnChooser and ViewSwitcher Internal Review State
+
+`ErpColumnChooser` and `ErpViewSwitcher` completed internal browser review.
+ColumnChooser's exact Table-reference popup now initializes after a live
+presentation change, remains 240 px wide with a 340 px maximum block size, and
+preserves containment, controlled visibility, Escape and focus return. Its
+Workbench uses five realistic ERP columns. ViewSwitcher now exposes
+`aria-pressed`, active/inactive Button presentation and real disabled-state
+propagation on the same controlled target. Evidence under
+`docs/review-evidence/erp-selection/column-view-v1-internal-review/` passes
+49/49 assertions. Focused verification passes 6/6 files and 24/24 tests;
+canonical verification passes 133/133 files and 859/859 tests, both typechecks,
+all governance/lint, and the zero-warning 418.32 kB / 92.90 kB build. Status
+remains `TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Continue Bottom-Up with the remaining
+Navigation owners; business Feature/Page, CRUD, transport and permissions work
+remain closed.
+
 ## Current Alert and Skeleton Internal Review State
 
 `ErpAlert` and `ErpSkeleton` completed internal browser review. Skodash RTL

@@ -1,5 +1,21 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — ColumnChooser and ViewSwitcher
+
+`ErpColumnChooser` and `ErpViewSwitcher` completed internal browser review.
+ColumnChooser now uses five realistic ERP columns, applies visibility output
+back to its controlled live value, and initializes its exact Table-reference
+overlay even when the presentation changes after first render. The reference
+popup measures 240 px wide with a 340 px maximum block size and preserves
+Escape/focus return. ViewSwitcher now exposes selected state with
+`aria-pressed`, distinct solid/outline presentation, and real disabled-state
+propagation. Evidence under
+`docs/review-evidence/erp-selection/column-view-v1-internal-review/` passes
+49/49 assertions. Focused verification passes 6/6 files and 24/24 tests;
+canonical verification passes 133/133 files and 859/859 tests with a
+zero-warning 418.32 kB / 92.90 kB build. Product Owner acceptance is not
+recorded. Next Bottom-Up unit: the remaining Navigation owners.
+
 ## Latest verified UI unit — Alert and Skeleton
 
 Alert and Skeleton completed internal browser review. Skodash supplies fallback

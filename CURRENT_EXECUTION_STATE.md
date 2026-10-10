@@ -1,5 +1,23 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — ColumnChooser and ViewSwitcher internal review
+
+`ErpColumnChooser` and `ErpViewSwitcher` completed internal browser review.
+The ColumnChooser Workbench now uses five real ERP columns and closes the
+controlled-state loop for `visibleKeys`. Its Table-reference presentation
+dynamically initializes the existing anchored-overlay controller after an API
+control changes the template, preserving the exact 240 px width, 340 px
+maximum block size, viewport containment, Escape and focus return. ViewSwitcher
+now propagates `disabled`, exposes one selected mode through `aria-pressed`,
+and differentiates active/inactive Button-family presentations. Six scenarios
+pass 49/49 assertions with zero browser diagnostics and zero page overflow.
+Evidence is under
+`docs/review-evidence/erp-selection/column-view-v1-internal-review/`.
+Canonical verification passes 133/133 files and 859/859 tests, both typechecks,
+all governance/lint, and the zero-warning 418.32 kB / 92.90 kB build. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next: the remaining Navigation owners.
+
 ## Current checkpoint — Alert and Skeleton internal review
 
 `ErpAlert` and `ErpSkeleton` completed internal browser review. Alert uses

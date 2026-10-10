@@ -47,6 +47,7 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpButton',
   'ErpButtonGroup',
   'ErpColorPicker',
+  'ErpColumnChooser',
   'ErpComboBox',
   'ErpContainer',
   'ErpDateBox',
@@ -90,6 +91,7 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpTooltip',
   'ErpUrlBox',
   'ErpUserMenu',
+  'ErpViewSwitcher',
 ]);
 
 const CATEGORY_ORDER = new Map([
@@ -295,8 +297,8 @@ drift.
   **\`ErpColorPicker\`**, **\`ErpFilePicker\`**, **\`ErpImagePicker\`**,
   **\`ErpButton\`**, **\`ErpIconButton\`**, **\`ErpButtonGroup\`**,
   **\`ErpSplitButton\`**, **\`ErpFab\`**, **\`ErpExtendedFab\`**,
-  **\`ErpFabMenu\`**, **\`ErpTooltip\`**, **\`ErpAlert\`**, and
-  **\`ErpSkeleton\`**. Their
+  **\`ErpFabMenu\`**, **\`ErpTooltip\`**, **\`ErpAlert\`**, **\`ErpSkeleton\`**,
+  **\`ErpColumnChooser\`**, and **\`ErpViewSwitcher\`**. Their
   Product Owner status remains pending.
 - All currently recorded binding-reference owners have completed internal
   review, the full public primitive layer has completed internal review, the
@@ -311,8 +313,11 @@ drift.
   containment review, Tooltip has completed its plain/rich projection,
   motion-control, popup-semantic, focus-return and containment review, and the
   Alert/Skeleton feedback pair has completed projected action, dismissal,
-  responsive anatomy, state, motion and reduced-motion review. The next
-  Bottom-Up unit opens **\`ErpColumnChooser\`** and **\`ErpViewSwitcher\`**.
+  responsive anatomy, state, motion and reduced-motion review, and the
+  ColumnChooser/ViewSwitcher selection pair has completed controlled visibility,
+  dynamic reference-overlay, selected-state and disabled-state review. The next
+  Bottom-Up unit opens the remaining Navigation owners: **\`ErpBreadcrumbs\`**,
+  **\`ErpPagination\`**, **\`ErpSortHeader\`**, and **\`ErpStepper\`**.
 
 ## Public owner inventory
 

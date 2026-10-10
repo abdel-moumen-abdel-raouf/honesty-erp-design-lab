@@ -1,0 +1,893 @@
+{
+  "generatedAt": "2026-10-10T11:58:27.610Z",
+  "authority": {
+    "columnChooser": {
+      "classification": "Exact ERP-TABLE composition mode plus original compatibility presentation",
+      "contract": "src/app/controls/table/ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md",
+      "referenceEvidence": "docs/review-evidence/erp-table/v2-internal-review"
+    },
+    "viewSwitcher": {
+      "classification": "Original Honesty ERP candidate",
+      "limitation": "No component-specific Product Owner exact reference is recorded."
+    }
+  },
+  "scenarios": [
+    {
+      "name": "column-default-1440-light-rtl",
+      "component": "column-chooser",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "controlCount": 4,
+      "targetBox": {
+        "x": 147,
+        "y": 424.765625,
+        "right": 1097,
+        "bottom": 491.0625,
+        "width": 950,
+        "height": 66.296875
+      },
+      "horizontalOverflow": 0,
+      "eventText": "آخر تفاعلvisibilityChange: [\"accountNumber\",\"accountName\",\"type\",\"balance\",\"status\"]",
+      "diagnostics": [],
+      "presentation": "default",
+      "surfaceBox": null,
+      "surfaceOverflow": null,
+      "surfaceMaxHeight": null,
+      "checkboxCount": 0,
+      "selectedOptionCount": 5,
+      "requiredDisabled": true
+    },
+    {
+      "name": "column-reference-1440-light-rtl",
+      "component": "column-chooser",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "controlCount": 4,
+      "targetBox": {
+        "x": 147,
+        "y": 442.765625,
+        "right": 1097,
+        "bottom": 473.765625,
+        "width": 950,
+        "height": 31
+      },
+      "horizontalOverflow": 0,
+      "eventText": "آخر تفاعلvisibilityChange: [\"accountNumber\",\"balance\",\"status\"]",
+      "diagnostics": [],
+      "presentation": "table-reference",
+      "surfaceBox": {
+        "x": 934.046875,
+        "y": 479.765625,
+        "right": 1174.046875,
+        "bottom": 654.765625,
+        "width": 240,
+        "height": 175
+      },
+      "surfaceOverflow": "auto",
+      "surfaceMaxHeight": "340px",
+      "checkboxCount": 4,
+      "selectedOptionCount": 0,
+      "requiredDisabled": false,
+      "escape": {
+        "open": false,
+        "focus": "الأعمدة"
+      }
+    },
+    {
+      "name": "column-reference-390-dark-ltr",
+      "component": "column-chooser",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "controlCount": 4,
+      "targetBox": {
+        "x": 57,
+        "y": 406.765625,
+        "right": 333,
+        "bottom": 437.765625,
+        "width": 276,
+        "height": 31
+      },
+      "horizontalOverflow": 0,
+      "eventText": "آخر تفاعلvisibilityChange: [\"accountNumber\",\"balance\",\"status\"]",
+      "diagnostics": [],
+      "presentation": "table-reference",
+      "surfaceBox": {
+        "x": 8,
+        "y": 443.765625,
+        "right": 248,
+        "bottom": 618.765625,
+        "width": 240,
+        "height": 175
+      },
+      "surfaceOverflow": "auto",
+      "surfaceMaxHeight": "340px",
+      "checkboxCount": 4,
+      "selectedOptionCount": 0,
+      "requiredDisabled": false,
+      "escape": {
+        "open": false,
+        "focus": "الأعمدة"
+      }
+    },
+    {
+      "name": "view-table-1440-light-rtl",
+      "component": "view-switcher",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "controlCount": 2,
+      "targetBox": {
+        "x": 147,
+        "y": 429.765625,
+        "right": 1097,
+        "bottom": 485.765625,
+        "width": 950,
+        "height": 56
+      },
+      "horizontalOverflow": 0,
+      "eventText": "آخر تفاعلchanged: cards",
+      "diagnostics": [],
+      "mode": "cards",
+      "buttonCount": 2,
+      "pressed": [
+        "false",
+        "true"
+      ],
+      "disabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "name": "view-cards-390-dark-ltr",
+      "component": "view-switcher",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "controlCount": 2,
+      "targetBox": {
+        "x": 57,
+        "y": 393.765625,
+        "right": 333,
+        "bottom": 449.765625,
+        "width": 276,
+        "height": 56
+      },
+      "horizontalOverflow": 0,
+      "eventText": "آخر تفاعلchanged: table",
+      "diagnostics": [],
+      "mode": "table",
+      "buttonCount": 2,
+      "pressed": [
+        "true",
+        "false"
+      ],
+      "disabled": [
+        false,
+        false
+      ]
+    },
+    {
+      "name": "view-disabled-390-light-rtl",
+      "component": "view-switcher",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "controlCount": 2,
+      "targetBox": {
+        "x": 57,
+        "y": 393.765625,
+        "right": 333,
+        "bottom": 449.765625,
+        "width": 276,
+        "height": 56
+      },
+      "horizontalOverflow": 0,
+      "eventText": "آخر تفاعللم يحدث تفاعل بعد",
+      "diagnostics": [],
+      "mode": "table",
+      "buttonCount": 2,
+      "pressed": [
+        "true",
+        "false"
+      ],
+      "disabled": [
+        true,
+        true
+      ]
+    }
+  ],
+  "assertions": [
+    {
+      "name": "column-default-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "column-default-1440-light-rtl controls",
+      "pass": true,
+      "actual": 4
+    },
+    {
+      "name": "column-default-1440-light-rtl theme-direction",
+      "pass": true,
+      "actual": {
+        "theme": "light",
+        "direction": "rtl"
+      }
+    },
+    {
+      "name": "column-default-1440-light-rtl overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "column-default-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "column-default-1440-light-rtl presentation",
+      "pass": true,
+      "actual": "default"
+    },
+    {
+      "name": "column-default-1440-light-rtl controlled visibility",
+      "pass": true,
+      "actual": {
+        "name": "column-default-1440-light-rtl",
+        "component": "column-chooser",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "controlCount": 4,
+        "targetBox": {
+          "x": 147,
+          "y": 424.765625,
+          "right": 1097,
+          "bottom": 491.0625,
+          "width": 950,
+          "height": 66.296875
+        },
+        "horizontalOverflow": 0,
+        "eventText": "آخر تفاعلvisibilityChange: [\"accountNumber\",\"accountName\",\"type\",\"balance\",\"status\"]",
+        "diagnostics": [],
+        "presentation": "default",
+        "surfaceBox": null,
+        "surfaceOverflow": null,
+        "surfaceMaxHeight": null,
+        "checkboxCount": 0,
+        "selectedOptionCount": 5,
+        "requiredDisabled": true
+      }
+    },
+    {
+      "name": "column-reference-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "column-reference-1440-light-rtl controls",
+      "pass": true,
+      "actual": 4
+    },
+    {
+      "name": "column-reference-1440-light-rtl theme-direction",
+      "pass": true,
+      "actual": {
+        "theme": "light",
+        "direction": "rtl"
+      }
+    },
+    {
+      "name": "column-reference-1440-light-rtl overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "column-reference-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "column-reference-1440-light-rtl presentation",
+      "pass": true,
+      "actual": "table-reference"
+    },
+    {
+      "name": "column-reference-1440-light-rtl reference geometry",
+      "pass": true,
+      "actual": {
+        "name": "column-reference-1440-light-rtl",
+        "component": "column-chooser",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "controlCount": 4,
+        "targetBox": {
+          "x": 147,
+          "y": 442.765625,
+          "right": 1097,
+          "bottom": 473.765625,
+          "width": 950,
+          "height": 31
+        },
+        "horizontalOverflow": 0,
+        "eventText": "آخر تفاعلvisibilityChange: [\"accountNumber\",\"balance\",\"status\"]",
+        "diagnostics": [],
+        "presentation": "table-reference",
+        "surfaceBox": {
+          "x": 934.046875,
+          "y": 479.765625,
+          "right": 1174.046875,
+          "bottom": 654.765625,
+          "width": 240,
+          "height": 175
+        },
+        "surfaceOverflow": "auto",
+        "surfaceMaxHeight": "340px",
+        "checkboxCount": 4,
+        "selectedOptionCount": 0,
+        "requiredDisabled": false,
+        "escape": {
+          "open": false,
+          "focus": "الأعمدة"
+        }
+      }
+    },
+    {
+      "name": "column-reference-1440-light-rtl reference anatomy",
+      "pass": true,
+      "actual": {
+        "name": "column-reference-1440-light-rtl",
+        "component": "column-chooser",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "controlCount": 4,
+        "targetBox": {
+          "x": 147,
+          "y": 442.765625,
+          "right": 1097,
+          "bottom": 473.765625,
+          "width": 950,
+          "height": 31
+        },
+        "horizontalOverflow": 0,
+        "eventText": "آخر تفاعلvisibilityChange: [\"accountNumber\",\"balance\",\"status\"]",
+        "diagnostics": [],
+        "presentation": "table-reference",
+        "surfaceBox": {
+          "x": 934.046875,
+          "y": 479.765625,
+          "right": 1174.046875,
+          "bottom": 654.765625,
+          "width": 240,
+          "height": 175
+        },
+        "surfaceOverflow": "auto",
+        "surfaceMaxHeight": "340px",
+        "checkboxCount": 4,
+        "selectedOptionCount": 0,
+        "requiredDisabled": false,
+        "escape": {
+          "open": false,
+          "focus": "الأعمدة"
+        }
+      }
+    },
+    {
+      "name": "column-reference-1440-light-rtl escape",
+      "pass": true,
+      "actual": {
+        "open": false,
+        "focus": "الأعمدة"
+      }
+    },
+    {
+      "name": "column-reference-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "column-reference-390-dark-ltr controls",
+      "pass": true,
+      "actual": 4
+    },
+    {
+      "name": "column-reference-390-dark-ltr theme-direction",
+      "pass": true,
+      "actual": {
+        "theme": "dark",
+        "direction": "ltr"
+      }
+    },
+    {
+      "name": "column-reference-390-dark-ltr overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "column-reference-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "column-reference-390-dark-ltr presentation",
+      "pass": true,
+      "actual": "table-reference"
+    },
+    {
+      "name": "column-reference-390-dark-ltr reference geometry",
+      "pass": true,
+      "actual": {
+        "name": "column-reference-390-dark-ltr",
+        "component": "column-chooser",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "controlCount": 4,
+        "targetBox": {
+          "x": 57,
+          "y": 406.765625,
+          "right": 333,
+          "bottom": 437.765625,
+          "width": 276,
+          "height": 31
+        },
+        "horizontalOverflow": 0,
+        "eventText": "آخر تفاعلvisibilityChange: [\"accountNumber\",\"balance\",\"status\"]",
+        "diagnostics": [],
+        "presentation": "table-reference",
+        "surfaceBox": {
+          "x": 8,
+          "y": 443.765625,
+          "right": 248,
+          "bottom": 618.765625,
+          "width": 240,
+          "height": 175
+        },
+        "surfaceOverflow": "auto",
+        "surfaceMaxHeight": "340px",
+        "checkboxCount": 4,
+        "selectedOptionCount": 0,
+        "requiredDisabled": false,
+        "escape": {
+          "open": false,
+          "focus": "الأعمدة"
+        }
+      }
+    },
+    {
+      "name": "column-reference-390-dark-ltr reference anatomy",
+      "pass": true,
+      "actual": {
+        "name": "column-reference-390-dark-ltr",
+        "component": "column-chooser",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "controlCount": 4,
+        "targetBox": {
+          "x": 57,
+          "y": 406.765625,
+          "right": 333,
+          "bottom": 437.765625,
+          "width": 276,
+          "height": 31
+        },
+        "horizontalOverflow": 0,
+        "eventText": "آخر تفاعلvisibilityChange: [\"accountNumber\",\"balance\",\"status\"]",
+        "diagnostics": [],
+        "presentation": "table-reference",
+        "surfaceBox": {
+          "x": 8,
+          "y": 443.765625,
+          "right": 248,
+          "bottom": 618.765625,
+          "width": 240,
+          "height": 175
+        },
+        "surfaceOverflow": "auto",
+        "surfaceMaxHeight": "340px",
+        "checkboxCount": 4,
+        "selectedOptionCount": 0,
+        "requiredDisabled": false,
+        "escape": {
+          "open": false,
+          "focus": "الأعمدة"
+        }
+      }
+    },
+    {
+      "name": "column-reference-390-dark-ltr escape",
+      "pass": true,
+      "actual": {
+        "open": false,
+        "focus": "الأعمدة"
+      }
+    },
+    {
+      "name": "view-table-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "view-table-1440-light-rtl controls",
+      "pass": true,
+      "actual": 2
+    },
+    {
+      "name": "view-table-1440-light-rtl theme-direction",
+      "pass": true,
+      "actual": {
+        "theme": "light",
+        "direction": "rtl"
+      }
+    },
+    {
+      "name": "view-table-1440-light-rtl overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "view-table-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "view-table-1440-light-rtl anatomy",
+      "pass": true,
+      "actual": {
+        "name": "view-table-1440-light-rtl",
+        "component": "view-switcher",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "controlCount": 2,
+        "targetBox": {
+          "x": 147,
+          "y": 429.765625,
+          "right": 1097,
+          "bottom": 485.765625,
+          "width": 950,
+          "height": 56
+        },
+        "horizontalOverflow": 0,
+        "eventText": "آخر تفاعلchanged: cards",
+        "diagnostics": [],
+        "mode": "cards",
+        "buttonCount": 2,
+        "pressed": [
+          "false",
+          "true"
+        ],
+        "disabled": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "name": "view-table-1440-light-rtl disabled",
+      "pass": true,
+      "actual": [
+        false,
+        false
+      ]
+    },
+    {
+      "name": "view-table-1440-light-rtl model-event",
+      "pass": true,
+      "actual": {
+        "name": "view-table-1440-light-rtl",
+        "component": "view-switcher",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "controlCount": 2,
+        "targetBox": {
+          "x": 147,
+          "y": 429.765625,
+          "right": 1097,
+          "bottom": 485.765625,
+          "width": 950,
+          "height": 56
+        },
+        "horizontalOverflow": 0,
+        "eventText": "آخر تفاعلchanged: cards",
+        "diagnostics": [],
+        "mode": "cards",
+        "buttonCount": 2,
+        "pressed": [
+          "false",
+          "true"
+        ],
+        "disabled": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "name": "view-cards-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "view-cards-390-dark-ltr controls",
+      "pass": true,
+      "actual": 2
+    },
+    {
+      "name": "view-cards-390-dark-ltr theme-direction",
+      "pass": true,
+      "actual": {
+        "theme": "dark",
+        "direction": "ltr"
+      }
+    },
+    {
+      "name": "view-cards-390-dark-ltr overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "view-cards-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "view-cards-390-dark-ltr anatomy",
+      "pass": true,
+      "actual": {
+        "name": "view-cards-390-dark-ltr",
+        "component": "view-switcher",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "controlCount": 2,
+        "targetBox": {
+          "x": 57,
+          "y": 393.765625,
+          "right": 333,
+          "bottom": 449.765625,
+          "width": 276,
+          "height": 56
+        },
+        "horizontalOverflow": 0,
+        "eventText": "آخر تفاعلchanged: table",
+        "diagnostics": [],
+        "mode": "table",
+        "buttonCount": 2,
+        "pressed": [
+          "true",
+          "false"
+        ],
+        "disabled": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "name": "view-cards-390-dark-ltr disabled",
+      "pass": true,
+      "actual": [
+        false,
+        false
+      ]
+    },
+    {
+      "name": "view-cards-390-dark-ltr model-event",
+      "pass": true,
+      "actual": {
+        "name": "view-cards-390-dark-ltr",
+        "component": "view-switcher",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "controlCount": 2,
+        "targetBox": {
+          "x": 57,
+          "y": 393.765625,
+          "right": 333,
+          "bottom": 449.765625,
+          "width": 276,
+          "height": 56
+        },
+        "horizontalOverflow": 0,
+        "eventText": "آخر تفاعلchanged: table",
+        "diagnostics": [],
+        "mode": "table",
+        "buttonCount": 2,
+        "pressed": [
+          "true",
+          "false"
+        ],
+        "disabled": [
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "name": "view-disabled-390-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "view-disabled-390-light-rtl controls",
+      "pass": true,
+      "actual": 2
+    },
+    {
+      "name": "view-disabled-390-light-rtl theme-direction",
+      "pass": true,
+      "actual": {
+        "theme": "light",
+        "direction": "rtl"
+      }
+    },
+    {
+      "name": "view-disabled-390-light-rtl overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "view-disabled-390-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "view-disabled-390-light-rtl anatomy",
+      "pass": true,
+      "actual": {
+        "name": "view-disabled-390-light-rtl",
+        "component": "view-switcher",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "controlCount": 2,
+        "targetBox": {
+          "x": 57,
+          "y": 393.765625,
+          "right": 333,
+          "bottom": 449.765625,
+          "width": 276,
+          "height": 56
+        },
+        "horizontalOverflow": 0,
+        "eventText": "آخر تفاعللم يحدث تفاعل بعد",
+        "diagnostics": [],
+        "mode": "table",
+        "buttonCount": 2,
+        "pressed": [
+          "true",
+          "false"
+        ],
+        "disabled": [
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "name": "view-disabled-390-light-rtl disabled",
+      "pass": true,
+      "actual": [
+        true,
+        true
+      ]
+    },
+    {
+      "name": "view-disabled-390-light-rtl model-event",
+      "pass": true,
+      "actual": {
+        "name": "view-disabled-390-light-rtl",
+        "component": "view-switcher",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "controlCount": 2,
+        "targetBox": {
+          "x": 57,
+          "y": 393.765625,
+          "right": 333,
+          "bottom": 449.765625,
+          "width": 276,
+          "height": 56
+        },
+        "horizontalOverflow": 0,
+        "eventText": "آخر تفاعللم يحدث تفاعل بعد",
+        "diagnostics": [],
+        "mode": "table",
+        "buttonCount": 2,
+        "pressed": [
+          "true",
+          "false"
+        ],
+        "disabled": [
+          true,
+          true
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "total": 49,
+    "passed": 49,
+    "failed": []
+  }
+}

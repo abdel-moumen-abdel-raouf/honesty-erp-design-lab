@@ -128,6 +128,20 @@ describe('ErpButton', () => {
     expect(button.getAttribute('form')).toBe('editor');
   });
 
+  it('forwards an optional controlled pressed state', () => {
+    const fixture = create();
+    const button = fixture.nativeElement.querySelector('button') as HTMLButtonElement;
+
+    expect(button.getAttribute('aria-pressed')).toBeNull();
+    fixture.componentRef.setInput('ariaPressed', true);
+    fixture.detectChanges();
+    expect(button.getAttribute('aria-pressed')).toBe('true');
+
+    fixture.componentRef.setInput('ariaPressed', false);
+    fixture.detectChanges();
+    expect(button.getAttribute('aria-pressed')).toBe('false');
+  });
+
   it('resolves invalid, loading, disabled, and ready state precedence exactly', () => {
     const fixture = create('   ');
     const component = fixture.componentInstance;
