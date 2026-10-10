@@ -1,5 +1,19 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Tooltip internal-review decisions — 2026-10-10
+
+- `TOOLTIP_V1.md` continues to bind Tooltip to the accessible Material 3 and
+  Mobbin guidance; no exact downloadable vendor implementation is claimed.
+- The Tooltip custom-element host uses content-sized inline/block occupancy so
+  its interaction area equals the owned trigger rather than the preview row.
+- `variant=rich` in the dedicated Workbench projects real
+  `ErpTooltipContent`; `interactive=true` adds a real ERP action on the same
+  primary target and preserves dialog semantics, focus, Escape, and focus
+  return.
+- `ErpMotionPreset` Workbench inputs are selected from the authoritative
+  23-value Foundation motion contract rather than edited as unrestricted JSON.
+- Internal review completion does not imply Product Owner acceptance.
+
 ## Floating action internal-review decisions — 2026-10-10
 
 - Skodash RTL `component-buttons.html` contains no FAB-specific owner and is

@@ -1,0 +1,868 @@
+{
+  "generatedAt": "2026-10-10T11:18:49.384Z",
+  "authority": {
+    "material3Url": "https://m3.material.io/components/tooltips/guidelines",
+    "mobbinUrl": "https://mobbin.com/glossary/tooltip",
+    "references": {
+      "material3": {
+        "available": true,
+        "url": "https://m3.material.io/components/tooltips/guidelines",
+        "title": "Tooltips – Material Design 3",
+        "direction": "ltr",
+        "heading": "Tooltips",
+        "textSample": "Skip to main content\nsearch\nmaterial_design\nHome\napps\nGet started\ncode\nDevelop\nbook\nFoundations\npalette\nStyles\nadd_circle\nComponents\npages\nBlog\nplay_arrow\npause\ndark_mode\nlight_mode\nTooltips\nTooltips display brief labels or messages\nResources\nandroid\ninfo\nOverview\nstyle\nSpecs\ndesign_services\nGuidelines\naccessibility_new\nAccessibility\nOn this page\nTooltips\nUsage\nAnatomy\nPlacement\nBehavior\nlink\nCopy link\n\nPlain and rich tooltips serve different purposes\n\nlink\nCopy link\nUsage\nlink\nCopy link\n\nA tool",
+        "styles": [
+          "https://m3.material.io/static/angular/styles.4c2805e602edc472.css"
+        ],
+        "scripts": [
+          "https://apis.google.com/_/scs/abc-static/_/js/k=gapi.lb.en.gh7qIZtzO5w.O/m=client/rt=j/sv=1/d=1/ed=1/rs=AHpOoo84YKT1RVy0T6hcXi5rH3LooB1WCw/cb=gapi.loaded_0?le=scs",
+          "https://www.google-analytics.com/analytics.js",
+          "https://www.googletagmanager.com/gtag/js?id=UA-90255304-1&cx=c&gtm=4e6a72",
+          "https://www.googletagmanager.com/gtag/js?id=G-QPQ2NRV856&cx=c&gtm=4e6a72",
+          "https://www.googletagmanager.com/gtm.js?id=GTM-NHRPF8",
+          "https://www.google-analytics.com/analytics.js",
+          "https://www.googletagmanager.com/gtm.js?id=GTM-NHRPF8",
+          "https://www.gstatic.com/feedback/api.js",
+          "https://www.googletagmanager.com/gtag/js?id=G-QPQ2NRV856",
+          "https://apis.google.com/js/client.js",
+          "https://www.gstatic.com/feedback/js/help/prod/service/lazy.min.js",
+          "https://m3.material.io/static/angular/runtime.9800364611e5e021.js",
+          "https://m3.material.io/static/angular/polyfills.1987b276f32a5d59.js",
+          "https://m3.material.io/static/angular/vendor.0abf0f4cfe1df006.js",
+          "https://m3.material.io/static/angular/main.7906d9e8e8cae962.js"
+        ],
+        "diagnostics": [
+          "error: The Content-Security-Policy directive name 'feedback-pa.clients6.google.com' contains one or more invalid characters. Only ASCII alphanumeric characters or dashes '-' are allowed in directive names.",
+          "error: The Content-Security-Policy directive name 'feedback-pa.clients6.google.com' contains one or more invalid characters. Only ASCII alphanumeric characters or dashes '-' are allowed in directive names."
+        ]
+      },
+      "mobbin": {
+        "available": true,
+        "url": "https://mobbin.com/glossary/tooltip",
+        "title": "Tooltip UI Design: Best practices, Design variants & Examples | Mobbin",
+        "direction": "ltr",
+        "heading": "Tooltip UI",
+        "textSample": "MCP\nCustomers\nPricing\nLog in\n\nGlossary\n\n/\n\nTooltip UI\n\nTooltip UI\n\nWritten by\n\nJovin Liew\n\nPlatforms\n\niOS, Android, Web\n\nSynonyms\n\nHints, Infotips, Toggletips\n\nExamples\n\nMobile\n\n,\n\nWeb\n\nWhat is a tooltip component?\n\nTooltips display informative text labels that provide contextual support, usually on hover, but sometimes on click or tap.\n\nWhen used effectively, tooltips can significantly improve user experience by providing timely, relevant information without cluttering the main interface.\n\nTool",
+        "styles": [],
+        "scripts": [
+          "https://www.googletagmanager.com/gtag/js?id=G-H2L379YHME",
+          "https://events.framer.com/script?v=2",
+          "https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/script_main.DqG28yBC.mjs"
+        ],
+        "diagnostics": [
+          "warning: Caught a recoverable error. The site is still functional, but might have some UI flickering or degraded page load performance. If you are the author of this website, update external components and check recently added custom code or code overrides to fix the following server/client mismatches:\n Error: Minified React error #425; visit https://reactjs.org/docs/error-decoder.html?invariant=425 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at Ri (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/react.D5mKjFaW.mjs:6:68)\n    at fs (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/react.D5mKjFaW.mjs:8:14044)\n    at nc (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/react.D5mKjFaW.mjs:8:37372)\n    at tc (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/react.D5mKjFaW.mjs:8:37134)\n    at ec (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/react.D5mKjFaW.mjs:8:37046)\n    at zs (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/react.D5mKjFaW.mjs:8:32130)\n    at Et (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/react.D5mKjFaW.mjs:1:10709)\n    at MessagePort.Ot (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/react.D5mKjFaW.mjs:1:11064) \n    at style\n    at div\n    at di (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/script_main.DqG28yBC.mjs:33:599)\n    at VT (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:928:678)\n    at Suspense\n    at yu (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:49:74923)\n    at Tu (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:49:75587)\n    at wu (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:49:75449)\n    at div\n    at c (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/motion.C3WcEZmz.mjs:9:5742)\n    at https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:928:1848\n    at https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:921:26385\n    at footer\n    at c (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/motion.C3WcEZmz.mjs:9:5742)\n    at da (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/script_main.DqG28yBC.mjs:78:9307)\n    at c (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/motion.C3WcEZmz.mjs:9:5742)\n    at sf (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/motion.C3WcEZmz.mjs:9:74784)\n    at https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/script_main.DqG28yBC.mjs:78:9774\n    at https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:83:46799\n    at div\n    at https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:921:21150\n    at https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:83:46799\n    at sf (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/motion.C3WcEZmz.mjs:9:74784)\n    at lo (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:49:27950)\n    at div\n    at c (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/motion.C3WcEZmz.mjs:9:5742)\n    at https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:928:1367\n    at https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:921:26572\n    at https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:921:26385\n    at div\n    at c (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/motion.C3WcEZmz.mjs:9:5742)\n    at ki (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/motion.C3WcEZmz.mjs:9:1423)\n    at sf (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/motion.C3WcEZmz.mjs:9:74784)\n    at https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:929:6513\n    at sf (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/motion.C3WcEZmz.mjs:9:74784)\n    at https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/script_main.DqG28yBC.mjs:96:23365\n    at https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:83:46799\n    at https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:928:18449\n    at Suspense\n    at yu (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:49:74923)\n    at Vd (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:52:6490)\n    at Ws (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/script_main.DqG28yBC.mjs:97:339)\n    at Vp (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:54:9457)\n    at Tx (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:83:6220)\n    at Suspense\n    at yu (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:49:74923)\n    at IT (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:921:26671)\n    at Yf (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:52:21248)\n    at yi (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:49:7630)\n    at https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:928:2418\n    at https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:83:46799\n    at Vt (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:3:3254)\n    at Bp (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:54:3067)\n    at xp (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:52:26123)\n    at PD (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:928:18136)\n    at Zp (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:54:11199)\n    at Mn (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:7:9895)\n    at ki (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/motion.C3WcEZmz.mjs:9:1423)\n    at di (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:49:7056)\n    at Qp (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:54:11290)\n    at SE (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:928:7417)\n    at br (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/framer.D84UtS0v.mjs:7:17315)",
+          "warning: Caught a recoverable error. The site is still functional, but might have some UI flickering or degraded page load performance. If you are the author of this website, update external components and check recently added custom code or code overrides to fix the following server/client mismatches:\n Error: Minified React error #422; visit https://reactjs.org/docs/error-decoder.html?invariant=422 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at is (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/react.D5mKjFaW.mjs:8:8255)\n    at ts (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/react.D5mKjFaW.mjs:8:7196)\n    at cp (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/react.D5mKjFaW.mjs:8:68465)\n    at tc (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/react.D5mKjFaW.mjs:8:37073)\n    at ec (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/react.D5mKjFaW.mjs:8:37046)\n    at zs (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/react.D5mKjFaW.mjs:8:32130)\n    at Et (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/react.D5mKjFaW.mjs:1:10709)\n    at MessagePort.Ot (https://framerusercontent.com/sites/HpXkx7LMLmT5DJ5C7LTgx/react.D5mKjFaW.mjs:1:11064) "
+        ]
+      }
+    },
+    "systemSubstitutions": [
+      "Honesty ERP colors",
+      "Honesty ERP typography"
+    ]
+  },
+  "scenarios": [
+    {
+      "name": "plain-1440-light-rtl-top",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "variant": "plain",
+      "interactive": "false",
+      "authoredPlacement": "top",
+      "resolvedPlacement": "top",
+      "state": "ready",
+      "open": "true",
+      "primaryTargetCount": 1,
+      "controlCount": 10,
+      "hostBox": {
+        "x": 982.09375,
+        "y": 232.765625,
+        "right": 1097,
+        "bottom": 272.765625,
+        "width": 114.90625,
+        "height": 40
+      },
+      "triggerBox": {
+        "x": 982.09375,
+        "y": 232.765625,
+        "right": 1097,
+        "bottom": 272.765625,
+        "width": 114.90625,
+        "height": 40
+      },
+      "surfaceBox": {
+        "x": 969.8125,
+        "y": 194.765625,
+        "right": 1109.28125,
+        "bottom": 220.765625,
+        "width": 139.46875,
+        "height": 26
+      },
+      "motionBox": {
+        "x": 969.8125,
+        "y": 194.765625,
+        "right": 1109.28125,
+        "bottom": 220.765625,
+        "width": 139.46875,
+        "height": 26
+      },
+      "arrowBox": {
+        "x": 1031.546875,
+        "y": 220.765625,
+        "right": 1047.546875,
+        "bottom": 228.765625,
+        "width": 16,
+        "height": 8
+      },
+      "role": "tooltip",
+      "describedBy": "honesty-tooltip-12",
+      "hasPopup": null,
+      "controls": null,
+      "expanded": null,
+      "contentCount": 0,
+      "richActionCount": 0,
+      "surfaceOverflow": "visible",
+      "horizontalOverflow": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "plain-390-dark-ltr-bottom",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "variant": "plain",
+      "interactive": "false",
+      "authoredPlacement": "bottom",
+      "resolvedPlacement": "bottom",
+      "state": "ready",
+      "open": "true",
+      "primaryTargetCount": 1,
+      "controlCount": 10,
+      "hostBox": {
+        "x": 57,
+        "y": 159.953125,
+        "right": 171.90625,
+        "bottom": 199.953125,
+        "width": 114.90625,
+        "height": 40
+      },
+      "triggerBox": {
+        "x": 57,
+        "y": 159.953125,
+        "right": 171.90625,
+        "bottom": 199.953125,
+        "width": 114.90625,
+        "height": 40
+      },
+      "surfaceBox": {
+        "x": 44.71875,
+        "y": 211.953125,
+        "right": 184.1875,
+        "bottom": 237.953125,
+        "width": 139.46875,
+        "height": 26
+      },
+      "motionBox": {
+        "x": 44.71875,
+        "y": 211.953125,
+        "right": 184.1875,
+        "bottom": 237.953125,
+        "width": 139.46875,
+        "height": 26
+      },
+      "arrowBox": {
+        "x": 106.453125,
+        "y": 203.953125,
+        "right": 122.453125,
+        "bottom": 211.953125,
+        "width": 16,
+        "height": 8
+      },
+      "role": "tooltip",
+      "describedBy": "honesty-tooltip-12",
+      "hasPopup": null,
+      "controls": null,
+      "expanded": null,
+      "contentCount": 0,
+      "richActionCount": 0,
+      "surfaceOverflow": "visible",
+      "horizontalOverflow": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "rich-info-1440-light-ltr-start",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "ltr",
+      "variant": "rich",
+      "interactive": "false",
+      "authoredPlacement": "start",
+      "resolvedPlacement": "left",
+      "state": "ready",
+      "open": "true",
+      "primaryTargetCount": 1,
+      "controlCount": 10,
+      "hostBox": {
+        "x": 343,
+        "y": 232.765625,
+        "right": 457.90625,
+        "bottom": 272.765625,
+        "width": 114.90625,
+        "height": 40
+      },
+      "triggerBox": {
+        "x": 343,
+        "y": 232.765625,
+        "right": 457.90625,
+        "bottom": 272.765625,
+        "width": 114.90625,
+        "height": 40
+      },
+      "surfaceBox": {
+        "x": 11,
+        "y": 195.171875,
+        "right": 331,
+        "bottom": 310.359375,
+        "width": 320,
+        "height": 115.1875
+      },
+      "motionBox": {
+        "x": 11,
+        "y": 195.171875,
+        "right": 331,
+        "bottom": 310.359375,
+        "width": 320,
+        "height": 115.1875
+      },
+      "arrowBox": {
+        "x": 331,
+        "y": 244.765625,
+        "right": 339,
+        "bottom": 260.765625,
+        "width": 8,
+        "height": 16
+      },
+      "role": "tooltip",
+      "describedBy": "honesty-tooltip-12",
+      "hasPopup": null,
+      "controls": null,
+      "expanded": null,
+      "contentCount": 1,
+      "richActionCount": 0,
+      "surfaceOverflow": "visible",
+      "horizontalOverflow": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "rich-interactive-390-dark-rtl-end",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "rtl",
+      "variant": "rich",
+      "interactive": "true",
+      "authoredPlacement": "end",
+      "resolvedPlacement": "bottom",
+      "state": "ready",
+      "open": "true",
+      "primaryTargetCount": 1,
+      "controlCount": 10,
+      "hostBox": {
+        "x": 218.09375,
+        "y": 159.953125,
+        "right": 333,
+        "bottom": 199.953125,
+        "width": 114.90625,
+        "height": 40
+      },
+      "triggerBox": {
+        "x": 218.09375,
+        "y": 159.953125,
+        "right": 333,
+        "bottom": 199.953125,
+        "width": 114.90625,
+        "height": 40
+      },
+      "surfaceBox": {
+        "x": 62,
+        "y": 211.953125,
+        "right": 382,
+        "bottom": 367.140625,
+        "width": 320,
+        "height": 155.1875
+      },
+      "motionBox": {
+        "x": 62,
+        "y": 211.953125,
+        "right": 382,
+        "bottom": 367.140625,
+        "width": 320,
+        "height": 155.1875
+      },
+      "arrowBox": {
+        "x": 267.546875,
+        "y": 203.953125,
+        "right": 283.546875,
+        "bottom": 211.953125,
+        "width": 16,
+        "height": 8
+      },
+      "role": "dialog",
+      "describedBy": null,
+      "hasPopup": "dialog",
+      "controls": "honesty-tooltip-12",
+      "expanded": "true",
+      "contentCount": 1,
+      "richActionCount": 1,
+      "surfaceOverflow": "visible",
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "interaction": {
+        "actionFocused": true,
+        "closed": "false",
+        "expanded": "false",
+        "focusReturned": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "name": "plain-1440-light-rtl-top target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "plain-1440-light-rtl-top controls",
+      "pass": true,
+      "actual": 10
+    },
+    {
+      "name": "plain-1440-light-rtl-top state",
+      "pass": true,
+      "actual": {
+        "state": "ready",
+        "open": "true"
+      }
+    },
+    {
+      "name": "plain-1440-light-rtl-top theme-direction",
+      "pass": true,
+      "actual": {
+        "theme": "light",
+        "direction": "rtl"
+      }
+    },
+    {
+      "name": "plain-1440-light-rtl-top content-sized-host",
+      "pass": true,
+      "actual": {
+        "host": {
+          "x": 982.09375,
+          "y": 232.765625,
+          "right": 1097,
+          "bottom": 272.765625,
+          "width": 114.90625,
+          "height": 40
+        },
+        "trigger": {
+          "x": 982.09375,
+          "y": 232.765625,
+          "right": 1097,
+          "bottom": 272.765625,
+          "width": 114.90625,
+          "height": 40
+        }
+      }
+    },
+    {
+      "name": "plain-1440-light-rtl-top trigger containment",
+      "pass": true,
+      "actual": {
+        "x": 982.09375,
+        "y": 232.765625,
+        "right": 1097,
+        "bottom": 272.765625,
+        "width": 114.90625,
+        "height": 40
+      }
+    },
+    {
+      "name": "plain-1440-light-rtl-top placement",
+      "pass": true,
+      "actual": "top"
+    },
+    {
+      "name": "plain-1440-light-rtl-top containment",
+      "pass": true,
+      "actual": {
+        "x": 969.8125,
+        "y": 194.765625,
+        "right": 1109.28125,
+        "bottom": 220.765625,
+        "width": 139.46875,
+        "height": 26
+      }
+    },
+    {
+      "name": "plain-1440-light-rtl-top arrow",
+      "pass": true,
+      "actual": {
+        "x": 1031.546875,
+        "y": 220.765625,
+        "right": 1047.546875,
+        "bottom": 228.765625,
+        "width": 16,
+        "height": 8
+      }
+    },
+    {
+      "name": "plain-1440-light-rtl-top overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "surface": "visible"
+      }
+    },
+    {
+      "name": "plain-1440-light-rtl-top diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "plain-1440-light-rtl-top plain semantics",
+      "pass": true,
+      "actual": {
+        "role": "tooltip",
+        "content": 0,
+        "describedBy": "honesty-tooltip-12"
+      }
+    },
+    {
+      "name": "plain-390-dark-ltr-bottom target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "plain-390-dark-ltr-bottom controls",
+      "pass": true,
+      "actual": 10
+    },
+    {
+      "name": "plain-390-dark-ltr-bottom state",
+      "pass": true,
+      "actual": {
+        "state": "ready",
+        "open": "true"
+      }
+    },
+    {
+      "name": "plain-390-dark-ltr-bottom theme-direction",
+      "pass": true,
+      "actual": {
+        "theme": "dark",
+        "direction": "ltr"
+      }
+    },
+    {
+      "name": "plain-390-dark-ltr-bottom content-sized-host",
+      "pass": true,
+      "actual": {
+        "host": {
+          "x": 57,
+          "y": 159.953125,
+          "right": 171.90625,
+          "bottom": 199.953125,
+          "width": 114.90625,
+          "height": 40
+        },
+        "trigger": {
+          "x": 57,
+          "y": 159.953125,
+          "right": 171.90625,
+          "bottom": 199.953125,
+          "width": 114.90625,
+          "height": 40
+        }
+      }
+    },
+    {
+      "name": "plain-390-dark-ltr-bottom trigger containment",
+      "pass": true,
+      "actual": {
+        "x": 57,
+        "y": 159.953125,
+        "right": 171.90625,
+        "bottom": 199.953125,
+        "width": 114.90625,
+        "height": 40
+      }
+    },
+    {
+      "name": "plain-390-dark-ltr-bottom placement",
+      "pass": true,
+      "actual": "bottom"
+    },
+    {
+      "name": "plain-390-dark-ltr-bottom containment",
+      "pass": true,
+      "actual": {
+        "x": 44.71875,
+        "y": 211.953125,
+        "right": 184.1875,
+        "bottom": 237.953125,
+        "width": 139.46875,
+        "height": 26
+      }
+    },
+    {
+      "name": "plain-390-dark-ltr-bottom arrow",
+      "pass": true,
+      "actual": {
+        "x": 106.453125,
+        "y": 203.953125,
+        "right": 122.453125,
+        "bottom": 211.953125,
+        "width": 16,
+        "height": 8
+      }
+    },
+    {
+      "name": "plain-390-dark-ltr-bottom overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "surface": "visible"
+      }
+    },
+    {
+      "name": "plain-390-dark-ltr-bottom diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "plain-390-dark-ltr-bottom plain semantics",
+      "pass": true,
+      "actual": {
+        "role": "tooltip",
+        "content": 0,
+        "describedBy": "honesty-tooltip-12"
+      }
+    },
+    {
+      "name": "rich-info-1440-light-ltr-start target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "rich-info-1440-light-ltr-start controls",
+      "pass": true,
+      "actual": 10
+    },
+    {
+      "name": "rich-info-1440-light-ltr-start state",
+      "pass": true,
+      "actual": {
+        "state": "ready",
+        "open": "true"
+      }
+    },
+    {
+      "name": "rich-info-1440-light-ltr-start theme-direction",
+      "pass": true,
+      "actual": {
+        "theme": "light",
+        "direction": "ltr"
+      }
+    },
+    {
+      "name": "rich-info-1440-light-ltr-start content-sized-host",
+      "pass": true,
+      "actual": {
+        "host": {
+          "x": 343,
+          "y": 232.765625,
+          "right": 457.90625,
+          "bottom": 272.765625,
+          "width": 114.90625,
+          "height": 40
+        },
+        "trigger": {
+          "x": 343,
+          "y": 232.765625,
+          "right": 457.90625,
+          "bottom": 272.765625,
+          "width": 114.90625,
+          "height": 40
+        }
+      }
+    },
+    {
+      "name": "rich-info-1440-light-ltr-start trigger containment",
+      "pass": true,
+      "actual": {
+        "x": 343,
+        "y": 232.765625,
+        "right": 457.90625,
+        "bottom": 272.765625,
+        "width": 114.90625,
+        "height": 40
+      }
+    },
+    {
+      "name": "rich-info-1440-light-ltr-start placement",
+      "pass": true,
+      "actual": "left"
+    },
+    {
+      "name": "rich-info-1440-light-ltr-start containment",
+      "pass": true,
+      "actual": {
+        "x": 11,
+        "y": 195.171875,
+        "right": 331,
+        "bottom": 310.359375,
+        "width": 320,
+        "height": 115.1875
+      }
+    },
+    {
+      "name": "rich-info-1440-light-ltr-start arrow",
+      "pass": true,
+      "actual": {
+        "x": 331,
+        "y": 244.765625,
+        "right": 339,
+        "bottom": 260.765625,
+        "width": 8,
+        "height": 16
+      }
+    },
+    {
+      "name": "rich-info-1440-light-ltr-start overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "surface": "visible"
+      }
+    },
+    {
+      "name": "rich-info-1440-light-ltr-start diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "rich-info-1440-light-ltr-start rich information",
+      "pass": true,
+      "actual": {
+        "role": "tooltip",
+        "content": 1,
+        "actions": 0
+      }
+    },
+    {
+      "name": "rich-interactive-390-dark-rtl-end target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "rich-interactive-390-dark-rtl-end controls",
+      "pass": true,
+      "actual": 10
+    },
+    {
+      "name": "rich-interactive-390-dark-rtl-end state",
+      "pass": true,
+      "actual": {
+        "state": "ready",
+        "open": "true"
+      }
+    },
+    {
+      "name": "rich-interactive-390-dark-rtl-end theme-direction",
+      "pass": true,
+      "actual": {
+        "theme": "dark",
+        "direction": "rtl"
+      }
+    },
+    {
+      "name": "rich-interactive-390-dark-rtl-end content-sized-host",
+      "pass": true,
+      "actual": {
+        "host": {
+          "x": 218.09375,
+          "y": 159.953125,
+          "right": 333,
+          "bottom": 199.953125,
+          "width": 114.90625,
+          "height": 40
+        },
+        "trigger": {
+          "x": 218.09375,
+          "y": 159.953125,
+          "right": 333,
+          "bottom": 199.953125,
+          "width": 114.90625,
+          "height": 40
+        }
+      }
+    },
+    {
+      "name": "rich-interactive-390-dark-rtl-end trigger containment",
+      "pass": true,
+      "actual": {
+        "x": 218.09375,
+        "y": 159.953125,
+        "right": 333,
+        "bottom": 199.953125,
+        "width": 114.90625,
+        "height": 40
+      }
+    },
+    {
+      "name": "rich-interactive-390-dark-rtl-end placement",
+      "pass": true,
+      "actual": "bottom"
+    },
+    {
+      "name": "rich-interactive-390-dark-rtl-end containment",
+      "pass": true,
+      "actual": {
+        "x": 62,
+        "y": 211.953125,
+        "right": 382,
+        "bottom": 367.140625,
+        "width": 320,
+        "height": 155.1875
+      }
+    },
+    {
+      "name": "rich-interactive-390-dark-rtl-end arrow",
+      "pass": true,
+      "actual": {
+        "x": 267.546875,
+        "y": 203.953125,
+        "right": 283.546875,
+        "bottom": 211.953125,
+        "width": 16,
+        "height": 8
+      }
+    },
+    {
+      "name": "rich-interactive-390-dark-rtl-end overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "surface": "visible"
+      }
+    },
+    {
+      "name": "rich-interactive-390-dark-rtl-end diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "rich-interactive-390-dark-rtl-end rich dialog",
+      "pass": true,
+      "actual": {
+        "name": "rich-interactive-390-dark-rtl-end",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "theme": "dark",
+        "direction": "rtl",
+        "variant": "rich",
+        "interactive": "true",
+        "authoredPlacement": "end",
+        "resolvedPlacement": "bottom",
+        "state": "ready",
+        "open": "true",
+        "primaryTargetCount": 1,
+        "controlCount": 10,
+        "hostBox": {
+          "x": 218.09375,
+          "y": 159.953125,
+          "right": 333,
+          "bottom": 199.953125,
+          "width": 114.90625,
+          "height": 40
+        },
+        "triggerBox": {
+          "x": 218.09375,
+          "y": 159.953125,
+          "right": 333,
+          "bottom": 199.953125,
+          "width": 114.90625,
+          "height": 40
+        },
+        "surfaceBox": {
+          "x": 62,
+          "y": 211.953125,
+          "right": 382,
+          "bottom": 367.140625,
+          "width": 320,
+          "height": 155.1875
+        },
+        "motionBox": {
+          "x": 62,
+          "y": 211.953125,
+          "right": 382,
+          "bottom": 367.140625,
+          "width": 320,
+          "height": 155.1875
+        },
+        "arrowBox": {
+          "x": 267.546875,
+          "y": 203.953125,
+          "right": 283.546875,
+          "bottom": 211.953125,
+          "width": 16,
+          "height": 8
+        },
+        "role": "dialog",
+        "describedBy": null,
+        "hasPopup": "dialog",
+        "controls": "honesty-tooltip-12",
+        "expanded": "true",
+        "contentCount": 1,
+        "richActionCount": 1,
+        "surfaceOverflow": "visible",
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "interaction": {
+          "actionFocused": true,
+          "closed": "false",
+          "expanded": "false",
+          "focusReturned": true
+        }
+      }
+    },
+    {
+      "name": "rich-interactive-390-dark-rtl-end keyboard dismissal",
+      "pass": true,
+      "actual": {
+        "actionFocused": true,
+        "closed": "false",
+        "expanded": "false",
+        "focusReturned": true
+      }
+    }
+  ],
+  "summary": {
+    "total": 49,
+    "passed": 49,
+    "failed": []
+  }
+}

@@ -3,6 +3,9 @@
 :host {
   @include tokens.base;
   display: inline-block;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  block-size: fit-content;
   min-width: 0;
 }
 

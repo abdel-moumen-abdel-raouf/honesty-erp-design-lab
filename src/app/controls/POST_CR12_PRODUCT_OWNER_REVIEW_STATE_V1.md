@@ -1,5 +1,17 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — Tooltip
+
+Tooltip completed internal browser review against the existing Material 3 and
+Mobbin authority. Content-sized trigger ownership, valid plain/rich projection,
+all 23 motion presets, surface/trigger containment, popup semantics, keyboard
+focus, Escape and focus return pass 49/49 assertions with zero implementation
+overflow or browser diagnostics. Screenshots, measurements, source
+availability, and reproduction notes are under
+`docs/review-evidence/erp-tooltip/v1-internal-review/`. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next Bottom-Up unit: Alert and Skeleton.
+
 ## Current review execution — 2026-10-10 — floating action family
 
 Fab, ExtendedFab, and FabMenu completed internal browser review. The accessible

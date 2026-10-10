@@ -1,5 +1,16 @@
 # Next Component Reference Batch V1
 
+## Authoritative next action — 2026-10-10 — Alert and Skeleton
+
+The autonomous UI authorization remains active. Tooltip has completed internal
+review without Product Owner acceptance. Continue Bottom-Up with `ErpAlert` and
+`ErpSkeleton`. Preserve Alert's existing Icon, Text, Tooltip-wrapped close
+action, tone, dismiss, and accessibility ownership, and preserve Skeleton's
+variant, size, motion, loading semantics, and reduced-motion contracts. Study
+the documented reference availability before visual changes and label any
+authorized original Honesty ERP decisions accurately. Business Feature/Page,
+CRUD, transport, and permissions work remain closed.
+
 ## Authoritative next action — 2026-10-10 — Tooltip
 
 The autonomous UI authorization remains active. Fab, ExtendedFab, and FabMenu

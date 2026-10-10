@@ -1,5 +1,16 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — Tooltip complete internally
+
+Tooltip completed internal browser review against its existing Material 3 and
+Mobbin contract. Content-sized ownership, real rich projection, complete
+23-value motion controls, plain/rich semantics, keyboard focus, Escape/focus
+return, and desktop/narrow containment pass 49/49 assertions. Canonical
+verification passes 129/129 files and 851/851 tests with a zero-warning
+418.32 kB / 92.89 kB build. Product Owner status remains pending. Continue
+Bottom-Up with `ErpAlert` and `ErpSkeleton`; business Feature/Page, CRUD,
+transport, and permissions work remain closed.
+
 ## Current UI continuation — floating actions complete internally
 
 Fab, ExtendedFab, and FabMenu completed internal browser review. The Skodash

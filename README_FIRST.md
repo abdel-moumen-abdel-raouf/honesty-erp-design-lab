@@ -1,5 +1,17 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — Tooltip
+
+Tooltip completed internal browser review against its existing Material 3 and
+Mobbin authority. The host is content-sized, the same primary Workbench target
+now renders plain, projected rich-information, and rich-interactive states, and
+the motion editors expose all 23 authoritative presets. Evidence under
+`docs/review-evidence/erp-tooltip/v1-internal-review/` passes 49/49 assertions.
+Focused verification passes 4/4 files and 70/70 tests; canonical verification
+passes 129/129 files and 851/851 tests with a zero-warning 418.32 kB / 92.89 kB
+build. Product Owner acceptance is not recorded. Next Bottom-Up unit:
+`ErpAlert` and `ErpSkeleton`.
+
 ## Latest verified UI unit — Fab, ExtendedFab and FabMenu
 
 The floating action family completed internal browser review. The accessible

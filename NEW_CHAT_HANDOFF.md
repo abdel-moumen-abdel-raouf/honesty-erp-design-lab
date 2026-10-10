@@ -1,5 +1,16 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — Tooltip reviewed internally
+
+Continue from synchronized `main` after the Tooltip checkpoint. The custom
+element is content-sized; the generated one-target Workbench provides valid
+plain, rich-information, and rich-interactive projection, and both motion
+editors expose all 23 public presets. Evidence under
+`docs/review-evidence/erp-tooltip/v1-internal-review/` passes 49/49 browser
+assertions. Canonical verification passes 129/129 files and 851/851 tests with
+a zero-warning 418.32 kB / 92.89 kB build. Product Owner acceptance is not
+recorded. Continue Bottom-Up with `ErpAlert` and `ErpSkeleton`.
+
 ## Current continuation point — floating actions reviewed internally
 
 Continue from synchronized `main` after the Fab/ExtendedFab/FabMenu checkpoint.

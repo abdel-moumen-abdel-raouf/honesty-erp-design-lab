@@ -1,5 +1,22 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Tooltip Internal Review State
+
+`ErpTooltip` completed internal browser review against its existing Material 3
+and Mobbin reference contract. The host now matches the owned trigger geometry;
+the one-target Workbench projects real plain, rich-information, and
+rich-interactive content, and both motion editors expose all 23 authoritative
+motion presets. Evidence under
+`docs/review-evidence/erp-tooltip/v1-internal-review/` passes 49/49 assertions
+across desktop/narrow Light/Dark RTL/LTR, including trigger/surface containment,
+semantics, action focus, Escape and focus return. Focused verification passes
+4/4 files and 70/70 tests; canonical verification passes 129/129 files and
+851/851 tests, both typechecks, all governance/lint, and the zero-warning
+418.32 kB / 92.89 kB build. Status remains `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` / `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+Continue Bottom-Up with `ErpAlert` and `ErpSkeleton`; business Feature/Page,
+CRUD, transport, and permissions work remain closed.
+
 ## Current Floating Actions Internal Review State
 
 `ErpFab`, `ErpExtendedFab`, and `ErpFabMenu` completed internal browser review.

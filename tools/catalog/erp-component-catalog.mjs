@@ -839,6 +839,16 @@ function unionLiteralAliases(files) {
       if (values.length) aliases.set(match[1], [...new Set(values)]);
     }
   }
+  const motionContracts = fs.readFileSync(
+    path.join(REPO_ROOT, 'src', 'app', 'foundation', 'motion', 'motion-contracts.ts'),
+    'utf8',
+  );
+  const motionPresetSource = motionContracts.match(
+    /export\s+const\s+ERP_MOTION_PRESETS\s*=\s*\[([\s\S]*?)\]\s+as\s+const\s*;/,
+  )?.[1] ?? '';
+  const motionPresets = [...motionPresetSource.matchAll(/['"]([^'"]+)['"]/g)]
+    .map((value) => value[1]);
+  if (motionPresets.length) aliases.set('ErpMotionPreset', [...new Set(motionPresets)]);
   return aliases;
 }
 
@@ -1334,7 +1344,18 @@ function projectionMarkup(entry) {
     return '<erp-surface padding="default" border="subtle"><erp-text type="paragraph">محتوى مسقط مرئي يوضح عرض الحاوية ومسافتها الداخلية</erp-text></erp-surface>';
   }
   if (entry.className === 'ErpTooltip') {
-    return '<erp-button label="اعرض التلميح" variant="outline" />';
+    return `<erp-button label="اعرض التلميح" variant="outline" />
+        @if (value('variant') === 'rich') {
+          <erp-tooltip-content>
+            <erp-stack gap="tight">
+              <erp-text type="heading-4">تفاصيل الإجراء</erp-text>
+              <erp-text type="paragraph">راجع صلاحية العملية قبل اعتمادها في سجل النظام.</erp-text>
+              @if (value('interactive')) {
+                <erp-button label="اعتماد الإجراء" size="sm" (pressed)="recordEvent('richActionPressed', true)" />
+              }
+            </erp-stack>
+          </erp-tooltip-content>
+        }`;
   }
   if (['ErpStack', 'ErpInline', 'ErpGrid'].includes(entry.className)) {
     return [1, 2, 3]
@@ -1531,6 +1552,10 @@ function generatedShowcaseOwner(entry) {
   if (projection.includes('<erp-button')) {
     if (entry.className !== 'ErpButton') importLines.push(`import {ErpButton} from '../../../controls/button/button';`);
     imports.add('ErpButton');
+  }
+  if (projection.includes('<erp-tooltip-content')) {
+    importLines.push(`import {ErpTooltipContent} from '../../../controls/tooltip/tooltip-content';`);
+    imports.add('ErpTooltipContent');
   }
   if (projection.includes('<erp-text-box')) {
     if (entry.className !== 'ErpTextBox') importLines.push(`import {ErpTextBox} from '../../../controls/text-box/text-box';`);

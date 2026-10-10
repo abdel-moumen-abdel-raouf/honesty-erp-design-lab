@@ -1,5 +1,20 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — Tooltip internal review
+
+`ErpTooltip` completed internal browser review against the existing Material 3
+and Mobbin reference contract. The host follows the owned trigger box; the one
+primary Workbench target has valid plain, rich-information, and
+rich-interactive projection; and both motion inputs expose the complete
+23-value motion contract. Four desktop/narrow Light/Dark RTL/LTR scenarios pass
+49/49 assertions for containment, arrow, semantics, action focus, Escape/focus
+return, zero page overflow, and zero implementation diagnostics. Evidence is
+under `docs/review-evidence/erp-tooltip/v1-internal-review/`. Canonical
+verification passes 129/129 files and 851/851 tests, both typechecks, all
+governance/lint, and the zero-warning 418.32 kB / 92.89 kB build. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next: `ErpAlert` and `ErpSkeleton`.
+
 ## Current checkpoint — floating actions internal review
 
 `ErpFab`, `ErpExtendedFab`, and `ErpFabMenu` completed internal browser review.

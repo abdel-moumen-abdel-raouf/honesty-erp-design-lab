@@ -1,5 +1,31 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Tooltip internal-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `ce73922c9e63239a1d455b4cd137443b90f44c6a` — synchronized `main` after the
+  floating-actions checkpoint.
+
+Bounded scope:
+
+- Corrected Tooltip host occupancy, restored valid rich-content projection in
+  its generated Workbench, and bound both motion controls to all 23 public
+  motion presets.
+- Added focused Workbench regressions plus desktop/narrow Light/Dark RTL/LTR
+  browser evidence with 49/49 runtime assertions.
+- Persisted screenshots, reference availability, measurements, and reproduction
+  under `docs/review-evidence/erp-tooltip/v1-internal-review/`.
+
+Verification before commit:
+
+- Focused tests: 4/4 files, 70/70 tests.
+- Canonical `npm run verify:clean`: 129/129 files, 851/851 tests, both
+  typechecks, all governance/lint, production build, zero warnings.
+- Build: 418.32 kB initial / 92.89 kB estimated transfer.
+
+Visual status remains `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+
 ## Floating actions internal-review candidate — 2026-10-10
 
 Entry checkpoint:

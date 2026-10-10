@@ -98,6 +98,7 @@ describe('ErpTooltip', () => {
     expect(tooltip.getAttribute('data-tooltip-state')).toBe('ready');
     expect(tooltip.getAttribute('data-tooltip-enter-animation')).toBe('zoom');
     expect(tooltip.getAttribute('data-tooltip-exit-animation')).toBe('zoom');
+    expect(getComputedStyle(tooltip).inlineSize).toBe('fit-content');
     expect(tooltip.querySelector('[role="tooltip"]')).toBeTruthy();
     expect(tooltip.querySelector('erp-text')?.getAttribute('data-text-tone')).toBe('inherit');
     const motion = tooltip.querySelector('.erp-tooltip__motion') as HTMLElement;

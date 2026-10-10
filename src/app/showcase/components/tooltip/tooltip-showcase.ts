@@ -6,13 +6,14 @@ import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
 import {ErpButton} from '../../../controls/button/button';
+import {ErpTooltipContent} from '../../../controls/tooltip/tooltip-content';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'tooltip')!;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-tooltip-showcase',
-  imports: [ErpTooltip, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpButton],
+  imports: [ErpTooltip, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpButton, ErpTooltipContent],
   templateUrl: './tooltip-showcase.html',
   styleUrl: './tooltip-showcase.scss',
 })

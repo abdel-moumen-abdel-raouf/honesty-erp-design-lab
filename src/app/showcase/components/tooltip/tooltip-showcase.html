@@ -17,7 +17,18 @@
           [exitAnimation]="$any(value('exitAnimation'))"
           [open]="$any(value('open'))"
           (openChange)="recordModel('open', $event)"
-        ><erp-button label="اعرض التلميح" variant="outline" /></erp-tooltip>
+        ><erp-button label="اعرض التلميح" variant="outline" />
+        @if (value('variant') === 'rich') {
+          <erp-tooltip-content>
+            <erp-stack gap="tight">
+              <erp-text type="heading-4">تفاصيل الإجراء</erp-text>
+              <erp-text type="paragraph">راجع صلاحية العملية قبل اعتمادها في سجل النظام.</erp-text>
+              @if (value('interactive')) {
+                <erp-button label="اعتماد الإجراء" size="sm" (pressed)="recordEvent('richActionPressed', true)" />
+              }
+            </erp-stack>
+          </erp-tooltip-content>
+        }</erp-tooltip>
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel
