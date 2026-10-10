@@ -1,5 +1,18 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current lifecycle inventory — 2026-10-10
+
+`ERP_COMPONENT_LIFECYCLE_LEDGER_V1.md` now records all 81 public owners, all
+45 supporting catalog entries, and six documented planned identities while
+keeping implementation status separate from Product Owner visual status. It
+does not interpret the catalog's generated `PENDING` value as acceptance,
+rejection, or even proof that an owner has been visually reviewed. The only
+explicitly accepted/frozen public owner remains `ErpCheckBox`; five owners with
+recorded Product Owner rejection/reopen history remain `REOPENED`. The next
+Bottom-Up visual unit is `ErpRadioBox`, followed by bounded `ErpRadioGroup`
+compatibility evidence. This inventory is governance evidence and does not
+change any Product Owner visual decision.
+
 ## Current review execution — 2026-10-10 — internal review continues autonomously
 
 The Product Owner temporarily delegates evidence-based internal visual review

@@ -27,6 +27,13 @@ target, zero broken images and zero browser diagnostics. Status remains
 test files and 808/808 tests, all governance/lint, both typechecks, and the
 zero-warning production build at 418.32 kB / 92.90 kB estimated transfer.
 
+The reproducible lifecycle inventory at
+`src/app/controls/ERP_COMPONENT_LIFECYCLE_LEDGER_V1.md` records 81 public, 45
+supporting and 6 planned identities. It preserves `ErpCheckBox` as the sole
+accepted/frozen owner and never promotes catalog `PENDING` to a human visual
+finding. The next bounded unit is `ErpRadioBox`, with `ErpRadioGroup` tested
+only as its required compatibility owner.
+
 ## Authoritative current execution state — 2026-10-10 — root AppShell Workbench recovered
 
 Published `main` and `origin/main` began at

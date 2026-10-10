@@ -19,6 +19,12 @@ tests, all governance/lint, both typechecks, and the zero-warning build at
 418.32 kB / 92.90 kB estimated transfer. Continue with the global lifecycle/backlog ledger and the next
 documented Bottom-Up UI owner; all unaccepted visuals remain pending.
 
+The global inventory is
+`src/app/controls/ERP_COMPONENT_LIFECYCLE_LEDGER_V1.md`: 81 public owners, 45
+supporting entries and 6 planned identities. Its checker is part of lint and
+refuses catalog drift. `ErpCheckBox` is the sole accepted/frozen owner; the
+next bounded visual unit is `ErpRadioBox` plus required RadioGroup regression.
+
 ## Current gate — 2026-10-10 — root-owned AppShell Workbench review
 
 The existing uncommitted root correction was recovered non-destructively from

@@ -19,6 +19,13 @@ component lifecycle/backlog ledger and proceed to the next documented owner in
 strict Bottom-Up order. Its canonical gate passes 127/127 test files and
 808/808 tests, all governance/lint, both typechecks and the zero-warning build.
 
+The deterministic global ledger now lives at
+`ERP_COMPONENT_LIFECYCLE_LEDGER_V1.md` and is checked from canonical lint. It
+contains all 81 public, 45 supporting and 6 current planned identities and
+separates implementation, technical evidence and explicit visual status. The
+resolved next unit is `ErpRadioBox`; `ErpRadioGroup` is compatibility scope,
+and accepted/frozen `ErpCheckBox` V5 remains unchanged.
+
 ## Authoritative root AppShell Workbench closure — 2026-10-10
 
 The existing AppShell follow-up is complete without reopening or duplicating

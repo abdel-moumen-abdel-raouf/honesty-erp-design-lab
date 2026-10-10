@@ -18,6 +18,10 @@
 - One root AppShell, direct RouterOutlet, OverlayHost and primary target per
   public route remain invariant. Business Feature/Page, backend, transport,
   permission and CRUD work remain closed.
+- The lifecycle ledger is generated from the catalog and explicit visual
+  decisions. Catalog `PENDING` is never reclassified as unreviewed, rejected,
+  or accepted without direct evidence. Accepted/frozen CheckBox V5 remains a
+  regression-only dependency for the next RadioBox visual unit.
 
 ## Root-owned AppShell Workbench decisions — 2026-10-10
 

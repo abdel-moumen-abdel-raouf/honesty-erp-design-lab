@@ -30,6 +30,13 @@ zero-warning build at 418.32 kB / 92.90 kB estimated initial transfer. The next 
 bounded Shell checkpoint is the repository-backed global UI backlog ledger and
 the next documented owner in Bottom-Up order.
 
+The generated lifecycle ledger is
+`src/app/controls/ERP_COMPONENT_LIFECYCLE_LEDGER_V1.md`. It resolves 81 public,
+45 supporting, and 6 planned identities without interpreting catalog
+`PENDING` as a visual decision. `ErpCheckBox` is the only explicitly
+accepted/frozen public owner; five current owners are explicitly reopened. The
+next unit is `ErpRadioBox` with bounded `ErpRadioGroup` compatibility evidence.
+
 ## Current Root-Owned AppShell Workbench Recovery — 2026-10-10
 
 The Product Owner-authorized recovery entered from published clean `main`

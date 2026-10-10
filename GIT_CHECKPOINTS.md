@@ -21,6 +21,23 @@ destination paths, and an 81/81 route audit. Canonical verification passes
 the zero-warning production build. Resolve the resulting SHA from
 live `main` because this file belongs to that commit.
 
+## Global component lifecycle ledger — 2026-10-10
+
+Entry checkpoint:
+
+- `ced0ae148d4f83c43964ba1a7c517964fcf0047b` — clean published Shell QA
+  checkpoint.
+
+Scoped checkpoint message:
+
+- `docs(controls): establish global component lifecycle ledger`
+
+The generated ledger covers 81 public, 45 supporting and 6 planned identities,
+adds a deterministic drift check to the canonical lint chain, and resolves
+`ErpRadioBox` as the next Bottom-Up unit without changing any visual status.
+Resolve the resulting commit SHA from live `main` because this file belongs to
+that commit.
+
 ## Root-owned AppShell Workbench recovery — 2026-10-10
 
 Entry checkpoint:

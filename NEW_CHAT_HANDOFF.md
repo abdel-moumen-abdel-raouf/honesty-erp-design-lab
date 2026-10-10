@@ -24,6 +24,12 @@ lifecycle/backlog ledger, then the next repository-documented Bottom-Up UI
 owner. Shell and subsequent candidates remain
 `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
 
+Use `src/app/controls/ERP_COMPONENT_LIFECYCLE_LEDGER_V1.md` as the current
+global inventory. It is generated from the authoritative catalog and checked
+by `npm run erp-component-lifecycle:check`. The next owner is `ErpRadioBox`;
+preserve accepted/frozen `ErpCheckBox` V5 and limit `ErpRadioGroup` changes to
+proven compatibility needs.
+
 ## Authoritative current handoff — 2026-10-10 — root-owned AppShell Workbench complete
 
 Start from live `main`. The bounded recovery began at published
