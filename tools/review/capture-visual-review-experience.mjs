@@ -96,6 +96,40 @@ async function navigate(url) {
   await delay(350);
 }
 
+async function waitForPath(expectedPath) {
+  for (let attempt = 0; attempt < 80; attempt += 1) {
+    if (await evaluate('location.pathname') === expectedPath) return expectedPath;
+    await delay(50);
+  }
+  return evaluate('location.pathname');
+}
+
+async function waitForRouteReady(expectedPath, expectedTargets = 1, waitForReload = false) {
+  for (let attempt = 0; attempt < 120; attempt += 1) {
+    const state = await evaluate(`({
+      path: location.pathname,
+      ready: document.readyState,
+      targets: document.querySelectorAll('[data-showcase-target]').length,
+      reloaded: window.__honestyReviewReloadMarker !== true
+    })`);
+    if (
+      state.path === expectedPath &&
+      state.ready === 'complete' &&
+      state.targets === expectedTargets &&
+      (!waitForReload || state.reloaded)
+    ) {
+      return state;
+    }
+    await delay(50);
+  }
+  return evaluate(`({
+    path: location.pathname,
+    ready: document.readyState,
+    targets: document.querySelectorAll('[data-showcase-target]').length,
+    reloaded: window.__honestyReviewReloadMarker !== true
+  })`);
+}
+
 async function configure(width, height, theme, direction) {
   await send('Emulation.setDeviceMetricsOverride', {
     width,
@@ -164,6 +198,30 @@ try {
     'utf8',
   );
 
+  await configure(1280, 800, 'light', 'rtl');
+  await navigate(`${baseUrl}/components/button`);
+  await navigate(`${baseUrl}/components/table`);
+  await evaluate('history.back()');
+  const backPath = await waitForPath('/components/button');
+  await evaluate('history.forward()');
+  const forwardPath = await waitForPath('/components/table');
+  await evaluate('window.__honestyReviewReloadMarker = true');
+  await send('Page.reload');
+  const refreshState = await waitForRouteReady('/components/table', 1, true);
+  const refreshPath = refreshState.path;
+  await settle();
+  const refreshMetrics = await evaluate(pageMetrics());
+  const navigationAudit = {
+    backPath,
+    forwardPath,
+    refreshPath,
+    refreshTargets: refreshMetrics.targets,
+    passed: backPath === '/components/button' &&
+      forwardPath === '/components/table' &&
+      refreshPath === '/components/table' &&
+      refreshMetrics.targets === 1,
+  };
+
   const scenarios = [
     ['components', 1440, 900, 'light', 'rtl', 'top'],
     ['components/button', 1440, 900, 'light', 'rtl', 'gallery'],
@@ -200,15 +258,25 @@ try {
     captures.push({fileName, route: `/${route}`, width, height, theme, direction, focus, ...metrics, consoleFindings: [...observed]});
   }
 
+  const routeFailures = routeAudit.filter((entry) =>
+    entry.targets !== 1 || !entry.gallery || !entry.comparison || !entry.controls ||
+    entry.controlsOpen || entry.horizontalOverflow > 0 || entry.brokenImages > 0 ||
+    entry.appShells !== 1 || entry.routerOutlets !== 1 || entry.overlayHosts !== 1 ||
+    entry.consoleFindings.length > 0);
+  const captureFailures = captures.filter((entry) =>
+    entry.horizontalOverflow > 0 || entry.brokenImages > 0 ||
+    entry.appShells !== 1 || entry.routerOutlets !== 1 || entry.overlayHosts !== 1 ||
+    entry.consoleFindings.length > 0 ||
+    (entry.route !== '/components' &&
+      (entry.targets !== 1 || !entry.gallery || !entry.comparison || !entry.controls ||
+        entry.controlsOpen)));
   const audit = {
     capturedAt: new Date().toISOString(),
     baseUrl,
     publicRoutes: routes.length,
-    failures: routeAudit.filter((entry) =>
-      entry.targets !== 1 || !entry.gallery || !entry.comparison || !entry.controls ||
-      entry.controlsOpen || entry.horizontalOverflow > 0 || entry.brokenImages > 0 ||
-      entry.appShells !== 1 || entry.routerOutlets !== 1 || entry.overlayHosts !== 1 ||
-      entry.consoleFindings.length > 0),
+    failures: routeFailures,
+    captureFailures,
+    navigationAudit,
     routeAudit,
     captures,
   };
@@ -217,6 +285,9 @@ try {
     `${JSON.stringify(audit, null, 2)}\n`,
     'utf8',
   );
+  if (routeFailures.length > 0 || captureFailures.length > 0 || !navigationAudit.passed) {
+    throw new Error('Visual review runtime audit failed. Inspect runtime-audit.json.');
+  }
   console.log(`Visual review audit complete: ${routes.length} routes, ${audit.failures.length} failures, ${captures.length} captures.`);
 } finally {
   socket.close();

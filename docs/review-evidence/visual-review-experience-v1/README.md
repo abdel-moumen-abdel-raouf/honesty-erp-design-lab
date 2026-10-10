@@ -21,6 +21,9 @@ at `http://127.0.0.1:4999` on 2026-10-10. `runtime-audit.json` and
 - a visible Gallery and Reference Comparison on every route;
 - Advanced API Controls present and initially collapsed;
 - exactly one root `erp-app-shell`, `router-outlet`, and `erp-overlay-host`;
+- direct navigation across all public routes plus a recorded Button → Table →
+  Back → Forward → Refresh sequence that retains the expected route and one
+  primary target;
 - zero page horizontal overflow, broken images, console errors, or console
   warnings;
 - thirteen persisted desktop/tablet/narrow Light/Dark RTL/LTR review captures.

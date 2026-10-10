@@ -1,8 +1,16 @@
 {
-  "capturedAt": "2026-10-10T18:04:58.899Z",
+  "capturedAt": "2026-10-10T18:26:19.052Z",
   "baseUrl": "http://127.0.0.1:4999",
   "publicRoutes": 81,
   "failures": [],
+  "captureFailures": [],
+  "navigationAudit": {
+    "backPath": "/components/button",
+    "forwardPath": "/components/table",
+    "refreshPath": "/components/table",
+    "refreshTargets": 1,
+    "passed": true
+  },
   "routeAudit": [
     {
       "route": "/components/button",
