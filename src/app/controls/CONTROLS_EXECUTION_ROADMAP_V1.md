@@ -1,5 +1,17 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — public primitive layer complete internally
+
+`ErpIcon` and `ErpText` completed internal browser review with 26/26 passing
+runtime assertions and no production API/default changes. Their generated
+workbenches now provide meaningful evidence for all seven Icon inputs and all
+23 Text inputs. Evidence is under
+`docs/review-evidence/erp-public-primitives/v1-internal-review/`. Product Owner
+status remains pending. Canonical verification passes 128/128 files and
+821/821 tests with a zero-warning 418.32 kB / 92.88 kB build. Continue
+Bottom-Up with foundational text-like Input/Field controls; business
+Feature/Page, CRUD, transport, and permissions work remain closed.
+
 ## Current UI continuation — structural primitives complete internally
 
 The seven original Honesty ERP structural candidates have completed browser

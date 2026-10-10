@@ -47,6 +47,7 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpDivider',
   'ErpEmptyState',
   'ErpGrid',
+  'ErpIcon',
   'ErpInline',
   'ErpRadioBox',
   'ErpRadioGroup',
@@ -57,6 +58,7 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpSurface',
   'ErpTabs',
   'ErpTable',
+  'ErpText',
   'ErpUserMenu',
 ]);
 
@@ -253,12 +255,13 @@ drift.
   **\`ErpRadioBox\`**, **\`ErpRadioGroup\`**, **\`ErpEmptyState\`**, **\`ErpAvatar\`**,
   **\`ErpSelect\`**, **\`ErpStatusBadge\`**, **\`ErpTabs\`**, **\`ErpTable\`**,
   **\`ErpUserMenu\`**, **\`ErpContainer\`**, **\`ErpDivider\`**, **\`ErpGrid\`**,
-  **\`ErpInline\`**, **\`ErpSection\`**, **\`ErpStack\`**, and **\`ErpSurface\`**. Their
+  **\`ErpInline\`**, **\`ErpSection\`**, **\`ErpStack\`**, **\`ErpSurface\`**,
+  **\`ErpIcon\`**, and **\`ErpText\`**. Their
   Product Owner status remains pending.
 - All currently recorded binding-reference owners have completed internal
-  review, and the structural primitive family has completed internal review.
-  The next Bottom-Up unit is the remaining public primitive pair:
-  **\`ErpIcon\`** and **\`ErpText\`**.
+  review, and the full public primitive layer has completed internal review.
+  The next Bottom-Up unit is the foundational text-like Input/Field family,
+  beginning with **\`ErpTextBox\`** and **\`ErpTextAreaBox\`**.
 
 ## Public owner inventory
 

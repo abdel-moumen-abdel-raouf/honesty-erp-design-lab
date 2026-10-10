@@ -344,7 +344,7 @@ function validateRepository() {
         !projectedChildPattern.test(isRootAppShell ? appTemplate : html)) {
       errors.push(`${entry.className} projection showcase has no visible projected content`);
     }
-    if (entry.className === 'ErpText' && !html.includes('نص تجريبي مباشر')) {
+    if (entry.className === 'ErpText' && !html.includes('تقرير حركة المخزون')) {
       errors.push('ErpText projection showcase has no visible authored text');
     }
   }

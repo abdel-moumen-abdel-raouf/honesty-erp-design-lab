@@ -1,5 +1,16 @@
 # Next Component Reference Batch V1
 
+## Authoritative next action — 2026-10-10 — foundational text-like inputs
+
+The autonomous UI authorization remains active. The complete public primitive
+layer has finished internal browser review without Product Owner acceptance.
+Continue in Bottom-Up dependency order with the shared Input/Field composition
+as exercised by `ErpTextBox` and `ErpTextAreaBox`, then their direct text-like
+siblings. No binding component-specific external reference is currently
+recorded; use an explicitly labeled original Honesty ERP candidate and preserve
+the shared Field owners. Business Feature/Page, CRUD, transport, and
+permissions work remain closed.
+
 ## Authoritative next action — 2026-10-10 — ErpIcon and ErpText
 
 The autonomous UI authorization remains active. The structural primitive

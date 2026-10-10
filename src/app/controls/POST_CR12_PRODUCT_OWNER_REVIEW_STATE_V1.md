@@ -1,5 +1,16 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — ErpIcon and ErpText
+
+Both remaining public primitives completed internal browser review as original
+Honesty ERP candidates. Generated evidence now makes every public visual and
+semantic input observable on one live target. The 26/26 audit records zero
+overflow, broken images, or diagnostics; screenshots and measurements are in
+`docs/review-evidence/erp-public-primitives/v1-internal-review/`. Production
+APIs/defaults are unchanged. Status is `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` / `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+Next Bottom-Up unit: the foundational text-like Input/Field family.
+
 ## Current review execution — 2026-10-10 — structural primitives
 
 The seven structural public owners have completed internal browser review as

@@ -1241,7 +1241,7 @@ function relativeShowcaseImport(ownerPath, sourcePath) {
 
 function projectionMarkup(entry) {
   if (entry.className === 'ErpText') {
-    return 'نص تجريبي مباشر';
+    return 'تقرير حركة المخزون للفترة الحالية — Inventory Q4 / 2026 — مراجعة الطلبات وأرصدة الفروع';
   }
   if (entry.className === 'ErpContainer') {
     return '<erp-surface padding="default" border="subtle"><erp-text type="paragraph">محتوى مسقط مرئي يوضح عرض الحاوية ومسافتها الداخلية</erp-text></erp-surface>';
@@ -1508,7 +1508,11 @@ function generatedShowcaseOwner(entry) {
     : '';
   const targetClass = entry.className === 'ErpDivider'
     ? '\n          class="showcase-divider-target"'
-    : '';
+    : entry.className === 'ErpIcon'
+      ? '\n          class="showcase-icon-target"'
+      : entry.className === 'ErpText'
+        ? '\n          class="showcase-text-target"'
+        : '';
   const ownerMarkup = `<${entry.selector}
           data-showcase-target${targetClass}${directionBinding}
           ${inputBindings.join('\n          ')}
@@ -1564,7 +1568,12 @@ function generatedShowcaseOwner(entry) {
   const dividerEvidenceStyle = entry.className === 'ErpDivider'
     ? `\n.showcase-divider-target[data-orientation='vertical'] {\n  min-block-size: 8rem;\n  align-self: center;\n}\n`
     : '';
-  const scss = `:host { display: block; min-inline-size: 0; }\n\n.showcase-reference { overflow-wrap: anywhere; }\n\n.showcase-live-preview { min-block-size: ${previewMinBlockSize}; }\n${isFloatingPreview ? '' : '\n.showcase-live-preview--floating { position: relative; min-block-size: 30rem; overflow: clip; }\n'}${dividerEvidenceStyle}`;
+  const primitiveEvidenceStyle = entry.className === 'ErpIcon'
+    ? `\n.showcase-icon-target {\n  align-self: center;\n  margin-block: var(--honesty-space-layout-gap-md);\n}\n`
+    : entry.className === 'ErpText'
+      ? `\n.showcase-text-target {\n  display: block;\n  inline-size: min(100%, 28rem);\n  min-inline-size: 0;\n}\n`
+      : '';
+  const scss = `:host { display: block; min-inline-size: 0; }\n\n.showcase-reference { overflow-wrap: anywhere; }\n\n.showcase-live-preview { min-block-size: ${previewMinBlockSize}; }\n${isFloatingPreview ? '' : '\n.showcase-live-preview--floating { position: relative; min-block-size: 30rem; overflow: clip; }\n'}${dividerEvidenceStyle}${primitiveEvidenceStyle}`;
   let generatedSource = hasDirectionalPreview
     ? normalizedSource
     : normalizedSource.replace(

@@ -1,5 +1,22 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Public Icon and Text Primitive Internal Review State
+
+`ErpIcon` and `ErpText` have completed their authorized original Honesty ERP
+internal review. Production APIs and defaults remain unchanged. The generated
+workbenches now center the single Icon target and use meaningful bounded
+bilingual ERP copy for Text so wrap, overflow, clamp, direction, typography,
+and semantic-element controls are observable. Evidence under
+`docs/review-evidence/erp-public-primitives/v1-internal-review/` passes 26/26
+browser assertions with no overflow, broken images, errors, or warnings.
+Focused verification passes 3/3 files and 53/53 tests; canonical verification
+passes 128/128 files and 821/821 tests, both typechecks, all governance/lint,
+and the zero-warning 418.32 kB / 92.88 kB build. Status remains
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. The full public primitive layer is now
+internally reviewed. Next Bottom-Up unit: the foundational text-like
+Input/Field family beginning with `ErpTextBox` and `ErpTextAreaBox`.
+
 ## Current Structural Primitives Internal Review State
 
 `ErpContainer`, `ErpDivider`, `ErpGrid`, `ErpInline`, `ErpSection`, `ErpStack`,

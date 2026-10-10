@@ -1,5 +1,17 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — public primitives fully reviewed internally
+
+Continue from synchronized `main` after the `ErpIcon` / `ErpText` checkpoint.
+The production owners and defaults are unchanged; only their generated
+workbench evidence was made meaningful. Browser captures and 26/26 passing
+assertions are under
+`docs/review-evidence/erp-public-primitives/v1-internal-review/`. Canonical
+verification passes 128/128 files and 821/821 tests with a zero-warning
+418.32 kB / 92.88 kB build. Product Owner acceptance is not recorded. Continue
+Bottom-Up with the foundational text-like Input/Field family, beginning with
+`ErpTextBox` and `ErpTextAreaBox`.
+
 ## Current continuation point — structural primitives reviewed internally
 
 Continue from synchronized `main` after the bounded structural-family

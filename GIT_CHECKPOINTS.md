@@ -1,5 +1,25 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Public Icon and Text primitive internal-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `29e051722b274b2603ed2899cba493d98466f8fb` — synchronized `main` after the
+  structural primitive family checkpoint.
+
+Bounded scope:
+
+- Reviewed `ErpIcon` and `ErpText` at desktop/narrow Light/Dark RTL/LTR.
+- Corrected generated review placement/content only; production APIs/defaults
+  remain unchanged.
+- Persisted 26/26 browser assertions and viewport/target screenshots under
+  `docs/review-evidence/erp-public-primitives/v1-internal-review/`.
+- Canonical gate: 128/128 files, 821/821 tests, both typechecks, all
+  governance/lint, zero-warning 418.32 kB / 92.88 kB build.
+
+Product Owner visual status remains pending. The actual commit SHA is recorded
+by Git after this document snapshot; do not infer acceptance from the commit.
+
 ## Structural primitive family internal-review candidate — 2026-10-10
 
 Entry checkpoint:

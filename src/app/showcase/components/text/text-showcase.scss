@@ -5,3 +5,9 @@
 .showcase-live-preview { min-block-size: 12rem; }
 
 .showcase-live-preview--floating { position: relative; min-block-size: 30rem; overflow: clip; }
+
+.showcase-text-target {
+  display: block;
+  inline-size: min(100%, 28rem);
+  min-inline-size: 0;
+}

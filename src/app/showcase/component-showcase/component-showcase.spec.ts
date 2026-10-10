@@ -142,6 +142,52 @@ describe('ComponentShowcase', () => {
     expect(divider.classList).toContain('showcase-divider-target');
   });
 
+  it('keeps Icon and Text reviewable while applying their public visual controls', async () => {
+    const harness = await RouterTestingHarness.create();
+
+    await harness.navigateByUrl('/components/icon', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+    let root = harness.routeNativeElement as HTMLElement;
+    let target = root.querySelector('[data-showcase-target]') as HTMLElement;
+    let panel = harness.fixture.debugElement
+      .query(By.directive(ErpReviewShowcaseControlPanel))
+      .componentInstance as ErpReviewShowcaseControlPanel;
+    panel.editor(panel.controls().find((control) => control.name === 'size')!).setValue('"5xl"');
+    panel.editor(panel.controls().find((control) => control.name === 'decorative')!).setValue(false);
+    panel.editor(panel.controls().find((control) => control.name === 'label')!)
+      .setValue('إعدادات النظام');
+    harness.fixture.detectChanges();
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect(target.classList).toContain('showcase-icon-target');
+    expect(target.getAttribute('data-icon-size')).toBe('5xl');
+    expect(target.getAttribute('role')).toBe('img');
+    expect(target.getAttribute('aria-label')).toBe('إعدادات النظام');
+
+    await harness.navigateByUrl('/components/text', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+    root = harness.routeNativeElement as HTMLElement;
+    target = root.querySelector('[data-showcase-target]') as HTMLElement;
+    panel = harness.fixture.debugElement
+      .query(By.directive(ErpReviewShowcaseControlPanel))
+      .componentInstance as ErpReviewShowcaseControlPanel;
+    panel.editor(panel.controls().find((control) => control.name === 'type')!).setValue('paragraph');
+    panel.editor(panel.controls().find((control) => control.name === 'lineClamp')!).setValue(2);
+    panel.editor(panel.controls().find((control) => control.name === 'direction')!).setValue('ltr');
+    harness.fixture.detectChanges();
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect(target.classList).toContain('showcase-text-target');
+    expect(target.textContent).toContain('تقرير حركة المخزون');
+    expect(target.getAttribute('data-text-type')).toBe('paragraph');
+    expect(target.getAttribute('data-text-line-clamp')).toBe('2');
+    expect(target.getAttribute('dir')).toBe('ltr');
+  });
+
   it('renders ButtonGroup as one controlled group with multiple actions', async () => {
     const harness = await RouterTestingHarness.create();
     await harness.navigateByUrl('/components/button-group', ComponentShowcase);

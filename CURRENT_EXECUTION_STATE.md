@@ -1,5 +1,20 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — public Icon and Text primitives internal review
+
+`ErpIcon` and `ErpText` completed desktop/narrow Light/Dark RTL/LTR browser
+review as explicitly labeled original Honesty ERP candidates. The only changes
+are generated Design-Lab evidence: centered Icon placement and bounded,
+meaningful bilingual Text content. The 26/26 runtime audit proves one target,
+7/23 live controls, labelled Icon accessibility, Text native semantics and
+clamping, with no overflow, broken images, or browser diagnostics. Evidence is
+under `docs/review-evidence/erp-public-primitives/v1-internal-review/`.
+Production contracts/defaults remain unchanged. Canonical verification passes
+128/128 files and 821/821 tests, both typechecks, all governance/lint, and the
+zero-warning 418.32 kB / 92.88 kB build. Status is `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` / `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+Next Bottom-Up unit: foundational text-like Input/Field controls.
+
 ## Current checkpoint — structural primitive family internal review
 
 The original Honesty ERP candidates for `ErpContainer`, `ErpDivider`,

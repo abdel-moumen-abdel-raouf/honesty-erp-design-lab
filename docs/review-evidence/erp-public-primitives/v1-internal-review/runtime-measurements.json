@@ -1,0 +1,405 @@
+{
+  "generatedAt": "2026-10-10T07:36:48.910Z",
+  "authority": "Original Honesty ERP candidate; no binding component-specific reference is recorded.",
+  "scenarios": [
+    {
+      "name": "icon-1440-light-rtl-default",
+      "component": "icon",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "direction": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 7,
+      "box": {
+        "x": 617.5,
+        "y": 445.765625,
+        "width": 24,
+        "height": 24
+      },
+      "computed": {
+        "display": "flex",
+        "color": "rgb(24, 26, 32)",
+        "fontSize": "16px",
+        "lineHeight": "0px",
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal",
+        "webkitLineClamp": "none"
+      },
+      "attributes": {
+        "_ngcontent-ng-c3611628491": "",
+        "data-showcase-target": "",
+        "class": "showcase-icon-target",
+        "_nghost-ng-c3966943932": "",
+        "data-icon-name": "settings",
+        "data-icon-size": "md",
+        "data-icon-tone": "inherit",
+        "data-icon-variant": "outline",
+        "data-icon-stroke-width": "regular",
+        "data-icon-stroke-effective": "true",
+        "data-icon-state": "ready",
+        "data-icon-mirror-rtl": "false",
+        "data-icon-accessibility": "decorative",
+        "aria-hidden": "true"
+      },
+      "nativeTag": "ng-icon",
+      "text": "",
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "icon-390-dark-ltr-labelled",
+      "component": "icon",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "direction": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 7,
+      "box": {
+        "x": 155,
+        "y": 381.765625,
+        "width": 80,
+        "height": 80
+      },
+      "computed": {
+        "display": "flex",
+        "color": "rgb(255, 222, 139)",
+        "fontSize": "16px",
+        "lineHeight": "0px",
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal",
+        "webkitLineClamp": "none"
+      },
+      "attributes": {
+        "_ngcontent-ng-c3611628491": "",
+        "data-showcase-target": "",
+        "class": "showcase-icon-target",
+        "_nghost-ng-c3966943932": "",
+        "data-icon-name": "settings",
+        "data-icon-size": "5xl",
+        "data-icon-tone": "warning",
+        "data-icon-variant": "filled",
+        "data-icon-stroke-width": "bold",
+        "data-icon-stroke-effective": "false",
+        "data-icon-state": "ready",
+        "data-icon-mirror-rtl": "false",
+        "data-icon-accessibility": "labelled",
+        "role": "img",
+        "aria-label": "System settings"
+      },
+      "nativeTag": "ng-icon",
+      "text": "",
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "text-1440-light-rtl-default",
+      "component": "text",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "direction": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 23,
+      "box": {
+        "x": 649,
+        "y": 432.765625,
+        "width": 448,
+        "height": 51.1875
+      },
+      "computed": {
+        "display": "block",
+        "color": "rgb(24, 26, 32)",
+        "fontSize": "16px",
+        "lineHeight": "25.6px",
+        "overflow": "visible",
+        "textOverflow": "clip",
+        "whiteSpace": "normal",
+        "webkitLineClamp": "none"
+      },
+      "attributes": {
+        "_ngcontent-ng-c3407080110": "",
+        "data-showcase-target": "",
+        "class": "showcase-text-target",
+        "_nghost-ng-c83884549": "",
+        "data-text-type": "text",
+        "data-text-size": "md",
+        "data-text-weight": "regular",
+        "data-text-tone": "primary",
+        "data-text-family": "ui",
+        "data-text-line-height": "loose",
+        "data-text-font-style": "normal",
+        "data-text-decoration": "none",
+        "data-text-align": "inherit",
+        "data-text-wrap": "normal",
+        "data-text-overflow": "visible",
+        "data-text-line-clamp": "0",
+        "data-text-selectable": "false",
+        "data-text-native-element": "span"
+      },
+      "nativeTag": "span",
+      "text": "تقرير حركة المخزون للفترة الحالية — Inventory Q4 / 2026 — مراجعة الطلبات وأرصدة الفروع",
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "text-390-dark-ltr-alternate",
+      "component": "text",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "direction": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 23,
+      "box": {
+        "x": 57,
+        "y": -1448.234375,
+        "width": 276,
+        "height": 75.5625
+      },
+      "computed": {
+        "display": "block",
+        "color": "rgb(181, 227, 239)",
+        "fontSize": "18px",
+        "lineHeight": "25.2px",
+        "overflow": "hidden",
+        "textOverflow": "clip",
+        "whiteSpace": "normal",
+        "webkitLineClamp": "2"
+      },
+      "attributes": {
+        "_ngcontent-ng-c3407080110": "",
+        "data-showcase-target": "",
+        "class": "showcase-text-target",
+        "_nghost-ng-c83884549": "",
+        "data-text-type": "paragraph",
+        "data-text-size": "lg",
+        "data-text-weight": "bold",
+        "data-text-tone": "info",
+        "data-text-family": "latin",
+        "data-text-line-height": "compact",
+        "data-text-font-style": "italic",
+        "data-text-decoration": "underline",
+        "data-text-align": "end",
+        "data-text-wrap": "normal",
+        "data-text-overflow": "ellipsis",
+        "data-text-line-clamp": "2",
+        "data-text-selectable": "true",
+        "data-text-native-element": "p",
+        "dir": "auto"
+      },
+      "nativeTag": "p",
+      "text": "تقرير حركة المخزون للفترة الحالية — Inventory Q4 / 2026 — مراجعة الطلبات وأرصدة الفروع",
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    }
+  ],
+  "assertions": [
+    {
+      "name": "icon-1440-light-rtl-default primary target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "icon-1440-light-rtl-default controls",
+      "pass": true,
+      "actual": 7
+    },
+    {
+      "name": "icon-1440-light-rtl-default visible",
+      "pass": true,
+      "actual": {
+        "x": 617.5,
+        "y": 445.765625,
+        "width": 24,
+        "height": 24
+      }
+    },
+    {
+      "name": "icon-1440-light-rtl-default overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "icon-1440-light-rtl-default diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "icon-1440-light-rtl-default broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "icon-390-dark-ltr-labelled primary target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "icon-390-dark-ltr-labelled controls",
+      "pass": true,
+      "actual": 7
+    },
+    {
+      "name": "icon-390-dark-ltr-labelled visible",
+      "pass": true,
+      "actual": {
+        "x": 155,
+        "y": 381.765625,
+        "width": 80,
+        "height": 80
+      }
+    },
+    {
+      "name": "icon-390-dark-ltr-labelled overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "icon-390-dark-ltr-labelled diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "icon-390-dark-ltr-labelled broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "text-1440-light-rtl-default primary target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "text-1440-light-rtl-default controls",
+      "pass": true,
+      "actual": 23
+    },
+    {
+      "name": "text-1440-light-rtl-default visible",
+      "pass": true,
+      "actual": {
+        "x": 649,
+        "y": 432.765625,
+        "width": 448,
+        "height": 51.1875
+      }
+    },
+    {
+      "name": "text-1440-light-rtl-default overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "text-1440-light-rtl-default diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "text-1440-light-rtl-default broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "text-390-dark-ltr-alternate primary target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "text-390-dark-ltr-alternate controls",
+      "pass": true,
+      "actual": 23
+    },
+    {
+      "name": "text-390-dark-ltr-alternate visible",
+      "pass": true,
+      "actual": {
+        "x": 57,
+        "y": -1448.234375,
+        "width": 276,
+        "height": 75.5625
+      }
+    },
+    {
+      "name": "text-390-dark-ltr-alternate overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "text-390-dark-ltr-alternate diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "text-390-dark-ltr-alternate broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "labelled icon accessibility",
+      "pass": true,
+      "actual": {
+        "_ngcontent-ng-c3611628491": "",
+        "data-showcase-target": "",
+        "class": "showcase-icon-target",
+        "_nghost-ng-c3966943932": "",
+        "data-icon-name": "settings",
+        "data-icon-size": "5xl",
+        "data-icon-tone": "warning",
+        "data-icon-variant": "filled",
+        "data-icon-stroke-width": "bold",
+        "data-icon-stroke-effective": "false",
+        "data-icon-state": "ready",
+        "data-icon-mirror-rtl": "false",
+        "data-icon-accessibility": "labelled",
+        "role": "img",
+        "aria-label": "System settings"
+      }
+    },
+    {
+      "name": "text alternate semantics",
+      "pass": true,
+      "actual": {
+        "nativeTag": "p",
+        "attributes": {
+          "_ngcontent-ng-c3407080110": "",
+          "data-showcase-target": "",
+          "class": "showcase-text-target",
+          "_nghost-ng-c83884549": "",
+          "data-text-type": "paragraph",
+          "data-text-size": "lg",
+          "data-text-weight": "bold",
+          "data-text-tone": "info",
+          "data-text-family": "latin",
+          "data-text-line-height": "compact",
+          "data-text-font-style": "italic",
+          "data-text-decoration": "underline",
+          "data-text-align": "end",
+          "data-text-wrap": "normal",
+          "data-text-overflow": "ellipsis",
+          "data-text-line-clamp": "2",
+          "data-text-selectable": "true",
+          "data-text-native-element": "p",
+          "dir": "auto"
+        },
+        "text": "تقرير حركة المخزون للفترة الحالية — Inventory Q4 / 2026 — مراجعة الطلبات وأرصدة الفروع"
+      }
+    }
+  ],
+  "summary": {
+    "total": 26,
+    "passed": 26,
+    "failed": []
+  }
+}

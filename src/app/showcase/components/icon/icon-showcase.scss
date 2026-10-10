@@ -5,3 +5,8 @@
 .showcase-live-preview { min-block-size: 12rem; }
 
 .showcase-live-preview--floating { position: relative; min-block-size: 30rem; overflow: clip; }
+
+.showcase-icon-target {
+  align-self: center;
+  margin-block: var(--honesty-space-layout-gap-md);
+}

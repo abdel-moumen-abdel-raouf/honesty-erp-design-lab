@@ -1,5 +1,18 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Public Icon and Text internal-review decisions — 2026-10-10
+
+- No binding component-specific external reference is recorded for `ErpIcon`
+  or `ErpText`; both remain explicitly labeled original Honesty ERP candidates.
+- Their production APIs, tokens, registry, semantic ownership, and defaults are
+  unchanged. Review corrections belong only to generated Design-Lab evidence.
+- Icon evidence must keep one target, expose all seven inputs, and preserve the
+  80-name semantic registry and decorative/labelled accessibility contract.
+- Text evidence must use content long enough to make wrap, overflow, clamp,
+  direction, typography, and semantic-native-element inputs observable while
+  preserving `ErpText` as the sole production text gateway.
+- Internal review completion does not imply Product Owner acceptance.
+
 ## Structural primitive internal-review decisions — 2026-10-10
 
 - No binding component-specific external reference is recorded for Container,

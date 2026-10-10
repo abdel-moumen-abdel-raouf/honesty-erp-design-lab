@@ -1,5 +1,19 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — ErpIcon and ErpText
+
+The remaining public primitives have completed browser review as original
+Honesty ERP candidates. Icon retains its 80-name semantic registry and seven
+live controls; Text retains all 23 inputs and now uses meaningful bilingual ERP
+content that visibly exercises wrapping, overflow, clamping, direction, and
+native semantics. Production APIs/defaults did not change. Evidence is under
+`docs/review-evidence/erp-public-primitives/v1-internal-review/` and passes
+26/26 assertions with zero overflow, broken images, or browser diagnostics.
+Focused verification passes 3/3 files and 53/53 tests; canonical verification
+passes 128/128 files and 821/821 tests with a zero-warning 418.32 kB / 92.88 kB
+build. Product Owner acceptance is not recorded. Next Bottom-Up unit: the
+foundational text-like Input/Field family.
+
 ## Latest verified UI unit — structural primitives
 
 The seven structural owners (`Container`, `Divider`, `Grid`, `Inline`,
