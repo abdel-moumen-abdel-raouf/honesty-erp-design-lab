@@ -1,5 +1,22 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — structural primitive family internal review
+
+The original Honesty ERP candidates for `ErpContainer`, `ErpDivider`,
+`ErpGrid`, `ErpInline`, `ErpSection`, `ErpStack`, and `ErpSurface` have completed
+internal browser review without changing their production APIs or defaults.
+Their dedicated pages now provide visible projection evidence for every layout
+control. Four reproduced evidence defects were corrected: Container boundary
+visibility, Section gap visibility, vertical Divider block extent, and inverse
+Surface projected-text contrast. The 14-scenario runtime audit passes 100/100
+assertions with no overflow, broken images, errors, or warnings. Evidence is at
+`docs/review-evidence/erp-structural-primitives/v1-internal-review/`. Focused
+verification passes 8/8 files and 46/46 tests; canonical verification passes
+128/128 files and 820/820 tests, both typechecks, all governance/lint and the
+zero-warning 418.32 kB / 92.90 kB build. Status is `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` / `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+Next Bottom-Up unit: `ErpIcon` and `ErpText`.
+
 ## Current checkpoint — ErpAvatarPicker exact-reference internal review
 
 The binding Picker source was rehashed and rendered beside the dedicated live

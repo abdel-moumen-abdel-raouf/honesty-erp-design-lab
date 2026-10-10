@@ -1,5 +1,21 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Structural primitive internal-review decisions — 2026-10-10
+
+- No binding component-specific external reference is recorded for Container,
+  Divider, Grid, Inline, Section, Stack, or Surface; they remain explicitly
+  labeled original Honesty ERP candidates.
+- The seven production owners retain their current APIs and visual defaults.
+  The corrections are Design-Lab workbench/evidence composition only.
+- Structural workbenches must project enough visible children for every layout
+  input to have observable evidence; an empty or single-child gap specimen is
+  not meaningful acceptance evidence.
+- Inverse Surface examples use the existing `ErpText` inverse tone rather than
+  introducing local colors or changing shared Text defaults.
+- The catalog generator is the authority for generated workbench artifacts;
+  generator and generated output must remain synchronized.
+- Internal review does not change Product Owner visual status from pending.
+
 ## ErpAvatarPicker internal-review decisions — 2026-10-10
 
 - `ERP-AVATAR-PICKER.html` at SHA-256

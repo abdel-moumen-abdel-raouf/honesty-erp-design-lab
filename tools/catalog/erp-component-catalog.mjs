@@ -1243,6 +1243,9 @@ function projectionMarkup(entry) {
   if (entry.className === 'ErpText') {
     return 'نص تجريبي مباشر';
   }
+  if (entry.className === 'ErpContainer') {
+    return '<erp-surface padding="default" border="subtle"><erp-text type="paragraph">محتوى مسقط مرئي يوضح عرض الحاوية ومسافتها الداخلية</erp-text></erp-surface>';
+  }
   if (entry.className === 'ErpTooltip') {
     return '<erp-button label="اعرض التلميح" variant="outline" />';
   }
@@ -1250,6 +1253,12 @@ function projectionMarkup(entry) {
     return [1, 2, 3]
       .map((index) => `<erp-surface padding="default" border="subtle"><erp-text type="paragraph">عنصر مرئي ${index}</erp-text></erp-surface>`)
       .join('');
+  }
+  if (entry.className === 'ErpSection') {
+    return '<erp-surface padding="tight" border="subtle"><erp-text type="paragraph">عنوان القسم</erp-text></erp-surface><erp-surface padding="tight" border="subtle"><erp-text type="paragraph">محتوى القسم</erp-text></erp-surface><erp-surface padding="tight" border="subtle"><erp-text type="paragraph">إجراءات القسم</erp-text></erp-surface>';
+  }
+  if (entry.className === 'ErpSurface') {
+    return '<erp-text type="paragraph" [tone]="value(\'tone\') === \'inverse\' ? \'inverse\' : \'primary\'">محتوى مسقط مرئي داخل المكوّن</erp-text>';
   }
   if (entry.className === 'ErpForm') {
     return '<erp-text-box label="اسم السجل" /><erp-button label="حفظ السجل" type="submit" /><erp-button label="إعادة الضبط" type="reset" variant="outline" />';
@@ -1497,8 +1506,11 @@ function generatedShowcaseOwner(entry) {
   const directionBinding = entry.className === 'ErpUserMenu'
     ? '\n          [attr.dir]="previewDirection()"'
     : '';
+  const targetClass = entry.className === 'ErpDivider'
+    ? '\n          class="showcase-divider-target"'
+    : '';
   const ownerMarkup = `<${entry.selector}
-          data-showcase-target${directionBinding}
+          data-showcase-target${targetClass}${directionBinding}
           ${inputBindings.join('\n          ')}
         >${projection}</${entry.selector}>`;
   let renderedOwner = ['ErpIconButton', 'ErpFab'].includes(entry.className)
@@ -1549,7 +1561,10 @@ function generatedShowcaseOwner(entry) {
   }
   const html = `<erp-stack gap="default" data-dedicated-showcase="${entry.id}" data-showcase-sections="1">\n  <erp-text type="heading-2">${entry.displayNameAr}</erp-text>\n  <erp-text type="paragraph" tone="secondary">${entry.descriptionAr}</erp-text>\n${referenceLabel}  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="${livePreviewClass}">\n    <erp-stack gap="tight">\n      <erp-text type="heading-3">المعاينة الحية</erp-text>\n      ${renderedOwner}\n    </erp-stack>\n  </erp-surface>\n  <app-review-showcase-control-panel\n    [controls]="controls"\n    [values]="controlValues()"\n    (controlChanged)="applyControl($event)"\n  />\n  <erp-surface padding="default" border="subtle" data-showcase-event-log>\n    <erp-stack gap="tight">\n      <erp-text type="heading-3">آخر تفاعل</erp-text>\n      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>\n${isCva ? '      <erp-text type="caption" selectable>القيمة الحالية: {{ cvaValue() }}</erp-text>\n' : ''}    </erp-stack>\n  </erp-surface>\n${exactReferenceEvidence}</erp-stack>\n`;
   const previewMinBlockSize = entry.className === 'ErpUserMenu' ? '32rem' : '12rem';
-  const scss = `:host { display: block; min-inline-size: 0; }\n\n.showcase-reference { overflow-wrap: anywhere; }\n\n.showcase-live-preview { min-block-size: ${previewMinBlockSize}; }\n${isFloatingPreview ? '' : '\n.showcase-live-preview--floating { position: relative; min-block-size: 30rem; overflow: clip; }\n'}`;
+  const dividerEvidenceStyle = entry.className === 'ErpDivider'
+    ? `\n.showcase-divider-target[data-orientation='vertical'] {\n  min-block-size: 8rem;\n  align-self: center;\n}\n`
+    : '';
+  const scss = `:host { display: block; min-inline-size: 0; }\n\n.showcase-reference { overflow-wrap: anywhere; }\n\n.showcase-live-preview { min-block-size: ${previewMinBlockSize}; }\n${isFloatingPreview ? '' : '\n.showcase-live-preview--floating { position: relative; min-block-size: 30rem; overflow: clip; }\n'}${dividerEvidenceStyle}`;
   let generatedSource = hasDirectionalPreview
     ? normalizedSource
     : normalizedSource.replace(

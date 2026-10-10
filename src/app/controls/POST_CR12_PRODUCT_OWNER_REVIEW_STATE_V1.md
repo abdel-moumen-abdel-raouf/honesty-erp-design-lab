@@ -1,5 +1,19 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — structural primitives
+
+The seven structural public owners have completed internal browser review as
+original Honesty ERP candidates. Their generated workbenches now make every
+layout control visually observable without changing production APIs/defaults.
+Fresh evidence records 100/100 passing assertions across 14 desktop/narrow
+Light/Dark RTL/LTR scenarios, zero overflow, broken images or diagnostics, and
+readable inverse Surface content. Screenshots, measurements and reproduction
+steps are under
+`docs/review-evidence/erp-structural-primitives/v1-internal-review/`. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next Bottom-Up unit: `ErpIcon` and
+`ErpText`.
+
 ## Current review execution — 2026-10-10 — ErpAvatarPicker
 
 The binding Picker SHA was reverified and the source was rendered beside the

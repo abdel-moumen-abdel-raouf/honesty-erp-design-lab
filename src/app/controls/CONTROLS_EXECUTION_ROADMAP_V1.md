@@ -1,5 +1,19 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — structural primitives complete internally
+
+The seven original Honesty ERP structural candidates have completed browser
+review. Their generated workbenches now show meaningful projected content for
+all public layout controls, and the 14-scenario evidence gate passes 100/100
+assertions with zero overflow, broken images or diagnostics. No production API
+or default changed. Evidence is under
+`docs/review-evidence/erp-structural-primitives/v1-internal-review/`. Product
+Owner status remains pending. Focused verification passes 8/8 files and 46/46
+tests; canonical verification passes 128/128 files and 820/820 tests with a
+zero-warning 418.32 kB / 92.90 kB build. The next Bottom-Up unit is `ErpIcon`
+and `ErpText`; business Feature/Page, CRUD, transport and permissions work
+remain closed.
+
 ## Current UI continuation — ErpAvatarPicker complete internally
 
 The binding source was rehashed, rendered and compared directly with the

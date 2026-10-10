@@ -43,11 +43,18 @@ const SHELL_OWNERS = new Set([
 const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpAvatar',
   'ErpAvatarPicker',
+  'ErpContainer',
+  'ErpDivider',
   'ErpEmptyState',
+  'ErpGrid',
+  'ErpInline',
   'ErpRadioBox',
   'ErpRadioGroup',
+  'ErpSection',
   'ErpSelect',
+  'ErpStack',
   'ErpStatusBadge',
+  'ErpSurface',
   'ErpTabs',
   'ErpTable',
   'ErpUserMenu',
@@ -243,13 +250,15 @@ drift.
 - Explicitly reopened public owners: **${publicEntries.filter((entry) => REOPENED_VISUALS.has(entry.className)).length}**.
 - Planned identities outside the implemented catalog: **${PLANNED.length}**.
 - Internally reviewed public owners added in the current UI wave:
-  **\`ErpRadioBox\`**, **\`ErpRadioGroup\`**, **\`ErpEmptyState\`**, **\`ErpAvatar\`**, and
-  **\`ErpSelect\`**, **\`ErpStatusBadge\`**, **\`ErpTabs\`**, **\`ErpTable\`**, and
-  **\`ErpUserMenu\`**. Their
+  **\`ErpRadioBox\`**, **\`ErpRadioGroup\`**, **\`ErpEmptyState\`**, **\`ErpAvatar\`**,
+  **\`ErpSelect\`**, **\`ErpStatusBadge\`**, **\`ErpTabs\`**, **\`ErpTable\`**,
+  **\`ErpUserMenu\`**, **\`ErpContainer\`**, **\`ErpDivider\`**, **\`ErpGrid\`**,
+  **\`ErpInline\`**, **\`ErpSection\`**, **\`ErpStack\`**, and **\`ErpSurface\`**. Their
   Product Owner status remains pending.
 - All currently recorded binding-reference owners have completed internal
-  review. The next Bottom-Up unit is the structural primitive family, beginning
-  with **\`ErpContainer\`** and its direct layout peers.
+  review, and the structural primitive family has completed internal review.
+  The next Bottom-Up unit is the remaining public primitive pair:
+  **\`ErpIcon\`** and **\`ErpText\`**.
 
 ## Public owner inventory
 

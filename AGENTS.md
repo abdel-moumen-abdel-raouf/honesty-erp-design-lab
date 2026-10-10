@@ -1,5 +1,22 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Structural Primitives Internal Review State
+
+`ErpContainer`, `ErpDivider`, `ErpGrid`, `ErpInline`, `ErpSection`, `ErpStack`,
+and `ErpSurface` have completed their authorized original Honesty ERP internal
+review. Their production APIs and visual defaults remain unchanged. The
+dedicated workbenches now expose visible projected content for every structural
+input, a bounded vertical Divider target, and readable inverse Surface content.
+Evidence is under
+`docs/review-evidence/erp-structural-primitives/v1-internal-review/` and passes
+100/100 runtime assertions across 14 desktop/narrow Light/Dark RTL/LTR
+scenarios with no horizontal overflow, broken images, errors, or warnings.
+Focused verification passes 8/8 files and 46/46 tests; canonical verification
+passes 128/128 files and 820/820 tests, all governance/lint, both typechecks and
+the zero-warning 418.32 kB / 92.90 kB build. Status is `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` / `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+Next Bottom-Up unit: `ErpIcon` and `ErpText`.
+
 ## Current ErpAvatarPicker Exact-Reference Internal Review State
 
 `ERP-AVATAR-PICKER.html` remains binding at SHA-256

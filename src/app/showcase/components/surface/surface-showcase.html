@@ -11,7 +11,7 @@
           [elevation]="$any(value('elevation'))"
           [radius]="$any(value('radius'))"
           [padding]="$any(value('padding'))"
-        ><erp-text type="paragraph">محتوى مسقط مرئي داخل المكوّن</erp-text></erp-surface>
+        ><erp-text type="paragraph" [tone]="value('tone') === 'inverse' ? 'inverse' : 'primary'">محتوى مسقط مرئي داخل المكوّن</erp-text></erp-surface>
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel

@@ -60,11 +60,14 @@ describe('ComponentShowcase', () => {
     expect(publicEntries).toHaveLength(81);
     expect(Object.keys(ERP_PUBLIC_SHOWCASE_LOADERS)).toHaveLength(81);
 
-    for (const entry of publicEntries) {
+    const owners = await Promise.all(publicEntries.map(async (entry) => {
       expect(entry.showcaseOwnerPath).toBe(
         `src/app/showcase/components/${entry.id}/${entry.id}-showcase.ts`,
       );
-      const owner = await ERP_PUBLIC_SHOWCASE_LOADERS[entry.id]();
+      return ERP_PUBLIC_SHOWCASE_LOADERS[entry.id]();
+    }));
+
+    for (const owner of owners) {
       expect(owner).toBeTruthy();
       expect(typeof owner).toBe('function');
     }
@@ -82,6 +85,61 @@ describe('ComponentShowcase', () => {
         expect(controlNames.has(model.name), `${entry.className}.${model.name}`).toBe(true);
       }
     }
+  });
+
+  it('keeps every structural primitive workbench visible and applies its live layout controls', async () => {
+    const harness = await RouterTestingHarness.create();
+    const visibleChildren = new Map([
+      ['container', 1],
+      ['grid', 3],
+      ['inline', 3],
+      ['section', 3],
+      ['stack', 3],
+      ['surface', 1],
+    ]);
+
+    for (const [id, minimumChildren] of visibleChildren) {
+      await harness.navigateByUrl(`/components/${id}`, ComponentShowcase);
+      await vi.waitFor(() => {
+        harness.fixture.detectChanges();
+        expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+      });
+      const root = harness.routeNativeElement as HTMLElement;
+      const target = root.querySelector('[data-showcase-target]') as HTMLElement;
+      expect(root.querySelectorAll('[data-showcase-target]'), id).toHaveLength(1);
+      expect(target.querySelectorAll('erp-surface, erp-text').length, id)
+        .toBeGreaterThanOrEqual(minimumChildren);
+    }
+
+    await harness.navigateByUrl('/components/section', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+    let panel = harness.fixture.debugElement
+      .query(By.directive(ErpReviewShowcaseControlPanel))
+      .componentInstance as ErpReviewShowcaseControlPanel;
+    panel.editor(panel.controls().find((control) => control.name === 'gap')!).setValue('large');
+    harness.fixture.detectChanges();
+    expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')
+      ?.getAttribute('data-gap')).toBe('large');
+
+    await harness.navigateByUrl('/components/divider', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+    panel = harness.fixture.debugElement
+      .query(By.directive(ErpReviewShowcaseControlPanel))
+      .componentInstance as ErpReviewShowcaseControlPanel;
+    panel.editor(panel.controls().find((control) => control.name === 'orientation')!)
+      .setValue('vertical');
+    harness.fixture.detectChanges();
+    const divider = harness.routeNativeElement?.querySelector(
+      '[data-showcase-target]',
+    ) as HTMLElement;
+    expect(divider.getAttribute('data-orientation')).toBe('vertical');
+    expect(divider.classList).toContain('showcase-divider-target');
   });
 
   it('renders ButtonGroup as one controlled group with multiple actions', async () => {

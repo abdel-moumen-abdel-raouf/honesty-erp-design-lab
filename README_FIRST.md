@@ -1,5 +1,19 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — structural primitives
+
+The seven structural owners (`Container`, `Divider`, `Grid`, `Inline`,
+`Section`, `Stack`, and `Surface`) now have meaningful one-target workbenches
+whose controls visibly change the authored layout. Fresh browser evidence is
+under `docs/review-evidence/erp-structural-primitives/v1-internal-review/` and
+passes 100/100 assertions across 14 desktop/narrow Light/Dark RTL/LTR cases.
+The workbench corrections expose Container bounds and Section gaps, retain a
+visible vertical Divider, and use the existing inverse Text tone for inverse
+Surface content. No production API/default changed. Focused tests pass 8/8
+files and 46/46 tests; canonical verification passes 128/128 files and 820/820
+tests with a zero-warning 418.32 kB / 92.90 kB build. Product Owner acceptance
+is not recorded. Next Bottom-Up unit: `ErpIcon` and `ErpText`.
+
 ## Latest verified UI unit — ErpAvatarPicker
 
 The binding Picker source was rehashed, rendered and compared with the Angular

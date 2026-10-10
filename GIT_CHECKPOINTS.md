@@ -1,5 +1,31 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Structural primitive family internal-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `cfda1565b725318e9a5e41288155425954fb3afb` — synchronized `main` after the
+  ErpAvatarPicker exact-reference checkpoint.
+
+Bounded scope:
+
+- Reviewed Container, Divider, Grid, Inline, Section, Stack, and Surface at
+  desktop/narrow Light/Dark RTL/LTR conditions.
+- Corrected only generated workbench/evidence composition: visible Container
+  bounds, observable Section gaps, vertical Divider extent, and readable
+  inverse Surface projected content.
+- Added 14-scenario browser evidence, 100 runtime assertions and regression
+  coverage without changing production APIs or visual defaults.
+
+Verification:
+
+- Focused: 8/8 files, 46/46 tests.
+- Canonical: 128/128 files, 820/820 tests; all governance/lint; both
+  typechecks; zero-warning 418.32 kB / 92.90 kB build.
+
+The commit SHA is established by Git after this document is written and is
+reported in the execution handoff. Product Owner visual review remains pending.
+
 ## ErpAvatarPicker exact-reference internal-review candidate — 2026-10-10
 
 Entry checkpoint:

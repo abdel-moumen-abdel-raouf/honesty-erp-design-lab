@@ -1,5 +1,14 @@
 # Next Component Reference Batch V1
 
+## Authoritative next action — 2026-10-10 — ErpIcon and ErpText
+
+The autonomous UI authorization remains active. The structural primitive
+family has completed internal browser review without recording Product Owner
+acceptance or changing production API/defaults. Continue in Bottom-Up order
+with the remaining public primitive pair, `ErpIcon` and `ErpText`, using their
+current governance contracts and labeled original Honesty ERP authority. Do
+not open business Feature/Page, CRUD, transport or permissions work.
+
 ## Authoritative next action — 2026-10-10 — structural primitives
 
 The autonomous UI authorization remains active. All implemented owners with a

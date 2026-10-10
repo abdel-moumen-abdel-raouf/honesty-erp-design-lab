@@ -1,5 +1,18 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — structural primitives reviewed internally
+
+Continue from synchronized `main` after the bounded structural-family
+checkpoint. Browser captures, measurements, the 100/100 runtime result and
+reproduction steps are under
+`docs/review-evidence/erp-structural-primitives/v1-internal-review/`. All seven
+owners retain their production API/defaults; the workbench generator and
+generated pages now make projection, gap, orientation, and inverse-tone states
+observable. Canonical verification passes 128/128 files and 820/820 tests with
+a zero-warning 418.32 kB / 92.90 kB build. Product Owner acceptance is not
+recorded. Continue Bottom-Up with the remaining public primitives: `ErpIcon`
+and `ErpText`.
+
 ## Current continuation point — ErpAvatarPicker reviewed internally
 
 Continue from synchronized `main` after the bounded Picker checkpoint. Direct
