@@ -5,6 +5,7 @@ import process from 'node:process';
 const ROOT = process.cwd();
 const ROUTES = 'src/app/app.routes.ts';
 const APP_TEMPLATE = 'src/app/app.html';
+const APP_SOURCE = 'src/app/app.ts';
 const REVIEW = 'src/app/review-internals/legacy-shell-batch/shell-batch.html';
 const CONTRACTS = 'src/app/controls/shell-family/shell-contracts.ts';
 const SHELL_REFERENCE = 'src/app/controls/SHELL_REFERENCE_TOPOLOGY_V2.md';
@@ -15,6 +16,9 @@ const APP_FOOTER_REFERENCE = 'src/app/controls/app-footer/ERP_APP_FOOTER_CANDIDA
 const APP_FOOTER_SHOWCASE = 'src/app/showcase/components/app-footer/app-footer-showcase.html';
 const QUICK_ACTIONS_REFERENCE = 'src/app/controls/quick-actions-bar/ERP_QUICK_ACTIONS_BAR_CANDIDATE_V1.md';
 const QUICK_ACTIONS_SHOWCASE = 'src/app/showcase/components/quick-actions-bar/quick-actions-bar-showcase.html';
+const APP_SHELL_SHOWCASE = 'src/app/showcase/components/app-shell/app-shell-showcase.html';
+const APP_SHELL_SHOWCASE_SOURCE = 'src/app/showcase/components/app-shell/app-shell-showcase.ts';
+const APP_SHELL_WORKBENCH_STATE = 'src/app/review-internals/app-shell-workbench/app-shell-workbench-state.ts';
 const USER_MENU_REFERENCE = 'src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md';
 const OWNERS = [
   'app-footer',
@@ -56,6 +60,7 @@ export function validateShellNavigation(files) {
   const errors = [];
   const routes = files.get(ROUTES) ?? '';
   const appTemplate = files.get(APP_TEMPLATE) ?? '';
+  const appSource = files.get(APP_SOURCE) ?? '';
   const review = files.get(REVIEW) ?? '';
   const contracts = files.get(CONTRACTS) ?? '';
   const shellReference = files.get(SHELL_REFERENCE) ?? '';
@@ -63,6 +68,9 @@ export function validateShellNavigation(files) {
   const topbarReference = files.get(TOPBAR_REFERENCE) ?? '';
   const appFooterReference = files.get(APP_FOOTER_REFERENCE) ?? '';
   const quickActionsReference = files.get(QUICK_ACTIONS_REFERENCE) ?? '';
+  const appShellShowcase = files.get(APP_SHELL_SHOWCASE) ?? '';
+  const appShellShowcaseSource = files.get(APP_SHELL_SHOWCASE_SOURCE) ?? '';
+  const appShellWorkbenchState = files.get(APP_SHELL_WORKBENCH_STATE) ?? '';
   const sources = OWNERS.map(
     (owner) => files.get(`src/app/controls/${owner}/${owner}.ts`) ?? '',
   ).join('\n');
@@ -112,6 +120,21 @@ export function validateShellNavigation(files) {
   if ((appTemplate.match(/<router-outlet\b/g) ?? []).length !== 1 ||
       (appTemplate.match(/<erp-overlay-host\b/g) ?? []).length !== 1) {
     errors.push('The actual Design Lab frame must retain one RouterOutlet and one OverlayHost');
+  }
+  if (
+    !appTemplate.includes('[attr.data-showcase-target]="isAppShellShowcase() ? \'\' : null"') ||
+    !appShellShowcase.includes('data-app-shell-root-workbench-panel') ||
+    appShellShowcase.includes('<erp-app-shell')
+  ) {
+    errors.push('The AppShell workbench must drive the single root AppShell without rendering a nested Shell');
+  }
+  if (!appSource.includes('ErpReviewAppShellWorkbenchState') ||
+      !appShellShowcaseSource.includes('ErpReviewAppShellWorkbenchState') ||
+      !appShellWorkbenchState.includes("@Injectable({providedIn: 'root'})") ||
+      /honesty-erp-app-shell-showcase|window\.dispatchEvent|HostListener/.test(
+        `${appSource}\n${appShellShowcaseSource}`,
+      )) {
+    errors.push('The root AppShell workbench must use its typed Angular review-state bridge');
   }
 
   if (/<\/?(?!erp-)(?:form|button|input|select|textarea|nav|header|main|aside|section|div|span|a|ul|li)\b/i.test(review)) {
@@ -418,7 +441,8 @@ export function validateShellNavigation(files) {
 function validFixture(overrides = new Map()) {
   const files = new Map([
     [ROUTES, "path: 'controls/shell-batch'"],
-    [APP_TEMPLATE, '<erp-app-shell><erp-applications-menu /><erp-messages-menu /><erp-notification-bell /><erp-global-search /><erp-branch-selector /><erp-user-menu /><router-outlet /><erp-overlay-host /></erp-app-shell>'],
+    [APP_TEMPLATE, `<erp-app-shell [attr.data-showcase-target]="isAppShellShowcase() ? '' : null"><erp-applications-menu /><erp-messages-menu /><erp-notification-bell /><erp-global-search /><erp-branch-selector /><erp-user-menu /><router-outlet /><erp-overlay-host /></erp-app-shell>`],
+    [APP_SOURCE, 'inject(ErpReviewAppShellWorkbenchState)'],
     [REVIEW, '<erp-app-shell></erp-app-shell>'],
     [CONTRACTS, 'export interface ErpNavigationItem {} export interface ErpBreadcrumbItem {} export interface ErpShellUserSummary { email?: string; roleLabel?: string; branchLabel?: string; avatarPresence?: string; } export interface ErpBranchOption {} export interface ErpNotificationSummary {}'],
     [SHELL_REFERENCE, '00905891AF3FE58429227E5099688480DBB78BA8843D5930D0962A1525304542 1EFFE6A3ADC2613EC19612699E567C38E5457997E342333B0686F70D63A3AFEA'],
@@ -429,6 +453,9 @@ function validFixture(overrides = new Map()) {
     [APP_FOOTER_SHOWCASE, '<erp-app-footer data-showcase-target />'],
     [QUICK_ACTIONS_REFERENCE, 'PRODUCT_OWNER_VISUAL_REVIEW_PENDING data-driven Gxon unavailable'],
     [QUICK_ACTIONS_SHOWCASE, '<erp-quick-actions-bar data-showcase-target />'],
+    [APP_SHELL_SHOWCASE, '<div data-app-shell-root-workbench-panel></div>'],
+    [APP_SHELL_SHOWCASE_SOURCE, 'inject(ErpReviewAppShellWorkbenchState)'],
+    [APP_SHELL_WORKBENCH_STATE, "@Injectable({providedIn: 'root'}) export class ErpReviewAppShellWorkbenchState {}"],
     [USER_MENU_REFERENCE, '75F64AE955800ABE9FCBE27D7B09161D95E2DE2C77B6106C337AA4841D39D399 1EFFE6A3ADC2613EC19612699E567C38E5457997E342333B0686F70D63A3AFEA'],
   ]);
 
@@ -563,6 +590,8 @@ function runSelfTest() {
     ['missing UserMenu trigger-specific badge gates', new Map([['src/app/controls/user-menu/user-menu.ts', "import {ErpAvatar} from 'x'; import {ErpStatusBadge} from 'b'; import {ErpDivider} from 'z'; import {ShellAnchoredSurfaceController} from 'y'; const options = {crossAxisAlignment: 'end', arrowWidth: () => 13, arrowSafeInset: () => 16, allowedPlacements: ['bottom', 'top'], prepareGeometry: () => undefined}; export class ErpUserMenu { readonly showAvatar = input(true); readonly showUserName = input(true); readonly showEmail = input(true); readonly showPresence = input(true); readonly showRoleBadge = input(true); readonly showBranchBadge = input(true); triggerRoleVisible() {} triggerBranchVisible() {} }"]]), 'trigger-specific'],
     ['hidden UserMenu name', new Map([['src/app/controls/user-menu/user-menu.scss', '.user-menu { min-inline-size: 0; } .user-menu__identity-header { flex: 0 0 auto; } .user-menu__items { flex: 1 1 auto; overflow-y: auto; } .user-menu__trigger-name { display: none; } .user-menu__surface::before { left: var(--honesty-anchored-surface-arrow-cross-axis-center); } @media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }']]), 'responsive identity'],
     ['always-visible UserMenu surface', new Map([['src/app/controls/user-menu/user-menu.scss', '.user-menu { min-inline-size: 0; } .user-menu__identity-header { flex: 0 0 auto; } .user-menu__items { flex: 1 1 auto; overflow-y: auto; } .user-menu__surface::before { left: var(--honesty-anchored-surface-arrow-cross-axis-center); } @media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }']]), 'open-only flex'],
+    ['nested AppShell showcase', new Map([[APP_SHELL_SHOWCASE, '<erp-app-shell data-app-shell-root-workbench-panel></erp-app-shell>']]), 'without rendering a nested Shell'],
+    ['window-event AppShell bridge', new Map([[APP_SHELL_SHOWCASE_SOURCE, 'inject(ErpReviewAppShellWorkbenchState); window.dispatchEvent(new CustomEvent("honesty-erp-app-shell-showcase"))']]), 'typed Angular review-state bridge'],
   ];
 
   for (const [label, overrides, expected] of invalidFixtures) {
@@ -586,6 +615,7 @@ function runCheck() {
   const fixed = [
     ROUTES,
     APP_TEMPLATE,
+    APP_SOURCE,
     REVIEW,
     CONTRACTS,
     SHELL_REFERENCE,
@@ -596,6 +626,9 @@ function runCheck() {
     APP_FOOTER_SHOWCASE,
     QUICK_ACTIONS_REFERENCE,
     QUICK_ACTIONS_SHOWCASE,
+    APP_SHELL_SHOWCASE,
+    APP_SHELL_SHOWCASE_SOURCE,
+    APP_SHELL_WORKBENCH_STATE,
     USER_MENU_REFERENCE,
   ];
 

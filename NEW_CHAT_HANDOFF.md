@@ -1,5 +1,27 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Authoritative current handoff — 2026-10-10 — root-owned AppShell Workbench complete
+
+Start from live `main`. The bounded recovery began at published
+`94c20bcd55eda2eb722ddad65d6280eaf11592c7` with 21 modified
+AppShell/evidence files. A hash-verified backup was made outside the repository;
+every pre-existing modification was confirmed relevant and retained.
+
+`/components/app-shell` now controls the one application-root `ErpAppShell`.
+It contains no nested shell and no second live target. Typed Angular
+review-internal state applies inputs/models and records outputs, then clears on
+route exit; re-entry restores the documented defaults. Custom `window` event
+bridges are absent. All other component routes continue to expose their own
+single primary target.
+
+The 81/81 route audit and AppShell browser matrix are current under
+`docs/review-evidence/erp-shell/`. Canonical verification passes 127/127 test
+files and 807/807 tests, all governance/lint, both typechecks, and the
+zero-warning build at 418.32 kB / 92.88 kB estimated transfer. The complete
+Shell is `TECHNICAL_VERIFIED` and `INTERNAL_VISUAL_REVIEW_COMPLETED`, while
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING` remains binding. The only next action is
+consolidated Product Owner review; do not open unrelated work.
+
 ## Authoritative current handoff — 2026-10-09 — complete App Shell ready for consolidated review
 
 The autonomous Shell wave started at

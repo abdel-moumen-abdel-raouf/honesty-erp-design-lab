@@ -1,5 +1,20 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current Product Owner visual-review item — 2026-10-10 — root AppShell Workbench
+
+The AppShell dedicated route now reviews the actual root-owned Shell without a
+nested instance. One typed review-internal state channel drives all documented
+AppShell inputs/models on that root, records outputs, clears on route exit and
+initializes predictably on re-entry. All 81 component routes retain exactly one
+primary showcase target; RouterOutlet and OverlayHost counts remain one.
+
+Evidence under `docs/review-evidence/erp-shell/s2-e-app-shell/` and
+`docs/review-evidence/erp-shell/autonomous-app-shell-wave/` covers the six
+required widths, Light/Dark, RTL/LTR, live controls, route isolation and the
+full integrated Shell. Status is `TECHNICAL_VERIFIED` and
+`INTERNAL_VISUAL_REVIEW_COMPLETED`; no Shell visual is accepted or frozen.
+The next action is consolidated Product Owner visual review.
+
 ## Current Product Owner visual-review item — 2026-10-09 — complete App Shell
 
 The consolidated queue now includes `ErpApplicationsMenu`, `ErpMessagesMenu`,

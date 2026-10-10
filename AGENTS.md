@@ -1,5 +1,33 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Root-Owned AppShell Workbench Recovery — 2026-10-10
+
+The Product Owner-authorized recovery entered from published clean `main`
+`94c20bcd55eda2eb722ddad65d6280eaf11592c7` with 21 pre-existing modified
+AppShell/evidence files. A complete external backup was verified before edits.
+All pre-existing changes were confirmed as part of the root-owned AppShell
+correction or its regenerated browser evidence; no unrelated change was found.
+
+`/components/app-shell` now reviews the one real application-root
+`ErpAppShell` instead of rendering a nested second shell. The routed page owns
+the control panel only; a typed, review-internal Angular state service applies
+inputs/models to the root instance and clears them on route exit. Custom
+`window` events, hidden duplicate instances, and stale route overrides are
+forbidden. Every public route retains exactly one primary
+`data-showcase-target`, with the root taking that role only on the AppShell
+route. The root still owns one direct RouterOutlet and one OverlayHost.
+
+Runtime audit passes 81/81 component routes. The AppShell matrix covers
+1440/1280/1024/768/390/320 px, Light/Dark and RTL/LTR with zero horizontal
+overflow, broken images, or browser diagnostics. Canonical verification passes
+127/127 test files and 807/807 tests, all governance/lint, both typechecks, and
+the zero-warning production build. Initial output is 418.32 kB / 92.88 kB
+estimated transfer.
+
+Status is `TECHNICAL_VERIFIED` and `INTERNAL_VISUAL_REVIEW_COMPLETED`; the
+complete Shell remains `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. The next action
+is consolidated Product Owner review. No unrelated execution wave is open.
+
 ## Current Autonomous App Shell Completion State — 2026-10-09
 
 The Product Owner-authorized wave entered at

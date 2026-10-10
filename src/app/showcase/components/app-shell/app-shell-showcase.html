@@ -1,27 +1,21 @@
 <erp-stack gap="default" data-dedicated-showcase="app-shell" data-showcase-sections="1">
   <erp-text type="heading-2">إطار تطبيق ERP</erp-text>
   <erp-text type="paragraph" tone="secondary">تكوين إطار التطبيق من الشريط العلوي والشريط الجانبي والمحتوى.</erp-text>
-  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+  <erp-surface
+    padding="default"
+    border="subtle"
+    data-showcase-case="live"
+    data-app-shell-root-workbench-panel
+    class="showcase-live-preview"
+  >
     <erp-stack gap="tight">
       <erp-text type="heading-3">المعاينة الحية</erp-text>
-      <erp-app-shell
-          data-showcase-target
-          [navigationItems]="$any(value('navigationItems'))"
-          [activeNavigationId]="$any(value('activeNavigationId'))"
-          [sidebarLabel]="$any(value('sidebarLabel'))"
-          [contentLabel]="$any(value('contentLabel'))"
-          [quickActionGroups]="$any(value('quickActionGroups'))"
-          [quickActionsLabel]="$any(value('quickActionsLabel'))"
-          [footer]="$any(value('footer'))"
-          [viewport]="$any(value('viewport'))"
-          [sidebarOpen]="$any(value('sidebarOpen'))"
-          (sidebarOpenChange)="recordModel('sidebarOpen', $event)"
-          [sidebarCollapsed]="$any(value('sidebarCollapsed'))"
-          (sidebarCollapsedChange)="recordModel('sidebarCollapsed', $event)"
-          (navigationActivated)="recordEvent('navigationActivated', $event)"
-          (quickActionActivated)="recordEvent('quickActionActivated', $event)"
-          (footerActionActivated)="recordEvent('footerActionActivated', $event)"
-        ><erp-text erpAppShellTopbarStart type="heading-3">Honesty ERP</erp-text><erp-branch-selector erpAppShellTopbarContext [branches]="topbarBranches" value="cairo" (valueChange)="recordEvent('branchChanged', $event)" /><erp-global-search erpAppShellTopbarSearch [results]="topbarSearchResults" (resultActivated)="recordEvent('searchResultActivated', $event)" /><erp-inline erpAppShellTopbarActions gap="tight" align="center"><erp-applications-menu [groups]="topbarApplications" (applicationActivated)="recordEvent('applicationActivated', $event)" /><erp-messages-menu [messages]="topbarMessages" (messageActivated)="recordEvent('messageActivated', $event)" /><erp-notification-bell [notifications]="topbarNotifications" (notificationActivated)="recordEvent('notificationActivated', $event)" /></erp-inline><erp-user-menu erpAppShellTopbarUser [user]="topbarUser" [items]="topbarUserItems" (actionActivated)="recordEvent('userActionActivated', $event)" /><erp-stack gap="default"><erp-text type="heading-3">لوحة العمليات</erp-text><erp-text type="paragraph">ملخص المبيعات والمشتريات والمخزون والحسابات العامة.</erp-text><erp-surface padding="default" border="subtle"><erp-text type="strong">المبيعات اليومية</erp-text><erp-text type="paragraph">128 فاتورة قيد المتابعة.</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="strong">حالة المخزون</erp-text><erp-text type="paragraph">ثمانية أصناف تحتاج إلى إعادة الطلب.</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="strong">المهام المالية</erp-text><erp-text type="paragraph">إقفال الفترة ومراجعة أرصدة الحسابات.</erp-text></erp-surface></erp-stack></erp-app-shell>
+      <erp-text type="paragraph">
+        إطار التطبيق الجذري المحيط بهذه الصفحة هو هدف المعاينة الفعلي؛ تغيّر أدوات التحكم أدناه مدخلاته مباشرةً دون إنشاء إطار تطبيق متداخل.
+      </erp-text>
+      <erp-text type="caption" tone="secondary">
+        يبقى RouterOutlet وOverlayHost وسلطة السمة مملوكة لجذر Design Lab مرة واحدة فقط.
+      </erp-text>
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel

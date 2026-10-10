@@ -13,6 +13,7 @@ import {
 } from './app';
 import {routes} from './app.routes';
 import {ErpOverlayManager} from './shared/overlay/overlay-manager';
+import {ErpReviewAppShellWorkbenchState} from './review-internals/app-shell-workbench/app-shell-workbench-state';
 
 @Component({template: ''})
 class ScreenshotOverlayContent {}
@@ -220,6 +221,59 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     expect(captureRoot?.querySelector('iframe')).toBeNull();
     expect(captureRoot?.querySelector('[id^="btn-preview-"]')).toBeNull();
     expect(root.querySelectorAll('erp-overlay-host')).toHaveLength(1);
+  });
+
+  it('uses the real root AppShell as the live AppShell workbench without nesting another shell', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+    const workbench = TestBed.inject(ErpReviewAppShellWorkbenchState);
+
+    await router.navigateByUrl('/components/app-shell');
+    fixture.detectChanges();
+    await vi.waitFor(() => {
+      fixture.detectChanges();
+      expect((fixture.nativeElement as HTMLElement).querySelector(
+        '[data-dedicated-showcase="app-shell"]',
+      )).not.toBeNull();
+    });
+
+    const root = fixture.nativeElement as HTMLElement;
+    const shell = root.querySelector('#design-lab-app-shell');
+    expect(root.querySelectorAll('erp-app-shell')).toHaveLength(1);
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect(shell?.hasAttribute('data-showcase-target')).toBe(true);
+    expect(shell?.getAttribute('data-app-shell-root-workbench')).toBe('true');
+    expect(root.querySelector('[data-app-shell-root-workbench-panel]')).not.toBeNull();
+    expect(shell?.getAttribute('data-app-shell-viewport')).toBe('true');
+
+    workbench.updateControl('sidebarOpen', true);
+    fixture.detectChanges();
+    expect(shell?.getAttribute('data-app-shell-sidebar-open')).toBe('true');
+
+    await router.navigateByUrl('/components/button');
+    await vi.waitFor(() => {
+      fixture.detectChanges();
+      expect((fixture.nativeElement as HTMLElement).querySelector(
+        '[data-dedicated-showcase="button"]',
+      )).not.toBeNull();
+    });
+    expect(workbench.active()).toBe(false);
+    expect(workbench.values()).toBeNull();
+    expect(root.querySelectorAll('erp-app-shell')).toHaveLength(1);
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect(shell?.hasAttribute('data-showcase-target')).toBe(false);
+
+    await router.navigateByUrl('/components/app-shell');
+    await vi.waitFor(() => {
+      fixture.detectChanges();
+      expect(workbench.active()).toBe(true);
+    });
+    expect(workbench.values()?.sidebarOpen).toBe(false);
+    expect(root.querySelectorAll('erp-app-shell')).toHaveLength(1);
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect(shell?.hasAttribute('data-showcase-target')).toBe(true);
+
+    fixture.destroy();
   });
 
   for (const [url, selector] of [

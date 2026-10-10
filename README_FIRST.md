@@ -1,5 +1,28 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Current gate — 2026-10-10 — root-owned AppShell Workbench review
+
+The existing uncommitted root correction was recovered non-destructively from
+published `main` `94c20bcd55eda2eb722ddad65d6280eaf11592c7`, backed up outside the
+repository, completed, and verified. `/components/app-shell` no longer mounts
+a nested Shell. Its routed content is a dedicated control panel for the one
+real root `ErpAppShell`, connected through typed Angular review state that is
+initialized predictably and removed when the route is exited.
+
+All 81 public component routes have one primary live target, one root Shell,
+one direct RouterOutlet and one OverlayHost. The root is the primary target
+only on `/components/app-shell`; every other route retains its component as the
+sole target. Browser evidence at 1440/1280/1024/768/390/320 px records zero
+horizontal overflow, broken images, or browser diagnostics, and interactive
+checks prove live root updates, output evidence, route cleanup and predictable
+re-entry.
+
+Canonical verification passes 127/127 test files and 807/807 tests, all
+governance/lint, both typechecks, and a zero-warning production build at
+418.32 kB / 92.88 kB estimated initial transfer. The result is
+`TECHNICAL_VERIFIED` and `INTERNAL_VISUAL_REVIEW_COMPLETED`; Product Owner
+visual review remains pending and no unrelated wave is opened.
+
 ## Current gate — 2026-10-09 — consolidated Product Owner App Shell review
 
 The Product Owner-authorized autonomous Shell wave is implemented in the real

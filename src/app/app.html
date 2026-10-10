@@ -2,14 +2,23 @@
   @defer (on immediate) {
   <erp-app-shell
     id="design-lab-app-shell"
-    [navigationItems]="navigationItems"
-    [activeNavigationId]="activeNavigationId()"
-    [quickActionGroups]="quickActions"
-    [footer]="footer"
-    [viewport]="true"
-    [(sidebarOpen)]="sidebarOpen"
-    [(sidebarCollapsed)]="sidebarCollapsed"
+    [attr.data-showcase-target]="isAppShellShowcase() ? '' : null"
+    [attr.data-app-shell-root-workbench]="isAppShellShowcase() ? 'true' : null"
+    [navigationItems]="shellNavigationItems()"
+    [activeNavigationId]="shellActiveNavigationId()"
+    [sidebarLabel]="shellSidebarLabel()"
+    [contentLabel]="shellContentLabel()"
+    [quickActionGroups]="shellQuickActionGroups()"
+    [quickActionsLabel]="shellQuickActionsLabel()"
+    [footer]="shellFooter()"
+    [viewport]="shellViewport()"
+    [sidebarOpen]="shellSidebarOpen()"
+    (sidebarOpenChange)="handleSidebarOpenChange($event)"
+    [sidebarCollapsed]="shellSidebarCollapsed()"
+    (sidebarCollapsedChange)="handleSidebarCollapsedChange($event)"
     (navigationActivated)="navigate($event)"
+    (quickActionActivated)="handleQuickAction($event)"
+    (footerActionActivated)="handleFooterAction($event)"
   >
     <erp-inline erpAppShellTopbarStart class="lab-shell-brand" gap="tight" align="center">
       <erp-tooltip text="فهرس المكوّنات" placement="bottom">

@@ -231,8 +231,13 @@ function validateRepository() {
     errors.push('generic input-only component fallback is still active');
   }
   const appTemplate = fs.readFileSync(path.join(REPO_ROOT, 'src/app/app.html'), 'utf8');
+  const appSource = fs.readFileSync(path.join(REPO_ROOT, 'src/app/app.ts'), 'utf8');
+  const appShellWorkbenchState = fs.readFileSync(
+    path.join(REPO_ROOT, 'src/app/review-internals/app-shell-workbench/app-shell-workbench-state.ts'),
+    'utf8',
+  );
   if (!appTemplate.includes('<erp-app-shell') ||
-      !appTemplate.includes('[navigationItems]="navigationItems"') ||
+      !appTemplate.includes('[navigationItems]="shellNavigationItems()"') ||
       !appTemplate.includes('<erp-sidebar') && !appTemplate.includes('<erp-app-shell') ||
       appTemplate.includes('lab-component-group') ||
       appTemplate.includes('id="lab-nav"')) {
@@ -262,16 +267,32 @@ function validateRepository() {
     const htmlPath = entry.showcaseOwnerPath.replace(/\.ts$/, '.html');
     const html = fs.readFileSync(path.join(REPO_ROOT, htmlPath), 'utf8');
     const source = fs.readFileSync(path.join(REPO_ROOT, entry.showcaseOwnerPath), 'utf8');
+    const isRootAppShell = entry.className === 'ErpAppShell';
+    const rendersLiveOwner = isRootAppShell
+      ? html.includes('data-app-shell-root-workbench-panel') &&
+        !html.includes('<erp-app-shell') &&
+        appTemplate.includes('[attr.data-showcase-target]="isAppShellShowcase() ? \'\' : null"')
+      : html.includes(`<${entry.selector}`);
+    if (isRootAppShell &&
+        (!source.includes('ErpReviewAppShellWorkbenchState') ||
+          !appSource.includes('ErpReviewAppShellWorkbenchState') ||
+          !appShellWorkbenchState.includes("@Injectable({providedIn: 'root'})") ||
+          /honesty-erp-app-shell-showcase|window\.dispatchEvent|HostListener/.test(
+            `${source}\n${appSource}`,
+          ))) {
+      errors.push('ErpAppShell must use the typed Angular root-workbench state bridge');
+    }
     if (!html.includes(`data-dedicated-showcase="${entry.id}"`) ||
         !html.includes('data-showcase-case="live"') ||
-        !html.includes(`<${entry.selector}`)) {
+        !rendersLiveOwner) {
       errors.push(`${entry.className} dedicated showcase is empty or does not render its owner`);
     }
     if (!html.includes('data-showcase-sections="1"') ||
         !html.includes('<app-review-showcase-control-panel')) {
       errors.push(`${entry.className} does not use the single live-preview control contract`);
     }
-    if ((html.match(/data-showcase-target/g) ?? []).length !== 1) {
+    const expectedLocalTargets = isRootAppShell ? 0 : 1;
+    if ((html.match(/data-showcase-target/g) ?? []).length !== expectedLocalTargets) {
       errors.push(`${entry.className} does not identify exactly one live showcase target`);
     }
     const exactFocus = EXACT_CORE_FOCUS.get(entry.className);
@@ -294,13 +315,24 @@ function validateRepository() {
         source.includes("import {ERP_AVATAR_CATALOG} from '../../../controls/avatar-picker/avatar-picker-contracts';") &&
         source.includes('readonly defaultAvatars = ERP_AVATAR_CATALOG;') &&
         source.includes('return Array.isArray(avatars) ? avatars : this.defaultAvatars;');
-      if (!cvaDisabled && !avatarPickerCatalogFallback &&
+      const rootAppShellBinding = isRootAppShell &&
+        appTemplate.includes(`[${bindingName}]="shell${inputApi.name[0].toUpperCase()}${inputApi.name.slice(1)}()"`);
+      if (!cvaDisabled && !avatarPickerCatalogFallback && !rootAppShellBinding &&
           !html.includes(`[${bindingName}]="$any(value('${inputApi.name}'))"`)) {
         errors.push(`${entry.className} live target is not bound to input ${inputApi.name}`);
       }
     }
     for (const outputName of entry.publicApi.outputs) {
-      if (!html.includes(`(${outputName})="recordEvent('${outputName}', $event)"`)) {
+      const rootOutputHandler = {
+        navigationActivated: 'navigate',
+        quickActionActivated: 'handleQuickAction',
+        footerActionActivated: 'handleFooterAction',
+      }[outputName];
+      const rootAppShellOutput = isRootAppShell &&
+        rootOutputHandler &&
+        appTemplate.includes(`(${outputName})="${rootOutputHandler}($event)"`);
+      if (!rootAppShellOutput &&
+          !html.includes(`(${outputName})="recordEvent('${outputName}', $event)"`)) {
         errors.push(`${entry.className} live target has no event evidence for ${outputName}`);
       }
     }
@@ -309,7 +341,7 @@ function validateRepository() {
     );
     if (entry.showcaseCoverage.coveredProjectionSlots.length &&
         entry.className !== 'ErpText' &&
-        !projectedChildPattern.test(html)) {
+        !projectedChildPattern.test(isRootAppShell ? appTemplate : html)) {
       errors.push(`${entry.className} projection showcase has no visible projected content`);
     }
     if (entry.className === 'ErpText' && !html.includes('نص تجريبي مباشر')) {

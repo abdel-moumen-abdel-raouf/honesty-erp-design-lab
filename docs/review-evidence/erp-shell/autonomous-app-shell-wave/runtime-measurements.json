@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-10-09T17:31:09.074Z",
-  "baseUrl": "http://127.0.0.1:4400",
+  "capturedAt": "2026-10-10T02:14:36.797Z",
+  "baseUrl": "http://localhost:4999",
   "measurements": [
     {
       "name": "integrated-1440-light-rtl",
@@ -1443,6 +1443,7 @@
       {
         "route": "/components/alert",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1453,6 +1454,7 @@
       {
         "route": "/components/app-footer",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1463,6 +1465,7 @@
       {
         "route": "/components/app-shell",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1473,6 +1476,7 @@
       {
         "route": "/components/applications-menu",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1483,6 +1487,7 @@
       {
         "route": "/components/avatar",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1493,6 +1498,7 @@
       {
         "route": "/components/avatar-picker",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1503,6 +1509,7 @@
       {
         "route": "/components/branch-selector",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1513,6 +1520,7 @@
       {
         "route": "/components/breadcrumbs",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1523,6 +1531,7 @@
       {
         "route": "/components/bulk-action-bar",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1533,6 +1542,7 @@
       {
         "route": "/components/button",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1543,6 +1553,7 @@
       {
         "route": "/components/button-group",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1553,6 +1564,7 @@
       {
         "route": "/components/check-box",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1563,6 +1575,7 @@
       {
         "route": "/components/color-picker",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1573,6 +1586,7 @@
       {
         "route": "/components/column-chooser",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1583,6 +1597,7 @@
       {
         "route": "/components/combo-box",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1593,6 +1608,7 @@
       {
         "route": "/components/container",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1603,6 +1619,7 @@
       {
         "route": "/components/date-box",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1613,6 +1630,7 @@
       {
         "route": "/components/date-range-box",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1623,6 +1641,7 @@
       {
         "route": "/components/date-time-box",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1633,6 +1652,7 @@
       {
         "route": "/components/divider",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1643,6 +1663,7 @@
       {
         "route": "/components/empty-state",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1653,6 +1674,7 @@
       {
         "route": "/components/entity-schema-fields",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1663,6 +1685,7 @@
       {
         "route": "/components/extended-fab",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1673,6 +1696,7 @@
       {
         "route": "/components/fab",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1683,6 +1707,7 @@
       {
         "route": "/components/fab-menu",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1693,6 +1718,7 @@
       {
         "route": "/components/file-picker",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1703,6 +1729,7 @@
       {
         "route": "/components/filter-bar",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1713,6 +1740,7 @@
       {
         "route": "/components/filter-drawer",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1723,6 +1751,7 @@
       {
         "route": "/components/form",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1733,6 +1762,7 @@
       {
         "route": "/components/form-actions",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1743,6 +1773,7 @@
       {
         "route": "/components/form-section",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1753,6 +1784,7 @@
       {
         "route": "/components/global-search",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1763,6 +1795,7 @@
       {
         "route": "/components/grid",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1773,6 +1806,7 @@
       {
         "route": "/components/icon",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1783,6 +1817,7 @@
       {
         "route": "/components/icon-button",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1793,6 +1828,7 @@
       {
         "route": "/components/icon-picker",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1803,6 +1839,7 @@
       {
         "route": "/components/image-picker",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1813,6 +1850,7 @@
       {
         "route": "/components/inline",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1823,6 +1861,7 @@
       {
         "route": "/components/item-picker",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1833,6 +1872,7 @@
       {
         "route": "/components/messages-menu",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1843,6 +1883,7 @@
       {
         "route": "/components/money-box",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1853,6 +1894,7 @@
       {
         "route": "/components/notification-bell",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1863,6 +1905,7 @@
       {
         "route": "/components/number-box",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1873,6 +1916,7 @@
       {
         "route": "/components/number-stepper",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1883,6 +1927,7 @@
       {
         "route": "/components/page",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1893,6 +1938,7 @@
       {
         "route": "/components/page-header",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1903,6 +1949,7 @@
       {
         "route": "/components/page-shell",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1913,6 +1960,7 @@
       {
         "route": "/components/pagination",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1923,6 +1971,7 @@
       {
         "route": "/components/password-box",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1933,6 +1982,7 @@
       {
         "route": "/components/quick-actions-bar",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1943,6 +1993,7 @@
       {
         "route": "/components/radio-box",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1953,6 +2004,7 @@
       {
         "route": "/components/radio-group",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1963,6 +2015,7 @@
       {
         "route": "/components/range-slider",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1973,6 +2026,7 @@
       {
         "route": "/components/repeater",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1983,6 +2037,7 @@
       {
         "route": "/components/search-box",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -1993,6 +2048,7 @@
       {
         "route": "/components/section",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2003,6 +2059,7 @@
       {
         "route": "/components/select",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2013,6 +2070,7 @@
       {
         "route": "/components/sidebar",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2023,6 +2081,7 @@
       {
         "route": "/components/skeleton",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2033,6 +2092,7 @@
       {
         "route": "/components/smart-table",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2043,6 +2103,7 @@
       {
         "route": "/components/sort-header",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2053,6 +2114,7 @@
       {
         "route": "/components/split-button",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2063,6 +2125,7 @@
       {
         "route": "/components/stack",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2073,6 +2136,7 @@
       {
         "route": "/components/standard-entity-form",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2083,6 +2147,7 @@
       {
         "route": "/components/status-badge",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2093,6 +2158,7 @@
       {
         "route": "/components/stepper",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2103,6 +2169,7 @@
       {
         "route": "/components/surface",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2113,6 +2180,7 @@
       {
         "route": "/components/table",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2123,6 +2191,7 @@
       {
         "route": "/components/table-toolbar",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2133,6 +2202,7 @@
       {
         "route": "/components/tabs",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2143,6 +2213,7 @@
       {
         "route": "/components/tel-box",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2153,6 +2224,7 @@
       {
         "route": "/components/text",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2163,6 +2235,7 @@
       {
         "route": "/components/text-area-box",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2173,6 +2246,7 @@
       {
         "route": "/components/text-box",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2183,6 +2257,7 @@
       {
         "route": "/components/time-box",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2193,6 +2268,7 @@
       {
         "route": "/components/tooltip",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2203,6 +2279,7 @@
       {
         "route": "/components/topbar",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2213,6 +2290,7 @@
       {
         "route": "/components/url-box",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2223,6 +2301,7 @@
       {
         "route": "/components/user-menu",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2233,6 +2312,7 @@
       {
         "route": "/components/validation-summary",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,
@@ -2243,6 +2323,7 @@
       {
         "route": "/components/view-switcher",
         "shellCount": 1,
+        "appShellOwnerCount": 1,
         "routerOutletCount": 1,
         "overlayHostCount": 1,
         "primaryTargetCount": 1,

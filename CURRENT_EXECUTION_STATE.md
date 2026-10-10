@@ -1,5 +1,34 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Authoritative current execution state — 2026-10-10 — root AppShell Workbench recovered
+
+Published `main` and `origin/main` began at
+`94c20bcd55eda2eb722ddad65d6280eaf11592c7`. The worktree contained 21
+pre-existing AppShell/evidence modifications. They were copied with hashes to
+a verified external backup before editing, then reviewed individually; all
+belonged to the root-owned AppShell correction and no unrelated work was
+identified.
+
+The application continues to render exactly one real root `ErpAppShell`, one
+direct RouterOutlet and one OverlayHost. On `/components/app-shell`, that root
+instance becomes the sole primary showcase target. The routed showcase renders
+only its dedicated workbench controls and output log. A typed
+`ErpReviewAppShellWorkbenchState` service connects routed review state to the
+root without DOM manipulation or custom document/window events, resets on
+route exit, and restores predictable defaults on re-entry. Other component
+routes retain their own sole live target and receive no AppShell overrides.
+
+Browser verification passes 81/81 component routes and six AppShell viewport
+widths across Light/Dark and RTL/LTR, with zero horizontal overflow, broken
+images or diagnostics. Live interaction proves immediate input/model updates,
+Quick Action output evidence, route cleanup and re-entry initialization.
+
+Canonical verification passes 127/127 test files and 807/807 tests, all lint
+and governance, both TypeScript typechecks, and the zero-warning production
+build. Initial output is 418.32 kB / 92.88 kB estimated transfer. Status is
+`TECHNICAL_VERIFIED`, `INTERNAL_VISUAL_REVIEW_COMPLETED`, and
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. No later wave is authorized.
+
 ## Authoritative current execution state — 2026-10-09 — autonomous App Shell completion
 
 The Product Owner-authorized App Shell completion wave entered from clean live

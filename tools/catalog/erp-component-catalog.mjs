@@ -1205,7 +1205,117 @@ function projectionMarkup(entry) {
   return '';
 }
 
+function generatedRootAppShellShowcaseOwner(entry) {
+  const ownerPath = entry.showcaseOwnerPath;
+  const source = `import {ChangeDetectionStrategy, Component, OnDestroy, computed, inject} from '@angular/core';
+import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
+import {ErpAppShellWorkbenchValues, ErpReviewAppShellWorkbenchState} from '../../../review-internals/app-shell-workbench/app-shell-workbench-state';
+import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpStack} from '../../../primitives/stack/stack';
+import {ErpSurface} from '../../../primitives/surface/surface';
+import {ErpText} from '../../../primitives/text/text';
+
+const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'app-shell')!;
+
+const INITIAL_VALUES = {
+  ...ENTRY.showcaseInitialValues,
+  viewport: true,
+} as unknown as ErpAppShellWorkbenchValues;
+
+@Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'app-app-shell-showcase',
+  imports: [ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  templateUrl: './app-shell-showcase.html',
+  styleUrl: './app-shell-showcase.scss',
+})
+export class ErpAppShellShowcase implements OnDestroy {
+  private readonly workbench = inject(ErpReviewAppShellWorkbenchState);
+  readonly entry = ENTRY;
+  readonly controls = ENTRY.showcaseControls;
+  readonly lastEvent = this.workbench.lastEvent;
+  readonly controlValues = computed<Readonly<Record<string, unknown>>>(() => ({
+    ...(this.workbench.values() ?? INITIAL_VALUES),
+    '$value': null,
+  }));
+
+  constructor() {
+    this.workbench.activate(INITIAL_VALUES);
+  }
+
+  ngOnDestroy(): void {
+    this.workbench.deactivate();
+  }
+
+  applyControl(change: ErpShowcaseControlChange): void {
+    const value = change.control.kind === 'function'
+      ? this.functionPreset(change.control.name, change.value)
+      : change.value;
+    this.workbench.updateControl(
+      change.control.name as keyof ErpAppShellWorkbenchValues,
+      value as never,
+    );
+  }
+
+  private functionPreset(name: string, value: unknown): unknown {
+    if (value !== 'sample') return null;
+    if (/comparator/i.test(name)) return () => 0;
+    if (/formatter/i.test(name)) return (candidate: unknown) => String(candidate ?? '');
+    if (/disabled/i.test(name)) return () => false;
+    if (/filter|predicate/i.test(name)) return () => true;
+    return (candidate: unknown) => candidate;
+  }
+}
+`;
+  const html = `<erp-stack gap="default" data-dedicated-showcase="app-shell" data-showcase-sections="1">
+  <erp-text type="heading-2">${entry.displayNameAr}</erp-text>
+  <erp-text type="paragraph" tone="secondary">${entry.descriptionAr}</erp-text>
+  <erp-surface
+    padding="default"
+    border="subtle"
+    data-showcase-case="live"
+    data-app-shell-root-workbench-panel
+    class="showcase-live-preview"
+  >
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-text type="paragraph">
+        إطار التطبيق الجذري المحيط بهذه الصفحة هو هدف المعاينة الفعلي؛ تغيّر أدوات التحكم أدناه مدخلاته مباشرةً دون إنشاء إطار تطبيق متداخل.
+      </erp-text>
+      <erp-text type="caption" tone="secondary">
+        يبقى RouterOutlet وOverlayHost وسلطة السمة مملوكة لجذر Design Lab مرة واحدة فقط.
+      </erp-text>
+    </erp-stack>
+  </erp-surface>
+  <app-review-showcase-control-panel
+    [controls]="controls"
+    [values]="controlValues()"
+    (controlChanged)="applyControl($event)"
+  />
+  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">آخر تفاعل</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+    </erp-stack>
+  </erp-surface>
+</erp-stack>
+`;
+  const scss = `:host { display: block; min-inline-size: 0; }
+
+.showcase-live-preview { min-block-size: 12rem; }
+`;
+
+  return new Map([
+    [ownerPath, source],
+    [ownerPath.replace(/\.ts$/, '.html'), html],
+    [ownerPath.replace(/\.ts$/, '.scss'), scss],
+  ]);
+}
+
 function generatedShowcaseOwner(entry) {
+  if (entry.className === 'ErpAppShell') {
+    return generatedRootAppShellShowcaseOwner(entry);
+  }
   const ownerPath = entry.showcaseOwnerPath;
   const componentImport = relativeShowcaseImport(ownerPath, entry.sourcePath);
   const isCva = CVA_COMPONENTS.has(entry.className);

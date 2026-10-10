@@ -1,5 +1,30 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Root-owned AppShell Workbench recovery — 2026-10-10
+
+Entry checkpoint:
+
+- `94c20bcd55eda2eb722ddad65d6280eaf11592c7` — published `main` and
+  `origin/main`, with 21 pre-existing modified AppShell/evidence files.
+
+Recovery evidence:
+
+- A complete 21-file, 977472-byte backup was written outside the repository.
+- Every source/backup SHA-256 matched; manifest SHA-256 is
+  `6074FF1A324CD0AF57DE244539D8BEC18486E9B38850965542964403B934DAFC`.
+- Stable repeated hashes and process inspection found no concurrent writer.
+- All 21 pre-existing changes were relevant to this correction or its browser
+  evidence; no unrelated work was discarded or committed.
+
+Scoped task commit message:
+
+- `fix(shell): make root AppShell the live workbench`
+
+Resolve the resulting SHA from live `main` because this file is part of that
+commit. Final verification passes 127/127 test files and 807/807 tests, all
+governance/lint, both typechecks, and the zero-warning production build.
+Product Owner visual review remains pending.
+
 ## Autonomous App Shell completion wave — 2026-10-09
 
 Entry checkpoint:

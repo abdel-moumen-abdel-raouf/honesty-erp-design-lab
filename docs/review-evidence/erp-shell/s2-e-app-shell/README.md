@@ -1,39 +1,50 @@
-# S2-E ErpAppShell integration evidence
+# Root-owned ErpAppShell workbench evidence
 
-Status: `TECHNICAL_VERIFIED` / `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+Status: `TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
 
-The evidence was captured from `/components/app-shell` in the normal Angular
-document. The primary target composes the real `ErpTopbar`, `ErpSidebar`,
-`ErpQuickActionsBar`, and `ErpAppFooter`, plus `ErpBranchSelector`,
-`ErpGlobalSearch`, `ErpNotificationBell`, and the unchanged `ErpUserMenu`.
+The `/components/app-shell` route does not render a second `ErpAppShell`.
+Its dedicated routed page supplies the live control panel and event log while
+the one root `#design-lab-app-shell` is the route's sole
+`data-showcase-target`. A Design-Lab-only typed Angular state owner carries
+the input/model/output evidence between the routed page and the root. It is
+activated on route entry and cleared on route destruction; no custom
+`window` events or DOM mutation bridge is used.
 
 ## Reproduction
 
 1. Run `npm run start`.
-2. Run:
+2. Set `SHELL_EVIDENCE_URL` to the local Design Lab origin.
+3. Run
    `$env:SHELL_EVIDENCE_COMPONENT='app-shell'; node tools/review/capture-erp-shell-evidence.mjs`.
-3. Inspect `runtime-measurements.json` and the PNG files in this directory.
+4. Inspect `runtime-measurements.json` and the PNG files in this directory.
 
 ## Captured conditions
 
-| Capture | Theme / direction | Shell size | Sidebar nav | Quick actions | Footer | Page / shell horizontal overflow |
+| Capture | Theme / direction | Root Shell | Workspace content | Quick actions | Footer | Page / Shell horizontal overflow |
 |---|---|---:|---:|---|---:|---:|
-| `app-shell-1440-light-rtl.png` | Light / RTL | 1327 x 640.30 px | 269 px | 83.31 px, vertical | 1037 px | 0 / 0 px |
-| `app-shell-1280-dark-ltr.png` | Dark / LTR | 1167 x 640.30 px | 269 px | 83.31 px, vertical | 877 px | 0 / 0 px |
-| `app-shell-1024-light-rtl.png` | Light / RTL | 911 x 640.30 px | 269 px | 83.31 px, vertical | 621 px | 0 / 0 px |
-| `app-shell-768-dark-rtl.png` | Dark / RTL | 671 x 771.59 px | 269 px | 83.31 px, vertical | 381 px | 0 / 0 px |
-| `app-shell-390-light-rtl.png` | Light / RTL | 309 x 1203.69 px | 306 px | 291 px, horizontal | 307 px | 0 / 0 px |
-| `app-shell-320-dark-ltr.png` | Dark / LTR | 239 x 1305.12 px | 236 px | 221 px, horizontal | 237 px | 0 / 0 px |
-| `app-shell-390-light-rtl-end.png` | Light / RTL, lower regions | 309 x 1203.69 px | 306 px | 291 px, horizontal | 307 px | 0 / 0 px |
-| `app-shell-320-dark-ltr-end.png` | Dark / LTR, lower regions | 239 x 1305.12 px | 236 px | 221 px, horizontal | 237 px | 0 / 0 px |
+| `app-shell-1440-light-rtl.png` | Light / RTL | 1440 x 900 px | 1070.69 x 770 px | 99.31 x 263 px, vertical | 1170 x 57 px | 0 / 0 px |
+| `app-shell-1280-dark-ltr.png` | Dark / LTR | 1280 x 900 px | 910.69 x 770 px | 99.31 x 263 px, vertical | 1010 x 57 px | 0 / 0 px |
+| `app-shell-1024-light-rtl.png` | Light / RTL | 1024 x 768 px | 1024 x 580 px | 1024 x 58 px, horizontal | 1024 x 57 px | 0 / 0 px |
+| `app-shell-768-dark-rtl.png` | Dark / RTL | 768 x 900 px | 768 x 557.70 px | 768 x 58 px, horizontal | 768 x 57 px | 0 / 0 px |
+| `app-shell-390-light-rtl.png` | Light / RTL | 375 x 2915.73 px | 375 x 2536.73 px | 375 x 58 px, horizontal | 375 x 120 px | 0 / 0 px |
+| `app-shell-320-dark-ltr.png` | Dark / LTR | 305 x 3307.59 px | 305 x 2846.30 px | 305 x 58 px, horizontal | 305 x 120 px | 0 / 0 px |
+| `app-shell-390-light-rtl-end.png` | Light / RTL, lower regions | 375 x 2915.73 px | 375 x 2536.73 px | 375 x 58 px, horizontal | 375 x 120 px | 0 / 0 px |
+| `app-shell-320-dark-ltr-end.png` | Dark / LTR, lower regions | 305 x 3307.59 px | 305 x 2846.30 px | 305 x 58 px, horizontal | 305 x 120 px | 0 / 0 px |
 
-Every condition records one instance of each required production owner, four
-QuickActionsBar actions, no broken images, and no captured browser error or
-warning. Each condition also activates one real quick action and one real
-Footer action; the event log records `quickActionActivated: task` and
-`footerActionActivated: support`. The narrow lower-region captures prove the
-in-flow horizontal action rail and Footer without hiding either behind the
-Design Lab utility bar. At 320 px the Sidebar is capped by its 239 px shell
-column instead of preserving its 269 px desktop width and being clipped.
+Every condition records the ten required production owners, one RouterOutlet,
+one OverlayHost, zero broken images, and zero captured browser error or
+warning. Each condition activates a real quick action and Footer action; the
+event log records `quickActionActivated: task` and
+`footerActionActivated: support`.
 
-No screenshot or automated result grants Product Owner visual acceptance.
+Interactive browser verification also changed `contentLabel` on the live
+control panel and observed the root `<main>` accessible label update
+immediately. It then left the route and returned: the non-AppShell route kept
+one root Shell plus its own one target, and the re-entered AppShell workbench
+restored `contentLabel` and `sidebarOpen` to their predictable initial values.
+The `sidebarOpen` model and Quick Action output were both reflected in the
+same routed control/event evidence.
+
+The captures and automated checks are technical/internal-review evidence only.
+They do not grant Product Owner visual acceptance.

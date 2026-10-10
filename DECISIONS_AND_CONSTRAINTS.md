@@ -1,5 +1,25 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Root-owned AppShell Workbench decisions — 2026-10-10
+
+- `/components/app-shell` reviews the single real root `ErpAppShell`; routed
+  review content must not author a nested Shell instance.
+- The root Shell is `data-showcase-target` only while the AppShell workbench is
+  active. All other public component routes retain their component as the sole
+  primary target.
+- Root-to-routed-workbench communication uses the typed, review-internal
+  `ErpReviewAppShellWorkbenchState`. Custom document/window events, DOM
+  mutation bridges, and public production state are forbidden.
+- AppShell review values/models are initialized on route entry, cleared on
+  route destruction, and must not leak into normal Shell state or later route
+  entries.
+- The application keeps exactly one direct RouterOutlet, one OverlayHost, one
+  root AppShell and one App-root theme authority.
+- Existing Shell owners and topology are preserved; this recovery creates no
+  new production owner, dependency, responsive rule, theme authority, or
+  overlay engine.
+- Technical/browser evidence is not Product Owner visual approval.
+
 ## Autonomous App Shell completion decisions — 2026-10-09
 
 - `ErpApplicationsMenu` and `ErpMessagesMenu` are independent public Shell

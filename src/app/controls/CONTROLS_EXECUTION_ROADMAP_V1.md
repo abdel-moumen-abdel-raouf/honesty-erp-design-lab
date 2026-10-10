@@ -1,5 +1,19 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Authoritative root AppShell Workbench closure — 2026-10-10
+
+The existing AppShell follow-up is complete without reopening or duplicating
+the autonomous Shell owners. `/components/app-shell` is now a routed control
+surface for the one real root `ErpAppShell`; typed review-only Angular state
+replaces the provisional custom-window-event bridge and is cleared on route
+exit. The route contains no nested Shell and all 81 public routes retain one
+primary live target.
+
+The runtime matrix, route audit, 127-file/807-test canonical gate, both
+typechecks, all governance/lint and zero-warning production build pass. The
+roadmap stops at consolidated Product Owner visual review. No CRUD,
+Feature/Page, unrelated Shell, or component-library wave is opened.
+
 ## Authoritative Shell completion — 2026-10-09 — consolidated review gate
 
 The authorized autonomous App Shell wave is complete in implementation scope:

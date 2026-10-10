@@ -1,4 +1,10 @@
-import {ChangeDetectionStrategy, Component, computed, inject, signal} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {
   Router,
@@ -7,6 +13,7 @@ import {
 import {ErpOverlayHost} from './shared/overlay/overlay-host';
 import {ERP_COMPONENT_NAVIGATION} from './catalog/erp-component-navigation.generated';
 import {ErpAppShell} from './controls/app-shell/app-shell';
+import type {ErpAppShellFooterConfig} from './controls/app-shell/app-shell';
 import {ErpApplicationsMenu} from './controls/applications-menu/applications-menu';
 import {ErpBranchSelector} from './controls/branch-selector/branch-selector';
 import {ErpButton} from './controls/button/button';
@@ -28,11 +35,14 @@ import {ErpUserMenu} from './controls/user-menu/user-menu';
 import {ErpText} from './primitives/text/text';
 import {ErpIconName} from './primitives/icon/icon-contracts';
 import {ErpInline} from './primitives/inline/inline';
+import {
+  ErpAppShellWorkbenchValues,
+  ErpReviewAppShellWorkbenchState,
+} from './review-internals/app-shell-workbench/app-shell-workbench-state';
 
 export type LabTheme = 'light' | 'dark';
 
 const LAB_THEME_STORAGE_KEY = 'honesty-lab-theme';
-
 const CATEGORY_PRESENTATION: Readonly<Record<string, Readonly<{label: string; icon: ErpIconName}>>> = {
   Actions: {label: 'الإجراءات', icon: 'operations'},
   'Application Shell': {label: 'إطار التطبيق', icon: 'dashboard'},
@@ -236,6 +246,7 @@ export function normalizeScreenshotCloneColors(root: HTMLElement): void {
 })
 export class App {
   private readonly router = inject(Router);
+  private readonly appShellWorkbench = inject(ErpReviewAppShellWorkbenchState);
   private readonly storage = this.resolveStorage();
   private readonly routeEvent = toSignal(this.router.events, {initialValue: null});
 
@@ -244,7 +255,6 @@ export class App {
   readonly statusMessage = signal<string | null>(null);
   readonly hasError = signal(false);
   readonly sidebarOpen = signal(false);
-  readonly catalogOpen = this.sidebarOpen;
   readonly sidebarCollapsed = signal(false);
   readonly navigationItems = buildLabNavigation();
   readonly activeNavigationId = computed(() => {
@@ -252,6 +262,9 @@ export class App {
     const path = this.router.url.split(/[?#]/, 1)[0];
     return ERP_COMPONENT_NAVIGATION.find((entry) => entry.showcaseRoute === path)?.id ?? null;
   });
+  readonly isAppShellShowcase = computed(
+    () => this.activeNavigationId() === 'app-shell',
+  );
 
   readonly branches = [
     {id: 'cairo', label: 'فرع القاهرة', description: 'المركز الرئيسي'},
@@ -318,6 +331,37 @@ export class App {
     statusTone: 'success' as const,
     actions: [{id: 'documentation', label: 'التوثيق', icon: 'external-link' as const}],
   };
+  readonly shellNavigationItems = computed(() =>
+    this.previewValue<readonly ErpNavigationItem[]>('navigationItems', this.navigationItems),
+  );
+  readonly shellActiveNavigationId = computed(() =>
+    this.previewValue<string | null>('activeNavigationId', this.activeNavigationId()),
+  );
+  readonly shellSidebarLabel = computed(() =>
+    this.previewValue('sidebarLabel', 'التنقل الرئيسي'),
+  );
+  readonly shellContentLabel = computed(() =>
+    this.previewValue('contentLabel', 'محتوى التطبيق'),
+  );
+  readonly shellQuickActionGroups = computed(() =>
+    this.previewValue<readonly ErpQuickActionGroup[]>('quickActionGroups', this.quickActions),
+  );
+  readonly shellQuickActionsLabel = computed(() =>
+    this.previewValue('quickActionsLabel', 'الإجراءات السريعة'),
+  );
+  readonly shellFooter = computed(() =>
+    this.previewValue<ErpAppShellFooterConfig | null>('footer', this.footer),
+  );
+  readonly shellViewport = computed(() =>
+    this.previewValue('viewport', true),
+  );
+  readonly shellSidebarOpen = computed(() =>
+    this.previewValue('sidebarOpen', this.sidebarOpen()),
+  );
+  readonly shellSidebarCollapsed = computed(() =>
+    this.previewValue('sidebarCollapsed', this.sidebarCollapsed()),
+  );
+  readonly catalogOpen = this.shellSidebarOpen;
 
   toggleTheme(): void {
     const theme = this.theme() === 'light' ? 'dark' : 'light';
@@ -326,17 +370,41 @@ export class App {
   }
 
   toggleCatalog(): void {
-    this.sidebarOpen.update((open) => !open);
+    this.setShellModel('sidebarOpen', !this.shellSidebarOpen());
   }
 
   closeCatalog(): void {
-    this.sidebarOpen.set(false);
+    this.setShellModel('sidebarOpen', false);
   }
 
   navigate(item: ErpNavigationItem): void {
+    if (this.isAppShellShowcase()) {
+      this.recordAppShellShowcaseEvent('navigationActivated', item);
+      return;
+    }
     if (item.href && !item.disabled) {
       void this.router.navigateByUrl(item.href);
       this.closeCatalog();
+    }
+  }
+
+  handleSidebarOpenChange(open: boolean): void {
+    this.setShellModel('sidebarOpen', open);
+  }
+
+  handleSidebarCollapsedChange(collapsed: boolean): void {
+    this.setShellModel('sidebarCollapsed', collapsed);
+  }
+
+  handleQuickAction(actionId: string): void {
+    if (this.isAppShellShowcase()) {
+      this.recordAppShellShowcaseEvent('quickActionActivated', actionId);
+    }
+  }
+
+  handleFooterAction(actionId: string): void {
+    if (this.isAppShellShowcase()) {
+      this.recordAppShellShowcaseEvent('footerActionActivated', actionId);
     }
   }
 
@@ -411,5 +479,34 @@ export class App {
     } catch {
       return null;
     }
+  }
+
+  private previewValue<T>(
+    name: keyof ErpAppShellWorkbenchValues,
+    fallback: T,
+  ): T {
+    if (!this.isAppShellShowcase()) {
+      return fallback;
+    }
+    const values = this.appShellWorkbench.values();
+    return values && Object.prototype.hasOwnProperty.call(values, name)
+      ? values[name] as T
+      : fallback;
+  }
+
+  private setShellModel(name: 'sidebarOpen' | 'sidebarCollapsed', value: boolean): void {
+    if (this.isAppShellShowcase() && this.appShellWorkbench.active()) {
+      this.appShellWorkbench.updateModel(name, value);
+      return;
+    }
+    if (name === 'sidebarOpen') {
+      this.sidebarOpen.set(value);
+      return;
+    }
+    this.sidebarCollapsed.set(value);
+  }
+
+  private recordAppShellShowcaseEvent(name: string, value: unknown): void {
+    this.appShellWorkbench.recordEvent(name, value);
   }
 }

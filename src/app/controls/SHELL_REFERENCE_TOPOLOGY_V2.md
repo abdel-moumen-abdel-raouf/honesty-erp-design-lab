@@ -1,5 +1,21 @@
 # Shell Reference and Topology Contract V2
 
+## Root-owned AppShell Workbench contract — 2026-10-10
+
+The AppShell review route is part of the real application frame: it renders a
+dedicated control panel inside the root Shell and never composes another
+`ErpAppShell`. The root instance conditionally owns the route's sole
+`data-showcase-target`; on every other route the routed component remains the
+sole target. Typed Angular review state binds inputs/models/outputs across the
+root/routed boundary and is destroyed with the review route, preserving normal
+Shell defaults elsewhere.
+
+This review mechanism does not alter production AppShell ownership or topology.
+The application retains one root Shell, direct RouterOutlet, OverlayHost and
+theme authority. The 81-route browser audit and six-width AppShell matrix
+record zero horizontal overflow, broken images and diagnostics. Technical and
+internal visual verification remain separate from Product Owner acceptance.
+
 ## Autonomous complete-AppShell checkpoint — 2026-10-09
 
 The real Design Lab now runs inside one `ErpAppShell`, not only an isolated

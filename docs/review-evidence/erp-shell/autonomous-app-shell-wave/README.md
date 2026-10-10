@@ -8,6 +8,12 @@ AppShell workbench. The captured route is `/components/global-search`; the
 same frame keeps one direct RouterOutlet and one OverlayHost while the routed
 page changes.
 
+The later root-workbench correction is included in this package's route audit:
+`/components/app-shell` now has one root `ErpAppShell` and no nested AppShell.
+The routed workbench controls the root through a typed Angular review-state
+owner that resets on route exit. All other component routes keep the root
+outside their own single `data-showcase-target`.
+
 ## Reproduction
 
 1. Run the Design Lab locally.
@@ -45,7 +51,7 @@ clipping.
 - Browser errors and warnings: 0.
 - RouterOutlet instances: 1. OverlayHost instances: 1.
 - Public component route audit: 81/81 passed. Every route rendered exactly one
-  primary showcase target inside the one real root AppShell, with one
+  primary showcase target with one real root AppShell, one
   RouterOutlet, one OverlayHost, zero broken images, zero horizontal overflow,
   and zero browser errors or warnings.
 - Browser route round trip:
