@@ -1,5 +1,18 @@
 # Next Component Reference Batch V1
 
+## Authoritative current action — 2026-10-10 — Visual Review Experience V1
+
+The Product Owner-authorized review-experience wave has prepared all 81 public
+routes for consolidated desktop inspection without altering production visual
+contracts. Gallery, truthful reference comparison, one live target, collapsed
+full API controls, and event evidence are now consistently available. The next
+action is Product Owner review from `/components`; no new public owner or
+production redesign is authorized by this checkpoint.
+
+Lifecycle authority remains one accepted/frozen owner, five reopened owners,
+and 75 pending owners. The six planned identities remain outside the public
+catalog and outside this review-only wave.
+
 ## Authoritative current action — 2026-10-10 — consolidated Product Owner review
 
 The autonomous internal-review pass has processed the complete implemented

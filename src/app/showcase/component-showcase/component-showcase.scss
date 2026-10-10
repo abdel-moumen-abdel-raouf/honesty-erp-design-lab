@@ -11,3 +11,25 @@ erp-page {
   min-inline-size: 0;
   overflow-wrap: anywhere;
 }
+
+.component-showcase__status,
+.component-showcase__reference-kind {
+  border: var(--honesty-border-width-default) solid var(--honesty-border-subtle);
+  border-radius: var(--honesty-radius-full);
+  padding: var(--honesty-space-stack-tight) var(--honesty-space-inline-tight);
+}
+
+.component-showcase__status[data-review-status='accepted-frozen'] {
+  color: var(--honesty-color-feedback-success-text);
+  border-color: var(--honesty-color-feedback-success-border);
+}
+
+.component-showcase__status[data-review-status='reopened'] {
+  color: var(--honesty-color-feedback-warning-text);
+  border-color: var(--honesty-color-feedback-warning-border);
+}
+
+.component-showcase__technical-details {
+  border-block-start: var(--honesty-border-width-default) solid var(--honesty-border-subtle);
+  padding-block-start: var(--honesty-space-stack-tight);
+}

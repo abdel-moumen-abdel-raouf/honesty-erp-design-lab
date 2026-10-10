@@ -1,7 +1,17 @@
-<erp-stack gap="default" data-dedicated-showcase="app-shell" data-showcase-sections="1">
-  <erp-text type="heading-2">إطار تطبيق ERP</erp-text>
-  <erp-text type="paragraph" tone="secondary">تكوين إطار التطبيق من الشريط العلوي والشريط الجانبي والمحتوى.</erp-text>
+<erp-stack gap="default" data-dedicated-showcase="app-shell" data-showcase-sections="4">
+  <erp-stack id="visual-gallery" data-review-section="gallery">
+    <erp-surface padding="default" border="subtle">
+      <erp-stack gap="tight">
+        <erp-text type="heading-2">معرض إطار التطبيق الحقيقي</erp-text>
+        <erp-text type="paragraph" tone="secondary">
+          الهدف المرئي هو إطار Design Lab الجذري المحيط بالصفحة نفسها. لا ينشئ هذا المعرض إطارًا متداخلًا أو هدفًا إضافيًا.
+        </erp-text>
+      </erp-stack>
+    </erp-surface>
+  </erp-stack>
+  <app-review-showcase-reference-comparison [entry]="entry" />
   <erp-surface
+    id="live-preview"
     padding="default"
     border="subtle"
     data-showcase-case="live"
@@ -9,7 +19,7 @@
     class="showcase-live-preview"
   >
     <erp-stack gap="tight">
-      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-text type="heading-3">المعاينة الحية الجذرية</erp-text>
       <erp-text type="paragraph">
         إطار التطبيق الجذري المحيط بهذه الصفحة هو هدف المعاينة الفعلي؛ تغيّر أدوات التحكم أدناه مدخلاته مباشرةً دون إنشاء إطار تطبيق متداخل.
       </erp-text>
@@ -18,12 +28,15 @@
       </erp-text>
     </erp-stack>
   </erp-surface>
-  <app-review-showcase-control-panel
-    [controls]="controls"
-    [values]="controlValues()"
-    (controlChanged)="applyControl($event)"
-  />
-  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+  <details id="api-controls" class="showcase-api-controls" data-showcase-api-controls>
+    <summary><erp-text type="strong">أدوات API المتقدمة</erp-text></summary>
+    <app-review-showcase-control-panel
+      [controls]="controls"
+      [values]="controlValues()"
+      (controlChanged)="applyControl($event)"
+    />
+  </details>
+  <erp-surface id="event-evidence" padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
       <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>

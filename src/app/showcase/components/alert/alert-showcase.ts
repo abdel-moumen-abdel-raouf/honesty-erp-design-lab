@@ -2,23 +2,88 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpAlert} from '../../../controls/alert/alert';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
 import {ErpButton} from '../../../controls/button/button';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'alert')!;
+const REVIEW_GALLERY_GROUPS = [
+  {
+    "id": "default",
+    "label": "الحالة الافتراضية",
+    "cases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "title": "تنبيه تشغيلي",
+          "description": "توجد فاتورة تحتاج إلى مراجعة قبل اعتماد إقفال الفترة.",
+          "dismissible": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "tone",
+    "label": "النبرات",
+    "cases": [
+      {
+        "id": "tone-info",
+        "label": "معلومات (info)",
+        "inputs": {
+          "title": "تنبيه تشغيلي",
+          "description": "توجد فاتورة تحتاج إلى مراجعة قبل اعتماد إقفال الفترة.",
+          "dismissible": true,
+          "tone": "info"
+        }
+      },
+      {
+        "id": "tone-success",
+        "label": "نجاح (success)",
+        "inputs": {
+          "title": "تنبيه تشغيلي",
+          "description": "توجد فاتورة تحتاج إلى مراجعة قبل اعتماد إقفال الفترة.",
+          "dismissible": true,
+          "tone": "success"
+        }
+      },
+      {
+        "id": "tone-warning",
+        "label": "تحذير (warning)",
+        "inputs": {
+          "title": "تنبيه تشغيلي",
+          "description": "توجد فاتورة تحتاج إلى مراجعة قبل اعتماد إقفال الفترة.",
+          "dismissible": true,
+          "tone": "warning"
+        }
+      },
+      {
+        "id": "tone-danger",
+        "label": "خطر (danger)",
+        "inputs": {
+          "title": "تنبيه تشغيلي",
+          "description": "توجد فاتورة تحتاج إلى مراجعة قبل اعتماد إقفال الفترة.",
+          "dismissible": true,
+          "tone": "danger"
+        }
+      }
+    ]
+  }
+] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-alert-showcase',
-  imports: [ErpAlert, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpButton],
+  imports: [ErpAlert, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText, ErpButton],
   templateUrl: './alert-showcase.html',
   styleUrl: './alert-showcase.scss',
 })
 export class ErpAlertShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
+  readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>(null);
@@ -32,6 +97,13 @@ export class ErpAlertShowcase {
 
   value(name: string): unknown {
     return this.liveValues()[name];
+  }
+
+  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return false;
+    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
+      ? showcaseCase.inputs[name]
+      : ENTRY.showcaseInitialValues?.[name];
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

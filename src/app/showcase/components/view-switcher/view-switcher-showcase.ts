@@ -2,22 +2,95 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpViewSwitcher} from '../../../controls/view-switcher/view-switcher';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'view-switcher')!;
+const REVIEW_GALLERY_GROUPS = [
+  {
+    "id": "default",
+    "label": "الحالة الافتراضية",
+    "cases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "value": "table"
+        }
+      }
+    ]
+  },
+  {
+    "id": "disabled",
+    "label": "disabled",
+    "cases": [
+      {
+        "id": "disabled-false",
+        "label": "غير مفعّل (false)",
+        "inputs": {
+          "value": "table",
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "مفعّل (true)",
+        "inputs": {
+          "value": "table",
+          "disabled": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "states",
+    "label": "الحالات",
+    "cases": [
+      {
+        "id": "disabled",
+        "label": "حالة معطلة",
+        "inputs": {
+          "value": "table",
+          "disabled": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "scenarios",
+    "label": "سيناريوهات الاستخدام",
+    "cases": [
+      {
+        "id": "value-table",
+        "label": "value: table",
+        "inputs": {
+          "value": "table"
+        }
+      },
+      {
+        "id": "value-cards",
+        "label": "value: cards",
+        "inputs": {
+          "value": "cards"
+        }
+      }
+    ]
+  }
+] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-view-switcher-showcase',
-  imports: [ErpViewSwitcher, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpViewSwitcher, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText],
   templateUrl: './view-switcher-showcase.html',
   styleUrl: './view-switcher-showcase.scss',
 })
 export class ErpViewSwitcherShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
+  readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>(null);
@@ -31,6 +104,13 @@ export class ErpViewSwitcherShowcase {
 
   value(name: string): unknown {
     return this.liveValues()[name];
+  }
+
+  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return false;
+    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
+      ? showcaseCase.inputs[name]
+      : ENTRY.showcaseInitialValues?.[name];
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

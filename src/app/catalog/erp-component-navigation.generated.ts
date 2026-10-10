@@ -8,6 +8,8 @@ export interface ErpComponentNavigationEntry {
   readonly displayNameAr: string;
   readonly descriptionAr: string;
   readonly purpose: string;
+  readonly reviewStatus: {readonly kind: 'accepted-frozen' | 'reopened' | 'pending-unknown'};
+  readonly reviewReference: {readonly kind: 'exact-local' | 'external-skodash' | 'original-honesty'};
 }
 
 export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = [
@@ -19,7 +21,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/button",
     "displayNameAr": "زر",
     "descriptionAr": "إجراء نصي قياسي بحالاته وأحجامه وأنماطه.",
-    "purpose": "Owns the public ERP button semantic and presentation contract."
+    "purpose": "Owns the public ERP button semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "external-skodash"
+    }
   },
   {
     "id": "button-group",
@@ -29,7 +37,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/button-group",
     "displayNameAr": "مجموعة أزرار",
     "descriptionAr": "اختيار إجراء واحد من مجموعة مترابطة.",
-    "purpose": "Owns the public ERP button group semantic and presentation contract."
+    "purpose": "Owns the public ERP button group semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "external-skodash"
+    }
   },
   {
     "id": "extended-fab",
@@ -39,7 +53,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/extended-fab",
     "displayNameAr": "زر إجراء عائم ممتد",
     "descriptionAr": "إجراء عائم يجمع الأيقونة والتسمية.",
-    "purpose": "Owns the public ERP extended fab semantic and presentation contract."
+    "purpose": "Owns the public ERP extended fab semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "external-skodash"
+    }
   },
   {
     "id": "fab",
@@ -49,7 +69,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/fab",
     "displayNameAr": "زر إجراء عائم",
     "descriptionAr": "إجراء عائم بأيقونة ودلالة وصول واضحة.",
-    "purpose": "Owns the public ERP fab semantic and presentation contract."
+    "purpose": "Owns the public ERP fab semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "external-skodash"
+    }
   },
   {
     "id": "fab-menu",
@@ -59,7 +85,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/fab-menu",
     "displayNameAr": "قائمة إجراءات عائمة",
     "descriptionAr": "مجموعة إجراءات عائمة قابلة للفتح والإغلاق.",
-    "purpose": "Owns the public ERP fab menu semantic and presentation contract."
+    "purpose": "Owns the public ERP fab menu semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "external-skodash"
+    }
   },
   {
     "id": "icon-button",
@@ -69,7 +101,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/icon-button",
     "displayNameAr": "زر أيقونة",
     "descriptionAr": "إجراء مختصر بأيقونة وتسمية وصول.",
-    "purpose": "Owns the public ERP icon button semantic and presentation contract."
+    "purpose": "Owns the public ERP icon button semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "external-skodash"
+    }
   },
   {
     "id": "split-button",
@@ -79,7 +117,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/split-button",
     "displayNameAr": "زر منقسم",
     "descriptionAr": "إجراء أساسي مع قائمة إجراءات إضافية.",
-    "purpose": "Owns the public ERP split button semantic and presentation contract."
+    "purpose": "Owns the public ERP split button semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "external-skodash"
+    }
   },
   {
     "id": "app-footer",
@@ -89,7 +133,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/app-footer",
     "displayNameAr": "تذييل التطبيق",
     "descriptionAr": "معلومات التطبيق والحالة والإجراءات المساعدة ضمن إطار ERP.",
-    "purpose": "Owns the public ERP app footer semantic and presentation contract."
+    "purpose": "Owns the public ERP app footer semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "external-skodash"
+    }
   },
   {
     "id": "applications-menu",
@@ -99,7 +149,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/applications-menu",
     "displayNameAr": "قائمة التطبيقات",
     "descriptionAr": "قائمة تطبيقات ومجالات ERP يحددها المستهلك.",
-    "purpose": "Owns the public ERP applications menu semantic and presentation contract."
+    "purpose": "Owns the public ERP applications menu semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "exact-local"
+    }
   },
   {
     "id": "app-shell",
@@ -109,7 +165,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/app-shell",
     "displayNameAr": "إطار تطبيق ERP",
     "descriptionAr": "تكوين إطار التطبيق من الشريط العلوي والشريط الجانبي والمحتوى.",
-    "purpose": "Frames the production ERP application using the approved Topbar, Sidebar, and projected routed content."
+    "purpose": "Frames the production ERP application using the approved Topbar, Sidebar, and projected routed content.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "external-skodash"
+    }
   },
   {
     "id": "branch-selector",
@@ -119,7 +181,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/branch-selector",
     "displayNameAr": "محدد الفرع",
     "descriptionAr": "اختيار فرع مضبوط يتحكم فيه المستهلك.",
-    "purpose": "Owns the public ERP branch selector semantic and presentation contract."
+    "purpose": "Owns the public ERP branch selector semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "external-skodash"
+    }
   },
   {
     "id": "global-search",
@@ -129,7 +197,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/global-search",
     "displayNameAr": "البحث العام",
     "descriptionAr": "بحث عام داخل إطار التطبيق مع نتائج مصنفة.",
-    "purpose": "Owns the public ERP global search semantic and presentation contract."
+    "purpose": "Owns the public ERP global search semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "exact-local"
+    }
   },
   {
     "id": "messages-menu",
@@ -139,7 +213,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/messages-menu",
     "displayNameAr": "قائمة الرسائل",
     "descriptionAr": "رسائل المستخدم الواردة مع البحث وحالة القراءة وإجراءات المستهلك.",
-    "purpose": "Owns the public ERP messages menu semantic and presentation contract."
+    "purpose": "Owns the public ERP messages menu semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "exact-local"
+    }
   },
   {
     "id": "notification-bell",
@@ -149,7 +229,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/notification-bell",
     "displayNameAr": "جرس الإشعارات",
     "descriptionAr": "مدخل إشعارات قابل للفتح مع عدد غير المقروء.",
-    "purpose": "Owns the public ERP notification bell semantic and presentation contract."
+    "purpose": "Owns the public ERP notification bell semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "exact-local"
+    }
   },
   {
     "id": "quick-actions-bar",
@@ -159,7 +245,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/quick-actions-bar",
     "displayNameAr": "شريط الإجراءات السريعة",
     "descriptionAr": "مجموعات إجراءات سريعة يحددها المستهلك ضمن إطار التطبيق.",
-    "purpose": "Owns the public ERP quick actions bar semantic and presentation contract."
+    "purpose": "Owns the public ERP quick actions bar semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "external-skodash"
+    }
   },
   {
     "id": "topbar",
@@ -169,7 +261,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/topbar",
     "displayNameAr": "الشريط العلوي",
     "descriptionAr": "تخطيط مناطق السياق والبحث والإشعارات والمستخدم.",
-    "purpose": "Owns the public ERP topbar semantic and presentation contract."
+    "purpose": "Owns the public ERP topbar semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "external-skodash"
+    }
   },
   {
     "id": "user-menu",
@@ -179,7 +277,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/user-menu",
     "displayNameAr": "قائمة المستخدم",
     "descriptionAr": "هوية المستخدم وإجراءات الحساب ضمن سطح مثبت.",
-    "purpose": "Owns the public ERP user menu semantic and presentation contract."
+    "purpose": "Owns the public ERP user menu semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "reopened"
+    },
+    "reviewReference": {
+      "kind": "exact-local"
+    }
   },
   {
     "id": "bulk-action-bar",
@@ -189,7 +293,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/bulk-action-bar",
     "displayNameAr": "شريط الإجراءات الجماعية",
     "descriptionAr": "إجراءات مرتبطة بالصفوف المحددة.",
-    "purpose": "Owns the public ERP bulk action bar semantic and presentation contract."
+    "purpose": "Owns the public ERP bulk action bar semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "filter-bar",
@@ -199,7 +309,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/filter-bar",
     "displayNameAr": "شريط التصفية",
     "descriptionAr": "عرض المرشحات النشطة وإصدار نوايا تعديلها.",
-    "purpose": "Owns the public ERP filter bar semantic and presentation contract."
+    "purpose": "Owns the public ERP filter bar semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "filter-drawer",
@@ -209,7 +325,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/filter-drawer",
     "displayNameAr": "درج التصفية",
     "descriptionAr": "سطح حاجب لتكوين المرشحات وتطبيقها.",
-    "purpose": "Owns the public ERP filter drawer semantic and presentation contract."
+    "purpose": "Owns the public ERP filter drawer semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "smart-table",
@@ -219,7 +341,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/smart-table",
     "displayNameAr": "الجدول الذكي",
     "descriptionAr": "تركيب مضبوط للجدول والأدوات والصفحات والحالات.",
-    "purpose": "Owns the public ERP smart table semantic and presentation contract."
+    "purpose": "Owns the public ERP smart table semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "table",
@@ -229,7 +357,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/table",
     "displayNameAr": "الجدول",
     "descriptionAr": "دلالات الجدول والصفوف والخلايا والاختيار والفرز والتحجيم.",
-    "purpose": "Owns native table semantics, rows, cells, selection, sorting, resizing, and rich cell projection."
+    "purpose": "Owns native table semantics, rows, cells, selection, sorting, resizing, and rich cell projection.",
+    "reviewStatus": {
+      "kind": "reopened"
+    },
+    "reviewReference": {
+      "kind": "exact-local"
+    }
   },
   {
     "id": "table-toolbar",
@@ -239,7 +373,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/table-toolbar",
     "displayNameAr": "شريط أدوات الجدول",
     "descriptionAr": "تخطيط البحث والإجراءات وأدوات العرض للجدول.",
-    "purpose": "Owns the public ERP table toolbar semantic and presentation contract."
+    "purpose": "Owns the public ERP table toolbar semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "alert",
@@ -249,7 +389,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/alert",
     "displayNameAr": "تنبيه",
     "descriptionAr": "رسالة ملاحظات قابلة للإغلاق عند السماح بذلك.",
-    "purpose": "Owns the public ERP alert semantic and presentation contract."
+    "purpose": "Owns the public ERP alert semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "external-skodash"
+    }
   },
   {
     "id": "empty-state",
@@ -259,7 +405,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/empty-state",
     "displayNameAr": "الحالة الفارغة",
     "descriptionAr": "حالة فارغة بعنوان ووصف وإجراءات ورسوم اختيارية.",
-    "purpose": "Owns the public ERP empty state semantic and presentation contract."
+    "purpose": "Owns the public ERP empty state semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "reopened"
+    },
+    "reviewReference": {
+      "kind": "exact-local"
+    }
   },
   {
     "id": "skeleton",
@@ -269,7 +421,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/skeleton",
     "displayNameAr": "هيكل التحميل",
     "descriptionAr": "تمثيل مؤقت للمحتوى أثناء التحميل.",
-    "purpose": "Owns the public ERP skeleton semantic and presentation contract."
+    "purpose": "Owns the public ERP skeleton semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "status-badge",
@@ -279,7 +437,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/status-badge",
     "displayNameAr": "شارة الحالة",
     "descriptionAr": "مؤشر حالة غير تفاعلي أو تفاعلي حسب العقد.",
-    "purpose": "Owns the public ERP status badge semantic and presentation contract."
+    "purpose": "Owns the public ERP status badge semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "exact-local"
+    }
   },
   {
     "id": "tooltip",
@@ -289,7 +453,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/tooltip",
     "displayNameAr": "تلميح",
     "descriptionAr": "شرح مثبت على محفز مرئي مع مواضع وسلوك فتح متعددة.",
-    "purpose": "Owns the public ERP tooltip semantic and presentation contract."
+    "purpose": "Owns the public ERP tooltip semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "entity-schema-fields",
@@ -299,7 +469,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/entity-schema-fields",
     "displayNameAr": "حقول مخطط الكيان",
     "descriptionAr": "عرض حقول المخطط من خلال مدخلات ERP المعتمدة.",
-    "purpose": "Owns the public ERP entity schema fields semantic and presentation contract."
+    "purpose": "Owns the public ERP entity schema fields semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "form",
@@ -309,7 +485,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/form",
     "displayNameAr": "نموذج",
     "descriptionAr": "حد form الدلالي مع نوايا الإرسال وإعادة الضبط.",
-    "purpose": "Owns the public ERP form semantic and presentation contract."
+    "purpose": "Owns the public ERP form semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "form-actions",
@@ -319,7 +501,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/form-actions",
     "displayNameAr": "إجراءات النموذج",
     "descriptionAr": "تخطيط الإجراءات الأساسية والثانوية للنموذج.",
-    "purpose": "Owns the public ERP form actions semantic and presentation contract."
+    "purpose": "Owns the public ERP form actions semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "form-section",
@@ -329,7 +517,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/form-section",
     "displayNameAr": "قسم النموذج",
     "descriptionAr": "تجميع دلالي لحقول النموذج مع عنوان وإجراءات.",
-    "purpose": "Owns the public ERP form section semantic and presentation contract."
+    "purpose": "Owns the public ERP form section semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "repeater",
@@ -339,7 +533,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/repeater",
     "displayNameAr": "مكرر",
     "descriptionAr": "قائمة عناصر مضبوطة مع نوايا الإضافة والحذف.",
-    "purpose": "Owns the public ERP repeater semantic and presentation contract."
+    "purpose": "Owns the public ERP repeater semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "standard-entity-form",
@@ -349,7 +549,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/standard-entity-form",
     "displayNameAr": "نموذج الكيان القياسي",
     "descriptionAr": "تكوين CRUD محدود بمخطط وقيم مضبوطة.",
-    "purpose": "Provides bounded schema-assisted CRUD form composition through approved ERP controls."
+    "purpose": "Provides bounded schema-assisted CRUD form composition through approved ERP controls.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "validation-summary",
@@ -359,7 +565,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/validation-summary",
     "displayNameAr": "ملخص التحقق",
     "descriptionAr": "عرض مشكلات التحقق المشتركة ونية تنشيط الحقل.",
-    "purpose": "Owns the public ERP validation summary semantic and presentation contract."
+    "purpose": "Owns the public ERP validation summary semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "color-picker",
@@ -369,7 +581,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/color-picker",
     "displayNameAr": "منتقي اللون",
     "descriptionAr": "اختيار لون من سجل ألوان النظام.",
-    "purpose": "Owns the public ERP color picker semantic and presentation contract."
+    "purpose": "Owns the public ERP color picker semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "combo-box",
@@ -379,7 +597,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/combo-box",
     "displayNameAr": "صندوق التحرير والاختيار",
     "descriptionAr": "تحرير نصي مع اقتراحات واختيار مضبوط.",
-    "purpose": "Owns the public ERP combo box semantic and presentation contract."
+    "purpose": "Owns the public ERP combo box semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "date-box",
@@ -389,7 +613,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/date-box",
     "displayNameAr": "حقل التاريخ",
     "descriptionAr": "تحرير تاريخ من خلال عقد الإدخال المعتمد.",
-    "purpose": "Owns the public ERP date box semantic and presentation contract."
+    "purpose": "Owns the public ERP date box semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "date-range-box",
@@ -399,7 +629,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/date-range-box",
     "displayNameAr": "حقل نطاق التاريخ",
     "descriptionAr": "اختيار نطاق زمني مضبوط.",
-    "purpose": "Owns the public ERP date range box semantic and presentation contract."
+    "purpose": "Owns the public ERP date range box semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "date-time-box",
@@ -409,7 +645,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/date-time-box",
     "displayNameAr": "حقل التاريخ والوقت",
     "descriptionAr": "تحرير تاريخ ووقت ضمن عقد واحد.",
-    "purpose": "Owns the public ERP date time box semantic and presentation contract."
+    "purpose": "Owns the public ERP date time box semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "file-picker",
@@ -419,7 +661,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/file-picker",
     "displayNameAr": "منتقي الملفات",
     "descriptionAr": "اختيار ملفات محلية متعدد دون نقل شبكي.",
-    "purpose": "Owns the public ERP file picker semantic and presentation contract."
+    "purpose": "Owns the public ERP file picker semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "icon-picker",
@@ -429,7 +677,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/icon-picker",
     "displayNameAr": "منتقي الأيقونة",
     "descriptionAr": "اختيار أيقونة دلالية من سجل النظام.",
-    "purpose": "Owns the public ERP icon picker semantic and presentation contract."
+    "purpose": "Owns the public ERP icon picker semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "image-picker",
@@ -439,7 +693,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/image-picker",
     "displayNameAr": "منتقي الصور",
     "descriptionAr": "اختيار صور محلية مع معاينات مضبوطة.",
-    "purpose": "Owns the public ERP image picker semantic and presentation contract."
+    "purpose": "Owns the public ERP image picker semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "item-picker",
@@ -449,7 +709,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/item-picker",
     "displayNameAr": "منتقي العناصر",
     "descriptionAr": "اختيار عناصر من قائمة يملكها المستهلك.",
-    "purpose": "Owns the public ERP item picker semantic and presentation contract."
+    "purpose": "Owns the public ERP item picker semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "money-box",
@@ -459,7 +725,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/money-box",
     "displayNameAr": "حقل المال",
     "descriptionAr": "تحرير قيمة مالية وعملة وفق التفضيلات.",
-    "purpose": "Owns the public ERP money box semantic and presentation contract."
+    "purpose": "Owns the public ERP money box semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "number-box",
@@ -469,7 +741,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/number-box",
     "displayNameAr": "حقل الرقم",
     "descriptionAr": "تحرير قيمة رقمية نصية بلا spinner متصفح.",
-    "purpose": "Owns the public ERP number box semantic and presentation contract."
+    "purpose": "Owns the public ERP number box semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "number-stepper",
@@ -479,7 +757,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/number-stepper",
     "displayNameAr": "مغيّر الرقم",
     "descriptionAr": "زيادة وإنقاص قيمة عددية ضمن حدود مضبوطة.",
-    "purpose": "Owns the public ERP number stepper semantic and presentation contract."
+    "purpose": "Owns the public ERP number stepper semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "password-box",
@@ -489,7 +773,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/password-box",
     "displayNameAr": "حقل كلمة المرور",
     "descriptionAr": "تحرير قيمة سرية مع إظهار مضبوط.",
-    "purpose": "Owns the public ERP password box semantic and presentation contract."
+    "purpose": "Owns the public ERP password box semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "range-slider",
@@ -499,7 +789,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/range-slider",
     "displayNameAr": "منزلق النطاق",
     "descriptionAr": "اختيار حدين عدديين من نطاق.",
-    "purpose": "Owns the public ERP range slider semantic and presentation contract."
+    "purpose": "Owns the public ERP range slider semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "search-box",
@@ -509,7 +805,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/search-box",
     "displayNameAr": "صندوق البحث",
     "descriptionAr": "تحرير استعلام وعرض نتائج inline أو popup.",
-    "purpose": "Owns the public ERP search box semantic and presentation contract."
+    "purpose": "Owns the public ERP search box semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "select",
@@ -519,7 +821,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/select",
     "displayNameAr": "قائمة الاختيار",
     "descriptionAr": "اختيار مفرد أو متعدد مع بحث وتجميع.",
-    "purpose": "Owns the public ERP select semantic and presentation contract."
+    "purpose": "Owns the public ERP select semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "reopened"
+    },
+    "reviewReference": {
+      "kind": "exact-local"
+    }
   },
   {
     "id": "tel-box",
@@ -529,7 +837,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/tel-box",
     "displayNameAr": "حقل الهاتف",
     "descriptionAr": "تحرير رقم هاتف وفق عقد الحقول.",
-    "purpose": "Owns the public ERP tel box semantic and presentation contract."
+    "purpose": "Owns the public ERP tel box semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "text-area-box",
@@ -539,7 +853,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/text-area-box",
     "displayNameAr": "منطقة النص",
     "descriptionAr": "تحرير نص متعدد الأسطر.",
-    "purpose": "Owns the public ERP text area box semantic and presentation contract."
+    "purpose": "Owns the public ERP text area box semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "text-box",
@@ -549,7 +869,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/text-box",
     "displayNameAr": "حقل النص",
     "descriptionAr": "تحرير نص قياسي مع حالات الحقل.",
-    "purpose": "Owns the public ERP text box semantic and presentation contract."
+    "purpose": "Owns the public ERP text box semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "time-box",
@@ -559,7 +885,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/time-box",
     "displayNameAr": "حقل الوقت",
     "descriptionAr": "تحرير وقت وفق عقد الحقول.",
-    "purpose": "Owns the public ERP time box semantic and presentation contract."
+    "purpose": "Owns the public ERP time box semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "url-box",
@@ -569,7 +901,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/url-box",
     "displayNameAr": "حقل الرابط",
     "descriptionAr": "تحرير عنوان URL مع تحقق الحقل.",
-    "purpose": "Owns the public ERP url box semantic and presentation contract."
+    "purpose": "Owns the public ERP url box semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "avatar",
@@ -579,7 +917,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/avatar",
     "displayNameAr": "الصورة الرمزية",
     "descriptionAr": "هوية بصرية بصورة أو أحرف أو أيقونة وحضور.",
-    "purpose": "Owns the public ERP avatar semantic and presentation contract."
+    "purpose": "Owns the public ERP avatar semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "exact-local"
+    }
   },
   {
     "id": "breadcrumbs",
@@ -589,7 +933,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/breadcrumbs",
     "displayNameAr": "مسار التنقل",
     "descriptionAr": "مسار موقع منطقي مع العنصر الحالي.",
-    "purpose": "Owns the public ERP breadcrumbs semantic and presentation contract."
+    "purpose": "Owns the public ERP breadcrumbs semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "external-skodash"
+    }
   },
   {
     "id": "pagination",
@@ -599,7 +949,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/pagination",
     "displayNameAr": "ترقيم الصفحات",
     "descriptionAr": "تنقل مضبوط بين الصفحات وحجم الصفحة.",
-    "purpose": "Owns the public ERP pagination semantic and presentation contract."
+    "purpose": "Owns the public ERP pagination semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "external-skodash"
+    }
   },
   {
     "id": "sidebar",
@@ -609,7 +965,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/sidebar",
     "displayNameAr": "الشريط الجانبي",
     "descriptionAr": "تنقل هرمي مضبوط بعناصر يقدمها المستهلك.",
-    "purpose": "Owns the public ERP sidebar semantic and presentation contract."
+    "purpose": "Owns the public ERP sidebar semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "external-skodash"
+    }
   },
   {
     "id": "sort-header",
@@ -619,7 +981,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/sort-header",
     "displayNameAr": "رأس الفرز",
     "descriptionAr": "رأس تفاعلي يبدل اتجاه الفرز.",
-    "purpose": "Owns the public ERP sort header semantic and presentation contract."
+    "purpose": "Owns the public ERP sort header semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "stepper",
@@ -629,7 +997,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/stepper",
     "displayNameAr": "الخطوات",
     "descriptionAr": "تنقل مضبوط بين خطوات ومحتوى مسمى.",
-    "purpose": "Owns the public ERP stepper semantic and presentation contract."
+    "purpose": "Owns the public ERP stepper semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "tabs",
@@ -639,7 +1013,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/tabs",
     "displayNameAr": "علامات التبويب",
     "descriptionAr": "تبديل دلالي بين رؤوس ولوحات محتوى.",
-    "purpose": "Owns the public ERP tabs semantic and presentation contract."
+    "purpose": "Owns the public ERP tabs semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "reopened"
+    },
+    "reviewReference": {
+      "kind": "exact-local"
+    }
   },
   {
     "id": "page",
@@ -649,7 +1029,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/page",
     "displayNameAr": "الصفحة",
     "descriptionAr": "حد عرض وتمرير واستجابة لمحتوى صفحة واحدة.",
-    "purpose": "Owns one production page boundary, width policy, block-size policy, scrolling, and responsive gutters."
+    "purpose": "Owns one production page boundary, width policy, block-size policy, scrolling, and responsive gutters.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "page-header",
@@ -659,7 +1045,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/page-header",
     "displayNameAr": "رأس الصفحة",
     "descriptionAr": "عنوان الصفحة والوصف والبيانات والإجراءات المسقطة.",
-    "purpose": "Owns the public ERP page header semantic and presentation contract."
+    "purpose": "Owns the public ERP page header semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "page-shell",
@@ -669,7 +1061,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/page-shell",
     "displayNameAr": "تكوين الصفحة",
     "descriptionAr": "تنظيم الرأس والمحتوى والسياق والتذييل.",
-    "purpose": "Composes page header, main, contextual side, and footer regions inside an ErpPage boundary."
+    "purpose": "Composes page header, main, contextual side, and footer regions inside an ErpPage boundary.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "container",
@@ -679,7 +1077,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/container",
     "displayNameAr": "الحاوية",
     "descriptionAr": "حد عرض أفقي للمحتوى.",
-    "purpose": "Owns the public ERP container semantic and presentation contract."
+    "purpose": "Owns the public ERP container semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "divider",
@@ -689,7 +1093,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/divider",
     "displayNameAr": "الفاصل",
     "descriptionAr": "فاصل دلالي أفقي أو رأسي.",
-    "purpose": "Owns the public ERP divider semantic and presentation contract."
+    "purpose": "Owns the public ERP divider semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "grid",
@@ -699,7 +1109,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/grid",
     "displayNameAr": "الشبكة",
     "descriptionAr": "تخطيط شبكي بأعمدة وفجوات مضبوطة.",
-    "purpose": "Owns the public ERP grid semantic and presentation contract."
+    "purpose": "Owns the public ERP grid semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "icon",
@@ -709,7 +1125,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/icon",
     "displayNameAr": "الأيقونة",
     "descriptionAr": "عرض أيقونة دلالية من السجل المعتمد.",
-    "purpose": "Owns semantic icon registry rendering and hides vendor icon implementations."
+    "purpose": "Owns semantic icon registry rendering and hides vendor icon implementations.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "inline",
@@ -719,7 +1141,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/inline",
     "displayNameAr": "التخطيط السطري",
     "descriptionAr": "ترتيب عناصر على المحور السطري مع التفاف مضبوط.",
-    "purpose": "Owns the public ERP inline semantic and presentation contract."
+    "purpose": "Owns the public ERP inline semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "section",
@@ -729,7 +1157,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/section",
     "displayNameAr": "القسم",
     "descriptionAr": "حد section دلالي وفجوة داخلية.",
-    "purpose": "Owns the public ERP section semantic and presentation contract."
+    "purpose": "Owns the public ERP section semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "stack",
@@ -739,7 +1173,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/stack",
     "displayNameAr": "التكديس",
     "descriptionAr": "ترتيب عناصر رأسيًا مع محاذاة وفجوات مضبوطة.",
-    "purpose": "Owns the public ERP stack semantic and presentation contract."
+    "purpose": "Owns the public ERP stack semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "surface",
@@ -749,7 +1189,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/surface",
     "displayNameAr": "السطح",
     "descriptionAr": "سطح مرئي يملك الحشو والحدود والارتفاع.",
-    "purpose": "Owns the public ERP surface semantic and presentation contract."
+    "purpose": "Owns the public ERP surface semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "text",
@@ -759,7 +1205,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/text",
     "displayNameAr": "النص",
     "descriptionAr": "بوابة النصوص الإنتاجية وأدوارها الدلالية.",
-    "purpose": "Owns production text authoring and native text semantics."
+    "purpose": "Owns production text authoring and native text semantics.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "avatar-picker",
@@ -769,7 +1221,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/avatar-picker",
     "displayNameAr": "منتقي الصورة الرمزية",
     "descriptionAr": "اختيار صورة رمزية مضبوطة من الفهرس.",
-    "purpose": "Owns the public ERP avatar picker semantic and presentation contract."
+    "purpose": "Owns the public ERP avatar picker semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "exact-local"
+    }
   },
   {
     "id": "check-box",
@@ -779,7 +1237,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/check-box",
     "displayNameAr": "مربع الاختيار",
     "descriptionAr": "اختيار منطقي مستقل أو ضمن مجموعة.",
-    "purpose": "Owns the public ERP check box semantic and presentation contract."
+    "purpose": "Owns the public ERP check box semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "accepted-frozen"
+    },
+    "reviewReference": {
+      "kind": "exact-local"
+    }
   },
   {
     "id": "column-chooser",
@@ -789,7 +1253,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/column-chooser",
     "displayNameAr": "محدد الأعمدة",
     "descriptionAr": "ضبط الأعمدة المرئية للجدول.",
-    "purpose": "Owns the public ERP column chooser semantic and presentation contract."
+    "purpose": "Owns the public ERP column chooser semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "radio-box",
@@ -799,7 +1269,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/radio-box",
     "displayNameAr": "زر الاختيار",
     "descriptionAr": "اختيار قيمة واحدة ضمن سياق.",
-    "purpose": "Owns the public ERP radio box semantic and presentation contract."
+    "purpose": "Owns the public ERP radio box semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "exact-local"
+    }
   },
   {
     "id": "radio-group",
@@ -809,7 +1285,13 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/radio-group",
     "displayNameAr": "مجموعة الاختيار",
     "descriptionAr": "مجموعة خيارات أحادية مضبوطة.",
-    "purpose": "Owns the public ERP radio group semantic and presentation contract."
+    "purpose": "Owns the public ERP radio group semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   },
   {
     "id": "view-switcher",
@@ -819,6 +1301,12 @@ export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = 
     "showcaseRoute": "/components/view-switcher",
     "displayNameAr": "مبدل العرض",
     "descriptionAr": "اختيار وضع عرض واحد من أوضاع محددة.",
-    "purpose": "Owns the public ERP view switcher semantic and presentation contract."
+    "purpose": "Owns the public ERP view switcher semantic and presentation contract.",
+    "reviewStatus": {
+      "kind": "pending-unknown"
+    },
+    "reviewReference": {
+      "kind": "original-honesty"
+    }
   }
 ];

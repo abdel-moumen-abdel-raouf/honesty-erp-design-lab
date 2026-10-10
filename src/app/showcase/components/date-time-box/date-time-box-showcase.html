@@ -1,7 +1,59 @@
-<erp-stack gap="default" data-dedicated-showcase="date-time-box" data-showcase-sections="1">
-  <erp-text type="heading-2">حقل التاريخ والوقت</erp-text>
-  <erp-text type="paragraph" tone="secondary">تحرير تاريخ ووقت ضمن عقد واحد.</erp-text>
-  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+<erp-stack gap="default" data-dedicated-showcase="date-time-box" data-showcase-sections="5">
+  <erp-stack id="visual-gallery" data-review-section="gallery">
+    <erp-stack gap="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-2">المعرض البصري</erp-text>
+        <erp-text type="paragraph" tone="secondary">حالات حقيقية مشتقة من واجهة المكوّن العامة، دون إنشاء حاصل ضرب ضخم أو خصائص غير مدعومة.</erp-text>
+      </erp-stack>
+      @for (group of galleryGroups; track group.id) {
+        <erp-stack gap="tight" [attr.data-gallery-group]="group.id">
+          <erp-text type="heading-3">{{ group.label }}</erp-text>
+          <erp-stack class="showcase-gallery__grid" gap="default">
+            @for (showcaseCase of group.cases; track showcaseCase.id) {
+              <erp-surface padding="default" border="subtle" class="showcase-gallery__case" [attr.data-showcase-gallery-case]="showcaseCase.id">
+                <erp-stack gap="tight">
+                  <erp-text type="caption" tone="secondary">{{ showcaseCase.label }}</erp-text>
+                  <erp-stack class="showcase-gallery__stage" gap="tight"><erp-date-time-box
+                data-showcase-gallery-owner
+                [label]="$any(galleryValue(showcaseCase, 'label'))"
+                [name]="$any(galleryValue(showcaseCase, 'name'))"
+                [form]="$any(galleryValue(showcaseCase, 'form'))"
+                [required]="$any(galleryValue(showcaseCase, 'required'))"
+                [externalValidationIssues]="$any(galleryValue(showcaseCase, 'externalValidationIssues'))"
+                [tone]="$any(galleryValue(showcaseCase, 'tone'))"
+                [status]="$any(galleryValue(showcaseCase, 'status'))"
+                [variant]="$any(galleryValue(showcaseCase, 'variant'))"
+                [borderMode]="$any(galleryValue(showcaseCase, 'borderMode'))"
+                [shape]="$any(galleryValue(showcaseCase, 'shape'))"
+                [size]="$any(galleryValue(showcaseCase, 'size'))"
+                [appearance]="$any(galleryValue(showcaseCase, 'appearance'))"
+                [labelMode]="$any(galleryValue(showcaseCase, 'labelMode'))"
+                [floatingPosition]="$any(galleryValue(showcaseCase, 'floatingPosition'))"
+                [helperText]="$any(galleryValue(showcaseCase, 'helperText'))"
+                [helperPosition]="$any(galleryValue(showcaseCase, 'helperPosition'))"
+                [leadingIcon]="$any(galleryValue(showcaseCase, 'leadingIcon'))"
+                [trailingIcon]="$any(galleryValue(showcaseCase, 'trailingIcon'))"
+                [clearable]="$any(galleryValue(showcaseCase, 'clearable'))"
+                [feedbackText]="$any(galleryValue(showcaseCase, 'feedbackText'))"
+                [feedbackDismissible]="$any(galleryValue(showcaseCase, 'feedbackDismissible'))"
+                [min]="$any(galleryValue(showcaseCase, 'min'))"
+                [max]="$any(galleryValue(showcaseCase, 'max'))"
+                [locale]="$any(galleryValue(showcaseCase, 'locale'))"
+                [placeholder]="$any(galleryValue(showcaseCase, 'placeholder'))"
+                [pattern]="$any(galleryValue(showcaseCase, 'pattern'))"
+                [overlayConfig]="$any(galleryValue(showcaseCase, 'overlayConfig'))"
+                [formControl]="galleryControl(showcaseCase.id, $any(galleryValue(showcaseCase, 'disabled')))"
+              ></erp-date-time-box></erp-stack>
+                </erp-stack>
+              </erp-surface>
+            }
+          </erp-stack>
+        </erp-stack>
+      }
+    </erp-stack>
+  </erp-stack>
+  <app-review-showcase-reference-comparison [entry]="entry" />
+  <erp-surface id="live-preview" padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
     <erp-stack gap="tight">
       <erp-text type="heading-3">المعاينة الحية</erp-text>
       <erp-date-time-box
@@ -38,14 +90,17 @@
         ></erp-date-time-box>
     </erp-stack>
   </erp-surface>
-  <app-review-showcase-control-panel
-    [controls]="controls"
-    [values]="controlValues()"
-    (controlChanged)="applyControl($event)"
-  />
-  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+  <details id="api-controls" class="showcase-api-controls" data-showcase-api-controls>
+    <summary><erp-text type="strong">أدوات API المتقدمة</erp-text></summary>
+    <app-review-showcase-control-panel
+      [controls]="controls"
+      [values]="controlValues()"
+      (controlChanged)="applyControl($event)"
+    />
+  </details>
+  <erp-surface id="event-evidence" padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">آخر تفاعل</erp-text>
+      <erp-text type="heading-3">دليل الأحداث</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
       <erp-text type="caption" selectable>القيمة الحالية: {{ cvaValue() }}</erp-text>
     </erp-stack>

@@ -1,8 +1,52 @@
-<erp-stack gap="default" data-dedicated-showcase="avatar" data-showcase-sections="1">
-  <erp-text type="heading-2">الصورة الرمزية</erp-text>
-  <erp-text type="paragraph" tone="secondary">هوية بصرية بصورة أو أحرف أو أيقونة وحضور.</erp-text>
+<erp-stack gap="default" data-dedicated-showcase="avatar" data-showcase-sections="5">
+  <erp-stack id="visual-gallery" data-review-section="gallery">
+    <erp-stack gap="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-2">المعرض البصري</erp-text>
+        <erp-text type="paragraph" tone="secondary">حالات حقيقية مشتقة من واجهة المكوّن العامة، دون إنشاء حاصل ضرب ضخم أو خصائص غير مدعومة.</erp-text>
+      </erp-stack>
+      @for (group of galleryGroups; track group.id) {
+        <erp-stack gap="tight" [attr.data-gallery-group]="group.id">
+          <erp-text type="heading-3">{{ group.label }}</erp-text>
+          <erp-stack class="showcase-gallery__grid" gap="default">
+            @for (showcaseCase of group.cases; track showcaseCase.id) {
+              <erp-surface padding="default" border="subtle" class="showcase-gallery__case" [attr.data-showcase-gallery-case]="showcaseCase.id">
+                <erp-stack gap="tight">
+                  <erp-text type="caption" tone="secondary">{{ showcaseCase.label }}</erp-text>
+                  <erp-stack class="showcase-gallery__stage" gap="tight"><erp-avatar
+                data-showcase-gallery-owner
+                [name]="$any(galleryValue(showcaseCase, 'name'))"
+                [src]="$any(galleryValue(showcaseCase, 'src'))"
+                [imageLoading]="$any(galleryValue(showcaseCase, 'imageLoading'))"
+                [initials]="$any(galleryValue(showcaseCase, 'initials'))"
+                [alt]="$any(galleryValue(showcaseCase, 'alt'))"
+                [size]="$any(galleryValue(showcaseCase, 'size'))"
+                [shape]="$any(galleryValue(showcaseCase, 'shape'))"
+                [tone]="$any(galleryValue(showcaseCase, 'tone'))"
+                [fallbackIcon]="$any(galleryValue(showcaseCase, 'fallbackIcon'))"
+                [ring]="$any(galleryValue(showcaseCase, 'ring'))"
+                [bordered]="$any(galleryValue(showcaseCase, 'bordered'))"
+                [loading]="$any(galleryValue(showcaseCase, 'loading'))"
+                [interactive]="$any(galleryValue(showcaseCase, 'interactive'))"
+                [presence]="$any(galleryValue(showcaseCase, 'presence'))"
+                [presencePosition]="$any(galleryValue(showcaseCase, 'presencePosition'))"
+                [presenceMotion]="$any(galleryValue(showcaseCase, 'presenceMotion'))"
+                [hoverMotion]="$any(galleryValue(showcaseCase, 'hoverMotion'))"
+                [cursor]="$any(galleryValue(showcaseCase, 'cursor'))"
+                [presentation]="$any(galleryValue(showcaseCase, 'presentation'))"
+              ></erp-avatar></erp-stack>
+                </erp-stack>
+              </erp-surface>
+            }
+          </erp-stack>
+        </erp-stack>
+      }
+    </erp-stack>
+  </erp-stack>
+  <app-review-showcase-reference-comparison [entry]="entry" />
+  <app-review-showcase-exact-reference focus="avatar" />
   <erp-text class="showcase-reference" type="caption" tone="secondary" selectable>مرجع Product Owner: src/app/controls/avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md</erp-text>
-  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+  <erp-surface id="live-preview" padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
     <erp-stack gap="tight">
       <erp-text type="heading-3">المعاينة الحية</erp-text>
       <erp-avatar
@@ -30,16 +74,18 @@
         ></erp-avatar>
     </erp-stack>
   </erp-surface>
-  <app-review-showcase-control-panel
-    [controls]="controls"
-    [values]="controlValues()"
-    (controlChanged)="applyControl($event)"
-  />
-  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+  <details id="api-controls" class="showcase-api-controls" data-showcase-api-controls>
+    <summary><erp-text type="strong">أدوات API المتقدمة</erp-text></summary>
+    <app-review-showcase-control-panel
+      [controls]="controls"
+      [values]="controlValues()"
+      (controlChanged)="applyControl($event)"
+    />
+  </details>
+  <erp-surface id="event-evidence" padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">آخر تفاعل</erp-text>
+      <erp-text type="heading-3">دليل الأحداث</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
     </erp-stack>
   </erp-surface>
-  <app-review-showcase-exact-reference focus="avatar" />
 </erp-stack>

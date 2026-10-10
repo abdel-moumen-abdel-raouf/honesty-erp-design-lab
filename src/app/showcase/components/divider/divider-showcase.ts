@@ -2,22 +2,84 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpDivider} from '../../../primitives/divider/divider';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'divider')!;
+const REVIEW_GALLERY_GROUPS = [
+  {
+    "id": "default",
+    "label": "الحالة الافتراضية",
+    "cases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {}
+      }
+    ]
+  },
+  {
+    "id": "tone",
+    "label": "النبرات",
+    "cases": [
+      {
+        "id": "tone-subtle",
+        "label": "خافت (subtle)",
+        "inputs": {
+          "tone": "subtle"
+        }
+      },
+      {
+        "id": "tone-default",
+        "label": "افتراضي (default)",
+        "inputs": {
+          "tone": "default"
+        }
+      },
+      {
+        "id": "tone-strong",
+        "label": "tone: strong",
+        "inputs": {
+          "tone": "strong"
+        }
+      }
+    ]
+  },
+  {
+    "id": "orientation",
+    "label": "الاتجاهات",
+    "cases": [
+      {
+        "id": "orientation-horizontal",
+        "label": "أفقي (horizontal)",
+        "inputs": {
+          "orientation": "horizontal"
+        }
+      },
+      {
+        "id": "orientation-vertical",
+        "label": "رأسي (vertical)",
+        "inputs": {
+          "orientation": "vertical"
+        }
+      }
+    ]
+  }
+] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-divider-showcase',
-  imports: [ErpDivider, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpDivider, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText],
   templateUrl: './divider-showcase.html',
   styleUrl: './divider-showcase.scss',
 })
 export class ErpDividerShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
+  readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>(null);
@@ -31,6 +93,13 @@ export class ErpDividerShowcase {
 
   value(name: string): unknown {
     return this.liveValues()[name];
+  }
+
+  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return false;
+    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
+      ? showcaseCase.inputs[name]
+      : ENTRY.showcaseInitialValues?.[name];
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

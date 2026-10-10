@@ -2,22 +2,75 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpNotificationBell} from '../../../controls/notification-bell/notification-bell';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'notification-bell')!;
+const REVIEW_GALLERY_GROUPS = [
+  {
+    "id": "default",
+    "label": "الحالة الافتراضية",
+    "cases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "notifications": [
+            {
+              "id": "stock",
+              "title": "حد إعادة الطلب",
+              "description": "وصل صنفان في فرع القاهرة إلى الحد الأدنى.",
+              "timestamp": "منذ دقيقتين",
+              "icon": "inventory",
+              "read": false
+            },
+            {
+              "id": "approval",
+              "title": "فاتورة تحتاج اعتمادًا",
+              "description": "فاتورة المبيعات رقم 1042 بانتظار موافقتك.",
+              "timestamp": "منذ 14 دقيقة",
+              "icon": "file",
+              "read": false
+            },
+            {
+              "id": "ledger",
+              "title": "تم ترحيل القيد",
+              "description": "رُحّل القيد اليومي إلى الحسابات العامة.",
+              "timestamp": "منذ ساعة",
+              "icon": "check-mark",
+              "read": true
+            },
+            {
+              "id": "disabled",
+              "title": "إشعار مؤرشف",
+              "description": "هذا الإشعار غير متاح.",
+              "timestamp": "أمس",
+              "icon": "notification",
+              "read": true,
+              "disabled": true
+            }
+          ],
+          "open": true,
+          "query": ""
+        }
+      }
+    ]
+  }
+] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-notification-bell-showcase',
-  imports: [ErpNotificationBell, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpNotificationBell, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText],
   templateUrl: './notification-bell-showcase.html',
   styleUrl: './notification-bell-showcase.scss',
 })
 export class ErpNotificationBellShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
+  readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>(null);
@@ -31,6 +84,13 @@ export class ErpNotificationBellShowcase {
 
   value(name: string): unknown {
     return this.liveValues()[name];
+  }
+
+  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return false;
+    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
+      ? showcaseCase.inputs[name]
+      : ENTRY.showcaseInitialValues?.[name];
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

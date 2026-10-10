@@ -2,22 +2,167 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpFilterDrawer} from '../../../controls/filter-drawer/filter-drawer';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'filter-drawer')!;
+const REVIEW_GALLERY_GROUPS = [
+  {
+    "id": "default",
+    "label": "الحالة الافتراضية",
+    "cases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "definitions": [
+            {
+              "key": "name",
+              "label": "اسم العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "اكتب اسم المدينة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "placeholder": "نشط أو قيد المراجعة"
+            }
+          ],
+          "filters": [
+            {
+              "key": "city",
+              "label": "المدينة",
+              "value": "القاهرة"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "disabled",
+    "label": "disabled",
+    "cases": [
+      {
+        "id": "disabled-false",
+        "label": "غير مفعّل (false)",
+        "inputs": {
+          "definitions": [
+            {
+              "key": "name",
+              "label": "اسم العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "اكتب اسم المدينة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "placeholder": "نشط أو قيد المراجعة"
+            }
+          ],
+          "filters": [
+            {
+              "key": "city",
+              "label": "المدينة",
+              "value": "القاهرة"
+            }
+          ],
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "مفعّل (true)",
+        "inputs": {
+          "definitions": [
+            {
+              "key": "name",
+              "label": "اسم العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "اكتب اسم المدينة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "placeholder": "نشط أو قيد المراجعة"
+            }
+          ],
+          "filters": [
+            {
+              "key": "city",
+              "label": "المدينة",
+              "value": "القاهرة"
+            }
+          ],
+          "disabled": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "states",
+    "label": "الحالات",
+    "cases": [
+      {
+        "id": "disabled",
+        "label": "حالة معطلة",
+        "inputs": {
+          "definitions": [
+            {
+              "key": "name",
+              "label": "اسم العميل",
+              "placeholder": "ابحث باسم العميل"
+            },
+            {
+              "key": "city",
+              "label": "المدينة",
+              "placeholder": "اكتب اسم المدينة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "placeholder": "نشط أو قيد المراجعة"
+            }
+          ],
+          "filters": [
+            {
+              "key": "city",
+              "label": "المدينة",
+              "value": "القاهرة"
+            }
+          ],
+          "disabled": true
+        }
+      }
+    ]
+  }
+] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-filter-drawer-showcase',
-  imports: [ErpFilterDrawer, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpFilterDrawer, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText],
   templateUrl: './filter-drawer-showcase.html',
   styleUrl: './filter-drawer-showcase.scss',
 })
 export class ErpFilterDrawerShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
+  readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>(null);
@@ -31,6 +176,13 @@ export class ErpFilterDrawerShowcase {
 
   value(name: string): unknown {
     return this.liveValues()[name];
+  }
+
+  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return false;
+    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
+      ? showcaseCase.inputs[name]
+      : ENTRY.showcaseInitialValues?.[name];
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

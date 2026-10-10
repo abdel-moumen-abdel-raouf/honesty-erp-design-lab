@@ -2,22 +2,75 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpMessagesMenu} from '../../../controls/messages-menu/messages-menu';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'messages-menu')!;
+const REVIEW_GALLERY_GROUPS = [
+  {
+    "id": "default",
+    "label": "الحالة الافتراضية",
+    "cases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "messages": [
+            {
+              "id": "invoice",
+              "senderName": "أميرة حداد",
+              "preview": "تم اعتماد فاتورة المبيعات رقم 1042.",
+              "timestamp": "منذ دقيقة",
+              "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-21.png",
+              "read": false
+            },
+            {
+              "id": "stock",
+              "senderName": "عمر ناصر",
+              "preview": "تم تحديث كميات المخزون في الفرع الرئيسي.",
+              "timestamp": "منذ 18 دقيقة",
+              "avatarSrc": "/assets/honesty-erp-avatars/users/male/avatar-01.png",
+              "read": false
+            },
+            {
+              "id": "purchase",
+              "senderName": "ليلى محمود",
+              "preview": "أضيف طلب شراء جديد بانتظار المراجعة.",
+              "timestamp": "منذ ساعة",
+              "avatarSrc": "/assets/honesty-erp-avatars/users/female/avatar-22.png",
+              "read": true
+            },
+            {
+              "id": "disabled",
+              "senderName": "النظام",
+              "preview": "رسالة مؤرشفة وغير متاحة.",
+              "timestamp": "أمس",
+              "fallbackIcon": "mail",
+              "read": true,
+              "disabled": true
+            }
+          ],
+          "open": true,
+          "query": ""
+        }
+      }
+    ]
+  }
+] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-messages-menu-showcase',
-  imports: [ErpMessagesMenu, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpMessagesMenu, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText],
   templateUrl: './messages-menu-showcase.html',
   styleUrl: './messages-menu-showcase.scss',
 })
 export class ErpMessagesMenuShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
+  readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>(null);
@@ -31,6 +84,13 @@ export class ErpMessagesMenuShowcase {
 
   value(name: string): unknown {
     return this.liveValues()[name];
+  }
+
+  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return false;
+    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
+      ? showcaseCase.inputs[name]
+      : ENTRY.showcaseInitialValues?.[name];
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

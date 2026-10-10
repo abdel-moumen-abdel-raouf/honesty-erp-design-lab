@@ -1,26 +1,49 @@
 <erp-page widthMode="fluid" scrollMode="document">
   @if (entry(); as component) {
-    <erp-stack gap="loose">
-      <erp-section>
+    <erp-stack gap="loose" data-visual-review-page>
+      <erp-section class="component-showcase__header">
         <erp-stack gap="tight">
-          <erp-text type="small" tone="secondary">{{ component.category }}</erp-text>
+          <erp-inline gap="tight" wrap="wrap" align="center">
+            <erp-text type="small" tone="secondary">{{ component.category }}</erp-text>
+            <erp-text class="component-showcase__status" type="caption" [attr.data-review-status]="component.reviewStatus?.kind || 'pending-unknown'">
+              {{ reviewStatusLabel(component.reviewStatus?.kind || 'pending-unknown') }}
+            </erp-text>
+            <erp-text class="component-showcase__reference-kind" type="caption" tone="secondary">
+              {{ referenceLabel(component.reviewReference?.kind || 'original-honesty') }}
+            </erp-text>
+          </erp-inline>
           <erp-text type="heading-1">{{ component.displayNameAr }}</erp-text>
           <erp-text type="paragraph" tone="secondary">{{ component.descriptionAr }}</erp-text>
-          <erp-inline gap="tight" wrap="wrap">
-            <erp-text class="component-showcase__technical-value" type="caption" tone="secondary" selectable>{{ component.selector }}</erp-text>
-            <erp-text class="component-showcase__technical-value" type="caption" tone="secondary" selectable>{{ component.sourcePath }}</erp-text>
+          <erp-text type="caption" tone="secondary" selectable>المسار المباشر: {{ component.showcaseRoute }}</erp-text>
+          <erp-inline class="component-showcase__quick-nav" gap="tight" wrap="wrap" aria-label="التنقل داخل مراجعة المكوّن">
+            <erp-button label="المعرض" size="sm" variant="outline" (pressed)="scrollTo('visual-gallery')" />
+            <erp-button label="المقارنة" size="sm" variant="outline" (pressed)="scrollTo('reference-comparison')" />
+            <erp-button label="المعاينة الحية" size="sm" variant="outline" (pressed)="scrollTo('live-preview')" />
+            <erp-button label="أدوات API" size="sm" variant="outline" (pressed)="scrollTo('api-controls')" />
+            <erp-button label="دليل الأحداث" size="sm" variant="outline" (pressed)="scrollTo('event-evidence')" />
           </erp-inline>
+          <erp-button
+            label="تفاصيل المطور والمصدر"
+            size="sm"
+            variant="ghost"
+            [ariaExpanded]="technicalDetailsExpanded()"
+            (pressed)="toggleTechnicalDetails()"
+          />
+          @if (technicalDetailsExpanded()) {
+            <erp-stack class="component-showcase__technical-details" gap="tight">
+            <erp-stack gap="tight">
+              <erp-text class="component-showcase__technical-value" type="caption" tone="secondary" selectable>{{ component.selector }}</erp-text>
+              <erp-text class="component-showcase__technical-value" type="caption" tone="secondary" selectable>{{ component.sourcePath }}</erp-text>
+              <erp-text class="component-showcase__technical-value" type="caption" tone="secondary" selectable>{{ component.reviewReference?.source || 'لا يوجد مصدر خارجي ملزم' }}</erp-text>
+              <erp-text type="caption" tone="secondary">المدخلات: {{ component.publicApi.inputs.length }} · النماذج: {{ component.publicApi.models.length }} · الأحداث: {{ component.publicApi.outputs.length }}</erp-text>
+            </erp-stack>
+            </erp-stack>
+          }
         </erp-stack>
       </erp-section>
 
       <erp-section>
-        <erp-stack gap="default">
-          <erp-text type="heading-2">
-            {{ component.visualReference ? 'مرجع Product Owner الدقيق' : 'العرض الحي للمكوّن' }}
-          </erp-text>
-          @if (component.visualReference) {
-            <erp-text class="component-showcase__technical-value" type="paragraph" selectable>{{ component.visualReference }}</erp-text>
-          }
+        <erp-stack gap="default" data-component-review-experience>
           @if (showcaseType(); as dedicatedShowcase) {
             <ng-container *ngComponentOutlet="dedicatedShowcase" />
           } @else {
@@ -29,41 +52,6 @@
         </erp-stack>
       </erp-section>
 
-      <erp-section>
-        <erp-stack gap="tight">
-          <erp-text type="heading-2">واجهة المكوّن والتوافق</erp-text>
-          <erp-text type="paragraph" tone="secondary">
-            الحالات المعروضة: {{ component.showcaseFacets.join('، ') || 'الحالة الافتراضية' }}
-          </erp-text>
-          <erp-inline gap="tight" wrap="wrap">
-            <erp-text type="paragraph" tone="secondary">المدخلات:</erp-text>
-            @for (input of component.publicApi.inputs; track input.name) {
-              <erp-text type="caption" selectable>{{ input.name }}</erp-text>
-            } @empty {
-              <erp-text type="caption">لا يوجد</erp-text>
-            }
-          </erp-inline>
-          <erp-inline gap="tight" wrap="wrap">
-            <erp-text type="paragraph" tone="secondary">النماذج:</erp-text>
-            @for (model of component.publicApi.models; track model.name) {
-              <erp-text type="caption" selectable>{{ model.name }}</erp-text>
-            } @empty {
-              <erp-text type="caption">لا يوجد</erp-text>
-            }
-          </erp-inline>
-          <erp-inline gap="tight" wrap="wrap">
-            <erp-text type="paragraph" tone="secondary">الأحداث:</erp-text>
-            @for (eventName of component.publicApi.outputs; track eventName) {
-              <erp-text type="caption" selectable>{{ eventName }}</erp-text>
-            } @empty {
-              <erp-text type="caption">لا يوجد</erp-text>
-            }
-          </erp-inline>
-          <erp-text type="caption" tone="secondary">
-            القبول البصري: {{ component.visualStatus }}
-          </erp-text>
-        </erp-stack>
-      </erp-section>
     </erp-stack>
   } @else {
     <erp-section>

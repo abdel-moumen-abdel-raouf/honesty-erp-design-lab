@@ -2,22 +2,112 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpButtonGroup} from '../../../controls/button-group/button-group';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'button-group')!;
+const REVIEW_GALLERY_GROUPS = [
+  {
+    "id": "default",
+    "label": "الحالة الافتراضية",
+    "cases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "items": [
+            {
+              "value": "save",
+              "label": "حفظ",
+              "icon": "save"
+            },
+            {
+              "value": "preview",
+              "label": "معاينة",
+              "icon": "eye"
+            },
+            {
+              "value": "archive",
+              "label": "أرشفة",
+              "icon": "layers"
+            }
+          ],
+          "ariaLabel": "إجراءات المستند"
+        }
+      }
+    ]
+  },
+  {
+    "id": "orientation",
+    "label": "الاتجاهات",
+    "cases": [
+      {
+        "id": "orientation-horizontal",
+        "label": "أفقي (horizontal)",
+        "inputs": {
+          "items": [
+            {
+              "value": "save",
+              "label": "حفظ",
+              "icon": "save"
+            },
+            {
+              "value": "preview",
+              "label": "معاينة",
+              "icon": "eye"
+            },
+            {
+              "value": "archive",
+              "label": "أرشفة",
+              "icon": "layers"
+            }
+          ],
+          "ariaLabel": "إجراءات المستند",
+          "orientation": "horizontal"
+        }
+      },
+      {
+        "id": "orientation-vertical",
+        "label": "رأسي (vertical)",
+        "inputs": {
+          "items": [
+            {
+              "value": "save",
+              "label": "حفظ",
+              "icon": "save"
+            },
+            {
+              "value": "preview",
+              "label": "معاينة",
+              "icon": "eye"
+            },
+            {
+              "value": "archive",
+              "label": "أرشفة",
+              "icon": "layers"
+            }
+          ],
+          "ariaLabel": "إجراءات المستند",
+          "orientation": "vertical"
+        }
+      }
+    ]
+  }
+] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-button-group-showcase',
-  imports: [ErpButtonGroup, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpButtonGroup, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText],
   templateUrl: './button-group-showcase.html',
   styleUrl: './button-group-showcase.scss',
 })
 export class ErpButtonGroupShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
+  readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>(null);
@@ -31,6 +121,13 @@ export class ErpButtonGroupShowcase {
 
   value(name: string): unknown {
     return this.liveValues()[name];
+  }
+
+  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return false;
+    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
+      ? showcaseCase.inputs[name]
+      : ENTRY.showcaseInitialValues?.[name];
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

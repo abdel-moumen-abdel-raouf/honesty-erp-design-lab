@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpDateTimeBox} from '../../../controls/date-time-box/date-time-box';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
@@ -9,17 +10,37 @@ import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'date-time-box')!;
+const REVIEW_GALLERY_GROUPS = [
+  {
+    "id": "default",
+    "label": "الحالة الافتراضية",
+    "cases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "label": "موعد التسليم",
+          "helperText": "التاريخ والوقت المحليان للتسليم",
+          "min": "2026-01-01T00:00",
+          "max": "2026-12-31T23:55",
+          "clearable": true
+        }
+      }
+    ]
+  }
+] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-date-time-box-showcase',
-  imports: [ErpDateTimeBox, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ReactiveFormsModule],
+  imports: [ErpDateTimeBox, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText, ReactiveFormsModule],
   templateUrl: './date-time-box-showcase.html',
   styleUrl: './date-time-box-showcase.scss',
 })
 export class ErpDateTimeBoxShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
+  readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>("2026-10-12T09:30");
@@ -27,6 +48,7 @@ export class ErpDateTimeBoxShowcase {
     ...this.liveValues(),
     '$value': this.cvaValue(),
   }));
+  private readonly galleryControls = new Map<string, FormControl<unknown>>();
   readonly control = new FormControl<unknown>({"value":"2026-10-12T09:30","disabled":false});
 
   constructor() {
@@ -41,6 +63,21 @@ export class ErpDateTimeBoxShowcase {
 
   value(name: string): unknown {
     return this.liveValues()[name];
+  }
+
+  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return false;
+    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
+      ? showcaseCase.inputs[name]
+      : ENTRY.showcaseInitialValues?.[name];
+  }
+
+  galleryControl(id: string, disabled: unknown): FormControl<unknown> {
+    const existing = this.galleryControls.get(id);
+    if (existing) return existing;
+    const control = new FormControl<unknown>({value: "2026-10-12T09:30", disabled: Boolean(disabled)});
+    this.galleryControls.set(id, control);
+    return control;
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

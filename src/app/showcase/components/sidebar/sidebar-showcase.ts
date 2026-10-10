@@ -2,22 +2,96 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpSidebar} from '../../../controls/sidebar/sidebar';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'sidebar')!;
+const REVIEW_GALLERY_GROUPS = [
+  {
+    "id": "default",
+    "label": "الحالة الافتراضية",
+    "cases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "items": [
+            {
+              "id": "finance",
+              "label": "المالية",
+              "icon": "wallet",
+              "badge": {
+                "label": "8",
+                "tone": "info"
+              },
+              "children": [
+                {
+                  "id": "ledger",
+                  "label": "الحسابات العامة",
+                  "icon": "menu",
+                  "href": "/ledger"
+                },
+                {
+                  "id": "reports",
+                  "label": "التقارير المالية والتحليلات التشغيلية المطولة",
+                  "icon": "chart",
+                  "children": [
+                    {
+                      "id": "trial-balance",
+                      "label": "ميزان المراجعة",
+                      "href": "/trial-balance"
+                    },
+                    {
+                      "id": "closed-period",
+                      "label": "فترة مقفلة",
+                      "href": "/closed",
+                      "disabled": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "inventory",
+              "label": "المخزون",
+              "icon": "layers",
+              "href": "/inventory",
+              "badge": {
+                "label": "3"
+              }
+            },
+            {
+              "id": "settings",
+              "label": "الإعدادات",
+              "icon": "settings",
+              "href": "/settings"
+            }
+          ],
+          "activeId": "trial-balance",
+          "expandedIds": [
+            "finance",
+            "reports"
+          ],
+          "collapsed": false
+        }
+      }
+    ]
+  }
+] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-sidebar-showcase',
-  imports: [ErpSidebar, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpSidebar, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText],
   templateUrl: './sidebar-showcase.html',
   styleUrl: './sidebar-showcase.scss',
 })
 export class ErpSidebarShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
+  readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>(null);
@@ -31,6 +105,13 @@ export class ErpSidebarShowcase {
 
   value(name: string): unknown {
     return this.liveValues()[name];
+  }
+
+  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return false;
+    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
+      ? showcaseCase.inputs[name]
+      : ENTRY.showcaseInitialValues?.[name];
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

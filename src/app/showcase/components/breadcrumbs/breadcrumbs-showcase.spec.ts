@@ -11,10 +11,12 @@ describe('ErpBreadcrumbsShowcase', () => {
     expect(host.querySelectorAll('[data-showcase-control]')).toHaveLength(
       fixture.componentInstance.controls.length,
     );
-    expect(host.querySelectorAll('[data-showcase-target] li')).toHaveLength(4);
-    expect(host.querySelector('[aria-current="page"]')?.textContent).toContain(
+    const liveTarget = host.querySelector<HTMLElement>('[data-showcase-target]');
+
+    expect(liveTarget?.querySelectorAll('li')).toHaveLength(4);
+    expect(liveTarget?.querySelector('[aria-current="page"]')?.textContent).toContain(
       'فاتورة المبيعات 1042',
     );
-    expect(host.querySelectorAll('.breadcrumbs__separator')).toHaveLength(3);
+    expect(liveTarget?.querySelectorAll('.breadcrumbs__separator')).toHaveLength(3);
   });
 });

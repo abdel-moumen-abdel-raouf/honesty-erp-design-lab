@@ -2,6 +2,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import ts from 'typescript';
+import {
+  reviewReferenceFor,
+  reviewStatusFor,
+} from './erp-review-authority.mjs';
 
 const TOOL_DIR = path.dirname(fileURLToPath(import.meta.url));
 export const REPO_ROOT = path.resolve(TOOL_DIR, '../..');
@@ -1288,7 +1292,11 @@ function fixtureCases(entry, sourceText) {
   const baseInputs = {...requiredDefaults, ...(FIXTURE_INPUTS.get(entry.className) ?? {})};
   for (const modelApi of entry.publicApi.models) {
     if (modelApi.name in baseInputs) continue;
-    baseInputs[modelApi.name] = modelApi.values.includes('false') ? false : null;
+    baseInputs[modelApi.name] = modelApi.hasDefault
+      ? modelApi.defaultValue
+      : modelApi.values.includes('false')
+        ? false
+        : null;
   }
   const missingRequired = entry.publicApi.inputs
     .filter((inputApi) => inputApi.required && !(inputApi.name in baseInputs))
@@ -1341,6 +1349,82 @@ function fixtureCases(entry, sourceText) {
     cases.push({id: 'loading', label: 'حالة تحميل', inputs: {...baseInputs, loading: true}});
   }
   return cases;
+}
+
+const GALLERY_FACET_LABELS = Object.freeze({
+  variant: 'الأنماط', size: 'الأحجام', shape: 'الأشكال', tone: 'النبرات',
+  orientation: 'الاتجاهات', distribution: 'التوزيع', widthMode: 'العرض',
+  scrollMode: 'التمرير', motion: 'الحركة', appearance: 'المظهر',
+  placement: 'المواضع', activation: 'التفعيل', mode: 'الأوضاع',
+  position: 'الموقع', align: 'المحاذاة', justify: 'التوزيع الداخلي', gap: 'الفجوات',
+  wrap: 'الالتفاف', density: 'الكثافة', headerShape: 'شكل الرأس',
+  verticalPlacement: 'الموضع الرأسي', selectSize: 'حجم الاختيار',
+  presence: 'الحضور', presencePosition: 'موضع الحضور',
+  presenceMotion: 'حركة الحضور', hoverMotion: 'حركة المرور', cursor: 'المؤشر',
+  transition: 'الانتقال', direction: 'الاتجاه النصي',
+  multiple: 'الاختيار المتعدد', selected: 'الاختيار',
+  showAvatar: 'عرض الصورة', showUserName: 'عرض الاسم', showEmail: 'عرض البريد',
+  showPresence: 'عرض الحضور', showRoleBadge: 'عرض الدور',
+  showBranchBadge: 'عرض الفرع', showTriggerRoleBadge: 'دور المحفز',
+  showTriggerBranchBadge: 'فرع المحفز',
+});
+
+const GALLERY_VALUE_LABELS = Object.freeze({
+  solid: 'صلب', outline: 'محاط', subtle: 'خافت', ghost: 'شفاف', text: 'نصي',
+  primary: 'رئيسي', neutral: 'محايد', success: 'نجاح', warning: 'تحذير',
+  danger: 'خطر', info: 'معلومات', horizontal: 'أفقي', vertical: 'رأسي',
+  start: 'البداية', center: 'الوسط', end: 'النهاية', stretch: 'ممتد',
+  compact: 'مضغوط', comfortable: 'مريح', default: 'افتراضي', full: 'كامل',
+  true: 'مفعّل', false: 'غير مفعّل', none: 'بدون', auto: 'تلقائي',
+  circle: 'دائري', rounded: 'مستدير', square: 'مربع',
+});
+
+function reviewGalleryCase(showcaseCase, facet = '') {
+  if (/[؀-ۿ]/.test(showcaseCase.label)) return showcaseCase;
+  const rawValue = facet && showcaseCase.id.startsWith(`${facet}-`)
+    ? showcaseCase.id.slice(facet.length + 1)
+    : showcaseCase.id;
+  const localized = GALLERY_VALUE_LABELS[rawValue];
+  return localized
+    ? {...showcaseCase, label: `${localized} (${rawValue})`}
+    : showcaseCase;
+}
+
+function reviewGalleryFor(entry) {
+  const cases = entry.showcaseCases;
+  const groups = [];
+  const defaultCase = cases.find((candidate) => candidate.id === 'default');
+  if (defaultCase) {
+    groups.push({id: 'default', label: 'الحالة الافتراضية', cases: [defaultCase]});
+  }
+  for (const facet of entry.showcaseFacets) {
+    const facetCases = cases.filter((candidate) => candidate.id.startsWith(`${facet}-`));
+    if (facetCases.length === 0) continue;
+    groups.push({
+      id: facet,
+      label: GALLERY_FACET_LABELS[facet] ?? facet,
+      cases: facetCases.map((showcaseCase) => reviewGalleryCase(showcaseCase, facet)),
+    });
+  }
+  const stateCases = cases.filter((candidate) =>
+    ['disabled', 'readonly', 'loading'].includes(candidate.id) &&
+    !groups.some((group) => group.cases.some((item) => item.id === candidate.id)),
+  );
+  if (stateCases.length > 0) {
+    groups.push({id: 'states', label: 'الحالات', cases: stateCases});
+  }
+  const coveredIds = new Set(groups.flatMap((group) => group.cases.map((showcaseCase) => showcaseCase.id)));
+  const scenarioCases = cases.filter((candidate) =>
+    !coveredIds.has(candidate.id) &&
+    !candidate.id.startsWith('open-') &&
+    !candidate.id.startsWith('sidebarOpen-') &&
+    !candidate.id.startsWith('sidebarCollapsed-') &&
+    !candidate.id.startsWith('collapsed-'),
+  );
+  if (scenarioCases.length > 0) {
+    groups.push({id: 'scenarios', label: 'سيناريوهات الاستخدام', cases: scenarioCases});
+  }
+  return groups;
 }
 
 function scanDecoratedEntries() {
@@ -1416,6 +1500,23 @@ function scanDecoratedEntries() {
         entry.showcaseCoverage = classification === 'PUBLIC ERP COMPONENT'
           ? showcaseCoverageFor(entry)
           : null;
+        entry.reviewStatus = classification === 'PUBLIC ERP COMPONENT'
+          ? reviewStatusFor(entry)
+          : null;
+        entry.reviewReference = classification === 'PUBLIC ERP COMPONENT'
+          ? reviewReferenceFor(entry)
+          : null;
+        entry.reviewGalleryGroups = classification === 'PUBLIC ERP COMPONENT'
+          ? reviewGalleryFor(entry).map((group) => ({
+              id: group.id,
+              label: group.label,
+              cases: group.cases.map((showcaseCase) => ({
+                id: showcaseCase.id,
+                label: showcaseCase.label,
+                inputs: {},
+              })),
+            }))
+          : [];
         entries.push(entry);
       }
     }
@@ -1451,6 +1552,9 @@ export function buildCatalog() {
       showcaseInitialValues: null,
       showcaseControls: [],
       showcaseCoverage: null,
+      reviewStatus: null,
+      reviewReference: null,
+      reviewGalleryGroups: [],
     });
   }
   return entries.sort((left, right) => left.category.localeCompare(right.category) || left.className.localeCompare(right.className));
@@ -1564,6 +1668,7 @@ function generatedRootAppShellShowcaseOwner(entry) {
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpAppShellWorkbenchValues, ErpReviewAppShellWorkbenchState} from '../../../review-internals/app-shell-workbench/app-shell-workbench-state';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
@@ -1578,7 +1683,7 @@ const INITIAL_VALUES = {
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-app-shell-showcase',
-  imports: [ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText],
   templateUrl: './app-shell-showcase.html',
   styleUrl: './app-shell-showcase.scss',
 })
@@ -1620,10 +1725,20 @@ export class ErpAppShellShowcase implements OnDestroy {
   }
 }
 `;
-  const html = `<erp-stack gap="default" data-dedicated-showcase="app-shell" data-showcase-sections="1">
-  <erp-text type="heading-2">${entry.displayNameAr}</erp-text>
-  <erp-text type="paragraph" tone="secondary">${entry.descriptionAr}</erp-text>
+  const html = `<erp-stack gap="default" data-dedicated-showcase="app-shell" data-showcase-sections="4">
+  <erp-stack id="visual-gallery" data-review-section="gallery">
+    <erp-surface padding="default" border="subtle">
+      <erp-stack gap="tight">
+        <erp-text type="heading-2">معرض إطار التطبيق الحقيقي</erp-text>
+        <erp-text type="paragraph" tone="secondary">
+          الهدف المرئي هو إطار Design Lab الجذري المحيط بالصفحة نفسها. لا ينشئ هذا المعرض إطارًا متداخلًا أو هدفًا إضافيًا.
+        </erp-text>
+      </erp-stack>
+    </erp-surface>
+  </erp-stack>
+  <app-review-showcase-reference-comparison [entry]="entry" />
   <erp-surface
+    id="live-preview"
     padding="default"
     border="subtle"
     data-showcase-case="live"
@@ -1631,7 +1746,7 @@ export class ErpAppShellShowcase implements OnDestroy {
     class="showcase-live-preview"
   >
     <erp-stack gap="tight">
-      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      <erp-text type="heading-3">المعاينة الحية الجذرية</erp-text>
       <erp-text type="paragraph">
         إطار التطبيق الجذري المحيط بهذه الصفحة هو هدف المعاينة الفعلي؛ تغيّر أدوات التحكم أدناه مدخلاته مباشرةً دون إنشاء إطار تطبيق متداخل.
       </erp-text>
@@ -1640,12 +1755,15 @@ export class ErpAppShellShowcase implements OnDestroy {
       </erp-text>
     </erp-stack>
   </erp-surface>
-  <app-review-showcase-control-panel
-    [controls]="controls"
-    [values]="controlValues()"
-    (controlChanged)="applyControl($event)"
-  />
-  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+  <details id="api-controls" class="showcase-api-controls" data-showcase-api-controls>
+    <summary><erp-text type="strong">أدوات API المتقدمة</erp-text></summary>
+    <app-review-showcase-control-panel
+      [controls]="controls"
+      [values]="controlValues()"
+      (controlChanged)="applyControl($event)"
+    />
+  </details>
+  <erp-surface id="event-evidence" padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
       <erp-text type="heading-3">آخر تفاعل</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
@@ -1656,6 +1774,14 @@ export class ErpAppShellShowcase implements OnDestroy {
   const scss = `:host { display: block; min-inline-size: 0; }
 
 .showcase-live-preview { min-block-size: 12rem; }
+
+.showcase-api-controls {
+  border: var(--honesty-border-width-default) solid var(--honesty-border-subtle);
+  border-radius: var(--honesty-radius-surface);
+  padding: var(--honesty-space-inset-default);
+}
+
+.showcase-api-controls > summary { cursor: pointer; }
 `;
 
   return new Map([
@@ -1687,6 +1813,7 @@ function generatedShowcaseOwner(entry) {
   const imports = new Set([
     entry.className,
     'ErpReviewShowcaseControlPanel',
+    'ErpReviewShowcaseReferenceComparison',
     'ErpStack',
     'ErpSurface',
     'ErpText',
@@ -1696,6 +1823,7 @@ function generatedShowcaseOwner(entry) {
     `import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';`,
     `import {${entry.className}} from '${componentImport}';`,
     `import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';`,
+    `import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';`,
   ];
   if (entry.className !== 'ErpStack') importLines.push(`import {ErpStack} from '../../../primitives/stack/stack';`);
   if (entry.className !== 'ErpSurface') importLines.push(`import {ErpSurface} from '../../../primitives/surface/surface';`);
@@ -1868,6 +1996,27 @@ function generatedShowcaseOwner(entry) {
           data-showcase-target${targetClass}${directionBinding}
           ${inputBindings.join('\n          ')}
         >${projection}</${entry.selector}>`;
+  const galleryBindings = entry.publicApi.inputs
+    .filter((inputApi) => !(hasCvaDisabled && inputApi.name === 'disabled'))
+    .map((inputApi) => inputApi.name === 'avatars' && isAvatarPicker
+      ? `[avatars]="$any(effectiveAvatars())"`
+      : `[${inputApi.name === 'forId' ? 'for' : inputApi.name}]="$any(galleryValue(showcaseCase, '${inputApi.name}'))"`,
+    );
+  for (const modelApi of entry.publicApi.models) {
+    galleryBindings.push(`[${modelApi.name}]="$any(galleryValue(showcaseCase, '${modelApi.name}'))"`);
+  }
+  if (isCva) {
+    galleryBindings.push('[formControl]="galleryControl(showcaseCase.id, $any(galleryValue(showcaseCase, \'disabled\')))"');
+  }
+  const galleryBindingMarkup = galleryBindings.length
+    ? `\n                ${galleryBindings.join('\n                ')}`
+    : '';
+  const galleryOwnerMarkup = `<${entry.selector}
+                data-showcase-gallery-owner${galleryBindingMarkup}
+              >${projection}</${entry.selector}>`;
+  const renderedGalleryOwner = ['ErpIconButton', 'ErpFab'].includes(entry.className)
+    ? `<erp-tooltip [text]="$any(galleryValue(showcaseCase, 'label'))">${galleryOwnerMarkup}</erp-tooltip>`
+    : galleryOwnerMarkup;
   let renderedOwner = ['ErpIconButton', 'ErpFab'].includes(entry.className)
     ? `<erp-tooltip [text]="$any(value('label'))">${ownerMarkup}</erp-tooltip>`
     : ownerMarkup;
@@ -1916,12 +2065,40 @@ function generatedShowcaseOwner(entry) {
     ? `\nconst TOPBAR_BRANCHES = [{id: 'cairo', label: 'فرع القاهرة'}, {id: 'alexandria', label: 'فرع الإسكندرية'}] as const;\nconst TOPBAR_SEARCH_RESULTS = [{id: 'invoice-1042', label: 'فاتورة 1042', category: 'المبيعات', icon: 'file'}] as const;\nconst TOPBAR_APPLICATIONS = [{id: 'operations', label: 'تطبيقات ERP', items: [{id: 'sales', label: 'المبيعات', icon: 'shopping-cart'}, {id: 'inventory', label: 'المخزون', icon: 'inventory'}, {id: 'finance', label: 'الحسابات', icon: 'wallet'}]}] as const;\nconst TOPBAR_MESSAGES = [{id: 'invoice', senderName: 'أميرة حداد', preview: 'تم اعتماد فاتورة المبيعات رقم 1042.', timestamp: 'منذ دقيقة', avatarSrc: '/assets/honesty-erp-avatars/users/female/avatar-21.png', read: false}] as const;\nconst TOPBAR_NOTIFICATIONS = [{id: 'stock', title: 'تنبيه مخزون', description: 'وصل صنفان إلى حد إعادة الطلب', icon: 'notification'}] as const;\nconst TOPBAR_USER = {displayName: 'أميرة حداد', email: 'amira@honesty.local', roleLabel: 'مديرة المالية', branchLabel: 'القاهرة', avatarSrc: '/assets/honesty-erp-avatars/users/female/avatar-21.png', avatarPresence: 'online'} as const;\nconst TOPBAR_USER_ITEMS = [{id: 'profile', label: 'الملف الشخصي', icon: 'user'}, {id: 'sign-out', label: 'تسجيل الخروج', icon: 'logout'}] as const;\n`
     : '';
   const source = `${importLines.join('\n')}\n\nconst ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === '${entry.id}')!;${userMenuPresetSource}\n@Component({\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  selector: 'app-${entry.id}-showcase',\n  imports: [${[...imports].join(', ')}],\n  templateUrl: './${entry.id}-showcase.html',\n  styleUrl: './${entry.id}-showcase.scss',\n})\nexport class ${className} {\n  readonly entry = ENTRY;\n  readonly controls = ENTRY.showcaseControls;\n  readonly lastEvent = signal('لم يحدث تفاعل بعد');\n  readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});\n  readonly cvaValue = signal<unknown>(${JSON.stringify(initialCvaValue)});\n  readonly controlValues = computed<Readonly<Record<string, unknown>>>(() => ({\n    ...this.liveValues(),\n    '$value': this.cvaValue(),\n  }));\n${isCva ? `  readonly control = new FormControl<unknown>(${JSON.stringify({value: initialCvaValue, disabled: Boolean(entry.showcaseInitialValues?.disabled)})});\n\n  constructor() {\n    this.control.valueChanges.pipe(takeUntilDestroyed()).subscribe((value) => {\n      this.cvaValue.set(value);\n      this.recordEvent('valueChange', value);\n    });\n  }\n` : ''}${isAvatarPicker ? `  readonly defaultAvatars = ERP_AVATAR_CATALOG;\n\n  effectiveAvatars(): unknown {\n    const avatars = this.value('avatars');\n    return Array.isArray(avatars) ? avatars : this.defaultAvatars;\n  }\n\n` : ''}\n  readonly previewInline = computed(() => Number(this.liveValues()['$previewInline'] ?? 80));\n  readonly previewBlock = computed(() => Number(this.liveValues()['$previewBlock'] ?? 75));\n  readonly previewDirection = computed(() => this.liveValues()['$previewDirection'] === 'ltr' ? 'ltr' : 'rtl');\n\n  value(name: string): unknown {\n    return this.liveValues()[name];\n  }\n\n  applyControl(change: ErpShowcaseControlChange): void {\n    if (change.control.source === 'cva') {\n${isCva ? `      this.control.setValue(change.value);` : `      this.cvaValue.set(change.value);`}\n      return;\n    }\n${userMenuPresetHandler}${hasCvaDisabled ? `    if (change.control.name === 'disabled') {\n      this.liveValues.update((current) => ({...current, disabled: change.value}));\n      if (change.value) this.control.disable();\n      else this.control.enable();\n      return;\n    }\n` : ''}    const value = change.control.kind === 'function'\n+      ? this.functionPreset(change.control.name, change.value)\n+      : change.value;\n+    this.liveValues.update((current) => ({...current, [change.control.name]: value}));\n+  }\n\n  recordModel(name: string, value: unknown): void {\n    this.liveValues.update((current) => ({...current, [name]: value}));\n    this.recordEvent(\`${'${name}'}Change\`, value);\n  }\n\n  recordEvent(name: string, value: unknown): void {\n    let rendered = '';\n    try { rendered = typeof value === 'string' ? value : JSON.stringify(value); }\n    catch { rendered = String(value); }\n    this.lastEvent.set(\`${'${name}'}: ${'${rendered}'}\`);\n  }\n\n  private functionPreset(name: string, value: unknown): unknown {\n    if (value !== 'sample') return null;\n    if (/comparator/i.test(name)) return () => 0;\n    if (/formatter/i.test(name)) return (candidate: unknown) => String(candidate ?? '');\n    if (/disabled/i.test(name)) return () => false;\n    if (/filter|predicate/i.test(name)) return () => true;\n    return (candidate: unknown) => candidate;\n  }\n}\n`;
+  const reviewGalleryGroups = reviewGalleryFor(entry);
   let normalizedSource = source
     .replaceAll('\n+', '\n')
+    .replace(
+      '\n@Component({',
+      `\nconst REVIEW_GALLERY_GROUPS = ${JSON.stringify(reviewGalleryGroups, null, 2)} as const;\n\n@Component({`,
+    )
     .replace('!;\n@Component', '!;\n\n@Component');
+  normalizedSource = normalizedSource
+    .replace(
+      '  readonly controls = ENTRY.showcaseControls;\n',
+      '  readonly controls = ENTRY.showcaseControls;\n  readonly galleryGroups = REVIEW_GALLERY_GROUPS;\n',
+    )
+    .replace(
+      '\n  applyControl(change: ErpShowcaseControlChange): void {',
+      "\n  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {\n    if (name === 'open') return false;\n    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)\n      ? showcaseCase.inputs[name]\n      : ENTRY.showcaseInitialValues?.[name];\n  }\n\n  applyControl(change: ErpShowcaseControlChange): void {",
+    );
+  if (isCva) {
+    normalizedSource = normalizedSource
+      .replace(
+        '  readonly control = new FormControl<unknown>',
+        '  private readonly galleryControls = new Map<string, FormControl<unknown>>();\n  readonly control = new FormControl<unknown>',
+      )
+      .replace(
+        '\n  applyControl(change: ErpShowcaseControlChange): void {',
+        `\n  galleryControl(id: string, disabled: unknown): FormControl<unknown> {\n    const existing = this.galleryControls.get(id);\n    if (existing) return existing;\n    const control = new FormControl<unknown>({value: ${JSON.stringify(initialCvaValue)}, disabled: Boolean(disabled)});\n    this.galleryControls.set(id, control);\n    return control;\n  }\n\n  applyControl(change: ErpShowcaseControlChange): void {`,
+      );
+  }
   if (entry.className === 'ErpTopbar' || entry.className === 'ErpAppShell') {
     normalizedSource = normalizedSource
-      .replace('!;\n\n@Component', `!;${topbarEvidenceSource}\n@Component`)
+      .replace(
+        '\nconst REVIEW_GALLERY_GROUPS =',
+        `${topbarEvidenceSource}\nconst REVIEW_GALLERY_GROUPS =`,
+      )
       .replace(
         '  readonly cvaValue = signal<unknown>(null);\n',
         `  readonly cvaValue = signal<unknown>(null);\n  readonly topbarBranches = TOPBAR_BRANCHES;\n  readonly topbarSearchResults = TOPBAR_SEARCH_RESULTS;\n  readonly topbarApplications = TOPBAR_APPLICATIONS;\n  readonly topbarMessages = TOPBAR_MESSAGES;\n  readonly topbarNotifications = TOPBAR_NOTIFICATIONS;\n  readonly topbarUser = TOPBAR_USER;\n  readonly topbarUserItems = TOPBAR_USER_ITEMS;\n`,
@@ -1947,7 +2124,54 @@ function generatedShowcaseOwner(entry) {
       );
   }
   const cvaValueEvidence = isFileSelection ? 'fileSummary(cvaValue())' : 'cvaValue()';
-  const html = `<erp-stack gap="default" data-dedicated-showcase="${entry.id}" data-showcase-sections="1">\n  <erp-text type="heading-2">${entry.displayNameAr}</erp-text>\n  <erp-text type="paragraph" tone="secondary">${entry.descriptionAr}</erp-text>\n${referenceLabel}  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="${livePreviewClass}">\n    <erp-stack gap="tight">\n      <erp-text type="heading-3">المعاينة الحية</erp-text>\n      ${renderedOwner}\n    </erp-stack>\n  </erp-surface>\n  <app-review-showcase-control-panel\n    [controls]="controls"\n    [values]="controlValues()"\n    (controlChanged)="applyControl($event)"\n  />\n  <erp-surface padding="default" border="subtle" data-showcase-event-log>\n    <erp-stack gap="tight">\n      <erp-text type="heading-3">آخر تفاعل</erp-text>\n      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>\n${isCva ? `      <erp-text type="caption" selectable>القيمة الحالية: {{ ${cvaValueEvidence} }}</erp-text>\n` : ''}    </erp-stack>\n  </erp-surface>\n${exactReferenceEvidence}</erp-stack>\n`;
+  const html = `<erp-stack gap="default" data-dedicated-showcase="${entry.id}" data-showcase-sections="5">
+  <erp-stack id="visual-gallery" data-review-section="gallery">
+    <erp-stack gap="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-2">المعرض البصري</erp-text>
+        <erp-text type="paragraph" tone="secondary">حالات حقيقية مشتقة من واجهة المكوّن العامة، دون إنشاء حاصل ضرب ضخم أو خصائص غير مدعومة.</erp-text>
+      </erp-stack>
+      @for (group of galleryGroups; track group.id) {
+        <erp-stack gap="tight" [attr.data-gallery-group]="group.id">
+          <erp-text type="heading-3">{{ group.label }}</erp-text>
+          <erp-stack class="showcase-gallery__grid" gap="default">
+            @for (showcaseCase of group.cases; track showcaseCase.id) {
+              <erp-surface padding="default" border="subtle" class="showcase-gallery__case" [attr.data-showcase-gallery-case]="showcaseCase.id">
+                <erp-stack gap="tight">
+                  <erp-text type="caption" tone="secondary">{{ showcaseCase.label }}</erp-text>
+                  <erp-stack class="showcase-gallery__stage" gap="tight">${renderedGalleryOwner}</erp-stack>
+                </erp-stack>
+              </erp-surface>
+            }
+          </erp-stack>
+        </erp-stack>
+      }
+    </erp-stack>
+  </erp-stack>
+  <app-review-showcase-reference-comparison [entry]="entry" />
+${exactReferenceEvidence}${referenceLabel}  <erp-surface id="live-preview" padding="default" border="subtle" data-showcase-case="live" class="${livePreviewClass}">
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">المعاينة الحية</erp-text>
+      ${renderedOwner}
+    </erp-stack>
+  </erp-surface>
+  <details id="api-controls" class="showcase-api-controls" data-showcase-api-controls>
+    <summary><erp-text type="strong">أدوات API المتقدمة</erp-text></summary>
+    <app-review-showcase-control-panel
+      [controls]="controls"
+      [values]="controlValues()"
+      (controlChanged)="applyControl($event)"
+    />
+  </details>
+  <erp-surface id="event-evidence" padding="default" border="subtle" data-showcase-event-log>
+    <erp-stack gap="tight">
+      <erp-text type="heading-3">دليل الأحداث</erp-text>
+      <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+${isCva ? `      <erp-text type="caption" selectable>القيمة الحالية: {{ ${cvaValueEvidence} }}</erp-text>
+` : ''}    </erp-stack>
+  </erp-surface>
+</erp-stack>
+`;
   const previewMinBlockSize = entry.className === 'ErpUserMenu' ? '32rem' : '12rem';
   const dividerEvidenceStyle = entry.className === 'ErpDivider'
     ? `\n.showcase-divider-target[data-orientation='vertical'] {\n  min-block-size: 8rem;\n  align-self: center;\n}\n`
@@ -1957,7 +2181,38 @@ function generatedShowcaseOwner(entry) {
     : entry.className === 'ErpText'
       ? `\n.showcase-text-target {\n  display: block;\n  inline-size: min(100%, 28rem);\n  min-inline-size: 0;\n}\n`
       : '';
-  const scss = `:host { display: block; min-inline-size: 0; }\n\n.showcase-reference { overflow-wrap: anywhere; }\n\n.showcase-live-preview { min-block-size: ${previewMinBlockSize}; }\n${isFloatingPreview ? '' : '\n.showcase-live-preview--floating { position: relative; min-block-size: 30rem; overflow: clip; }\n'}${dividerEvidenceStyle}${primitiveEvidenceStyle}`;
+  const scss = `:host { display: block; min-inline-size: 0; }
+
+.showcase-reference { overflow-wrap: anywhere; }
+
+.showcase-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: var(--honesty-space-layout-gap-md);
+  min-inline-size: 0;
+}
+
+.showcase-gallery__case,
+.showcase-gallery__stage { min-inline-size: 0; }
+
+.showcase-gallery__stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  min-block-size: 5rem;
+  overflow-x: auto;
+}
+
+.showcase-live-preview { min-block-size: ${previewMinBlockSize}; }
+
+.showcase-api-controls {
+  border: var(--honesty-border-width-default) solid var(--honesty-border-subtle);
+  border-radius: var(--honesty-radius-surface);
+  padding: var(--honesty-space-inset-default);
+}
+
+.showcase-api-controls > summary { cursor: pointer; }
+${dividerEvidenceStyle}${primitiveEvidenceStyle}`;
   let generatedSource = hasDirectionalPreview
     ? normalizedSource
     : normalizedSource.replace(
@@ -2066,6 +2321,30 @@ export interface ErpComponentShowcaseCase {
   readonly inputs: Readonly<Record<string, unknown>>;
 }
 
+export interface ErpReviewGalleryGroup {
+  readonly id: string;
+  readonly label: string;
+  readonly cases: readonly ErpComponentShowcaseCase[];
+}
+
+export interface ErpReviewStatus {
+  readonly kind: 'accepted-frozen' | 'reopened' | 'pending-unknown';
+  readonly label: string;
+  readonly note: string;
+}
+
+export interface ErpReviewReference {
+  readonly kind: 'exact-local' | 'external-skodash' | 'original-honesty';
+  readonly label: string;
+  readonly source: string;
+  readonly sourceUrl: string | null;
+  readonly capturedAt: string;
+  readonly referenceImage: string | null;
+  readonly implementationImage: string | null;
+  readonly viewport: string | null;
+  readonly note: string;
+}
+
 export interface ErpComponentCatalogEntry {
   readonly id: string;
   readonly selector: string | null;
@@ -2113,6 +2392,9 @@ export interface ErpComponentCatalogEntry {
     readonly coveredReferenceCases: readonly string[];
     readonly evidenceKind: string;
   } | null;
+  readonly reviewStatus: ErpReviewStatus | null;
+  readonly reviewReference: ErpReviewReference | null;
+  readonly reviewGalleryGroups: readonly ErpReviewGalleryGroup[];
 }
 
 export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = ${data};
@@ -2126,7 +2408,7 @@ ${loaders}
 function generatedNavigationTypeScript(catalog) {
   const entries = catalog
     .filter((entry) => entry.classification === 'PUBLIC ERP COMPONENT')
-    .map(({id, className, selector, category, showcaseRoute, displayNameAr, descriptionAr, purpose}) => ({
+    .map(({id, className, selector, category, showcaseRoute, displayNameAr, descriptionAr, purpose, reviewStatus, reviewReference}) => ({
       id,
       className,
       selector,
@@ -2135,6 +2417,8 @@ function generatedNavigationTypeScript(catalog) {
       displayNameAr,
       descriptionAr,
       purpose,
+      reviewStatus: {kind: reviewStatus.kind},
+      reviewReference: {kind: reviewReference.kind},
     }));
   return `// GENERATED by tools/catalog/erp-component-catalog.mjs. Do not edit by hand.
 export interface ErpComponentNavigationEntry {
@@ -2146,6 +2430,8 @@ export interface ErpComponentNavigationEntry {
   readonly displayNameAr: string;
   readonly descriptionAr: string;
   readonly purpose: string;
+  readonly reviewStatus: {readonly kind: 'accepted-frozen' | 'reopened' | 'pending-unknown'};
+  readonly reviewReference: {readonly kind: 'exact-local' | 'external-skodash' | 'original-honesty'};
 }
 
 export const ERP_COMPONENT_NAVIGATION: readonly ErpComponentNavigationEntry[] = ${JSON.stringify(entries, null, 2)};

@@ -2,22 +2,91 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpPage} from '../../../controls/page/page';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'page')!;
+const REVIEW_GALLERY_GROUPS = [
+  {
+    "id": "default",
+    "label": "الحالة الافتراضية",
+    "cases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {}
+      }
+    ]
+  },
+  {
+    "id": "widthMode",
+    "label": "العرض",
+    "cases": [
+      {
+        "id": "widthMode-boxed",
+        "label": "widthMode: boxed",
+        "inputs": {
+          "widthMode": "boxed"
+        }
+      },
+      {
+        "id": "widthMode-fluid",
+        "label": "widthMode: fluid",
+        "inputs": {
+          "widthMode": "fluid"
+        }
+      },
+      {
+        "id": "widthMode-full",
+        "label": "كامل (full)",
+        "inputs": {
+          "widthMode": "full"
+        }
+      }
+    ]
+  },
+  {
+    "id": "scrollMode",
+    "label": "التمرير",
+    "cases": [
+      {
+        "id": "scrollMode-document",
+        "label": "scrollMode: document",
+        "inputs": {
+          "scrollMode": "document"
+        }
+      },
+      {
+        "id": "scrollMode-page",
+        "label": "scrollMode: page",
+        "inputs": {
+          "scrollMode": "page"
+        }
+      },
+      {
+        "id": "scrollMode-free",
+        "label": "scrollMode: free",
+        "inputs": {
+          "scrollMode": "free"
+        }
+      }
+    ]
+  }
+] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-page-showcase',
-  imports: [ErpPage, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpPage, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText],
   templateUrl: './page-showcase.html',
   styleUrl: './page-showcase.scss',
 })
 export class ErpPageShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
+  readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>(null);
@@ -31,6 +100,13 @@ export class ErpPageShowcase {
 
   value(name: string): unknown {
     return this.liveValues()[name];
+  }
+
+  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return false;
+    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
+      ? showcaseCase.inputs[name]
+      : ENTRY.showcaseInitialValues?.[name];
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

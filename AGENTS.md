@@ -1,5 +1,26 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Visual Review Experience V1 State
+
+The Product Owner-authorized review-experience wave entered from clean
+`8baad49296e625d5c621df63b2f2f338fe4a5f5f`. All 81 public routes now place a
+real supported Gallery and honest Reference Comparison before the one-target
+Live Workbench; Advanced API Controls are retained in a collapsed disclosure
+and outputs remain visible. The generated authority distinguishes exact local,
+external Skodash, and original Honesty ERP provenance without fabricating a
+reference image. Existing exact-core evidence, including the complete
+multi-owner Table experience, remains available on demand.
+
+The final runtime audit passes 81/81 routes with one root AppShell,
+RouterOutlet, OverlayHost, and primary target; horizontal overflow, broken
+images, and browser diagnostics are zero. Canonical verification passes
+153/153 files and 886/886 tests, both typechecks, all governance, and the
+zero-warning 424.96 kB / 93.08 kB build. `ErpCheckBox` remains the only
+accepted/frozen owner; Select, EmptyState, Tabs, Table, and UserMenu remain
+reopened; the other 75 owners remain pending. Internal review never changes
+Product Owner status. Evidence is under
+`docs/review-evidence/visual-review-experience-v1/`.
+
 ## Current Defined Public UI Backlog Closure
 
 `ErpPage`, `ErpPageHeader`, and `ErpPageShell` completed the final defined

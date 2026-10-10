@@ -2,21 +2,70 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpText} from '../../../primitives/text/text';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'surface')!;
+const REVIEW_GALLERY_GROUPS = [
+  {
+    "id": "default",
+    "label": "الحالة الافتراضية",
+    "cases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {}
+      }
+    ]
+  },
+  {
+    "id": "tone",
+    "label": "النبرات",
+    "cases": [
+      {
+        "id": "tone-canvas",
+        "label": "tone: canvas",
+        "inputs": {
+          "tone": "canvas"
+        }
+      },
+      {
+        "id": "tone-default",
+        "label": "افتراضي (default)",
+        "inputs": {
+          "tone": "default"
+        }
+      },
+      {
+        "id": "tone-elevated",
+        "label": "tone: elevated",
+        "inputs": {
+          "tone": "elevated"
+        }
+      },
+      {
+        "id": "tone-inverse",
+        "label": "tone: inverse",
+        "inputs": {
+          "tone": "inverse"
+        }
+      }
+    ]
+  }
+] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-surface-showcase',
-  imports: [ErpSurface, ErpReviewShowcaseControlPanel, ErpStack, ErpText],
+  imports: [ErpSurface, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpText],
   templateUrl: './surface-showcase.html',
   styleUrl: './surface-showcase.scss',
 })
 export class ErpSurfaceShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
+  readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>(null);
@@ -30,6 +79,13 @@ export class ErpSurfaceShowcase {
 
   value(name: string): unknown {
     return this.liveValues()[name];
+  }
+
+  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return false;
+    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
+      ? showcaseCase.inputs[name]
+      : ENTRY.showcaseInitialValues?.[name];
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

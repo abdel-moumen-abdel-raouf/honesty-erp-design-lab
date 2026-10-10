@@ -1,5 +1,24 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Visual Review Experience V1 candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `8baad49296e625d5c621df63b2f2f338fe4a5f5f` — synchronized `main` after the
+  defined public UI backlog internal-review closure.
+
+Bounded scope:
+
+- Added shared review authority, Gallery, provenance/comparison presentation,
+  catalog status/reference filtering, deterministic evidence publication, and
+  generated integration for all 81 public routes.
+- Preserved one primary target and the exact-core on-demand experiences,
+  including root-only AppShell and the multi-owner Table reference.
+- Persisted an 81/81 runtime audit and ten desktop/narrow Light/Dark RTL/LTR
+  captures under `docs/review-evidence/visual-review-experience-v1/`.
+- Product Owner acceptance remains unchanged and no production visual contract
+  or planned-only identity was opened.
+
 ## Page Composition and public-backlog closure candidate — 2026-10-10
 
 Entry checkpoint:

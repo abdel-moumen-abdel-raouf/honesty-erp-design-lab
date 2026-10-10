@@ -1,0 +1,29 @@
+@use '../../../styles/foundation/queries' as query;
+
+:host {
+  display: block;
+  min-inline-size: 0;
+}
+
+.reference-comparison {
+  scroll-margin-block-start: var(--honesty-space-layout-gap-xl);
+}
+
+.reference-comparison__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--honesty-space-layout-gap-md);
+  min-inline-size: 0;
+}
+
+.reference-comparison__source,
+.reference-comparison__source-link {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+@include query.viewport-down('md') {
+  .reference-comparison__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

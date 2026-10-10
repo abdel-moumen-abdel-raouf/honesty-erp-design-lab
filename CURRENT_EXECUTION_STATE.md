@@ -1,5 +1,22 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — Visual Review Experience V1
+
+The 81 implemented public routes now use one shared visual-review contract:
+Gallery, Reference Comparison, one Live Preview target, collapsed Advanced API
+Controls, and Event Evidence. Gallery metadata is generated from actual cases
+and supported public facets rather than a fictional Cartesian product. Exact
+reference evidence remains on demand, including the full multi-owner Table
+composition. The root AppShell remains the sole target on its route.
+
+Browser evidence passes 81/81 routes at 390 px with zero failures, overflow,
+broken images, or browser diagnostics, plus ten inspected desktop/narrow
+Light/Dark RTL/LTR captures. A deterministic 29-file evidence mirror is checked
+against the canonical committed sources by SHA-256. Canonical verification
+passes 153/153 files and 886/886 tests, both typechecks, all governance, and the
+zero-warning 424.96 kB / 93.08 kB build. Product Owner lifecycle
+state remains one accepted/frozen, five reopened, and 75 pending owners.
+
 ## Current checkpoint — defined public UI backlog internally complete
 
 The Page Composition unit closes the currently defined public UI backlog.

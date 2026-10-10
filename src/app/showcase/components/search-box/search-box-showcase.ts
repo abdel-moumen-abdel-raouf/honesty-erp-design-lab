@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpSearchBox} from '../../../controls/search-box/search-box';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
@@ -9,17 +10,180 @@ import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'search-box')!;
+const REVIEW_GALLERY_GROUPS = [
+  {
+    "id": "default",
+    "label": "الحالة الافتراضية",
+    "cases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "label": "البحث في السجلات",
+          "helperText": "ابحث في الفواتير والعملاء والموردين",
+          "placeholder": "رقم الفاتورة أو اسم الحساب",
+          "clearable": true,
+          "mode": "dropdown",
+          "items": [
+            {
+              "value": "invoice-1042",
+              "label": "فاتورة المبيعات 1042",
+              "description": "المبيعات — بانتظار الاعتماد",
+              "icon": "file"
+            },
+            {
+              "value": "customer-alnoor",
+              "label": "شركة النور للتجارة",
+              "description": "العملاء — فرع القاهرة",
+              "icon": "customer"
+            },
+            {
+              "value": "supplier-delta",
+              "label": "مجموعة الدلتا الصناعية",
+              "description": "الموردون — حساب نشط",
+              "icon": "building"
+            },
+            {
+              "value": "report-stock",
+              "label": "تقرير حركة المخزون",
+              "description": "التقارير — آخر 30 يومًا",
+              "icon": "chart"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "mode",
+    "label": "الأوضاع",
+    "cases": [
+      {
+        "id": "mode-modal",
+        "label": "mode: modal",
+        "inputs": {
+          "label": "البحث في السجلات",
+          "helperText": "ابحث في الفواتير والعملاء والموردين",
+          "placeholder": "رقم الفاتورة أو اسم الحساب",
+          "clearable": true,
+          "mode": "modal",
+          "items": [
+            {
+              "value": "invoice-1042",
+              "label": "فاتورة المبيعات 1042",
+              "description": "المبيعات — بانتظار الاعتماد",
+              "icon": "file"
+            },
+            {
+              "value": "customer-alnoor",
+              "label": "شركة النور للتجارة",
+              "description": "العملاء — فرع القاهرة",
+              "icon": "customer"
+            },
+            {
+              "value": "supplier-delta",
+              "label": "مجموعة الدلتا الصناعية",
+              "description": "الموردون — حساب نشط",
+              "icon": "building"
+            },
+            {
+              "value": "report-stock",
+              "label": "تقرير حركة المخزون",
+              "description": "التقارير — آخر 30 يومًا",
+              "icon": "chart"
+            }
+          ]
+        }
+      },
+      {
+        "id": "mode-dropdown",
+        "label": "mode: dropdown",
+        "inputs": {
+          "label": "البحث في السجلات",
+          "helperText": "ابحث في الفواتير والعملاء والموردين",
+          "placeholder": "رقم الفاتورة أو اسم الحساب",
+          "clearable": true,
+          "mode": "dropdown",
+          "items": [
+            {
+              "value": "invoice-1042",
+              "label": "فاتورة المبيعات 1042",
+              "description": "المبيعات — بانتظار الاعتماد",
+              "icon": "file"
+            },
+            {
+              "value": "customer-alnoor",
+              "label": "شركة النور للتجارة",
+              "description": "العملاء — فرع القاهرة",
+              "icon": "customer"
+            },
+            {
+              "value": "supplier-delta",
+              "label": "مجموعة الدلتا الصناعية",
+              "description": "الموردون — حساب نشط",
+              "icon": "building"
+            },
+            {
+              "value": "report-stock",
+              "label": "تقرير حركة المخزون",
+              "description": "التقارير — آخر 30 يومًا",
+              "icon": "chart"
+            }
+          ]
+        }
+      },
+      {
+        "id": "mode-inline",
+        "label": "mode: inline",
+        "inputs": {
+          "label": "البحث في السجلات",
+          "helperText": "ابحث في الفواتير والعملاء والموردين",
+          "placeholder": "رقم الفاتورة أو اسم الحساب",
+          "clearable": true,
+          "mode": "inline",
+          "items": [
+            {
+              "value": "invoice-1042",
+              "label": "فاتورة المبيعات 1042",
+              "description": "المبيعات — بانتظار الاعتماد",
+              "icon": "file"
+            },
+            {
+              "value": "customer-alnoor",
+              "label": "شركة النور للتجارة",
+              "description": "العملاء — فرع القاهرة",
+              "icon": "customer"
+            },
+            {
+              "value": "supplier-delta",
+              "label": "مجموعة الدلتا الصناعية",
+              "description": "الموردون — حساب نشط",
+              "icon": "building"
+            },
+            {
+              "value": "report-stock",
+              "label": "تقرير حركة المخزون",
+              "description": "التقارير — آخر 30 يومًا",
+              "icon": "chart"
+            }
+          ]
+        }
+      }
+    ]
+  }
+] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-search-box-showcase',
-  imports: [ErpSearchBox, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ReactiveFormsModule],
+  imports: [ErpSearchBox, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText, ReactiveFormsModule],
   templateUrl: './search-box-showcase.html',
   styleUrl: './search-box-showcase.scss',
 })
 export class ErpSearchBoxShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
+  readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>("invoice-1042");
@@ -27,6 +191,7 @@ export class ErpSearchBoxShowcase {
     ...this.liveValues(),
     '$value': this.cvaValue(),
   }));
+  private readonly galleryControls = new Map<string, FormControl<unknown>>();
   readonly control = new FormControl<unknown>({"value":"invoice-1042","disabled":false});
 
   constructor() {
@@ -41,6 +206,21 @@ export class ErpSearchBoxShowcase {
 
   value(name: string): unknown {
     return this.liveValues()[name];
+  }
+
+  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return false;
+    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
+      ? showcaseCase.inputs[name]
+      : ENTRY.showcaseInitialValues?.[name];
+  }
+
+  galleryControl(id: string, disabled: unknown): FormControl<unknown> {
+    const existing = this.galleryControls.get(id);
+    if (existing) return existing;
+    const control = new FormControl<unknown>({value: "invoice-1042", disabled: Boolean(disabled)});
+    this.galleryControls.set(id, control);
+    return control;
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

@@ -1,8 +1,78 @@
-<erp-stack gap="default" data-dedicated-showcase="select" data-showcase-sections="1">
-  <erp-text type="heading-2">قائمة الاختيار</erp-text>
-  <erp-text type="paragraph" tone="secondary">اختيار مفرد أو متعدد مع بحث وتجميع.</erp-text>
+<erp-stack gap="default" data-dedicated-showcase="select" data-showcase-sections="5">
+  <erp-stack id="visual-gallery" data-review-section="gallery">
+    <erp-stack gap="default">
+      <erp-stack gap="tight">
+        <erp-text type="heading-2">المعرض البصري</erp-text>
+        <erp-text type="paragraph" tone="secondary">حالات حقيقية مشتقة من واجهة المكوّن العامة، دون إنشاء حاصل ضرب ضخم أو خصائص غير مدعومة.</erp-text>
+      </erp-stack>
+      @for (group of galleryGroups; track group.id) {
+        <erp-stack gap="tight" [attr.data-gallery-group]="group.id">
+          <erp-text type="heading-3">{{ group.label }}</erp-text>
+          <erp-stack class="showcase-gallery__grid" gap="default">
+            @for (showcaseCase of group.cases; track showcaseCase.id) {
+              <erp-surface padding="default" border="subtle" class="showcase-gallery__case" [attr.data-showcase-gallery-case]="showcaseCase.id">
+                <erp-stack gap="tight">
+                  <erp-text type="caption" tone="secondary">{{ showcaseCase.label }}</erp-text>
+                  <erp-stack class="showcase-gallery__stage" gap="tight"><erp-select
+                data-showcase-gallery-owner
+                [label]="$any(galleryValue(showcaseCase, 'label'))"
+                [name]="$any(galleryValue(showcaseCase, 'name'))"
+                [form]="$any(galleryValue(showcaseCase, 'form'))"
+                [required]="$any(galleryValue(showcaseCase, 'required'))"
+                [externalValidationIssues]="$any(galleryValue(showcaseCase, 'externalValidationIssues'))"
+                [tone]="$any(galleryValue(showcaseCase, 'tone'))"
+                [status]="$any(galleryValue(showcaseCase, 'status'))"
+                [variant]="$any(galleryValue(showcaseCase, 'variant'))"
+                [borderMode]="$any(galleryValue(showcaseCase, 'borderMode'))"
+                [shape]="$any(galleryValue(showcaseCase, 'shape'))"
+                [size]="$any(galleryValue(showcaseCase, 'size'))"
+                [appearance]="$any(galleryValue(showcaseCase, 'appearance'))"
+                [labelMode]="$any(galleryValue(showcaseCase, 'labelMode'))"
+                [floatingPosition]="$any(galleryValue(showcaseCase, 'floatingPosition'))"
+                [helperText]="$any(galleryValue(showcaseCase, 'helperText'))"
+                [helperPosition]="$any(galleryValue(showcaseCase, 'helperPosition'))"
+                [leadingIcon]="$any(galleryValue(showcaseCase, 'leadingIcon'))"
+                [trailingIcon]="$any(galleryValue(showcaseCase, 'trailingIcon'))"
+                [clearable]="$any(galleryValue(showcaseCase, 'clearable'))"
+                [feedbackText]="$any(galleryValue(showcaseCase, 'feedbackText'))"
+                [feedbackDismissible]="$any(galleryValue(showcaseCase, 'feedbackDismissible'))"
+                [options]="$any(galleryValue(showcaseCase, 'options'))"
+                [multiple]="$any(galleryValue(showcaseCase, 'multiple'))"
+                [searchable]="$any(galleryValue(showcaseCase, 'searchable'))"
+                [filterable]="$any(galleryValue(showcaseCase, 'filterable'))"
+                [sortable]="$any(galleryValue(showcaseCase, 'sortable'))"
+                [showIcons]="$any(galleryValue(showcaseCase, 'showIcons'))"
+                [showImages]="$any(galleryValue(showcaseCase, 'showImages'))"
+                [selectAll]="$any(galleryValue(showcaseCase, 'selectAll'))"
+                [maxSelected]="$any(galleryValue(showcaseCase, 'maxSelected'))"
+                [maxChips]="$any(galleryValue(showcaseCase, 'maxChips'))"
+                [placeholder]="$any(galleryValue(showcaseCase, 'placeholder'))"
+                [searchPlaceholder]="$any(galleryValue(showcaseCase, 'searchPlaceholder'))"
+                [searchLabel]="$any(galleryValue(showcaseCase, 'searchLabel'))"
+                [emptyText]="$any(galleryValue(showcaseCase, 'emptyText'))"
+                [selectSize]="$any(galleryValue(showcaseCase, 'selectSize'))"
+                [selectAppearance]="$any(galleryValue(showcaseCase, 'selectAppearance'))"
+                [placement]="$any(galleryValue(showcaseCase, 'placement'))"
+                [groupBy]="$any(galleryValue(showcaseCase, 'groupBy'))"
+                [sortMode]="$any(galleryValue(showcaseCase, 'sortMode'))"
+                [filterPredicate]="$any(galleryValue(showcaseCase, 'filterPredicate'))"
+                [filterFn]="$any(galleryValue(showcaseCase, 'filterFn'))"
+                [comparator]="$any(galleryValue(showcaseCase, 'comparator'))"
+                [sort]="$any(galleryValue(showcaseCase, 'sort'))"
+                [formControl]="galleryControl(showcaseCase.id, $any(galleryValue(showcaseCase, 'disabled')))"
+              ></erp-select></erp-stack>
+                </erp-stack>
+              </erp-surface>
+            }
+          </erp-stack>
+        </erp-stack>
+      }
+    </erp-stack>
+  </erp-stack>
+  <app-review-showcase-reference-comparison [entry]="entry" />
+  <app-review-showcase-exact-reference focus="select" />
   <erp-text class="showcase-reference" type="caption" tone="secondary" selectable>مرجع Product Owner: src/app/controls/select/ERP_SELECT_REFERENCE_EXACT_V3.md</erp-text>
-  <erp-surface padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
+  <erp-surface id="live-preview" padding="default" border="subtle" data-showcase-case="live" class="showcase-live-preview">
     <erp-stack gap="tight">
       <erp-text type="heading-3">المعاينة الحية</erp-text>
       <erp-select
@@ -62,17 +132,19 @@
         ></erp-select>
     </erp-stack>
   </erp-surface>
-  <app-review-showcase-control-panel
-    [controls]="controls"
-    [values]="controlValues()"
-    (controlChanged)="applyControl($event)"
-  />
-  <erp-surface padding="default" border="subtle" data-showcase-event-log>
+  <details id="api-controls" class="showcase-api-controls" data-showcase-api-controls>
+    <summary><erp-text type="strong">أدوات API المتقدمة</erp-text></summary>
+    <app-review-showcase-control-panel
+      [controls]="controls"
+      [values]="controlValues()"
+      (controlChanged)="applyControl($event)"
+    />
+  </details>
+  <erp-surface id="event-evidence" padding="default" border="subtle" data-showcase-event-log>
     <erp-stack gap="tight">
-      <erp-text type="heading-3">آخر تفاعل</erp-text>
+      <erp-text type="heading-3">دليل الأحداث</erp-text>
       <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
       <erp-text type="caption" selectable>القيمة الحالية: {{ cvaValue() }}</erp-text>
     </erp-stack>
   </erp-surface>
-  <app-review-showcase-exact-reference focus="select" />
 </erp-stack>

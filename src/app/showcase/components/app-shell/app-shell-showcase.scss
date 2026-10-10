@@ -1,3 +1,11 @@
 :host { display: block; min-inline-size: 0; }
 
 .showcase-live-preview { min-block-size: 12rem; }
+
+.showcase-api-controls {
+  border: var(--honesty-border-width-default) solid var(--honesty-border-subtle);
+  border-radius: var(--honesty-radius-surface);
+  padding: var(--honesty-space-inset-default);
+}
+
+.showcase-api-controls > summary { cursor: pointer; }

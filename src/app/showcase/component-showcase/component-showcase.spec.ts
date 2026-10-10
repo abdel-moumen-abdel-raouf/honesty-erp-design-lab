@@ -33,6 +33,75 @@ describe('ComponentShowcase', () => {
     expect(root.querySelector('erp-button')).not.toBeNull();
   });
 
+  it('puts truthful gallery and comparison evidence before one live target and collapsed API controls', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/components/button', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+
+    const root = harness.routeNativeElement as HTMLElement;
+    const gallery = root.querySelector('[data-review-section="gallery"]') as HTMLElement;
+    const comparison = root.querySelector('[data-review-section="comparison"]') as HTMLElement;
+    const live = root.querySelector('#live-preview') as HTMLElement;
+    const controls = root.querySelector<HTMLDetailsElement>('[data-showcase-api-controls]')!;
+
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect(gallery.querySelectorAll('[data-showcase-gallery-owner]').length).toBeGreaterThan(1);
+    expect(gallery.compareDocumentPosition(comparison) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(comparison.compareDocumentPosition(live) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(controls.open).toBe(false);
+    expect(root.textContent).toContain('بانتظار قرار Product Owner');
+  });
+
+  it('keeps secondary gallery evidence stable while the primary workbench changes', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/components/button', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+
+    const root = harness.routeNativeElement as HTMLElement;
+    const galleryCase = root.querySelector('[data-showcase-gallery-case="default"]') as HTMLElement;
+    const panel = harness.fixture.debugElement
+      .query(By.directive(ErpReviewShowcaseControlPanel))
+      .componentInstance as ErpReviewShowcaseControlPanel;
+    const label = panel.controls().find((control) => control.name === 'label')!;
+
+    expect(galleryCase.textContent).toContain('اعتماد طلب الشراء');
+    panel.editor(label).setValue('تنفيذ أمر جديد');
+    harness.fixture.detectChanges();
+
+    expect(root.querySelector('[data-showcase-target]')?.textContent).toContain('تنفيذ أمر جديد');
+    expect(galleryCase.textContent).toContain('اعتماد طلب الشراء');
+    expect(galleryCase.textContent).not.toContain('تنفيذ أمر جديد');
+  });
+
+  it('keeps grounded lifecycle status and exact-reference provenance machine-readable', () => {
+    const publicEntries = ERP_COMPONENT_CATALOG.filter(
+      (candidate) => candidate.classification === 'PUBLIC ERP COMPONENT',
+    );
+    expect(publicEntries).toHaveLength(81);
+    expect(publicEntries.filter((entry) => entry.reviewStatus?.kind === 'accepted-frozen')
+      .map((entry) => entry.className)).toEqual(['ErpCheckBox']);
+    expect(publicEntries.filter((entry) => entry.reviewStatus?.kind === 'reopened')
+      .map((entry) => entry.className).sort()).toEqual([
+        'ErpEmptyState',
+        'ErpSelect',
+        'ErpTable',
+        'ErpTabs',
+        'ErpUserMenu',
+      ]);
+    for (const entry of publicEntries) {
+      expect(entry.reviewGalleryGroups.length, entry.className).toBeGreaterThan(0);
+      expect(entry.reviewGalleryGroups.flatMap((group) => group.cases)
+        .some((showcaseCase) => showcaseCase.id === 'default'), entry.className).toBe(true);
+      expect(entry.reviewReference).not.toBeNull();
+    }
+  });
+
   it('keeps Button actions meaningful and IconButton tooltip semantics synchronized', async () => {
     const harness = await RouterTestingHarness.create();
     await harness.navigateByUrl('/components/button', ComponentShowcase);
@@ -62,7 +131,8 @@ describe('ComponentShowcase', () => {
       .setValue('إعدادات الحسابات');
     harness.fixture.detectChanges();
     const tooltip = harness.fixture.debugElement
-      .query(By.directive(ErpTooltip))
+      .queryAll(By.directive(ErpTooltip))
+      .find((candidate) => (candidate.nativeElement as HTMLElement).contains(target))!
       .componentInstance as ErpTooltip;
     expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
     expect((target.querySelector('button') as HTMLButtonElement).ariaLabel).toBe('إعدادات الحسابات');
@@ -770,21 +840,20 @@ describe('ComponentShowcase', () => {
     });
 
     const root = harness.routeNativeElement as HTMLElement;
-    const surface = root.querySelector<HTMLElement>('.user-menu__surface')!;
+    const target = root.querySelector('[data-showcase-target]') as HTMLElement;
+    const surface = target.querySelector<HTMLElement>('.user-menu__surface')!;
     Object.defineProperties(surface, {
       hidePopover: {configurable: true, value: vi.fn()},
       showPopover: {configurable: true, value: vi.fn()},
     });
-    const trigger = root.querySelector<HTMLButtonElement>(
-      '[data-showcase-target] .user-menu__trigger button',
-    )!;
+    const trigger = target.querySelector<HTMLButtonElement>('.user-menu__trigger button')!;
 
     expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
-    expect(root.querySelectorAll('.user-menu__items erp-button')).toHaveLength(6);
-    expect(root.querySelectorAll('.user-menu__divider')).toHaveLength(2);
+    expect(target.querySelectorAll('.user-menu__items erp-button')).toHaveLength(6);
+    expect(target.querySelectorAll('.user-menu__divider')).toHaveLength(2);
 
     trigger.click();
-    root.querySelector<HTMLButtonElement>(
+    target.querySelector<HTMLButtonElement>(
       '.user-menu__items erp-button button',
     )!.click();
     harness.fixture.detectChanges();

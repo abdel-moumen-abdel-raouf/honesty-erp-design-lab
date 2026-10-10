@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpNumberStepper} from '../../../controls/number-stepper/number-stepper';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
@@ -9,17 +10,38 @@ import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'number-stepper')!;
+const REVIEW_GALLERY_GROUPS = [
+  {
+    "id": "default",
+    "label": "الحالة الافتراضية",
+    "cases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "label": "كمية الطلب",
+          "helperText": "استخدم أزرار الزيادة والنقصان",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "clearable": true
+        }
+      }
+    ]
+  }
+] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-number-stepper-showcase',
-  imports: [ErpNumberStepper, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ReactiveFormsModule],
+  imports: [ErpNumberStepper, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText, ReactiveFormsModule],
   templateUrl: './number-stepper-showcase.html',
   styleUrl: './number-stepper-showcase.scss',
 })
 export class ErpNumberStepperShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
+  readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>(12);
@@ -27,6 +49,7 @@ export class ErpNumberStepperShowcase {
     ...this.liveValues(),
     '$value': this.cvaValue(),
   }));
+  private readonly galleryControls = new Map<string, FormControl<unknown>>();
   readonly control = new FormControl<unknown>({"value":12,"disabled":false});
 
   constructor() {
@@ -41,6 +64,21 @@ export class ErpNumberStepperShowcase {
 
   value(name: string): unknown {
     return this.liveValues()[name];
+  }
+
+  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return false;
+    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
+      ? showcaseCase.inputs[name]
+      : ENTRY.showcaseInitialValues?.[name];
+  }
+
+  galleryControl(id: string, disabled: unknown): FormControl<unknown> {
+    const existing = this.galleryControls.get(id);
+    if (existing) return existing;
+    const control = new FormControl<unknown>({value: 12, disabled: Boolean(disabled)});
+    this.galleryControls.set(id, control);
+    return control;
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

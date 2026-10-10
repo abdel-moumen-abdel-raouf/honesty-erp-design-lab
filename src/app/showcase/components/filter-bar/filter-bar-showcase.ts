@@ -2,23 +2,120 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpFilterBar} from '../../../controls/filter-bar/filter-bar';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
 import {ErpTextBox} from '../../../controls/text-box/text-box';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'filter-bar')!;
+const REVIEW_GALLERY_GROUPS = [
+  {
+    "id": "default",
+    "label": "الحالة الافتراضية",
+    "cases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "filters": [
+            {
+              "key": "city",
+              "label": "المدينة",
+              "value": "القاهرة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "value": "نشط"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "disabled",
+    "label": "disabled",
+    "cases": [
+      {
+        "id": "disabled-false",
+        "label": "غير مفعّل (false)",
+        "inputs": {
+          "filters": [
+            {
+              "key": "city",
+              "label": "المدينة",
+              "value": "القاهرة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "value": "نشط"
+            }
+          ],
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "مفعّل (true)",
+        "inputs": {
+          "filters": [
+            {
+              "key": "city",
+              "label": "المدينة",
+              "value": "القاهرة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "value": "نشط"
+            }
+          ],
+          "disabled": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "states",
+    "label": "الحالات",
+    "cases": [
+      {
+        "id": "disabled",
+        "label": "حالة معطلة",
+        "inputs": {
+          "filters": [
+            {
+              "key": "city",
+              "label": "المدينة",
+              "value": "القاهرة"
+            },
+            {
+              "key": "status",
+              "label": "الحالة",
+              "value": "نشط"
+            }
+          ],
+          "disabled": true
+        }
+      }
+    ]
+  }
+] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-filter-bar-showcase',
-  imports: [ErpFilterBar, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpTextBox],
+  imports: [ErpFilterBar, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText, ErpTextBox],
   templateUrl: './filter-bar-showcase.html',
   styleUrl: './filter-bar-showcase.scss',
 })
 export class ErpFilterBarShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
+  readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>(null);
@@ -32,6 +129,13 @@ export class ErpFilterBarShowcase {
 
   value(name: string): unknown {
     return this.liveValues()[name];
+  }
+
+  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return false;
+    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
+      ? showcaseCase.inputs[name]
+      : ENTRY.showcaseInitialValues?.[name];
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

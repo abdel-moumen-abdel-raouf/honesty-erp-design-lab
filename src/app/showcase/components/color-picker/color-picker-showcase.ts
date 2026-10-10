@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpColorPicker} from '../../../controls/color-picker/color-picker';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
@@ -9,17 +10,61 @@ import {FormControl, ReactiveFormsModule} from '@angular/forms';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'color-picker')!;
+const REVIEW_GALLERY_GROUPS = [
+  {
+    "id": "default",
+    "label": "الحالة الافتراضية",
+    "cases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "label": "لون تصنيف الحساب",
+          "helperText": "اختر لونًا من سجل ألوان النظام",
+          "clearable": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "mode",
+    "label": "الأوضاع",
+    "cases": [
+      {
+        "id": "mode-system",
+        "label": "mode: system",
+        "inputs": {
+          "label": "لون تصنيف الحساب",
+          "helperText": "اختر لونًا من سجل ألوان النظام",
+          "clearable": true,
+          "mode": "system"
+        }
+      },
+      {
+        "id": "mode-free",
+        "label": "mode: free",
+        "inputs": {
+          "label": "لون تصنيف الحساب",
+          "helperText": "اختر لونًا من سجل ألوان النظام",
+          "clearable": true,
+          "mode": "free"
+        }
+      }
+    ]
+  }
+] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-color-picker-showcase',
-  imports: [ErpColorPicker, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ReactiveFormsModule],
+  imports: [ErpColorPicker, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText, ReactiveFormsModule],
   templateUrl: './color-picker-showcase.html',
   styleUrl: './color-picker-showcase.scss',
 })
 export class ErpColorPickerShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
+  readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>({"mode":"system","token":"primary-500"});
@@ -27,6 +72,7 @@ export class ErpColorPickerShowcase {
     ...this.liveValues(),
     '$value': this.cvaValue(),
   }));
+  private readonly galleryControls = new Map<string, FormControl<unknown>>();
   readonly control = new FormControl<unknown>({"value":{"mode":"system","token":"primary-500"},"disabled":false});
 
   constructor() {
@@ -41,6 +87,21 @@ export class ErpColorPickerShowcase {
 
   value(name: string): unknown {
     return this.liveValues()[name];
+  }
+
+  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return false;
+    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
+      ? showcaseCase.inputs[name]
+      : ENTRY.showcaseInitialValues?.[name];
+  }
+
+  galleryControl(id: string, disabled: unknown): FormControl<unknown> {
+    const existing = this.galleryControls.get(id);
+    if (existing) return existing;
+    const control = new FormControl<unknown>({value: {"mode":"system","token":"primary-500"}, disabled: Boolean(disabled)});
+    this.galleryControls.set(id, control);
+    return control;
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

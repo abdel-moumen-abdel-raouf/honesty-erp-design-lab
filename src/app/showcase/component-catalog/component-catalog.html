@@ -18,12 +18,16 @@
       </erp-surface>
     </erp-grid>
 
-    <erp-search-box
-      mode="inline"
-      label="بحث فهرس المكوّنات"
-      placeholder="ابحث بالاسم أو المحدد أو الغرض"
-      [formControl]="searchControl"
-    />
+    <erp-grid [columns]="3" gap="grid">
+      <erp-search-box
+        mode="inline"
+        label="بحث فهرس المكوّنات"
+        placeholder="ابحث بالاسم أو المحدد أو الغرض"
+        [formControl]="searchControl"
+      />
+      <erp-select label="الحالة البصرية" [options]="statusOptions" [formControl]="statusControl" />
+      <erp-select label="مصدر المقارنة" [options]="referenceOptions" [formControl]="referenceControl" />
+    </erp-grid>
 
     @for (group of groups(); track group.category) {
       <erp-stack gap="default">
@@ -36,6 +40,9 @@
                   <erp-text type="heading-3">{{ entry.displayNameAr }}</erp-text>
                   <erp-text type="caption" tone="secondary" selectable>{{ entry.className }} · {{ entry.selector }}</erp-text>
                   <erp-text type="small" tone="secondary">{{ entry.descriptionAr }}</erp-text>
+                  <erp-text type="caption" tone="secondary">
+                    {{ reviewStatusLabel(entry.reviewStatus.kind) }} · {{ referenceLabel(entry.reviewReference.kind) }}
+                  </erp-text>
                 </erp-stack>
               </erp-surface>
             </a>

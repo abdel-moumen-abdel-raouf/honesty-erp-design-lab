@@ -2,22 +2,64 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpStepPanel, ErpStepper} from '../../../controls/stepper/stepper';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'stepper')!;
+const REVIEW_GALLERY_GROUPS = [
+  {
+    "id": "default",
+    "label": "الحالة الافتراضية",
+    "cases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "steps": [
+            {
+              "id": "identity",
+              "label": "بيانات العميل",
+              "description": "الهوية وبيانات التواصل",
+              "completed": true
+            },
+            {
+              "id": "account",
+              "label": "إعداد الحساب",
+              "description": "الشروط والحد الائتماني"
+            },
+            {
+              "id": "documents",
+              "label": "المستندات",
+              "description": "مرفقات اختيارية",
+              "optional": true
+            },
+            {
+              "id": "approval",
+              "label": "الاعتماد",
+              "description": "غير متاح قبل اكتمال البيانات",
+              "disabled": true
+            }
+          ],
+          "activeId": "account"
+        }
+      }
+    ]
+  }
+] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-stepper-showcase',
-  imports: [ErpStepper, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpStepPanel],
+  imports: [ErpStepper, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText, ErpStepPanel],
   templateUrl: './stepper-showcase.html',
   styleUrl: './stepper-showcase.scss',
 })
 export class ErpStepperShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
+  readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>(null);
@@ -31,6 +73,13 @@ export class ErpStepperShowcase {
 
   value(name: string): unknown {
     return this.liveValues()[name];
+  }
+
+  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return false;
+    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
+      ? showcaseCase.inputs[name]
+      : ENTRY.showcaseInitialValues?.[name];
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

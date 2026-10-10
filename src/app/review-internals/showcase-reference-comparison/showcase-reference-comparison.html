@@ -1,0 +1,56 @@
+<erp-stack id="reference-comparison" class="reference-comparison" data-review-section="comparison" gap="default">
+  <erp-stack gap="default">
+    <erp-stack gap="tight">
+      <erp-text type="heading-2">مقارنة المرجع</erp-text>
+      @if (reference(); as source) {
+        <erp-text type="small" tone="secondary">{{ source.label }}</erp-text>
+        <erp-text type="paragraph" tone="secondary">{{ source.note }}</erp-text>
+        <erp-text class="reference-comparison__source" type="caption" selectable>{{ source.source }}</erp-text>
+        @if (source.sourceUrl) {
+          <erp-button label="فتح المصدر الأصلي" size="sm" variant="outline" (pressed)="openUrl(source.sourceUrl)" />
+        }
+      }
+    </erp-stack>
+
+    @if (reference(); as source) {
+      @if (source.referenceImage || source.implementationImage) {
+        <erp-stack class="reference-comparison__grid" gap="default">
+          <erp-surface padding="default" border="subtle">
+            <erp-stack gap="tight">
+              <erp-text type="heading-3">المرجع الأصلي</erp-text>
+              @if (source.referenceImage) {
+                <app-review-showcase-evidence-image [source]="source.referenceImage" [alternativeText]="'المرجع الأصلي لـ ' + entry().displayNameAr" />
+                <erp-button label="فتح صورة المرجع كاملة" size="sm" variant="ghost" (pressed)="openUrl(source.referenceImage)" />
+              } @else {
+                <erp-text type="paragraph" tone="secondary">صورة المرجع غير متاحة؛ الرابط والعقد الأصليان موضحان أعلاه.</erp-text>
+              }
+            </erp-stack>
+          </erp-surface>
+
+          <erp-surface padding="default" border="subtle">
+            <erp-stack gap="tight">
+              <erp-text type="heading-3">تنفيذ Honesty ERP</erp-text>
+              @if (source.implementationImage) {
+                <app-review-showcase-evidence-image [source]="source.implementationImage" [alternativeText]="'تنفيذ Honesty ERP لـ ' + entry().displayNameAr" />
+                <erp-button label="فتح صورة التنفيذ كاملة" size="sm" variant="ghost" (pressed)="openUrl(source.implementationImage)" />
+              } @else {
+                <erp-text type="paragraph" tone="secondary">استخدم المعرض والمعاينة الحية أدناه لفحص التنفيذ الحالي.</erp-text>
+              }
+            </erp-stack>
+          </erp-surface>
+        </erp-stack>
+      } @else if (source.kind === 'original-honesty') {
+        <erp-surface padding="default" border="subtle">
+          <erp-text type="paragraph">تصميم Honesty ERP أصلي — لا يوجد مرجع خارجي ملزم.</erp-text>
+        </erp-surface>
+      } @else {
+        <erp-surface padding="default" border="subtle">
+          <erp-text type="paragraph" tone="secondary">صورة المرجع غير متاحة تقنيًا؛ لم تُنشأ صورة بديلة أو مشابهة.</erp-text>
+        </erp-surface>
+      }
+      <erp-text type="caption" tone="secondary">
+        تاريخ الدليل: {{ source.capturedAt }}{{ source.viewport ? ' · ' + source.viewport : '' }}. اختلاف الألوان والخطوط النظامية مسموح فقط عندما ينص العقد على ذلك.
+      </erp-text>
+    }
+  </erp-stack>
+</erp-stack>

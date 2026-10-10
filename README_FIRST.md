@@ -1,5 +1,24 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest review experience — 81 public routes prepared
+
+Visual Review Experience V1 adds a generated, truthful Gallery and Reference
+Comparison to every public component route while preserving the existing one
+primary-target Live Workbench, CVA/model/output evidence, and initially
+collapsed full API controls. Exact local contracts take precedence, committed
+reference evidence is reused where legitimate, unavailable images are stated
+explicitly, and original Honesty ERP candidates are labeled honestly.
+
+The normal integrated application passes an 81/81 route audit with one root
+AppShell, RouterOutlet, OverlayHost, and target per route; page overflow,
+broken images, console errors, and console warnings are zero. Canonical
+verification passes 153/153 files and 886/886 tests with a zero-warning
+424.96 kB / 93.08 kB build. Review evidence
+and reproduction instructions are in
+`docs/review-evidence/visual-review-experience-v1/README.md`. Product Owner
+states are unchanged: CheckBox alone is accepted/frozen, five owners remain
+reopened, and the other 75 remain pending.
+
 ## Latest verified UI state — defined public backlog internally closed
 
 Page, PageHeader, and PageShell completed the final defined public-owner

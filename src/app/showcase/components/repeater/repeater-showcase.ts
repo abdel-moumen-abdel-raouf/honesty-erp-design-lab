@@ -2,23 +2,156 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpRepeater, ErpRepeaterItemTemplate} from '../../../controls/repeater/repeater';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
 import {ErpInline} from '../../../primitives/inline/inline';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'repeater')!;
+const REVIEW_GALLERY_GROUPS = [
+  {
+    "id": "default",
+    "label": "الحالة الافتراضية",
+    "cases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "items": [
+            {
+              "key": "contact-1",
+              "value": {
+                "name": "أميرة حداد",
+                "role": "مديرة المالية"
+              }
+            },
+            {
+              "key": "contact-2",
+              "value": {
+                "name": "عمر ناصر",
+                "role": "مسؤول المخزون"
+              }
+            }
+          ],
+          "label": "جهات اتصال المورد",
+          "addLabel": "إضافة جهة اتصال",
+          "removeLabel": "حذف جهة الاتصال",
+          "minItems": 1,
+          "maxItems": 4
+        }
+      }
+    ]
+  },
+  {
+    "id": "disabled",
+    "label": "disabled",
+    "cases": [
+      {
+        "id": "disabled-false",
+        "label": "غير مفعّل (false)",
+        "inputs": {
+          "items": [
+            {
+              "key": "contact-1",
+              "value": {
+                "name": "أميرة حداد",
+                "role": "مديرة المالية"
+              }
+            },
+            {
+              "key": "contact-2",
+              "value": {
+                "name": "عمر ناصر",
+                "role": "مسؤول المخزون"
+              }
+            }
+          ],
+          "label": "جهات اتصال المورد",
+          "addLabel": "إضافة جهة اتصال",
+          "removeLabel": "حذف جهة الاتصال",
+          "minItems": 1,
+          "maxItems": 4,
+          "disabled": false
+        }
+      },
+      {
+        "id": "disabled-true",
+        "label": "مفعّل (true)",
+        "inputs": {
+          "items": [
+            {
+              "key": "contact-1",
+              "value": {
+                "name": "أميرة حداد",
+                "role": "مديرة المالية"
+              }
+            },
+            {
+              "key": "contact-2",
+              "value": {
+                "name": "عمر ناصر",
+                "role": "مسؤول المخزون"
+              }
+            }
+          ],
+          "label": "جهات اتصال المورد",
+          "addLabel": "إضافة جهة اتصال",
+          "removeLabel": "حذف جهة الاتصال",
+          "minItems": 1,
+          "maxItems": 4,
+          "disabled": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "states",
+    "label": "الحالات",
+    "cases": [
+      {
+        "id": "disabled",
+        "label": "حالة معطلة",
+        "inputs": {
+          "items": [
+            {
+              "key": "contact-1",
+              "value": {
+                "name": "أميرة حداد",
+                "role": "مديرة المالية"
+              }
+            },
+            {
+              "key": "contact-2",
+              "value": {
+                "name": "عمر ناصر",
+                "role": "مسؤول المخزون"
+              }
+            }
+          ],
+          "label": "جهات اتصال المورد",
+          "addLabel": "إضافة جهة اتصال",
+          "removeLabel": "حذف جهة الاتصال",
+          "minItems": 1,
+          "maxItems": 4,
+          "disabled": true
+        }
+      }
+    ]
+  }
+] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-repeater-showcase',
-  imports: [ErpRepeater, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpInline, ErpRepeaterItemTemplate],
+  imports: [ErpRepeater, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText, ErpInline, ErpRepeaterItemTemplate],
   templateUrl: './repeater-showcase.html',
   styleUrl: './repeater-showcase.scss',
 })
 export class ErpRepeaterShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
+  readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>(null);
@@ -32,6 +165,13 @@ export class ErpRepeaterShowcase {
 
   value(name: string): unknown {
     return this.liveValues()[name];
+  }
+
+  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return false;
+    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
+      ? showcaseCase.inputs[name]
+      : ENTRY.showcaseInitialValues?.[name];
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

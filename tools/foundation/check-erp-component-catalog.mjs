@@ -64,6 +64,34 @@ function validateCatalog(catalog) {
     if (!entry.displayNameAr || !entry.descriptionAr) {
       errors.push(`${entry.className} has no Arabic showcase metadata`);
     }
+    if (!entry.reviewStatus || !['accepted-frozen', 'reopened', 'pending-unknown'].includes(entry.reviewStatus.kind)) {
+      errors.push(`${entry.className} has no grounded visual-review status`);
+    }
+    if (!entry.reviewReference ||
+        !['exact-local', 'external-skodash', 'original-honesty'].includes(entry.reviewReference.kind)) {
+      errors.push(`${entry.className} has no truthful review-reference provenance`);
+    }
+    for (const imagePath of [
+      entry.reviewReference?.referenceImage,
+      entry.reviewReference?.implementationImage,
+    ].filter(Boolean)) {
+      if (!imagePath.startsWith('/assets/review-evidence/')) {
+        errors.push(`${entry.className} review evidence uses a non-owned asset path: ${imagePath}`);
+        continue;
+      }
+      const repositoryPath = path.join(
+        REPO_ROOT,
+        'docs/review-evidence',
+        imagePath.slice('/assets/review-evidence/'.length),
+      );
+      if (!fs.existsSync(repositoryPath)) {
+        errors.push(`${entry.className} review evidence is missing: ${imagePath}`);
+      }
+    }
+    if (!Array.isArray(entry.reviewGalleryGroups) || entry.reviewGalleryGroups.length === 0 ||
+        !entry.reviewGalleryGroups.some((group) => group.cases.some((showcaseCase) => showcaseCase.id === 'default'))) {
+      errors.push(`${entry.className} has no default visual-gallery evidence`);
+    }
     if (entry.showcaseOwnerPath !== `src/app/showcase/components/${entry.id}/${entry.id}-showcase.ts`) {
       errors.push(`${entry.className} has no dedicated showcase owner path`);
     }
@@ -287,9 +315,13 @@ function validateRepository() {
         !rendersLiveOwner) {
       errors.push(`${entry.className} dedicated showcase is empty or does not render its owner`);
     }
-    if (!html.includes('data-showcase-sections="1"') ||
+    const expectedSectionCount = isRootAppShell ? '4' : '5';
+    if (!html.includes(`data-showcase-sections="${expectedSectionCount}"`) ||
+        !html.includes('data-review-section="gallery"') ||
+        !html.includes('<app-review-showcase-reference-comparison') ||
+        !html.includes('data-showcase-api-controls') ||
         !html.includes('<app-review-showcase-control-panel')) {
-      errors.push(`${entry.className} does not use the single live-preview control contract`);
+      errors.push(`${entry.className} does not use the visual-review and single live-preview contract`);
     }
     const expectedLocalTargets = isRootAppShell ? 0 : 1;
     if ((html.match(/data-showcase-target/g) ?? []).length !== expectedLocalTargets) {
@@ -478,6 +510,9 @@ function selfTest() {
     showcaseLoader: 'button',
     displayNameAr: 'زر',
     descriptionAr: 'وصف',
+    reviewStatus: {kind: 'pending-unknown', label: 'بانتظار القرار', note: 'غير مقبول بعد'},
+    reviewReference: {kind: 'original-honesty', labelAr: 'تصميم أصلي', source: null},
+    reviewGalleryGroups: [{id: 'default', labelAr: 'الافتراضي', cases: [{id: 'default', label: 'default', inputs: {}}]}],
     showcaseCases: [{id: 'default', label: 'default', inputs: {}}],
     showcaseInitialValues: {},
     showcaseControls: [],
@@ -497,6 +532,9 @@ function selfTest() {
     showcaseLoader: 'page',
     displayNameAr: 'صفحة',
     descriptionAr: 'وصف',
+    reviewStatus: {kind: 'pending-unknown', label: 'بانتظار القرار', note: 'غير مقبول بعد'},
+    reviewReference: {kind: 'original-honesty', labelAr: 'تصميم أصلي', source: null},
+    reviewGalleryGroups: [{id: 'default', labelAr: 'الافتراضي', cases: [{id: 'default', label: 'default', inputs: {}}]}],
     showcaseCases: [{id: 'default', label: 'default', inputs: {}}],
     showcaseInitialValues: {},
     showcaseControls: [],

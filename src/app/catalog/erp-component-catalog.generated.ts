@@ -10,6 +10,30 @@ export interface ErpComponentShowcaseCase {
   readonly inputs: Readonly<Record<string, unknown>>;
 }
 
+export interface ErpReviewGalleryGroup {
+  readonly id: string;
+  readonly label: string;
+  readonly cases: readonly ErpComponentShowcaseCase[];
+}
+
+export interface ErpReviewStatus {
+  readonly kind: 'accepted-frozen' | 'reopened' | 'pending-unknown';
+  readonly label: string;
+  readonly note: string;
+}
+
+export interface ErpReviewReference {
+  readonly kind: 'exact-local' | 'external-skodash' | 'original-honesty';
+  readonly label: string;
+  readonly source: string;
+  readonly sourceUrl: string | null;
+  readonly capturedAt: string;
+  readonly referenceImage: string | null;
+  readonly implementationImage: string | null;
+  readonly viewport: string | null;
+  readonly note: string;
+}
+
 export interface ErpComponentCatalogEntry {
   readonly id: string;
   readonly selector: string | null;
@@ -57,6 +81,9 @@ export interface ErpComponentCatalogEntry {
     readonly coveredReferenceCases: readonly string[];
     readonly evidenceKind: string;
   } | null;
+  readonly reviewStatus: ErpReviewStatus | null;
+  readonly reviewReference: ErpReviewReference | null;
+  readonly reviewGalleryGroups: readonly ErpReviewGalleryGroup[];
 }
 
 export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
@@ -1125,7 +1152,219 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "external-skodash",
+      "label": "مرجع Skodash RTL استرشادي",
+      "source": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-buttons.html",
+      "sourceUrl": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-buttons.html",
+      "capturedAt": "2026-10-10",
+      "referenceImage": "/assets/review-evidence/erp-button-family/v1-internal-review/reference-skodash-buttons-1440-rtl.png",
+      "implementationImage": "/assets/review-evidence/erp-button-family/v1-internal-review/button-1440-light-rtl-configured.png",
+      "viewport": "1440px · RTL · Light",
+      "note": "مرجع عرض عام للأزرار؛ لا يُقدَّم كعقد دقيق للمكوّن."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-solid",
+            "label": "صلب (solid)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-outline",
+            "label": "محاط (outline)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-subtle",
+            "label": "خافت (subtle)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-ghost",
+            "label": "شفاف (ghost)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-text",
+            "label": "نصي (text)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-md",
+            "label": "size: md",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "shape",
+        "label": "الأشكال",
+        "cases": [
+          {
+            "id": "shape-default",
+            "label": "افتراضي (default)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-pill",
+            "label": "shape: pill",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          },
+          {
+            "id": "tone-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-neutral",
+            "label": "محايد (neutral)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "loading",
+        "label": "loading",
+        "cases": [
+          {
+            "id": "loading-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "loading-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "cursor",
+        "label": "المؤشر",
+        "cases": [
+          {
+            "id": "cursor-pointer",
+            "label": "cursor: pointer",
+            "inputs": {}
+          },
+          {
+            "id": "cursor-default",
+            "label": "افتراضي (default)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "disabled",
+            "label": "حالة معطلة",
+            "inputs": {}
+          },
+          {
+            "id": "loading",
+            "label": "حالة تحميل",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "button-group",
@@ -1395,7 +1634,52 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "external-skodash",
+      "label": "مرجع Skodash RTL استرشادي",
+      "source": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-buttons.html",
+      "sourceUrl": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-buttons.html",
+      "capturedAt": "2026-10-10",
+      "referenceImage": "/assets/review-evidence/erp-grouped-actions/v1-internal-review/reference-skodash-button-groups-1440-rtl.png",
+      "implementationImage": null,
+      "viewport": "1440px · RTL · Light",
+      "note": "مرجع عرض عام للأزرار؛ لا يُقدَّم كعقد دقيق للمكوّن."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "orientation",
+        "label": "الاتجاهات",
+        "cases": [
+          {
+            "id": "orientation-horizontal",
+            "label": "أفقي (horizontal)",
+            "inputs": {}
+          },
+          {
+            "id": "orientation-vertical",
+            "label": "رأسي (vertical)",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "extended-fab",
@@ -1895,7 +2179,147 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "external-skodash",
+      "label": "مرجع Skodash RTL استرشادي",
+      "source": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-buttons.html",
+      "sourceUrl": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-buttons.html",
+      "capturedAt": "2026-10-10",
+      "referenceImage": "/assets/review-evidence/erp-floating-actions/v1-internal-review/reference-skodash-buttons-fallback-1440-rtl.png",
+      "implementationImage": "/assets/review-evidence/erp-floating-actions/v1-internal-review/extended-fab-1440-light-ltr-end.png",
+      "viewport": "1440px · LTR · Light",
+      "note": "مرجع عرض عام للأزرار؛ لا يُقدَّم كعقد دقيق للمكوّن."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-md",
+            "label": "size: md",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          },
+          {
+            "id": "tone-surface",
+            "label": "tone: surface",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "loading",
+        "label": "loading",
+        "cases": [
+          {
+            "id": "loading-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "loading-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "cursor",
+        "label": "المؤشر",
+        "cases": [
+          {
+            "id": "cursor-pointer",
+            "label": "cursor: pointer",
+            "inputs": {}
+          },
+          {
+            "id": "cursor-default",
+            "label": "افتراضي (default)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "disabled",
+            "label": "حالة معطلة",
+            "inputs": {}
+          },
+          {
+            "id": "loading",
+            "label": "حالة تحميل",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "fab",
@@ -2487,7 +2911,147 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "external-skodash",
+      "label": "مرجع Skodash RTL استرشادي",
+      "source": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-buttons.html",
+      "sourceUrl": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-buttons.html",
+      "capturedAt": "2026-10-10",
+      "referenceImage": "/assets/review-evidence/erp-floating-actions/v1-internal-review/reference-skodash-buttons-fallback-1440-rtl.png",
+      "implementationImage": "/assets/review-evidence/erp-floating-actions/v1-internal-review/fab-1440-light-rtl-start.png",
+      "viewport": "1440px · RTL · Light",
+      "note": "مرجع عرض عام للأزرار؛ لا يُقدَّم كعقد دقيق للمكوّن."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-md",
+            "label": "size: md",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          },
+          {
+            "id": "tone-surface",
+            "label": "tone: surface",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "loading",
+        "label": "loading",
+        "cases": [
+          {
+            "id": "loading-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "loading-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "cursor",
+        "label": "المؤشر",
+        "cases": [
+          {
+            "id": "cursor-pointer",
+            "label": "cursor: pointer",
+            "inputs": {}
+          },
+          {
+            "id": "cursor-default",
+            "label": "افتراضي (default)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "disabled",
+            "label": "حالة معطلة",
+            "inputs": {}
+          },
+          {
+            "id": "loading",
+            "label": "حالة تحميل",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "fab-menu",
@@ -3012,7 +3576,79 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "external-skodash",
+      "label": "مرجع Skodash RTL استرشادي",
+      "source": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-buttons.html",
+      "sourceUrl": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-buttons.html",
+      "capturedAt": "2026-10-10",
+      "referenceImage": "/assets/review-evidence/erp-floating-actions/v1-internal-review/reference-skodash-buttons-fallback-1440-rtl.png",
+      "implementationImage": "/assets/review-evidence/erp-floating-actions/v1-internal-review/fab-menu-1440-light-rtl-open.png",
+      "viewport": "1440px · RTL · Light",
+      "note": "مرجع عرض عام للأزرار؛ لا يُقدَّم كعقد دقيق للمكوّن."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "placement",
+        "label": "المواضع",
+        "cases": [
+          {
+            "id": "placement-block-start",
+            "label": "placement: block-start",
+            "inputs": {}
+          },
+          {
+            "id": "placement-block-end",
+            "label": "placement: block-end",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "disabled",
+            "label": "حالة معطلة",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "icon-button",
@@ -3922,7 +4558,214 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "external-skodash",
+      "label": "مرجع Skodash RTL استرشادي",
+      "source": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-buttons.html",
+      "sourceUrl": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-buttons.html",
+      "capturedAt": "2026-10-10",
+      "referenceImage": "/assets/review-evidence/erp-button-family/v1-internal-review/reference-skodash-buttons-1440-rtl.png",
+      "implementationImage": "/assets/review-evidence/erp-button-family/v1-internal-review/icon-button-1440-light-rtl-configured.png",
+      "viewport": "1440px · RTL · Light",
+      "note": "مرجع عرض عام للأزرار؛ لا يُقدَّم كعقد دقيق للمكوّن."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-solid",
+            "label": "صلب (solid)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-outline",
+            "label": "محاط (outline)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-subtle",
+            "label": "خافت (subtle)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-ghost",
+            "label": "شفاف (ghost)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-md",
+            "label": "size: md",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "shape",
+        "label": "الأشكال",
+        "cases": [
+          {
+            "id": "shape-default",
+            "label": "افتراضي (default)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-pill",
+            "label": "shape: pill",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          },
+          {
+            "id": "tone-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-neutral",
+            "label": "محايد (neutral)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "loading",
+        "label": "loading",
+        "cases": [
+          {
+            "id": "loading-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "loading-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "cursor",
+        "label": "المؤشر",
+        "cases": [
+          {
+            "id": "cursor-pointer",
+            "label": "cursor: pointer",
+            "inputs": {}
+          },
+          {
+            "id": "cursor-default",
+            "label": "افتراضي (default)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "disabled",
+            "label": "حالة معطلة",
+            "inputs": {}
+          },
+          {
+            "id": "loading",
+            "label": "حالة تحميل",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "split-button",
@@ -4281,7 +5124,63 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "external-skodash",
+      "label": "مرجع Skodash RTL استرشادي",
+      "source": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-buttons.html",
+      "sourceUrl": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-buttons.html",
+      "capturedAt": "2026-10-10",
+      "referenceImage": "/assets/review-evidence/erp-grouped-actions/v1-internal-review/reference-skodash-dropdown-buttons-1440-rtl.png",
+      "implementationImage": null,
+      "viewport": "1440px · RTL · Light",
+      "note": "مرجع عرض عام للأزرار؛ لا يُقدَّم كعقد دقيق للمكوّن."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "disabled",
+            "label": "حالة معطلة",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "app-footer",
@@ -4543,7 +5442,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "external-skodash",
+      "label": "مرجع Skodash RTL لإطار التطبيق",
+      "source": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/index.html",
+      "sourceUrl": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/index.html",
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "رابط المصدر متاح، ولا توجد لقطة أصلية مشروعة مسجلة لهذا المالك."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "applications-menu",
@@ -4974,7 +5902,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "open-true"
       ],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "exact-local",
+      "label": "مرجع Product Owner دقيق",
+      "source": "src/app/controls/applications-menu/ERP_APPLICATIONS_MENU_REFERENCE_V1.md",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مصدر العقد متاح، لكن لا توجد لقطة مرجعية قابلة للعرض مسجلة لهذا المكوّن."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "app-shell",
@@ -5833,7 +6790,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "external-skodash",
+      "label": "مرجع Skodash RTL لإطار التطبيق",
+      "source": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/index.html",
+      "sourceUrl": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/index.html",
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": "/assets/review-evidence/erp-shell/autonomous-app-shell-wave/integrated-1440-light-rtl.png",
+      "viewport": "1440px · RTL · Light",
+      "note": "رابط المصدر متاح، ولا توجد لقطة أصلية مشروعة مسجلة لهذا المالك."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "branch-selector",
@@ -6074,7 +7060,63 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "external-skodash",
+      "label": "مرجع Skodash RTL لإطار التطبيق",
+      "source": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/index.html",
+      "sourceUrl": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/index.html",
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "رابط المصدر متاح، ولا توجد لقطة أصلية مشروعة مسجلة لهذا المالك."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "disabled",
+            "label": "حالة معطلة",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "global-search",
@@ -6514,7 +7556,57 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "mode-inline"
       ],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "exact-local",
+      "label": "مرجع Product Owner دقيق",
+      "source": "src/app/controls/global-search/ERP_GLOBAL_SEARCH_REFERENCE_V1.md",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مصدر العقد متاح، لكن لا توجد لقطة مرجعية قابلة للعرض مسجلة لهذا المكوّن."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "mode",
+        "label": "الأوضاع",
+        "cases": [
+          {
+            "id": "mode-modal",
+            "label": "mode: modal",
+            "inputs": {}
+          },
+          {
+            "id": "mode-dropdown",
+            "label": "mode: dropdown",
+            "inputs": {}
+          },
+          {
+            "id": "mode-inline",
+            "label": "mode: inline",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "messages-menu",
@@ -6698,7 +7790,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             }
           ],
           "open": true,
-          "query": null
+          "query": ""
         }
       },
       {
@@ -6741,7 +7833,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             }
           ],
           "open": false,
-          "query": null
+          "query": ""
         }
       },
       {
@@ -6784,7 +7876,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             }
           ],
           "open": true,
-          "query": null
+          "query": ""
         }
       }
     ],
@@ -7001,7 +8093,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "open-true"
       ],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "exact-local",
+      "label": "مرجع Product Owner دقيق",
+      "source": "src/app/controls/messages-menu/ERP_MESSAGES_MENU_REFERENCE_V1.md",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مصدر العقد متاح، لكن لا توجد لقطة مرجعية قابلة للعرض مسجلة لهذا المكوّن."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "notification-bell",
@@ -7184,7 +8305,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             }
           ],
           "open": true,
-          "query": null
+          "query": ""
         }
       },
       {
@@ -7227,7 +8348,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             }
           ],
           "open": false,
-          "query": null
+          "query": ""
         }
       },
       {
@@ -7270,7 +8391,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             }
           ],
           "open": true,
-          "query": null
+          "query": ""
         }
       }
     ],
@@ -7488,7 +8609,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "open-true"
       ],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "exact-local",
+      "label": "مرجع Product Owner دقيق",
+      "source": "src/app/controls/notification-bell/ERP_NOTIFICATION_BELL_REFERENCE_V1.md",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مصدر العقد متاح، لكن لا توجد لقطة مرجعية قابلة للعرض مسجلة لهذا المكوّن."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "quick-actions-bar",
@@ -7707,7 +8857,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "external-skodash",
+      "label": "مرجع Skodash RTL لإطار التطبيق",
+      "source": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/index.html",
+      "sourceUrl": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/index.html",
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "رابط المصدر متاح، ولا توجد لقطة أصلية مشروعة مسجلة لهذا المالك."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "topbar",
@@ -7757,7 +8936,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "external-skodash",
+      "label": "مرجع Skodash RTL لإطار التطبيق",
+      "source": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/index.html",
+      "sourceUrl": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/index.html",
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "رابط المصدر متاح، ولا توجد لقطة أصلية مشروعة مسجلة لهذا المالك."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "user-menu",
@@ -8746,7 +9954,200 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "open-true"
       ],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "reopened",
+      "label": "معاد فتحه",
+      "note": "Multiple trigger candidates were rejected; the current three-row candidate remains pending review."
+    },
+    "reviewReference": {
+      "kind": "exact-local",
+      "label": "مرجع Product Owner دقيق",
+      "source": "src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": "/assets/review-evidence/erp-user-menu/v3-internal-review/reference-skodash-1440-light-rtl-open-crop.png",
+      "implementationImage": "/assets/review-evidence/erp-user-menu/v3-internal-review/corrected-light-rtl-1440-default-open-crop.png",
+      "viewport": "1440px · RTL · Light · Open",
+      "note": "لقطة مرجعية ملتزمة محفوظة مع دليل التنفيذ."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "showAvatar",
+        "label": "عرض الصورة",
+        "cases": [
+          {
+            "id": "showAvatar-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "showAvatar-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "showUserName",
+        "label": "عرض الاسم",
+        "cases": [
+          {
+            "id": "showUserName-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "showUserName-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "showEmail",
+        "label": "عرض البريد",
+        "cases": [
+          {
+            "id": "showEmail-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "showEmail-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "showPresence",
+        "label": "عرض الحضور",
+        "cases": [
+          {
+            "id": "showPresence-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "showPresence-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "showRoleBadge",
+        "label": "عرض الدور",
+        "cases": [
+          {
+            "id": "showRoleBadge-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "showRoleBadge-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "showBranchBadge",
+        "label": "عرض الفرع",
+        "cases": [
+          {
+            "id": "showBranchBadge-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "showBranchBadge-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "showTriggerRoleBadge",
+        "label": "دور المحفز",
+        "cases": [
+          {
+            "id": "showTriggerRoleBadge-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "showTriggerRoleBadge-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "showTriggerBranchBadge",
+        "label": "فرع المحفز",
+        "cases": [
+          {
+            "id": "showTriggerBranchBadge-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "showTriggerBranchBadge-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "scenarios",
+        "label": "سيناريوهات الاستخدام",
+        "cases": [
+          {
+            "id": "local-image-online",
+            "label": "صورة محلية — متصل",
+            "inputs": {}
+          },
+          {
+            "id": "initials-away",
+            "label": "أحرف أولى — بعيد",
+            "inputs": {}
+          },
+          {
+            "id": "explicit-icon-busy",
+            "label": "أيقونة صريحة — مشغول",
+            "inputs": {}
+          },
+          {
+            "id": "long-arabic-offline",
+            "label": "اسم عربي طويل — غير متصل",
+            "inputs": {}
+          },
+          {
+            "id": "long-english-online",
+            "label": "اسم إنجليزي طويل — متصل",
+            "inputs": {}
+          },
+          {
+            "id": "mixed-direction-away",
+            "label": "اسم مختلط الاتجاه — بعيد",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "bulk-action-bar",
@@ -8831,7 +10232,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "filter-bar",
@@ -9048,7 +10478,63 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "disabled",
+            "label": "حالة معطلة",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "filter-drawer",
@@ -9349,7 +10835,63 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "disabled",
+            "label": "حالة معطلة",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "smart-table",
@@ -10776,7 +12318,79 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "loading",
+        "label": "loading",
+        "cases": [
+          {
+            "id": "loading-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "loading-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "mode",
+        "label": "الأوضاع",
+        "cases": [
+          {
+            "id": "mode-local",
+            "label": "mode: local",
+            "inputs": {}
+          },
+          {
+            "id": "mode-remote",
+            "label": "mode: remote",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "loading",
+            "label": "حالة تحميل",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "table",
@@ -12546,7 +14160,73 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "hoverMotion-true"
       ],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "reopened",
+      "label": "معاد فتحه",
+      "note": "The eddac4a8 candidate was rejected; the full reference experience remains pending review."
+    },
+    "reviewReference": {
+      "kind": "exact-local",
+      "label": "مرجع Product Owner دقيق",
+      "source": "src/app/controls/table/ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": "/assets/review-evidence/erp-table/v2-internal-review/reference-full-1440-light-rtl-crop.png",
+      "implementationImage": "/assets/review-evidence/erp-table/v2-internal-review/implementation-full-featured-1440-light-rtl-crop.png",
+      "viewport": "1440px · RTL · Light · Full experience",
+      "note": "لقطة مرجعية ملتزمة محفوظة مع دليل التنفيذ."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "density",
+        "label": "الكثافة",
+        "cases": [
+          {
+            "id": "density-compact",
+            "label": "مضغوط (compact)",
+            "inputs": {}
+          },
+          {
+            "id": "density-normal",
+            "label": "density: normal",
+            "inputs": {}
+          },
+          {
+            "id": "density-comfortable",
+            "label": "مريح (comfortable)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "hoverMotion",
+        "label": "حركة المرور",
+        "cases": [
+          {
+            "id": "hoverMotion-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "hoverMotion-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "table-toolbar",
@@ -12828,7 +14508,63 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "disabled",
+            "label": "حالة معطلة",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "alert",
@@ -13097,7 +14833,62 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "external-skodash",
+      "label": "مرجع Skodash RTL استرشادي",
+      "source": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-alerts.html",
+      "sourceUrl": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-alerts.html",
+      "capturedAt": "2026-10-10",
+      "referenceImage": "/assets/review-evidence/erp-feedback/alert-skeleton-v1-internal-review/reference-skodash-alerts-1440-rtl.png",
+      "implementationImage": "/assets/review-evidence/erp-feedback/alert-skeleton-v1-internal-review/alert-info-1440-light-rtl.png",
+      "viewport": "1440px · RTL · Light",
+      "note": "مرجع عرض للتنبيهات مع بقاء ألوان وخطوط Honesty ERP."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "empty-state",
@@ -13715,7 +15506,67 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "variant-custom"
       ],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "reopened",
+      "label": "معاد فتحه",
+      "note": "Product Owner withdrew the earlier accelerated acceptance; the exact candidate remains reopened."
+    },
+    "reviewReference": {
+      "kind": "exact-local",
+      "label": "مرجع Product Owner دقيق",
+      "source": "src/app/controls/empty-state/EMPTY_STATE_REFERENCE_EXACT_V1.md",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مصدر العقد متاح، لكن لا توجد لقطة مرجعية قابلة للعرض مسجلة لهذا المكوّن."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-no-data",
+            "label": "variant: no-data",
+            "inputs": {}
+          },
+          {
+            "id": "variant-no-search",
+            "label": "variant: no-search",
+            "inputs": {}
+          },
+          {
+            "id": "variant-error",
+            "label": "variant: error",
+            "inputs": {}
+          },
+          {
+            "id": "variant-forbidden",
+            "label": "variant: forbidden",
+            "inputs": {}
+          },
+          {
+            "id": "variant-custom",
+            "label": "variant: custom",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "skeleton",
@@ -13966,7 +15817,78 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "STATIC_COMPONENT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-line",
+            "label": "variant: line",
+            "inputs": {}
+          },
+          {
+            "id": "variant-block",
+            "label": "variant: block",
+            "inputs": {}
+          },
+          {
+            "id": "variant-circle",
+            "label": "دائري (circle)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-md",
+            "label": "size: md",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "status-badge",
@@ -14783,7 +16705,214 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "disabled"
       ],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "exact-local",
+      "label": "مرجع Product Owner دقيق",
+      "source": "src/app/controls/status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": "/assets/review-evidence/erp-status-badge/v1-internal-review/reference-1440-light-rtl-matrix-view.png",
+      "implementationImage": "/assets/review-evidence/erp-status-badge/v1-internal-review/implementation-1440-light-rtl-exact-matrix-view.png",
+      "viewport": "1440px · RTL · Light · Matrix",
+      "note": "لقطة مرجعية ملتزمة محفوظة مع دليل التنفيذ."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-soft",
+            "label": "variant: soft",
+            "inputs": {}
+          },
+          {
+            "id": "variant-solid",
+            "label": "صلب (solid)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-outline",
+            "label": "محاط (outline)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-ghost",
+            "label": "شفاف (ghost)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-md",
+            "label": "size: md",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "shape",
+        "label": "الأشكال",
+        "cases": [
+          {
+            "id": "shape-square",
+            "label": "مربع (square)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-pill",
+            "label": "shape: pill",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-neutral",
+            "label": "محايد (neutral)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-brand",
+            "label": "tone: brand",
+            "inputs": {}
+          },
+          {
+            "id": "tone-pending",
+            "label": "tone: pending",
+            "inputs": {}
+          },
+          {
+            "id": "tone-archived",
+            "label": "tone: archived",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "widthMode",
+        "label": "العرض",
+        "cases": [
+          {
+            "id": "widthMode-content",
+            "label": "widthMode: content",
+            "inputs": {}
+          },
+          {
+            "id": "widthMode-stretch",
+            "label": "ممتد (stretch)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "selected",
+        "label": "الاختيار",
+        "cases": [
+          {
+            "id": "selected-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "selected-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "disabled",
+            "label": "حالة معطلة",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "tooltip",
@@ -15404,7 +17533,121 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": "1440px",
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-plain",
+            "label": "variant: plain",
+            "inputs": {}
+          },
+          {
+            "id": "variant-rich",
+            "label": "variant: rich",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "placement",
+        "label": "المواضع",
+        "cases": [
+          {
+            "id": "placement-top",
+            "label": "placement: top",
+            "inputs": {}
+          },
+          {
+            "id": "placement-bottom",
+            "label": "placement: bottom",
+            "inputs": {}
+          },
+          {
+            "id": "placement-start",
+            "label": "البداية (start)",
+            "inputs": {}
+          },
+          {
+            "id": "placement-end",
+            "label": "النهاية (end)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "activation",
+        "label": "التفعيل",
+        "cases": [
+          {
+            "id": "activation-auto",
+            "label": "تلقائي (auto)",
+            "inputs": {}
+          },
+          {
+            "id": "activation-press",
+            "label": "activation: press",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "disabled",
+            "label": "حالة معطلة",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "entity-schema-fields",
@@ -15973,7 +18216,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "form",
@@ -16178,7 +18450,63 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "disabled",
+            "label": "حالة معطلة",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "form-actions",
@@ -16227,7 +18555,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "form-section",
@@ -16363,7 +18720,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "repeater",
@@ -16730,7 +19116,63 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "disabled",
+            "label": "حالة معطلة",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "standard-entity-form",
@@ -17865,7 +20307,63 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "disabled",
+            "label": "حالة معطلة",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "validation-summary",
@@ -18003,7 +20501,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "color-picker",
@@ -18823,7 +21350,52 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "mode",
+        "label": "الأوضاع",
+        "cases": [
+          {
+            "id": "mode-system",
+            "label": "mode: system",
+            "inputs": {}
+          },
+          {
+            "id": "mode-free",
+            "label": "mode: free",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "combo-box",
@@ -19688,7 +22260,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "date-box",
@@ -20583,7 +23184,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "date-range-box",
@@ -21458,7 +24088,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "date-time-box",
@@ -22331,7 +24990,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "file-picker",
@@ -23163,7 +25851,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "icon-picker",
@@ -23926,7 +26643,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "image-picker",
@@ -24796,7 +27542,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "item-picker",
@@ -25695,7 +28470,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "money-box",
@@ -26706,7 +29510,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "number-box",
@@ -27611,7 +30444,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "number-stepper",
@@ -28521,7 +31383,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "password-box",
@@ -29429,7 +32320,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "range-slider",
@@ -30335,7 +33255,119 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-md",
+            "label": "size: md",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxl",
+            "label": "size: xxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxl",
+            "label": "size: xxxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxxl",
+            "label": "size: xxxxl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-neutral",
+            "label": "محايد (neutral)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "appearance",
+        "label": "المظهر",
+        "cases": [
+          {
+            "id": "appearance-standard",
+            "label": "appearance: standard",
+            "inputs": {}
+          },
+          {
+            "id": "appearance-glass",
+            "label": "appearance: glass",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "search-box",
@@ -31648,7 +34680,57 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "mode",
+        "label": "الأوضاع",
+        "cases": [
+          {
+            "id": "mode-modal",
+            "label": "mode: modal",
+            "inputs": {}
+          },
+          {
+            "id": "mode-dropdown",
+            "label": "mode: dropdown",
+            "inputs": {}
+          },
+          {
+            "id": "mode-inline",
+            "label": "mode: inline",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "select",
@@ -32261,7 +35343,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "disabled": true
             }
           ],
-          "sort": null
+          "sort": "source"
         }
       },
       {
@@ -32297,7 +35379,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "disabled": true
             }
           ],
-          "sort": null,
+          "sort": "source",
           "multiple": false
         }
       },
@@ -32334,7 +35416,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "disabled": true
             }
           ],
-          "sort": null,
+          "sort": "source",
           "multiple": true
         }
       },
@@ -32371,7 +35453,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "disabled": true
             }
           ],
-          "sort": null,
+          "sort": "source",
           "selectSize": "sm"
         }
       },
@@ -32408,7 +35490,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "disabled": true
             }
           ],
-          "sort": null,
+          "sort": "source",
           "selectSize": "md"
         }
       },
@@ -32445,7 +35527,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "disabled": true
             }
           ],
-          "sort": null,
+          "sort": "source",
           "selectSize": "normal"
         }
       },
@@ -32482,7 +35564,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "disabled": true
             }
           ],
-          "sort": null,
+          "sort": "source",
           "selectSize": "lg"
         }
       },
@@ -32519,7 +35601,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "disabled": true
             }
           ],
-          "sort": null,
+          "sort": "source",
           "selectSize": "xlg"
         }
       },
@@ -32556,7 +35638,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "disabled": true
             }
           ],
-          "sort": null,
+          "sort": "source",
           "placement": "bottom"
         }
       },
@@ -32593,7 +35675,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
               "disabled": true
             }
           ],
-          "sort": null,
+          "sort": "source",
           "placement": "top"
         }
       },
@@ -33568,7 +36650,120 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "sort-descending"
       ],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "reopened",
+      "label": "معاد فتحه",
+      "note": "The first exact-reference candidate was rejected; V3 remains pending review."
+    },
+    "reviewReference": {
+      "kind": "exact-local",
+      "label": "مرجع Product Owner دقيق",
+      "source": "src/app/controls/select/ERP_SELECT_REFERENCE_EXACT_V3.md",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": "/assets/review-evidence/erp-select/v3-internal-review/reference-1440-light-ltr-open.png",
+      "implementationImage": "/assets/review-evidence/erp-select/v3-internal-review/implementation-1440-light-ltr-open.png",
+      "viewport": "1440px · LTR · Light · Open",
+      "note": "لقطة مرجعية ملتزمة محفوظة مع دليل التنفيذ."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "multiple",
+        "label": "الاختيار المتعدد",
+        "cases": [
+          {
+            "id": "multiple-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "multiple-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "placement",
+        "label": "المواضع",
+        "cases": [
+          {
+            "id": "placement-bottom",
+            "label": "placement: bottom",
+            "inputs": {}
+          },
+          {
+            "id": "placement-top",
+            "label": "placement: top",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "selectSize",
+        "label": "حجم الاختيار",
+        "cases": [
+          {
+            "id": "selectSize-sm",
+            "label": "selectSize: sm",
+            "inputs": {}
+          },
+          {
+            "id": "selectSize-md",
+            "label": "selectSize: md",
+            "inputs": {}
+          },
+          {
+            "id": "selectSize-normal",
+            "label": "selectSize: normal",
+            "inputs": {}
+          },
+          {
+            "id": "selectSize-lg",
+            "label": "selectSize: lg",
+            "inputs": {}
+          },
+          {
+            "id": "selectSize-xlg",
+            "label": "selectSize: xlg",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "scenarios",
+        "label": "سيناريوهات الاستخدام",
+        "cases": [
+          {
+            "id": "sort-source",
+            "label": "sort: source",
+            "inputs": {}
+          },
+          {
+            "id": "sort-ascending",
+            "label": "sort: ascending",
+            "inputs": {}
+          },
+          {
+            "id": "sort-descending",
+            "label": "sort: descending",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "tel-box",
@@ -34441,7 +37636,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "text-area-box",
@@ -35362,7 +38586,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "text-box",
@@ -36287,7 +39540,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "time-box",
@@ -37182,7 +40464,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "url-box",
@@ -38055,7 +41366,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "anchored-overlay-controller",
@@ -38085,7 +41425,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns nonblocking anchored surface geometry and lifecycle.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "action-menu-content",
@@ -38146,7 +41489,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal action menu content semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "avatar-action",
@@ -38202,7 +41548,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal avatar action semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "avatar-frame",
@@ -38234,7 +41583,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal avatar frame semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "avatar-picker-tile",
@@ -38366,7 +41718,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal avatar picker tile semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "avatar-presence",
@@ -38398,7 +41753,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal avatar presence semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "confirm-dialog-content",
@@ -38435,7 +41793,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal confirm dialog content semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "confirm-dialog-service",
@@ -38465,7 +41826,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Opens approved confirmation dialogs through the shared overlay system.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "empty-state-extra",
@@ -38507,7 +41871,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Extends its parent ERP owner with typed [erpEmptyStateExtra] template projection.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "empty-state-illustration",
@@ -38549,7 +41916,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Extends its parent ERP owner with typed [erpEmptyStateIllustration] template projection.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "empty-state-lottie",
@@ -38630,7 +42000,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal empty state lottie semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "entity-custom-field-outlet",
@@ -38676,7 +42049,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Extends its parent ERP owner with typed ng template[erpEntityCustomField] template projection.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "entity-custom-section-outlet",
@@ -38722,7 +42098,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Extends its parent ERP owner with typed ng template[erpEntityCustomSection] template projection.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "entity-form-review-template",
@@ -38758,7 +42137,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Extends its parent ERP owner with typed ng template[erpEntityFormReview] template projection.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "field-feedback",
@@ -38858,7 +42240,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal field feedback semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "field-frame",
@@ -39250,7 +42635,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal field frame semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "field-trigger",
@@ -39424,7 +42812,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal field trigger semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "file-selection-base",
@@ -39454,7 +42845,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Shares bounded file-selection behavior for FilePicker and ImagePicker.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "filter-drawer-content",
@@ -39493,7 +42887,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal filter drawer content semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "input-base",
@@ -39523,7 +42920,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Shares nonvisual CVA and validation behavior across concrete input owners.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "overlay-frame",
@@ -39596,7 +42996,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal overlay frame semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "overlay-host",
@@ -39634,7 +43037,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal overlay host semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "overlay-manager",
@@ -39664,7 +43070,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns blocking overlay lifecycle, focus, scroll, and stacking.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "overlay-ref",
@@ -39694,7 +43103,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Represents one manager-owned blocking overlay instance.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "repeater-item-template",
@@ -39731,7 +43143,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Extends its parent ERP owner with typed ng template[erpRepeaterItem] template projection.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "select-action",
@@ -39815,7 +43230,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal select action semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "selection-picker-content",
@@ -39869,7 +43287,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal selection picker content semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "selection-tile",
@@ -39986,7 +43407,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal selection tile semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "shell-menu-action",
@@ -40070,7 +43494,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal shell menu action semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "sidebar-disclosure",
@@ -40161,7 +43588,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal sidebar disclosure semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "sidebar-link",
@@ -40237,7 +43667,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal sidebar link semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "sort-trigger",
@@ -40295,7 +43728,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal sort trigger semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "status-badge-action",
@@ -40381,7 +43817,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal status badge action semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "step-panel",
@@ -40428,7 +43867,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Extends its parent ERP owner with typed ng template[erpStepPanel] template projection.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "table-cell",
@@ -40493,7 +43935,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Extends its parent ERP owner with typed ng template[erpTableCell] template projection.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "table-footer",
@@ -40558,7 +44003,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Extends its parent ERP owner with typed ng template[erpTableFooter] template projection.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "table-resize-handle",
@@ -40617,7 +44065,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal table resize handle semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "table-viewport",
@@ -40710,7 +44161,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal table viewport semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "tab-panel",
@@ -40769,7 +44223,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Extends its parent ERP owner with typed ng template[erpTabPanel] template projection.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "tab-trigger",
@@ -40880,7 +44337,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal tab trigger semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "temporal-picker-content",
@@ -40928,7 +44388,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal temporal picker content semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "tooltip-content",
@@ -40958,7 +44421,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal tooltip content semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "user-menu-arrow",
@@ -40988,7 +44454,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns bounded internal user menu arrow semantics for its parent ERP component.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "press-ripple-controller",
@@ -41018,7 +44487,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Owns shared press-ripple interaction for the Button family.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "shell-anchored-surface-controller",
@@ -41048,7 +44520,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "descriptionAr": "Adapts approved anchored overlays for shell entry surfaces.",
     "showcaseInitialValues": null,
     "showcaseControls": [],
-    "showcaseCoverage": null
+    "showcaseCoverage": null,
+    "reviewStatus": null,
+    "reviewReference": null,
+    "reviewGalleryGroups": []
   },
   {
     "id": "avatar",
@@ -42138,7 +45613,300 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "loading"
       ],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "exact-local",
+      "label": "مرجع Product Owner دقيق",
+      "source": "src/app/controls/avatar/ERP_AVATAR_REFERENCE_EXACT_V1.md",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": "/assets/review-evidence/erp-avatar/v1-internal-review/reference-1440-light-rtl-crop.png",
+      "implementationImage": "/assets/review-evidence/erp-avatar/v1-internal-review/implementation-1440-light-rtl-exact-crop.png",
+      "viewport": "1440px · RTL · Light",
+      "note": "لقطة مرجعية ملتزمة محفوظة مع دليل التنفيذ."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-xs",
+            "label": "size: xs",
+            "inputs": {}
+          },
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-md",
+            "label": "size: md",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-2xl",
+            "label": "size: 2xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-3xl",
+            "label": "size: 3xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-4xl",
+            "label": "size: 4xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-5xl",
+            "label": "size: 5xl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "shape",
+        "label": "الأشكال",
+        "cases": [
+          {
+            "id": "shape-circle",
+            "label": "دائري (circle)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-square",
+            "label": "مربع (square)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-neutral",
+            "label": "محايد (neutral)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-brand",
+            "label": "tone: brand",
+            "inputs": {}
+          },
+          {
+            "id": "tone-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-purple",
+            "label": "tone: purple",
+            "inputs": {}
+          },
+          {
+            "id": "tone-slate",
+            "label": "tone: slate",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "loading",
+        "label": "loading",
+        "cases": [
+          {
+            "id": "loading-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "loading-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "presencePosition",
+        "label": "موضع الحضور",
+        "cases": [
+          {
+            "id": "presencePosition-top",
+            "label": "presencePosition: top",
+            "inputs": {}
+          },
+          {
+            "id": "presencePosition-bottom",
+            "label": "presencePosition: bottom",
+            "inputs": {}
+          },
+          {
+            "id": "presencePosition-left",
+            "label": "presencePosition: left",
+            "inputs": {}
+          },
+          {
+            "id": "presencePosition-right",
+            "label": "presencePosition: right",
+            "inputs": {}
+          },
+          {
+            "id": "presencePosition-top-left",
+            "label": "presencePosition: top-left",
+            "inputs": {}
+          },
+          {
+            "id": "presencePosition-top-right",
+            "label": "presencePosition: top-right",
+            "inputs": {}
+          },
+          {
+            "id": "presencePosition-bottom-left",
+            "label": "presencePosition: bottom-left",
+            "inputs": {}
+          },
+          {
+            "id": "presencePosition-bottom-right",
+            "label": "presencePosition: bottom-right",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "presenceMotion",
+        "label": "حركة الحضور",
+        "cases": [
+          {
+            "id": "presenceMotion-none",
+            "label": "بدون (none)",
+            "inputs": {}
+          },
+          {
+            "id": "presenceMotion-pulse",
+            "label": "presenceMotion: pulse",
+            "inputs": {}
+          },
+          {
+            "id": "presenceMotion-ping",
+            "label": "presenceMotion: ping",
+            "inputs": {}
+          },
+          {
+            "id": "presenceMotion-bounce",
+            "label": "presenceMotion: bounce",
+            "inputs": {}
+          },
+          {
+            "id": "presenceMotion-blink",
+            "label": "presenceMotion: blink",
+            "inputs": {}
+          },
+          {
+            "id": "presenceMotion-breathe",
+            "label": "presenceMotion: breathe",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "hoverMotion",
+        "label": "حركة المرور",
+        "cases": [
+          {
+            "id": "hoverMotion-none",
+            "label": "بدون (none)",
+            "inputs": {}
+          },
+          {
+            "id": "hoverMotion-scale",
+            "label": "hoverMotion: scale",
+            "inputs": {}
+          },
+          {
+            "id": "hoverMotion-lift",
+            "label": "hoverMotion: lift",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "cursor",
+        "label": "المؤشر",
+        "cases": [
+          {
+            "id": "cursor-default",
+            "label": "افتراضي (default)",
+            "inputs": {}
+          },
+          {
+            "id": "cursor-pointer",
+            "label": "cursor: pointer",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "loading",
+            "label": "حالة تحميل",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "breadcrumbs",
@@ -42337,7 +46105,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "external-skodash",
+      "label": "مرجع Skodash RTL استرشادي",
+      "source": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-navs-tabs.html",
+      "sourceUrl": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-navs-tabs.html",
+      "capturedAt": "2026-10-10",
+      "referenceImage": "/assets/review-evidence/erp-navigation/navigation-v1-internal-review/reference-skodash-breadcrumb-1280-rtl-crop.png",
+      "implementationImage": null,
+      "viewport": "1280px · RTL",
+      "note": "مرجع عرض عام للتنقل؛ لا يعلو على عقد ERP خاص."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "pagination",
@@ -42836,7 +46633,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "external-skodash",
+      "label": "مرجع Skodash RTL استرشادي",
+      "source": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-navs-tabs.html",
+      "sourceUrl": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-navs-tabs.html",
+      "capturedAt": "2026-10-10",
+      "referenceImage": "/assets/review-evidence/erp-navigation/navigation-v1-internal-review/reference-skodash-pagination-1280-rtl-crop.png",
+      "implementationImage": null,
+      "viewport": "1280px · RTL",
+      "note": "مرجع عرض عام للتنقل؛ لا يعلو على عقد ERP خاص."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "sidebar",
@@ -43341,7 +47167,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "external-skodash",
+      "label": "مرجع Skodash RTL لإطار التطبيق",
+      "source": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/index.html",
+      "sourceUrl": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/index.html",
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "رابط المصدر متاح، ولا توجد لقطة أصلية مشروعة مسجلة لهذا المالك."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "sort-header",
@@ -43581,7 +47436,84 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "direction",
+        "label": "الاتجاه النصي",
+        "cases": [
+          {
+            "id": "direction-none",
+            "label": "بدون (none)",
+            "inputs": {}
+          },
+          {
+            "id": "direction-ascending",
+            "label": "direction: ascending",
+            "inputs": {}
+          },
+          {
+            "id": "direction-descending",
+            "label": "direction: descending",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "disabled",
+            "label": "حالة معطلة",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "stepper",
@@ -43765,7 +47697,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "tabs",
@@ -45433,7 +49394,187 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "headerShape-circle"
       ],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "reopened",
+      "label": "معاد فتحه",
+      "note": "The 302056ad candidate was rejected; the literal reconstruction remains pending review."
+    },
+    "reviewReference": {
+      "kind": "exact-local",
+      "label": "مرجع Product Owner دقيق",
+      "source": "src/app/controls/tabs/ERP_TABS_REFERENCE_EXACT_V1.md",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": "/assets/review-evidence/erp-tabs/v1-internal-review/reference-1440-light-rtl.png",
+      "implementationImage": "/assets/review-evidence/erp-tabs/v1-internal-review/implementation-1440-light-rtl-exact.png",
+      "viewport": "1440px · RTL · Light",
+      "note": "لقطة مرجعية ملتزمة محفوظة مع دليل التنفيذ."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-underline",
+            "label": "variant: underline",
+            "inputs": {}
+          },
+          {
+            "id": "variant-pill",
+            "label": "variant: pill",
+            "inputs": {}
+          },
+          {
+            "id": "variant-solid",
+            "label": "صلب (solid)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-ghost",
+            "label": "شفاف (ghost)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-pills",
+            "label": "variant: pills",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "orientation",
+        "label": "الاتجاهات",
+        "cases": [
+          {
+            "id": "orientation-horizontal",
+            "label": "أفقي (horizontal)",
+            "inputs": {}
+          },
+          {
+            "id": "orientation-vertical",
+            "label": "رأسي (vertical)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "distribution",
+        "label": "التوزيع",
+        "cases": [
+          {
+            "id": "distribution-content",
+            "label": "distribution: content",
+            "inputs": {}
+          },
+          {
+            "id": "distribution-fill",
+            "label": "distribution: fill",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "headerShape",
+        "label": "شكل الرأس",
+        "cases": [
+          {
+            "id": "headerShape-reference",
+            "label": "headerShape: reference",
+            "inputs": {}
+          },
+          {
+            "id": "headerShape-rectangle",
+            "label": "headerShape: rectangle",
+            "inputs": {}
+          },
+          {
+            "id": "headerShape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "headerShape-circle",
+            "label": "دائري (circle)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "verticalPlacement",
+        "label": "الموضع الرأسي",
+        "cases": [
+          {
+            "id": "verticalPlacement-start",
+            "label": "البداية (start)",
+            "inputs": {}
+          },
+          {
+            "id": "verticalPlacement-end",
+            "label": "النهاية (end)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "transition",
+        "label": "الانتقال",
+        "cases": [
+          {
+            "id": "transition-slide",
+            "label": "transition: slide",
+            "inputs": {}
+          },
+          {
+            "id": "transition-fade",
+            "label": "transition: fade",
+            "inputs": {}
+          },
+          {
+            "id": "transition-scale",
+            "label": "transition: scale",
+            "inputs": {}
+          },
+          {
+            "id": "transition-none",
+            "label": "بدون (none)",
+            "inputs": {}
+          },
+          {
+            "id": "transition-fade-up",
+            "label": "transition: fade-up",
+            "inputs": {}
+          },
+          {
+            "id": "transition-fade-down",
+            "label": "transition: fade-down",
+            "inputs": {}
+          },
+          {
+            "id": "transition-fade-start",
+            "label": "transition: fade-start",
+            "inputs": {}
+          },
+          {
+            "id": "transition-fade-end",
+            "label": "transition: fade-end",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "page",
@@ -45601,7 +49742,78 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "widthMode",
+        "label": "العرض",
+        "cases": [
+          {
+            "id": "widthMode-boxed",
+            "label": "widthMode: boxed",
+            "inputs": {}
+          },
+          {
+            "id": "widthMode-fluid",
+            "label": "widthMode: fluid",
+            "inputs": {}
+          },
+          {
+            "id": "widthMode-full",
+            "label": "كامل (full)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "scrollMode",
+        "label": "التمرير",
+        "cases": [
+          {
+            "id": "scrollMode-document",
+            "label": "scrollMode: document",
+            "inputs": {}
+          },
+          {
+            "id": "scrollMode-page",
+            "label": "scrollMode: page",
+            "inputs": {}
+          },
+          {
+            "id": "scrollMode-free",
+            "label": "scrollMode: free",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "page-header",
@@ -45702,7 +49914,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "page-shell",
@@ -45754,7 +49995,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "container",
@@ -45879,7 +50149,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "divider",
@@ -46101,7 +50400,73 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "STATIC_COMPONENT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-subtle",
+            "label": "خافت (subtle)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-default",
+            "label": "افتراضي (default)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-strong",
+            "label": "tone: strong",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "orientation",
+        "label": "الاتجاهات",
+        "cases": [
+          {
+            "id": "orientation-horizontal",
+            "label": "أفقي (horizontal)",
+            "inputs": {}
+          },
+          {
+            "id": "orientation-vertical",
+            "label": "رأسي (vertical)",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "grid",
@@ -46328,7 +50693,87 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "gap",
+        "label": "الفجوات",
+        "cases": [
+          {
+            "id": "gap-grid",
+            "label": "gap: grid",
+            "inputs": {}
+          },
+          {
+            "id": "gap-none",
+            "label": "بدون (none)",
+            "inputs": {}
+          },
+          {
+            "id": "gap-xxs",
+            "label": "gap: xxs",
+            "inputs": {}
+          },
+          {
+            "id": "gap-xs",
+            "label": "gap: xs",
+            "inputs": {}
+          },
+          {
+            "id": "gap-sm",
+            "label": "gap: sm",
+            "inputs": {}
+          },
+          {
+            "id": "gap-md",
+            "label": "gap: md",
+            "inputs": {}
+          },
+          {
+            "id": "gap-lg",
+            "label": "gap: lg",
+            "inputs": {}
+          },
+          {
+            "id": "gap-xl",
+            "label": "gap: xl",
+            "inputs": {}
+          },
+          {
+            "id": "gap-xxl",
+            "label": "gap: xxl",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "icon",
@@ -46702,7 +51147,107 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "STATIC_COMPONENT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-inherit",
+            "label": "tone: inherit",
+            "inputs": {}
+          },
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-muted",
+            "label": "tone: muted",
+            "inputs": {}
+          },
+          {
+            "id": "tone-disabled",
+            "label": "tone: disabled",
+            "inputs": {}
+          },
+          {
+            "id": "tone-inverse",
+            "label": "tone: inverse",
+            "inputs": {}
+          },
+          {
+            "id": "tone-brand-primary",
+            "label": "tone: brand-primary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-brand-secondary",
+            "label": "tone: brand-secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-brand-accent",
+            "label": "tone: brand-accent",
+            "inputs": {}
+          },
+          {
+            "id": "tone-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "inline",
@@ -47016,7 +51561,135 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "align",
+        "label": "المحاذاة",
+        "cases": [
+          {
+            "id": "align-stretch",
+            "label": "ممتد (stretch)",
+            "inputs": {}
+          },
+          {
+            "id": "align-start",
+            "label": "البداية (start)",
+            "inputs": {}
+          },
+          {
+            "id": "align-center",
+            "label": "الوسط (center)",
+            "inputs": {}
+          },
+          {
+            "id": "align-end",
+            "label": "النهاية (end)",
+            "inputs": {}
+          },
+          {
+            "id": "align-baseline",
+            "label": "align: baseline",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "justify",
+        "label": "التوزيع الداخلي",
+        "cases": [
+          {
+            "id": "justify-start",
+            "label": "البداية (start)",
+            "inputs": {}
+          },
+          {
+            "id": "justify-center",
+            "label": "الوسط (center)",
+            "inputs": {}
+          },
+          {
+            "id": "justify-end",
+            "label": "النهاية (end)",
+            "inputs": {}
+          },
+          {
+            "id": "justify-between",
+            "label": "justify: between",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "gap",
+        "label": "الفجوات",
+        "cases": [
+          {
+            "id": "gap-none",
+            "label": "بدون (none)",
+            "inputs": {}
+          },
+          {
+            "id": "gap-tight",
+            "label": "gap: tight",
+            "inputs": {}
+          },
+          {
+            "id": "gap-default",
+            "label": "افتراضي (default)",
+            "inputs": {}
+          },
+          {
+            "id": "gap-loose",
+            "label": "gap: loose",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "wrap",
+        "label": "الالتفاف",
+        "cases": [
+          {
+            "id": "wrap-nowrap",
+            "label": "wrap: nowrap",
+            "inputs": {}
+          },
+          {
+            "id": "wrap-wrap",
+            "label": "wrap: wrap",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "section",
@@ -47129,7 +51802,57 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "gap",
+        "label": "الفجوات",
+        "cases": [
+          {
+            "id": "gap-none",
+            "label": "بدون (none)",
+            "inputs": {}
+          },
+          {
+            "id": "gap-default",
+            "label": "افتراضي (default)",
+            "inputs": {}
+          },
+          {
+            "id": "gap-large",
+            "label": "gap: large",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "stack",
@@ -47386,7 +52109,114 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "align",
+        "label": "المحاذاة",
+        "cases": [
+          {
+            "id": "align-stretch",
+            "label": "ممتد (stretch)",
+            "inputs": {}
+          },
+          {
+            "id": "align-start",
+            "label": "البداية (start)",
+            "inputs": {}
+          },
+          {
+            "id": "align-center",
+            "label": "الوسط (center)",
+            "inputs": {}
+          },
+          {
+            "id": "align-end",
+            "label": "النهاية (end)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "justify",
+        "label": "التوزيع الداخلي",
+        "cases": [
+          {
+            "id": "justify-start",
+            "label": "البداية (start)",
+            "inputs": {}
+          },
+          {
+            "id": "justify-center",
+            "label": "الوسط (center)",
+            "inputs": {}
+          },
+          {
+            "id": "justify-end",
+            "label": "النهاية (end)",
+            "inputs": {}
+          },
+          {
+            "id": "justify-between",
+            "label": "justify: between",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "gap",
+        "label": "الفجوات",
+        "cases": [
+          {
+            "id": "gap-none",
+            "label": "بدون (none)",
+            "inputs": {}
+          },
+          {
+            "id": "gap-tight",
+            "label": "gap: tight",
+            "inputs": {}
+          },
+          {
+            "id": "gap-default",
+            "label": "افتراضي (default)",
+            "inputs": {}
+          },
+          {
+            "id": "gap-loose",
+            "label": "gap: loose",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "surface",
@@ -47661,7 +52491,62 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-canvas",
+            "label": "tone: canvas",
+            "inputs": {}
+          },
+          {
+            "id": "tone-default",
+            "label": "افتراضي (default)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-elevated",
+            "label": "tone: elevated",
+            "inputs": {}
+          },
+          {
+            "id": "tone-inverse",
+            "label": "tone: inverse",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "text",
@@ -49010,7 +53895,271 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       ],
       "coveredReferenceCases": [],
       "evidenceKind": "AUTHORED_PROJECTION"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-auto",
+            "label": "تلقائي (auto)",
+            "inputs": {}
+          },
+          {
+            "id": "size-inherit",
+            "label": "size: inherit",
+            "inputs": {}
+          },
+          {
+            "id": "size-2xs",
+            "label": "size: 2xs",
+            "inputs": {}
+          },
+          {
+            "id": "size-xs",
+            "label": "size: xs",
+            "inputs": {}
+          },
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-md",
+            "label": "size: md",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-2xl",
+            "label": "size: 2xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-3xl",
+            "label": "size: 3xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-4xl",
+            "label": "size: 4xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-5xl",
+            "label": "size: 5xl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-auto",
+            "label": "تلقائي (auto)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-inherit",
+            "label": "tone: inherit",
+            "inputs": {}
+          },
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-muted",
+            "label": "tone: muted",
+            "inputs": {}
+          },
+          {
+            "id": "tone-disabled",
+            "label": "tone: disabled",
+            "inputs": {}
+          },
+          {
+            "id": "tone-inverse",
+            "label": "tone: inverse",
+            "inputs": {}
+          },
+          {
+            "id": "tone-brand-primary",
+            "label": "tone: brand-primary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-brand-secondary",
+            "label": "tone: brand-secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-brand-accent",
+            "label": "tone: brand-accent",
+            "inputs": {}
+          },
+          {
+            "id": "tone-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "align",
+        "label": "المحاذاة",
+        "cases": [
+          {
+            "id": "align-inherit",
+            "label": "align: inherit",
+            "inputs": {}
+          },
+          {
+            "id": "align-start",
+            "label": "البداية (start)",
+            "inputs": {}
+          },
+          {
+            "id": "align-center",
+            "label": "الوسط (center)",
+            "inputs": {}
+          },
+          {
+            "id": "align-end",
+            "label": "النهاية (end)",
+            "inputs": {}
+          },
+          {
+            "id": "align-justify",
+            "label": "align: justify",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "wrap",
+        "label": "الالتفاف",
+        "cases": [
+          {
+            "id": "wrap-auto",
+            "label": "تلقائي (auto)",
+            "inputs": {}
+          },
+          {
+            "id": "wrap-normal",
+            "label": "wrap: normal",
+            "inputs": {}
+          },
+          {
+            "id": "wrap-nowrap",
+            "label": "wrap: nowrap",
+            "inputs": {}
+          },
+          {
+            "id": "wrap-pre",
+            "label": "wrap: pre",
+            "inputs": {}
+          },
+          {
+            "id": "wrap-pre-wrap",
+            "label": "wrap: pre-wrap",
+            "inputs": {}
+          },
+          {
+            "id": "wrap-break-spaces",
+            "label": "wrap: break-spaces",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "direction",
+        "label": "الاتجاه النصي",
+        "cases": [
+          {
+            "id": "direction-inherit",
+            "label": "direction: inherit",
+            "inputs": {}
+          },
+          {
+            "id": "direction-auto",
+            "label": "تلقائي (auto)",
+            "inputs": {}
+          },
+          {
+            "id": "direction-rtl",
+            "label": "direction: rtl",
+            "inputs": {}
+          },
+          {
+            "id": "direction-ltr",
+            "label": "direction: ltr",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "avatar-picker",
@@ -49268,7 +54417,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "الحالة الافتراضية",
         "inputs": {
           "value": null,
-          "gender": null
+          "gender": "male"
         }
       },
       {
@@ -49276,7 +54425,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "disabled: false",
         "inputs": {
           "value": null,
-          "gender": null,
+          "gender": "male",
           "disabled": false
         }
       },
@@ -49285,7 +54434,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "disabled: true",
         "inputs": {
           "value": null,
-          "gender": null,
+          "gender": "male",
           "disabled": true
         }
       },
@@ -49294,7 +54443,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "size: default",
         "inputs": {
           "value": null,
-          "gender": null,
+          "gender": "male",
           "size": "default"
         }
       },
@@ -49303,7 +54452,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "size: compact",
         "inputs": {
           "value": null,
-          "gender": null,
+          "gender": "male",
           "size": "compact"
         }
       },
@@ -49328,7 +54477,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "حالة معطلة",
         "inputs": {
           "value": null,
-          "gender": null,
+          "gender": "male",
           "disabled": true
         }
       }
@@ -49632,7 +54781,95 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "disabled"
       ],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "exact-local",
+      "label": "مرجع Product Owner دقيق",
+      "source": "src/app/controls/avatar-picker/ERP_AVATAR_PICKER_REFERENCE_EXACT_V1.md",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": "/assets/review-evidence/erp-avatar-picker/v1-internal-review/reference-1440-light-rtl-default-picker.png",
+      "implementationImage": "/assets/review-evidence/erp-avatar-picker/v1-internal-review/implementation-1440-light-rtl-default-picker.png",
+      "viewport": "1440px · RTL · Light",
+      "note": "لقطة مرجعية ملتزمة محفوظة مع دليل التنفيذ."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-default",
+            "label": "افتراضي (default)",
+            "inputs": {}
+          },
+          {
+            "id": "size-compact",
+            "label": "مضغوط (compact)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "disabled",
+            "label": "حالة معطلة",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "scenarios",
+        "label": "سيناريوهات الاستخدام",
+        "cases": [
+          {
+            "id": "gender-male",
+            "label": "gender: male",
+            "inputs": {}
+          },
+          {
+            "id": "gender-female",
+            "label": "gender: female",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "check-box",
@@ -50388,7 +55625,172 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "readonly"
       ],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "accepted-frozen",
+      "label": "مقبول ومجمّد",
+      "note": "قبول Product Owner صريح."
+    },
+    "reviewReference": {
+      "kind": "exact-local",
+      "label": "مرجع Product Owner دقيق",
+      "source": "src/app/controls/check-box/CHECK_BOX_REFERENCE_EXACT_V5.md",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مصدر العقد متاح، لكن لا توجد لقطة مرجعية قابلة للعرض مسجلة لهذا المكوّن."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-outline",
+            "label": "محاط (outline)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-filled",
+            "label": "variant: filled",
+            "inputs": {}
+          },
+          {
+            "id": "variant-soft",
+            "label": "variant: soft",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-md",
+            "label": "size: md",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxl",
+            "label": "size: xxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxl",
+            "label": "size: xxxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxxl",
+            "label": "size: xxxxl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-neutral",
+            "label": "محايد (neutral)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "readOnly",
+        "label": "readOnly",
+        "cases": [
+          {
+            "id": "readOnly-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "readOnly-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "mode",
+        "label": "الأوضاع",
+        "cases": [
+          {
+            "id": "mode-checkbox",
+            "label": "mode: checkbox",
+            "inputs": {}
+          },
+          {
+            "id": "mode-switch",
+            "label": "mode: switch",
+            "inputs": {}
+          },
+          {
+            "id": "mode-tile",
+            "label": "mode: tile",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "readonly",
+            "label": "للقراءة فقط",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "column-chooser",
@@ -50783,7 +56185,63 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "disabled",
+            "label": "حالة معطلة",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "radio-box",
@@ -51462,7 +56920,167 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "readonly"
       ],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "exact-local",
+      "label": "مرجع Product Owner دقيق",
+      "source": "src/app/controls/radio-box/RADIO_BOX_VISUAL_CONTRACT_V1.md",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مصدر العقد متاح، لكن لا توجد لقطة مرجعية قابلة للعرض مسجلة لهذا المكوّن."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-outline",
+            "label": "محاط (outline)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-filled",
+            "label": "variant: filled",
+            "inputs": {}
+          },
+          {
+            "id": "variant-soft",
+            "label": "variant: soft",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-md",
+            "label": "size: md",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxl",
+            "label": "size: xxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxl",
+            "label": "size: xxxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxxl",
+            "label": "size: xxxxl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-neutral",
+            "label": "محايد (neutral)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "readOnly",
+        "label": "readOnly",
+        "cases": [
+          {
+            "id": "readOnly-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "readOnly-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "mode",
+        "label": "الأوضاع",
+        "cases": [
+          {
+            "id": "mode-radio",
+            "label": "mode: radio",
+            "inputs": {}
+          },
+          {
+            "id": "mode-tile",
+            "label": "mode: tile",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "readonly",
+            "label": "للقراءة فقط",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "radio-group",
@@ -52219,7 +57837,167 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "CONTROLLED_MODEL"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-outline",
+            "label": "محاط (outline)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-filled",
+            "label": "variant: filled",
+            "inputs": {}
+          },
+          {
+            "id": "variant-soft",
+            "label": "variant: soft",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-md",
+            "label": "size: md",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxl",
+            "label": "size: xxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxl",
+            "label": "size: xxxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxxl",
+            "label": "size: xxxxl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-neutral",
+            "label": "محايد (neutral)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "readOnly",
+        "label": "readOnly",
+        "cases": [
+          {
+            "id": "readOnly-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "readOnly-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "mode",
+        "label": "الأوضاع",
+        "cases": [
+          {
+            "id": "mode-radio",
+            "label": "mode: radio",
+            "inputs": {}
+          },
+          {
+            "id": "mode-tile",
+            "label": "mode: tile",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "readonly",
+            "label": "للقراءة فقط",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "view-switcher",
@@ -52284,14 +58062,14 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "value": null
+          "value": "table"
         }
       },
       {
         "id": "disabled-false",
         "label": "disabled: false",
         "inputs": {
-          "value": null,
+          "value": "table",
           "disabled": false
         }
       },
@@ -52299,7 +58077,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled-true",
         "label": "disabled: true",
         "inputs": {
-          "value": null,
+          "value": "table",
           "disabled": true
         }
       },
@@ -52321,7 +58099,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
-          "value": null,
+          "value": "table",
           "disabled": true
         }
       }
@@ -52382,7 +58160,79 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredProjectionSlots": [],
       "coveredReferenceCases": [],
       "evidenceKind": "INTERACTIVE_OUTPUT"
-    }
+    },
+    "reviewStatus": {
+      "kind": "pending-unknown",
+      "label": "بانتظار مراجعة Product Owner",
+      "note": "التحقق التقني والمراجعة الداخلية لا يساويان قبول Product Owner."
+    },
+    "reviewReference": {
+      "kind": "original-honesty",
+      "label": "تصميم Honesty ERP أصلي",
+      "source": "لا يوجد مرجع خارجي ملزم مسجل.",
+      "sourceUrl": null,
+      "capturedAt": "2026-10-10",
+      "referenceImage": null,
+      "implementationImage": null,
+      "viewport": null,
+      "note": "مرشح Honesty ERP أصلي؛ لا تُختلق له صورة مرجعية."
+    },
+    "reviewGalleryGroups": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "cases": [
+          {
+            "id": "default",
+            "label": "الحالة الافتراضية",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "states",
+        "label": "الحالات",
+        "cases": [
+          {
+            "id": "disabled",
+            "label": "حالة معطلة",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "scenarios",
+        "label": "سيناريوهات الاستخدام",
+        "cases": [
+          {
+            "id": "value-table",
+            "label": "value: table",
+            "inputs": {}
+          },
+          {
+            "id": "value-cards",
+            "label": "value: cards",
+            "inputs": {}
+          }
+        ]
+      }
+    ]
   }
 ];
 

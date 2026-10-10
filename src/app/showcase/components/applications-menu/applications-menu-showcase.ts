@@ -2,22 +2,93 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpApplicationsMenu} from '../../../controls/applications-menu/applications-menu';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'applications-menu')!;
+const REVIEW_GALLERY_GROUPS = [
+  {
+    "id": "default",
+    "label": "الحالة الافتراضية",
+    "cases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "groups": [
+            {
+              "id": "core",
+              "label": "تطبيقات ERP",
+              "items": [
+                {
+                  "id": "sales",
+                  "label": "المبيعات",
+                  "icon": "shopping-cart"
+                },
+                {
+                  "id": "inventory",
+                  "label": "المخزون",
+                  "icon": "inventory"
+                },
+                {
+                  "id": "finance",
+                  "label": "المالية",
+                  "icon": "wallet"
+                },
+                {
+                  "id": "customers",
+                  "label": "العملاء",
+                  "icon": "customer"
+                },
+                {
+                  "id": "people",
+                  "label": "الموارد البشرية",
+                  "icon": "people"
+                },
+                {
+                  "id": "reports",
+                  "label": "التقارير",
+                  "icon": "chart"
+                },
+                {
+                  "id": "operations",
+                  "label": "العمليات",
+                  "icon": "operations"
+                },
+                {
+                  "id": "files",
+                  "label": "المستندات",
+                  "icon": "folder"
+                },
+                {
+                  "id": "settings",
+                  "label": "الإعدادات",
+                  "icon": "settings",
+                  "disabled": true
+                }
+              ]
+            }
+          ],
+          "open": true
+        }
+      }
+    ]
+  }
+] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-applications-menu-showcase',
-  imports: [ErpApplicationsMenu, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpApplicationsMenu, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText],
   templateUrl: './applications-menu-showcase.html',
   styleUrl: './applications-menu-showcase.scss',
 })
 export class ErpApplicationsMenuShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
+  readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>(null);
@@ -31,6 +102,13 @@ export class ErpApplicationsMenuShowcase {
 
   value(name: string): unknown {
     return this.liveValues()[name];
+  }
+
+  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return false;
+    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
+      ? showcaseCase.inputs[name]
+      : ENTRY.showcaseInitialValues?.[name];
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

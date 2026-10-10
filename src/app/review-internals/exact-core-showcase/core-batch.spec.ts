@@ -1,6 +1,5 @@
 import {TestBed} from '@angular/core/testing';
 import {ErpAvatarPicker} from '../../controls/avatar-picker/avatar-picker';
-import {ErpSelect} from '../../controls/select/select';
 import {ErpReviewCoreTable} from '../../review-internals/review-core-table/review-core-table';
 import {CoreBatch} from './core-batch';
 
@@ -18,10 +17,6 @@ describe('CoreBatch', () => {
   });
 
   it('renders the nine corrected owners on the grouped review surface', () => {
-    // This assertion verifies Select owner composition and public attributes;
-    // Select behavior remains covered by its dedicated suite. Avoid rendering
-    // the duplicate Select overlay internals while the full suite is running.
-    TestBed.overrideComponent(ErpSelect, {set: {template: '', styleUrls: []}});
     const fixture = TestBed.createComponent(CoreBatch);
     fixture.detectChanges();
 

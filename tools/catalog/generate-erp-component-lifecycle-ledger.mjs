@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
+import {REOPENED_COMPONENTS} from './erp-review-authority.mjs';
 
 const ROOT = process.cwd();
 const CATALOG_PATH = path.join(
@@ -17,14 +18,6 @@ const OUTPUT_PATH = path.join(
   'controls',
   'ERP_COMPONENT_LIFECYCLE_LEDGER_V1.md',
 );
-
-const REOPENED_VISUALS = new Map([
-  ['ErpEmptyState', 'Product Owner withdrew the earlier accelerated acceptance; exact candidate is reopened.'],
-  ['ErpSelect', 'The first exact-reference candidate was rejected; V3 remains pending review.'],
-  ['ErpTabs', 'The 302056ad candidate was rejected; the literal reconstruction remains pending review.'],
-  ['ErpTable', 'The eddac4a8 candidate was rejected; the full reference experience remains pending review.'],
-  ['ErpUserMenu', 'Multiple trigger candidates were rejected; the current three-row candidate remains pending review.'],
-]);
 
 const SHELL_OWNERS = new Set([
   'ErpAppFooter',
@@ -223,8 +216,8 @@ function visualState(entry) {
   if (entry.visualStatus === 'ACCEPTED') {
     return ['ACCEPTED / FROZEN', 'Explicit Product Owner acceptance; preserve except verified compatibility fixes.'];
   }
-  if (REOPENED_VISUALS.has(entry.className)) {
-    return ['REOPENED', REOPENED_VISUALS.get(entry.className)];
+  if (REOPENED_COMPONENTS.has(entry.className)) {
+    return ['REOPENED', REOPENED_COMPONENTS.get(entry.className)];
   }
   if (entry.classification !== 'PUBLIC ERP COMPONENT') {
     return ['NOT INDEPENDENT', 'Supporting owner is verified through its public consumer; no independent visual approval is inferred.'];
@@ -310,7 +303,7 @@ drift.
 - Public owners: **${publicEntries.length}**.
 - Supporting catalog entries: **${supportingEntries.length}**.
 - Explicitly accepted/frozen public owners: **1** (\`ErpCheckBox\`).
-- Explicitly reopened public owners: **${publicEntries.filter((entry) => REOPENED_VISUALS.has(entry.className)).length}**.
+- Explicitly reopened public owners: **${publicEntries.filter((entry) => REOPENED_COMPONENTS.has(entry.className)).length}**.
 - Planned identities outside the implemented catalog: **${PLANNED.length}**.
 - Internally browser-reviewed public owners: **${publicEntries.filter((entry) => INTERNAL_VISUAL_REVIEWED.has(entry.className)).length}**.
 - The currently defined public UI backlog is internally processed: the one

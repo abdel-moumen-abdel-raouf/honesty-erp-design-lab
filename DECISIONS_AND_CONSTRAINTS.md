@@ -1,5 +1,24 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Visual Review Experience V1 decisions — 2026-10-10
+
+- This wave changes Design Lab review infrastructure and generated showcases;
+  it does not redesign production components or alter Product Owner status.
+- Every public route orders Gallery and Reference Comparison before the one
+  primary Live Preview. Full API controls remain available and initially
+  collapsed; event evidence remains visible.
+- Gallery cases come only from real generated cases and supported public facets.
+  Secondary instances never carry `data-showcase-target` and do not share the
+  live Workbench's mutable values.
+- Reference precedence is exact local authority, then recorded Skodash evidence,
+  then an explicitly labeled original Honesty ERP candidate. Missing images are
+  disclosed; substitute or fabricated references, vendor runtime, and iframes
+  are forbidden.
+- Review evidence images are served from a deterministic public mirror whose 29
+  files must remain byte-identical to their canonical committed sources.
+- `ErpCheckBox` remains the only accepted/frozen owner. Select, EmptyState,
+  Tabs, Table, and UserMenu remain reopened. The other 75 owners remain pending.
+
 ## Page Composition and public-backlog closure decisions — 2026-10-10
 
 - Page, PageHeader, and PageShell remain original Honesty ERP candidates under

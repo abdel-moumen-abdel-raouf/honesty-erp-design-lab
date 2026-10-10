@@ -2,9 +2,33 @@
 
 .showcase-reference { overflow-wrap: anywhere; }
 
+.showcase-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: var(--honesty-space-layout-gap-md);
+  min-inline-size: 0;
+}
+
+.showcase-gallery__case,
+.showcase-gallery__stage { min-inline-size: 0; }
+
+.showcase-gallery__stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  min-block-size: 5rem;
+  overflow-x: auto;
+}
+
 .showcase-live-preview { min-block-size: 12rem; }
 
-.showcase-live-preview--floating { position: relative; min-block-size: 30rem; overflow: clip; }
+.showcase-api-controls {
+  border: var(--honesty-border-width-default) solid var(--honesty-border-subtle);
+  border-radius: var(--honesty-radius-surface);
+  padding: var(--honesty-space-inset-default);
+}
+
+.showcase-api-controls > summary { cursor: pointer; }
 
 .showcase-divider-target[data-orientation='vertical'] {
   min-block-size: 8rem;

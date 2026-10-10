@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpRadioGroup} from '../../../controls/radio-group/radio-group';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
@@ -11,17 +12,341 @@ import {ErpButton} from '../../../controls/button/button';
 import {ErpReviewRadioReference} from '../../../review-internals/review-radio-reference/review-radio-reference';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'radio-group')!;
+const REVIEW_GALLERY_GROUPS = [
+  {
+    "id": "default",
+    "label": "الحالة الافتراضية",
+    "cases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "variant",
+    "label": "الأنماط",
+    "cases": [
+      {
+        "id": "variant-outline",
+        "label": "محاط (outline)",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "variant": "outline"
+        }
+      },
+      {
+        "id": "variant-filled",
+        "label": "variant: filled",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "variant": "filled"
+        }
+      },
+      {
+        "id": "variant-soft",
+        "label": "variant: soft",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "variant": "soft"
+        }
+      }
+    ]
+  },
+  {
+    "id": "size",
+    "label": "الأحجام",
+    "cases": [
+      {
+        "id": "size-sm",
+        "label": "size: sm",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "size": "sm"
+        }
+      },
+      {
+        "id": "size-md",
+        "label": "size: md",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "size": "md"
+        }
+      },
+      {
+        "id": "size-lg",
+        "label": "size: lg",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "size": "lg"
+        }
+      },
+      {
+        "id": "size-xl",
+        "label": "size: xl",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "size": "xl"
+        }
+      },
+      {
+        "id": "size-xxl",
+        "label": "size: xxl",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "size": "xxl"
+        }
+      },
+      {
+        "id": "size-xxxl",
+        "label": "size: xxxl",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "size": "xxxl"
+        }
+      },
+      {
+        "id": "size-xxxxl",
+        "label": "size: xxxxl",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "size": "xxxxl"
+        }
+      }
+    ]
+  },
+  {
+    "id": "tone",
+    "label": "النبرات",
+    "cases": [
+      {
+        "id": "tone-neutral",
+        "label": "محايد (neutral)",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "tone": "neutral"
+        }
+      },
+      {
+        "id": "tone-primary",
+        "label": "رئيسي (primary)",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "tone": "primary"
+        }
+      },
+      {
+        "id": "tone-secondary",
+        "label": "tone: secondary",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "tone": "secondary"
+        }
+      },
+      {
+        "id": "tone-accent",
+        "label": "tone: accent",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "tone": "accent"
+        }
+      }
+    ]
+  },
+  {
+    "id": "readOnly",
+    "label": "readOnly",
+    "cases": [
+      {
+        "id": "readOnly-false",
+        "label": "غير مفعّل (false)",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "readOnly": false
+        }
+      },
+      {
+        "id": "readOnly-true",
+        "label": "مفعّل (true)",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "readOnly": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "mode",
+    "label": "الأوضاع",
+    "cases": [
+      {
+        "id": "mode-radio",
+        "label": "mode: radio",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "mode": "radio"
+        }
+      },
+      {
+        "id": "mode-tile",
+        "label": "mode: tile",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "mode": "tile"
+        }
+      }
+    ]
+  },
+  {
+    "id": "states",
+    "label": "الحالات",
+    "cases": [
+      {
+        "id": "readonly",
+        "label": "للقراءة فقط",
+        "inputs": {
+          "label": "حقل تجريبي",
+          "options": [
+            {
+              "value": "active",
+              "label": "نشط"
+            }
+          ],
+          "readOnly": true
+        }
+      }
+    ]
+  }
+] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-radio-group-showcase',
-  imports: [ErpRadioGroup, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ReactiveFormsModule, ErpButton, ErpReviewRadioReference],
+  imports: [ErpRadioGroup, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText, ReactiveFormsModule, ErpButton, ErpReviewRadioReference],
   templateUrl: './radio-group-showcase.html',
   styleUrl: './radio-group-showcase.scss',
 })
 export class ErpRadioGroupShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
+  readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly referenceExpanded = signal(false);
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
@@ -30,6 +355,7 @@ export class ErpRadioGroupShowcase {
     ...this.liveValues(),
     '$value': this.cvaValue(),
   }));
+  private readonly galleryControls = new Map<string, FormControl<unknown>>();
   readonly control = new FormControl<unknown>({"value":null,"disabled":false});
 
   constructor() {
@@ -44,6 +370,21 @@ export class ErpRadioGroupShowcase {
 
   value(name: string): unknown {
     return this.liveValues()[name];
+  }
+
+  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return false;
+    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
+      ? showcaseCase.inputs[name]
+      : ENTRY.showcaseInitialValues?.[name];
+  }
+
+  galleryControl(id: string, disabled: unknown): FormControl<unknown> {
+    const existing = this.galleryControls.get(id);
+    if (existing) return existing;
+    const control = new FormControl<unknown>({value: null, disabled: Boolean(disabled)});
+    this.galleryControls.set(id, control);
+    return control;
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

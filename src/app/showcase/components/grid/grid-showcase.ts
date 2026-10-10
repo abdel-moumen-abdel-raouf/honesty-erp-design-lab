@@ -2,22 +2,106 @@ import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/cor
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpGrid} from '../../../primitives/grid/grid';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'grid')!;
+const REVIEW_GALLERY_GROUPS = [
+  {
+    "id": "default",
+    "label": "الحالة الافتراضية",
+    "cases": [
+      {
+        "id": "default",
+        "label": "الحالة الافتراضية",
+        "inputs": {}
+      }
+    ]
+  },
+  {
+    "id": "gap",
+    "label": "الفجوات",
+    "cases": [
+      {
+        "id": "gap-grid",
+        "label": "gap: grid",
+        "inputs": {
+          "gap": "grid"
+        }
+      },
+      {
+        "id": "gap-none",
+        "label": "بدون (none)",
+        "inputs": {
+          "gap": "none"
+        }
+      },
+      {
+        "id": "gap-xxs",
+        "label": "gap: xxs",
+        "inputs": {
+          "gap": "xxs"
+        }
+      },
+      {
+        "id": "gap-xs",
+        "label": "gap: xs",
+        "inputs": {
+          "gap": "xs"
+        }
+      },
+      {
+        "id": "gap-sm",
+        "label": "gap: sm",
+        "inputs": {
+          "gap": "sm"
+        }
+      },
+      {
+        "id": "gap-md",
+        "label": "gap: md",
+        "inputs": {
+          "gap": "md"
+        }
+      },
+      {
+        "id": "gap-lg",
+        "label": "gap: lg",
+        "inputs": {
+          "gap": "lg"
+        }
+      },
+      {
+        "id": "gap-xl",
+        "label": "gap: xl",
+        "inputs": {
+          "gap": "xl"
+        }
+      },
+      {
+        "id": "gap-xxl",
+        "label": "gap: xxl",
+        "inputs": {
+          "gap": "xxl"
+        }
+      }
+    ]
+  }
+] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-grid-showcase',
-  imports: [ErpGrid, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpGrid, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText],
   templateUrl: './grid-showcase.html',
   styleUrl: './grid-showcase.scss',
 })
 export class ErpGridShowcase {
   readonly entry = ENTRY;
   readonly controls = ENTRY.showcaseControls;
+  readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
   readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
   readonly cvaValue = signal<unknown>(null);
@@ -31,6 +115,13 @@ export class ErpGridShowcase {
 
   value(name: string): unknown {
     return this.liveValues()[name];
+  }
+
+  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return false;
+    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
+      ? showcaseCase.inputs[name]
+      : ENTRY.showcaseInitialValues?.[name];
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

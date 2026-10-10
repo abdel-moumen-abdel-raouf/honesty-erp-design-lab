@@ -1,5 +1,23 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — Product Owner desktop review of V1
+
+Visual Review Experience V1 prepares all 81 public component routes for
+desktop review. Each route presents generated real-supported Gallery evidence,
+truthful reference provenance/comparison, one interactive target, collapsed
+full API controls, and output evidence. `/components/app-shell` still controls
+the one real root AppShell and never nests another shell. Existing exact-core
+evidence and the complete multi-owner Table reference remain intact.
+
+The persisted audit under
+`docs/review-evidence/visual-review-experience-v1/` passes all 81 routes with
+zero runtime failures and includes ten inspected desktop/narrow Light/Dark
+RTL/LTR captures. Canonical verification passes 153/153 files and 886/886
+tests with a zero-warning 424.96 kB / 93.08 kB build. The next action is Product Owner review at
+`http://localhost:4999/components`; no production redesign or business/UI owner
+wave is opened. CheckBox stays accepted/frozen, five owners stay reopened, and
+75 stay pending.
+
 ## Current continuation point — consolidated Product Owner review
 
 Continue from synchronized `main` after the Page Composition and global

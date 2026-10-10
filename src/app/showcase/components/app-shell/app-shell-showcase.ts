@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, OnDestroy, computed, inject} from '@
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
 import {ErpAppShellWorkbenchValues, ErpReviewAppShellWorkbenchState} from '../../../review-internals/app-shell-workbench/app-shell-workbench-state';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
+import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/showcase-reference-comparison/showcase-reference-comparison';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
@@ -16,7 +17,7 @@ const INITIAL_VALUES = {
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-app-shell-showcase',
-  imports: [ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText],
   templateUrl: './app-shell-showcase.html',
   styleUrl: './app-shell-showcase.scss',
 })

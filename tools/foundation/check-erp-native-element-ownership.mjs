@@ -22,6 +22,10 @@ const DESIGN_LAB_NATIVE_OWNERS = new Map([
     tags: new Set(['nav', 'a', 'div', 'section']),
     reason: 'Design Lab catalog navigation; no public ERP link/navigation-list owner exists.',
   }],
+  ['src/app/review-internals/showcase-evidence-image/showcase-evidence-image.html', {
+    tags: new Set(['img']),
+    reason: 'Bounded Design Lab evidence-image owner for committed review captures; production image semantics remain ERP-owned.',
+  }],
   ['src/app/showcase/component-catalog/component-catalog.html', {
     tags: new Set(['div', 'a']),
     reason: 'Design Lab catalog landing links; no public ERP link owner exists.',
