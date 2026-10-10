@@ -1,5 +1,22 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Selection Picker Family Internal Review State
+
+`ErpItemPicker`, `ErpIconPicker`, and `ErpColorPicker` have completed internal
+browser review as original Honesty ERP candidates. Their generated Workbenches
+now start with meaningful Arabic ERP values; ItemPicker and IconPicker commit
+owned selections, while ColorPicker proves both the 88-token system mode and
+free-color mode through the same live CVA target. Evidence under
+`docs/review-evidence/erp-selection-pickers/v1-internal-review/` passes 104/104
+assertions across desktop Light/RTL and 390 px Dark/LTR, including containment,
+single body-scroll ownership, event evidence, zero overflow, broken images,
+errors, or warnings. Focused verification passes 5/5 files and 71/71 tests;
+canonical verification passes 128/128 files and 841/841 tests, both typechecks,
+all governance/lint, and the zero-warning 418.32 kB / 92.88 kB build. Status
+remains `TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next Bottom-Up unit: `ErpFilePicker`
+and `ErpImagePicker`.
+
 ## Current Search and Combo Input Internal Review State
 
 `ErpSearchBox` and `ErpComboBox` have completed internal browser review as

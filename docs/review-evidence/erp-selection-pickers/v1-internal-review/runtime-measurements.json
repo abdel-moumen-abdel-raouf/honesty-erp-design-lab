@@ -1,0 +1,981 @@
+{
+  "generatedAt": "2026-10-10T09:16:10.734Z",
+  "authority": "Original Honesty ERP candidates; no binding component-specific external reference is recorded.",
+  "scenarios": [
+    {
+      "name": "item-picker-item-1440-light-rtl",
+      "component": "item-picker",
+      "variant": "item",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "computedDirection": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 27,
+      "initialValue": "inventory-main",
+      "targetBox": {
+        "x": 147,
+        "y": 452.765625,
+        "width": 950,
+        "height": 94.296875
+      },
+      "surfaceBox": {
+        "x": 432,
+        "y": 224.796875,
+        "width": 576,
+        "height": 450.390625,
+        "right": 1008,
+        "bottom": 675.1875
+      },
+      "surfaceScroll": {
+        "clientHeight": 448,
+        "scrollHeight": 448,
+        "overflowY": "hidden"
+      },
+      "bodyScroll": {
+        "clientHeight": 294,
+        "scrollHeight": 294,
+        "overflowY": "auto"
+      },
+      "inventory": 3,
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "value": "inventory-alex",
+      "eventEvidence": "آخر تفاعلvalueChange: inventory-alexالقيمة الحالية: inventory-alex",
+      "diagnostics": []
+    },
+    {
+      "name": "item-picker-item-390-dark-ltr",
+      "component": "item-picker",
+      "variant": "item",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "computedDirection": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 27,
+      "initialValue": "inventory-main",
+      "targetBox": {
+        "x": 57,
+        "y": 602.765625,
+        "width": 276,
+        "height": 94.296875
+      },
+      "surfaceBox": {
+        "x": 8,
+        "y": 196.796875,
+        "width": 374,
+        "height": 450.390625,
+        "right": 382,
+        "bottom": 647.1875
+      },
+      "surfaceScroll": {
+        "clientHeight": 448,
+        "scrollHeight": 448,
+        "overflowY": "hidden"
+      },
+      "bodyScroll": {
+        "clientHeight": 294,
+        "scrollHeight": 294,
+        "overflowY": "auto"
+      },
+      "inventory": 3,
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "value": "inventory-alex",
+      "eventEvidence": "آخر تفاعلvalueChange: inventory-alexالقيمة الحالية: inventory-alex",
+      "diagnostics": []
+    },
+    {
+      "name": "icon-picker-icon-1440-light-rtl",
+      "component": "icon-picker",
+      "variant": "icon",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "computedDirection": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 24,
+      "initialValue": "search",
+      "targetBox": {
+        "x": 147,
+        "y": 452.765625,
+        "width": 950,
+        "height": 94.296875
+      },
+      "surfaceBox": {
+        "x": 336,
+        "y": 137.796875,
+        "width": 768,
+        "height": 624.390625,
+        "right": 1104,
+        "bottom": 762.1875
+      },
+      "surfaceScroll": {
+        "clientHeight": 622,
+        "scrollHeight": 622,
+        "overflowY": "hidden"
+      },
+      "bodyScroll": {
+        "clientHeight": 468,
+        "scrollHeight": 468,
+        "overflowY": "auto"
+      },
+      "inventory": 80,
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "value": "wallet",
+      "eventEvidence": "آخر تفاعلvalueChange: walletالقيمة الحالية: wallet",
+      "diagnostics": []
+    },
+    {
+      "name": "icon-picker-icon-390-dark-ltr",
+      "component": "icon-picker",
+      "variant": "icon",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "computedDirection": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 24,
+      "initialValue": "search",
+      "targetBox": {
+        "x": 57,
+        "y": 602.765625,
+        "width": 276,
+        "height": 94.296875
+      },
+      "surfaceBox": {
+        "x": 8,
+        "y": 109.796875,
+        "width": 374,
+        "height": 624.390625,
+        "right": 382,
+        "bottom": 734.1875
+      },
+      "surfaceScroll": {
+        "clientHeight": 622,
+        "scrollHeight": 622,
+        "overflowY": "hidden"
+      },
+      "bodyScroll": {
+        "clientHeight": 468,
+        "scrollHeight": 468,
+        "overflowY": "auto"
+      },
+      "inventory": 80,
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "value": "wallet",
+      "eventEvidence": "آخر تفاعلvalueChange: walletالقيمة الحالية: wallet",
+      "diagnostics": []
+    },
+    {
+      "name": "color-picker-system-1440-light-rtl",
+      "component": "color-picker",
+      "variant": "system",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "computedDirection": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 25,
+      "initialValue": "primary-500",
+      "targetBox": {
+        "x": 147,
+        "y": 452.765625,
+        "width": 950,
+        "height": 94.296875
+      },
+      "surfaceBox": {
+        "x": 432,
+        "y": 161.453125,
+        "width": 576,
+        "height": 577.09375,
+        "right": 1008,
+        "bottom": 738.546875
+      },
+      "surfaceScroll": {
+        "clientHeight": 575,
+        "scrollHeight": 575,
+        "overflowY": "hidden"
+      },
+      "bodyScroll": {
+        "clientHeight": 421,
+        "scrollHeight": 421,
+        "overflowY": "auto"
+      },
+      "inventory": 88,
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "value": "accent-500",
+      "eventEvidence": "آخر تفاعلvalueChange: {\"mode\":\"system\",\"token\":\"accent-500\"}القيمة الحالية: [object Object]",
+      "diagnostics": []
+    },
+    {
+      "name": "color-picker-system-390-dark-ltr",
+      "component": "color-picker",
+      "variant": "system",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "computedDirection": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 25,
+      "initialValue": "primary-500",
+      "targetBox": {
+        "x": 57,
+        "y": 602.765625,
+        "width": 276,
+        "height": 94.296875
+      },
+      "surfaceBox": {
+        "x": 8,
+        "y": 133.453125,
+        "width": 374,
+        "height": 577.09375,
+        "right": 382,
+        "bottom": 710.546875
+      },
+      "surfaceScroll": {
+        "clientHeight": 575,
+        "scrollHeight": 575,
+        "overflowY": "hidden"
+      },
+      "bodyScroll": {
+        "clientHeight": 421,
+        "scrollHeight": 421,
+        "overflowY": "auto"
+      },
+      "inventory": 88,
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "value": "accent-500",
+      "eventEvidence": "آخر تفاعلvalueChange: {\"mode\":\"system\",\"token\":\"accent-500\"}القيمة الحالية: [object Object]",
+      "diagnostics": []
+    },
+    {
+      "name": "color-picker-free-1440-light-rtl",
+      "component": "color-picker",
+      "variant": "free",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "computedDirection": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 25,
+      "initialValue": "#2F6BFF",
+      "targetBox": {
+        "x": 147,
+        "y": 452.765625,
+        "width": 950,
+        "height": 94.296875
+      },
+      "surfaceBox": {
+        "x": 432,
+        "y": 299.296875,
+        "width": 576,
+        "height": 301.390625,
+        "right": 1008,
+        "bottom": 600.6875
+      },
+      "surfaceScroll": {
+        "clientHeight": 299,
+        "scrollHeight": 299,
+        "overflowY": "hidden"
+      },
+      "bodyScroll": {
+        "clientHeight": 145,
+        "scrollHeight": 145,
+        "overflowY": "auto"
+      },
+      "inventory": 1,
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "value": "#FF6B2F",
+      "eventEvidence": "آخر تفاعلvalueChange: {\"mode\":\"free\",\"value\":\"#FF6B2F\"}القيمة الحالية: [object Object]",
+      "diagnostics": []
+    },
+    {
+      "name": "color-picker-free-390-dark-ltr",
+      "component": "color-picker",
+      "variant": "free",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "computedDirection": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 25,
+      "initialValue": "#2F6BFF",
+      "targetBox": {
+        "x": 57,
+        "y": 602.765625,
+        "width": 276,
+        "height": 94.296875
+      },
+      "surfaceBox": {
+        "x": 8,
+        "y": 271.296875,
+        "width": 374,
+        "height": 301.390625,
+        "right": 382,
+        "bottom": 572.6875
+      },
+      "surfaceScroll": {
+        "clientHeight": 299,
+        "scrollHeight": 299,
+        "overflowY": "hidden"
+      },
+      "bodyScroll": {
+        "clientHeight": 145,
+        "scrollHeight": 145,
+        "overflowY": "auto"
+      },
+      "inventory": 1,
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "value": "#FF6B2F",
+      "eventEvidence": "آخر تفاعلvalueChange: {\"mode\":\"free\",\"value\":\"#FF6B2F\"}القيمة الحالية: [object Object]",
+      "diagnostics": []
+    }
+  ],
+  "assertions": [
+    {
+      "name": "item-picker-item-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "item-picker-item-1440-light-rtl controls",
+      "pass": true,
+      "actual": 27
+    },
+    {
+      "name": "item-picker-item-1440-light-rtl direction",
+      "pass": true,
+      "actual": "rtl"
+    },
+    {
+      "name": "item-picker-item-1440-light-rtl theme",
+      "pass": true,
+      "actual": "light"
+    },
+    {
+      "name": "item-picker-item-1440-light-rtl initial value",
+      "pass": true,
+      "actual": "inventory-main"
+    },
+    {
+      "name": "item-picker-item-1440-light-rtl inventory",
+      "pass": true,
+      "actual": 3
+    },
+    {
+      "name": "item-picker-item-1440-light-rtl containment",
+      "pass": true,
+      "actual": {
+        "x": 432,
+        "y": 224.796875,
+        "width": 576,
+        "height": 450.390625,
+        "right": 1008,
+        "bottom": 675.1875
+      }
+    },
+    {
+      "name": "item-picker-item-1440-light-rtl outer scroll",
+      "pass": true,
+      "actual": {
+        "clientHeight": 448,
+        "scrollHeight": 448,
+        "overflowY": "hidden"
+      }
+    },
+    {
+      "name": "item-picker-item-1440-light-rtl commit",
+      "pass": true,
+      "actual": "inventory-alex"
+    },
+    {
+      "name": "item-picker-item-1440-light-rtl event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: inventory-alexالقيمة الحالية: inventory-alex"
+    },
+    {
+      "name": "item-picker-item-1440-light-rtl overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "item-picker-item-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "item-picker-item-1440-light-rtl images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "item-picker-item-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "item-picker-item-390-dark-ltr controls",
+      "pass": true,
+      "actual": 27
+    },
+    {
+      "name": "item-picker-item-390-dark-ltr direction",
+      "pass": true,
+      "actual": "ltr"
+    },
+    {
+      "name": "item-picker-item-390-dark-ltr theme",
+      "pass": true,
+      "actual": "dark"
+    },
+    {
+      "name": "item-picker-item-390-dark-ltr initial value",
+      "pass": true,
+      "actual": "inventory-main"
+    },
+    {
+      "name": "item-picker-item-390-dark-ltr inventory",
+      "pass": true,
+      "actual": 3
+    },
+    {
+      "name": "item-picker-item-390-dark-ltr containment",
+      "pass": true,
+      "actual": {
+        "x": 8,
+        "y": 196.796875,
+        "width": 374,
+        "height": 450.390625,
+        "right": 382,
+        "bottom": 647.1875
+      }
+    },
+    {
+      "name": "item-picker-item-390-dark-ltr outer scroll",
+      "pass": true,
+      "actual": {
+        "clientHeight": 448,
+        "scrollHeight": 448,
+        "overflowY": "hidden"
+      }
+    },
+    {
+      "name": "item-picker-item-390-dark-ltr commit",
+      "pass": true,
+      "actual": "inventory-alex"
+    },
+    {
+      "name": "item-picker-item-390-dark-ltr event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: inventory-alexالقيمة الحالية: inventory-alex"
+    },
+    {
+      "name": "item-picker-item-390-dark-ltr overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "item-picker-item-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "item-picker-item-390-dark-ltr images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "icon-picker-icon-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "icon-picker-icon-1440-light-rtl controls",
+      "pass": true,
+      "actual": 24
+    },
+    {
+      "name": "icon-picker-icon-1440-light-rtl direction",
+      "pass": true,
+      "actual": "rtl"
+    },
+    {
+      "name": "icon-picker-icon-1440-light-rtl theme",
+      "pass": true,
+      "actual": "light"
+    },
+    {
+      "name": "icon-picker-icon-1440-light-rtl initial value",
+      "pass": true,
+      "actual": "search"
+    },
+    {
+      "name": "icon-picker-icon-1440-light-rtl inventory",
+      "pass": true,
+      "actual": 80
+    },
+    {
+      "name": "icon-picker-icon-1440-light-rtl containment",
+      "pass": true,
+      "actual": {
+        "x": 336,
+        "y": 137.796875,
+        "width": 768,
+        "height": 624.390625,
+        "right": 1104,
+        "bottom": 762.1875
+      }
+    },
+    {
+      "name": "icon-picker-icon-1440-light-rtl outer scroll",
+      "pass": true,
+      "actual": {
+        "clientHeight": 622,
+        "scrollHeight": 622,
+        "overflowY": "hidden"
+      }
+    },
+    {
+      "name": "icon-picker-icon-1440-light-rtl commit",
+      "pass": true,
+      "actual": "wallet"
+    },
+    {
+      "name": "icon-picker-icon-1440-light-rtl event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: walletالقيمة الحالية: wallet"
+    },
+    {
+      "name": "icon-picker-icon-1440-light-rtl overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "icon-picker-icon-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "icon-picker-icon-1440-light-rtl images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "icon-picker-icon-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "icon-picker-icon-390-dark-ltr controls",
+      "pass": true,
+      "actual": 24
+    },
+    {
+      "name": "icon-picker-icon-390-dark-ltr direction",
+      "pass": true,
+      "actual": "ltr"
+    },
+    {
+      "name": "icon-picker-icon-390-dark-ltr theme",
+      "pass": true,
+      "actual": "dark"
+    },
+    {
+      "name": "icon-picker-icon-390-dark-ltr initial value",
+      "pass": true,
+      "actual": "search"
+    },
+    {
+      "name": "icon-picker-icon-390-dark-ltr inventory",
+      "pass": true,
+      "actual": 80
+    },
+    {
+      "name": "icon-picker-icon-390-dark-ltr containment",
+      "pass": true,
+      "actual": {
+        "x": 8,
+        "y": 109.796875,
+        "width": 374,
+        "height": 624.390625,
+        "right": 382,
+        "bottom": 734.1875
+      }
+    },
+    {
+      "name": "icon-picker-icon-390-dark-ltr outer scroll",
+      "pass": true,
+      "actual": {
+        "clientHeight": 622,
+        "scrollHeight": 622,
+        "overflowY": "hidden"
+      }
+    },
+    {
+      "name": "icon-picker-icon-390-dark-ltr commit",
+      "pass": true,
+      "actual": "wallet"
+    },
+    {
+      "name": "icon-picker-icon-390-dark-ltr event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: walletالقيمة الحالية: wallet"
+    },
+    {
+      "name": "icon-picker-icon-390-dark-ltr overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "icon-picker-icon-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "icon-picker-icon-390-dark-ltr images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "color-picker-system-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "color-picker-system-1440-light-rtl controls",
+      "pass": true,
+      "actual": 25
+    },
+    {
+      "name": "color-picker-system-1440-light-rtl direction",
+      "pass": true,
+      "actual": "rtl"
+    },
+    {
+      "name": "color-picker-system-1440-light-rtl theme",
+      "pass": true,
+      "actual": "light"
+    },
+    {
+      "name": "color-picker-system-1440-light-rtl initial value",
+      "pass": true,
+      "actual": "primary-500"
+    },
+    {
+      "name": "color-picker-system-1440-light-rtl inventory",
+      "pass": true,
+      "actual": 88
+    },
+    {
+      "name": "color-picker-system-1440-light-rtl containment",
+      "pass": true,
+      "actual": {
+        "x": 432,
+        "y": 161.453125,
+        "width": 576,
+        "height": 577.09375,
+        "right": 1008,
+        "bottom": 738.546875
+      }
+    },
+    {
+      "name": "color-picker-system-1440-light-rtl outer scroll",
+      "pass": true,
+      "actual": {
+        "clientHeight": 575,
+        "scrollHeight": 575,
+        "overflowY": "hidden"
+      }
+    },
+    {
+      "name": "color-picker-system-1440-light-rtl commit",
+      "pass": true,
+      "actual": "accent-500"
+    },
+    {
+      "name": "color-picker-system-1440-light-rtl event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: {\"mode\":\"system\",\"token\":\"accent-500\"}القيمة الحالية: [object Object]"
+    },
+    {
+      "name": "color-picker-system-1440-light-rtl overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "color-picker-system-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "color-picker-system-1440-light-rtl images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "color-picker-system-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "color-picker-system-390-dark-ltr controls",
+      "pass": true,
+      "actual": 25
+    },
+    {
+      "name": "color-picker-system-390-dark-ltr direction",
+      "pass": true,
+      "actual": "ltr"
+    },
+    {
+      "name": "color-picker-system-390-dark-ltr theme",
+      "pass": true,
+      "actual": "dark"
+    },
+    {
+      "name": "color-picker-system-390-dark-ltr initial value",
+      "pass": true,
+      "actual": "primary-500"
+    },
+    {
+      "name": "color-picker-system-390-dark-ltr inventory",
+      "pass": true,
+      "actual": 88
+    },
+    {
+      "name": "color-picker-system-390-dark-ltr containment",
+      "pass": true,
+      "actual": {
+        "x": 8,
+        "y": 133.453125,
+        "width": 374,
+        "height": 577.09375,
+        "right": 382,
+        "bottom": 710.546875
+      }
+    },
+    {
+      "name": "color-picker-system-390-dark-ltr outer scroll",
+      "pass": true,
+      "actual": {
+        "clientHeight": 575,
+        "scrollHeight": 575,
+        "overflowY": "hidden"
+      }
+    },
+    {
+      "name": "color-picker-system-390-dark-ltr commit",
+      "pass": true,
+      "actual": "accent-500"
+    },
+    {
+      "name": "color-picker-system-390-dark-ltr event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: {\"mode\":\"system\",\"token\":\"accent-500\"}القيمة الحالية: [object Object]"
+    },
+    {
+      "name": "color-picker-system-390-dark-ltr overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "color-picker-system-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "color-picker-system-390-dark-ltr images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "color-picker-free-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "color-picker-free-1440-light-rtl controls",
+      "pass": true,
+      "actual": 25
+    },
+    {
+      "name": "color-picker-free-1440-light-rtl direction",
+      "pass": true,
+      "actual": "rtl"
+    },
+    {
+      "name": "color-picker-free-1440-light-rtl theme",
+      "pass": true,
+      "actual": "light"
+    },
+    {
+      "name": "color-picker-free-1440-light-rtl initial value",
+      "pass": true,
+      "actual": "#2F6BFF"
+    },
+    {
+      "name": "color-picker-free-1440-light-rtl inventory",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "color-picker-free-1440-light-rtl containment",
+      "pass": true,
+      "actual": {
+        "x": 432,
+        "y": 299.296875,
+        "width": 576,
+        "height": 301.390625,
+        "right": 1008,
+        "bottom": 600.6875
+      }
+    },
+    {
+      "name": "color-picker-free-1440-light-rtl outer scroll",
+      "pass": true,
+      "actual": {
+        "clientHeight": 299,
+        "scrollHeight": 299,
+        "overflowY": "hidden"
+      }
+    },
+    {
+      "name": "color-picker-free-1440-light-rtl commit",
+      "pass": true,
+      "actual": "#FF6B2F"
+    },
+    {
+      "name": "color-picker-free-1440-light-rtl event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: {\"mode\":\"free\",\"value\":\"#FF6B2F\"}القيمة الحالية: [object Object]"
+    },
+    {
+      "name": "color-picker-free-1440-light-rtl overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "color-picker-free-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "color-picker-free-1440-light-rtl images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "color-picker-free-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "color-picker-free-390-dark-ltr controls",
+      "pass": true,
+      "actual": 25
+    },
+    {
+      "name": "color-picker-free-390-dark-ltr direction",
+      "pass": true,
+      "actual": "ltr"
+    },
+    {
+      "name": "color-picker-free-390-dark-ltr theme",
+      "pass": true,
+      "actual": "dark"
+    },
+    {
+      "name": "color-picker-free-390-dark-ltr initial value",
+      "pass": true,
+      "actual": "#2F6BFF"
+    },
+    {
+      "name": "color-picker-free-390-dark-ltr inventory",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "color-picker-free-390-dark-ltr containment",
+      "pass": true,
+      "actual": {
+        "x": 8,
+        "y": 271.296875,
+        "width": 374,
+        "height": 301.390625,
+        "right": 382,
+        "bottom": 572.6875
+      }
+    },
+    {
+      "name": "color-picker-free-390-dark-ltr outer scroll",
+      "pass": true,
+      "actual": {
+        "clientHeight": 299,
+        "scrollHeight": 299,
+        "overflowY": "hidden"
+      }
+    },
+    {
+      "name": "color-picker-free-390-dark-ltr commit",
+      "pass": true,
+      "actual": "#FF6B2F"
+    },
+    {
+      "name": "color-picker-free-390-dark-ltr event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: {\"mode\":\"free\",\"value\":\"#FF6B2F\"}القيمة الحالية: [object Object]"
+    },
+    {
+      "name": "color-picker-free-390-dark-ltr overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "color-picker-free-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "color-picker-free-390-dark-ltr images",
+      "pass": true,
+      "actual": 0
+    }
+  ],
+  "summary": {
+    "total": 104,
+    "passed": 104,
+    "failed": []
+  }
+}

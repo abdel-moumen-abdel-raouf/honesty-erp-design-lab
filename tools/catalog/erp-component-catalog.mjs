@@ -146,10 +146,13 @@ const CVA_COMPONENTS = new Set([
 ]);
 
 const CVA_FIXTURE_VALUES = new Map([
+  ['ErpColorPicker', {mode: 'system', token: 'primary-500'}],
   ['ErpComboBox', 'supplier-27'],
   ['ErpDateBox', '2026-10-12'],
   ['ErpDateRangeBox', {start: '2026-10-01', end: '2026-10-15'}],
   ['ErpDateTimeBox', '2026-10-12T09:30'],
+  ['ErpIconPicker', 'search'],
+  ['ErpItemPicker', 'inventory-main'],
   ['ErpMoneyBox', 18450.75],
   ['ErpNumberBox', 1250],
   ['ErpNumberStepper', 12],
@@ -460,7 +463,20 @@ const FIXTURE_INPUTS = new Map([
   ['ErpFormSection', {title: 'البيانات الأساسية'}],
   ['ErpIcon', {name: 'settings'}],
   ['ErpIconButton', {icon: 'settings', label: 'الإعدادات'}],
-  ['ErpItemPicker', {items: [{value: 'item-1', label: 'صنف مخزني'}]}],
+  ['ErpColorPicker', {label: 'لون تصنيف الحساب', helperText: 'اختر لونًا من سجل ألوان النظام', clearable: true}],
+  ['ErpIconPicker', {label: 'أيقونة الوحدة', helperText: 'اختر أيقونة دلالية من سجل النظام', clearable: true}],
+  ['ErpItemPicker', {
+    label: 'المستودع الافتراضي',
+    helperText: 'اختر المستودع الذي يستقبل الحركات تلقائيًا',
+    placeholder: 'اختر مستودعًا',
+    searchable: true,
+    clearable: true,
+    items: [
+      {value: 'inventory-main', label: 'المستودع الرئيسي', description: 'القاهرة — متاح لكل الوحدات', icon: 'inventory'},
+      {value: 'inventory-alex', label: 'مستودع الإسكندرية', description: 'الإسكندرية — مبيعات التجزئة', icon: 'building'},
+      {value: 'inventory-damaged', label: 'مستودع التالف', description: 'موقوف مؤقتًا', icon: 'warning', disabled: true},
+    ],
+  }],
   ['ErpMoneyBox', {currency: 'EGP', label: 'الرصيد الافتتاحي', helperText: 'بالجنيه المصري', clearable: true}],
   ['ErpNumberBox', {label: 'كمية إعادة الطلب', helperText: 'وحدة مخزنية', clearable: true}],
   ['ErpNumberStepper', {label: 'كمية الطلب', helperText: 'استخدم أزرار الزيادة والنقصان', min: 0, max: 100, step: 1, clearable: true}],

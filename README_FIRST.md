@@ -1,5 +1,19 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — selection picker family
+
+ItemPicker, IconPicker, and ColorPicker completed internal browser review as
+original Honesty ERP candidates. Their single-target Workbenches now start
+with meaningful Arabic ERP values and prove staged selection, confirmation,
+system/free color modes, CVA synchronization, and visible output evidence.
+Evidence under
+`docs/review-evidence/erp-selection-pickers/v1-internal-review/` passes 104/104
+assertions across desktop Light/RTL and 390 px Dark/LTR with no overflow,
+broken images, or browser diagnostics. Focused verification passes 5/5 files
+and 71/71 tests; canonical verification passes 128/128 files and 841/841 tests
+with a zero-warning 418.32 kB / 92.88 kB build. Product Owner acceptance is
+not recorded. Next Bottom-Up unit: FilePicker and ImagePicker.
+
 ## Latest verified UI unit — SearchBox and ComboBox
 
 The SearchBox and ComboBox Input/Field owners completed internal browser

@@ -1,5 +1,17 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — selection picker family complete internally
+
+ItemPicker, IconPicker, and ColorPicker completed internal browser review as
+original Honesty ERP candidates. Their generated Workbenches now carry
+meaningful ERP values and prove item/icon staged confirmation plus system/free
+color editing. The eight-scenario gate passes 104/104 assertions with stable
+containment, one body-scroll owner, and zero overflow, broken images, or
+diagnostics. Canonical verification passes 128/128 files and 841/841 tests
+with a zero-warning 418.32 kB / 92.88 kB build. Product Owner status remains
+pending. Continue Bottom-Up with `ErpFilePicker` and `ErpImagePicker`; business
+Feature/Page, CRUD, transport, and permissions work remain closed.
+
 ## Current UI continuation — SearchBox and ComboBox complete internally
 
 SearchBox and ComboBox completed internal browser review as original Honesty

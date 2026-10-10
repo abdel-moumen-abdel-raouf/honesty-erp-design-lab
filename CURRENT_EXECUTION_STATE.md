@@ -1,5 +1,22 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — selection picker family internal review
+
+`ErpItemPicker`, `ErpIconPicker`, and `ErpColorPicker` completed internal
+browser review as explicitly labeled original Honesty ERP candidates.
+Generated Workbench fixtures now provide Arabic warehouse choices, the full
+semantic icon registry, system-color tokens, and a free-color value. Eight
+desktop/narrow Light/Dark RTL/LTR scenarios pass 104/104 assertions with one
+target, complete controls, real staged commit/event evidence, viewport
+containment, one body scroll owner, and zero overflow, broken images, errors,
+or warnings. Evidence is under
+`docs/review-evidence/erp-selection-pickers/v1-internal-review/`. Canonical
+verification passes 128/128 files and 841/841 tests, both typechecks, all
+governance/lint, and the zero-warning 418.32 kB / 92.88 kB build. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next: `ErpFilePicker` and
+`ErpImagePicker`.
+
 ## Current checkpoint — SearchBox and ComboBox internal review
 
 `ErpSearchBox` and `ErpComboBox` completed internal browser review as original

@@ -363,6 +363,37 @@ describe('ComponentShowcase', () => {
     expect(root.querySelector('[data-showcase-event-log]')?.textContent).toContain('supplier-42');
   });
 
+  it.each([
+    ['item-picker', 'data-item-picker-value', 'inventory-main', 'item'],
+    ['icon-picker', 'data-icon-picker-value', 'search', 'icon'],
+    ['color-picker', 'data-color-picker-value', 'primary-500', 'color'],
+  ] as const)('keeps the %s workbench meaningful and opens its owned picker', async (
+    id,
+    valueAttribute,
+    expectedValue,
+    mode,
+  ) => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl(`/components/${id}`, ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target] button')).not.toBeNull();
+    });
+
+    const root = harness.routeNativeElement as HTMLElement;
+    const target = root.querySelector('[data-showcase-target]') as HTMLElement;
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect(target.getAttribute(valueAttribute)).toBe(expectedValue);
+    (target.querySelector('button') as HTMLButtonElement).click();
+
+    const manager = TestBed.inject(ErpOverlayManager);
+    const entry = manager.entries()[0];
+    expect(entry.ref.config.data).toMatchObject({mode});
+    entry.ref.dismiss('cancel');
+    manager.completeTransition(entry.ref.id, 'leaving');
+    await Promise.resolve();
+  });
+
   it('renders ButtonGroup as one controlled group with multiple actions', async () => {
     const harness = await RouterTestingHarness.create();
     await harness.navigateByUrl('/components/button-group', ComponentShowcase);

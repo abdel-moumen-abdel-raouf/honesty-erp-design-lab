@@ -1,5 +1,16 @@
 # Next Component Reference Batch V1
 
+## Authoritative next action — 2026-10-10 — file and image inputs
+
+The autonomous UI authorization remains active. ItemPicker, IconPicker, and
+ColorPicker have completed internal review without Product Owner acceptance.
+Continue Bottom-Up with `ErpFilePicker` and `ErpImagePicker`. No binding
+component-specific external reference is currently recorded for these owners;
+use explicitly labeled original Honesty ERP candidates and preserve the shared
+File Selection base, Field, Button, Icon, image ownership, and CVA contracts.
+Business Feature/Page, CRUD, upload transport, and permissions work remain
+closed.
+
 ## Authoritative next action — 2026-10-10 — picker input family
 
 The autonomous UI authorization remains active. SearchBox and ComboBox have

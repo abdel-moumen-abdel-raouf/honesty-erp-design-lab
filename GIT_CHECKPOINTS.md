@@ -1,5 +1,27 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Selection picker family internal-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `6bc505b5c9902171e137c13212ac2b314df9a49c` — synchronized `main` after the
+  SearchBox/ComboBox checkpoint.
+
+Bounded scope:
+
+- Added meaningful generated fixtures and CVA values for ItemPicker,
+  IconPicker, and ColorPicker without changing production visual defaults.
+- Proved item/icon staged confirmation and both system/free ColorPicker modes,
+  including event evidence and one owned body-scroll region.
+- Persisted 104/104 browser assertions and open/committed screenshots under
+  `docs/review-evidence/erp-selection-pickers/v1-internal-review/`.
+- Focused gate: 5/5 files and 71/71 tests. Canonical gate: 128/128 files,
+  841/841 tests, both typechecks, all governance/lint, and zero-warning
+  418.32 kB / 92.88 kB build.
+
+Product Owner visual status remains pending. The actual commit SHA is recorded
+by Git after this document snapshot; do not infer acceptance from the commit.
+
 ## SearchBox and ComboBox internal-review candidate — 2026-10-10
 
 Entry checkpoint:

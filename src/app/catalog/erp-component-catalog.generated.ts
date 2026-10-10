@@ -15725,14 +15725,18 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي"
+          "label": "لون تصنيف الحساب",
+          "helperText": "اختر لونًا من سجل ألوان النظام",
+          "clearable": true
         }
       },
       {
         "id": "mode-system",
         "label": "mode: system",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "لون تصنيف الحساب",
+          "helperText": "اختر لونًا من سجل ألوان النظام",
+          "clearable": true,
           "mode": "system"
         }
       },
@@ -15740,7 +15744,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "mode-free",
         "label": "mode: free",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "لون تصنيف الحساب",
+          "helperText": "اختر لونًا من سجل ألوان النظام",
+          "clearable": true,
           "mode": "free"
         }
       }
@@ -15762,7 +15768,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "appearance": "standard",
       "labelMode": "static",
       "floatingPosition": "top",
-      "helperText": null,
+      "helperText": "اختر لونًا من سجل ألوان النظام",
       "helperPosition": "below",
       "leadingIcon": null,
       "trailingIcon": "chevron-down",
@@ -15771,7 +15777,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "feedbackDismissible": false,
       "mode": "system",
       "overlayConfig": null,
-      "label": "حقل تجريبي"
+      "label": "لون تصنيف الحساب"
     },
     "showcaseControls": [
       {
@@ -15782,7 +15788,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "ControlValueAccessor value",
         "options": [],
-        "initialValue": null
+        "initialValue": {
+          "mode": "system",
+          "token": "primary-500"
+        }
       },
       {
         "name": "label",
@@ -15792,7 +15801,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "حقل تجريبي"
+        "initialValue": "لون تصنيف الحساب"
       },
       {
         "name": "name",
@@ -15991,7 +16000,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "اختر لونًا من سجل ألوان النظام"
       },
       {
         "name": "helperPosition",
@@ -20856,7 +20865,9 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي"
+          "label": "أيقونة الوحدة",
+          "helperText": "اختر أيقونة دلالية من سجل النظام",
+          "clearable": true
         }
       }
     ],
@@ -20877,7 +20888,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "appearance": "standard",
       "labelMode": "static",
       "floatingPosition": "top",
-      "helperText": null,
+      "helperText": "اختر أيقونة دلالية من سجل النظام",
       "helperPosition": "below",
       "leadingIcon": null,
       "trailingIcon": "chevron-down",
@@ -20885,7 +20896,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "feedbackText": null,
       "feedbackDismissible": false,
       "overlayConfig": null,
-      "label": "حقل تجريبي"
+      "label": "أيقونة الوحدة"
     },
     "showcaseControls": [
       {
@@ -20896,7 +20907,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "ControlValueAccessor value",
         "options": [],
-        "initialValue": null
+        "initialValue": "search"
       },
       {
         "name": "label",
@@ -20906,7 +20917,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "حقل تجريبي"
+        "initialValue": "أيقونة الوحدة"
       },
       {
         "name": "name",
@@ -21105,7 +21116,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "اختر أيقونة دلالية من سجل النظام"
       },
       {
         "name": "helperPosition",
@@ -22510,11 +22521,30 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "المستودع الافتراضي",
+          "helperText": "اختر المستودع الذي يستقبل الحركات تلقائيًا",
+          "placeholder": "اختر مستودعًا",
+          "searchable": true,
+          "clearable": true,
           "items": [
             {
-              "value": "item-1",
-              "label": "صنف مخزني"
+              "value": "inventory-main",
+              "label": "المستودع الرئيسي",
+              "description": "القاهرة — متاح لكل الوحدات",
+              "icon": "inventory"
+            },
+            {
+              "value": "inventory-alex",
+              "label": "مستودع الإسكندرية",
+              "description": "الإسكندرية — مبيعات التجزئة",
+              "icon": "building"
+            },
+            {
+              "value": "inventory-damaged",
+              "label": "مستودع التالف",
+              "description": "موقوف مؤقتًا",
+              "icon": "warning",
+              "disabled": true
             }
           ]
         }
@@ -22537,21 +22567,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "appearance": "standard",
       "labelMode": "static",
       "floatingPosition": "top",
-      "helperText": null,
+      "helperText": "اختر المستودع الذي يستقبل الحركات تلقائيًا",
       "helperPosition": "below",
       "leadingIcon": null,
       "trailingIcon": "chevron-down",
       "clearable": true,
       "feedbackText": null,
       "feedbackDismissible": false,
-      "placeholder": null,
-      "searchable": false,
+      "placeholder": "اختر مستودعًا",
+      "searchable": true,
       "overlayConfig": null,
-      "label": "حقل تجريبي",
+      "label": "المستودع الافتراضي",
       "items": [
         {
-          "value": "item-1",
-          "label": "صنف مخزني"
+          "value": "inventory-main",
+          "label": "المستودع الرئيسي",
+          "description": "القاهرة — متاح لكل الوحدات",
+          "icon": "inventory"
+        },
+        {
+          "value": "inventory-alex",
+          "label": "مستودع الإسكندرية",
+          "description": "الإسكندرية — مبيعات التجزئة",
+          "icon": "building"
+        },
+        {
+          "value": "inventory-damaged",
+          "label": "مستودع التالف",
+          "description": "موقوف مؤقتًا",
+          "icon": "warning",
+          "disabled": true
         }
       ]
     },
@@ -22564,7 +22609,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "ControlValueAccessor value",
         "options": [],
-        "initialValue": null
+        "initialValue": "inventory-main"
       },
       {
         "name": "label",
@@ -22574,7 +22619,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "حقل تجريبي"
+        "initialValue": "المستودع الافتراضي"
       },
       {
         "name": "name",
@@ -22773,7 +22818,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "اختر المستودع الذي يستقبل الحركات تلقائيًا"
       },
       {
         "name": "helperPosition",
@@ -22854,8 +22899,23 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "options": [],
         "initialValue": [
           {
-            "value": "item-1",
-            "label": "صنف مخزني"
+            "value": "inventory-main",
+            "label": "المستودع الرئيسي",
+            "description": "القاهرة — متاح لكل الوحدات",
+            "icon": "inventory"
+          },
+          {
+            "value": "inventory-alex",
+            "label": "مستودع الإسكندرية",
+            "description": "الإسكندرية — مبيعات التجزئة",
+            "icon": "building"
+          },
+          {
+            "value": "inventory-damaged",
+            "label": "مستودع التالف",
+            "description": "موقوف مؤقتًا",
+            "icon": "warning",
+            "disabled": true
           }
         ]
       },
@@ -22867,7 +22927,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "اختر مستودعًا"
       },
       {
         "name": "searchable",
@@ -22880,7 +22940,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           "false",
           "true"
         ],
-        "initialValue": false
+        "initialValue": true
       },
       {
         "name": "overlayConfig",

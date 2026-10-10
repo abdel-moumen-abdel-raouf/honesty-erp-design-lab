@@ -1,5 +1,19 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — selection picker family
+
+ItemPicker, IconPicker, and ColorPicker completed internal browser review as
+original Honesty ERP candidates. Generated Workbench evidence supplies
+meaningful ERP values; item/icon choices and both system/free color modes
+commit through the public CVA path on the same target. The eight-scenario audit
+passes 104/104 assertions with stable containment, one body-scroll owner, and
+no overflow, broken images, or browser diagnostics. Screenshots, measurements,
+and reproduction notes are under
+`docs/review-evidence/erp-selection-pickers/v1-internal-review/`. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next Bottom-Up unit: FilePicker and
+ImagePicker.
+
 ## Current review execution — 2026-10-10 — SearchBox and ComboBox
 
 The two search/combo Input/Field owners completed internal browser review as

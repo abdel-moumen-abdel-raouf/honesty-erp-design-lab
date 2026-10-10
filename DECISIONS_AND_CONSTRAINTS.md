@@ -1,5 +1,19 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Selection picker family internal-review decisions — 2026-10-10
+
+- No binding component-specific external reference is recorded for ItemPicker,
+  IconPicker, or ColorPicker; all three remain original Honesty ERP candidates.
+- Shared Selection Picker, Overlay Frame, Field, Icon Registry, System Color
+  Registry, and CVA ownership remain unchanged; no parallel picker or native
+  rendering path was introduced.
+- ColorPicker mode and its discriminated CVA value are controlled separately.
+  Free-mode evidence therefore applies both public controls before interacting,
+  rather than silently coercing a valid system-color value.
+- The Overlay surface remains non-scrolling; the owned frame body is the only
+  bounded overflow region. Internal review completion does not imply Product
+  Owner acceptance.
+
 ## Search and combo input internal-review decisions — 2026-10-10
 
 - No binding component-specific external reference is recorded for SearchBox

@@ -1,5 +1,16 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — selection pickers reviewed internally
+
+Continue from synchronized `main` after the ItemPicker/IconPicker/ColorPicker
+checkpoint. Generated Workbenches now begin with meaningful ERP values and
+the evidence package proves item/icon staged commits plus system/free color
+editing on the one live target. Evidence under
+`docs/review-evidence/erp-selection-pickers/v1-internal-review/` passes 104/104
+browser assertions. Canonical verification passes 128/128 files and 841/841
+tests with a zero-warning 418.32 kB / 92.88 kB build. Product Owner acceptance
+is not recorded. Continue Bottom-Up with `ErpFilePicker` and `ErpImagePicker`.
+
 ## Current continuation point — SearchBox and ComboBox reviewed internally
 
 Continue from synchronized `main` after the SearchBox/ComboBox checkpoint. The

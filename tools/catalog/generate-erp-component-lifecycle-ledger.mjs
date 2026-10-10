@@ -43,6 +43,7 @@ const SHELL_OWNERS = new Set([
 const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpAvatar',
   'ErpAvatarPicker',
+  'ErpColorPicker',
   'ErpComboBox',
   'ErpContainer',
   'ErpDateBox',
@@ -52,7 +53,9 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpEmptyState',
   'ErpGrid',
   'ErpIcon',
+  'ErpIconPicker',
   'ErpInline',
+  'ErpItemPicker',
   'ErpMoneyBox',
   'ErpNumberBox',
   'ErpNumberStepper',
@@ -275,14 +278,16 @@ drift.
   **\`ErpPasswordBox\`**, **\`ErpNumberBox\`**, **\`ErpMoneyBox\`**,
   **\`ErpTelBox\`**, **\`ErpUrlBox\`**, **\`ErpNumberStepper\`**,
   **\`ErpRangeSlider\`**, **\`ErpDateBox\`**, **\`ErpTimeBox\`**,
-  **\`ErpDateTimeBox\`**, **\`ErpDateRangeBox\`**, **\`ErpSearchBox\`**, and
-  **\`ErpComboBox\`**. Their
+  **\`ErpDateTimeBox\`**, **\`ErpDateRangeBox\`**, **\`ErpSearchBox\`**,
+  **\`ErpComboBox\`**, **\`ErpItemPicker\`**, **\`ErpIconPicker\`**, and
+  **\`ErpColorPicker\`**. Their
   Product Owner status remains pending.
 - All currently recorded binding-reference owners have completed internal
-  review, the full public primitive layer has completed internal review, and
-  the foundational text-like Input/Field family has completed internal review.
-  The next Bottom-Up unit continues the picker input family with
-  **\`ErpItemPicker\`**, **\`ErpIconPicker\`**, and **\`ErpColorPicker\`**.
+  review, the full public primitive layer has completed internal review, the
+  foundational text-like Input/Field family has completed internal review, and
+  the generic selection-picker family has completed its item, icon, system
+  color, and free-color interaction review. The next Bottom-Up unit continues
+  the input layer with **\`ErpFilePicker\`** and **\`ErpImagePicker\`**.
 
 ## Public owner inventory
 
