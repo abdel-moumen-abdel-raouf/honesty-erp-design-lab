@@ -426,7 +426,15 @@ const FIXTURE_INPUTS = new Map([
   }],
   ['ErpAvatar', {name: 'أميرة حداد'}],
   ['ErpBranchSelector', {branches: [{id: 'cairo', label: 'فرع القاهرة'}]}],
-  ['ErpBreadcrumbs', {items: [{id: 'home', label: 'الرئيسية', href: '/'}]}],
+  ['ErpBreadcrumbs', {
+    items: [
+      {id: 'home', label: 'الرئيسية', href: '#home', icon: 'home'},
+      {id: 'sales', label: 'المبيعات', href: '#sales'},
+      {id: 'invoices', label: 'الفواتير', href: '#invoices'},
+      {id: 'invoice-1042', label: 'فاتورة المبيعات 1042'},
+    ],
+    currentId: 'invoice-1042',
+  }],
   ['ErpButton', {
     label: 'اعتماد طلب الشراء',
     icon: 'check-mark',
@@ -530,7 +538,13 @@ const FIXTURE_INPUTS = new Map([
     open: true,
   }],
   ['ErpPageHeader', {title: 'سجل الحساب'}],
-  ['ErpPagination', {pageCount: 3}],
+  ['ErpPagination', {
+    page: 3,
+    pageCount: 12,
+    totalItems: 286,
+    pageSize: 25,
+    pageSizeOptions: [10, 25, 50, 100],
+  }],
   ['ErpQuickActionsBar', {groups: [
     {
       id: 'daily',
@@ -644,7 +658,7 @@ const FIXTURE_INPUTS = new Map([
     mode: 'dropdown',
     query: '',
   }],
-  ['ErpSortHeader', {label: 'اسم الحساب'}],
+  ['ErpSortHeader', {label: 'اسم الحساب', direction: 'none'}],
   ['ErpSplitButton', {label: 'حفظ', items: [
     {value: 'save-close', label: 'حفظ وإغلاق', icon: 'save', presentation: 'icon-text'},
     {value: 'save-copy', label: 'حفظ نسخة', presentation: 'text'},
@@ -657,7 +671,15 @@ const FIXTURE_INPUTS = new Map([
     values: {},
   }],
   ['ErpStatusBadge', {label: 'نشط'}],
-  ['ErpStepper', {steps: [{id: 'details', label: 'البيانات'}]}],
+  ['ErpStepper', {
+    steps: [
+      {id: 'identity', label: 'بيانات العميل', description: 'الهوية وبيانات التواصل', completed: true},
+      {id: 'account', label: 'إعداد الحساب', description: 'الشروط والحد الائتماني'},
+      {id: 'documents', label: 'المستندات', description: 'مرفقات اختيارية', optional: true},
+      {id: 'approval', label: 'الاعتماد', description: 'غير متاح قبل اكتمال البيانات', disabled: true},
+    ],
+    activeId: 'account',
+  }],
   ['ErpTable', {
     caption: 'سجل الحسابات',
     columns: [
@@ -1400,6 +1422,9 @@ function projectionMarkup(entry) {
   if (entry.className === 'ErpPageShell') {
     return '<erp-text erpPageShellHeader type="heading-3">رأس الصفحة</erp-text><erp-text type="paragraph">محتوى الصفحة الرئيسي</erp-text><erp-text erpPageShellSide type="paragraph">سياق جانبي</erp-text><erp-text erpPageShellFooter type="caption">تذييل الصفحة</erp-text>';
   }
+  if (entry.className === 'ErpStepper') {
+    return '<ng-template erpStepPanel="identity"><erp-text type="paragraph">بيانات هوية العميل ومعلومات التواصل المعتمدة.</erp-text></ng-template><ng-template erpStepPanel="account"><erp-text type="paragraph">إعداد شروط الحساب والحد الائتماني للعميل.</erp-text></ng-template><ng-template erpStepPanel="documents"><erp-text type="paragraph">إرفاق المستندات الداعمة قبل إرسال السجل للاعتماد.</erp-text></ng-template><ng-template erpStepPanel="approval"><erp-text type="paragraph">مراجعة السجل واعتماده بعد اكتمال البيانات.</erp-text></ng-template>';
+  }
   if (entry.className === 'ErpTopbar') {
     return '<erp-text erpTopbarStart type="heading-3">Honesty ERP</erp-text><erp-branch-selector erpTopbarContext [branches]="topbarBranches" value="cairo" (valueChange)="recordEvent(\'branchChanged\', $event)" /><erp-global-search erpTopbarSearch [results]="topbarSearchResults" (resultActivated)="recordEvent(\'searchResultActivated\', $event)" /><erp-inline erpTopbarActions gap="tight" align="center"><erp-applications-menu [groups]="topbarApplications" (applicationActivated)="recordEvent(\'applicationActivated\', $event)" /><erp-messages-menu [messages]="topbarMessages" (messageActivated)="recordEvent(\'messageActivated\', $event)" /><erp-notification-bell [notifications]="topbarNotifications" (notificationActivated)="recordEvent(\'notificationActivated\', $event)" /></erp-inline><erp-user-menu erpTopbarUser [user]="topbarUser" [items]="topbarUserItems" (actionActivated)="recordEvent(\'userActionActivated\', $event)" />';
   }
@@ -1596,6 +1621,10 @@ function generatedShowcaseOwner(entry) {
     imports.add('ErpNotificationBell');
     imports.add('ErpUserMenu');
   }
+  if (entry.className === 'ErpStepper') {
+    importLines[2] = `import {ErpStepPanel, ErpStepper} from '${componentImport}';`;
+    imports.add('ErpStepPanel');
+  }
   if (['ErpIconButton', 'ErpFab'].includes(entry.className)) {
     importLines.push(`import {ErpTooltip} from '../../../controls/tooltip/tooltip';`);
     imports.add('ErpTooltip');
@@ -1633,10 +1662,16 @@ function generatedShowcaseOwner(entry) {
     inputBindings.push(`(${modelApi.name}Change)="recordModel('${modelApi.name}', $event)"`);
   }
   for (const outputName of entry.publicApi.outputs) {
-    inputBindings.push(entry.className === 'ErpColumnChooser' && outputName === 'visibilityChange'
+    const binding = entry.className === 'ErpColumnChooser' && outputName === 'visibilityChange'
       ? `(visibilityChange)="recordVisibleKeys($event)"`
-      : `(${outputName})="recordEvent('${outputName}', $event)"`,
-    );
+      : entry.className === 'ErpPagination' && outputName === 'pageChange'
+        ? `(pageChange)="recordPaginationPage($event)"`
+        : entry.className === 'ErpPagination' && outputName === 'pageSizeChange'
+          ? `(pageSizeChange)="recordPaginationSize($event)"`
+          : entry.className === 'ErpSortHeader' && outputName === 'sortChange'
+            ? `(sortChange)="recordSortDirection($event)"`
+            : `(${outputName})="recordEvent('${outputName}', $event)"`;
+    inputBindings.push(binding);
   }
   if (isCva) inputBindings.push('[formControl]="control"');
   if (hasCvaDisabled) inputBindings.push('data-showcase-cva-disabled-control');
@@ -1760,6 +1795,18 @@ function generatedShowcaseOwner(entry) {
     generatedSource = generatedSource.replace(
       '\n  recordModel(name: string, value: unknown): void {',
       "\n  recordVisibleKeys(value: readonly string[]): void {\n    this.liveValues.update((current) => ({...current, visibleKeys: value}));\n    this.recordEvent('visibilityChange', value);\n  }\n\n  recordModel(name: string, value: unknown): void {",
+    );
+  }
+  if (entry.className === 'ErpPagination') {
+    generatedSource = generatedSource.replace(
+      '\n  recordModel(name: string, value: unknown): void {',
+      "\n  recordPaginationPage(value: number): void {\n    this.liveValues.update((current) => ({...current, page: value}));\n    this.recordEvent('pageChange', value);\n  }\n\n  recordPaginationSize(value: number): void {\n    this.liveValues.update((current) => ({...current, pageSize: value}));\n    this.recordEvent('pageSizeChange', value);\n  }\n\n  recordModel(name: string, value: unknown): void {",
+    );
+  }
+  if (entry.className === 'ErpSortHeader') {
+    generatedSource = generatedSource.replace(
+      '\n  recordModel(name: string, value: unknown): void {',
+      "\n  recordSortDirection(value: 'none' | 'ascending' | 'descending'): void {\n    this.liveValues.update((current) => ({...current, direction: value}));\n    this.recordEvent('sortChange', value);\n  }\n\n  recordModel(name: string, value: unknown): void {",
     );
   }
   if (hasAdditionalReference) {

@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core';
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
-import {ErpStepper} from '../../../controls/stepper/stepper';
+import {ErpStepPanel, ErpStepper} from '../../../controls/stepper/stepper';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
@@ -11,7 +11,7 @@ const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'stepper')!;
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-stepper-showcase',
-  imports: [ErpStepper, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpStepper, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpStepPanel],
   templateUrl: './stepper-showcase.html',
   styleUrl: './stepper-showcase.scss',
 })

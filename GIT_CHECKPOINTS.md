@@ -1,5 +1,31 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Navigation owners internal-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `08e772cf5f1f0370ba228de28afeefc7ef0b8a42` — synchronized `main` after the
+  ColumnChooser/ViewSwitcher checkpoint.
+
+Bounded scope:
+
+- Added meaningful Breadcrumbs hierarchy, controlled Pagination and
+  SortHeader state, and projected multi-state Stepper evidence.
+- Corrected narrow Breadcrumbs containment through the Foundation Query API
+  while preserving the exact ERP-TABLE Pagination/Sort presentations.
+- Persisted accessible Skodash reference captures, eight inspected
+  implementation scenarios and 40/40 runtime assertions under
+  `docs/review-evidence/erp-navigation/navigation-v1-internal-review/`.
+
+Verification before commit:
+
+- Focused tests: 8/8 files, 17/17 tests.
+- Canonical `npm run verify:clean`: 137/137 files, 863/863 tests, both
+  typechecks, all governance/lint, production build, zero warnings.
+- Build: 418.32 kB initial / 92.88 kB estimated transfer.
+
+Visual status remains `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+
 ## ColumnChooser and ViewSwitcher internal-review candidate — 2026-10-10
 
 Entry checkpoint:

@@ -1,5 +1,21 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Navigation owners internal-review decisions — 2026-10-10
+
+- The exact ERP-TABLE pagination and sort presentations remain governed by
+  `ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md`; their standalone defaults are
+  compatibility candidates rather than claimed exact reconstructions.
+- Accessible Skodash RTL breadcrumb and pagination pages are fallback
+  presentation evidence only. Vendor classes, palette, typography, scripts and
+  runtime dependencies remain excluded.
+- Breadcrumbs uses the Foundation Query API to wrap at narrow widths; internal
+  clipping or hidden current destinations are not acceptable substitutes.
+- Pagination and SortHeader Workbenches apply their outputs to the same
+  controlled primary target while retaining visible event evidence.
+- Stepper remains a generic controlled navigation owner, distinct from Tabs,
+  and its dedicated Workbench uses real keyed `erpStepPanel` projection.
+- Internal review completion does not imply Product Owner acceptance.
+
 ## ColumnChooser and ViewSwitcher internal-review decisions — 2026-10-10
 
 - `ErpColumnChooser[presentation="table-reference"]` remains governed by the

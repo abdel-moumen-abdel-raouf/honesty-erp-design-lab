@@ -44,6 +44,16 @@ export class ErpPaginationShowcase {
     this.liveValues.update((current) => ({...current, [change.control.name]: value}));
   }
 
+  recordPaginationPage(value: number): void {
+    this.liveValues.update((current) => ({...current, page: value}));
+    this.recordEvent('pageChange', value);
+  }
+
+  recordPaginationSize(value: number): void {
+    this.liveValues.update((current) => ({...current, pageSize: value}));
+    this.recordEvent('pageSizeChange', value);
+  }
+
   recordModel(name: string, value: unknown): void {
     this.liveValues.update((current) => ({...current, [name]: value}));
     this.recordEvent(`${name}Change`, value);

@@ -21,8 +21,8 @@
           [showPageNumbers]="$any(value('showPageNumbers'))"
           [showNext]="$any(value('showNext'))"
           [showLast]="$any(value('showLast'))"
-          (pageChange)="recordEvent('pageChange', $event)"
-          (pageSizeChange)="recordEvent('pageSizeChange', $event)"
+          (pageChange)="recordPaginationPage($event)"
+          (pageSizeChange)="recordPaginationSize($event)"
         ></erp-pagination>
     </erp-stack>
   </erp-surface>

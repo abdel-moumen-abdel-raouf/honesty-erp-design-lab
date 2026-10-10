@@ -46,6 +46,7 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpAvatarPicker',
   'ErpButton',
   'ErpButtonGroup',
+  'ErpBreadcrumbs',
   'ErpColorPicker',
   'ErpColumnChooser',
   'ErpComboBox',
@@ -69,6 +70,7 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpMoneyBox',
   'ErpNumberBox',
   'ErpNumberStepper',
+  'ErpPagination',
   'ErpPasswordBox',
   'ErpRadioBox',
   'ErpRadioGroup',
@@ -77,8 +79,10 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpSection',
   'ErpSelect',
   'ErpSkeleton',
+  'ErpSortHeader',
   'ErpStack',
   'ErpStatusBadge',
+  'ErpStepper',
   'ErpSplitButton',
   'ErpSurface',
   'ErpTabs',
@@ -298,7 +302,8 @@ drift.
   **\`ErpButton\`**, **\`ErpIconButton\`**, **\`ErpButtonGroup\`**,
   **\`ErpSplitButton\`**, **\`ErpFab\`**, **\`ErpExtendedFab\`**,
   **\`ErpFabMenu\`**, **\`ErpTooltip\`**, **\`ErpAlert\`**, **\`ErpSkeleton\`**,
-  **\`ErpColumnChooser\`**, and **\`ErpViewSwitcher\`**. Their
+  **\`ErpColumnChooser\`**, **\`ErpViewSwitcher\`**, **\`ErpBreadcrumbs\`**,
+  **\`ErpPagination\`**, **\`ErpSortHeader\`**, and **\`ErpStepper\`**. Their
   Product Owner status remains pending.
 - All currently recorded binding-reference owners have completed internal
   review, the full public primitive layer has completed internal review, the
@@ -315,9 +320,12 @@ drift.
   Alert/Skeleton feedback pair has completed projected action, dismissal,
   responsive anatomy, state, motion and reduced-motion review, and the
   ColumnChooser/ViewSwitcher selection pair has completed controlled visibility,
-  dynamic reference-overlay, selected-state and disabled-state review. The next
-  Bottom-Up unit opens the remaining Navigation owners: **\`ErpBreadcrumbs\`**,
-  **\`ErpPagination\`**, **\`ErpSortHeader\`**, and **\`ErpStepper\`**.
+  dynamic reference-overlay, selected-state and disabled-state review, and the
+  remaining Navigation owners have completed hierarchical content, controlled
+  pagination/sort, responsive breadcrumb, and projected-step review. The next
+  Bottom-Up unit opens the remaining Data/Table composition owners:
+  **\`ErpBulkActionBar\`**, **\`ErpFilterBar\`**, **\`ErpFilterDrawer\`**,
+  **\`ErpTableToolbar\`**, and **\`ErpSmartTable\`**.
 
 ## Public owner inventory
 

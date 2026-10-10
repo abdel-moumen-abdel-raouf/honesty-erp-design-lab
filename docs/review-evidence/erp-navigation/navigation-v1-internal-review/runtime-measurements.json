@@ -1,0 +1,1015 @@
+{
+  "generatedAt": "2026-10-10T12:30:11.615Z",
+  "authority": {
+    "breadcrumbs": {
+      "classification": "Original Honesty ERP candidate informed by the accessible Skodash RTL breadcrumb anatomy",
+      "reference": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-navs-tabs.html"
+    },
+    "pagination": {
+      "classification": "Exact ERP-TABLE table-reference presentation plus original compatibility presentation",
+      "exactContract": "src/app/controls/table/ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md",
+      "presentationReference": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-paginations.html"
+    },
+    "sortHeader": {
+      "classification": "Exact ERP-TABLE composition presentation plus original standalone compatibility presentation",
+      "exactContract": "src/app/controls/table/ERP_TABLE_REFERENCE_FULL_EXPERIENCE_V2.md"
+    },
+    "stepper": {
+      "classification": "Original Honesty ERP candidate",
+      "limitation": "No component-specific Product Owner exact reference is recorded."
+    }
+  },
+  "references": [
+    {
+      "name": "reference-skodash-breadcrumb-1280-rtl",
+      "url": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-navs-tabs.html",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "box": {
+        "x": 697.65625,
+        "y": 91,
+        "width": 136.9375,
+        "height": 24
+      },
+      "item": {
+        "height": 17,
+        "padding": "0px",
+        "borderRadius": "0px",
+        "fontSize": "16px",
+        "lineHeight": "24px"
+      }
+    },
+    {
+      "name": "reference-skodash-pagination-1280-rtl",
+      "url": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-paginations.html",
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "box": {
+        "x": 163.25,
+        "y": 211,
+        "width": 683.5,
+        "height": 38
+      },
+      "item": {
+        "height": 38,
+        "padding": "6px 12px",
+        "borderRadius": "0px 6px 6px 0px",
+        "fontSize": "16px",
+        "lineHeight": "24px"
+      }
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "breadcrumbs-1440-light-rtl",
+      "component": "breadcrumbs",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "controlCount": 3,
+      "targetBox": {
+        "x": 147,
+        "y": 441.765625,
+        "right": 1097,
+        "bottom": 473.765625,
+        "width": 950,
+        "height": 32
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعللم يحدث تفاعل بعد",
+      "breadcrumbItems": 4,
+      "separators": 3,
+      "currentText": "فاتورة المبيعات 1042",
+      "currentBox": {
+        "x": 699.25,
+        "y": 446.765625,
+        "right": 845.75,
+        "bottom": 468.765625,
+        "width": 146.5,
+        "height": 22
+      },
+      "breadcrumbNavScrollWidth": 950,
+      "breadcrumbNavClientWidth": 950,
+      "page": null,
+      "pageCount": null,
+      "presentation": null,
+      "sortDirection": null,
+      "step": null,
+      "stepTabs": 0,
+      "disabledTabs": 0,
+      "targetScrollWidth": 950,
+      "targetClientWidth": 950
+    },
+    {
+      "name": "breadcrumbs-390-dark-ltr",
+      "component": "breadcrumbs",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 210
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "controlCount": 3,
+      "targetBox": {
+        "x": 57,
+        "y": 392.765625,
+        "right": 333,
+        "bottom": 450.765625,
+        "width": 276,
+        "height": 58
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعللم يحدث تفاعل بعد",
+      "breadcrumbItems": 4,
+      "separators": 3,
+      "currentText": "فاتورة المبيعات 1042",
+      "currentBox": {
+        "x": 81,
+        "y": 428.765625,
+        "right": 227.5,
+        "bottom": 450.765625,
+        "width": 146.5,
+        "height": 22
+      },
+      "breadcrumbNavScrollWidth": 276,
+      "breadcrumbNavClientWidth": 276,
+      "page": null,
+      "pageCount": null,
+      "presentation": null,
+      "sortDirection": null,
+      "step": null,
+      "stepTabs": 0,
+      "disabledTabs": 0,
+      "targetScrollWidth": 276,
+      "targetClientWidth": 276
+    },
+    {
+      "name": "pagination-1440-light-rtl",
+      "component": "pagination",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "controlCount": 15,
+      "targetBox": {
+        "x": 147,
+        "y": 439.765625,
+        "right": 1097,
+        "bottom": 475.765625,
+        "width": 950,
+        "height": 36
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلpageChange: 4",
+      "breadcrumbItems": 0,
+      "separators": 0,
+      "currentBox": null,
+      "breadcrumbNavScrollWidth": 0,
+      "breadcrumbNavClientWidth": 0,
+      "page": "4",
+      "pageCount": "12",
+      "presentation": "default",
+      "sortDirection": null,
+      "step": null,
+      "stepTabs": 0,
+      "disabledTabs": 0,
+      "targetScrollWidth": 950,
+      "targetClientWidth": 950
+    },
+    {
+      "name": "pagination-reference-390-dark-ltr",
+      "component": "pagination",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 223
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "controlCount": 15,
+      "targetBox": {
+        "x": 57,
+        "y": 379.765625,
+        "right": 333,
+        "bottom": 463.765625,
+        "width": 276,
+        "height": 84
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلpageChange: 4",
+      "breadcrumbItems": 0,
+      "separators": 0,
+      "currentBox": null,
+      "breadcrumbNavScrollWidth": 0,
+      "breadcrumbNavClientWidth": 0,
+      "page": "4",
+      "pageCount": "12",
+      "presentation": "table-reference",
+      "sortDirection": null,
+      "step": null,
+      "stepTabs": 0,
+      "disabledTabs": 0,
+      "targetScrollWidth": 276,
+      "targetClientWidth": 276
+    },
+    {
+      "name": "sort-header-1440-light-rtl",
+      "component": "sort-header",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "controlCount": 4,
+      "targetBox": {
+        "x": 147,
+        "y": 438.765625,
+        "right": 1097,
+        "bottom": 476.765625,
+        "width": 950,
+        "height": 38
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلsortChange: ascending",
+      "breadcrumbItems": 0,
+      "separators": 0,
+      "currentBox": null,
+      "breadcrumbNavScrollWidth": 0,
+      "breadcrumbNavClientWidth": 0,
+      "page": null,
+      "pageCount": null,
+      "presentation": "default",
+      "sortDirection": "ascending",
+      "step": null,
+      "stepTabs": 0,
+      "disabledTabs": 0,
+      "targetScrollWidth": 950,
+      "targetClientWidth": 950
+    },
+    {
+      "name": "sort-header-reference-390-dark-ltr",
+      "component": "sort-header",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 192
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "controlCount": 4,
+      "targetBox": {
+        "x": 57,
+        "y": 410.765625,
+        "right": 333,
+        "bottom": 432.765625,
+        "width": 276,
+        "height": 22
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلsortChange: ascending",
+      "breadcrumbItems": 0,
+      "separators": 0,
+      "currentBox": null,
+      "breadcrumbNavScrollWidth": 0,
+      "breadcrumbNavClientWidth": 0,
+      "page": null,
+      "pageCount": null,
+      "presentation": "table-reference",
+      "sortDirection": "ascending",
+      "step": null,
+      "stepTabs": 0,
+      "disabledTabs": 0,
+      "targetScrollWidth": 276,
+      "targetClientWidth": 276
+    },
+    {
+      "name": "stepper-1440-light-rtl",
+      "component": "stepper",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "controlCount": 2,
+      "targetBox": {
+        "x": 147,
+        "y": 268.765625,
+        "right": 1097,
+        "bottom": 646.765625,
+        "width": 950,
+        "height": 378
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلchanged: documents",
+      "breadcrumbItems": 0,
+      "separators": 0,
+      "currentBox": null,
+      "breadcrumbNavScrollWidth": 0,
+      "breadcrumbNavClientWidth": 0,
+      "page": null,
+      "pageCount": null,
+      "presentation": null,
+      "sortDirection": null,
+      "step": "documents",
+      "stepTabs": 4,
+      "disabledTabs": 1,
+      "panelText": "إرفاق المستندات الداعمة قبل إرسال السجل للاعتماد.",
+      "targetScrollWidth": 950,
+      "targetClientWidth": 950
+    },
+    {
+      "name": "stepper-390-dark-ltr",
+      "component": "stepper",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 404
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "controlCount": 2,
+      "targetBox": {
+        "x": 57,
+        "y": 176.765625,
+        "right": 333,
+        "bottom": 667.953125,
+        "width": 276,
+        "height": 491.1875
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلchanged: documents",
+      "breadcrumbItems": 0,
+      "separators": 0,
+      "currentBox": null,
+      "breadcrumbNavScrollWidth": 0,
+      "breadcrumbNavClientWidth": 0,
+      "page": null,
+      "pageCount": null,
+      "presentation": null,
+      "sortDirection": null,
+      "step": "documents",
+      "stepTabs": 4,
+      "disabledTabs": 1,
+      "panelText": "إرفاق المستندات الداعمة قبل إرسال السجل للاعتماد.",
+      "targetScrollWidth": 276,
+      "targetClientWidth": 276
+    }
+  ],
+  "assertions": [
+    {
+      "name": "breadcrumbs-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "breadcrumbs-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "rtl",
+        "theme": "light"
+      }
+    },
+    {
+      "name": "breadcrumbs-1440-light-rtl overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "breadcrumbs-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "breadcrumbs-1440-light-rtl anatomy",
+      "pass": true,
+      "actual": {
+        "name": "breadcrumbs-1440-light-rtl",
+        "component": "breadcrumbs",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "controlCount": 3,
+        "targetBox": {
+          "x": 147,
+          "y": 441.765625,
+          "right": 1097,
+          "bottom": 473.765625,
+          "width": 950,
+          "height": 32
+        },
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعللم يحدث تفاعل بعد",
+        "breadcrumbItems": 4,
+        "separators": 3,
+        "currentText": "فاتورة المبيعات 1042",
+        "currentBox": {
+          "x": 699.25,
+          "y": 446.765625,
+          "right": 845.75,
+          "bottom": 468.765625,
+          "width": 146.5,
+          "height": 22
+        },
+        "breadcrumbNavScrollWidth": 950,
+        "breadcrumbNavClientWidth": 950,
+        "page": null,
+        "pageCount": null,
+        "presentation": null,
+        "sortDirection": null,
+        "step": null,
+        "stepTabs": 0,
+        "disabledTabs": 0,
+        "targetScrollWidth": 950,
+        "targetClientWidth": 950
+      }
+    },
+    {
+      "name": "breadcrumbs-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "breadcrumbs-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "ltr",
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "breadcrumbs-390-dark-ltr overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "breadcrumbs-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "breadcrumbs-390-dark-ltr anatomy",
+      "pass": true,
+      "actual": {
+        "name": "breadcrumbs-390-dark-ltr",
+        "component": "breadcrumbs",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 210
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "controlCount": 3,
+        "targetBox": {
+          "x": 57,
+          "y": 392.765625,
+          "right": 333,
+          "bottom": 450.765625,
+          "width": 276,
+          "height": 58
+        },
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعللم يحدث تفاعل بعد",
+        "breadcrumbItems": 4,
+        "separators": 3,
+        "currentText": "فاتورة المبيعات 1042",
+        "currentBox": {
+          "x": 81,
+          "y": 428.765625,
+          "right": 227.5,
+          "bottom": 450.765625,
+          "width": 146.5,
+          "height": 22
+        },
+        "breadcrumbNavScrollWidth": 276,
+        "breadcrumbNavClientWidth": 276,
+        "page": null,
+        "pageCount": null,
+        "presentation": null,
+        "sortDirection": null,
+        "step": null,
+        "stepTabs": 0,
+        "disabledTabs": 0,
+        "targetScrollWidth": 276,
+        "targetClientWidth": 276
+      }
+    },
+    {
+      "name": "pagination-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "pagination-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "rtl",
+        "theme": "light"
+      }
+    },
+    {
+      "name": "pagination-1440-light-rtl overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "pagination-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "pagination-1440-light-rtl controlled interaction",
+      "pass": true,
+      "actual": {
+        "name": "pagination-1440-light-rtl",
+        "component": "pagination",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "controlCount": 15,
+        "targetBox": {
+          "x": 147,
+          "y": 439.765625,
+          "right": 1097,
+          "bottom": 475.765625,
+          "width": 950,
+          "height": 36
+        },
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلpageChange: 4",
+        "breadcrumbItems": 0,
+        "separators": 0,
+        "currentBox": null,
+        "breadcrumbNavScrollWidth": 0,
+        "breadcrumbNavClientWidth": 0,
+        "page": "4",
+        "pageCount": "12",
+        "presentation": "default",
+        "sortDirection": null,
+        "step": null,
+        "stepTabs": 0,
+        "disabledTabs": 0,
+        "targetScrollWidth": 950,
+        "targetClientWidth": 950
+      }
+    },
+    {
+      "name": "pagination-reference-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "pagination-reference-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "ltr",
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "pagination-reference-390-dark-ltr overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "pagination-reference-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "pagination-reference-390-dark-ltr controlled interaction",
+      "pass": true,
+      "actual": {
+        "name": "pagination-reference-390-dark-ltr",
+        "component": "pagination",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 223
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "controlCount": 15,
+        "targetBox": {
+          "x": 57,
+          "y": 379.765625,
+          "right": 333,
+          "bottom": 463.765625,
+          "width": 276,
+          "height": 84
+        },
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلpageChange: 4",
+        "breadcrumbItems": 0,
+        "separators": 0,
+        "currentBox": null,
+        "breadcrumbNavScrollWidth": 0,
+        "breadcrumbNavClientWidth": 0,
+        "page": "4",
+        "pageCount": "12",
+        "presentation": "table-reference",
+        "sortDirection": null,
+        "step": null,
+        "stepTabs": 0,
+        "disabledTabs": 0,
+        "targetScrollWidth": 276,
+        "targetClientWidth": 276
+      }
+    },
+    {
+      "name": "sort-header-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "sort-header-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "rtl",
+        "theme": "light"
+      }
+    },
+    {
+      "name": "sort-header-1440-light-rtl overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "sort-header-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "sort-header-1440-light-rtl controlled interaction",
+      "pass": true,
+      "actual": {
+        "name": "sort-header-1440-light-rtl",
+        "component": "sort-header",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "controlCount": 4,
+        "targetBox": {
+          "x": 147,
+          "y": 438.765625,
+          "right": 1097,
+          "bottom": 476.765625,
+          "width": 950,
+          "height": 38
+        },
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلsortChange: ascending",
+        "breadcrumbItems": 0,
+        "separators": 0,
+        "currentBox": null,
+        "breadcrumbNavScrollWidth": 0,
+        "breadcrumbNavClientWidth": 0,
+        "page": null,
+        "pageCount": null,
+        "presentation": "default",
+        "sortDirection": "ascending",
+        "step": null,
+        "stepTabs": 0,
+        "disabledTabs": 0,
+        "targetScrollWidth": 950,
+        "targetClientWidth": 950
+      }
+    },
+    {
+      "name": "sort-header-reference-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "sort-header-reference-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "ltr",
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "sort-header-reference-390-dark-ltr overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "sort-header-reference-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "sort-header-reference-390-dark-ltr controlled interaction",
+      "pass": true,
+      "actual": {
+        "name": "sort-header-reference-390-dark-ltr",
+        "component": "sort-header",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 192
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "controlCount": 4,
+        "targetBox": {
+          "x": 57,
+          "y": 410.765625,
+          "right": 333,
+          "bottom": 432.765625,
+          "width": 276,
+          "height": 22
+        },
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلsortChange: ascending",
+        "breadcrumbItems": 0,
+        "separators": 0,
+        "currentBox": null,
+        "breadcrumbNavScrollWidth": 0,
+        "breadcrumbNavClientWidth": 0,
+        "page": null,
+        "pageCount": null,
+        "presentation": "table-reference",
+        "sortDirection": "ascending",
+        "step": null,
+        "stepTabs": 0,
+        "disabledTabs": 0,
+        "targetScrollWidth": 276,
+        "targetClientWidth": 276
+      }
+    },
+    {
+      "name": "stepper-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "stepper-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "rtl",
+        "theme": "light"
+      }
+    },
+    {
+      "name": "stepper-1440-light-rtl overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "stepper-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "stepper-1440-light-rtl projected model",
+      "pass": true,
+      "actual": {
+        "name": "stepper-1440-light-rtl",
+        "component": "stepper",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "controlCount": 2,
+        "targetBox": {
+          "x": 147,
+          "y": 268.765625,
+          "right": 1097,
+          "bottom": 646.765625,
+          "width": 950,
+          "height": 378
+        },
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلchanged: documents",
+        "breadcrumbItems": 0,
+        "separators": 0,
+        "currentBox": null,
+        "breadcrumbNavScrollWidth": 0,
+        "breadcrumbNavClientWidth": 0,
+        "page": null,
+        "pageCount": null,
+        "presentation": null,
+        "sortDirection": null,
+        "step": "documents",
+        "stepTabs": 4,
+        "disabledTabs": 1,
+        "panelText": "إرفاق المستندات الداعمة قبل إرسال السجل للاعتماد.",
+        "targetScrollWidth": 950,
+        "targetClientWidth": 950
+      }
+    },
+    {
+      "name": "stepper-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "stepper-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "ltr",
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "stepper-390-dark-ltr overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "stepper-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "stepper-390-dark-ltr projected model",
+      "pass": true,
+      "actual": {
+        "name": "stepper-390-dark-ltr",
+        "component": "stepper",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 404
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "controlCount": 2,
+        "targetBox": {
+          "x": 57,
+          "y": 176.765625,
+          "right": 333,
+          "bottom": 667.953125,
+          "width": 276,
+          "height": 491.1875
+        },
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلchanged: documents",
+        "breadcrumbItems": 0,
+        "separators": 0,
+        "currentBox": null,
+        "breadcrumbNavScrollWidth": 0,
+        "breadcrumbNavClientWidth": 0,
+        "page": null,
+        "pageCount": null,
+        "presentation": null,
+        "sortDirection": null,
+        "step": "documents",
+        "stepTabs": 4,
+        "disabledTabs": 1,
+        "panelText": "إرفاق المستندات الداعمة قبل إرسال السجل للاعتماد.",
+        "targetScrollWidth": 276,
+        "targetClientWidth": 276
+      }
+    }
+  ],
+  "summary": {
+    "total": 40,
+    "passed": 40,
+    "failed": []
+  }
+}

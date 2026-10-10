@@ -1,5 +1,21 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — Navigation owners internal review
+
+`ErpBreadcrumbs`, `ErpPagination`, `ErpSortHeader`, and `ErpStepper` completed
+internal browser review. Breadcrumbs uses a realistic four-level Arabic path
+and wraps at narrow widths without hiding the current destination. Pagination
+and SortHeader synchronize emitted state with the same live target. Stepper
+uses four meaningful definitions and four keyed projected panels. Ten source
+and implementation captures pass 40/40 assertions with zero page overflow,
+broken assets, errors, or warnings. Evidence is under
+`docs/review-evidence/erp-navigation/navigation-v1-internal-review/`.
+Canonical verification passes 137/137 files and 863/863 tests, both typechecks,
+all governance/lint, and the zero-warning 418.32 kB / 92.88 kB build. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next: the remaining Data/Table
+composition owners.
+
 ## Current checkpoint — ColumnChooser and ViewSwitcher internal review
 
 `ErpColumnChooser` and `ErpViewSwitcher` completed internal browser review.

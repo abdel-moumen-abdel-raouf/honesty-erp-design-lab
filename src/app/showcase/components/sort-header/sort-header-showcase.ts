@@ -44,6 +44,11 @@ export class ErpSortHeaderShowcase {
     this.liveValues.update((current) => ({...current, [change.control.name]: value}));
   }
 
+  recordSortDirection(value: 'none' | 'ascending' | 'descending'): void {
+    this.liveValues.update((current) => ({...current, direction: value}));
+    this.recordEvent('sortChange', value);
+  }
+
   recordModel(name: string, value: unknown): void {
     this.liveValues.update((current) => ({...current, [name]: value}));
     this.recordEvent(`${name}Change`, value);

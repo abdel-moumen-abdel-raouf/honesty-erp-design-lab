@@ -1,5 +1,24 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Navigation Owners Internal Review State
+
+`ErpBreadcrumbs`, `ErpPagination`, `ErpSortHeader`, and `ErpStepper` completed
+internal browser review. Breadcrumbs now demonstrates a four-level Arabic ERP
+path and wraps through the Foundation Query API at narrow widths so the current
+destination remains visible. Pagination and SortHeader apply emitted values
+back to the same controlled Workbench target. Stepper now renders four
+meaningful states and real keyed projected panels. The exact ERP-TABLE
+presentations remain intact; accessible Skodash RTL breadcrumb and pagination
+pages are recorded as fallback presentation evidence only. Evidence under
+`docs/review-evidence/erp-navigation/navigation-v1-internal-review/` passes
+40/40 assertions. Focused verification passes 8/8 files and 17/17 tests;
+canonical verification passes 137/137 files and 863/863 tests, both typechecks,
+all governance/lint, and the zero-warning 418.32 kB / 92.88 kB build. Status
+remains `TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Continue Bottom-Up with the remaining
+Data/Table composition owners; business Feature/Page, CRUD, transport and
+permissions work remain closed.
+
 ## Current ColumnChooser and ViewSwitcher Internal Review State
 
 `ErpColumnChooser` and `ErpViewSwitcher` completed internal browser review.

@@ -336,7 +336,23 @@ function validateRepository() {
         html.includes('(visibilityChange)="recordVisibleKeys($event)"') &&
         source.includes('recordVisibleKeys(value: readonly string[]): void') &&
         source.includes("this.recordEvent('visibilityChange', value);");
+      const controlledPaginationOutput = entry.className === 'ErpPagination' && (
+        outputName === 'pageChange' &&
+        html.includes('(pageChange)="recordPaginationPage($event)"') &&
+        source.includes('recordPaginationPage(value: number): void') &&
+        source.includes("this.recordEvent('pageChange', value);") ||
+        outputName === 'pageSizeChange' &&
+        html.includes('(pageSizeChange)="recordPaginationSize($event)"') &&
+        source.includes('recordPaginationSize(value: number): void') &&
+        source.includes("this.recordEvent('pageSizeChange', value);")
+      );
+      const controlledSortOutput = entry.className === 'ErpSortHeader' &&
+        outputName === 'sortChange' &&
+        html.includes('(sortChange)="recordSortDirection($event)"') &&
+        source.includes("recordSortDirection(value: 'none' | 'ascending' | 'descending'): void") &&
+        source.includes("this.recordEvent('sortChange', value);");
       if (!rootAppShellOutput && !controlledColumnVisibilityOutput &&
+          !controlledPaginationOutput && !controlledSortOutput &&
           !html.includes(`(${outputName})="recordEvent('${outputName}', $event)"`)) {
         errors.push(`${entry.className} live target has no event evidence for ${outputName}`);
       }

@@ -1,5 +1,18 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — Navigation owners reviewed internally
+
+Continue from synchronized `main` after the Navigation checkpoint.
+Breadcrumbs preserves its complete four-level destination at narrow widths;
+Pagination and SortHeader are controlled live targets; Stepper renders real
+projected panels and disabled/completed/optional states. Exact ERP-TABLE
+presentations remain intact. Evidence under
+`docs/review-evidence/erp-navigation/navigation-v1-internal-review/` passes
+40/40 browser assertions. Canonical verification passes 137/137 files and
+863/863 tests with a zero-warning 418.32 kB / 92.88 kB build. Product Owner
+acceptance is not recorded. Continue Bottom-Up with `ErpBulkActionBar`,
+`ErpFilterBar`, `ErpFilterDrawer`, `ErpTableToolbar`, and `ErpSmartTable`.
+
 ## Current continuation point — ColumnChooser and ViewSwitcher reviewed internally
 
 Continue from synchronized `main` after the ColumnChooser/ViewSwitcher

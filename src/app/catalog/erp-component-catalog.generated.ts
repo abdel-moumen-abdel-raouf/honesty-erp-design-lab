@@ -40034,22 +40034,53 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "home",
               "label": "الرئيسية",
-              "href": "/"
+              "href": "#home",
+              "icon": "home"
+            },
+            {
+              "id": "sales",
+              "label": "المبيعات",
+              "href": "#sales"
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "href": "#invoices"
+            },
+            {
+              "id": "invoice-1042",
+              "label": "فاتورة المبيعات 1042"
             }
-          ]
+          ],
+          "currentId": "invoice-1042"
         }
       }
     ],
     "displayNameAr": "مسار التنقل",
     "descriptionAr": "مسار موقع منطقي مع العنصر الحالي.",
     "showcaseInitialValues": {
-      "currentId": null,
+      "currentId": "invoice-1042",
       "label": "مسار الصفحة",
       "items": [
         {
           "id": "home",
           "label": "الرئيسية",
-          "href": "/"
+          "href": "#home",
+          "icon": "home"
+        },
+        {
+          "id": "sales",
+          "label": "المبيعات",
+          "href": "#sales"
+        },
+        {
+          "id": "invoices",
+          "label": "الفواتير",
+          "href": "#invoices"
+        },
+        {
+          "id": "invoice-1042",
+          "label": "فاتورة المبيعات 1042"
         }
       ]
     },
@@ -40066,7 +40097,22 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           {
             "id": "home",
             "label": "الرئيسية",
-            "href": "/"
+            "href": "#home",
+            "icon": "home"
+          },
+          {
+            "id": "sales",
+            "label": "المبيعات",
+            "href": "#sales"
+          },
+          {
+            "id": "invoices",
+            "label": "الفواتير",
+            "href": "#invoices"
+          },
+          {
+            "id": "invoice-1042",
+            "label": "فاتورة المبيعات 1042"
           }
         ]
       },
@@ -40078,7 +40124,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "invoice-1042"
       },
       {
         "name": "label",
@@ -40318,15 +40364,24 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "pageCount": 3
+          "page": 3,
+          "pageCount": 12,
+          "totalItems": 286,
+          "pageSize": 25,
+          "pageSizeOptions": [
+            10,
+            25,
+            50,
+            100
+          ]
         }
       }
     ],
     "displayNameAr": "ترقيم الصفحات",
     "descriptionAr": "تنقل مضبوط بين الصفحات وحجم الصفحة.",
     "showcaseInitialValues": {
-      "page": 1,
-      "totalItems": null,
+      "page": 3,
+      "totalItems": 286,
       "pageSize": 25,
       "pageSizeOptions": [
         10,
@@ -40344,7 +40399,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "showPageNumbers": true,
       "showNext": true,
       "showLast": true,
-      "pageCount": 3
+      "pageCount": 12
     },
     "showcaseControls": [
       {
@@ -40355,7 +40410,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "number",
         "options": [],
-        "initialValue": 1
+        "initialValue": 3
       },
       {
         "name": "pageCount",
@@ -40365,7 +40420,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "number",
         "options": [],
-        "initialValue": 3
+        "initialValue": 12
       },
       {
         "name": "totalItems",
@@ -40375,7 +40430,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "number | null",
         "options": [],
-        "initialValue": null
+        "initialValue": 286
       },
       {
         "name": "pageSize",
@@ -41193,7 +41248,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "اسم الحساب"
+          "label": "اسم الحساب",
+          "direction": "none"
         }
       },
       {
@@ -41225,6 +41281,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "disabled: false",
         "inputs": {
           "label": "اسم الحساب",
+          "direction": "none",
           "disabled": false
         }
       },
@@ -41233,6 +41290,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "disabled: true",
         "inputs": {
           "label": "اسم الحساب",
+          "direction": "none",
           "disabled": true
         }
       },
@@ -41241,6 +41299,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "label": "حالة معطلة",
         "inputs": {
           "label": "اسم الحساب",
+          "direction": "none",
           "disabled": true
         }
       }
@@ -41403,22 +41462,60 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "inputs": {
           "steps": [
             {
-              "id": "details",
-              "label": "البيانات"
+              "id": "identity",
+              "label": "بيانات العميل",
+              "description": "الهوية وبيانات التواصل",
+              "completed": true
+            },
+            {
+              "id": "account",
+              "label": "إعداد الحساب",
+              "description": "الشروط والحد الائتماني"
+            },
+            {
+              "id": "documents",
+              "label": "المستندات",
+              "description": "مرفقات اختيارية",
+              "optional": true
+            },
+            {
+              "id": "approval",
+              "label": "الاعتماد",
+              "description": "غير متاح قبل اكتمال البيانات",
+              "disabled": true
             }
           ],
-          "activeId": null
+          "activeId": "account"
         }
       }
     ],
     "displayNameAr": "الخطوات",
     "descriptionAr": "تنقل مضبوط بين خطوات ومحتوى مسمى.",
     "showcaseInitialValues": {
-      "activeId": "",
+      "activeId": "account",
       "steps": [
         {
-          "id": "details",
-          "label": "البيانات"
+          "id": "identity",
+          "label": "بيانات العميل",
+          "description": "الهوية وبيانات التواصل",
+          "completed": true
+        },
+        {
+          "id": "account",
+          "label": "إعداد الحساب",
+          "description": "الشروط والحد الائتماني"
+        },
+        {
+          "id": "documents",
+          "label": "المستندات",
+          "description": "مرفقات اختيارية",
+          "optional": true
+        },
+        {
+          "id": "approval",
+          "label": "الاعتماد",
+          "description": "غير متاح قبل اكتمال البيانات",
+          "disabled": true
         }
       ]
     },
@@ -41433,8 +41530,27 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "options": [],
         "initialValue": [
           {
-            "id": "details",
-            "label": "البيانات"
+            "id": "identity",
+            "label": "بيانات العميل",
+            "description": "الهوية وبيانات التواصل",
+            "completed": true
+          },
+          {
+            "id": "account",
+            "label": "إعداد الحساب",
+            "description": "الشروط والحد الائتماني"
+          },
+          {
+            "id": "documents",
+            "label": "المستندات",
+            "description": "مرفقات اختيارية",
+            "optional": true
+          },
+          {
+            "id": "approval",
+            "label": "الاعتماد",
+            "description": "غير متاح قبل اكتمال البيانات",
+            "disabled": true
           }
         ]
       },
@@ -41446,7 +41562,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string",
         "options": [],
-        "initialValue": ""
+        "initialValue": "account"
       }
     ],
     "showcaseCoverage": {

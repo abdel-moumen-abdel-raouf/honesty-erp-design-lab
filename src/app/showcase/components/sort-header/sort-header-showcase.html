@@ -10,7 +10,7 @@
           [direction]="$any(value('direction'))"
           [disabled]="$any(value('disabled'))"
           [presentation]="$any(value('presentation'))"
-          (sortChange)="recordEvent('sortChange', $event)"
+          (sortChange)="recordSortDirection($event)"
         ></erp-sort-header>
     </erp-stack>
   </erp-surface>

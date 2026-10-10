@@ -1,5 +1,21 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — Navigation owners
+
+Breadcrumbs, Pagination, SortHeader, and Stepper completed internal browser
+review. Breadcrumbs now shows a meaningful four-level ERP path and preserves
+the current destination at narrow widths. Pagination and SortHeader close their
+controlled-state loops on the same primary target. Stepper now proves four
+states and real keyed projected panels. Exact ERP-TABLE presentations remain
+unchanged; Skodash breadcrumb and pagination pages are fallback evidence only.
+Evidence under
+`docs/review-evidence/erp-navigation/navigation-v1-internal-review/` passes
+40/40 assertions. Focused verification passes 8/8 files and 17/17 tests;
+canonical verification passes 137/137 files and 863/863 tests with a
+zero-warning 418.32 kB / 92.88 kB build. Product Owner acceptance is not
+recorded. Next Bottom-Up unit: `ErpBulkActionBar`, `ErpFilterBar`,
+`ErpFilterDrawer`, `ErpTableToolbar`, and `ErpSmartTable`.
+
 ## Latest verified UI unit — ColumnChooser and ViewSwitcher
 
 `ErpColumnChooser` and `ErpViewSwitcher` completed internal browser review.

@@ -10,7 +10,7 @@
           [activeId]="$any(value('activeId'))"
           (activeIdChange)="recordModel('activeId', $event)"
           (changed)="recordEvent('changed', $event)"
-        ></erp-stepper>
+        ><ng-template erpStepPanel="identity"><erp-text type="paragraph">بيانات هوية العميل ومعلومات التواصل المعتمدة.</erp-text></ng-template><ng-template erpStepPanel="account"><erp-text type="paragraph">إعداد شروط الحساب والحد الائتماني للعميل.</erp-text></ng-template><ng-template erpStepPanel="documents"><erp-text type="paragraph">إرفاق المستندات الداعمة قبل إرسال السجل للاعتماد.</erp-text></ng-template><ng-template erpStepPanel="approval"><erp-text type="paragraph">مراجعة السجل واعتماده بعد اكتمال البيانات.</erp-text></ng-template></erp-stepper>
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel
