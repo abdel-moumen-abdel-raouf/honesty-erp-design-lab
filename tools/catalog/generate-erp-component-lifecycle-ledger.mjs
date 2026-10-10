@@ -51,9 +51,11 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpInline',
   'ErpMoneyBox',
   'ErpNumberBox',
+  'ErpNumberStepper',
   'ErpPasswordBox',
   'ErpRadioBox',
   'ErpRadioGroup',
+  'ErpRangeSlider',
   'ErpSection',
   'ErpSelect',
   'ErpStack',
@@ -265,13 +267,14 @@ drift.
   **\`ErpInline\`**, **\`ErpSection\`**, **\`ErpStack\`**, **\`ErpSurface\`**,
   **\`ErpIcon\`**, **\`ErpText\`**, **\`ErpTextBox\`**, **\`ErpTextAreaBox\`**,
   **\`ErpPasswordBox\`**, **\`ErpNumberBox\`**, **\`ErpMoneyBox\`**,
-  **\`ErpTelBox\`**, and **\`ErpUrlBox\`**. Their
+  **\`ErpTelBox\`**, **\`ErpUrlBox\`**, **\`ErpNumberStepper\`**, and
+  **\`ErpRangeSlider\`**. Their
   Product Owner status remains pending.
 - All currently recorded binding-reference owners have completed internal
   review, the full public primitive layer has completed internal review, and
   the foundational text-like Input/Field family has completed internal review.
-  The next Bottom-Up unit is the numeric interaction family:
-  **\`ErpNumberStepper\`** and **\`ErpRangeSlider\`**.
+  The next Bottom-Up unit is the temporal input family: **\`ErpDateBox\`**,
+  **\`ErpTimeBox\`**, **\`ErpDateTimeBox\`**, and **\`ErpDateRangeBox\`**.
 
 ## Public owner inventory
 

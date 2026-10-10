@@ -1,5 +1,17 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — numeric interaction inputs reviewed internally
+
+Continue from synchronized `main` after the NumberStepper/RangeSlider
+checkpoint. Production APIs/defaults are unchanged; generated Workbench
+fixtures now make bounded numeric and range CVA interactions immediately
+observable. The evidence package under
+`docs/review-evidence/erp-numeric-inputs/v1-internal-review/` passes 36/36
+browser assertions. Canonical verification passes 128/128 files and 830/830
+tests with a zero-warning 418.32 kB / 92.89 kB build. Product Owner acceptance
+is not recorded. Continue Bottom-Up with `ErpDateBox`, `ErpTimeBox`,
+`ErpDateTimeBox`, and `ErpDateRangeBox`.
+
 ## Current continuation point — foundational text-like fields reviewed internally
 
 Continue from synchronized `main` after the seven-owner Input/Field checkpoint.

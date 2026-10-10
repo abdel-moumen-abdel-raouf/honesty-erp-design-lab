@@ -218,6 +218,43 @@ describe('ComponentShowcase', () => {
     expect(root.querySelector('[data-showcase-event-log]')?.textContent, id).toContain(evidence);
   });
 
+  it('keeps the NumberStepper workbench meaningful and interactive', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/components/number-stepper', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+
+    const root = harness.routeNativeElement as HTMLElement;
+    const target = root.querySelector('[data-showcase-target]') as HTMLElement;
+    const editor = target.querySelector('input') as HTMLInputElement;
+    expect(editor.value).toBe('12');
+    (target.querySelector('[data-stepper-increment] button') as HTMLButtonElement).click();
+    harness.fixture.detectChanges();
+    expect(editor.value).toBe('13');
+    expect(root.querySelector('[data-showcase-event-log]')?.textContent).toContain('valueChange: 13');
+  });
+
+  it('keeps the RangeSlider workbench meaningful and keyboard interactive', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/components/range-slider', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+
+    const root = harness.routeNativeElement as HTMLElement;
+    const target = root.querySelector('[data-showcase-target]') as HTMLElement;
+    const lower = target.querySelector('[data-range-thumb="lower"]') as HTMLInputElement;
+    expect(target.getAttribute('data-range-slider-lower')).toBe('25');
+    expect(target.getAttribute('data-range-slider-upper')).toBe('75');
+    lower.dispatchEvent(new KeyboardEvent('keydown', {key: 'ArrowRight', bubbles: true}));
+    harness.fixture.detectChanges();
+    expect(target.getAttribute('data-range-slider-lower')).toBe('30');
+    expect(root.querySelector('[data-showcase-event-log]')?.textContent).toContain('"lower":30');
+  });
+
   it('renders ButtonGroup as one controlled group with multiple actions', async () => {
     const harness = await RouterTestingHarness.create();
     await harness.navigateByUrl('/components/button-group', ComponentShowcase);

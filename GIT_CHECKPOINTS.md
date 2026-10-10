@@ -1,5 +1,26 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Numeric interaction input internal-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `e208790a4fa03f149651d0bffceb7d2b775301f1` — synchronized `main` after the
+  foundational text-like field checkpoint.
+
+Bounded scope:
+
+- Reviewed `ErpNumberStepper` and `ErpRangeSlider` at desktop/narrow
+  Light/Dark RTL/LTR conditions.
+- Added meaningful generated Workbench fixtures and button/keyboard CVA event
+  regression evidence; production APIs/defaults remain unchanged.
+- Persisted 36/36 browser assertions and paired screenshots under
+  `docs/review-evidence/erp-numeric-inputs/v1-internal-review/`.
+- Canonical gate: 128/128 files, 830/830 tests, both typechecks, all
+  governance/lint, zero-warning 418.32 kB / 92.89 kB build.
+
+Product Owner visual status remains pending. The actual commit SHA is recorded
+by Git after this document snapshot; do not infer acceptance from the commit.
+
 ## Foundational text-like field internal-review candidate — 2026-10-10
 
 Entry checkpoint:

@@ -1,5 +1,19 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Numeric interaction input internal-review decisions — 2026-10-10
+
+- No binding component-specific external reference is recorded for
+  `ErpNumberStepper` or `ErpRangeSlider`; both remain original Honesty ERP
+  candidates.
+- Production APIs, shared Field/Button/Icon ownership, Component Tokens,
+  visual defaults, and CVA behavior remain unchanged. Review corrections are
+  generated Workbench data, interaction regression tests, and reproducible
+  browser evidence only.
+- NumberStepper evidence must prove bounded increment/decrement values and
+  RangeSlider evidence must prove keyboard-updated range state and tooltip
+  presentation on the same primary target.
+- Internal review completion does not imply Product Owner acceptance.
+
 ## Foundational text-like field internal-review decisions — 2026-10-10
 
 - No binding component-specific external reference is recorded for the seven

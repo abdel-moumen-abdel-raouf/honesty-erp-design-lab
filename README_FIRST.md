@@ -1,5 +1,18 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — numeric interaction inputs
+
+`ErpNumberStepper` and `ErpRangeSlider` completed browser review as original
+Honesty ERP candidates. Their generated Workbenches now use meaningful Arabic
+ERP ranges and values and prove button/keyboard-driven CVA synchronization on
+the same live targets. The four-case desktop/narrow Light/Dark RTL/LTR evidence
+package is under `docs/review-evidence/erp-numeric-inputs/v1-internal-review/`
+and passes 36/36 assertions with no overflow, broken images, or browser
+diagnostics. Focused verification passes 3/3 files and 41/41 tests; canonical
+verification passes 128/128 files and 830/830 tests with a zero-warning
+418.32 kB / 92.89 kB build. Product Owner acceptance is not recorded. Next
+Bottom-Up unit: the temporal field family.
+
 ## Latest verified UI unit — foundational text-like fields
 
 Seven text-like Input/Field owners completed browser review as original Honesty

@@ -1,5 +1,17 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — numeric interaction inputs complete internally
+
+`ErpNumberStepper` and `ErpRangeSlider` completed internal browser review
+without production API/default changes. Their generated Workbenches now carry
+meaningful ERP values and prove button/keyboard CVA interactions with visible
+event evidence. The four-scenario evidence gate passes 36/36 assertions with
+zero overflow, broken images, or diagnostics. Canonical verification passes
+128/128 files and 830/830 tests with a zero-warning 418.32 kB / 92.89 kB
+build. Product Owner status remains pending. Continue Bottom-Up with the
+temporal field family; business Feature/Page, CRUD, transport, and permissions
+work remain closed.
+
 ## Current UI continuation — foundational text-like fields complete internally
 
 Seven original Honesty ERP Input/Field candidates completed internal browser

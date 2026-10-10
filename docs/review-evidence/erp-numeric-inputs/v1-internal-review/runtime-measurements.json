@@ -1,0 +1,389 @@
+{
+  "generatedAt": "2026-10-10T08:23:00.401Z",
+  "authority": "Original Honesty ERP candidates; no binding component-specific external reference is recorded.",
+  "scenarios": [
+    {
+      "name": "number-stepper-1440-light-rtl-default",
+      "component": "number-stepper",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "direction": "rtl",
+      "computedDirection": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 30,
+      "targetBox": {
+        "x": 147,
+        "y": 452.765625,
+        "width": 950,
+        "height": 94.296875
+      },
+      "nativeValues": [
+        {
+          "type": "text",
+          "value": "13",
+          "disabled": false
+        }
+      ],
+      "lower": null,
+      "upper": null,
+      "eventEvidence": "آخر تفاعلvalueChange: 13القيمة الحالية: 13",
+      "tooltipOpen": 0,
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "number-stepper-390-dark-ltr-alternate",
+      "component": "number-stepper",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "direction": "ltr",
+      "computedDirection": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 30,
+      "targetBox": {
+        "x": 57,
+        "y": 653.953125,
+        "width": 276,
+        "height": 102.296875
+      },
+      "nativeValues": [
+        {
+          "type": "text",
+          "value": "25",
+          "disabled": false
+        }
+      ],
+      "lower": null,
+      "upper": null,
+      "eventEvidence": "آخر تفاعلvalueChange: 25القيمة الحالية: 25",
+      "tooltipOpen": 0,
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "range-slider-1440-light-rtl-default",
+      "component": "range-slider",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "direction": "rtl",
+      "computedDirection": "rtl",
+      "primaryTargetCount": 1,
+      "controlCount": 21,
+      "targetBox": {
+        "x": 147,
+        "y": 452.765625,
+        "width": 950,
+        "height": 79.296875
+      },
+      "nativeValues": [
+        {
+          "type": "text",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "type": "text",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "type": "range",
+          "value": "30",
+          "disabled": false
+        },
+        {
+          "type": "range",
+          "value": "75",
+          "disabled": false
+        }
+      ],
+      "lower": "30",
+      "upper": "75",
+      "eventEvidence": "آخر تفاعلvalueChange: {\"lower\":30,\"upper\":75}القيمة الحالية: [object Object]",
+      "tooltipOpen": 1,
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "range-slider-390-dark-ltr-alternate",
+      "component": "range-slider",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "direction": "ltr",
+      "computedDirection": "ltr",
+      "primaryTargetCount": 1,
+      "controlCount": 21,
+      "targetBox": {
+        "x": 57,
+        "y": 602.765625,
+        "width": 276,
+        "height": 79.296875
+      },
+      "nativeValues": [
+        {
+          "type": "text",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "type": "text",
+          "value": "",
+          "disabled": false
+        },
+        {
+          "type": "range",
+          "value": "15",
+          "disabled": false
+        },
+        {
+          "type": "range",
+          "value": "90",
+          "disabled": false
+        }
+      ],
+      "lower": "15",
+      "upper": "90",
+      "eventEvidence": "آخر تفاعلvalueChange: {\"lower\":15,\"upper\":90}القيمة الحالية: [object Object]",
+      "tooltipOpen": 1,
+      "horizontalOverflow": 0,
+      "brokenImages": 0,
+      "diagnostics": []
+    }
+  ],
+  "assertions": [
+    {
+      "name": "number-stepper-1440-light-rtl-default target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "number-stepper-1440-light-rtl-default controls",
+      "pass": true,
+      "actual": 30
+    },
+    {
+      "name": "number-stepper-1440-light-rtl-default visible",
+      "pass": true,
+      "actual": {
+        "x": 147,
+        "y": 452.765625,
+        "width": 950,
+        "height": 94.296875
+      }
+    },
+    {
+      "name": "number-stepper-1440-light-rtl-default direction",
+      "pass": true,
+      "actual": "rtl"
+    },
+    {
+      "name": "number-stepper-1440-light-rtl-default event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: 13القيمة الحالية: 13"
+    },
+    {
+      "name": "number-stepper-1440-light-rtl-default page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "number-stepper-1440-light-rtl-default diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "number-stepper-1440-light-rtl-default broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "number-stepper-1440-light-rtl-default applied step",
+      "pass": true,
+      "actual": [
+        {
+          "type": "text",
+          "value": "13",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "name": "number-stepper-390-dark-ltr-alternate target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "number-stepper-390-dark-ltr-alternate controls",
+      "pass": true,
+      "actual": 30
+    },
+    {
+      "name": "number-stepper-390-dark-ltr-alternate visible",
+      "pass": true,
+      "actual": {
+        "x": 57,
+        "y": 653.953125,
+        "width": 276,
+        "height": 102.296875
+      }
+    },
+    {
+      "name": "number-stepper-390-dark-ltr-alternate direction",
+      "pass": true,
+      "actual": "ltr"
+    },
+    {
+      "name": "number-stepper-390-dark-ltr-alternate event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: 25القيمة الحالية: 25"
+    },
+    {
+      "name": "number-stepper-390-dark-ltr-alternate page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "number-stepper-390-dark-ltr-alternate diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "number-stepper-390-dark-ltr-alternate broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "number-stepper-390-dark-ltr-alternate applied step",
+      "pass": true,
+      "actual": [
+        {
+          "type": "text",
+          "value": "25",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "name": "range-slider-1440-light-rtl-default target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "range-slider-1440-light-rtl-default controls",
+      "pass": true,
+      "actual": 21
+    },
+    {
+      "name": "range-slider-1440-light-rtl-default visible",
+      "pass": true,
+      "actual": {
+        "x": 147,
+        "y": 452.765625,
+        "width": 950,
+        "height": 79.296875
+      }
+    },
+    {
+      "name": "range-slider-1440-light-rtl-default direction",
+      "pass": true,
+      "actual": "rtl"
+    },
+    {
+      "name": "range-slider-1440-light-rtl-default event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: {\"lower\":30,\"upper\":75}القيمة الحالية: [object Object]"
+    },
+    {
+      "name": "range-slider-1440-light-rtl-default page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "range-slider-1440-light-rtl-default diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "range-slider-1440-light-rtl-default broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "range-slider-1440-light-rtl-default applied keyboard step",
+      "pass": true,
+      "actual": {
+        "lower": "30",
+        "upper": "75"
+      }
+    },
+    {
+      "name": "range-slider-390-dark-ltr-alternate target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "range-slider-390-dark-ltr-alternate controls",
+      "pass": true,
+      "actual": 21
+    },
+    {
+      "name": "range-slider-390-dark-ltr-alternate visible",
+      "pass": true,
+      "actual": {
+        "x": 57,
+        "y": 602.765625,
+        "width": 276,
+        "height": 79.296875
+      }
+    },
+    {
+      "name": "range-slider-390-dark-ltr-alternate direction",
+      "pass": true,
+      "actual": "ltr"
+    },
+    {
+      "name": "range-slider-390-dark-ltr-alternate event",
+      "pass": true,
+      "actual": "آخر تفاعلvalueChange: {\"lower\":15,\"upper\":90}القيمة الحالية: [object Object]"
+    },
+    {
+      "name": "range-slider-390-dark-ltr-alternate page overflow",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "range-slider-390-dark-ltr-alternate diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "range-slider-390-dark-ltr-alternate broken images",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "name": "range-slider-390-dark-ltr-alternate applied keyboard step",
+      "pass": true,
+      "actual": {
+        "lower": "15",
+        "upper": "90"
+      }
+    }
+  ],
+  "summary": {
+    "total": 36,
+    "passed": 36,
+    "failed": []
+  }
+}

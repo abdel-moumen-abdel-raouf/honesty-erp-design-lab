@@ -1,5 +1,19 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — numeric interaction inputs
+
+`ErpNumberStepper` and `ErpRangeSlider` completed internal browser review as
+original Honesty ERP candidates. Generated Workbench evidence now supplies
+meaningful Arabic ERP constraints and values through the public CVA path and
+records live button/keyboard output evidence. The four-scenario audit passes
+36/36 assertions with no overflow, broken images, or browser diagnostics.
+Screenshots, measurements, and reproduction steps are under
+`docs/review-evidence/erp-numeric-inputs/v1-internal-review/`. Production
+APIs/defaults are unchanged. Status is `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next Bottom-Up unit: the temporal field
+family.
+
 ## Current review execution — 2026-10-10 — foundational text-like fields
 
 Seven public Input/Field owners completed internal browser review as original

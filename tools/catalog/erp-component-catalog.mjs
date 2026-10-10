@@ -148,7 +148,9 @@ const CVA_COMPONENTS = new Set([
 const CVA_FIXTURE_VALUES = new Map([
   ['ErpMoneyBox', 18450.75],
   ['ErpNumberBox', 1250],
+  ['ErpNumberStepper', 12],
   ['ErpPasswordBox', 'Honesty@2026'],
+  ['ErpRangeSlider', {lower: 25, upper: 75}],
   ['ErpSelect', 'ahmed'],
   ['ErpTelBox', '+20 100 123 4567'],
   ['ErpTextAreaBox', 'ملاحظات طلب الشراء: يرجى مراجعة الكميات قبل الاعتماد.'],
@@ -442,6 +444,7 @@ const FIXTURE_INPUTS = new Map([
   ['ErpItemPicker', {items: [{value: 'item-1', label: 'صنف مخزني'}]}],
   ['ErpMoneyBox', {currency: 'EGP', label: 'الرصيد الافتتاحي', helperText: 'بالجنيه المصري', clearable: true}],
   ['ErpNumberBox', {label: 'كمية إعادة الطلب', helperText: 'وحدة مخزنية', clearable: true}],
+  ['ErpNumberStepper', {label: 'كمية الطلب', helperText: 'استخدم أزرار الزيادة والنقصان', min: 0, max: 100, step: 1, clearable: true}],
   ['ErpPasswordBox', {label: 'كلمة المرور', helperText: 'استخدم 12 محرفًا على الأقل', clearable: true}],
   ['ErpTelBox', {label: 'هاتف المورد', helperText: 'رقم التواصل المعتمد', clearable: true}],
   ['ErpTextAreaBox', {label: 'ملاحظات طلب الشراء', helperText: 'تظهر لفريق المشتريات', rows: 4, showCounter: true}],
@@ -477,6 +480,7 @@ const FIXTURE_INPUTS = new Map([
     },
   ]}],
   ['ErpRadioGroup', {options: [{value: 'active', label: 'نشط'}]}],
+  ['ErpRangeSlider', {label: 'نطاق الخصم', helperText: 'النطاق المسموح من 0 إلى 100', min: 0, max: 100, step: 5, defaultRange: {lower: 20, upper: 80}, clearable: true, showValueTooltip: true}],
   ['ErpSelect', {
     label: 'الموظف المسؤول',
     searchable: true,

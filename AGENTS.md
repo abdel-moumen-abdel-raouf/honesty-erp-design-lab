@@ -1,5 +1,22 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Numeric Interaction Input Internal Review State
+
+`ErpNumberStepper` and `ErpRangeSlider` have completed their authorized
+original Honesty ERP internal review. Production APIs and visual defaults
+remain unchanged. Their generated Workbenches now start with meaningful Arabic
+ERP labels, helper copy, ranges, steps, and CVA values; pointer/button and
+keyboard changes update the single live target and visible event evidence.
+Evidence under `docs/review-evidence/erp-numeric-inputs/v1-internal-review/`
+passes 36/36 browser assertions across desktop/narrow Light/Dark RTL/LTR
+scenarios with zero overflow, broken images, errors, or warnings. Focused
+verification passes 3/3 files and 41/41 tests; canonical verification passes
+128/128 files and 830/830 tests, both typechecks, all governance/lint, and the
+zero-warning 418.32 kB / 92.89 kB build. Status remains
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next Bottom-Up unit: `ErpDateBox`,
+`ErpTimeBox`, `ErpDateTimeBox`, and `ErpDateRangeBox`.
+
 ## Current Foundational Text-like Field Internal Review State
 
 `ErpTextBox`, `ErpTextAreaBox`, `ErpPasswordBox`, `ErpNumberBox`, `ErpMoneyBox`,

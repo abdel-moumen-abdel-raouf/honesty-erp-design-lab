@@ -25239,7 +25239,12 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي"
+          "label": "كمية الطلب",
+          "helperText": "استخدم أزرار الزيادة والنقصان",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "clearable": true
         }
       }
     ],
@@ -25260,7 +25265,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "appearance": "standard",
       "labelMode": "static",
       "floatingPosition": "top",
-      "helperText": null,
+      "helperText": "استخدم أزرار الزيادة والنقصان",
       "helperPosition": "below",
       "leadingIcon": null,
       "trailingIcon": null,
@@ -25269,12 +25274,12 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "feedbackDismissible": false,
       "placeholder": null,
       "readonly": false,
-      "min": null,
-      "max": null,
+      "min": 0,
+      "max": 100,
       "step": 1,
       "allowEmpty": true,
       "pattern": null,
-      "label": "حقل تجريبي"
+      "label": "كمية الطلب"
     },
     "showcaseControls": [
       {
@@ -25285,7 +25290,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "ControlValueAccessor value",
         "options": [],
-        "initialValue": null
+        "initialValue": 12
       },
       {
         "name": "label",
@@ -25295,7 +25300,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "حقل تجريبي"
+        "initialValue": "كمية الطلب"
       },
       {
         "name": "name",
@@ -25494,7 +25499,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "استخدم أزرار الزيادة والنقصان"
       },
       {
         "name": "helperPosition",
@@ -25596,7 +25601,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "number | null",
         "options": [],
-        "initialValue": null
+        "initialValue": 0
       },
       {
         "name": "max",
@@ -25606,7 +25611,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "number | null",
         "options": [],
-        "initialValue": null
+        "initialValue": 100
       },
       {
         "name": "step",
@@ -26961,14 +26966,34 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "حقل تجريبي"
+          "label": "نطاق الخصم",
+          "helperText": "النطاق المسموح من 0 إلى 100",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "defaultRange": {
+            "lower": 20,
+            "upper": 80
+          },
+          "clearable": true,
+          "showValueTooltip": true
         }
       },
       {
         "id": "tone-neutral",
         "label": "tone: neutral",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "نطاق الخصم",
+          "helperText": "النطاق المسموح من 0 إلى 100",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "defaultRange": {
+            "lower": 20,
+            "upper": 80
+          },
+          "clearable": true,
+          "showValueTooltip": true,
           "tone": "neutral"
         }
       },
@@ -26976,7 +27001,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-primary",
         "label": "tone: primary",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "نطاق الخصم",
+          "helperText": "النطاق المسموح من 0 إلى 100",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "defaultRange": {
+            "lower": 20,
+            "upper": 80
+          },
+          "clearable": true,
+          "showValueTooltip": true,
           "tone": "primary"
         }
       },
@@ -26984,7 +27019,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-secondary",
         "label": "tone: secondary",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "نطاق الخصم",
+          "helperText": "النطاق المسموح من 0 إلى 100",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "defaultRange": {
+            "lower": 20,
+            "upper": 80
+          },
+          "clearable": true,
+          "showValueTooltip": true,
           "tone": "secondary"
         }
       },
@@ -26992,7 +27037,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "tone-accent",
         "label": "tone: accent",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "نطاق الخصم",
+          "helperText": "النطاق المسموح من 0 إلى 100",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "defaultRange": {
+            "lower": 20,
+            "upper": 80
+          },
+          "clearable": true,
+          "showValueTooltip": true,
           "tone": "accent"
         }
       },
@@ -27000,7 +27055,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-sm",
         "label": "size: sm",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "نطاق الخصم",
+          "helperText": "النطاق المسموح من 0 إلى 100",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "defaultRange": {
+            "lower": 20,
+            "upper": 80
+          },
+          "clearable": true,
+          "showValueTooltip": true,
           "size": "sm"
         }
       },
@@ -27008,7 +27073,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-md",
         "label": "size: md",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "نطاق الخصم",
+          "helperText": "النطاق المسموح من 0 إلى 100",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "defaultRange": {
+            "lower": 20,
+            "upper": 80
+          },
+          "clearable": true,
+          "showValueTooltip": true,
           "size": "md"
         }
       },
@@ -27016,7 +27091,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-lg",
         "label": "size: lg",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "نطاق الخصم",
+          "helperText": "النطاق المسموح من 0 إلى 100",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "defaultRange": {
+            "lower": 20,
+            "upper": 80
+          },
+          "clearable": true,
+          "showValueTooltip": true,
           "size": "lg"
         }
       },
@@ -27024,7 +27109,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-xl",
         "label": "size: xl",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "نطاق الخصم",
+          "helperText": "النطاق المسموح من 0 إلى 100",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "defaultRange": {
+            "lower": 20,
+            "upper": 80
+          },
+          "clearable": true,
+          "showValueTooltip": true,
           "size": "xl"
         }
       },
@@ -27032,7 +27127,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-xxl",
         "label": "size: xxl",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "نطاق الخصم",
+          "helperText": "النطاق المسموح من 0 إلى 100",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "defaultRange": {
+            "lower": 20,
+            "upper": 80
+          },
+          "clearable": true,
+          "showValueTooltip": true,
           "size": "xxl"
         }
       },
@@ -27040,7 +27145,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-xxxl",
         "label": "size: xxxl",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "نطاق الخصم",
+          "helperText": "النطاق المسموح من 0 إلى 100",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "defaultRange": {
+            "lower": 20,
+            "upper": 80
+          },
+          "clearable": true,
+          "showValueTooltip": true,
           "size": "xxxl"
         }
       },
@@ -27048,7 +27163,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "size-xxxxl",
         "label": "size: xxxxl",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "نطاق الخصم",
+          "helperText": "النطاق المسموح من 0 إلى 100",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "defaultRange": {
+            "lower": 20,
+            "upper": 80
+          },
+          "clearable": true,
+          "showValueTooltip": true,
           "size": "xxxxl"
         }
       },
@@ -27056,7 +27181,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "appearance-standard",
         "label": "appearance: standard",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "نطاق الخصم",
+          "helperText": "النطاق المسموح من 0 إلى 100",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "defaultRange": {
+            "lower": 20,
+            "upper": 80
+          },
+          "clearable": true,
+          "showValueTooltip": true,
           "appearance": "standard"
         }
       },
@@ -27064,7 +27199,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "appearance-glass",
         "label": "appearance: glass",
         "inputs": {
-          "label": "حقل تجريبي",
+          "label": "نطاق الخصم",
+          "helperText": "النطاق المسموح من 0 إلى 100",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "defaultRange": {
+            "lower": 20,
+            "upper": 80
+          },
+          "clearable": true,
+          "showValueTooltip": true,
           "appearance": "glass"
         }
       }
@@ -27079,18 +27224,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "externalValidationIssues": [],
       "min": 0,
       "max": 100,
-      "step": 1,
-      "defaultRange": null,
+      "step": 5,
+      "defaultRange": {
+        "lower": 20,
+        "upper": 80
+      },
       "tone": "neutral",
       "status": "none",
       "size": "md",
       "appearance": "standard",
-      "helperText": null,
+      "helperText": "النطاق المسموح من 0 إلى 100",
       "helperPosition": "below",
       "clearable": true,
       "showValueTooltip": true,
       "valueTooltipPlacement": "top",
-      "label": "حقل تجريبي"
+      "label": "نطاق الخصم"
     },
     "showcaseControls": [
       {
@@ -27101,7 +27249,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "ControlValueAccessor value",
         "options": [],
-        "initialValue": null
+        "initialValue": {
+          "lower": 25,
+          "upper": 75
+        }
       },
       {
         "name": "label",
@@ -27111,7 +27262,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "حقل تجريبي"
+        "initialValue": "نطاق الخصم"
       },
       {
         "name": "name",
@@ -27197,7 +27348,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "number",
         "options": [],
-        "initialValue": 1
+        "initialValue": 5
       },
       {
         "name": "defaultRange",
@@ -27207,7 +27358,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "ErpRangeSliderValue | null",
         "options": [],
-        "initialValue": null
+        "initialValue": {
+          "lower": 20,
+          "upper": 80
+        }
       },
       {
         "name": "tone",
@@ -27279,7 +27433,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "النطاق المسموح من 0 إلى 100"
       },
       {
         "name": "helperPosition",
