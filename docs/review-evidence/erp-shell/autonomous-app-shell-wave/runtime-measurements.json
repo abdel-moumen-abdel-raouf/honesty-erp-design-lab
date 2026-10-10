@@ -1,6 +1,6 @@
 {
-  "capturedAt": "2026-10-10T02:55:06.019Z",
-  "baseUrl": "http://localhost:4999",
+  "capturedAt": "2026-10-10T14:32:10.471Z",
+  "baseUrl": "http://127.0.0.1:5003",
   "measurements": [
     {
       "name": "integrated-1440-light-rtl",
@@ -349,7 +349,7 @@
           "className": "applications-menu__surface",
           "rect": {
             "x": 490.234375,
-            "y": 59,
+            "y": 64,
             "width": 360,
             "height": 352
           },
@@ -409,7 +409,7 @@
       },
       "footer": {
         "x": 540.265625,
-        "y": 414.09375,
+        "y": 421.09375,
         "width": 342,
         "height": 57
       },
@@ -533,9 +533,9 @@
           "className": "messages-menu__surface",
           "rect": {
             "x": 531.265625,
-            "y": 59,
+            "y": 64,
             "width": 360,
-            "height": 421.09375
+            "height": 423.09375
           },
           "horizontalOverflow": 0,
           "verticalOverflow": 0
@@ -717,9 +717,9 @@
           "className": "bell__surface",
           "rect": {
             "x": 349.953125,
-            "y": 59,
+            "y": 64,
             "width": 360,
-            "height": 425
+            "height": 427
           },
           "horizontalOverflow": 0,
           "verticalOverflow": 0
@@ -903,7 +903,7 @@
             "x": 107.515625,
             "y": 226.296875,
             "width": 576,
-            "height": 230
+            "height": 265.1875
           },
           "horizontalOverflow": 0,
           "verticalOverflow": 0
@@ -1311,7 +1311,7 @@
       },
       "footer": {
         "x": 17,
-        "y": 406.09375,
+        "y": 413.09375,
         "width": 356,
         "height": 57
       },
@@ -1435,9 +1435,9 @@
           "className": "messages-menu__surface",
           "rect": {
             "x": 8,
-            "y": 51,
+            "y": 56,
             "width": 374,
-            "height": 421.09375
+            "height": 423.09375
           },
           "horizontalOverflow": 0,
           "verticalOverflow": 0
@@ -1797,9 +1797,9 @@
           "className": "bell__surface",
           "rect": {
             "x": 8,
-            "y": 51,
+            "y": 56,
             "width": 304,
-            "height": 443
+            "height": 445
           },
           "horizontalOverflow": 0,
           "verticalOverflow": 0

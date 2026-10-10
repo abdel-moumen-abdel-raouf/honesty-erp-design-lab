@@ -1,5 +1,30 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — defined public UI backlog internally complete
+
+The Page Composition unit closes the currently defined public UI backlog.
+`ErpPage`, `ErpPageHeader`, and `ErpPageShell` now have meaningful one-target
+Workbenches, complete controls/projection evidence, focused regression tests,
+and six inspected desktop/narrow Light/Dark RTL/LTR captures. Runtime evidence
+passes 30/30 assertions with zero clipping, horizontal overflow, console
+errors, or warnings. The incorrect PageHeader primary-action projection marker
+was corrected in the catalog generator and generated showcase.
+
+The lifecycle ledger contains 81 public owners, 45 supporting entries, and six
+planned identities. One public owner (`ErpCheckBox`) is explicitly
+accepted/frozen; the remaining 80 are technically verified and internally
+browser reviewed, with Product Owner visual acceptance still pending. Canonical
+verification passes 152/152 files and 880/880 tests, both typechecks, all
+governance/lint, and the zero-warning 418.32 kB / 92.91 kB build. No subsequent
+business Feature/Page, CRUD, workflow, transport, permissions, or backend unit
+is authorized by this closure.
+
+The refreshed actual-root audit passes 81/81 public component routes. Every
+route has one AppShell, one RouterOutlet, one OverlayHost, and one primary
+showcase target, with zero broken images, horizontal overflow, console errors,
+or console warnings. Real Sidebar navigation preserves intent evidence and the
+functional destination path reaches `/components/table`.
+
 ## Current checkpoint — Entity Form internal review
 
 `ErpEntitySchemaFields` and `ErpStandardEntityForm` completed internal browser

@@ -1,5 +1,32 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Defined Public UI Backlog Closure
+
+`ErpPage`, `ErpPageHeader`, and `ErpPageShell` completed the final defined
+public-owner internal review unit. Their one-target Workbenches now prove all
+Page width/scroll modes, every PageHeader projection region and both projected
+action events, and all PageShell regions with the responsive two-column to
+one-column transition. The catalog generator, generated Workbenches, lifecycle
+ledger, tests, and evidence are synchronized. Evidence under
+`docs/review-evidence/erp-page/page-composition-v1-internal-review/` passes
+30/30 browser assertions. Focused verification passes 6/6 files and 10/10
+tests; canonical verification passes 152/152 files and 880/880 tests, both
+typechecks, all governance/lint, and the zero-warning 418.32 kB / 92.91 kB
+build.
+
+The refreshed integrated-shell audit passes 81/81 public routes with one root
+AppShell, one RouterOutlet, one OverlayHost, and one primary showcase target per
+route; broken images, horizontal overflow, console errors, and console warnings
+are zero.
+
+The lifecycle ledger now deterministically records 81 public owners: the
+explicitly accepted/frozen `ErpCheckBox` plus 80 technically verified and
+internally browser-reviewed candidates. Product Owner status remains pending
+for every unaccepted owner. Six planned identities remain outside the public
+catalog and outside the authorized UI-component backlog. Do not begin business
+Feature/Page, CRUD, workflow, transport, permission, or backend work without a
+new explicit authorization.
+
 ## Current Entity Form Internal Review State
 
 `ErpEntitySchemaFields` and `ErpStandardEntityForm` completed internal browser

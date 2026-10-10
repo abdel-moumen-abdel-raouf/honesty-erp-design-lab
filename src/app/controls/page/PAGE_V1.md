@@ -1,5 +1,19 @@
 # ErpPage V1
 
+## Current verification state — 2026-10-10
+
+`ErpPage`, `ErpPageHeader`, and `ErpPageShell` completed internal browser
+review under the recorded no-external-reference waiver. The dedicated routes
+retain one primary target each and demonstrate all Page modes, complete
+PageHeader named projection and action evidence, and complete responsive
+PageShell regions. Six desktop/narrow Light/Dark RTL/LTR scenarios pass 30/30
+runtime assertions with zero clipping, horizontal overflow, or browser
+diagnostics. Evidence is stored under
+`docs/review-evidence/erp-page/page-composition-v1-internal-review/`.
+
+This is technical and internal visual evidence only. Product Owner visual
+acceptance is not recorded.
+
 ## Ownership
 
 `ErpPage` is the production page boundary. It owns the page's responsive inline

@@ -8,7 +8,7 @@
           data-showcase-target
           [widthMode]="$any(value('widthMode'))"
           [scrollMode]="$any(value('scrollMode'))"
-        ><erp-text type="paragraph">محتوى مسقط مرئي داخل المكوّن</erp-text></erp-page>
+        ><erp-stack gap="default"><erp-surface padding="default" border="subtle"><erp-stack gap="tight"><erp-text type="strong">ملخص المبيعات</erp-text><erp-text type="paragraph" tone="secondary">متابعة أوامر البيع والفواتير المفتوحة للفترة الحالية.</erp-text></erp-stack></erp-surface><erp-surface padding="default" border="subtle"><erp-stack gap="tight"><erp-text type="strong">تنبيهات المخزون</erp-text><erp-text type="paragraph" tone="secondary">ثمانية أصناف وصلت إلى حد إعادة الطلب.</erp-text></erp-stack></erp-surface></erp-stack></erp-page>
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel

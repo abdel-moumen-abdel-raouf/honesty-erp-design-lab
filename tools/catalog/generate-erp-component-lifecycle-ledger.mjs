@@ -42,12 +42,16 @@ const SHELL_OWNERS = new Set([
 
 const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpAlert',
+  'ErpAppFooter',
+  'ErpApplicationsMenu',
+  'ErpAppShell',
   'ErpAvatar',
   'ErpAvatarPicker',
   'ErpBulkActionBar',
   'ErpButton',
   'ErpButtonGroup',
   'ErpBreadcrumbs',
+  'ErpBranchSelector',
   'ErpColorPicker',
   'ErpColumnChooser',
   'ErpComboBox',
@@ -68,24 +72,32 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpFormActions',
   'ErpFormSection',
   'ErpGrid',
+  'ErpGlobalSearch',
   'ErpIcon',
   'ErpIconPicker',
   'ErpImagePicker',
   'ErpIconButton',
   'ErpInline',
   'ErpItemPicker',
+  'ErpMessagesMenu',
   'ErpMoneyBox',
   'ErpNumberBox',
   'ErpNumberStepper',
+  'ErpNotificationBell',
+  'ErpPage',
+  'ErpPageHeader',
+  'ErpPageShell',
   'ErpPagination',
   'ErpPasswordBox',
   'ErpRadioBox',
   'ErpRadioGroup',
   'ErpRangeSlider',
   'ErpRepeater',
+  'ErpQuickActionsBar',
   'ErpSearchBox',
   'ErpSection',
   'ErpSelect',
+  'ErpSidebar',
   'ErpSkeleton',
   'ErpSmartTable',
   'ErpSortHeader',
@@ -104,6 +116,7 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpTextBox',
   'ErpTimeBox',
   'ErpTooltip',
+  'ErpTopbar',
   'ErpUrlBox',
   'ErpUserMenu',
   'ErpValidationSummary',
@@ -299,51 +312,16 @@ drift.
 - Explicitly accepted/frozen public owners: **1** (\`ErpCheckBox\`).
 - Explicitly reopened public owners: **${publicEntries.filter((entry) => REOPENED_VISUALS.has(entry.className)).length}**.
 - Planned identities outside the implemented catalog: **${PLANNED.length}**.
-- Internally reviewed public owners added in the current UI wave:
-  **\`ErpRadioBox\`**, **\`ErpRadioGroup\`**, **\`ErpEmptyState\`**, **\`ErpAvatar\`**,
-  **\`ErpSelect\`**, **\`ErpStatusBadge\`**, **\`ErpTabs\`**, **\`ErpTable\`**,
-  **\`ErpUserMenu\`**, **\`ErpContainer\`**, **\`ErpDivider\`**, **\`ErpGrid\`**,
-  **\`ErpInline\`**, **\`ErpSection\`**, **\`ErpStack\`**, **\`ErpSurface\`**,
-  **\`ErpIcon\`**, **\`ErpText\`**, **\`ErpTextBox\`**, **\`ErpTextAreaBox\`**,
-  **\`ErpPasswordBox\`**, **\`ErpNumberBox\`**, **\`ErpMoneyBox\`**,
-  **\`ErpTelBox\`**, **\`ErpUrlBox\`**, **\`ErpNumberStepper\`**,
-  **\`ErpRangeSlider\`**, **\`ErpDateBox\`**, **\`ErpTimeBox\`**,
-  **\`ErpDateTimeBox\`**, **\`ErpDateRangeBox\`**, **\`ErpSearchBox\`**,
-  **\`ErpComboBox\`**, **\`ErpItemPicker\`**, **\`ErpIconPicker\`**,
-  **\`ErpColorPicker\`**, **\`ErpFilePicker\`**, **\`ErpImagePicker\`**,
-  **\`ErpButton\`**, **\`ErpIconButton\`**, **\`ErpButtonGroup\`**,
-  **\`ErpSplitButton\`**, **\`ErpFab\`**, **\`ErpExtendedFab\`**,
-  **\`ErpFabMenu\`**, **\`ErpTooltip\`**, **\`ErpAlert\`**, **\`ErpSkeleton\`**,
-  **\`ErpColumnChooser\`**, **\`ErpViewSwitcher\`**, **\`ErpBreadcrumbs\`**,
-  **\`ErpPagination\`**, **\`ErpSortHeader\`**, **\`ErpStepper\`**,
-  **\`ErpBulkActionBar\`**, **\`ErpFilterBar\`**, **\`ErpFilterDrawer\`**,
-  **\`ErpTableToolbar\`**, and **\`ErpSmartTable\`**. Their
-  Product Owner status remains pending.
-- All currently recorded binding-reference owners have completed internal
-  review, the full public primitive layer has completed internal review, the
-  foundational text-like Input/Field family has completed internal review, and
-  the generic selection-picker family has completed its item, icon, system
-  color, and free-color interaction review, and the local file/image selection
-  owners have completed real browser-file review, and the two basic action
-  owners have completed live state, output, focus and layout-occupancy review,
-  the grouped action composites have completed mixed-action, anchored-menu,
-  keyboard and semantic review, and the floating action family has completed
-  bounded placement, mixed-menu, popup-semantic, focus-return and viewport
-  containment review, Tooltip has completed its plain/rich projection,
-  motion-control, popup-semantic, focus-return and containment review, and the
-  Alert/Skeleton feedback pair has completed projected action, dismissal,
-  responsive anatomy, state, motion and reduced-motion review, and the
-  ColumnChooser/ViewSwitcher selection pair has completed controlled visibility,
-  dynamic reference-overlay, selected-state and disabled-state review, and the
-  remaining Navigation owners have completed hierarchical content, controlled
-  pagination/sort, responsive breadcrumb, and projected-step review, and the
-  Data/Table composition owners have completed projection, interaction,
-  responsive wrapping, internal table-scroll and complete SmartTable review,
-  and the Forms composition owners have completed semantic form submission,
-  projected section/action layout, controlled repeater rows, issue activation,
-  responsive containment, and interaction review. The next Bottom-Up unit opens
-  the two public schema-driven Entity Form owners:
-  **\`ErpEntitySchemaFields\`** and **\`ErpStandardEntityForm\`**.
+- Internally browser-reviewed public owners: **${publicEntries.filter((entry) => INTERNAL_VISUAL_REVIEWED.has(entry.className)).length}**.
+- The currently defined public UI backlog is internally processed: the one
+  explicitly accepted owner remains frozen, and every other public owner has a
+  technically verified candidate plus internal browser evidence. Exact-reference
+  and reopened candidates remain Product Owner review pending; internal review
+  does not convert them to accepted.
+- The six planned identities below remain outside the implemented public catalog
+  and outside the authorized UI-component backlog. No business Feature/Page,
+  CRUD, workflow, transport, permissions, or backend work is opened by this
+  ledger closure.
 
 ## Public owner inventory
 

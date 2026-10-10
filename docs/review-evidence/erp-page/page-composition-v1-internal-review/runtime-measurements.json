@@ -1,0 +1,641 @@
+{
+  "generatedAt": "2026-10-10T14:23:43.946Z",
+  "authority": {
+    "classification": "Original Honesty ERP page-composition candidates under the recorded accelerated-wave no-reference waiver.",
+    "contract": "src/app/controls/SHELL_BATCH_V1.md",
+    "note": "No external exact visual reference is claimed."
+  },
+  "scenarios": [
+    {
+      "name": "page-fluid-1440-light-rtl",
+      "component": "page",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "targetBox": {
+        "x": 147,
+        "y": 358.765625,
+        "right": 1097,
+        "bottom": 557.953125,
+        "width": 950,
+        "height": 199.1875
+      },
+      "horizontalOverflow": 0,
+      "targetOverflow": 0,
+      "diagnostics": [],
+      "clipped": [],
+      "eventText": "آخر تفاعللم يحدث تفاعل بعد",
+      "pageWidth": "fluid",
+      "pageScroll": "document",
+      "headerRegions": {
+        "breadcrumbs": false,
+        "meta": false,
+        "secondary": false,
+        "primary": false
+      },
+      "shellRegions": {
+        "header": false,
+        "main": false,
+        "side": false,
+        "footer": false
+      },
+      "shellColumns": null
+    },
+    {
+      "name": "page-boxed-390-dark-ltr",
+      "component": "page",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 335
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "targetBox": {
+        "x": 57,
+        "y": 296.953125,
+        "right": 333,
+        "bottom": 547.328125,
+        "width": 276,
+        "height": 250.375
+      },
+      "horizontalOverflow": 0,
+      "targetOverflow": 0,
+      "diagnostics": [],
+      "clipped": [],
+      "eventText": "آخر تفاعللم يحدث تفاعل بعد",
+      "pageWidth": "fluid",
+      "pageScroll": "document",
+      "headerRegions": {
+        "breadcrumbs": false,
+        "meta": false,
+        "secondary": false,
+        "primary": false
+      },
+      "shellRegions": {
+        "header": false,
+        "main": false,
+        "side": false,
+        "footer": false
+      },
+      "shellColumns": null
+    },
+    {
+      "name": "page-header-1440-light-rtl",
+      "component": "page-header",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "targetBox": {
+        "x": 147,
+        "y": 400.765625,
+        "right": 1097,
+        "bottom": 515.5625,
+        "width": 950,
+        "height": 114.796875
+      },
+      "horizontalOverflow": 0,
+      "targetOverflow": 0,
+      "diagnostics": [],
+      "clipped": [],
+      "eventText": "آخر تفاعلprimaryActionPressed: true",
+      "pageWidth": null,
+      "pageScroll": null,
+      "headerRegions": {
+        "breadcrumbs": true,
+        "meta": true,
+        "secondary": true,
+        "primary": true
+      },
+      "shellRegions": {
+        "header": false,
+        "main": false,
+        "side": false,
+        "footer": false
+      },
+      "shellColumns": null
+    },
+    {
+      "name": "page-header-390-dark-ltr",
+      "component": "page-header",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 313
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "targetBox": {
+        "x": 57,
+        "y": 340.953125,
+        "right": 333,
+        "bottom": 503.75,
+        "width": 276,
+        "height": 162.796875
+      },
+      "horizontalOverflow": 0,
+      "targetOverflow": 0,
+      "diagnostics": [],
+      "clipped": [],
+      "eventText": "آخر تفاعلsecondaryActionPressed: true",
+      "pageWidth": null,
+      "pageScroll": null,
+      "headerRegions": {
+        "breadcrumbs": true,
+        "meta": true,
+        "secondary": true,
+        "primary": true
+      },
+      "shellRegions": {
+        "header": false,
+        "main": false,
+        "side": false,
+        "footer": false
+      },
+      "shellColumns": null
+    },
+    {
+      "name": "page-shell-1440-light-rtl",
+      "component": "page-shell",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "targetBox": {
+        "x": 147,
+        "y": 293.765625,
+        "right": 1097,
+        "bottom": 621.640625,
+        "width": 950,
+        "height": 327.875
+      },
+      "horizontalOverflow": 0,
+      "targetOverflow": 0,
+      "diagnostics": [],
+      "clipped": [],
+      "eventText": "آخر تفاعللم يحدث تفاعل بعد",
+      "pageWidth": null,
+      "pageScroll": null,
+      "headerRegions": {
+        "breadcrumbs": false,
+        "meta": false,
+        "secondary": false,
+        "primary": false
+      },
+      "shellRegions": {
+        "header": true,
+        "main": true,
+        "side": true,
+        "footer": true
+      },
+      "shellColumns": "630px 320px"
+    },
+    {
+      "name": "page-shell-390-dark-ltr",
+      "component": "page-shell",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 438
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "targetBox": {
+        "x": 57,
+        "y": 164.765625,
+        "right": 333,
+        "bottom": 679.421875,
+        "width": 276,
+        "height": 514.65625
+      },
+      "horizontalOverflow": 0,
+      "targetOverflow": 0,
+      "diagnostics": [],
+      "clipped": [],
+      "eventText": "آخر تفاعللم يحدث تفاعل بعد",
+      "pageWidth": null,
+      "pageScroll": null,
+      "headerRegions": {
+        "breadcrumbs": false,
+        "meta": false,
+        "secondary": false,
+        "primary": false
+      },
+      "shellRegions": {
+        "header": true,
+        "main": true,
+        "side": true,
+        "footer": true
+      },
+      "shellColumns": "276px"
+    }
+  ],
+  "assertions": [
+    {
+      "name": "page-fluid-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "page-fluid-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "rtl",
+        "theme": "light"
+      }
+    },
+    {
+      "name": "page-fluid-1440-light-rtl overflow-clipping",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0,
+        "clipped": []
+      }
+    },
+    {
+      "name": "page-fluid-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "page-fluid-1440-light-rtl controlled page modes",
+      "pass": true,
+      "actual": {
+        "width": "fluid",
+        "scroll": "document"
+      }
+    },
+    {
+      "name": "page-boxed-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "page-boxed-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "ltr",
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "page-boxed-390-dark-ltr overflow-clipping",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0,
+        "clipped": []
+      }
+    },
+    {
+      "name": "page-boxed-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "page-boxed-390-dark-ltr controlled page modes",
+      "pass": true,
+      "actual": {
+        "width": "fluid",
+        "scroll": "document"
+      }
+    },
+    {
+      "name": "page-header-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "page-header-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "rtl",
+        "theme": "light"
+      }
+    },
+    {
+      "name": "page-header-1440-light-rtl overflow-clipping",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0,
+        "clipped": []
+      }
+    },
+    {
+      "name": "page-header-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "page-header-1440-light-rtl complete header regions",
+      "pass": true,
+      "actual": {
+        "name": "page-header-1440-light-rtl",
+        "component": "page-header",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "targetBox": {
+          "x": 147,
+          "y": 400.765625,
+          "right": 1097,
+          "bottom": 515.5625,
+          "width": 950,
+          "height": 114.796875
+        },
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "diagnostics": [],
+        "clipped": [],
+        "eventText": "آخر تفاعلprimaryActionPressed: true",
+        "pageWidth": null,
+        "pageScroll": null,
+        "headerRegions": {
+          "breadcrumbs": true,
+          "meta": true,
+          "secondary": true,
+          "primary": true
+        },
+        "shellRegions": {
+          "header": false,
+          "main": false,
+          "side": false,
+          "footer": false
+        },
+        "shellColumns": null
+      }
+    },
+    {
+      "name": "page-header-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "page-header-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "ltr",
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "page-header-390-dark-ltr overflow-clipping",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0,
+        "clipped": []
+      }
+    },
+    {
+      "name": "page-header-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "page-header-390-dark-ltr complete header regions",
+      "pass": true,
+      "actual": {
+        "name": "page-header-390-dark-ltr",
+        "component": "page-header",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 313
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "targetBox": {
+          "x": 57,
+          "y": 340.953125,
+          "right": 333,
+          "bottom": 503.75,
+          "width": 276,
+          "height": 162.796875
+        },
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "diagnostics": [],
+        "clipped": [],
+        "eventText": "آخر تفاعلsecondaryActionPressed: true",
+        "pageWidth": null,
+        "pageScroll": null,
+        "headerRegions": {
+          "breadcrumbs": true,
+          "meta": true,
+          "secondary": true,
+          "primary": true
+        },
+        "shellRegions": {
+          "header": false,
+          "main": false,
+          "side": false,
+          "footer": false
+        },
+        "shellColumns": null
+      }
+    },
+    {
+      "name": "page-shell-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "page-shell-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "rtl",
+        "theme": "light"
+      }
+    },
+    {
+      "name": "page-shell-1440-light-rtl overflow-clipping",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0,
+        "clipped": []
+      }
+    },
+    {
+      "name": "page-shell-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "page-shell-1440-light-rtl complete shell regions",
+      "pass": true,
+      "actual": {
+        "name": "page-shell-1440-light-rtl",
+        "component": "page-shell",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "targetBox": {
+          "x": 147,
+          "y": 293.765625,
+          "right": 1097,
+          "bottom": 621.640625,
+          "width": 950,
+          "height": 327.875
+        },
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "diagnostics": [],
+        "clipped": [],
+        "eventText": "آخر تفاعللم يحدث تفاعل بعد",
+        "pageWidth": null,
+        "pageScroll": null,
+        "headerRegions": {
+          "breadcrumbs": false,
+          "meta": false,
+          "secondary": false,
+          "primary": false
+        },
+        "shellRegions": {
+          "header": true,
+          "main": true,
+          "side": true,
+          "footer": true
+        },
+        "shellColumns": "630px 320px"
+      }
+    },
+    {
+      "name": "page-shell-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "page-shell-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "ltr",
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "page-shell-390-dark-ltr overflow-clipping",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0,
+        "clipped": []
+      }
+    },
+    {
+      "name": "page-shell-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "page-shell-390-dark-ltr complete shell regions",
+      "pass": true,
+      "actual": {
+        "name": "page-shell-390-dark-ltr",
+        "component": "page-shell",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 438
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "targetBox": {
+          "x": 57,
+          "y": 164.765625,
+          "right": 333,
+          "bottom": 679.421875,
+          "width": 276,
+          "height": 514.65625
+        },
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "diagnostics": [],
+        "clipped": [],
+        "eventText": "آخر تفاعللم يحدث تفاعل بعد",
+        "pageWidth": null,
+        "pageScroll": null,
+        "headerRegions": {
+          "breadcrumbs": false,
+          "meta": false,
+          "secondary": false,
+          "primary": false
+        },
+        "shellRegions": {
+          "header": true,
+          "main": true,
+          "side": true,
+          "footer": true
+        },
+        "shellColumns": "276px"
+      }
+    }
+  ],
+  "summary": {
+    "total": 30,
+    "passed": 30,
+    "failed": []
+  }
+}

@@ -1,5 +1,29 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI state — defined public backlog internally closed
+
+Page, PageHeader, and PageShell completed the final defined public-owner
+internal review unit. Their one-target Workbenches demonstrate every public
+Page mode, complete named PageHeader projection with observable actions, and
+complete responsive PageShell composition. The review corrected a showcase
+projection defect that had placed the primary header action under a nonexistent
+marker. Evidence under
+`docs/review-evidence/erp-page/page-composition-v1-internal-review/` passes
+30/30 assertions. Focused verification passes 6/6 files and 10/10 tests;
+canonical verification passes 152/152 files and 880/880 tests with a
+zero-warning 418.32 kB / 92.91 kB build.
+
+The final integrated-shell scan passes all 81/81 public routes with one root
+AppShell, RouterOutlet, OverlayHost, and primary target per route; broken
+images, horizontal overflow, and browser diagnostics are zero.
+
+All 81 public catalog owners are now accounted for: `ErpCheckBox` alone is
+explicitly accepted/frozen; the other 80 have technically verified candidates
+and internal browser evidence while remaining Product Owner review pending.
+The six planned identities in the lifecycle ledger are not implemented and
+remain outside this UI backlog. The next action is consolidated Product Owner
+visual review, not an automatic business Feature/Page or CRUD wave.
+
 ## Latest verified UI unit — Entity Form owners
 
 EntitySchemaFields and StandardEntityForm completed internal browser review as

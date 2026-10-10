@@ -1,5 +1,33 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Page Composition and public-backlog closure candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `b749db98be448b2c9616f119e0a9de5f3f3302d6` — synchronized `main` after the
+  Entity Form checkpoint.
+
+Bounded scope:
+
+- Expanded Page, PageHeader, and PageShell generated Workbenches with meaningful
+  Arabic ERP composition and corrected the invalid PageHeader primary-action
+  projection marker.
+- Added focused Workbench regression tests and persisted six inspected
+  desktop/narrow Light/Dark RTL/LTR scenarios with 30/30 runtime assertions
+  under `docs/review-evidence/erp-page/page-composition-v1-internal-review/`.
+- Closed the deterministic public lifecycle queue without changing any Product
+  Owner acceptance state or opening planned business/page identities.
+
+Verification before commit:
+
+- Focused tests: 6/6 files, 10/10 tests.
+- Canonical `npm run verify:clean`: 152/152 files, 880/880 tests, both
+  typechecks, all governance/lint, production build, zero warnings.
+- Build: 418.32 kB initial / 92.91 kB estimated transfer.
+
+Visual status remains `PRODUCT_OWNER_VISUAL_REVIEW_PENDING` except for the
+already accepted/frozen `ErpCheckBox`.
+
 ## Entity Form internal-review candidate — 2026-10-10
 
 Entry checkpoint:

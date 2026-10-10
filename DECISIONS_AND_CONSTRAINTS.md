@@ -1,5 +1,26 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Page Composition and public-backlog closure decisions — 2026-10-10
+
+- Page, PageHeader, and PageShell remain original Honesty ERP candidates under
+  the recorded accelerated no-external-reference waiver; no exact external
+  geometry is claimed.
+- Page keeps width and scroll policy only. PageHeader keeps title hierarchy and
+  named projection only. PageShell keeps header/main/context/footer composition
+  only. None acquires routing, business actions, transport, persistence, or
+  global application-frame authority.
+- Showcase projection markers must match the production owner's declared
+  regions. `erpPageHeaderPrimaryAction` was invalid and is replaced by the
+  owned `erpPageHeaderPrimary`; the independent secondary region uses
+  `erpPageHeaderSecondary`.
+- The generated lifecycle ledger is the deterministic closure record: 81 public
+  owners = one explicitly accepted/frozen owner plus 80 technically verified
+  and internally browser-reviewed candidates. Product Owner acceptance remains
+  a separate decision.
+- Planned identities are not permission to implement them. Business
+  Feature/Page, CRUD, workflow, transport, permissions, and backend work remain
+  closed.
+
 ## Entity Form internal-review decisions — 2026-10-10
 
 - EntitySchemaFields and StandardEntityForm remain original Honesty ERP
