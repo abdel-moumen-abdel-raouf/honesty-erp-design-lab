@@ -19,6 +19,7 @@ const QUICK_ACTIONS_SHOWCASE = 'src/app/showcase/components/quick-actions-bar/qu
 const APP_SHELL_SHOWCASE = 'src/app/showcase/components/app-shell/app-shell-showcase.html';
 const APP_SHELL_SHOWCASE_SOURCE = 'src/app/showcase/components/app-shell/app-shell-showcase.ts';
 const APP_SHELL_WORKBENCH_STATE = 'src/app/review-internals/app-shell-workbench/app-shell-workbench-state.ts';
+const APP_SHELL_RESPONSIVE = 'src/app/controls/app-shell/app-shell-responsive.scss';
 const USER_MENU_REFERENCE = 'src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md';
 const OWNERS = [
   'app-footer',
@@ -71,6 +72,7 @@ export function validateShellNavigation(files) {
   const appShellShowcase = files.get(APP_SHELL_SHOWCASE) ?? '';
   const appShellShowcaseSource = files.get(APP_SHELL_SHOWCASE_SOURCE) ?? '';
   const appShellWorkbenchState = files.get(APP_SHELL_WORKBENCH_STATE) ?? '';
+  const appShellResponsive = files.get(APP_SHELL_RESPONSIVE) ?? '';
   const sources = OWNERS.map(
     (owner) => files.get(`src/app/controls/${owner}/${owner}.ts`) ?? '',
   ).join('\n');
@@ -165,6 +167,9 @@ export function validateShellNavigation(files) {
     !appShell.includes('<erp-app-footer')
   ) {
     errors.push('ErpAppShell must compose Sidebar, Topbar, QuickActionsBar, and AppFooter');
+  }
+  if (!appShellResponsive.includes('overflow-inline: clip')) {
+    errors.push('ErpAppShell must contain the closed narrow Sidebar without document horizontal overflow');
   }
 
   const sidebar = `${files.get('src/app/controls/sidebar/sidebar.ts') ?? ''}\n${files.get('src/app/controls/sidebar/sidebar.html') ?? ''}`;
@@ -473,6 +478,7 @@ function validFixture(overrides = new Map()) {
     [APP_SHELL_SHOWCASE, '<div data-app-shell-root-workbench-panel></div>'],
     [APP_SHELL_SHOWCASE_SOURCE, 'inject(ErpReviewAppShellWorkbenchState)'],
     [APP_SHELL_WORKBENCH_STATE, "@Injectable({providedIn: 'root'}) export class ErpReviewAppShellWorkbenchState {}"],
+    [APP_SHELL_RESPONSIVE, ":host { overflow-inline: clip; }"],
     [USER_MENU_REFERENCE, '75F64AE955800ABE9FCBE27D7B09161D95E2DE2C77B6106C337AA4841D39D399 1EFFE6A3ADC2613EC19612699E567C38E5457997E342333B0686F70D63A3AFEA'],
   ]);
 
@@ -617,6 +623,7 @@ function runSelfTest() {
     ['always-visible UserMenu surface', new Map([['src/app/controls/user-menu/user-menu.scss', '.user-menu { min-inline-size: 0; } .user-menu__identity-header { flex: 0 0 auto; } .user-menu__items { flex: 1 1 auto; overflow-y: auto; } .user-menu__surface::before { left: var(--honesty-anchored-surface-arrow-cross-axis-center); } @media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }']]), 'open-only flex'],
     ['nested AppShell showcase', new Map([[APP_SHELL_SHOWCASE, '<erp-app-shell data-app-shell-root-workbench-panel></erp-app-shell>']]), 'without rendering a nested Shell'],
     ['window-event AppShell bridge', new Map([[APP_SHELL_SHOWCASE_SOURCE, 'inject(ErpReviewAppShellWorkbenchState); window.dispatchEvent(new CustomEvent("honesty-erp-app-shell-showcase"))']]), 'typed Angular review-state bridge'],
+    ['uncontained narrow AppShell drawer', new Map([[APP_SHELL_RESPONSIVE, '']]), 'document horizontal overflow'],
     ['stacked xxs Topbar context and search', new Map([['src/app/controls/topbar/topbar.scss', "@include query.viewport-down('xxs') { .topbar__context, .topbar__search, .topbar__user { flex-basis: 100%; } }"]]), 'contained xxs row'],
     ['non-shrinking xxs BranchSelector', new Map([['src/app/controls/branch-selector/branch-selector.scss', '']]), 'shrink under xxs Topbar pressure'],
   ];
@@ -656,6 +663,7 @@ function runCheck() {
     APP_SHELL_SHOWCASE,
     APP_SHELL_SHOWCASE_SOURCE,
     APP_SHELL_WORKBENCH_STATE,
+    APP_SHELL_RESPONSIVE,
     USER_MENU_REFERENCE,
   ];
 

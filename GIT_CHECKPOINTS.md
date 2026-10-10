@@ -1,5 +1,30 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## ErpTabs exact-reference internal visual-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `c4583372eb8401b127c9766ecf8ede4331fbac4e` — synchronized `main` after the
+  ErpSelect V3 internal-review checkpoint.
+
+Bounded scope:
+
+- Reverified and rendered the binding Tabs source, then measured equivalent
+  horizontal and vertical reference/implementation specimens.
+- Replaced the one-tab workbench fixture with five meaningful Arabic ERP tabs
+  and added controlled model/event/disabled regression evidence.
+- Added reproducible desktop/narrow Light/Dark RTL/LTR screenshots and runtime
+  geometry records.
+- Corrected a reproduced narrow AppShell regression where the closed translated
+  Sidebar expanded document width; shell governance now protects containment.
+
+Status: `TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Focused tests pass 2/2 files and 30/30
+tests; canonical verification passes 128/128 files and 817/817 tests, both
+typechecks, all governance and the zero-warning 418.32 kB / 92.90 kB build.
+The bounded commit message is `fix(tabs): close exact reference internal review`.
+Next reopened unit: `ErpTable`.
+
 ## ErpSelect V3 internal visual-review candidate — 2026-10-10
 
 Entry checkpoint:

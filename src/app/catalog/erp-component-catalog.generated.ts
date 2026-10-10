@@ -39906,10 +39906,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null
+          "activeId": "overview"
         }
       },
       {
@@ -39920,10 +39949,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "orientation": "horizontal"
         }
       },
@@ -39935,10 +39993,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "orientation": "vertical"
         }
       },
@@ -39950,10 +40037,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "verticalPlacement": "start"
         }
       },
@@ -39965,10 +40081,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "verticalPlacement": "end"
         }
       },
@@ -39980,10 +40125,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "distribution": "content"
         }
       },
@@ -39995,10 +40169,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "distribution": "fill"
         }
       },
@@ -40010,10 +40213,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "variant": "underline"
         }
       },
@@ -40025,10 +40257,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "variant": "pill"
         }
       },
@@ -40040,10 +40301,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "variant": "solid"
         }
       },
@@ -40055,10 +40345,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "variant": "ghost"
         }
       },
@@ -40070,10 +40389,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "variant": "pills"
         }
       },
@@ -40085,10 +40433,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "transition": "slide"
         }
       },
@@ -40100,10 +40477,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "transition": "fade"
         }
       },
@@ -40115,10 +40521,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "transition": "scale"
         }
       },
@@ -40130,10 +40565,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "transition": "none"
         }
       },
@@ -40145,10 +40609,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "transition": "fade-up"
         }
       },
@@ -40160,10 +40653,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "transition": "fade-down"
         }
       },
@@ -40175,10 +40697,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "transition": "fade-start"
         }
       },
@@ -40190,10 +40741,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "transition": "fade-end"
         }
       },
@@ -40205,10 +40785,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "headerShape": "reference"
         }
       },
@@ -40220,10 +40829,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "headerShape": "rectangle"
         }
       },
@@ -40235,10 +40873,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "headerShape": "rounded"
         }
       },
@@ -40250,10 +40917,39 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             {
               "id": "overview",
               "label": "نظرة عامة",
-              "content": "محتوى النظرة العامة"
+              "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+              "icon": "dashboard",
+              "count": 12
+            },
+            {
+              "id": "orders",
+              "label": "الطلبات",
+              "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+              "icon": "shopping-cart",
+              "count": 8
+            },
+            {
+              "id": "invoices",
+              "label": "الفواتير",
+              "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+              "icon": "file",
+              "count": 5
+            },
+            {
+              "id": "customers",
+              "label": "العملاء",
+              "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+              "icon": "people"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير",
+              "content": "التقارير الدورية قيد الإعداد.",
+              "icon": "chart",
+              "disabled": true
             }
           ],
-          "activeId": null,
+          "activeId": "overview",
           "headerShape": "circle"
         }
       }
@@ -40271,12 +40967,41 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "renderPanels": true,
       "lazy": true,
       "keepAlive": true,
-      "activeId": "",
+      "activeId": "overview",
       "items": [
         {
           "id": "overview",
           "label": "نظرة عامة",
-          "content": "محتوى النظرة العامة"
+          "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+          "icon": "dashboard",
+          "count": 12
+        },
+        {
+          "id": "orders",
+          "label": "الطلبات",
+          "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+          "icon": "shopping-cart",
+          "count": 8
+        },
+        {
+          "id": "invoices",
+          "label": "الفواتير",
+          "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+          "icon": "file",
+          "count": 5
+        },
+        {
+          "id": "customers",
+          "label": "العملاء",
+          "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+          "icon": "people"
+        },
+        {
+          "id": "reports",
+          "label": "التقارير",
+          "content": "التقارير الدورية قيد الإعداد.",
+          "icon": "chart",
+          "disabled": true
         }
       ]
     },
@@ -40293,7 +41018,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           {
             "id": "overview",
             "label": "نظرة عامة",
-            "content": "محتوى النظرة العامة"
+            "content": "ملخص مؤشرات الأداء وحركة العمليات اليومية.",
+            "icon": "dashboard",
+            "count": 12
+          },
+          {
+            "id": "orders",
+            "label": "الطلبات",
+            "content": "متابعة طلبات المبيعات وحالات التنفيذ والتسليم.",
+            "icon": "shopping-cart",
+            "count": 8
+          },
+          {
+            "id": "invoices",
+            "label": "الفواتير",
+            "content": "مراجعة الفواتير المفتوحة والمسددة والمتأخرة.",
+            "icon": "file",
+            "count": 5
+          },
+          {
+            "id": "customers",
+            "label": "العملاء",
+            "content": "بيانات العملاء والأرصدة وآخر المعاملات.",
+            "icon": "people"
+          },
+          {
+            "id": "reports",
+            "label": "التقارير",
+            "content": "التقارير الدورية قيد الإعداد.",
+            "icon": "chart",
+            "disabled": true
           }
         ]
       },
@@ -40450,7 +41204,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string",
         "options": [],
-        "initialValue": ""
+        "initialValue": "overview"
       }
     ],
     "showcaseCoverage": {

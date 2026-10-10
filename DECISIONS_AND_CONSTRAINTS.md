@@ -1,5 +1,17 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## ErpTabs internal-review decisions — 2026-10-10
+
+- `ERP-TABS.html` and its verified SHA remain the sole Tabs visual/behavioral
+  authority; system colors and font family remain the only visual substitutions.
+- The existing literal Tabs component geometry is retained because direct
+  reference comparison confirmed its horizontal and vertical box values.
+- The dedicated workbench must contain multiple meaningful Arabic ERP tabs and
+  prove controlled activation, disabled behavior and outputs on one target.
+- An off-canvas Shell drawer may translate beyond the viewport, but AppShell
+  must contain that intentional visual overflow so it cannot enlarge the page.
+- Internal browser review does not establish Product Owner acceptance.
+
 ## ErpSelect internal-review decisions — 2026-10-10
 
 - `ERP-SELECT.html` and its verified SHA remain the sole visual/behavioral

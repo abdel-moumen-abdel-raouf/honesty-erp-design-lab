@@ -1,6 +1,13 @@
 @use '../../../styles/foundation/queries' as query;
 
 @include query.viewport-down('xl') {
+  :host {
+    // The fixed logical-start drawer intentionally translates outside the
+    // viewport while closed. Keep that off-canvas visual overflow inside the
+    // shell boundary so it cannot create document-level horizontal scrolling.
+    overflow-inline: clip;
+  }
+
   .app-shell {
     grid-template-areas:
       'topbar'

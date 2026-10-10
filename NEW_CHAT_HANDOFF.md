@@ -1,5 +1,19 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — ErpTabs reviewed internally
+
+Continue from synchronized `main` after the bounded ErpTabs checkpoint.
+Reference/implementation screenshots, measurements and reproduction steps are
+under `docs/review-evidence/erp-tabs/v1-internal-review/`. Exact horizontal and
+vertical component geometry matches the binding source; the workbench now uses
+five Arabic ERP tabs and proves model/events/disabled behavior on one target.
+The narrow review also found and corrected closed AppShell Sidebar visual
+overflow, with governance protection and zero implementation page overflow at
+390/320 px. Canonical verification passes 128/128 files and 817/817 tests,
+both typechecks, all governance and the zero-warning 418.32 kB / 92.90 kB
+build. Product Owner visual approval remains pending. Continue with the
+reopened `ErpTable` full reference experience.
+
 ## Current continuation point — ErpSelect V3 reviewed internally
 
 Continue from live `main` after the bounded ErpSelect checkpoint. Direct

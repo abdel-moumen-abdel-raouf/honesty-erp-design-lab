@@ -1,5 +1,17 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — ErpTabs complete internally
+
+The binding source was rehashed, rendered and compared directly with the
+Angular exact-reference evidence. Horizontal and vertical component geometry
+matches; the dedicated live target now proves real switching across five
+Arabic ERP tabs, controlled model state, a disabled tab and outputs. Evidence
+covers Light/Dark, RTL/LTR, desktop and narrow. A reproduced AppShell
+off-canvas Sidebar overflow was also contained and governed. Canonical
+verification passes 128/128 files and 817/817 tests with a zero-warning
+418.32 kB / 92.90 kB build. Product Owner status remains pending. The next
+reopened exact unit is the complete `ErpTable` reference experience.
+
 ## Current UI continuation — ErpSelect V3 complete internally
 
 The binding Select source and SHA were recovered, rendered and compared at

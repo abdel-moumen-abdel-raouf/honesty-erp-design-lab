@@ -200,6 +200,38 @@ describe('ComponentShowcase', () => {
     expect(JSON.parse(String(panel.editor(optionsControl).value))).toHaveLength(3);
   });
 
+  it('starts the Tabs workbench with a switchable Arabic ERP model and event evidence', async () => {
+    const harness = await RouterTestingHarness.create();
+    await harness.navigateByUrl('/components/tabs', ComponentShowcase);
+    await vi.waitFor(() => {
+      harness.fixture.detectChanges();
+      expect(harness.routeNativeElement?.querySelector('[data-showcase-target]')).not.toBeNull();
+    });
+
+    const root = harness.routeNativeElement as HTMLElement;
+    const tabs = root.querySelectorAll<HTMLButtonElement>(
+      '[data-showcase-target] [role="tab"]',
+    );
+    expect(root.querySelectorAll('[data-showcase-target]')).toHaveLength(1);
+    expect(tabs).toHaveLength(5);
+    expect(tabs[0].getAttribute('aria-selected')).toBe('true');
+    expect(tabs[4].disabled).toBe(true);
+
+    tabs[1].click();
+    harness.fixture.detectChanges();
+
+    expect(tabs[1].getAttribute('aria-selected')).toBe('true');
+    expect(root.querySelector('[data-showcase-event-log]')?.textContent).toContain(
+      'tabClick:',
+    );
+
+    const panel = harness.fixture.debugElement
+      .query(By.directive(ErpReviewShowcaseControlPanel))
+      .componentInstance as ErpReviewShowcaseControlPanel;
+    const activeId = panel.controls().find((control) => control.name === 'activeId')!;
+    expect(panel.editor(activeId).value).toBe('orders');
+  });
+
   it('restores RadioBox and RadioGroup family evidence on demand with one live target', async () => {
     const harness = await RouterTestingHarness.create();
 

@@ -564,7 +564,16 @@ const FIXTURE_INPUTS = new Map([
     selectedKeys: [],
     columnWidths: {},
   }],
-  ['ErpTabs', {items: [{id: 'overview', label: 'نظرة عامة', content: 'محتوى النظرة العامة'}]}],
+  ['ErpTabs', {
+    items: [
+      {id: 'overview', label: 'نظرة عامة', content: 'ملخص مؤشرات الأداء وحركة العمليات اليومية.', icon: 'dashboard', count: 12},
+      {id: 'orders', label: 'الطلبات', content: 'متابعة طلبات المبيعات وحالات التنفيذ والتسليم.', icon: 'shopping-cart', count: 8},
+      {id: 'invoices', label: 'الفواتير', content: 'مراجعة الفواتير المفتوحة والمسددة والمتأخرة.', icon: 'file', count: 5},
+      {id: 'customers', label: 'العملاء', content: 'بيانات العملاء والأرصدة وآخر المعاملات.', icon: 'people'},
+      {id: 'reports', label: 'التقارير', content: 'التقارير الدورية قيد الإعداد.', icon: 'chart', disabled: true},
+    ],
+    activeId: 'overview',
+  }],
   ['ErpTooltip', {text: 'توضيح الإجراء للمستخدم'}],
   ['ErpUserMenu', {
     user: USER_MENU_SHOWCASE_PRESETS[0].user,

@@ -1,0 +1,712 @@
+{
+  "capturedAt": "2026-10-10T04:35:29.405Z",
+  "referenceUrl": "http://127.0.0.1:8766/ERP-TABS.html",
+  "referenceSha256": "CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9",
+  "implementationUrl": "http://127.0.0.1:4999",
+  "measurements": [
+    {
+      "name": "reference-1440-light-rtl",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/ERP-TABS.html",
+      "theme": "light",
+      "direction": "rtl",
+      "primaryTargetCount": 0,
+      "tabCount": 5,
+      "selectedLabel": "Overview",
+      "horizontal": {
+        "list": {
+          "x": 117.5,
+          "y": 411.59375,
+          "width": 1190,
+          "height": 36.59375
+        },
+        "tab": {
+          "x": 1222.40625,
+          "y": 411.59375,
+          "width": 85.09375,
+          "height": 35.59375
+        },
+        "indicator": {
+          "x": 1215.625,
+          "y": 444.1875,
+          "width": 91.875,
+          "height": 3
+        }
+      },
+      "vertical": {
+        "list": {
+          "x": 1067.5,
+          "y": 2278.4375,
+          "width": 240,
+          "height": 292
+        },
+        "tab": {
+          "x": 1072.5,
+          "y": 2282.4375,
+          "width": 231,
+          "height": 40
+        },
+        "indicator": {
+          "x": 1304.5,
+          "y": 2282.4375,
+          "width": 3,
+          "height": 40
+        }
+      },
+      "computed": {
+        "fontSize": "13px",
+        "lineHeight": "15.6px",
+        "fontWeight": "600",
+        "paddingInline": "16px",
+        "paddingBlock": "10px",
+        "gap": "8px",
+        "borderRadius": "0px"
+      },
+      "pageHorizontalOverflow": 0,
+      "overflowOffenders": [
+        {
+          "tag": "code",
+          "className": "",
+          "x": -1107.71875,
+          "right": 1311.5,
+          "width": 2419.21875,
+          "scrollWidth": 0,
+          "clientWidth": 0
+        }
+      ],
+      "brokenImages": 0,
+      "diagnostics": [
+        {
+          "level": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (File not found)"
+        }
+      ]
+    },
+    {
+      "name": "reference-390-dark-rtl",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/ERP-TABS.html",
+      "theme": "dark",
+      "direction": "rtl",
+      "primaryTargetCount": 0,
+      "tabCount": 5,
+      "selectedLabel": "Overview",
+      "horizontal": {
+        "list": {
+          "x": 45,
+          "y": 340.1875,
+          "width": 285,
+          "height": 40.59375
+        },
+        "tab": {
+          "x": 244.90625,
+          "y": 340.1875,
+          "width": 85.09375,
+          "height": 39.59375
+        },
+        "indicator": {
+          "x": 244.90625,
+          "y": 376.78125,
+          "width": 85.09375,
+          "height": 3
+        }
+      },
+      "vertical": {
+        "list": {
+          "x": 45,
+          "y": 2463,
+          "width": 285,
+          "height": 51
+        },
+        "tab": {
+          "x": 209.40625,
+          "y": 2467,
+          "width": 116.59375,
+          "height": 42
+        },
+        "indicator": {
+          "x": 327,
+          "y": 2467,
+          "width": 3,
+          "height": 42
+        }
+      },
+      "computed": {
+        "fontSize": "13px",
+        "lineHeight": "15.6px",
+        "fontWeight": "600",
+        "paddingInline": "16px",
+        "paddingBlock": "12px",
+        "gap": "8px",
+        "borderRadius": "0px"
+      },
+      "pageHorizontalOverflow": 107,
+      "overflowOffenders": [
+        {
+          "tag": "code",
+          "className": "",
+          "x": -2085.21875,
+          "right": 334,
+          "width": 2419.21875,
+          "scrollWidth": 0,
+          "clientWidth": 0
+        },
+        {
+          "tag": "button",
+          "className": "erp-tabs__tab",
+          "x": -467.421875,
+          "right": -364.890625,
+          "width": 102.53125,
+          "scrollWidth": 103,
+          "clientWidth": 103
+        },
+        {
+          "tag": "span",
+          "className": "erp-tabs__label",
+          "x": -451.421875,
+          "right": -404.890625,
+          "width": 46.53125,
+          "scrollWidth": 47,
+          "clientWidth": 47
+        },
+        {
+          "tag": "span",
+          "className": "erp-tabs__icon",
+          "x": -396.890625,
+          "right": -380.890625,
+          "width": 16,
+          "scrollWidth": 16,
+          "clientWidth": 16
+        },
+        {
+          "tag": "svg",
+          "className": "",
+          "x": -396.890625,
+          "right": -380.890625,
+          "width": 16,
+          "scrollWidth": 16,
+          "clientWidth": 16
+        },
+        {
+          "tag": "path",
+          "className": "",
+          "x": -395.5572814941406,
+          "right": -382.2239685058594,
+          "width": 13.33331298828125,
+          "scrollWidth": 0,
+          "clientWidth": 0
+        },
+        {
+          "tag": "circle",
+          "className": "",
+          "x": -390.890625,
+          "right": -386.890625,
+          "width": 4,
+          "scrollWidth": 0,
+          "clientWidth": 0
+        },
+        {
+          "tag": "button",
+          "className": "erp-tabs__tab",
+          "x": -364.890625,
+          "right": -265.5625,
+          "width": 99.328125,
+          "scrollWidth": 99,
+          "clientWidth": 99
+        },
+        {
+          "tag": "span",
+          "className": "erp-tabs__label",
+          "x": -348.890625,
+          "right": -305.5625,
+          "width": 43.328125,
+          "scrollWidth": 43,
+          "clientWidth": 43
+        },
+        {
+          "tag": "code",
+          "className": "",
+          "x": -321.21875,
+          "right": 334,
+          "width": 655.21875,
+          "scrollWidth": 0,
+          "clientWidth": 0
+        },
+        {
+          "tag": "button",
+          "className": "erp-tabs__tab",
+          "x": -318.140625,
+          "right": -215.609375,
+          "width": 102.53125,
+          "scrollWidth": 103,
+          "clientWidth": 103
+        },
+        {
+          "tag": "code",
+          "className": "",
+          "x": -314.03125,
+          "right": 334,
+          "width": 648.03125,
+          "scrollWidth": 0,
+          "clientWidth": 0
+        }
+      ],
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "implementation-1440-light-rtl-exact",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "route": "/components/tabs",
+      "direction": "rtl",
+      "primaryTargetCount": 1,
+      "tabCount": 5,
+      "selectedLabel": "نظرة عامة",
+      "horizontal": {
+        "list": {
+          "x": 194,
+          "y": 409.796875,
+          "width": 871,
+          "height": 36.59375
+        },
+        "tab": {
+          "x": 974.5625,
+          "y": 409.796875,
+          "width": 90.4375,
+          "height": 35.59375
+        },
+        "indicator": {
+          "x": 974.5625,
+          "y": 442.390625,
+          "width": 90.4375,
+          "height": 3
+        }
+      },
+      "vertical": {
+        "list": {
+          "x": 825,
+          "y": 1737.5625,
+          "width": 240,
+          "height": 292
+        },
+        "tab": {
+          "x": 830,
+          "y": 1741.5625,
+          "width": 231,
+          "height": 40
+        },
+        "indicator": {
+          "x": 826,
+          "y": 1741.5625,
+          "width": 3,
+          "height": 40
+        }
+      },
+      "computed": {
+        "fontSize": "13px",
+        "lineHeight": "15.6px",
+        "fontWeight": "600",
+        "paddingInline": "16px",
+        "paddingBlock": "10px",
+        "gap": "8px",
+        "borderRadius": "0px"
+      },
+      "pageHorizontalOverflow": 0,
+      "overflowOffenders": [],
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "implementation-1280-dark-ltr-exact",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "route": "/components/tabs",
+      "direction": "ltr",
+      "primaryTargetCount": 1,
+      "tabCount": 5,
+      "selectedLabel": "نظرة عامة",
+      "horizontal": {
+        "list": {
+          "x": 194,
+          "y": 409.796875,
+          "width": 711,
+          "height": 36.59375
+        },
+        "tab": {
+          "x": 814.5625,
+          "y": 409.796875,
+          "width": 90.4375,
+          "height": 35.59375
+        },
+        "indicator": {
+          "x": 814.5625,
+          "y": 442.390625,
+          "width": 90.4375,
+          "height": 3
+        }
+      },
+      "vertical": {
+        "list": {
+          "x": 665,
+          "y": 1737.5625,
+          "width": 240,
+          "height": 292
+        },
+        "tab": {
+          "x": 670,
+          "y": 1741.5625,
+          "width": 231,
+          "height": 40
+        },
+        "indicator": {
+          "x": 666,
+          "y": 1741.5625,
+          "width": 3,
+          "height": 40
+        }
+      },
+      "computed": {
+        "fontSize": "13px",
+        "lineHeight": "15.6px",
+        "fontWeight": "600",
+        "paddingInline": "16px",
+        "paddingBlock": "10px",
+        "gap": "8px",
+        "borderRadius": "0px"
+      },
+      "pageHorizontalOverflow": 0,
+      "overflowOffenders": [],
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "implementation-390-dark-rtl-live",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "route": "/components/tabs",
+      "direction": "rtl",
+      "primaryTargetCount": 1,
+      "tabCount": 5,
+      "selectedLabel": "الطلبات8",
+      "horizontal": {
+        "list": {
+          "x": 57,
+          "y": 374.953125,
+          "width": 261,
+          "height": 43
+        },
+        "tab": {
+          "x": 201.390625,
+          "y": 374.953125,
+          "width": 116.609375,
+          "height": 42
+        },
+        "indicator": {
+          "x": 97.3125,
+          "y": 413.953125,
+          "width": 104.078125,
+          "height": 3
+        }
+      },
+      "vertical": {
+        "list": null,
+        "tab": null,
+        "indicator": null
+      },
+      "computed": {
+        "fontSize": "13px",
+        "lineHeight": "15.6px",
+        "fontWeight": "500",
+        "paddingInline": "16px",
+        "paddingBlock": "12px",
+        "gap": "8px",
+        "borderRadius": "0px"
+      },
+      "pageHorizontalOverflow": 0,
+      "overflowOffenders": [
+        {
+          "tag": "erp-sidebar",
+          "className": "app-shell__sidebar",
+          "x": 375,
+          "right": 645,
+          "width": 270,
+          "scrollWidth": 269,
+          "clientWidth": 269
+        },
+        {
+          "tag": "div",
+          "className": "sidebar__header",
+          "x": 376,
+          "right": 645,
+          "width": 269,
+          "scrollWidth": 269,
+          "clientWidth": 269
+        },
+        {
+          "tag": "nav",
+          "className": "",
+          "x": 376,
+          "right": 645,
+          "width": 269,
+          "scrollWidth": 254,
+          "clientWidth": 254
+        },
+        {
+          "tag": "erp-tooltip",
+          "className": "",
+          "x": 595,
+          "right": 635,
+          "width": 40,
+          "scrollWidth": 40,
+          "clientWidth": 40
+        },
+        {
+          "tag": "erp-icon-button",
+          "className": "",
+          "x": 595,
+          "right": 635,
+          "width": 40,
+          "scrollWidth": 0,
+          "clientWidth": 0
+        },
+        {
+          "tag": "button",
+          "className": "n",
+          "x": 595,
+          "right": 635,
+          "width": 40,
+          "scrollWidth": 40,
+          "clientWidth": 40
+        },
+        {
+          "tag": "span",
+          "className": "c",
+          "x": 595,
+          "right": 635,
+          "width": 40,
+          "scrollWidth": 40,
+          "clientWidth": 40
+        },
+        {
+          "tag": "ul",
+          "className": "",
+          "x": 401,
+          "right": 635,
+          "width": 234,
+          "scrollWidth": 234,
+          "clientWidth": 234
+        },
+        {
+          "tag": "li",
+          "className": "",
+          "x": 401,
+          "right": 635,
+          "width": 234,
+          "scrollWidth": 234,
+          "clientWidth": 234
+        },
+        {
+          "tag": "erp-sidebar-disclosure",
+          "className": "",
+          "x": 401,
+          "right": 635,
+          "width": 234,
+          "scrollWidth": 234,
+          "clientWidth": 234
+        },
+        {
+          "tag": "button",
+          "className": "",
+          "x": 401,
+          "right": 635,
+          "width": 234,
+          "scrollWidth": 234,
+          "clientWidth": 234
+        },
+        {
+          "tag": "li",
+          "className": "",
+          "x": 401,
+          "right": 635,
+          "width": 234,
+          "scrollWidth": 234,
+          "clientWidth": 234
+        }
+      ],
+      "brokenImages": 0,
+      "diagnostics": []
+    },
+    {
+      "name": "implementation-320-light-ltr-live",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "route": "/components/tabs",
+      "direction": "ltr",
+      "primaryTargetCount": 1,
+      "tabCount": 5,
+      "selectedLabel": "الطلبات8",
+      "horizontal": {
+        "list": {
+          "x": 57,
+          "y": 237.03125,
+          "width": 191,
+          "height": 43
+        },
+        "tab": {
+          "x": 161.390625,
+          "y": 237.03125,
+          "width": 116.609375,
+          "height": 42
+        },
+        "indicator": {
+          "x": 57.3125,
+          "y": 276.03125,
+          "width": 104.078125,
+          "height": 3
+        }
+      },
+      "vertical": {
+        "list": null,
+        "tab": null,
+        "indicator": null
+      },
+      "computed": {
+        "fontSize": "13px",
+        "lineHeight": "15.6px",
+        "fontWeight": "500",
+        "paddingInline": "16px",
+        "paddingBlock": "12px",
+        "gap": "8px",
+        "borderRadius": "0px"
+      },
+      "pageHorizontalOverflow": 0,
+      "overflowOffenders": [
+        {
+          "tag": "erp-sidebar",
+          "className": "app-shell__sidebar",
+          "x": -235,
+          "right": 35,
+          "width": 270,
+          "scrollWidth": 269,
+          "clientWidth": 269
+        },
+        {
+          "tag": "div",
+          "className": "sidebar__header",
+          "x": -234,
+          "right": 35,
+          "width": 269,
+          "scrollWidth": 269,
+          "clientWidth": 269
+        },
+        {
+          "tag": "nav",
+          "className": "",
+          "x": -234,
+          "right": 35,
+          "width": 269,
+          "scrollWidth": 254,
+          "clientWidth": 254
+        },
+        {
+          "tag": "ul",
+          "className": "",
+          "x": -209,
+          "right": 25,
+          "width": 234,
+          "scrollWidth": 234,
+          "clientWidth": 234
+        },
+        {
+          "tag": "li",
+          "className": "",
+          "x": -209,
+          "right": 25,
+          "width": 234,
+          "scrollWidth": 234,
+          "clientWidth": 234
+        },
+        {
+          "tag": "erp-sidebar-disclosure",
+          "className": "",
+          "x": -209,
+          "right": 25,
+          "width": 234,
+          "scrollWidth": 234,
+          "clientWidth": 234
+        },
+        {
+          "tag": "button",
+          "className": "",
+          "x": -209,
+          "right": 25,
+          "width": 234,
+          "scrollWidth": 234,
+          "clientWidth": 234
+        },
+        {
+          "tag": "li",
+          "className": "",
+          "x": -209,
+          "right": 25,
+          "width": 234,
+          "scrollWidth": 234,
+          "clientWidth": 234
+        },
+        {
+          "tag": "erp-sidebar-disclosure",
+          "className": "",
+          "x": -209,
+          "right": 25,
+          "width": 234,
+          "scrollWidth": 234,
+          "clientWidth": 234
+        },
+        {
+          "tag": "button",
+          "className": "",
+          "x": -209,
+          "right": 25,
+          "width": 234,
+          "scrollWidth": 234,
+          "clientWidth": 234
+        },
+        {
+          "tag": "li",
+          "className": "",
+          "x": -209,
+          "right": 25,
+          "width": 234,
+          "scrollWidth": 234,
+          "clientWidth": 234
+        },
+        {
+          "tag": "erp-sidebar-disclosure",
+          "className": "",
+          "x": -209,
+          "right": 25,
+          "width": 234,
+          "scrollWidth": 234,
+          "clientWidth": 234
+        }
+      ],
+      "brokenImages": 0,
+      "diagnostics": []
+    }
+  ]
+}

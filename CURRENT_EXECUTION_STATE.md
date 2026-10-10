@@ -1,5 +1,21 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — ErpTabs exact-reference internal review
+
+The binding Tabs source SHA was reverified and its rendered horizontal and
+vertical specimens compared directly with the Angular evidence. The desktop
+underline tab is `35.59375px` high in both, with `13px / 15.6px` type,
+`10px 16px` padding, `8px` gap and a `3px` indicator. The vertical list is
+`240px`; its tab is `231px × 40px` with a `3px × 40px` indicator. The live
+workbench now proves switching, model synchronization, disabled handling and
+event output across five Arabic ERP tabs on its only primary target. Narrow
+AppShell containment was corrected after the closed Sidebar produced real page
+overflow; implementation captures now report zero overflow at 390/320 px.
+Status is `TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Canonical verification passes 128/128
+files and 817/817 tests with a zero-warning 418.32 kB / 92.90 kB build. Next:
+the reopened full `ErpTable` reference experience.
+
 ## Current checkpoint — ErpSelect V3 internal review
 
 `ErpSelect` was compared in a real browser with the binding

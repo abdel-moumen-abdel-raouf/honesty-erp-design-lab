@@ -1,5 +1,21 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current ErpTabs Exact-Reference Internal Review State
+
+`ERP-TABS.html` remains binding at SHA-256
+`CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`.
+Direct reference/implementation browser comparison confirms the literal
+horizontal and vertical geometry, typography, padding, gap and indicator
+values. The single workbench target now provides five meaningful Arabic ERP
+tabs and proves switching, controlled active state, disabled handling and
+events. Evidence is under `docs/review-evidence/erp-tabs/v1-internal-review/`.
+The narrow capture also exposed and closed document overflow from the hidden
+off-canvas Sidebar; AppShell now contains that intentional visual overflow.
+Canonical verification passes 128/128 files and 817/817 tests, both typechecks,
+all governance and the zero-warning 418.32 kB / 92.90 kB build. Technical and
+internal visual review is complete, Product Owner review remains pending, and
+`ErpTable` is the next prioritized reopened unit.
+
 ## Current ErpSelect V3 Internal Review State
 
 `ERP-SELECT.html` remains binding at SHA-256

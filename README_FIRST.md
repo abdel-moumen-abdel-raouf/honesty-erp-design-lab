@@ -1,5 +1,22 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — ErpTabs exact reference
+
+`ERP-TABS.html` was rehashed at
+`CFBFA876AC6521ED4A6BDBEB7AAF07D01B62F8808B65F5C749E0B06F44D8C9B9`,
+rendered, and compared directly with the Angular exact-reference evidence.
+Horizontal and vertical list, tab, indicator, typography, padding and gap
+geometry match the binding reference; reproducible evidence is under
+`docs/review-evidence/erp-tabs/v1-internal-review/`. The one-target workbench
+now starts with five switchable Arabic ERP tabs, controlled active state,
+counts/icons, a disabled case and observable events. A narrow integration
+review also corrected the closed off-canvas Sidebar expanding document width;
+implementation evidence now records zero horizontal overflow at 390/320 px.
+Canonical verification passes 128/128 files and 817/817 tests, both
+typechecks, all governance, and the zero-warning 418.32 kB / 92.90 kB build.
+Status remains `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`; next reopened exact unit:
+`ErpTable`.
+
 ## Latest verified UI unit — ErpSelect V3
 
 The binding `ERP-SELECT.html` SHA was reverified and compared directly with

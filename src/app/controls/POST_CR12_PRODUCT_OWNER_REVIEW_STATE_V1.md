@@ -1,5 +1,20 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — ErpTabs
+
+The binding Tabs SHA was reverified and rendered beside the current exact
+evidence. Horizontal and vertical geometry is aligned with the reference,
+including the 13px/15.6px type, 10px 16px padding, 8px gap, 3px indicators and
+240px vertical list. The dedicated workbench now demonstrates five Arabic ERP
+tabs, controlled selection, disabled handling and event output on exactly one
+primary target. Reproducible captures cover themes, directions and 390/320 px.
+A narrow Shell overflow exposed by this review was corrected and protected by
+governance. Status is `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Canonical verification passes 128/128
+files and 817/817 tests with a zero-warning 418.32 kB / 92.90 kB build. Next
+reopened unit: `ErpTable`.
+
 ## Current review execution — 2026-10-10 — ErpSelect V3
 
 The binding Select SHA was verified and its live reference compared directly
