@@ -7,13 +7,15 @@ import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
 import {ErpButton} from '../../../controls/button/button';
 import {ErpTextBox} from '../../../controls/text-box/text-box';
+import {ErpFormSection} from '../../../controls/form-section/form-section';
+import {ErpFormActions} from '../../../controls/form-actions/form-actions';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'form')!;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-form-showcase',
-  imports: [ErpForm, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpButton, ErpTextBox],
+  imports: [ErpForm, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpButton, ErpTextBox, ErpFormSection, ErpFormActions],
   templateUrl: './form-showcase.html',
   styleUrl: './form-showcase.scss',
 })

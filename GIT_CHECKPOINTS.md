@@ -1,5 +1,32 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Forms composition internal-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `d3d4752b65625ef5c028dc9502c1a8755f151c1b` — synchronized `main` after the
+  Data/Table composition checkpoint.
+
+Bounded scope:
+
+- Added meaningful Form/FormSection/FormActions projection, controlled
+  Repeater rows and add/remove behavior, and interaction evidence for all five
+  remaining Forms composition Workbenches.
+- Added focused regression coverage and generated-catalog governance for the
+  Repeater template and controlled output handling.
+- Persisted ten inspected desktop/narrow Light/Dark RTL/LTR scenarios and
+  60/60 runtime assertions under
+  `docs/review-evidence/erp-forms/forms-composition-v1-internal-review/`.
+
+Verification before commit:
+
+- Focused tests: 10/10 files, 14/14 tests.
+- Canonical `npm run verify:clean`: 147/147 files, 874/874 tests, both
+  typechecks, all governance/lint, production build, zero warnings.
+- Build: 418.32 kB initial / 92.88 kB estimated transfer.
+
+Visual status remains `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+
 ## Data/Table composition internal-review candidate — 2026-10-10
 
 Entry checkpoint:

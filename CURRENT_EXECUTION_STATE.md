@@ -1,5 +1,20 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — Forms composition internal review
+
+`ErpForm`, `ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`, and
+`ErpRepeater` completed internal browser review as original Honesty ERP
+candidates. Their Workbenches now prove the Forms ownership chain, meaningful
+projected fields/actions, controlled add/remove rows, issue activation, and
+observable submit/reset behavior. Ten desktop/narrow Light/Dark RTL/LTR
+captures pass 60/60 assertions with zero clipping, overflow, browser errors, or
+warnings. Evidence is under
+`docs/review-evidence/erp-forms/forms-composition-v1-internal-review/`.
+Canonical verification passes 147/147 files and 874/874 tests, both typechecks,
+all governance/lint, and the zero-warning 418.32 kB / 92.88 kB build. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next: the two public Entity Form owners.
+
 ## Current checkpoint — Data/Table composition internal review
 
 `ErpBulkActionBar`, `ErpFilterBar`, `ErpFilterDrawer`, `ErpTableToolbar`, and

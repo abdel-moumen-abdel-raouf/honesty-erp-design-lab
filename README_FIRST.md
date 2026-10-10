@@ -1,5 +1,19 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — Forms composition owners
+
+Form, FormSection, FormActions, ValidationSummary, and Repeater completed
+internal browser review as original Honesty ERP candidates. Their generated
+one-target Workbenches now prove real projected content, the established Forms
+ownership chain, controlled repeated rows, issue activation, and submit/reset
+events. Evidence under
+`docs/review-evidence/erp-forms/forms-composition-v1-internal-review/` passes
+60/60 assertions. Focused verification passes 10/10 files and 14/14 tests;
+canonical verification passes 147/147 files and 874/874 tests with a
+zero-warning 418.32 kB / 92.88 kB build. Product Owner acceptance is not
+recorded. Next Bottom-Up unit: `ErpEntitySchemaFields` and
+`ErpStandardEntityForm`.
+
 ## Latest verified UI unit — Data/Table composition owners
 
 BulkActionBar, FilterBar, FilterDrawer, TableToolbar, and SmartTable completed

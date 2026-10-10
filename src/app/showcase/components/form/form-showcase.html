@@ -12,7 +12,7 @@
           [busy]="$any(value('busy'))"
           (submitRequested)="recordEvent('submitRequested', $event)"
           (resetRequested)="recordEvent('resetRequested', $event)"
-        ><erp-text-box label="اسم السجل" /><erp-button label="حفظ السجل" type="submit" /><erp-button label="إعادة الضبط" type="reset" variant="outline" /></erp-form>
+        ><erp-form-section title="بيانات المورد" description="أدخل البيانات الأساسية المطلوبة للحفظ"><erp-text-box label="اسم المورد" /><erp-text-box label="الرقم الضريبي" /></erp-form-section><erp-form-actions><erp-button erpFormActionsSecondary label="إعادة الضبط" type="reset" variant="outline" /><erp-button erpFormActionsPrimary label="حفظ المورد" type="submit" /></erp-form-actions></erp-form>
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel

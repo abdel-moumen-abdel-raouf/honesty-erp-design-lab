@@ -7,7 +7,7 @@
       <erp-form-actions
           data-showcase-target
           
-        ><erp-button erpFormActionsSecondary label="إلغاء" variant="ghost" /><erp-button erpFormActionsPrimary label="حفظ" /></erp-form-actions>
+        ><erp-button erpFormActionsSecondary label="إلغاء" variant="ghost" (pressed)="recordEvent('formCancelPressed', true)" /><erp-button erpFormActionsPrimary label="حفظ" (pressed)="recordEvent('formSavePressed', true)" /></erp-form-actions>
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel

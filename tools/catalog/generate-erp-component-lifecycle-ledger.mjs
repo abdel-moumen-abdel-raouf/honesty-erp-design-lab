@@ -63,6 +63,9 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpFilePicker',
   'ErpFilterBar',
   'ErpFilterDrawer',
+  'ErpForm',
+  'ErpFormActions',
+  'ErpFormSection',
   'ErpGrid',
   'ErpIcon',
   'ErpIconPicker',
@@ -78,6 +81,7 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpRadioBox',
   'ErpRadioGroup',
   'ErpRangeSlider',
+  'ErpRepeater',
   'ErpSearchBox',
   'ErpSection',
   'ErpSelect',
@@ -100,6 +104,7 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpTooltip',
   'ErpUrlBox',
   'ErpUserMenu',
+  'ErpValidationSummary',
   'ErpViewSwitcher',
 ]);
 
@@ -331,10 +336,12 @@ drift.
   remaining Navigation owners have completed hierarchical content, controlled
   pagination/sort, responsive breadcrumb, and projected-step review, and the
   Data/Table composition owners have completed projection, interaction,
-  responsive wrapping, internal table-scroll and complete SmartTable review.
-  The next Bottom-Up unit opens the remaining Forms composition owners:
-  **\`ErpForm\`**, **\`ErpFormSection\`**, **\`ErpFormActions\`**,
-  **\`ErpValidationSummary\`**, and **\`ErpRepeater\`**.
+  responsive wrapping, internal table-scroll and complete SmartTable review,
+  and the Forms composition owners have completed semantic form submission,
+  projected section/action layout, controlled repeater rows, issue activation,
+  responsive containment, and interaction review. The next Bottom-Up unit opens
+  the two public schema-driven Entity Form owners:
+  **\`ErpEntitySchemaFields\`** and **\`ErpStandardEntityForm\`**.
 
 ## Public owner inventory
 

@@ -1,17 +1,18 @@
 import {ChangeDetectionStrategy, Component, computed, signal} from '@angular/core';
 import {ERP_COMPONENT_CATALOG} from '../../../catalog/erp-component-catalog.generated';
-import {ErpRepeater} from '../../../controls/repeater/repeater';
+import {ErpRepeater, ErpRepeaterItemTemplate} from '../../../controls/repeater/repeater';
 import {ErpReviewShowcaseControlPanel, ErpShowcaseControlChange} from '../../../review-internals/showcase-control-panel/showcase-control-panel';
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
+import {ErpInline} from '../../../primitives/inline/inline';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'repeater')!;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-repeater-showcase',
-  imports: [ErpRepeater, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText],
+  imports: [ErpRepeater, ErpReviewShowcaseControlPanel, ErpStack, ErpSurface, ErpText, ErpInline, ErpRepeaterItemTemplate],
   templateUrl: './repeater-showcase.html',
   styleUrl: './repeater-showcase.scss',
 })
@@ -42,6 +43,27 @@ export class ErpRepeaterShowcase {
       ? this.functionPreset(change.control.name, change.value)
       : change.value;
     this.liveValues.update((current) => ({...current, [change.control.name]: value}));
+  }
+
+  addRepeaterItem(): void {
+    const items = this.repeaterItems();
+    const sequence = items.length + 1;
+    const next = [...items, {key: `contact-${sequence}`, value: {name: 'جهة اتصال جديدة', role: 'مستخدم النظام'}}];
+    this.liveValues.update((current) => ({...current, items: next}));
+    this.recordEvent('addRequested', undefined);
+  }
+
+  removeRepeaterItem(key: string): void {
+    const next = this.repeaterItems().filter((item) => item.key !== key);
+    this.liveValues.update((current) => ({...current, items: next}));
+    this.recordEvent('removeRequested', key);
+  }
+
+  private repeaterItems(): {key: string; value: unknown}[] {
+    const items = this.value('items');
+    return Array.isArray(items)
+      ? items.filter((item): item is {key: string; value: unknown} => Boolean(item) && typeof item === 'object' && typeof (item as {key?: unknown}).key === 'string')
+      : [];
   }
 
   recordModel(name: string, value: unknown): void {

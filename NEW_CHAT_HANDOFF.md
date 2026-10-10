@@ -1,5 +1,18 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — Forms composition reviewed internally
+
+Continue from synchronized `main` after the Forms composition checkpoint.
+Form now composes FormSection and FormActions; Section and Actions expose real
+projected interaction evidence; ValidationSummary activates real issues; and
+Repeater renders controlled Arabic business rows with working add/remove.
+Evidence under
+`docs/review-evidence/erp-forms/forms-composition-v1-internal-review/` passes
+60/60 browser assertions. Canonical verification passes 147/147 files and
+874/874 tests with a zero-warning 418.32 kB / 92.88 kB build. Product Owner
+acceptance is not recorded. Continue Bottom-Up with `ErpEntitySchemaFields`
+and `ErpStandardEntityForm`.
+
 ## Current continuation point — Data/Table composition reviewed internally
 
 Continue from synchronized `main` after the Data/Table composition checkpoint.

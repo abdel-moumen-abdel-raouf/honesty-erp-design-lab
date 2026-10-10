@@ -1,5 +1,18 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Forms composition internal-review decisions — 2026-10-10
+
+- The five reviewed Forms composition owners remain original Honesty ERP
+  candidates under `FORMS_BATCH_V1.md`; no external exact reference is claimed.
+- `ErpForm` owns native form semantics and now demonstrates the established
+  `ErpFormSection` and `ErpFormActions` composition without owning field state.
+- `ErpRepeater` remains consumer-controlled. Its Workbench applies add/remove
+  intents to review-owned immutable data; the production owner still performs
+  no domain mutation, persistence, or transport.
+- FormSection and FormActions remain projection/layout owners; their Workbench
+  controls provide event evidence without assigning business semantics.
+- Internal review completion does not imply Product Owner acceptance.
+
 ## Data/Table composition internal-review decisions — 2026-10-10
 
 - BulkActionBar, FilterBar, FilterDrawer, TableToolbar, and SmartTable remain

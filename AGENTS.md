@@ -1,5 +1,21 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Forms Composition Internal Review State
+
+`ErpForm`, `ErpFormSection`, `ErpFormActions`, `ErpValidationSummary`, and
+`ErpRepeater` completed internal browser review as original Honesty ERP
+candidates. The one-target Workbenches prove semantic submit/reset, projected
+sections/actions, issue activation, and controlled Arabic repeater rows.
+Evidence under
+`docs/review-evidence/erp-forms/forms-composition-v1-internal-review/` passes
+60/60 assertions. Focused verification passes 10/10 files and 14/14 tests;
+canonical verification passes 147/147 files and 874/874 tests, both typechecks,
+all governance/lint, and the zero-warning 418.32 kB / 92.88 kB build. Status
+remains `TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Continue Bottom-Up with the two public
+Entity Form owners; business Feature/Page, CRUD, transport, and permissions
+work remain closed.
+
 ## Current Data/Table Composition Internal Review State
 
 `ErpBulkActionBar`, `ErpFilterBar`, `ErpFilterDrawer`, `ErpTableToolbar`, and

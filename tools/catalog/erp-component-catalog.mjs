@@ -169,7 +169,7 @@ const CVA_FIXTURE_VALUES = new Map([
 
 const PROJECTION_COMPONENTS = new Set([
   'ErpAlert', 'ErpAppShell', 'ErpBulkActionBar', 'ErpContainer', 'ErpFilterBar',
-  'ErpForm', 'ErpFormActions', 'ErpFormSection',
+  'ErpForm', 'ErpFormActions', 'ErpFormSection', 'ErpRepeater',
   'ErpGrid', 'ErpInline', 'ErpPage', 'ErpPageHeader', 'ErpPageShell',
   'ErpSection', 'ErpSmartTable', 'ErpStack', 'ErpSurface', 'ErpTableToolbar',
   'ErpText', 'ErpTooltip', 'ErpTopbar',
@@ -505,8 +505,14 @@ const FIXTURE_INPUTS = new Map([
     ],
     filters: [{key: 'city', label: 'المدينة', value: 'القاهرة'}],
   }],
-  ['ErpForm', {label: 'نموذج السجل'}],
-  ['ErpFormSection', {title: 'البيانات الأساسية'}],
+  ['ErpForm', {
+    label: 'نموذج بيانات المورد',
+    description: 'حدّث بيانات المورد الأساسية ثم احفظ التغييرات.',
+  }],
+  ['ErpFormSection', {
+    title: 'بيانات الحساب',
+    description: 'اسم الحساب والتصنيف الافتراضي للحركة.',
+  }],
   ['ErpIcon', {name: 'settings'}],
   ['ErpIconButton', {icon: 'settings', label: 'إعدادات النظام'}],
   ['ErpColorPicker', {label: 'لون تصنيف الحساب', helperText: 'اختر لونًا من سجل ألوان النظام', clearable: true}],
@@ -578,6 +584,17 @@ const FIXTURE_INPUTS = new Map([
   ]}],
   ['ErpRadioGroup', {options: [{value: 'active', label: 'نشط'}]}],
   ['ErpRangeSlider', {label: 'نطاق الخصم', helperText: 'النطاق المسموح من 0 إلى 100', min: 0, max: 100, step: 5, defaultRange: {lower: 20, upper: 80}, clearable: true, showValueTooltip: true}],
+  ['ErpRepeater', {
+    items: [
+      {key: 'contact-1', value: {name: 'أميرة حداد', role: 'مديرة المالية'}},
+      {key: 'contact-2', value: {name: 'عمر ناصر', role: 'مسؤول المخزون'}},
+    ],
+    label: 'جهات اتصال المورد',
+    addLabel: 'إضافة جهة اتصال',
+    removeLabel: 'حذف جهة الاتصال',
+    minItems: 1,
+    maxItems: 4,
+  }],
   ['ErpSearchBox', {
     label: 'البحث في السجلات',
     helperText: 'ابحث في الفواتير والعملاء والموردين',
@@ -1453,13 +1470,16 @@ function projectionMarkup(entry) {
     return '<erp-text type="paragraph" [tone]="value(\'tone\') === \'inverse\' ? \'inverse\' : \'primary\'">محتوى مسقط مرئي داخل المكوّن</erp-text>';
   }
   if (entry.className === 'ErpForm') {
-    return '<erp-text-box label="اسم السجل" /><erp-button label="حفظ السجل" type="submit" /><erp-button label="إعادة الضبط" type="reset" variant="outline" />';
+    return '<erp-form-section title="بيانات المورد" description="أدخل البيانات الأساسية المطلوبة للحفظ"><erp-text-box label="اسم المورد" /><erp-text-box label="الرقم الضريبي" /></erp-form-section><erp-form-actions><erp-button erpFormActionsSecondary label="إعادة الضبط" type="reset" variant="outline" /><erp-button erpFormActionsPrimary label="حفظ المورد" type="submit" /></erp-form-actions>';
   }
   if (entry.className === 'ErpFormActions') {
-    return '<erp-button erpFormActionsSecondary label="إلغاء" variant="ghost" /><erp-button erpFormActionsPrimary label="حفظ" />';
+    return '<erp-button erpFormActionsSecondary label="إلغاء" variant="ghost" (pressed)="recordEvent(\'formCancelPressed\', true)" /><erp-button erpFormActionsPrimary label="حفظ" (pressed)="recordEvent(\'formSavePressed\', true)" />';
   }
   if (entry.className === 'ErpFormSection') {
-    return '<erp-button erpFormSectionActions label="إجراء القسم" variant="outline" /><erp-text-box label="اسم الحساب" />';
+    return '<erp-button erpFormSectionActions label="إضافة تصنيف" variant="outline" (pressed)="recordEvent(\'sectionActionPressed\', true)" /><erp-text-box label="اسم الحساب" /><erp-text-box label="وصف الحساب" />';
+  }
+  if (entry.className === 'ErpRepeater') {
+    return '<ng-template erpRepeaterItem let-item let-index="index"><erp-inline gap="tight" align="center" wrap="wrap"><erp-text type="strong">{{ index + 1 }}. {{ $any(item).name }}</erp-text><erp-text type="caption" tone="secondary">{{ $any(item).role }}</erp-text></erp-inline></ng-template>';
   }
   if (entry.className === 'ErpPageHeader') {
     return '<erp-text erpPageHeaderBreadcrumbs type="caption">الرئيسية / الحسابات</erp-text><erp-text erpPageHeaderMeta type="caption">حالة السجل: نشط</erp-text><erp-button erpPageHeaderPrimaryAction label="حفظ" />';
@@ -1648,6 +1668,14 @@ function generatedShowcaseOwner(entry) {
     if (entry.className !== 'ErpTextBox') importLines.push(`import {ErpTextBox} from '../../../controls/text-box/text-box';`);
     imports.add('ErpTextBox');
   }
+  if (projection.includes('<erp-form-section')) {
+    importLines.push(`import {ErpFormSection} from '../../../controls/form-section/form-section';`);
+    imports.add('ErpFormSection');
+  }
+  if (projection.includes('<erp-form-actions')) {
+    importLines.push(`import {ErpFormActions} from '../../../controls/form-actions/form-actions';`);
+    imports.add('ErpFormActions');
+  }
   if (projection.includes('<erp-search-box')) {
     importLines.push(`import {ErpSearchBox} from '../../../controls/search-box/search-box';`);
     imports.add('ErpSearchBox');
@@ -1689,6 +1717,10 @@ function generatedShowcaseOwner(entry) {
   if (entry.className === 'ErpStepper') {
     importLines[2] = `import {ErpStepPanel, ErpStepper} from '${componentImport}';`;
     imports.add('ErpStepPanel');
+  }
+  if (entry.className === 'ErpRepeater') {
+    importLines[2] = `import {ErpRepeater, ErpRepeaterItemTemplate} from '${componentImport}';`;
+    imports.add('ErpRepeaterItemTemplate');
   }
   if (['ErpIconButton', 'ErpFab'].includes(entry.className)) {
     importLines.push(`import {ErpTooltip} from '../../../controls/tooltip/tooltip';`);
@@ -1737,6 +1769,10 @@ function generatedShowcaseOwner(entry) {
             ? `(resetRequested)="resetActiveFilters()"`
             : entry.className === 'ErpFilterDrawer' && outputName === 'applied'
               ? `(applied)="applyDrawerFilters($event)"`
+      : entry.className === 'ErpRepeater' && outputName === 'addRequested'
+        ? `(addRequested)="addRepeaterItem()"`
+        : entry.className === 'ErpRepeater' && outputName === 'removeRequested'
+          ? `(removeRequested)="removeRepeaterItem($event)"`
       : entry.className === 'ErpPagination' && outputName === 'pageChange'
         ? `(pageChange)="recordPaginationPage($event)"`
         : entry.className === 'ErpPagination' && outputName === 'pageSizeChange'
@@ -1880,6 +1916,12 @@ function generatedShowcaseOwner(entry) {
     generatedSource = generatedSource.replace(
       '\n  recordModel(name: string, value: unknown): void {',
       "\n  applyDrawerFilters(value: readonly unknown[]): void {\n    this.liveValues.update((current) => ({...current, filters: value}));\n    this.recordEvent('applied', value);\n  }\n\n  recordModel(name: string, value: unknown): void {",
+    );
+  }
+  if (entry.className === 'ErpRepeater') {
+    generatedSource = generatedSource.replace(
+      '\n  recordModel(name: string, value: unknown): void {',
+      "\n  addRepeaterItem(): void {\n    const items = this.repeaterItems();\n    const sequence = items.length + 1;\n    const next = [...items, {key: `contact-${sequence}`, value: {name: 'جهة اتصال جديدة', role: 'مستخدم النظام'}}];\n    this.liveValues.update((current) => ({...current, items: next}));\n    this.recordEvent('addRequested', undefined);\n  }\n\n  removeRepeaterItem(key: string): void {\n    const next = this.repeaterItems().filter((item) => item.key !== key);\n    this.liveValues.update((current) => ({...current, items: next}));\n    this.recordEvent('removeRequested', key);\n  }\n\n  private repeaterItems(): {key: string; value: unknown}[] {\n    const items = this.value('items');\n    return Array.isArray(items)\n      ? items.filter((item): item is {key: string; value: unknown} => Boolean(item) && typeof item === 'object' && typeof (item as {key?: unknown}).key === 'string')\n      : [];\n  }\n\n  recordModel(name: string, value: unknown): void {",
     );
   }
   if (entry.className === 'ErpUserMenu') {

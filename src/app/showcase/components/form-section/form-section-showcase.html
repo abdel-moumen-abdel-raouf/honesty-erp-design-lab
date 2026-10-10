@@ -9,7 +9,7 @@
           [title]="$any(value('title'))"
           [description]="$any(value('description'))"
           [compact]="$any(value('compact'))"
-        ><erp-button erpFormSectionActions label="إجراء القسم" variant="outline" /><erp-text-box label="اسم الحساب" /></erp-form-section>
+        ><erp-button erpFormSectionActions label="إضافة تصنيف" variant="outline" (pressed)="recordEvent('sectionActionPressed', true)" /><erp-text-box label="اسم الحساب" /><erp-text-box label="وصف الحساب" /></erp-form-section>
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel

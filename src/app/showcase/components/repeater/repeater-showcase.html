@@ -13,9 +13,9 @@
           [minItems]="$any(value('minItems'))"
           [maxItems]="$any(value('maxItems'))"
           [disabled]="$any(value('disabled'))"
-          (addRequested)="recordEvent('addRequested', $event)"
-          (removeRequested)="recordEvent('removeRequested', $event)"
-        ></erp-repeater>
+          (addRequested)="addRepeaterItem()"
+          (removeRequested)="removeRepeaterItem($event)"
+        ><ng-template erpRepeaterItem let-item let-index="index"><erp-inline gap="tight" align="center" wrap="wrap"><erp-text type="strong">{{ index + 1 }}. {{ $any(item).name }}</erp-text><erp-text type="caption" tone="secondary">{{ $any(item).role }}</erp-text></erp-inline></ng-template></erp-repeater>
     </erp-stack>
   </erp-surface>
   <app-review-showcase-control-panel

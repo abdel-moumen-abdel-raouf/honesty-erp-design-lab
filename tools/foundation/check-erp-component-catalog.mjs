@@ -368,9 +368,19 @@ function validateRepository() {
           html.includes('(applied)="applyDrawerFilters($event)"') &&
           source.includes('applyDrawerFilters(value: readonly unknown[]): void') &&
           source.includes("this.recordEvent('applied', value);");
+      const controlledFormsOutput = entry.className === 'ErpRepeater' && (
+        outputName === 'addRequested' &&
+          html.includes('(addRequested)="addRepeaterItem()"') &&
+          source.includes('addRepeaterItem(): void') &&
+          source.includes("this.recordEvent('addRequested', undefined);") ||
+        outputName === 'removeRequested' &&
+          html.includes('(removeRequested)="removeRepeaterItem($event)"') &&
+          source.includes('removeRepeaterItem(key: string): void') &&
+          source.includes("this.recordEvent('removeRequested', key);")
+      );
       if (!rootAppShellOutput && !controlledColumnVisibilityOutput &&
           !controlledPaginationOutput && !controlledSortOutput &&
-          !controlledDataCompositionOutput &&
+          !controlledDataCompositionOutput && !controlledFormsOutput &&
           !html.includes(`(${outputName})="recordEvent('${outputName}', $event)"`)) {
         errors.push(`${entry.className} live target has no event evidence for ${outputName}`);
       }
@@ -378,8 +388,11 @@ function validateRepository() {
     const projectedChildPattern = new RegExp(
       `<${entry.selector}[\\s\\S]*?>\\s*<erp-`,
     );
+    const templateProjection = entry.className === 'ErpRepeater' &&
+      html.includes('erpRepeaterItem');
     if (entry.showcaseCoverage.coveredProjectionSlots.length &&
         entry.className !== 'ErpText' &&
+        !templateProjection &&
         !projectedChildPattern.test(isRootAppShell ? appTemplate : html)) {
       errors.push(`${entry.className} projection showcase has no visible projected content`);
     }

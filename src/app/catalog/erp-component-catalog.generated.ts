@@ -15714,14 +15714,16 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "label": "نموذج السجل"
+          "label": "نموذج بيانات المورد",
+          "description": "حدّث بيانات المورد الأساسية ثم احفظ التغييرات."
         }
       },
       {
         "id": "disabled-false",
         "label": "disabled: false",
         "inputs": {
-          "label": "نموذج السجل",
+          "label": "نموذج بيانات المورد",
+          "description": "حدّث بيانات المورد الأساسية ثم احفظ التغييرات.",
           "disabled": false
         }
       },
@@ -15729,7 +15731,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled-true",
         "label": "disabled: true",
         "inputs": {
-          "label": "نموذج السجل",
+          "label": "نموذج بيانات المورد",
+          "description": "حدّث بيانات المورد الأساسية ثم احفظ التغييرات.",
           "disabled": true
         }
       },
@@ -15737,7 +15740,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
-          "label": "نموذج السجل",
+          "label": "نموذج بيانات المورد",
+          "description": "حدّث بيانات المورد الأساسية ثم احفظ التغييرات.",
           "disabled": true
         }
       }
@@ -15745,10 +15749,10 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "displayNameAr": "نموذج",
     "descriptionAr": "حد form الدلالي مع نوايا الإرسال وإعادة الضبط.",
     "showcaseInitialValues": {
-      "description": null,
+      "description": "حدّث بيانات المورد الأساسية ثم احفظ التغييرات.",
       "disabled": false,
       "busy": false,
-      "label": "نموذج السجل"
+      "label": "نموذج بيانات المورد"
     },
     "showcaseControls": [
       {
@@ -15759,7 +15763,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "نموذج السجل"
+        "initialValue": "نموذج بيانات المورد"
       },
       {
         "name": "description",
@@ -15769,7 +15773,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "حدّث بيانات المورد الأساسية ثم احفظ التغييرات."
       },
       {
         "name": "disabled",
@@ -15945,16 +15949,17 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "default",
         "label": "الحالة الافتراضية",
         "inputs": {
-          "title": "البيانات الأساسية"
+          "title": "بيانات الحساب",
+          "description": "اسم الحساب والتصنيف الافتراضي للحركة."
         }
       }
     ],
     "displayNameAr": "قسم النموذج",
     "descriptionAr": "تجميع دلالي لحقول النموذج مع عنوان وإجراءات.",
     "showcaseInitialValues": {
-      "description": null,
+      "description": "اسم الحساب والتصنيف الافتراضي للحركة.",
       "compact": false,
-      "title": "البيانات الأساسية"
+      "title": "بيانات الحساب"
     },
     "showcaseControls": [
       {
@@ -15965,7 +15970,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": true,
         "type": "string",
         "options": [],
-        "initialValue": "البيانات الأساسية"
+        "initialValue": "بيانات الحساب"
       },
       {
         "name": "description",
@@ -15975,7 +15980,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": null
+        "initialValue": "اسم الحساب والتصنيف الافتراضي للحركة."
       },
       {
         "name": "compact",
@@ -16126,12 +16131,55 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       {
         "id": "default",
         "label": "الحالة الافتراضية",
-        "inputs": {}
+        "inputs": {
+          "items": [
+            {
+              "key": "contact-1",
+              "value": {
+                "name": "أميرة حداد",
+                "role": "مديرة المالية"
+              }
+            },
+            {
+              "key": "contact-2",
+              "value": {
+                "name": "عمر ناصر",
+                "role": "مسؤول المخزون"
+              }
+            }
+          ],
+          "label": "جهات اتصال المورد",
+          "addLabel": "إضافة جهة اتصال",
+          "removeLabel": "حذف جهة الاتصال",
+          "minItems": 1,
+          "maxItems": 4
+        }
       },
       {
         "id": "disabled-false",
         "label": "disabled: false",
         "inputs": {
+          "items": [
+            {
+              "key": "contact-1",
+              "value": {
+                "name": "أميرة حداد",
+                "role": "مديرة المالية"
+              }
+            },
+            {
+              "key": "contact-2",
+              "value": {
+                "name": "عمر ناصر",
+                "role": "مسؤول المخزون"
+              }
+            }
+          ],
+          "label": "جهات اتصال المورد",
+          "addLabel": "إضافة جهة اتصال",
+          "removeLabel": "حذف جهة الاتصال",
+          "minItems": 1,
+          "maxItems": 4,
           "disabled": false
         }
       },
@@ -16139,6 +16187,27 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled-true",
         "label": "disabled: true",
         "inputs": {
+          "items": [
+            {
+              "key": "contact-1",
+              "value": {
+                "name": "أميرة حداد",
+                "role": "مديرة المالية"
+              }
+            },
+            {
+              "key": "contact-2",
+              "value": {
+                "name": "عمر ناصر",
+                "role": "مسؤول المخزون"
+              }
+            }
+          ],
+          "label": "جهات اتصال المورد",
+          "addLabel": "إضافة جهة اتصال",
+          "removeLabel": "حذف جهة الاتصال",
+          "minItems": 1,
+          "maxItems": 4,
           "disabled": true
         }
       },
@@ -16146,6 +16215,27 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "id": "disabled",
         "label": "حالة معطلة",
         "inputs": {
+          "items": [
+            {
+              "key": "contact-1",
+              "value": {
+                "name": "أميرة حداد",
+                "role": "مديرة المالية"
+              }
+            },
+            {
+              "key": "contact-2",
+              "value": {
+                "name": "عمر ناصر",
+                "role": "مسؤول المخزون"
+              }
+            }
+          ],
+          "label": "جهات اتصال المورد",
+          "addLabel": "إضافة جهة اتصال",
+          "removeLabel": "حذف جهة الاتصال",
+          "minItems": 1,
+          "maxItems": 4,
           "disabled": true
         }
       }
@@ -16153,12 +16243,27 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "displayNameAr": "مكرر",
     "descriptionAr": "قائمة عناصر مضبوطة مع نوايا الإضافة والحذف.",
     "showcaseInitialValues": {
-      "items": [],
-      "label": "العناصر المتكررة",
-      "addLabel": "إضافة عنصر",
-      "removeLabel": "حذف العنصر",
-      "minItems": 0,
-      "maxItems": null,
+      "items": [
+        {
+          "key": "contact-1",
+          "value": {
+            "name": "أميرة حداد",
+            "role": "مديرة المالية"
+          }
+        },
+        {
+          "key": "contact-2",
+          "value": {
+            "name": "عمر ناصر",
+            "role": "مسؤول المخزون"
+          }
+        }
+      ],
+      "label": "جهات اتصال المورد",
+      "addLabel": "إضافة جهة اتصال",
+      "removeLabel": "حذف جهة الاتصال",
+      "minItems": 1,
+      "maxItems": 4,
       "disabled": false
     },
     "showcaseControls": [
@@ -16170,7 +16275,22 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "readonly ErpRepeaterItem<TValue>[]",
         "options": [],
-        "initialValue": []
+        "initialValue": [
+          {
+            "key": "contact-1",
+            "value": {
+              "name": "أميرة حداد",
+              "role": "مديرة المالية"
+            }
+          },
+          {
+            "key": "contact-2",
+            "value": {
+              "name": "عمر ناصر",
+              "role": "مسؤول المخزون"
+            }
+          }
+        ]
       },
       {
         "name": "label",
@@ -16180,7 +16300,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string",
         "options": [],
-        "initialValue": "العناصر المتكررة"
+        "initialValue": "جهات اتصال المورد"
       },
       {
         "name": "addLabel",
@@ -16190,7 +16310,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string",
         "options": [],
-        "initialValue": "إضافة عنصر"
+        "initialValue": "إضافة جهة اتصال"
       },
       {
         "name": "removeLabel",
@@ -16200,7 +16320,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string",
         "options": [],
-        "initialValue": "حذف العنصر"
+        "initialValue": "حذف جهة الاتصال"
       },
       {
         "name": "minItems",
@@ -16210,7 +16330,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "number",
         "options": [],
-        "initialValue": 0
+        "initialValue": 1
       },
       {
         "name": "maxItems",
@@ -16220,7 +16340,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "number | null",
         "options": [],
-        "initialValue": null
+        "initialValue": 4
       },
       {
         "name": "disabled",
@@ -16260,9 +16380,11 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "coveredStates": [
         "disabled"
       ],
-      "coveredProjectionSlots": [],
+      "coveredProjectionSlots": [
+        "default-authored-content"
+      ],
       "coveredReferenceCases": [],
-      "evidenceKind": "INTERACTIVE_OUTPUT"
+      "evidenceKind": "AUTHORED_PROJECTION"
     }
   },
   {

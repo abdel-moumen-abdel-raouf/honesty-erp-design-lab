@@ -1,0 +1,1087 @@
+{
+  "generatedAt": "2026-10-10T13:33:07.211Z",
+  "authority": {
+    "classification": "Original Honesty ERP Forms composition candidates under the recorded accelerated-wave waiver.",
+    "contract": "src/app/controls/FORMS_BATCH_V1.md",
+    "note": "No external visual reference is claimed; evidence covers meaningful composition, interactions, responsive containment, theme, and direction."
+  },
+  "scenarios": [
+    {
+      "name": "form-1440-light-rtl",
+      "component": "form",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "controlCount": 4,
+      "targetBox": {
+        "x": 147,
+        "y": 239.765625,
+        "right": 1097,
+        "bottom": 675.640625,
+        "width": 950,
+        "height": 435.875
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلsubmitRequested: undefined",
+      "targetScrollWidth": 950,
+      "targetClientWidth": 950,
+      "buttons": 2,
+      "fields": 2,
+      "rows": 0,
+      "sections": 1,
+      "actions": 1,
+      "issues": 0,
+      "clippedText": []
+    },
+    {
+      "name": "form-390-dark-ltr",
+      "component": "form",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 426
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "controlCount": 4,
+      "targetBox": {
+        "x": 57,
+        "y": 154.765625,
+        "right": 333,
+        "bottom": 689.828125,
+        "width": 276,
+        "height": 535.0625
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلsubmitRequested: undefined",
+      "targetScrollWidth": 276,
+      "targetClientWidth": 276,
+      "buttons": 2,
+      "fields": 2,
+      "rows": 0,
+      "sections": 1,
+      "actions": 1,
+      "issues": 0,
+      "clippedText": []
+    },
+    {
+      "name": "form-section-1440-light-rtl",
+      "component": "form-section",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "controlCount": 3,
+      "targetBox": {
+        "x": 147,
+        "y": 323.765625,
+        "right": 1097,
+        "bottom": 593.046875,
+        "width": 950,
+        "height": 269.28125
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلsectionActionPressed: true",
+      "targetScrollWidth": 950,
+      "targetClientWidth": 950,
+      "buttons": 1,
+      "fields": 2,
+      "rows": 0,
+      "sections": 0,
+      "actions": 0,
+      "issues": 0,
+      "clippedText": []
+    },
+    {
+      "name": "form-section-390-dark-ltr",
+      "component": "form-section",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 352
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "controlCount": 3,
+      "targetBox": {
+        "x": 57,
+        "y": 250.765625,
+        "right": 333,
+        "bottom": 593.640625,
+        "width": 276,
+        "height": 342.875
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلsectionActionPressed: true",
+      "targetScrollWidth": 276,
+      "targetClientWidth": 276,
+      "buttons": 1,
+      "fields": 2,
+      "rows": 0,
+      "sections": 0,
+      "actions": 0,
+      "issues": 0,
+      "clippedText": []
+    },
+    {
+      "name": "form-actions-1440-light-rtl",
+      "component": "form-actions",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "controlCount": 0,
+      "targetBox": {
+        "x": 147,
+        "y": 421.765625,
+        "right": 1097,
+        "bottom": 494.765625,
+        "width": 950,
+        "height": 73
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلformSavePressed: true",
+      "targetScrollWidth": 950,
+      "targetClientWidth": 950,
+      "buttons": 2,
+      "fields": 0,
+      "rows": 0,
+      "sections": 0,
+      "actions": 0,
+      "issues": 0,
+      "clippedText": []
+    },
+    {
+      "name": "form-actions-390-dark-ltr",
+      "component": "form-actions",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 241
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "controlCount": 0,
+      "targetBox": {
+        "x": 57,
+        "y": 361.765625,
+        "right": 333,
+        "bottom": 482.765625,
+        "width": 276,
+        "height": 121
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلformSavePressed: true",
+      "targetScrollWidth": 276,
+      "targetClientWidth": 276,
+      "buttons": 2,
+      "fields": 0,
+      "rows": 0,
+      "sections": 0,
+      "actions": 0,
+      "issues": 0,
+      "clippedText": []
+    },
+    {
+      "name": "validation-summary-1440-light-rtl",
+      "component": "validation-summary",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "controlCount": 2,
+      "targetBox": {
+        "x": 147,
+        "y": 386.765625,
+        "right": 1097,
+        "bottom": 529.0625,
+        "width": 950,
+        "height": 142.296875
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلissueActivated: {\"key\":\"account-name\",\"fieldLabel\":\"اسم الحساب\",\"message\":\"اسم الحساب مطلوب.\"}",
+      "targetScrollWidth": 950,
+      "targetClientWidth": 950,
+      "buttons": 2,
+      "fields": 0,
+      "rows": 0,
+      "sections": 0,
+      "actions": 0,
+      "issues": 2,
+      "clippedText": []
+    },
+    {
+      "name": "validation-summary-390-dark-ltr",
+      "component": "validation-summary",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 324
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "controlCount": 2,
+      "targetBox": {
+        "x": 57,
+        "y": 347.953125,
+        "right": 333,
+        "bottom": 495.546875,
+        "width": 276,
+        "height": 147.59375
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلissueActivated: {\"key\":\"account-name\",\"fieldLabel\":\"اسم الحساب\",\"message\":\"اسم الحساب مطلوب.\"}",
+      "targetScrollWidth": 276,
+      "targetClientWidth": 276,
+      "buttons": 2,
+      "fields": 0,
+      "rows": 0,
+      "sections": 0,
+      "actions": 0,
+      "issues": 2,
+      "clippedText": []
+    },
+    {
+      "name": "repeater-1440-light-rtl",
+      "component": "repeater",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "controlCount": 7,
+      "targetBox": {
+        "x": 147,
+        "y": 359.765625,
+        "right": 1097,
+        "bottom": 629.765625,
+        "width": 950,
+        "height": 270
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلaddRequested: undefined",
+      "targetScrollWidth": 950,
+      "targetClientWidth": 950,
+      "buttons": 4,
+      "fields": 0,
+      "rows": 3,
+      "sections": 0,
+      "actions": 0,
+      "issues": 0,
+      "clippedText": []
+    },
+    {
+      "name": "repeater-390-dark-ltr",
+      "component": "repeater",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 308
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "controlCount": 7,
+      "targetBox": {
+        "x": 57,
+        "y": 323.953125,
+        "right": 333,
+        "bottom": 607.953125,
+        "width": 276,
+        "height": 284
+      },
+      "horizontalOverflow": 0,
+      "diagnostics": [],
+      "eventText": "آخر تفاعلaddRequested: undefined",
+      "targetScrollWidth": 276,
+      "targetClientWidth": 276,
+      "buttons": 4,
+      "fields": 0,
+      "rows": 3,
+      "sections": 0,
+      "actions": 0,
+      "issues": 0,
+      "clippedText": []
+    }
+  ],
+  "assertions": [
+    {
+      "name": "form-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "form-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "rtl",
+        "theme": "light"
+      }
+    },
+    {
+      "name": "form-1440-light-rtl overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "form-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "form-1440-light-rtl clipping",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "form-1440-light-rtl composition",
+      "pass": true,
+      "actual": {
+        "name": "form-1440-light-rtl",
+        "component": "form",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "controlCount": 4,
+        "targetBox": {
+          "x": 147,
+          "y": 239.765625,
+          "right": 1097,
+          "bottom": 675.640625,
+          "width": 950,
+          "height": 435.875
+        },
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلsubmitRequested: undefined",
+        "targetScrollWidth": 950,
+        "targetClientWidth": 950,
+        "buttons": 2,
+        "fields": 2,
+        "rows": 0,
+        "sections": 1,
+        "actions": 1,
+        "issues": 0,
+        "clippedText": []
+      }
+    },
+    {
+      "name": "form-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "form-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "ltr",
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "form-390-dark-ltr overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "form-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "form-390-dark-ltr clipping",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "form-390-dark-ltr composition",
+      "pass": true,
+      "actual": {
+        "name": "form-390-dark-ltr",
+        "component": "form",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 426
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "controlCount": 4,
+        "targetBox": {
+          "x": 57,
+          "y": 154.765625,
+          "right": 333,
+          "bottom": 689.828125,
+          "width": 276,
+          "height": 535.0625
+        },
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلsubmitRequested: undefined",
+        "targetScrollWidth": 276,
+        "targetClientWidth": 276,
+        "buttons": 2,
+        "fields": 2,
+        "rows": 0,
+        "sections": 1,
+        "actions": 1,
+        "issues": 0,
+        "clippedText": []
+      }
+    },
+    {
+      "name": "form-section-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "form-section-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "rtl",
+        "theme": "light"
+      }
+    },
+    {
+      "name": "form-section-1440-light-rtl overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "form-section-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "form-section-1440-light-rtl clipping",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "form-section-1440-light-rtl projected fields",
+      "pass": true,
+      "actual": {
+        "name": "form-section-1440-light-rtl",
+        "component": "form-section",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "controlCount": 3,
+        "targetBox": {
+          "x": 147,
+          "y": 323.765625,
+          "right": 1097,
+          "bottom": 593.046875,
+          "width": 950,
+          "height": 269.28125
+        },
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلsectionActionPressed: true",
+        "targetScrollWidth": 950,
+        "targetClientWidth": 950,
+        "buttons": 1,
+        "fields": 2,
+        "rows": 0,
+        "sections": 0,
+        "actions": 0,
+        "issues": 0,
+        "clippedText": []
+      }
+    },
+    {
+      "name": "form-section-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "form-section-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "ltr",
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "form-section-390-dark-ltr overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "form-section-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "form-section-390-dark-ltr clipping",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "form-section-390-dark-ltr projected fields",
+      "pass": true,
+      "actual": {
+        "name": "form-section-390-dark-ltr",
+        "component": "form-section",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 352
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "controlCount": 3,
+        "targetBox": {
+          "x": 57,
+          "y": 250.765625,
+          "right": 333,
+          "bottom": 593.640625,
+          "width": 276,
+          "height": 342.875
+        },
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلsectionActionPressed: true",
+        "targetScrollWidth": 276,
+        "targetClientWidth": 276,
+        "buttons": 1,
+        "fields": 2,
+        "rows": 0,
+        "sections": 0,
+        "actions": 0,
+        "issues": 0,
+        "clippedText": []
+      }
+    },
+    {
+      "name": "form-actions-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "form-actions-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "rtl",
+        "theme": "light"
+      }
+    },
+    {
+      "name": "form-actions-1440-light-rtl overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "form-actions-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "form-actions-1440-light-rtl clipping",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "form-actions-1440-light-rtl action slots",
+      "pass": true,
+      "actual": {
+        "name": "form-actions-1440-light-rtl",
+        "component": "form-actions",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "controlCount": 0,
+        "targetBox": {
+          "x": 147,
+          "y": 421.765625,
+          "right": 1097,
+          "bottom": 494.765625,
+          "width": 950,
+          "height": 73
+        },
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلformSavePressed: true",
+        "targetScrollWidth": 950,
+        "targetClientWidth": 950,
+        "buttons": 2,
+        "fields": 0,
+        "rows": 0,
+        "sections": 0,
+        "actions": 0,
+        "issues": 0,
+        "clippedText": []
+      }
+    },
+    {
+      "name": "form-actions-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "form-actions-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "ltr",
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "form-actions-390-dark-ltr overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "form-actions-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "form-actions-390-dark-ltr clipping",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "form-actions-390-dark-ltr action slots",
+      "pass": true,
+      "actual": {
+        "name": "form-actions-390-dark-ltr",
+        "component": "form-actions",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 241
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "controlCount": 0,
+        "targetBox": {
+          "x": 57,
+          "y": 361.765625,
+          "right": 333,
+          "bottom": 482.765625,
+          "width": 276,
+          "height": 121
+        },
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلformSavePressed: true",
+        "targetScrollWidth": 276,
+        "targetClientWidth": 276,
+        "buttons": 2,
+        "fields": 0,
+        "rows": 0,
+        "sections": 0,
+        "actions": 0,
+        "issues": 0,
+        "clippedText": []
+      }
+    },
+    {
+      "name": "validation-summary-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "validation-summary-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "rtl",
+        "theme": "light"
+      }
+    },
+    {
+      "name": "validation-summary-1440-light-rtl overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "validation-summary-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "validation-summary-1440-light-rtl clipping",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "validation-summary-1440-light-rtl issue activation",
+      "pass": true,
+      "actual": {
+        "name": "validation-summary-1440-light-rtl",
+        "component": "validation-summary",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "controlCount": 2,
+        "targetBox": {
+          "x": 147,
+          "y": 386.765625,
+          "right": 1097,
+          "bottom": 529.0625,
+          "width": 950,
+          "height": 142.296875
+        },
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلissueActivated: {\"key\":\"account-name\",\"fieldLabel\":\"اسم الحساب\",\"message\":\"اسم الحساب مطلوب.\"}",
+        "targetScrollWidth": 950,
+        "targetClientWidth": 950,
+        "buttons": 2,
+        "fields": 0,
+        "rows": 0,
+        "sections": 0,
+        "actions": 0,
+        "issues": 2,
+        "clippedText": []
+      }
+    },
+    {
+      "name": "validation-summary-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "validation-summary-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "ltr",
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "validation-summary-390-dark-ltr overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "validation-summary-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "validation-summary-390-dark-ltr clipping",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "validation-summary-390-dark-ltr issue activation",
+      "pass": true,
+      "actual": {
+        "name": "validation-summary-390-dark-ltr",
+        "component": "validation-summary",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 324
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "controlCount": 2,
+        "targetBox": {
+          "x": 57,
+          "y": 347.953125,
+          "right": 333,
+          "bottom": 495.546875,
+          "width": 276,
+          "height": 147.59375
+        },
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلissueActivated: {\"key\":\"account-name\",\"fieldLabel\":\"اسم الحساب\",\"message\":\"اسم الحساب مطلوب.\"}",
+        "targetScrollWidth": 276,
+        "targetClientWidth": 276,
+        "buttons": 2,
+        "fields": 0,
+        "rows": 0,
+        "sections": 0,
+        "actions": 0,
+        "issues": 2,
+        "clippedText": []
+      }
+    },
+    {
+      "name": "repeater-1440-light-rtl target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "repeater-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "rtl",
+        "theme": "light"
+      }
+    },
+    {
+      "name": "repeater-1440-light-rtl overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "repeater-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "repeater-1440-light-rtl clipping",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "repeater-1440-light-rtl controlled rows",
+      "pass": true,
+      "actual": {
+        "name": "repeater-1440-light-rtl",
+        "component": "repeater",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "controlCount": 7,
+        "targetBox": {
+          "x": 147,
+          "y": 359.765625,
+          "right": 1097,
+          "bottom": 629.765625,
+          "width": 950,
+          "height": 270
+        },
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلaddRequested: undefined",
+        "targetScrollWidth": 950,
+        "targetClientWidth": 950,
+        "buttons": 4,
+        "fields": 0,
+        "rows": 3,
+        "sections": 0,
+        "actions": 0,
+        "issues": 0,
+        "clippedText": []
+      }
+    },
+    {
+      "name": "repeater-390-dark-ltr target",
+      "pass": true,
+      "actual": 1
+    },
+    {
+      "name": "repeater-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "direction": "ltr",
+        "theme": "dark"
+      }
+    },
+    {
+      "name": "repeater-390-dark-ltr overflow",
+      "pass": true,
+      "actual": {
+        "page": 0,
+        "target": 0
+      }
+    },
+    {
+      "name": "repeater-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "repeater-390-dark-ltr clipping",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "repeater-390-dark-ltr controlled rows",
+      "pass": true,
+      "actual": {
+        "name": "repeater-390-dark-ltr",
+        "component": "repeater",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 308
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "controlCount": 7,
+        "targetBox": {
+          "x": 57,
+          "y": 323.953125,
+          "right": 333,
+          "bottom": 607.953125,
+          "width": 276,
+          "height": 284
+        },
+        "horizontalOverflow": 0,
+        "diagnostics": [],
+        "eventText": "آخر تفاعلaddRequested: undefined",
+        "targetScrollWidth": 276,
+        "targetClientWidth": 276,
+        "buttons": 4,
+        "fields": 0,
+        "rows": 3,
+        "sections": 0,
+        "actions": 0,
+        "issues": 0,
+        "clippedText": []
+      }
+    }
+  ],
+  "summary": {
+    "total": 60,
+    "passed": 60,
+    "failed": []
+  }
+}
