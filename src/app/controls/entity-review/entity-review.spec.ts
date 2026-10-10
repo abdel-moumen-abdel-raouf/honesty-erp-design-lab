@@ -37,6 +37,7 @@ describe('ErpEntityReview', () => {
       expect(root.textContent).toContain(value);
     }
     expect(root.querySelectorAll('erp-text').length).toBeGreaterThan(0);
+    expect([...root.querySelectorAll<HTMLElement>('dd erp-text')].every((value) => value.dir === 'auto')).toBe(true);
   });
 
   it('keeps values immutable and compact presentation controlled', () => {

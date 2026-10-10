@@ -137,9 +137,10 @@ const PLANNED = [
   {
     identity: 'Entity Wizard',
     owner: 'planned pattern',
+    status: 'REVIEW-ONLY CANDIDATE',
     source: 'src/app/controls/ENTITY_FORM_ENGINE_V1.md',
     dependency: 'ErpStepper + Entity Form contracts',
-    action: 'PLANNED / business pattern remains closed.',
+    action: 'Review-only StandardEntityForm/Stepper composition delivered; business workflow remains closed.',
   },
   {
     identity: 'Workflow engine',
@@ -151,16 +152,18 @@ const PLANNED = [
   {
     identity: 'EntityDirectory',
     owner: 'planned page pattern',
+    status: 'REVIEW-ONLY CANDIDATE',
     source: 'src/app/controls/ENTITY_FORM_ENGINE_V1.md',
     dependency: 'DataPage + entity contracts',
-    action: 'PLANNED / Feature/Page scope remains closed.',
+    action: 'Review-only DataPage composition delivered; data source, routing, and CRUD remain closed.',
   },
   {
     identity: 'EntityDetail',
     owner: 'planned page pattern',
+    status: 'REVIEW-ONLY CANDIDATE',
     source: 'src/app/controls/ENTITY_FORM_ENGINE_V1.md',
     dependency: 'Page composition + entity contracts',
-    action: 'PLANNED / Feature/Page scope remains closed.',
+    action: 'Review-only Page/EntityForm/EntityReview composition delivered; transactions remain closed.',
   },
 ];
 
@@ -264,7 +267,7 @@ function buildLedger(catalog) {
     return `| ${cell(entry.className)} | ${cell(entry.classification)} | ${cell(entry.selector ? `\`${entry.selector}\`` : 'non-rendering')} | IMPLEMENTED / VERIFIED THROUGH OWNER | ${cell(state)} | ${cell(evidence)} | ${cell(entry.sourcePath)} | ${cell(dependencySummary(entry))} | ${cell(nextAction(entry, state))} |`;
   });
   const plannedRows = PLANNED.map((entry) =>
-    `| ${cell(entry.identity)} | ${cell(entry.owner)} | PLANNED ONLY | UNKNOWN / NOT REVIEWED AS AN OWNER | ${cell(entry.source)} | ${cell(entry.dependency)} | ${cell(entry.action)} |`,
+    `| ${cell(entry.identity)} | ${cell(entry.owner)} | ${cell(entry.status ?? 'PLANNED ONLY')} | UNKNOWN / NOT REVIEWED AS AN OWNER | ${cell(entry.source)} | ${cell(entry.dependency)} | ${cell(entry.action)} |`,
   );
 
   return `# Honesty ERP Component Lifecycle Ledger V1

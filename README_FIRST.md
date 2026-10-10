@@ -1,5 +1,23 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest planned UI checkpoint — review-only compositions complete
+
+Three original Honesty ERP presentation candidates are now available at
+`/patterns/entity-wizard`, `/patterns/entity-directory`, and
+`/patterns/entity-detail`. They reuse the established StandardEntityForm,
+DataPage, Page, and EntityReview owners and deliberately do not register
+duplicate public components. Their state, steps, rows, modes, and emitted
+intents remain consumer controlled; HTTP, CRUD, workflow execution,
+persistence, permissions, routing, and backend behavior remain excluded.
+
+The catalog remains 83 public and 46 supporting entries. The lifecycle ledger
+records the three compositions as `REVIEW-ONLY CANDIDATE` and keeps Workflow
+engine as the sole `PLANNED ONLY` non-UI system. Six desktop/narrow pattern
+scenarios pass 24 ownership/containment assertions. The refreshed public audit
+passes 223 route/state runs with zero failures. Canonical verification passes
+156/156 files and 903/903 tests with a zero-warning 427.84 kB / 93.44 kB
+build. Product Owner visual acceptance remains pending.
+
 ## Latest planned UI checkpoint — consumer-controlled DataPage V1
 
 `ErpDataPage` is now the bounded public Page-composition owner over the

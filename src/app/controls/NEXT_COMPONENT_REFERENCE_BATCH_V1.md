@@ -1,5 +1,18 @@
 # Next Component Reference Batch V1
 
+## Authoritative current action — 2026-10-11 — consolidated visual review
+
+The documented safe UI-only candidates are complete: `ErpEntityReview` and
+`ErpDataPage` are public owners; Entity Wizard, EntityDirectory, and
+EntityDetail are review-only compositions with no duplicate facade APIs.
+Workflow engine remains deferred as a non-UI business system.
+
+The catalog remains 83 public owners. Browser and canonical verification are
+green, but Product Owner visual status is unchanged. No further component,
+CRUD, workflow, transport, permission, persistence, or backend wave is opened
+by this checkpoint. The current action is consolidated Product Owner review of
+the Shell and presentation candidates.
+
 ## Authoritative current action — 2026-10-11 — review-only planned patterns
 
 `ErpEntityReview` and `ErpDataPage` are technically verified public lower

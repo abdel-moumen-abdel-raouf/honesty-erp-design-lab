@@ -1,5 +1,25 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Review-only planned composition decisions — 2026-10-11
+
+- Entity Wizard is an existing-owner review composition over
+  `ErpStandardEntityForm`, its controlled `ErpStepper`, and
+  `ErpEntityReview`; no separate Wizard facade or workflow engine is created.
+- EntityDirectory is a review composition over `ErpDataPage`; rows, filters,
+  selection, loading, density, and navigation intents remain consumer owned.
+- EntityDetail is a review composition over `ErpPage`,
+  `ErpStandardEntityForm`, and `ErpEntityReview`; view/edit/review mode is
+  consumer controlled and no transaction authority is introduced.
+- Routed pattern templates remain ERP-only authored. Native review controls,
+  duplicate facade selectors, hidden transport, CRUD, routing, permissions,
+  persistence, and backend behavior are governance failures.
+- Mixed-direction immutable values use the existing `ErpText` direction
+  contract; no private bidi renderer is introduced.
+- Workflow engine remains `PLANNED ONLY`. No UI or business execution contract
+  was inferred.
+- The three compositions are `TECHNICAL_VERIFIED` and internally browser
+  reviewed, but remain `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+
 ## DataPage decisions — 2026-10-11
 
 - `ErpDataPage` is the distinct public page-composition owner; it passes

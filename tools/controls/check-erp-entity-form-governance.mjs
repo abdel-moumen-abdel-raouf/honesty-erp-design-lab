@@ -13,6 +13,8 @@ const STANDARD_TS = 'src/app/controls/entity-form/standard-entity-form.ts';
 const STANDARD_HTML = 'src/app/controls/entity-form/standard-entity-form.html';
 const ENTITY_REVIEW_TS = 'src/app/controls/entity-review/entity-review.ts';
 const ENTITY_REVIEW_HTML = 'src/app/controls/entity-review/entity-review.html';
+const PLANNED_PATTERNS_TS = 'src/app/review-internals/planned-ui-patterns/planned-ui-patterns.ts';
+const PLANNED_PATTERNS_HTML = 'src/app/review-internals/planned-ui-patterns/planned-ui-patterns.html';
 const OUTLETS = 'src/app/controls/entity-form/entity-form-outlets.ts';
 const VISUAL_TOKENS = ['standard-entity-form', 'entity-schema-fields', 'entity-review'];
 const FORBIDDEN_SCOPE = [
@@ -57,6 +59,8 @@ function validateEntityFormContract(files) {
   const standardHtml = files.get(STANDARD_HTML) ?? '';
   const entityReviewTs = files.get(ENTITY_REVIEW_TS) ?? '';
   const entityReviewHtml = files.get(ENTITY_REVIEW_HTML) ?? '';
+  const plannedPatternsTs = files.get(PLANNED_PATTERNS_TS) ?? '';
+  const plannedPatternsHtml = files.get(PLANNED_PATTERNS_HTML) ?? '';
   const outlets = files.get(OUTLETS) ?? '';
   const combined = [...files.values()].join('\n');
 
@@ -66,6 +70,9 @@ function validateEntityFormContract(files) {
   if (!hasClass(outlets, 'ErpEntityCustomFieldOutlet')) errors.push('Missing ErpEntityCustomFieldOutlet owner');
   if (!hasClass(outlets, 'ErpEntityCustomSectionOutlet')) errors.push('Missing ErpEntityCustomSectionOutlet owner');
   if (!routes.includes("path: 'controls/entity-form-batch'")) errors.push('Missing /controls/entity-form-batch route');
+  for (const pattern of ['entity-wizard', 'entity-directory', 'entity-detail']) {
+    if (!routes.includes(`path: 'patterns/${pattern}'`)) errors.push(`Missing review-only ${pattern} pattern route`);
+  }
 
   if (/<\/?(form|input|select|textarea|button)\b/i.test(review)) {
     errors.push('Entity Form review route must remain ERP-only authored');
@@ -82,6 +89,18 @@ function validateEntityFormContract(files) {
   }
   if (/<\/?(input|select|textarea|button)\b/i.test(entityReviewHtml)) {
     errors.push('ErpEntityReview must remain read-only and ERP-only authored');
+  }
+  if (/<\/?(form|input|select|textarea|button)\b/i.test(plannedPatternsHtml)) {
+    errors.push('Planned UI pattern reviews must remain ERP-only authored');
+  }
+  if (!plannedPatternsTs.includes('ErpStandardEntityForm') || !plannedPatternsTs.includes('ErpDataPage') || !plannedPatternsTs.includes('ErpEntityReview')) {
+    errors.push('Planned UI patterns must compose the established Form, DataPage, and EntityReview owners');
+  }
+  if (/<erp-(?:entity-wizard|entity-directory|entity-detail)\b/i.test(plannedPatternsHtml)) {
+    errors.push('Review-only patterns must not create duplicate public facade owners');
+  }
+  if (!plannedPatternsHtml.includes('data-showcase-target') || !plannedPatternsHtml.includes('data-showcase-event-log')) {
+    errors.push('Review-only patterns require real target and event evidence');
   }
   if (!entityReviewTs.includes('ErpEntityReviewContext') || !entityReviewTs.includes('input.required<ErpEntityReviewContext>')) {
     errors.push('ErpEntityReview must consume the established immutable review context');
@@ -149,7 +168,15 @@ function validateEntityFormContract(files) {
 
 function validFixture(overrides = new Map()) {
   const files = new Map([
-    [ROUTES, "path: 'controls/entity-form-batch'"],
+    [
+      ROUTES,
+      [
+        "path: 'controls/entity-form-batch'",
+        "path: 'patterns/entity-wizard'",
+        "path: 'patterns/entity-directory'",
+        "path: 'patterns/entity-detail'",
+      ].join('\n'),
+    ],
     [REVIEW, '<erp-standard-entity-form></erp-standard-entity-form>'],
     [CONTRACTS, 'import {ErpFormValidationIssue} from "../forms-family/forms-contracts"; export type ErpEntityFieldDefinition = {}'],
     [SCHEMA, 'throw new ErpEntityFormSchemaError(`Unsupported entity field kind`)'],
@@ -159,6 +186,8 @@ function validFixture(overrides = new Map()) {
     [STANDARD_HTML, '<erp-form><erp-validation-summary/><erp-form-section><erp-entity-schema-fields/></erp-form-section><erp-form-actions/></erp-form>'],
     [ENTITY_REVIEW_TS, 'import {ErpEntityReviewContext} from "x"; export class ErpEntityReview { context = input.required<ErpEntityReviewContext>(); }'],
     [ENTITY_REVIEW_HTML, '<erp-form-section><erp-text/></erp-form-section>'],
+    [PLANNED_PATTERNS_TS, 'ErpStandardEntityForm ErpDataPage ErpEntityReview'],
+    [PLANNED_PATTERNS_HTML, '<erp-standard-entity-form data-showcase-target/><erp-data-page data-showcase-target/><erp-entity-review data-showcase-target/><erp-text data-showcase-event-log/>'],
     [OUTLETS, "@Directive({selector: 'ng-template[erpEntityCustomField]'}) export class ErpEntityCustomFieldOutlet {} @Directive({selector: 'ng-template[erpEntityCustomSection]'}) export class ErpEntityCustomSectionOutlet {}"],
     ['src/styles/foundation/components/standard-entity-form/_tokens.scss', '@mixin base { --honesty-standard-entity-form-gap: 1rem; }'],
     ['src/styles/foundation/components/entity-schema-fields/_tokens.scss', '@mixin base { --honesty-entity-schema-fields-gap: 1rem; }'],
@@ -183,6 +212,9 @@ function runSelfTest() {
     ['silent unsupported fallback', new Map([[SCHEMA, 'return null']]), 'fail deterministically'],
     ['duplicate validation', new Map([[STANDARD_TS, 'export class ErpStandardEntityForm implements ControlValueAccessor {} NG_VALUE_ACCESSOR']]), 'duplicate CVA'],
     ['Entity Wizard', new Map([[STANDARD_TS, 'export class ErpStandardEntityForm {} export class ErpEntityWizard {}']]), 'ErpEntityWizard'],
+    ['missing review pattern route', new Map([[ROUTES, "path: 'controls/entity-form-batch'"]]), 'entity-wizard pattern route'],
+    ['raw review pattern control', new Map([[PLANNED_PATTERNS_HTML, '<erp-standard-entity-form/><input>']]), 'pattern reviews must remain ERP-only'],
+    ['duplicate pattern facade', new Map([[PLANNED_PATTERNS_HTML, '<erp-entity-wizard data-showcase-target/><erp-text data-showcase-event-log/>']]), 'duplicate public facade'],
     ['Shell', new Map([[STANDARD_TS, 'export class ErpStandardEntityForm {} export class ErpAppShell {}']]), 'ErpAppShell'],
     ['missing token base', new Map([['src/styles/foundation/components/standard-entity-form/_tokens.scss', '']]), 'Token base'],
   ];
@@ -200,7 +232,7 @@ function runSelfTest() {
 
 function runCheck() {
   const files = new Map();
-  for (const relative of [ROUTES, REVIEW, CONTRACTS, SCHEMA, FIELDS_TS, FIELDS_HTML, STANDARD_TS, STANDARD_HTML, ENTITY_REVIEW_TS, ENTITY_REVIEW_HTML, OUTLETS]) {
+  for (const relative of [ROUTES, REVIEW, CONTRACTS, SCHEMA, FIELDS_TS, FIELDS_HTML, STANDARD_TS, STANDARD_HTML, ENTITY_REVIEW_TS, ENTITY_REVIEW_HTML, PLANNED_PATTERNS_TS, PLANNED_PATTERNS_HTML, OUTLETS]) {
     files.set(relative, read(relative));
   }
   for (const component of VISUAL_TOKENS) {
@@ -222,7 +254,7 @@ function runCheck() {
     process.exit(1);
   }
   console.log('ERP Entity Form governance: PASS');
-  console.log('5 authorized public owners, bounded schema routing, immutable review presentation, escape hatches, validation reuse, and 3 visual token owners verified.');
+  console.log('5 authorized public owners, 3 review-only planned compositions, bounded schema routing, immutable review presentation, escape hatches, validation reuse, and 3 visual token owners verified.');
 }
 
 if (process.argv.includes('--self-test')) runSelfTest();

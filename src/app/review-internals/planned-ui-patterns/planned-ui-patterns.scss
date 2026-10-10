@@ -1,0 +1,10 @@
+:host {
+  display: block;
+  min-inline-size: 0;
+}
+
+.planned-pattern__controls {
+  display: grid;
+  gap: var(--honesty-space-stack-default);
+  min-inline-size: 0;
+}

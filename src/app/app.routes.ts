@@ -2,6 +2,30 @@ import {Routes} from '@angular/router';
 
 export const routes: Routes = [
   {
+    path: 'patterns/entity-wizard',
+    data: {pattern: 'entity-wizard'},
+    loadComponent: () =>
+      import('./review-internals/planned-ui-patterns/planned-ui-patterns').then(
+        (module) => module.ErpReviewPlannedUiPattern,
+      ),
+  },
+  {
+    path: 'patterns/entity-directory',
+    data: {pattern: 'entity-directory'},
+    loadComponent: () =>
+      import('./review-internals/planned-ui-patterns/planned-ui-patterns').then(
+        (module) => module.ErpReviewPlannedUiPattern,
+      ),
+  },
+  {
+    path: 'patterns/entity-detail',
+    data: {pattern: 'entity-detail'},
+    loadComponent: () =>
+      import('./review-internals/planned-ui-patterns/planned-ui-patterns').then(
+        (module) => module.ErpReviewPlannedUiPattern,
+      ),
+  },
+  {
     path: 'components',
     loadComponent: () =>
       import('./showcase/component-catalog/component-catalog-page').then(

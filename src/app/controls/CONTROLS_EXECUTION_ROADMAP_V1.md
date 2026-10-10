@@ -1,5 +1,19 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — planned presentation candidates processed
+
+The authorized UI-only backlog is processed without expanding public
+ownership beyond the verified 83 owners. Entity Wizard, EntityDirectory, and
+EntityDetail are bounded review compositions over existing Form, DataPage,
+Page, and EntityReview owners. Each route has one target, controlled state,
+and visible intent evidence. They are not new production facade owners.
+
+Workflow engine remains the sole unimplemented `PLANNED ONLY` identity because
+it is a business system without an authorized UI/execution contract. The
+223-run public audit, 24 planned-pattern assertions, and canonical 156-file /
+903-test gate pass. The next permitted action is consolidated Product Owner
+visual review, not CRUD, workflow, backend, transport, or Feature/Page work.
+
 ## Current UI continuation — DataPage V1 complete
 
 `ErpDataPage` is now the verified public consumer-controlled Page/SmartTable

@@ -1,5 +1,20 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — consolidated Product Owner review
+
+The authorized Topbar/Shell correction and planned UI-only pass are fully
+checkpointed candidates. Public ownership is 83 owners and 46 supporting
+entries. Entity Wizard, EntityDirectory, and EntityDetail exist only as
+review-only routes under `/patterns/*`; they do not add facade owners. Workflow
+engine remains the only `PLANNED ONLY` identity and is not implemented.
+
+Current evidence is 223/223 public route/state runs plus six planned-pattern
+scenarios, all with one target, zero ownership mismatches, overflow, broken
+images, or browser diagnostics. Canonical verification is 156/156 files,
+903/903 tests, both typechecks, all governance, and a zero-warning 427.84 kB /
+93.44 kB build. The next action is consolidated Product Owner visual review;
+technical and internal browser verification do not imply acceptance.
+
 ## Current continuation point — review-only planned compositions
 
 Continue after the technically verified `ErpDataPage` V1 checkpoint. The

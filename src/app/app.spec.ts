@@ -13,6 +13,7 @@ import {
 } from './app';
 import {routes} from './app.routes';
 import {ERP_PUBLIC_SHOWCASE_LOADERS} from './catalog/erp-component-catalog.generated';
+import {ERP_COMPONENT_NAVIGATION} from './catalog/erp-component-navigation.generated';
 import {ErpOverlayManager} from './shared/overlay/overlay-manager';
 import {ErpReviewAppShellWorkbenchState} from './review-internals/app-shell-workbench/app-shell-workbench-state';
 
@@ -137,6 +138,17 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
       (fixture.nativeElement as HTMLElement).querySelectorAll('erp-overlay-host')
         .length,
     ).toBe(1);
+  });
+
+  it('registers the three review-only planned-pattern routes outside the public component catalog', () => {
+    const patternRoutes = routes.filter((route) => route.path?.startsWith('patterns/'));
+    expect(patternRoutes.map((route) => route.path)).toEqual([
+      'patterns/entity-wizard',
+      'patterns/entity-directory',
+      'patterns/entity-detail',
+    ]);
+    expect(patternRoutes.every((route) => typeof route.loadComponent === 'function')).toBe(true);
+    expect(ERP_COMPONENT_NAVIGATION.some((entry) => entry.showcaseRoute.startsWith('/patterns/'))).toBe(false);
   });
 
   it('composes the real Shell owners around the routed Design Lab content', () => {

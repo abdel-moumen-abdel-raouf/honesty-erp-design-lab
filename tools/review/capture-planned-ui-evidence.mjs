@@ -9,15 +9,44 @@ const REVIEW_ID = process.argv[2] ?? process.env['HONESTY_PLANNED_UI_ID'] ?? 'en
 const CONFIGS = {
   'entity-review': {
     output: 'entity-review-v1',
+    route: '/components/entity-review',
     owner: 'erp-entity-review',
     itemSelector: '[data-entity-review-field]',
     expectedItems: 4,
   },
   'data-page': {
     output: 'data-page-v1',
+    route: '/components/data-page',
     owner: 'erp-data-page',
     itemSelector: 'erp-table tbody tr',
     expectedItems: 3,
+  },
+  'entity-wizard': {
+    output: 'entity-wizard-v1',
+    route: '/patterns/entity-wizard',
+    owner: 'erp-standard-entity-form',
+    expectedOwners: 1,
+    itemSelector: 'erp-form-section',
+    expectedItems: 1,
+    preservePageTop: true,
+  },
+  'entity-directory': {
+    output: 'entity-directory-v1',
+    route: '/patterns/entity-directory',
+    owner: 'erp-data-page',
+    expectedOwners: 1,
+    itemSelector: 'erp-table tbody tr',
+    expectedItems: 3,
+    preservePageTop: true,
+  },
+  'entity-detail': {
+    output: 'entity-detail-v1',
+    route: '/patterns/entity-detail',
+    owner: 'erp-entity-review',
+    expectedOwners: 1,
+    itemSelector: '[data-entity-review-field]',
+    expectedItems: 7,
+    preservePageTop: true,
   },
 };
 const CONFIG = CONFIGS[REVIEW_ID];
@@ -74,7 +103,7 @@ async function evaluate(client, expression) {
 }
 
 async function screenshot(client, fileName, clip = null) {
-  const result = await client.command('Page.captureScreenshot', {format: 'png', fromSurface: true, captureBeyondViewport: false, ...(clip ? {clip: {...clip, scale: 1}} : {})});
+  const result = await client.command('Page.captureScreenshot', {format: 'png', fromSurface: true, captureBeyondViewport: Boolean(clip), ...(clip ? {clip: {...clip, scale: 1}} : {})});
   await fs.writeFile(path.join(OUTPUT, fileName), Buffer.from(result.data, 'base64'));
 }
 
@@ -98,9 +127,9 @@ try {
     client.diagnostics.length = 0;
     await client.command('Emulation.setDeviceMetricsOverride', {width: scenario.width, height: scenario.height, deviceScaleFactor: 1, mobile: false});
     await evaluate(client, `localStorage.setItem('honesty-lab-theme','${scenario.theme}')`);
-    await client.command('Page.navigate', {url: `${APP_URL}/components/${REVIEW_ID}`});
+    await client.command('Page.navigate', {url: `${APP_URL}${CONFIG.route}`});
     await waitFor(() => evaluate(client, `document.readyState === 'complete' && document.querySelectorAll('[data-showcase-target]').length === 1`));
-    await evaluate(client, `(() => { document.documentElement.dir='${scenario.direction}'; document.body.dir='${scenario.direction}'; document.documentElement.style.direction='${scenario.direction}'; document.body.style.direction='${scenario.direction}'; document.querySelector('[data-showcase-target]')?.scrollIntoView({block:'center',inline:'nearest',behavior:'instant'}); })()`);
+    await evaluate(client, `(() => { document.documentElement.dir='${scenario.direction}'; document.body.dir='${scenario.direction}'; document.documentElement.style.direction='${scenario.direction}'; document.body.style.direction='${scenario.direction}'; ${CONFIG.preservePageTop ? "window.scrollTo({top:0,left:0,behavior:'instant'});" : "document.querySelector('[data-showcase-target]')?.scrollIntoView({block:'center',inline:'nearest',behavior:'instant'});"} })()`);
     await new Promise((resolve) => setTimeout(resolve, 250));
     const measurement = await evaluate(client, `(() => { const target=document.querySelector('[data-showcase-target]'); const root=document.documentElement; const r=target.getBoundingClientRect(); const clipped=Array.from(target.querySelectorAll('erp-text')).filter((element)=>{ const box=element.getBoundingClientRect(); const style=getComputedStyle(element); const intentional=box.width<=2 || box.height<=2 || style.overflow==='visible' || style.textOverflow==='ellipsis' || style.clip!=='auto' || style.clipPath!=='none'; return !intentional && (element.scrollHeight>element.clientHeight+1 || element.scrollWidth>element.clientWidth+1); }).map((element)=>element.textContent?.trim()); return {name:${JSON.stringify(scenario.name)},viewport:{width:innerWidth,height:innerHeight},scroll:{x:scrollX,y:scrollY},theme:document.querySelector('#lab-capture-root')?.getAttribute('data-theme'),direction:getComputedStyle(target).direction,targetCount:document.querySelectorAll('[data-showcase-target]').length,ownerCount:document.querySelectorAll(${JSON.stringify(CONFIG.owner)}).length,targetBox:{x:r.x,y:r.y,width:r.width,height:r.height},itemCount:target.querySelectorAll(${JSON.stringify(CONFIG.itemSelector)}).length,horizontalOverflow:Math.max(0,root.scrollWidth-innerWidth),targetOverflow:Math.max(0,target.scrollWidth-target.clientWidth),clipped}; })()`);
     measurement.diagnostics = [...client.diagnostics];
@@ -111,7 +140,7 @@ try {
   }
 
   const assertions = results.flatMap((result) => [
-    {name: `${result.name} ownership`, pass: result.targetCount === 1 && result.itemCount === CONFIG.expectedItems, actual: result},
+    {name: `${result.name} ownership`, pass: result.targetCount === 1 && result.itemCount === CONFIG.expectedItems && (CONFIG.expectedOwners === undefined || result.ownerCount === CONFIG.expectedOwners), actual: result},
     {name: `${result.name} direction-theme`, pass: result.direction === scenarios.find((item) => item.name === result.name).direction && result.theme === scenarios.find((item) => item.name === result.name).theme, actual: result},
     {name: `${result.name} overflow-clipping`, pass: result.horizontalOverflow === 0 && result.targetOverflow === 0 && result.clipped.length === 0, actual: result},
     {name: `${result.name} diagnostics`, pass: result.diagnostics.length === 0, actual: result.diagnostics},

@@ -1,5 +1,23 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — review-only planned compositions complete
+
+The source-backed readiness assessment is now closed for the six historical
+planned identities. `ErpEntityReview` and `ErpDataPage` are the two distinct
+public owners. Entity Wizard, EntityDirectory, and EntityDetail are delivered
+only as review routes that compose those existing owners and keep all mutable
+state and effects in the review consumer. Workflow engine remains an
+unimplemented, non-UI business system with no invented execution contract.
+
+The public catalog remains 83/46/4. Every pattern route renders exactly one
+existing-owner `data-showcase-target`, ERP-owned controls, and output evidence.
+Six persisted desktop/narrow Light/Dark RTL/LTR scenarios pass 24 assertions.
+The complete public browser matrix passes 223/223 route/state runs, including
+Back/Forward/refresh and overlay containment, with zero overflow, broken
+images, console findings, or ownership mismatches. `npm run verify:clean`
+passes 156/156 test files and 903/903 tests, both typechecks, all governance,
+and a zero-warning 427.84 kB / 93.44 kB build.
+
 ## Current checkpoint — consumer-controlled DataPage V1
 
 `ErpDataPage` composes the existing Page, PageHeader, PageShell, SmartTable,

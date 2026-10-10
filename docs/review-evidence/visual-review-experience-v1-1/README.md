@@ -48,10 +48,10 @@ visual target is the actual root frame, not a nested showcase instance.
 The final browser audit ran in the normal integrated Design Lab document at
 `http://127.0.0.1:4999` on 2026-10-10:
 
-- all 81 public routes were loaded at 390×844 Light/RTL;
+- all 83 public routes were loaded at 390×844 Light/RTL;
 - all 35 corrected routes were additionally loaded at 1440×900 Light/RTL,
   1440×900 Dark/LTR, 390×844 Light/LTR, and 390×844 Dark/RTL;
-- total route/state audit runs: 221;
+- total route/state audit runs: 223;
 - exactly one primary `data-showcase-target` per route;
 - generated gallery-owner counts matched the catalog for every run;
 - exactly one root AppShell, RouterOutlet, and OverlayHost;

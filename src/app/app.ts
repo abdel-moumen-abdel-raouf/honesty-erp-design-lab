@@ -64,12 +64,24 @@ function buildLabNavigation(): readonly ErpNavigationItem[] {
     items.push({id: entry.id, label: entry.displayNameAr, href: entry.showcaseRoute});
     categories.set(entry.category, items);
   }
-  return [...categories].map(([category, children]) => ({
+  return [
+    ...[...categories].map(([category, children]) => ({
     id: `category-${category.toLocaleLowerCase().replace(/[^a-z]+/g, '-')}`,
     label: CATEGORY_PRESENTATION[category]?.label ?? category,
     icon: CATEGORY_PRESENTATION[category]?.icon ?? 'folder',
     children,
-  }));
+    })),
+    {
+      id: 'category-review-patterns',
+      label: 'أنماط التكوين للمراجعة',
+      icon: 'layers',
+      children: [
+        {id: 'pattern-entity-wizard', label: 'معالج الكيان', href: '/patterns/entity-wizard'},
+        {id: 'pattern-entity-directory', label: 'دليل الكيانات', href: '/patterns/entity-directory'},
+        {id: 'pattern-entity-detail', label: 'تفاصيل الكيان', href: '/patterns/entity-detail'},
+      ],
+    },
+  ];
 }
 
 export function resolveLabTheme(
@@ -260,7 +272,13 @@ export class App {
   readonly activeNavigationId = computed(() => {
     this.routeEvent();
     const path = this.router.url.split(/[?#]/, 1)[0];
-    return ERP_COMPONENT_NAVIGATION.find((entry) => entry.showcaseRoute === path)?.id ?? null;
+    return ERP_COMPONENT_NAVIGATION.find((entry) => entry.showcaseRoute === path)?.id
+      ?? ({
+        '/patterns/entity-wizard': 'pattern-entity-wizard',
+        '/patterns/entity-directory': 'pattern-entity-directory',
+        '/patterns/entity-detail': 'pattern-entity-detail',
+      } as const)[path as '/patterns/entity-wizard' | '/patterns/entity-directory' | '/patterns/entity-detail']
+      ?? null;
   });
   readonly isAppShellShowcase = computed(
     () => this.activeNavigationId() === 'app-shell',

@@ -1,0 +1,135 @@
+<erp-page widthMode="fluid" scrollMode="document">
+  <erp-page-shell [sideVisible]="false" [footerVisible]="false">
+    <erp-page-header erpPageShellHeader [title]="title" [subtitle]="description">
+      <erp-text erpPageHeaderMeta type="caption" tone="secondary">مرشح تصميم Honesty ERP أصلي — لا يوجد مرجع خارجي ملزم</erp-text>
+    </erp-page-header>
+
+    <erp-stack gap="default">
+      <erp-surface padding="default" border="subtle">
+        <erp-stack gap="tight">
+          <erp-text type="heading-3">حدود الملكية</erp-text>
+          <erp-text type="paragraph" tone="secondary">هذه تجربة تركيب للمراجعة وليست مكوّنًا عامًا إضافيًا، ولا تملك HTTP أو CRUD أو Router أو صلاحيات أو استمرار بيانات أو قواعد أعمال.</erp-text>
+        </erp-stack>
+      </erp-surface>
+
+      @switch (pattern) {
+        @case ('entity-wizard') {
+          <erp-surface padding="default" border="subtle">
+            <erp-stack gap="default">
+              <erp-text type="heading-3">المعاينة الحية — معالج كيان متحكم به</erp-text>
+              <erp-standard-entity-form
+                data-showcase-target
+                [schema]="schema"
+                [values]="values()"
+                [issues]="[]"
+                [disabled]="disabled()"
+                [busy]="busy()"
+                [activeStepId]="activeStepId()"
+                (activeStepIdChange)="setStep($event)"
+                (valueChanged)="applyValue($event)"
+                (submitRequested)="record('submitRequested', $event)"
+                (resetRequested)="record('resetRequested')"
+                (cancelRequested)="record('cancelRequested')"
+              >
+                <ng-template erpEntityFormReview>
+                  <erp-entity-review [context]="reviewContext()" />
+                </ng-template>
+              </erp-standard-entity-form>
+            </erp-stack>
+          </erp-surface>
+
+          <erp-surface class="planned-pattern__controls" padding="default" border="subtle" data-showcase-api-controls>
+            <erp-text type="strong">أدوات التركيب المتقدمة</erp-text>
+            <erp-inline gap="tight" wrap="wrap">
+              <erp-button label="خطوة الهوية" size="sm" [variant]="activeStepId() === 'identity-step' ? 'solid' : 'outline'" (pressed)="setStep('identity-step')" />
+              <erp-button label="خطوة التعامل" size="sm" [variant]="activeStepId() === 'commercial-step' ? 'solid' : 'outline'" (pressed)="setStep('commercial-step')" />
+              <erp-button label="خطوة المراجعة" size="sm" [variant]="activeStepId() === 'review-step' ? 'solid' : 'outline'" (pressed)="setStep('review-step')" />
+              <erp-button label="تبديل التعطيل" size="sm" variant="outline" (pressed)="disabled.set(!disabled())" />
+              <erp-button label="تبديل الانشغال" size="sm" variant="outline" (pressed)="busy.set(!busy())" />
+            </erp-inline>
+          </erp-surface>
+        }
+
+        @case ('entity-directory') {
+          <erp-data-page
+            data-showcase-target
+            title="دليل العملاء"
+            subtitle="بيانات واستعلام واختيار يملكها المستهلك"
+            caption="حسابات العملاء"
+            [columns]="directoryColumns"
+            [rows]="directoryRows()"
+            [loading]="directoryLoading()"
+            [compact]="directoryCompact()"
+            [filterDefinitions]="directoryFilters"
+            [selectable]="true"
+            [pageSize]="10"
+            [selectedKeys]="selectedKeys()"
+            (selectedKeysChange)="selectedKeys.set($event); record('selectedKeysChange', $event)"
+            (queryChanged)="record('queryChanged', $event)"
+            (rowActivated)="record('rowActivated', $event['id'])"
+            (refreshRequested)="record('refreshRequested')"
+            (exportRequested)="record('exportRequested')"
+          >
+            <erp-button erpDataPagePrimary label="طلب إضافة عميل" icon="add" size="sm" (pressed)="record('createRequested')" />
+          </erp-data-page>
+
+          <erp-surface class="planned-pattern__controls" padding="default" border="subtle" data-showcase-api-controls>
+            <erp-text type="strong">أدوات التركيب المتقدمة</erp-text>
+            <erp-inline gap="tight" wrap="wrap">
+              <erp-button label="تبديل الحالة الفارغة" size="sm" variant="outline" (pressed)="toggleDirectoryRows()" />
+              <erp-button label="تبديل التحميل" size="sm" variant="outline" (pressed)="directoryLoading.set(!directoryLoading()); record('loadingChanged', directoryLoading())" />
+              <erp-button label="تبديل الكثافة" size="sm" variant="outline" (pressed)="directoryCompact.set(!directoryCompact()); record('compactChanged', directoryCompact())" />
+            </erp-inline>
+          </erp-surface>
+        }
+
+        @case ('entity-detail') {
+          <erp-page widthMode="fluid" scrollMode="free">
+            <erp-page-shell [sideVisible]="false" [footerVisible]="false">
+              <erp-page-header erpPageShellHeader title="تفاصيل العميل" subtitle="عرض وتحرير ومراجعة بتحكم المستهلك">
+                <erp-inline erpPageHeaderPrimary gap="tight" wrap="wrap">
+                  <erp-button label="عرض" size="sm" [variant]="detailMode() === 'view' ? 'solid' : 'outline'" (pressed)="setDetailMode('view')" />
+                  <erp-button label="تحرير" size="sm" [variant]="detailMode() === 'edit' ? 'solid' : 'outline'" (pressed)="setDetailMode('edit')" />
+                  <erp-button label="مراجعة" size="sm" [variant]="detailMode() === 'review' ? 'solid' : 'outline'" (pressed)="setDetailMode('review')" />
+                </erp-inline>
+              </erp-page-header>
+
+              @if (detailMode() === 'edit') {
+                <erp-standard-entity-form
+                  data-showcase-target
+                  [schema]="schema"
+                  [values]="values()"
+                  [issues]="[]"
+                  [activeStepId]="activeStepId()"
+                  (activeStepIdChange)="setStep($event)"
+                  (valueChanged)="applyValue($event)"
+                  (submitRequested)="record('saveRequested', $event)"
+                  (resetRequested)="record('resetRequested')"
+                  (cancelRequested)="setDetailMode('view')"
+                >
+                  <ng-template erpEntityFormReview>
+                    <erp-entity-review [context]="reviewContext()" />
+                  </ng-template>
+                </erp-standard-entity-form>
+              } @else {
+                <erp-entity-review data-showcase-target [context]="reviewContext()" [compact]="detailMode() === 'view'" />
+              }
+            </erp-page-shell>
+          </erp-page>
+
+          <erp-surface class="planned-pattern__controls" padding="default" border="subtle" data-showcase-api-controls>
+            <erp-text type="strong">أدوات التركيب المتقدمة</erp-text>
+            <erp-text type="paragraph" tone="secondary">يتحكم المستهلك في وضع العرض/التحرير/المراجعة، ويستقبل intents الحفظ والإلغاء دون أي استمرار بيانات داخلي.</erp-text>
+          </erp-surface>
+        }
+      }
+
+      <erp-surface padding="default" border="subtle" data-showcase-event-log>
+        <erp-stack gap="tight">
+          <erp-text type="heading-3">دليل الأحداث</erp-text>
+          <erp-text type="paragraph" selectable>{{ lastEvent() }}</erp-text>
+        </erp-stack>
+      </erp-surface>
+    </erp-stack>
+  </erp-page-shell>
+</erp-page>

@@ -178,10 +178,10 @@ drift.
 
 | Identity | Intended ownership | Implementation | Visual status | Source authority | Dependencies | Scope/next action |
 |---|---|---|---|---|---|---|
-| Entity Wizard | planned pattern | PLANNED ONLY | UNKNOWN / NOT REVIEWED AS AN OWNER | src/app/controls/ENTITY_FORM_ENGINE_V1.md | ErpStepper + Entity Form contracts | PLANNED / business pattern remains closed. |
+| Entity Wizard | planned pattern | REVIEW-ONLY CANDIDATE | UNKNOWN / NOT REVIEWED AS AN OWNER | src/app/controls/ENTITY_FORM_ENGINE_V1.md | ErpStepper + Entity Form contracts | Review-only StandardEntityForm/Stepper composition delivered; business workflow remains closed. |
 | Workflow engine | planned system | PLANNED ONLY | UNKNOWN / NOT REVIEWED AS AN OWNER | src/app/controls/ENTITY_FORM_ENGINE_V1.md | not established | PLANNED / backend and business workflow authority remains closed. |
-| EntityDirectory | planned page pattern | PLANNED ONLY | UNKNOWN / NOT REVIEWED AS AN OWNER | src/app/controls/ENTITY_FORM_ENGINE_V1.md | DataPage + entity contracts | PLANNED / Feature/Page scope remains closed. |
-| EntityDetail | planned page pattern | PLANNED ONLY | UNKNOWN / NOT REVIEWED AS AN OWNER | src/app/controls/ENTITY_FORM_ENGINE_V1.md | Page composition + entity contracts | PLANNED / Feature/Page scope remains closed. |
+| EntityDirectory | planned page pattern | REVIEW-ONLY CANDIDATE | UNKNOWN / NOT REVIEWED AS AN OWNER | src/app/controls/ENTITY_FORM_ENGINE_V1.md | DataPage + entity contracts | Review-only DataPage composition delivered; data source, routing, and CRUD remain closed. |
+| EntityDetail | planned page pattern | REVIEW-ONLY CANDIDATE | UNKNOWN / NOT REVIEWED AS AN OWNER | src/app/controls/ENTITY_FORM_ENGINE_V1.md | Page composition + entity contracts | Review-only Page/EntityForm/EntityReview composition delivered; transactions remain closed. |
 
 ## Global acceptance contract
 

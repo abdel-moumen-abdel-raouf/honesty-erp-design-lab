@@ -1,5 +1,23 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Review-Only Planned Composition State
+
+The authorized planned-identity pass is complete without adding duplicate
+public facades. `/patterns/entity-wizard`, `/patterns/entity-directory`, and
+`/patterns/entity-detail` compose the verified `ErpStandardEntityForm`,
+`ErpDataPage`, and `ErpEntityReview` owners. Each route has exactly one
+lower-owner target, ERP-authored controls, event evidence, and no HTTP, CRUD,
+routing, persistence, permissions, workflow execution, or backend authority.
+
+The generated catalog remains **83 public / 46 supporting / 4 historical
+planned identities**. The three delivered compositions are recorded as
+`REVIEW-ONLY CANDIDATE`; Workflow engine alone remains `PLANNED ONLY` and is
+not a UI owner. The 223-run public-route audit and six planned-pattern browser
+scenarios have zero failures, overflow, broken images, or diagnostics.
+Canonical verification passes 156/156 test files and 903/903 tests, both
+typechecks, all governance, and a zero-warning 427.84 kB / 93.44 kB build.
+Technical/internal review is not Product Owner visual acceptance.
+
 ## Current DataPage V1 State
 
 `ErpDataPage` is the public consumer-controlled Page/SmartTable composition.

@@ -1,5 +1,31 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Review-only planned composition candidate — 2026-10-11
+
+Entry checkpoint:
+
+- `cf3401f9d16a7c85b5d6575c146a21795b42bdf3` — synchronized clean `main`
+  after consumer-controlled DataPage V1.
+
+Bounded scope:
+
+- Added three review-only routes for Entity Wizard, EntityDirectory, and
+  EntityDetail using existing public owners; no duplicate public selector,
+  catalog entry, tokens, workflow engine, or business authority was added.
+- Added consumer-controlled interactions, event evidence, ERP-only route
+  governance, generated lifecycle status, and current desktop/narrow evidence.
+- Corrected immutable EntityReview mixed-direction value presentation through
+  the existing `ErpText` direction API.
+
+Verification before commit:
+
+- Focused regression: 3/3 files and 35/35 tests.
+- Browser audit: 223/223 public route/state runs plus 24/24 planned-pattern
+  assertions, with zero failures, overflow, broken images, diagnostics, or
+  ownership mismatches.
+- `npm run verify:clean`: 156/156 files, 903/903 tests, both typechecks, all
+  governance/lint, and a zero-warning 427.84 kB / 93.44 kB build.
+
 ## Consumer-controlled DataPage V1 candidate — 2026-10-11
 
 Entry checkpoint:

@@ -1,0 +1,259 @@
+{
+  "generatedAt": "2026-10-10T23:20:54.442Z",
+  "authority": {
+    "component": "entity-detail",
+    "classification": "Original Honesty ERP presentation candidate; no binding external visual reference exists.",
+    "contract": "src/app/controls/PLANNED_UI_PATTERN_READINESS_V1.md"
+  },
+  "scenarios": [
+    {
+      "name": "entity-detail-1440-light-rtl",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "targetCount": 1,
+      "ownerCount": 1,
+      "targetBox": {
+        "x": 162,
+        "y": 409.46875,
+        "width": 920,
+        "height": 600.9375
+      },
+      "itemCount": 7,
+      "horizontalOverflow": 0,
+      "targetOverflow": 0,
+      "clipped": [],
+      "diagnostics": []
+    },
+    {
+      "name": "entity-detail-390-dark-ltr",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "targetCount": 1,
+      "ownerCount": 1,
+      "targetBox": {
+        "x": 56,
+        "y": 653.4375,
+        "width": 278,
+        "height": 914.203125
+      },
+      "itemCount": 7,
+      "horizontalOverflow": 0,
+      "targetOverflow": 0,
+      "clipped": [],
+      "diagnostics": []
+    }
+  ],
+  "assertions": [
+    {
+      "name": "entity-detail-1440-light-rtl ownership",
+      "pass": true,
+      "actual": {
+        "name": "entity-detail-1440-light-rtl",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "ownerCount": 1,
+        "targetBox": {
+          "x": 162,
+          "y": 409.46875,
+          "width": 920,
+          "height": 600.9375
+        },
+        "itemCount": 7,
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "clipped": [],
+        "diagnostics": []
+      }
+    },
+    {
+      "name": "entity-detail-1440-light-rtl direction-theme",
+      "pass": true,
+      "actual": {
+        "name": "entity-detail-1440-light-rtl",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "ownerCount": 1,
+        "targetBox": {
+          "x": 162,
+          "y": 409.46875,
+          "width": 920,
+          "height": 600.9375
+        },
+        "itemCount": 7,
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "clipped": [],
+        "diagnostics": []
+      }
+    },
+    {
+      "name": "entity-detail-1440-light-rtl overflow-clipping",
+      "pass": true,
+      "actual": {
+        "name": "entity-detail-1440-light-rtl",
+        "viewport": {
+          "width": 1440,
+          "height": 900
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "light",
+        "direction": "rtl",
+        "targetCount": 1,
+        "ownerCount": 1,
+        "targetBox": {
+          "x": 162,
+          "y": 409.46875,
+          "width": 920,
+          "height": 600.9375
+        },
+        "itemCount": 7,
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "clipped": [],
+        "diagnostics": []
+      }
+    },
+    {
+      "name": "entity-detail-1440-light-rtl diagnostics",
+      "pass": true,
+      "actual": []
+    },
+    {
+      "name": "entity-detail-390-dark-ltr ownership",
+      "pass": true,
+      "actual": {
+        "name": "entity-detail-390-dark-ltr",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "ownerCount": 1,
+        "targetBox": {
+          "x": 56,
+          "y": 653.4375,
+          "width": 278,
+          "height": 914.203125
+        },
+        "itemCount": 7,
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "clipped": [],
+        "diagnostics": []
+      }
+    },
+    {
+      "name": "entity-detail-390-dark-ltr direction-theme",
+      "pass": true,
+      "actual": {
+        "name": "entity-detail-390-dark-ltr",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "ownerCount": 1,
+        "targetBox": {
+          "x": 56,
+          "y": 653.4375,
+          "width": 278,
+          "height": 914.203125
+        },
+        "itemCount": 7,
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "clipped": [],
+        "diagnostics": []
+      }
+    },
+    {
+      "name": "entity-detail-390-dark-ltr overflow-clipping",
+      "pass": true,
+      "actual": {
+        "name": "entity-detail-390-dark-ltr",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "scroll": {
+          "x": 0,
+          "y": 0
+        },
+        "theme": "dark",
+        "direction": "ltr",
+        "targetCount": 1,
+        "ownerCount": 1,
+        "targetBox": {
+          "x": 56,
+          "y": 653.4375,
+          "width": 278,
+          "height": 914.203125
+        },
+        "itemCount": 7,
+        "horizontalOverflow": 0,
+        "targetOverflow": 0,
+        "clipped": [],
+        "diagnostics": []
+      }
+    },
+    {
+      "name": "entity-detail-390-dark-ltr diagnostics",
+      "pass": true,
+      "actual": []
+    }
+  ],
+  "summary": {
+    "total": 8,
+    "passed": 8,
+    "failed": []
+  }
+}
