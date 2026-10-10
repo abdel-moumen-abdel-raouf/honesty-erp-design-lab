@@ -26,9 +26,11 @@ drift.
 - Planned identities outside the implemented catalog: **6**.
 - Internally reviewed public owners added in the current UI wave:
   **`ErpRadioBox`**, **`ErpRadioGroup`**, **`ErpEmptyState`**, and
-  **`ErpSelect`**, **`ErpTabs`**, and **`ErpTable`**. Their
+  **`ErpSelect`**, **`ErpTabs`**, **`ErpTable`**, and
+  **`ErpUserMenu`**. Their
   Product Owner status remains pending.
-- Next prioritized reopened visual unit: **`ErpUserMenu`**.
+- Explicitly reopened visual owners have completed internal review. The next
+  binding-reference unit is **`ErpStatusBadge`**.
 
 ## Public owner inventory
 
@@ -114,7 +116,7 @@ drift.
 | ErpNotificationBell | `erp-notification-bell` | Application Shell | IMPLEMENTED / TECHNICAL_VERIFIED | UNKNOWN / PO REVIEW PENDING | Technical and internal visual evidence exists; no Product Owner accept/reject decision is recorded. | src/app/controls/notification-bell/ERP_NOTIFICATION_BELL_REFERENCE_V1.md | ErpButton, ErpIcon, ErpIconButton, ErpNotificationSummary, ErpSearchBox, ErpShellMenuAction, ErpStatusBadge, ErpText, ErpTooltip, erp-button, erp-icon, erp-icon-button, erp-search-box, erp-shell-menu-action, erp-status-badge, erp-text, erp-tooltip | `/components/notification-bell` | Queue after higher-priority exact/reopened candidates; study reference availability before any visual change. |
 | ErpQuickActionsBar | `erp-quick-actions-bar` | Application Shell | IMPLEMENTED / TECHNICAL_VERIFIED | UNKNOWN / PO REVIEW PENDING | Technical and internal visual evidence exists; no Product Owner accept/reject decision is recorded. | src/app/controls/SHELL_REFERENCE_TOPOLOGY_V2.md | ErpIconButton, ErpIconName, ErpQuickAction, ErpQuickActionGroup, ErpQuickActionPriority, ErpText, ErpTooltip, erp-icon-button, erp-text, erp-tooltip | `/components/quick-actions-bar` | Queue after higher-priority exact/reopened candidates; study reference availability before any visual change. |
 | ErpTopbar | `erp-topbar` | Application Shell | IMPLEMENTED / TECHNICAL_VERIFIED | UNKNOWN / PO REVIEW PENDING | Technical and internal visual evidence exists; no Product Owner accept/reject decision is recorded. | src/app/controls/SHELL_REFERENCE_TOPOLOGY_V2.md | none recorded | `/components/topbar` | Queue after higher-priority exact/reopened candidates; study reference availability before any visual change. |
-| ErpUserMenu | `erp-user-menu` | Application Shell | IMPLEMENTED / TECHNICAL_VERIFIED | REOPENED | Multiple trigger candidates were rejected; the current three-row candidate remains pending review. | src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md | ErpAvatar, ErpButton, ErpDivider, ErpShellUserSummary, ErpStatusBadge, ErpText, ErpUserMenuArrow, ErpUserMenuItem, erp-avatar, erp-button, erp-divider, erp-status-badge, erp-text, erp-user-menu-arrow | `/components/user-menu` | Run binding-reference browser comparison and close known rejection findings in Bottom-Up order. |
+| ErpUserMenu | `erp-user-menu` | Application Shell | IMPLEMENTED / TECHNICAL_VERIFIED | REOPENED | Multiple trigger candidates were rejected; the current three-row candidate remains pending review. | src/app/controls/user-menu/ERP_USER_MENU_REFERENCE_EXACT_V1.md | ErpAvatar, ErpButton, ErpDivider, ErpShellUserSummary, ErpStatusBadge, ErpText, ErpUserMenuArrow, ErpUserMenuItem, erp-avatar, erp-button, erp-divider, erp-status-badge, erp-text, erp-user-menu-arrow | `/components/user-menu` | Preserve the verified candidate and await consolidated Product Owner visual review. |
 
 ## Supporting owner inventory
 

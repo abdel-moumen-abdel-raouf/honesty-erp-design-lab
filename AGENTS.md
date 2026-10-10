@@ -1,5 +1,23 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current ErpUserMenu Internal Visual Review State
+
+The reopened `ErpUserMenu` candidate has completed direct internal comparison
+with the live Skodash media-object reference. Source-backed popup geometry is
+360px wide with 8px padding, 10px radius, a 60px identity Avatar and 56px
+action rows. The implementation retains those values while preserving the
+Product Owner-authorized three-row closed trigger: name, email, then role and
+branch badges, with a 60px Avatar and no trigger `secondaryText`. Evidence is
+under `docs/review-evidence/erp-user-menu/v3-internal-review/`. The surface is
+not a scroll owner; only the action list scrolls and the identity remains
+fixed. Focused verification passes 4/4 files and 70/70 tests; the canonical
+gate passes 128/128 files and 818/818 tests, all governance/lint, both
+typechecks and the zero-warning 418.32 kB / 92.91 kB build. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. All explicitly reopened visual owners
+have now completed internal review. Next binding-reference unit:
+`ErpStatusBadge`.
+
 ## Current ErpTable Full-Reference Internal Review State
 
 `ERP-TABLE.html` remains binding at SHA-256

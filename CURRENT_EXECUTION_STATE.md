@@ -1,5 +1,26 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — ErpUserMenu internal visual review
+
+The live Skodash reference is accessible and its open popup was captured and
+measured directly. Reference geometry is 360px width, 8px padding, 10px radius,
+60px identity Avatar and 56px action rows. The ERP candidate matches those
+popup values and preserves the Product Owner's final three-row trigger contract
+with a 60px Avatar, default role/branch badges and no trigger secondary line.
+Twenty-two implementation states cover Light/Dark, RTL/LTR, 1440/1280/1024/
+768/390/320 widths, all visibility controls and image/initials/icon fallbacks.
+The surface remains non-scrolling; the action list scrolls without moving the
+identity. Evidence is under
+`docs/review-evidence/erp-user-menu/v3-internal-review/`. The 320 x 568 centered
+long-identity Workbench state has only 20.03px of action-list viewport and is
+retained as an explicit evidence limitation. Status is `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Focused verification passes 4/4 files
+and 70/70 tests; the canonical gate passes 128/128 files and 818/818 tests,
+both typechecks, all governance/lint and the zero-warning 418.32 kB / 92.91 kB
+build. All explicitly reopened candidates have completed internal review; next
+binding-reference owner: `ErpStatusBadge`.
+
 ## Current checkpoint — ErpTable full-reference internal review
 
 The binding Table source SHA was reverified and its six rendered specimens

@@ -5,7 +5,8 @@ const mode = process.argv.includes('--baseline') ? 'baseline' : 'corrected';
 const port = Number(process.env['HONESTY_CAPTURE_CDP_PORT'] ?? 9223);
 const cdpUrl = `http://localhost:${port}`;
 const outputDirectory = path.resolve(
-  'docs/review-evidence/erp-user-menu/final-trigger-v2',
+  process.env['HONESTY_USER_MENU_EVIDENCE_DIR'] ??
+    'docs/review-evidence/erp-user-menu/final-trigger-v2',
 );
 
 const users = {
@@ -80,6 +81,8 @@ const correctedStates = [
   {name: 'dark-rtl-1440-default-open', width: 1440, height: 900, theme: 'dark', direction: 'rtl', user: 'image', open: true},
   {name: 'dark-ltr-1440-default-closed', width: 1440, height: 900, theme: 'dark', direction: 'ltr', user: 'image'},
   {name: 'dark-ltr-1440-default-open', width: 1440, height: 900, theme: 'dark', direction: 'ltr', user: 'image', open: true},
+  {name: 'light-rtl-1280-default-open', width: 1280, height: 900, theme: 'light', direction: 'rtl', user: 'image', open: true},
+  {name: 'dark-ltr-1024-mixed-open', width: 1024, height: 768, theme: 'dark', direction: 'ltr', user: 'mixed', open: true},
   {name: 'light-rtl-768-initials-closed', width: 768, height: 900, theme: 'light', direction: 'rtl', user: 'initials'},
   {name: 'light-rtl-768-image-closed', width: 768, height: 900, theme: 'light', direction: 'rtl', user: 'image'},
   {name: 'light-rtl-768-mixed-open', width: 768, height: 900, theme: 'light', direction: 'rtl', user: 'mixed', open: true},
@@ -87,7 +90,7 @@ const correctedStates = [
   {name: 'dark-rtl-390-default-closed', width: 390, height: 844, theme: 'dark', direction: 'rtl', user: 'image'},
   {name: 'dark-rtl-390-default-open', width: 390, height: 844, theme: 'dark', direction: 'rtl', user: 'image', open: true},
   {name: 'light-ltr-320-long-closed', width: 320, height: 568, theme: 'light', direction: 'ltr', user: 'longEnglish'},
-  {name: 'light-ltr-320-long-open', width: 320, height: 568, theme: 'light', direction: 'ltr', user: 'longEnglish', open: true},
+  {name: 'light-ltr-320-long-open', width: 320, height: 568, theme: 'light', direction: 'ltr', user: 'longEnglish', open: true, scrollActions: true},
   {name: 'light-rtl-390-role-trigger-closed', width: 390, height: 844, theme: 'light', direction: 'rtl', user: 'image', triggerRole: true, triggerBranch: false},
   {name: 'light-rtl-390-branch-trigger-closed', width: 390, height: 844, theme: 'light', direction: 'rtl', user: 'image', triggerRole: false, triggerBranch: true},
   {name: 'light-rtl-390-both-trigger-closed', width: 390, height: 844, theme: 'light', direction: 'rtl', user: 'image', triggerRole: true, triggerBranch: true},
@@ -223,6 +226,15 @@ function stateExpression(state) {
       })
     ));
 
+    const identityHeader = surface.querySelector('.user-menu__identity-header');
+    const items = surface.querySelector('.user-menu__items');
+    const identityTopBeforeActionScroll = identityHeader?.getBoundingClientRect().top ?? null;
+    if (${Boolean(state.scrollActions)}) {
+      items.scrollTop = Math.min(96, items.scrollHeight - items.clientHeight);
+      await pause(80);
+    }
+    const identityTopAfterActionScroll = identityHeader?.getBoundingClientRect().top ?? null;
+
     const rect = (element) => {
       const value = element?.getBoundingClientRect();
       return value ? {
@@ -340,6 +352,27 @@ function stateExpression(state) {
       })),
       popupBadges: surface.querySelectorAll('.user-menu__badges erp-status-badge').length,
       surface: surfaceRect,
+      surfaceMetrics: metrics(surface),
+      identityHeader: metrics(identityHeader),
+      actions: {
+        ...metrics(items),
+        scrollTop: items?.scrollTop ?? 0,
+      },
+      identityTopDeltaAfterActionScroll:
+        identityTopBeforeActionScroll === null || identityTopAfterActionScroll === null
+          ? null
+          : identityTopAfterActionScroll - identityTopBeforeActionScroll,
+      colors: (() => {
+        const surfaceStyle = getComputedStyle(surface);
+        const name = surface.querySelector('.user-menu__identity-name');
+        const email = surface.querySelector('.user-menu__email-address');
+        return {
+          foreground: surfaceStyle.color,
+          background: surfaceStyle.backgroundColor,
+          name: name ? getComputedStyle(name).color : null,
+          email: email ? getComputedStyle(email).color : null,
+        };
+      })(),
       arrow: arrowRect,
       arrowCenterDelta: arrowRect && triggerRect
         ? Math.abs(
@@ -447,6 +480,15 @@ if (mode === 'corrected') {
     }
     if (measurement.triggerBadgeMetrics.some((badge) => badge.clippedBlock)) {
       failures.push(`${measurement.name}: trigger badge block clipping`);
+    }
+    if (expected.scrollActions && measurement.identityTopDeltaAfterActionScroll !== 0) {
+      failures.push(`${measurement.name}: identity moved while actions scrolled`);
+    }
+    if (expected.scrollActions && measurement.actions.scrollTop <= 0) {
+      failures.push(`${measurement.name}: actions did not scroll`);
+    }
+    if (expected.open && measurement.surfaceMetrics.overflowY !== 'visible') {
+      failures.push(`${measurement.name}: surface became a scroll owner`);
     }
     if (measurement.emailPresentation &&
       measurement.direction === 'rtl' &&

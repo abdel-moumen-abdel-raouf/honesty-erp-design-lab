@@ -47,6 +47,7 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpSelect',
   'ErpTabs',
   'ErpTable',
+  'ErpUserMenu',
 ]);
 
 const CATEGORY_ORDER = new Map([
@@ -240,9 +241,11 @@ drift.
 - Planned identities outside the implemented catalog: **${PLANNED.length}**.
 - Internally reviewed public owners added in the current UI wave:
   **\`ErpRadioBox\`**, **\`ErpRadioGroup\`**, **\`ErpEmptyState\`**, and
-  **\`ErpSelect\`**, **\`ErpTabs\`**, and **\`ErpTable\`**. Their
+  **\`ErpSelect\`**, **\`ErpTabs\`**, **\`ErpTable\`**, and
+  **\`ErpUserMenu\`**. Their
   Product Owner status remains pending.
-- Next prioritized reopened visual unit: **\`ErpUserMenu\`**.
+- Explicitly reopened visual owners have completed internal review. The next
+  binding-reference unit is **\`ErpStatusBadge\`**.
 
 ## Public owner inventory
 

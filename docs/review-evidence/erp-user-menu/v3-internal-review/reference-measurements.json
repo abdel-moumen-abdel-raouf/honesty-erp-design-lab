@@ -1,0 +1,222 @@
+{
+  "capturedAt": "2026-10-10T05:14:18.369Z",
+  "url": "https://store.codervent.com/skodash/demo/tabular-menu/rtl/component-media-object.html",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "direction": "rtl",
+  "trigger": {
+    "box": {
+      "left": 200,
+      "top": 9.5,
+      "right": 321.609375,
+      "bottom": 49.5,
+      "width": 121.609375,
+      "height": 40
+    },
+    "style": {
+      "padding": "0px",
+      "borderRadius": "30px",
+      "boxShadow": "rgba(0, 0, 0, 0.08) 0px 2px 4px 0px",
+      "overflowX": "visible",
+      "overflowY": "visible",
+      "fontFamily": "Roboto, sans-serif",
+      "fontSize": "14px",
+      "lineHeight": "21px"
+    }
+  },
+  "surface": {
+    "box": {
+      "left": 192,
+      "top": 59.5,
+      "right": 552,
+      "bottom": 521.5,
+      "width": 360,
+      "height": 462
+    },
+    "style": {
+      "padding": "8px",
+      "borderRadius": "10px",
+      "boxShadow": "rgba(0, 0, 0, 0.15) 0px 8px 16px 0px",
+      "overflowX": "visible",
+      "overflowY": "visible",
+      "fontFamily": "Roboto, sans-serif",
+      "fontSize": "16px",
+      "lineHeight": "24px"
+    }
+  },
+  "userImage": {
+    "left": 281.609375,
+    "top": 9.5,
+    "right": 321.609375,
+    "bottom": 49.5,
+    "width": 40,
+    "height": 40
+  },
+  "identityImage": {
+    "left": 476,
+    "top": 75.5,
+    "right": 536,
+    "bottom": 135.5,
+    "width": 60,
+    "height": 60
+  },
+  "actionRows": [
+    {
+      "text": "Jhon Deo\n                          HR Manager",
+      "box": {
+        "left": 200,
+        "top": 67.5,
+        "right": 544,
+        "bottom": 143.5,
+        "width": 344,
+        "height": 76
+      },
+      "style": {
+        "padding": "8px",
+        "borderRadius": "0px",
+        "boxShadow": "none",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "fontFamily": "Roboto, sans-serif",
+        "fontSize": "16px",
+        "lineHeight": "24px"
+      }
+    },
+    {
+      "text": "Profile",
+      "box": {
+        "left": 200,
+        "top": 160.5,
+        "right": 544,
+        "bottom": 216.5,
+        "width": 344,
+        "height": 56
+      },
+      "style": {
+        "padding": "8px",
+        "borderRadius": "0px",
+        "boxShadow": "none",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "fontFamily": "Roboto, sans-serif",
+        "fontSize": "16px",
+        "lineHeight": "24px"
+      }
+    },
+    {
+      "text": "Setting",
+      "box": {
+        "left": 200,
+        "top": 216.5,
+        "right": 544,
+        "bottom": 272.5,
+        "width": 344,
+        "height": 56
+      },
+      "style": {
+        "padding": "8px",
+        "borderRadius": "0px",
+        "boxShadow": "none",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "fontFamily": "Roboto, sans-serif",
+        "fontSize": "16px",
+        "lineHeight": "24px"
+      }
+    },
+    {
+      "text": "Dashboard",
+      "box": {
+        "left": 200,
+        "top": 272.5,
+        "right": 544,
+        "bottom": 328.5,
+        "width": 344,
+        "height": 56
+      },
+      "style": {
+        "padding": "8px",
+        "borderRadius": "0px",
+        "boxShadow": "none",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "fontFamily": "Roboto, sans-serif",
+        "fontSize": "16px",
+        "lineHeight": "24px"
+      }
+    },
+    {
+      "text": "Earnings",
+      "box": {
+        "left": 200,
+        "top": 328.5,
+        "right": 544,
+        "bottom": 384.5,
+        "width": 344,
+        "height": 56
+      },
+      "style": {
+        "padding": "8px",
+        "borderRadius": "0px",
+        "boxShadow": "none",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "fontFamily": "Roboto, sans-serif",
+        "fontSize": "16px",
+        "lineHeight": "24px"
+      }
+    },
+    {
+      "text": "Downloads",
+      "box": {
+        "left": 200,
+        "top": 384.5,
+        "right": 544,
+        "bottom": 440.5,
+        "width": 344,
+        "height": 56
+      },
+      "style": {
+        "padding": "8px",
+        "borderRadius": "0px",
+        "boxShadow": "none",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "fontFamily": "Roboto, sans-serif",
+        "fontSize": "16px",
+        "lineHeight": "24px"
+      }
+    },
+    {
+      "text": "Logout",
+      "box": {
+        "left": 200,
+        "top": 457.5,
+        "right": 544,
+        "bottom": 513.5,
+        "width": 344,
+        "height": 56
+      },
+      "style": {
+        "padding": "8px",
+        "borderRadius": "0px",
+        "boxShadow": "none",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "fontFamily": "Roboto, sans-serif",
+        "fontSize": "16px",
+        "lineHeight": "24px"
+      }
+    }
+  ],
+  "pageHorizontalOverflow": 0,
+  "crop": {
+    "x": 174,
+    "y": 0,
+    "width": 396,
+    "height": 539.5,
+    "scale": 1
+  }
+}

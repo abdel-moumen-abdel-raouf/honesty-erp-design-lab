@@ -1,5 +1,23 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — ErpUserMenu reviewed internally
+
+Continue from synchronized `main` after the bounded UserMenu evidence
+checkpoint. The live Skodash popup reference and 22 ERP implementation states
+are persisted under
+`docs/review-evidence/erp-user-menu/v3-internal-review/`. The reference popup
+geometry was measured directly; the implementation preserves it while keeping
+the Product Owner-authorized three-row trigger. Popup scrolling remains owned
+only by the action list, the identity stays fixed, Dark semantic contrast is
+readable and all implementation captures report zero page overflow, broken
+images and browser diagnostics. The centered 320 x 568 long-identity Workbench
+case leaves a 20.03px action viewport; retain this explicit review-surface
+limitation rather than altering production geometry for a synthetic anchor.
+Canonical verification passes 128/128 files and 818/818 tests with a
+zero-warning 418.32 kB / 92.91 kB build. Product Owner approval is not recorded.
+All reopened candidates are now internally reviewed; continue with the binding
+`ErpStatusBadge` reference.
+
 ## Current continuation point — ErpTable reviewed internally
 
 Continue from synchronized `main` after the bounded ErpTable checkpoint. The

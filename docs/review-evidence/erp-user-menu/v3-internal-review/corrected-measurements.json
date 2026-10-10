@@ -1,0 +1,6462 @@
+{
+  "mode": "corrected",
+  "capturedAt": "2026-10-10T05:11:30.911Z",
+  "measurements": [
+    {
+      "name": "light-rtl-1440-default-closed",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "open": false,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 737,
+          "top": 422.359375,
+          "right": 1097,
+          "bottom": 494.359375,
+          "width": 360,
+          "height": 72
+        },
+        "clientWidth": 360,
+        "clientHeight": 72,
+        "scrollWidth": 360,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 1027,
+          "top": 428.359375,
+          "right": 1087,
+          "bottom": 488.359375,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 60,
+        "scrollHeight": 65,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 747,
+          "top": 428.359375,
+          "right": 1017,
+          "bottom": 488.359375,
+          "width": 270,
+          "height": 60
+        },
+        "clientWidth": 270,
+        "clientHeight": 60,
+        "scrollWidth": 270,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "أميرة حداد",
+          "box": {
+            "left": 747,
+            "top": 428.359375,
+            "right": 1017,
+            "bottom": 450.359375,
+            "width": 270,
+            "height": 22
+          },
+          "clientWidth": 270,
+          "clientHeight": 22,
+          "scrollWidth": 270,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "amira.haddad@honesty.example",
+          "box": {
+            "left": 747,
+            "top": 451.359375,
+            "right": 1017,
+            "bottom": 469.359375,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "مديرة المالية\n الفرع الرئيسي",
+          "box": {
+            "left": 747,
+            "top": 470.359375,
+            "right": 1017,
+            "bottom": 488.359375,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": {
+        "direction": "rtl",
+        "textAlign": "start",
+        "unicodeBidi": "normal"
+      },
+      "triggerBadges": 2,
+      "triggerBadgeMetrics": [
+        {
+          "ariaLabel": "مديرة المالية",
+          "box": {
+            "left": 882.5,
+            "top": 470.359375,
+            "right": 1017,
+            "bottom": 488.359375,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "ariaLabel": "الفرع الرئيسي",
+          "box": {
+            "left": 747,
+            "top": 470.359375,
+            "right": 881.5,
+            "bottom": 488.359375,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "popupBadges": 2,
+      "surface": null,
+      "surfaceMetrics": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 0
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(24, 26, 32)",
+        "background": "rgb(255, 255, 255)",
+        "name": "rgb(24, 26, 32)",
+        "email": "rgb(84, 89, 102)"
+      },
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "top",
+      "surfaceOverflow": null,
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 719,
+        "y": 404.359375,
+        "width": 396,
+        "height": 108,
+        "scale": 1
+      }
+    },
+    {
+      "name": "light-rtl-1440-default-open",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "open": true,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 737,
+          "top": 422.359375,
+          "right": 1097,
+          "bottom": 494.359375,
+          "width": 360,
+          "height": 72
+        },
+        "clientWidth": 360,
+        "clientHeight": 72,
+        "scrollWidth": 360,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 1027,
+          "top": 428.359375,
+          "right": 1087,
+          "bottom": 488.359375,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 60,
+        "scrollHeight": 65,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 747,
+          "top": 428.359375,
+          "right": 1017,
+          "bottom": 488.359375,
+          "width": 270,
+          "height": 60
+        },
+        "clientWidth": 270,
+        "clientHeight": 60,
+        "scrollWidth": 270,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "أميرة حداد",
+          "box": {
+            "left": 747,
+            "top": 428.359375,
+            "right": 1017,
+            "bottom": 450.359375,
+            "width": 270,
+            "height": 22
+          },
+          "clientWidth": 270,
+          "clientHeight": 22,
+          "scrollWidth": 270,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "amira.haddad@honesty.example",
+          "box": {
+            "left": 747,
+            "top": 451.359375,
+            "right": 1017,
+            "bottom": 469.359375,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "مديرة المالية\n الفرع الرئيسي",
+          "box": {
+            "left": 747,
+            "top": 470.359375,
+            "right": 1017,
+            "bottom": 488.359375,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": {
+        "direction": "rtl",
+        "textAlign": "start",
+        "unicodeBidi": "normal"
+      },
+      "triggerBadges": 2,
+      "triggerBadgeMetrics": [
+        {
+          "ariaLabel": "مديرة المالية",
+          "box": {
+            "left": 882.5,
+            "top": 470.359375,
+            "right": 1017,
+            "bottom": 488.359375,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "ariaLabel": "الفرع الرئيسي",
+          "box": {
+            "left": 747,
+            "top": 470.359375,
+            "right": 881.5,
+            "bottom": 488.359375,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "popupBadges": 2,
+      "surface": {
+        "left": 737,
+        "top": 8,
+        "right": 1097,
+        "bottom": 420.359375,
+        "width": 360,
+        "height": 412.359375
+      },
+      "surfaceMetrics": {
+        "box": {
+          "left": 737,
+          "top": 8,
+          "right": 1097,
+          "bottom": 420.359375,
+          "width": 360,
+          "height": 412.359375
+        },
+        "clientWidth": 360,
+        "clientHeight": 412,
+        "scrollWidth": 360,
+        "scrollHeight": 422,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 745,
+          "top": 16,
+          "right": 1089,
+          "bottom": 120,
+          "width": 344,
+          "height": 104
+        },
+        "clientWidth": 344,
+        "clientHeight": 104,
+        "scrollWidth": 344,
+        "scrollHeight": 104,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 745,
+          "top": 137,
+          "right": 1089,
+          "bottom": 412.359375,
+          "width": 344,
+          "height": 275.359375
+        },
+        "clientWidth": 329,
+        "clientHeight": 275,
+        "scrollWidth": 329,
+        "scrollHeight": 353,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 0
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(24, 26, 32)",
+        "background": "rgb(255, 255, 255)",
+        "name": "rgb(24, 26, 32)",
+        "email": "rgb(84, 89, 102)"
+      },
+      "arrow": {
+        "left": 907.8076171875,
+        "top": 411.1669921875,
+        "right": 926.1923828125,
+        "bottom": 429.5517578125,
+        "width": 18.384765625,
+        "height": 18.384765625
+      },
+      "arrowCenterDelta": 0,
+      "placement": "top",
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 719,
+        "y": 0,
+        "width": 396,
+        "height": 512.359375,
+        "scale": 1
+      }
+    },
+    {
+      "name": "dark-rtl-1440-default-closed",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "rtl",
+      "open": false,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 737,
+          "top": 422.359375,
+          "right": 1097,
+          "bottom": 494.359375,
+          "width": 360,
+          "height": 72
+        },
+        "clientWidth": 360,
+        "clientHeight": 72,
+        "scrollWidth": 360,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 1027,
+          "top": 428.359375,
+          "right": 1087,
+          "bottom": 488.359375,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 60,
+        "scrollHeight": 65,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 747,
+          "top": 428.359375,
+          "right": 1017,
+          "bottom": 488.359375,
+          "width": 270,
+          "height": 60
+        },
+        "clientWidth": 270,
+        "clientHeight": 60,
+        "scrollWidth": 270,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "أميرة حداد",
+          "box": {
+            "left": 747,
+            "top": 428.359375,
+            "right": 1017,
+            "bottom": 450.359375,
+            "width": 270,
+            "height": 22
+          },
+          "clientWidth": 270,
+          "clientHeight": 22,
+          "scrollWidth": 270,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "amira.haddad@honesty.example",
+          "box": {
+            "left": 747,
+            "top": 451.359375,
+            "right": 1017,
+            "bottom": 469.359375,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "مديرة المالية\n الفرع الرئيسي",
+          "box": {
+            "left": 747,
+            "top": 470.359375,
+            "right": 1017,
+            "bottom": 488.359375,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": {
+        "direction": "rtl",
+        "textAlign": "start",
+        "unicodeBidi": "normal"
+      },
+      "triggerBadges": 2,
+      "triggerBadgeMetrics": [
+        {
+          "ariaLabel": "مديرة المالية",
+          "box": {
+            "left": 882.5,
+            "top": 470.359375,
+            "right": 1017,
+            "bottom": 488.359375,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "ariaLabel": "الفرع الرئيسي",
+          "box": {
+            "left": 747,
+            "top": 470.359375,
+            "right": 881.5,
+            "bottom": 488.359375,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "popupBadges": 2,
+      "surface": null,
+      "surfaceMetrics": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 0
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(248, 249, 251)",
+        "background": "rgb(39, 42, 50)",
+        "name": "rgb(248, 249, 251)",
+        "email": "rgb(201, 206, 216)"
+      },
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "top",
+      "surfaceOverflow": null,
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 719,
+        "y": 404.359375,
+        "width": 396,
+        "height": 108,
+        "scale": 1
+      }
+    },
+    {
+      "name": "dark-rtl-1440-default-open",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "rtl",
+      "open": true,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 737,
+          "top": 422.359375,
+          "right": 1097,
+          "bottom": 494.359375,
+          "width": 360,
+          "height": 72
+        },
+        "clientWidth": 360,
+        "clientHeight": 72,
+        "scrollWidth": 360,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 1027,
+          "top": 428.359375,
+          "right": 1087,
+          "bottom": 488.359375,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 60,
+        "scrollHeight": 65,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 747,
+          "top": 428.359375,
+          "right": 1017,
+          "bottom": 488.359375,
+          "width": 270,
+          "height": 60
+        },
+        "clientWidth": 270,
+        "clientHeight": 60,
+        "scrollWidth": 270,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "أميرة حداد",
+          "box": {
+            "left": 747,
+            "top": 428.359375,
+            "right": 1017,
+            "bottom": 450.359375,
+            "width": 270,
+            "height": 22
+          },
+          "clientWidth": 270,
+          "clientHeight": 22,
+          "scrollWidth": 270,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "amira.haddad@honesty.example",
+          "box": {
+            "left": 747,
+            "top": 451.359375,
+            "right": 1017,
+            "bottom": 469.359375,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "مديرة المالية\n الفرع الرئيسي",
+          "box": {
+            "left": 747,
+            "top": 470.359375,
+            "right": 1017,
+            "bottom": 488.359375,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": {
+        "direction": "rtl",
+        "textAlign": "start",
+        "unicodeBidi": "normal"
+      },
+      "triggerBadges": 2,
+      "triggerBadgeMetrics": [
+        {
+          "ariaLabel": "مديرة المالية",
+          "box": {
+            "left": 882.5,
+            "top": 470.359375,
+            "right": 1017,
+            "bottom": 488.359375,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "ariaLabel": "الفرع الرئيسي",
+          "box": {
+            "left": 747,
+            "top": 470.359375,
+            "right": 881.5,
+            "bottom": 488.359375,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "popupBadges": 2,
+      "surface": {
+        "left": 737,
+        "top": 8,
+        "right": 1097,
+        "bottom": 420.359375,
+        "width": 360,
+        "height": 412.359375
+      },
+      "surfaceMetrics": {
+        "box": {
+          "left": 737,
+          "top": 8,
+          "right": 1097,
+          "bottom": 420.359375,
+          "width": 360,
+          "height": 412.359375
+        },
+        "clientWidth": 360,
+        "clientHeight": 412,
+        "scrollWidth": 360,
+        "scrollHeight": 422,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 745,
+          "top": 16,
+          "right": 1089,
+          "bottom": 120,
+          "width": 344,
+          "height": 104
+        },
+        "clientWidth": 344,
+        "clientHeight": 104,
+        "scrollWidth": 344,
+        "scrollHeight": 104,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 745,
+          "top": 137,
+          "right": 1089,
+          "bottom": 412.359375,
+          "width": 344,
+          "height": 275.359375
+        },
+        "clientWidth": 329,
+        "clientHeight": 275,
+        "scrollWidth": 329,
+        "scrollHeight": 353,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 0
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(248, 249, 251)",
+        "background": "rgb(39, 42, 50)",
+        "name": "rgb(248, 249, 251)",
+        "email": "rgb(201, 206, 216)"
+      },
+      "arrow": {
+        "left": 907.8076171875,
+        "top": 411.1669921875,
+        "right": 926.1923828125,
+        "bottom": 429.5517578125,
+        "width": 18.384765625,
+        "height": 18.384765625
+      },
+      "arrowCenterDelta": 0,
+      "placement": "top",
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 719,
+        "y": 0,
+        "width": 396,
+        "height": 512.359375,
+        "scale": 1
+      }
+    },
+    {
+      "name": "dark-ltr-1440-default-closed",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "open": false,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 162,
+          "top": 422.359375,
+          "right": 522,
+          "bottom": 494.359375,
+          "width": 360,
+          "height": 72
+        },
+        "clientWidth": 360,
+        "clientHeight": 72,
+        "scrollWidth": 360,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 172,
+          "top": 428.359375,
+          "right": 232,
+          "bottom": 488.359375,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 65,
+        "scrollHeight": 65,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": true,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 242,
+          "top": 428.359375,
+          "right": 512,
+          "bottom": 488.359375,
+          "width": 270,
+          "height": 60
+        },
+        "clientWidth": 270,
+        "clientHeight": 60,
+        "scrollWidth": 270,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "أميرة حداد",
+          "box": {
+            "left": 242,
+            "top": 428.359375,
+            "right": 512,
+            "bottom": 450.359375,
+            "width": 270,
+            "height": 22
+          },
+          "clientWidth": 270,
+          "clientHeight": 22,
+          "scrollWidth": 270,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "amira.haddad@honesty.example",
+          "box": {
+            "left": 242,
+            "top": 451.359375,
+            "right": 512,
+            "bottom": 469.359375,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "مديرة المالية\n الفرع الرئيسي",
+          "box": {
+            "left": 242,
+            "top": 470.359375,
+            "right": 512,
+            "bottom": 488.359375,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": {
+        "direction": "ltr",
+        "textAlign": "start",
+        "unicodeBidi": "normal"
+      },
+      "triggerBadges": 2,
+      "triggerBadgeMetrics": [
+        {
+          "ariaLabel": "مديرة المالية",
+          "box": {
+            "left": 242,
+            "top": 470.359375,
+            "right": 376.5,
+            "bottom": 488.359375,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "ariaLabel": "الفرع الرئيسي",
+          "box": {
+            "left": 377.5,
+            "top": 470.359375,
+            "right": 512,
+            "bottom": 488.359375,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "popupBadges": 2,
+      "surface": null,
+      "surfaceMetrics": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 0
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(248, 249, 251)",
+        "background": "rgb(39, 42, 50)",
+        "name": "rgb(248, 249, 251)",
+        "email": "rgb(201, 206, 216)"
+      },
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "top",
+      "surfaceOverflow": null,
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 144,
+        "y": 404.359375,
+        "width": 396,
+        "height": 108,
+        "scale": 1
+      }
+    },
+    {
+      "name": "dark-ltr-1440-default-open",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "open": true,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 162,
+          "top": 422.359375,
+          "right": 522,
+          "bottom": 494.359375,
+          "width": 360,
+          "height": 72
+        },
+        "clientWidth": 360,
+        "clientHeight": 72,
+        "scrollWidth": 360,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 172,
+          "top": 428.359375,
+          "right": 232,
+          "bottom": 488.359375,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 65,
+        "scrollHeight": 65,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": true,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 242,
+          "top": 428.359375,
+          "right": 512,
+          "bottom": 488.359375,
+          "width": 270,
+          "height": 60
+        },
+        "clientWidth": 270,
+        "clientHeight": 60,
+        "scrollWidth": 270,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "أميرة حداد",
+          "box": {
+            "left": 242,
+            "top": 428.359375,
+            "right": 512,
+            "bottom": 450.359375,
+            "width": 270,
+            "height": 22
+          },
+          "clientWidth": 270,
+          "clientHeight": 22,
+          "scrollWidth": 270,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "amira.haddad@honesty.example",
+          "box": {
+            "left": 242,
+            "top": 451.359375,
+            "right": 512,
+            "bottom": 469.359375,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "مديرة المالية\n الفرع الرئيسي",
+          "box": {
+            "left": 242,
+            "top": 470.359375,
+            "right": 512,
+            "bottom": 488.359375,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": {
+        "direction": "ltr",
+        "textAlign": "start",
+        "unicodeBidi": "normal"
+      },
+      "triggerBadges": 2,
+      "triggerBadgeMetrics": [
+        {
+          "ariaLabel": "مديرة المالية",
+          "box": {
+            "left": 242,
+            "top": 470.359375,
+            "right": 376.5,
+            "bottom": 488.359375,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "ariaLabel": "الفرع الرئيسي",
+          "box": {
+            "left": 377.5,
+            "top": 470.359375,
+            "right": 512,
+            "bottom": 488.359375,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "popupBadges": 2,
+      "surface": {
+        "left": 162,
+        "top": 8,
+        "right": 522,
+        "bottom": 420.359375,
+        "width": 360,
+        "height": 412.359375
+      },
+      "surfaceMetrics": {
+        "box": {
+          "left": 162,
+          "top": 8,
+          "right": 522,
+          "bottom": 420.359375,
+          "width": 360,
+          "height": 412.359375
+        },
+        "clientWidth": 360,
+        "clientHeight": 412,
+        "scrollWidth": 360,
+        "scrollHeight": 422,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 170,
+          "top": 16,
+          "right": 514,
+          "bottom": 120,
+          "width": 344,
+          "height": 104
+        },
+        "clientWidth": 344,
+        "clientHeight": 104,
+        "scrollWidth": 344,
+        "scrollHeight": 104,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 170,
+          "top": 137,
+          "right": 514,
+          "bottom": 412.359375,
+          "width": 344,
+          "height": 275.359375
+        },
+        "clientWidth": 329,
+        "clientHeight": 275,
+        "scrollWidth": 329,
+        "scrollHeight": 353,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 0
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(248, 249, 251)",
+        "background": "rgb(39, 42, 50)",
+        "name": "rgb(248, 249, 251)",
+        "email": "rgb(201, 206, 216)"
+      },
+      "arrow": {
+        "left": 332.8076171875,
+        "top": 411.1669921875,
+        "right": 351.1923828125,
+        "bottom": 429.5517578125,
+        "width": 18.384765625,
+        "height": 18.384765625
+      },
+      "arrowCenterDelta": 0,
+      "placement": "top",
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 144,
+        "y": 0,
+        "width": 396,
+        "height": 512.359375,
+        "scale": 1
+      }
+    },
+    {
+      "name": "light-rtl-1280-default-open",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "open": true,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 577,
+          "top": 422.359375,
+          "right": 937,
+          "bottom": 494.359375,
+          "width": 360,
+          "height": 72
+        },
+        "clientWidth": 360,
+        "clientHeight": 72,
+        "scrollWidth": 360,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 867,
+          "top": 428.359375,
+          "right": 927,
+          "bottom": 488.359375,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 60,
+        "scrollHeight": 65,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 587,
+          "top": 428.359375,
+          "right": 857,
+          "bottom": 488.359375,
+          "width": 270,
+          "height": 60
+        },
+        "clientWidth": 270,
+        "clientHeight": 60,
+        "scrollWidth": 270,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "أميرة حداد",
+          "box": {
+            "left": 587,
+            "top": 428.359375,
+            "right": 857,
+            "bottom": 450.359375,
+            "width": 270,
+            "height": 22
+          },
+          "clientWidth": 270,
+          "clientHeight": 22,
+          "scrollWidth": 270,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "amira.haddad@honesty.example",
+          "box": {
+            "left": 587,
+            "top": 451.359375,
+            "right": 857,
+            "bottom": 469.359375,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "مديرة المالية\n الفرع الرئيسي",
+          "box": {
+            "left": 587,
+            "top": 470.359375,
+            "right": 857,
+            "bottom": 488.359375,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": {
+        "direction": "rtl",
+        "textAlign": "start",
+        "unicodeBidi": "normal"
+      },
+      "triggerBadges": 2,
+      "triggerBadgeMetrics": [
+        {
+          "ariaLabel": "مديرة المالية",
+          "box": {
+            "left": 722.5,
+            "top": 470.359375,
+            "right": 857,
+            "bottom": 488.359375,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "ariaLabel": "الفرع الرئيسي",
+          "box": {
+            "left": 587,
+            "top": 470.359375,
+            "right": 721.5,
+            "bottom": 488.359375,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "popupBadges": 2,
+      "surface": {
+        "left": 577,
+        "top": 8,
+        "right": 937,
+        "bottom": 420.359375,
+        "width": 360,
+        "height": 412.359375
+      },
+      "surfaceMetrics": {
+        "box": {
+          "left": 577,
+          "top": 8,
+          "right": 937,
+          "bottom": 420.359375,
+          "width": 360,
+          "height": 412.359375
+        },
+        "clientWidth": 360,
+        "clientHeight": 412,
+        "scrollWidth": 360,
+        "scrollHeight": 422,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 585,
+          "top": 16,
+          "right": 929,
+          "bottom": 120,
+          "width": 344,
+          "height": 104
+        },
+        "clientWidth": 344,
+        "clientHeight": 104,
+        "scrollWidth": 344,
+        "scrollHeight": 104,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 585,
+          "top": 137,
+          "right": 929,
+          "bottom": 412.359375,
+          "width": 344,
+          "height": 275.359375
+        },
+        "clientWidth": 329,
+        "clientHeight": 275,
+        "scrollWidth": 329,
+        "scrollHeight": 353,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 0
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(24, 26, 32)",
+        "background": "rgb(255, 255, 255)",
+        "name": "rgb(24, 26, 32)",
+        "email": "rgb(84, 89, 102)"
+      },
+      "arrow": {
+        "left": 747.8076171875,
+        "top": 411.1669921875,
+        "right": 766.1923828125,
+        "bottom": 429.5517578125,
+        "width": 18.384765625,
+        "height": 18.384765625
+      },
+      "arrowCenterDelta": 0,
+      "placement": "top",
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 559,
+        "y": 0,
+        "width": 396,
+        "height": 512.359375,
+        "scale": 1
+      }
+    },
+    {
+      "name": "dark-ltr-1024-mixed-open",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "open": true,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 88,
+          "top": 327.359375,
+          "right": 448,
+          "bottom": 399.359375,
+          "width": 360,
+          "height": 72
+        },
+        "clientWidth": 360,
+        "clientHeight": 72,
+        "scrollWidth": 360,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 98,
+          "top": 333.359375,
+          "right": 158,
+          "bottom": 393.359375,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 65,
+        "scrollHeight": 65,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": true,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 168,
+          "top": 333.359375,
+          "right": 438,
+          "bottom": 393.359375,
+          "width": 270,
+          "height": 60
+        },
+        "clientWidth": 270,
+        "clientHeight": 60,
+        "scrollWidth": 270,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "ليلى Mahmoud — Procurement Operations",
+          "box": {
+            "left": 168,
+            "top": 333.359375,
+            "right": 438,
+            "bottom": 355.359375,
+            "width": 270,
+            "height": 22
+          },
+          "clientWidth": 270,
+          "clientHeight": 22,
+          "scrollWidth": 317,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": true,
+          "contentExceedsBlock": false,
+          "clippedInline": true,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "leila.mahmoud@honesty.example",
+          "box": {
+            "left": 168,
+            "top": 356.359375,
+            "right": 438,
+            "bottom": 374.359375,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "Procurement Lead\n فرع الجيزة · Giza",
+          "box": {
+            "left": 168,
+            "top": 375.359375,
+            "right": 438,
+            "bottom": 393.359375,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": {
+        "direction": "ltr",
+        "textAlign": "start",
+        "unicodeBidi": "normal"
+      },
+      "triggerBadges": 2,
+      "triggerBadgeMetrics": [
+        {
+          "ariaLabel": "Procurement Lead",
+          "box": {
+            "left": 168,
+            "top": 375.359375,
+            "right": 302.5,
+            "bottom": 393.359375,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "ariaLabel": "فرع الجيزة · Giza",
+          "box": {
+            "left": 303.5,
+            "top": 375.359375,
+            "right": 438,
+            "bottom": 393.359375,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "popupBadges": 2,
+      "surface": {
+        "left": 88,
+        "top": 401.34375,
+        "right": 448,
+        "bottom": 759.984375,
+        "width": 360,
+        "height": 358.640625
+      },
+      "surfaceMetrics": {
+        "box": {
+          "left": 88,
+          "top": 401.34375,
+          "right": 448,
+          "bottom": 759.984375,
+          "width": 360,
+          "height": 358.640625
+        },
+        "clientWidth": 360,
+        "clientHeight": 359,
+        "scrollWidth": 360,
+        "scrollHeight": 359,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 96,
+          "top": 409.34375,
+          "right": 440,
+          "bottom": 534.34375,
+          "width": 344,
+          "height": 125
+        },
+        "clientWidth": 344,
+        "clientHeight": 125,
+        "scrollWidth": 344,
+        "scrollHeight": 125,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 96,
+          "top": 551.34375,
+          "right": 440,
+          "bottom": 751.984375,
+          "width": 344,
+          "height": 200.640625
+        },
+        "clientWidth": 329,
+        "clientHeight": 201,
+        "scrollWidth": 329,
+        "scrollHeight": 353,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 0
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(248, 249, 251)",
+        "background": "rgb(39, 42, 50)",
+        "name": "rgb(248, 249, 251)",
+        "email": "rgb(201, 206, 216)"
+      },
+      "arrow": {
+        "left": 258.8076171875,
+        "top": 392.1513671875,
+        "right": 277.1923828125,
+        "bottom": 410.5361328125,
+        "width": 18.384765625,
+        "height": 18.384765625
+      },
+      "arrowCenterDelta": 0,
+      "placement": "bottom",
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 70,
+        "y": 309.359375,
+        "width": 396,
+        "height": 458.640625,
+        "scale": 1
+      }
+    },
+    {
+      "name": "light-rtl-768-initials-closed",
+      "viewport": {
+        "width": 768,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "open": false,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 343,
+          "top": 469.65625,
+          "right": 703,
+          "bottom": 541.65625,
+          "width": 360,
+          "height": 72
+        },
+        "clientWidth": 360,
+        "clientHeight": 72,
+        "scrollWidth": 360,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 633,
+          "top": 475.65625,
+          "right": 693,
+          "bottom": 535.65625,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 60,
+        "scrollHeight": 65,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 353,
+          "top": 475.65625,
+          "right": 623,
+          "bottom": 535.65625,
+          "width": 270,
+          "height": 60
+        },
+        "clientWidth": 270,
+        "clientHeight": 60,
+        "scrollWidth": 270,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "عمر ناصر",
+          "box": {
+            "left": 353,
+            "top": 475.65625,
+            "right": 623,
+            "bottom": 497.65625,
+            "width": 270,
+            "height": 22
+          },
+          "clientWidth": 270,
+          "clientHeight": 22,
+          "scrollWidth": 270,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "omar.nasser@honesty.example",
+          "box": {
+            "left": 353,
+            "top": 498.65625,
+            "right": 623,
+            "bottom": 516.65625,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "مسؤول المخزون\n فرع الإسكندرية",
+          "box": {
+            "left": 353,
+            "top": 517.65625,
+            "right": 623,
+            "bottom": 535.65625,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": {
+        "direction": "rtl",
+        "textAlign": "start",
+        "unicodeBidi": "normal"
+      },
+      "triggerBadges": 2,
+      "triggerBadgeMetrics": [
+        {
+          "ariaLabel": "مسؤول المخزون",
+          "box": {
+            "left": 488.5,
+            "top": 517.65625,
+            "right": 623,
+            "bottom": 535.65625,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "ariaLabel": "فرع الإسكندرية",
+          "box": {
+            "left": 353,
+            "top": 517.65625,
+            "right": 487.5,
+            "bottom": 535.65625,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "popupBadges": 2,
+      "surface": null,
+      "surfaceMetrics": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 0
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(24, 26, 32)",
+        "background": "rgb(255, 255, 255)",
+        "name": "rgb(24, 26, 32)",
+        "email": "rgb(84, 89, 102)"
+      },
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "top",
+      "surfaceOverflow": null,
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 325,
+        "y": 451.65625,
+        "width": 396,
+        "height": 108,
+        "scale": 1
+      }
+    },
+    {
+      "name": "light-rtl-768-image-closed",
+      "viewport": {
+        "width": 768,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "open": false,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 343,
+          "top": 469.65625,
+          "right": 703,
+          "bottom": 541.65625,
+          "width": 360,
+          "height": 72
+        },
+        "clientWidth": 360,
+        "clientHeight": 72,
+        "scrollWidth": 360,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 633,
+          "top": 475.65625,
+          "right": 693,
+          "bottom": 535.65625,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 60,
+        "scrollHeight": 65,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 353,
+          "top": 475.65625,
+          "right": 623,
+          "bottom": 535.65625,
+          "width": 270,
+          "height": 60
+        },
+        "clientWidth": 270,
+        "clientHeight": 60,
+        "scrollWidth": 270,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "أميرة حداد",
+          "box": {
+            "left": 353,
+            "top": 475.65625,
+            "right": 623,
+            "bottom": 497.65625,
+            "width": 270,
+            "height": 22
+          },
+          "clientWidth": 270,
+          "clientHeight": 22,
+          "scrollWidth": 270,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "amira.haddad@honesty.example",
+          "box": {
+            "left": 353,
+            "top": 498.65625,
+            "right": 623,
+            "bottom": 516.65625,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "مديرة المالية\n الفرع الرئيسي",
+          "box": {
+            "left": 353,
+            "top": 517.65625,
+            "right": 623,
+            "bottom": 535.65625,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": {
+        "direction": "rtl",
+        "textAlign": "start",
+        "unicodeBidi": "normal"
+      },
+      "triggerBadges": 2,
+      "triggerBadgeMetrics": [
+        {
+          "ariaLabel": "مديرة المالية",
+          "box": {
+            "left": 488.5,
+            "top": 517.65625,
+            "right": 623,
+            "bottom": 535.65625,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "ariaLabel": "الفرع الرئيسي",
+          "box": {
+            "left": 353,
+            "top": 517.65625,
+            "right": 487.5,
+            "bottom": 535.65625,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "popupBadges": 2,
+      "surface": null,
+      "surfaceMetrics": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 0
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(24, 26, 32)",
+        "background": "rgb(255, 255, 255)",
+        "name": "rgb(24, 26, 32)",
+        "email": "rgb(84, 89, 102)"
+      },
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "top",
+      "surfaceOverflow": null,
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 325,
+        "y": 451.65625,
+        "width": 396,
+        "height": 108,
+        "scale": 1
+      }
+    },
+    {
+      "name": "light-rtl-768-mixed-open",
+      "viewport": {
+        "width": 768,
+        "height": 900
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "open": true,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 343,
+          "top": 469.65625,
+          "right": 703,
+          "bottom": 541.65625,
+          "width": 360,
+          "height": 72
+        },
+        "clientWidth": 360,
+        "clientHeight": 72,
+        "scrollWidth": 360,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 633,
+          "top": 475.65625,
+          "right": 693,
+          "bottom": 535.65625,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 60,
+        "scrollHeight": 65,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 353,
+          "top": 475.65625,
+          "right": 623,
+          "bottom": 535.65625,
+          "width": 270,
+          "height": 60
+        },
+        "clientWidth": 270,
+        "clientHeight": 60,
+        "scrollWidth": 270,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "ليلى Mahmoud — Procurement Operations",
+          "box": {
+            "left": 353,
+            "top": 475.65625,
+            "right": 623,
+            "bottom": 497.65625,
+            "width": 270,
+            "height": 22
+          },
+          "clientWidth": 270,
+          "clientHeight": 22,
+          "scrollWidth": 317,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": true,
+          "contentExceedsBlock": false,
+          "clippedInline": true,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "leila.mahmoud@honesty.example",
+          "box": {
+            "left": 353,
+            "top": 498.65625,
+            "right": 623,
+            "bottom": 516.65625,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "Procurement Lead\n فرع الجيزة · Giza",
+          "box": {
+            "left": 353,
+            "top": 517.65625,
+            "right": 623,
+            "bottom": 535.65625,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": {
+        "direction": "rtl",
+        "textAlign": "start",
+        "unicodeBidi": "normal"
+      },
+      "triggerBadges": 2,
+      "triggerBadgeMetrics": [
+        {
+          "ariaLabel": "Procurement Lead",
+          "box": {
+            "left": 488.5,
+            "top": 517.65625,
+            "right": 623,
+            "bottom": 535.65625,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "ariaLabel": "فرع الجيزة · Giza",
+          "box": {
+            "left": 353,
+            "top": 517.65625,
+            "right": 487.5,
+            "bottom": 535.65625,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "popupBadges": 2,
+      "surface": {
+        "left": 343,
+        "top": 8,
+        "right": 703,
+        "bottom": 467.65625,
+        "width": 360,
+        "height": 459.65625
+      },
+      "surfaceMetrics": {
+        "box": {
+          "left": 343,
+          "top": 8,
+          "right": 703,
+          "bottom": 467.65625,
+          "width": 360,
+          "height": 459.65625
+        },
+        "clientWidth": 360,
+        "clientHeight": 460,
+        "scrollWidth": 360,
+        "scrollHeight": 469,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 351,
+          "top": 16,
+          "right": 695,
+          "bottom": 141,
+          "width": 344,
+          "height": 125
+        },
+        "clientWidth": 344,
+        "clientHeight": 125,
+        "scrollWidth": 344,
+        "scrollHeight": 125,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 351,
+          "top": 158,
+          "right": 695,
+          "bottom": 459.65625,
+          "width": 344,
+          "height": 301.65625
+        },
+        "clientWidth": 329,
+        "clientHeight": 302,
+        "scrollWidth": 329,
+        "scrollHeight": 353,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 0
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(24, 26, 32)",
+        "background": "rgb(255, 255, 255)",
+        "name": "rgb(24, 26, 32)",
+        "email": "rgb(84, 89, 102)"
+      },
+      "arrow": {
+        "left": 513.8076171875,
+        "top": 458.4638671875,
+        "right": 532.1923828125,
+        "bottom": 476.8486328125,
+        "width": 18.384765625,
+        "height": 18.384765625
+      },
+      "arrowCenterDelta": 0,
+      "placement": "top",
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 325,
+        "y": 0,
+        "width": 396,
+        "height": 559.65625,
+        "scale": 1
+      }
+    },
+    {
+      "name": "dark-rtl-768-long-arabic-closed",
+      "viewport": {
+        "width": 768,
+        "height": 900
+      },
+      "theme": "dark",
+      "direction": "rtl",
+      "open": false,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 343,
+          "top": 469.65625,
+          "right": 703,
+          "bottom": 541.65625,
+          "width": 360,
+          "height": 72
+        },
+        "clientWidth": 360,
+        "clientHeight": 72,
+        "scrollWidth": 360,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 633,
+          "top": 475.65625,
+          "right": 693,
+          "bottom": 535.65625,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 60,
+        "scrollHeight": 65,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 353,
+          "top": 475.65625,
+          "right": 623,
+          "bottom": 535.65625,
+          "width": 270,
+          "height": 60
+        },
+        "clientWidth": 270,
+        "clientHeight": 60,
+        "scrollWidth": 270,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "نادية عبد الرحمن فؤاد مسؤولة المشتريات الإقليمية",
+          "box": {
+            "left": 353,
+            "top": 475.65625,
+            "right": 623,
+            "bottom": 497.65625,
+            "width": 270,
+            "height": 22
+          },
+          "clientWidth": 270,
+          "clientHeight": 22,
+          "scrollWidth": 341,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": true,
+          "contentExceedsBlock": false,
+          "clippedInline": true,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "nadia.abdelrahman@honesty.example",
+          "box": {
+            "left": 353,
+            "top": 498.65625,
+            "right": 623,
+            "bottom": 516.65625,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "مسؤولة المشتريات الإقليمية\n فرع القاهرة الجديدة",
+          "box": {
+            "left": 353,
+            "top": 517.65625,
+            "right": 623,
+            "bottom": 535.65625,
+            "width": 270,
+            "height": 18
+          },
+          "clientWidth": 270,
+          "clientHeight": 18,
+          "scrollWidth": 270,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": {
+        "direction": "rtl",
+        "textAlign": "start",
+        "unicodeBidi": "normal"
+      },
+      "triggerBadges": 2,
+      "triggerBadgeMetrics": [
+        {
+          "ariaLabel": "مسؤولة المشتريات الإقليمية",
+          "box": {
+            "left": 488.5,
+            "top": 517.65625,
+            "right": 623,
+            "bottom": 535.65625,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 134,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "ariaLabel": "فرع القاهرة الجديدة",
+          "box": {
+            "left": 353,
+            "top": 517.65625,
+            "right": 487.5,
+            "bottom": 535.65625,
+            "width": 134.5,
+            "height": 18
+          },
+          "clientWidth": 133,
+          "clientHeight": 16,
+          "scrollWidth": 133,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "popupBadges": 2,
+      "surface": null,
+      "surfaceMetrics": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 0
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(248, 249, 251)",
+        "background": "rgb(39, 42, 50)",
+        "name": "rgb(248, 249, 251)",
+        "email": "rgb(201, 206, 216)"
+      },
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "top",
+      "surfaceOverflow": null,
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 325,
+        "y": 451.65625,
+        "width": 396,
+        "height": 108,
+        "scale": 1
+      }
+    },
+    {
+      "name": "dark-rtl-390-default-closed",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "rtl",
+      "open": false,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 57,
+          "top": 385.734375,
+          "right": 318,
+          "bottom": 457.734375,
+          "width": 261,
+          "height": 72
+        },
+        "clientWidth": 261,
+        "clientHeight": 72,
+        "scrollWidth": 261,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 248,
+          "top": 391.734375,
+          "right": 308,
+          "bottom": 451.734375,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 60,
+        "scrollHeight": 65,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 67,
+          "top": 391.734375,
+          "right": 238,
+          "bottom": 451.734375,
+          "width": 171,
+          "height": 60
+        },
+        "clientWidth": 171,
+        "clientHeight": 60,
+        "scrollWidth": 171,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "أميرة حداد",
+          "box": {
+            "left": 67,
+            "top": 391.734375,
+            "right": 238,
+            "bottom": 413.734375,
+            "width": 171,
+            "height": 22
+          },
+          "clientWidth": 171,
+          "clientHeight": 22,
+          "scrollWidth": 171,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "amira.haddad@honesty.example",
+          "box": {
+            "left": 67,
+            "top": 414.734375,
+            "right": 238,
+            "bottom": 432.734375,
+            "width": 171,
+            "height": 18
+          },
+          "clientWidth": 171,
+          "clientHeight": 18,
+          "scrollWidth": 171,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "مديرة المالية\n الفرع الرئيسي",
+          "box": {
+            "left": 67,
+            "top": 433.734375,
+            "right": 238,
+            "bottom": 451.734375,
+            "width": 171,
+            "height": 18
+          },
+          "clientWidth": 171,
+          "clientHeight": 18,
+          "scrollWidth": 171,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": {
+        "direction": "rtl",
+        "textAlign": "start",
+        "unicodeBidi": "normal"
+      },
+      "triggerBadges": 2,
+      "triggerBadgeMetrics": [
+        {
+          "ariaLabel": "مديرة المالية",
+          "box": {
+            "left": 153,
+            "top": 433.734375,
+            "right": 238,
+            "bottom": 451.734375,
+            "width": 85,
+            "height": 18
+          },
+          "clientWidth": 83,
+          "clientHeight": 16,
+          "scrollWidth": 83,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "ariaLabel": "الفرع الرئيسي",
+          "box": {
+            "left": 67,
+            "top": 433.734375,
+            "right": 152,
+            "bottom": 451.734375,
+            "width": 85,
+            "height": 18
+          },
+          "clientWidth": 83,
+          "clientHeight": 16,
+          "scrollWidth": 83,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "popupBadges": 2,
+      "surface": null,
+      "surfaceMetrics": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 0
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(248, 249, 251)",
+        "background": "rgb(39, 42, 50)",
+        "name": "rgb(248, 249, 251)",
+        "email": "rgb(201, 206, 216)"
+      },
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "top",
+      "surfaceOverflow": null,
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 39,
+        "y": 780.734375,
+        "width": 297,
+        "height": 108,
+        "scale": 1
+      }
+    },
+    {
+      "name": "dark-rtl-390-default-open",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "rtl",
+      "open": true,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 57,
+          "top": 385.734375,
+          "right": 318,
+          "bottom": 457.734375,
+          "width": 261,
+          "height": 72
+        },
+        "clientWidth": 261,
+        "clientHeight": 72,
+        "scrollWidth": 261,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 248,
+          "top": 391.734375,
+          "right": 308,
+          "bottom": 451.734375,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 60,
+        "scrollHeight": 65,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 67,
+          "top": 391.734375,
+          "right": 238,
+          "bottom": 451.734375,
+          "width": 171,
+          "height": 60
+        },
+        "clientWidth": 171,
+        "clientHeight": 60,
+        "scrollWidth": 171,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "أميرة حداد",
+          "box": {
+            "left": 67,
+            "top": 391.734375,
+            "right": 238,
+            "bottom": 413.734375,
+            "width": 171,
+            "height": 22
+          },
+          "clientWidth": 171,
+          "clientHeight": 22,
+          "scrollWidth": 171,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "amira.haddad@honesty.example",
+          "box": {
+            "left": 67,
+            "top": 414.734375,
+            "right": 238,
+            "bottom": 432.734375,
+            "width": 171,
+            "height": 18
+          },
+          "clientWidth": 171,
+          "clientHeight": 18,
+          "scrollWidth": 171,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "مديرة المالية\n الفرع الرئيسي",
+          "box": {
+            "left": 67,
+            "top": 433.734375,
+            "right": 238,
+            "bottom": 451.734375,
+            "width": 171,
+            "height": 18
+          },
+          "clientWidth": 171,
+          "clientHeight": 18,
+          "scrollWidth": 171,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": {
+        "direction": "rtl",
+        "textAlign": "start",
+        "unicodeBidi": "normal"
+      },
+      "triggerBadges": 2,
+      "triggerBadgeMetrics": [
+        {
+          "ariaLabel": "مديرة المالية",
+          "box": {
+            "left": 153,
+            "top": 433.734375,
+            "right": 238,
+            "bottom": 451.734375,
+            "width": 85,
+            "height": 18
+          },
+          "clientWidth": 83,
+          "clientHeight": 16,
+          "scrollWidth": 83,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "ariaLabel": "الفرع الرئيسي",
+          "box": {
+            "left": 67,
+            "top": 433.734375,
+            "right": 152,
+            "bottom": 451.734375,
+            "width": 85,
+            "height": 18
+          },
+          "clientWidth": 83,
+          "clientHeight": 16,
+          "scrollWidth": 83,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "popupBadges": 2,
+      "surface": {
+        "left": 8,
+        "top": 459.734375,
+        "right": 368,
+        "bottom": 836,
+        "width": 360,
+        "height": 376.265625
+      },
+      "surfaceMetrics": {
+        "box": {
+          "left": 8,
+          "top": 459.734375,
+          "right": 368,
+          "bottom": 836,
+          "width": 360,
+          "height": 376.265625
+        },
+        "clientWidth": 360,
+        "clientHeight": 376,
+        "scrollWidth": 360,
+        "scrollHeight": 376,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 16,
+          "top": 467.734375,
+          "right": 360,
+          "bottom": 571.734375,
+          "width": 344,
+          "height": 104
+        },
+        "clientWidth": 344,
+        "clientHeight": 104,
+        "scrollWidth": 344,
+        "scrollHeight": 104,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 16,
+          "top": 588.734375,
+          "right": 360,
+          "bottom": 828,
+          "width": 344,
+          "height": 239.265625
+        },
+        "clientWidth": 329,
+        "clientHeight": 239,
+        "scrollWidth": 329,
+        "scrollHeight": 353,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 0
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(248, 249, 251)",
+        "background": "rgb(39, 42, 50)",
+        "name": "rgb(248, 249, 251)",
+        "email": "rgb(201, 206, 216)"
+      },
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "bottom",
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 0,
+        "y": 780.734375,
+        "width": 386,
+        "height": 476.265625,
+        "scale": 1
+      }
+    },
+    {
+      "name": "light-ltr-320-long-closed",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "theme": "light",
+      "direction": "ltr",
+      "open": false,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 57,
+          "top": 248.03125,
+          "right": 248,
+          "bottom": 320.03125,
+          "width": 191,
+          "height": 72
+        },
+        "clientWidth": 191,
+        "clientHeight": 72,
+        "scrollWidth": 191,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 67,
+          "top": 254.03125,
+          "right": 127,
+          "bottom": 314.03125,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 65,
+        "scrollHeight": 65,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": true,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 137,
+          "top": 254.53125,
+          "right": 238,
+          "bottom": 313.53125,
+          "width": 101,
+          "height": 59
+        },
+        "clientWidth": 101,
+        "clientHeight": 59,
+        "scrollWidth": 101,
+        "scrollHeight": 59,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 59,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "Alexandria Regional Finance Operations Manager",
+          "box": {
+            "left": 137,
+            "top": 254.53125,
+            "right": 238,
+            "bottom": 275.53125,
+            "width": 101,
+            "height": 21
+          },
+          "clientWidth": 101,
+          "clientHeight": 21,
+          "scrollWidth": 377,
+          "scrollHeight": 21,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": true,
+          "contentExceedsBlock": false,
+          "clippedInline": true,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "alexandria.finance.manager@honesty.example",
+          "box": {
+            "left": 137,
+            "top": 276.53125,
+            "right": 238,
+            "bottom": 294.53125,
+            "width": 101,
+            "height": 18
+          },
+          "clientWidth": 101,
+          "clientHeight": 18,
+          "scrollWidth": 101,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "Finance Operations\n Alexandria Branch",
+          "box": {
+            "left": 137,
+            "top": 295.53125,
+            "right": 238,
+            "bottom": 313.53125,
+            "width": 101,
+            "height": 18
+          },
+          "clientWidth": 101,
+          "clientHeight": 18,
+          "scrollWidth": 101,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": {
+        "direction": "ltr",
+        "textAlign": "start",
+        "unicodeBidi": "normal"
+      },
+      "triggerBadges": 2,
+      "triggerBadgeMetrics": [
+        {
+          "ariaLabel": "Finance Operations",
+          "box": {
+            "left": 137,
+            "top": 295.53125,
+            "right": 187,
+            "bottom": 313.53125,
+            "width": 50,
+            "height": 18
+          },
+          "clientWidth": 48,
+          "clientHeight": 16,
+          "scrollWidth": 78,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": true,
+          "contentExceedsBlock": false,
+          "clippedInline": true,
+          "clippedBlock": false
+        },
+        {
+          "ariaLabel": "Alexandria Branch",
+          "box": {
+            "left": 188,
+            "top": 295.53125,
+            "right": 238,
+            "bottom": 313.53125,
+            "width": 50,
+            "height": 18
+          },
+          "clientWidth": 48,
+          "clientHeight": 16,
+          "scrollWidth": 76,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": true,
+          "contentExceedsBlock": false,
+          "clippedInline": true,
+          "clippedBlock": false
+        }
+      ],
+      "popupBadges": 2,
+      "surface": null,
+      "surfaceMetrics": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 0
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(24, 26, 32)",
+        "background": "rgb(255, 255, 255)",
+        "name": "rgb(24, 26, 32)",
+        "email": "rgb(84, 89, 102)"
+      },
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "top",
+      "surfaceOverflow": null,
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 39,
+        "y": 889.03125,
+        "width": 227,
+        "height": 108,
+        "scale": 1
+      }
+    },
+    {
+      "name": "light-ltr-320-long-open",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "theme": "light",
+      "direction": "ltr",
+      "open": true,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 57,
+          "top": 248.03125,
+          "right": 248,
+          "bottom": 320.03125,
+          "width": 191,
+          "height": 72
+        },
+        "clientWidth": 191,
+        "clientHeight": 72,
+        "scrollWidth": 191,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 67,
+          "top": 254.03125,
+          "right": 127,
+          "bottom": 314.03125,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 65,
+        "scrollHeight": 65,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": true,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 137,
+          "top": 254.53125,
+          "right": 238,
+          "bottom": 313.53125,
+          "width": 101,
+          "height": 59
+        },
+        "clientWidth": 101,
+        "clientHeight": 59,
+        "scrollWidth": 101,
+        "scrollHeight": 59,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 59,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "Alexandria Regional Finance Operations Manager",
+          "box": {
+            "left": 137,
+            "top": 254.53125,
+            "right": 238,
+            "bottom": 275.53125,
+            "width": 101,
+            "height": 21
+          },
+          "clientWidth": 101,
+          "clientHeight": 21,
+          "scrollWidth": 377,
+          "scrollHeight": 21,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": true,
+          "contentExceedsBlock": false,
+          "clippedInline": true,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "alexandria.finance.manager@honesty.example",
+          "box": {
+            "left": 137,
+            "top": 276.53125,
+            "right": 238,
+            "bottom": 294.53125,
+            "width": 101,
+            "height": 18
+          },
+          "clientWidth": 101,
+          "clientHeight": 18,
+          "scrollWidth": 101,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "Finance Operations\n Alexandria Branch",
+          "box": {
+            "left": 137,
+            "top": 295.53125,
+            "right": 238,
+            "bottom": 313.53125,
+            "width": 101,
+            "height": 18
+          },
+          "clientWidth": 101,
+          "clientHeight": 18,
+          "scrollWidth": 101,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": {
+        "direction": "ltr",
+        "textAlign": "start",
+        "unicodeBidi": "normal"
+      },
+      "triggerBadges": 2,
+      "triggerBadgeMetrics": [
+        {
+          "ariaLabel": "Finance Operations",
+          "box": {
+            "left": 137,
+            "top": 295.53125,
+            "right": 187,
+            "bottom": 313.53125,
+            "width": 50,
+            "height": 18
+          },
+          "clientWidth": 48,
+          "clientHeight": 16,
+          "scrollWidth": 78,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": true,
+          "contentExceedsBlock": false,
+          "clippedInline": true,
+          "clippedBlock": false
+        },
+        {
+          "ariaLabel": "Alexandria Branch",
+          "box": {
+            "left": 188,
+            "top": 295.53125,
+            "right": 238,
+            "bottom": 313.53125,
+            "width": 50,
+            "height": 18
+          },
+          "clientWidth": 48,
+          "clientHeight": 16,
+          "scrollWidth": 76,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": true,
+          "contentExceedsBlock": false,
+          "clippedInline": true,
+          "clippedBlock": false
+        }
+      ],
+      "popupBadges": 2,
+      "surface": {
+        "left": 8,
+        "top": 8,
+        "right": 312,
+        "bottom": 246.03125,
+        "width": 304,
+        "height": 238.03125
+      },
+      "surfaceMetrics": {
+        "box": {
+          "left": 8,
+          "top": 8,
+          "right": 312,
+          "bottom": 246.03125,
+          "width": 304,
+          "height": 238.03125
+        },
+        "clientWidth": 304,
+        "clientHeight": 238,
+        "scrollWidth": 304,
+        "scrollHeight": 238,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 16,
+          "top": 16,
+          "right": 304,
+          "bottom": 201,
+          "width": 288,
+          "height": 185
+        },
+        "clientWidth": 288,
+        "clientHeight": 185,
+        "scrollWidth": 288,
+        "scrollHeight": 185,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 16,
+          "top": 218,
+          "right": 304,
+          "bottom": 238.03125,
+          "width": 288,
+          "height": 20.03125
+        },
+        "clientWidth": 273,
+        "clientHeight": 20,
+        "scrollWidth": 273,
+        "scrollHeight": 353,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 96
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(24, 26, 32)",
+        "background": "rgb(255, 255, 255)",
+        "name": "rgb(24, 26, 32)",
+        "email": "rgb(84, 89, 102)"
+      },
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "top",
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 0,
+        "y": 659,
+        "width": 320,
+        "height": 338.03125,
+        "scale": 1
+      }
+    },
+    {
+      "name": "light-rtl-390-role-trigger-closed",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "open": false,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 57,
+          "top": 385.734375,
+          "right": 318,
+          "bottom": 457.734375,
+          "width": 261,
+          "height": 72
+        },
+        "clientWidth": 261,
+        "clientHeight": 72,
+        "scrollWidth": 261,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 248,
+          "top": 391.734375,
+          "right": 308,
+          "bottom": 451.734375,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 60,
+        "scrollHeight": 65,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 67,
+          "top": 391.734375,
+          "right": 238,
+          "bottom": 451.734375,
+          "width": 171,
+          "height": 60
+        },
+        "clientWidth": 171,
+        "clientHeight": 60,
+        "scrollWidth": 171,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "أميرة حداد",
+          "box": {
+            "left": 67,
+            "top": 391.734375,
+            "right": 238,
+            "bottom": 413.734375,
+            "width": 171,
+            "height": 22
+          },
+          "clientWidth": 171,
+          "clientHeight": 22,
+          "scrollWidth": 171,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "amira.haddad@honesty.example",
+          "box": {
+            "left": 67,
+            "top": 414.734375,
+            "right": 238,
+            "bottom": 432.734375,
+            "width": 171,
+            "height": 18
+          },
+          "clientWidth": 171,
+          "clientHeight": 18,
+          "scrollWidth": 171,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "مديرة المالية",
+          "box": {
+            "left": 67,
+            "top": 433.734375,
+            "right": 238,
+            "bottom": 451.734375,
+            "width": 171,
+            "height": 18
+          },
+          "clientWidth": 171,
+          "clientHeight": 18,
+          "scrollWidth": 171,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": {
+        "direction": "rtl",
+        "textAlign": "start",
+        "unicodeBidi": "normal"
+      },
+      "triggerBadges": 1,
+      "triggerBadgeMetrics": [
+        {
+          "ariaLabel": "مديرة المالية",
+          "box": {
+            "left": 67,
+            "top": 433.734375,
+            "right": 238,
+            "bottom": 451.734375,
+            "width": 171,
+            "height": 18
+          },
+          "clientWidth": 169,
+          "clientHeight": 16,
+          "scrollWidth": 169,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "popupBadges": 2,
+      "surface": null,
+      "surfaceMetrics": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 0
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(24, 26, 32)",
+        "background": "rgb(255, 255, 255)",
+        "name": "rgb(24, 26, 32)",
+        "email": "rgb(84, 89, 102)"
+      },
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "bottom",
+      "surfaceOverflow": null,
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 39,
+        "y": 780.734375,
+        "width": 297,
+        "height": 108,
+        "scale": 1
+      }
+    },
+    {
+      "name": "light-rtl-390-branch-trigger-closed",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "open": false,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 57,
+          "top": 385.734375,
+          "right": 318,
+          "bottom": 457.734375,
+          "width": 261,
+          "height": 72
+        },
+        "clientWidth": 261,
+        "clientHeight": 72,
+        "scrollWidth": 261,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 248,
+          "top": 391.734375,
+          "right": 308,
+          "bottom": 451.734375,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 60,
+        "scrollHeight": 65,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 67,
+          "top": 391.734375,
+          "right": 238,
+          "bottom": 451.734375,
+          "width": 171,
+          "height": 60
+        },
+        "clientWidth": 171,
+        "clientHeight": 60,
+        "scrollWidth": 171,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "أميرة حداد",
+          "box": {
+            "left": 67,
+            "top": 391.734375,
+            "right": 238,
+            "bottom": 413.734375,
+            "width": 171,
+            "height": 22
+          },
+          "clientWidth": 171,
+          "clientHeight": 22,
+          "scrollWidth": 171,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "amira.haddad@honesty.example",
+          "box": {
+            "left": 67,
+            "top": 414.734375,
+            "right": 238,
+            "bottom": 432.734375,
+            "width": 171,
+            "height": 18
+          },
+          "clientWidth": 171,
+          "clientHeight": 18,
+          "scrollWidth": 171,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "الفرع الرئيسي",
+          "box": {
+            "left": 67,
+            "top": 433.734375,
+            "right": 238,
+            "bottom": 451.734375,
+            "width": 171,
+            "height": 18
+          },
+          "clientWidth": 171,
+          "clientHeight": 18,
+          "scrollWidth": 171,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": {
+        "direction": "rtl",
+        "textAlign": "start",
+        "unicodeBidi": "normal"
+      },
+      "triggerBadges": 1,
+      "triggerBadgeMetrics": [
+        {
+          "ariaLabel": "الفرع الرئيسي",
+          "box": {
+            "left": 67,
+            "top": 433.734375,
+            "right": 238,
+            "bottom": 451.734375,
+            "width": 171,
+            "height": 18
+          },
+          "clientWidth": 169,
+          "clientHeight": 16,
+          "scrollWidth": 169,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "popupBadges": 2,
+      "surface": null,
+      "surfaceMetrics": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 0
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(24, 26, 32)",
+        "background": "rgb(255, 255, 255)",
+        "name": "rgb(24, 26, 32)",
+        "email": "rgb(84, 89, 102)"
+      },
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "bottom",
+      "surfaceOverflow": null,
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 39,
+        "y": 780.734375,
+        "width": 297,
+        "height": 108,
+        "scale": 1
+      }
+    },
+    {
+      "name": "light-rtl-390-both-trigger-closed",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "open": false,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 57,
+          "top": 385.734375,
+          "right": 318,
+          "bottom": 457.734375,
+          "width": 261,
+          "height": 72
+        },
+        "clientWidth": 261,
+        "clientHeight": 72,
+        "scrollWidth": 261,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 248,
+          "top": 391.734375,
+          "right": 308,
+          "bottom": 451.734375,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 60,
+        "scrollHeight": 65,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 67,
+          "top": 391.734375,
+          "right": 238,
+          "bottom": 451.734375,
+          "width": 171,
+          "height": 60
+        },
+        "clientWidth": 171,
+        "clientHeight": 60,
+        "scrollWidth": 171,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "أميرة حداد",
+          "box": {
+            "left": 67,
+            "top": 391.734375,
+            "right": 238,
+            "bottom": 413.734375,
+            "width": 171,
+            "height": 22
+          },
+          "clientWidth": 171,
+          "clientHeight": 22,
+          "scrollWidth": 171,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "amira.haddad@honesty.example",
+          "box": {
+            "left": 67,
+            "top": 414.734375,
+            "right": 238,
+            "bottom": 432.734375,
+            "width": 171,
+            "height": 18
+          },
+          "clientWidth": 171,
+          "clientHeight": 18,
+          "scrollWidth": 171,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "مديرة المالية\n الفرع الرئيسي",
+          "box": {
+            "left": 67,
+            "top": 433.734375,
+            "right": 238,
+            "bottom": 451.734375,
+            "width": 171,
+            "height": 18
+          },
+          "clientWidth": 171,
+          "clientHeight": 18,
+          "scrollWidth": 171,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": {
+        "direction": "rtl",
+        "textAlign": "start",
+        "unicodeBidi": "normal"
+      },
+      "triggerBadges": 2,
+      "triggerBadgeMetrics": [
+        {
+          "ariaLabel": "مديرة المالية",
+          "box": {
+            "left": 153,
+            "top": 433.734375,
+            "right": 238,
+            "bottom": 451.734375,
+            "width": 85,
+            "height": 18
+          },
+          "clientWidth": 83,
+          "clientHeight": 16,
+          "scrollWidth": 83,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "ariaLabel": "الفرع الرئيسي",
+          "box": {
+            "left": 67,
+            "top": 433.734375,
+            "right": 152,
+            "bottom": 451.734375,
+            "width": 85,
+            "height": 18
+          },
+          "clientWidth": 83,
+          "clientHeight": 16,
+          "scrollWidth": 83,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "popupBadges": 2,
+      "surface": null,
+      "surfaceMetrics": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 0
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(24, 26, 32)",
+        "background": "rgb(255, 255, 255)",
+        "name": "rgb(24, 26, 32)",
+        "email": "rgb(84, 89, 102)"
+      },
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "bottom",
+      "surfaceOverflow": null,
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 39,
+        "y": 780.734375,
+        "width": 297,
+        "height": 108,
+        "scale": 1
+      }
+    },
+    {
+      "name": "light-rtl-390-no-trigger-badges-closed",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "open": false,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 57,
+          "top": 385.734375,
+          "right": 318,
+          "bottom": 457.734375,
+          "width": 261,
+          "height": 72
+        },
+        "clientWidth": 261,
+        "clientHeight": 72,
+        "scrollWidth": 261,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 248,
+          "top": 391.734375,
+          "right": 308,
+          "bottom": 451.734375,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 60,
+        "scrollHeight": 65,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 67,
+          "top": 401.234375,
+          "right": 238,
+          "bottom": 442.234375,
+          "width": 171,
+          "height": 41
+        },
+        "clientWidth": 171,
+        "clientHeight": 41,
+        "scrollWidth": 171,
+        "scrollHeight": 41,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 41,
+      "visibleIdentityRows": 2,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "أميرة حداد",
+          "box": {
+            "left": 67,
+            "top": 401.234375,
+            "right": 238,
+            "bottom": 423.234375,
+            "width": 171,
+            "height": 22
+          },
+          "clientWidth": 171,
+          "clientHeight": 22,
+          "scrollWidth": 171,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "amira.haddad@honesty.example",
+          "box": {
+            "left": 67,
+            "top": 424.234375,
+            "right": 238,
+            "bottom": 442.234375,
+            "width": 171,
+            "height": 18
+          },
+          "clientWidth": 171,
+          "clientHeight": 18,
+          "scrollWidth": 171,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": {
+        "direction": "rtl",
+        "textAlign": "start",
+        "unicodeBidi": "normal"
+      },
+      "triggerBadges": 0,
+      "triggerBadgeMetrics": [],
+      "popupBadges": 2,
+      "surface": null,
+      "surfaceMetrics": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 0
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(24, 26, 32)",
+        "background": "rgb(255, 255, 255)",
+        "name": "rgb(24, 26, 32)",
+        "email": "rgb(84, 89, 102)"
+      },
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "bottom",
+      "surfaceOverflow": null,
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 39,
+        "y": 780.734375,
+        "width": 297,
+        "height": 108,
+        "scale": 1
+      }
+    },
+    {
+      "name": "dark-ltr-390-icon-open",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "theme": "dark",
+      "direction": "ltr",
+      "open": true,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 57,
+          "top": 385.734375,
+          "right": 318,
+          "bottom": 457.734375,
+          "width": 261,
+          "height": 72
+        },
+        "clientWidth": 261,
+        "clientHeight": 72,
+        "scrollWidth": 261,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 67,
+          "top": 391.734375,
+          "right": 127,
+          "bottom": 451.734375,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 65,
+        "scrollHeight": 65,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": true,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 137,
+          "top": 391.734375,
+          "right": 308,
+          "bottom": 451.734375,
+          "width": 171,
+          "height": 60
+        },
+        "clientWidth": 171,
+        "clientHeight": 60,
+        "scrollWidth": 171,
+        "scrollHeight": 60,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 60,
+      "visibleIdentityRows": 3,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "حساب الدعم",
+          "box": {
+            "left": 137,
+            "top": 391.734375,
+            "right": 308,
+            "bottom": 413.734375,
+            "width": 171,
+            "height": 22
+          },
+          "clientWidth": 171,
+          "clientHeight": 22,
+          "scrollWidth": 171,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__email user-menu__email--trigger",
+          "text": "support@honesty.example",
+          "box": {
+            "left": 137,
+            "top": 414.734375,
+            "right": 308,
+            "bottom": 432.734375,
+            "width": 171,
+            "height": 18
+          },
+          "clientWidth": 171,
+          "clientHeight": 18,
+          "scrollWidth": 171,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "className": "user-menu__badges user-menu__badges--trigger user-menu__trigger-metadata",
+          "text": "دعم النظام\n المركز الرئيسي",
+          "box": {
+            "left": 137,
+            "top": 433.734375,
+            "right": 308,
+            "bottom": 451.734375,
+            "width": 171,
+            "height": 18
+          },
+          "clientWidth": 171,
+          "clientHeight": 18,
+          "scrollWidth": 171,
+          "scrollHeight": 18,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": {
+        "direction": "ltr",
+        "textAlign": "start",
+        "unicodeBidi": "normal"
+      },
+      "triggerBadges": 2,
+      "triggerBadgeMetrics": [
+        {
+          "ariaLabel": "دعم النظام",
+          "box": {
+            "left": 137,
+            "top": 433.734375,
+            "right": 222,
+            "bottom": 451.734375,
+            "width": 85,
+            "height": 18
+          },
+          "clientWidth": 83,
+          "clientHeight": 16,
+          "scrollWidth": 83,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        },
+        {
+          "ariaLabel": "المركز الرئيسي",
+          "box": {
+            "left": 223,
+            "top": 433.734375,
+            "right": 308,
+            "bottom": 451.734375,
+            "width": 85,
+            "height": 18
+          },
+          "clientWidth": 83,
+          "clientHeight": 16,
+          "scrollWidth": 83,
+          "scrollHeight": 16,
+          "lineHeight": "10px",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "popupBadges": 2,
+      "surface": {
+        "left": 8,
+        "top": 459.734375,
+        "right": 368,
+        "bottom": 836,
+        "width": 360,
+        "height": 376.265625
+      },
+      "surfaceMetrics": {
+        "box": {
+          "left": 8,
+          "top": 459.734375,
+          "right": 368,
+          "bottom": 836,
+          "width": 360,
+          "height": 376.265625
+        },
+        "clientWidth": 360,
+        "clientHeight": 376,
+        "scrollWidth": 360,
+        "scrollHeight": 376,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 16,
+          "top": 467.734375,
+          "right": 360,
+          "bottom": 571.734375,
+          "width": 344,
+          "height": 104
+        },
+        "clientWidth": 344,
+        "clientHeight": 104,
+        "scrollWidth": 344,
+        "scrollHeight": 104,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 16,
+          "top": 588.734375,
+          "right": 360,
+          "bottom": 828,
+          "width": 344,
+          "height": 239.265625
+        },
+        "clientWidth": 329,
+        "clientHeight": 239,
+        "scrollWidth": 329,
+        "scrollHeight": 353,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 0
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(248, 249, 251)",
+        "background": "rgb(39, 42, 50)",
+        "name": "rgb(248, 249, 251)",
+        "email": "rgb(201, 206, 216)"
+      },
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "bottom",
+      "surfaceOverflow": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 0,
+        "y": 780.734375,
+        "width": 386,
+        "height": 476.265625,
+        "scale": 1
+      }
+    },
+    {
+      "name": "light-rtl-320-minimal-closed",
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "theme": "light",
+      "direction": "rtl",
+      "open": false,
+      "targetCount": 1,
+      "trigger": {
+        "box": {
+          "left": 57,
+          "top": 248.03125,
+          "right": 248,
+          "bottom": 320.03125,
+          "width": 191,
+          "height": 72
+        },
+        "clientWidth": 191,
+        "clientHeight": 72,
+        "scrollWidth": 191,
+        "scrollHeight": 76,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": true,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "padding": {
+          "top": "6px",
+          "right": "10px",
+          "bottom": "6px",
+          "left": "10px"
+        },
+        "gap": "10px",
+        "minBlockSize": "52px"
+      },
+      "avatar": {
+        "box": {
+          "left": 178,
+          "top": 254.03125,
+          "right": 238,
+          "bottom": 314.03125,
+          "width": 60,
+          "height": 60
+        },
+        "clientWidth": 60,
+        "clientHeight": 60,
+        "scrollWidth": 60,
+        "scrollHeight": 60,
+        "lineHeight": "20px",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "avatarCenterDelta": 0,
+      "avatarLogicalSide": "start",
+      "identity": {
+        "box": {
+          "left": 67,
+          "top": 273.03125,
+          "right": 168,
+          "bottom": 295.03125,
+          "width": 101,
+          "height": 22
+        },
+        "clientWidth": 101,
+        "clientHeight": 22,
+        "scrollWidth": 101,
+        "scrollHeight": 22,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityBlockSize": 22,
+      "visibleIdentityRows": 1,
+      "rows": [
+        {
+          "className": "user-menu__trigger-name",
+          "text": "ليلى محمود",
+          "box": {
+            "left": 67,
+            "top": 273.03125,
+            "right": 168,
+            "bottom": 295.03125,
+            "width": 101,
+            "height": 22
+          },
+          "clientWidth": 101,
+          "clientHeight": 22,
+          "scrollWidth": 101,
+          "scrollHeight": 22,
+          "lineHeight": "normal",
+          "overflowX": "hidden",
+          "overflowY": "hidden",
+          "contentExceedsInline": false,
+          "contentExceedsBlock": false,
+          "clippedInline": false,
+          "clippedBlock": false
+        }
+      ],
+      "triggerSecondaryPresent": false,
+      "emailPresentation": null,
+      "triggerBadges": 0,
+      "triggerBadgeMetrics": [],
+      "popupBadges": 0,
+      "surface": null,
+      "surfaceMetrics": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "identityHeader": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "visible",
+        "overflowY": "visible",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false
+      },
+      "actions": {
+        "box": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "width": 0,
+          "height": 0
+        },
+        "clientWidth": 0,
+        "clientHeight": 0,
+        "scrollWidth": 0,
+        "scrollHeight": 0,
+        "lineHeight": "normal",
+        "overflowX": "auto",
+        "overflowY": "auto",
+        "contentExceedsInline": false,
+        "contentExceedsBlock": false,
+        "clippedInline": false,
+        "clippedBlock": false,
+        "scrollTop": 0
+      },
+      "identityTopDeltaAfterActionScroll": 0,
+      "colors": {
+        "foreground": "rgb(24, 26, 32)",
+        "background": "rgb(255, 255, 255)",
+        "name": "rgb(24, 26, 32)",
+        "email": null
+      },
+      "arrow": null,
+      "arrowCenterDelta": null,
+      "placement": "top",
+      "surfaceOverflow": null,
+      "pageHorizontalOverflow": 0,
+      "brokenImages": 0,
+      "crop": {
+        "x": 39,
+        "y": 889.03125,
+        "width": 227,
+        "height": 108,
+        "scale": 1
+      }
+    }
+  ],
+  "diagnostics": []
+}

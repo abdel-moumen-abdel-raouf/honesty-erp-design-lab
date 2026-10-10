@@ -1,5 +1,18 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — reopened owners complete internally
+
+`ErpUserMenu` completes the explicitly reopened visual set. Its live Skodash
+reference and 22 implementation states are under
+`docs/review-evidence/erp-user-menu/v3-internal-review/`; popup geometry is
+source-backed, the Product Owner three-row trigger is preserved, and only the
+action list scrolls. The 320 x 568 centered Workbench constraint is recorded
+without changing production geometry. Status remains
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. The next Bottom-Up binding-reference
+owner is `ErpStatusBadge`, followed by other implemented exact-reference
+owners according to the generated lifecycle ledger. Business Feature/Page,
+CRUD, transport and permissions work remain closed.
+
 ## Current UI continuation — ErpTable complete internally
 
 The binding Table source was rehashed, rendered and compared with the complete

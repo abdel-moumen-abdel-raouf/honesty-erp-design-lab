@@ -1,5 +1,31 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## ErpUserMenu internal visual-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `6c429d137f83b2a430d9c9b9bb793ce065513ce8` — synchronized `main` after the
+  ErpTable full-reference internal-review checkpoint.
+
+Bounded scope:
+
+- Captured and measured the live Skodash User dropdown reference.
+- Recaptured 22 implementation states with full/cropped screenshots, semantic
+  color evidence and action-list-only scroll measurements.
+- Preserved production contracts and recorded the constrained 320 x 568
+  Workbench limitation without a review-only geometry workaround.
+- Updated the generated lifecycle source and output so all reopened owners are
+  internally reviewed and `ErpStatusBadge` is the next binding-reference unit.
+
+Verification:
+
+- Focused: 4/4 files, 70/70 tests.
+- Canonical: 128/128 files, 818/818 tests; all governance/lint; both
+  typechecks; zero-warning 418.32 kB / 92.91 kB build.
+
+The commit SHA is established by Git after this document is written and is
+reported in the execution handoff. Product Owner visual review remains pending.
+
 ## ErpTable full-reference internal visual-review candidate — 2026-10-10
 
 Entry checkpoint:

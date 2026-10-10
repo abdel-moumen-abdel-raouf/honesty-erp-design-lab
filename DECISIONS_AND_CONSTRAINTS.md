@@ -1,5 +1,22 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## ErpUserMenu internal-review decisions — 2026-10-10
+
+- The live Skodash media-object page remains the source for the verified popup
+  width, padding, radius, identity Avatar and action-row geometry.
+- The Product Owner's later three-row closed-trigger instruction supersedes
+  the vendor's two-line trigger: name, email, then role and branch badges; no
+  closed-trigger `secondaryText`.
+- Honesty ERP colors and font families remain the authorized substitutions.
+- The popup surface must stay a non-scroll owner. Only `.user-menu__items`
+  scrolls, leaving the identity header fixed and keyboard reachable.
+- A centered constrained-height Workbench anchor is evidence, not authority to
+  alter the production dropdown geometry. Its 20.03px action viewport is
+  recorded for Product Owner judgment.
+- `ErpAvatar`, `ErpStatusBadge`, `ErpButton` and the shared anchored-overlay
+  controller retain their existing ownership.
+- Internal review does not change the Product Owner status from pending.
+
 ## ErpTable full-reference internal-review decisions — 2026-10-10
 
 - `ERP-TABLE.html` at SHA-256

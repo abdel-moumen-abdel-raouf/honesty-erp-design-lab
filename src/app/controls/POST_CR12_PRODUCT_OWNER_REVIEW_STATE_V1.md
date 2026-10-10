@@ -1,5 +1,20 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — ErpUserMenu
+
+The reopened UserMenu candidate has completed internal browser review against
+the accessible live Skodash reference. Direct evidence confirms the 360px
+surface, 8px padding, 10px radius, 60px identity image and 56px action rows.
+The ERP implementation retains those values plus the Product Owner-authorized
+three-row closed trigger. Twenty-two ERP states and the source capture are
+persisted under `docs/review-evidence/erp-user-menu/v3-internal-review/`.
+Scrolling is isolated to the actions and the identity does not move. The
+centered 320 x 568 long-identity Workbench case leaves a 20.03px action
+viewport and remains a documented Product Owner review item. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. All reopened candidates have now
+completed internal review; next binding-reference unit: `ErpStatusBadge`.
+
 ## Current review execution — 2026-10-10 — ErpTable
 
 The binding Table SHA was reverified and all six source specimens were rendered

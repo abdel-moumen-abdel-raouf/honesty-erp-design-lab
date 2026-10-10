@@ -1,5 +1,14 @@
 # Next Component Reference Batch V1
 
+## Authoritative next action — 2026-10-10 — ErpStatusBadge
+
+The autonomous UI authorization remains active. All explicitly reopened visual
+owners have completed internal review without recording Product Owner
+acceptance. The next implemented owner with a binding component-specific
+reference is `ErpStatusBadge`; review it against
+`ERP-STATUS-BADGE.html` before moving to the dependent media/identity exact
+owners. Do not open business Feature/Page, CRUD, transport or permissions work.
+
 ## Authoritative next action — 2026-10-09 — consolidated App Shell visual review
 
 The autonomous App Shell implementation is complete and integrated into the

@@ -1,5 +1,23 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — ErpUserMenu
+
+The live Skodash reference was opened and measured at 1440 x 900 RTL. Its
+popup is 360px wide with 8px padding, 10px radius, a 60px identity image and
+56px action rows. The current ERP candidate preserves that geometry plus the
+Product Owner-authorized three-row trigger and independent rich popup identity.
+Twenty-two Light/Dark RTL/LTR implementation states and a direct reference
+capture are stored under
+`docs/review-evidence/erp-user-menu/v3-internal-review/`. The action list is the
+only popup scroll owner, Dark contrast is semantic and readable, the identity
+does not move while actions scroll, and implementation cases have no page
+overflow, broken images or diagnostics. The centered 320 x 568 long-identity
+Workbench case leaves only 20.03px of action viewport and is explicitly
+recorded as a constrained review-surface limitation, not Product Owner
+acceptance. Focused verification passes 4/4 files and 70/70 tests; canonical
+verification passes 128/128 files and 818/818 tests with a zero-warning
+418.32 kB / 92.91 kB build. Next binding-reference unit: `ErpStatusBadge`.
+
 ## Latest verified UI unit — ErpTable full reference
 
 The binding `ERP-TABLE.html` SHA was reverified and the source was rendered
