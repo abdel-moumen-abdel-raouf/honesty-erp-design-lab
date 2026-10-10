@@ -27,14 +27,24 @@ button {
   display: grid;
   place-items: center;
   flex: 0 0 auto;
-  inline-size: calc(var(--honesty-status-badge-icon-size) + var(--honesty-status-badge-remove-extra));
-  block-size: calc(var(--honesty-status-badge-icon-size) + var(--honesty-status-badge-remove-extra));
+  inline-size: calc(
+    var(--honesty-status-badge-height) -
+    var(--honesty-status-badge-remove-size)
+  );
+  block-size: calc(
+    var(--honesty-status-badge-height) -
+    var(--honesty-status-badge-remove-size)
+  );
+  margin-inline-start: var(--honesty-status-badge-remove-gap);
   margin-inline-end: calc(
     var(--honesty-status-badge-padding-inline) *
-    var(--honesty-status-badge-remove-edge-factor)
+    var(--honesty-status-badge-remove-x)
   );
   border-radius: var(--honesty-status-badge-round-radius);
-  font-size: calc(var(--honesty-status-badge-icon-size) + var(--honesty-status-badge-remove-icon-extra));
+  font-size: calc(
+    var(--honesty-status-badge-icon-size) -
+    var(--honesty-status-badge-remove-icon-adjust)
+  );
   opacity: var(--honesty-status-badge-remove-opacity);
   transition:
     opacity var(--honesty-status-badge-motion),
@@ -64,8 +74,14 @@ button:disabled {
 
 @media (pointer: coarse) {
   .status-badge-action__button--remove {
-    inline-size: calc(var(--honesty-status-badge-icon-size) + var(--honesty-status-badge-remove-coarse-extra));
-    block-size: calc(var(--honesty-status-badge-icon-size) + var(--honesty-status-badge-remove-coarse-extra));
+    inline-size: calc(
+      var(--honesty-status-badge-height) -
+      var(--honesty-status-badge-remove-coarse)
+    );
+    block-size: calc(
+      var(--honesty-status-badge-height) -
+      var(--honesty-status-badge-remove-coarse)
+    );
   }
 }
 

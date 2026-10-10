@@ -1,5 +1,18 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Current UI continuation — ErpStatusBadge complete internally
+
+The binding source was rehashed, rendered and compared directly with the exact
+Angular evidence. All fixed geometry now matches; the reproduced 19px count
+and 22px remove-action deltas were corrected to 14px and 12px and are protected
+by governance. Evidence covers Light/Dark, RTL/LTR, desktop and narrow under
+`docs/review-evidence/erp-status-badge/v1-internal-review/`. Product Owner
+status remains pending. Focused verification passes 3/3 files and 31/31 tests;
+canonical verification passes 128/128 files and 818/818 tests with a
+zero-warning 418.32 kB / 92.88 kB build. The next exact-reference owner is
+`ErpAvatar`; business Feature/Page, CRUD, transport and permissions work remain
+closed.
+
 ## Current UI continuation — reopened owners complete internally
 
 `ErpUserMenu` completes the explicitly reopened visual set. Its live Skodash

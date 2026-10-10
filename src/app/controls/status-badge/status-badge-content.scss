@@ -50,7 +50,7 @@
 
 .status-badge__label {
   min-inline-size: 0;
-  max-inline-size: var(--honesty-status-badge-label-max-width);
+  max-inline-size: var(--honesty-status-badge-label-max);
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -58,8 +58,8 @@
 .status-badge__count {
   display: inline-grid;
   place-items: center;
-  min-inline-size: calc(var(--honesty-status-badge-font-size) + var(--honesty-status-badge-count-block-adjustment));
-  block-size: calc(var(--honesty-status-badge-font-size) + var(--honesty-status-badge-count-block-adjustment));
+  min-inline-size: calc(var(--honesty-status-badge-height) - var(--honesty-status-badge-count-adjust));
+  block-size: calc(var(--honesty-status-badge-height) - var(--honesty-status-badge-count-adjust));
   padding-inline: var(--honesty-status-badge-count-padding);
   border-radius: var(--honesty-status-badge-round-radius);
   background: var(--honesty-status-badge-count-bg);

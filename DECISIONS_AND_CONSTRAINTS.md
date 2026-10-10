@@ -1,5 +1,19 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## ErpStatusBadge internal-review decisions — 2026-10-10
+
+- `ERP-STATUS-BADGE.html` at SHA-256
+  `654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`
+  remains the sole StatusBadge visual and behavioral authority.
+- System colors and font family remain the only permitted visual substitutions.
+- Size, padding, gap, radius and all fixed dot/icon/image/count/remove/check
+  geometry must equal the freshly measured source values.
+- Count and remove geometry derive from the badge height so every public size
+  retains the reference relationship without a second visual owner.
+- The internal status-badge action remains the native action owner; no consumer
+  native-button bypass or public API change was introduced.
+- Internal review does not change Product Owner visual status from pending.
+
 ## ErpUserMenu internal-review decisions — 2026-10-10
 
 - The live Skodash media-object page remains the source for the verified popup

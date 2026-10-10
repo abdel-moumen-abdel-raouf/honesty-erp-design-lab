@@ -45,6 +45,7 @@ const INTERNAL_VISUAL_REVIEWED = new Set([
   'ErpRadioBox',
   'ErpRadioGroup',
   'ErpSelect',
+  'ErpStatusBadge',
   'ErpTabs',
   'ErpTable',
   'ErpUserMenu',
@@ -241,11 +242,11 @@ drift.
 - Planned identities outside the implemented catalog: **${PLANNED.length}**.
 - Internally reviewed public owners added in the current UI wave:
   **\`ErpRadioBox\`**, **\`ErpRadioGroup\`**, **\`ErpEmptyState\`**, and
-  **\`ErpSelect\`**, **\`ErpTabs\`**, **\`ErpTable\`**, and
+  **\`ErpSelect\`**, **\`ErpStatusBadge\`**, **\`ErpTabs\`**, **\`ErpTable\`**, and
   **\`ErpUserMenu\`**. Their
   Product Owner status remains pending.
 - Explicitly reopened visual owners have completed internal review. The next
-  binding-reference unit is **\`ErpStatusBadge\`**.
+  binding-reference unit is **\`ErpAvatar\`**.
 
 ## Public owner inventory
 

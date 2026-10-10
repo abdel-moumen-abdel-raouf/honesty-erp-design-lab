@@ -27,6 +27,7 @@ const STATUS_BADGE_SIZES_SCSS = 'src/app/controls/status-badge/status-badge-size
 const STATUS_BADGE_STATES_SCSS = 'src/app/controls/status-badge/status-badge-states.scss';
 const STATUS_BADGE_CONTENT_SCSS = 'src/app/controls/status-badge/status-badge-content.scss';
 const STATUS_BADGE_MOTION_SCSS = 'src/app/controls/status-badge/status-badge-motion.scss';
+const STATUS_BADGE_ACTION_SCSS = 'src/app/controls/status-badge/internal/status-badge-action.scss';
 const STATUS_BADGE_TOKENS = 'src/styles/foundation/components/status-badge/_tokens.scss';
 const STATUS_BADGE_CONTRACT = 'src/app/controls/status-badge/ERP_STATUS_BADGE_REFERENCE_EXACT_V1.md';
 const STATUS_BADGE_LEGACY_REFERENCE = 'src/app/controls/status-badge/STATUS_BADGE_REFERENCE_V1.md';
@@ -129,6 +130,7 @@ export function validateCoreComponents(files) {
     STATUS_BADGE_STATES_SCSS,
     STATUS_BADGE_CONTENT_SCSS,
     STATUS_BADGE_MOTION_SCSS,
+    STATUS_BADGE_ACTION_SCSS,
   ].map((file) => files.get(file) ?? '').join('\n');
   const statusBadgeTokens = files.get(STATUS_BADGE_TOKENS) ?? '';
   const statusBadgeContract = files.get(STATUS_BADGE_CONTRACT) ?? '';
@@ -335,12 +337,27 @@ export function validateCoreComponents(files) {
     '--honesty-status-badge-padding-inline: 0.5625rem',
     '--honesty-status-badge-padding-inline: 0.6875rem',
     '--honesty-status-badge-padding-inline: 0.875rem',
-    '--honesty-status-badge-label-max-width: 11.25rem',
+    '--honesty-status-badge-label-max: 11.25rem',
     '--honesty-status-badge-focus-ring-width: 0.1875rem',
+    '--honesty-status-badge-count-adjust: 0.5rem',
+    '--honesty-status-badge-remove-size: 0.625rem',
+    '--honesty-status-badge-remove-coarse: 0.375rem',
+    '--honesty-status-badge-remove-icon-adjust: 0.0625rem',
   ]) {
     if (!statusBadgeTokens.includes(geometry)) {
       errors.push(`ErpStatusBadge exact-reference geometry is missing ${geometry}`);
     }
+  }
+  if (!statusBadgeScss.includes(
+    'min-inline-size: calc(var(--honesty-status-badge-height) - var(--honesty-status-badge-count-adjust))',
+  ) || !statusBadgeScss.includes(
+    'block-size: calc(var(--honesty-status-badge-height) - var(--honesty-status-badge-count-adjust))',
+  )) {
+    errors.push('ErpStatusBadge count must derive its exact block size from badge height minus 8px');
+  }
+  if (!/inline-size:\s*calc\(\s*var\(--honesty-status-badge-height\)\s*-\s*var\(--honesty-status-badge-remove-size\)/u.test(statusBadgeScss) ||
+      !/font-size:\s*calc\(\s*var\(--honesty-status-badge-icon-size\)\s*-\s*var\(--honesty-status-badge-remove-icon-adjust\)/u.test(statusBadgeScss)) {
+    errors.push('ErpStatusBadge remove action must retain the exact height-minus-10px and icon-minus-1px geometry');
   }
   for (const mixin of [
     'tone-success', 'tone-warning', 'tone-danger', 'tone-info',
@@ -821,9 +838,10 @@ function fixture(overrides = new Map()) {
     [STATUS_BADGE_VARIANTS_SCSS, ''],
     [STATUS_BADGE_SIZES_SCSS, ''],
     [STATUS_BADGE_STATES_SCSS, ''],
-    [STATUS_BADGE_CONTENT_SCSS, ''],
+    [STATUS_BADGE_CONTENT_SCSS, 'min-inline-size: calc(var(--honesty-status-badge-height) - var(--honesty-status-badge-count-adjust)); block-size: calc(var(--honesty-status-badge-height) - var(--honesty-status-badge-count-adjust));'],
     [STATUS_BADGE_MOTION_SCSS, ''],
-    [STATUS_BADGE_TOKENS, '@mixin base {}; @mixin tone-success {}; @mixin tone-warning {}; @mixin tone-danger {}; @mixin tone-info {}; @mixin tone-brand {}; @mixin tone-pending {}; @mixin tone-archived {}; @mixin variant-soft {}; @mixin variant-solid {}; @mixin variant-outline {}; @mixin variant-ghost {}; @mixin size-sm {}; @mixin size-lg {}; @mixin size-xl {}; @mixin shape-square {}; @mixin shape-pill {}; --honesty-status-badge-height: 1.125rem; --honesty-status-badge-height: 1.375rem; --honesty-status-badge-height: 1.625rem; --honesty-status-badge-height: 2rem; --honesty-status-badge-padding-inline: 0.4375rem; --honesty-status-badge-padding-inline: 0.5625rem; --honesty-status-badge-padding-inline: 0.6875rem; --honesty-status-badge-padding-inline: 0.875rem; --honesty-status-badge-label-max-width: 11.25rem; --honesty-status-badge-focus-ring-width: 0.1875rem;'],
+    [STATUS_BADGE_ACTION_SCSS, 'inline-size: calc(var(--honesty-status-badge-height) - var(--honesty-status-badge-remove-size)); font-size: calc(var(--honesty-status-badge-icon-size) - var(--honesty-status-badge-remove-icon-adjust));'],
+    [STATUS_BADGE_TOKENS, '@mixin base {}; @mixin tone-success {}; @mixin tone-warning {}; @mixin tone-danger {}; @mixin tone-info {}; @mixin tone-brand {}; @mixin tone-pending {}; @mixin tone-archived {}; @mixin variant-soft {}; @mixin variant-solid {}; @mixin variant-outline {}; @mixin variant-ghost {}; @mixin size-sm {}; @mixin size-lg {}; @mixin size-xl {}; @mixin shape-square {}; @mixin shape-pill {}; --honesty-status-badge-height: 1.125rem; --honesty-status-badge-height: 1.375rem; --honesty-status-badge-height: 1.625rem; --honesty-status-badge-height: 2rem; --honesty-status-badge-padding-inline: 0.4375rem; --honesty-status-badge-padding-inline: 0.5625rem; --honesty-status-badge-padding-inline: 0.6875rem; --honesty-status-badge-padding-inline: 0.875rem; --honesty-status-badge-label-max: 11.25rem; --honesty-status-badge-focus-ring-width: 0.1875rem; --honesty-status-badge-count-adjust: 0.5rem; --honesty-status-badge-remove-size: 0.625rem; --honesty-status-badge-remove-coarse: 0.375rem; --honesty-status-badge-remove-icon-adjust: 0.0625rem;'],
     [STATUS_BADGE_CONTRACT, `${STATUS_BADGE_REFERENCE_SHA}; supersedes every earlier \`ErpStatusBadge\` visual interpretation`],
     [STATUS_BADGE_LEGACY_REFERENCE, `SUPERSEDED; ${STATUS_BADGE_REFERENCE_SHA}`],
     [AVATAR_TS, "'xs'; 'sm'; 'md'; 'lg'; 'xl'; '2xl'; '3xl'; '4xl'; '5xl'; 'circle' | 'rounded' | 'square'; 'neutral'; 'purple'; 'slate'; 'vacation'; 'top-left'; 'bottom-right'; 'bounce'; 'blink'; 'breathe'; readonly initials = input<string | null>(null); readonly alt = input(''); readonly ring = input(false; readonly loading = input(false; readonly interactive = input(false; readonly avatarClick = output<MouseEvent>()"],
@@ -908,6 +926,8 @@ function runSelfTest() {
     ['missing status-badge reference tone', fixture(new Map([[STATUS_BADGE_TS, "'neutral'; 'success'; 'warning'; 'danger'; 'info'; 'soft' | 'solid' | 'outline' | 'ghost'; 'sm' | 'md' | 'lg' | 'xl'; 'square' | 'rounded' | 'pill'; 'content' | 'stretch'; readonly interactive = input(false; readonly selected = input(false; readonly removable = input(false; readonly selectedChange = output<boolean>(); readonly remove = output<void>()"]])), "'brand'"],
     ['raw status-badge color', fixture(new Map([[STATUS_BADGE_SCSS, '#fff; @media (prefers-reduced-motion: reduce) {} status-badge-enter status-badge-pulse']])), 'raw reference colors'],
     ['missing status-badge geometry', fixture(new Map([[STATUS_BADGE_TOKENS, '@mixin base {}']])), 'exact-reference geometry'],
+    ['incorrect status-badge count geometry', fixture(new Map([[STATUS_BADGE_CONTENT_SCSS, 'min-inline-size: 19px; block-size: 19px;']])), 'count must derive'],
+    ['incorrect status-badge remove geometry', fixture(new Map([[STATUS_BADGE_ACTION_SCSS, 'inline-size: 22px; font-size: 13px;']])), 'remove action must retain'],
     ['current former Dribbble authority', fixture(new Map([[STATUS_BADGE_LEGACY_REFERENCE, 'current Dribbble reference']])), 'explicitly superseded'],
     ['missing avatar reduced motion', fixture(new Map([
       [AVATAR_MOTION, ''],
@@ -981,6 +1001,7 @@ function runCheck() {
     [STATUS_BADGE_STATES_SCSS, read(STATUS_BADGE_STATES_SCSS)],
     [STATUS_BADGE_CONTENT_SCSS, read(STATUS_BADGE_CONTENT_SCSS)],
     [STATUS_BADGE_MOTION_SCSS, read(STATUS_BADGE_MOTION_SCSS)],
+    [STATUS_BADGE_ACTION_SCSS, read(STATUS_BADGE_ACTION_SCSS)],
     [STATUS_BADGE_TOKENS, read(STATUS_BADGE_TOKENS)],
     [STATUS_BADGE_CONTRACT, read(STATUS_BADGE_CONTRACT)],
     [STATUS_BADGE_LEGACY_REFERENCE, read(STATUS_BADGE_LEGACY_REFERENCE)],

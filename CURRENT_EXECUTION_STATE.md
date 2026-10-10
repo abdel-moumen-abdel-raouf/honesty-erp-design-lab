@@ -1,5 +1,21 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — ErpStatusBadge exact-reference internal review
+
+The binding StatusBadge source was rehashed and rendered beside the current
+implementation. All fixed geometry matches: sizes 18/22/26/32px, medium dot
+6px, icon 12px, image/count 14px and remove/check 12px. The only reproduced
+implementation deltas were the former 19px count and 22px remove action; both
+are corrected and protected by positive and negative governance checks.
+Evidence is under
+`docs/review-evidence/erp-status-badge/v1-internal-review/`. Implementation
+cases have no page overflow, broken image or browser diagnostic. Status is
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Focused verification passes 3/3 files
+and 31/31 tests; canonical verification passes 128/128 files and 818/818
+tests, both typechecks, all governance/lint and the zero-warning 418.32 kB /
+92.88 kB build. Next binding-reference owner: `ErpAvatar`.
+
 ## Current checkpoint — ErpUserMenu internal visual review
 
 The live Skodash reference is accessible and its open popup was captured and

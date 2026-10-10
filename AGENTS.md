@@ -1,5 +1,23 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current ErpStatusBadge Exact-Reference Internal Review State
+
+`ERP-STATUS-BADGE.html` remains binding at SHA-256
+`654508CBC4D660869BBA0118C3A9C8602F3F1D059AAD0E194C6F95C2B97678F0`.
+Fresh reference and implementation captures are stored under
+`docs/review-evidence/erp-status-badge/v1-internal-review/`. Fixed geometry
+matches the reference: the four heights are 18/22/26/32px and the medium dot,
+icon, image, count, remove action and selected check are 6/12/14/14/12/12px.
+The review corrected the former 19px count and 22px remove action to 14px and
+12px without changing public APIs. Implementation captures have zero overflow,
+broken images or browser diagnostics. Focused verification passes 3/3 files
+and 31/31 tests; the canonical gate passes 128/128 files and 818/818 tests,
+all governance/lint, both typechecks and the zero-warning 418.32 kB / 92.88 kB
+build. Status is `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Next binding-reference unit:
+`ErpAvatar`.
+
 ## Current ErpUserMenu Internal Visual Review State
 
 The reopened `ErpUserMenu` candidate has completed direct internal comparison

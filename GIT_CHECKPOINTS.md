@@ -1,5 +1,30 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## ErpStatusBadge exact-reference internal-review candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `0fde2c2125a5719e195f459cab64496153fd275c` — synchronized `main` after the
+  ErpUserMenu internal-review checkpoint.
+
+Bounded scope:
+
+- Rehashed and rendered the binding StatusBadge source over isolated HTTP.
+- Recaptured the reference matrix/anatomy and matched implementation states.
+- Corrected the medium count from 19px to 14px and remove action from 22px to
+  12px, preserving public APIs and the component style budget.
+- Added deterministic geometry/runtime evidence and governance regression
+  protection; advanced the generated lifecycle ledger to `ErpAvatar`.
+
+Verification:
+
+- Focused: 3/3 files, 31/31 tests.
+- Canonical: 128/128 files, 818/818 tests; all governance/lint; both
+  typechecks; zero-warning 418.32 kB / 92.88 kB build.
+
+The commit SHA is established by Git after this document is written and is
+reported in the execution handoff. Product Owner visual review remains pending.
+
 ## ErpUserMenu internal visual-review candidate — 2026-10-10
 
 Entry checkpoint:

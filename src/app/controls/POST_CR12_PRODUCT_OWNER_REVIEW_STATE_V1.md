@@ -1,5 +1,20 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — ErpStatusBadge
+
+The binding StatusBadge SHA was reverified and the source was rendered beside
+the current exact experience. Fresh evidence confirms 18/22/26/32px heights
+and exact medium anatomy; the reproduced count/remove deltas were corrected
+from 19/22px to 14/12px. Screenshots, measurements and reproduction steps are
+under `docs/review-evidence/erp-status-badge/v1-internal-review/`.
+Implementation cases have one target and zero overflow, broken images or
+diagnostics. Status is `TECHNICAL_VERIFIED` /
+`INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Focused verification passes 3/3 files
+and 31/31 tests; canonical verification passes 128/128 files and 818/818
+tests, both typechecks, all governance/lint and the zero-warning 418.32 kB /
+92.88 kB build. Next binding-reference unit: `ErpAvatar`.
+
 ## Current review execution — 2026-10-10 — ErpUserMenu
 
 The reopened UserMenu candidate has completed internal browser review against

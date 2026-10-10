@@ -1,5 +1,20 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest verified UI unit — ErpStatusBadge
+
+The binding source SHA was reverified, rendered over isolated local HTTP and
+compared with the exact Angular evidence. Reference heights, padding, gaps,
+radii and fixed anatomy now match directly. The corrected medium count is
+14px instead of 19px and the remove action is 12px instead of 22px; the four
+badge heights remain 18/22/26/32px. Reproducible Light/Dark, RTL/LTR, desktop
+and narrow evidence is under
+`docs/review-evidence/erp-status-badge/v1-internal-review/`. Implementation
+cases have one primary target and zero overflow, broken images or diagnostics.
+Focused verification passes 3/3 files and 31/31 tests; canonical verification
+passes 128/128 files and 818/818 tests with a zero-warning 418.32 kB /
+92.88 kB build. Product Owner visual approval is not recorded. Next exact
+reference owner: `ErpAvatar`.
+
 ## Latest verified UI unit — ErpUserMenu
 
 The live Skodash reference was opened and measured at 1440 x 900 RTL. Its

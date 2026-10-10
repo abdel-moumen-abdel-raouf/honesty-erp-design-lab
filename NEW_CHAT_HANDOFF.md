@@ -1,5 +1,17 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — ErpStatusBadge reviewed internally
+
+Continue from synchronized `main` after the bounded StatusBadge checkpoint.
+The binding source and implementation were rendered at matched conditions;
+screenshots, measurements and reproduction instructions are under
+`docs/review-evidence/erp-status-badge/v1-internal-review/`. Exact fixed
+geometry now matches, including the corrected 14px medium count and 12px remove
+action. The implementation reports zero overflow, broken images and browser
+diagnostics. Canonical verification passes 128/128 files and 818/818 tests
+with a zero-warning 418.32 kB / 92.88 kB build. Product Owner acceptance is
+not recorded. Continue with `ErpAvatar` and its binding exact reference.
+
 ## Current continuation point — ErpUserMenu reviewed internally
 
 Continue from synchronized `main` after the bounded UserMenu evidence

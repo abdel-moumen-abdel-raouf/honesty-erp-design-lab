@@ -28,12 +28,13 @@
   --honesty-status-badge-count-fg: var(--honesty-status-badge-text);
   --honesty-status-badge-count-padding: 0.25rem;
   --honesty-status-badge-count-size-adjustment: 0.0625rem;
-  --honesty-status-badge-count-block-adjustment: 0.5rem;
-  --honesty-status-badge-label-max-width: 11.25rem;
-  --honesty-status-badge-remove-edge-factor: -0.5;
-  --honesty-status-badge-remove-extra: 0.625rem;
-  --honesty-status-badge-remove-coarse-extra: 0.375rem;
-  --honesty-status-badge-remove-icon-extra: 0.0625rem;
+  --honesty-status-badge-count-adjust: 0.5rem;
+  --honesty-status-badge-label-max: 11.25rem;
+  --honesty-status-badge-remove-gap: 0.0625rem;
+  --honesty-status-badge-remove-x: -0.5;
+  --honesty-status-badge-remove-size: 0.625rem;
+  --honesty-status-badge-remove-coarse: 0.375rem;
+  --honesty-status-badge-remove-icon-adjust: 0.0625rem;
   --honesty-status-badge-remove-opacity: 0.6;
 
   --honesty-status-badge-disabled-opacity: 0.45;

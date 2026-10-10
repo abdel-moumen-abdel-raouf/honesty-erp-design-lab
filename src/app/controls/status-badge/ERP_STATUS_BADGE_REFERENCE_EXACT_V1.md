@@ -55,6 +55,11 @@ Shared geometry:
 - Default width is content-owned rather than parent-grid stretch.
 - Count and image use circular geometry. The reference icon is unboxed; no old
   StatusBadge icon-circle adaptation remains.
+- Count minimum width and block size are `badge height - 8px`, with `4px`
+  inline padding and text at `badge font size - 1px`.
+- The remove action is `badge height - 10px` square (`badge height - 6px` for
+  coarse pointers), with an icon at `badge icon size - 1px`, `1px` inline-start
+  margin and the reference negative inline-end compensation.
 
 ## State and motion measurements
 
@@ -110,3 +115,18 @@ Their default mapping is the exact reference rounded/content geometry.
 - [x] RTL/LTR structure and App-owned Light/Dark inheritance.
 
 Final visual acceptance belongs only to the Product Owner.
+
+## 2026-10-10 internal browser review
+
+The binding source was rendered from an isolated, hash-verified local HTTP
+copy and compared with the dedicated Angular exact-reference evidence. All
+four size heights, padding, type sizes, gaps, radii and icon sizes match with
+zero fixed-geometry delta. The review found and corrected two anatomy drifts:
+the `md` count was 19px instead of 14px high, and the remove action derived
+from icon size instead of the reference `height - 10px`. The final `md` count,
+remove action and selected check are 14px, 12px and 12px respectively, matching
+the source. Reproducible evidence is stored in
+`docs/review-evidence/erp-status-badge/v1-internal-review/`.
+
+Technical verification and internal visual review do not change the Product
+Owner status from pending.
