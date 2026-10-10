@@ -1,5 +1,25 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Latest review experience — V1.1 gallery coverage complete
+
+Visual Review Experience V1.1 expands the 35 previously single-example public
+galleries into bounded API-backed variants, sizes, shapes, tones, states, and
+owner-specific composition scenarios. There are now 80 multi-case galleries;
+the actual root-owned AppShell is the only documented one-state exception.
+Generated governance fails an uncovered supported visual facet or an
+undocumented single-state gallery.
+
+The persisted browser audit covers all 81 routes plus four additional
+Light/Dark RTL/LTR desktop/narrow passes over the 35 corrected routes: 221
+runs, 11 inspected captures, and zero target-count, gallery-count, overflow,
+image, console, or overlay-containment failures. On-demand Applications,
+Messages, and Notifications evidence opens one surface at a time; their
+primary Live targets initialize closed. Canonical verification passes 153/153
+files and 887/887 tests with a zero-warning 424.96 kB / 93.09 kB build.
+Evidence is in
+`docs/review-evidence/visual-review-experience-v1-1/README.md`. Production
+visual contracts and Product Owner statuses are unchanged.
+
 ## Latest review experience — 81 public routes prepared
 
 Visual Review Experience V1 adds a generated, truthful Gallery and Reference

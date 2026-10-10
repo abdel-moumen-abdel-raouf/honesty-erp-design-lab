@@ -1,5 +1,28 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Visual Review Experience V1.1 State
+
+The bounded gallery-coverage correction entered from clean
+`6994485d9572d63a3b5c2c1cb81f24584f5f4bcb`. The 35 formerly single-example
+galleries now expose actual supported facets and bounded authored scenarios.
+The generated catalog has 80 multi-case galleries and one documented
+single-meaningful-state root AppShell exception, 1,047 total cases, and zero
+uncovered supported visual facets.
+
+The final browser audit covers all 81 routes and four additional desktop/narrow
+Light/Dark RTL/LTR passes over the 35 corrected routes: 221 runs and 11
+inspected captures. One primary target, one AppShell, one RouterOutlet, and one
+OverlayHost remain invariant; gallery counts, containment, overflow, images,
+and browser diagnostics all pass. Canonical verification passes 153/153 files
+and 887/887 tests with the zero-warning 424.96 kB / 93.09 kB build.
+
+ApplicationsMenu, MessagesMenu, and NotificationBell primary Workbenches now
+initialize closed while an explicit review-only case opens one surface on
+demand. No production component visual contract or public API changed.
+Product Owner status remains one accepted/frozen, five reopened, and 75
+pending. Evidence is under
+`docs/review-evidence/visual-review-experience-v1-1/`.
+
 ## Current Visual Review Experience V1 State
 
 The Product Owner-authorized review-experience wave entered from clean

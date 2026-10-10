@@ -22,6 +22,28 @@ const REVIEW_GALLERY_GROUPS = [
         }
       }
     ]
+  },
+  {
+    "id": "authored-scenarios",
+    "label": "سيناريوهات مراجعة مقصودة",
+    "cases": [
+      {
+        "id": "long-title",
+        "label": "عنوان ووصف طويلان",
+        "inputs": {
+          "title": "مراجعة المطابقات المالية وأرصدة الفروع للفترة الحالية",
+          "subtitle": "يعرض هذا السياق أثر القيود غير المرحلة والفروقات التي تحتاج إلى متابعة قبل إقفال الفترة."
+        }
+      },
+      {
+        "id": "title-only",
+        "label": "عنوان دون وصف",
+        "inputs": {
+          "title": "دليل الحسابات",
+          "subtitle": null
+        }
+      }
+    ]
   }
 ] as const;
 

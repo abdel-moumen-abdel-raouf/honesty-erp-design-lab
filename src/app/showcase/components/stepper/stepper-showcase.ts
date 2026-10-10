@@ -46,6 +46,26 @@ const REVIEW_GALLERY_GROUPS = [
         }
       }
     ]
+  },
+  {
+    "id": "authored-scenarios",
+    "label": "سيناريوهات مراجعة مقصودة",
+    "cases": [
+      {
+        "id": "first-step",
+        "label": "الخطوة الأولى",
+        "inputs": {
+          "activeId": "identity"
+        }
+      },
+      {
+        "id": "optional-step",
+        "label": "خطوة اختيارية",
+        "inputs": {
+          "activeId": "documents"
+        }
+      }
+    ]
   }
 ] as const;
 

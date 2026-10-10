@@ -6,6 +6,7 @@ import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/sh
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
+import {ErpButton} from '../../../controls/button/button';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'applications-menu')!;
 const REVIEW_GALLERY_GROUPS = [
@@ -75,13 +76,39 @@ const REVIEW_GALLERY_GROUPS = [
         }
       }
     ]
+  },
+  {
+    "id": "open",
+    "label": "السطح المفتوح",
+    "cases": [
+      {
+        "id": "open-preview",
+        "label": "فتح السطح عند الطلب",
+        "inputs": {
+          "$galleryOpenable": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "authored-scenarios",
+    "label": "سيناريوهات مراجعة مقصودة",
+    "cases": [
+      {
+        "id": "empty-applications",
+        "label": "قائمة تطبيقات فارغة",
+        "inputs": {
+          "groups": []
+        }
+      }
+    ]
   }
 ] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-applications-menu-showcase',
-  imports: [ErpApplicationsMenu, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText],
+  imports: [ErpApplicationsMenu, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText, ErpButton],
   templateUrl: './applications-menu-showcase.html',
   styleUrl: './applications-menu-showcase.scss',
 })
@@ -90,7 +117,8 @@ export class ErpApplicationsMenuShowcase {
   readonly controls = ENTRY.showcaseControls;
   readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
-  readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
+  readonly galleryOpenCase = signal<string | null>(null);
+  readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues, open: false});
   readonly cvaValue = signal<unknown>(null);
   readonly controlValues = computed<Readonly<Record<string, unknown>>>(() => ({
     ...this.liveValues(),
@@ -104,11 +132,23 @@ export class ErpApplicationsMenuShowcase {
     return this.liveValues()[name];
   }
 
-  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
-    if (name === 'open') return false;
+  galleryValue(showcaseCase: {readonly id: string; readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return this.galleryOpenCase() === showcaseCase.id;
     return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
       ? showcaseCase.inputs[name]
       : ENTRY.showcaseInitialValues?.[name];
+  }
+
+  galleryIsOpen(id: string): boolean {
+    return this.galleryOpenCase() === id;
+  }
+
+  toggleGalleryOverlay(id: string): void {
+    this.galleryOpenCase.update((current) => current === id ? null : id);
+  }
+
+  recordGalleryOpen(id: string, open: boolean): void {
+    this.galleryOpenCase.set(open ? id : null);
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

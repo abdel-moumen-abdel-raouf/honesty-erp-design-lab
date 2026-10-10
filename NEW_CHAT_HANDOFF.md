@@ -1,5 +1,23 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Current continuation point — Product Owner review of V1.1
+
+Continue from synchronized `main` after the Visual Review Experience V1.1
+gallery-coverage correction. The catalog now has 80 multi-case public
+galleries and the one intentional root AppShell exception. The 35 formerly
+single-example routes receive inherited API facets or bounded authored
+composition states without a Cartesian matrix. Applications, Messages, and
+Notifications have an on-demand gallery opener while their primary targets
+start closed.
+
+Evidence under `docs/review-evidence/visual-review-experience-v1-1/` records
+221 successful browser runs and 11 inspected captures with zero overflow,
+broken images, diagnostics, target-count, gallery-count, or popup-containment
+failures. Canonical verification passes 153/153 files and 887/887 tests with a
+zero-warning 424.96 kB / 93.09 kB build. The next action remains consolidated
+Product Owner visual review; statuses and production visual contracts are
+unchanged, and no new component/business wave is open.
+
 ## Current continuation point — Product Owner desktop review of V1
 
 Visual Review Experience V1 prepares all 81 public component routes for

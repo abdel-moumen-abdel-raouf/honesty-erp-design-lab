@@ -30,6 +30,38 @@ const REVIEW_GALLERY_GROUPS = [
         }
       }
     ]
+  },
+  {
+    "id": "presentation",
+    "label": "العرض",
+    "cases": [
+      {
+        "id": "presentation-table-reference",
+        "label": "presentation: table-reference",
+        "inputs": {
+          "presentation": "table-reference"
+        }
+      }
+    ]
+  },
+  {
+    "id": "authored-scenarios",
+    "label": "سيناريوهات مراجعة مقصودة",
+    "cases": [
+      {
+        "id": "minimal-pagination",
+        "label": "تنقل مختصر",
+        "inputs": {
+          "page": 2,
+          "pageCount": 5,
+          "totalItems": 48,
+          "showSummary": false,
+          "showPageSize": false,
+          "showFirst": false,
+          "showLast": false
+        }
+      }
+    ]
   }
 ] as const;
 

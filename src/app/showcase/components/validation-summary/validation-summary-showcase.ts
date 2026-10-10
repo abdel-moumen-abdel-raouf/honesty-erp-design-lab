@@ -32,6 +32,32 @@ const REVIEW_GALLERY_GROUPS = [
         }
       }
     ]
+  },
+  {
+    "id": "authored-scenarios",
+    "label": "سيناريوهات مراجعة مقصودة",
+    "cases": [
+      {
+        "id": "single-issue",
+        "label": "مشكلة واحدة",
+        "inputs": {
+          "issues": [
+            {
+              "key": "account",
+              "fieldLabel": "رقم الحساب",
+              "message": "رقم الحساب مطلوب."
+            }
+          ]
+        }
+      },
+      {
+        "id": "empty-issues",
+        "label": "لا توجد مشكلات",
+        "inputs": {
+          "issues": []
+        }
+      }
+    ]
   }
 ] as const;
 

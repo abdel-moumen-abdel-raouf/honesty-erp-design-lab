@@ -6,7 +6,10 @@ import {buildCatalog, REPO_ROOT} from '../catalog/erp-component-catalog.mjs';
 
 const baseUrl = process.argv.find((argument) => argument.startsWith('--base-url='))
   ?.slice('--base-url='.length) ?? 'http://127.0.0.1:4999';
-const evidenceDirectory = path.join(REPO_ROOT, 'docs/review-evidence/visual-review-experience-v1');
+const captureOnly = process.argv.includes('--capture-only');
+const scenarioFilter = process.argv.find((argument) => argument.startsWith('--scenario='))
+  ?.slice('--scenario='.length);
+const evidenceDirectory = path.join(REPO_ROOT, 'docs/review-evidence/visual-review-experience-v1-1');
 const outputDirectory = await fs.mkdtemp(path.join(os.tmpdir(), 'honesty-review-output-'));
 const edgePath = 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe';
 const debuggingPort = 9335;
@@ -168,7 +171,13 @@ function pageMetrics() {
     brokenImages: [...document.images].filter((image) => image.complete && image.naturalWidth === 0).length,
     appShells: document.querySelectorAll('erp-app-shell').length,
     routerOutlets: document.querySelectorAll('router-outlet').length,
-    overlayHosts: document.querySelectorAll('erp-overlay-host').length
+    overlayHosts: document.querySelectorAll('erp-overlay-host').length,
+    openPopovers: document.querySelectorAll('[popover]:popover-open').length,
+    expandedTriggers: document.querySelectorAll('[aria-expanded="true"]').length,
+    popoversContained: [...document.querySelectorAll('[popover]:popover-open')].every((surface) => {
+      const rect = surface.getBoundingClientRect();
+      return rect.left >= -0.5 && rect.top >= -0.5 && rect.right <= innerWidth + 0.5 && rect.bottom <= innerHeight + 0.5;
+    })
   }))()`;
 }
 
@@ -177,20 +186,54 @@ try {
   await send('Runtime.enable');
   await send('Log.enable');
 
-  await configure(390, 844, 'light', 'rtl');
-  const routes = buildCatalog()
-    .filter((entry) => entry.classification === 'PUBLIC ERP COMPONENT')
-    .map((entry) => entry.showcaseRoute);
+  const publicEntries = buildCatalog()
+    .filter((entry) => entry.classification === 'PUBLIC ERP COMPONENT');
+  const routes = publicEntries.map((entry) => entry.showcaseRoute);
+  const expectedGalleryOwners = new Map(publicEntries.map((entry) => [
+    entry.showcaseRoute,
+    entry.className === 'ErpAppShell' ? 0 : entry.reviewGalleryCoverage.caseCount,
+  ]));
+  const expandedGalleryIds = new Set([
+    'app-footer', 'applications-menu', 'messages-menu', 'notification-bell', 'quick-actions-bar',
+    'topbar', 'bulk-action-bar', 'entity-schema-fields', 'form-actions', 'form-section',
+    'validation-summary', 'combo-box', 'date-box', 'date-range-box', 'date-time-box',
+    'file-picker', 'icon-picker', 'image-picker', 'item-picker', 'money-box', 'number-box',
+    'number-stepper', 'password-box', 'tel-box', 'text-area-box', 'text-box', 'time-box',
+    'url-box', 'breadcrumbs', 'pagination', 'sidebar', 'stepper', 'page-header', 'page-shell',
+    'container',
+  ]);
+  const expandedEntries = publicEntries.filter((entry) => expandedGalleryIds.has(entry.id));
   const routeAudit = [];
-  for (const route of routes) {
-    observed = [];
-    await navigate(`${baseUrl}${route}`);
-    let metrics = await evaluate(pageMetrics());
-    if (metrics.targets !== 1) {
-      await delay(1000);
-      metrics = await evaluate(pageMetrics());
+  const auditMatrix = captureOnly ? [] : [
+    {entries: publicEntries, width: 390, height: 844, theme: 'light', direction: 'rtl', scope: 'all-routes'},
+    {entries: expandedEntries, width: 1440, height: 900, theme: 'light', direction: 'rtl', scope: 'expanded-galleries'},
+    {entries: expandedEntries, width: 1440, height: 900, theme: 'dark', direction: 'ltr', scope: 'expanded-galleries'},
+    {entries: expandedEntries, width: 390, height: 844, theme: 'light', direction: 'ltr', scope: 'expanded-galleries'},
+    {entries: expandedEntries, width: 390, height: 844, theme: 'dark', direction: 'rtl', scope: 'expanded-galleries'},
+  ];
+  for (const matrix of auditMatrix) {
+    await configure(matrix.width, matrix.height, matrix.theme, matrix.direction);
+    for (const entry of matrix.entries) {
+      observed = [];
+      await navigate(`${baseUrl}${entry.showcaseRoute}`);
+      await evaluate(`document.documentElement.dir = ${JSON.stringify(matrix.direction)}`);
+      let metrics = await evaluate(pageMetrics());
+      if (metrics.targets !== 1 || metrics.galleryOwners !== expectedGalleryOwners.get(entry.showcaseRoute)) {
+        await delay(1000);
+        metrics = await evaluate(pageMetrics());
+      }
+      routeAudit.push({
+        route: entry.showcaseRoute,
+        scope: matrix.scope,
+        width: matrix.width,
+        height: matrix.height,
+        theme: matrix.theme,
+        direction: matrix.direction,
+        expectedGalleryOwners: expectedGalleryOwners.get(entry.showcaseRoute),
+        ...metrics,
+        consoleFindings: [...observed],
+      });
     }
-    routeAudit.push({route, ...metrics, consoleFindings: [...observed]});
   }
   await fs.writeFile(
     path.join(outputDirectory, 'route-audit.json'),
@@ -222,23 +265,24 @@ try {
       refreshMetrics.targets === 1,
   };
 
-  const scenarios = [
-    ['components', 1440, 900, 'light', 'rtl', 'top'],
-    ['components/button', 1440, 900, 'light', 'rtl', 'gallery'],
-    ['components/status-badge', 1440, 900, 'light', 'rtl', 'comparison'],
-    ['components/tabs', 1440, 900, 'dark', 'ltr', 'comparison'],
-    ['components/table', 1440, 900, 'light', 'rtl', 'comparison'],
-    ['components/app-shell', 1440, 900, 'dark', 'ltr', 'top'],
-    ['components/button', 1280, 800, 'light', 'ltr', 'gallery'],
-    ['components/table', 1024, 768, 'dark', 'ltr', 'comparison'],
-    ['components/app-shell', 768, 900, 'light', 'rtl', 'top'],
-    ['components/button', 390, 844, 'dark', 'rtl', 'gallery'],
-    ['components/table', 390, 844, 'dark', 'rtl', 'gallery'],
-    ['components/app-shell', 390, 844, 'dark', 'ltr', 'top'],
-    ['components/app-shell', 320, 568, 'light', 'rtl', 'top'],
+  const allScenarios = [
+    ['components/text-box', 1440, 900, 'light', 'rtl', 'gallery', null],
+    ['components/number-box', 1440, 900, 'dark', 'ltr', 'gallery', null],
+    ['components/applications-menu', 1440, 900, 'light', 'rtl', 'gallery', 'open-gallery'],
+    ['components/messages-menu', 1440, 900, 'dark', 'ltr', 'gallery', 'open-gallery'],
+    ['components/notification-bell', 390, 844, 'light', 'ltr', 'gallery', 'open-gallery'],
+    ['components/combo-box', 390, 844, 'dark', 'rtl', 'gallery', null],
+    ['components/sidebar', 1440, 900, 'dark', 'rtl', 'gallery', null],
+    ['components/page-header', 390, 844, 'dark', 'ltr', 'gallery', null],
+    ['components/form-actions', 390, 844, 'light', 'ltr', 'gallery', null],
+    ['components/page-shell', 1440, 900, 'light', 'ltr', 'gallery', null],
+    ['components/app-shell', 390, 844, 'dark', 'rtl', 'top', null],
   ];
+  const scenarios = scenarioFilter
+    ? allScenarios.filter(([route]) => route === `components/${scenarioFilter}`)
+    : allScenarios;
   const captures = [];
-  for (const [route, width, height, theme, direction, focus] of scenarios) {
+  for (const [route, width, height, theme, direction, focus, interaction] of scenarios) {
     await configure(width, height, theme, direction);
     observed = [];
     await navigate(`${baseUrl}/${route}`);
@@ -247,33 +291,68 @@ try {
       await evaluate(`document.getElementById(${JSON.stringify(focus === 'comparison' ? 'reference-comparison' : 'visual-gallery')})?.scrollIntoView({block: 'start'})`);
     }
     await settle();
+    if (interaction === 'open-gallery') {
+      await evaluate(`document.querySelector('[data-showcase-gallery-case="open-preview"]')?.scrollIntoView({block: 'start'})`);
+      await delay(150);
+      const activated = await evaluate(`(() => {
+        const owner = document.querySelector('[data-gallery-overlay-toggle]');
+        const button = owner?.querySelector('button');
+        if (!button) return false;
+        button.click();
+        return true;
+      })()`);
+      if (!activated) throw new Error(`Gallery overlay trigger missing for /${route}.`);
+      await delay(350);
+    }
     const metrics = await evaluate(pageMetrics());
     const screenshot = await send('Page.captureScreenshot', {
       format: 'png',
       fromSurface: true,
       captureBeyondViewport: false,
     });
-    const fileName = `${route.replaceAll('/', '-')}-${width}x${height}-${theme}-${direction}-${focus}.png`;
+    const fileName = `${route.replaceAll('/', '-')}-${width}x${height}-${theme}-${direction}-${focus}${interaction ? `-${interaction}` : ''}.png`;
     await fs.writeFile(path.join(outputDirectory, fileName), Buffer.from(screenshot.data, 'base64'));
-    captures.push({fileName, route: `/${route}`, width, height, theme, direction, focus, ...metrics, consoleFindings: [...observed]});
+    captures.push({fileName, route: `/${route}`, width, height, theme, direction, focus, interaction, ...metrics, consoleFindings: [...observed]});
+    if (interaction === 'open-gallery') {
+      await evaluate(`document.querySelector('[data-gallery-overlay-toggle] button')?.click()`);
+      await delay(150);
+      const closeState = await evaluate(`({
+        toggleLabel: document.querySelector('[data-gallery-overlay-toggle]')?.textContent?.trim() ?? null,
+        remaining: [...document.querySelectorAll('[popover]:popover-open')].map((surface) => ({
+          className: surface.className,
+          owner: surface.closest('[data-showcase-gallery-case]')?.getAttribute('data-showcase-gallery-case') ?? null,
+          label: surface.getAttribute('aria-label'),
+          parent: surface.parentElement?.tagName ?? null,
+          grandparent: surface.parentElement?.parentElement?.tagName ?? null,
+          componentOpen: globalThis.ng?.getComponent(surface.parentElement)?.open?.() ?? null,
+          chain: (() => { const tags = []; let node = surface; while (node && tags.length < 8) { tags.push(node.tagName + (node.getAttribute?.('data-showcase-gallery-case') ? ':' + node.getAttribute('data-showcase-gallery-case') : '')); node = node.parentElement; } return tags; })(),
+          left: surface.style.left,
+          top: surface.style.top
+        }))
+      })`);
+      if (closeState.remaining.length !== 0) throw new Error(`Gallery overlay did not dismiss for /${route}: ${JSON.stringify(closeState)}.`);
+    }
   }
 
   const routeFailures = routeAudit.filter((entry) =>
-    entry.targets !== 1 || !entry.gallery || !entry.comparison || !entry.controls ||
+    entry.targets !== 1 || entry.galleryOwners !== entry.expectedGalleryOwners || !entry.gallery || !entry.comparison || !entry.controls ||
     entry.controlsOpen || entry.horizontalOverflow > 0 || entry.brokenImages > 0 ||
     entry.appShells !== 1 || entry.routerOutlets !== 1 || entry.overlayHosts !== 1 ||
     entry.consoleFindings.length > 0);
   const captureFailures = captures.filter((entry) =>
     entry.horizontalOverflow > 0 || entry.brokenImages > 0 ||
     entry.appShells !== 1 || entry.routerOutlets !== 1 || entry.overlayHosts !== 1 ||
-    entry.consoleFindings.length > 0 ||
+    entry.consoleFindings.length > 0 || !entry.popoversContained ||
     (entry.route !== '/components' &&
       (entry.targets !== 1 || !entry.gallery || !entry.comparison || !entry.controls ||
-        entry.controlsOpen)));
+        entry.controlsOpen)) ||
+    (entry.interaction === 'open-gallery' && (entry.openPopovers !== 1 || entry.expandedTriggers < 1)));
   const audit = {
     capturedAt: new Date().toISOString(),
     baseUrl,
     publicRoutes: routes.length,
+    expandedGalleryRoutes: expandedEntries.length,
+    auditRuns: routeAudit.length,
     failures: routeFailures,
     captureFailures,
     navigationAudit,

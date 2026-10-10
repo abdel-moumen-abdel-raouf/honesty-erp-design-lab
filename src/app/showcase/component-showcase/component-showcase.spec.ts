@@ -99,6 +99,29 @@ describe('ComponentShowcase', () => {
       expect(entry.reviewGalleryGroups.flatMap((group) => group.cases)
         .some((showcaseCase) => showcaseCase.id === 'default'), entry.className).toBe(true);
       expect(entry.reviewReference).not.toBeNull();
+      expect(entry.reviewGalleryCoverage?.missingFacets, entry.className).toEqual([]);
+      if (entry.className === 'ErpAppShell') {
+        expect(entry.reviewGalleryCoverage?.kind).toBe('single-meaningful-state');
+        expect(entry.reviewGalleryCoverage?.caseCount).toBe(1);
+      } else {
+        expect(entry.reviewGalleryCoverage?.kind, entry.className).toBe('multi-case');
+        expect(entry.reviewGalleryCoverage?.caseCount, entry.className).toBeGreaterThan(1);
+      }
+    }
+  });
+
+  it('fills inherited Field facets and keeps shell popups inspectable on demand', () => {
+    const textBox = ERP_COMPONENT_CATALOG.find((entry) => entry.className === 'ErpTextBox')!;
+    expect(textBox.reviewGalleryCoverage?.coveredFacets).toEqual(expect.arrayContaining([
+      'variant', 'size', 'shape', 'tone', 'appearance', 'disabled', 'readonly',
+    ]));
+    expect(textBox.reviewGalleryGroups.find((group) => group.id === 'size')?.cases.length)
+      .toBeGreaterThan(1);
+
+    for (const className of ['ErpApplicationsMenu', 'ErpMessagesMenu', 'ErpNotificationBell']) {
+      const entry = ERP_COMPONENT_CATALOG.find((candidate) => candidate.className === className)!;
+      expect(entry.reviewGalleryGroups.find((group) => group.id === 'open')?.cases)
+        .toContainEqual(expect.objectContaining({id: 'open-preview'}));
     }
   });
 

@@ -24,6 +24,19 @@ const REVIEW_GALLERY_GROUPS = [
         }
       }
     ]
+  },
+  {
+    "id": "compact",
+    "label": "الكثافة",
+    "cases": [
+      {
+        "id": "compact-true",
+        "label": "مفعّل (true)",
+        "inputs": {
+          "compact": true
+        }
+      }
+    ]
   }
 ] as const;
 

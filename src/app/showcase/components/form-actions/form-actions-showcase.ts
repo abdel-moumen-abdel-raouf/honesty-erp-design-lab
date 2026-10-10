@@ -20,6 +20,19 @@ const REVIEW_GALLERY_GROUPS = [
         "inputs": {}
       }
     ]
+  },
+  {
+    "id": "authored-scenarios",
+    "label": "سيناريوهات مراجعة مقصودة",
+    "cases": [
+      {
+        "id": "extended-actions",
+        "label": "إجراءات أساسية وثانوية متعددة",
+        "inputs": {
+          "$scenario": "extended-actions"
+        }
+      }
+    ]
   }
 ] as const;
 

@@ -1,5 +1,33 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Visual Review Experience V1.1 candidate — 2026-10-10
+
+Entry checkpoint:
+
+- `6994485d9572d63a3b5c2c1cb81f24584f5f4bcb` — synchronized clean `main`
+  after Visual Review Experience V1.
+
+Bounded scope:
+
+- Expanded the 35 incomplete one-example galleries through generated public
+  facets and bounded owner-specific review scenarios.
+- Added deterministic gallery-coverage metadata and governance, leaving the
+  root AppShell as the sole documented single-state exception.
+- Added on-demand open evidence for Applications, Messages, and Notifications
+  while closing their primary Live targets initially.
+- Persisted 221 browser route/state runs and 11 inspected Light/Dark RTL/LTR
+  desktop/narrow captures under
+  `docs/review-evidence/visual-review-experience-v1-1/`.
+
+Verification before commit:
+
+- Focused Showcase test: 45/45 assertions.
+- Catalog governance self-test and live check: PASS.
+- Canonical `npm run verify:clean`: 153/153 files, 887/887 tests, both
+  typechecks, all governance/lint, production build, zero warnings.
+- Build: 424.96 kB initial / 93.09 kB estimated transfer.
+- Product Owner statuses and production visual contracts: unchanged.
+
 ## Visual Review Experience V1 candidate — 2026-10-10
 
 Entry checkpoint:

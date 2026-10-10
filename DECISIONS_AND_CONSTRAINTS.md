@@ -1,5 +1,23 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Visual Review Experience V1.1 decisions — 2026-10-10
+
+- Supplement only a gallery whose V1 baseline had one case. Existing
+  multi-case galleries remain unchanged.
+- Supported review facets come from the actual public API plus generated facet
+  metadata, including inherited field inputs. Default values are not repeated
+  in their own facet groups and no Cartesian matrix is generated.
+- Authored scenarios are review-only and limited to real composition/content
+  states that scalar facets cannot demonstrate. They add no production API.
+- Catalog metadata distinguishes `multi-case`, an explicitly documented
+  `single-meaningful-state`, and invalid `missing-meaningful-states` coverage.
+  Root-owned AppShell is the only single-state exception.
+- Menu gallery surfaces are opened only on demand. Applications, Messages,
+  and Notifications primary Workbench targets initialize closed so a gallery
+  review never competes with a permanently open primary surface.
+- Product Owner statuses, exact-reference evidence, one-primary-target
+  ownership, dependencies, budgets, timeouts, and retries remain unchanged.
+
 ## Visual Review Experience V1 decisions — 2026-10-10
 
 - This wave changes Design Lab review infrastructure and generated showcases;

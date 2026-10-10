@@ -19,6 +19,46 @@ const REVIEW_GALLERY_GROUPS = [
         "inputs": {}
       }
     ]
+  },
+  {
+    "id": "width",
+    "label": "عرض الحاوية",
+    "cases": [
+      {
+        "id": "width-narrow",
+        "label": "width: narrow",
+        "inputs": {
+          "width": "narrow"
+        }
+      },
+      {
+        "id": "width-content",
+        "label": "width: content",
+        "inputs": {
+          "width": "content"
+        }
+      },
+      {
+        "id": "width-wide",
+        "label": "width: wide",
+        "inputs": {
+          "width": "wide"
+        }
+      }
+    ]
+  },
+  {
+    "id": "gutter",
+    "label": "هامش الحاوية",
+    "cases": [
+      {
+        "id": "gutter-none",
+        "label": "بدون (none)",
+        "inputs": {
+          "gutter": "none"
+        }
+      }
+    ]
   }
 ] as const;
 

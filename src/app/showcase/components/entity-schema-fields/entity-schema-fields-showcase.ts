@@ -147,6 +147,52 @@ const REVIEW_GALLERY_GROUPS = [
         }
       }
     ]
+  },
+  {
+    "id": "authored-scenarios",
+    "label": "سيناريوهات مراجعة مقصودة",
+    "cases": [
+      {
+        "id": "compact-schema",
+        "label": "مخطط حقول مختصر",
+        "inputs": {
+          "fields": [
+            {
+              "key": "name",
+              "kind": "text",
+              "label": "اسم العميل",
+              "required": true
+            },
+            {
+              "key": "active",
+              "kind": "checkbox",
+              "label": "حساب نشط"
+            },
+            {
+              "key": "branch",
+              "kind": "select",
+              "label": "الفرع",
+              "options": [
+                {
+                  "value": "cairo",
+                  "label": "القاهرة"
+                },
+                {
+                  "value": "alex",
+                  "label": "الإسكندرية"
+                }
+              ]
+            }
+          ],
+          "values": {
+            "name": "شركة الأمانة",
+            "active": true,
+            "branch": "cairo"
+          },
+          "issues": []
+        }
+      }
+    ]
   }
 ] as const;
 

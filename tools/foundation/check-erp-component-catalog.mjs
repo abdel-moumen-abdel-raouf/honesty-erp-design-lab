@@ -92,6 +92,28 @@ function validateCatalog(catalog) {
         !entry.reviewGalleryGroups.some((group) => group.cases.some((showcaseCase) => showcaseCase.id === 'default'))) {
       errors.push(`${entry.className} has no default visual-gallery evidence`);
     }
+    const galleryCoverage = entry.reviewGalleryCoverage;
+    if (!galleryCoverage ||
+        !['multi-case', 'single-meaningful-state', 'missing-meaningful-states'].includes(galleryCoverage.kind)) {
+      errors.push(`${entry.className} has no visual-gallery completeness classification`);
+    } else {
+      const galleryCaseCount = entry.reviewGalleryGroups
+        .reduce((count, group) => count + group.cases.length, 0);
+      if (galleryCoverage.caseCount !== galleryCaseCount) {
+        errors.push(`${entry.className} visual-gallery case count is stale`);
+      }
+      if (galleryCoverage.missingFacets.length > 0 ||
+          galleryCoverage.kind === 'missing-meaningful-states') {
+        errors.push(`${entry.className} is missing meaningful gallery states: ${galleryCoverage.missingFacets.join(', ')}`);
+      }
+      if (galleryCoverage.kind === 'multi-case' && galleryCaseCount < 2) {
+        errors.push(`${entry.className} claims multi-case gallery coverage with fewer than two cases`);
+      }
+      if (galleryCoverage.kind === 'single-meaningful-state' &&
+          (!galleryCoverage.exceptionReason || galleryCaseCount !== 1)) {
+        errors.push(`${entry.className} has an undocumented single-state gallery exception`);
+      }
+    }
     if (entry.showcaseOwnerPath !== `src/app/showcase/components/${entry.id}/${entry.id}-showcase.ts`) {
       errors.push(`${entry.className} has no dedicated showcase owner path`);
     }
@@ -512,7 +534,8 @@ function selfTest() {
     descriptionAr: 'وصف',
     reviewStatus: {kind: 'pending-unknown', label: 'بانتظار القرار', note: 'غير مقبول بعد'},
     reviewReference: {kind: 'original-honesty', labelAr: 'تصميم أصلي', source: null},
-    reviewGalleryGroups: [{id: 'default', labelAr: 'الافتراضي', cases: [{id: 'default', label: 'default', inputs: {}}]}],
+    reviewGalleryGroups: [{id: 'default', labelAr: 'الافتراضي', cases: [{id: 'default', label: 'default', inputs: {}}]}, {id: 'states', labelAr: 'الحالات', cases: [{id: 'enabled', label: 'enabled', inputs: {}}]}],
+    reviewGalleryCoverage: {kind: 'multi-case', caseCount: 2, supportedFacets: [], coveredFacets: [], missingFacets: [], exceptionReason: null},
     showcaseCases: [{id: 'default', label: 'default', inputs: {}}],
     showcaseInitialValues: {},
     showcaseControls: [],
@@ -534,7 +557,8 @@ function selfTest() {
     descriptionAr: 'وصف',
     reviewStatus: {kind: 'pending-unknown', label: 'بانتظار القرار', note: 'غير مقبول بعد'},
     reviewReference: {kind: 'original-honesty', labelAr: 'تصميم أصلي', source: null},
-    reviewGalleryGroups: [{id: 'default', labelAr: 'الافتراضي', cases: [{id: 'default', label: 'default', inputs: {}}]}],
+    reviewGalleryGroups: [{id: 'default', labelAr: 'الافتراضي', cases: [{id: 'default', label: 'default', inputs: {}}]}, {id: 'states', labelAr: 'الحالات', cases: [{id: 'fluid', label: 'fluid', inputs: {}}]}],
+    reviewGalleryCoverage: {kind: 'multi-case', caseCount: 2, supportedFacets: [], coveredFacets: [], missingFacets: [], exceptionReason: null},
     showcaseCases: [{id: 'default', label: 'default', inputs: {}}],
     showcaseInitialValues: {},
     showcaseControls: [],
@@ -549,6 +573,7 @@ function selfTest() {
     valid.map((entry) => entry.className === 'ErpButton' ? {...entry, nativeCoverage: null} : entry),
     valid.map((entry) => entry.className === 'ErpButton' ? {...entry, showcaseOwnerPath: null} : entry),
     valid.map((entry) => entry.className === 'ErpButton' ? {...entry, showcaseCoverage: null} : entry),
+    valid.map((entry) => entry.className === 'ErpButton' ? {...entry, reviewGalleryCoverage: null} : entry),
     valid.map((entry) => entry.className === 'ErpButton'
       ? {
           ...entry,

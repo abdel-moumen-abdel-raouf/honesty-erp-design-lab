@@ -1,5 +1,23 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Current checkpoint — Visual Review Experience V1.1
+
+All 35 V1 single-example gaps now have meaningful bounded gallery coverage.
+The generated catalog reports 80 multi-case routes and one explicit
+single-meaningful-state exception for root-owned AppShell, with 1,047 total
+cases and zero uncovered supported visual facets. The change is confined to
+review generation, governance, generated showcases, tests, and evidence; no
+production component visual contract changed.
+
+The final integrated browser audit records 221 route/state runs and 11
+inspected captures across desktop/390 px, Light/Dark, and RTL/LTR. All 81
+routes keep one primary target; gallery-owner counts match metadata; AppShell,
+RouterOutlet, and OverlayHost remain singular; overflow, broken images,
+browser diagnostics, and containment failures are zero. Canonical verification
+passes 153/153 files and 887/887 tests with a zero-warning 424.96 kB / 93.09
+kB build. Lifecycle status remains one accepted/frozen, five reopened, and 75
+pending owners.
+
 ## Current checkpoint — Visual Review Experience V1
 
 The 81 implemented public routes now use one shared visual-review contract:

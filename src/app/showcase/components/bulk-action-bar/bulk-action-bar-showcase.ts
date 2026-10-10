@@ -22,6 +22,26 @@ const REVIEW_GALLERY_GROUPS = [
         }
       }
     ]
+  },
+  {
+    "id": "authored-scenarios",
+    "label": "سيناريوهات مراجعة مقصودة",
+    "cases": [
+      {
+        "id": "single-selection",
+        "label": "عنصر واحد محدد",
+        "inputs": {
+          "selectedCount": 1
+        }
+      },
+      {
+        "id": "dense-selection",
+        "label": "اختيار جماعي كثيف",
+        "inputs": {
+          "selectedCount": 128
+        }
+      }
+    ]
   }
 ] as const;
 

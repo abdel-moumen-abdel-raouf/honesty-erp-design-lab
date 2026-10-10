@@ -1,5 +1,21 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — Visual Review Experience V1.1
+
+The 35 previously incomplete one-example galleries now expose bounded,
+API-backed facets or owner-specific composition scenarios. Catalog governance
+records 80 multi-case routes and the intentional root AppShell one-state
+exception; missing supported facets are zero. On-demand menu examples no
+longer compete with initially open primary Live targets.
+
+The persisted 221-run browser matrix and 11 inspected desktop/narrow
+Light/Dark RTL/LTR captures are under
+`docs/review-evidence/visual-review-experience-v1-1/`. Canonical verification
+passes 153/153 files and 887/887 tests with a zero-warning 424.96 kB / 93.09
+kB build. This is technical/internal evidence only: Product Owner states stay
+one accepted/frozen, five reopened, and 75 pending, with no acceptance or
+production visual-contract change.
+
 ## Current review execution — 2026-10-10 — Visual Review Experience V1
 
 Every one of the 81 public routes now exposes Gallery, Reference Comparison,

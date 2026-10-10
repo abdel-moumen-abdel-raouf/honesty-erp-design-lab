@@ -13,6 +13,15 @@
               <erp-surface padding="default" border="subtle" class="showcase-gallery__case" [attr.data-showcase-gallery-case]="showcaseCase.id">
                 <erp-stack gap="tight">
                   <erp-text type="caption" tone="secondary">{{ showcaseCase.label }}</erp-text>
+                  @if (showcaseCase.id === 'open-preview') {
+                    <erp-button
+                      data-gallery-overlay-toggle
+                      [label]="galleryIsOpen(showcaseCase.id) ? 'إغلاق السطح' : 'فتح السطح'"
+                      size="sm"
+                      variant="outline"
+                      (pressed)="toggleGalleryOverlay(showcaseCase.id)"
+                    />
+                  }
                   <erp-stack class="showcase-gallery__stage" gap="tight"><erp-notification-bell
                 data-showcase-gallery-owner
                 [notifications]="$any(galleryValue(showcaseCase, 'notifications'))"
@@ -24,6 +33,7 @@
                 [searchable]="$any(galleryValue(showcaseCase, 'searchable'))"
                 [query]="$any(galleryValue(showcaseCase, 'query'))"
                 [open]="$any(galleryValue(showcaseCase, 'open'))"
+                (openChange)="recordGalleryOpen(showcaseCase.id, $event)"
               ></erp-notification-bell></erp-stack>
                 </erp-stack>
               </erp-surface>

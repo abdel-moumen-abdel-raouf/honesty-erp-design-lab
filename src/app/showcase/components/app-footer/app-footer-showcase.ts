@@ -36,6 +36,61 @@ const REVIEW_GALLERY_GROUPS = [
         }
       }
     ]
+  },
+  {
+    "id": "statusTone",
+    "label": "نبرة الحالة",
+    "cases": [
+      {
+        "id": "statusTone-neutral",
+        "label": "محايد (neutral)",
+        "inputs": {
+          "statusTone": "neutral"
+        }
+      },
+      {
+        "id": "statusTone-warning",
+        "label": "تحذير (warning)",
+        "inputs": {
+          "statusTone": "warning"
+        }
+      },
+      {
+        "id": "statusTone-danger",
+        "label": "خطر (danger)",
+        "inputs": {
+          "statusTone": "danger"
+        }
+      },
+      {
+        "id": "statusTone-info",
+        "label": "معلومات (info)",
+        "inputs": {
+          "statusTone": "info"
+        }
+      },
+      {
+        "id": "statusTone-brand",
+        "label": "statusTone: brand",
+        "inputs": {
+          "statusTone": "brand"
+        }
+      },
+      {
+        "id": "statusTone-pending",
+        "label": "statusTone: pending",
+        "inputs": {
+          "statusTone": "pending"
+        }
+      },
+      {
+        "id": "statusTone-archived",
+        "label": "statusTone: archived",
+        "inputs": {
+          "statusTone": "archived"
+        }
+      }
+    ]
   }
 ] as const;
 

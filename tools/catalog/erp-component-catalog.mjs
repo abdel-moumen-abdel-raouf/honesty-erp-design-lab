@@ -1367,7 +1367,77 @@ const GALLERY_FACET_LABELS = Object.freeze({
   showPresence: 'عرض الحضور', showRoleBadge: 'عرض الدور',
   showBranchBadge: 'عرض الفرع', showTriggerRoleBadge: 'دور المحفز',
   showTriggerBranchBadge: 'فرع المحفز',
+  status: 'حالات التحقق', borderMode: 'أنماط الحدود', labelMode: 'موضع التسمية',
+  statusTone: 'نبرة الحالة', previewSize: 'حجم المعاينة', searchable: 'البحث',
+  presentation: 'العرض', compact: 'الكثافة', readonly: 'للقراءة فقط',
+  resize: 'تغيير الحجم', showCounter: 'عداد المحارف', revealToggle: 'إظهار القيمة',
+  width: 'عرض الحاوية', gutter: 'هامش الحاوية', collapsed: 'الطي', open: 'السطح المفتوح',
 });
+
+const REVIEW_VISUAL_FACETS = new Set([
+  ...FACET_NAMES,
+  'status', 'borderMode', 'labelMode', 'statusTone', 'previewSize', 'searchable',
+  'presentation', 'compact', 'readonly', 'resize', 'showCounter', 'revealToggle',
+  'width', 'gutter', 'collapsed', 'open',
+]);
+
+const REVIEW_SINGLE_STATE_EXCEPTIONS = new Map([
+  ['ErpAppShell', 'يظل إطار التطبيق الجذري هو هدف المراجعة الوحيد ولا يُكرر داخل معرض ثانوي.'],
+]);
+
+const REVIEW_GALLERY_SCENARIOS = new Map([
+  ['ErpApplicationsMenu', [
+    {id: 'empty-applications', label: 'قائمة تطبيقات فارغة', inputs: {groups: []}},
+  ]],
+  ['ErpMessagesMenu', [
+    {id: 'empty-messages', label: 'لا توجد رسائل', inputs: {messages: [], unreadCount: 0}},
+    {id: 'long-message', label: 'رسالة عربية طويلة', inputs: {messages: [{id: 'long', senderName: 'إدارة المشتريات والعقود طويلة الأجل', preview: 'تحتاج اتفاقية التوريد السنوية إلى مراجعة البنود المالية واعتماد جدول التسليم المحدث قبل نهاية فترة العمل الحالية.', timestamp: 'منذ 5 دقائق', read: false}] }},
+  ]],
+  ['ErpNotificationBell', [
+    {id: 'empty-notifications', label: 'لا توجد إشعارات', inputs: {notifications: [], unreadCount: 0}},
+    {id: 'long-notification', label: 'إشعار تشغيلي طويل', inputs: {notifications: [{id: 'long', title: 'مراجعة حدود إعادة الطلب للفروع', description: 'تحتاج ثمانية أصناف في فرعي القاهرة والإسكندرية إلى مراجعة حدود إعادة الطلب قبل تشغيل دورة المشتريات التالية.', timestamp: 'منذ 8 دقائق', icon: 'inventory', read: false}] }},
+  ]],
+  ['ErpQuickActionsBar', [
+    {id: 'dense-actions', label: 'مجموعة إجراءات كثيفة', inputs: {groups: [{id: 'daily', label: 'العمل اليومي', actions: [{id: 'task', label: 'مهمة', icon: 'add', priority: 'primary'}, {id: 'event', label: 'موعد', icon: 'calendar'}, {id: 'invoice', label: 'فاتورة', icon: 'file'}, {id: 'stock', label: 'جرد', icon: 'inventory'}]}]}},
+    {id: 'disabled-action', label: 'إجراء غير متاح', inputs: {groups: [{id: 'permissions', label: 'وفق الصلاحيات', actions: [{id: 'available', label: 'فتح التقارير', icon: 'chart'}, {id: 'disabled', label: 'إقفال الفترة', icon: 'shield', disabled: true}]}]}},
+  ]],
+  ['ErpTopbar', [
+    {id: 'long-workspace-context', label: 'سياق مساحة عمل طويل', inputs: {$scenario: 'long-context'}},
+    {id: 'compact-workspace-context', label: 'سياق مختصر', inputs: {$scenario: 'compact-context'}},
+  ]],
+  ['ErpBulkActionBar', [
+    {id: 'single-selection', label: 'عنصر واحد محدد', inputs: {selectedCount: 1}},
+    {id: 'dense-selection', label: 'اختيار جماعي كثيف', inputs: {selectedCount: 128}},
+  ]],
+  ['ErpEntitySchemaFields', [
+    {id: 'compact-schema', label: 'مخطط حقول مختصر', inputs: {fields: [{key: 'name', kind: 'text', label: 'اسم العميل', required: true}, {key: 'active', kind: 'checkbox', label: 'حساب نشط'}, {key: 'branch', kind: 'select', label: 'الفرع', options: [{value: 'cairo', label: 'القاهرة'}, {value: 'alex', label: 'الإسكندرية'}]}], values: {name: 'شركة الأمانة', active: true, branch: 'cairo'}, issues: []}},
+  ]],
+  ['ErpFormActions', [
+    {id: 'extended-actions', label: 'إجراءات أساسية وثانوية متعددة', inputs: {$scenario: 'extended-actions'}},
+  ]],
+  ['ErpValidationSummary', [
+    {id: 'single-issue', label: 'مشكلة واحدة', inputs: {issues: [{key: 'account', fieldLabel: 'رقم الحساب', message: 'رقم الحساب مطلوب.'}]}},
+    {id: 'empty-issues', label: 'لا توجد مشكلات', inputs: {issues: []}},
+  ]],
+  ['ErpBreadcrumbs', [
+    {id: 'short-path', label: 'مسار مختصر', inputs: {currentId: 'reports', items: [{id: 'home', label: 'الرئيسية', href: '#home', icon: 'home'}, {id: 'reports', label: 'التقارير'}]}},
+    {id: 'long-path', label: 'مسار بعناوين عربية طويلة', inputs: {currentId: 'review', items: [{id: 'home', label: 'الرئيسية', href: '#home', icon: 'home'}, {id: 'finance', label: 'الإدارة المالية والحسابات العامة', href: '#finance'}, {id: 'closing', label: 'عمليات إقفال الفترات المالية', href: '#closing'}, {id: 'review', label: 'مراجعة أرصدة الحسابات الختامية'}]}},
+  ]],
+  ['ErpPagination', [
+    {id: 'minimal-pagination', label: 'تنقل مختصر', inputs: {page: 2, pageCount: 5, totalItems: 48, showSummary: false, showPageSize: false, showFirst: false, showLast: false}},
+  ]],
+  ['ErpStepper', [
+    {id: 'first-step', label: 'الخطوة الأولى', inputs: {activeId: 'identity'}},
+    {id: 'optional-step', label: 'خطوة اختيارية', inputs: {activeId: 'documents'}},
+  ]],
+  ['ErpPageHeader', [
+    {id: 'long-title', label: 'عنوان ووصف طويلان', inputs: {title: 'مراجعة المطابقات المالية وأرصدة الفروع للفترة الحالية', subtitle: 'يعرض هذا السياق أثر القيود غير المرحلة والفروقات التي تحتاج إلى متابعة قبل إقفال الفترة.'}},
+    {id: 'title-only', label: 'عنوان دون وصف', inputs: {title: 'دليل الحسابات', subtitle: null}},
+  ]],
+  ['ErpPageShell', [
+    {id: 'dense-page-context', label: 'صفحة ذات سياق كثيف', inputs: {$scenario: 'dense-context'}},
+  ]],
+]);
 
 const GALLERY_VALUE_LABELS = Object.freeze({
   solid: 'صلب', outline: 'محاط', subtle: 'خافت', ghost: 'شفاف', text: 'نصي',
@@ -1390,7 +1460,35 @@ function reviewGalleryCase(showcaseCase, facet = '') {
     : showcaseCase;
 }
 
-function reviewGalleryFor(entry) {
+function reviewVisualApis(entry) {
+  return [...entry.publicApi.inputs, ...entry.publicApi.models]
+    .filter((api) => REVIEW_VISUAL_FACETS.has(api.name) && api.values.length > 0);
+}
+
+function reviewGalleryFacetCases(entry, facetApi, existingCases) {
+  if (facetApi.name === 'open') {
+    return [{
+      id: 'open-preview',
+      label: 'فتح السطح عند الطلب',
+      inputs: {$galleryOpenable: true},
+    }];
+  }
+  const existing = existingCases.filter((candidate) =>
+    candidate.id.startsWith(`${facetApi.name}-`),
+  );
+  if (existing.length > 0) return existing;
+  const initialValue = entry.showcaseInitialValues?.[facetApi.name];
+  return facetApi.values
+    .map((value) => value === 'true' ? true : value === 'false' ? false : value)
+    .filter((value) => value !== initialValue)
+    .map((value) => ({
+      id: `${facetApi.name}-${String(value)}`,
+      label: `${facetApi.name}: ${String(value)}`,
+      inputs: {[facetApi.name]: value},
+    }));
+}
+
+function baseReviewGalleryFor(entry) {
   const cases = entry.showcaseCases;
   const groups = [];
   const defaultCase = cases.find((candidate) => candidate.id === 'default');
@@ -1425,6 +1523,61 @@ function reviewGalleryFor(entry) {
     groups.push({id: 'scenarios', label: 'سيناريوهات الاستخدام', cases: scenarioCases});
   }
   return groups;
+}
+
+function reviewGalleryFor(entry) {
+  const groups = baseReviewGalleryFor(entry);
+  const baseCaseCount = groups.reduce((count, group) => count + group.cases.length, 0);
+  if (baseCaseCount === 1 && !REVIEW_SINGLE_STATE_EXCEPTIONS.has(entry.className)) {
+    for (const facetApi of reviewVisualApis(entry)) {
+      if (groups.some((group) => group.id === facetApi.name)) continue;
+      const facetCases = reviewGalleryFacetCases(entry, facetApi, entry.showcaseCases);
+      if (facetCases.length === 0) continue;
+      groups.push({
+        id: facetApi.name,
+        label: GALLERY_FACET_LABELS[facetApi.name] ?? facetApi.name,
+        cases: facetCases.map((showcaseCase) => reviewGalleryCase(showcaseCase, facetApi.name)),
+      });
+    }
+  }
+  const authoredScenarios = REVIEW_GALLERY_SCENARIOS.get(entry.className) ?? [];
+  if (authoredScenarios.length > 0) {
+    groups.push({
+      id: 'authored-scenarios',
+      label: 'سيناريوهات مراجعة مقصودة',
+      cases: authoredScenarios,
+    });
+  }
+  return groups;
+}
+
+function reviewGalleryCoverageFor(entry) {
+  const groups = reviewGalleryFor(entry);
+  const baseGroups = baseReviewGalleryFor(entry);
+  const baseCaseCount = baseGroups.reduce((count, group) => count + group.cases.length, 0);
+  const supportedFacets = baseCaseCount === 1 &&
+      !REVIEW_SINGLE_STATE_EXCEPTIONS.has(entry.className)
+    ? reviewVisualApis(entry).map((api) => api.name)
+    : baseGroups
+      .map((group) => group.id)
+      .filter((id) => reviewVisualApis(entry).some((api) => api.name === id));
+  const coveredGroupIds = new Set(groups.map((group) => group.id));
+  const coveredFacets = supportedFacets.filter((facet) => coveredGroupIds.has(facet));
+  const missingFacets = supportedFacets.filter((facet) => !coveredGroupIds.has(facet));
+  const caseCount = groups.reduce((count, group) => count + group.cases.length, 0);
+  const exceptionReason = REVIEW_SINGLE_STATE_EXCEPTIONS.get(entry.className) ?? null;
+  return {
+    kind: caseCount > 1
+      ? 'multi-case'
+      : exceptionReason
+        ? 'single-meaningful-state'
+        : 'missing-meaningful-states',
+    caseCount,
+    supportedFacets,
+    coveredFacets,
+    missingFacets,
+    exceptionReason,
+  };
 }
 
 function scanDecoratedEntries() {
@@ -1517,6 +1670,9 @@ function scanDecoratedEntries() {
               })),
             }))
           : [];
+        entry.reviewGalleryCoverage = classification === 'PUBLIC ERP COMPONENT'
+          ? reviewGalleryCoverageFor(entry)
+          : null;
         entries.push(entry);
       }
     }
@@ -1555,6 +1711,7 @@ export function buildCatalog() {
       reviewStatus: null,
       reviewReference: null,
       reviewGalleryGroups: [],
+      reviewGalleryCoverage: null,
     });
   }
   return entries.sort((left, right) => left.category.localeCompare(right.category) || left.className.localeCompare(right.className));
@@ -1660,6 +1817,42 @@ function projectionMarkup(entry) {
     return '<erp-text type="paragraph">محتوى مسقط مرئي داخل المكوّن</erp-text>';
   }
   return '';
+}
+
+function galleryProjectionMarkup(entry, defaultProjection) {
+  if (entry.className === 'ErpTopbar') {
+    return `@if (galleryValue(showcaseCase, '$scenario') === 'long-context') {
+          <erp-text erpTopbarStart type="heading-3">Honesty ERP — الإدارة المالية والحسابات العامة</erp-text>
+        } @else if (galleryValue(showcaseCase, '$scenario') === 'compact-context') {
+          <erp-text erpTopbarStart type="heading-3">ERP</erp-text>
+        } @else {
+          <erp-text erpTopbarStart type="heading-3">Honesty ERP</erp-text>
+        }
+        <erp-branch-selector erpTopbarContext [branches]="topbarBranches" value="cairo" />
+        <erp-global-search erpTopbarSearch [results]="topbarSearchResults" />
+        <erp-inline erpTopbarActions gap="tight" align="center"><erp-applications-menu [groups]="topbarApplications" /><erp-messages-menu [messages]="topbarMessages" /><erp-notification-bell [notifications]="topbarNotifications" /></erp-inline>
+        <erp-user-menu erpTopbarUser [user]="topbarUser" [items]="topbarUserItems" />`;
+  }
+  if (entry.className === 'ErpFormActions') {
+    return `<erp-button
+          erpFormActionsSecondary
+          label="حفظ كمسودة"
+          variant="ghost"
+          [hidden]="galleryValue(showcaseCase, '$scenario') !== 'extended-actions'"
+        />
+        <erp-button erpFormActionsSecondary label="إلغاء" variant="outline" />
+        <erp-button
+          erpFormActionsPrimary
+          [label]="galleryValue(showcaseCase, '$scenario') === 'extended-actions' ? 'حفظ واعتماد' : 'حفظ'"
+        />`;
+  }
+  if (entry.className === 'ErpPageShell') {
+    return `<erp-surface erpPageShellHeader padding="default" border="subtle"><erp-stack gap="tight"><erp-text type="heading-3">{{ galleryValue(showcaseCase, '$scenario') === 'dense-context' ? 'مراجعة دورة المشتريات والتوريد' : 'مراجعة إقفال الفترة' }}</erp-text><erp-text type="paragraph" tone="secondary">{{ galleryValue(showcaseCase, '$scenario') === 'dense-context' ? 'سياق موسع يختبر الرأس والمحتوى الجانبي والتذييل مع نصوص تشغيلية طويلة.' : 'تكوين كامل للرأس والمحتوى والسياق والتذييل.' }}</erp-text></erp-stack></erp-surface>
+        <erp-stack gap="default"><erp-surface padding="default" border="subtle"><erp-text type="strong">{{ galleryValue(showcaseCase, '$scenario') === 'dense-context' ? 'طلبات الشراء المفتوحة' : 'قيود اليومية' }}</erp-text><erp-text type="paragraph">{{ galleryValue(showcaseCase, '$scenario') === 'dense-context' ? 'ثمانية عشر طلبًا موزعة على ثلاثة فروع تحتاج إلى مراجعة المسؤولين.' : 'راجع القيود غير المرحلة قبل اعتماد الإقفال.' }}</erp-text></erp-surface><erp-surface padding="default" border="subtle"><erp-text type="strong">{{ galleryValue(showcaseCase, '$scenario') === 'dense-context' ? 'اتفاقيات الموردين' : 'مطابقة الأرصدة' }}</erp-text><erp-text type="paragraph">{{ galleryValue(showcaseCase, '$scenario') === 'dense-context' ? 'أربع اتفاقيات تقترب من تاريخ التجديد.' : 'تحقق من أرصدة العملاء والموردين والحسابات البنكية.' }}</erp-text></erp-surface></erp-stack>
+        <erp-surface erpPageShellSide padding="default" border="subtle"><erp-stack gap="tight"><erp-text type="strong">{{ galleryValue(showcaseCase, '$scenario') === 'dense-context' ? 'سياق المراجعة' : 'سياق الفترة' }}</erp-text><erp-text type="caption" tone="secondary">{{ galleryValue(showcaseCase, '$scenario') === 'dense-context' ? 'الفرع الرئيسي' : 'أكتوبر 2026' }}</erp-text><erp-text type="caption" tone="secondary">{{ galleryValue(showcaseCase, '$scenario') === 'dense-context' ? 'الفترة الحالية' : 'الفرع الرئيسي' }}</erp-text></erp-stack></erp-surface>
+        <erp-text erpPageShellFooter type="caption" tone="secondary">{{ galleryValue(showcaseCase, '$scenario') === 'dense-context' ? 'آخر مزامنة داخلية: اليوم، 10:30' : 'تظل قرارات الاعتماد مملوكة للتطبيق المستهلك.' }}</erp-text>`;
+  }
+  return defaultProjection;
 }
 
 function generatedRootAppShellShowcaseOwner(entry) {
@@ -1810,6 +2003,9 @@ function generatedShowcaseOwner(entry) {
   const hasEmptyStateReference = entry.className === 'ErpEmptyState';
   const hasAdditionalReference = hasRadioReference || hasEmptyStateReference;
   const projection = projectionMarkup(entry);
+  const galleryProjection = galleryProjectionMarkup(entry, projection);
+  const hasGalleryOverlay = reviewGalleryFor(entry)
+    .some((group) => group.cases.some((showcaseCase) => showcaseCase.id === 'open-preview'));
   const imports = new Set([
     entry.className,
     'ErpReviewShowcaseControlPanel',
@@ -1834,6 +2030,10 @@ function generatedShowcaseOwner(entry) {
     imports.add('ReactiveFormsModule');
   }
   if (isFileSelection) {
+    importLines.push(`import {ErpButton} from '../../../controls/button/button';`);
+    imports.add('ErpButton');
+  }
+  if (hasGalleryOverlay && entry.className !== 'ErpButton' && !projection.includes('<erp-button')) {
     importLines.push(`import {ErpButton} from '../../../controls/button/button';`);
     imports.add('ErpButton');
   }
@@ -2004,6 +2204,9 @@ function generatedShowcaseOwner(entry) {
     );
   for (const modelApi of entry.publicApi.models) {
     galleryBindings.push(`[${modelApi.name}]="$any(galleryValue(showcaseCase, '${modelApi.name}'))"`);
+    if (modelApi.name === 'open' && hasGalleryOverlay) {
+      galleryBindings.push(`(openChange)="recordGalleryOpen(showcaseCase.id, $event)"`);
+    }
   }
   if (isCva) {
     galleryBindings.push('[formControl]="galleryControl(showcaseCase.id, $any(galleryValue(showcaseCase, \'disabled\')))"');
@@ -2013,7 +2216,7 @@ function generatedShowcaseOwner(entry) {
     : '';
   const galleryOwnerMarkup = `<${entry.selector}
                 data-showcase-gallery-owner${galleryBindingMarkup}
-              >${projection}</${entry.selector}>`;
+              >${galleryProjection}</${entry.selector}>`;
   const renderedGalleryOwner = ['ErpIconButton', 'ErpFab'].includes(entry.className)
     ? `<erp-tooltip [text]="$any(galleryValue(showcaseCase, 'label'))">${galleryOwnerMarkup}</erp-tooltip>`
     : galleryOwnerMarkup;
@@ -2066,6 +2269,12 @@ function generatedShowcaseOwner(entry) {
     : '';
   const source = `${importLines.join('\n')}\n\nconst ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === '${entry.id}')!;${userMenuPresetSource}\n@Component({\n  changeDetection: ChangeDetectionStrategy.OnPush,\n  selector: 'app-${entry.id}-showcase',\n  imports: [${[...imports].join(', ')}],\n  templateUrl: './${entry.id}-showcase.html',\n  styleUrl: './${entry.id}-showcase.scss',\n})\nexport class ${className} {\n  readonly entry = ENTRY;\n  readonly controls = ENTRY.showcaseControls;\n  readonly lastEvent = signal('لم يحدث تفاعل بعد');\n  readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});\n  readonly cvaValue = signal<unknown>(${JSON.stringify(initialCvaValue)});\n  readonly controlValues = computed<Readonly<Record<string, unknown>>>(() => ({\n    ...this.liveValues(),\n    '$value': this.cvaValue(),\n  }));\n${isCva ? `  readonly control = new FormControl<unknown>(${JSON.stringify({value: initialCvaValue, disabled: Boolean(entry.showcaseInitialValues?.disabled)})});\n\n  constructor() {\n    this.control.valueChanges.pipe(takeUntilDestroyed()).subscribe((value) => {\n      this.cvaValue.set(value);\n      this.recordEvent('valueChange', value);\n    });\n  }\n` : ''}${isAvatarPicker ? `  readonly defaultAvatars = ERP_AVATAR_CATALOG;\n\n  effectiveAvatars(): unknown {\n    const avatars = this.value('avatars');\n    return Array.isArray(avatars) ? avatars : this.defaultAvatars;\n  }\n\n` : ''}\n  readonly previewInline = computed(() => Number(this.liveValues()['$previewInline'] ?? 80));\n  readonly previewBlock = computed(() => Number(this.liveValues()['$previewBlock'] ?? 75));\n  readonly previewDirection = computed(() => this.liveValues()['$previewDirection'] === 'ltr' ? 'ltr' : 'rtl');\n\n  value(name: string): unknown {\n    return this.liveValues()[name];\n  }\n\n  applyControl(change: ErpShowcaseControlChange): void {\n    if (change.control.source === 'cva') {\n${isCva ? `      this.control.setValue(change.value);` : `      this.cvaValue.set(change.value);`}\n      return;\n    }\n${userMenuPresetHandler}${hasCvaDisabled ? `    if (change.control.name === 'disabled') {\n      this.liveValues.update((current) => ({...current, disabled: change.value}));\n      if (change.value) this.control.disable();\n      else this.control.enable();\n      return;\n    }\n` : ''}    const value = change.control.kind === 'function'\n+      ? this.functionPreset(change.control.name, change.value)\n+      : change.value;\n+    this.liveValues.update((current) => ({...current, [change.control.name]: value}));\n+  }\n\n  recordModel(name: string, value: unknown): void {\n    this.liveValues.update((current) => ({...current, [name]: value}));\n    this.recordEvent(\`${'${name}'}Change\`, value);\n  }\n\n  recordEvent(name: string, value: unknown): void {\n    let rendered = '';\n    try { rendered = typeof value === 'string' ? value : JSON.stringify(value); }\n    catch { rendered = String(value); }\n    this.lastEvent.set(\`${'${name}'}: ${'${rendered}'}\`);\n  }\n\n  private functionPreset(name: string, value: unknown): unknown {\n    if (value !== 'sample') return null;\n    if (/comparator/i.test(name)) return () => 0;\n    if (/formatter/i.test(name)) return (candidate: unknown) => String(candidate ?? '');\n    if (/disabled/i.test(name)) return () => false;\n    if (/filter|predicate/i.test(name)) return () => true;\n    return (candidate: unknown) => candidate;\n  }\n}\n`;
   const reviewGalleryGroups = reviewGalleryFor(entry);
+  const galleryOpenValueSource = hasGalleryOverlay
+    ? "    if (name === 'open') return this.galleryOpenCase() === showcaseCase.id;\n"
+    : "    if (name === 'open') return false;\n";
+  const galleryCaseType = hasGalleryOverlay
+    ? '{readonly id: string; readonly inputs: Readonly<Record<string, unknown>>}'
+    : '{readonly inputs: Readonly<Record<string, unknown>>}';
   let normalizedSource = source
     .replaceAll('\n+', '\n')
     .replace(
@@ -2073,6 +2282,12 @@ function generatedShowcaseOwner(entry) {
       `\nconst REVIEW_GALLERY_GROUPS = ${JSON.stringify(reviewGalleryGroups, null, 2)} as const;\n\n@Component({`,
     )
     .replace('!;\n@Component', '!;\n\n@Component');
+  if (hasGalleryOverlay) {
+    normalizedSource = normalizedSource.replace(
+      'readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});',
+      'readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues, open: false});',
+    );
+  }
   normalizedSource = normalizedSource
     .replace(
       '  readonly controls = ENTRY.showcaseControls;\n',
@@ -2080,8 +2295,19 @@ function generatedShowcaseOwner(entry) {
     )
     .replace(
       '\n  applyControl(change: ErpShowcaseControlChange): void {',
-      "\n  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {\n    if (name === 'open') return false;\n    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)\n      ? showcaseCase.inputs[name]\n      : ENTRY.showcaseInitialValues?.[name];\n  }\n\n  applyControl(change: ErpShowcaseControlChange): void {",
+      `\n  galleryValue(showcaseCase: ${galleryCaseType}, name: string): unknown {\n${galleryOpenValueSource}    return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)\n      ? showcaseCase.inputs[name]\n      : ENTRY.showcaseInitialValues?.[name];\n  }\n\n  applyControl(change: ErpShowcaseControlChange): void {`,
     );
+  if (hasGalleryOverlay) {
+    normalizedSource = normalizedSource
+      .replace(
+        "  readonly lastEvent = signal('لم يحدث تفاعل بعد');\n",
+        "  readonly lastEvent = signal('لم يحدث تفاعل بعد');\n  readonly galleryOpenCase = signal<string | null>(null);\n",
+      )
+      .replace(
+        '\n  applyControl(change: ErpShowcaseControlChange): void {',
+        `\n  galleryIsOpen(id: string): boolean {\n    return this.galleryOpenCase() === id;\n  }\n\n  toggleGalleryOverlay(id: string): void {\n    this.galleryOpenCase.update((current) => current === id ? null : id);\n  }\n\n  recordGalleryOpen(id: string, open: boolean): void {\n    this.galleryOpenCase.set(open ? id : null);\n  }\n\n  applyControl(change: ErpShowcaseControlChange): void {`,
+      );
+  }
   if (isCva) {
     normalizedSource = normalizedSource
       .replace(
@@ -2124,6 +2350,9 @@ function generatedShowcaseOwner(entry) {
       );
   }
   const cvaValueEvidence = isFileSelection ? 'fileSummary(cvaValue())' : 'cvaValue()';
+  const galleryInteractionMarkup = hasGalleryOverlay
+    ? `\n                  @if (showcaseCase.id === 'open-preview') {\n                    <erp-button\n                      data-gallery-overlay-toggle\n                      [label]="galleryIsOpen(showcaseCase.id) ? 'إغلاق السطح' : 'فتح السطح'"\n                      size="sm"\n                      variant="outline"\n                      (pressed)="toggleGalleryOverlay(showcaseCase.id)"\n                    />\n                  }`
+    : '';
   const html = `<erp-stack gap="default" data-dedicated-showcase="${entry.id}" data-showcase-sections="5">
   <erp-stack id="visual-gallery" data-review-section="gallery">
     <erp-stack gap="default">
@@ -2138,7 +2367,7 @@ function generatedShowcaseOwner(entry) {
             @for (showcaseCase of group.cases; track showcaseCase.id) {
               <erp-surface padding="default" border="subtle" class="showcase-gallery__case" [attr.data-showcase-gallery-case]="showcaseCase.id">
                 <erp-stack gap="tight">
-                  <erp-text type="caption" tone="secondary">{{ showcaseCase.label }}</erp-text>
+                  <erp-text type="caption" tone="secondary">{{ showcaseCase.label }}</erp-text>${galleryInteractionMarkup}
                   <erp-stack class="showcase-gallery__stage" gap="tight">${renderedGalleryOwner}</erp-stack>
                 </erp-stack>
               </erp-surface>
@@ -2395,6 +2624,14 @@ export interface ErpComponentCatalogEntry {
   readonly reviewStatus: ErpReviewStatus | null;
   readonly reviewReference: ErpReviewReference | null;
   readonly reviewGalleryGroups: readonly ErpReviewGalleryGroup[];
+  readonly reviewGalleryCoverage: {
+    readonly kind: 'multi-case' | 'single-meaningful-state' | 'missing-meaningful-states';
+    readonly caseCount: number;
+    readonly supportedFacets: readonly string[];
+    readonly coveredFacets: readonly string[];
+    readonly missingFacets: readonly string[];
+    readonly exceptionReason: string | null;
+  } | null;
 }
 
 export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = ${data};

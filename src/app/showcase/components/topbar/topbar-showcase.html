@@ -15,7 +15,17 @@
                   <erp-text type="caption" tone="secondary">{{ showcaseCase.label }}</erp-text>
                   <erp-stack class="showcase-gallery__stage" gap="tight"><erp-topbar
                 data-showcase-gallery-owner
-              ><erp-text erpTopbarStart type="heading-3">Honesty ERP</erp-text><erp-branch-selector erpTopbarContext [branches]="topbarBranches" value="cairo" (valueChange)="recordEvent('branchChanged', $event)" /><erp-global-search erpTopbarSearch [results]="topbarSearchResults" (resultActivated)="recordEvent('searchResultActivated', $event)" /><erp-inline erpTopbarActions gap="tight" align="center"><erp-applications-menu [groups]="topbarApplications" (applicationActivated)="recordEvent('applicationActivated', $event)" /><erp-messages-menu [messages]="topbarMessages" (messageActivated)="recordEvent('messageActivated', $event)" /><erp-notification-bell [notifications]="topbarNotifications" (notificationActivated)="recordEvent('notificationActivated', $event)" /></erp-inline><erp-user-menu erpTopbarUser [user]="topbarUser" [items]="topbarUserItems" (actionActivated)="recordEvent('userActionActivated', $event)" /></erp-topbar></erp-stack>
+              >@if (galleryValue(showcaseCase, '$scenario') === 'long-context') {
+          <erp-text erpTopbarStart type="heading-3">Honesty ERP — الإدارة المالية والحسابات العامة</erp-text>
+        } @else if (galleryValue(showcaseCase, '$scenario') === 'compact-context') {
+          <erp-text erpTopbarStart type="heading-3">ERP</erp-text>
+        } @else {
+          <erp-text erpTopbarStart type="heading-3">Honesty ERP</erp-text>
+        }
+        <erp-branch-selector erpTopbarContext [branches]="topbarBranches" value="cairo" />
+        <erp-global-search erpTopbarSearch [results]="topbarSearchResults" />
+        <erp-inline erpTopbarActions gap="tight" align="center"><erp-applications-menu [groups]="topbarApplications" /><erp-messages-menu [messages]="topbarMessages" /><erp-notification-bell [notifications]="topbarNotifications" /></erp-inline>
+        <erp-user-menu erpTopbarUser [user]="topbarUser" [items]="topbarUserItems" /></erp-topbar></erp-stack>
                 </erp-stack>
               </erp-surface>
             }

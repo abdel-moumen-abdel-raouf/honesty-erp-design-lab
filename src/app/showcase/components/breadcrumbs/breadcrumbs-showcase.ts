@@ -43,6 +43,60 @@ const REVIEW_GALLERY_GROUPS = [
         }
       }
     ]
+  },
+  {
+    "id": "authored-scenarios",
+    "label": "سيناريوهات مراجعة مقصودة",
+    "cases": [
+      {
+        "id": "short-path",
+        "label": "مسار مختصر",
+        "inputs": {
+          "currentId": "reports",
+          "items": [
+            {
+              "id": "home",
+              "label": "الرئيسية",
+              "href": "#home",
+              "icon": "home"
+            },
+            {
+              "id": "reports",
+              "label": "التقارير"
+            }
+          ]
+        }
+      },
+      {
+        "id": "long-path",
+        "label": "مسار بعناوين عربية طويلة",
+        "inputs": {
+          "currentId": "review",
+          "items": [
+            {
+              "id": "home",
+              "label": "الرئيسية",
+              "href": "#home",
+              "icon": "home"
+            },
+            {
+              "id": "finance",
+              "label": "الإدارة المالية والحسابات العامة",
+              "href": "#finance"
+            },
+            {
+              "id": "closing",
+              "label": "عمليات إقفال الفترات المالية",
+              "href": "#closing"
+            },
+            {
+              "id": "review",
+              "label": "مراجعة أرصدة الحسابات الختامية"
+            }
+          ]
+        }
+      }
+    ]
   }
 ] as const;
 

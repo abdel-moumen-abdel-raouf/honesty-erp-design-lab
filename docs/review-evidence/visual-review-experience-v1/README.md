@@ -1,5 +1,8 @@
 # Visual Review Experience V1 — Evidence Index
 
+> Historical baseline: V1.1 supersedes the gallery-coverage audit and current
+> capture workflow. See `../visual-review-experience-v1-1/README.md`.
+
 ## Purpose
 
 This evidence package records the review-only reconstruction that makes the
@@ -121,7 +124,8 @@ Reference Comparison appear before Live Preview. Expand “Advanced API
 Controls” for the full interactive input/model/CVA controls and use Event
 Evidence for outputs.
 
-To repeat the evidence audit against the running application:
+The current capture script produces the V1.1 evidence package. To repeat that
+audit against the running application:
 
 ```powershell
 node tools/review/capture-visual-review-experience.mjs --base-url=http://127.0.0.1:4999

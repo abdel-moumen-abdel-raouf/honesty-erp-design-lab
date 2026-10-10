@@ -28,6 +28,235 @@ const REVIEW_GALLERY_GROUPS = [
         }
       }
     ]
+  },
+  {
+    "id": "disabled",
+    "label": "disabled",
+    "cases": [
+      {
+        "id": "disabled-true",
+        "label": "مفعّل (true)",
+        "inputs": {
+          "disabled": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "tone",
+    "label": "النبرات",
+    "cases": [
+      {
+        "id": "tone-primary",
+        "label": "رئيسي (primary)",
+        "inputs": {
+          "tone": "primary"
+        }
+      },
+      {
+        "id": "tone-secondary",
+        "label": "tone: secondary",
+        "inputs": {
+          "tone": "secondary"
+        }
+      },
+      {
+        "id": "tone-accent",
+        "label": "tone: accent",
+        "inputs": {
+          "tone": "accent"
+        }
+      }
+    ]
+  },
+  {
+    "id": "status",
+    "label": "حالات التحقق",
+    "cases": [
+      {
+        "id": "status-success",
+        "label": "نجاح (success)",
+        "inputs": {
+          "status": "success"
+        }
+      },
+      {
+        "id": "status-warning",
+        "label": "تحذير (warning)",
+        "inputs": {
+          "status": "warning"
+        }
+      },
+      {
+        "id": "status-danger",
+        "label": "خطر (danger)",
+        "inputs": {
+          "status": "danger"
+        }
+      },
+      {
+        "id": "status-info",
+        "label": "معلومات (info)",
+        "inputs": {
+          "status": "info"
+        }
+      }
+    ]
+  },
+  {
+    "id": "variant",
+    "label": "الأنماط",
+    "cases": [
+      {
+        "id": "variant-solid",
+        "label": "صلب (solid)",
+        "inputs": {
+          "variant": "solid"
+        }
+      },
+      {
+        "id": "variant-subtle",
+        "label": "خافت (subtle)",
+        "inputs": {
+          "variant": "subtle"
+        }
+      },
+      {
+        "id": "variant-ghost",
+        "label": "شفاف (ghost)",
+        "inputs": {
+          "variant": "ghost"
+        }
+      },
+      {
+        "id": "variant-text",
+        "label": "نصي (text)",
+        "inputs": {
+          "variant": "text"
+        }
+      }
+    ]
+  },
+  {
+    "id": "borderMode",
+    "label": "أنماط الحدود",
+    "cases": [
+      {
+        "id": "borderMode-dashed",
+        "label": "borderMode: dashed",
+        "inputs": {
+          "borderMode": "dashed"
+        }
+      },
+      {
+        "id": "borderMode-underline",
+        "label": "borderMode: underline",
+        "inputs": {
+          "borderMode": "underline"
+        }
+      }
+    ]
+  },
+  {
+    "id": "shape",
+    "label": "الأشكال",
+    "cases": [
+      {
+        "id": "shape-rounded",
+        "label": "مستدير (rounded)",
+        "inputs": {
+          "shape": "rounded"
+        }
+      },
+      {
+        "id": "shape-pill",
+        "label": "shape: pill",
+        "inputs": {
+          "shape": "pill"
+        }
+      }
+    ]
+  },
+  {
+    "id": "size",
+    "label": "الأحجام",
+    "cases": [
+      {
+        "id": "size-sm",
+        "label": "size: sm",
+        "inputs": {
+          "size": "sm"
+        }
+      },
+      {
+        "id": "size-lg",
+        "label": "size: lg",
+        "inputs": {
+          "size": "lg"
+        }
+      },
+      {
+        "id": "size-xl",
+        "label": "size: xl",
+        "inputs": {
+          "size": "xl"
+        }
+      },
+      {
+        "id": "size-xxl",
+        "label": "size: xxl",
+        "inputs": {
+          "size": "xxl"
+        }
+      },
+      {
+        "id": "size-xxxl",
+        "label": "size: xxxl",
+        "inputs": {
+          "size": "xxxl"
+        }
+      },
+      {
+        "id": "size-xxxxl",
+        "label": "size: xxxxl",
+        "inputs": {
+          "size": "xxxxl"
+        }
+      }
+    ]
+  },
+  {
+    "id": "appearance",
+    "label": "المظهر",
+    "cases": [
+      {
+        "id": "appearance-glass",
+        "label": "appearance: glass",
+        "inputs": {
+          "appearance": "glass"
+        }
+      }
+    ]
+  },
+  {
+    "id": "labelMode",
+    "label": "موضع التسمية",
+    "cases": [
+      {
+        "id": "labelMode-floating",
+        "label": "labelMode: floating",
+        "inputs": {
+          "labelMode": "floating"
+        }
+      },
+      {
+        "id": "labelMode-visually-hidden",
+        "label": "labelMode: visually-hidden",
+        "inputs": {
+          "labelMode": "visually-hidden"
+        }
+      }
+    ]
   }
 ] as const;
 

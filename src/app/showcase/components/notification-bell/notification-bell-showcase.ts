@@ -6,6 +6,7 @@ import {ErpReviewShowcaseReferenceComparison} from '../../../review-internals/sh
 import {ErpStack} from '../../../primitives/stack/stack';
 import {ErpSurface} from '../../../primitives/surface/surface';
 import {ErpText} from '../../../primitives/text/text';
+import {ErpButton} from '../../../controls/button/button';
 
 const ENTRY = ERP_COMPONENT_CATALOG.find((entry) => entry.id === 'notification-bell')!;
 const REVIEW_GALLERY_GROUPS = [
@@ -57,13 +58,69 @@ const REVIEW_GALLERY_GROUPS = [
         }
       }
     ]
+  },
+  {
+    "id": "searchable",
+    "label": "البحث",
+    "cases": [
+      {
+        "id": "searchable-false",
+        "label": "غير مفعّل (false)",
+        "inputs": {
+          "searchable": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "open",
+    "label": "السطح المفتوح",
+    "cases": [
+      {
+        "id": "open-preview",
+        "label": "فتح السطح عند الطلب",
+        "inputs": {
+          "$galleryOpenable": true
+        }
+      }
+    ]
+  },
+  {
+    "id": "authored-scenarios",
+    "label": "سيناريوهات مراجعة مقصودة",
+    "cases": [
+      {
+        "id": "empty-notifications",
+        "label": "لا توجد إشعارات",
+        "inputs": {
+          "notifications": [],
+          "unreadCount": 0
+        }
+      },
+      {
+        "id": "long-notification",
+        "label": "إشعار تشغيلي طويل",
+        "inputs": {
+          "notifications": [
+            {
+              "id": "long",
+              "title": "مراجعة حدود إعادة الطلب للفروع",
+              "description": "تحتاج ثمانية أصناف في فرعي القاهرة والإسكندرية إلى مراجعة حدود إعادة الطلب قبل تشغيل دورة المشتريات التالية.",
+              "timestamp": "منذ 8 دقائق",
+              "icon": "inventory",
+              "read": false
+            }
+          ]
+        }
+      }
+    ]
   }
 ] as const;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-notification-bell-showcase',
-  imports: [ErpNotificationBell, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText],
+  imports: [ErpNotificationBell, ErpReviewShowcaseControlPanel, ErpReviewShowcaseReferenceComparison, ErpStack, ErpSurface, ErpText, ErpButton],
   templateUrl: './notification-bell-showcase.html',
   styleUrl: './notification-bell-showcase.scss',
 })
@@ -72,7 +129,8 @@ export class ErpNotificationBellShowcase {
   readonly controls = ENTRY.showcaseControls;
   readonly galleryGroups = REVIEW_GALLERY_GROUPS;
   readonly lastEvent = signal('لم يحدث تفاعل بعد');
-  readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues});
+  readonly galleryOpenCase = signal<string | null>(null);
+  readonly liveValues = signal<Readonly<Record<string, unknown>>>({...ENTRY.showcaseInitialValues, open: false});
   readonly cvaValue = signal<unknown>(null);
   readonly controlValues = computed<Readonly<Record<string, unknown>>>(() => ({
     ...this.liveValues(),
@@ -86,11 +144,23 @@ export class ErpNotificationBellShowcase {
     return this.liveValues()[name];
   }
 
-  galleryValue(showcaseCase: {readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
-    if (name === 'open') return false;
+  galleryValue(showcaseCase: {readonly id: string; readonly inputs: Readonly<Record<string, unknown>>}, name: string): unknown {
+    if (name === 'open') return this.galleryOpenCase() === showcaseCase.id;
     return Object.prototype.hasOwnProperty.call(showcaseCase.inputs, name)
       ? showcaseCase.inputs[name]
       : ENTRY.showcaseInitialValues?.[name];
+  }
+
+  galleryIsOpen(id: string): boolean {
+    return this.galleryOpenCase() === id;
+  }
+
+  toggleGalleryOverlay(id: string): void {
+    this.galleryOpenCase.update((current) => current === id ? null : id);
+  }
+
+  recordGalleryOpen(id: string, open: boolean): void {
+    this.galleryOpenCase.set(open ? id : null);
   }
 
   applyControl(change: ErpShowcaseControlChange): void {

@@ -34,6 +34,26 @@ const REVIEW_GALLERY_GROUPS = [
         "inputs": {}
       }
     ]
+  },
+  {
+    "id": "authored-scenarios",
+    "label": "سيناريوهات مراجعة مقصودة",
+    "cases": [
+      {
+        "id": "long-workspace-context",
+        "label": "سياق مساحة عمل طويل",
+        "inputs": {
+          "$scenario": "long-context"
+        }
+      },
+      {
+        "id": "compact-workspace-context",
+        "label": "سياق مختصر",
+        "inputs": {
+          "$scenario": "compact-context"
+        }
+      }
+    ]
   }
 ] as const;
 

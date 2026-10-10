@@ -84,6 +84,14 @@ export interface ErpComponentCatalogEntry {
   readonly reviewStatus: ErpReviewStatus | null;
   readonly reviewReference: ErpReviewReference | null;
   readonly reviewGalleryGroups: readonly ErpReviewGalleryGroup[];
+  readonly reviewGalleryCoverage: {
+    readonly kind: 'multi-case' | 'single-meaningful-state' | 'missing-meaningful-states';
+    readonly caseCount: number;
+    readonly supportedFacets: readonly string[];
+    readonly coveredFacets: readonly string[];
+    readonly missingFacets: readonly string[];
+    readonly exceptionReason: string | null;
+  } | null;
 }
 
 export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
@@ -1364,7 +1372,31 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 28,
+      "supportedFacets": [
+        "variant",
+        "size",
+        "shape",
+        "tone",
+        "disabled",
+        "loading",
+        "cursor"
+      ],
+      "coveredFacets": [
+        "variant",
+        "size",
+        "shape",
+        "tone",
+        "disabled",
+        "loading",
+        "cursor"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "button-group",
@@ -1679,7 +1711,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 3,
+      "supportedFacets": [
+        "orientation"
+      ],
+      "coveredFacets": [
+        "orientation"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "extended-fab",
@@ -2319,7 +2363,27 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 16,
+      "supportedFacets": [
+        "size",
+        "tone",
+        "disabled",
+        "loading",
+        "cursor"
+      ],
+      "coveredFacets": [
+        "size",
+        "tone",
+        "disabled",
+        "loading",
+        "cursor"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "fab",
@@ -3051,7 +3115,27 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 16,
+      "supportedFacets": [
+        "size",
+        "tone",
+        "disabled",
+        "loading",
+        "cursor"
+      ],
+      "coveredFacets": [
+        "size",
+        "tone",
+        "disabled",
+        "loading",
+        "cursor"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "fab-menu",
@@ -3648,7 +3732,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 6,
+      "supportedFacets": [
+        "disabled",
+        "placement"
+      ],
+      "coveredFacets": [
+        "disabled",
+        "placement"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "icon-button",
@@ -4765,7 +4863,31 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 27,
+      "supportedFacets": [
+        "variant",
+        "size",
+        "shape",
+        "tone",
+        "disabled",
+        "loading",
+        "cursor"
+      ],
+      "coveredFacets": [
+        "variant",
+        "size",
+        "shape",
+        "tone",
+        "disabled",
+        "loading",
+        "cursor"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "split-button",
@@ -5180,7 +5302,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 4,
+      "supportedFacets": [
+        "disabled"
+      ],
+      "coveredFacets": [
+        "disabled"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "app-footer",
@@ -5470,8 +5604,61 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "statusTone",
+        "label": "نبرة الحالة",
+        "cases": [
+          {
+            "id": "statusTone-neutral",
+            "label": "محايد (neutral)",
+            "inputs": {}
+          },
+          {
+            "id": "statusTone-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "statusTone-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "statusTone-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          },
+          {
+            "id": "statusTone-brand",
+            "label": "statusTone: brand",
+            "inputs": {}
+          },
+          {
+            "id": "statusTone-pending",
+            "label": "statusTone: pending",
+            "inputs": {}
+          },
+          {
+            "id": "statusTone-archived",
+            "label": "statusTone: archived",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 8,
+      "supportedFacets": [
+        "statusTone"
+      ],
+      "coveredFacets": [
+        "statusTone"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "applications-menu",
@@ -5930,8 +6117,42 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "open",
+        "label": "السطح المفتوح",
+        "cases": [
+          {
+            "id": "open-preview",
+            "label": "فتح السطح عند الطلب",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "authored-scenarios",
+        "label": "سيناريوهات مراجعة مقصودة",
+        "cases": [
+          {
+            "id": "empty-applications",
+            "label": "قائمة تطبيقات فارغة",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 3,
+      "supportedFacets": [
+        "open"
+      ],
+      "coveredFacets": [
+        "open"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "app-shell",
@@ -6819,7 +7040,15 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "single-meaningful-state",
+      "caseCount": 1,
+      "supportedFacets": [],
+      "coveredFacets": [],
+      "missingFacets": [],
+      "exceptionReason": "يظل إطار التطبيق الجذري هو هدف المراجعة الوحيد ولا يُكرر داخل معرض ثانوي."
+    }
   },
   {
     "id": "branch-selector",
@@ -7116,7 +7345,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 4,
+      "supportedFacets": [
+        "disabled"
+      ],
+      "coveredFacets": [
+        "disabled"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "global-search",
@@ -7606,7 +7847,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 4,
+      "supportedFacets": [
+        "mode"
+      ],
+      "coveredFacets": [
+        "mode"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "messages-menu",
@@ -8121,8 +8374,60 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "searchable",
+        "label": "البحث",
+        "cases": [
+          {
+            "id": "searchable-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "open",
+        "label": "السطح المفتوح",
+        "cases": [
+          {
+            "id": "open-preview",
+            "label": "فتح السطح عند الطلب",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "authored-scenarios",
+        "label": "سيناريوهات مراجعة مقصودة",
+        "cases": [
+          {
+            "id": "empty-messages",
+            "label": "لا توجد رسائل",
+            "inputs": {}
+          },
+          {
+            "id": "long-message",
+            "label": "رسالة عربية طويلة",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 5,
+      "supportedFacets": [
+        "searchable",
+        "open"
+      ],
+      "coveredFacets": [
+        "searchable",
+        "open"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "notification-bell",
@@ -8637,8 +8942,60 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "searchable",
+        "label": "البحث",
+        "cases": [
+          {
+            "id": "searchable-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "open",
+        "label": "السطح المفتوح",
+        "cases": [
+          {
+            "id": "open-preview",
+            "label": "فتح السطح عند الطلب",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "authored-scenarios",
+        "label": "سيناريوهات مراجعة مقصودة",
+        "cases": [
+          {
+            "id": "empty-notifications",
+            "label": "لا توجد إشعارات",
+            "inputs": {}
+          },
+          {
+            "id": "long-notification",
+            "label": "إشعار تشغيلي طويل",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 5,
+      "supportedFacets": [
+        "searchable",
+        "open"
+      ],
+      "coveredFacets": [
+        "searchable",
+        "open"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "quick-actions-bar",
@@ -8885,8 +9242,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "authored-scenarios",
+        "label": "سيناريوهات مراجعة مقصودة",
+        "cases": [
+          {
+            "id": "dense-actions",
+            "label": "مجموعة إجراءات كثيفة",
+            "inputs": {}
+          },
+          {
+            "id": "disabled-action",
+            "label": "إجراء غير متاح",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 3,
+      "supportedFacets": [],
+      "coveredFacets": [],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "topbar",
@@ -8964,8 +9345,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "authored-scenarios",
+        "label": "سيناريوهات مراجعة مقصودة",
+        "cases": [
+          {
+            "id": "long-workspace-context",
+            "label": "سياق مساحة عمل طويل",
+            "inputs": {}
+          },
+          {
+            "id": "compact-workspace-context",
+            "label": "سياق مختصر",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 3,
+      "supportedFacets": [],
+      "coveredFacets": [],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "user-menu",
@@ -10147,7 +10552,33 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 23,
+      "supportedFacets": [
+        "showAvatar",
+        "showUserName",
+        "showEmail",
+        "showPresence",
+        "showRoleBadge",
+        "showBranchBadge",
+        "showTriggerRoleBadge",
+        "showTriggerBranchBadge"
+      ],
+      "coveredFacets": [
+        "showAvatar",
+        "showUserName",
+        "showEmail",
+        "showPresence",
+        "showRoleBadge",
+        "showBranchBadge",
+        "showTriggerRoleBadge",
+        "showTriggerBranchBadge"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "bulk-action-bar",
@@ -10260,8 +10691,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "authored-scenarios",
+        "label": "سيناريوهات مراجعة مقصودة",
+        "cases": [
+          {
+            "id": "single-selection",
+            "label": "عنصر واحد محدد",
+            "inputs": {}
+          },
+          {
+            "id": "dense-selection",
+            "label": "اختيار جماعي كثيف",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 3,
+      "supportedFacets": [],
+      "coveredFacets": [],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "filter-bar",
@@ -10534,7 +10989,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 4,
+      "supportedFacets": [
+        "disabled"
+      ],
+      "coveredFacets": [
+        "disabled"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "filter-drawer",
@@ -10891,7 +11358,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 4,
+      "supportedFacets": [
+        "disabled"
+      ],
+      "coveredFacets": [
+        "disabled"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "smart-table",
@@ -12390,7 +12869,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 6,
+      "supportedFacets": [
+        "loading",
+        "mode"
+      ],
+      "coveredFacets": [
+        "loading",
+        "mode"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "table",
@@ -14226,7 +14719,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 6,
+      "supportedFacets": [
+        "density",
+        "hoverMotion"
+      ],
+      "coveredFacets": [
+        "density",
+        "hoverMotion"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "table-toolbar",
@@ -14564,7 +15071,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 4,
+      "supportedFacets": [
+        "disabled"
+      ],
+      "coveredFacets": [
+        "disabled"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "alert",
@@ -14888,7 +15407,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 5,
+      "supportedFacets": [
+        "tone"
+      ],
+      "coveredFacets": [
+        "tone"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "empty-state",
@@ -15566,7 +16097,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 6,
+      "supportedFacets": [
+        "variant"
+      ],
+      "coveredFacets": [
+        "variant"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "skeleton",
@@ -15888,7 +16431,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 7,
+      "supportedFacets": [
+        "variant",
+        "size"
+      ],
+      "coveredFacets": [
+        "variant",
+        "size"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "status-badge",
@@ -16912,7 +17469,31 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 27,
+      "supportedFacets": [
+        "variant",
+        "size",
+        "shape",
+        "tone",
+        "widthMode",
+        "disabled",
+        "selected"
+      ],
+      "coveredFacets": [
+        "variant",
+        "size",
+        "shape",
+        "tone",
+        "widthMode",
+        "disabled",
+        "selected"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "tooltip",
@@ -17647,7 +18228,25 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 12,
+      "supportedFacets": [
+        "variant",
+        "disabled",
+        "placement",
+        "activation"
+      ],
+      "coveredFacets": [
+        "variant",
+        "disabled",
+        "placement",
+        "activation"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "entity-schema-fields",
@@ -18244,8 +18843,27 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "authored-scenarios",
+        "label": "سيناريوهات مراجعة مقصودة",
+        "cases": [
+          {
+            "id": "compact-schema",
+            "label": "مخطط حقول مختصر",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 2,
+      "supportedFacets": [],
+      "coveredFacets": [],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "form",
@@ -18506,7 +19124,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 4,
+      "supportedFacets": [
+        "disabled"
+      ],
+      "coveredFacets": [
+        "disabled"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "form-actions",
@@ -18583,8 +19213,27 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "authored-scenarios",
+        "label": "سيناريوهات مراجعة مقصودة",
+        "cases": [
+          {
+            "id": "extended-actions",
+            "label": "إجراءات أساسية وثانوية متعددة",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 2,
+      "supportedFacets": [],
+      "coveredFacets": [],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "form-section",
@@ -18748,8 +19397,31 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "compact",
+        "label": "الكثافة",
+        "cases": [
+          {
+            "id": "compact-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 2,
+      "supportedFacets": [
+        "compact"
+      ],
+      "coveredFacets": [
+        "compact"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "repeater",
@@ -19172,7 +19844,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 4,
+      "supportedFacets": [
+        "disabled"
+      ],
+      "coveredFacets": [
+        "disabled"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "standard-entity-form",
@@ -20363,7 +21047,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 4,
+      "supportedFacets": [
+        "disabled"
+      ],
+      "coveredFacets": [
+        "disabled"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "validation-summary",
@@ -20529,8 +21225,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "authored-scenarios",
+        "label": "سيناريوهات مراجعة مقصودة",
+        "cases": [
+          {
+            "id": "single-issue",
+            "label": "مشكلة واحدة",
+            "inputs": {}
+          },
+          {
+            "id": "empty-issues",
+            "label": "لا توجد مشكلات",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 3,
+      "supportedFacets": [],
+      "coveredFacets": [],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "color-picker",
@@ -21395,7 +22115,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 3,
+      "supportedFacets": [
+        "mode"
+      ],
+      "coveredFacets": [
+        "mode"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "combo-box",
@@ -22288,8 +23020,215 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "status",
+        "label": "حالات التحقق",
+        "cases": [
+          {
+            "id": "status-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "status-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "status-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "status-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-solid",
+            "label": "صلب (solid)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-subtle",
+            "label": "خافت (subtle)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-ghost",
+            "label": "شفاف (ghost)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-text",
+            "label": "نصي (text)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "borderMode",
+        "label": "أنماط الحدود",
+        "cases": [
+          {
+            "id": "borderMode-dashed",
+            "label": "borderMode: dashed",
+            "inputs": {}
+          },
+          {
+            "id": "borderMode-underline",
+            "label": "borderMode: underline",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "shape",
+        "label": "الأشكال",
+        "cases": [
+          {
+            "id": "shape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-pill",
+            "label": "shape: pill",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxl",
+            "label": "size: xxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxl",
+            "label": "size: xxxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxxl",
+            "label": "size: xxxxl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "appearance",
+        "label": "المظهر",
+        "cases": [
+          {
+            "id": "appearance-glass",
+            "label": "appearance: glass",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "labelMode",
+        "label": "موضع التسمية",
+        "cases": [
+          {
+            "id": "labelMode-floating",
+            "label": "labelMode: floating",
+            "inputs": {}
+          },
+          {
+            "id": "labelMode-visually-hidden",
+            "label": "labelMode: visually-hidden",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 26,
+      "supportedFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode"
+      ],
+      "coveredFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "date-box",
@@ -23212,8 +24151,215 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "status",
+        "label": "حالات التحقق",
+        "cases": [
+          {
+            "id": "status-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "status-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "status-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "status-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-solid",
+            "label": "صلب (solid)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-subtle",
+            "label": "خافت (subtle)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-ghost",
+            "label": "شفاف (ghost)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-text",
+            "label": "نصي (text)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "borderMode",
+        "label": "أنماط الحدود",
+        "cases": [
+          {
+            "id": "borderMode-dashed",
+            "label": "borderMode: dashed",
+            "inputs": {}
+          },
+          {
+            "id": "borderMode-underline",
+            "label": "borderMode: underline",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "shape",
+        "label": "الأشكال",
+        "cases": [
+          {
+            "id": "shape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-pill",
+            "label": "shape: pill",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxl",
+            "label": "size: xxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxl",
+            "label": "size: xxxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxxl",
+            "label": "size: xxxxl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "appearance",
+        "label": "المظهر",
+        "cases": [
+          {
+            "id": "appearance-glass",
+            "label": "appearance: glass",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "labelMode",
+        "label": "موضع التسمية",
+        "cases": [
+          {
+            "id": "labelMode-floating",
+            "label": "labelMode: floating",
+            "inputs": {}
+          },
+          {
+            "id": "labelMode-visually-hidden",
+            "label": "labelMode: visually-hidden",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 26,
+      "supportedFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode"
+      ],
+      "coveredFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "date-range-box",
@@ -24116,8 +25262,215 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "status",
+        "label": "حالات التحقق",
+        "cases": [
+          {
+            "id": "status-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "status-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "status-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "status-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-solid",
+            "label": "صلب (solid)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-subtle",
+            "label": "خافت (subtle)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-ghost",
+            "label": "شفاف (ghost)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-text",
+            "label": "نصي (text)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "borderMode",
+        "label": "أنماط الحدود",
+        "cases": [
+          {
+            "id": "borderMode-dashed",
+            "label": "borderMode: dashed",
+            "inputs": {}
+          },
+          {
+            "id": "borderMode-underline",
+            "label": "borderMode: underline",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "shape",
+        "label": "الأشكال",
+        "cases": [
+          {
+            "id": "shape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-pill",
+            "label": "shape: pill",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxl",
+            "label": "size: xxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxl",
+            "label": "size: xxxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxxl",
+            "label": "size: xxxxl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "appearance",
+        "label": "المظهر",
+        "cases": [
+          {
+            "id": "appearance-glass",
+            "label": "appearance: glass",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "labelMode",
+        "label": "موضع التسمية",
+        "cases": [
+          {
+            "id": "labelMode-floating",
+            "label": "labelMode: floating",
+            "inputs": {}
+          },
+          {
+            "id": "labelMode-visually-hidden",
+            "label": "labelMode: visually-hidden",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 26,
+      "supportedFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode"
+      ],
+      "coveredFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "date-time-box",
@@ -25018,8 +26371,215 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "status",
+        "label": "حالات التحقق",
+        "cases": [
+          {
+            "id": "status-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "status-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "status-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "status-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-solid",
+            "label": "صلب (solid)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-subtle",
+            "label": "خافت (subtle)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-ghost",
+            "label": "شفاف (ghost)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-text",
+            "label": "نصي (text)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "borderMode",
+        "label": "أنماط الحدود",
+        "cases": [
+          {
+            "id": "borderMode-dashed",
+            "label": "borderMode: dashed",
+            "inputs": {}
+          },
+          {
+            "id": "borderMode-underline",
+            "label": "borderMode: underline",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "shape",
+        "label": "الأشكال",
+        "cases": [
+          {
+            "id": "shape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-pill",
+            "label": "shape: pill",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxl",
+            "label": "size: xxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxl",
+            "label": "size: xxxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxxl",
+            "label": "size: xxxxl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "appearance",
+        "label": "المظهر",
+        "cases": [
+          {
+            "id": "appearance-glass",
+            "label": "appearance: glass",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "labelMode",
+        "label": "موضع التسمية",
+        "cases": [
+          {
+            "id": "labelMode-floating",
+            "label": "labelMode: floating",
+            "inputs": {}
+          },
+          {
+            "id": "labelMode-visually-hidden",
+            "label": "labelMode: visually-hidden",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 26,
+      "supportedFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode"
+      ],
+      "coveredFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "file-picker",
@@ -25879,8 +27439,215 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "status",
+        "label": "حالات التحقق",
+        "cases": [
+          {
+            "id": "status-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "status-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "status-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "status-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-solid",
+            "label": "صلب (solid)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-subtle",
+            "label": "خافت (subtle)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-ghost",
+            "label": "شفاف (ghost)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-text",
+            "label": "نصي (text)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "borderMode",
+        "label": "أنماط الحدود",
+        "cases": [
+          {
+            "id": "borderMode-dashed",
+            "label": "borderMode: dashed",
+            "inputs": {}
+          },
+          {
+            "id": "borderMode-underline",
+            "label": "borderMode: underline",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "shape",
+        "label": "الأشكال",
+        "cases": [
+          {
+            "id": "shape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-pill",
+            "label": "shape: pill",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxl",
+            "label": "size: xxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxl",
+            "label": "size: xxxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxxl",
+            "label": "size: xxxxl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "appearance",
+        "label": "المظهر",
+        "cases": [
+          {
+            "id": "appearance-glass",
+            "label": "appearance: glass",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "labelMode",
+        "label": "موضع التسمية",
+        "cases": [
+          {
+            "id": "labelMode-floating",
+            "label": "labelMode: floating",
+            "inputs": {}
+          },
+          {
+            "id": "labelMode-visually-hidden",
+            "label": "labelMode: visually-hidden",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 26,
+      "supportedFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode"
+      ],
+      "coveredFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "icon-picker",
@@ -26671,8 +28438,215 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "status",
+        "label": "حالات التحقق",
+        "cases": [
+          {
+            "id": "status-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "status-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "status-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "status-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-solid",
+            "label": "صلب (solid)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-subtle",
+            "label": "خافت (subtle)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-ghost",
+            "label": "شفاف (ghost)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-text",
+            "label": "نصي (text)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "borderMode",
+        "label": "أنماط الحدود",
+        "cases": [
+          {
+            "id": "borderMode-dashed",
+            "label": "borderMode: dashed",
+            "inputs": {}
+          },
+          {
+            "id": "borderMode-underline",
+            "label": "borderMode: underline",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "shape",
+        "label": "الأشكال",
+        "cases": [
+          {
+            "id": "shape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-pill",
+            "label": "shape: pill",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxl",
+            "label": "size: xxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxl",
+            "label": "size: xxxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxxl",
+            "label": "size: xxxxl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "appearance",
+        "label": "المظهر",
+        "cases": [
+          {
+            "id": "appearance-glass",
+            "label": "appearance: glass",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "labelMode",
+        "label": "موضع التسمية",
+        "cases": [
+          {
+            "id": "labelMode-floating",
+            "label": "labelMode: floating",
+            "inputs": {}
+          },
+          {
+            "id": "labelMode-visually-hidden",
+            "label": "labelMode: visually-hidden",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 26,
+      "supportedFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode"
+      ],
+      "coveredFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "image-picker",
@@ -27570,8 +29544,233 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "status",
+        "label": "حالات التحقق",
+        "cases": [
+          {
+            "id": "status-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "status-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "status-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "status-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-solid",
+            "label": "صلب (solid)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-subtle",
+            "label": "خافت (subtle)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-ghost",
+            "label": "شفاف (ghost)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-text",
+            "label": "نصي (text)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "borderMode",
+        "label": "أنماط الحدود",
+        "cases": [
+          {
+            "id": "borderMode-dashed",
+            "label": "borderMode: dashed",
+            "inputs": {}
+          },
+          {
+            "id": "borderMode-underline",
+            "label": "borderMode: underline",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "shape",
+        "label": "الأشكال",
+        "cases": [
+          {
+            "id": "shape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-pill",
+            "label": "shape: pill",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxl",
+            "label": "size: xxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxl",
+            "label": "size: xxxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxxl",
+            "label": "size: xxxxl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "appearance",
+        "label": "المظهر",
+        "cases": [
+          {
+            "id": "appearance-glass",
+            "label": "appearance: glass",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "labelMode",
+        "label": "موضع التسمية",
+        "cases": [
+          {
+            "id": "labelMode-floating",
+            "label": "labelMode: floating",
+            "inputs": {}
+          },
+          {
+            "id": "labelMode-visually-hidden",
+            "label": "labelMode: visually-hidden",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "previewSize",
+        "label": "حجم المعاينة",
+        "cases": [
+          {
+            "id": "previewSize-sm",
+            "label": "previewSize: sm",
+            "inputs": {}
+          },
+          {
+            "id": "previewSize-md",
+            "label": "previewSize: md",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 28,
+      "supportedFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "previewSize"
+      ],
+      "coveredFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "previewSize"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "item-picker",
@@ -28498,8 +30697,228 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "status",
+        "label": "حالات التحقق",
+        "cases": [
+          {
+            "id": "status-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "status-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "status-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "status-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-solid",
+            "label": "صلب (solid)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-subtle",
+            "label": "خافت (subtle)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-ghost",
+            "label": "شفاف (ghost)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-text",
+            "label": "نصي (text)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "borderMode",
+        "label": "أنماط الحدود",
+        "cases": [
+          {
+            "id": "borderMode-dashed",
+            "label": "borderMode: dashed",
+            "inputs": {}
+          },
+          {
+            "id": "borderMode-underline",
+            "label": "borderMode: underline",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "shape",
+        "label": "الأشكال",
+        "cases": [
+          {
+            "id": "shape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-pill",
+            "label": "shape: pill",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxl",
+            "label": "size: xxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxl",
+            "label": "size: xxxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxxl",
+            "label": "size: xxxxl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "appearance",
+        "label": "المظهر",
+        "cases": [
+          {
+            "id": "appearance-glass",
+            "label": "appearance: glass",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "labelMode",
+        "label": "موضع التسمية",
+        "cases": [
+          {
+            "id": "labelMode-floating",
+            "label": "labelMode: floating",
+            "inputs": {}
+          },
+          {
+            "id": "labelMode-visually-hidden",
+            "label": "labelMode: visually-hidden",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "searchable",
+        "label": "البحث",
+        "cases": [
+          {
+            "id": "searchable-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 27,
+      "supportedFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "searchable"
+      ],
+      "coveredFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "searchable"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "money-box",
@@ -29538,8 +31957,228 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "status",
+        "label": "حالات التحقق",
+        "cases": [
+          {
+            "id": "status-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "status-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "status-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "status-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-solid",
+            "label": "صلب (solid)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-subtle",
+            "label": "خافت (subtle)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-ghost",
+            "label": "شفاف (ghost)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-text",
+            "label": "نصي (text)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "borderMode",
+        "label": "أنماط الحدود",
+        "cases": [
+          {
+            "id": "borderMode-dashed",
+            "label": "borderMode: dashed",
+            "inputs": {}
+          },
+          {
+            "id": "borderMode-underline",
+            "label": "borderMode: underline",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "shape",
+        "label": "الأشكال",
+        "cases": [
+          {
+            "id": "shape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-pill",
+            "label": "shape: pill",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxl",
+            "label": "size: xxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxl",
+            "label": "size: xxxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxxl",
+            "label": "size: xxxxl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "appearance",
+        "label": "المظهر",
+        "cases": [
+          {
+            "id": "appearance-glass",
+            "label": "appearance: glass",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "labelMode",
+        "label": "موضع التسمية",
+        "cases": [
+          {
+            "id": "labelMode-floating",
+            "label": "labelMode: floating",
+            "inputs": {}
+          },
+          {
+            "id": "labelMode-visually-hidden",
+            "label": "labelMode: visually-hidden",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "readonly",
+        "label": "للقراءة فقط",
+        "cases": [
+          {
+            "id": "readonly-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 27,
+      "supportedFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "readonly"
+      ],
+      "coveredFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "readonly"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "number-box",
@@ -30472,8 +33111,228 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "status",
+        "label": "حالات التحقق",
+        "cases": [
+          {
+            "id": "status-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "status-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "status-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "status-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-solid",
+            "label": "صلب (solid)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-subtle",
+            "label": "خافت (subtle)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-ghost",
+            "label": "شفاف (ghost)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-text",
+            "label": "نصي (text)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "borderMode",
+        "label": "أنماط الحدود",
+        "cases": [
+          {
+            "id": "borderMode-dashed",
+            "label": "borderMode: dashed",
+            "inputs": {}
+          },
+          {
+            "id": "borderMode-underline",
+            "label": "borderMode: underline",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "shape",
+        "label": "الأشكال",
+        "cases": [
+          {
+            "id": "shape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-pill",
+            "label": "shape: pill",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxl",
+            "label": "size: xxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxl",
+            "label": "size: xxxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxxl",
+            "label": "size: xxxxl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "appearance",
+        "label": "المظهر",
+        "cases": [
+          {
+            "id": "appearance-glass",
+            "label": "appearance: glass",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "labelMode",
+        "label": "موضع التسمية",
+        "cases": [
+          {
+            "id": "labelMode-floating",
+            "label": "labelMode: floating",
+            "inputs": {}
+          },
+          {
+            "id": "labelMode-visually-hidden",
+            "label": "labelMode: visually-hidden",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "readonly",
+        "label": "للقراءة فقط",
+        "cases": [
+          {
+            "id": "readonly-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 27,
+      "supportedFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "readonly"
+      ],
+      "coveredFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "readonly"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "number-stepper",
@@ -31411,8 +34270,228 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "status",
+        "label": "حالات التحقق",
+        "cases": [
+          {
+            "id": "status-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "status-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "status-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "status-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-solid",
+            "label": "صلب (solid)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-subtle",
+            "label": "خافت (subtle)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-ghost",
+            "label": "شفاف (ghost)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-text",
+            "label": "نصي (text)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "borderMode",
+        "label": "أنماط الحدود",
+        "cases": [
+          {
+            "id": "borderMode-dashed",
+            "label": "borderMode: dashed",
+            "inputs": {}
+          },
+          {
+            "id": "borderMode-underline",
+            "label": "borderMode: underline",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "shape",
+        "label": "الأشكال",
+        "cases": [
+          {
+            "id": "shape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-pill",
+            "label": "shape: pill",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxl",
+            "label": "size: xxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxl",
+            "label": "size: xxxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxxl",
+            "label": "size: xxxxl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "appearance",
+        "label": "المظهر",
+        "cases": [
+          {
+            "id": "appearance-glass",
+            "label": "appearance: glass",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "labelMode",
+        "label": "موضع التسمية",
+        "cases": [
+          {
+            "id": "labelMode-floating",
+            "label": "labelMode: floating",
+            "inputs": {}
+          },
+          {
+            "id": "labelMode-visually-hidden",
+            "label": "labelMode: visually-hidden",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "readonly",
+        "label": "للقراءة فقط",
+        "cases": [
+          {
+            "id": "readonly-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 27,
+      "supportedFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "readonly"
+      ],
+      "coveredFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "readonly"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "password-box",
@@ -32348,8 +35427,241 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "status",
+        "label": "حالات التحقق",
+        "cases": [
+          {
+            "id": "status-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "status-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "status-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "status-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-solid",
+            "label": "صلب (solid)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-subtle",
+            "label": "خافت (subtle)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-ghost",
+            "label": "شفاف (ghost)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-text",
+            "label": "نصي (text)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "borderMode",
+        "label": "أنماط الحدود",
+        "cases": [
+          {
+            "id": "borderMode-dashed",
+            "label": "borderMode: dashed",
+            "inputs": {}
+          },
+          {
+            "id": "borderMode-underline",
+            "label": "borderMode: underline",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "shape",
+        "label": "الأشكال",
+        "cases": [
+          {
+            "id": "shape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-pill",
+            "label": "shape: pill",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxl",
+            "label": "size: xxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxl",
+            "label": "size: xxxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxxl",
+            "label": "size: xxxxl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "appearance",
+        "label": "المظهر",
+        "cases": [
+          {
+            "id": "appearance-glass",
+            "label": "appearance: glass",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "labelMode",
+        "label": "موضع التسمية",
+        "cases": [
+          {
+            "id": "labelMode-floating",
+            "label": "labelMode: floating",
+            "inputs": {}
+          },
+          {
+            "id": "labelMode-visually-hidden",
+            "label": "labelMode: visually-hidden",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "readonly",
+        "label": "للقراءة فقط",
+        "cases": [
+          {
+            "id": "readonly-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "revealToggle",
+        "label": "إظهار القيمة",
+        "cases": [
+          {
+            "id": "revealToggle-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 28,
+      "supportedFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "readonly",
+        "revealToggle"
+      ],
+      "coveredFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "readonly",
+        "revealToggle"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "range-slider",
@@ -33367,7 +36679,23 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 14,
+      "supportedFacets": [
+        "size",
+        "tone",
+        "appearance"
+      ],
+      "coveredFacets": [
+        "size",
+        "tone",
+        "appearance"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "search-box",
@@ -34730,7 +38058,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 4,
+      "supportedFacets": [
+        "mode"
+      ],
+      "coveredFacets": [
+        "mode"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "select",
@@ -36763,7 +40103,23 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 13,
+      "supportedFacets": [
+        "multiple",
+        "placement",
+        "selectSize"
+      ],
+      "coveredFacets": [
+        "multiple",
+        "placement",
+        "selectSize"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "tel-box",
@@ -37664,8 +41020,228 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "status",
+        "label": "حالات التحقق",
+        "cases": [
+          {
+            "id": "status-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "status-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "status-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "status-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-solid",
+            "label": "صلب (solid)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-subtle",
+            "label": "خافت (subtle)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-ghost",
+            "label": "شفاف (ghost)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-text",
+            "label": "نصي (text)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "borderMode",
+        "label": "أنماط الحدود",
+        "cases": [
+          {
+            "id": "borderMode-dashed",
+            "label": "borderMode: dashed",
+            "inputs": {}
+          },
+          {
+            "id": "borderMode-underline",
+            "label": "borderMode: underline",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "shape",
+        "label": "الأشكال",
+        "cases": [
+          {
+            "id": "shape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-pill",
+            "label": "shape: pill",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxl",
+            "label": "size: xxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxl",
+            "label": "size: xxxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxxl",
+            "label": "size: xxxxl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "appearance",
+        "label": "المظهر",
+        "cases": [
+          {
+            "id": "appearance-glass",
+            "label": "appearance: glass",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "labelMode",
+        "label": "موضع التسمية",
+        "cases": [
+          {
+            "id": "labelMode-floating",
+            "label": "labelMode: floating",
+            "inputs": {}
+          },
+          {
+            "id": "labelMode-visually-hidden",
+            "label": "labelMode: visually-hidden",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "readonly",
+        "label": "للقراءة فقط",
+        "cases": [
+          {
+            "id": "readonly-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 27,
+      "supportedFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "readonly"
+      ],
+      "coveredFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "readonly"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "text-area-box",
@@ -38614,8 +42190,259 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "status",
+        "label": "حالات التحقق",
+        "cases": [
+          {
+            "id": "status-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "status-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "status-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "status-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-solid",
+            "label": "صلب (solid)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-subtle",
+            "label": "خافت (subtle)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-ghost",
+            "label": "شفاف (ghost)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-text",
+            "label": "نصي (text)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "borderMode",
+        "label": "أنماط الحدود",
+        "cases": [
+          {
+            "id": "borderMode-dashed",
+            "label": "borderMode: dashed",
+            "inputs": {}
+          },
+          {
+            "id": "borderMode-underline",
+            "label": "borderMode: underline",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "shape",
+        "label": "الأشكال",
+        "cases": [
+          {
+            "id": "shape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-pill",
+            "label": "shape: pill",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxl",
+            "label": "size: xxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxl",
+            "label": "size: xxxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxxl",
+            "label": "size: xxxxl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "appearance",
+        "label": "المظهر",
+        "cases": [
+          {
+            "id": "appearance-glass",
+            "label": "appearance: glass",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "labelMode",
+        "label": "موضع التسمية",
+        "cases": [
+          {
+            "id": "labelMode-floating",
+            "label": "labelMode: floating",
+            "inputs": {}
+          },
+          {
+            "id": "labelMode-visually-hidden",
+            "label": "labelMode: visually-hidden",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "readonly",
+        "label": "للقراءة فقط",
+        "cases": [
+          {
+            "id": "readonly-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "resize",
+        "label": "تغيير الحجم",
+        "cases": [
+          {
+            "id": "resize-both",
+            "label": "resize: both",
+            "inputs": {}
+          },
+          {
+            "id": "resize-none",
+            "label": "بدون (none)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "showCounter",
+        "label": "عداد المحارف",
+        "cases": [
+          {
+            "id": "showCounter-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 30,
+      "supportedFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "readonly",
+        "resize",
+        "showCounter"
+      ],
+      "coveredFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "readonly",
+        "resize",
+        "showCounter"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "text-box",
@@ -39568,8 +43395,228 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "status",
+        "label": "حالات التحقق",
+        "cases": [
+          {
+            "id": "status-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "status-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "status-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "status-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-solid",
+            "label": "صلب (solid)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-subtle",
+            "label": "خافت (subtle)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-ghost",
+            "label": "شفاف (ghost)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-text",
+            "label": "نصي (text)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "borderMode",
+        "label": "أنماط الحدود",
+        "cases": [
+          {
+            "id": "borderMode-dashed",
+            "label": "borderMode: dashed",
+            "inputs": {}
+          },
+          {
+            "id": "borderMode-underline",
+            "label": "borderMode: underline",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "shape",
+        "label": "الأشكال",
+        "cases": [
+          {
+            "id": "shape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-pill",
+            "label": "shape: pill",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxl",
+            "label": "size: xxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxl",
+            "label": "size: xxxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxxl",
+            "label": "size: xxxxl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "appearance",
+        "label": "المظهر",
+        "cases": [
+          {
+            "id": "appearance-glass",
+            "label": "appearance: glass",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "labelMode",
+        "label": "موضع التسمية",
+        "cases": [
+          {
+            "id": "labelMode-floating",
+            "label": "labelMode: floating",
+            "inputs": {}
+          },
+          {
+            "id": "labelMode-visually-hidden",
+            "label": "labelMode: visually-hidden",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "readonly",
+        "label": "للقراءة فقط",
+        "cases": [
+          {
+            "id": "readonly-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 27,
+      "supportedFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "readonly"
+      ],
+      "coveredFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "readonly"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "time-box",
@@ -40492,8 +44539,215 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "status",
+        "label": "حالات التحقق",
+        "cases": [
+          {
+            "id": "status-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "status-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "status-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "status-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-solid",
+            "label": "صلب (solid)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-subtle",
+            "label": "خافت (subtle)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-ghost",
+            "label": "شفاف (ghost)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-text",
+            "label": "نصي (text)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "borderMode",
+        "label": "أنماط الحدود",
+        "cases": [
+          {
+            "id": "borderMode-dashed",
+            "label": "borderMode: dashed",
+            "inputs": {}
+          },
+          {
+            "id": "borderMode-underline",
+            "label": "borderMode: underline",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "shape",
+        "label": "الأشكال",
+        "cases": [
+          {
+            "id": "shape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-pill",
+            "label": "shape: pill",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxl",
+            "label": "size: xxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxl",
+            "label": "size: xxxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxxl",
+            "label": "size: xxxxl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "appearance",
+        "label": "المظهر",
+        "cases": [
+          {
+            "id": "appearance-glass",
+            "label": "appearance: glass",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "labelMode",
+        "label": "موضع التسمية",
+        "cases": [
+          {
+            "id": "labelMode-floating",
+            "label": "labelMode: floating",
+            "inputs": {}
+          },
+          {
+            "id": "labelMode-visually-hidden",
+            "label": "labelMode: visually-hidden",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 26,
+      "supportedFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode"
+      ],
+      "coveredFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "url-box",
@@ -41394,8 +45648,228 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "disabled",
+        "label": "disabled",
+        "cases": [
+          {
+            "id": "disabled-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "tone",
+        "label": "النبرات",
+        "cases": [
+          {
+            "id": "tone-primary",
+            "label": "رئيسي (primary)",
+            "inputs": {}
+          },
+          {
+            "id": "tone-secondary",
+            "label": "tone: secondary",
+            "inputs": {}
+          },
+          {
+            "id": "tone-accent",
+            "label": "tone: accent",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "status",
+        "label": "حالات التحقق",
+        "cases": [
+          {
+            "id": "status-success",
+            "label": "نجاح (success)",
+            "inputs": {}
+          },
+          {
+            "id": "status-warning",
+            "label": "تحذير (warning)",
+            "inputs": {}
+          },
+          {
+            "id": "status-danger",
+            "label": "خطر (danger)",
+            "inputs": {}
+          },
+          {
+            "id": "status-info",
+            "label": "معلومات (info)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "variant",
+        "label": "الأنماط",
+        "cases": [
+          {
+            "id": "variant-solid",
+            "label": "صلب (solid)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-subtle",
+            "label": "خافت (subtle)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-ghost",
+            "label": "شفاف (ghost)",
+            "inputs": {}
+          },
+          {
+            "id": "variant-text",
+            "label": "نصي (text)",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "borderMode",
+        "label": "أنماط الحدود",
+        "cases": [
+          {
+            "id": "borderMode-dashed",
+            "label": "borderMode: dashed",
+            "inputs": {}
+          },
+          {
+            "id": "borderMode-underline",
+            "label": "borderMode: underline",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "shape",
+        "label": "الأشكال",
+        "cases": [
+          {
+            "id": "shape-rounded",
+            "label": "مستدير (rounded)",
+            "inputs": {}
+          },
+          {
+            "id": "shape-pill",
+            "label": "shape: pill",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "size",
+        "label": "الأحجام",
+        "cases": [
+          {
+            "id": "size-sm",
+            "label": "size: sm",
+            "inputs": {}
+          },
+          {
+            "id": "size-lg",
+            "label": "size: lg",
+            "inputs": {}
+          },
+          {
+            "id": "size-xl",
+            "label": "size: xl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxl",
+            "label": "size: xxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxl",
+            "label": "size: xxxl",
+            "inputs": {}
+          },
+          {
+            "id": "size-xxxxl",
+            "label": "size: xxxxl",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "appearance",
+        "label": "المظهر",
+        "cases": [
+          {
+            "id": "appearance-glass",
+            "label": "appearance: glass",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "labelMode",
+        "label": "موضع التسمية",
+        "cases": [
+          {
+            "id": "labelMode-floating",
+            "label": "labelMode: floating",
+            "inputs": {}
+          },
+          {
+            "id": "labelMode-visually-hidden",
+            "label": "labelMode: visually-hidden",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "readonly",
+        "label": "للقراءة فقط",
+        "cases": [
+          {
+            "id": "readonly-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 27,
+      "supportedFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "readonly"
+      ],
+      "coveredFacets": [
+        "disabled",
+        "tone",
+        "status",
+        "variant",
+        "borderMode",
+        "shape",
+        "size",
+        "appearance",
+        "labelMode",
+        "readonly"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "anchored-overlay-controller",
@@ -41428,7 +45902,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "action-menu-content",
@@ -41492,7 +45967,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "avatar-action",
@@ -41551,7 +46027,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "avatar-frame",
@@ -41586,7 +46063,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "avatar-picker-tile",
@@ -41721,7 +46199,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "avatar-presence",
@@ -41756,7 +46235,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "confirm-dialog-content",
@@ -41796,7 +46276,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "confirm-dialog-service",
@@ -41829,7 +46310,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "empty-state-extra",
@@ -41874,7 +46356,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "empty-state-illustration",
@@ -41919,7 +46402,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "empty-state-lottie",
@@ -42003,7 +46487,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "entity-custom-field-outlet",
@@ -42052,7 +46537,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "entity-custom-section-outlet",
@@ -42101,7 +46587,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "entity-form-review-template",
@@ -42140,7 +46627,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "field-feedback",
@@ -42243,7 +46731,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "field-frame",
@@ -42638,7 +47127,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "field-trigger",
@@ -42815,7 +47305,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "file-selection-base",
@@ -42848,7 +47339,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "filter-drawer-content",
@@ -42890,7 +47382,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "input-base",
@@ -42923,7 +47416,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "overlay-frame",
@@ -42999,7 +47493,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "overlay-host",
@@ -43040,7 +47535,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "overlay-manager",
@@ -43073,7 +47569,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "overlay-ref",
@@ -43106,7 +47603,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "repeater-item-template",
@@ -43146,7 +47644,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "select-action",
@@ -43233,7 +47732,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "selection-picker-content",
@@ -43290,7 +47790,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "selection-tile",
@@ -43410,7 +47911,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "shell-menu-action",
@@ -43497,7 +47999,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "sidebar-disclosure",
@@ -43591,7 +48094,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "sidebar-link",
@@ -43670,7 +48174,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "sort-trigger",
@@ -43731,7 +48236,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "status-badge-action",
@@ -43820,7 +48326,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "step-panel",
@@ -43870,7 +48377,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "table-cell",
@@ -43938,7 +48446,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "table-footer",
@@ -44006,7 +48515,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "table-resize-handle",
@@ -44068,7 +48578,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "table-viewport",
@@ -44164,7 +48675,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "tab-panel",
@@ -44226,7 +48738,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "tab-trigger",
@@ -44340,7 +48853,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "temporal-picker-content",
@@ -44391,7 +48905,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "tooltip-content",
@@ -44424,7 +48939,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "user-menu-arrow",
@@ -44457,7 +48973,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "press-ripple-controller",
@@ -44490,7 +49007,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "shell-anchored-surface-controller",
@@ -44523,7 +49041,8 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "showcaseCoverage": null,
     "reviewStatus": null,
     "reviewReference": null,
-    "reviewGalleryGroups": []
+    "reviewGalleryGroups": [],
+    "reviewGalleryCoverage": null
   },
   {
     "id": "avatar",
@@ -45906,7 +50425,33 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 43,
+      "supportedFacets": [
+        "size",
+        "shape",
+        "tone",
+        "loading",
+        "presencePosition",
+        "presenceMotion",
+        "hoverMotion",
+        "cursor"
+      ],
+      "coveredFacets": [
+        "size",
+        "shape",
+        "tone",
+        "loading",
+        "presencePosition",
+        "presenceMotion",
+        "hoverMotion",
+        "cursor"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "breadcrumbs",
@@ -46133,8 +50678,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "authored-scenarios",
+        "label": "سيناريوهات مراجعة مقصودة",
+        "cases": [
+          {
+            "id": "short-path",
+            "label": "مسار مختصر",
+            "inputs": {}
+          },
+          {
+            "id": "long-path",
+            "label": "مسار بعناوين عربية طويلة",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 3,
+      "supportedFacets": [],
+      "coveredFacets": [],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "pagination",
@@ -46661,8 +51230,42 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "presentation",
+        "label": "العرض",
+        "cases": [
+          {
+            "id": "presentation-table-reference",
+            "label": "presentation: table-reference",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "authored-scenarios",
+        "label": "سيناريوهات مراجعة مقصودة",
+        "cases": [
+          {
+            "id": "minimal-pagination",
+            "label": "تنقل مختصر",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 3,
+      "supportedFacets": [
+        "presentation"
+      ],
+      "coveredFacets": [
+        "presentation"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "sidebar",
@@ -47195,8 +51798,36 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "collapsed",
+        "label": "الطي",
+        "cases": [
+          {
+            "id": "collapsed-false",
+            "label": "غير مفعّل (false)",
+            "inputs": {}
+          },
+          {
+            "id": "collapsed-true",
+            "label": "مفعّل (true)",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 3,
+      "supportedFacets": [
+        "collapsed"
+      ],
+      "coveredFacets": [
+        "collapsed"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "sort-header",
@@ -47513,7 +52144,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 7,
+      "supportedFacets": [
+        "disabled",
+        "direction"
+      ],
+      "coveredFacets": [
+        "disabled",
+        "direction"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "stepper",
@@ -47725,8 +52370,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "authored-scenarios",
+        "label": "سيناريوهات مراجعة مقصودة",
+        "cases": [
+          {
+            "id": "first-step",
+            "label": "الخطوة الأولى",
+            "inputs": {}
+          },
+          {
+            "id": "optional-step",
+            "label": "خطوة اختيارية",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 3,
+      "supportedFacets": [],
+      "coveredFacets": [],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "tabs",
@@ -49574,7 +54243,29 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 24,
+      "supportedFacets": [
+        "variant",
+        "orientation",
+        "distribution",
+        "headerShape",
+        "verticalPlacement",
+        "transition"
+      ],
+      "coveredFacets": [
+        "variant",
+        "orientation",
+        "distribution",
+        "headerShape",
+        "verticalPlacement",
+        "transition"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "page",
@@ -49813,7 +54504,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 7,
+      "supportedFacets": [
+        "widthMode",
+        "scrollMode"
+      ],
+      "coveredFacets": [
+        "widthMode",
+        "scrollMode"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "page-header",
@@ -49942,8 +54647,32 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "authored-scenarios",
+        "label": "سيناريوهات مراجعة مقصودة",
+        "cases": [
+          {
+            "id": "long-title",
+            "label": "عنوان ووصف طويلان",
+            "inputs": {}
+          },
+          {
+            "id": "title-only",
+            "label": "عنوان دون وصف",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 3,
+      "supportedFacets": [],
+      "coveredFacets": [],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "page-shell",
@@ -50023,8 +54752,27 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "authored-scenarios",
+        "label": "سيناريوهات مراجعة مقصودة",
+        "cases": [
+          {
+            "id": "dense-page-context",
+            "label": "صفحة ذات سياق كثيف",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 2,
+      "supportedFacets": [],
+      "coveredFacets": [],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "container",
@@ -50177,8 +54925,54 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
             "inputs": {}
           }
         ]
+      },
+      {
+        "id": "width",
+        "label": "عرض الحاوية",
+        "cases": [
+          {
+            "id": "width-narrow",
+            "label": "width: narrow",
+            "inputs": {}
+          },
+          {
+            "id": "width-content",
+            "label": "width: content",
+            "inputs": {}
+          },
+          {
+            "id": "width-wide",
+            "label": "width: wide",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "id": "gutter",
+        "label": "هامش الحاوية",
+        "cases": [
+          {
+            "id": "gutter-none",
+            "label": "بدون (none)",
+            "inputs": {}
+          }
+        ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 5,
+      "supportedFacets": [
+        "width",
+        "gutter"
+      ],
+      "coveredFacets": [
+        "width",
+        "gutter"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "divider",
@@ -50466,7 +55260,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 6,
+      "supportedFacets": [
+        "tone",
+        "orientation"
+      ],
+      "coveredFacets": [
+        "tone",
+        "orientation"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "grid",
@@ -50773,7 +55581,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 10,
+      "supportedFacets": [
+        "gap"
+      ],
+      "coveredFacets": [
+        "gap"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "icon",
@@ -51247,7 +56067,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 14,
+      "supportedFacets": [
+        "tone"
+      ],
+      "coveredFacets": [
+        "tone"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "inline",
@@ -51689,7 +56521,25 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 16,
+      "supportedFacets": [
+        "align",
+        "justify",
+        "gap",
+        "wrap"
+      ],
+      "coveredFacets": [
+        "align",
+        "justify",
+        "gap",
+        "wrap"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "section",
@@ -51852,7 +56702,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 4,
+      "supportedFacets": [
+        "gap"
+      ],
+      "coveredFacets": [
+        "gap"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "stack",
@@ -52216,7 +57078,23 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 13,
+      "supportedFacets": [
+        "align",
+        "justify",
+        "gap"
+      ],
+      "coveredFacets": [
+        "align",
+        "justify",
+        "gap"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "surface",
@@ -52546,7 +57424,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 5,
+      "supportedFacets": [
+        "tone"
+      ],
+      "coveredFacets": [
+        "tone"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "text",
@@ -54159,7 +59049,27 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 42,
+      "supportedFacets": [
+        "size",
+        "tone",
+        "align",
+        "wrap",
+        "direction"
+      ],
+      "coveredFacets": [
+        "size",
+        "tone",
+        "align",
+        "wrap",
+        "direction"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "avatar-picker",
@@ -54869,7 +59779,21 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 8,
+      "supportedFacets": [
+        "size",
+        "disabled"
+      ],
+      "coveredFacets": [
+        "size",
+        "disabled"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "check-box",
@@ -55790,7 +60714,27 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 21,
+      "supportedFacets": [
+        "variant",
+        "size",
+        "tone",
+        "readOnly",
+        "mode"
+      ],
+      "coveredFacets": [
+        "variant",
+        "size",
+        "tone",
+        "readOnly",
+        "mode"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "column-chooser",
@@ -56241,7 +61185,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 4,
+      "supportedFacets": [
+        "disabled"
+      ],
+      "coveredFacets": [
+        "disabled"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "radio-box",
@@ -57080,7 +62036,27 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 20,
+      "supportedFacets": [
+        "variant",
+        "size",
+        "tone",
+        "readOnly",
+        "mode"
+      ],
+      "coveredFacets": [
+        "variant",
+        "size",
+        "tone",
+        "readOnly",
+        "mode"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "radio-group",
@@ -57997,7 +62973,27 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 20,
+      "supportedFacets": [
+        "variant",
+        "size",
+        "tone",
+        "readOnly",
+        "mode"
+      ],
+      "coveredFacets": [
+        "variant",
+        "size",
+        "tone",
+        "readOnly",
+        "mode"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   },
   {
     "id": "view-switcher",
@@ -58232,7 +63228,19 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
           }
         ]
       }
-    ]
+    ],
+    "reviewGalleryCoverage": {
+      "kind": "multi-case",
+      "caseCount": 6,
+      "supportedFacets": [
+        "disabled"
+      ],
+      "coveredFacets": [
+        "disabled"
+      ],
+      "missingFacets": [],
+      "exceptionReason": null
+    }
   }
 ];
 

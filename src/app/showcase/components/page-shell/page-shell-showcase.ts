@@ -19,6 +19,19 @@ const REVIEW_GALLERY_GROUPS = [
         "inputs": {}
       }
     ]
+  },
+  {
+    "id": "authored-scenarios",
+    "label": "سيناريوهات مراجعة مقصودة",
+    "cases": [
+      {
+        "id": "dense-page-context",
+        "label": "صفحة ذات سياق كثيف",
+        "inputs": {
+          "$scenario": "dense-context"
+        }
+      }
+    ]
   }
 ] as const;
 

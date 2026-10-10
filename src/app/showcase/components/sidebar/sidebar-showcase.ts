@@ -78,6 +78,140 @@ const REVIEW_GALLERY_GROUPS = [
         }
       }
     ]
+  },
+  {
+    "id": "collapsed",
+    "label": "الطي",
+    "cases": [
+      {
+        "id": "collapsed-false",
+        "label": "غير مفعّل (false)",
+        "inputs": {
+          "items": [
+            {
+              "id": "finance",
+              "label": "المالية",
+              "icon": "wallet",
+              "badge": {
+                "label": "8",
+                "tone": "info"
+              },
+              "children": [
+                {
+                  "id": "ledger",
+                  "label": "الحسابات العامة",
+                  "icon": "menu",
+                  "href": "/ledger"
+                },
+                {
+                  "id": "reports",
+                  "label": "التقارير المالية والتحليلات التشغيلية المطولة",
+                  "icon": "chart",
+                  "children": [
+                    {
+                      "id": "trial-balance",
+                      "label": "ميزان المراجعة",
+                      "href": "/trial-balance"
+                    },
+                    {
+                      "id": "closed-period",
+                      "label": "فترة مقفلة",
+                      "href": "/closed",
+                      "disabled": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "inventory",
+              "label": "المخزون",
+              "icon": "layers",
+              "href": "/inventory",
+              "badge": {
+                "label": "3"
+              }
+            },
+            {
+              "id": "settings",
+              "label": "الإعدادات",
+              "icon": "settings",
+              "href": "/settings"
+            }
+          ],
+          "activeId": "trial-balance",
+          "expandedIds": [
+            "finance",
+            "reports"
+          ],
+          "collapsed": false
+        }
+      },
+      {
+        "id": "collapsed-true",
+        "label": "مفعّل (true)",
+        "inputs": {
+          "items": [
+            {
+              "id": "finance",
+              "label": "المالية",
+              "icon": "wallet",
+              "badge": {
+                "label": "8",
+                "tone": "info"
+              },
+              "children": [
+                {
+                  "id": "ledger",
+                  "label": "الحسابات العامة",
+                  "icon": "menu",
+                  "href": "/ledger"
+                },
+                {
+                  "id": "reports",
+                  "label": "التقارير المالية والتحليلات التشغيلية المطولة",
+                  "icon": "chart",
+                  "children": [
+                    {
+                      "id": "trial-balance",
+                      "label": "ميزان المراجعة",
+                      "href": "/trial-balance"
+                    },
+                    {
+                      "id": "closed-period",
+                      "label": "فترة مقفلة",
+                      "href": "/closed",
+                      "disabled": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "inventory",
+              "label": "المخزون",
+              "icon": "layers",
+              "href": "/inventory",
+              "badge": {
+                "label": "3"
+              }
+            },
+            {
+              "id": "settings",
+              "label": "الإعدادات",
+              "icon": "settings",
+              "href": "/settings"
+            }
+          ],
+          "activeId": "trial-balance",
+          "expandedIds": [
+            "finance",
+            "reports"
+          ],
+          "collapsed": true
+        }
+      }
+    ]
   }
 ] as const;
 

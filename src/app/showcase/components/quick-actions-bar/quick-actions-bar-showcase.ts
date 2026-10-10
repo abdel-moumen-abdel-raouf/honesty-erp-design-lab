@@ -56,6 +56,72 @@ const REVIEW_GALLERY_GROUPS = [
         }
       }
     ]
+  },
+  {
+    "id": "authored-scenarios",
+    "label": "سيناريوهات مراجعة مقصودة",
+    "cases": [
+      {
+        "id": "dense-actions",
+        "label": "مجموعة إجراءات كثيفة",
+        "inputs": {
+          "groups": [
+            {
+              "id": "daily",
+              "label": "العمل اليومي",
+              "actions": [
+                {
+                  "id": "task",
+                  "label": "مهمة",
+                  "icon": "add",
+                  "priority": "primary"
+                },
+                {
+                  "id": "event",
+                  "label": "موعد",
+                  "icon": "calendar"
+                },
+                {
+                  "id": "invoice",
+                  "label": "فاتورة",
+                  "icon": "file"
+                },
+                {
+                  "id": "stock",
+                  "label": "جرد",
+                  "icon": "inventory"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "disabled-action",
+        "label": "إجراء غير متاح",
+        "inputs": {
+          "groups": [
+            {
+              "id": "permissions",
+              "label": "وفق الصلاحيات",
+              "actions": [
+                {
+                  "id": "available",
+                  "label": "فتح التقارير",
+                  "icon": "chart"
+                },
+                {
+                  "id": "disabled",
+                  "label": "إقفال الفترة",
+                  "icon": "shield",
+                  "disabled": true
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
   }
 ] as const;
 

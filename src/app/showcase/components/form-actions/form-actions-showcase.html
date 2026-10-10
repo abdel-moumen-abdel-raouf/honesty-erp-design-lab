@@ -15,7 +15,17 @@
                   <erp-text type="caption" tone="secondary">{{ showcaseCase.label }}</erp-text>
                   <erp-stack class="showcase-gallery__stage" gap="tight"><erp-form-actions
                 data-showcase-gallery-owner
-              ><erp-button erpFormActionsSecondary label="إلغاء" variant="ghost" (pressed)="recordEvent('formCancelPressed', true)" /><erp-button erpFormActionsPrimary label="حفظ" (pressed)="recordEvent('formSavePressed', true)" /></erp-form-actions></erp-stack>
+              ><erp-button
+          erpFormActionsSecondary
+          label="حفظ كمسودة"
+          variant="ghost"
+          [hidden]="galleryValue(showcaseCase, '$scenario') !== 'extended-actions'"
+        />
+        <erp-button erpFormActionsSecondary label="إلغاء" variant="outline" />
+        <erp-button
+          erpFormActionsPrimary
+          [label]="galleryValue(showcaseCase, '$scenario') === 'extended-actions' ? 'حفظ واعتماد' : 'حفظ'"
+        /></erp-form-actions></erp-stack>
                 </erp-stack>
               </erp-surface>
             }
