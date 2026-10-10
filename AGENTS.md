@@ -1,5 +1,35 @@
 # Honesty ERP Design Lab — Codex Instructions
 
+## Current Autonomous UI Visual-QA Authorization — 2026-10-10
+
+The Product Owner explicitly reopened the documented ERP UI backlog for
+evidence-based internal visual review and sequential technical completion.
+Intermediate `PRODUCT_OWNER_VISUAL_REVIEW_PENDING` states no longer require a
+pause between documented UI owners. This does not grant Product Owner visual
+acceptance, open business Feature/Page work, or permit invented public owners.
+
+The first AppShell re-audit entered from clean `main`
+`6379313f8439cc7aefe025f2e6ecfcc8d9d1d481`. It reproduced the root-workbench
+navigation defect: the application recorded `navigationActivated` and returned
+before following real Sidebar destinations. The review model now separates an
+explicit no-destination intent item from real Table/Tabs destinations; real
+destinations continue through the App-owned Router. The 320 px Topbar also no
+longer stacks BranchSelector, UserMenu, and Search into a 283.30 px header:
+BranchSelector and Search share a contained 136.5 px row, the full UserMenu
+identity remains visible, final height is 227.30 px, and horizontal overflow is
+zero. Evidence is under
+`docs/review-evidence/erp-shell/autonomous-app-shell-wave/`.
+
+The 81-route browser audit still records one root AppShell, one direct
+RouterOutlet, one OverlayHost, one primary target per route, zero broken images,
+zero horizontal overflow, and zero diagnostics. Shell status remains
+`TECHNICAL_VERIFIED`, `INTERNAL_VISUAL_REVIEW_COMPLETED`, and
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Canonical verification passes 127/127
+test files and 808/808 tests, all governance/lint, both typechecks, and the
+zero-warning build at 418.32 kB / 92.90 kB estimated initial transfer. The next authorized action after this
+bounded Shell checkpoint is the repository-backed global UI backlog ledger and
+the next documented owner in Bottom-Up order.
+
 ## Current Root-Owned AppShell Workbench Recovery — 2026-10-10
 
 The Product Owner-authorized recovery entered from published clean `main`

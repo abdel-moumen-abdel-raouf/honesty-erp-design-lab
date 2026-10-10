@@ -1,4 +1,5 @@
 @use '../../../styles/foundation/components/branch-selector' as tokens;
+@use '../../../styles/foundation/queries' as query;
 
 :host {
   @include tokens.base;
@@ -9,4 +10,10 @@
 
 erp-select {
   display: block;
+}
+
+@include query.viewport-down('xxs') {
+  :host {
+    min-inline-size: 0;
+  }
 }

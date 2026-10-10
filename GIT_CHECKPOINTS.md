@@ -1,5 +1,26 @@
 # GIT CHECKPOINTS — HONESTY ERP Design Lab
 
+## Autonomous UI visual-QA Shell checkpoint — 2026-10-10
+
+Entry checkpoint:
+
+- `6379313f8439cc7aefe025f2e6ecfcc8d9d1d481` — clean `main` and
+  `origin/main`.
+
+Scoped checkpoint message:
+
+- `fix(shell): close integrated visual QA findings`
+
+This checkpoint preserves the completed Shell owners and corrects only the
+reproduced root-workbench navigation short-circuit and xxs Topbar pressure.
+Persisted browser evidence records the rejected interim 1 px BranchSelector /
+44 px overflow outcome only in the defect narrative; final captures show a
+visible BranchSelector and Search, 0 px overflow, functional intent and real
+destination paths, and an 81/81 route audit. Canonical verification passes
+127/127 test files and 808/808 tests, all governance/lint, both typechecks and
+the zero-warning production build. Resolve the resulting SHA from
+live `main` because this file belongs to that commit.
+
 ## Root-owned AppShell Workbench recovery — 2026-10-10
 
 Entry checkpoint:

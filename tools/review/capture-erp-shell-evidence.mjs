@@ -73,7 +73,9 @@ const integratedAppScenarios = [
   {name: 'integrated-1024-light-rtl-notifications-open', width: 1024, height: 768, theme: 'light', direction: 'rtl', open: 'notifications'},
   {name: 'integrated-768-dark-ltr-search-active', width: 768, height: 900, theme: 'dark', direction: 'ltr', open: 'search'},
   {name: 'integrated-390-light-rtl-sidebar-open', width: 390, height: 844, theme: 'light', direction: 'rtl', open: 'sidebar'},
+  {name: 'integrated-390-light-rtl', width: 390, height: 844, theme: 'light', direction: 'rtl'},
   {name: 'integrated-390-dark-rtl-messages-open', width: 390, height: 844, theme: 'dark', direction: 'rtl', open: 'messages'},
+  {name: 'integrated-320-dark-ltr', width: 320, height: 568, theme: 'dark', direction: 'ltr'},
   {name: 'integrated-320-dark-ltr-notifications-open', width: 320, height: 568, theme: 'dark', direction: 'ltr', open: 'notifications'},
 ];
 
@@ -438,6 +440,9 @@ async function main() {
             notificationBell: host?.querySelectorAll('erp-notification-bell').length ?? 0,
             userMenu: host?.querySelectorAll('erp-user-menu').length ?? 0,
           },
+          appShellOwnerCount: document.querySelectorAll('erp-app-shell').length,
+          primaryTargetCount: document.querySelectorAll('[data-showcase-target]').length,
+          rootIsPrimaryTarget: document.querySelector('#design-lab-app-shell')?.hasAttribute('data-showcase-target') ?? false,
           openPopoverCount: openSurfaces.length,
           openPopovers: openSurfaces.map((surface) => ({
             className: surface.className,
@@ -473,6 +478,17 @@ async function main() {
         deviceScaleFactor: 1,
         mobile: false,
       });
+      await client.command('Page.navigate', {url: `${BASE_URL}/components/app-shell`});
+      await waitFor(() => evaluate(client, `document.querySelectorAll('[data-showcase-target]').length === 1`));
+      await evaluate(client, `document.querySelector('erp-sidebar a[href="#"]')?.click()`);
+      await new Promise((resolve) => setTimeout(resolve, 100));
+      const intentPath = await evaluate(client, 'location.pathname');
+      const intentEvidence = await evaluate(client, `document.querySelector('[data-showcase-event-log]')?.textContent ?? ''`);
+      await evaluate(client, `document.querySelector('erp-sidebar a[href="/components/table"]')?.click()`);
+      await waitFor(() => evaluate(client, `location.pathname === '/components/table'`));
+      const destinationPath = await evaluate(client, 'location.pathname');
+      const navigationInteraction = {intentPath, intentEvidence, destinationPath};
+
       await client.command('Page.navigate', {url: `${BASE_URL}/components/global-search`});
       await waitFor(() => evaluate(client, `Boolean(document.querySelector('#design-lab-app-shell .app-shell'))`));
       const routes = await evaluate(client, `[
@@ -517,6 +533,7 @@ async function main() {
         auditedRoutes: routeResults.length,
         passedRoutes: routeResults.length - failures.length,
         failedRoutes: failures.length,
+        navigationInteraction,
         failures,
         routes: routeResults,
       };

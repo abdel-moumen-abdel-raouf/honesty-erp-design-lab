@@ -276,6 +276,48 @@ describe('App Root Shell & Design Lab Review Utilities', () => {
     fixture.destroy();
   });
 
+  it('keeps a visible navigation-intent path and follows real AppShell destinations', async () => {
+    const fixture = TestBed.createComponent(App);
+    const router = TestBed.inject(Router);
+    const workbench = TestBed.inject(ErpReviewAppShellWorkbenchState);
+
+    await router.navigateByUrl('/components/app-shell');
+    await vi.waitFor(() => {
+      fixture.detectChanges();
+      expect((fixture.nativeElement as HTMLElement).querySelector(
+        '[data-dedicated-showcase="app-shell"]',
+      )).not.toBeNull();
+    });
+
+    const links = fixture.nativeElement.querySelectorAll(
+      'erp-sidebar a[data-sidebar-interactive]',
+    ) as NodeListOf<HTMLAnchorElement>;
+    expect(links).toHaveLength(3);
+    expect(links[0].getAttribute('href')).toBe('#');
+    expect(links[1].getAttribute('href')).toBe('/components/table');
+
+    links[0].click();
+    fixture.detectChanges();
+    expect(router.url).toBe('/components/app-shell');
+    expect(workbench.lastEvent()).toContain('navigationActivated');
+    expect(workbench.lastEvent()).toContain('intent');
+
+    links[1].click();
+    await vi.waitFor(() => {
+      fixture.detectChanges();
+      expect(router.url).toBe('/components/table');
+      expect((fixture.nativeElement as HTMLElement).querySelector(
+        '[data-dedicated-showcase="table"]',
+      )).not.toBeNull();
+    });
+    await fixture.whenStable();
+    fixture.detectChanges();
+    expect(workbench.active()).toBe(false);
+    expect(workbench.values()).toBeNull();
+
+    fixture.destroy();
+  });
+
   for (const [url, selector] of [
     ['/components', 'app-component-catalog-page'],
     ['/foundation/overview', 'app-component-catalog-page'],

@@ -12,6 +12,14 @@ The complete autonomous wave is `TECHNICAL_VERIFIED` and
 `PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Evidence is organized by owner and
 checkpoint:
 
+The 2026-10-10 re-audit additionally proves functional real Sidebar
+destinations inside the root AppShell workbench and a contained 320 px Topbar.
+The intent-only item remains on `/components/app-shell` and records output;
+the real Table destination reaches `/components/table`. The final xxs capture
+measures 227.30 px with visible BranchSelector, Search and UserMenu regions and
+0 px horizontal overflow. The rejected interim 1 px BranchSelector / 44 px
+overflow result is retained in the defect narrative, not as accepted evidence.
+
 - `autonomous-app-shell-wave/`: real application integration, Applications,
   Messages, Notifications, Search, narrow Sidebar, combined topology, runtime
   measurements, and router history.

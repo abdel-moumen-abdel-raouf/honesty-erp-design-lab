@@ -4868,25 +4868,31 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "inputs": {
           "navigationItems": [
             {
-              "id": "finance",
-              "label": "المالية",
-              "icon": "wallet",
+              "id": "review",
+              "label": "مراجعة الإطار",
+              "icon": "dashboard",
               "children": [
                 {
-                  "id": "ledger",
-                  "label": "الحسابات العامة",
-                  "href": "/ledger"
+                  "id": "intent",
+                  "label": "معاينة نية التنقل",
+                  "icon": "menu"
+                },
+                {
+                  "id": "table",
+                  "label": "فتح مكوّن الجدول",
+                  "icon": "table",
+                  "href": "/components/table"
                 }
               ]
             },
             {
-              "id": "inventory",
-              "label": "المخزون",
+              "id": "tabs",
+              "label": "فتح مكوّن التبويبات",
               "icon": "layers",
-              "href": "/inventory"
+              "href": "/components/tabs"
             }
           ],
-          "activeNavigationId": "ledger",
+          "activeNavigationId": "intent",
           "quickActionGroups": [
             {
               "id": "daily",
@@ -4944,25 +4950,31 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "inputs": {
           "navigationItems": [
             {
-              "id": "finance",
-              "label": "المالية",
-              "icon": "wallet",
+              "id": "review",
+              "label": "مراجعة الإطار",
+              "icon": "dashboard",
               "children": [
                 {
-                  "id": "ledger",
-                  "label": "الحسابات العامة",
-                  "href": "/ledger"
+                  "id": "intent",
+                  "label": "معاينة نية التنقل",
+                  "icon": "menu"
+                },
+                {
+                  "id": "table",
+                  "label": "فتح مكوّن الجدول",
+                  "icon": "table",
+                  "href": "/components/table"
                 }
               ]
             },
             {
-              "id": "inventory",
-              "label": "المخزون",
+              "id": "tabs",
+              "label": "فتح مكوّن التبويبات",
               "icon": "layers",
-              "href": "/inventory"
+              "href": "/components/tabs"
             }
           ],
-          "activeNavigationId": "ledger",
+          "activeNavigationId": "intent",
           "quickActionGroups": [
             {
               "id": "daily",
@@ -5020,25 +5032,31 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "inputs": {
           "navigationItems": [
             {
-              "id": "finance",
-              "label": "المالية",
-              "icon": "wallet",
+              "id": "review",
+              "label": "مراجعة الإطار",
+              "icon": "dashboard",
               "children": [
                 {
-                  "id": "ledger",
-                  "label": "الحسابات العامة",
-                  "href": "/ledger"
+                  "id": "intent",
+                  "label": "معاينة نية التنقل",
+                  "icon": "menu"
+                },
+                {
+                  "id": "table",
+                  "label": "فتح مكوّن الجدول",
+                  "icon": "table",
+                  "href": "/components/table"
                 }
               ]
             },
             {
-              "id": "inventory",
-              "label": "المخزون",
+              "id": "tabs",
+              "label": "فتح مكوّن التبويبات",
               "icon": "layers",
-              "href": "/inventory"
+              "href": "/components/tabs"
             }
           ],
-          "activeNavigationId": "ledger",
+          "activeNavigationId": "intent",
           "quickActionGroups": [
             {
               "id": "daily",
@@ -5096,25 +5114,31 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "inputs": {
           "navigationItems": [
             {
-              "id": "finance",
-              "label": "المالية",
-              "icon": "wallet",
+              "id": "review",
+              "label": "مراجعة الإطار",
+              "icon": "dashboard",
               "children": [
                 {
-                  "id": "ledger",
-                  "label": "الحسابات العامة",
-                  "href": "/ledger"
+                  "id": "intent",
+                  "label": "معاينة نية التنقل",
+                  "icon": "menu"
+                },
+                {
+                  "id": "table",
+                  "label": "فتح مكوّن الجدول",
+                  "icon": "table",
+                  "href": "/components/table"
                 }
               ]
             },
             {
-              "id": "inventory",
-              "label": "المخزون",
+              "id": "tabs",
+              "label": "فتح مكوّن التبويبات",
               "icon": "layers",
-              "href": "/inventory"
+              "href": "/components/tabs"
             }
           ],
-          "activeNavigationId": "ledger",
+          "activeNavigationId": "intent",
           "quickActionGroups": [
             {
               "id": "daily",
@@ -5172,25 +5196,31 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "inputs": {
           "navigationItems": [
             {
-              "id": "finance",
-              "label": "المالية",
-              "icon": "wallet",
+              "id": "review",
+              "label": "مراجعة الإطار",
+              "icon": "dashboard",
               "children": [
                 {
-                  "id": "ledger",
-                  "label": "الحسابات العامة",
-                  "href": "/ledger"
+                  "id": "intent",
+                  "label": "معاينة نية التنقل",
+                  "icon": "menu"
+                },
+                {
+                  "id": "table",
+                  "label": "فتح مكوّن الجدول",
+                  "icon": "table",
+                  "href": "/components/table"
                 }
               ]
             },
             {
-              "id": "inventory",
-              "label": "المخزون",
+              "id": "tabs",
+              "label": "فتح مكوّن التبويبات",
               "icon": "layers",
-              "href": "/inventory"
+              "href": "/components/tabs"
             }
           ],
-          "activeNavigationId": "ledger",
+          "activeNavigationId": "intent",
           "quickActionGroups": [
             {
               "id": "daily",
@@ -5246,7 +5276,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
     "displayNameAr": "إطار تطبيق ERP",
     "descriptionAr": "تكوين إطار التطبيق من الشريط العلوي والشريط الجانبي والمحتوى.",
     "showcaseInitialValues": {
-      "activeNavigationId": "ledger",
+      "activeNavigationId": "intent",
       "sidebarLabel": "التنقل الرئيسي",
       "contentLabel": "محتوى التطبيق",
       "quickActionGroups": [
@@ -5302,22 +5332,28 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
       "sidebarCollapsed": false,
       "navigationItems": [
         {
-          "id": "finance",
-          "label": "المالية",
-          "icon": "wallet",
+          "id": "review",
+          "label": "مراجعة الإطار",
+          "icon": "dashboard",
           "children": [
             {
-              "id": "ledger",
-              "label": "الحسابات العامة",
-              "href": "/ledger"
+              "id": "intent",
+              "label": "معاينة نية التنقل",
+              "icon": "menu"
+            },
+            {
+              "id": "table",
+              "label": "فتح مكوّن الجدول",
+              "icon": "table",
+              "href": "/components/table"
             }
           ]
         },
         {
-          "id": "inventory",
-          "label": "المخزون",
+          "id": "tabs",
+          "label": "فتح مكوّن التبويبات",
           "icon": "layers",
-          "href": "/inventory"
+          "href": "/components/tabs"
         }
       ]
     },
@@ -5332,22 +5368,28 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "options": [],
         "initialValue": [
           {
-            "id": "finance",
-            "label": "المالية",
-            "icon": "wallet",
+            "id": "review",
+            "label": "مراجعة الإطار",
+            "icon": "dashboard",
             "children": [
               {
-                "id": "ledger",
-                "label": "الحسابات العامة",
-                "href": "/ledger"
+                "id": "intent",
+                "label": "معاينة نية التنقل",
+                "icon": "menu"
+              },
+              {
+                "id": "table",
+                "label": "فتح مكوّن الجدول",
+                "icon": "table",
+                "href": "/components/table"
               }
             ]
           },
           {
-            "id": "inventory",
-            "label": "المخزون",
+            "id": "tabs",
+            "label": "فتح مكوّن التبويبات",
             "icon": "layers",
-            "href": "/inventory"
+            "href": "/components/tabs"
           }
         ]
       },
@@ -5359,7 +5401,7 @@ export const ERP_COMPONENT_CATALOG: readonly ErpComponentCatalogEntry[] = [
         "required": false,
         "type": "string | null",
         "options": [],
-        "initialValue": "ledger"
+        "initialValue": "intent"
       },
       {
         "name": "sidebarLabel",

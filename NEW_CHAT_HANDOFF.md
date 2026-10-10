@@ -1,5 +1,29 @@
 # HONESTY ERP Design Lab — NEW CHAT HANDOFF
 
+## Authoritative current handoff — 2026-10-10 — autonomous UI backlog continuation
+
+Start from live `main` and preserve the Product Owner's new authorization to
+continue documented UI visual candidates without an intermediate review pause.
+Never translate internal visual review into Product Owner acceptance, and do
+not open business Feature/Page work or invent owners.
+
+The current Shell checkpoint entered at
+`6379313f8439cc7aefe025f2e6ecfcc8d9d1d481`. The root AppShell workbench now
+distinguishes a no-destination navigation-intent specimen from real Table/Tabs
+destinations, so output evidence and actual App-owned routing both function.
+The xxs Topbar keeps BranchSelector and Search together in a contained row and
+the complete UserMenu identity in its own row. At 320 px it measures 227.30 px,
+with 0 px horizontal overflow, instead of the earlier 283.30 px stack.
+
+The persisted integrated audit covers 81/81 routes and records one AppShell,
+RouterOutlet, OverlayHost and primary target per route, with zero diagnostics,
+broken images or horizontal overflow. The full canonical gate passes 127/127
+test files and 808/808 tests, all governance/lint, both typechecks and the
+zero-warning build. Continue next with the global component
+lifecycle/backlog ledger, then the next repository-documented Bottom-Up UI
+owner. Shell and subsequent candidates remain
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`.
+
 ## Authoritative current handoff — 2026-10-10 — root-owned AppShell Workbench complete
 
 Start from live `main`. The bounded recovery began at published

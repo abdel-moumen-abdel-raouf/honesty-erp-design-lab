@@ -198,6 +198,7 @@ export function validateShellNavigation(files) {
   }
 
   const topbarTemplate = files.get('src/app/controls/topbar/topbar.html') ?? '';
+  const topbarStyles = files.get('src/app/controls/topbar/topbar.scss') ?? '';
   const topbarTokens = files.get(
     'src/styles/foundation/components/topbar/_tokens.scss',
   ) ?? '';
@@ -235,6 +236,15 @@ export function validateShellNavigation(files) {
   }
   if (!topbarReference.includes('PRODUCT_OWNER_VISUAL_REVIEW_PENDING')) {
     errors.push('ErpTopbar reference contract must preserve pending Product Owner visual status');
+  }
+  if (
+    !topbarStyles.includes("viewport-down('xxs')") ||
+    !/\.topbar__context\s*\{[\s\S]*?flex:\s*1 1 calc\(50%/.test(topbarStyles) ||
+    !/\.topbar__search\s*\{[\s\S]*?flex:\s*1 1 calc\(50%/.test(topbarStyles) ||
+    !/\.topbar__search\s*\{[\s\S]*?min-inline-size:\s*0/.test(topbarStyles) ||
+    !/\.topbar__user\s*\{[\s\S]*?flex:\s*0 0 100%/.test(topbarStyles)
+  ) {
+    errors.push('ErpTopbar must keep context and search visible in one contained xxs row before the full identity row');
   }
 
   const appFooterSource = files.get('src/app/controls/app-footer/app-footer.ts') ?? '';
@@ -284,8 +294,15 @@ export function validateShellNavigation(files) {
   }
 
   const branchSelector = `${files.get('src/app/controls/branch-selector/branch-selector.ts') ?? ''}\n${files.get('src/app/controls/branch-selector/branch-selector.html') ?? ''}`;
+  const branchSelectorStyles = files.get('src/app/controls/branch-selector/branch-selector.scss') ?? '';
   if (!branchSelector.includes('ErpSelect') || !branchSelector.includes('<erp-select')) {
     errors.push('ErpBranchSelector must reuse ErpSelect');
+  }
+  if (
+    !branchSelectorStyles.includes("viewport-down('xxs')") ||
+    !/:host\s*\{\s*min-inline-size:\s*0/.test(branchSelectorStyles)
+  ) {
+    errors.push('ErpBranchSelector must allow the existing Select owner to shrink under xxs Topbar pressure');
   }
 
   const globalSearch = `${files.get('src/app/controls/global-search/global-search.ts') ?? ''}\n${files.get('src/app/controls/global-search/global-search.html') ?? ''}`;
@@ -502,6 +519,10 @@ function validFixture(overrides = new Map()) {
     '@mixin base { --honesty-topbar-height: 3.75rem; --honesty-topbar-padding-inline: 1.5rem; --honesty-topbar-search-basis: 30%; --honesty-topbar-narrow-padding-inline: 0.5rem; }',
   );
   files.set(
+    'src/app/controls/topbar/topbar.scss',
+    "@include query.viewport-down('xxs') { .topbar__context { flex: 1 1 calc(50% - var(--honesty-topbar-region-gap) / 2); } .topbar__search { flex: 1 1 calc(50% - var(--honesty-topbar-region-gap) / 2); min-inline-size: 0; order: 4; } .topbar__user { flex: 0 0 100%; order: 5; } }",
+  );
+  files.set(
     'src/app/controls/sidebar/sidebar.ts',
     'import {ErpSidebarDisclosure} from "x"; import {ErpSidebarLink} from "w"; import {ErpIconButton} from "y"; import {ErpTooltip} from "z"; export class ErpSidebar { readonly collapsed = model(false); readonly expandedIds = model<readonly string[]>([]); }',
   );
@@ -520,6 +541,10 @@ function validFixture(overrides = new Map()) {
   files.set(
     'src/app/controls/branch-selector/branch-selector.html',
     '<erp-select></erp-select>',
+  );
+  files.set(
+    'src/app/controls/branch-selector/branch-selector.scss',
+    "@include query.viewport-down('xxs') { :host { min-inline-size: 0; } }",
   );
   files.set(
     'src/app/controls/global-search/global-search.ts',
@@ -592,6 +617,8 @@ function runSelfTest() {
     ['always-visible UserMenu surface', new Map([['src/app/controls/user-menu/user-menu.scss', '.user-menu { min-inline-size: 0; } .user-menu__identity-header { flex: 0 0 auto; } .user-menu__items { flex: 1 1 auto; overflow-y: auto; } .user-menu__surface::before { left: var(--honesty-anchored-surface-arrow-cross-axis-center); } @media (prefers-reduced-motion: reduce) { .user-menu__surface { animation: none; } }']]), 'open-only flex'],
     ['nested AppShell showcase', new Map([[APP_SHELL_SHOWCASE, '<erp-app-shell data-app-shell-root-workbench-panel></erp-app-shell>']]), 'without rendering a nested Shell'],
     ['window-event AppShell bridge', new Map([[APP_SHELL_SHOWCASE_SOURCE, 'inject(ErpReviewAppShellWorkbenchState); window.dispatchEvent(new CustomEvent("honesty-erp-app-shell-showcase"))']]), 'typed Angular review-state bridge'],
+    ['stacked xxs Topbar context and search', new Map([['src/app/controls/topbar/topbar.scss', "@include query.viewport-down('xxs') { .topbar__context, .topbar__search, .topbar__user { flex-basis: 100%; } }"]]), 'contained xxs row'],
+    ['non-shrinking xxs BranchSelector', new Map([['src/app/controls/branch-selector/branch-selector.scss', '']]), 'shrink under xxs Topbar pressure'],
   ];
 
   for (const [label, overrides, expected] of invalidFixtures) {

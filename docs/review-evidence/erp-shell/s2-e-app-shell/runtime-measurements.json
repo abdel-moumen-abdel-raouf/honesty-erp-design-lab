@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-10-10T02:13:29.966Z",
+  "capturedAt": "2026-10-10T02:52:28.166Z",
   "baseUrl": "http://localhost:4999",
   "measurements": [
     {
@@ -29,14 +29,14 @@
         "x": 1171,
         "y": 60,
         "width": 269,
-        "height": 172
+        "height": 222
       },
       "navOverflowY": "auto",
-      "navScrollHeight": 172,
-      "navClientHeight": 172,
+      "navScrollHeight": 222,
+      "navClientHeight": 222,
       "collapsed": false,
-      "visibleEntries": 3,
-      "enabledInteractiveEntries": 3,
+      "visibleEntries": 4,
+      "enabledInteractiveEntries": 4,
       "activeDestinations": 1,
       "activeAncestors": 1,
       "header": {
@@ -162,13 +162,16 @@
         "notificationBell": 1,
         "userMenu": 1
       },
+      "appShellOwnerCount": 1,
+      "primaryTargetCount": 1,
+      "rootIsPrimaryTarget": true,
       "openPopoverCount": 0,
       "openPopovers": [],
       "routerOutletCount": 1,
       "overlayHostCount": 1,
       "brokenImages": 0,
       "interactionEvidence": {
-        "quickActionEvent": "آخر تفاعلquickActionActivated: task",
+        "quickActionEvent": "آخر تفاعللم يحدث تفاعل بعد",
         "footerActionEvent": "آخر تفاعلfooterActionActivated: support"
       },
       "navigationEvidence": null,
@@ -201,14 +204,14 @@
         "x": 0,
         "y": 60,
         "width": 269,
-        "height": 172
+        "height": 222
       },
       "navOverflowY": "auto",
-      "navScrollHeight": 172,
-      "navClientHeight": 172,
+      "navScrollHeight": 222,
+      "navClientHeight": 222,
       "collapsed": false,
-      "visibleEntries": 3,
-      "enabledInteractiveEntries": 3,
+      "visibleEntries": 4,
+      "enabledInteractiveEntries": 4,
       "activeDestinations": 1,
       "activeAncestors": 1,
       "header": {
@@ -334,6 +337,9 @@
         "notificationBell": 1,
         "userMenu": 1
       },
+      "appShellOwnerCount": 1,
+      "primaryTargetCount": 1,
+      "rootIsPrimaryTarget": true,
       "openPopoverCount": 0,
       "openPopovers": [],
       "routerOutletCount": 1,
@@ -373,14 +379,14 @@
         "x": 1025,
         "y": 60,
         "width": 269,
-        "height": 172
+        "height": 222
       },
       "navOverflowY": "auto",
-      "navScrollHeight": 172,
-      "navClientHeight": 172,
+      "navScrollHeight": 222,
+      "navClientHeight": 222,
       "collapsed": false,
-      "visibleEntries": 3,
-      "enabledInteractiveEntries": 3,
+      "visibleEntries": 4,
+      "enabledInteractiveEntries": 4,
       "activeDestinations": 1,
       "activeAncestors": 1,
       "header": {
@@ -506,6 +512,9 @@
         "notificationBell": 1,
         "userMenu": 1
       },
+      "appShellOwnerCount": 1,
+      "primaryTargetCount": 1,
+      "rootIsPrimaryTarget": true,
       "openPopoverCount": 0,
       "openPopovers": [],
       "routerOutletCount": 1,
@@ -545,14 +554,14 @@
         "x": 769,
         "y": 60,
         "width": 269,
-        "height": 172
+        "height": 222
       },
       "navOverflowY": "auto",
-      "navScrollHeight": 172,
-      "navClientHeight": 172,
+      "navScrollHeight": 222,
+      "navClientHeight": 222,
       "collapsed": false,
-      "visibleEntries": 3,
-      "enabledInteractiveEntries": 3,
+      "visibleEntries": 4,
+      "enabledInteractiveEntries": 4,
       "activeDestinations": 1,
       "activeAncestors": 1,
       "header": {
@@ -678,6 +687,9 @@
         "notificationBell": 1,
         "userMenu": 1
       },
+      "appShellOwnerCount": 1,
+      "primaryTargetCount": 1,
+      "rootIsPrimaryTarget": true,
       "openPopoverCount": 0,
       "openPopovers": [],
       "routerOutletCount": 1,
@@ -717,14 +729,14 @@
         "x": 376,
         "y": 60,
         "width": 269,
-        "height": 172
+        "height": 222
       },
       "navOverflowY": "auto",
-      "navScrollHeight": 172,
-      "navClientHeight": 172,
+      "navScrollHeight": 222,
+      "navClientHeight": 222,
       "collapsed": false,
-      "visibleEntries": 3,
-      "enabledInteractiveEntries": 3,
+      "visibleEntries": 4,
+      "enabledInteractiveEntries": 4,
       "activeDestinations": 1,
       "activeAncestors": 1,
       "header": {
@@ -850,6 +862,9 @@
         "notificationBell": 1,
         "userMenu": 1
       },
+      "appShellOwnerCount": 1,
+      "primaryTargetCount": 1,
+      "rootIsPrimaryTarget": true,
       "openPopoverCount": 0,
       "openPopovers": [],
       "routerOutletCount": 1,
@@ -875,7 +890,7 @@
         "x": 0,
         "y": 0,
         "width": 305,
-        "height": 3307.59375
+        "height": 3251.59375
       },
       "component": "app-shell",
       "requestedOpenState": null,
@@ -883,27 +898,27 @@
         "x": 0,
         "y": 0,
         "width": 305,
-        "height": 3307.59375
+        "height": 3251.59375
       },
       "nav": {
         "x": -270,
         "y": 60,
         "width": 269,
-        "height": 172
+        "height": 222
       },
       "navOverflowY": "auto",
-      "navScrollHeight": 172,
-      "navClientHeight": 172,
+      "navScrollHeight": 222,
+      "navClientHeight": 222,
       "collapsed": false,
-      "visibleEntries": 3,
-      "enabledInteractiveEntries": 3,
+      "visibleEntries": 4,
+      "enabledInteractiveEntries": 4,
       "activeDestinations": 1,
       "activeAncestors": 1,
       "header": {
         "x": 0,
         "y": 0,
         "width": 305,
-        "height": 282.296875
+        "height": 226.296875
       },
       "footer": {
         "x": 0,
@@ -913,7 +928,7 @@
       },
       "toolbar": {
         "x": 8,
-        "y": 3129.59375,
+        "y": 3073.59375,
         "width": 289,
         "height": 58
       },
@@ -921,12 +936,12 @@
         "x": 0,
         "y": 0,
         "width": 305,
-        "height": 3307.59375
+        "height": 3251.59375
       },
       "shellHorizontalOverflow": 0,
       "shellContent": {
         "x": 0,
-        "y": 283.296875,
+        "y": 227.296875,
         "width": 305,
         "height": 2846.296875
       },
@@ -946,7 +961,7 @@
           "x": 0,
           "y": 0,
           "width": 305,
-          "height": 283.296875
+          "height": 227.296875
         },
         "sidebar": {
           "x": -270,
@@ -956,19 +971,19 @@
         },
         "content": {
           "x": 0,
-          "y": 283.296875,
+          "y": 227.296875,
           "width": 305,
           "height": 2846.296875
         },
         "quickActions": {
           "x": 0,
-          "y": 3129.59375,
+          "y": 3073.59375,
           "width": 305,
           "height": 58
         },
         "footer": {
           "x": 0,
-          "y": 3187.59375,
+          "y": 3131.59375,
           "width": 305,
           "height": 120
         }
@@ -984,15 +999,15 @@
         "topbar__context": {
           "x": 8,
           "y": 64,
-          "width": 289,
+          "width": 136.5,
           "height": 66.296875,
           "overflowWidth": 0
         },
         "topbar__search": {
-          "x": 8,
-          "y": 234.296875,
-          "width": 289,
-          "height": 40,
+          "x": 160.5,
+          "y": 70.546875,
+          "width": 136.5,
+          "height": 53.1875,
           "overflowWidth": 0
         },
         "topbar__actions": {
@@ -1022,6 +1037,9 @@
         "notificationBell": 1,
         "userMenu": 1
       },
+      "appShellOwnerCount": 1,
+      "primaryTargetCount": 1,
+      "rootIsPrimaryTarget": true,
       "openPopoverCount": 0,
       "openPopovers": [],
       "routerOutletCount": 1,
@@ -1061,14 +1079,14 @@
         "x": 376,
         "y": 60,
         "width": 269,
-        "height": 172
+        "height": 222
       },
       "navOverflowY": "auto",
-      "navScrollHeight": 172,
-      "navClientHeight": 172,
+      "navScrollHeight": 222,
+      "navClientHeight": 222,
       "collapsed": false,
-      "visibleEntries": 3,
-      "enabledInteractiveEntries": 3,
+      "visibleEntries": 4,
+      "enabledInteractiveEntries": 4,
       "activeDestinations": 1,
       "activeAncestors": 1,
       "header": {
@@ -1194,6 +1212,9 @@
         "notificationBell": 1,
         "userMenu": 1
       },
+      "appShellOwnerCount": 1,
+      "primaryTargetCount": 1,
+      "rootIsPrimaryTarget": true,
       "openPopoverCount": 0,
       "openPopovers": [],
       "routerOutletCount": 1,
@@ -1217,37 +1238,37 @@
       "pageHorizontalOverflow": 0,
       "target": {
         "x": 0,
-        "y": -2740,
+        "y": -2684,
         "width": 305,
-        "height": 3307.59375
+        "height": 3251.59375
       },
       "component": "app-shell",
       "requestedOpenState": null,
       "host": {
         "x": 0,
-        "y": -2740,
+        "y": -2684,
         "width": 305,
-        "height": 3307.59375
+        "height": 3251.59375
       },
       "nav": {
         "x": -270,
         "y": 60,
         "width": 269,
-        "height": 172
+        "height": 222
       },
       "navOverflowY": "auto",
-      "navScrollHeight": 172,
-      "navClientHeight": 172,
+      "navScrollHeight": 222,
+      "navClientHeight": 222,
       "collapsed": false,
-      "visibleEntries": 3,
-      "enabledInteractiveEntries": 3,
+      "visibleEntries": 4,
+      "enabledInteractiveEntries": 4,
       "activeDestinations": 1,
       "activeAncestors": 1,
       "header": {
         "x": 0,
-        "y": -2740,
+        "y": -2684,
         "width": 305,
-        "height": 282.296875
+        "height": 226.296875
       },
       "footer": {
         "x": 0,
@@ -1263,9 +1284,9 @@
       },
       "shell": {
         "x": 0,
-        "y": -2740,
+        "y": -2684,
         "width": 305,
-        "height": 3307.59375
+        "height": 3251.59375
       },
       "shellHorizontalOverflow": 0,
       "shellContent": {
@@ -1288,9 +1309,9 @@
       "shellRegions": {
         "topbar": {
           "x": 0,
-          "y": -2740,
+          "y": -2684,
           "width": 305,
-          "height": 283.296875
+          "height": 227.296875
         },
         "sidebar": {
           "x": -270,
@@ -1320,35 +1341,35 @@
       "regions": {
         "topbar__start": {
           "x": 8,
-          "y": -2732,
+          "y": -2676,
           "width": 40,
           "height": 40,
           "overflowWidth": 0
         },
         "topbar__context": {
           "x": 8,
-          "y": -2676,
-          "width": 289,
+          "y": -2620,
+          "width": 136.5,
           "height": 66.296875,
           "overflowWidth": 0
         },
         "topbar__search": {
-          "x": 8,
-          "y": -2505.703125,
-          "width": 289,
-          "height": 40,
+          "x": 160.5,
+          "y": -2613.453125,
+          "width": 136.5,
+          "height": 53.1875,
           "overflowWidth": 0
         },
         "topbar__actions": {
           "x": 64,
-          "y": -2732,
+          "y": -2676,
           "width": 216,
           "height": 40,
           "overflowWidth": 0
         },
         "topbar__user": {
           "x": 8,
-          "y": -2593.703125,
+          "y": -2537.703125,
           "width": 289,
           "height": 72,
           "overflowWidth": 0
@@ -1366,6 +1387,9 @@
         "notificationBell": 1,
         "userMenu": 1
       },
+      "appShellOwnerCount": 1,
+      "primaryTargetCount": 1,
+      "rootIsPrimaryTarget": true,
       "openPopoverCount": 0,
       "openPopovers": [],
       "routerOutletCount": 1,

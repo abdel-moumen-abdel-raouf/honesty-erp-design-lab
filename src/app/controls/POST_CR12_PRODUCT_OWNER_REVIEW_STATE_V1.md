@@ -1,5 +1,24 @@
 # Honesty ERP — Post-CR12 Product Owner Review State V1
 
+## Current review execution — 2026-10-10 — internal review continues autonomously
+
+The Product Owner temporarily delegates evidence-based internal visual review
+and permits sequential completion of the documented UI backlog. This removes
+the intermediate pause but does not accept or freeze any candidate.
+
+The integrated Shell re-audit reproduced and corrected two findings: real
+AppShell workbench destinations were swallowed after output logging, and the
+320 px Topbar consumed 283.30 px. The final workbench separates an event-only
+intent item from real Table/Tabs routes. The xxs Topbar measures 227.30 px with
+BranchSelector and Search visible at 136.5 px each, the full UserMenu identity
+at 289 px, and zero horizontal overflow. The refreshed 81-route evidence has no
+diagnostics or broken images. Canonical verification passes 127/127 test files
+and 808/808 tests, all governance/lint, both typechecks and the zero-warning
+build. Shell status remains
+`TECHNICAL_VERIFIED` / `INTERNAL_VISUAL_REVIEW_COMPLETED` /
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`; execution proceeds to the global backlog
+ledger rather than pausing for approval.
+
 ## Current Product Owner visual-review item — 2026-10-10 — root AppShell Workbench
 
 The AppShell dedicated route now reviews the actual root-owned Shell without a

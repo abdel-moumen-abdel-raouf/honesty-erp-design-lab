@@ -1,5 +1,24 @@
 # Honesty ERP — Controls Execution Roadmap V1
 
+## Authoritative continuation — 2026-10-10 — documented UI backlog opened
+
+The Product Owner authorizes sequential internal visual QA and technical
+completion of every presently documented UI candidate without an intermediate
+visual-approval pause. Exact references and explicit accepted/frozen decisions
+remain binding; `ErpCheckBox` V5 is not reopened. This authorization does not
+open CRUD, business Feature/Page, backend, permission, transport, or invented
+public-component work.
+
+The first bounded unit re-audits the integrated Shell from
+`6379313f8439cc7aefe025f2e6ecfcc8d9d1d481`. It restores functional real
+Sidebar destinations inside the root AppShell workbench while retaining an
+explicit navigation-intent specimen, and corrects the xxs Topbar to keep
+BranchSelector, Search and the full UserMenu identity visible with zero
+horizontal overflow. After its verified checkpoint, produce the global
+component lifecycle/backlog ledger and proceed to the next documented owner in
+strict Bottom-Up order. Its canonical gate passes 127/127 test files and
+808/808 tests, all governance/lint, both typechecks and the zero-warning build.
+
 ## Authoritative root AppShell Workbench closure — 2026-10-10
 
 The existing AppShell follow-up is complete without reopening or duplicating

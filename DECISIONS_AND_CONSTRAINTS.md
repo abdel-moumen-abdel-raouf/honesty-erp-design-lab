@@ -1,5 +1,24 @@
 # DECISIONS AND CONSTRAINTS — HONESTY ERP Design Lab
 
+## Autonomous UI visual-QA decisions — 2026-10-10
+
+- Product Owner authorization permits sequential internal visual review and
+  technical completion of the currently documented UI backlog without pausing
+  after each pending visual candidate.
+- Internal evidence never changes a visual status to accepted or frozen.
+- Existing exact references and explicit Product Owner corrections have
+  precedence over generic Skodash evidence; an unavailable reference permits
+  only a clearly recorded original Honesty ERP candidate.
+- The AppShell review Sidebar distinguishes output-only navigation intent from
+  real destinations. Real destinations must not be swallowed merely because
+  the route is recording workbench output evidence.
+- At the Foundation xxs query, Topbar keeps BranchSelector and Search visible in
+  one contained row and retains the full UserMenu identity in a separate row.
+  Collapsing a projected owner to conceal pressure is forbidden.
+- One root AppShell, direct RouterOutlet, OverlayHost and primary target per
+  public route remain invariant. Business Feature/Page, backend, transport,
+  permission and CRUD work remain closed.
+
 ## Root-owned AppShell Workbench decisions — 2026-10-10
 
 - `/components/app-shell` reviews the single real root `ErpAppShell`; routed

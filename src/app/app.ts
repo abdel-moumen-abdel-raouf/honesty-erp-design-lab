@@ -380,7 +380,9 @@ export class App {
   navigate(item: ErpNavigationItem): void {
     if (this.isAppShellShowcase()) {
       this.recordAppShellShowcaseEvent('navigationActivated', item);
-      return;
+      if (!item.href) {
+        return;
+      }
     }
     if (item.href && !item.disabled) {
       void this.router.navigateByUrl(item.href);

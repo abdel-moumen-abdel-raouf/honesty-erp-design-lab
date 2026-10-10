@@ -37,3 +37,16 @@ an action-region consumer. The dedicated workbench composes
 - App root remains the sole theme authority.
 - Responsive behavior uses the Foundation Query API.
 - Reused consumer owners retain their existing visual and behavioral contracts.
+
+## 2026-10-10 integrated pressure correction
+
+The real root composition proved that the preceding xxs rule stacked
+BranchSelector, UserMenu and Search into a 283.30 px Topbar. An interim attempt
+to place context and user together collapsed BranchSelector to 1 px and caused
+44 px page overflow, so it was rejected. The final Foundation xxs rule places
+BranchSelector and Search in one 136.5 px-per-region row and preserves the full
+289 px UserMenu identity row. At 320 px the Topbar measures 227.30 px with zero
+page/Shell horizontal overflow; no projected owner is hidden or clipped.
+
+This is an authorized Honesty ERP containment correction. It is not claimed as
+a Skodash source measurement and does not change Product Owner visual status.

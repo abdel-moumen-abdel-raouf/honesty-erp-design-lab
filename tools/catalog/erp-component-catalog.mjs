@@ -345,10 +345,18 @@ const FIXTURE_INPUTS = new Map([
   }],
   ['ErpAppShell', {
     navigationItems: [
-      {id: 'finance', label: 'المالية', icon: 'wallet', children: [{id: 'ledger', label: 'الحسابات العامة', href: '/ledger'}]},
-      {id: 'inventory', label: 'المخزون', icon: 'layers', href: '/inventory'},
+      {
+        id: 'review',
+        label: 'مراجعة الإطار',
+        icon: 'dashboard',
+        children: [
+          {id: 'intent', label: 'معاينة نية التنقل', icon: 'menu'},
+          {id: 'table', label: 'فتح مكوّن الجدول', icon: 'table', href: '/components/table'},
+        ],
+      },
+      {id: 'tabs', label: 'فتح مكوّن التبويبات', icon: 'layers', href: '/components/tabs'},
     ],
-    activeNavigationId: 'ledger',
+    activeNavigationId: 'intent',
     quickActionGroups: [
       {id: 'daily', label: 'العمل اليومي', actions: [{id: 'task', label: 'مهمة جديدة', icon: 'add', priority: 'primary'}, {id: 'event', label: 'موعد جديد', icon: 'calendar'}]},
       {id: 'support', actions: [{id: 'help', label: 'المساعدة', icon: 'help'}, {id: 'settings', label: 'الإعدادات', icon: 'settings'}]},

@@ -1,5 +1,24 @@
 # README FIRST — HONESTY ERP Design Lab
 
+## Current authorized execution — 2026-10-10 — autonomous UI visual QA
+
+The Product Owner has authorized continuous evidence-based review and technical
+completion of the repository-documented UI backlog. A pending Product Owner
+visual status is no longer an intermediate execution blocker, but no internal
+review is acceptance and no business Feature/Page wave is opened.
+
+The first Shell re-audit corrected two reproduced defects. The root AppShell
+workbench now offers both an explicit event-only navigation item and real
+Table/Tabs destinations; real links record `navigationActivated` and then route
+normally. At 320 px, BranchSelector and Search now share a visible contained
+row, UserMenu retains its complete identity row, Topbar height is 227.30 px,
+and horizontal overflow is zero. The refreshed 81-route audit retains one root
+AppShell, RouterOutlet, OverlayHost and primary target with no diagnostics or
+broken images. Canonical verification passes 127/127 test files and 808/808
+tests, all governance/lint, both typechecks, and the zero-warning build at
+418.32 kB / 92.90 kB estimated transfer. Continue with the global lifecycle/backlog ledger and the next
+documented Bottom-Up UI owner; all unaccepted visuals remain pending.
+
 ## Current gate — 2026-10-10 — root-owned AppShell Workbench review
 
 The existing uncommitted root correction was recovered non-destructively from

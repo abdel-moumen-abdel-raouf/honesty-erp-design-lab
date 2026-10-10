@@ -1,5 +1,32 @@
 # CURRENT EXECUTION STATE — HONESTY ERP Design Lab
 
+## Authoritative current execution state — 2026-10-10 — autonomous UI visual QA opened
+
+The new Product Owner authorization supersedes the historical requirement to
+pause after every technically verified UI candidate. Visual status remains
+pending until explicit Product Owner acceptance, but documented UI owners may
+now be reviewed, corrected, verified, checkpointed and followed by the next
+Bottom-Up unit. Business Feature/Page, CRUD, transport, permissions and backend
+work remain closed.
+
+The first integrated Shell audit entered from clean `main`
+`6379313f8439cc7aefe025f2e6ecfcc8d9d1d481`. A real AppShell Sidebar click
+confirmed that the review route recorded `navigationActivated` then returned
+before routing. The review navigation now has an explicit intent-only item and
+real Table/Tabs destinations; the former remains on the workbench and records
+the event, while the latter records the event then uses the App-owned Router.
+
+At 320 px the previous Topbar measured 283.30 px. An interim shrink produced a
+1 px BranchSelector and 44 px horizontal overflow and was rejected. The final
+layout keeps BranchSelector and Search visible at 136.5 px each, preserves the
+full 289 px UserMenu identity row, measures 227.30 px, and records zero page or
+Shell horizontal overflow. The refreshed audit passes all 81/81 component
+routes with one root AppShell, one RouterOutlet, one OverlayHost, one primary
+target, zero broken images and zero browser diagnostics. Status remains
+`PRODUCT_OWNER_VISUAL_REVIEW_PENDING`. Canonical verification passes 127/127
+test files and 808/808 tests, all governance/lint, both typechecks, and the
+zero-warning production build at 418.32 kB / 92.90 kB estimated transfer.
+
 ## Authoritative current execution state — 2026-10-10 — root AppShell Workbench recovered
 
 Published `main` and `origin/main` began at

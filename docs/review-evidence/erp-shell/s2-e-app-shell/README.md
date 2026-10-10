@@ -34,7 +34,9 @@ activated on route entry and cleared on route destruction; no custom
 
 Every condition records the ten required production owners, one RouterOutlet,
 one OverlayHost, zero broken images, and zero captured browser error or
-warning. Each condition activates a real quick action and Footer action; the
+warning. Every condition also records exactly one `erp-app-shell`, exactly one
+primary target, and confirms that `#design-lab-app-shell` is that target. Each
+condition activates a real quick action and Footer action; the
 event log records `quickActionActivated: task` and
 `footerActionActivated: support`.
 

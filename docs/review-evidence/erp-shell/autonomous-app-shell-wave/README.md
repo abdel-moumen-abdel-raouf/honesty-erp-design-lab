@@ -31,8 +31,10 @@ outside their own single `data-showcase-target`.
 | `integrated-1024-light-rtl-notifications-open.png` | Off-canvas Shell; Notifications open | 1024 x 73 | closed off-canvas | 1024 x 580 | 1024 x 58 | 1024 x 57 |
 | `integrated-768-dark-ltr-search-active.png` | Active SearchBox popup and results | 768 x 227.30 | closed off-canvas | 768 x 557.70 | 768 x 58 | 768 x 57 |
 | `integrated-390-light-rtl-sidebar-open.png` | Logical-start Sidebar drawer open | 375 x 201 | 270 x 844 | 375 x 1868.28 | 375 x 58 | 375 x 120 |
+| `integrated-390-light-rtl.png` | Closed narrow frame; context and UserMenu share the middle row | 375 x 201 | closed off-canvas | 375 x 1868.28 | 375 x 58 | 375 x 120 |
 | `integrated-390-dark-rtl-messages-open.png` | Viewport-contained Messages | 375 x 201 | closed off-canvas | 375 x 1868.28 | 375 x 58 | 375 x 120 |
-| `integrated-320-dark-ltr-notifications-open.png` | Constrained LTR Notifications | 305 x 283.30 | closed off-canvas | 305 x 2041.47 | 305 x 58 | 305 x 150 |
+| `integrated-320-dark-ltr.png` | Closed constrained frame; BranchSelector and Search share one row | 305 x 227.30 | closed off-canvas | 305 x 2041.47 | 305 x 58 | 305 x 150 |
+| `integrated-320-dark-ltr-notifications-open.png` | Viewport-contained constrained LTR Notifications | 305 x 227.30 | closed off-canvas | 305 x 2041.47 | 305 x 58 | 305 x 150 |
 
 The 375 px and 305 px layout widths are the document client widths after the
 native vertical scrollbar at 390 px and 320 px. They are not horizontal
@@ -50,6 +52,14 @@ clipping.
 - Broken images: 0.
 - Browser errors and warnings: 0.
 - RouterOutlet instances: 1. OverlayHost instances: 1.
+- `/components/app-shell` contains one `erp-app-shell`, one primary target, and
+  the root `#design-lab-app-shell` is that target. Other component routes keep
+  the root outside their own one primary target.
+- The AppShell review Sidebar now separates a no-destination intent item from
+  real `/components/table` and `/components/tabs` destinations. The intent
+  remains on the review route and records `navigationActivated`; a real
+  destination records the same event and then navigates through the App-owned
+  Router.
 - Public component route audit: 81/81 passed. Every route rendered exactly one
   primary showcase target with one real root AppShell, one
   RouterOutlet, one OverlayHost, zero broken images, zero horizontal overflow,
@@ -79,6 +89,16 @@ clipping.
 6. AppShell and Notification styles exceeded the unchanged 4 kB component
    warning budget. Internal stylesheet partitioning restored the zero-warning
    build without changing the rendered contract.
+7. The root AppShell review handler recorded every Sidebar activation and then
+   returned, so genuine destinations could not navigate. It now returns only
+   for the explicit intent-only item; real destinations continue to the
+   App-owned Router.
+8. At 320 px the earlier Topbar stacked BranchSelector, UserMenu, and Search in
+   separate full-width rows (283.30 px). A first correction collapsed the
+   BranchSelector and caused 44 px horizontal overflow, so it was rejected.
+   The final xxs composition gives BranchSelector and Search 136.5 px each on
+   one row, retains the full 289 px UserMenu identity row, measures 227.30 px,
+   and records 0 px page and Shell horizontal overflow.
 
 The captures and automated checks are internal evidence only. Product Owner
 visual approval is not recorded.
